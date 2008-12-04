@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css">
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
+<style>
+#welcomeHeader {
+	font-size:350%;
+	font-family:georgia;
+	font-style: italic;
+	color: #C1D800;
+	text-align:left;
+	margin-bottom: 0px;
+	font-weight: normal;
+	margin-top: 22px;
+}
+#shortdescription {
+	font-size:200%;
+	font-family:georgia;
+	font-style: italic;
+	color: #C3C5B6;
+	text-align:justify;
+	margin-top: -6px;
+	line-height: 30px;
+	font-weight: normal;
+}
+#hd {
+	background-image: url(images/header_bkd.jpg);
+	background-repeat: repeat-x;
+	height: 83px;
+}
+#topmenu {
+	font-family:arial;
+}
+#navcontainer {
+	height: 70px;
+	width: auto;
+	font-family:arial;
+	font-size: 120%;
+	padding-left: 0px;
+	margin-left: 0px;
+}
+
+#navcontainer #current {
+	color:#B7CE00;
+}
+
+#navcontainer #current:hover {
+}
+
+#navcontainer ul li a:link.currentAncestor,
+#navcontainer ul li a:visited.currentAncestor {
+}
+
+/* Parent - Level 0 */
+
+#navcontainer ul{
+	text-align: left;
+	padding: 40px 0 0 0;
+	list-style-type: none;
+	margin: 0;
+	clip: rect(auto,auto,auto,-10px);
+}
+
+#navcontainer li {
+	display: inline;
+}
+
+#navcontainer a:link,
+#navcontainer a:visited {
+	color: #919181;
+	font-weight: 500;
+	text-decoration: none;
+	margin: 0 0 0 10px;
+	display: block;
+	float: left;
+	padding-bottom: 6px;
+}
+
+
+#navcontainer a:hover {
+	color: #B8CE00;
+}
+
+#navcontainer a:active {
+}
+
+/* Child - Level 1 */
+
+#navcontainer ul ul {
+	font-size: 0.9em;
+	position: absolute;
+	right: 0;
+}
+
+#navcontainer ul ul li a:link {
+	color: #333;
+	font-weight: normal;
+	border: none;
+}
+
+#navcontainer ul ul ul {
+	display: none;
+}
+
+#blogPart {
+	background-color: #666;
+	height: 300px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #000;
+	border-right-color: #000;
+	border-bottom-color: #000;
+	border-left-color: #000;
+}
+
+.centeredImage
+    {
+	text-align:center;
+    margin-top:0px;
+    margin-bottom:0px;
+    padding:0px;
+    }
+.div850 {
+	min-width:850px;
+	margin:auto;
+	width:73.0em;
+}
+
+
+</style>
+</head>
+<body>
+<div id="doc3" style="margin:0px;">
+  <div id="hd">
+    <div class="div850"> <img src="images/basiclogo.jpg" width="143" height="83" alt="Vizzuality logo" /></div>
+  </div>
+  <div id="doc2" class="div850">
+    <div id="navcontainer">
+      <ul>
+        <li><a href="/" rel="self" id="current">HOME</a></li>
+        <li><a href="/contact/" rel="self">DATA VISUALIZATION</a></li>
+         <li><a href="/contact/" rel="self">RICH GIS</a></li>
+          <li><a href="/contact/" rel="self">DATA ANALYSIS</a></li>
+           <li><a href="/contact/" rel="self">TECHNOLOGY</a></li>
+      </ul>
+    </div>
+    <h1 id="welcomeHeader">Welcome to vizzuality</h1>
+    <h2 id="shortdescription">Vizzuality is a new company dedicated to the design & development of 
+      Rich Internet Applications for biodiversity data. </h2>
+    <p class="centeredImage"><img src="images/bannerCentral.jpg" width="948" height="341" /></p>
+    <p>&nbsp;</p>
+  </div>
+  <div id="blogPart"></div>
+  <div id="ft"> </div>
+</div>
+</body>
+</html>
