@@ -5,6 +5,7 @@
 <title>Untitled Document</title>
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css">
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
+
 <style>
 #welcomeHeader {
 	font-size:350%;
@@ -13,24 +14,58 @@
 	color: #C1D800;
 	text-align:left;
 	margin-bottom: 0px;
-	font-weight: normal;
-	margin-top: 22px;
+	font-weight: 100;
+	padding-top: 0px;
+	margin-left: -2px;
 }
 #shortdescription {
-	font-size:200%;
+	font-size:185%;
 	font-family:georgia;
 	font-style: italic;
 	color: #C3C5B6;
 	text-align:justify;
-	margin-top: -6px;
-	line-height: 30px;
-	font-weight: normal;
+	margin-top: 16px;
+	font-weight: 100;
+	padding-left: 2px;
 }
+#moredescription {
+	font-size:110%;
+	font-family: Arial;
+	font-style: italic;
+	color: #C3C5B6;
+	text-align:justify;
+	margin-top: -4px;
+	font-weight: 100;
+	margin-bottom: 28px;
+}
+
+#moredescription a:link,
+#moredescription a:visited{
+	color: #f58229;	
+}
+
+#downTopic {
+	font-size:100%;
+	font-family: Arial;
+	font-style: italic;
+	color: #C3C5B6;
+	text-align:right;
+	margin-top: 4px;
+	font-weight: 100;
+	margin-bottom: 28px;
+}
+
+#downTopic a:link,
+#downTopic a:visited{
+	color: #f58229;	
+}
+
 #hd {
 	background-image: url(images/header_bkd.jpg);
 	background-repeat: repeat-x;
 	height: 83px;
 }
+
 #topmenu {
 	font-family:arial;
 }
@@ -38,9 +73,10 @@
 	height: 70px;
 	width: auto;
 	font-family:arial;
-	font-size: 120%;
+	font-size: 13px;
 	padding-left: 0px;
 	margin-left: 0px;
+	padding-top: 28px;
 }
 
 #navcontainer #current {
@@ -57,8 +93,8 @@
 /* Parent - Level 0 */
 
 #navcontainer ul{
-	text-align: left;
-	padding: 40px 0 0 0;
+	text-align: right;
+	padding: 40px 0 0 178px;
 	list-style-type: none;
 	margin: 0;
 	clip: rect(auto,auto,auto,-10px);
@@ -70,8 +106,8 @@
 
 #navcontainer a:link,
 #navcontainer a:visited {
-	color: #919181;
-	font-weight: 500;
+	color: #C3C5B6;
+	font-weight: 600;
 	text-decoration: none;
 	margin: 0 0 0 10px;
 	display: block;
@@ -106,8 +142,8 @@
 }
 
 #blogPart {
-	background-color: #666;
-	height: 300px;
+	background-color: #3c3c3c;
+	height: 340px;
 	border-top-width: 1px;
 	border-top-style: solid;
 	border-top-color: #000;
@@ -116,45 +152,207 @@
 	border-left-color: #000;
 }
 
-.centeredImage
-    {
+#blogPartBorder {
+	background-image: url(images/footerBorder.jpg);
+	background-repeat: repeat-x;
+	height: 28px;
+}
+
+#blogPartTitle {
+	font-size:230%;
+	font-family:georgia;
+	font-style: italic;
+	color: #FFFFFF;
+	text-align:left;
+	margin-top: 9px;
+	font-weight: 100;
+	padding-top: 0px;
+	margin-bottom: 10px;
+}
+
+#postContainer{
+	padding-top: 7px;
+	padding-bottom: 0px;
+}
+
+#blogPost{
+	color:#FFF;	
+}
+
+#postTitle{
+	color: #FFF;
+	font-family: Arial;
+	font-size: 16px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-bottom: 5px;
+}
+
+#postDate{
+	color: #d0e900;
+	font-family: Arial;
+	font-size: 12px;
+	font-style: italic;
+	margin-top: 0px;
+	padding-bottom: 0px;
+	padding-top: -10px;
+}
+
+.centeredImage{
 	text-align:center;
     margin-top:0px;
     margin-bottom:0px;
     padding:0px;
-    }
-.div850 {
-	min-width:850px;
+}
+	
+.div825 {
+	min-width:825px;
 	margin:auto;
-	width:73.0em;
+	width:825px;
 }
 
+hr {
+	border: none 0;
+	border-top: 1px dashed #a4a4a4;/*the border*/
+	width: 100%;
+	height: 1px;/*whatever the total width of the border-top and border-bottom equal*/
+} 
+
+
+#footerNav{
+	padding-left: -5px;
+}
+
+#footerNav ul{
+	text-align: right;
+	list-style-type: none;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 370px;
+	clip: rect(auto,auto,auto,-10px);
+}
+
+#footerNav li {
+	display: inline;
+	padding-left: 0px;
+}
+
+#footerNav a:link,
+#footerNav a:visited {
+	color: #b3b3b3;
+	font-size:12px;
+	font-weight: 100;
+	text-decoration: none;
+	margin: 0 0 0 6px;
+	display: block;
+	float: left;
+	padding-bottom: 15px;
+}
+
+
+#footerNav a:hover {
+	color: #FFFFFF;
+}
+
+#footerNav a:active {
+}
+
+/* Child - Level 1 */
+
+#footerNav ul ul {
+	font-size: 0.9em;
+	position: absolute;
+	right: 0;
+}
+
+#footerNav ul ul li a:link {
+	color: #333;
+	font-weight: normal;
+	border: none;
+}
+
+#footerNav ul ul ul {
+	display: none;
+}
 
 </style>
 </head>
 <body>
 <div id="doc3" style="margin:0px;">
   <div id="hd">
-    <div class="div850"> <img src="images/basiclogo.jpg" width="143" height="83" alt="Vizzuality logo" /></div>
-  </div>
-  <div id="doc2" class="div850">
-    <div id="navcontainer">
-      <ul>
-        <li><a href="/" rel="self" id="current">HOME</a></li>
-        <li><a href="/contact/" rel="self">DATA VISUALIZATION</a></li>
-         <li><a href="/contact/" rel="self">RICH GIS</a></li>
-          <li><a href="/contact/" rel="self">DATA ANALYSIS</a></li>
-           <li><a href="/contact/" rel="self">TECHNOLOGY</a></li>
-      </ul>
+    <div class="div825"> 
+    <img src="images/basiclogo.jpg" width="143" height="83" alt="Vizzuality logo" align="left" />
+        <div id="navcontainer">
+      		<ul>
+        		<li><a href="/" rel="self" id="current">HOME</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>
+       			<li><a href="/contact/" rel="self">DATA VISUALIZATION</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>                
+       			<li><a href="/contact/" rel="self">RICH GIS</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>
+       	   		<li><a href="/contact/" rel="self">DATA ANALYSIS</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>       	    	
+                <li><a href="/contact/" rel="self">TECHNOLOGY</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>                
+       	    	<li><a href="/contact/" rel="self">CONTACT US</a></li>
+      		</ul>
+    	</div>
     </div>
+  </div>
+  <div class="div825">
     <h1 id="welcomeHeader">Welcome to vizzuality</h1>
     <h2 id="shortdescription">Vizzuality is a new company dedicated to the design & development of 
       Rich Internet Applications for biodiversity data. </h2>
-    <p class="centeredImage"><img src="images/bannerCentral.jpg" width="948" height="341" /></p>
-    <p>&nbsp;</p>
+      <h3 id="moredescription">We are experts on <a href="/contact/" class="textlink" rel="self">user Interaction</a> and <a href="/contact/" class="textlink" rel="self">visualization</a> of large taxonomic, geospatial and temporal datasets. We work with our clients
+to deliver engaging data visualizations and advance geographic information systems. Check our expertise and <a href="/contact/" class="textlink" rel="self">contact us</a> if you think 
+we can help you</h3>
+    <p class="centeredImage"><img src="images/featuredUsecaseFoo.jpg"/></p>
+    <p class="centeredImage"><img src="images/buttonTemplateFoo.jpg"/></p>    
+    <h3 id="downTopic" >Are you looking for another solution? <a href="/contact/" class="textlink" rel="self">contact us</a> and we'll try help you</h3>
   </div>
-  <div id="blogPart"></div>
-  <div id="ft"> </div>
+  <div id="blogPartBorder"></div>
+  <div id="blogPart">
+  	<div class="div825">
+    	<h2 id="blogPartTitle">Latest from the blog</h2>
+        <hr/>
+    </div>
+	<div class="div825" id="postContainer">
+    	<div class="blogPost">
+        	<p id="postTitle">Reproducing Spatial Joins using Hadoop and EC2.</p>
+            <p id="postDate">Sunday, 2 december, 2008</p>
+        </div>
+        <div class="blogPost">
+        	<p id="postTitle">Do you know any species distribution project?</p>
+            <p id="postDate">Sunday, 2 december, 2008</p>
+        </div>
+        <div class="blogPost">
+        	<p id="postTitle">Flickr creating polygons out of points, what about species distributions?</p>
+            <p id="postDate">Sunday, 2 december, 2008</p>
+        </div>
+        <div class="blogPost">
+        	<p id="postTitle">Flickr creating polygons out of points, what about species distributions?</p>
+            <p id="postDate">Sunday, 2 december, 2008</p>
+        </div>
+    </div>
+    <div class="div825">
+        <hr/>
+        <div id="footerNav">
+      		<ul>
+        		<li><a href="/" rel="self" id="current">Home</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>
+       			<li><a href="/contact/" rel="self">Data visualization</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>                
+       			<li><a href="/contact/" rel="self">Rich GIS</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>
+       	   		<li><a href="/contact/" rel="self">Data analysis</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>       	    	
+                <li><a href="/contact/" rel="self">Technology</a></li>
+        		<li><a href="/" rel="self" id="current">·</a></li>                
+       	    	<li><a href="/contact/" rel="self">Contact us</a></li>
+      		</ul>
+    	</div>
+    </div>
+  </div>
 </div>
 </body>
 </html>
