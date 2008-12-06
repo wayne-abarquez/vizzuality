@@ -112,7 +112,7 @@ body{
 }
 
 #hd {
-	background-image: url(../images/header_bkd.jpg);
+	background-image: url(/images/header_bkd.jpg);
 	background-repeat: repeat-x;
 	height: 83px;
 }
@@ -206,7 +206,7 @@ body{
 }
 
 #blogPartBorder {
-	background-image: url(../images/footerBorder.jpg);
+	background-image: url(/images/footerBorder.jpg);
 	background-repeat: repeat-x;
 	height: 28px;
 }
