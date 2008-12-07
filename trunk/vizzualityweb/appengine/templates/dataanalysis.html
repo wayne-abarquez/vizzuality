@@ -1,105 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Untitled Document</title>
-
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css">
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
-<link rel="stylesheet" type="text/css" href="/css/styles_01.css">
-
-</head>
-<body>
-<div id="doc3" style="margin:0px;">
-  <div id="hd">
-    <div class="div825"> 
-        <img src="/images/basiclogo.jpg" width="143" height="83" alt="Vizzuality logo" align="left" />
-        <div id="quickMenuContainer">
-        	<img src="/images/blogTinyIcon.jpg" alt="blog tiny icon" class="tinyIcon" align="left"/><a href="/" rel="self" id="current">blog</a>
-            <img src="/images/contactTinyIcon.jpg" alt="blog tiny icon" class="tinyIcon" align="left"/><a href="/" rel="self" id="current">contact us</a>
-        </div>
-        <div id="navcontainer">
-            <ul>
-          <li><a href="/" rel="self">HOME</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/visualization/" rel="self">DATA VISUALIZATION</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/gis/" rel="self">RICH GIS</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/analysis/"  id="current" rel="self">DATA ANALYSIS</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/contact/" rel="self">ABOUT US</a></li>
-            </ul>
-        </div>
-    </div>
-  </div>
-  <div class="div825">
-    <h1 id="welcomeHeader">Data Analysis services</h1>
-    <h2 id="shortdescription">From million of raw records to great visualization there is a great step on data analysis. We use latest technology to process and analyze huge datasets.</h2>
-      <h3 id="moredescription">Gathering, modeling and transforming data is key to enable rich visualizations that enable highlighting useful information. We do data analysis using Computing in the Cloud services with technology like Map Reduce and geospatial databases. <br /><br />At the end of the day we enable cost effective solutions that you can rely on. Analyzing your data can be a matter of hours and not days and without expending money in dedicated hardware. Check our technology page to discover in which technologies we are experts. </h3>
-    <p class="centeredImage"><img src="/images/promoimage_dataAnalysis.jpg"/></p>
-    <h2 id="technologiesTitle">Data analysis technologies</h2>
-    <hr class="hr2"/>
-    <div class="div825" id="techContainer">
-    	<div class="leftLongTech">
-        	<p id="techTitle"><img src="/images/techLogos/logoCloud.jpg" alt="Google maps"/></p>
-            <p id="techDesc">Amazon Web Services, specially EC2 and S3 enable us to do data analysis using MapReduce. Take 20 servers for 1 hour and process 20 times faster.
-        </div>
-      	<div class="rightLongTech">
-        	<p id="techTitle"><img src="/images/techLogos/logoPostGIS.jpg" alt="PostGIS"/></p>
-            <p id="techDesc">For sophisticated geospatial analysis PostGIS provides an incredible set of operations than can be used with large amounts of data..
-        </div>
-    </div>
-  </div>
-  <div id="blogPartBorder"></div>
-  <div id="blogPart">
-  	<div class="div825">
-    	<h2 id="blogPartTitle">More about vizzuality</h2>
-        <hr/>
-    </div>
-	<div class="div825" id="adviceContainer">
-    	<div class="leftAdvice">
-        	<p id="postTitle"><a href="gis.html" rel="self">Rich GIS Solutions</a></p>
-            <p id="postDate">Engaging web geographic information <br />
-systems</p>
-        </div>
-        <div class="centertAdvice">
-        	<p id="postTitle"><a href="datavizz.html" rel="self">Data visualization solution</a></p>
-            <p id="postDate">Taxonomy, primary data, and massive stats</p>
+{% extends "base_section.html" %}
+{% block maincontent %}
+  <h1 id="welcomeHeader">Data Analysis services</h1>
+  <h2 id="shortdescription">From million of raw records to great visualization there is a great step on data analysis. We use latest technology to process and analyze huge datasets.</h2>
+    <h3 id="moredescription">Gathering, modeling and transforming data is key to enable rich visualizations that enable highlighting useful information. We do data analysis using Computing in the Cloud services with technology like Map Reduce and geospatial databases. <br /><br />At the end of the day we enable cost effective solutions that you can rely on. Analyzing your data can be a matter of hours and not days and without expending money in dedicated hardware. Check our technology page to discover in which technologies we are experts. </h3>
+  <p class="centeredImage"><img src="/images/promoimage_dataAnalysis.jpg"/></p>
+  <h2 id="technologiesTitle">Data analysis technologies</h2>
+  <hr class="hr2"/>
+  <div class="div825" id="techContainer">
+  	<div class="leftLongTech">
+      	<p id="techTitle"><img src="/images/techLogos/logoCloud.jpg" alt="Google maps"/></p>
+          <p id="techDesc">Amazon Web Services, specially EC2 and S3 enable us to do data analysis using MapReduce. Take 20 servers for 1 hour and process 20 times faster.
       </div>
-      <div class="rightAdvice">
-        	<p id="postTitle"><a href="/" rel="self">More at biodivertido</a></p>
-            <p id="postDate">Know more about our technical improvements <br />
-at biodivertido's blog</p>
-        </div>
-    </div>
-    <div class="div825">
-        <hr/>
-        <div id="footerNav">
-      		<ul>
-          <li><a href="/" rel="self" id="current">Home</a></li>
-          <li><a href="/" rel="self" id="current">·</a></li>
-          <li><a href="/visualization/" rel="self">Data visualization</a></li>
-          <li><a href="/" rel="self" id="current">·</a></li>
-          <li><a href="/gis/" rel="self">Rich GIS</a></li>
-          <li><a href="/" rel="self" id="current">·</a></li>
-          <li><a href="/analysis/" rel="self">Data analysis</a></li>
-          <li><a href="/" rel="self" id="current">·</a></li>
-          <li><a href="/contact/" rel="self">About us</a></li>
-      		</ul>
-    	</div>
-    </div>
+    	<div class="rightLongTech">
+      	<p id="techTitle"><img src="/images/techLogos/logoPostGIS.jpg" alt="PostGIS"/></p>
+          <p id="techDesc">For sophisticated geospatial analysis PostGIS provides an incredible set of operations than can be used with large amounts of data..
+      </div>
   </div>
 </div>
-<!-- Start Google Analytics -->
-        <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-6363508-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-      <!-- End Google Analytics --></body>
-</html>
+{% endblock %}

@@ -1,78 +1,56 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="robots" content="all" />
-		<meta name="generator" content="RapidWeaver" />
-		
-		<title>{% block title %}{% endblock %}</title>
-		<link rel="stylesheet" type="text/css" media="screen" href="/css/styles.css"  />
-		<link rel="stylesheet" type="text/css" media="screen" href="/css/colourtag.css"  />
-		<!--[if IE 6]><link rel="stylesheet" type="text/css" media="screen" href="/css/ie6.css"  /><![endif]-->
-		<!--[if IE 7]><link rel="stylesheet" type="text/css" media="screen" href="/css/ie7.css"  /><![endif]-->
-		<link rel="stylesheet" type="text/css" media="screen" href="/css/variable.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="/css/hide.css" />
-		
-		<link rel="stylesheet" type="text/css" media="print" href="/css/print.css"  />
-		<script type="text/javascript" src="js/javascript.js"></script>
-		
-		
-		
-		
-		<!--[if IE 6]><script type="text/javascript" charset="utf-8">
-			var blankSrc = "/images/blank.gif";
-		</script>	
-		<style type="text/css">
-
-		img {
-				behavior: url("/images/pngbehavior.htc");
-			}
-		
-		</style><![endif]-->
-		
-		{% block head %}{% endblock %}
-		
-	</head>
-<body>
-	<div id="topbar"></div>
-	<div id="pageHeader">
-		<div id="title">
-			<a href="/" rel="self"><img src="/images/vizzualityAdaptedLogo.png" width="101" height="62" alt="Site logo"/></a>
-			<h1></h1>
-			<h2>Visualizing biodiversity data</h2>
-		</div>
-		{% block menu %}{% endblock %}
-	</div>
-	<div id="headerBottomGrad">
-		<img src="/images/bottom_grad.png" alt="" style="width: 3000px; height: 12px;" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{{title}}</title>
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.6.0/build/fonts/fonts-min.css&2.6.0/build/base/base-min.css">
+<link rel="stylesheet" type="text/css" href="/css/styles_01.css">
+</head>
+<body style="margin:0px;">
+<div id="doc3" style="margin:0px;">
+  <div id="hd">
+    <div class="div825"> <img src="/images/basiclogo.jpg" width="143" height="83" alt="Vizzuality logo" align="left" />
+      <div id="quickMenuContainer"> <img src="/images/blogTinyIcon.jpg" alt="blog tiny icon" class="tinyIcon" align="left"/><a href="/" rel="self" id="current">blog</a> <img src="/images/contactTinyIcon.jpg" alt="blog tiny icon" class="tinyIcon" align="left"/><a href="/" rel="self" id="current">contact us</a> </div>
+      <div id="navcontainer">
+        <ul>
+          <li><a href="/" rel="self" {% ifequal section "home" %}id="current"{% endifequal %}>HOME</a></li>
+          <li><a href="/" rel="self">·</a></li>
+          <li><a href="/visualization" {% ifequal section "visualization" %}id="current"{% endifequal %} rel="self">DATA VISUALIZATION</a></li>
+          <li><a href="/" rel="self">·</a></li>
+          <li><a href="/gis" {% ifequal section "gis" %}id="current"{% endifequal %} rel="self">RICH GIS</a></li>
+          <li><a href="/" rel="self">·</a></li>
+          <li><a href="/analysis" {% ifequal section "analysis" %}id="current"{% endifequal %} rel="self">DATA ANALYSIS</a></li>
+          <li><a href="/" rel="self">·</a></li>
+          <li><a href="/contact" {% ifequal section "contact" %}id="current"{% endifequal %} rel="self">ABOUT US</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="div825"> {% block maincontent %}{% endblock %}</div>
+  <div id="blogPartBorder"></div>
+  <div id="blogPart">
+    {% block blogpart %}{% endblock %}
+    <div class="div825">
+      <hr/>
+      <div id="footerNav">
+        <ul>
+          <li><a href="/" rel="self" id="current">Home</a></li>
+          <li><a href="/" rel="self" id="current">·</a></li>
+          <li><a href="/visualization" rel="self">Data visualization</a></li>
+          <li><a href="/" rel="self" id="current">·</a></li>
+          <li><a href="/gis" rel="self">Rich GIS</a></li>
+          <li><a href="/" rel="self" id="current">·</a></li>
+          <li><a href="/analysis" rel="self">Data analysis</a></li>
+          <li><a href="/" rel="self" id="current">·</a></li>
+          <li><a href="/contact" rel="self" id="current">About us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
-
-	<div id="container">
-		<div id="sidebarContainer">
-			<div id="sidebar">
-				<h1 class="sideHeader"></h1>
-				
-				
-			</div>
-		</div>
-		
-		<div id="contentContainer">
-			<div id="content">
-				{% block content %}{% endblock %}
-			</div>
-			<div class="clearer"></div>
-			<div id="breadcrumbcontainer"><ul><li><a href="./">Home</a>&nbsp;>&nbsp;</li></ul></div>
-		</div>
-
-		<div id="footer">
-			<p>&copy; 2008 Vizzuality <a href="mailto:jatorre@vizzuality.com">Contact</a></p>
-		</div>
-	</div>
-	<div id="footerBottomGrad">
-		<img src="images/bottom_grad.png" alt="" style="width: 3000px; height: 12px;" />
-	</div>
+</div>
 <!-- Start Google Analytics -->
-        <script type="text/javascript">
+<script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
@@ -81,5 +59,6 @@ try {
 var pageTracker = _gat._getTracker("UA-6363508-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
-      <!-- End Google Analytics --></body>
+<!-- End Google Analytics -->
+</body>
 </html>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block blogpart %}
+<div class="div825">
+  <h2 id="blogPartTitle">Latest from the blog</h2>
+  <hr/>
+</div>
+<div class="div825" id="postContainer">
+	{{ feed }}
+</div>
+{% endblock %}
