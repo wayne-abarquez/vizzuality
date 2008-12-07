@@ -99,6 +99,7 @@ class NotFoundHandler(webapp.RequestHandler):
 		template_vars = {
 		'title': 'Error 404: Page not found'
 		}
+		self.error(404)
 		path = os.path.join(os.path.dirname(__file__), 'templates/404.html')
 		self.response.out.write(template.render(path, template_vars, debug=True))
 
