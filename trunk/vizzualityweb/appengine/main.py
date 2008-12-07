@@ -21,7 +21,8 @@ class IndexHandler(webapp.RequestHandler):
 		feed = q.get()
 		if (feed == None or feed.lastRetrieved.day != datetime.now().day):
 			content = self.retrieveFeed()
-			feed = Feed()
+			if feed== None:
+				feed = Feed()
 			feed.content=content
 			feed.put()
 			

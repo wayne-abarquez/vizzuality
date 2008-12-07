@@ -122,12 +122,11 @@ body{
 }
 #navcontainer {
 	height: 70px;
-	width: auto;
+	width: 790px;
 	font-family:arial;
 	font-size: 13px;
-	padding-left: 0px;
-	margin-left: 0px;
 	padding-top: 28px;
+	text-align: right;
 }
 
 #navcontainer #current {
@@ -143,15 +142,18 @@ body{
 
 /* Parent - Level 0 */
 
-#navcontainer ul{
-	text-align: right;
-	padding: 5px 0 0 310px;
-	list-style-type: none;
-	margin: 0;
-	clip: rect(auto,auto,auto,-10px);
+#navcontainer ul {
+	margin-left: 0;
+	padding-left: 0;
+	display: inline;
+
 }
 
-#navcontainer li {
+#navcontainer ul li {
+	margin-left: 0;
+	padding: 3px 15px;
+	border-left: 1px solid #000;
+	list-style: none;
 	display: inline;
 }
 
@@ -285,6 +287,7 @@ hr2 {
 	padding-top: 7px;
 	padding-bottom: 0px;
 	margin-bottom: 25px;
+	display:inline;
 }
 
 .leftLongTech{
@@ -418,7 +421,7 @@ hr2 {
 	padding-top: 0px;
 	padding-bottom: 0px;
 	margin-bottom: 5px;
-	display:inline-block;
+	display:inline;
 	padding-left:15px;
 	
 }
@@ -434,61 +437,17 @@ hr2 {
 }
 
 
-#footerNav{
-	padding-left: -5px;
-	background-color: #3c3c3c;
-	padding-bottom:: 0px;
-}
-
-#footerNav ul{
-	background-color: #3c3c3c;
-	text-align: right;
-	list-style-type: none;
-	margin-left: 0px;
-	margin-right: 0px;
-	padding-left: 375px;
-	clip: rect(auto,auto,auto,-10px);
-}
-
 #footerNav li {
 	display: inline;
-	padding-left: 0px;
 }
 
 #footerNav a:link,
 #footerNav a:visited {
 	color: #b3b3b3;
-	font-size:12px;
-	font-weight: 100;
 	text-decoration: none;
-	margin: 0 0 0 6px;
-	display: block;
-	float: left;
-	padding-bottom: 15px;
 }
 
 
 #footerNav a:hover {
 	color: #FFFFFF;
-}
-
-#footerNav a:active {
-}
-
-/* Child - Level 1 */
-
-#footerNav ul ul {
-	font-size: 0.9em;
-	position: absolute;
-	right: 0;
-}
-
-#footerNav ul ul li a:link {
-	color: #333;
-	font-weight: normal;
-	border: none;
-}
-
-#footerNav ul ul ul {
-	display: none;
 }
