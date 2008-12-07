@@ -30,7 +30,8 @@ class IndexHandler(webapp.RequestHandler):
 		
 		
 		template_values = {
-			'feed': content
+			'feed': content,
+			'section':'home'
 		}		
 		
 		path = os.path.join(os.path.dirname(__file__), 'templates/home.html')
@@ -63,28 +64,28 @@ class ContactHandler(webapp.RequestHandler):
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/contactus.html')
-		self.response.out.write(template.render(path, None, debug=True))	
+		self.response.out.write(template.render(path, {'section':'contact'}, debug=True))	
 		
 class VisualizationHandler(webapp.RequestHandler):
 
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/datavizz.html')
-		self.response.out.write(template.render(path, None, debug=True))
+		self.response.out.write(template.render(path, {'section':'visualization'}, debug=True))
 
 class GisHandler(webapp.RequestHandler):
 
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/gis.html')
-		self.response.out.write(template.render(path, None, debug=True))
+		self.response.out.write(template.render(path, {'section':'gis'}, debug=True))
 		
 class AnalysisHandler(webapp.RequestHandler):
 
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/dataanalysis.html')
-		self.response.out.write(template.render(path, None, debug=True))		
+		self.response.out.write(template.render(path, {'section':'analysis'}, debug=True))		
 
 class PyAMFBrowser(webapp.RequestHandler):
 	def get(self):
@@ -96,21 +97,20 @@ class NotFoundHandler(webapp.RequestHandler):
 	def get(self):
 		# Not found
 		template_vars = {
-		'title': 'Error 404.',
-		'content': 'Error 404'
+		'title': 'Error 404: Page not found'
 		}
-		path = os.path.join(os.path.dirname(__file__), 'templates/simple.html')
+		path = os.path.join(os.path.dirname(__file__), 'templates/404.html')
 		self.response.out.write(template.render(path, template_vars, debug=True))
 
 def main():
 	application = webapp.WSGIApplication([
 		('/', IndexHandler),
-		('/contact/', ContactHandler),
-		('/visualization/', VisualizationHandler),
-		('/gis/', GisHandler),
-		('/analysis/', AnalysisHandler),
+		('/contact', ContactHandler),
+		('/visualization', VisualizationHandler),
+		('/gis', GisHandler),
+		('/analysis', AnalysisHandler),
 		('/amf/*', PyAMFBrowser),
-		('/.*', IndexHandler)
+		('/.*', NotFoundHandler)
 	], debug=True)
 	wsgiref.handlers.CGIHandler().run(application)
 
