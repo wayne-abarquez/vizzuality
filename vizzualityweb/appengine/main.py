@@ -53,8 +53,8 @@ class IndexHandler(webapp.RequestHandler):
 					break
 				content=content+"""
 				          <div class="blogPost">
-				            <p id="postTitle"><a href='"""+node.getElementsByTagNameNS(FEEDBURNER_NS,'origLink')[0].firstChild.nodeValue+"""'> """+node.getElementsByTagName('title')[0].firstChild.nodeValue+"""</a></p>
-				            <p id="postDate">"""+node.getElementsByTagName('published')[0].firstChild.nodeValue+""" by """+node.getElementsByTagName('author')[0].getElementsByTagName('name')[0].firstChild.nodeValue+"""</p>
+				            <p class="postTitle"><a href='"""+node.getElementsByTagNameNS(FEEDBURNER_NS,'origLink')[0].firstChild.nodeValue+"""'> """+node.getElementsByTagName('title')[0].firstChild.nodeValue+"""</a></p>
+				            <p class="postDate">"""+node.getElementsByTagName('published')[0].firstChild.nodeValue+""" by """+node.getElementsByTagName('author')[0].getElementsByTagName('name')[0].firstChild.nodeValue+"""</p>
 				          </div>"""
 			return content
 		else:

@@ -53,6 +53,18 @@ body{
 	margin-bottom: 12px;
 }
 
+.titleClass {
+	font-size:185%;
+	font-family:georgia;
+	font-style: italic;
+	color: #C3C5B6;
+	text-align:justify;
+	margin-top: -17px;
+	font-weight: 100;
+	margin-bottom: 12px;
+}
+
+
 #technologiesTitle2 {
 	font-size:185%;
 	font-family:georgia;
@@ -83,7 +95,7 @@ body{
 
 #quickMenuContainer {
 	height: 30px;
-	padding-left: 675px;
+	float:right;
 	padding-top: 5px;
 }
 
@@ -92,7 +104,7 @@ body{
 	color: #C3C5B6;
 	text-decoration: none;
 	margin: 0 0 0 3px;
-	display: block;
+	display: inline;
 	float: left;
 	padding-bottom: 6px;
 	padding-left: 0;
@@ -122,11 +134,11 @@ body{
 }
 #navcontainer {
 	height: 70px;
-	width: 790px;
 	font-family:arial;
 	font-size: 13px;
-	padding-top: 28px;
-	text-align: right;
+	padding-left: 0px;
+	margin-left: 0px;
+	padding-top: 68px;
 }
 
 #navcontainer #current {
@@ -142,18 +154,15 @@ body{
 
 /* Parent - Level 0 */
 
-#navcontainer ul {
-	margin-left: 0;
-	padding-left: 0;
-	display: inline;
+#navcontainer ul{
+	text-align: right;
+
+	list-style-type: none;
+	margin: 0;
 
 }
 
-#navcontainer ul li {
-	margin-left: 0;
-	padding: 3px 15px;
-	border-left: 1px solid #000;
-	list-style: none;
+#navcontainer li {
 	display: inline;
 }
 
@@ -230,11 +239,11 @@ body{
 	padding-bottom: 0px;
 }
 
-#blogPost{
+.blogPost{
 	color:#FFF;	
 }
 
-#postTitle a{
+.postTitle a{
 	color: #FFF;
 	font-family: Arial;
 	font-size: 16px;
@@ -243,7 +252,7 @@ body{
 	margin-bottom: 0px;
 }
 
-#postDate{
+.postDate{
 	color: #d0e900;
 	font-family: Arial;
 	font-size: 12px;
@@ -287,7 +296,6 @@ hr2 {
 	padding-top: 7px;
 	padding-bottom: 0px;
 	margin-bottom: 25px;
-	display:inline;
 }
 
 .leftLongTech{
@@ -375,6 +383,16 @@ hr2 {
 #techDesc{
 	font-size:13px;
 	padding-top: -10px;
+}
+
+.littleText{
+	font-family: arial;
+	font-size:13px;
+	color: #b1b4a4;
+}
+
+.littleText a{
+	color: #E49400;
 }
 
 #adviceContainer{
