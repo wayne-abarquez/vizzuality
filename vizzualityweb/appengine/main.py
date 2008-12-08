@@ -21,10 +21,13 @@ class IndexHandler(webapp.RequestHandler):
 		feed = q.get()
 		if (feed == None or feed.lastRetrieved.day != datetime.now().day):
 			content = self.retrieveFeed()
-			if feed== None:
-				feed = Feed()
-			feed.content=content
-			feed.put()
+			if (content == None):
+				content = """<div class="blogPost"><p class="postDate">Sorry, the blog feed is temporarily unavailable.</p></div>"""
+			else:				
+				if feed== None:
+					feed = Feed()
+				feed.content=content
+				feed.put()
 			
 		else:
 			content=feed.content;		
@@ -39,26 +42,29 @@ class IndexHandler(webapp.RequestHandler):
 		self.response.out.write(template.render(path, template_values, debug=True))
 	
 	def retrieveFeed(self):
-		FEEDBURNER_NS = 'http://rssnamespace.org/feedburner/ext/1.0' 
-		resultHTML=""
-		result = urlfetch.fetch("http://biodivertido.blogspot.com/feeds/posts/default")
-		if result.status_code == 200:
-			dom = minidom.parseString(result.content) 
-			#Here we have to parse the data into HTML
-			content=""
-			i=0
-			for node in dom.getElementsByTagName('entry'):
-				i=i+1
-				if (i==5):
-					break
-				content=content+"""
-				          <div class="blogPost">
-				            <p class="postTitle"><a href='"""+node.getElementsByTagNameNS(FEEDBURNER_NS,'origLink')[0].firstChild.nodeValue+"""'> """+node.getElementsByTagName('title')[0].firstChild.nodeValue+"""</a></p>
-				            <p class="postDate">"""+node.getElementsByTagName('published')[0].firstChild.nodeValue+""" by """+node.getElementsByTagName('author')[0].getElementsByTagName('name')[0].firstChild.nodeValue+"""</p>
-				          </div>"""
-			return content
-		else:
-			return None
+		try:
+			FEEDBURNER_NS = 'http://rssnamespace.org/feedburner/ext/1.0' 
+			resultHTML=""
+			result = urlfetch.fetch("http://biodivertido.blogspot.com/feeds/posts/default")
+			if result.status_code == 200:
+				dom = minidom.parseString(result.content) 
+				#Here we have to parse the data into HTML
+				content=""
+				i=0
+				for node in dom.getElementsByTagName('entry'):
+					i=i+1
+					if (i==5):
+						break
+					content=content+"""
+					          <div class="blogPost">
+					            <p class="postTitle"><a href='"""+node.getElementsByTagNameNS(FEEDBURNER_NS,'origLink')[0].firstChild.nodeValue+"""'> """+node.getElementsByTagName('title')[0].firstChild.nodeValue+"""</a></p>
+					            <p class="postDate">"""+node.getElementsByTagName('published')[0].firstChild.nodeValue+""" by """+node.getElementsByTagName('author')[0].getElementsByTagName('name')[0].firstChild.nodeValue+"""</p>
+					          </div>"""
+				return content
+			else:
+				return None
+		except:
+			return  None
 
 class ContactHandler(webapp.RequestHandler):
 
