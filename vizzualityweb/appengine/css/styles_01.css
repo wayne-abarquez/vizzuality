@@ -177,6 +177,18 @@ body{
 	padding-bottom: 6px;
 }
 
+.link {
+	font-family: Arial;
+	font-size: 15px;
+	color: #B7CD00;
+	text-decoration: underline;
+
+}
+
+.link:hover {
+	color: #C3C5B6;
+	text-decoration: none;
+}
 
 #navcontainer a:hover {
 	color: #B8CE00;
