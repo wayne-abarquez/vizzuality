@@ -35,8 +35,7 @@ class IndexHandler(webapp.RequestHandler):
 		
 		template_values = {
 			'feed': content,
-			'section':'home',
-			'title': 'Professional design & development of Rich Internet Applications for biodiversity information'
+			'section':'home'
 		}		
 		
 		path = os.path.join(os.path.dirname(__file__), 'templates/home.html')
@@ -72,28 +71,28 @@ class ContactHandler(webapp.RequestHandler):
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/contactus.html')
-		self.response.out.write(template.render(path, {'section':'contact','title': 'Contact Vizzuality'}, debug=True))	
+		self.response.out.write(template.render(path, {'section':'contact'}, debug=True))	
 		
 class VisualizationHandler(webapp.RequestHandler):
 
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/datavizz.html')
-		self.response.out.write(template.render(path, {'section':'visualization','title': 'Vizualization of complex data'}, debug=True))
+		self.response.out.write(template.render(path, {'section':'visualization'}, debug=True))
 
 class GisHandler(webapp.RequestHandler):
 
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/gis.html')
-		self.response.out.write(template.render(path, {'section':'gis','title': 'Rich GIS using RIA'}, debug=True))
+		self.response.out.write(template.render(path, {'section':'gis'}, debug=True))
 		
 class AnalysisHandler(webapp.RequestHandler):
 
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/dataanalysis.html')
-		self.response.out.write(template.render(path, {'section':'analysis','title': 'Massive data analysis'}, debug=True))		
+		self.response.out.write(template.render(path, {'section':'analysis'}, debug=True))		
 
 class PyAMFBrowser(webapp.RequestHandler):
 	def get(self):
