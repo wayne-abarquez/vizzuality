@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	verticalScrollPolicy="off" horizontalScrollPolicy="off"
+	layout="absolute" xmlns:maps="com.google.maps.*" resize="appWidth=width"
+	 creationComplete="checkParams()"
+	>
+<mx:Script>
+	<![CDATA[
+		import mx.collections.Grouping;
+		import mx.collections.GroupingField;
+		import mx.collections.SummaryField;
+		import mx.collections.SummaryRow;
+		import mx.collections.ArrayCollection;
+		import mx.rpc.events.ResultEvent;
+		import com.google.maps.LatLng;
+		import com.google.maps.LatLngBounds;
+		import mx.controls.Alert;
+		import mx.effects.easing.Exponential;
+		import mx.core.UIComponent;
+		import gs.TweenLite;
+		import com.google.maps.MapZoomEvent;
+		import com.google.maps.overlays.TileLayerOverlay;
+		import com.google.maps.MapType;
+		import com.google.maps.controls.MapTypeControl;
+		import com.google.maps.controls.ZoomControl;
+		import com.google.maps.controls.ControlPosition;
+		
+		private var cellTileLayer:CellsTileLayer;
+		private var currentTileLayerOverlay:TileLayerOverlay;
+		private var previousTileLayerOverlay:TileLayerOverlay;
+		
+		[Bindable]
+		public var appWidth:Number=width;		
+		public var mainCanvasState:String="map";
+		
+		[Bindable]
+		private var providersAc:ArrayCollection = new ArrayCollection();		
+		private var dcGc:GroupingCollectionWithTimer;		
+		
+		
+		private function checkParams():void {
+			if (parameters.taxon_id==0) {
+				Alert.show("The Widget has been loaded without specifying a taxon_id parameter");
+				hugeCanvas.enabled=false;
+			}
+			server.getProviders(parameters.taxon_id);
+		}
+		
+		private function onMapReady(event:Event):void {
+			var topLeft:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,10,10);
+		    var zoomControl:ZoomControl = new ZoomControl();
+		    zoomControl.setControlPosition(topLeft);
+		    map.addControl(zoomControl);
+		    var topRight:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_RIGHT, 10, 10);
+		    var mapTypeControl:MapTypeControl = new MapTypeControl();
+		    map.addControl(mapTypeControl);  
+		    mapTypeControl.setControlPosition(topRight);
+		    map.setMapType(MapType.PHYSICAL_MAP_TYPE);
+		    
+		    var worldBBox:LatLngBounds = new LatLngBounds(new LatLng(-70,-170),new LatLng(70,170));
+		    var wordZoom:Number = map.getBoundsZoomLevel(worldBBox);
+		    map.setZoom(wordZoom);
+		    
+		    if (parameters.taxon_id!=0) {
+			    cellTileLayer = new CellsTileLayer(parameters.taxon_id);
+			    currentTileLayerOverlay = new TileLayerOverlay(cellTileLayer, 256, map.MERCATOR_PROJECTION);
+			   	currentTileLayerOverlay.foreground.alpha=0.7;
+	        	map.addOverlay(currentTileLayerOverlay);
+		    }
+        	
+		} 
+
+		private function onGetDataProviders(ev:ResultEvent):void {
+ 			providersAc = new ArrayCollection(ev.result as Array);
+			
+			dcGc = new GroupingCollectionWithTimer();		
+			dcGc.source = providersAc;
+			var summRow:SummaryRow = new SummaryRow();
+			summRow.summaryPlacement = "group";
+			summRow.fields = [new SummaryField("num_occ")];
+			var provGf:GroupingField = new GroupingField("data_provider_name");
+			provGf.summaries = [summRow];
+			dcGc.grouping = new Grouping();
+			dcGc.grouping.fields = [provGf];
+			dcGc.refresh(true);     
+	        providersAdg.dataProvider=dcGc;			
+		}
+
+
+		public function toggleMainCanvasState():void {
+			if (mainCanvasState=="map") {				
+				mainCanvasState="coverFlow";
+				hugeCanvas.move(appWidth*-1,0);
+				
+			} else {
+				mainCanvasState="map";
+				hugeCanvas.move(0,0);
+			}
+		}	
+		
+		public function toggleFullScreen():void{
+            try {
+                switch (Application.application.stage.displayState) {
+                    case StageDisplayState.FULL_SCREEN:
+                        Application.application.stage.displayState = StageDisplayState.NORMAL;
+                        break;
+                    default:
+                        Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
+                        break;
+                }
+            } catch (err:SecurityError) {
+                // ignore
+                trace(err.message);
+            }
+		}				
+
+	]]>
+</mx:Script>
+	<mx:Canvas id="hugeCanvas" width="{appWidth*2}" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" moveEffect="{moveEffect}">
+		<mx:HBox horizontalGap="0" width="100%" height="100%">
+			<mx:Canvas id="mapCanvas" width="50%" height="100%" x="0">
+				<maps:Map id="map" width="100%" height="100%"
+					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w" 
+					mapevent_mapready="onMapReady(event)"  />
+					<mx:Button label="View Providers" bottom="18" right="5"  fontSize="16" click="toggleMainCanvasState()"/>
+			</mx:Canvas>
+			<mx:Canvas id="providerCanvas" width="50%" height="100%" x="{appWidth}">
+				<mx:AdvancedDataGrid id="providersAdg" x="0" width="100%" 
+					defaultLeafIcon="@Embed('/assets/itemDataGridIconProvider.png')"
+					disclosureClosedIcon="@Embed('/assets/arrowClosed.png')"
+					disclosureOpenIcon="@Embed('/assets/arrowOpen.png')"
+					folderClosedIcon="@Embed('/assets/groupDataGridIconProvider.png')" 
+					folderOpenIcon="@Embed('/assets/groupDataGridIconProvider.png')"
+					designViewDataType="tree" styleName="advancedDataGrid" 
+					itemClick="providersAdg.expandItem(providersAdg.selectedItem,(!providersAdg.isItemOpen(providersAdg.selectedItem)),true);"
+					sortableColumns="false" sortExpertMode="true" displayItemsExpanded="true"
+					draggableColumns="false" verticalScrollPolicy="auto"
+					rowHeight="28" paddingTop="6" top="30" bottom="0">
+					<mx:columns>
+						<mx:AdvancedDataGridColumn headerText="Data Source/Provider" itemRenderer="ProviderTitleRenderer" width="280" />
+						<mx:AdvancedDataGridColumn headerText="Occurrences" dataField="num_occ" width="80" textAlign="center">
+							<mx:formatter>
+								<mx:NumberFormatter id="numberFormatter" precision="0" useThousandsSeparator="true" useNegativeSign="false" />
+							</mx:formatter>
+						</mx:AdvancedDataGridColumn>
+					</mx:columns>					
+				</mx:AdvancedDataGrid>			
+				
+					<mx:Button label="View Map" bottom="18" left="5"  fontSize="16" click="toggleMainCanvasState()"/>
+			</mx:Canvas>
+		</mx:HBox>		
+	</mx:Canvas>
+	<mx:Button right="5" top="35" label="Full screen" click="toggleFullScreen()" />	
+    <mx:Move id="moveEffect" 
+        duration="500" 
+        easingFunction="{Exponential.easeInOut}" 
+        perElementOffset="20"/>
+        
+	<mx:RemoteObject id="server" 
+	endpoint="php/amfphp/gateway.php"
+	 result="onGetDataProviders(event)"
+	  fault="trace(event)"
+	destination="EolServices" source="EolServices"
+	showBusyCursor="false" />	
+	        	
+</mx:Application>
