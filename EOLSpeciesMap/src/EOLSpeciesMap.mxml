@@ -51,10 +51,10 @@
 		    var zoomControl:ZoomControl = new ZoomControl();
 		    zoomControl.setControlPosition(topLeft);
 		    map.addControl(zoomControl);
-		    var topRight:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_RIGHT, 10, 10);
-		    var mapTypeControl:MapTypeControl = new MapTypeControl();
-		    map.addControl(mapTypeControl);  
-		    mapTypeControl.setControlPosition(topRight);
+		    //var topRight:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_RIGHT, 10, 10);
+		    //var mapTypeControl:MapTypeControl = new MapTypeControl();
+		    //map.addControl(mapTypeControl);  
+		    //mapTypeControl.setControlPosition(topRight);
 		    map.setMapType(MapType.PHYSICAL_MAP_TYPE);
 		    
 		    var worldBBox:LatLngBounds = new LatLngBounds(new LatLng(-70,-170),new LatLng(70,170));
