@@ -2,8 +2,11 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
 	verticalScrollPolicy="off" horizontalScrollPolicy="off"
 	layout="absolute" xmlns:maps="com.google.maps.*" resize="appWidth=width"
-	 creationComplete="checkParams()"
-	>
+	creationComplete="checkParams()">
+	
+<mx:Style source="style/fonts.css"/>
+<mx:Style source="style/ui.css"/>
+
 <mx:Script>
 	<![CDATA[
 		import mx.collections.Grouping;
@@ -118,11 +121,26 @@
 </mx:Script>
 	<mx:Canvas id="hugeCanvas" width="{appWidth*2}" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" moveEffect="{moveEffect}">
 		<mx:HBox horizontalGap="0" width="100%" height="100%">
-			<mx:Canvas id="mapCanvas" width="50%" height="100%" x="0">
+			<mx:Canvas id="mapCanvas" width="50%" height="100%" x="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 				<maps:Map id="map" width="100%" height="100%"
 					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w" 
 					mapevent_mapready="onMapReady(event)"  />
-					<mx:Button label="View Providers" bottom="18" right="5"  fontSize="16" click="toggleMainCanvasState()"/>
+						<mx:HBox horizontalGap="3" right="9" top="9"> 
+						<mx:Button label="MAP" styleName="smallButton"
+							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+						<mx:Button label="SATELLITE" styleName="smallButton"
+							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+						<mx:Button label="HIBRID" styleName="smallButton"
+							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+						<mx:Button label="TERRAIN" styleName="smallButton"
+							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+						<mx:Button label="FULLSCREEN" styleName="smallButton"
+							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+					</mx:HBox>
+					<mx:Button label="VIEW PROVIDERS" bottom="20" right="-3" 
+						styleName="providersButton" width="100"
+						useHandCursor="true" mouseChildren="false" buttonMode="true"
+						click="toggleMainCanvasState()"/>
 			</mx:Canvas>
 			<mx:Canvas id="providerCanvas" width="50%" height="100%" x="{appWidth}">
 				<mx:AdvancedDataGrid id="providersAdg" x="0" width="100%" 
