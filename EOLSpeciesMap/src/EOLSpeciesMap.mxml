@@ -126,15 +126,15 @@
 					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w" 
 					mapevent_mapready="onMapReady(event)"  />
 						<mx:HBox horizontalGap="3" right="9" top="9"> 
-						<mx:Button label="MAP" styleName="smallButton"
+						<mx:Button label="MAP" styleName="smallButton" click="map.setMapType(MapType.NORMAL_MAP_TYPE)"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-						<mx:Button label="SATELLITE" styleName="smallButton"
+						<mx:Button label="SATELLITE" styleName="smallButton" click="map.setMapType(MapType.SATELLITE_MAP_TYPE)"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-						<mx:Button label="HIBRID" styleName="smallButton"
+						<mx:Button label="HIBRID" styleName="smallButton" click="map.setMapType(MapType.HYBRID_MAP_TYPE)"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-						<mx:Button label="TERRAIN" styleName="smallButton"
+						<mx:Button label="TERRAIN" styleName="smallButton"  click="map.setMapType(MapType.PHYSICAL_MAP_TYPE)"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-						<mx:Button label="FULLSCREEN" styleName="smallButton"
+						<mx:Button label="FULLSCREEN" styleName="smallButton" click="toggleFullScreen()" 
 							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 					</mx:HBox>
 					<mx:Button label="VIEW PROVIDERS" bottom="20" right="-3" 
@@ -168,7 +168,6 @@
 			</mx:Canvas>
 		</mx:HBox>		
 	</mx:Canvas>
-	<mx:Button right="5" top="35" label="Full screen" click="toggleFullScreen()" />	
     <mx:Move id="moveEffect" 
         duration="500" 
         easingFunction="{Exponential.easeInOut}" 
