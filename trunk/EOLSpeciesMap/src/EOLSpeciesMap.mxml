@@ -127,15 +127,20 @@
 					mapevent_mapready="onMapReady(event)"  />
 						<mx:HBox horizontalGap="3" right="9" top="9"> 
 						<mx:Button label="MAP" styleName="smallButton" click="map.setMapType(MapType.NORMAL_MAP_TYPE)"
-							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+							useHandCursor="true" buttonMode="true" mouseChildren="false"
+							height="20"/>
 						<mx:Button label="SATELLITE" styleName="smallButton" click="map.setMapType(MapType.SATELLITE_MAP_TYPE)"
-							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+							useHandCursor="true" buttonMode="true" mouseChildren="false"
+							height="20"/>
 						<mx:Button label="HIBRID" styleName="smallButton" click="map.setMapType(MapType.HYBRID_MAP_TYPE)"
-							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+							useHandCursor="true" buttonMode="true" mouseChildren="false"
+							height="20"/>
 						<mx:Button label="TERRAIN" styleName="smallButton"  click="map.setMapType(MapType.PHYSICAL_MAP_TYPE)"
-							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+							useHandCursor="true" buttonMode="true" mouseChildren="false"
+							height="20"/>
 						<mx:Button label="FULLSCREEN" styleName="smallButton" click="toggleFullScreen()" 
-							useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+							useHandCursor="true" buttonMode="true" mouseChildren="false"
+							height="20"/>
 					</mx:HBox>
 					<mx:Button label="VIEW PROVIDERS" bottom="20" right="-3" 
 						styleName="providersButton" width="100"

@@ -22,4 +22,5 @@ Button.smallButton{
 	color: #FFFFFF;
 	text-roll-over-color: #FFFFFF;
 	font-weight: normal;
+	padding-top: 4;
 }
