@@ -1,0 +1,23 @@
+/* CSS file */
+
+Button.providersButton{
+	up-skin: Embed(source='ui.swf', symbol='btnProviders_up');
+	over-skin: Embed(source='ui.swf', symbol='btnProviders_over');
+	down-skin: Embed(source='ui.swf', symbol='btnProviders_over');
+	font-family: "DINOT-Medium";
+	font-size: 9;
+	color: #FFFFFF;
+	text-roll-over-color: #FFFFFF;
+	padding-bottom: 1;
+	padding-top: 29;
+}
+
+Button.smallButton{
+	up-skin: Embed(source='ui.swf', symbol='btnSmall_up');
+	over-skin: Embed(source='ui.swf', symbol='btnSmall_over');
+	down-skin: Embed(source='ui.swf', symbol='btnSmall_over');
+	font-family: "DINOT-Medium";
+	font-size: 9;
+	color: #FFFFFF;
+	text-roll-over-color: #FFFFFF;
+}
