@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+		<mx:Script>
+			<![CDATA[
+				import mx.core.Application;
+			]]>
+		</mx:Script>
+		<mx:AdvancedDataGrid id="providersAdg" x="0" width="100%" 
+		defaultLeafIcon="@Embed('/assets/itemDataGridIconProvider.png')"
+		disclosureClosedIcon="@Embed('/assets/arrowClosed.png')"
+		disclosureOpenIcon="@Embed('/assets/arrowOpen.png')"
+		folderClosedIcon="@Embed('/assets/groupDataGridIconProvider.png')" 
+		folderOpenIcon="@Embed('/assets/groupDataGridIconProvider.png')"
+		designViewDataType="tree" styleName="advancedDataGrid" 
+		itemClick="providersAdg.expandItem(providersAdg.selectedItem,(!providersAdg.isItemOpen(providersAdg.selectedItem)),true);"
+		sortableColumns="false" sortExpertMode="true" displayItemsExpanded="true"
+		draggableColumns="false" verticalScrollPolicy="auto"
+		rowHeight="28" paddingTop="6" top="30" bottom="0">
+			<mx:columns>
+				<mx:AdvancedDataGridColumn headerText="Data Source/Provider" itemRenderer="ProviderTitleRenderer" width="280" />
+				<mx:AdvancedDataGridColumn headerText="Occurrences" dataField="num_occ" width="80" textAlign="center">
+					<mx:formatter>
+						<mx:NumberFormatter id="numberFormatter" precision="0" useThousandsSeparator="true" useNegativeSign="false" />
+					</mx:formatter>
+				</mx:AdvancedDataGridColumn>
+			</mx:columns>		
+	</mx:AdvancedDataGrid>	
+	<mx:Button label="View Map" bottom="18" left="5"  fontSize="16" click="Application.application.toggleMainCanvasState()"/>			
+</mx:Canvas>
