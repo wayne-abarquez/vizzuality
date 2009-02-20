@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" horizontalScrollPolicy="off" paddingLeft="20" horizontalGap="0" horizontalAlign="left" xmlns:local="*">
-	<local:ExternalLinkButton icon="@Embed('assets/link.gif')" height="100%" url="{'http://data.gbif.org/datasets/resource/'+data.data_resource_id}" toolTip="Open GBIF website for more details" />
-	<mx:Label text="{data.data_resource_name}" color="#404D62" />
-</mx:HBox>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="25" 
+	horizontalScrollPolicy="off" paddingLeft="20" xmlns:local="*"
+	styleName="advancedDataGrid">
+	<local:ExternalLinkButton icon="@Embed('assets/link.png')"
+		url="{'http://data.gbif.org/datasets/resource/'+data.data_resource_id}" 
+		styleName="buttonFoo" height="20"
+		toolTip="Open GBIF website for more details"  width="20" left="15"/>
+	<mx:Label text="{data.data_resource_name}" height="20" left="35"/>
+</mx:Canvas>

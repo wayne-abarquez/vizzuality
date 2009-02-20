@@ -2,6 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
 		<mx:Script>
 			<![CDATA[
+				import flash.net.navigateToURL;
 				import mx.core.Application;
 			]]>
 		</mx:Script>
@@ -15,7 +16,7 @@
 		itemClick="providersAdg.expandItem(providersAdg.selectedItem,(!providersAdg.isItemOpen(providersAdg.selectedItem)),true);"
 		sortableColumns="false" sortExpertMode="true" displayItemsExpanded="true"
 		draggableColumns="false" verticalScrollPolicy="auto"
-		rowHeight="28" paddingTop="6" top="30" bottom="0">
+		rowHeight="25" top="32" bottom="0">
 			<mx:columns>
 				<mx:AdvancedDataGridColumn headerText="Data Source/Provider" itemRenderer="ProviderTitleRenderer" width="280" />
 				<mx:AdvancedDataGridColumn headerText="Occurrences" dataField="num_occ" width="80" textAlign="center">
@@ -25,5 +26,27 @@
 				</mx:AdvancedDataGridColumn>
 			</mx:columns>		
 	</mx:AdvancedDataGrid>	
-	<mx:Button label="View Map" bottom="18" left="5"  fontSize="16" click="Application.application.toggleMainCanvasState()"/>			
+	<mx:Canvas x="0" y="0" width="100%" height="61" styleName="headerCanvas">
+		<mx:Label y="36" text="NUMBER OF OCCURENCES" fontFamily="DINOT-Medium" fontSize="12" color="#666666" right="11"/>
+		<mx:Label y="29" text="DATA PROVIDERS" fontFamily="DINOT-Medium" fontSize="18" color="#666666" left="10" width="152"/>
+		<mx:Button label="BACK TO MAP" fontSize="12"
+			icon="@Embed('/assets/backArrows.png')" labelPlacement="right" 
+			click="Application.application.toggleMainCanvasState()" fontFamily="DINOT-Medium" color="#999999" 
+			styleName="buttonFoo" y="16" fontWeight="normal" textAlign="left" left="3"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+	</mx:Canvas>
+	<mx:Canvas x="0" width="100%" height="20" styleName="headerCanvas" bottom="0" backgroundColor="#FFFFFF">
+		<mx:Image source="@Embed('/assets/gbifLogo.png')" y="0" left="3"
+			click="navigateToURL(new URLRequest('http://www.gbif.org'))"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		<mx:Label y="0" text="Powered by gbif" fontFamily="DINOT-Medium" fontSize="11" color="#666666" left="21"
+			click="navigateToURL(new URLRequest('http://www.gbif.org'))"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		<mx:Image source="@Embed('/assets/vizzLogo.png')" y="0" right="3"
+			click="navigateToURL(new URLRequest('http://www.vizzuality.com'))"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		<mx:Label y="0" text="Developed by vizzuality" fontFamily="DINOT-Medium" fontSize="11" color="#CCCCCC" right="26"
+			click="navigateToURL(new URLRequest('http://www.vizzuality.com'))"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>			
+	</mx:Canvas>
 </mx:Canvas>
