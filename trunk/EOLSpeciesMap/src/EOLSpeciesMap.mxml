@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
-	verticalScrollPolicy="off" horizontalScrollPolicy="off"
-	layout="absolute" xmlns:maps="com.google.maps.*" resize="appWidth=width"
-	creationComplete="checkParams()" xmlns:local="*"
+	verticalScrollPolicy="off" horizontalScrollPolicy="off" backgroundColor="#c7e2ff"
+	layout="absolute" xmlns:maps="com.google.maps.*"
+	creationComplete="checkParams()" xmlns:local="*" resize="onResized(event)"
 	borderStyle="solid" borderColor="#c1cdda" borderThickness="1">
 	
 <mx:Style source="style/fonts.css"/>
@@ -10,6 +10,7 @@
 
 <mx:Script>
 	<![CDATA[
+		import mx.events.ResizeEvent;
 		import mx.collections.Grouping;
 		import mx.collections.GroupingField;
 		import mx.collections.SummaryField;
@@ -76,20 +77,28 @@
 
 		private function onGetDataProviders(ev:ResultEvent):void {
  			providersAc = new ArrayCollection(ev.result as Array);
-			
-			dcGc = new GroupingCollectionWithTimer();		
-			dcGc.source = providersAc;
-			//var summRow:SummaryRow = new SummaryRow();
-			//summRow.summaryPlacement = "group";
-			//summRow.fields = [new SummaryField("num_occ")];
-			var provGf:GroupingField = new GroupingField("data_provider_name");
-			//provGf.summaries = [summRow];
-			dcGc.grouping = new Grouping();
-			dcGc.grouping.fields = [provGf];
-			dcGc.refresh(true);     
-	        providersCanvas.providersAdg.dataProvider=dcGc;			
+	        providersCanvas.providersAdg.dataProvider=providersAc;			
 		}
 
+
+		private var isResizing:Boolean=false;
+		private function onResized(ev:ResizeEvent):void {
+	        if(!isResizing) {
+				appWidth=width;
+				if (true) {
+		            var tim:Timer = new Timer(500,1);
+		            tim.addEventListener(TimerEvent.TIMER, function(event:TimerEvent):void {		
+						appWidth=width;				
+			            Application.application.validateNow();
+			            isResizing=false;
+		            });
+		            tim.start();
+		            isResizing=true;
+	            }
+
+
+			}	
+		}
 
 		public function toggleMainCanvasState():void {
 			if (mainCanvasState=="map") {				
