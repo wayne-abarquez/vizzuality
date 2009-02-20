@@ -2,7 +2,8 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
 	verticalScrollPolicy="off" horizontalScrollPolicy="off"
 	layout="absolute" xmlns:maps="com.google.maps.*" resize="appWidth=width"
-	creationComplete="checkParams()" xmlns:local="*">
+	creationComplete="checkParams()" xmlns:local="*"
+	borderStyle="solid" borderColor="#c1cdda" borderThickness="1">
 	
 <mx:Style source="style/fonts.css"/>
 <mx:Style source="style/ui.css"/>
@@ -78,11 +79,11 @@
 			
 			dcGc = new GroupingCollectionWithTimer();		
 			dcGc.source = providersAc;
-			var summRow:SummaryRow = new SummaryRow();
-			summRow.summaryPlacement = "group";
-			summRow.fields = [new SummaryField("num_occ")];
+			//var summRow:SummaryRow = new SummaryRow();
+			//summRow.summaryPlacement = "group";
+			//summRow.fields = [new SummaryField("num_occ")];
 			var provGf:GroupingField = new GroupingField("data_provider_name");
-			provGf.summaries = [summRow];
+			//provGf.summaries = [summRow];
 			dcGc.grouping = new Grouping();
 			dcGc.grouping.fields = [provGf];
 			dcGc.refresh(true);     
@@ -123,7 +124,7 @@
 		<mx:HBox horizontalGap="0" width="100%" height="100%">
 			<mx:Canvas id="mapCanvas" width="50%" height="100%" x="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 				<maps:Map id="map" width="100%" height="100%"
-					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w" 
+					key="ABQIAAAAXucQwXp28TiGqramtQ-1nhRb5X_Glp8xCwzKlnXaBE1jLvIymBQxOuvaiM_rvvLDKPeFI0u1riXlWw" 
 					mapevent_mapready="onMapReady(event)"  />
 						<mx:HBox horizontalGap="3" right="9" top="9"> 
 						<mx:Button label="MAP" styleName="smallButton" click="map.setMapType(MapType.NORMAL_MAP_TYPE)"
@@ -150,7 +151,7 @@
 			<mx:Canvas id="providerCanvas" width="50%" height="100%" x="{appWidth}">
 				<local:ProvidersCanvas id="providersCanvas" width="100%" height="100%" /> 
 			</mx:Canvas>
-		</mx:HBox>		
+		</mx:HBox>
 	</mx:Canvas>
     <mx:Move id="moveEffect" 
         duration="500" 
@@ -159,8 +160,8 @@
         
 	<mx:RemoteObject id="server" 
 	endpoint="php/amfphp/gateway.php"
-	 result="onGetDataProviders(event)"
-	  fault="trace(event)"
+	result="onGetDataProviders(event)"
+	fault="trace(event)"
 	destination="EolServices" source="EolServices"
 	showBusyCursor="false" />	
 	        	
