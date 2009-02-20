@@ -5,6 +5,6 @@
 	<local:ExternalLinkButton icon="@Embed('assets/link.png')"
 		url="{'http://data.gbif.org/datasets/resource/'+data.data_resource_id}" 
 		styleName="buttonFoo" height="20"
-		toolTip="Open GBIF website for more details"  width="20" left="15"/>
-	<mx:Label text="{data.data_resource_name}" height="20" left="35"/>
+		toolTip="Open GBIF website for more details"  width="20" left="9"/>
+	<mx:Label text="{data.data_resource_name}" height="20" left="29"/>
 </mx:Canvas>
