@@ -24,3 +24,42 @@ Button.smallButton{
 	font-weight: normal;
 	padding-top: 4;
 }
+
+.buttonFoo{
+	skin: ClassReference(null);
+	up-skin: ClassReference(null);
+	over-skin: ClassReference(null);
+	down-skin: ClassReference(null);
+	disabled-skin: ClassReference(null);
+	text-roll-over-color: #666666;
+}
+
+Canvas.headerCanvas{
+	background-color: #c7e2ff;
+	border-style: solid;
+	border-color: #c1cdda;
+	border-thickness: 1;
+}
+
+ScrollBar{
+	downArrowDisabledSkin: Embed(source="ui.swf", symbol="ScrollArrowDown_disabledSkin");
+	downArrowDownSkin: Embed(source="ui.swf", symbol="ScrollArrowDown_downSkin");
+	downArrowOverSkin: Embed(source="ui.swf", symbol="ScrollArrowDown_overSkin");
+	downArrowUpSkin: Embed(source="ui.swf", symbol="ScrollArrowDown_upSkin");
+	thumbDownSkin: Embed(source="ui.swf", symbol="ScrollThumb_downSkin");
+	thumbIcon: Embed(source="ui.swf", symbol="ScrollBar_thumbIcon");
+	thumbOverSkin: Embed(source="ui.swf", symbol="ScrollThumb_overSkin");
+	thumbUpSkin: Embed(source="ui.swf", symbol="ScrollThumb_upSkin");
+	trackSkin: Embed(source="ui.swf", symbol="ScrollTrack_Skin");
+	upArrowDisabledSkin: Embed(source="ui.swf", symbol="ScrollArrowUp_disabledSkin");
+	upArrowDownSkin: Embed(source="ui.swf", symbol="ScrollArrowUp_downSkin");
+	upArrowOverSkin: Embed(source="ui.swf", symbol="ScrollArrowUp_overSkin");
+	upArrowUpSkin: Embed(source="ui.swf", symbol="ScrollArrowUp_upSkin");
+}
+
+.advancedDataGrid{
+	font-family: "DINOT-Medium";
+	color: #999999;
+	text-roll-over-color: #999999;
+	font-size: 13px;
+}
