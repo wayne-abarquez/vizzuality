@@ -20,7 +20,7 @@
 	locmanager = [[CLLocationManager alloc] init];
 	[locmanager setDelegate:self];
 	[locmanager setDesiredAccuracy:kCLLocationAccuracyBest];
-	[locmanager setDistanceFilter:100];
+	//[locmanager setDistanceFilter:100];
 	firstTime=YES;
 	if (![locmanager locationServicesEnabled])
 	{

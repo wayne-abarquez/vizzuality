@@ -11,10 +11,9 @@
 #import "CDato.h"
 #import "RecentInfoItemViewController.h"
 
-@interface RecentController : UITableViewController
+@interface RecentController : UITableViewController	<UIScrollViewDelegate>
 {
 	NSMutableArray* tablaFotosInfo;
-	NSMutableDictionary* tablaFotos;
 	NSString* userName;
 	BOOL dataReady;
 	RecentInfoItemViewController *cDatoView;

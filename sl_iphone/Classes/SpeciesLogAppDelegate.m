@@ -41,12 +41,12 @@
 -(void) loadMainApp
 {
 	//CREAMOS LOS CONTROLADORES
-	homeController= [[UINavigationController alloc] initWithRootViewController:[[HomeController alloc] initWithTitle:@"HOME" iconName:@"IconTab2.png"]];
-	recentController = [[UINavigationController alloc] initWithRootViewController:[[RecentController alloc] initWithTitle:@"RECENT" iconName:@"IconTab1.png"]];
-	cameraController = [[UINavigationController alloc] initWithRootViewController:[[CameraController alloc] initWithTitle:@"CAMERA" iconName:@"IconTab2.png"]];
-	uploadController = [[UINavigationController alloc] initWithRootViewController:[[PendingController alloc] initWithTitle:@"PENDING" iconName:@"IconTab1.png"]];
-	settingsController = [[UINavigationController alloc] initWithRootViewController:[[RootController alloc] initWithTitle:@"SETTINGS" iconName:@"IconTab2.png"]];
-	settingsController2 = [[UINavigationController alloc] initWithRootViewController:[[RootController alloc] initWithTitle:@"ABOUT US" iconName:@"IconTab2.png"]];
+	homeController= [[UINavigationController alloc] initWithRootViewController:[[HomeController alloc] initWithTitle:@"HOME" iconName:@"HomeIcon.png"]];
+	recentController = [[UINavigationController alloc] initWithRootViewController:[[RecentController alloc] initWithTitle:@"RECENT" iconName:@"DownloadIcon.png"]];
+	cameraController = [[UINavigationController alloc] initWithRootViewController:[[CameraController alloc] initWithTitle:@"CAMERA" iconName:@"CamaraIcon.png"]];
+	uploadController = [[UINavigationController alloc] initWithRootViewController:[[PendingController alloc] initWithTitle:@"PENDING" iconName:@"UploadIcon.png"]];
+	settingsController = [[UINavigationController alloc] initWithRootViewController:[[RootController alloc] initWithTitle:@"SETTINGS" iconName:@"IconTab1.png"]];
+	settingsController2 = [[UINavigationController alloc] initWithRootViewController:[[RootController alloc] initWithTitle:@"ABOUT US" iconName:@"IconTab1.png"]];
 	
 	//CREAMOS EL TOOLBAR
 	tBarController = [[UITabBarController alloc] init];

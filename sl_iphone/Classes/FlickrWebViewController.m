@@ -16,6 +16,7 @@
 #import "XMLParser.h"
 #import "NetworkConn.h"
 #import "LoadIconClass.h"
+#import "LoadActivityIcon.h"
 
 @implementation FlickrWebViewController
 
@@ -26,44 +27,6 @@
 @synthesize api_key;
 @synthesize frob;
 @synthesize webView;
-
-
-
-
-
-
-/*
--(id) init
-{
-	if(self=[super init])
-	{
-		secret=  @"f8ed2994c7cd8caa";
-		api_key =@"aaf19680e376aba3c1bbfd18dc6ec2f0";
-		
-		printf("SECRETO:%s",[secret UTF8String]);
-		
-	}
-	return self;
-}
-*/
-//@class MD5Class;
-
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) 
-	{
-        self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;	
-    }
-    return self;
-}*/
-
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}                
-*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
@@ -78,9 +41,18 @@
 - (void)viewDidAppear:(BOOL)animated 
 {
 	[LoadIconClass startThreadHUD:self.view Text:@"Cheking network status"];
+	//[NSThread detachNewThreadSelector:@selector(LoadMovida) toTarget:self withObject:nil];
+	
 	[NSThread detachNewThreadSelector:@selector(checkNetwork) toTarget:self withObject:nil];
 	//[self	checkNetwork];
 }
+/*
+-(void) LoadMovida
+{
+	LoadActivityIcon* loadIcon=[[LoadActivityIcon alloc]init];
+	[loadIcon loadViewSito];
+}
+*/
 -(void) checkNetwork
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -111,7 +83,7 @@
 			[LoadIconClass killThreadHud];
 			if([ xmlData.statValue isEqualToString:@"ok"])
 				[self performSelectorOnMainThread:@selector(goToMainApp) withObject:nil waitUntilDone:YES];
-			else
+			else	
 				[self performSelectorOnMainThread:@selector(showAlert:) withObject:[NSNumber numberWithInt:VERIFY_TOKEN]  waitUntilDone:YES];
 		}
 		else //NO PODEMOS VERIFICAR SI EL TOKEN ES O NO CORRECTO

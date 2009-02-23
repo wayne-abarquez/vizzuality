@@ -14,6 +14,10 @@
 	
 	UILabel *nameLabel;
 	UILabel *dateLabel;
+	NSString* urlImgString;
+	
+	BOOL contentLoaded;
+	UITableView* table;
 	
 }
 
@@ -24,9 +28,12 @@
 // Función de asociación de COLORES, FONTS, TAMAÑOS...
 -(UILabel *)newLabelWithPrimaryColor:(UIColor *)primaryColor selectedColor:(UIColor *)selectedColor fontSize:(CGFloat)fontSize bold:(BOOL)bold;
 
+- (void)loadContent;
 
 @property (nonatomic, retain) UILabel *nameLabel;
 @property (nonatomic, retain) UILabel *dateLabel;
+@property (nonatomic, retain) NSString *urlImgString;
+@property (nonatomic, retain) UITableView* table;
 
 
 @end
