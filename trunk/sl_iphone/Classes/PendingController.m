@@ -69,55 +69,25 @@
 {
    
 	printf(" Inicializa la tabla ");
-    static NSString *CellIdentifier = @"MyID";
-	//UILabel *labelView = NULL;
-	//NSInteger row = [indexPath row];
-	
+    static NSString *CellIdentifier = @"MyID";	
 	
 	SpeciesLogAppDelegate *appDelegate = (SpeciesLogAppDelegate *)[[UIApplication sharedApplication] delegate];
-
     CellFormat *cell = (CellFormat *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
     if (cell == nil)
 	{
-		cell = [[[CellFormat alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-		
+		cell = [[[CellFormat alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];		
 	}
 	
 	printf("\n arraycount -> %d",appDelegate.arrayCDato.count);
     CDato *f = (CDato *)[appDelegate.arrayCDato objectAtIndex:indexPath.row];
-	
-
-	[cell setData:f.scientificName date:f.dateTime];
-	
+	[cell setData:f.scientificName date:f.dateTime];	
 	
 	cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-	cell.hidesAccessoryWhenEditing = YES;    
-
-
-	printf("\nimagen: %s   y imageURL: %s", [f.scientificName UTF8String],[f.imageURL UTF8String]);
-	
-	printf("\n la imageURL de la foto recien tomada es: %s", [f.imageURL UTF8String]);
-	
-	
-	/***** Gestión de las imágenes en las celdas
-	 ************/
-	/*
-	fileList = [[[[NSFileManager defaultManager] directoryContentsAtPath:DOCSFOLDER]
-				 pathsMatchingExtensions:[NSArray arrayWithObjects:@"png", nil]] retain];
-	
-	printf("\n filelist -> %d",fileList.count);
-		
-	//printf("imagen:%s\n",[[fileList objectAtIndex:1] UTF8String]);
-	*/
-	 
-	NSString *selectedPath = [DOCSFOLDER stringByAppendingPathComponent:f.imageURL];
-	//printf("--------------- imagen:%s\n",[selectedPath UTF8String]);
-	
+	cell.hidesAccessoryWhenEditing = YES;     
+	NSString *selectedPath = [DOCSFOLDER stringByAppendingPathComponent:f.imageURL];	
 	if([[NSFileManager defaultManager] fileExistsAtPath:selectedPath])
 	{
-		UIImage * imagenOriginal = [UIImage imageWithContentsOfFile:selectedPath];
-	
+		UIImage * imagenOriginal = [UIImage imageWithContentsOfFile:selectedPath];	
 		UIImage *img = [imagenOriginal _imageScaledToSize:CGSizeMake(64.0f, 64.0f) interpolationQuality:1];
 		cell.image = img;
 	}
@@ -126,13 +96,6 @@
 	
     return cell;
 }
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-		
-}
-
 
 // METODO PARA BORRAR CDATO DE BBDD
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
@@ -156,6 +119,50 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	}
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	printf(" -- \nHola Accesory Button\n");
+	SpeciesLogAppDelegate *appDelegate = (SpeciesLogAppDelegate *)[[UIApplication sharedApplication] delegate];	
+	CDato *f = (CDato *)[appDelegate.arrayCDato objectAtIndex:indexPath.row];	
+	if (self.cDatoView == nil)
+	{		
+		//Cargo la Vista desde el NIB en lugar de utilizar el método loadView
+		printf("-- Crgo la vista\n");
+		CDatos_PruebasJorgeViewController *viewController = [[CDatos_PruebasJorgeViewController alloc] initWithNibName:@"PendingViewController" bundle:[NSBundle mainBundle]];
+		self.cDatoView = viewController;
+		self.cDatoView.idObject = [f idData];
+		[viewController release];
+	}
+	printf(" Siguiente paso...\n");
+	// Añadimos el título y un botón a la barra de navegación...
+	[self.navigationController pushViewController:self.cDatoView animated:YES];	
+	//NOMBRE DE LA FOTO
+	self.cDatoView.title = [f scientificName];
+	// Aquí v ael botón...
+	UIBarButtonItem *botonUpdatePhoto = [[[UIBarButtonItem alloc]
+										  initWithTitle:@"Upload"
+										  style:UIBarButtonItemStylePlain
+										  target:self
+										  action:@selector(uploadPhoto)]
+										 autorelease];	
+	self.cDatoView.navigationItem.rightBarButtonItem = botonUpdatePhoto;		
+	// Escribimos los datos en el formulario...	
+	//[self.cDatoView.descripcionDetallada setText:[f scientificName]];
+	[self.cDatoView.nombre setText:[f scientificName]];
+    [self.cDatoView.date setText:[f dateTime]];
+	
+	[self.cDatoView.location setText: [NSString stringWithFormat:@"Latitude: %3.3f - Longitude: %3.3f",[f.lat floatValue],[f.lng floatValue]]];	
+	// Y también la foto...	
+	NSString *selectedPath = [DOCSFOLDER stringByAppendingPathComponent:f.imageURL];
+	if([[NSFileManager defaultManager] fileExistsAtPath:selectedPath])
+	{
+		UIImage * imagenOriginal = [UIImage imageWithContentsOfFile:selectedPath];		
+		UIImage *img = [imagenOriginal _imageScaledToSize:CGSizeMake(206.0f, 206.0f) interpolationQuality:1];		
+		[self.cDatoView.imagePhoto setImage:img];
+	}
+	
+	
+}
 
 
 -(void) tableView:(UITableView *) tableView accessoryButtonTappedForRowWithIndexPath: (NSIndexPath *)indexPath
@@ -176,44 +183,27 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	}
    printf(" Siguiente paso...\n");
 	// Añadimos el título y un botón a la barra de navegación...
-	[self.navigationController pushViewController:self.cDatoView animated:YES];
-	
-	
+	[self.navigationController pushViewController:self.cDatoView animated:YES];	
 	//NOMBRE DE LA FOTO
-	self.cDatoView.title = [f scientificName];
-	
+	self.cDatoView.title = [f scientificName];	
 	// Aquí v ael botón...
 	UIBarButtonItem *botonUpdatePhoto = [[[UIBarButtonItem alloc]
 										  initWithTitle:@"Upload"
 										  style:UIBarButtonItemStylePlain
 										  target:self
-										  action:@selector(uploadPhoto)]
-										 autorelease];
-	
-	self.cDatoView.navigationItem.rightBarButtonItem = botonUpdatePhoto;
-	
-	
-	// Escribimos los datos en el formulario...
-	
+										  action:@selector(uploadOnePhoto)]
+										 autorelease];	
+	self.cDatoView.navigationItem.rightBarButtonItem = botonUpdatePhoto;	
+	// Escribimos los datos en el formulario...	
 	//[self.cDatoView.descripcionDetallada setText:[f scientificName]];
 	[self.cDatoView.nombre setText:[f scientificName]];
     [self.cDatoView.date setText:[f dateTime]];
-	
-		//printf("dsa ---> %s", [res UTF8String]);
-	[self.cDatoView.location setText: [NSString stringWithFormat:@"Latitude: %3.3f - Longitude: %3.3f",[f.lat floatValue],[f.lng floatValue]]];
-	 
-	
-	// Y también la foto...
-	
+	[self.cDatoView.location setText: [NSString stringWithFormat:@"Latitude: %3.3f - Longitude: %3.3f",[f.lat floatValue],[f.lng floatValue]]];	
 	NSString *selectedPath = [DOCSFOLDER stringByAppendingPathComponent:f.imageURL];
-	//printf("--------------- imagen:%s\n",[selectedPath UTF8String]);
-	
 	if([[NSFileManager defaultManager] fileExistsAtPath:selectedPath])
 	{
-		UIImage * imagenOriginal = [UIImage imageWithContentsOfFile:selectedPath];
-		
-		UIImage *img = [imagenOriginal _imageScaledToSize:CGSizeMake(206.0f, 206.0f) interpolationQuality:1];
-		
+		UIImage * imagenOriginal = [UIImage imageWithContentsOfFile:selectedPath];		
+		UIImage *img = [imagenOriginal _imageScaledToSize:CGSizeMake(206.0f, 206.0f) interpolationQuality:1];		
 		[self.cDatoView.imagePhoto setImage:img];
 	}
 	
@@ -221,48 +211,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	
 }
-
-
-
-/*****************
-- (void) loadView
-{
-	
-	[super loadView];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"Upload Photos" 
-											   style:UIBarButtonItemStylePlain 
-											   target:self 
-											   action:@selector(UploadPhotos)] autorelease];
-	
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithTitle:@"last Maps" 
-											   style:UIBarButtonItemStylePlain 
-											   target:self 
-											   action:@selector(EditPhotos)] autorelease];
-	[self LoadFileList];
-	[self loadText];	
-}
-
-************/
-
-/****************
-
--(void) loadText
-{
-	textView = [[UITextView alloc] initWithFrame:[[UIScreen mainScreen] applicationFrame]];
-	
-	textView.editable = NO;
-	textView.textAlignment = UITextAlignmentCenter;
-	textView.font = [UIFont fontWithName:@"American Typewriter" size:20];
-	textView.textColor=[UIColor whiteColor];	
-	textView.autoresizesSubviews = YES;
-	textView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);	
-	textView.backgroundColor = [UIColor blackColor];	
-	self.view = textView;		
-}
- 
- ***************/
 
 -(void) DeletePhotosFromFolder:(NSString*)folder FileName:(NSString*)fileName
 {
@@ -346,7 +294,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString* imgPath = [DOCSFOLDER stringByAppendingPathComponent:imgName];	
 	
 		
-	api_sig = [MD5Class stringToMD5:[NSString stringWithFormat:@"%@api_key%@auth_token%@description%@",secret,api_key,token,desc]];
+	api_sig = [MD5Class stringToMD5:[NSString stringWithFormat:@"%@api_key%@auth_token%@description%@tagsspecieslog:",secret,api_key,token,desc]];
 	//creating the url request:
 	NSURL *cgiUrl = [NSURL URLWithString:@"http://api.flickr.com/services/upload/"];
 	NSMutableURLRequest *postRequest = [NSMutableURLRequest requestWithURL:cgiUrl];
@@ -356,9 +304,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *stringBoundary = [NSString stringWithString:@"---------------------------7d44e178b043a"];
 	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",stringBoundary];
 	[postRequest addValue:contentType forHTTPHeaderField: @"Content-Type"];
-	[postRequest addValue:@"api.flickr.com" forHTTPHeaderField: @"Host"];
-	
-	
+	[postRequest addValue:@"api.flickr.com" forHTTPHeaderField: @"Host"];		
 	
 	//setting up the body:
 	NSMutableData *postBody = [NSMutableData data];
@@ -374,6 +320,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	[postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"description\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
 	[postBody appendData:[[NSString stringWithFormat:@"%@",desc] dataUsingEncoding:NSUTF8StringEncoding]];
 	
+	[postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"tags\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postBody appendData:[[NSString stringWithString:@"specieslog:"] dataUsingEncoding:NSUTF8StringEncoding]];
+		
 	[postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
 	[postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"api_sig\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
 	[postBody appendData:[[NSString stringWithFormat:@"%@",api_sig] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -423,19 +373,12 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	if([xmlData.statValue isEqualToString:@"ok"])
 	{
-		//LE AÑADIMOS LA DESCRIPCIO
-		
 		//FOTO SUBIDA CORRECTAMENTE ASI Q ENVIAR LAS COORDENADAS
 		printf("ID:%s\n COMIENZO DEL PROCESO DE FIRMA DE LAS COORDENADAS",[res UTF8String]);
-		
-		// RECETA PARA CARGAR LAS COORDENADAS
-		// SpeciesLogAppDelegate* sp=(SpeciesLogAppDelegate*)[[UIApplication sharedApplication]delegate];
-		// printf("\nlat:%f lon:%f",sp.gps.lat,sp.gps.lon);
-		
+				
 		SpeciesLogAppDelegate *appDelegate = (SpeciesLogAppDelegate *)[[UIApplication sharedApplication] delegate];	
-		CDato *imgData = (CDato *)[appDelegate.arrayCDato objectAtIndex:0];
-		
-		NSNumber* accuaracy=[NSNumber numberWithInt:1];		
+		CDato *imgData = (CDato *)[appDelegate.arrayCDato objectAtIndex:0];		
+		NSNumber* accuaracy=[NSNumber numberWithInt:16];	
 		
 		//FIRMA MAS LLAMADA AL METODO CORRESPONDIENTE
 		api_sig = [MD5Class stringToMD5:[NSString stringWithFormat:@"%@accuracy%dapi_key%@auth_token%@lat%flon%fmethodflickr.photos.geo.setLocationphoto_id%@",
@@ -467,19 +410,21 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 				[self.tableView reloadData];
 				[self	ShowAlert:@"Upload Info" Text:@"Upload Succes"];
 				[LoadIconClass killHUD];
-			}
-			
-			
-		}			
+			}			
+		}	
+		else
+			[LoadIconClass killHUD];
 	}
 	else
 	{
-		//FOTO MAL SUBIDA,ASI Q NO BORRAR PARA RE PETIR EL PROCESO MAS ADELANTE
+		[self.tableView reloadData];
+		[self	ShowAlert:@"Upload Info" Text:@"Unable to Upload"];
+		[LoadIconClass killHUD];
 	}
 	
 }
 
-- (void) uploadPhoto
+- (void) uploadOnePhoto
 {
 	printf("Pulsado Botón de UpDSATE");	
 	
@@ -504,38 +449,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 }
 
-/*
-+ (void)reiniciaPepe{
-	
-	[self.tableView reloadData];
-
-}
-*/
- 
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
@@ -569,17 +482,4 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 
 
 @end
-/*
- SpeciesLogAppDelegate *appDelegate = (SpeciesLogAppDelegate *)[[UIApplication sharedApplication] delegate];	
- CDato *imgData = (CDato *)[appDelegate.arrayCDato objectAtIndex:0];
- 
- NSNumber* lat=[NSNumber numberWithFloat:sp.gps.lat];
- NSNumber* lon=[NSNumber numberWithFloat:sp.gps.lon];
- NSNumber* accuaracy=[NSNumber numberWithInt:1];		
- 
- //FIRMA MAS LLAMADA AL METODO CORRESPONDIENTE
- api_sig = [MD5Class stringToMD5:[NSString stringWithFormat:@"%@accuracy%dapi_key%@auth_token%@lat%flon%fmethodflickr.photos.geo.setLocationphoto_id%@",
- secret,[accuaracy intValue],api_key,token,[lat floatValue],[lon floatValue],res]];		
- NSString* stringUrl=[NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.geo.setLocation&api_key=%@&photo_id=%@&lat=%f&lon=%f&accuracy=%d&auth_token=%@&api_sig=%@",
- api_key,res,[lat floatValue],[lon floatValue],[accuaracy intValue],token,api_sig];
- */
+

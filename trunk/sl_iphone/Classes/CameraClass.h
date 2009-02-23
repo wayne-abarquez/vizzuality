@@ -10,11 +10,8 @@
 #import "GPSClass.h"
 
 //#define SOURCETYPE UIImagePickerControllerSourceTypeSavedPhotosAlbum
-#define SOURCETYPE UIImagePickerControllerSourceTypePhotoLibrary
-
-//In this lines you can choose to use the image library or the camera. We use the image library for development on the
-//simulator.
-//#define SOURCETYPE UIImagePickerControllerSourceTypeCamera
+//#define SOURCETYPE UIImagePickerControllerSourceTypePhotoLibrary
+#define SOURCETYPE UIImagePickerControllerSourceTypeCamera
 #define DOCSFOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
 
 @interface CameraClass :  UIImagePickerController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate>
