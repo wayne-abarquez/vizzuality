@@ -23,7 +23,7 @@ package
 			taxonId=_taxonId;
 			var copyrightCollection:CopyrightCollection = new CopyrightCollection();
 			copyrightCollection.addCopyright(new Copyright("ennefox", new LatLngBounds(new LatLng(-180, 90), new LatLng(180, -90)), 21,"ennefox"));
-			super(copyrightCollection, 0, 21);
+			super(copyrightCollection, 0, 23,0.7);
 			
 		}
 		
