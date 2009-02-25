@@ -7,7 +7,8 @@
 			]]>
 		</mx:Script>
 		<mx:DataGrid id="providersAdg" x="0" width="100%" 
-		styleName="advancedDataGrid" 
+		styleName="advancedDataGrid"  doubleClickEnabled="true"
+		 itemDoubleClick="navigateToURL(new URLRequest('http://data.gbif.org/datasets/resource/'+providersAdg.selectedItem.data_resource_id))"
 		draggableColumns="false" verticalScrollPolicy="auto"
 		rowHeight="25" top="33" bottom="0">
 			<mx:columns>
@@ -17,25 +18,12 @@
 	</mx:DataGrid>	
 	<mx:Canvas x="0" y="0" width="100%" height="61" styleName="headerCanvas">
 		<mx:Label y="36" text="NUMBER OF OCCURENCES" fontFamily="DINOT-Medium" fontSize="12" color="#666666" right="12"/>
-		<mx:Label y="29" text="DATA PROVIDERS" fontFamily="DINOT-Medium" fontSize="18" color="#666666" left="10" width="152"/>
+		<mx:Label y="29" text="DATA RESOURCES" fontFamily="DINOT-Medium" fontSize="18" color="#666666" left="10" width="185"/>
 		<mx:Button label="BACK TO MAP" fontSize="12"
 			icon="@Embed('/assets/backArrows.png')" labelPlacement="right" 
 			click="Application.application.toggleMainCanvasState()" fontFamily="DINOT-Medium" color="#999999" 
 			styleName="buttonFoo" y="16" fontWeight="normal" textAlign="left" left="3"
 			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 	</mx:Canvas>
-	<mx:Canvas x="0" width="100%" height="20" styleName="headerCanvas" bottom="0" backgroundColor="#FFFFFF">
-		<mx:Image source="@Embed('/assets/gbifLogo.png')" y="0" left="3"
-			click="navigateToURL(new URLRequest('http://www.gbif.org'))"
-			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-		<mx:Label y="0" text="Powered by gbif" fontFamily="DINOT-Medium" fontSize="11" color="#666666" left="21"
-			click="navigateToURL(new URLRequest('http://www.gbif.org'))"
-			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-		<mx:Image source="@Embed('/assets/vizzLogo.png')" y="0" right="3"
-			click="navigateToURL(new URLRequest('http://www.vizzuality.com'))"
-			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-		<mx:Label y="0" text="Developed by vizzuality" fontFamily="DINOT-Medium" fontSize="11" color="#CCCCCC" right="26"
-			click="navigateToURL(new URLRequest('http://www.vizzuality.com'))"
-			useHandCursor="true" buttonMode="true" mouseChildren="false"/>			
-	</mx:Canvas>
+
 </mx:Canvas>

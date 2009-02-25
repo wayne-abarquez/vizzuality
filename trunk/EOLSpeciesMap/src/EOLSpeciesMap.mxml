@@ -10,6 +10,7 @@
 
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.interfaces.IMapType;
 		import mx.events.ResizeEvent;
 		import mx.collections.Grouping;
 		import mx.collections.GroupingField;
@@ -31,8 +32,11 @@
 		import com.google.maps.controls.ControlPosition;
 		
 		private var cellTileLayer:CellsTileLayer;
-		private var currentTileLayerOverlay:TileLayerOverlay;
-		private var previousTileLayerOverlay:TileLayerOverlay;
+		
+		private var mapMapType:IMapType;
+		private var satMapType:IMapType;
+		private var hibridMapType:IMapType;
+		private var terrainMapType:IMapType;
 		
 		[Bindable]
 		public var appWidth:Number=width;		
@@ -56,11 +60,11 @@
 		    var zoomControl:ZoomControl = new ZoomControl();
 		    zoomControl.setControlPosition(topLeft);
 		    map.addControl(zoomControl);
-		    //var topRight:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_RIGHT, 10, 10);
-		    //var mapTypeControl:MapTypeControl = new MapTypeControl();
-		    //map.addControl(mapTypeControl);  
-		    //mapTypeControl.setControlPosition(topRight);
-		    map.setMapType(MapType.PHYSICAL_MAP_TYPE);
+		    
+		    for each(var mt:IMapType in map.getMapTypes()) {
+			    map.removeMapType(mt);
+		    }
+		    //map.setMapType(MapType.PHYSICAL_MAP_TYPE);
 		    
 		    var worldBBox:LatLngBounds = new LatLngBounds(new LatLng(-70,-170),new LatLng(70,170));
 		    var wordZoom:Number = map.getBoundsZoomLevel(worldBBox);
@@ -68,12 +72,62 @@
 		    
 		    if (parameters.taxon_id!=0) {
 			    cellTileLayer = new CellsTileLayer(parameters.taxon_id);
-			    currentTileLayerOverlay = new TileLayerOverlay(cellTileLayer, 256, map.MERCATOR_PROJECTION);
-			   	currentTileLayerOverlay.foreground.alpha=0.7;
-	        	map.addOverlay(currentTileLayerOverlay);
+			    
+		    	var mapTileLayers:Array = MapType.NORMAL_MAP_TYPE.getTileLayers().concat([]);
+		    	mapTileLayers.push(cellTileLayer);	
+        		mapMapType = new MapType(mapTileLayers,MapType.NORMAL_MAP_TYPE.getProjection(),"MAP");
+                map.addMapType(mapMapType);
+                
+		    	var satTileLayers:Array = MapType.SATELLITE_MAP_TYPE.getTileLayers().concat([]);
+		    	satTileLayers.push(cellTileLayer);	
+        		satMapType = new MapType(satTileLayers,MapType.SATELLITE_MAP_TYPE.getProjection(),"SAT");
+                map.addMapType(satMapType);
+                
+		    	var hibridTileLayers:Array = MapType.HYBRID_MAP_TYPE.getTileLayers().concat([]);
+		    	hibridTileLayers.push(cellTileLayer);	
+        		hibridMapType = new MapType(hibridTileLayers,MapType.HYBRID_MAP_TYPE.getProjection(),"HIB");
+                map.addMapType(hibridMapType);
+                
+		    	var terrainTileLayers:Array = MapType.PHYSICAL_MAP_TYPE.getTileLayers().concat([]);
+		    	terrainTileLayers.push(cellTileLayer);	
+        		terrainMapType = new MapType(terrainTileLayers,MapType.PHYSICAL_MAP_TYPE.getProjection(),"TER");
+                map.addMapType(terrainMapType);
+                
+                
+                
+                
+                changeMapType(terrainMapType);
+			   		        	
 		    }
         	
 		} 
+		
+		private function changeMapType(mapType:IMapType):void {
+			map.setMapType(mapType); 
+			
+			if(mapType==mapMapType) {
+				mapButton.selected=true;
+				satButton.selected=false;
+				hibridButton.selected=false;
+				terrainButton.selected=false;
+			} else if(mapType==satMapType) {
+				mapButton.selected=false;
+				satButton.selected=true;
+				hibridButton.selected=false;
+				terrainButton.selected=false;				
+			} else if(mapType==hibridMapType) {
+				mapButton.selected=false;
+				satButton.selected=false;
+				hibridButton.selected=true;
+				terrainButton.selected=false;				
+			} else if(mapType==terrainMapType) {
+				mapButton.selected=false;
+				satButton.selected=false;
+				hibridButton.selected=false;
+				terrainButton.selected=true;				
+			}
+			
+		}
 
 		private function onGetDataProviders(ev:ResultEvent):void {
  			providersAc = new ArrayCollection(ev.result as Array);
@@ -116,9 +170,11 @@
                 switch (Application.application.stage.displayState) {
                     case StageDisplayState.FULL_SCREEN:
                         Application.application.stage.displayState = StageDisplayState.NORMAL;
+                        fullScreenButton.selected=false;
                         break;
                     default:
                         Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
+                        fullScreenButton.selected=true;
                         break;
                 }
             } catch (err:SecurityError) {
@@ -129,30 +185,30 @@
 
 	]]>
 </mx:Script>
-	<mx:Canvas id="hugeCanvas" width="{appWidth*2}" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" moveEffect="{moveEffect}">
+	<mx:Canvas id="hugeCanvas" width="{appWidth*2}" horizontalScrollPolicy="off" verticalScrollPolicy="off" moveEffect="{moveEffect}" bottom="20" top="0">
 		<mx:HBox horizontalGap="0" width="100%" height="100%">
 			<mx:Canvas id="mapCanvas" width="50%" height="100%" x="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 				<maps:Map id="map" width="100%" height="100%"
-					key="ABQIAAAAXucQwXp28TiGqramtQ-1nhRb5X_Glp8xCwzKlnXaBE1jLvIymBQxOuvaiM_rvvLDKPeFI0u1riXlWw" 
+					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQIcf2DVyaa1_M_ai60HThku0goiRS10yzn3XPkTnaqnGjjLpkuwyyW9g" 
 					mapevent_mapready="onMapReady(event)"  />
 						<mx:HBox horizontalGap="3" right="9" top="9"> 
-						<mx:Button label="MAP" styleName="smallButton" click="map.setMapType(MapType.NORMAL_MAP_TYPE)"
+						<mx:Button id="mapButton" label="MAP" styleName="smallButton" click="changeMapType(mapMapType)"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
-						<mx:Button label="SATELLITE" styleName="smallButton" click="map.setMapType(MapType.SATELLITE_MAP_TYPE)"
+						<mx:Button id="satButton" label="SATELLITE" styleName="smallButton" click="changeMapType(satMapType)"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
-						<mx:Button label="HIBRID" styleName="smallButton" click="map.setMapType(MapType.HYBRID_MAP_TYPE)"
+						<mx:Button id="hibridButton" label="HIBRID" styleName="smallButton" click="changeMapType(hibridMapType)"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
-						<mx:Button label="TERRAIN" styleName="smallButton"  click="map.setMapType(MapType.PHYSICAL_MAP_TYPE)"
+						<mx:Button id="terrainButton" label="TERRAIN" styleName="smallButton"  click="changeMapType(terrainMapType)"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
-						<mx:Button label="FULLSCREEN" styleName="smallButton" click="toggleFullScreen()" 
+						<mx:Button id="fullScreenButton" label="FULLSCREEN" styleName="smallButton" click="toggleFullScreen()" 
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
 					</mx:HBox>
-					<mx:Button label="VIEW PROVIDERS" bottom="20" right="-3" 
+					<mx:Button label="VIEW RESOURCES" bottom="20" right="-3" 
 						styleName="providersButton" width="100"
 						useHandCursor="true" mouseChildren="false" buttonMode="true"
 						click="toggleMainCanvasState()"/>
@@ -162,6 +218,20 @@
 			</mx:Canvas>
 		</mx:HBox>
 	</mx:Canvas>
+	<mx:Canvas x="0" width="100%" height="20" styleName="headerCanvas" bottom="0" backgroundColor="#FFFFFF">
+		<mx:Image source="@Embed('/assets/gbifLogo.png')" y="0" left="3"
+			click="navigateToURL(new URLRequest('http://www.gbif.org'))"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		<mx:Label y="0" text="Powered by gbif" fontFamily="DINOT-Medium" fontSize="11" color="#666666" left="21"
+			click="navigateToURL(new URLRequest('http://www.gbif.org'))"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		<mx:Image source="@Embed('/assets/vizzLogo.png')" y="0" right="3"
+			click="navigateToURL(new URLRequest('http://www.vizzuality.com'))"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		<mx:Label y="0" text="Developed by vizzuality" fontFamily="DINOT-Medium" fontSize="11" color="#CCCCCC" right="26"
+			click="navigateToURL(new URLRequest('http://www.vizzuality.com'))"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>			
+	</mx:Canvas>	
     <mx:Move id="moveEffect" 
         duration="500" 
         easingFunction="{Exponential.easeInOut}" 
