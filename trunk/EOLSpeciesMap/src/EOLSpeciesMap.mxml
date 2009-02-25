@@ -3,7 +3,7 @@
 	verticalScrollPolicy="off" horizontalScrollPolicy="off" backgroundColor="#c7e2ff"
 	layout="absolute" xmlns:maps="com.google.maps.*"
 	creationComplete="checkParams()" xmlns:local="*" resize="onResized(event)"
-	borderStyle="solid" borderColor="#c1cdda" borderThickness="1">
+	borderStyle="solid" borderColor="#c1cdda" borderThickness="1" xmlns:components="com.google.analytics.components.*">
 	
 <mx:Style source="style/fonts.css"/>
 <mx:Style source="style/ui.css"/>
@@ -53,6 +53,7 @@
 				hugeCanvas.enabled=false;
 			}
 			server.getProviders(parameters.taxon_id);
+			tracker.trackPageview( "/"+parameters.taxon_id );
 		}
 		
 		private function onMapReady(event:Event):void {
@@ -97,7 +98,6 @@
                 
                 
                 changeMapType(terrainMapType);
-			   		        	
 		    }
         	
 		} 
@@ -158,10 +158,12 @@
 			if (mainCanvasState=="map") {				
 				mainCanvasState="coverFlow";
 				hugeCanvas.move(appWidth*-1,0);
+				tracker.trackPageview( "/"+parameters.taxon_id+"/providers" );
 				
 			} else {
 				mainCanvasState="map";
 				hugeCanvas.move(0,0);
+				tracker.trackPageview( "/"+parameters.taxon_id );
 			}
 		}	
 		
@@ -175,6 +177,7 @@
                     default:
                         Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
                         fullScreenButton.selected=true;
+						tracker.trackEvent("event","fullscreen","true");
                         break;
                 }
             } catch (err:SecurityError) {
@@ -243,5 +246,7 @@
 	fault="trace(event)"
 	destination="EolServices" source="EolServices"
 	showBusyCursor="false" />	
+	
+	<components:FlexTracker id="tracker" mode="AS3" account="UA-7333475-2" visualDebug="false" />
 	        	
 </mx:Application>

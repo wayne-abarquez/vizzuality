@@ -18,7 +18,7 @@
 	</mx:DataGrid>	
 	<mx:Canvas x="0" y="0" width="100%" height="61" styleName="headerCanvas">
 		<mx:Label y="36" text="NUMBER OF OCCURENCES" fontFamily="DINOT-Medium" fontSize="12" color="#666666" right="12"/>
-		<mx:Label y="29" text="DATA RESOURCES" fontFamily="DINOT-Medium" fontSize="18" color="#666666" left="10" width="185"/>
+		<mx:Label y="29" text="DATA RESOURCES" fontFamily="DINOT-Medium" fontSize="18" color="#666666" left="10" width="179"/>
 		<mx:Button label="BACK TO MAP" fontSize="12"
 			icon="@Embed('/assets/backArrows.png')" labelPlacement="right" 
 			click="Application.application.toggleMainCanvasState()" fontFamily="DINOT-Medium" color="#999999" 

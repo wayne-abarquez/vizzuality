@@ -36,7 +36,7 @@ package
            	if (srvNum>3)
            		srvNum=0;
            	
-           	var tileUrl:String = "php/map/getEolTile.php?x="+tile.x+"&y="+tile.y+"&z="+zoom+"&taxon="+taxonId;
+           	var tileUrl:String = "http://gbiftilecache.appspot.com/getTile?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
             loader.load(new URLRequest(tileUrl));
             return loader;
 			
