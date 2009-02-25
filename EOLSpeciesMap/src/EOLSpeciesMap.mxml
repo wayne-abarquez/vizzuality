@@ -73,58 +73,61 @@
 		    
 		    if (parameters.taxon_id!=0) {
 			    cellTileLayer = new CellsTileLayer(parameters.taxon_id);
-			    
-		    	var mapTileLayers:Array = MapType.NORMAL_MAP_TYPE.getTileLayers().concat([]);
-		    	mapTileLayers.push(cellTileLayer);	
-        		mapMapType = new MapType(mapTileLayers,MapType.NORMAL_MAP_TYPE.getProjection(),"MAP");
-                map.addMapType(mapMapType);
-                
-		    	var satTileLayers:Array = MapType.SATELLITE_MAP_TYPE.getTileLayers().concat([]);
-		    	satTileLayers.push(cellTileLayer);	
-        		satMapType = new MapType(satTileLayers,MapType.SATELLITE_MAP_TYPE.getProjection(),"SAT");
-                map.addMapType(satMapType);
-                
-		    	var hibridTileLayers:Array = MapType.HYBRID_MAP_TYPE.getTileLayers().concat([]);
-		    	hibridTileLayers.push(cellTileLayer);	
-        		hibridMapType = new MapType(hibridTileLayers,MapType.HYBRID_MAP_TYPE.getProjection(),"HIB");
-                map.addMapType(hibridMapType);
-                
-		    	var terrainTileLayers:Array = MapType.PHYSICAL_MAP_TYPE.getTileLayers().concat([]);
-		    	terrainTileLayers.push(cellTileLayer);	
-        		terrainMapType = new MapType(terrainTileLayers,MapType.PHYSICAL_MAP_TYPE.getProjection(),"TER");
-                map.addMapType(terrainMapType);
-                
-                
-                
-                
-                changeMapType(terrainMapType);
+                changeMapType("terrainMapType");
 		    }
         	
 		} 
 		
-		private function changeMapType(mapType:IMapType):void {
-			map.setMapType(mapType); 
+		private function changeMapType(mapType:String):void {
 			
-			if(mapType==mapMapType) {
+			if(mapType=="mapMapType") {
+				if (mapMapType == null) {
+			    	var mapTileLayers:Array = MapType.NORMAL_MAP_TYPE.getTileLayers().concat([]);
+			    	mapTileLayers.push(cellTileLayer);	
+	        		mapMapType = new MapType(mapTileLayers,MapType.NORMAL_MAP_TYPE.getProjection(),"MAP");
+	                map.addMapType(mapMapType);					
+				}
 				mapButton.selected=true;
 				satButton.selected=false;
 				hibridButton.selected=false;
 				terrainButton.selected=false;
-			} else if(mapType==satMapType) {
+				map.setMapType(mapMapType); 
+			} else if(mapType=="satMapType") {
+				if (satMapType == null) {
+			    	var satTileLayers:Array = MapType.SATELLITE_MAP_TYPE.getTileLayers().concat([]);
+			    	satTileLayers.push(cellTileLayer);	
+	        		satMapType = new MapType(satTileLayers,MapType.SATELLITE_MAP_TYPE.getProjection(),"SAT");
+	                map.addMapType(satMapType);				
+				}
 				mapButton.selected=false;
 				satButton.selected=true;
 				hibridButton.selected=false;
 				terrainButton.selected=false;				
-			} else if(mapType==hibridMapType) {
+				map.setMapType(satMapType); 
+			} else if(mapType=="hibridMapType") {
+				if (hibridMapType == null) {
+			    	var hibridTileLayers:Array = MapType.HYBRID_MAP_TYPE.getTileLayers().concat([]);
+			    	hibridTileLayers.push(cellTileLayer);	
+	        		hibridMapType = new MapType(hibridTileLayers,MapType.HYBRID_MAP_TYPE.getProjection(),"HIB");
+	                map.addMapType(hibridMapType);				
+				}
 				mapButton.selected=false;
 				satButton.selected=false;
 				hibridButton.selected=true;
 				terrainButton.selected=false;				
-			} else if(mapType==terrainMapType) {
+				map.setMapType(hibridMapType); 
+			} else if(mapType=="terrainMapType") {
+				if (terrainMapType == null) {
+			    	var terrainTileLayers:Array = MapType.PHYSICAL_MAP_TYPE.getTileLayers().concat([]);
+			    	terrainTileLayers.push(cellTileLayer);	
+	        		terrainMapType = new MapType(terrainTileLayers,MapType.PHYSICAL_MAP_TYPE.getProjection(),"TER");
+	                map.addMapType(terrainMapType);				
+				}
 				mapButton.selected=false;
 				satButton.selected=false;
 				hibridButton.selected=false;
 				terrainButton.selected=true;				
+				map.setMapType(terrainMapType); 
 			}
 			
 		}
@@ -195,16 +198,16 @@
 					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQIcf2DVyaa1_M_ai60HThku0goiRS10yzn3XPkTnaqnGjjLpkuwyyW9g" 
 					mapevent_mapready="onMapReady(event)"  />
 						<mx:HBox horizontalGap="3" right="9" top="9"> 
-						<mx:Button id="mapButton" label="MAP" styleName="smallButton" click="changeMapType(mapMapType)"
+						<mx:Button id="mapButton" label="MAP" styleName="smallButton" click="changeMapType('mapMapType')"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
-						<mx:Button id="satButton" label="SATELLITE" styleName="smallButton" click="changeMapType(satMapType)"
+						<mx:Button id="satButton" label="SATELLITE" styleName="smallButton" click="changeMapType('satMapType')"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
-						<mx:Button id="hibridButton" label="HIBRID" styleName="smallButton" click="changeMapType(hibridMapType)"
+						<mx:Button id="hibridButton" label="HIBRID" styleName="smallButton" click="changeMapType('hibridMapType')"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
-						<mx:Button id="terrainButton" label="TERRAIN" styleName="smallButton"  click="changeMapType(terrainMapType)"
+						<mx:Button id="terrainButton" label="TERRAIN" styleName="smallButton"  click="changeMapType('terrainMapType')"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
 						<mx:Button id="fullScreenButton" label="FULLSCREEN" styleName="smallButton" click="toggleFullScreen()" 

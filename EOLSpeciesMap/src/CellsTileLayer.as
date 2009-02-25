@@ -23,6 +23,7 @@ package
 			taxonId=_taxonId;
 			var copyrightCollection:CopyrightCollection = new CopyrightCollection();
 			copyrightCollection.addCopyright(new Copyright("ennefox", new LatLngBounds(new LatLng(-180, 90), new LatLng(180, -90)), 21,"ennefox"));
+			
 			super(copyrightCollection, 0, 23,0.7);
 			
 		}
@@ -36,7 +37,7 @@ package
            	if (srvNum>3)
            		srvNum=0;
            	
-           	var tileUrl:String = "http://gbiftilecache.appspot.com/getTile?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
+           	var tileUrl:String = "http://gbiftilecache"+srvNum+".biodiversityatlas.com/getTile?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
             loader.load(new URLRequest(tileUrl));
             return loader;
 			
