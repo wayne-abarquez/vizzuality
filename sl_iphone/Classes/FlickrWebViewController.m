@@ -26,7 +26,7 @@
 @synthesize secret;
 @synthesize api_key;
 @synthesize frob;
-@synthesize webView;
+@synthesize webView; 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
