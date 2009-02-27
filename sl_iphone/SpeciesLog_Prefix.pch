@@ -1,8 +1,0 @@
-//
-// Prefix header for all source files of the 'SpeciesLog' target in the 'SpeciesLog' project
-//
-
-#ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-    #import <UIKit/UIKit.h>
-#endif
