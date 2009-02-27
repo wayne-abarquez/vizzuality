@@ -298,7 +298,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	[postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
 	[postBody appendData:[[NSString stringWithString:@"Content-Disposition: form-data; name=\"tags\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[postBody appendData:[[NSString stringWithFormat:@"specieslog:species=%@",desc] dataUsingEncoding:NSUTF8StringEncoding]];
+	[postBody appendData:[[NSString stringWithFormat:@"specieslog:species=\"%@\"",desc] dataUsingEncoding:NSUTF8StringEncoding]];
 	//[postBody appendData:[[NSString stringWithString:@"specieslog:,specieslog:species="] dataUsingEncoding:NSUTF8StringEncoding]];
 		
 	[postBody appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
