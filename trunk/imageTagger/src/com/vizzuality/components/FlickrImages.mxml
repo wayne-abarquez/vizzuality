@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" creationComplete="onCreationComplete()">
+	<mx:HTTPService id="jasonService" result="onResult(event)" fault="onFault(event)" method="get" resultFormat="text"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.controls.TileList;
+			import mx.collections.ArrayCollection;
+			import com.adobe.serialization.json.JSON;
+
+			private var sqlArray: ArrayCollection;
+			private var object: Object;
+			
+			private function onCreationComplete():void {
+				var flickrurl:String = "";
+				jasonService.url=flickrurl;
+		 		jasonService.send();
+		 	}
+		 	
+		 	private function onResult(ev: ResultEvent):void {
+		 		var data:String = String(ev.result);
+ 				object = JSON.decode(data);
+		 	}
+		 	
+		 	private function onFault(ev: FaultEvent):void {
+		 		
+		 	}
+		]]>
+	</mx:Script>
+	
+	
+	<mx:TileList id="tilelist"/>
+</mx:Canvas>

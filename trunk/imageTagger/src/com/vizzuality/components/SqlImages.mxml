@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="onCreationComplete()">
+		
+	<mx:Script>
+		<![CDATA[
+			import mx.events.CloseEvent;
+			import com.vizzuality.dao.TaxonomyResolutionService;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+            import com.adobe.crypto.MD5;
+			import mx.events.ListEvent;
+			import mx.controls.Image;
+			import mx.controls.TileList;
+			import mx.collections.ArrayCollection;
+			import com.vizzuality.components.photoRenderer;
+			import com.vizzuality.dao.DataAccessObject;
+			import flash.filesystem.File;
+			import flash.net.FileFilter;
+			import flash.desktop.NativeDragManager;
+		   	import flash.desktop.NativeDragActions;
+		   	import flash.desktop.Clipboard;
+		   	import flash.desktop.ClipboardFormats;
+		   	import mx.controls.Alert;
+		   	import com.vizzuality.*;
+		    import mx.core.Application;
+		    import com.adobe.webapis.flickr.events.*;
+			import com.adobe.webapis.flickr.FlickrService;
+			import com.adobe.webapis.flickr.methodgroups.Upload;
+			import mx.managers.PopUpManager;
+            import mx.core.IFlexDisplayObject;
+			import com.adobe.serialization.json.JSON;
+			
+			
+			//progress uploading bar
+			public var progressView:popUpUploadFlickr;
+			public var progressPop:IFlexDisplayObject;	
+			
+			
+			private var dbFile:File = File.applicationStorageDirectory.resolvePath("DBV.db");
+			private var dao: DataAccessObject= new DataAccessObject(dbFile);
+			[Bindable] private var sqlArray: ArrayCollection;
+			private var dir:File = File.applicationStorageDirectory.resolvePath("images");
+			private var imagesDir:String;
+			private var fileToOpen:File = File.documentsDirectory;
+			private var alias: String;
+			private var identification: String;
+			
+			private var path: String;
+			private var scientific: String;
+			
+			private var taxonomyResolutionService:TaxonomyResolutionService;
+			
+			
+						
+			private function onCreationComplete():void {
+		    	refreshTilelist();
+			  	imagesDir = dir.nativePath;
+				addEventListener(NativeDragEvent.NATIVE_DRAG_ENTER, onDragEnter);
+				addEventListener(NativeDragEvent.NATIVE_DRAG_DROP, onDragDrop);
+		 	}
+		 			 
+		 			 	
+		    public function uploadPhoto(path: String,name:String):void {
+		   		var tag:String;
+		   		if (taxonomyResolutionService==null)
+		   			taxonomyResolutionService= new TaxonomyResolutionService();
+		   		
+		   		Application.application.taxon = name;	
+				
+				taxonomyResolutionService.resolveTaxonomy(path,name);
+		   	            	
+            	if (progressPop==null){
+            		progressPop = PopUpManager.createPopUp(this, popUpUploadFlickr, true);
+					PopUpManager.centerPopUp(progressPop);
+            	}
+						
+		    }
+		 	
+		 	public function deleteImage(path:String):void {
+	 			dao.openConnection("DELETE FROM photos WHERE path='"+ path +"'");
+	 			var file:File = new File;
+	 			file.url= path;
+	 			file.deleteFile(); 
+	 			refreshTilelist();
+		 	}
+
+		 	
+		 	public function updateName(scientificName:String,path:String):void {
+			 	dao.openConnection("UPDATE photos SET scientific='"+scientificName+"' WHERE path='"+path+"'");
+		 	}
+		 	
+		 	
+		 	public function refreshTilelist():void {
+				dao.openConnection("SELECT scientific,path FROM photos");
+				sqlArray = dao.dbResult;
+		 	}
+		 	
+			private function insertSQL():void {
+				var sqlArrayColl: ArrayCollection;
+				dao.openConnection("SELECT alias FROM user");
+				sqlArrayColl = dao.dbResult;
+	    		alias = sqlArrayColl[0].alias; 
+	    		dao.openConnection("INSERT INTO photos (login) VALUES ('"+alias+"')");
+	    		dao.openConnection("SELECT id FROM photos");
+	    		sqlArrayColl = dao.dbResult;
+	    		identification = dao.countHandler(sqlArrayColl).toString();
+			}
+	
+	
+			private function selectImageFile(root:File):void {
+				
+				var imgFilter:FileFilter = new FileFilter("Images", "*.jpg;*.gif;*.png");
+				root.browseForOpenMultiple("Open", [imgFilter]);
+			  	root.addEventListener(FileListEvent.SELECT_MULTIPLE, fileSelected);
+			}
+			
+			private function fileSelected(event:FileListEvent):void {
+				
+				var files:Array = event.files as Array;
+				var i: int = files.length;
+			  	for (var j:int = 0; j < i; j++) {
+				    insertImage(files[j]);
+				}
+	
+			}
+			
+			private function insertImage(object:Object):void {
+				var original:File = File.userDirectory.resolvePath(object.nativePath);
+			  	var newFile:File;
+			  	insertSQL();
+			  	newFile = File.applicationStorageDirectory.resolvePath(imagesDir + "/"+ identification +'.'+ object.extension);
+			  	original.copyTo(newFile, true);
+			  	dao.openConnection("UPDATE photos SET path='"+newFile.url+"' WHERE id='"+identification+"'");
+			  	refreshTilelist();
+			}
+			
+			
+			private function onDragEnter(event:NativeDragEvent):void {
+	 			NativeDragManager.acceptDragDrop(tilelist);
+	   		}
+	   		
+			private function onDragDrop(event:NativeDragEvent):void {
+			    NativeDragManager.dropAction = NativeDragActions.COPY;
+			    var droppedFiles:Array = event.clipboard.getData(ClipboardFormats.FILE_LIST_FORMAT) as Array;
+			    for each (var file:File in droppedFiles) {
+			       switch (file.extension) {
+			         case "jpg":
+			           addDroppedFile(file.nativePath,file.extension);
+			           break;
+			         case "png":
+			           addDroppedFile(file.nativePath,file.extension);
+			           break;
+			         case "gif":
+			           addDroppedFile(file.nativePath,file.extension);
+			           break;
+			         default: Alert.show("Unsupported file");       
+			       }
+			    }
+			}
+			
+		   	private function addDroppedFile(nativePath:String,fileName:String):void {
+		   		var original:File = File.userDirectory.resolvePath(nativePath);
+		     	var newFile:File;
+			 	insertSQL();
+		      	newFile = File.applicationStorageDirectory.resolvePath(imagesDir + "/"+identification+"."+fileName);
+		     	original.copyTo(newFile, true);
+		     	dao.openConnection("UPDATE photos SET path='"+newFile.url+"' WHERE id='"+identification+"'");
+		     	refreshTilelist();
+		   }
+		   
+		   
+		   public function getAllImages():void {
+		   		refreshTilelist();
+				if (sqlArray.length>0) {
+					Application.application.uploadingAllPictures=true;
+		   			uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);
+		  		} else {
+					Application.application.uploadingAllPictures=false;
+					popUpUploadFlickr(progressPop).uploadComplete();
+					DockIcon(NativeApplication.nativeApplication.icon).bounce();
+		  		}
+		   }
+		   
+		   private function deleteAll():void {
+		   		refreshTilelist();
+		   		if (sqlArray.length>0) {
+					Application.application.deletingAllPictures=true;
+		   			deleteImage(sqlArray[0].path);
+		  		} else {
+					Application.application.deletingAllPictures=false;
+		  		}
+		   }
+		   
+		   public function closeProgressBar():void {
+		   		popUpUploadFlickr(progressPop).uploadComplete();
+		   }
+		   
+		   public function errorProgressBar():void {
+		   		popUpUploadFlickr(progressPop).httpError();
+		   }
+		   
+		   private function confirmDelete():void {
+		   		var a: Alert = Alert.show("Are you sure you want to delete all images?","Confirmation",Alert.YES|Alert.NO);
+		   		a.addEventListener(Event.CLOSE,deleteEvent);
+		   }
+		   
+		   private function deleteEvent(ev: CloseEvent): void {
+		   		if (ev.detail == Alert.YES) {deleteAll()}
+		   }
+		   
+		   private function confirmUpdate():void {
+		   		var a: Alert = Alert.show("Are you sure you want to upload all tagged images?","Confirmation",Alert.YES|Alert.NO);
+		   		a.addEventListener(Event.CLOSE,uploadEvent);
+		   }
+		   
+		   private function uploadEvent(ev: CloseEvent): void {
+		   		if (ev.detail == Alert.YES) {getAllImages()}
+		   }
+		   
+		]]>
+	</mx:Script>
+	
+		
+	
+	<mx:VBox>
+		<mx:TileList id="tilelist" dataProvider="{sqlArray}" paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="10" 
+		itemRenderer="com.vizzuality.components.photoRenderer" borderThickness="1" width="878" height="718"/>
+		<mx:HBox y="732" width="100%" height="37" horizontalAlign="center" verticalAlign="middle">		
+			<mx:Button label="Add" click="selectImageFile(fileToOpen)"/>
+			<mx:Button label="Delete All" click="confirmDelete()"/>
+			<mx:Button label="Upload All" click="confirmUpdate()"/>
+		</mx:HBox>	
+	</mx:VBox>
+</mx:Canvas>
