@@ -25,7 +25,7 @@
 			public var token: String ="";
 			
 			public var uploadingAllPictures:Boolean=false;
-			public var deletingAllPictures: Boolean=true;
+			public var deletingAllPictures: Boolean=false;
 			[Bindable]public var taxon: String = "";
 			[Bindable]public var tagSequence: String = "";
 			

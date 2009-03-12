@@ -47,9 +47,7 @@
 			       isPhotoSelected=false;
 			}
 			private function uploadImage():void {
-				if (scientificNameInput.text!="") {
-					(this.parentDocument as SqlImages).uploadPhoto(data.path,scientificNameInput.text);
-				}
+				(this.parentDocument as SqlImages).uploadPhoto(data.path,scientificNameInput.text);
 			}
 			private function eraseImage():void {
 				(this.parentDocument as SqlImages).deleteImage(data.path);

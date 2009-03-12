@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
 	height="70" width="350" borderStyle="solid" borderThickness="1" cornerRadius="5" 
-	backgroundColor="#FFFFFF" backgroundAlpha="0.0" themeColor="#000000" borderColor="#382513">
+	backgroundColor="#FFFFFF" backgroundAlpha="0.5" themeColor="#000000" borderColor="#382513">
 	
 	<mx:Script>
 		<![CDATA[
@@ -21,12 +21,14 @@
 			private function closePopUP():void {
 				PopUpManager.removePopUp(this);
 				Application.application.tagSequence = "";
+				Application.application.principalView.system.removeProgressBar();
 			}
 			
 			private function goFlickr():void {
 				var urlRequest:URLRequest = new URLRequest("http://www.flickr.com/tools/uploader_edit.gne?ids="+ Application.application.tagSequence);
                 navigateToURL(urlRequest);
-				PopUpManager.removePopUp(this);      
+				PopUpManager.removePopUp(this);  
+				Application.application.principalView.system.removeProgressBar();    
 			}
 		]]>
 	</mx:Script>
