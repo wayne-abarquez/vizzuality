@@ -82,6 +82,9 @@
 	 			file.url= path;
 	 			file.deleteFile(); 
 	 			refreshTilelist();
+	 			if (Application.application.deletingAllPictures) {
+					Application.application.principalView.system.deleteAll();
+				}
 		 	}
 
 		 	
@@ -173,7 +176,7 @@
 		   		refreshTilelist();
 				if (sqlArray.length>0) {
 					Application.application.uploadingAllPictures=true;
-		   			uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);
+			   		uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);						
 		  		} else {
 					Application.application.uploadingAllPictures=false;
 					popUpUploadFlickr(progressPop).uploadComplete();
@@ -197,6 +200,10 @@
 		   
 		   public function errorProgressBar():void {
 		   		popUpUploadFlickr(progressPop).httpError();
+		   }
+		   
+		   public function removeProgressBar():void {
+		   		progressPop = null;
 		   }
 		   
 		   private function confirmDelete():void {
