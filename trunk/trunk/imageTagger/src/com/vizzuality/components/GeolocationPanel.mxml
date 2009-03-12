@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="400" height="300" title="Google Maps">
+	<mx:Canvas x="0" y="0" width="380" height="260">
+		<mx:Button x="305" y="228" label="Accept"/>
+	</mx:Canvas>
+	
+</mx:Panel>
