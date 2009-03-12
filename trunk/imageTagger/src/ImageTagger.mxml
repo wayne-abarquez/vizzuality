@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="900" width="900" creationComplete="onCreationComplete()" 
-	title="Vizzuality Image Tagger App" xmlns:comp="com.vizzuality.components.*" maxWidth="900" maxHeight="900" minHeight="900" minWidth="900" borderColor="#B6ABAB" 
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="700" width="900" creationComplete="onCreationComplete()" 
+	title="Vizzuality Image Tagger App" xmlns:comp="com.vizzuality.components.*" maxWidth="900" maxHeight="700" minHeight="700" minWidth="900" borderColor="#B6ABAB" 
 	backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FDF9F9, #E4FAE6]">
 	
 	<mx:Script>

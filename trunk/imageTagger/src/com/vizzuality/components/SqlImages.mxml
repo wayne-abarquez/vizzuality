@@ -224,7 +224,7 @@
 	
 	<mx:VBox>
 		<mx:TileList id="tilelist" dataProvider="{sqlArray}" paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="10" 
-		itemRenderer="com.vizzuality.components.photoRenderer" borderThickness="1" width="878" height="718"/>
+		itemRenderer="com.vizzuality.components.photoRenderer" borderThickness="1" width="878" height="517"/>
 		<mx:HBox y="732" width="100%" height="37" horizontalAlign="center" verticalAlign="middle">		
 			<mx:Button label="Add" click="selectImageFile(fileToOpen)"/>
 			<mx:Button label="Delete All" click="confirmDelete()"/>
