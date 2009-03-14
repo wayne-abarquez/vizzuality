@@ -107,6 +107,29 @@ create index ix_taxon_site_tile_22 on taxon_site (taxon_id,tile22_x,tile22_y);
 create index ix_taxon_site_tile_23 on taxon_site (taxon_id,tile23_x,tile23_y);
 
 
+drop table tile_0_taxon;
+drop table tile_1_taxon;
+drop table tile_2_taxon;
+drop table tile_3_taxon;
+drop table tile_4_taxon;
+drop table tile_5_taxon;
+drop table tile_6_taxon;
+drop table tile_7_taxon;
+drop table tile_8_taxon;
+drop table tile_9_taxon;
+drop table tile_10_taxon;
+drop table tile_11_taxon;
+drop table tile_12_taxon;
+drop table tile_13_taxon;
+drop table tile_14_taxon;
+drop table tile_15_taxon;
+drop table tile_16_taxon;
+drop table tile_17_taxon;
+drop table tile_18_taxon;
+drop table tile_19_taxon;
+drop table tile_20_taxon;
+drop table tile_21_taxon;
+
 create table tile_0_taxon (
 	x tinyint unsigned
 	, y tinyint unsigned
@@ -173,8 +196,8 @@ create index ix_tile_4_origXY on tile_4_taxon (taxon_id,tile_orig_x,tile_orig_y)
 
 
 create table tile_5_taxon (
-	x tinyint unsigned
-	, y tinyint unsigned
+	x smallint unsigned
+	, y smallint unsigned
 	, taxon_id int unsigned not null
 	, num_occ int unsigned not null default 0
 	, tile_orig_x tinyint unsigned
@@ -186,8 +209,8 @@ create index ix_tile_5_origXY on tile_5_taxon (taxon_id,tile_orig_x,tile_orig_y)
 
 
 create table tile_6_taxon (
-	x tinyint unsigned
-	, y tinyint unsigned
+	x smallint unsigned
+	, y smallint unsigned
 	, taxon_id int unsigned not null
 	, num_occ int unsigned not null default 0
 	, tile_orig_x tinyint unsigned
@@ -277,8 +300,8 @@ create index ix_tile_12_origXY on tile_12_taxon (taxon_id,tile_orig_x,tile_orig_
 
 
 create table tile_13_taxon (
-	x smallint unsigned
-	, y smallint unsigned
+	x mediumint unsigned
+	, y mediumint unsigned
 	, taxon_id int unsigned not null
 	, num_occ int unsigned not null default 0
 	, tile_orig_x smallint unsigned
@@ -290,8 +313,8 @@ create index ix_tile_13_origXY on tile_13_taxon (taxon_id,tile_orig_x,tile_orig_
 
 
 create table tile_14_taxon (
-	x smallint unsigned
-	, y smallint unsigned
+	x mediumint unsigned
+	, y mediumint unsigned
 	, taxon_id int unsigned not null
 	, num_occ int unsigned not null default 0
 	, tile_orig_x smallint unsigned
@@ -364,29 +387,3 @@ create table tile_19_taxon (
 	, primary key (x,y) 
 ) engine=myisam;
 create index ix_tile_19_origXY on tile_19_taxon (taxon_id,tile_orig_x,tile_orig_y);
-
-
-
-create table tile_20_taxon (
-	x mediumint unsigned
-	, y mediumint unsigned
-	, taxon_id int unsigned not null
-	, num_occ int unsigned not null default 0
-	, tile_orig_x mediumint unsigned
-	, tile_orig_y mediumint unsigned
-	, primary key (x,y) 
-) engine=myisam;
-create index ix_tile_20_origXY on tile_20_taxon (taxon_id,tile_orig_x,tile_orig_y);
-
-
-
-create table tile_21_taxon (
-	x mediumint unsigned
-	, y mediumint unsigned
-	, taxon_id int unsigned not null
-	, num_occ int unsigned not null default 0
-	, tile_orig_x mediumint unsigned
-	, tile_orig_y mediumint unsigned
-	, primary key (x,y) 
-) engine=myisam;
-create index ix_tile_21_origXY on tile_21_taxon (taxon_id,tile_orig_x,tile_orig_y);
