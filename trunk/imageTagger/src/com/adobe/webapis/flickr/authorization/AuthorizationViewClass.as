@@ -52,14 +52,6 @@
 	
 	public var flickrAPIKey:String;
 	public var flickrAPISecret:String;
-	private var sqlArray: ArrayCollection;
-	private var dbFile:File = File.applicationStorageDirectory.resolvePath("DBV.db");
-	private var dao: DataAccessObject= new DataAccessObject(dbFile);
-	public var count: int;
-	private var object: Object;
-	public var token: String ="";
-	
-	
 	
 
 	//when cancel button is clicked

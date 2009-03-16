@@ -10,12 +10,12 @@
 			import mx.core.Application;
 			
 			public function uploadComplete():void {
-				//photoId = id;
 				currentState="uploadComplete";
 			}
 			
 			public function httpError():void {
 				currentState="httpError";
+				Application.application.principalView.system.removeProgressBar();    
 			}
 			
 			private function closePopUP():void {

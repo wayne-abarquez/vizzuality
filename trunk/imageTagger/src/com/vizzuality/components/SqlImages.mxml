@@ -34,10 +34,7 @@
 			//progress uploading bar
 			public var progressView:popUpUploadFlickr;
 			public var progressPop:IFlexDisplayObject;	
-			
-			
-			private var dbFile:File = File.applicationStorageDirectory.resolvePath("DBV.db");
-			private var dao: DataAccessObject= new DataAccessObject(dbFile);
+			private var dao: DataAccessObject= new DataAccessObject();
 			[Bindable] private var sqlArray: ArrayCollection;
 			private var dir:File = File.applicationStorageDirectory.resolvePath("images");
 			private var imagesDir:String;
@@ -98,12 +95,9 @@
 				sqlArray = dao.dbResult;
 		 	}
 		 	
-			private function insertSQL():void {
-				var sqlArrayColl: ArrayCollection;
-				dao.openConnection("SELECT alias FROM user");
-				sqlArrayColl = dao.dbResult;
-	    		alias = sqlArrayColl[0].alias; 
-	    		dao.openConnection("INSERT INTO photos (login) VALUES ('"+alias+"')");
+			private function insertSQL():void {				 
+	    		var sqlArrayColl : ArrayCollection = new ArrayCollection();
+	    		dao.openConnection("INSERT INTO photos (login) VALUES ('"+Application.application.user+"')");
 	    		dao.openConnection("SELECT id FROM photos");
 	    		sqlArrayColl = dao.dbResult;
 	    		identification = dao.countHandler(sqlArrayColl).toString();

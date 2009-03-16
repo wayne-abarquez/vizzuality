@@ -23,9 +23,6 @@ package com.vizzuality.dao
 		
 		private var name: String;
 		private var dir: String;
-		private var dbFile:File = File.applicationStorageDirectory.resolvePath("DBV.db");
-		private var dao: DataAccessObject= new DataAccessObject(dbFile);
-		
 		
 		public function TaxonomyResolutionService() {
 		}

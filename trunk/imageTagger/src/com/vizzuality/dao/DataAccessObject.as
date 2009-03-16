@@ -1,6 +1,5 @@
 package com.vizzuality.dao
 {
-	// imported classes
 	import flash.data.SQLConnection;
 	import flash.data.SQLResult;
 	import flash.data.SQLStatement;
@@ -11,14 +10,13 @@ package com.vizzuality.dao
 	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 		
-	public class DataAccessObject
-	{
+	public class DataAccessObject {
+		
 		private var sentence:String="";
-		private var db:File;
+		private var dbFile:File = File.applicationStorageDirectory.resolvePath("DBV.db");
 		private var sqlConect:SQLConnection;
 		private var sqlStatement: SQLStatement;
 		private var result:ArrayCollection;
-		
 		
 		
 		public function get dbResult():ArrayCollection {
@@ -31,8 +29,7 @@ package com.vizzuality.dao
 		}
 	 
 	
-		public function DataAccessObject(file:File) {
-			db = file;
+		public function DataAccessObject() {
 		}
 		
 
@@ -41,12 +38,20 @@ package com.vizzuality.dao
 		    sqlConect = new SQLConnection();
 		    sqlConect.addEventListener(SQLEvent.OPEN, sqlConnectionOpenHandler);
 		    sqlConect.addEventListener(SQLErrorEvent.ERROR, sqlConnectionErrorHandler);
-		    sqlConect.open(db);		
+		    sqlConect.open(dbFile);		
 		}
 		
 		
 		private function sqlConnectionOpenHandler(ev:SQLEvent):void {
-			sqlConnection(sentence);
+			sqlStatement = new SQLStatement();
+			sqlStatement.sqlConnection = sqlConect;
+
+			sqlStatement.text = sentence;
+			
+			sqlStatement.addEventListener(SQLEvent.RESULT, handlerStatement);
+			sqlStatement.addEventListener(SQLErrorEvent.ERROR, sqlConnectionErrorHandler);
+			
+			sqlStatement.execute();
 		}
 				
 		
@@ -55,28 +60,35 @@ package com.vizzuality.dao
 			Alert.show("Error: " +  ev.error.message);
 		}	
 		
+				
 		
-		
-		public function sqlConnection(str:String):void {
-			sqlStatement = new SQLStatement();
-			sqlStatement.sqlConnection = sqlConect;
-
-			sqlStatement.text = str;
-			
-			sqlStatement.addEventListener(SQLEvent.RESULT, handlerStatement);
-			sqlStatement.addEventListener(SQLErrorEvent.ERROR, sqlConnectionErrorHandler);
-			
-			sqlStatement.execute();
-		}
-
-		
-		
-		
-		public function handlerStatement(ev:SQLEvent):void {
+		private function handlerStatement(ev:SQLEvent):void {
 			var result:SQLResult = sqlStatement.getResult();
 			dbResult = new ArrayCollection(result.data);
 		}
 		
+		//Creating tables
+		public function createTables():void {
+			var sqlCreate1:String = 
+		    "CREATE TABLE IF NOT EXISTS user (" + 
+		    "    alias TEXT PRIMARY KEY, " + 
+		    "    token TEXT" +
+		    ")";
+			
+			var sqlCreate2:String =
+			"CREATE TABLE IF NOT EXISTS photos (" +
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+			"login TEXT," +
+			"path TEXT," +
+			"scientific TEXT DEFAULT NULL,"+
+			"FOREIGN KEY (login) REFERENCES user(alias) " +
+			"ON UPDATE CASCADE " +
+			"ON DELETE SET NULL)";
+			
+			openConnection(sqlCreate1);
+			openConnection(sqlCreate2);
+			
+		}
 	
 		public function countHandler(sqlArray: ArrayCollection):int {
 			var numRows:int = sqlArray.length;
@@ -104,6 +116,7 @@ package com.vizzuality.dao
 			    }
 		    }
 		}
+		
 				
 	
 	}
