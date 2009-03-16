@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+	height="70" width="350" borderStyle="solid" borderThickness="1" cornerRadius="5" 
+	backgroundColor="#FFFFFF" backgroundAlpha="0.0" themeColor="#000000" borderColor="#382513" creationComplete="onCreationComplete()">
+		
+	<mx:Script>
+		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			import com.vizzuality.event.LoadingImage;
+			import flash.events.Event;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.HTTPService;
+			import mx.collections.ArrayCollection;
+			import mx.core.Application;
+			import com.adobe.crypto.MD5;
+			import com.vizzuality.dao.*;
+			import com.vizzuality.event.*;
+			
+	
+			private var sqlArray: ArrayCollection;
+			private var object: Object;
+			private var ko:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
+			private var ok:GetTokenOK = new GetTokenOK(GetTokenOK.OK_TOKEN);
+			
+			
+			private function onCreationComplete():void {
+				createSQL();
+				createDirectory();
+				if (Application.application.token!=""){
+					bar.label="Checking token..."
+					var sig:String = Application.application.flickrSecretKey + "api_key"+ Application.application.flickrAdminKey +"auth_token"+ Application.application.token+"formatjsonmethodflickr.auth.checkTokennojsoncallback1";
+					var jsonService: HTTPService = new HTTPService();
+					jsonService.method = "get";
+					jsonService.resultFormat = "text";
+					jsonService.addEventListener(ResultEvent.RESULT,onResult);
+					jsonService.addEventListener(FaultEvent.FAULT,onFault);
+					var flickrurl:String = "http://api.flickr.com/services/rest/?method=flickr.auth.checkToken&format=json&nojsoncallback=1&api_key="+ Application.application.flickrAdminKey +"&auth_token="+Application.application.token+"&api_sig="+MD5.hash(sig);
+					jsonService.url=flickrurl;
+			 		jsonService.send();
+			 	} else {
+			 		var out:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
+	        		dispatchEvent(ko);
+	        		trace("Empty Token");
+			 	}
+			}
+	
+			private function onResult(ev:ResultEvent):void{
+		        var data:String = String(ev.result);
+		 		object = JSON.decode(data);
+				if (object==null || object.stat!="ok" ) {
+	        		dispatchEvent(ko);
+	        		trace("Token expired");
+	 			}
+				else {
+	        		dispatchEvent(ok);
+	        		trace("Token ok");
+				}
+
+			}
+	
+			private function onFault(ev:FaultEvent):void {
+				var out:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
+	        		dispatchEvent(ko);
+			}
+			
+			private function createDirectory():void {
+				bar.label="Creating directories..."
+				var dir:File = File.applicationStorageDirectory.resolvePath("images");
+				 if ( !dir.exists ) {
+				    dir.createDirectory();
+				    trace( "Directory created." );
+				 }
+				 else {
+				    trace( "Directory already exists." );
+				 }
+		
+			}
+			
+			private function createSQL():void {		
+				var dao: DataAccessObject = new DataAccessObject();
+				dao.createTables(); 
+
+				bar.label="Creating tables..."
+				
+				dao.openConnection("SELECT COUNT(alias) FROM user");
+				sqlArray = dao.dbResult;
+			    Application.application.count = dao.countHandler(sqlArray);
+			    
+			    if (Application.application.count == 1) {
+				    dao.openConnection("SELECT alias FROM user");
+					sqlArray = dao.dbResult;
+		    		Application.application.user = sqlArray[0].alias;
+				    
+					dao.openConnection("SELECT token FROM user");	
+					sqlArray = dao.dbResult;
+					if (sqlArray.length!=0) {Application.application.token = sqlArray[0].token};  
+			    }
+			}
+		]]>
+	</mx:Script>
+	<mx:Metadata>
+		    [Event(name="onGetTokenOK", type="com.vizzuality.event.GetTokenOK")]
+		    [Event(name="onGetTokenKO", type="com.vizzuality.event.GetTokenExpired")]
+	</mx:Metadata>
+	<mx:ProgressBar id="bar" indeterminate="true" width="90%"
+			trackHeight="6" label="" verticalCenter="0" horizontalCenter="0" color="#0E1011"  themeColor="#195928" borderColor="#CED7DC"/>
+</mx:Canvas>
