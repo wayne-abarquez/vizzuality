@@ -67,13 +67,15 @@ package com.vizzuality.dao
 			dbResult = new ArrayCollection(result.data);
 		}
 		
-		//Creating tables
+
 		public function createTables():void {
 			var sqlCreate1:String = 
 		    "CREATE TABLE IF NOT EXISTS user (" + 
 		    "    alias TEXT PRIMARY KEY, " + 
 		    "    token TEXT" +
 		    ")";
+			
+			openConnection(sqlCreate1);
 			
 			var sqlCreate2:String =
 			"CREATE TABLE IF NOT EXISTS photos (" +
@@ -85,10 +87,9 @@ package com.vizzuality.dao
 			"ON UPDATE CASCADE " +
 			"ON DELETE SET NULL)";
 			
-			openConnection(sqlCreate1);
-			openConnection(sqlCreate2);
-			
+			openConnection(sqlCreate2);			
 		}
+		
 	
 		public function countHandler(sqlArray: ArrayCollection):int {
 			var numRows:int = sqlArray.length;
@@ -99,7 +100,8 @@ package com.vizzuality.dao
 		            count=sqlArray[i][columnName];
 		        }
 		    }	
-		    return count;	
+		    return count;
+		    
 	    }
 	    
 		

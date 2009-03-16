@@ -52,11 +52,14 @@
 				var dao: DataAccessObject = new DataAccessObject();
 				token = ev.authToken;
 				
-				if (count==0) {
+				if (count==1) {
 					dao.openConnection("UPDATE user SET token = '"+ev.authToken+"' WHERE alias = '"+ev.user.username+"'");
+					dao.showTable(dao.dbResult);
 				}
 				else {
 					dao.openConnection("INSERT INTO user (alias, token) VALUES ('"+ev.user.username+"','"+ev.authToken+"')");
+										dao.showTable(dao.dbResult);
+					
 					user = ev.user.username;
 				}
 				currentState="imagetagger";
@@ -76,7 +79,7 @@
 		<mx:State name="checkingtoken">
 			<mx:RemoveChild target="{text1}"/>
 			<mx:AddChild>
-				<comp:checkingToken onGetTokenOK="currentState='imagetagger'" onGetTokenKO="init()" horizontalCenter="0" verticalCenter="-16"/>
+				<comp:CheckingToken onGetTokenOK="currentState='imagetagger'" onGetTokenKO="init()" horizontalCenter="0" verticalCenter="-16"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
