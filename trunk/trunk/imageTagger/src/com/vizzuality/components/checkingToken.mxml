@@ -19,9 +19,6 @@
 			
 	
 			private var sqlArray: ArrayCollection;
-			private var dbFile:File = File.applicationStorageDirectory.resolvePath("DBV.db");
-			private var dao: DataAccessObject= new DataAccessObject(dbFile);
-			public var count: int;
 			private var object: Object;
 			private var ko:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
 			private var ok:GetTokenOK = new GetTokenOK(GetTokenOK.OK_TOKEN);
@@ -44,7 +41,7 @@
 			 	} else {
 			 		var out:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
 	        		dispatchEvent(ko);
-	        		trace("token vacío");
+	        		trace("Empty Token");
 			 	}
 			}
 	
@@ -53,11 +50,11 @@
 		 		object = JSON.decode(data);
 				if (object==null || object.stat!="ok" ) {
 	        		dispatchEvent(ko);
-	        		trace("todo ko");
+	        		trace("Token expired");
 	 			}
 				else {
 	        		dispatchEvent(ok);
-	        		trace("todo ok");
+	        		trace("Token ok");
 				}
 
 			}
@@ -81,43 +78,24 @@
 			}
 			
 			private function createSQL():void {		
-				//var sql : String = "DROP TABLE 'photos'";
+				var dao: DataAccessObject = new DataAccessObject();
+				dao.createTables(); 
+
 				bar.label="Creating tables..."
-				var sqlCreate1:String = 
-				    "CREATE TABLE IF NOT EXISTS user (" + 
-				    "    alias TEXT PRIMARY KEY, " + 
-				    "    token TEXT" +
-				    ")";
-				    
-				var sqlCreate2:String =
-					"CREATE TABLE IF NOT EXISTS photos (" +
-					"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-					"login TEXT," +
-					"path TEXT," +
-					"scientific TEXT DEFAULT NULL,"+
-					"FOREIGN KEY (login) REFERENCES user(alias) " +
-					"ON UPDATE CASCADE " +
-					"ON DELETE SET NULL)"; 
 				
-				
-				var sqlCount:String = 
-				    "SELECT COUNT(alias) " + 
-				    "FROM user";
-				
-				var sqlSelectToken: String = 
-					"SELECT token FROM user";
-				    
-				//dao.openConnection(sql);
-				
-				dao.openConnection(sqlCreate1);
-				dao.openConnection(sqlCreate2);
-				
-				dao.openConnection(sqlCount);
+				dao.openConnection("SELECT COUNT(alias) FROM user");
 				sqlArray = dao.dbResult;
-			    count = dao.countHandler(sqlArray);;
-				dao.openConnection(sqlSelectToken);	
-				sqlArray = dao.dbResult;
-				if (sqlArray.length!=0) {Application.application.token = sqlArray[0].token};   
+			    Application.application.count = dao.countHandler(sqlArray);
+			    
+			    if (Application.application.count == 1) {
+				    dao.openConnection("SELECT alias FROM user");
+					sqlArray = dao.dbResult;
+		    		Application.application.user = sqlArray[0].alias;
+				    
+					dao.openConnection("SELECT token FROM user");	
+					sqlArray = dao.dbResult;
+					if (sqlArray.length!=0) {Application.application.token = sqlArray[0].token};  
+			    }
 			}
 		]]>
 	</mx:Script>
