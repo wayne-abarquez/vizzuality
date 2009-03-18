@@ -20,7 +20,7 @@
 			import mx.controls.Image;
 			import mx.controls.TileList;
 			import mx.collections.ArrayCollection;
-			import com.vizzuality.components.photoRenderer;
+			import com.vizzuality.components.PhotoRenderer;
 			import com.vizzuality.dao.DataAccessObject;
 			import flash.filesystem.File;
 			import flash.net.FileFilter;
@@ -40,7 +40,7 @@
 			
 			
 			//progress uploading bar
-			public var progressView:popUpUploadFlickr;
+			public var progressView:PopUpUpload;
 			public var progressPop:IFlexDisplayObject;	
 			private var dao: DataAccessObject= new DataAccessObject();
 			[Bindable] private var sqlArray: ArrayCollection;
@@ -75,7 +75,7 @@
 				taxonomyResolutionService.resolveTaxonomy(path,name);
 		   	            	
             	if (progressPop==null){
-            		progressPop = PopUpManager.createPopUp(this, popUpUploadFlickr, true);
+            		progressPop = PopUpManager.createPopUp(this, PopUpUpload, true);
 					PopUpManager.centerPopUp(progressPop);
             	}
 						
@@ -181,7 +181,7 @@
 			   		uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);						
 		  		} else {
 					Application.application.uploadingAllPictures=false;
-					popUpUploadFlickr(progressPop).uploadComplete();
+					PopUpUpload(progressPop).uploadComplete();
 					DockIcon(NativeApplication.nativeApplication.icon).bounce();
 		  		}
 		   }
@@ -197,11 +197,11 @@
 		   }
 		   
 		   public function closeProgressBar():void {
-		   		popUpUploadFlickr(progressPop).uploadComplete();
+		   		PopUpUpload(progressPop).uploadComplete();
 		   }
 		   
 		   public function errorProgressBar():void {
-		   		popUpUploadFlickr(progressPop).httpError();
+		   		PopUpUpload(progressPop).httpError();
 		   }
 		   
 		   public function removeProgressBar():void {
