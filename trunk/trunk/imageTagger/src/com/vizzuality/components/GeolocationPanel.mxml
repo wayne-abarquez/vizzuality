@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="878" height="562" xmlns:maps="com.google.maps.*" creationComplete="onCreationComplete()" addedToStage="onAddedToStage()">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="878" height="562" xmlns:maps="com.google.maps.*" >
     
 	<mx:Script>
 	    <![CDATA[
@@ -22,29 +22,37 @@
 		    private var dao: DataAccessObject = new DataAccessObject();
    			
 		    
-		    private function onCreationComplete():void {
+		    /* private function onCreationComplete():void {
 		    	marker = new Marker(latitude);
-		    }
+		    } */
 		    
-		    private function onAddedToStage():void {
-		    	if (marker != null) {
-		    		map.clearOverlays();
-		    	}
-		    			    	
-		    	dao.getLatitudes((this.parentDocument as SqlImages).tilelist.selectedItem.path);
-		    	var arrayLatitudes: ArrayCollection = new ArrayCollection();
-		    	arrayLatitudes = dao.dbResult;
-		    	
-		    	//if (arrayLatitudes[0].lat != null) {
-   					marker = new Marker(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)),options);
-   					marker.setLatLng(latitude);
-   					map.addOverlay(marker);	
-		    	//} 
-		    }
+		    
 		    
 		    private function onMapReady(event:Event):void {
 		      	this.map.setCenter(new LatLng(0,0), 2, MapType.NORMAL_MAP_TYPE);
 		      	this.map.addEventListener(MapMouseEvent.CLICK, onMapClick);
+		      	
+		      	refreshMarkers();
+		    }
+		    
+		    public function refreshMarkers():void {
+		      	if (map.isLoaded()) {
+			      	if (marker != null) {
+			    		map.clearOverlays();
+			    	}
+			    			    	
+			    	dao.getLatitudes((this.parentDocument as SqlImages).tilelist.selectedItem.path);
+			    	var arrayLatitudes: ArrayCollection = new ArrayCollection();
+			    	arrayLatitudes = dao.dbResult;
+			    	
+			    	if (arrayLatitudes[0].lat != null) {
+	   					marker = new Marker(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)),options);
+	   					//marker.setLatLng(latitude);
+	   					map.addOverlay(marker);	
+			    	}
+		      	}
+		      	
+		    	
 		    }
 		    
 		    private function onMapClick(event:MapMouseEvent):void {			    
@@ -62,18 +70,12 @@
 		    }
 		    
 		    private function saveMarker():void {
-		    	var aux:String;
-		    	var lat: String;
-		    	var lon: String;
 		    	if (marker == null) {
 		    		trace(" No Marker ")	
 		    	} else { 
-		    		aux = marker.getLatLng().toString();
-		    		lat = aux.slice(1,aux.indexOf(", "));
-		    		trace("lat: " +lat);
-		    		lon = aux.slice(aux.indexOf(" ")+1,(aux.length-1));
-		    		trace("lon: "+lon);
-		    		dao.updateLatitudes(lat,lon,(this.parentDocument as SqlImages).tilelist.selectedItem.path);
+		    		var position: LatLng = marker.getLatLng();
+		    		trace(position.lat().toString()+"/"+position.lng().toString());
+		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),(this.parentDocument as SqlImages).tilelist.selectedItem.path);
 		    	}
 		    	
 		    	(this.parentDocument as SqlImages).currentState='';

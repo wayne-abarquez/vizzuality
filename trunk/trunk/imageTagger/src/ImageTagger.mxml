@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="700" width="900" creationComplete="currentState='checkingtoken'" 
-	title="Vizzuality Image Tagger App" xmlns:comp="com.vizzuality.components.*" maxWidth="900" maxHeight="700" minHeight="700" minWidth="900" borderColor="#B6ABAB" 
-	backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FDF9F9, #E4FAE6]">
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="700" width="900" creationComplete="	currentState='checkingtoken'" 
+	title="Vizzuality Image Tagger App" xmlns:comp="com.vizzuality.components.*"  xmlns:comps="com.adobe.webapis.flickr.authorization.*" minHeight="625" minWidth="506" borderColor="#B6ABAB" 
+	backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#2E2E2E, #2E2E2E]">
 	
 	<mx:Script>
 		<![CDATA[
@@ -16,7 +16,7 @@
 			import flash.filesystem.File;
 			import com.vizzuality.dao.DataAccessObject;
 			
-			
+			//Global vars about Flickr settings
 			public var flickrAdminKey : String = "48e37f8de83dcd4366e5f3be69c01c1f";
 			public var flickrSecretKey : String = "aafe99c288b6dc7c";
 			public var token: String = "";
@@ -29,60 +29,40 @@
 			[Bindable] public var tagSequence: String = "";
 			
 			
-			private function init():void {				
-				currentState='';
-				var p:IFlexDisplayObject = PopUpManager.createPopUp(this, AuthorizationView, true);
-				var auth:AuthorizationView = AuthorizationView(p);
-				
-				auth.flickrAPIKey = flickrAdminKey;
-				auth.flickrAPISecret = flickrSecretKey;
-				p.addEventListener(Event.CLOSE, onAuthorizationClose);
-				p.addEventListener(AuthorizationEvent.AUTHORIZATION_COMPLETE, onAuthorizationComplete);
-				auth.isPopUp = false;	
-				PopUpManager.centerPopUp(p);
-			}
-				
-
-			private function onAuthorizationClose(ev:Event):void {
-				PopUpManager.removePopUp(IFlexDisplayObject(ev.target));
-			}
-			
-			
-			private function onAuthorizationComplete(ev:AuthorizationEvent):void {
+			public function onAuthorizationComplete():void {
 				var dao: DataAccessObject = new DataAccessObject();
-				token = ev.authToken;
 				
 				if (count==1) {
-					dao.openConnection("UPDATE user SET token = '"+ev.authToken+"' WHERE alias = '"+ev.user.username+"'");
+					dao.openConnection("UPDATE user SET token = '"+ token +"' WHERE alias = '"+ user +"'");
 					dao.showTable(dao.dbResult);
 				}
 				else {
-					dao.openConnection("INSERT INTO user (alias, token) VALUES ('"+ev.user.username+"','"+ev.authToken+"')");
-										dao.showTable(dao.dbResult);
-					
-					user = ev.user.username;
+					dao.openConnection("INSERT INTO user (alias, token) VALUES ('"+user+"','"+token+"')");
+					dao.showTable(dao.dbResult);
 				}
 				currentState="imagetagger";
 			}
-			
-			
 		]]>
 	</mx:Script>
+	<mx:Label text="GBIF" fontSize="15" fontWeight="bold" color="#F2F6F7" left="10" top="10"/>
+	<mx:Label text="Image Tagger" fontSize="19" color="#3AD541" left="53" top="6"/>
+	<mx:Button label="Help" id="button1" color="#F7FBFC" right="10" top="10"/>
 	
 	<mx:states>
 		<mx:State name="imagetagger">
-			<mx:RemoveChild target="{text1}"/>
 			<mx:AddChild>
-				<comp:PrincipalView id="principalView" closeComponentEvent="currentState=''"/>
+				<comp:PrincipalView id="principalView"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="checkingtoken">
-			<mx:RemoveChild target="{text1}"/>
 			<mx:AddChild>
-				<comp:CheckingToken onGetTokenOK="currentState='imagetagger'" onGetTokenKO="init()" horizontalCenter="0" verticalCenter="-16"/>
+				<comp:CheckingToken onGetTokenOK="currentState='imagetagger'" onGetTokenKO="currentState='authorizationFlickr'" horizontalCenter="0" verticalCenter="-16" borderColor="#F9F7F4"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="authorizationFlickr">
+			<mx:AddChild>
+				<comps:AuthorizationView id="authorization" x="49" y="70" color="#F6F8F9" height="605"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
-	<mx:Text text="Thanks for using Vizzuality Image Tagger App" horizontalCenter="0" verticalCenter="-16" id="text1" fontStyle="normal" 
-		fontWeight="bold" color="#081F24" fontSize="12" fontFamily="Verdana"/>
 </mx:WindowedApplication>

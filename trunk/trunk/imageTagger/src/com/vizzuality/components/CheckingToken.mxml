@@ -2,6 +2,21 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
 	height="70" width="350" borderStyle="solid" borderThickness="1" cornerRadius="5" 
 	backgroundColor="#FFFFFF" backgroundAlpha="0.0" themeColor="#000000" borderColor="#382513" creationComplete="onCreationComplete()">
+	
+	<mx:states>
+		<mx:State name="httpError">
+			<mx:RemoveChild target="{bar}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="10" y="36" label="Try again" click="initialState()"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="290" y="36" label="Exit" click="NativeApplication.nativeApplication.exit()"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Label x="45" y="10" text="Ups!! You aren't connect currently to internet" width="258"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
 		
 	<mx:Script>
 		<![CDATA[
@@ -22,14 +37,20 @@
 			private var object: Object;
 			private var ko:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
 			private var ok:GetTokenOK = new GetTokenOK(GetTokenOK.OK_TOKEN);
-			
+
 			
 			private function onCreationComplete():void {
 				createSQL();
 				createDirectory();
+				askToken();
+			}
+			
+	
+			private function askToken():void {
+				bar.label="Checking token..."			
 				if (Application.application.token!=""){
 					bar.label="Checking token..."
-					var sig:String = Application.application.flickrSecretKey + "api_key"+ Application.application.flickrAdminKey +"auth_token"+ Application.application.token+"formatjsonmethodflickr.auth.checkTokennojsoncallback1";
+					var sig:String = Application.application.flickrSecretKey + "api_key" + Application.application.flickrAdminKey + "auth_token" + Application.application.token + "formatjsonmethodflickr.auth.checkTokennojsoncallback1";
 					var jsonService: HTTPService = new HTTPService();
 					jsonService.method = "get";
 					jsonService.resultFormat = "text";
@@ -43,7 +64,9 @@
 	        		dispatchEvent(ko);
 	        		trace("Empty Token");
 			 	}
+				
 			}
+		
 	
 			private function onResult(ev:ResultEvent):void{
 		        var data:String = String(ev.result);
@@ -56,12 +79,10 @@
 	        		dispatchEvent(ok);
 	        		trace("Token ok");
 				}
-
 			}
 	
 			private function onFault(ev:FaultEvent):void {
-				var out:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
-	        		dispatchEvent(ko);
+	        	currentState='httpError';
 			}
 			
 			private function createDirectory():void {
@@ -96,6 +117,11 @@
 					sqlArray = dao.dbResult;
 					if (sqlArray.length!=0) {Application.application.token = sqlArray[0].token};  
 			    }
+			}
+			
+			private function initialState():void {
+				currentState='';
+				askToken();
 			}
 		]]>
 	</mx:Script>
