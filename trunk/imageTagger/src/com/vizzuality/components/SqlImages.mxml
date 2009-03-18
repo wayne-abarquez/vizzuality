@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="onCreationComplete()">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:comp="com.vizzuality.components.*" creationComplete="onCreationComplete()">
+	
+	<mx:states>
+		<mx:State name="geolocation">
+			<mx:AddChild>				
+				<comp:GeolocationPanel verticalCenter="0" horizontalCenter="0"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
 		
 	<mx:Script>
 		<![CDATA[
@@ -199,6 +207,18 @@
 		   public function removeProgressBar():void {
 		   		progressPop = null;
 		   }
+		   
+		   public function geolocationState():void {
+		   		//Application.application.taxon = "Loading Google Maps";
+		    	//progressPop = PopUpManager.createPopUp(this, popUpUploadFlickr, true);
+				//PopUpManager.centerPopUp(progressPop);
+		   		currentState='geolocation';
+		   }
+		   
+		   /*public function geolocationStateCloseBar():void {
+		   		PopUpManager.removePopUp(progressPop);
+		   		progressPop = null;
+		   } */
 		   
 		   private function confirmDelete():void {
 		   		var a: Alert = Alert.show("Are you sure you want to delete all images?","Confirmation",Alert.YES|Alert.NO);

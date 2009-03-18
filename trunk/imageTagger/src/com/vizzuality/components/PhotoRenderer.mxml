@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+	width="200" height="200" color="#040404" creationComplete="initRenderer()" currentState="{(isPhotoSelected)?'selected':''}">
+	<mx:states>
+		<mx:State name="selected">
+			<mx:AddChild position="lastChild">
+				<mx:TextInput x="20" y="168" id="scientificNameInput" text="{data.scientific}" change="updateScientificName()"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ListEvent;
+			import mx.controls.TileList;
+			import mx.events.FlexEvent;
+			[Bindable]
+			private var isPhotoSelected:Boolean=false;
+			private var outerList:TileList;
+			
+		     private function initRenderer():void {
+		      	this.outerList = (this.parentDocument as SqlImages).tilelist;
+		       	this.outerList.addEventListener(ListEvent.CHANGE, updateSelected); 
+		       	this.addEventListener(FlexEvent.DATA_CHANGE, checkSelected);
+		     }
+	
+			private function updateScientificName():void {
+				(this.parentDocument as SqlImages).updateName(scientificNameInput.text,data.path);
+				
+				if(scientificNameInput.text =='') {
+					imageStatusIcon.source="com/vizzuality/assets/error.png";
+				} else {
+					imageStatusIcon.source="com/vizzuality/assets/ok.png";
+				}				
+			}
+		    private function updateSelected(event:ListEvent):void {
+		       if(event.itemRenderer == this)
+		         isPhotoSelected=true;
+		       else
+		         isPhotoSelected=false;
+		    }
+	     		
+			private function checkSelected(event:FlexEvent):void {
+				if(this.outerList.selectedItem == this.data)
+			       isPhotoSelected=true;
+			    else
+			       isPhotoSelected=false;
+			}
+			private function uploadImage():void {
+				(this.parentDocument as SqlImages).uploadPhoto(data.path,scientificNameInput.text);
+			}
+			private function eraseImage():void {
+				(this.parentDocument as SqlImages).deleteImage(data.path);
+				(this.parentDocument as SqlImages).refreshTilelist();
+			}	
+		]]>
+	</mx:Script>
+	
+	<mx:Text text="{scientificNameInput?scientificNameInput.text:data.scientific}" textAlign="center" horizontalCenter="0" top="0"/>
+	<mx:Image source="{data.path}" height="80%" width="80%" verticalAlign="middle" horizontalAlign="center" x="23.25" y="26"/>
+	<mx:Image id="imageStatusIcon" source="{(data.scientific==null)?'com/vizzuality/assets/error.png':'com/vizzuality/assets/ok.png'}" x="25" y="150" width="25" height="25"/>
+	<mx:Button x="10" y="26" label="Erase" fontSize="8" click="eraseImage()"/>
+	<mx:Button x="133" y="26" label="Upload" fontSize="8" click="uploadImage()"/>
+	<mx:Button x="79" y="26" label="Geo" fontSize="8" click="(this.parentDocument as SqlImages).geolocationState()"/>
+</mx:Canvas>
