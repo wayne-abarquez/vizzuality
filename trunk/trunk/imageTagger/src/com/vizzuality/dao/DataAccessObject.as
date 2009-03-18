@@ -67,7 +67,7 @@ package com.vizzuality.dao
 			dbResult = new ArrayCollection(result.data);
 		}
 		
-
+		
 		public function createTables():void {
 			var sqlCreate1:String = 
 		    "CREATE TABLE IF NOT EXISTS user (" + 
@@ -83,11 +83,24 @@ package com.vizzuality.dao
 			"login TEXT," +
 			"path TEXT," +
 			"scientific TEXT DEFAULT NULL,"+
+			"lat TEXT," +
+			"lon TEXT," + 
 			"FOREIGN KEY (login) REFERENCES user(alias) " +
 			"ON UPDATE CASCADE " +
 			"ON DELETE SET NULL)";
 			
 			openConnection(sqlCreate2);			
+		}
+		
+		
+		public function getLatitudes(path:String):void {
+			var sqlSentence: String = "SELECT lat,lon FROM photos WHERE path='"+path+"'";
+			openConnection(sqlSentence);
+		}
+		
+		public function updateLatitudes(lat:String,lon:String,path:String):void {
+			var sqlSentence: String = "UPDATE photos SET lat = '"+lat+"', lon = '"+lon+"' WHERE path = '"+path+"'";
+			openConnection(sqlSentence);
 		}
 		
 	
