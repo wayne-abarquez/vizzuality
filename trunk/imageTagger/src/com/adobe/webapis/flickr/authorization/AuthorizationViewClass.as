@@ -1,17 +1,10 @@
-	import com.adobe.crypto.MD5;
-	import com.adobe.serialization.json.JSON;
 	import com.adobe.webapis.flickr.FlickrService;
-	import com.adobe.webapis.flickr.User;
-	import com.adobe.webapis.flickr.authorization.events.AuthorizationEvent;
 	import com.adobe.webapis.flickr.events.FlickrResultEvent;
-	import com.vizzuality.dao.DataAccessObject;
 	
+	import flash.desktop.NativeApplication;
 	import flash.events.Event;
 	
-	import mx.collections.ArrayCollection;
 	import mx.core.Application;
-	import mx.rpc.events.FaultEvent;
-	import mx.rpc.events.ResultEvent;
 	
 	
 	/************ Panel State Constants ****************/
@@ -50,8 +43,8 @@
 	//frob returned from flickr
 	private var frob:String;
 	
-	public var flickrAPIKey:String;
-	public var flickrAPISecret:String;
+	public var flickrAPIKey:String = Application.application.flickrAdminKey;
+	public var flickrAPISecret:String = Application.application.flickrSecretKey;
 	
 
 	//when cancel button is clicked
@@ -186,10 +179,8 @@
 	                return;
 	        }
 	        
-	        var out:AuthorizationEvent = new AuthorizationEvent(AuthorizationEvent.AUTHORIZATION_COMPLETE);
-	                out.user = User(e.data.auth.user);
-	                out.authToken = e.data.auth.token;
-	        dispatchEvent(out);
+	        Application.application.user = e.data.auth.user;
+	        Application.application.token = e.data.auth.token;
 	        
 	        //change state to authorization complete
 	        currentState = AUTHORIZATION_COMPLETE_STATE;
@@ -206,7 +197,7 @@
 	//close button handler
 	private function onCloseClick():void
 	{
-	        closeWindow();
+	        Application.application.onAuthorizationComplete();
 	}
 	
 	//handler for try again button, which is present when authorization fails
@@ -226,8 +217,7 @@
 	//broadcast close event
 	private function closeWindow():void
 	{
-	        var e:Event = new Event(Event.CLOSE);
-	        dispatchEvent(e);
+	        NativeApplication.nativeApplication.exit();
 	}
 	
 	//sends an error event with information about the error
