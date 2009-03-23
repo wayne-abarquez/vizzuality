@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:comp="com.vizzuality.components.*" creationComplete="onCreationComplete()" height="100%" width="100%" backgroundColor="#4a4a4a">
 	
-	<mx:states>
+	<!--<mx:states>
 		<mx:State name="geolocation" enterState="geolocalizationPanel.refreshMarkers()" >
 			<mx:AddChild>				
 				<comp:GeolocationPanel id="geolocalizationPanel" verticalCenter="0" horizontalCenter="0"/>
 			</mx:AddChild>
 		</mx:State>
-	</mx:states>
+	</mx:states>-->
 		
 	<mx:Script>
 		<![CDATA[
@@ -52,6 +52,7 @@
 			
 			private var path: String;
 			private var scientific: String;
+			private var geo:GeolocationPanel; 
 			
 			private var taxonomyResolutionService:TaxonomyResolutionService;
 			
@@ -59,7 +60,7 @@
 						
 			private function onCreationComplete():void {
 		    	refreshTilelist();
-			  	imagesDir = dir.nativePath;
+   			  	imagesDir = dir.nativePath;
 				addEventListener(NativeDragEvent.NATIVE_DRAG_ENTER, onDragEnter);
 				addEventListener(NativeDragEvent.NATIVE_DRAG_DROP, onDragDrop);
 		 	}
@@ -212,13 +213,13 @@
 		   		//Application.application.taxon = "Loading Google Maps";
 		    	//progressPop = PopUpManager.createPopUp(this, popUpUploadFlickr, true);
 				//PopUpManager.centerPopUp(progressPop);
-		   		currentState='geolocation';
+		   		geo = PopUpManager.createPopUp(this, GeolocationPanel, true) as GeolocationPanel;
+                PopUpManager.centerPopUp(geo);
 		   }
 		   
-		   /*public function geolocationStateCloseBar():void {
-		   		PopUpManager.removePopUp(progressPop);
-		   		progressPop = null;
-		   } */
+		   public function geolocationCloseBar():void {
+		   		PopUpManager.removePopUp(geo);
+		   }
 		   
 		   private function confirmDelete():void {
 		   		var a: Alert = Alert.show("Are you sure you want to delete all images?","Confirmation",Alert.YES|Alert.NO);
@@ -244,12 +245,16 @@
 		
 	
 	<mx:VBox height="100%" width="100%">
-		<mx:HBox width="100%" height="6%" horizontalAlign="center" verticalAlign="middle">		
-			<mx:Button label="Add" click="selectImageFile(fileToOpen)"/>
-			<mx:Button label="Delete All" click="confirmDelete()"/>
-			<mx:Button label="Upload All" click="confirmUpdate()"/>
-		</mx:HBox>	
-		<mx:TileList id="tilelist" dataProvider="{sqlArray}" paddingLeft="10" paddingBottom="10" paddingRight="10" paddingTop="10" 
-		itemRenderer="com.vizzuality.components.photoRenderer" borderThickness="1" width="100%" height="94%" borderColor="#EFF3F6" backgroundColor="#4A4A4A"/>
+		<mx:HBox width="100%" height="6%" verticalAlign="middle" paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5">		
+			<mx:HBox horizontalAlign="left" verticalAlign="middle" width="50%">			
+				<mx:Button label="Add" click="selectImageFile(fileToOpen)" />
+			</mx:HBox>
+			<mx:HBox horizontalAlign="right" verticalAlign="middle" width="50%">	
+				<mx:Button label="Delete All" click="confirmDelete()"/>
+				<mx:Button label="Upload All" click="confirmUpdate()"/>
+			</mx:HBox>	
+		</mx:HBox>
+		<mx:TileList selectionColor="#4a4a4a" selectionDisabledColor="#4a4a4a" rollOverColor="#4a4a4a" id="tilelist"  dataProvider="{sqlArray}"
+		itemRenderer="com.vizzuality.components.photoRenderer" borderThickness="1" width="100%" height="94%" borderColor="#A7ABAE" backgroundColor="#4A4A4A" alpha="1.0" themeColor="#4A4A4A"/>			
 	</mx:VBox>
 </mx:Canvas>

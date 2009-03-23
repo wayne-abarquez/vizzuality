@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="700" width="900" creationComplete="	currentState='checkingtoken'" 
-	title="Vizzuality Image Tagger App" xmlns:comp="com.vizzuality.components.*"  xmlns:comps="com.adobe.webapis.flickr.authorization.*" minHeight="625" minWidth="506" borderColor="#B6ABAB" 
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="720" width="506" creationComplete="	currentState='checkingtoken'" 
+	title="Vizzuality Image Tagger App" xmlns:comp="com.vizzuality.components.*"  xmlns:comps="com.adobe.webapis.flickr.authorization.*" minHeight="720" minWidth="506" borderColor="#B6ABAB" 
 	backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#2E2E2E, #2E2E2E]">
 	
 	<mx:Script>
@@ -46,23 +46,30 @@
 	</mx:Script>
 	<mx:Label text="GBIF" fontSize="15" fontWeight="bold" color="#F2F6F7" left="10" top="10"/>
 	<mx:Label text="Image Tagger" fontSize="19" color="#3AD541" left="53" top="6"/>
-	<mx:Button label="Help" id="button1" color="#F7FBFC" right="10" top="10"/>
+	<mx:Label text="close X" id="goOut" click="NativeApplication.nativeApplication.exit()" right="10" top="10" width="54" height="25" color="#DFE2E3" fontSize="12"/>
+	<mx:Label text="HELP" right="20" top="80" width="44" color="#CED0D1" fontSize="12" id="label1" textAlign="center"/>
 	
 	<mx:states>
 		<mx:State name="imagetagger">
 			<mx:AddChild>
 				<comp:PrincipalView id="principalView"/>
 			</mx:AddChild>
+			<mx:SetStyle target="{label1}" name="textAlign" value="center"/>
+			<mx:SetStyle target="{label1}" name="top" value="78"/>
 		</mx:State>
 		<mx:State name="checkingtoken">
 			<mx:AddChild>
-				<comp:CheckingToken onGetTokenOK="currentState='imagetagger'" onGetTokenKO="currentState='authorizationFlickr'" horizontalCenter="0" verticalCenter="-16" borderColor="#F9F7F4"/>
+				<comp:CheckingToken onGetTokenOK="currentState='imagetagger'" onGetTokenKO="currentState='authorizationFlickr'" horizontalCenter="0" verticalCenter="-50" borderColor="#F9F7F4"/>
 			</mx:AddChild>
+			<mx:SetStyle name="backgroundGradientAlphas" value="[1.0, 1.0]"/>
+			<mx:RemoveChild target="{goOut}"/>
+			<mx:RemoveChild target="{label1}"/>
 		</mx:State>
 		<mx:State name="authorizationFlickr">
 			<mx:AddChild>
-				<comps:AuthorizationView id="authorization" x="49" y="70" color="#F6F8F9" height="605"/>
+				<comps:AuthorizationView id="authorization" color="#F6F8F9" height="85%" horizontalCenter="0" width="95%" bottom="17"/>
 			</mx:AddChild>
+			<mx:SetStyle target="{label1}" name="top" value="78"/>
 		</mx:State>
 	</mx:states>
 </mx:WindowedApplication>
