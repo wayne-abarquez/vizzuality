@@ -2,17 +2,14 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="95%" height="80%" backgroundAlpha="0" 
 	xmlns:components="com.vizzuality.components.*" horizontalCenter="0" verticalCenter="0">
       	<mx:VBox height="100%" width="100%">
-	        <mx:HBox height="6%" width="100%" horizontalAlign="left" verticalAlign="middle">
+	        <mx:HBox height="25" width="100%" horizontalAlign="left" verticalAlign="bottom">
 	            <mx:Button id="searchButton" label="Uploader" click="myViewStack.selectedChild=system;"/>
 	            <mx:Button id="cInfoButton" label="Visualizer" click="myViewStack.selectedChild=uploaded;" enabled="false"/>
 	        </mx:HBox>
-	        <mx:ViewStack id="myViewStack" borderStyle="solid" width="100%" height="90%">
+	        <mx:ViewStack id="myViewStack" borderStyle="solid" width="100%" height="94%">
 	            <components:SqlImages id="system" label="Search" width="100%" height="100%"/>
 				<components:FlickrImages id="uploaded" label="Search" width="100%" height="100%"/>
 	        </mx:ViewStack>
-	        <mx:HBox width="100%" height="6%"  horizontalAlign="right" verticalAlign="middle" paddingRight="10">
-	                <mx:Button id="exitButton" label="Exit" textAlign="center" click="NativeApplication.nativeApplication.exit()" color="#0F1111"/>
-	        </mx:HBox>
      	</mx:VBox>  
 </mx:Canvas>
 
