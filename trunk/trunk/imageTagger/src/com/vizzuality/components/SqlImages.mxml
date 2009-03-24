@@ -209,18 +209,17 @@
 		   		progressPop = null;
 		   }
 		   
-		   public function geolocationState():void {
+		   public function geolocationState(name:String,path:String):void {
 		   		//Application.application.taxon = "Loading Google Maps";
 		    	//progressPop = PopUpManager.createPopUp(this, popUpUploadFlickr, true);
 				//PopUpManager.centerPopUp(progressPop);
-		   		geo = PopUpManager.createPopUp(this, GeolocationPanel, true) as GeolocationPanel;
+
+		   		var geo:GeolocationPanel = PopUpManager.createPopUp(this, GeolocationPanel, true) as GeolocationPanel;
+		   		geo.animalName = name;
+				geo.imagePath = path;
                 PopUpManager.centerPopUp(geo);
 		   }
-		   
-		   public function geolocationCloseBar():void {
-		   		PopUpManager.removePopUp(geo);
-		   }
-		   
+
 		   private function confirmDelete():void {
 		   		var a: Alert = Alert.show("Are you sure you want to delete all images?","Confirmation",Alert.YES|Alert.NO);
 		   		a.addEventListener(Event.CLOSE,deleteEvent);
@@ -247,7 +246,7 @@
 	<mx:VBox height="100%" width="100%">
 		<mx:HBox width="100%" height="6%" verticalAlign="middle" paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5">		
 			<mx:HBox horizontalAlign="left" verticalAlign="middle" width="50%">			
-				<mx:Button label="Add" click="selectImageFile(fileToOpen)" />
+				<mx:Button label="Add Images" click="selectImageFile(fileToOpen)" />
 			</mx:HBox>
 			<mx:HBox horizontalAlign="right" verticalAlign="middle" width="50%">	
 				<mx:Button label="Delete All" click="confirmDelete()"/>

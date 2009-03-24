@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="344" height="443" xmlns:maps="com.google.maps.*"  alpha="1.0" backgroundColor="#4F4C4C">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="344" height="443" xmlns:maps="com.google.maps.*"  
+	alpha="1.0" backgroundColor="#4F4C4C">
     
 	<mx:Script>
 	    <![CDATA[
+	    	import mx.controls.Alert;
+	    	import mx.managers.PopUpManager;
 	    	import mx.collections.ArrayCollection;
 	    	import com.vizzuality.dao.DataAccessObject;
 		    import com.google.maps.controls.MapTypeControl; 
@@ -15,39 +18,46 @@
 	        import com.google.maps.MapType; 
 	        import com.google.maps.overlays.Marker; 
 	        import com.google.maps.overlays.MarkerOptions; 
+	        import com.google.maps.services.ClientGeocoder;
+	        import com.google.maps.services.GeocodingEvent;
+            import com.google.maps.services.GeocodingResponse;
+            import com.google.maps.services.Placemark;
+
 		    
 		    private var latitude: LatLng = new LatLng(0,0);
 		    private var options:MarkerOptions = new MarkerOptions({draggable: true});
 		    private var marker: Marker;  
 		    private var dao: DataAccessObject = new DataAccessObject();
-   			
 		    
-		    /* private function onCreationComplete():void {
-		    	marker = new Marker(latitude);
-		    } */
+		    [Bindable]public var imagePath: String;
+		    [Bindable]public var animalName: String;
+   			
 		    
 		    
 		    
 		    private function onMapReady(event:Event):void {
-		      	this.map.setCenter(new LatLng(0,0), 2, MapType.NORMAL_MAP_TYPE);
-		      	this.map.addEventListener(MapMouseEvent.CLICK, onMapClick);
-		      	
-		      	//refreshMarkers();
+		      	this.map.setCenter(new LatLng(40.1452892956766, -3.69140625), 2, MapType.PHYSICAL_MAP_TYPE);
+		      	this.map.addEventListener(MapMouseEvent.CLICK, onMapClick);		      	
+		      	refreshMarkers();
 		    }
 		    
 		    public function refreshMarkers():void {
+		      	
+		      	//En la segunda entrada al mismo geolocalizar no pilla bien el path ?? pero en la cabecera con la imagen si!!
+		      	
 		      	if (map.isLoaded()) {
+		      		
 			      	if (marker != null) {
 			    		map.clearOverlays();
 			    	}
 			    			    	
-			    	dao.getLatitudes((this.parentDocument as SqlImages).tilelist.selectedItem.path);
+			    	dao.getLatitudes(imagePath);
 			    	var arrayLatitudes: ArrayCollection = new ArrayCollection();
 			    	arrayLatitudes = dao.dbResult;
 			    	
-			    	if (arrayLatitudes[0].lat != null) {
+			    	if (arrayLatitudes.length != 0) {
 	   					marker = new Marker(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)),options);
-	   					//marker.setLatLng(latitude);
+	   					map.setCenter(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)), 4);
 	   					map.addOverlay(marker);	
 			    	}
 		      	}
@@ -69,30 +79,64 @@
 				trace(marker.getLatLng());
 		    }
 		    
-		    private function saveMarker():void {
-		    	/* if (marker == null) {
-		    		trace(" No Marker ")	
+		    private function saveGeolocation():void {
+		    	if (marker == null) {
+		    		Alert.show(" No Marker ");	
 		    	} else { 
 		    		var position: LatLng = marker.getLatLng();
 		    		trace(position.lat().toString()+"/"+position.lng().toString());
-		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),(this.parentDocument as SqlImages).tilelist.selectedItem.path);
+		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),imagePath);
+		    		closeGeolocation();
 		    	}
-		    	 */
-		    	//(this.parentDocument as SqlImages).currentState='';
-		      	//this.map.setCenter(new LatLng(0,0), 2, MapType.NORMAL_MAP_TYPE);
-		    	(this.parentDocument as SqlImages).geolocationCloseBar();
 		    }
+		    
+		    private function closeGeolocation():void {
+		    	PopUpManager.removePopUp(this);
+		    }
+		    
+		    private function searchLocation():void {
+		    	var geocoder:ClientGeocoder = new ClientGeocoder();
+                geocoder.addEventListener(GeocodingEvent.GEOCODING_SUCCESS, geocoder_geocodingSuccess);
+                geocoder.addEventListener(GeocodingEvent.GEOCODING_FAILURE, geocoder_geocodingFailure);
+                geocoder.geocode(textSearch.text);
+
+		    }
+		    
+		    private function geocoder_geocodingSuccess(evt:GeocodingEvent):void {
+                var result:Placemark = GeocodingResponse(evt.response).placemarks[0];
+                map.setCenter(result.point, 5);
+                latitude = result.point;
+            }
+
+            private function geocoder_geocodingFailure(evt:GeocodingEvent):void {
+                Alert.show("Unable to geocode address: " + evt.name);
+            }
+
+			private function writeTextInput():void {
+				if (textSearch.text=="Write your desired location") {
+					textSearch.text='';
+				}
+			}
 		    
 		    
 	    ]]>
 	</mx:Script>
 		
-	<maps:Map id="map" mapevent_mapready="onMapReady(event)" width="324" height="306" 
+	<maps:Map id="map" mapevent_mapready="onMapReady(event)" width="324" height="319" 
     url="http://www.vizzuality.com" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RRtyGR_26Vh_v-YP2taQZno1YdgrhQJzeuNLwYCMpo8VRY9mC5aAjXmbQ" x="10" y="54"/>
-	<mx:Button  label="X" fillAlphas="[1.0, 1.0, 1.0, 1.0]" click="saveMarker()" y="10" right="10" width="32"/>
-	<mx:Button x="236" y="411" label="Save &amp; close"/>
-	<mx:TextInput x="10" y="368" width="251"/>
-	<mx:Button x="269" y="368" label="Search"/>
-	<mx:HRule x="10" y="40" width="324" height="6"/>
-	<mx:Label x="10" y="14" text="Georeference your image" width="193" color="#DADDDD" fontSize="13"/>
+	<mx:Button  label="x" fillAlphas="[1.0, 1.0, 1.0, 1.0]" click="closeGeolocation()" y="10" right="10" width="32" cornerRadius="0"/>
+	<mx:Button x="236" y="411" label="Save &amp; close" click="saveGeolocation()"/>
+	<mx:TextInput x="10" id="textSearch" y="381" width="251" text="Write your desired location" color="#C5C9CA" backgroundColor="#656363" 
+		click="writeTextInput()" borderColor="#797A7B" fontWeight="bold"/>
+	<mx:Button x="269" y="381" label="Search" click="searchLocation()"/>
+	<mx:HRule x="10" y="36" width="324" height="6" strokeColor="#373A3A" strokeWidth="1"/>
+	<mx:Label x="10" y="9" text="Georeference your image" width="193" color="#DADDDD" fontSize="13"/>
+	<mx:Canvas x="10" y="54" width="324" height="54" backgroundColor="#030000" backgroundAlpha="0.55">
+		<mx:Canvas x="10" y="10" width="47" height="34">
+			<mx:Image id="imageDisplay" source="{imagePath}" width="47" height="34"/>
+		</mx:Canvas>
+		<mx:Label id="displayName" x="65" y="10" text="{animalName}" fontSize="13" fontWeight="bold" color="#F0F7F8"/>
+		<mx:Label x="66" y="26" text="Click to set the position" click="putMarker()" color="#D99494" fontWeight="bold"/>
+	</mx:Canvas>
+	<mx:Button x="10" y="411" label="Search Location" fillAlphas="[1.0, 1.0, 1.0, 1.0]" fillColors="[#414141, #414141]" color="#C0C2C3" borderColor="#414141" themeColor="#414141" cornerRadius="0"/>
 </mx:Canvas>
