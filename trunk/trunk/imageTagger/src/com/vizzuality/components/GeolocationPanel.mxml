@@ -32,12 +32,14 @@
 		    [Bindable]public var imagePath: String;
 		    [Bindable]public var animalName: String;
    			
-		    
+		    private var zoom: ZoomControl;
 		    
 		    
 		    private function onMapReady(event:Event):void {
 		      	this.map.setCenter(new LatLng(40.1452892956766, -3.69140625), 2, MapType.PHYSICAL_MAP_TYPE);
-		      	this.map.addEventListener(MapMouseEvent.CLICK, onMapClick);		      	
+		      	this.map.addEventListener(MapMouseEvent.CLICK, onMapClick);	
+		      	map.addControl(new ZoomControl()); 
+   				map.enableScrollWheelZoom();	      	
 		      	refreshMarkers();
 		    }
 		    
@@ -59,6 +61,7 @@
 	   					marker = new Marker(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)),options);
 	   					map.setCenter(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)), 4);
 	   					map.addOverlay(marker);	
+	   					changeStyle();
 			    	}
 		      	}
 		      	
@@ -66,7 +69,14 @@
 		    }
 		    
 		    private function onMapClick(event:MapMouseEvent):void {			    
-			    latitude = event.latLng;		  
+			    latitude = event.latLng;
+			    putMarker();
+			    changeStyle();
+		    }
+		    
+		    private function changeStyle():void {
+			    instructionsText.text="click or move the marker to change the position";
+			    instructionsText.setStyle("color","#fcfbfb");			    		  		    	
 		    }
 		    
 		    private function putMarker():void {
@@ -76,7 +86,6 @@
 	   				marker.setLatLng(latitude);				
    				}
 				map.addOverlay(marker);
-				trace(marker.getLatLng());
 		    }
 		    
 		    private function saveGeolocation():void {
@@ -136,7 +145,7 @@
 			<mx:Image id="imageDisplay" source="{imagePath}" width="47" height="34"/>
 		</mx:Canvas>
 		<mx:Label id="displayName" x="65" y="10" text="{animalName}" fontSize="13" fontWeight="bold" color="#F0F7F8"/>
-		<mx:Label x="66" y="26" text="Click to set the position" click="putMarker()" color="#D99494" fontWeight="bold"/>
+		<mx:Label id="instructionsText" x="65" y="27" text="Click to set the position" color="#D99494" fontWeight="bold" fontSize="9" width="249"/>
 	</mx:Canvas>
 	<mx:Button x="10" y="411" label="Search Location" fillAlphas="[1.0, 1.0, 1.0, 1.0]" fillColors="[#414141, #414141]" color="#C0C2C3" borderColor="#414141" themeColor="#414141" cornerRadius="0"/>
 </mx:Canvas>
