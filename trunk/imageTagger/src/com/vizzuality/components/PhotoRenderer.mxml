@@ -69,7 +69,7 @@
 		</mx:HBox>
 		<mx:HBox width="100%" height="23" horizontalAlign="center">
 			<mx:Button x="133" y="26" label="Upload" fontSize="8" click="uploadImage()" width="108"/>
-			<mx:Button x="79" y="26" label="Geo" fontSize="8" click="(this.parentDocument as SqlImages).geolocationState()" width="106"/>	
+			<mx:Button x="79" y="26" label="Geo" fontSize="8" click="(this.parentDocument as SqlImages).geolocationState(scientificNameInput.text,data.path)" width="106"/>	
 		</mx:HBox>
 	</mx:VBox>
 	<!--<mx:Image id="imageStatusIcon" source="{(data.scientific==null)?'com/vizzuality/assets/error.png':'com/vizzuality/assets/ok.png'}" x="25" y="150" width="25" height="25"/>-->
