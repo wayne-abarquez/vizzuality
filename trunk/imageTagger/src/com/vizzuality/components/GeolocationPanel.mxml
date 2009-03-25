@@ -4,6 +4,8 @@
     
 	<mx:Script>
 	    <![CDATA[
+	    	import com.google.maps.Color;
+	    	import mx.core.Application;
 	    	import mx.controls.Alert;
 	    	import mx.managers.PopUpManager;
 	    	import mx.collections.ArrayCollection;
@@ -28,18 +30,15 @@
 		    private var options:MarkerOptions = new MarkerOptions({draggable: true});
 		    private var marker: Marker;  
 		    private var dao: DataAccessObject = new DataAccessObject();
-		    
-		    [Bindable]public var imagePath: String;
-		    [Bindable]public var animalName: String;
-   			
-		    private var zoom: ZoomControl;
-		    
+
 		    
 		    private function onMapReady(event:Event):void {
 		      	this.map.setCenter(new LatLng(40.1452892956766, -3.69140625), 2, MapType.PHYSICAL_MAP_TYPE);
 		      	this.map.addEventListener(MapMouseEvent.CLICK, onMapClick);	
 		      	map.addControl(new ZoomControl()); 
-   				map.enableScrollWheelZoom();	      	
+   				map.enableScrollWheelZoom();	
+   				trace("mapa cargadro");
+   				      	
 		      	refreshMarkers();
 		    }
 		    
@@ -53,15 +52,16 @@
 			    		map.clearOverlays();
 			    	}
 			    			    	
-			    	dao.getLatitudes(imagePath);
+ 			    	dao.getLatitudes(Application.application.imagePath);
 			    	var arrayLatitudes: ArrayCollection = new ArrayCollection();
 			    	arrayLatitudes = dao.dbResult;
 			    	
-			    	if (arrayLatitudes.length != 0) {
+			    	if (arrayLatitudes.length != 0 && arrayLatitudes[0].lat!=null) {
+			    		trace("debe entrar");
 	   					marker = new Marker(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)),options);
 	   					map.setCenter(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)), 4);
 	   					map.addOverlay(marker);	
-	   					changeStyle();
+	   					//changeStyle();
 			    	}
 		      	}
 		      	
@@ -75,8 +75,11 @@
 		    }
 		    
 		    private function changeStyle():void {
-			    instructionsText.text="click or move the marker to change the position";
-			    instructionsText.setStyle("color","#fcfbfb");			    		  		    	
+			    if (marker != null) {
+				    instructionsText.text="click or move the marker to change the position";
+				    instructionsText.setStyle("color","#fcfbfb");			    		  		    				    
+   				}
+			    
 		    }
 		    
 		    private function putMarker():void {
@@ -94,7 +97,7 @@
 		    	} else { 
 		    		var position: LatLng = marker.getLatLng();
 		    		trace(position.lat().toString()+"/"+position.lng().toString());
-		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),imagePath);
+		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),Application.application.imagePath);
 		    		closeGeolocation();
 		    	}
 		    }
@@ -126,8 +129,6 @@
 					textSearch.text='';
 				}
 			}
-		    
-		    
 	    ]]>
 	</mx:Script>
 		
@@ -142,10 +143,10 @@
 	<mx:Label x="10" y="9" text="Georeference your image" width="193" color="#DADDDD" fontSize="13"/>
 	<mx:Canvas x="10" y="54" width="324" height="54" backgroundColor="#030000" backgroundAlpha="0.55">
 		<mx:Canvas x="10" y="10" width="47" height="34">
-			<mx:Image id="imageDisplay" source="{imagePath}" width="47" height="34"/>
+			<mx:Image id="imageDisplay" source="{Application.application.imagePath}" width="47" height="34"/>
 		</mx:Canvas>
-		<mx:Label id="displayName" x="65" y="10" text="{animalName}" fontSize="13" fontWeight="bold" color="#F0F7F8"/>
-		<mx:Label id="instructionsText" x="65" y="27" text="Click to set the position" color="#D99494" fontWeight="bold" fontSize="9" width="249"/>
+		<mx:Label id="displayName" x="65" y="10" text="{Application.application.animalName}" fontSize="13" fontWeight="bold" color="#F0F7F8"/>
+		<mx:Label id="instructionsText" x="65" y="27" text="Click to set the new position"  color="#D99494" fontWeight="bold" fontSize="9" width="249"/>
 	</mx:Canvas>
 	<mx:Button x="10" y="411" label="Search Location" fillAlphas="[1.0, 1.0, 1.0, 1.0]" fillColors="[#414141, #414141]" color="#C0C2C3" borderColor="#414141" themeColor="#414141" cornerRadius="0"/>
 </mx:Canvas>

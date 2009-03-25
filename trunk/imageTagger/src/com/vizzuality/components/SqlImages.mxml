@@ -52,7 +52,8 @@
 			
 			private var path: String;
 			private var scientific: String;
-			private var geo:GeolocationPanel; 
+			public var geo:Object = new Object(); 
+			public var geoPop:IFlexDisplayObject;
 			
 			private var taxonomyResolutionService:TaxonomyResolutionService;
 			
@@ -213,11 +214,11 @@
 		   		//Application.application.taxon = "Loading Google Maps";
 		    	//progressPop = PopUpManager.createPopUp(this, popUpUploadFlickr, true);
 				//PopUpManager.centerPopUp(progressPop);
-
-		   		var geo:GeolocationPanel = PopUpManager.createPopUp(this, GeolocationPanel, true) as GeolocationPanel;
-		   		geo.animalName = name;
-				geo.imagePath = path;
-                PopUpManager.centerPopUp(geo);
+					Application.application.animalName = name;
+					Application.application.imagePath = path;
+		   			geoPop = PopUpManager.createPopUp(this, GeolocationPanel, true);
+                	PopUpManager.centerPopUp(geoPop);
+					
 		   }
 
 		   private function confirmDelete():void {

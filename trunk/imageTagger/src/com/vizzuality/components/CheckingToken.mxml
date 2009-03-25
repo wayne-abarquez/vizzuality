@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
-	height="98" width="138" borderStyle="solid" borderThickness="0" cornerRadius="15" 
-	backgroundColor="#F8F5F5" backgroundAlpha="0.9" themeColor="#000000" borderColor="#382513" creationComplete="onCreationComplete()">
+	height="98" width="138" borderStyle="solid" borderThickness="0" cornerRadius="10" 
+	backgroundColor="#FEFCFC" backgroundAlpha="1.0" themeColor="#000000" borderColor="#382513" creationComplete="onCreationComplete()">
 	
 	<mx:states>
 		<mx:State name="httpError">
@@ -137,5 +137,5 @@
 		    [Event(name="onGetTokenKO", type="com.vizzuality.event.GetTokenExpired")]
 	</mx:Metadata>
 	<mx:SWFLoader source="/com/vizzuality/assets/loading.swf" x="53" y="16" id="swfloader1"/>
-	<mx:Label id="bar" text="Checking..." y="56" color="#469B9C" fontSize="12" height="23" horizontalCenter="0" fontWeight="bold"/>
+	<mx:Label id="bar" text="Checking..." y="56" color="#596161" fontSize="12" height="23" horizontalCenter="0" fontWeight="bold"/>
 </mx:Canvas>
