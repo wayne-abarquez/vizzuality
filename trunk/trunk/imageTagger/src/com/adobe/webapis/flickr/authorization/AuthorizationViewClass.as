@@ -46,6 +46,8 @@
 	
 	public var flickrAPIKey:String = Application.application.flickrAdminKey;
 	public var flickrAPISecret:String = Application.application.flickrSecretKey;
+	private var timer: Timer;
+	
 	
 
 	//when cancel button is clicked
@@ -198,7 +200,8 @@
 	//close button handler
 	private function onCloseClick():void
 	{
-	        Application.application.onAuthorizationComplete();
+		timer.stop();
+		Application.application.onAuthorizationComplete();
 	}
 	
 	//handler for try again button, which is present when authorization fails
@@ -230,12 +233,10 @@
 	}
 	
 	private function exitTimer():void {
-		var timer: Timer = new Timer(1000,10);
-		trace("entra");
+		timer = new Timer(1000,10);
 		timer.addEventListener(TimerEvent.TIMER_COMPLETE,completeTimer);
 		timer.start();
 	}
 	private function completeTimer(ev:TimerEvent):void {
-		trace("llega");
 		onCloseClick();
 	}

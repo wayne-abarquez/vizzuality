@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
 	width="226" height="160" color="#040404" creationComplete="initRenderer()" verticalScrollPolicy="off" horizontalScrollPolicy="off">
-<!--	<mx:states>
-		<mx:State name="overImage">
-			<mx:SetStyle target="{canvas2}" name="backgroundAlpha" value="0.4"/>
-			<mx:SetStyle target="{canvas2}" name="backgroundColor" value="#0F0E0E"/>
-			
+	<mx:states>
+		<mx:State name="uploadImage">
+			<mx:SetProperty target="{button1}" name="enabled" value="false"/>
+			<mx:SetProperty target="{button2}" name="enabled" value="false"/>
+			<mx:SetProperty target="{button3}" name="enabled" value="false"/>
+			<mx:SetProperty target="{scientificNameInput}" name="enabled" value="false"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Canvas id="canvas3" backgroundAlpha="0.6" backgroundColor="#0F0E0E" width="226" height="103"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas3}" position="lastChild">
+				<mx:Label x="61.5" y="37" text="Uploading..." width="103" color="#FCFCFC" fontSize="15" fontWeight="bold"/>
+			</mx:AddChild>
 		</mx:State>
-	</mx:states>-->
-	
+	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import mx.events.ListEvent;
 			import mx.controls.TileList;
 			import mx.events.FlexEvent;
@@ -52,7 +59,12 @@
 			}
 			
 			private function uploadImage():void {
-				(this.parentDocument as SqlImages).uploadPhoto(data.path,scientificNameInput.text);
+				if (scientificNameInput.text=="" || scientificNameInput.text=="Tag this image!") {
+					Alert.show("Tag this image first!","Error uploading")
+				} else {
+					currentState="uploadImage";
+					(this.parentDocument as SqlImages).uploadPhoto(data.path,scientificNameInput.text);
+				}
 			}
 			
 			private function eraseImage():void {
@@ -79,7 +91,7 @@
 	<mx:VBox width="100%" height="100%">
 		<mx:HBox width="100%" height="26" verticalAlign="middle" paddingLeft="3">
 			<mx:TextInput id="scientificNameInput" text="{data.scientific==null?'Tag this image!':data.scientific}" click="changeScientificName()" change="updateScientificName()" textAlign="left" horizontalCenter="0" top="0" width="183" backgroundAlpha="0.0" color="#EFEBEB" creationComplete="changeColorInput()" borderColor="#A7AAA5" height="21"/>
-			<mx:Button x="10" y="26" label="X" fontSize="8" click="eraseImage()" width="30"/>			
+			<mx:Button x="10" y="26" label="X" fontSize="8" click="eraseImage()" width="30" id="button1"/>			
 		</mx:HBox>
 		<mx:HBox width="100%" height="80%" id="hbox1">
 			<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="100%" id="canvas1"  mouseOver="overImage()" mouseOut="outImage()" borderThickness="1" borderColor="0">
@@ -88,8 +100,8 @@
 			</mx:Canvas> 
 		</mx:HBox>
 		<mx:HBox width="100%" height="23" horizontalAlign="center">
-			<mx:Button x="133" y="26" label="Upload" fontSize="8" click="uploadImage()" width="108"/>
-			<mx:Button x="79" y="26" label="Geo" fontSize="8" click="(this.parentDocument as SqlImages).geolocationState(scientificNameInput.text,data.path)" width="106"/>	
+			<mx:Button x="133" y="26" label="Upload" fontSize="8" click="uploadImage()" width="108" id="button3"/>
+			<mx:Button x="79" y="26" label="Geo" fontSize="8" click="(this.parentDocument as SqlImages).geolocationState(scientificNameInput.text,data.path)" width="106" id="button2"/>	
 		</mx:HBox>
 	</mx:VBox>
 	<!--<mx:Image id="imageStatusIcon" source="{(data.scientific==null)?'com/vizzuality/assets/error.png':'com/vizzuality/assets/ok.png'}" x="25" y="150" width="25" height="25"/>-->
