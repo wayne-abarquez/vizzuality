@@ -66,7 +66,7 @@ package com.vizzuality.dao
 					str = jsonArray[i].scientificName;
 					
 					if (str.toLowerCase()!=name.toLowerCase()) {	
-						trace(str+": "+ jsonArray[i].rank + "-> "+jsonArray[i].scientificName);
+						trace(jsonArray[i].rank + "-> "+jsonArray[i].scientificName);
 						taxon += ",taxonomy:"+jsonArray[i].rank+"=\""+jsonArray[i].scientificName+"\"";
 					} else {
 						taxon += ",taxonomy:binomial=\""+name+"\"";
@@ -92,9 +92,9 @@ package com.vizzuality.dao
 		}
 		
 		private function onResult(ev: Event):void {
-			Application.application.principalView.system.deleteImage(dir);
-
 			var object: Object = ev;
+			Application.application.principalView.system.deleteImage(ev.currentTarget.nativePath.toString());
+
 		   	var xml: XML = new XML(object.data);
 			
 			if (Application.application.tagSequence =="") {
@@ -108,7 +108,7 @@ package com.vizzuality.dao
 				Application.application.principalView.system.getAllImages();
 			}
 			else {
-				Application.application.principalView.system.closeProgressBar();
+				//Application.application.principalView.system.closeProgressBar();
 				DockIcon(NativeApplication.nativeApplication.icon).bounce();
 			}
 		}

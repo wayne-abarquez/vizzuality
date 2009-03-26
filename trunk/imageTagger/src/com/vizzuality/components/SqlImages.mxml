@@ -76,17 +76,17 @@
 				
 				taxonomyResolutionService.resolveTaxonomy(path,name);
 		   	            	
-            	if (progressPop==null){
+            	/* if (progressPop==null){
             		progressPop = PopUpManager.createPopUp(this, PopUpUpload, true);
 					PopUpManager.centerPopUp(progressPop);
-            	}
+            	} */
 						
 		    }
 		 	
 		 	public function deleteImage(path:String):void {
-	 			dao.openConnection("DELETE FROM photos WHERE path='"+ path +"'");
+	 			dao.openConnection("DELETE FROM photos WHERE path='"+ "file://" + escape(path) +"'");
 	 			var file:File = new File;
-	 			file.url= path;
+	 			file.url= "file://" + path;
 	 			file.deleteFile(); 
 	 			refreshTilelist();
 	 			if (Application.application.deletingAllPictures) {
@@ -183,7 +183,7 @@
 			   		uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);						
 		  		} else {
 					Application.application.uploadingAllPictures=false;
-					PopUpUpload(progressPop).uploadComplete();
+					//PopUpUpload(progressPop).uploadComplete();
 					DockIcon(NativeApplication.nativeApplication.icon).bounce();
 		  		}
 		   }
@@ -199,15 +199,15 @@
 		   }
 		   
 		   public function closeProgressBar():void {
-		   		PopUpUpload(progressPop).uploadComplete();
+		   		//PopUpUpload(progressPop).uploadComplete();
 		   }
 		   
 		   public function errorProgressBar():void {
-		   		PopUpUpload(progressPop).httpError();
+		   		//PopUpUpload(progressPop).httpError();
 		   }
 		   
 		   public function removeProgressBar():void {
-		   		progressPop = null;
+		   		//progressPop = null;
 		   }
 		   
 		   public function geolocationState(name:String,path:String):void {
