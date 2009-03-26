@@ -3,6 +3,7 @@
 	
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
+	import flash.events.TimerEvent;
 	
 	import mx.core.Application;
 	
@@ -226,4 +227,15 @@
 	        //Log.getLogger(AIRSnapshot.LOG_NAME).error("AuthorizationView : " + msg);
 	        currentState = ERROR_STATE;
 	        errorField.text = "Error : " + msg;
+	}
+	
+	private function exitTimer():void {
+		var timer: Timer = new Timer(1000,10);
+		trace("entra");
+		timer.addEventListener(TimerEvent.TIMER_COMPLETE,completeTimer);
+		timer.start();
+	}
+	private function completeTimer(ev:TimerEvent):void {
+		trace("llega");
+		onCloseClick();
 	}
