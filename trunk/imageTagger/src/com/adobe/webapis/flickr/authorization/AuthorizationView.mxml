@@ -7,6 +7,10 @@
         <mx:states>
                 <mx:State name="settingsErrorState">
                         <mx:AddChild position="lastChild">
+                        <mx:RemoveChild target="{textarea1}"/>
+                        <mx:RemoveChild target="{textarea2}"/>
+                        <mx:RemoveChild target="{textarea3}"/>
+                        <mx:RemoveChild target="{textarea4}"/>
                                 <mx:Text y="70" 
                                         text="Flickr API Key and Flickr secret have not been set." 
                                         right="10" left="10" textAlign="center" color="#FF0202" height="78"/>
@@ -19,6 +23,10 @@
                 <mx:State name="authorizationState">
                         <mx:RemoveChild target="{authButton}"/>
                         <mx:RemoveChild target="{button1}"/>
+                        <mx:RemoveChild target="{textarea1}"/>
+                        <mx:RemoveChild target="{textarea2}"/>
+                        <mx:RemoveChild target="{textarea3}"/>
+                        <mx:RemoveChild target="{textarea4}"/>
                         <mx:AddChild position="lastChild">
                                 <mx:ProgressBar bottom="10" left="10" right="10" mode="manual" label="" labelPlacement="top" id="pBar" indeterminate="true"/>
                         </mx:AddChild>
@@ -26,9 +34,13 @@
                 <mx:State name="webBrowser">
                         <mx:RemoveChild target="{authButton}"/>
                         <mx:RemoveChild target="{button1}"/>
+                        <mx:RemoveChild target="{textarea1}"/>
+                        <mx:RemoveChild target="{textarea2}"/>
+                        <mx:RemoveChild target="{textarea3}"/>
+                        <mx:RemoveChild target="{textarea4}"/>
                         <mx:AddChild position="lastChild">
                                 <mx:VBox>
-                                	<mx:HBox width="100%" height="30" color="#B7BABB" backgroundColor="#F2F6C2" horizontalAlign="center" verticalAlign="middle">
+                                	<mx:HBox width="100%" height="30" color="#B7BABB" backgroundColor="#F2F6C2" horizontalAlign="left" verticalAlign="middle">
                                 		<mx:Label text="Please, proceed with authentication on flickr to use imageTagger" fontWeight="normal" color="#3F4040" fontFamily="Arial" fontSize="13"/>
                                 		<mx:Button label="Cancel" click="currentState=''" alpha="1.0" fillAlphas="[1.0, 1.0, 1.0, 1.0]" fillColors="[#807D7D, #807D7D]" color="#CECFD0"/>
                                 	</mx:HBox>
@@ -38,6 +50,10 @@
                 </mx:State>
                 <mx:State name="urlAuthorizationState">
                         <mx:RemoveChild target="{authButton}"/>
+                        <mx:RemoveChild target="{textarea1}"/>
+                        <mx:RemoveChild target="{textarea2}"/>
+                        <mx:RemoveChild target="{textarea3}"/>
+                        <mx:RemoveChild target="{textarea4}"/>
                         <mx:AddChild position="lastChild">
                                 <mx:Button label="Launch Flickr to Authorize" left="10" bottom="10" click="currentState='webBrowser'"/>
                         </mx:AddChild>
@@ -51,20 +67,31 @@
                         </mx:AddChild>
                 </mx:State>
                 <mx:State name="authorizationCompleteState">
+                        <mx:enterState>
+                        	exitTimer();
+                        </mx:enterState>
                         <mx:RemoveChild target="{button1}"/>
                         <mx:RemoveChild target="{authButton}"/>
+                        <mx:RemoveChild target="{textarea1}"/>
+                        <mx:RemoveChild target="{textarea2}"/>
+                        <mx:RemoveChild target="{textarea3}"/>
+                        <mx:RemoveChild target="{textarea4}"/>
                         <mx:AddChild position="lastChild">
-                                <mx:Button id="closeBut" label="Close" right="10" bottom="10" click="onCloseClick()"/>
+                                <mx:Button id="closeBut" label="Continue" click="onCloseClick()" horizontalCenter="0" verticalCenter="-23"/>
                         </mx:AddChild>
                         <mx:AddChild position="lastChild">
-                                <mx:Text text="Authorization Complete" right="10" left="10" top="10" textAlign="center" fontWeight="bold"/>
+                                <mx:Text text="Ok, you are authenticated correctly&#xd;" height="38" width="382" horizontalCenter="0" textAlign="center" color="#F9F5F5" fontSize="20" verticalCenter="-107"/>
                         </mx:AddChild>
                         <mx:AddChild position="lastChild">
-                                <mx:Text text="Image Tagger has successfully authenticated with Flickr." right="10" left="10" top="51" height="97"/>
+                                <mx:Text text="Wait 10 segs or click on &quot;continue&quot; to proceed.&#xd;" horizontalCenter="0" color="#F9F5F5" verticalCenter="-71"/>
                         </mx:AddChild>
                 </mx:State>
                 <mx:State name="errorState">
                         <mx:RemoveChild target="{authButton}"/>
+                        <mx:RemoveChild target="{textarea1}"/>
+                        <mx:RemoveChild target="{textarea2}"/>
+                        <mx:RemoveChild target="{textarea3}"/>
+                        <mx:RemoveChild target="{textarea4}"/>
                         <mx:AddChild position="lastChild">
                                 <mx:Button label="Try Again" left="10" bottom="10" click="onTryAgainClick()"/>
                         </mx:AddChild>
@@ -82,14 +109,14 @@
         </mx:states>
         <mx:Button label="Proceed and authenticate on Flickr" id="authButton" click="onAuthorizationStartClick()" horizontalCenter="0" y="421"/>
         <mx:Label text="Cancel and close" click="NativeApplication.nativeApplication.exit()" id="button1" textDecoration="underline" color="#FAFBFB" fontWeight="bold" right="10" bottom="10"/>
-        <mx:TextArea y="132" horizontalCenter="0" width="254" height="76" color="#D8D6D6" backgroundAlpha="0.0" fontWeight="bold" borderThickness="0">
+        <mx:TextArea id="textarea1" y="132" horizontalCenter="0" width="254" height="76" color="#D8D6D6" backgroundAlpha="0.0" fontWeight="bold" borderThickness="0">
                 <mx:text><![CDATA[1.Upload your imagesYour images will be uploaded to flickr and stored in your flickr account. You hace to be loged in flickr to run the application.]]></mx:text>
         </mx:TextArea>
-        <mx:TextArea y="226" horizontalCenter="0" width="254" height="76" color="#D8D6D6" backgroundAlpha="0.0" fontWeight="bold" borderThickness="0">
+        <mx:TextArea id="textarea2" y="226" horizontalCenter="0" width="254" height="76" color="#D8D6D6" backgroundAlpha="0.0" fontWeight="bold" borderThickness="0">
                 <mx:text><![CDATA[2. Tag your imagesYou will be able to tag your images with a scientific name or a common name and our system fill the rest of the scientific image metadata.]]></mx:text>
         </mx:TextArea>
-        <mx:TextArea y="321" horizontalCenter="0" width="254" height="76" color="#D8D6D6" backgroundAlpha="0.0" fontWeight="bold" borderThickness="0">
+        <mx:TextArea id="textarea3" y="321" horizontalCenter="0" width="254" height="76" color="#D8D6D6" backgroundAlpha="0.0" fontWeight="bold" borderThickness="0">
                 <mx:text><![CDATA[3.Visualize your imagesYou will be able to visualize your uploaded images and view your own taxonomic tree!]]></mx:text>
         </mx:TextArea>
-        <mx:TextArea y="70" horizontalCenter="0" width="282" height="43" text="Welcome to Image Tagger" borderThickness="0" color="#737070" backgroundAlpha="0.0" fontWeight="bold" borderColor="#B7BABC" fontSize="18"/>
+        <mx:TextArea id="textarea4" y="70" horizontalCenter="0" width="282" height="43" text="Welcome to Image Tagger" borderThickness="0" color="#737070" backgroundAlpha="0.0" fontWeight="bold" borderColor="#B7BABC" fontSize="18"/>
 </mx:Canvas>

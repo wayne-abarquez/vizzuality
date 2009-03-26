@@ -2,10 +2,10 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
 	width="226" height="160" color="#040404" creationComplete="initRenderer()" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 <!--	<mx:states>
-		<mx:State name="selected">
-			<mx:AddChild position="lastChild">
-				<mx:TextInput x="20" y="168" id="scientificNameInput" text="{data.scientific}" change="updateScientificName()"/>
-			</mx:AddChild>
+		<mx:State name="overImage">
+			<mx:SetStyle target="{canvas2}" name="backgroundAlpha" value="0.4"/>
+			<mx:SetStyle target="{canvas2}" name="backgroundColor" value="#0F0E0E"/>
+			
 		</mx:State>
 	</mx:states>-->
 	
@@ -25,14 +25,18 @@
 		     }
 	
 			private function updateScientificName():void {
-				(this.parentDocument as SqlImages).updateName(scientificNameInput.text,data.path);
-				
-				/* if(scientificNameInput.text =='') {
-					imageStatusIcon.source="com/vizzuality/assets/error.png";
-				} else {
-					imageStatusIcon.source="com/vizzuality/assets/ok.png";
-				} */				
+				(this.parentDocument as SqlImages).updateName(scientificNameInput.text,data.path);		
+				changeColorInput();				
 			}
+			
+			private function changeColorInput():void {
+				if(scientificNameInput.text =='' || scientificNameInput.text =='Tag this image!') {
+					scientificNameInput.setStyle("borderColor","#E30F04");
+				} else {
+					scientificNameInput.setStyle("borderColor","#5def0d");
+				}
+			}
+			
 		    private function updateSelected(event:ListEvent):void {
 		       if(event.itemRenderer == this)
 		         isPhotoSelected=true;
@@ -55,16 +59,32 @@
 				(this.parentDocument as SqlImages).deleteImage(data.path);
 				(this.parentDocument as SqlImages).refreshTilelist();
 			}	
+			
+			private function overImage():void {
+				canvas2.setStyle("backgroundAlpha","0.6");
+				canvas2.setStyle("backgroundColor","#0F0E0E");
+			}
+			private function outImage():void {
+				canvas2.setStyle("backgroundAlpha","0");
+			}	
+			
+			private function changeScientificName():void {
+				if (scientificNameInput.text == "Tag this image!") {
+					scientificNameInput.text = "";
+				}
+			}
+			
 		]]>
 	</mx:Script>
 	<mx:VBox width="100%" height="100%">
-		<mx:HBox width="100%" height="10%">
-			<mx:TextInput id="scientificNameInput" text="{data.scientific==null?'Tag this image!':data.scientific}" change="updateScientificName()" textAlign="left" horizontalCenter="0" top="0" width="187" backgroundAlpha="0.0" color="#EFEBEB" borderColor="#C8CBCE"/>
+		<mx:HBox width="100%" height="26" verticalAlign="middle" paddingLeft="3">
+			<mx:TextInput id="scientificNameInput" text="{data.scientific==null?'Tag this image!':data.scientific}" click="changeScientificName()" change="updateScientificName()" textAlign="left" horizontalCenter="0" top="0" width="183" backgroundAlpha="0.0" color="#EFEBEB" creationComplete="changeColorInput()" borderColor="#A7AAA5" height="21"/>
 			<mx:Button x="10" y="26" label="X" fontSize="8" click="eraseImage()" width="30"/>			
 		</mx:HBox>
-		<mx:HBox width="100%" height="80%">
-			<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="100%">
+		<mx:HBox width="100%" height="80%" id="hbox1">
+			<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="100%" id="canvas1"  mouseOver="overImage()" mouseOut="outImage()" borderThickness="1" borderColor="0">
 				<mx:Image source="{data.path}" verticalCenter="0" horizontalCenter="0" scaleX="0.6" scaleY="0.4"/>
+				<mx:Canvas  id="canvas2" width="226" height="103" backgroundAlpha="0.0"/>
 			</mx:Canvas> 
 		</mx:HBox>
 		<mx:HBox width="100%" height="23" horizontalAlign="center">
