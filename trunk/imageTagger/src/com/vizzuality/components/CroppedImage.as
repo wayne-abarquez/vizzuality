@@ -1,0 +1,81 @@
+package com.vizzuality.components
+{
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.Loader;
+	import flash.events.Event;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
+	import flash.net.URLRequest;
+	
+	import mx.controls.Image;
+
+	public class CroppedImage extends Image
+	{
+		
+		private var path:String;
+		private var loader:Loader;
+		
+		public function CroppedImage()
+		{
+			super();
+		}
+		
+		public function set pathImage(_path:String):void {
+			if (_path!=this.path) {
+				this.path=_path;
+				loader = new Loader();
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadedFinished);
+				loader.load(new URLRequest(this.path));
+			}
+			
+		}
+		
+		private function onLoadedFinished(event:Event):void {
+			loader.removeEventListener(Event.COMPLETE,onLoadedFinished);
+			var bitmap:Bitmap = Bitmap(loader.content);
+			var bitmapData:BitmapData = bitmap.bitmapData;
+			
+		 				
+		 	var originalWidth:Number = bitmapData.width;
+		 	var originalHeight:Number = bitmapData.height;
+		 	var newWidth:Number = 500;
+		 	var newHeight:Number = 350;
+		 			
+		 	var m:Matrix = new Matrix();
+		 
+	  		var sx:Number =  newWidth / originalWidth;
+	  		var sy:Number = newHeight / originalHeight;
+/* 	  		if (sx>1) {
+	  			sx=1;
+	  			sy=1;
+	  		}
+	  		 */
+	  		var scale:Number = Math.min(sx, sy);
+	  		newWidth = originalWidth * scale;
+	  		newHeight = originalHeight * scale;	
+			trace(originalWidth+"/"+newWidth +"----"+originalHeight+"/"+newHeight );
+
+
+		 	m.scale(scale, scale);
+		 	var bmd2:BitmapData = new BitmapData( newWidth,newHeight); 
+		 				
+		 	bmd2.draw(bitmapData, m);
+
+			
+			var startPoint:Point = new Point(((newWidth/2)-103), ((newHeight/2)-51));
+			
+			
+			var newBitmapData:BitmapData = new BitmapData(207,103);
+			newBitmapData.copyPixels(bmd2, 
+				new Rectangle(startPoint.x, startPoint.y, 207, 103), 
+                new Point(0,0));
+                
+          	source = new Bitmap(newBitmapData);     
+			
+			
+		}
+		
+	}
+}
