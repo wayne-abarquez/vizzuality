@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="344" height="443"  alpha="1.0" backgroundColor="#4F4C4C">
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+		]]>
+	</mx:Script>
+	<mx:TextInput x="174" y="264" backgroundColor="#686464" borderColor="#737070"/>
+	<mx:TextInput x="174" y="294" backgroundColor="#686464" borderColor="#737070"/>
+	<mx:TextInput x="174" y="84" backgroundColor="#686464" borderColor="#737070"/>
+	<mx:TextInput x="174" y="114" backgroundColor="#686464" borderColor="#737070"/>
+	<mx:TextInput x="174" y="144" backgroundColor="#686464" borderColor="#737070"/>
+	<mx:TextInput x="174" y="174" backgroundColor="#686464" borderColor="#737070"/>
+	<mx:TextInput x="174" y="204" backgroundColor="#686464" borderColor="#737070"/>
+	<mx:TextInput x="174" y="234" backgroundColor="#686464" borderColor="#737070"/>
+	<mx:Text x="73" y="292" text="Binomial" width="74" color="#FAF8F8"/>
+	<mx:Text x="73" y="266" text="Genus" width="74" color="#FAF8F8"/>
+	<mx:Text x="73" y="236" text="Family" width="74" color="#FAF8F8"/>
+	<mx:Text x="73" y="206" text="Order" width="74" color="#FAF8F8"/>
+	<mx:Text x="73" y="176" text="Class" width="74" color="#FAF8F8"/>
+	<mx:Text x="73" y="146" text="Phylum" width="74" color="#FAF8F8"/>
+	<mx:Text x="73" y="114" text="Kingdom&#xd;" width="74" color="#FAF8F8"/>
+	<mx:Text x="73" y="84" text="Scientific Name&#xd;" width="93" color="#FAF8F8"/>
+	<mx:Text x="74" y="20" text="Scientific Name" width="196" height="33" color="#FCFEFE" fontSize="25"/>
+	<mx:Button x="10" y="411" label="Refresh"/>
+	<mx:Button x="235" y="411" label="Save &amp; Close"/>
+	<mx:Button x="303" y="10" label="x" width="31" click="PopUpManager"/>
+</mx:Canvas>
+
