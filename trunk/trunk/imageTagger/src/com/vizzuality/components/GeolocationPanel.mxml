@@ -33,19 +33,15 @@
 
 		    
 		    private function onMapReady(event:Event):void {
-		      	this.map.setCenter(new LatLng(40.1452892956766, -3.69140625), 2, MapType.PHYSICAL_MAP_TYPE);
+		      	this.map.setCenter(new LatLng(40.1452892956766, -3.69140625), 1, MapType.PHYSICAL_MAP_TYPE);
 		      	this.map.addEventListener(MapMouseEvent.CLICK, onMapClick);	
 		      	map.addControl(new ZoomControl()); 
-   				map.enableScrollWheelZoom();	
-   				trace("mapa cargadro");
-   				      	
+   				map.enableScrollWheelZoom();	   				      	
 		      	refreshMarkers();
 		    }
 		    
 		    public function refreshMarkers():void {
-		      	
-		      	//En la segunda entrada al mismo geolocalizar no pilla bien el path ?? pero en la cabecera con la imagen si!!
-		      	
+		      			      	
 		      	if (map.isLoaded()) {
 		      		
 			      	if (marker != null) {
@@ -57,9 +53,8 @@
 			    	arrayLatitudes = dao.dbResult;
 			    	
 			    	if (arrayLatitudes.length != 0 && arrayLatitudes[0].lat!=null) {
-			    		trace("debe entrar");
 	   					marker = new Marker(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)),options);
-	   					map.setCenter(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)), 4);
+	   					map.setCenter(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)), 14);
 	   					map.addOverlay(marker);	
 	   					//changeStyle();
 			    	}
@@ -96,7 +91,7 @@
 		    		Alert.show(" No Marker ");	
 		    	} else { 
 		    		var position: LatLng = marker.getLatLng();
-		    		trace(position.lat().toString()+"/"+position.lng().toString());
+		    		trace(position.lat().toString()+" || "+position.lng().toString());
 		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),Application.application.imagePath);
 		    		closeGeolocation();
 		    	}
@@ -116,7 +111,14 @@
 		    
 		    private function geocoder_geocodingSuccess(evt:GeocodingEvent):void {
                 var result:Placemark = GeocodingResponse(evt.response).placemarks[0];
-                map.setCenter(result.point, 5);
+
+                var box:Object = result.ExtendedData.LatLonBox;
+                var pBbox:LatLngBounds = new LatLngBounds(
+                								new LatLng(box.north,box.west),
+                								new LatLng(box.south,box.east));
+                							
+                
+                map.setCenter(result.point,map.getBoundsZoomLevel(pBbox));
                 latitude = result.point;
             }
 
@@ -136,7 +138,7 @@
     url="http://www.vizzuality.com" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RRtyGR_26Vh_v-YP2taQZno1YdgrhQJzeuNLwYCMpo8VRY9mC5aAjXmbQ" x="10" y="54"/>
 	<mx:Button  label="x" fillAlphas="[1.0, 1.0, 1.0, 1.0]" click="closeGeolocation()" y="10" right="10" width="32" cornerRadius="0"/>
 	<mx:Button x="236" y="411" label="Save &amp; close" click="saveGeolocation()"/>
-	<mx:TextInput x="10" id="textSearch" y="381" width="251" text="Write your desired location" color="#C5C9CA" backgroundColor="#656363" 
+	<mx:TextInput x="10" id="textSearch" y="381" width="251" text="Write your desired location" color="#C5C9CA" backgroundColor="#656363" enter="searchLocation()"
 		click="writeTextInput()" borderColor="#797A7B" fontWeight="bold"/>
 	<mx:Button x="269" y="381" label="Search" click="searchLocation()"/>
 	<mx:HRule x="10" y="36" width="324" height="6" strokeColor="#373A3A" strokeWidth="1"/>

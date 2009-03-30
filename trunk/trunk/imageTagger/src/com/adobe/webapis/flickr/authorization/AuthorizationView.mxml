@@ -6,11 +6,11 @@
 
         <mx:states>
                 <mx:State name="settingsErrorState">
-                        <mx:AddChild position="lastChild">
                         <mx:RemoveChild target="{textarea1}"/>
                         <mx:RemoveChild target="{textarea2}"/>
                         <mx:RemoveChild target="{textarea3}"/>
                         <mx:RemoveChild target="{textarea4}"/>
+                        <mx:AddChild position="lastChild">
                                 <mx:Text y="70" 
                                         text="Flickr API Key and Flickr secret have not been set." 
                                         right="10" left="10" textAlign="center" color="#FF0202" height="78"/>
@@ -39,8 +39,8 @@
                         <mx:RemoveChild target="{textarea3}"/>
                         <mx:RemoveChild target="{textarea4}"/>
                         <mx:AddChild position="lastChild">
-                                <mx:VBox>
-                                	<mx:HBox width="100%" height="30" color="#B7BABB" backgroundColor="#F2F6C2" horizontalAlign="left" verticalAlign="middle">
+                                <mx:VBox width="100%" height="100%" verticalGap="0">
+                                	<mx:HBox width="100%" height="30" color="#B7BABB" backgroundColor="#F2F6C2" horizontalAlign="center" verticalAlign="middle">
                                 		<mx:Label text="Please, proceed with authentication on flickr to use imageTagger" fontWeight="normal" color="#3F4040" fontFamily="Arial" fontSize="13"/>
                                 		<mx:Button label="Cancel" click="currentState=''" alpha="1.0" fillAlphas="[1.0, 1.0, 1.0, 1.0]" fillColors="[#807D7D, #807D7D]" color="#CECFD0"/>
                                 	</mx:HBox>

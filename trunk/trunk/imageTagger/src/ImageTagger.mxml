@@ -5,18 +5,9 @@
 	
 	<mx:Script>
 		<![CDATA[
-			import com.vizzuality.event.GetTokenExpired;
-			import com.vizzuality.event.CloseComponentEvent;
-			import mx.rpc.events.ResultEvent;
-			import mx.collections.ArrayCollection;
-			import com.adobe.webapis.flickr.authorization.events.AuthorizationEvent;
-			import com.adobe.webapis.flickr.authorization.AuthorizationView;
-			import mx.core.IFlexDisplayObject;
-			import mx.managers.PopUpManager;
-			import flash.filesystem.File;
 			import com.vizzuality.dao.DataAccessObject;
 			
-			//Global vars about Flickr settings
+			//Global variables about Flickr settings
 			public var flickrAdminKey : String = "48e37f8de83dcd4366e5f3be69c01c1f";
 			public var flickrSecretKey : String = "aafe99c288b6dc7c";
 			public var token: String = "";
@@ -69,9 +60,10 @@
 		</mx:State>
 		<mx:State name="authorizationFlickr">
 			<mx:AddChild>
-				<comps:AuthorizationView id="authorization" color="#F6F8F9" height="636" horizontalCenter="0" width="95%" bottom="17"/>
+				<comps:AuthorizationView id="authorization" color="#F6F8F9" horizontalCenter="0" width="95%" top="70" bottom="15"/>
 			</mx:AddChild>
 			<mx:SetStyle target="{label1}" name="top" value="50"/>
+			<mx:SetStyle name="backgroundColor" value="#2E2E2E"/>
 		</mx:State>
 	</mx:states>
 </mx:WindowedApplication>

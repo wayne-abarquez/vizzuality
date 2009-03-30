@@ -82,9 +82,16 @@ package com.vizzuality.dao
 			"id INTEGER PRIMARY KEY AUTOINCREMENT,"+
 			"login TEXT," +
 			"path TEXT," +
-			"scientific TEXT DEFAULT NULL,"+
+			"scientific TEXT DEFAULT NULL,"+ 
+			"kingdom TEXT," + 
+			"phylum TEXT," + 
+			"class TEXT," + 
+			"orde TEXT," + 
+			"family TEXT," + 
+			"genus TEXT," + 
+			"species TEXT," + 
 			"lat TEXT," +
-			"lon TEXT," + 
+			"lon TEXT," +
 			"FOREIGN KEY (login) REFERENCES user(alias) " +
 			"ON UPDATE CASCADE " +
 			"ON DELETE SET NULL)";
@@ -103,6 +110,11 @@ package com.vizzuality.dao
 			openConnection(sqlSentence);
 		}
 		
+		public function getTaxonomy(path:String):void {
+			var sqlSentence: String = "SELECT kingdom,phylum,class,orde,family,genus,species FROM photos WHERE path='"+path+"'";
+			openConnection(sqlSentence);
+		}
+		
 	
 		public function countHandler(sqlArray: ArrayCollection):int {
 			var numRows:int = sqlArray.length;
@@ -114,7 +126,6 @@ package com.vizzuality.dao
 		        }
 		    }	
 		    return count;
-		    
 	    }
 	    
 		
@@ -131,6 +142,9 @@ package com.vizzuality.dao
 			    }
 		    }
 		}
+		
+		
+		
 		
 				
 	
