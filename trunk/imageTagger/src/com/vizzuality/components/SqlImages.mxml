@@ -11,6 +11,7 @@
 		
 	<mx:Script>
 		<![CDATA[
+			import mx.states.AddChild;
 			import mx.events.CloseEvent;
 			import com.vizzuality.dao.TaxonomyResolutionService;
 			import mx.rpc.events.FaultEvent;
@@ -54,6 +55,7 @@
 			private var scientific: String;
 			public var geo:Object = new Object(); 
 			public var geoPop:IFlexDisplayObject;
+			//public var uploadedImage: Boolean = false;
 			
 			private var taxonomyResolutionService:TaxonomyResolutionService;
 			
@@ -73,8 +75,7 @@
 		   			taxonomyResolutionService= new TaxonomyResolutionService();
 		   		
 		   		Application.application.taxon = name;	
-				
-				taxonomyResolutionService.resolveTaxonomy(path,name);
+				//taxonomyResolutionService.resolveTaxonomy(path,name);
 		   	            	
             	/* if (progressPop==null){
             		progressPop = PopUpManager.createPopUp(this, PopUpUpload, true);
@@ -83,11 +84,17 @@
 						
 		    }
 		 	
-		 	public function deleteImage(path:String):void {
-	 			dao.openConnection("DELETE FROM photos WHERE path='"+ "file://" + escape(path) +"'");
+		 	public function deleteImage(path:String,num:int):void {
 	 			var file:File = new File;
-	 			file.url= "file://" + path;
-	 			file.deleteFile(); 
+	 			if (num==0) {
+		 			dao.openConnection("DELETE FROM photos WHERE path='"+ "file://" + escape(path) +"'");
+		 			file.url= "file://" + path;
+	 			} else {
+	 				dao.openConnection("DELETE FROM photos WHERE path='"+ path +"'");
+		 			file.url= path;
+	 			}
+	 			file.deleteFile();
+	 			//uploadedImage = true;
 	 			refreshTilelist();
 	 			if (Application.application.deletingAllPictures) {
 					Application.application.principalView.system.deleteAll();
@@ -192,7 +199,7 @@
 		   		refreshTilelist();
 		   		if (sqlArray.length>0) {
 					Application.application.deletingAllPictures=true;
-		   			deleteImage(sqlArray[0].path);
+		   			deleteImage(sqlArray[0].path,1);
 		  		} else {
 					Application.application.deletingAllPictures=false;
 		  		}
@@ -211,13 +218,10 @@
 		   }
 		   
 		   public function geolocationState(name:String,path:String):void {
-		   		//Application.application.taxon = "Loading Google Maps";
-		    	//progressPop = PopUpManager.createPopUp(this, popUpUploadFlickr, true);
-				//PopUpManager.centerPopUp(progressPop);
-					Application.application.animalName = name;
-					Application.application.imagePath = path;
-		   			geoPop = PopUpManager.createPopUp(this, GeolocationPanel, true);
-                	PopUpManager.centerPopUp(geoPop);
+				Application.application.animalName = name;
+				Application.application.imagePath = path;
+	   			geoPop = PopUpManager.createPopUp(this, GeolocationPanel, true);
+            	PopUpManager.centerPopUp(geoPop);
 					
 		   }
 
@@ -239,6 +243,13 @@
 		   		if (ev.detail == Alert.YES) {getAllImages()}
 		   }
 		   
+		   public function openTaxonomyPanel(path:String,name:String):void {
+		   		var taxonPanel: TaxonomyPanel = TaxonomyPanel(PopUpManager.createPopUp(this, TaxonomyPanel, true));
+		   		taxonPanel.animalName = name;
+		   		taxonPanel.animalPath = path;
+            	PopUpManager.centerPopUp(taxonPanel);
+		   }
+		   
 		]]>
 	</mx:Script>
 	
@@ -255,6 +266,6 @@
 			</mx:HBox>	
 		</mx:HBox>
 		<mx:TileList selectionColor="#4a4a4a" selectionDisabledColor="#4a4a4a" rollOverColor="#4a4a4a" id="tilelist"  dataProvider="{sqlArray}"
-		itemRenderer="com.vizzuality.components.photoRenderer" borderThickness="1" width="100%" height="94%" borderColor="#A7ABAE" backgroundColor="#4A4A4A" alpha="1.0" themeColor="#4A4A4A"/>			
+		itemRenderer="com.vizzuality.components.PhotoRenderer" borderThickness="1" width="100%" height="94%" borderColor="#A7ABAE" backgroundColor="#4A4A4A" alpha="1.0" themeColor="#4A4A4A"/>			
 	</mx:VBox>
 </mx:Canvas>

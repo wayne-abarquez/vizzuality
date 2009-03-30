@@ -1,41 +1,35 @@
 package com.vizzuality.dao
 {
 	import com.adobe.serialization.json.JSON;
-	import com.adobe.webapis.flickr.FlickrService;
 	import com.adobe.webapis.flickr.events.*;
-	import com.adobe.webapis.flickr.methodgroups.Upload;
+	import com.vizzuality.event.ResultJson;
 	
-	import flash.desktop.NativeApplication;
-	import flash.events.DataEvent;
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.filesystem.File;
 	import flash.desktop.*;
 	
-	import mx.core.Application;
+	import mx.collections.ArrayCollection;
+	import mx.core.UIComponent;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.HTTPService;
 	
 		
-	public class TaxonomyResolutionService
+	public class TaxonomyResolutionService extends UIComponent
 	{
+		public var result:ArrayCollection;
+		private var animal: String;
 		
-		private var name: String;
-		private var dir: String;
 		
 		public function TaxonomyResolutionService() {
 		}
 		
 		
-		public function resolveTaxonomy(path:String,scientific:String):void {
-			name = scientific;
-			dir = path;
+		public function resolveTaxonomy(scientific:String):void {
+			animal = scientific;
 			var gbifTaxonomicService: HTTPService = new HTTPService();
 			gbifTaxonomicService.method = "get";
 			gbifTaxonomicService.resultFormat = "text";
 			
-			var gbifUrl:String = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+escape(name);
+			var gbifUrl:String = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+escape(animal);
 			gbifTaxonomicService.url=gbifUrl;
 			gbifTaxonomicService.addEventListener(ResultEvent.RESULT,onGbifTaxonomicServiceResult);
 			gbifTaxonomicService.addEventListener(FaultEvent.FAULT,onGbifTaxonomicServiceFault);
@@ -56,29 +50,33 @@ package com.vizzuality.dao
 		}
 		
 		private function jsonData(jsonArray: Array):void {
-			var count:int = jsonArray.length;
-			var taxon: String = "specieslog:status=pending,specieslog:source=organizer,specieslog:scientificName=\""+name+"\"";
+			var count:int = jsonArray.length;	
+			var taxonomyArray: Array= new Array();
 						
 			if 	(jsonArray!=null) {	
-				
 				for(var i:int=0;i<count;i++) {
 					var str: String;
 					str = jsonArray[i].scientificName;
 					
-					if (str.toLowerCase()!=name.toLowerCase()) {	
+					if (str.toLowerCase()!=animal.toLowerCase()) {	
 						trace(jsonArray[i].rank + "-> "+jsonArray[i].scientificName);
-						taxon += ",taxonomy:"+jsonArray[i].rank+"=\""+jsonArray[i].scientificName+"\"";
+						//taxon += ",taxonomy:"+jsonArray[i].rank+"=\""+jsonArray[i].scientificName+"\"";
+						taxonomyArray[i] = jsonArray[i].scientificName;
 					} else {
-						taxon += ",taxonomy:binomial=\""+name+"\"";
+						//taxon += ",taxonomy:binomial=\""+name+"\"";
 						i=count;
 					}
 				}			
 				
 			} 
-			sendImageFlickr(taxon);
+			var out:ResultJson = new ResultJson(ResultJson.JSON_RESULT);
+			out.jsonData = taxonomyArray;
+	        dispatchEvent(out);
+			//taxonomyArray;
+			
 		}
 		
-		private function sendImageFlickr(tag: String):void {	
+		/* private function sendImageFlickr(tag: String):void {	
 			var imageFile:File= new File();
 			imageFile.url=dir;
 			imageFile.addEventListener(DataEvent.UPLOAD_COMPLETE_DATA,onResult);
@@ -93,7 +91,7 @@ package com.vizzuality.dao
 		
 		private function onResult(ev: Event):void {
 			var object: Object = ev;
-			Application.application.principalView.system.deleteImage(ev.currentTarget.nativePath.toString());
+			Application.application.principalView.system.deleteImage(ev.currentTarget.nativePath.toString(),0);
 
 		   	var xml: XML = new XML(object.data);
 			
@@ -123,7 +121,7 @@ package com.vizzuality.dao
 				 photoID = id;					
 			}
 			return photoID;
-		}
+		} */
  
 	}
 	
