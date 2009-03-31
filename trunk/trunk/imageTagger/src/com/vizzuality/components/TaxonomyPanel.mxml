@@ -2,6 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="344" height="443"  alpha="1.0" backgroundColor="#4F4C4C" creationComplete=" onCreationComplete()">
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
 			import mx.rpc.events.ResultEvent;
 			import com.vizzuality.dao.TaxonomyResolutionService;
 			import mx.collections.ArrayCollection;
@@ -31,7 +32,7 @@
 
 			private function fillResult(result: ArrayCollection):void {
 				if (result != null) {
-					for (var i:int = 0; i < 6; i++) {
+					for (var i:int = 0; i < 7; i++) {
 				        switch(i) {
 						    case 0:
 						        kingdom.text = result[0].kingdom;
@@ -52,7 +53,7 @@
 						        genus.text = result[0].genus;
 						        break;
 						    default:
-						        species.text = result[0].species;
+						        binomial.text = result[0].binomial;
 						        break;
 						}
 					}
@@ -66,30 +67,35 @@
 			
 			
 			private function onTaxonomyResult(ev:ResultJsonEvent):void {
-				fillResult(ev.jsonData as ArrayCollection);
-				//taxon.resolveTaxonomy(animalName);
-				//sqlArray = taxon.Result;
-				//trace(sqlArray.toString());
+				fillResult(new ArrayCollection(ev.jsonData));
+			}
+			
+			private function saveTaxonomy():void {
+				var sqlSentence: String = "UPDATE photos SET scientific = '"+title.text+"', kingdom = '"+kingdom.text+"', phylum = '"+phylum.text+"', clas = '"+clas.text+
+					"', orde = '"+order.text+"', family = '"+family.text+"', genus = '"+genus.text+"', binomial = '"+binomial.text+"' WHERE path = '"+animalPath+"'";
+				dao.openConnection(sqlSentence);
+				Application.application.principalView.system.refreshTilelist();
+				PopUpManager.removePopUp(this);
 			}
 		]]>
 	</mx:Script>
 	<mx:TextInput x="174" y="264" backgroundColor="#686464" borderColor="#737070" id="genus"/>
-	<mx:TextInput x="174" y="294" backgroundColor="#686464" borderColor="#737070" id="species"/>
+	<mx:TextInput x="174" y="294" backgroundColor="#686464" borderColor="#737070" id="binomial"/>
 	<mx:TextInput x="174" y="114" backgroundColor="#686464" borderColor="#737070" id="kingdom"/>
 	<mx:TextInput x="174" y="144" backgroundColor="#686464" borderColor="#737070" id="phylum"/>
 	<mx:TextInput x="174" y="174" backgroundColor="#686464" borderColor="#737070" id="clas"/>
 	<mx:TextInput x="174" y="204" backgroundColor="#686464" borderColor="#737070" id="order"/>
 	<mx:TextInput x="174" y="234" backgroundColor="#686464" borderColor="#737070" id="family"/>
-	<mx:Text x="73" y="296" text="Species&#xd;" width="74" color="#FAF8F8"/>
-	<mx:Text x="73" y="266" text="Genus" width="74" color="#FAF8F8"/>
-	<mx:Text x="73" y="236" text="Family" width="74" color="#FAF8F8"/>
-	<mx:Text x="73" y="206" text="Order" width="74" color="#FAF8F8"/>
-	<mx:Text x="73" y="176" text="Class" width="74" color="#FAF8F8"/>
-	<mx:Text x="73" y="146" text="Phylum" width="74" color="#FAF8F8"/>
-	<mx:Text x="73" y="114" text="Kingdom&#xd;" width="74" color="#FAF8F8"/>
-	<mx:Text y="23" text="Scientific Name" width="208" height="33" color="#FCFEFE" fontSize="25" horizontalCenter="0" textAlign="center" id="title"/>
-	<mx:Button x="10" y="411" label="Refresh"/>
-	<mx:Button x="235" y="411" label="Save &amp; Close"/>
-	<mx:Button x="303" y="10" label="x" width="31" click="PopUpManager.removePopUp(this)"/>
+	<mx:Text x="92" y="296" text="Binomial&#xd;" width="74" color="#FAF8F8" textAlign="right"/>
+	<mx:Text x="92" y="266" text="Genus" width="74" color="#FAF8F8" textAlign="right"/>
+	<mx:Text x="92" y="236" text="Family" width="74" color="#FAF8F8" textAlign="right"/>
+	<mx:Text x="92" y="206" text="Order" width="74" color="#FAF8F8" textAlign="right"/>
+	<mx:Text x="92" y="176" text="Class" width="74" color="#FAF8F8" textAlign="right"/>
+	<mx:Text x="92" y="146" text="Phylum" width="74" color="#FAF8F8" textAlign="right"/>
+	<mx:Text x="92" y="114" text="Kingdom&#xd;" width="74" color="#FAF8F8" textAlign="right"/>
+	<mx:TextInput y="23" text="Scientific Name" width="260" height="38" enter="autoTaxonomy()" color="#FCFEFE" fontSize="25" horizontalCenter="0" borderThickness="0" borderStyle="solid" change="{animalName=title.text}" textAlign="center" id="title" backgroundAlpha="0.0"/>
+	<mx:Button x="10" y="411" label="Refresh" click="autoTaxonomy()"/>
+	<mx:Button x="235" y="411" label="Save &amp; Close" click="saveTaxonomy()"/>
+	<mx:Button label="x" width="31" click="PopUpManager.removePopUp(this)" right="5" top="5"/>
 </mx:Canvas>
 

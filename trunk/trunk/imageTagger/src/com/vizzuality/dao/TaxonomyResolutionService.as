@@ -51,7 +51,7 @@ package com.vizzuality.dao
 		
 		private function jsonData(jsonArray: Array):void {
 			var count:int = jsonArray.length;	
-			var taxonomyArray: Array= new Array({kingdom:"null",phylum:"null",clas:"null",orde:"null",family:"null",genus:"null",species:"null"});
+			var taxonomyArray: Array= new Array({kingdom:"",phylum:"",clas:"",orde:"",family:"",genus:"",binomial:""});
 						
 			if 	(jsonArray!=null) {	
 				for(var i:int=0;i<count;i++) {
@@ -81,12 +81,13 @@ package com.vizzuality.dao
 						        taxonomyArray[0].genus = jsonArray[i].scientificName;
 						        break;
 						    default:
-						        taxonomyArray[0].species = jsonArray[i].scientificName;
+						        taxonomyArray[0].binomial = jsonArray[i].scientificName;
 						        break;
 						}
 						//taxonomyArray[i] = jsonArray[i].scientificName;
 					} else {
 						//taxon += ",taxonomy:binomial=\""+name+"\"";
+						taxonomyArray[0].binomial = jsonArray[i].scientificName;
 						i=count;
 					}
 				}			
@@ -95,7 +96,6 @@ package com.vizzuality.dao
 			var out:ResultJsonEvent = new ResultJsonEvent(ResultJsonEvent.JSON_RESULT);
 			out.jsonData = taxonomyArray;
 	        dispatchEvent(out);
-			//taxonomyArray;
 			
 		}
 		
