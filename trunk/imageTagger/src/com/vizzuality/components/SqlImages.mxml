@@ -44,7 +44,7 @@
 			public var progressView:PopUpUpload;
 			public var progressPop:IFlexDisplayObject;	
 			private var dao: DataAccessObject= new DataAccessObject();
-			[Bindable] private var sqlArray: ArrayCollection;
+			[Bindable] public var sqlArray: ArrayCollection;
 			private var dir:File = File.applicationStorageDirectory.resolvePath("images");
 			private var imagesDir:String;
 			private var fileToOpen:File = File.documentsDirectory;

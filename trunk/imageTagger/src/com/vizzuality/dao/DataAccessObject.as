@@ -85,11 +85,11 @@ package com.vizzuality.dao
 			"scientific TEXT DEFAULT NULL,"+ 
 			"kingdom TEXT," + 
 			"phylum TEXT," + 
-			"class TEXT," + 
+			"clas TEXT," + 
 			"orde TEXT," + 
 			"family TEXT," + 
 			"genus TEXT," + 
-			"species TEXT," + 
+			"binomial TEXT," + 
 			"lat TEXT," +
 			"lon TEXT," +
 			"FOREIGN KEY (login) REFERENCES user(alias) " +
@@ -111,7 +111,7 @@ package com.vizzuality.dao
 		}
 		
 		public function getTaxonomy(path:String):void {
-			var sqlSentence: String = "SELECT kingdom,phylum,class,orde,family,genus,species FROM photos WHERE path='"+path+"'";
+			var sqlSentence: String = "SELECT kingdom,phylum,clas,orde,family,genus,binomial FROM photos WHERE path='"+path+"'";
 			openConnection(sqlSentence);
 		}
 		
