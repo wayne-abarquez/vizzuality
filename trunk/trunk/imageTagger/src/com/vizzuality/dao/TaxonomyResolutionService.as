@@ -2,7 +2,7 @@ package com.vizzuality.dao
 {
 	import com.adobe.serialization.json.JSON;
 	import com.adobe.webapis.flickr.events.*;
-	import com.vizzuality.event.ResultJson;
+	import com.vizzuality.event.ResultJsonEvent;
 	
 	import flash.desktop.*;
 	
@@ -51,7 +51,7 @@ package com.vizzuality.dao
 		
 		private function jsonData(jsonArray: Array):void {
 			var count:int = jsonArray.length;	
-			var taxonomyArray: Array= new Array();
+			var taxonomyArray: Array= new Array({kingdom:"null",phylum:"null",clas:"null",orde:"null",family:"null",genus:"null",species:"null"});
 						
 			if 	(jsonArray!=null) {	
 				for(var i:int=0;i<count;i++) {
@@ -61,7 +61,30 @@ package com.vizzuality.dao
 					if (str.toLowerCase()!=animal.toLowerCase()) {	
 						trace(jsonArray[i].rank + "-> "+jsonArray[i].scientificName);
 						//taxon += ",taxonomy:"+jsonArray[i].rank+"=\""+jsonArray[i].scientificName+"\"";
-						taxonomyArray[i] = jsonArray[i].scientificName;
+						switch(i) {
+						    case 0:
+						        taxonomyArray[0].kingdom = jsonArray[i].scientificName;
+						        break;
+						    case 1:
+						        taxonomyArray[0].phylum = jsonArray[i].scientificName;
+						        break;
+						    case 2:
+						        taxonomyArray[0].clas = jsonArray[i].scientificName;
+						        break;
+						    case 3:
+						        taxonomyArray[0].orde = jsonArray[i].scientificName;
+						        break;
+						    case 4:
+						        taxonomyArray[0].family = jsonArray[i].scientificName;
+						        break;
+						    case 5:
+						        taxonomyArray[0].genus = jsonArray[i].scientificName;
+						        break;
+						    default:
+						        taxonomyArray[0].species = jsonArray[i].scientificName;
+						        break;
+						}
+						//taxonomyArray[i] = jsonArray[i].scientificName;
 					} else {
 						//taxon += ",taxonomy:binomial=\""+name+"\"";
 						i=count;
@@ -69,7 +92,7 @@ package com.vizzuality.dao
 				}			
 				
 			} 
-			var out:ResultJson = new ResultJson(ResultJson.JSON_RESULT);
+			var out:ResultJsonEvent = new ResultJsonEvent(ResultJsonEvent.JSON_RESULT);
 			out.jsonData = taxonomyArray;
 	        dispatchEvent(out);
 			//taxonomyArray;

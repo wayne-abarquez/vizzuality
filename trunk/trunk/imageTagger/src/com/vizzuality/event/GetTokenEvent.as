@@ -1,6 +1,9 @@
 package com.vizzuality.event
 {
-	public class GetTokenEvent
+	import flash.events.Event;
+	
+	
+	public class GetTokenEvent extends Event
 	{
         public static const KO_TOKEN : String = "onGetTokenKO";
         public static const OK_TOKEN:  String = "onGetTokenOK";
@@ -9,8 +12,5 @@ package com.vizzuality.event
         {
                 super(type, bubbles, cancelable);
         }       
-                
-
-
 	}
 }
