@@ -24,7 +24,6 @@
 	<mx:Script>
 		<![CDATA[
 			import com.adobe.serialization.json.JSON;
-			import com.vizzuality.event.LoadingImage;
 			import flash.events.Event;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
@@ -33,13 +32,13 @@
 			import mx.core.Application;
 			import com.adobe.crypto.MD5;
 			import com.vizzuality.dao.*;
-			import com.vizzuality.event.*;
+			import com.vizzuality.event.GetTokenEvent;
 			
 	
 			private var sqlArray: ArrayCollection;
 			private var object: Object;
-			private var ko:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
-			private var ok:GetTokenOK = new GetTokenOK(GetTokenOK.OK_TOKEN);
+			private var ko:GetTokenEvent = new GetTokenEvent(GetTokenEvent.KO_TOKEN);
+			private var ok:GetTokenEvent = new GetTokenEvent(GetTokenEvent.OK_TOKEN);
 
 			
 			private function onCreationComplete():void {
@@ -67,7 +66,6 @@
 					jsonService.url=flickrurl;
 			 		jsonService.send();
 			 	} else {
-			 		var out:GetTokenExpired = new GetTokenExpired(GetTokenExpired.KO_TOKEN);
 	        		dispatchEvent(ko);
 	        		trace("Empty Token");
 			 	}
@@ -133,8 +131,8 @@
 		]]>
 	</mx:Script>
 	<mx:Metadata>
-		    [Event(name="onGetTokenOK", type="com.vizzuality.event.GetTokenOK")]
-		    [Event(name="onGetTokenKO", type="com.vizzuality.event.GetTokenExpired")]
+		    [Event(name="onGetTokenOK", type="com.vizzuality.event.GetTokenEvent")]
+		    [Event(name="onGetTokenKO", type="com.vizzuality.event.GetTokenEvent")]
 	</mx:Metadata>
 	<mx:SWFLoader source="/com/vizzuality/assets/loading.swf" x="53" y="16" id="swfloader1"/>
 	<mx:Label id="bar" text="Checking..." y="56" color="#596161" fontSize="12" height="23" horizontalCenter="0" fontWeight="bold"/>
