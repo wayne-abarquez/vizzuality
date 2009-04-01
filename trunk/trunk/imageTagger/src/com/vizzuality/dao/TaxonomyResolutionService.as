@@ -3,9 +3,6 @@ package com.vizzuality.dao
 	import com.adobe.serialization.json.JSON;
 	import com.adobe.webapis.flickr.events.*;
 	import com.vizzuality.event.ResultJsonEvent;
-	
-	import flash.desktop.*;
-	
 	import mx.collections.ArrayCollection;
 	import mx.core.UIComponent;
 	import mx.rpc.events.FaultEvent;
@@ -60,7 +57,6 @@ package com.vizzuality.dao
 					
 					if (str.toLowerCase()!=animal.toLowerCase()) {	
 						trace(jsonArray[i].rank + "-> "+jsonArray[i].scientificName);
-						//taxon += ",taxonomy:"+jsonArray[i].rank+"=\""+jsonArray[i].scientificName+"\"";
 						switch(i) {
 						    case 0:
 						        taxonomyArray[0].kingdom = jsonArray[i].scientificName;
@@ -84,9 +80,7 @@ package com.vizzuality.dao
 						        taxonomyArray[0].binomial = jsonArray[i].scientificName;
 						        break;
 						}
-						//taxonomyArray[i] = jsonArray[i].scientificName;
 					} else {
-						//taxon += ",taxonomy:binomial=\""+name+"\"";
 						taxonomyArray[0].binomial = jsonArray[i].scientificName;
 						i=count;
 					}
@@ -98,53 +92,6 @@ package com.vizzuality.dao
 	        dispatchEvent(out);
 			
 		}
-		
-		/* private function sendImageFlickr(tag: String):void {	
-			var imageFile:File= new File();
-			imageFile.url=dir;
-			imageFile.addEventListener(DataEvent.UPLOAD_COMPLETE_DATA,onResult);
-			imageFile.addEventListener(IOErrorEvent.NETWORK_ERROR,onErrorStatus);
-			imageFile.addEventListener(IOErrorEvent.IO_ERROR,onErrorStatus);
-			var service:FlickrService = new FlickrService(Application.application.flickrAdminKey);
-			service.secret = Application.application.flickrSecretKey;
-			service.token = Application.application.token;
-			var uploader:Upload = new Upload(service);
-			uploader.upload(imageFile,name,"",tag);
-		}
-		
-		private function onResult(ev: Event):void {
-			var object: Object = ev;
-			Application.application.principalView.system.deleteImage(ev.currentTarget.nativePath.toString(),0);
-
-		   	var xml: XML = new XML(object.data);
-			
-			if (Application.application.tagSequence =="") {
-				Application.application.tagSequence += getFlickUploadID(xml);				
-			} else {
-				Application.application.tagSequence += "," + getFlickUploadID(xml);
-			}
-			
-			
-			if (Application.application.uploadingAllPictures) {
-				Application.application.principalView.system.getAllImages();
-			}
-			else {
-				//Application.application.principalView.system.closeProgressBar();
-				DockIcon(NativeApplication.nativeApplication.icon).bounce();
-			}
-		}
-		
-		private function onErrorStatus(ev: Event):void {
-			Application.application.principalView.system.errorProgressBar();
-		}
-		
-		private function getFlickUploadID(xml: XML):String {
-		   	var photoID: String = "";
-		   	for each( var id:XML in xml..photoid ) {
-				 photoID = id;					
-			}
-			return photoID;
-		} */
  
 	}
 	

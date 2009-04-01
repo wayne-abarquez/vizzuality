@@ -54,7 +54,7 @@
 			    	
 			    	if (arrayLatitudes.length != 0 && arrayLatitudes[0].lat!=null) {
 	   					marker = new Marker(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)),options);
-	   					map.setCenter(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)), 14);
+	   					map.setCenter(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)), arrayLatitudes[0].zoom);
 	   					map.addOverlay(marker);	
 	   					//changeStyle();
 			    	}
@@ -91,8 +91,7 @@
 		    		Alert.show(" No Marker ");	
 		    	} else { 
 		    		var position: LatLng = marker.getLatLng();
-		    		trace(position.lat().toString()+" || "+position.lng().toString());
-		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),Application.application.imagePath);
+		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),map.getZoom(),Application.application.imagePath);
 		    		closeGeolocation();
 		    	}
 		    }

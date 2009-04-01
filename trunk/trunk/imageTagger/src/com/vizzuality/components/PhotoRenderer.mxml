@@ -20,6 +20,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.dao.FlickrUploadService;
 			import mx.core.IFlexDisplayObject;
 			import mx.managers.PopUpManager;
 			import mx.events.EffectEvent;
@@ -37,16 +38,8 @@
 		      	this.outerList = (this.parentDocument as SqlImages).tilelist;
 		       	this.outerList.addEventListener(ListEvent.CHANGE, updateSelected); 
 		       	this.addEventListener(FlexEvent.DATA_CHANGE, checkSelected);
-		       	this.addEventListener(Event.RENDER,test); 	
-		       	//this.addEventListener(Event.ENTER_FRAME,test);
 		     }
-	
-			private function test(ev: Event):void {
-			/* 	if ((this.parentDocument as SqlImages).uploadedImage){
-					currentState='';
-				 	(this.parentDocument as SqlImages).uploadedImage = false;
-				} */
-			}
+		     
 			
 			private function updateScientificName():void {
 				(this.parentDocument as SqlImages).updateName(scientificNameInput.text,data.path);		
@@ -79,8 +72,10 @@
 				if (scientificNameInput.text=="" || scientificNameInput.text=="Tag this image!") {
 					Alert.show("Tag this image first!","Error uploading")
 				} else {
-					currentState="uploadImage";
-					(this.parentDocument as SqlImages).uploadPhoto(data.path,scientificNameInput.text);
+					//currentState="uploadImage";
+					var upFlick: FlickrUploadService = new FlickrUploadService();
+					upFlick.resolveTagsFlickr(data.path,scientificNameInput.text);
+					//(this.parentDocument as SqlImages).uploadPhoto(data.path,scientificNameInput.text);
 				}
 			}
 			

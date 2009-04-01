@@ -2,6 +2,8 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="344" height="443"  alpha="1.0" backgroundColor="#4F4C4C" creationComplete=" onCreationComplete()">
 	<mx:Script>
 		<![CDATA[
+			import mx.events.CloseEvent;
+			import mx.controls.Alert;
 			import mx.core.Application;
 			import mx.rpc.events.ResultEvent;
 			import com.vizzuality.dao.TaxonomyResolutionService;
@@ -15,20 +17,24 @@
 			private var dao:DataAccessObject = new DataAccessObject();
 			private var sqlArray: ArrayCollection = null;
 			private var taxon: TaxonomyResolutionService = new TaxonomyResolutionService();
-			
-			
-			
+	
+	
 			private function onCreationComplete():void {
-				
 				title.text = animalName;
 				dao.getTaxonomy(animalPath);
 				sqlArray = dao.dbResult;
-				if (sqlArray[0].kingdom==null) {
+				if ((sqlArray[0].kingdom==null) || (sqlArray[0].kingdom=="")) {
 					autoTaxonomy();
 				} else {
-					fillResult(sqlArray);
+					if (sqlArray[0].binomial.toLowerCase()==animalName.toLowerCase()) {
+						fillResult(sqlArray);						
+					} else {
+						fillResult(sqlArray);
+						confirmTaxonomyChange();
+					}
 			    }	
 			}
+
 
 			private function fillResult(result: ArrayCollection):void {
 				if (result != null) {
@@ -60,15 +66,21 @@
 				}
 			}
 			
+			
 			private function autoTaxonomy():void {
-				taxon.addEventListener(ResultJsonEvent.JSON_RESULT,onTaxonomyResult);
-				taxon.resolveTaxonomy(animalName);
+				if (title.text == "") {	
+					Alert.show("Sorry, scientific name cannot be empty","Scientific Name Error")
+				} else {
+					taxon.addEventListener(ResultJsonEvent.JSON_RESULT,onTaxonomyResult);
+					taxon.resolveTaxonomy(animalName);
+				}
 			}
 			
 			
 			private function onTaxonomyResult(ev:ResultJsonEvent):void {
 				fillResult(new ArrayCollection(ev.jsonData));
 			}
+			
 			
 			private function saveTaxonomy():void {
 				var sqlSentence: String = "UPDATE photos SET scientific = '"+title.text+"', kingdom = '"+kingdom.text+"', phylum = '"+phylum.text+"', clas = '"+clas.text+
@@ -77,25 +89,44 @@
 				Application.application.principalView.system.refreshTilelist();
 				PopUpManager.removePopUp(this);
 			}
+			
+			
+			private function confirmTaxonomyChange():void {
+		   		Alert.okLabel = "Refresh";
+		   		Alert.buttonWidth = 71;
+		   		Alert.cancelLabel = "Keep"; 
+		   		Alert.show("You have change the scientific name and your taxonomy might be wrong. Do you want to keep you data or refresh from server?",
+		   			"Confirmation",Alert.OK|Alert.CANCEL,null,refreshTaxonomy);
+		    }
+		   
+		   
+		    private function refreshTaxonomy(ev: CloseEvent): void {
+		   		if (ev.detail == 4){
+			   		autoTaxonomy();
+		   		}
+		    }
+		    
 		]]>
 	</mx:Script>
-	<mx:TextInput x="174" y="264" backgroundColor="#686464" borderColor="#737070" id="genus"/>
-	<mx:TextInput x="174" y="294" backgroundColor="#686464" borderColor="#737070" id="binomial"/>
-	<mx:TextInput x="174" y="114" backgroundColor="#686464" borderColor="#737070" id="kingdom"/>
-	<mx:TextInput x="174" y="144" backgroundColor="#686464" borderColor="#737070" id="phylum"/>
-	<mx:TextInput x="174" y="174" backgroundColor="#686464" borderColor="#737070" id="clas"/>
-	<mx:TextInput x="174" y="204" backgroundColor="#686464" borderColor="#737070" id="order"/>
-	<mx:TextInput x="174" y="234" backgroundColor="#686464" borderColor="#737070" id="family"/>
-	<mx:Text x="92" y="296" text="Binomial&#xd;" width="74" color="#FAF8F8" textAlign="right"/>
-	<mx:Text x="92" y="266" text="Genus" width="74" color="#FAF8F8" textAlign="right"/>
-	<mx:Text x="92" y="236" text="Family" width="74" color="#FAF8F8" textAlign="right"/>
-	<mx:Text x="92" y="206" text="Order" width="74" color="#FAF8F8" textAlign="right"/>
-	<mx:Text x="92" y="176" text="Class" width="74" color="#FAF8F8" textAlign="right"/>
-	<mx:Text x="92" y="146" text="Phylum" width="74" color="#FAF8F8" textAlign="right"/>
-	<mx:Text x="92" y="114" text="Kingdom&#xd;" width="74" color="#FAF8F8" textAlign="right"/>
-	<mx:TextInput y="23" text="Scientific Name" width="260" height="38" enter="autoTaxonomy()" color="#FCFEFE" fontSize="25" horizontalCenter="0" borderThickness="0" borderStyle="solid" change="{animalName=title.text}" textAlign="center" id="title" backgroundAlpha="0.0"/>
+	
+	<mx:TextInput x="167" y="264" backgroundColor="#686464" borderColor="#737070" id="genus" themeColor="#8B8989" color="#D2D1D1" fontWeight="normal"/>
+	<mx:TextInput x="167" y="294" backgroundColor="#686464" borderColor="#737070" id="binomial" themeColor="#8B8989" color="#D2D1D1" fontWeight="normal"/>
+	<mx:TextInput x="167" y="114" backgroundColor="#686464" borderColor="#737070" id="kingdom" themeColor="#8B8989" color="#D2D1D1" fontWeight="normal"/>
+	<mx:TextInput x="167" y="144" backgroundColor="#686464" borderColor="#737070" id="phylum" themeColor="#8B8989" color="#D2D1D1" fontWeight="normal"/>
+	<mx:TextInput x="167" y="174" backgroundColor="#686464" borderColor="#737070" id="clas" themeColor="#8B8989" color="#D2D1D1" fontWeight="normal"/>
+	<mx:TextInput x="167" y="204" backgroundColor="#686464" borderColor="#737070" id="order" themeColor="#8B8989" color="#D2D1D1" fontWeight="normal"/>
+	<mx:TextInput x="167" y="234" backgroundColor="#686464" borderColor="#737070" id="family" themeColor="#8B8989" color="#D2D1D1" fontWeight="normal"/>
+	<mx:Text x="85" y="296" text="Binomial&#xd;" width="74" color="#FAF8F8" textAlign="right" fontWeight="bold" fontSize="12"/>
+	<mx:Text x="85" y="266" text="Genus" width="74" color="#FAF8F8" textAlign="right" fontWeight="bold" fontSize="12"/>
+	<mx:Text x="85" y="236" text="Family" width="74" color="#FAF8F8" textAlign="right" fontWeight="bold" fontSize="12"/>
+	<mx:Text x="85" y="206" text="Order" width="74" color="#FAF8F8" textAlign="right" fontWeight="bold" fontSize="12"/>
+	<mx:Text x="85" y="176" text="Class" width="74" color="#FAF8F8" textAlign="right" fontWeight="bold" fontSize="12"/>
+	<mx:Text x="85" y="146" text="Phylum" width="74" color="#FAF8F8" textAlign="right" fontWeight="bold" fontSize="12"/>
+	<mx:Text x="85" y="116" text="Kingdom&#xd;" width="74" color="#FAF8F8" textAlign="right" fontWeight="bold" fontSize="12"/>
+	<mx:TextInput y="23" text="Scientific Name" width="260" height="38" enter="autoTaxonomy()" color="#FCFEFE" fontSize="25" horizontalCenter="0" 
+		borderThickness="0" borderStyle="solid" change="{animalName=title.text}" textAlign="center" id="title" backgroundAlpha="0.0" themeColor="#8B8989"/>
 	<mx:Button x="10" y="411" label="Refresh" click="autoTaxonomy()"/>
-	<mx:Button x="235" y="411" label="Save &amp; Close" click="saveTaxonomy()"/>
+	<mx:Button x="235" y="411" label="Save &amp; Close" click="saveTaxonomy()" width="99"/>
 	<mx:Button label="x" width="31" click="PopUpManager.removePopUp(this)" right="5" top="5"/>
 </mx:Canvas>
 

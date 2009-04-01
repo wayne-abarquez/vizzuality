@@ -61,7 +61,6 @@ package com.vizzuality.dao
 		}	
 		
 				
-		
 		private function handlerStatement(ev:SQLEvent):void {
 			var result:SQLResult = sqlStatement.getResult();
 			dbResult = new ArrayCollection(result.data);
@@ -92,6 +91,7 @@ package com.vizzuality.dao
 			"binomial TEXT," + 
 			"lat TEXT," +
 			"lon TEXT," +
+			"zoom INTEGER," +
 			"FOREIGN KEY (login) REFERENCES user(alias) " +
 			"ON UPDATE CASCADE " +
 			"ON DELETE SET NULL)";
@@ -101,14 +101,16 @@ package com.vizzuality.dao
 		
 		
 		public function getLatitudes(path:String):void {
-			var sqlSentence: String = "SELECT lat,lon FROM photos WHERE path='"+path+"'";
+			var sqlSentence: String = "SELECT lat,lon,zoom FROM photos WHERE path='"+path+"'";
 			openConnection(sqlSentence);
 		}
 		
-		public function updateLatitudes(lat:String,lon:String,path:String):void {
-			var sqlSentence: String = "UPDATE photos SET lat = '"+lat+"', lon = '"+lon+"' WHERE path = '"+path+"'";
+		
+		public function updateLatitudes(lat:String,lon:String,zoom:int,path:String):void {
+			var sqlSentence: String = "UPDATE photos SET lat = '"+lat+"', lon = '"+lon+"', zoom = '"+zoom+"' WHERE path = '"+path+"'";
 			openConnection(sqlSentence);
 		}
+		
 		
 		public function getTaxonomy(path:String):void {
 			var sqlSentence: String = "SELECT kingdom,phylum,clas,orde,family,genus,binomial FROM photos WHERE path='"+path+"'";
@@ -142,11 +144,6 @@ package com.vizzuality.dao
 			    }
 		    }
 		}
-		
-		
-		
-		
-				
-	
+
 	}
 }
