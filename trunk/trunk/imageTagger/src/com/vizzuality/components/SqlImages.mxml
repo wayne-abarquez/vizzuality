@@ -76,12 +76,7 @@
 		   		
 		   		Application.application.taxon = name;	
 				//taxonomyResolutionService.resolveTaxonomy(path,name);
-		   	            	
-            	/* if (progressPop==null){
-            		progressPop = PopUpManager.createPopUp(this, PopUpUpload, true);
-					PopUpManager.centerPopUp(progressPop);
-            	} */
-						
+		   	            		
 		    }
 		 	
 		 	public function deleteImage(path:String,num:int):void {
@@ -190,7 +185,6 @@
 			   		uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);						
 		  		} else {
 					Application.application.uploadingAllPictures=false;
-					//PopUpUpload(progressPop).uploadComplete();
 					DockIcon(NativeApplication.nativeApplication.icon).bounce();
 		  		}
 		   }
@@ -205,17 +199,6 @@
 		  		}
 		   }
 		   
-		   public function closeProgressBar():void {
-		   		//PopUpUpload(progressPop).uploadComplete();
-		   }
-		   
-		   public function errorProgressBar():void {
-		   		//PopUpUpload(progressPop).httpError();
-		   }
-		   
-		   public function removeProgressBar():void {
-		   		//progressPop = null;
-		   }
 		   
 		   public function geolocationState(name:String,path:String):void {
 				Application.application.animalName = name;
@@ -225,9 +208,12 @@
 					
 		   }
 
+
 		   private function confirmDelete():void {
-		   		var a: Alert = Alert.show("Are you sure you want to delete all images?","Confirmation",Alert.YES|Alert.NO);
-		   		a.addEventListener(Event.CLOSE,deleteEvent);
+		   		if (sqlArray.length!=0) {
+			   		var a: Alert = Alert.show("Are you sure you want to delete all images?","Confirmation",Alert.YES|Alert.NO);
+			   		a.addEventListener(Event.CLOSE,deleteEvent);		   			
+		   		}
 		   }
 		   
 		   private function deleteEvent(ev: CloseEvent): void {
@@ -235,8 +221,10 @@
 		   }
 		   
 		   private function confirmUpdate():void {
-		   		var a: Alert = Alert.show("Are you sure you want to upload all tagged images?","Confirmation",Alert.YES|Alert.NO);
-		   		a.addEventListener(Event.CLOSE,uploadEvent);
+		   		if (sqlArray.length!=0) {
+			   		var a: Alert = Alert.show("Are you sure you want to upload all tagged images?","Confirmation",Alert.YES|Alert.NO);
+			   		a.addEventListener(Event.CLOSE,uploadEvent);
+			   	}
 		   }
 		   
 		   private function uploadEvent(ev: CloseEvent): void {
@@ -248,8 +236,7 @@
 		   		taxonPanel.animalName = name;
 		   		taxonPanel.animalPath = path;
             	PopUpManager.centerPopUp(taxonPanel);
-		   }
-		   
+		   } 
 		]]>
 	</mx:Script>
 	

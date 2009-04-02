@@ -267,6 +267,9 @@ package com.adobe.webapis.flickr.events {
 		/** Constant for the urlsLookupUser event type. */
 		public static const URLS_LOOKUP_USER:String = "urlsLookupUser";
 		
+		public static const SET_LOCATION_RESULT:String = "setLocationResult";
+		
+		
 		/**
 		 * True if the event is the result of a successful call,
 		 * False if the call failed

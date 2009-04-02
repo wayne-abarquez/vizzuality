@@ -1,21 +1,17 @@
 package com.vizzuality.dao
 {
-	import com.adobe.crypto.MD5;
 	import com.adobe.webapis.flickr.*;
 	import com.adobe.webapis.flickr.events.*;
 	import com.adobe.webapis.flickr.methodgroups.Upload;
 	
 	import flash.desktop.*;
 	import flash.events.DataEvent;
-	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.filesystem.File;
 	
 	import mx.collections.ArrayCollection;
+	import mx.controls.Alert;
 	import mx.core.Application;
-	import mx.rpc.events.FaultEvent;
-	import mx.rpc.events.ResultEvent;
-	import mx.rpc.http.HTTPService;
 	
 	public class FlickrUploadService
 	{
@@ -41,24 +37,25 @@ package com.vizzuality.dao
 			
 			tag = "specieslog:status=pending,specieslog:source=organizer,specieslog:scientificName=\""+taxon+"\"";
 			
-		    var numRows:int = imageData.length;
-			for (var i:int = 0; i < numRows; i++) {
-		        for (var columnName:String in imageData[i]) {
-		        	if (imageData[i][columnName].toString()!="") {
-		        		if (columnName=="orde") {
-		        			tag += ",taxonomy:order=\"" + imageData[i][columnName] + "\"";	
-		        		} else {
-		        			if (columnName=="clas"){
-		        				tag += ",taxonomy:class=\"" + imageData[i][columnName] + "\"";	
-		        			} else {		        				
-					            tag += ",taxonomy:" + columnName + "=\"" + imageData[i][columnName] + "\"";		        		
-		        			}
-		        		}
-		        	} 
-		        }
+			if (imageData[0].kingdom != null) {
+			    var numRows:int = imageData.length;
+				for (var i:int = 0; i < numRows; i++) {
+			        for (var columnName:String in imageData[i]) {
+			        	if (imageData[i][columnName].toString()!="") {
+			        		if (columnName=="orde") {
+			        			tag += ",taxonomy:order=\"" + imageData[i][columnName] + "\"";	
+			        		} else {
+			        			if (columnName=="clas"){
+			        				tag += ",taxonomy:class=\"" + imageData[i][columnName] + "\"";	
+			        			} else {		        				
+						            tag += ",taxonomy:" + columnName + "=\"" + imageData[i][columnName] + "\"";		        		
+			        			}
+			        		}
+			        	} 
+			        }
+				}
 			}
 			tag += ",taxonomy:binomial=\""+taxon+"\"";
-			trace(tag);
 			sendImageFlickr(tag);
 		}
 
@@ -77,68 +74,49 @@ package com.vizzuality.dao
 		}
 		
 		
-		private function onResult(ev: Event):void {
-			var object : Object = ev;
-			var xml: XML = new XML(object.data);
+		private function onResult(ev: DataEvent):void {
+			trace("algo");
+			var xml: XML = new XML(ev.data);
 			var photoID: String = "";
 		   	for each( var id:XML in xml..photoid ) {
 				 photoID = id;					
 			}
-			
+			trace(photoID);
 			setImageLocation(photoID,"file://" + escape(ev.currentTarget.nativePath.toString()));
-			//Application.application.principalView.system.deleteImage(ev.currentTarget.nativePath.toString(),0);
-			//DockIcon(NativeApplication.nativeApplication.icon).bounce();
 		}
 		
 		
-		private function onErrorStatus(ev: Event):void {
-			trace("Uploading Flickr Error");
+		private function onErrorStatus(ev: IOErrorEvent):void {
+			Alert.show("Error at uploading image to Flickr, please try again later or check your Internet connection","Error");
 		}
 		
 		
 		private function setImageLocation(photoID:String,path:String):void {
-			//api_sig
+			
 			var dao: DataAccessObject = new DataAccessObject();
 			var sqlSentence: String = "SELECT lat,lon,zoom FROM photos WHERE path = '"+path+"'";
 			dao.openConnection(sqlSentence);
 			imageData = dao.dbResult;
+
+    		if (imageData[0].lat != null) {
+	    		var flickr: FlickrService = new FlickrService(Application.application.flickrAdminKey);
+	    		flickr.secret = Application.application.flickrSecretKey;
+	    		flickr.token  = Application.application.token;
+	    		flickr.permission = AuthPerm.WRITE;
+	    		
+	    		flickr.addEventListener(FlickrResultEvent.SET_LOCATION_RESULT,onFlickrSetLocationResult);
+	    		flickr.photos.setLocation(photoID,imageData[0].lat,imageData[0].lon,imageData[0].zoom);		
+    		}	
+    		Application.application.principalView.system.deleteImage(path,1);
+    		//use flag if uploading multiple images
+    		if (Application.application.uploadingAllPictures) {
+    			Application.application.principalView.system.getAllImages();
+    		}
+			DockIcon(NativeApplication.nativeApplication.icon).bounce();
+		}	
+		
+		private function onFlickrSetLocationResult(ev: FlickrResultEvent):void {
 			
-			var sig : String = Application.application.flickrSecretKey + "api_key" + Application.application.flickrAdminKey + "auth_token"+ 
-				Application.application.token  +"lat" + imageData[0].zoom + "lon" + imageData[0].lon + "methodflickr.photos.geo.setLocationphoto_id" + photoID;
-				//+ "accuracy" + imageData[0].zoom
-    	/* 	var urlService: String = "http://api.flickr.com/services/rest/?method=flickr.photos.geo.setLocation&api_key=" + Application.application.flickrAdminKey + "&photo_id=" + photoID +
-    			 "&lat=" + imageData[0].lat + "&lon=" + imageData[0].lon + "&accuracy=" + imageData[0].zoom + "&auth_token=" + Application.application.token + "&api_sig=" + MD5.hash(sig); */
-    		
-    		var params:Object = new Object();
-    		//params.accuracy=imageData[0].zoom;
-    		params.method="flickr.photos.geo.setLocation";
-    		params.api_key=Application.application.flickrAdminKey
-    		params.photo_id=photoID;
-    		params.lat=imageData[0].lat;
-    		params.lon=imageData[0].lon;
-    		params.auth_token=Application.application.token;
-    		params.api_sig=MD5.hash(sig);
-    		trace(params);
-    		
-    			 
-    		geoFlickrService(params);
-		}
-		
-		private function geoFlickrService(params:Object):void {
-			var service:HTTPService = new HTTPService();
-			service.url = "http://api.flickr.com/services/rest/";
-			service.method = "POST";
-			service.addEventListener(FaultEvent.FAULT,onGeoFlickrServiceFault);
-			service.addEventListener(ResultEvent.RESULT,onGeoFlickrServiceResult);		
-			service.send(params);
-		}
-		
-		private function onGeoFlickrServiceFault(ev: FaultEvent):void {
-		}
-		
-		private function onGeoFlickrServiceResult(ev: ResultEvent):void {
-			trace("miracle");
-		}
-		
+		}	
 	}
 }
