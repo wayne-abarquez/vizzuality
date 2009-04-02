@@ -35,8 +35,10 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.adobe.webapis.flickr.methodgroups {
 	
-	import com.adobe.webapis.flickr.events.FlickrResultEvent;
 	import com.adobe.webapis.flickr.*;
+	import com.adobe.webapis.flickr.events.FlickrResultEvent;
+	import com.vizzuality.event.FlickrSetLocationEvent;
+	
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	
@@ -1363,6 +1365,27 @@ package com.adobe.webapis.flickr.methodgroups {
 			// from the URLLoader which correspondes to the result from the API call
 			MethodGroupHelper.processAndDispatch( _service, URLLoader( event.target ).data, result );
 		}
+		
+		public function setLocation( photo_id:String, lat:Number, lon:Number, accuracy:Number = 1 ):void { 
+             // Let the Helper do the work to invoke the method 
+             MethodGroupHelper.invokeMethod( _service, setLocationResult, "flickr.photos.geo.setLocation", false, new NameValuePair( "photo_id", photo_id ), 
+             	new NameValuePair( "lat", lat.toString()), new NameValuePair( "lon", lon.toString() ), new NameValuePair( "accuracy", accuracy.toString() ) ); 
+        } 
+        
+        private function setLocationResult(ev: Event):void {
+			var result:FlickrResultEvent = new FlickrResultEvent( FlickrResultEvent.SET_LOCATION_RESULT);
+			MethodGroupHelper.processAndDispatch( _service, URLLoader( ev.target ).data, result );
+			
+        }
+        
+        public function getLocation( photo_id:String ):void { 
+            // Let the Helper do the work to invoke the method 
+            MethodGroupHelper.invokeMethod( _service, getLocationResult,"flickr.photos.geo.getLocation", false, new NameValuePair( "photo_id", photo_id ) ); 
+        } 
+        
+        private function getLocationResult(ev: Event):void {
+        	trace("ha llegado algo...");
+        }
 		
 	}	
 	
