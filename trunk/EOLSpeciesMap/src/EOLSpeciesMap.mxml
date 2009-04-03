@@ -10,6 +10,11 @@
 
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.Color;
+		import com.google.maps.MapOptions;
+		import com.google.maps.MapEvent;
+		import mx.collections.GroupingCollection;
+		import mx.collections.GroupingCollection2;
 		import com.google.maps.interfaces.IMapType;
 		import mx.events.ResizeEvent;
 		import mx.collections.Grouping;
@@ -54,6 +59,21 @@
 			}
 			server.getProviders(parameters.taxon_id);
 			tracker.trackPageview( "/"+parameters.taxon_id );
+		}
+
+		private function onMapPreInitialize(event:MapEvent):void {
+			var options:MapOptions = new MapOptions({
+			  backgroundFillStyle: {
+			    alpha: 1,
+			    color: Color.WHITE
+			  },
+			  controlByKeyboard: true,
+			  overlayRaising: true,
+			  dragging: true,
+			  continuousZoom: true
+			});	
+			map.setInitOptions(options);
+					
 		}
 		
 		private function onMapReady(event:Event):void {
@@ -134,27 +154,55 @@
 
 		private function onGetDataProviders(ev:ResultEvent):void {
  			providersAc = new ArrayCollection(ev.result as Array);
-	        providersCanvas.providersAdg.dataProvider=providersAc;			
+	        //providersCanvas.providersAdg.dataProvider=providersAc;			
+	        
+			
+			dcGc = new GroupingCollectionWithTimer();		
+			dcGc.source = providersAc;
+			var summRow:SummaryRow = new SummaryRow();
+			summRow.summaryPlacement = "group";
+			summRow.fields = [new SummaryField("num_occ")];
+			var provGf:GroupingField = new GroupingField("data_provider_name");
+			provGf.summaries = [summRow];
+			dcGc.grouping = new Grouping();
+			dcGc.grouping.fields = [provGf];
+			dcGc.refresh(true);     
+	        providersCanvas.providersAdg.dataProvider=dcGc;		
+
+			var timer:Timer = new Timer(500,0);
+			timer.addEventListener(TimerEvent.TIMER,function():void{
+							if(dcGc.protectedTimer == null) {
+								timer.stop();
+								providersCanvas.currentState='';
+							}});
+			timer.start();	        
+	        
 		}
 
 
 		private var isResizing:Boolean=false;
+        private var tim:Timer = new Timer(300,1);
 		private function onResized(ev:ResizeEvent):void {
 	        if(!isResizing) {
 				appWidth=width;
-				if (true) {
-		            var tim:Timer = new Timer(500,1);
-		            tim.addEventListener(TimerEvent.TIMER, function(event:TimerEvent):void {		
-						appWidth=width;				
-			            Application.application.validateNow();
-			            isResizing=false;
-		            });
-		            tim.start();
-		            isResizing=true;
-	            }
-
-
-			}	
+	            tim.addEventListener(TimerEvent.TIMER, checkResize,false,0,true);
+	            tim.start();
+	            isResizing=true;
+			}
+		}
+		
+		private function checkResize(event:TimerEvent):void {
+				appWidth=width;				
+				hugeCanvas.width=appWidth*2;
+				if (mainCanvasState=="map") {
+					hugeCanvas.x=0;
+				} else {
+					hugeCanvas.x=appWidth*-1;
+				}
+	            Application.application.validateNow();
+	            isResizing=false;
+	            tim.stop();			
+	            tim.removeEventListener(TimerEvent.TIMER, checkResize,false);
 		}
 
 		public function toggleMainCanvasState():void {
@@ -194,7 +242,7 @@
 	<mx:Canvas id="hugeCanvas" width="{appWidth*2}" horizontalScrollPolicy="off" verticalScrollPolicy="off" moveEffect="{moveEffect}" bottom="20" top="0">
 		<mx:HBox horizontalGap="0" width="100%" height="100%">
 			<mx:Canvas id="mapCanvas" width="50%" height="100%" x="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-				<maps:Map id="map" width="100%" height="100%"
+				<maps:Map id="map" width="100%" height="100%" mapevent_mappreinitialize="onMapPreInitialize(event)"
 					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQIcf2DVyaa1_M_ai60HThku0goiRS10yzn3XPkTnaqnGjjLpkuwyyW9g" 
 					mapevent_mapready="onMapReady(event)"  />
 						<mx:HBox horizontalGap="3" right="9" top="9"> 

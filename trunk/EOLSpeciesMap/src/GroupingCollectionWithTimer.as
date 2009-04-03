@@ -2,9 +2,9 @@ package
 {
 	import flash.utils.Timer;
 	
-	import mx.collections.GroupingCollection;
+	import mx.collections.GroupingCollection2;
 
-	public class GroupingCollectionWithTimer extends GroupingCollection
+	public class GroupingCollectionWithTimer extends GroupingCollection2
 	{
 		public function GroupingCollectionWithTimer()
 		{
