@@ -292,7 +292,7 @@
         perElementOffset="20"/>
         
 	<mx:RemoteObject id="server" 
-	endpoint="php/amfphp/gateway.php"
+	endpoint="http://localhost/php/amfphp/gateway.php"
 	result="onGetDataProviders(event)"
 	fault="trace(event)"
 	destination="EolServices" source="EolServices"
