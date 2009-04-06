@@ -70,7 +70,7 @@
 			  controlByKeyboard: true,
 			  overlayRaising: true,
 			  dragging: true,
-			  continuousZoom: true
+			  continuousZoom: false
 			});	
 			map.setInitOptions(options);
 					
