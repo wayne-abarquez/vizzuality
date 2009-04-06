@@ -66,7 +66,7 @@ $blank = imagecolorallocate( $im, 0, 0, 0 );
 imagefilledrectangle( $im, 0, 0, GoogleMapUtility::TILE_SIZE, GoogleMapUtility::TILE_SIZE, $blank );
 
 
-$link = mysql_connect('db.geekisp.com:3306', 'eol', 'eolpass');
+$link = mysql_connect('localhost', 'root', 'root');
 mysql_select_db('eol', $link) or die('Could not select database.');
 $sql="SELECT x,y,num_occ from tile_".$z."_taxon where tile_orig_x=".$x." and tile_orig_y=".$y." and taxon_id=".$taxon;
 error_log($sql);

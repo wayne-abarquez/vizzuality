@@ -37,7 +37,8 @@ package
            	if (srvNum>3)
            		srvNum=0;
            	
-           	var tileUrl:String = "http://gbiftilecache"+srvNum+".biodiversityatlas.com/getTile?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
+           //	var tileUrl:String = "http://gbiftilecache"+srvNum+".biodiversityatlas.com/getTile?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
+         	var tileUrl:String = "http://localhost/php/map/getEolTile.php?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
             loader.load(new URLRequest(tileUrl));
             return loader;
 			
