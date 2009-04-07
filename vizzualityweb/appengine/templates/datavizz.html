@@ -8,33 +8,44 @@
 {% endblock %}
 
 {% block maincontent %}
-    <h1 id="welcomeHeader">Data visualization services</h1>
-    <h2 id="shortdescription">Yes, we like beautiful data visualizations, but we do not forget their main purposes: to communicate and inspire.</h2>
-      <h3 id="moredescription">Biodiversity informatics is producing huge amounts of data every day. Unfortunately most of this data is useless without effective ways to analyze it. To convey ideas efficiently, both aesthetic form and functionality need to go hand in hand, providing insights into a rather sparse and complex data set by communicating its key-aspects in a more intuitive way.<br /><br />
-Our expertise in data visualization for biodiversity includes: observational data, taxonomic trees, interactive keys, temporal datasets and many more. Contact us to see if we can help you with your specific use case!</h3>
-    <p class="centeredImage"><img src="/images/promoimage_vizz.jpg"/></p>
-    <h2 id="technologiesTitle">Data visualization technologies</h2>
-    <hr class="hr2"/>
-    <div class="div825" id="techContainer">
-    	<div class="leftTech">
-        	<p id="techTitle"><img src="/images/techLogos/logoFlex.jpg" alt="Adobe Flex"/></p>
-            <p id="techDesc">FlFlex allows us to create highly creative, expressive and engaging applications, previously impossible on the web.
-        </div>
-        <div class="centertTech">
-        	<p id="techTitle"><img src="/images/techLogos/logoFlash.jpg" alt="Adobe Flash"/></p>
-            <p id="techDesc">While Flex is great for application development, sometimes Flash is better for interactive content.</p>
-      </div>
-      <div class="rightTech">
-        	<p id="techTitle"><img src="/images/techLogos/logoProcessing.jpg" alt="Processing"/></p>
-            <p id="techDesc">Processing has become an emerging programming language to create animations and visualizations.
-        </div>
-    </div>
-
-  <h2 class="titleClass">Recent projects</h2>
-  <hr class="hr2"/>
-  <div class="div825" class="leftLongTech">
-      	<p id="techTitle"><img src="/images/use_gbif_iphone.jpg" alt="Unofficial GBIF iphone version"/></p>
-          <p class="littleText">The Global Biodiversity Information Facility has a very feature rich portal to access biodiversity primary data. Right now this portal is serving more than 160 million occurrences of more than 1.5 million different taxon. We got the challenge to convert this into an Iphone web application to analyze the feasibility of Iphone UI paradigms to browsing taxonomies. In 3 days we came to the following video and an unofficial Iphone version of the GBIF portal.</p>
-   </div>
+  <h1>Data visualization services</h1>
+  <div id="contentLeft">
+      <h2>Yes, we like beautiful data visualizations, but we do not forget their main purposes: to communicate and inspire.</h2>
+      <p class="sectText">Biodiversity informatics is producing huge amounts of data every day. Unfortunately most of this data is useless without effective ways to analyze it. To convey ideas efficiently, both aesthetic form and functionality need to go hand in hand, providing insights into a rather sparse and complex data set by communicating its key-aspects in a more intuitive way.<br /><br />
+  Our expertise in data visualization for biodiversity includes: observational data, taxonomic trees, interactive keys, temporal datasets and many more. Contact us to see if we can help you with your specific use case!</p>
   </div>
+    <div id="contentRight">
+        <p class="moduleHeader">Data visualization technologies</p>
+        <hr/>
+        <div class="tech">
+        	<img class="techImage" src="images/techies/flex.jpg"/>
+            <p class="techText">Flex allows us to create highly creative, expressive and engaging applications, previously impossible on the web.</p>
+        </div>
+        <div class="tech">
+        	<img class="techImage" src="images/techies/flash.jpg"/>
+            <p class="techText">While Flex is a very great option for application development, sometimes Flash is better for interactive content.</p>
+        </div>
+        <div class="tech">
+        	<img class="techImage" src="images/techies/processing.jpg"/>
+            <p class="techText">Processing has become an emerging option to create data visualizations.</p>
+        </div>        
+    </div>        
+        
+    <div class="clearer">
+    </div>
+    <div id="featuredContainer">
+        <p class="moduleHeader">Featured data analysis projects</p>
+        <hr/>
+        <div id="featuredLeft">
+            <img src="images/featuredWCMC.jpg"/>
+            <p class="featuredDescription">The Global Biodiversity Information Facility collect and index millions of primary data records. The project required the intersection of million of points against the database of World Protected Areas maintained by the UNEP World Conservation Monitoring Centre. This is 160.000 polygons against 160 million points. This data is now accesible through the <a href="http://widgets.gbif.org/test/PACountry.html#/country/ES">World Database on Protected Areas</a>. Check out the <a href="http://vimeo.com/3284706">screencast video on how we did that project.</a></p>
+        </div>
+        <div id="featuredRight">
+            <img src="images/featuredGMaps.jpg"/>
+            <p class="featuredDescription">With the new Maps for Flash API that Google released there are great new opportunities for displaying interactive data over Google Maps due to the Flash platform. You can see our <a href="http://biodiversityatlas.com.s3.amazonaws.com/heatMap/heatMap.html">dynamically created HeatMaps from GBIF data</a>. Other example where we had the possibility to tried was combining the World Database on Protected Areas with information from Wikipedia, Flickr and Panoramio. Check out the <a href="http://widgets.gbif.org/country/CountryProtectedAreasWidget.html?iso_code=TZ&country=Tanzania">protected area explorer for Tanzania.</a></p>
+        </div>
+        <div class="clearer">
+        </div>
+        
+    </div>
 {% endblock %}

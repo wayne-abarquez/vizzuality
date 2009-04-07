@@ -9,11 +9,22 @@
 
 {% block maincontent %}
 <h1 id="welcomeHeader">Welcome to vizzuality</h1>
-<h2 id="shortdescription">We are dedicated to design & development of Rich Internet Applications for biodiversity information.</h2>
-<h3 id="moredescription">
-	We are experts on <a href="/visualization" class="textlink" rel="self">user Interaction and visualization</a> of large taxonomic, geospatial and temporal datasets. We work with our clients to deliver engaging data visualizations and advanced geographic information systems. Check out our expertise and <a href="/contact" class="textlink" rel="self">contact us</a> if you think we can help you.</h3>
-<p class="centeredImage"><img src="images/recentProjects.jpg" alt="recent projects"></p>
-<p class="bigButtons"><a class="imageLink" href="/visualization"><img class="imageLink" src="images/datavizz_bb.jpg" alt="datavizz"></a><a class="imageLink" href="/gis"><img class="imageLink" src="images/richGis_bb.jpg" alt="datavizz"></a><a class="imageLink" href="/analysis"><img class="imageLink" src="images/datalitycs_bb.jpg" alt="datavizz"></a></p>
-<!--p class="centeredImage"><img src="images/buttonTemplateFoo.jpg" alt="Template Button"></p -->
-<h3 id="downTopic" >Are you looking for another solution? <a href="/contact" class="textlink" rel="self">contact us</a> and we'll try help you</h3>
+<h2>We are dedicated to design & development of Rich Internet Applications for biodiversity information.</h2>
+<p class="sectText">
+	We are experts on <a href="/visualization" class="textlink" rel="self">user Interaction and visualization</a> of large taxonomic, geospatial and temporal datasets. We work with our clients to deliver engaging data visualizations and advanced geographic information systems. Check out our expertise and <a href="/contact" class="textlink" rel="self">contact us</a> if you think we can help you.</p>
+    <div id="featuredContainer">
+         <p class="moduleHeader">Featured Projects</p>
+         <hr/>
+         <div id="featuredLeft">
+             <img src="images/featuredWCMC.jpg"/>
+             <p class="featuredDescription">The Global Biodiversity Information Facility collect and index millions of primary data records. The project required the intersection of million of points against the database of World Protected Areas maintained by the UNEP World Conservation Monitoring Centre. This is 160.000 polygons against 160 million points. This data is now accesible through the <a href="http://widgets.gbif.org/test/PACountry.html#/country/ES">World Database on Protected Areas</a>. Check out the <a href="http://vimeo.com/3284706">screencast video on how we did that project.</a></p>
+         </div>
+         <div id="featuredRight">
+             <img src="images/featuredGMaps.jpg"/>
+             <p class="featuredDescription">With the new Maps for Flash API that Google released there are great new opportunities for displaying interactive data over Google Maps due to the Flash platform. You can see our <a href="http://biodiversityatlas.com.s3.amazonaws.com/heatMap/heatMap.html">dynamically created HeatMaps from GBIF data</a>. Other example where we had the possibility to tried was combining the World Database on Protected Areas with information from Wikipedia, Flickr and Panoramio. Check out the <a href="http://widgets.gbif.org/country/CountryProtectedAreasWidget.html?iso_code=TZ&country=Tanzania">protected area explorer for Tanzania.</a></p>
+         </div>
+         <div class="clearer">
+         </div>
+     </div>
+
 {% endblock %}

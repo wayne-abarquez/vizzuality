@@ -1,12 +1,9 @@
 {% extends "base.html" %}
 
 {% block blogpart %}
-<div class="div825">
-  <h2 id="blogPartTitle">Latest from the biodivertido blog</h2>
-  <div class="blogSubtitle">People at Vizzuality often post in the biodivertido blog. Biodivertido is not part of vizzuality, we just feel well there :)</div>
-  <hr>
-</div>
-<div class="div825" id="postContainer">
+<p class="moduleHeader">Latest from biodivertido</p>
+<hr/>
+<div id="postContainer">
 	{{ feed }}
 </div>
 {% endblock %}

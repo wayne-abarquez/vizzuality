@@ -56,9 +56,9 @@ class IndexHandler(webapp.RequestHandler):
 					if (i==5):
 						break
 					content=content+"""
-					          <div class="blogPost">
+					          <div id="post">
 					            <p class="postTitle"><a href='"""+node.getElementsByTagNameNS(FEEDBURNER_NS,'origLink')[0].firstChild.nodeValue+"""'> """+node.getElementsByTagName('title')[0].firstChild.nodeValue+"""</a></p>
-					            <p class="postDate">"""+node.getElementsByTagName('published')[0].firstChild.nodeValue[0:10]+""" by """+node.getElementsByTagName('author')[0].getElementsByTagName('name')[0].firstChild.nodeValue+"""</p>
+					            <p class="postMetadata">"""+node.getElementsByTagName('published')[0].firstChild.nodeValue[0:10]+""" by """+node.getElementsByTagName('author')[0].getElementsByTagName('name')[0].firstChild.nodeValue+"""</p>
 					          </div>"""
 				return content
 			else:
