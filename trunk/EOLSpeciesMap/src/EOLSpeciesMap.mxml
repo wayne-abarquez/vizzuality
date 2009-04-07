@@ -57,6 +57,7 @@
 				Alert.show("The Widget has been loaded without specifying a taxon_id parameter");
 				hugeCanvas.enabled=false;
 			}
+			server.endpoint = parameters.data_server_endpoint;
 			server.getProviders(parameters.taxon_id);
 			tracker.trackPageview( "/"+parameters.taxon_id );
 		}
@@ -294,7 +295,6 @@
         perElementOffset="20"/>
         
 	<mx:RemoteObject id="server" 
-	endpoint="http://tools.gbif.org/eol-map/php/amfphp/gateway.php"
 	result="onGetDataProviders(event)"
 	fault="trace(event)"
 	destination="EolServices" source="EolServices"

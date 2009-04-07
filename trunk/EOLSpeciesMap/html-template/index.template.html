@@ -37,6 +37,9 @@ return results[1];
 			taxon_id = 100;
 			//taxon_id = 151242;
 		so.addVariable("taxon_id", taxon_id);
+		so.addVariable("data_server_endpoint", 'http://localhost/php/amfphp/gateway.php');
+		so.addVariable("map_server_url_base", 'http://localhost/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_|T|');
+		//so.addVariable("map_server_url_base", 'http://gbiftilecache|N|.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|');
 		so.write("example");
 		// ]]>
 	</script>

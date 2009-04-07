@@ -11,6 +11,8 @@ package
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 	
+	import mx.core.Application;
+	
 
 	public class CellsTileLayer extends TileLayerBase
 	{
@@ -37,9 +39,20 @@ package
            	if (srvNum>3)
            		srvNum=0;
            	
+           var baseURL:String = Application.application.parameters.map_server_url_base;
+           
+           if (baseURL.indexOf("|N|")>0)
+           		baseURL = baseURL.replace("|N|",srvNum)
+           
+           baseURL = baseURL.replace("|X|",tile.x);
+           baseURL = baseURL.replace("|Y|",tile.y);
+           baseURL = baseURL.replace("|Z|",zoom);
+           baseURL = baseURL.replace("|T|",taxonId);
+           			
+           	
            //	var tileUrl:String = "http://gbiftilecache"+srvNum+".biodiversityatlas.com/getTile?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
-         	var tileUrl:String = "http://localhost/php/map/getEolTile.php?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
-            loader.load(new URLRequest(tileUrl));
+         	//var tileUrl:String = "http://localhost/php/map/getEolTile.php?tile="+tile.x+"_"+tile.y+"_"+zoom+"_"+taxonId;
+            loader.load(new URLRequest(baseURL));
             return loader;
 			
 			
