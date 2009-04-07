@@ -48,7 +48,7 @@
 		public var mainCanvasState:String="map";
 		
 		[Bindable]
-		private var providersAc:ArrayCollection = new ArrayCollection();		
+		public var providersAc:ArrayCollection = new ArrayCollection();		
 		private var dcGc:GroupingCollectionWithTimer;		
 		
 		
@@ -167,13 +167,15 @@
 			dcGc.grouping = new Grouping();
 			dcGc.grouping.fields = [provGf];
 			dcGc.refresh(true);     
-	        providersCanvas.providersAdg.dataProvider=dcGc;		
 
 			var timer:Timer = new Timer(500,0);
 			timer.addEventListener(TimerEvent.TIMER,function():void{
 							if(dcGc.protectedTimer == null) {
 								timer.stop();
+						        providersCanvas.providersAdg.dataProvider=dcGc;		
+								providersCanvas.providersAdg.validateNow();
 								providersCanvas.currentState='';
+								
 							}});
 			timer.start();	        
 	        
