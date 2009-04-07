@@ -1,63 +1,68 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 {% block titleblock %}{% endblock %}
-<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?2.6.0/build/fonts/fonts-min.css&2.6.0/build/base/base-min.css"> 
-<link rel="stylesheet" type="text/css" href="/css/styles_01.css">
+<link href="/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="/css/text.css" rel="stylesheet" type="text/css" />
+<link href="/css/base.css" rel="stylesheet" type="text/css" />
 {% block metatags %}{% endblock %}
+
 </head>
-<body style="margin:0px;">
-<div id="doc3" style="margin:0px;">
-  <div id="hd">
-    <div class="div825"> <img src="/images/basiclogo.jpg" width="143" height="83" alt="Vizzuality logo" style="float:left" >
-      <div id="quickMenuContainer"> <img src="/images/blogTinyIcon.jpg" alt="blog tiny icon" class="tinyIcon" style="float:left"><a href="http://biodivertido.blogspot.com" rel="self">blog</a> <img src="/images/contactTinyIcon.jpg" alt="blog tiny icon" class="tinyIcon" style="float:left"><a href="/contact" rel="self" >contact us</a> </div>
-      <div id="navcontainer">
-        <ul>
-          <li><a href="/" rel="self" {% ifequal section "home" %}id="current"{% endifequal %}>HOME</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/visualization" {% ifequal section "visualization" %}id="current"{% endifequal %} rel="self">DATA VISUALIZATION</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/gis" {% ifequal section "gis" %}id="current"{% endifequal %} rel="self">RICH GIS</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/analysis" {% ifequal section "analysis" %}id="current"{% endifequal %} rel="self">DATA ANALYSIS</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/contact" {% ifequal section "contact" %}id="current"{% endifequal %} rel="self">ABOUT US</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="div825"> {% block maincontent %}{% endblock %}</div>
-  <div id="blogPartBorder"></div>
-  <div id="blogPart">
-    {% block blogpart %}{% endblock %}
-    <div class="div825">
-      <hr>
-      <div id="footerNav">
-        <ul>
-          <li><a href="/" rel="self">Home</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/visualization" rel="self">Data visualization</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/gis" rel="self">Rich GIS</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/analysis" rel="self">Data analysis</a></li>
-          <li><a href="/" rel="self">·</a></li>
-          <li><a href="/contact" rel="self">About us</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Start Google Analytics -->
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-6363508-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-<!-- End Google Analytics -->
+<body>
+	<div id="mainContainer">
+        <div id="headerContainer">
+        	<div id="logoContainer">
+            	<a href="home.html"><img class="imageLink" src="images/logoHeader.jpg"/></a>
+            </div>
+            <div id="mainMenuContainer">
+            	<ul id="mainMenu">
+                    <li><a href="/contact" {% ifequal section "contact" %}class="mainMenuCurrent"{% endifequal %}>Contact us</a></li>
+                    <li>·</li><li><a href="http://biodivertido.blogspot.com">Blog</a></li>                   
+                    <li>·</li><li><a href="/analysis" {% ifequal section "analysis" %}class="mainMenuCurrent"{% endifequal %}>Data analysis</a></li>                 
+                    <li>·</li><li><a href="/gis" {% ifequal section "gis" %}class="mainMenuCurrent"{% endifequal %}>Rich GIS</a></li>                  
+                    <li>·</li><li><a href="/visualization" {% ifequal section "visualization" %}class="mainMenuCurrent"{% endifequal %}>Data visualization</a></li>                   
+                    <li>·</li><li><a href="/" {% ifequal section "home" %}class="mainMenuCurrent"{% endifequal %}>Home</a></li>
+                </ul>
+            </div>
+            <div class="clearerMargin">
+        	</div>
+        </div>
+		<div id="mainContent">
+                {% block maincontent %}{% endblock %}
+            <div class="clearer">
+            </div>
+            <div id="feedContainer">
+                {% block blogpart %}{% endblock %}
+            </div>
+        </div>
+
+        <div id="footerContainer">
+        	<div id="footerTextContainer">
+            	<p class="footerText">vizzuality all rights reserved. 2009</p>
+            </div>
+            <div id="footerMenuContainer">
+            	<ul id="footerMenu">
+                    <li><a href="/contact">contact us</a></li>
+                    <li>·</li><li><a href="http://biodivertido.blogspot.com">blog</a></li>                   
+                    <li>·</li><li><a href="/analysis">data analysis</a></li>                 
+                    <li>·</li><li><a href="/gis">rich GIS</a></li>                  
+                    <li>·</li><li><a href="/visualization">data visualization</a></li>                   
+                    <li>·</li><li><a class="footerMenuCurrent" href="/">home</a></li>
+                </ul>
+            </div>
+        </div>
+	</div>        
+    <!-- Start Google Analytics -->
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-6363508-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+    <!-- End Google Analytics -->
 </body>
 </html>

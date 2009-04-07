@@ -7,37 +7,41 @@
 {% endblock %}
 
 {% block maincontent %}
-  <h1 id="welcomeHeader">Rich Geographic Information Systems</h1>
-  <h2 id="shortdescription">What, When and Where are key in biodiversity. Visualizing these three components in Rich Geographic Information applications is what we do best.</h2>
-    <h3 id="moredescription">The emergence of Google Maps has allowed for a new level of mapping applications on the web. We love mashups on top of these new maps APIs. Together with the use of spatial standards such as the Open Geospatial Standards, we can build engaging maps experiences that invite users to explore your data while interoperating with external sources through WMS, WFS, etc.
-<br /><br />
-We work on displaying millions of primary data occurrences, creating heat maps and dynamically grouping data. Through innovative use of pyramid gridding techniques we have successfully enabled to play interactive maps for variable resolution for hundreds of millions of point data.	
-	</h3>
-  <p class="centeredImage"><img src="/images/promoimage_gis.jpg"/></p>
-  <h2 id="technologiesTitle2">Rich GIS technologies</h2>
-  <hr class="hr2"/>
-  <div class="div825" id="techContainer">
-  	<div class="leftTech">
-      	<p id="techTitle"><img src="/images/techLogos/logoGMaps.jpg" alt="Google maps"/></p>
-          <p id="techDesc">We love Google Maps API and we have been using since it appeared. With the new Google Maps API for ﬂash we can do incredible things.
-      </div>
-      <div class="centertTech">
-      	<p id="techTitle"><img src="/images/techLogos/logoGeoserver.jpg" alt="GeoServer"/></p>
-          <p id="techDesc">Our favorite open source geospatial server. We use Geoserver stack of technologies to support OGC standards and connect to Rich Mapping APIs. </p>
-    </div>
-    <div class="rightTech">
-      	<p id="techTitle"><img src="/images/techLogos/logoPostGIS.jpg" alt="PostGIS"/></p>
-          <p id="techDesc">Together with the best open source relational database, PostgreSQL, we use PostGIS to analyze and serve geospatial data.
-      </div>
+  <h1>Rich Geographic Information Systems</h1>
+  <div id="contentLeft">
+      <h2>What, When and Where are key in biodiversity. Visualizing these three components in Rich Geographic Information applications is what we do best.</h2>
+      <p class="sectText">The emergence of Google Maps has allowed for a new level of mapping applications on the web. We love mashups on top of these new maps APIs. Together with the use of spatial standards such as the Open Geospatial Standards, we can build engaging maps experiences that invite users to explore your data while interoperating with external sources through WMS, WFS, etc.
+  <br /><br />
+  We work on displaying millions of primary data occurrences, creating heat maps and dynamically grouping data. Through innovative use of pyramid gridding techniques we have successfully enabled to play interactive maps for variable resolution for hundreds of millions of point data.</p>
   </div>
-
-  <h2 class="titleClass">Recent case study</h2>
-  <hr class="hr2"/>
-  <div class="div825" class="leftLongTech">
-      	<p id="techTitle"><!-- img src="/images/use_case_protected_areas_pd.jpg" alt="Google maps"/ --></p>
-          <p class="littleText"><img src="/images/paMap.jpg" align="left" ><img src="/images/paGbif.jpg" align="right" >With the new Maps for Flash API that Google released there are great new opportunities for displaying interactive data over Google Maps due to the Flash platform. You can see our <a href="http://biodiversityatlas.com.s3.amazonaws.com/heatMap/heatMap.html">dynamically created HeatMaps from GBIF data</a>. Other example where we had the possibility to tried was combining the World Database on Protected Areas with information from Wikipedia, Flickr and Panoramio. Check out the <a href="http://widgets.gbif.org/country/CountryProtectedAreasWidget.html?iso_code=TZ&country=Tanzania">protected area explorer for Tanzania.</a></p>
-   </div>
-
-</div>
-
+    <div id="contentRight">
+        <p class="moduleHeader">Rich GIS technologies</p>
+        <hr/>
+        <div class="tech">
+        	<img class="techImage" src="images/techies/gmaps.jpg"/>
+            <p class="techText">We love Google Maps API and we have been using since it appeared. With the new Google Maps API for ﬂash we can do incredible things.</p>
+        </div>
+        <div class="tech">
+        	<img class="techImage" src="images/techies/geoServer.jpg"/>
+            <p class="techText">Our favorite open source geospatial server. We use Geoserver stack of technologies to support OGC standards and connect to Rich Mapping APIs.</p>
+        </div>
+        <div class="tech">
+        	<img class="techImage" src="images/techies/postGIS.jpg"/>
+            <p class="techText">Together with the best open source relational database, PostgreSQL, we use PostGIS to analyze and serve geospatial data.</p>
+        </div>        
+    </div>        
+        
+    <div class="clearer">
+    </div>
+    <div id="featuredContainer">
+        <p class="moduleHeader">Featured rich GIS projects</p>
+        <hr/>
+        <div id="featuredLeft">
+            <img src="images/featuredGMaps.jpg"/>
+            <p class="featuredDescription">With the new Maps for Flash API that Google released there are great new opportunities for displaying interactive data over Google Maps due to the Flash platform. You can see our <a href="http://biodiversityatlas.com.s3.amazonaws.com/heatMap/heatMap.html">dynamically created HeatMaps from GBIF data</a>. Other example where we had the possibility to tried was combining the World Database on Protected Areas with information from Wikipedia, Flickr and Panoramio. Check out the <a href="http://widgets.gbif.org/country/CountryProtectedAreasWidget.html?iso_code=TZ&country=Tanzania">protected area explorer for Tanzania.</a></p>
+        </div>
+        <div class="clearer">
+        </div>
+        
+    </div>
 {% endblock %}
