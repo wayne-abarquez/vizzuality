@@ -245,7 +245,7 @@
 		<mx:HBox horizontalGap="0" width="100%" height="100%">
 			<mx:Canvas id="mapCanvas" width="50%" height="100%" x="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 				<maps:Map id="map" width="100%" height="100%" mapevent_mappreinitialize="onMapPreInitialize(event)"
-					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQIcf2DVyaa1_M_ai60HThku0goiRS10yzn3XPkTnaqnGjjLpkuwyyW9g" 
+					key="ABQIAAAAUdCLksixDAgnY8JZ7a6YJBRTcWW-xOIMiY0s20UEUW3xpxovahQClZ42LV_3hgyp4oBrgebTRrNDXg" 
 					mapevent_mapready="onMapReady(event)"  />
 						<mx:HBox horizontalGap="3" right="9" top="9"> 
 						<mx:Button id="mapButton" label="MAP" styleName="smallButton" click="changeMapType('mapMapType')"
@@ -254,7 +254,7 @@
 						<mx:Button id="satButton" label="SATELLITE" styleName="smallButton" click="changeMapType('satMapType')"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
-						<mx:Button id="hibridButton" label="HIBRID" styleName="smallButton" click="changeMapType('hibridMapType')"
+						<mx:Button id="hibridButton" label="HYBRID" styleName="smallButton" click="changeMapType('hibridMapType')"
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
 						<mx:Button id="terrainButton" label="TERRAIN" styleName="smallButton"  click="changeMapType('terrainMapType')"
@@ -264,8 +264,8 @@
 							useHandCursor="true" buttonMode="true" mouseChildren="false"
 							height="20"/>
 					</mx:HBox>
-					<mx:Button label="VIEW RESOURCES" bottom="20" right="-3" 
-						styleName="providersButton" width="100"
+					<mx:Button label="DATA PUBLISHERS" bottom="20" right="-3" 
+						styleName="providersButton" width="110"
 						useHandCursor="true" mouseChildren="false" buttonMode="true"
 						click="toggleMainCanvasState()"/>
 			</mx:Canvas>
@@ -278,7 +278,7 @@
 		<mx:Image source="@Embed('/assets/gbifLogo.png')" y="0" left="3"
 			click="navigateToURL(new URLRequest('http://www.gbif.org'))"
 			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-		<mx:Label y="0" text="Powered by gbif" fontFamily="DINOT-Medium" fontSize="11" color="#666666" left="21"
+		<mx:Label y="0" text="Global Biodiversity Information Facility" fontFamily="DINOT-Medium" fontSize="11" color="#666666" left="21"
 			click="navigateToURL(new URLRequest('http://www.gbif.org'))"
 			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 		<mx:Image source="@Embed('/assets/vizzLogo.png')" y="0" right="3"
@@ -294,7 +294,7 @@
         perElementOffset="20"/>
         
 	<mx:RemoteObject id="server" 
-	endpoint="http://localhost/php/amfphp/gateway.php"
+	endpoint="http://tools.gbif.org/eol-map/php/amfphp/gateway.php"
 	result="onGetDataProviders(event)"
 	fault="trace(event)"
 	destination="EolServices" source="EolServices"
