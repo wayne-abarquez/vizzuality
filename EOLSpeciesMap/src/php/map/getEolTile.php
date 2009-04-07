@@ -23,6 +23,7 @@ $taxon=$pieces[3];
 
 
 require('GoogleMapUtility.php');
+require('../config.php');
 
 ob_start(); // capture the output
 
@@ -66,16 +67,16 @@ $blank = imagecolorallocate( $im, 0, 0, 0 );
 imagefilledrectangle( $im, 0, 0, GoogleMapUtility::TILE_SIZE, GoogleMapUtility::TILE_SIZE, $blank );
 
 
-$link = mysql_connect('localhost', 'root', 'root');
+
 mysql_select_db('eol', $link) or die('Could not select database.');
 $sql="SELECT x,y,num_occ from tile_".$z."_taxon where tile_orig_x=".$x." and tile_orig_y=".$y." and taxon_id=".$taxon;
-error_log($sql);
+//error_log($sql);
 $result = mysql_query($sql);
 
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     
     $cell=GoogleMapUtility::getTileRect($row["x"],$row["y"],($z+6));
-    error_log(print_r($cell,true));
+    //error_log(print_r($cell,true));
     $pll = GoogleMapUtility::toZoomedPixelCoords($cell->y, $cell->x, $z);
     $pur = GoogleMapUtility::toZoomedPixelCoords($cell->y+$cell->height, $cell->x+$cell->width, $z);
     
