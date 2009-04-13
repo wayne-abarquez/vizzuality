@@ -51,6 +51,8 @@
 		public var providersAc:ArrayCollection = new ArrayCollection();		
 		private var dcGc:GroupingCollectionWithTimer;		
 		
+		public var tileServersUrl:Array;
+		
 		
 		private function checkParams():void {
 			if (parameters.taxon_id==0) {
@@ -91,6 +93,11 @@
 		    var worldBBox:LatLngBounds = new LatLngBounds(new LatLng(-70,-170),new LatLng(70,170));
 		    var wordZoom:Number = map.getBoundsZoomLevel(worldBBox);
 		    map.setZoom(wordZoom);
+		    
+		    //set the tile servers
+		    tileServersUrl = (parameters.tile_servers as String).split(",");
+		    
+		    
 		    
 		    if (parameters.taxon_id!=0) {
 			    cellTileLayer = new CellsTileLayer(parameters.taxon_id);
@@ -246,7 +253,7 @@
 		<mx:HBox horizontalGap="0" width="100%" height="100%">
 			<mx:Canvas id="mapCanvas" width="50%" height="100%" x="0" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 				<maps:Map id="map" width="100%" height="100%" mapevent_mappreinitialize="onMapPreInitialize(event)"
-					key="ABQIAAAAUdCLksixDAgnY8JZ7a6YJBRTcWW-xOIMiY0s20UEUW3xpxovahQClZ42LV_3hgyp4oBrgebTRrNDXg" 
+					key="{parameters.gmap_key}" 
 					mapevent_mapready="onMapReady(event)"  />
 						<mx:HBox horizontalGap="3" right="9" top="9"> 
 						<mx:Button id="mapButton" label="MAP" styleName="smallButton" click="changeMapType('mapMapType')"

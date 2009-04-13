@@ -39,10 +39,11 @@ package
            	if (srvNum>3)
            		srvNum=0;
            	
-           var baseURL:String = Application.application.parameters.map_server_url_base;
+           var baseURL:String = Application.application.tileServersUrl[srvNum];
            
-           if (baseURL.indexOf("|N|")>0)
-           		baseURL = baseURL.replace("|N|",srvNum)
+           //if (baseURL.indexOf("|N|")>0)
+           //		baseURL = baseURL.replace("|N|",srvNum)
+           
            
            baseURL = baseURL.replace("|X|",tile.x);
            baseURL = baseURL.replace("|Y|",tile.y);
