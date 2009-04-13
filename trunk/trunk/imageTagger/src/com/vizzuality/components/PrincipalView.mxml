@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="98%" height="90%" backgroundAlpha="0" 
 	xmlns:components="com.vizzuality.components.*" horizontalCenter="0" verticalCenter="10">
+		
       	<mx:VBox height="100%" width="100%">
 	        <mx:HBox height="25" width="100%" horizontalAlign="left" verticalAlign="bottom">
 	            <mx:Button id="searchButton" label="Uploader" click="myViewStack.selectedChild=system;"/>
-	            <mx:Button id="cInfoButton" label="Visualizer" click="myViewStack.selectedChild=uploaded;" enabled="false"/>
+	            <mx:Button id="cInfoButton" label="Visualizer" click="myViewStack.selectedChild=uploaded;" enabled="true"/>
 	        </mx:HBox>
 	        <mx:ViewStack id="myViewStack" borderStyle="solid" width="100%" height="100%">
 	            <components:SqlImages id="system" label="Search" width="100%" height="100%"/>
