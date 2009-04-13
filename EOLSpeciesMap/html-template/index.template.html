@@ -38,8 +38,14 @@ return results[1];
 			//taxon_id = 151242;
 		so.addVariable("taxon_id", taxon_id);
 		so.addVariable("data_server_endpoint", 'http://localhost/php/amfphp/gateway.php');
-		so.addVariable("map_server_url_base", 'http://localhost/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_|T|');
-		//so.addVariable("map_server_url_base", 'http://gbiftilecache|N|.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|');
+		//so.addVariable("map_server_url_base", 'http://localhost/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_|T|');
+		so.addVariable("gmap_key", 'ABQIAAAAUdCLksixDAgnY8JZ7a6YJBRTcWW-xOIMiY0s20UEUW3xpxovahQClZ42LV_3hgyp4oBrgebTRrNDXg');
+		var tileServers = new Array();
+		tileServers[0]="http://gbiftilecache0.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|";
+		tileServers[1]="http://gbiftilecache1.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|";
+		tileServers[2]="http://gbiftilecache2.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|";
+		tileServers[3]="http://gbiftilecache3.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|";
+		so.addVariable("tile_servers", tileServers);		
 		so.write("example");
 		// ]]>
 	</script>
