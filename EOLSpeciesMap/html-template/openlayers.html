@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <script src="OpenLayers.js"></script>
+		<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'></script>
+        <script type="text/javascript">
+            var map;
+            function init() {
+				var map = new OpenLayers.Map('map', {
+				   maxExtent: new OpenLayers.Bounds(-20037508.3427892,-20037508.3427892,20037508.3427892,20037508.3427892), 
+				   numZoomLevels:18, 
+				   maxResolution:156543.0339, 
+				   units:'m', 
+				   projection: "EPSG:900913",
+				   displayProjection: new OpenLayers.Projection("EPSG:4326")			
+				});
+			
+				var gbif = new OpenLayers.Layer.TMS("GBIF", "http://eol-map.gbif.org/php/map/getEolTile.php", 
+					{ 'type':'png', isBaseLayer:false, 'getURL': 
+						function(bounds) {
+							var res = this.map.getResolution();
+							var x = Math.round ((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
+							var y = Math.round ((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
+							var z = this.map.getZoom();
+				
+							// debug
+							document.getElementById("tileUrl").value= 
+								"(" + bounds.left + " - " +  this.maxExtent.left + ") / (" + res + " x " + this.tileSize.w + ") = " + x ;
+					
+							var path = "?tile=" + x + "_" + y + "_" + z + "_13839800";
+							var url = this.url;
+							if (url instanceof Array) {
+								url = this.selectUrl(path, url);
+							}
+							document.getElementById("tileUrl").value=url + path;
+							return url + path;
+						}
+					});
+			
+				var gphy = new OpenLayers.Layer.Google("Google Physical",{type: G_PHYSICAL_MAP});
+				var gmap = new OpenLayers.Layer.Google("Google Streets", {numZoomLevels: 20});
+				var ghyb = new OpenLayers.Layer.Google("Google Hybrid",{type: G_HYBRID_MAP, numZoomLevels: 20});
+				var gsat = new OpenLayers.Layer.Google("Google Satellite",{type: G_SATELLITE_MAP, numZoomLevels: 20});
+	
+				map.addLayers([gphy, gmap, ghyb, gsat, gbif]);						
+					
+				map.addControl(new OpenLayers.Control.LayerSwitcher());
+				map.zoomToMaxExtent();			
+            }
+			
+
+        </script>
+		<style>
+.smallmap {
+    width: 512px;
+    height: 256px;
+    border: 1px solid #ccc;
+}			
+			
+		</style>
+    </head>
+    <body onload="init()">
+        <div id="map" class="smallmap"></div>
+		<br/>
+		<p>sample tile:</p>
+		<input type="text" size="100" id="tileUrl"></input>    
+    </body>
+</html>
