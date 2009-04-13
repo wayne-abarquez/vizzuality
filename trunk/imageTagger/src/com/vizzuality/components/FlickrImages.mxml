@@ -1,35 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" creationComplete="onCreationComplete()">
-	<mx:HTTPService id="jasonService" result="onResult(event)" fault="onFault(event)" method="get" resultFormat="text"/>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="686" height="456" creationComplete="onCreationComplete()" backgroundAlpha="0">
 	
 	<mx:Script>
 		<![CDATA[
-			import mx.rpc.events.FaultEvent;
-			import mx.rpc.events.ResultEvent;
-			import mx.controls.TileList;
+			import com.adobe.webapis.flickr.AuthPerm;
+			import com.adobe.webapis.flickr.events.FlickrResultEvent;
+			import com.adobe.webapis.flickr.FlickrService;
 			import mx.collections.ArrayCollection;
-			import com.adobe.serialization.json.JSON;
-
-			private var sqlArray: ArrayCollection;
-			private var object: Object;
+			import mx.core.Application;
+			import flash.system.Capabilities;
+			import flash.display.NativeWindow;
+			
+			private var flickrProvaider: Array = new Array();
 			
 			private function onCreationComplete():void {
-				var flickrurl:String = "";
-				jasonService.url=flickrurl;
-		 		jasonService.send();
+		 		Application.application.width = 1200;
 		 	}
 		 	
-		 	private function onResult(ev: ResultEvent):void {
-		 		var data:String = String(ev.result);
- 				object = JSON.decode(data);
+		 	private function onSearchFlickr():void {
+		 		var flickr: FlickrService = new FlickrService(Application.application.flickrAdminKey);
+	    		flickr.secret = Application.application.flickrSecretKey;
+	    		flickr.token  = Application.application.token;
+	    		flickr.permission = AuthPerm.WRITE;
+		 		var machine_tags:String = "taxonomy:binomial=Sergio,taxonomy:kingdom=animalia";
+				flickr.addEventListener( FlickrResultEvent.PHOTOS_SEARCH, onResultSearchFlickr );
+				flickr.photos.search( "me", machine_tags,"all" );
 		 	}
 		 	
-		 	private function onFault(ev: FaultEvent):void {
-		 		
-		 	}
+		 	private function onResultSearchFlickr( event:FlickrResultEvent ):void {
+				if (event.success)	{
+					trace("success");
+					flickrProvaider = event.data.photos.photos; 
+				} else {
+					trace("error");
+				}
+							
+				
+			}
 		]]>
 	</mx:Script>
-	
-	
-	<mx:TileList id="tilelist"/>
+	<mx:HBox x="0" y="0" width="100%" height="100%" backgroundAlpha="0">
+		<mx:VBox height="100%" paddingBottom="2" paddingLeft="2" paddingRight="2" paddingTop="3">
+			<mx:HBox width="100%">
+				<mx:TextInput text="Search" color="#326D15" fontWeight="bold" cornerRadius="15" borderStyle="solid" editable="true" enabled="true" textAlign="center" width="127"/>
+				<mx:Button width="26" click="onSearchFlickr()"/>				
+			</mx:HBox>
+			<mx:Tree height="100%"/>
+		</mx:VBox>
+		<mx:VBox height="100%" width="100%">
+			<mx:HBox paddingLeft="2" width="100%" height="28" verticalAlign="middle" horizontalAlign="center">
+				<mx:Button label="My photos" color="#090707"/>
+				<mx:Button label="Everybody" color="#090707"/>	
+				<mx:CheckBox label="Tag SpeciesLog" textAlign="left" color="#F5F8F9" fontWeight="bold" textSelectedColor="#F5F8F9" textRollOverColor="#F5F8F9"/>		
+			</mx:HBox>
+			<mx:TileList id="tilelist" width="100%" height="100%" itemRenderer="com.vizzuality.components.FlickrRenderer" dataProvider="flickrProvaider"/>
+		</mx:VBox>
+	</mx:HBox>
 </mx:Canvas>

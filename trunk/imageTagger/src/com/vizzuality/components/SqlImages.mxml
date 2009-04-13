@@ -11,6 +11,7 @@
 		
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.dao.FlickrUploadService;
 			import mx.states.AddChild;
 			import mx.events.CloseEvent;
 			import com.vizzuality.dao.TaxonomyResolutionService;
@@ -182,7 +183,9 @@
 		   		refreshTilelist();
 				if (sqlArray.length>0) {
 					Application.application.uploadingAllPictures=true;
-			   		uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);						
+			   		//uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);
+			   		var upFlickr: FlickrUploadService = new FlickrUploadService();
+			   		upFlickr.resolveTagsFlickr(sqlArray[0].path,sqlArray[0].scientific);				
 		  		} else {
 					Application.application.uploadingAllPictures=false;
 					DockIcon(NativeApplication.nativeApplication.icon).bounce();

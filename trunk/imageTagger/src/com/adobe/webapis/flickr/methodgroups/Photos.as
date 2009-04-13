@@ -36,9 +36,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.adobe.webapis.flickr.methodgroups {
 	
 	import com.adobe.webapis.flickr.*;
-	import com.adobe.webapis.flickr.events.FlickrResultEvent;
-	import com.vizzuality.event.FlickrSetLocationEvent;
-	
+	import com.adobe.webapis.flickr.events.FlickrResultEvent;	
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	
@@ -1138,7 +1136,7 @@ package com.adobe.webapis.flickr.methodgroups {
 		 * @playerversion Flash 8.5
 		 * @tiptext
 		 */
-		public function search( user_id:String = "", tags:String = "", tag_mode:String = "any", 
+		public function search( user_id:String = "", machine_tags:String="", machine_tag_mode:String = "any" ,tags:String = "", tag_mode:String = "any", 
 								text:String = "", min_upload_date:Date = null, max_upload_date:Date = null, 
 								min_taken_date:Date = null, max_taken_date:Date = null, license:Number = -1,
 								extras:String = "", per_page:Number = 100, page:Number = 1, sort:String = "date-posted-desc" ):void {
@@ -1149,6 +1147,8 @@ package com.adobe.webapis.flickr.methodgroups {
 								   "flickr.photos.search", 
 								   false,
 								   new NameValuePair( "user_id", user_id ),
+								   new NameValuePair( "machine_tags", machine_tags ),
+								   new NameValuePair( "machine_tag_mode", machine_tag_mode ),
 								   new NameValuePair( "tags", tags ),
 								   new NameValuePair( "tag_mode", tag_mode ),
 								   new NameValuePair( "text", text ),
