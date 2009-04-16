@@ -1,0 +1,25 @@
+/* CSS file */
+
+HSlider.zoomSlider
+{
+	tickOffset: 3;
+	tickThickness: 0;
+	borderColor: #94B6D2;
+	themeColor: #94B6D2;
+	tickColor: #94B6D2;
+	fillAlphas: 1.0, 1.0, 1.0, 1.0;
+	fillColors: #94B6D2, #94B6D2, #94B6D2, #94B6D2;
+}
+Button
+{
+	borderColor: #94B6D2;
+	themeColor: #94B6D2;
+	color: #FFFFFF;
+	textRollOverColor: #FFFFFF;
+	textSelectedColor: #FFFFFF;
+	fillAlphas: 1.0, 1.0;
+	fillColors: #94B6D2, #94B6D2;
+	disabledColor: #FFFFFF;
+	cornerRadius: 5;
+	textAlign: left;
+}

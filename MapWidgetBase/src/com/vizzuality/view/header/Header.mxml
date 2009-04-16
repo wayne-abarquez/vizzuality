@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="71" backgroundColor="#629ACC">
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Application;
+		]]>
+	</mx:Script>
+	<mx:Button label="Full" right="10" top="10" click="Application.application.toggleFullScreen();"/>
+	<mx:Button label="&gt;" right="64" top="10" click="Application.application.moveToRight();"/>
+	<mx:Button label="&lt;" right="112" top="10" click="Application.application.moveToLeft();"/>
+	<mx:Image source="assets/logo.png" left="3" top="3"/>
+	
+</mx:Canvas>
