@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:header="com.vizzuality.view.header.*" xmlns:footer="com.vizzuality.view.footer.*" resize="onResized(event)" addedToStage="gaTracker.debug.minimizedOnStart=true;"
+	layout="absolute" backgroundGradientAlphas="[1.0, 1.0]"
+	backgroundGradientColors="[#E9F4FF, #D7E8FA]" creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
+	<mx:Script>
+		<![CDATA[
+			import asual.SWFAddressEvent;
+			import asual.SWFAddress;
+			import com.google.maps.MapEvent;
+			import com.google.maps.Map;
+			import mx.effects.easing.Exponential;
+			import mx.events.ResizeEvent;
+			import mx.managers.ToolTipManager;
+			
+			//To control the moving of the left an right screens
+			private var isResizing:Boolean=false;
+			private var isInLeftState:Boolean=true;
+			
+			public var map:Map;
+			
+			[Bindable]
+			public var appState:String="";
+			
+			
+			private function initApp():void {
+				
+
+				
+				hboxContainer.width=mainVBox.width*2;
+				mapCanvas.width=mainVBox.width;
+				rightCanvas.width=mainVBox.width;
+				
+				//Modify Tooltip behaviour so that it show inmediately
+				ToolTipManager.showDelay = 0;
+				ToolTipManager.hideDelay = 4000;		
+				
+			}
+			
+			public function onMapReady():void {				
+				//We initialize the SWFAddress
+				SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+
+				//Ok, after here we are totally preinitialize.
+				mainCanvas.enabled=true;
+				
+				
+				
+				
+			}
+			
+			private function handleSWFAddress(event:SWFAddressEvent):void {
+				if(event.pathNames.length>0) {
+					appState=event.pathNames[0];
+				} else {
+					appState="";
+				}
+			}	
+			
+			
+			/**
+			 * Move to right the main screen
+			 */ 			
+			public function moveToRight():void {
+				if (isInLeftState) {
+					isInLeftState=false;
+					if (hboxContainer.getStyle("moveEffect") == null)
+						hboxContainer.setStyle("moveEffect",moveEffect);
+					hboxContainer.setStyle("left",NaN);
+					hboxContainer.setStyle("right",0);
+				}
+			}
+			
+			/**
+			 * Move to left the main screen
+			 */ 			
+			public function moveToLeft():void {
+				if (!isInLeftState) {
+					isInLeftState=true;
+					if (hboxContainer.getStyle("moveEffect") == null)
+						hboxContainer.setStyle("moveEffect",moveEffect);
+					hboxContainer.setStyle("right",NaN);
+					hboxContainer.setStyle("left",0);
+				}
+				
+			}			
+			
+			/**
+			 * Handle the resize of the application, due to left/right movement
+			 */ 
+			private function onResized(ev:ResizeEvent):void {
+		        if(!isResizing) {
+					if (moveEffect!=null && hboxContainer!=null && mapCanvas !=null && rightCanvas!=null) {
+						hboxContainer.setStyle("moveEffect",null);
+			            var tim:Timer = new Timer(450,1);
+			            tim.addEventListener(TimerEvent.TIMER, function(event:TimerEvent):void {	
+							hboxContainer.width=(Application.application.stage.width)*2;
+							mapCanvas.width=(Application.application.stage.width);
+							rightCanvas.width=(Application.application.stage.width);
+							Application.application.invalidateDisplayList();
+				            isResizing=false;
+			            });
+			            tim.start();
+			            isResizing=true;
+		            }
+
+
+				}	
+			}		
+
+			/**
+			 * Toggle between full screen and not full screen.
+			 */ 			
+			public function toggleFullScreen():void{
+	            try {
+	            	var tim:Timer;
+	                switch (Application.application.stage.displayState) {
+	                    case StageDisplayState.FULL_SCREEN:
+	                        Application.application.stage.displayState = StageDisplayState.NORMAL;
+	                        tim = new Timer(1000,1);
+			            	tim.addEventListener(TimerEvent.TIMER, function(event:TimerEvent):void {	
+			            		dispatchEvent(new Event(ResizeEvent.RESIZE));
+			            	});
+	                        break;
+	                    default:
+	                        Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
+	                        tim = new Timer(1000,1);
+			            	tim.addEventListener(TimerEvent.TIMER, function(event:TimerEvent):void {	
+			            		dispatchEvent(new Event(ResizeEvent.RESIZE));
+			            	});
+	                        
+	                        break;
+	                }
+	            } catch (err:SecurityError) {
+	                // ignore
+	                trace(err.message);
+	            }
+			}    
+			
+			
+		]]>
+	</mx:Script>
+	<mx:VBox id="mainVBox" width="100%" height="100%" verticalGap="0">
+		<header:Header id="header" />
+		<mx:Canvas id="mainCanvas" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off" horizontalCenter="0" enabled="false">
+			<mx:HBox id="hboxContainer" horizontalGap="0" height="100%">
+				<map:MapCanvas id="mapCanvas" height="100%" backgroundColor="#A8A8A8"/>
+				<mx:Canvas id="rightCanvas" height="100%" backgroundColor="#3B3B3B"/>
+			</mx:HBox>
+		</mx:Canvas>
+		<footer:Footer id="footer"/>
+	</mx:VBox>
+	
+    <mx:Move id="moveEffect" 
+        duration="500" 
+        easingFunction="{Exponential.easeInOut}" 
+        perElementOffset="20"/>			
+	<components:FlexTracker id="gaTracker" account="UA-7333475-1" mode="AS3" visualDebug="true" /> 	
+	<mx:Style source="com/vizzuality/view/styles.css"/>
+</mx:Application>
