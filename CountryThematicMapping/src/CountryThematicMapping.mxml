@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
-  width="378" height="276" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]">
+  width="378" height="276" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" xmlns:list="com.vizzuality.list.*">
 	<mx:states>
 		<mx:State name="Loading" enterState="onEnterLoading()" exitState="onExitLoading()">
-			<mx:AddChild position="lastChild">
-				<mx:Label text="Loading data..." horizontalCenter="0" verticalCenter="0" fontSize="17"/>
-			</mx:AddChild>
 			<mx:RemoveChild target="{hbox1}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas width="160" height="75" horizontalCenter="0" verticalCenter="0" backgroundColor="#000000" backgroundAlpha="0.6">
+					<mx:ProgressBar x="10" y="28" label="CARGANDO" color="#FFFFFF" fontWeight="normal" fontStyle="normal" 
+						fontFamily="DINOT-Medium" width="140" indeterminate="true" trackHeight="8"/>
+				</mx:Canvas>
+			</mx:AddChild>
 		</mx:State>
 		<mx:State name="countries">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas id="countryCanvas" top="28" bottom="40" left="0" right="0" backgroundColor="#FFFFFF">
+				<list:ListContainer id="countryCanvas" top="26" bottom="36" />
+	<!--			<mx:Canvas id="countryCanvas" top="28" bottom="40" left="0" right="0" backgroundColor="#FFFFFF">
 					<mx:DataGrid id="countriesDataGrid" left="5" right="5" top="10" bottom="10" dataProvider="{new ArrayCollection(countriesArr)}">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Name" dataField="name"/>
@@ -19,7 +23,7 @@
 							<mx:DataGridColumn headerText="Resouces" dataField="resources"/>
 						</mx:columns>
 					</mx:DataGrid>
-				</mx:Canvas>
+				</mx:Canvas>-->
 			</mx:AddChild>
 			<mx:SetProperty target="{countriesButton}" name="label" value="BACK TO MAP"/>
 			<mx:RemoveChild target="{hbox1}"/>
@@ -29,7 +33,8 @@
 		</mx:State>
 		<mx:State name="providers">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas id="providersCanvas" top="28" bottom="40" left="0" right="0" backgroundColor="#FFFFFF">
+				<list:ListProvidersContainer id="providersCanvas" top="26" bottom="36"/>
+				<!--<mx:Canvas id="providersCanvas" top="28" bottom="40" left="0" right="0" backgroundColor="#FFFFFF">
 					<mx:DataGrid id="providersDataGrid" left="5" right="5" top="10" bottom="10" dataProvider="{providersArrC}">
 						<mx:columns>
 							<mx:DataGridColumn headerText="Name" dataField="name"/>
@@ -39,7 +44,7 @@
 							<mx:DataGridColumn headerText="URL" dataField="url"/>
 						</mx:columns>
 					</mx:DataGrid>
-				</mx:Canvas>
+				</mx:Canvas>-->
 			</mx:AddChild>		
 			<mx:SetProperty target="{providersButton}" name="label" value="BACK TO MAP"/>
 		
@@ -97,6 +102,8 @@
 			private var aSprite:Sprite;
 			private var bSprite:Sprite;   
 			
+			[Bindable] private var legend:Class;
+			
 			[Embed(source="/com/vizzuality/style/assets/legend_1.png")]
             [Bindable] public var legend1:Class;
 			[Embed(source="/com/vizzuality/style/assets/legend_2.png")]
@@ -146,6 +153,7 @@
 			    //map.disableDragging();
 			    server.endpoint = this.parameters.data_server_endpoint;
 			    server.getCountries();
+			    
 			    
 			    
 					
@@ -277,7 +285,9 @@
 				}
 				
 				chloropleth(countriesArr,"occurrences",6,new Color(Color.YELLOW),new Color(Color.GREEN));	
+				legend = legend1;
 				currentState='';
+				
 			} 
 			
 			private function onCountryRollOver(event:MapMouseEvent):void {
@@ -402,13 +412,13 @@
 			private function changeComboType(e:Event):void{
 				switch(comboType.selectedLabel){
 					case "OCCURENCES":chloropleth(countriesArr,'occurrences',6,new Color(Color.YELLOW),new Color(Color.GREEN));
-									  legendImg.source = legend1;
+									  legend = legend1;
 									  break;
 					case "RESOURCES": chloropleth(countriesArr,'resources',6,new Color(Color.MAGENTA),new Color(Color.RED));
-									  legendImg.source = legend3;
+									  legend = legend3;
 									  break;
 					case "PROVIDERS": chloropleth(countriesArr,'providers',6,new Color(Color.YELLOW),new Color(Color.RED));
-									  legendImg.source = legend2;
+									  legend = legend2;
 									  break;									  									  
 				}
 			}  
@@ -440,23 +450,23 @@
 	</mx:HBox>
   
   	<mx:Canvas height="26" top="0" left="0" right="0" backgroundColor="#000000" backgroundAlpha="0.79" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-  		<mx:Button label="COUNTRY" selected="true" styleName="BreadCrumbButton" click="goToWorldOverview()" mouseChildren="false" useHandCursor="true" buttonMode="true" 
+  		<mx:Button label="COUNTRY" selected="true" styleName="BreadCrumbButton" 
   			id="countryText" visible="false" x="{worldButton.x + worldButton.width - 12}" y="1"/>
   		<mx:Button label="WORLD OVERVIEW" selected="true" styleName="BreadCrumbButton" click="goToWorldOverview()" mouseChildren="false" 
   			useHandCursor="true" buttonMode="true" x="1" y="1" id="worldButton"/>
-  		<mx:Label id="tipText" x="167" y="4.55" text="CLICK TO EXPLORE THE MAP IN DETAIL" fontFamily="DINOT-Medium" fontSize="10" color="#FFFFFF"/>
+  		<mx:Label id="tipText" y="5" text="CLICK ON A COUNTRY" fontFamily="DINOT-Medium" fontSize="10" color="#FFFFFF" right="28"/>
   		<mx:Image id="tipImage" x="355" y="6" source="@Embed('/com/vizzuality/style/assets/advertIcon.png')"/>
   	</mx:Canvas>
   	<mx:Canvas height="36" bottom="0" right="0" left="0" backgroundColor="#8B8B8B" styleName="greyCanvas" backgroundSize="100%">
-  	  	<mx:Button visible="true" id="countriesButton" label="VIEW COUNTRIES" left="7" verticalCenter="0" click="currentState=(currentState=='countries')?'':'countries'" 
+  	  	<mx:Button visible="true" id="countriesButton" label="VIEW COUNTRIES" left="5" verticalCenter="0" click="currentState=(currentState=='countries')?'':'countries'" 
   	  		buttonMode="true" mouseChildren="false" useHandCursor="true" styleName="greyButton" height="27"/>
-  	  	<mx:Button visible="false" id="providersButton" label="VIEW PROVIDERS" left="10" verticalCenter="0" click="currentState=(currentState=='providers')?'':'providers'" 
+  	  	<mx:Button visible="false" id="providersButton" label="VIEW PROVIDERS" left="5" verticalCenter="0" click="currentState=(currentState=='providers')?'':'providers'" 
   	  		buttonMode="true" mouseChildren="false" useHandCursor="true" styleName="greyButton" height="27"/>
 	
 	 	<mx:HBox right="4" id="hbox1" verticalCenter="1" verticalAlign="middle" horizontalGap="1">
 		  	<mx:ComboBox id="comboType" x="156" dataProvider="['OCCURENCES','PROVIDERS','RESOURCES']"  height="22" verticalCenter="0" change="changeComboType(event)"/>
 		  	<mx:Image source="@Embed('/com/vizzuality/style/assets/separator1.png')"/>
-		  	<mx:Image id="legendImg" source="{legend1}"/>
+		  	<mx:Image id="legendImg" source="{legend}"/>
 		  		
 	  	  	 <!--<mx:Button label="Occ" enabled="{selectedAttribute!='occurrences'}" click="chloropleth(countriesArr,'occurrences',6,new Color(Color.YELLOW),new Color(Color.GREEN));" width="38" height="17" fontSize="6"/>
 	  	  	<mx:Button label="Pro" enabled="{selectedAttribute!='providers'}" click="chloropleth(countriesArr,'providers',6,new Color(Color.YELLOW),new Color(Color.RED));" width="38" height="17" fontSize="6"/>

@@ -68,3 +68,30 @@ ComboBox{
 Canvas.greyCanvas{
 	background-image: Embed(source="ui.swf",symbol="bkgGreyCanvas");	
 }
+
+ScrollBar{
+	downArrowDisabledSkin: Embed(source="ui.swf", symbol="ScrollArrowDown_disabledSkin");
+	downArrowDownSkin: Embed(source="ui.swf", symbol="ScrollArrowDown_downSkin");
+	downArrowOverSkin: Embed(source="ui.swf", symbol="ScrollArrowDown_overSkin");
+	downArrowUpSkin: Embed(source="ui.swf", symbol="ScrollArrowDown_upSkin");
+	thumbDownSkin: Embed(source="ui.swf", symbol="ScrollThumb_downSkin");
+	thumbIcon: Embed(source="ui.swf", symbol="ScrollBar_thumbIcon");
+	thumbOverSkin: Embed(source="ui.swf", symbol="ScrollThumb_overSkin");
+	thumbUpSkin: Embed(source="ui.swf", symbol="ScrollThumb_upSkin");
+	trackSkin: Embed(source="ui.swf", symbol="ScrollTrack_Skin");
+	upArrowDisabledSkin: Embed(source="ui.swf", symbol="ScrollArrowUp_disabledSkin");
+	upArrowDownSkin: Embed(source="ui.swf", symbol="ScrollArrowUp_downSkin");
+	upArrowOverSkin: Embed(source="ui.swf", symbol="ScrollArrowUp_overSkin");
+	upArrowUpSkin: Embed(source="ui.swf", symbol="ScrollArrowUp_upSkin");
+}
+
+ProgressBar {
+   borderColor: #000000;
+   barColor: #66cc00;
+   color: #0b333c;
+   paddingLeft: 0;
+   paddingRight: 0;
+   textIndent: 0;
+   letterSpacing: 0;
+   verticalGap: 0;
+}
