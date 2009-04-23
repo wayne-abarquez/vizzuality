@@ -1,0 +1,70 @@
+/* CSS file */
+Button.BreadCrumbButton{
+	up-skin: Embed(source="ui.swf",symbol="breadcrumb_up");	
+	over-skin: Embed(source="ui.swf",symbol="breadcrumb_active_up");	
+	down-skin: Embed(source="ui.swf",symbol="breadcrumb_active_up");	
+	selected-over-skin: Embed(source="ui.swf",symbol="breadcrumb_active_up");	
+	selected-up-skin: Embed(source="ui.swf",symbol="breadcrumb_active_up");
+	selected-down-skin: Embed(source="ui.swf",symbol="breadcrumb_active_up");
+	font-family: "DINOT-Medium";
+	font-size: 11;
+	roll-over-color: #333333;
+	color: #333333;
+	padding-right: 18;
+	padding-bottom: 1;
+	padding-left: 13;
+}
+
+Button.greyButton{
+	up-skin: Embed(source="ui.swf",symbol="greyButton_up");	
+	over-skin: Embed(source="ui.swf",symbol="greyButton_over");	
+	down-skin: Embed(source="ui.swf",symbol="greyButton_over");	
+	selected-over-skin: Embed(source="ui.swf",symbol="greyButton_over");	
+	selected-up-skin: Embed(source="ui.swf",symbol="greyButton_over");
+	selected-down-skin: Embed(source="ui.swf",symbol="greyButton_over");
+	font-family: "DINOT-Medium";
+	font-size: 11;
+	roll-over-color: #333333;
+	color: #FFFFFF;	
+}
+
+
+.dropDown {
+	separatorSkin: Embed(source="ui.swf",symbol="Menu_separatorSkin");
+	backgroundColor: #cacaca;
+	backgroundAlpha: .8;
+	borderStyle: solid;
+	borderThickness: 0;
+	borderColor: #1e1e1e;
+	selection-color: #aaaaaa;
+	cornerRadius:0;
+	color: #1e1e1e;
+	textRollOverColor: #ffffff;
+	textSelectedColor:#1e1e1e;
+	rollOverColor: #333333;
+}
+
+ComboBox{
+	disabledSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_disabledSkin");
+	downSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_downSkin");
+	overSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_overSkin");
+	upSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_upSkin");
+	color: #FFFFFF;
+	textRollOverColor: #ffffff;
+	textSelectedColor:#ffffff;
+	textDisabledColor: #1e1e1e;
+	dropDownStyleName: "dropDown";
+	fontSize:11;
+	fontWeight:normal;
+	fontFamily: "DINOT-Medium";
+	arrowButtonWidth:12;
+	paddingRight:0;
+	paddingLeft:3;
+	border-style: solid;
+	border-thickness: 1;
+	border-color: #cacaca;
+}
+
+Canvas.greyCanvas{
+	background-image: Embed(source="ui.swf",symbol="bkgGreyCanvas");	
+}

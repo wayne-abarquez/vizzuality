@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
-  width="100%" height="100%" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]">
+  width="378" height="276" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]">
 	<mx:states>
 		<mx:State name="Loading" enterState="onEnterLoading()" exitState="onExitLoading()">
 			<mx:AddChild position="lastChild">
@@ -45,6 +45,9 @@
 		
 		</mx:State>
 	</mx:states>
+ 
+ 	<mx:Style source="/com/vizzuality/style/skin/ui.css"/>
+ 	<mx:Style source="/com/vizzuality/style/skin/fonts.css"/>
  
 	<mx:Script>
 		<![CDATA[
@@ -92,7 +95,16 @@
 			public var providersArrC:ArrayCollection = new ArrayCollection();
 			public var defaultPolOpt:PolygonOptions;
 			private var aSprite:Sprite;
-			private var bSprite:Sprite;    
+			private var bSprite:Sprite;   
+			
+			[Embed(source="/com/vizzuality/style/assets/legend_1.png")]
+            [Bindable] public var legend1:Class;
+			[Embed(source="/com/vizzuality/style/assets/legend_2.png")]
+            [Bindable] public var legend2:Class;
+			[Embed(source="/com/vizzuality/style/assets/legend_3.png")]
+            [Bindable] public var legend3:Class;
+
+			private var dp:ArrayCollection = new ArrayCollection(["OCCURENCES","COUNTRIES","RESOURCES"])
 
 			private function onMapPreInitialize(event:MapEvent):void {
 				var options:MapOptions = new MapOptions({
@@ -115,7 +127,7 @@
 				currentState="Loading";
 			    map.setMapType(MapType.PHYSICAL_MAP_TYPE);
 			    map.setCenter(new LatLng(35,0),1);
-				var topLeft:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,10,50);
+				var topLeft:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,10,35);
                 var zoomControl:ZoomControl = new ZoomControl(new ZoomControlOptions({hasScrollTrack: false}));
                 zoomControl.setControlPosition(topLeft);
                 map.addControl(zoomControl);			    
@@ -220,7 +232,7 @@
 				
 			}
 			
-			legendBox.visible=true;
+			//legendBox.visible=true;
 			typeLabel.text= field.toUpperCase();
 		}			
 			
@@ -280,10 +292,13 @@
 				var z:Number = map.getBoundsZoomLevel(c.bbox);				
 				map.setCenter(c.bbox.getCenter(),z);
 				
-				countryText.text = c.name.toUpperCase() + " >";
+				tipImage.visible = false;
+				tipText.visible = false;
+				countryText.label = c.name.toUpperCase() + " [" + numberFormatter.format(c.attributes['providers']) +" PROVIDERS]";
 				countryText.visible=true;
-				stats_text.text =numberFormatter.format(c.attributes['providers']) +" PROVIDERS";
-				stats_text.visible=true;
+				worldButton.selected = false;
+				countryText.selected = true;
+				
 				
 				server.getProvidersByCountry(c.isocode);
 				map.getPaneManager().getPaneById(PaneId.PANE_MARKER).clear();
@@ -356,11 +371,14 @@
 			private function goToWorldOverview():void {
 				map.getPaneManager().getPaneById(PaneId.PANE_MARKER).clear();
 				countryText.visible=false;
-				stats_text.visible=false;
+				//stats_text.visible=false;
 				map.setCenter(new LatLng(35,0),1);
 				
 				countriesButton.visible=true;
 				providersButton.visible=false;
+				worldButton.selected = true;
+				tipImage.visible = true;
+				tipText.visible = true;
 				
 			}
 			public function toggleFullScreen():void{
@@ -379,7 +397,21 @@
 	                // ignore
 	                trace(err.message);
 	            }
-			}    
+			} 
+			
+			private function changeComboType(e:Event):void{
+				switch(comboType.selectedLabel){
+					case "OCCURENCES":chloropleth(countriesArr,'occurrences',6,new Color(Color.YELLOW),new Color(Color.GREEN));
+									  legendImg.source = legend1;
+									  break;
+					case "RESOURCES": chloropleth(countriesArr,'resources',6,new Color(Color.MAGENTA),new Color(Color.RED));
+									  legendImg.source = legend3;
+									  break;
+					case "PROVIDERS": chloropleth(countriesArr,'providers',6,new Color(Color.YELLOW),new Color(Color.RED));
+									  legendImg.source = legend2;
+									  break;									  									  
+				}
+			}  
 			
 		]]>
 	</mx:Script>
@@ -389,8 +421,8 @@
   		<mx:method name="getProvidersByCountry" result="onGetProvidersByCountryResult(event)" fault="onGetProvidersByCountryFault(event)" />
   	</mx:RemoteObject>
   
-	<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" resize="map.invalidateDisplayList()" key="{Application.application.parameters.gmap_key}" width="100%" bottom="40"/>
-	<mx:HBox id="legendBox" visible="false" horizontalGap="0" right="0" left="0" top="28">
+	<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" resize="map.invalidateDisplayList()" key="{Application.application.parameters.gmap_key}" width="100%" bottom="36"/>
+	<mx:HBox id="legendBox" visible="false" includeInLayout="false" horizontalGap="0" right="0" left="0" top="28">
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="89" id="type"  alpha="0.7" backgroundColor="#DEDEDE"><mx:Label id="typeLabel" top="0" alpha="0.7" text="OCCURRENCES"  horizontalCenter="0"/>
 		</mx:Canvas>
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" id="group0"  alpha="0.7"><mx:Label id="label0" top="0" alpha="0.7" text="0"  horizontalCenter="0"/>
@@ -405,27 +437,33 @@
 		</mx:Canvas>
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" id="group5"  alpha="0.7"><mx:Label top="0" text="5"  id="label5" horizontalCenter="0" color="#000000"/>
 		</mx:Canvas>
-		
 	</mx:HBox>
   
-  	<mx:Canvas height="28" top="0" left="0" right="0" backgroundColor="#000000" backgroundAlpha="0.79">
-  	  	<mx:HBox left="10" top="0" verticalAlign="middle" right="10" bottom="0">
-  	  	  	<mx:Label text="WORLD OVERVIEW &gt;" color="#FFFFFF" fontSize="11" click="goToWorldOverview()" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
-  	  	  	<mx:Label text="COUNTRY &gt;" color="#FFFFFF" visible="false" fontSize="11" id="countryText"/>
-  	  	  	<mx:Label text="14 PROVIDERS" visible="false" color="#FFFFFF" fontSize="11" id="stats_text"/>
-  	  	</mx:HBox>
+  	<mx:Canvas height="26" top="0" left="0" right="0" backgroundColor="#000000" backgroundAlpha="0.79" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+  		<mx:Button label="COUNTRY" selected="true" styleName="BreadCrumbButton" click="goToWorldOverview()" mouseChildren="false" useHandCursor="true" buttonMode="true" 
+  			id="countryText" visible="false" x="{worldButton.x + worldButton.width - 12}" y="1"/>
+  		<mx:Button label="WORLD OVERVIEW" selected="true" styleName="BreadCrumbButton" click="goToWorldOverview()" mouseChildren="false" 
+  			useHandCursor="true" buttonMode="true" x="1" y="1" id="worldButton"/>
+  		<mx:Label id="tipText" x="167" y="4.55" text="CLICK TO EXPLORE THE MAP IN DETAIL" fontFamily="DINOT-Medium" fontSize="10" color="#FFFFFF"/>
+  		<mx:Image id="tipImage" x="355" y="6" source="@Embed('/com/vizzuality/style/assets/advertIcon.png')"/>
   	</mx:Canvas>
-  	<mx:Canvas height="40" bottom="0" right="0" left="0" backgroundColor="#8B8B8B">
-  	  	<mx:Button visible="true" id="countriesButton" label="VIEW COUNTRIES" left="10" verticalCenter="0" click="currentState=(currentState=='countries')?'':'countries'"/>
-  	  	<mx:Button visible="false" id="providersButton" label="VIEW PROVIDERS" left="10" verticalCenter="0" click="currentState=(currentState=='providers')?'':'providers'"/>
+  	<mx:Canvas height="36" bottom="0" right="0" left="0" backgroundColor="#8B8B8B" styleName="greyCanvas" backgroundSize="100%">
+  	  	<mx:Button visible="true" id="countriesButton" label="VIEW COUNTRIES" left="7" verticalCenter="0" click="currentState=(currentState=='countries')?'':'countries'" 
+  	  		buttonMode="true" mouseChildren="false" useHandCursor="true" styleName="greyButton" height="27"/>
+  	  	<mx:Button visible="false" id="providersButton" label="VIEW PROVIDERS" left="10" verticalCenter="0" click="currentState=(currentState=='providers')?'':'providers'" 
+  	  		buttonMode="true" mouseChildren="false" useHandCursor="true" styleName="greyButton" height="27"/>
 	
-	  	<mx:HBox right="10" id="hbox1" verticalCenter="0">
-	  	  	<mx:Button label="Occ" enabled="{selectedAttribute!='occurrences'}" click="chloropleth(countriesArr,'occurrences',6,new Color(Color.YELLOW),new Color(Color.GREEN));" width="38" height="17" fontSize="6"/>
+	 	<mx:HBox right="4" id="hbox1" verticalCenter="1" verticalAlign="middle" horizontalGap="1">
+		  	<mx:ComboBox id="comboType" x="156" dataProvider="['OCCURENCES','PROVIDERS','RESOURCES']"  height="22" verticalCenter="0" change="changeComboType(event)"/>
+		  	<mx:Image source="@Embed('/com/vizzuality/style/assets/separator1.png')"/>
+		  	<mx:Image id="legendImg" source="{legend1}"/>
+		  		
+	  	  	 <!--<mx:Button label="Occ" enabled="{selectedAttribute!='occurrences'}" click="chloropleth(countriesArr,'occurrences',6,new Color(Color.YELLOW),new Color(Color.GREEN));" width="38" height="17" fontSize="6"/>
 	  	  	<mx:Button label="Pro" enabled="{selectedAttribute!='providers'}" click="chloropleth(countriesArr,'providers',6,new Color(Color.YELLOW),new Color(Color.RED));" width="38" height="17" fontSize="6"/>
-	  	  	<mx:Button label="Res" enabled="{selectedAttribute!='resources'}" click="chloropleth(countriesArr,'resources',6,new Color(Color.MAGENTA),new Color(Color.RED));" width="38" height="17" fontSize="6"/>
+	  	  	<mx:Button label="Res" enabled="{selectedAttribute!='resources'}" click="chloropleth(countriesArr,'resources',6,new Color(Color.MAGENTA),new Color(Color.RED));" width="38" height="17" fontSize="6"/>-->
 	  	</mx:HBox>
   	</mx:Canvas>
-  	<mx:Button right="5" top="5" height="12" width="24" click="toggleFullScreen()"/>
+  	<mx:Button right="5" top="5" height="12" width="24" click="toggleFullScreen()" visible="false"/>
   
   <mx:transitions>
   	<mx:Transition fromState="" toState="countries">
