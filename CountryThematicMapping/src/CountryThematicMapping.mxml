@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+  width="100%" height="100%" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]">
+	<mx:states>
+		<mx:State name="Loading" enterState="onEnterLoading()" exitState="onExitLoading()">
+			<mx:AddChild position="lastChild">
+				<mx:Label text="Loading data..." horizontalCenter="0" verticalCenter="0" fontSize="17"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{hbox1}"/>
+		</mx:State>
+		<mx:State name="countries">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas id="countryCanvas" top="28" bottom="40" left="0" right="0" backgroundColor="#FFFFFF">
+					<mx:DataGrid id="countriesDataGrid" left="5" right="5" top="10" bottom="10" dataProvider="{new ArrayCollection(countriesArr)}">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Name" dataField="name"/>
+							<mx:DataGridColumn headerText="Occurrences" dataField="occurrences"/>
+							<mx:DataGridColumn headerText="Providers" dataField="providers"/>
+							<mx:DataGridColumn headerText="Resouces" dataField="resources"/>
+						</mx:columns>
+					</mx:DataGrid>
+				</mx:Canvas>
+			</mx:AddChild>
+			<mx:SetProperty target="{countriesButton}" name="label" value="BACK TO MAP"/>
+			<mx:RemoveChild target="{hbox1}"/>
+			<mx:AddChild relativeTo="{countryText}" position="before">
+				<mx:Label text="COUNTRY LIST &gt;" color="#FFFFFF" fontSize="11" click="goToWorldOverview()" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="providers">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas id="providersCanvas" top="28" bottom="40" left="0" right="0" backgroundColor="#FFFFFF">
+					<mx:DataGrid id="providersDataGrid" left="5" right="5" top="10" bottom="10" dataProvider="{providersArrC}">
+						<mx:columns>
+							<mx:DataGridColumn headerText="Name" dataField="name"/>
+							<mx:DataGridColumn headerText="City" dataField="city"/>
+							<mx:DataGridColumn headerText="Occurrences" dataField="occurrence_count"/>
+							<mx:DataGridColumn headerText="Resouces" dataField="resource_count"/>
+							<mx:DataGridColumn headerText="URL" dataField="url"/>
+						</mx:columns>
+					</mx:DataGrid>
+				</mx:Canvas>
+			</mx:AddChild>		
+			<mx:SetProperty target="{providersButton}" name="label" value="BACK TO MAP"/>
+		
+		</mx:State>
+	</mx:states>
+ 
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.effects.easing.Exponential;
+			import mx.effects.easing.Bounce;
+			import com.vizzuality.feature.Provider;
+			import com.google.maps.InfoWindowOptions;
+			import com.google.maps.styles.StrokeStyle;
+			import com.google.maps.styles.FillStyle;
+			import com.vizzuality.map.SmartInfoWindow;
+			import com.vizzuality.map.CustomIconSprite;
+			import com.google.maps.overlays.MarkerOptions;
+			import com.google.maps.PaneId;
+			import com.google.maps.overlays.Marker;
+			import com.google.maps.controls.ZoomControlOptions;
+			import com.google.maps.LatLng;
+			import com.google.maps.LatLngBounds;
+			import com.google.maps.MapMouseEvent;
+			import com.google.maps.overlays.PolygonOptions;
+			import com.vizzuality.feature.EncodedPolylineData
+			import com.google.maps.overlays.Polygon;
+			import com.vizzuality.feature.Country;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import com.google.maps.MapZoomEvent;
+			import com.google.maps.MapType;
+			import com.google.maps.controls.MapTypeControl;
+			import com.google.maps.controls.ZoomControl;
+			import com.google.maps.controls.ControlPosition;
+			import com.google.maps.Color;
+			import com.google.maps.MapOptions;
+			import com.google.maps.MapEvent;
+			import mx.core.Application;
+			
+			[Bindable]
+			public var selectedAttribute:String;
+			public var countries:Dictionary = new Dictionary();
+			public var providers:Dictionary = new Dictionary();
+			public var countriesArr:Array = new Array();
+			[Bindable]
+			public var countriesArrC:ArrayCollection = new ArrayCollection();
+			[Bindable]
+			public var providersArrC:ArrayCollection = new ArrayCollection();
+			public var defaultPolOpt:PolygonOptions;
+			private var aSprite:Sprite;
+			private var bSprite:Sprite;    
+
+			private function onMapPreInitialize(event:MapEvent):void {
+				var options:MapOptions = new MapOptions({
+				  backgroundFillStyle: {
+				    alpha: 1,
+				    color: Color.WHITE
+				  },
+				  controlByKeyboard: false,
+				  overlayRaising: true,
+				  dragging: true,
+				  continuousZoom: false
+				});	
+				map.setInitOptions(options);
+						
+			}		
+			
+
+			
+			private function onMapReady(event:Event):void {
+				currentState="Loading";
+			    map.setMapType(MapType.PHYSICAL_MAP_TYPE);
+			    map.setCenter(new LatLng(35,0),1);
+				var topLeft:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,10,50);
+                var zoomControl:ZoomControl = new ZoomControl(new ZoomControlOptions({hasScrollTrack: false}));
+                zoomControl.setControlPosition(topLeft);
+                map.addControl(zoomControl);			    
+			    
+			    defaultPolOpt= new PolygonOptions({fillStyle:{alpha : 0.4}
+				,strokeStyle:
+					{
+						thickness: 1,
+						color:Color.GRAY4,
+						alpha:0.7
+				}});
+				
+				//map.addOverlay(new Marker(new LatLng(21.332963,-157.87077)));
+			    
+			    
+			    //map.disableDragging();
+			    server.endpoint = this.parameters.data_server_endpoint;
+			    server.getCountries();
+			    
+			    
+					
+		    }			
+		    
+		
+		private function onEnterLoading():void {
+			if (bSprite==null) {
+				aSprite = map.getChildAt(1) as Sprite;
+				bSprite = aSprite.getChildAt(0) as Sprite;
+			}
+			bSprite.filters = [new ColorMatrixFilter([0.13238779460000002,1.0025112879999998,0.0490316186,0,-43.75271063919999,0.0749877946,1.230711288,0.0490316186,0,-78.25571063919999,0.0749877946,1.0025112879999998,0.15963161860000002,0,-56.89591063919999,0,0,0,1,0])];
+		}	
+		
+		private function onExitLoading():void {
+			bSprite.filters = null;
+		}	
+			
+		public function chloropleth(objects:Array, field:String, numClasses:int, colorBegin:Color, colorEnd: Color): void
+		{
+			selectedAttribute=field;
+			if(numClasses < 2) 
+				return;
+			
+			var i : int ;
+				
+			var sobjects:Array = objects.sort(function(a:Country,b:Country):int {
+				if(a.attributes[field] < b.attributes[field])
+					return -1;
+				else if (a.attributes[field] > b.attributes[field])
+					return 1;
+				else
+					return 0;
+			});
+			
+			var colors:Array = [];
+			var incr: Number = (colorEnd.r - colorBegin.r) / (numClasses - 1);
+			var incg: Number = (colorEnd.g - colorBegin.g) / (numClasses - 1);
+			var incb: Number = (colorEnd.b - colorBegin.b) / (numClasses - 1);
+			colors[0] = colorBegin;
+			colors[numClasses - 1] = colorEnd;
+			for(i = 1 ; i < numClasses - 1; i++)
+			{
+				colors[i] = new Color(0);
+				colors[i].setRGB(Math.round(colors[i-1].r + incr),
+					Math.round(colors[i-1].g + incg),
+					Math.round(colors[i-1].b + incb));
+					
+			}
+			group0.setStyle("backgroundColor",Color(colors[0]).rgb);
+			group1.setStyle("backgroundColor",Color(colors[1]).rgb);
+			group2.setStyle("backgroundColor",Color(colors[2]).rgb);
+			group3.setStyle("backgroundColor",Color(colors[3]).rgb);
+			group4.setStyle("backgroundColor",Color(colors[4]).rgb);
+			group5.setStyle("backgroundColor",Color(colors[5]).rgb);
+			
+			var curClass : int = 0;
+			
+			label0.text = numberFormatter.format(sobjects[0].attributes[field]);
+			label5.text = numberFormatter.format(sobjects[sobjects.length-1].attributes[field]);
+			
+			for(i  = 0; i < objects.length ; i++)
+			{
+				if(i > Math.round((curClass + 1) / numClasses * objects.length) - 1) {
+					curClass++;
+					if (curClass==1)
+						label1.text =numberFormatter.format(sobjects[i+1].attributes[field]);
+					if (curClass==2)
+						label2.text =numberFormatter.format(sobjects[i+1].attributes[field]);						
+					if (curClass==3)
+						label3.text =numberFormatter.format(sobjects[i+1].attributes[field]);						
+					if (curClass==4)
+						label4.text =numberFormatter.format(sobjects[i+1].attributes[field]);											
+				}
+				
+				var polOp:PolygonOptions = new PolygonOptions({
+					fillStyle: {color : Color(colors[curClass]).rgb, alpha:0.4},
+					strokeStyle: {alpha:1,thickness: 1,color:Color.GRAY4},
+					tooltip:sobjects[i].name +"\n"+numberFormatter.format(sobjects[i].attributes[field]) + " " + field
+					});
+				sobjects[i].shape.setOptions(polOp);
+				(sobjects[i] as Country).polOpt = polOp;
+				
+				
+			}
+			
+			legendBox.visible=true;
+			typeLabel.text= field.toUpperCase();
+		}			
+			
+ 			private function onGetCountriesResult(event:ResultEvent):void {
+				var res:Array = event.result as Array;
+				
+				for each(var c:Object in res) {
+					var epolis:Array = new Array();
+					
+					var encoded_levels:Array = (c.encoded_levels as String).slice(1,c.encoded_levels.length-1).split(",");
+					var encoded_num_levels:Array = (c.encoded_num_levels as String).slice(1,c.encoded_num_levels.length-1).split(",");
+					var encoded_points:Array = (c.encoded_points as String).slice(1,c.encoded_points.length-1).replace(/\u0022+/g,'').split(",");
+					var encoded_zoom_factor:Array = (c.encoded_zoom_factor as String).slice(1,c.encoded_zoom_factor.length-1).split(",");
+					var polygonsArr:Array=new Array();
+					
+					for (var i:int=0;i<encoded_points.length;i++) {
+						epolis.push(new EncodedPolylineData(encoded_points[i],encoded_zoom_factor[i],encoded_levels[i],encoded_num_levels[i]));
+					} 					
+					
+					var attributes:Object=new Object();
+					attributes.occurrences=c.num_occurrences;
+					attributes.providers=c.num_providers;
+					attributes.resources=c.num_resources;
+					
+					var sw:LatLng = new LatLng(c.south,c.west);
+					var ne:LatLng = new LatLng(c.north,c.east);
+					
+					var bbox:LatLngBounds=new LatLngBounds(sw,ne);
+					
+					
+					var pol:Polygon = Polygon.fromEncoded(epolis,defaultPolOpt);
+					pol.addEventListener(MapMouseEvent.ROLL_OVER,onCountryRollOver);
+					pol.addEventListener(MapMouseEvent.ROLL_OUT,onCountryRollOut);
+					pol.addEventListener(MapMouseEvent.CLICK,onCountryClicked);
+					
+					var country:Country = new Country(c.iso2,attributes,pol,defaultPolOpt,bbox,c.name);
+					countries[pol]=country;
+					countriesArr.push(country);
+					map.addOverlay(pol);	
+															
+																			
+				}
+				
+				chloropleth(countriesArr,"occurrences",6,new Color(Color.YELLOW),new Color(Color.GREEN));	
+				currentState='';
+			} 
+			
+			private function onCountryRollOver(event:MapMouseEvent):void {
+				(event.target as Polygon).setOptions(new PolygonOptions({fillStyle:{alpha : 0.9},strokeStyle:{color:Color.WHITE,thickness: 2}}));
+			}
+			private function onCountryRollOut(event:MapMouseEvent):void {
+				(event.target as Polygon).setOptions((countries[event.target] as Country).polOpt);
+			}
+			
+			private function onCountryClicked(event:MapMouseEvent):void {
+				var c:Country = countries[event.target] as Country;
+				var z:Number = map.getBoundsZoomLevel(c.bbox);				
+				map.setCenter(c.bbox.getCenter(),z);
+				
+				countryText.text = c.name.toUpperCase() + " >";
+				countryText.visible=true;
+				stats_text.text =numberFormatter.format(c.attributes['providers']) +" PROVIDERS";
+				stats_text.visible=true;
+				
+				server.getProvidersByCountry(c.isocode);
+				map.getPaneManager().getPaneById(PaneId.PANE_MARKER).clear();
+				currentState="Loading";
+			}
+			
+			private function onGetCountriesFault(event:FaultEvent):void {
+				trace(event.message);
+			}
+			private function onGetProvidersByCountryResult(event:ResultEvent):void {
+				var arr:Array = event.result as Array;
+				providersArrC = new ArrayCollection();	
+				for each(var p:Object in arr) {
+					var options:MarkerOptions = new MarkerOptions({
+							icon: new CustomIconSprite(),
+							tooltip: p.provider_name + "("+ p.provider_city +")",
+							iconAlignment: MarkerOptions.ALIGN_BOTTOM,
+							iconOffset: new Point(-11,0)
+							});
+					var m:Marker= new Marker(new LatLng(p.lat,p.lon),options);
+					m.addEventListener(MapMouseEvent.CLICK,onMarkerClick);
+					map.addOverlay(m);
+					
+					var provider:Provider = new Provider(p.provider_id,m,p.resource_count,
+										p.occurrence_count,p.iso_country_code,p.provider_name,p.providr_url,p.provider_city);
+					providers[m]=provider;			
+					providersArrC.addItem(provider);	
+					
+				}
+				currentState="";
+				countriesButton.visible=false;
+				providersButton.visible=true;
+			}
+			
+			private function onMarkerClick(event:MapMouseEvent):void {
+			      var content:Sprite = new Sprite();
+			      content.graphics.clear();
+			      content.graphics.beginFill(0x808080, 1);
+			      content.graphics.drawRect(0, 0, 150, 150);
+			      content.graphics.endFill();				
+			      
+				var infowindow:SmartInfoWindow = new SmartInfoWindow();
+				infowindow.position = infowindow.getBestAlignment(map, event.latLng, new Point(content.width, content.height));
+				infowindow.padding = 10;
+				infowindow.cornerRadius = 3;
+				infowindow.fillStyle = new FillStyle({color:0xFFFFFF, alpha:1});
+				infowindow.strokeStyle =  
+				    new StrokeStyle({color:0x000000, alpha:1, thickness:1, pixelHinting:true});
+				
+				infowindow.setContent(content);
+				infowindow.render();
+				  
+				var options:InfoWindowOptions = new InfoWindowOptions();
+				options.customContent = infowindow;
+				options.customOffset = infowindow.anchorPoint;
+				options.hasShadow = false;
+				options.drawDefaultFrame = false;
+				options.hasCloseButton = true;
+				options.customCloseRect = infowindow.closeButtonRect;
+				options.pointOffset = new Point(0, 0);
+				  
+				map.openInfoWindow(event.latLng, options);				
+				
+			}
+			
+			private function onGetProvidersByCountryFault(event:FaultEvent):void {
+				
+			}
+			
+			private function goToWorldOverview():void {
+				map.getPaneManager().getPaneById(PaneId.PANE_MARKER).clear();
+				countryText.visible=false;
+				stats_text.visible=false;
+				map.setCenter(new LatLng(35,0),1);
+				
+				countriesButton.visible=true;
+				providersButton.visible=false;
+				
+			}
+
+			
+		]]>
+	</mx:Script>
+  	<mx:NumberFormatter id="numberFormatter" useThousandsSeparator="true" thousandsSeparatorFrom="," />
+  	<mx:RemoteObject id="server" source="GBIFMetadataServices" destination="GBIFMetadataServices">
+  		<mx:method name="getCountries" result="onGetCountriesResult(event)" fault="onGetCountriesFault(event)" />
+  		<mx:method name="getProvidersByCountry" result="onGetProvidersByCountryResult(event)" fault="onGetProvidersByCountryFault(event)" />
+  	</mx:RemoteObject>
+  
+	<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" resize="map.invalidateDisplayList()" key="{Application.application.parameters.gmap_key}" width="100%" bottom="40"/>
+	<mx:HBox id="legendBox" visible="false" horizontalGap="0" right="0" left="0" top="28">
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="89" id="type"  alpha="0.7" backgroundColor="#DEDEDE"><mx:Label id="typeLabel" top="0" alpha="0.7" text="OCCURRENCES"  horizontalCenter="0"/>
+		</mx:Canvas>
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" id="group0"  alpha="0.7"><mx:Label id="label0" top="0" alpha="0.7" text="0"  horizontalCenter="0"/>
+		</mx:Canvas>
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" id="group1"  alpha="0.7"><mx:Label  id="label1" top="0" text="1"  horizontalCenter="0" color="#000000"/>
+		</mx:Canvas>
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" id="group2"  alpha="0.7"><mx:Label top="0" text="2" id="label2" horizontalCenter="0" color="#000000"/>
+		</mx:Canvas>
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" id="group3"  alpha="0.7"><mx:Label top="0" text="3" id="label3"  horizontalCenter="0" color="#000000"/>
+		</mx:Canvas>
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" id="group4"  alpha="0.7"><mx:Label top="0" text="4" id="label4" horizontalCenter="0" color="#000000"/>
+		</mx:Canvas>
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" id="group5"  alpha="0.7"><mx:Label top="0" text="5"  id="label5" horizontalCenter="0" color="#000000"/>
+		</mx:Canvas>
+		
+	</mx:HBox>
+  
+  	<mx:Canvas height="28" top="0" left="0" right="0" backgroundColor="#000000" backgroundAlpha="0.79">
+  	  	<mx:HBox left="10" top="0" verticalAlign="middle" right="10" bottom="0">
+  	  	  	<mx:Label text="WORLD OVERVIEW &gt;" color="#FFFFFF" fontSize="11" click="goToWorldOverview()" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
+  	  	  	<mx:Label text="COUNTRY &gt;" color="#FFFFFF" visible="false" fontSize="11" id="countryText"/>
+  	  	  	<mx:Label text="14 PROVIDERS" visible="false" color="#FFFFFF" fontSize="11" id="stats_text"/>
+  	  	</mx:HBox>
+  	</mx:Canvas>
+  	<mx:Canvas height="40" bottom="0" right="0" left="0" backgroundColor="#8B8B8B">
+  	  	<mx:Button visible="true" id="countriesButton" label="VIEW COUNTRIES" left="10" verticalCenter="0" click="currentState=(currentState=='countries')?'':'countries'"/>
+  	  	<mx:Button visible="false" id="providersButton" label="VIEW PROVIDERS" left="10" verticalCenter="0" click="currentState=(currentState=='providers')?'':'providers'"/>
+	
+	  	<mx:HBox right="10" id="hbox1" verticalCenter="0">
+	  	  	<mx:Button label="Occ" enabled="{selectedAttribute!='occurrences'}" click="chloropleth(countriesArr,'occurrences',6,new Color(Color.YELLOW),new Color(Color.GREEN));" width="38" height="17" fontSize="6"/>
+	  	  	<mx:Button label="Pro" enabled="{selectedAttribute!='providers'}" click="chloropleth(countriesArr,'providers',6,new Color(Color.YELLOW),new Color(Color.RED));" width="38" height="17" fontSize="6"/>
+	  	  	<mx:Button label="Res" enabled="{selectedAttribute!='resources'}" click="chloropleth(countriesArr,'resources',6,new Color(Color.MAGENTA),new Color(Color.RED));" width="38" height="17" fontSize="6"/>
+	  	</mx:HBox>
+  	</mx:Canvas>
+  
+  <mx:transitions>
+  	<mx:Transition fromState="" toState="countries">
+  		<mx:Sequence target="{countryCanvas}">
+	  		<mx:WipeDown moveEasingFunction="{Exponential.easeOut}" duration="500" />	  		
+  		</mx:Sequence>
+  	</mx:Transition>
+  	<mx:Transition fromState="" toState="providers">
+  		<mx:Sequence target="{providersCanvas}">
+	  		<mx:WipeDown moveEasingFunction="{Exponential.easeOut}" duration="500" />	  		
+  		</mx:Sequence>
+  	</mx:Transition>
+  </mx:transitions>
+  
+</mx:Application>
