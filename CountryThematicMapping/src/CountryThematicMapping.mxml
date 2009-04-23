@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
-  width="378" height="276" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" xmlns:list="com.vizzuality.list.*">
+  width="100%" height="100%" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" xmlns:list="com.vizzuality.list.*">
 	<mx:states>
 		<mx:State name="Loading" enterState="onEnterLoading()" exitState="onExitLoading()">
 			<mx:RemoveChild target="{hbox1}"/>
@@ -58,6 +58,7 @@
  
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.map.InfoWindowSprite;
 			import mx.events.ResizeEvent;
 			import mx.collections.ArrayCollection;
 			import mx.effects.easing.Exponential;
@@ -95,6 +96,7 @@
 			public var selectedAttribute:String;
 			public var countries:Dictionary = new Dictionary();
 			public var providers:Dictionary = new Dictionary();
+			public var markers:Dictionary = new Dictionary();
 			public var countriesArr:Array = new Array();
 			[Bindable]
 			public var countriesArrC:ArrayCollection = new ArrayCollection();
@@ -331,11 +333,11 @@
 							iconOffset: new Point(-11,0)
 							});
 					var m:Marker= new Marker(new LatLng(p.lat,p.lon),options);
+					var provider:Provider = new Provider(p.provider_id,m,p.resource_count,p.occurrence_count,p.iso_country_code,p.provider_name,p.providr_url,p.provider_city);
+					markers[m]=provider;
 					m.addEventListener(MapMouseEvent.CLICK,onMarkerClick);
 					map.addOverlay(m);
 					
-					var provider:Provider = new Provider(p.provider_id,m,p.resource_count,
-										p.occurrence_count,p.iso_country_code,p.provider_name,p.providr_url,p.provider_city);
 					providers[m]=provider;			
 					providersArrC.addItem(provider);	
 					
@@ -345,22 +347,22 @@
 				providersButton.visible=true;
 			}
 			
-			private function onMarkerClick(event:MapMouseEvent):void {
-			      var content:Sprite = new Sprite();
-			      content.graphics.clear();
-			      content.graphics.beginFill(0x808080, 1);
-			      content.graphics.drawRect(0, 0, 150, 150);
-			      content.graphics.endFill();				
+			private function onMarkerClick(event:MapMouseEvent):void {			       
+			    
+			    var provider:Provider = markers[event.currentTarget];
+			    var providerInfoWindow:InfoWindowSprite=new InfoWindowSprite(provider);
+			    //providerInfoWindow.width=150;
+			    //providerInfoWindow.height=100;
 			      
 				var infowindow:SmartInfoWindow = new SmartInfoWindow();
-				infowindow.position = infowindow.getBestAlignment(map, event.latLng, new Point(content.width, content.height));
-				infowindow.padding = 10;
+				infowindow.position = infowindow.getBestAlignment(map, event.latLng, new Point(providerInfoWindow.width, providerInfoWindow.height));
+				infowindow.padding = 3;
 				infowindow.cornerRadius = 3;
 				infowindow.fillStyle = new FillStyle({color:0xFFFFFF, alpha:1});
 				infowindow.strokeStyle =  
 				    new StrokeStyle({color:0x000000, alpha:1, thickness:1, pixelHinting:true});
 				
-				infowindow.setContent(content);
+				infowindow.setContent(providerInfoWindow);
 				infowindow.render();
 				  
 				var options:InfoWindowOptions = new InfoWindowOptions();
@@ -458,7 +460,7 @@
   		<mx:Button label="WORLD OVERVIEW" selected="true" styleName="BreadCrumbButton" click="goToWorldOverview()" mouseChildren="false" 
   			useHandCursor="true" buttonMode="true" x="1" y="1" id="worldButton" fontWeight="normal"/>
   		<mx:Label id="tipText" y="5" text="CLICK ON A COUNTRY" fontFamily="DINOT-Medium" fontSize="10" color="#FFFFFF" right="28"/>
-  		<mx:Image id="tipImage" x="355" y="6" source="@Embed('/com/vizzuality/style/assets/advertIcon.png')"/>
+  		<mx:Image id="tipImage" y="7" source="@Embed('/com/vizzuality/style/assets/advertIcon.png')" right="136"/>
   	</mx:Canvas>
   	<mx:Canvas height="36" bottom="0" right="0" left="0" backgroundColor="#8B8B8B" styleName="greyCanvas" backgroundSize="100%">
   	  	<mx:Button visible="true" id="countriesButton" label="VIEW COUNTRIES" left="5" verticalCenter="0" click="currentState=(currentState=='countries')?'':'countries'" 

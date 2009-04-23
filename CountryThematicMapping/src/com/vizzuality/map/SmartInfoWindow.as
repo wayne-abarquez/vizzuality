@@ -56,7 +56,8 @@ package com.vizzuality.map {
 	  var left:int = 0;
 	  var top:int = 0;
 	  var right:int = 2 * padding + content.width;
-	  var bottom:int = 2 * padding + content.height;
+	  //var bottom:int = 2 * padding + content.height;
+	  var bottom:int = 103;
 	  
 	  switch (position) {
 	    case ABOVE:
