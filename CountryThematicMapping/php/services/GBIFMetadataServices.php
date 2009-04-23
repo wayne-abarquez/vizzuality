@@ -24,7 +24,7 @@ class GBIFMetadataServices {
 	}
 	
 	public function getCountries() {
-	    $stmt = $this->dbHandle->prepare("select iso2,name,num_providers,num_resources,num_occurrences, encoded_points,encoded_zoom_factor,encoded_levels,encoded_num_levels, ymin(the_geom) as south , xmin(the_geom) as west,xmax(the_geom) as east, ymax(the_geom) as north from countries where num_occurrences>0  ");
+	    $stmt = $this->dbHandle->prepare("select iso2,name,num_providers,num_resources,num_occurrences, encoded_points,encoded_zoom_factor,encoded_levels,encoded_num_levels, south , west,east, north from countries where num_occurrences>0 order by num_occurrences DESC  ");
 
          //$this->dbHandle->exec("set standard_conforming_strings=on");
         //$stmt->bindParam(':parent_name', $parentName, PDO::PARAM_STR, 255);
@@ -63,6 +63,58 @@ class GBIFMetadataServices {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);	    
 	}
 	
+	
+	public function getAllCountriesForEdit() {
+	    $stmt = $this->dbHandle->prepare("select iso2,name,num_providers,num_resources,num_occurrences,south , west,east, north from countries order by iso2");
+	    $stmt->execute();
+	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+	public function getAllProvidersForEdit() {
+	    $stmt = $this->dbHandle->prepare("select resource_count,occurrence_count,iso_country_code,provider_name,providr_url,provider_city , lat,lon, provider_id from providers order by provider_id");
+	    $stmt->execute();
+	    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}	
+	
+	public function updateCountry($iso2,$num_providers,$num_resources,$num_occurrences,$south,$east,$north,$name) {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");	   
+	    } 
+        $sql="UPDATE countries SET num_providers=?,num_resources=?,num_occurrences=?,south=?,east=?,north=?,name=? WHERE iso2=?";
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->execute(array($num_providers,$num_resources,$num_occurrences,$south,$east,$north,$name,$iso2));
+        return;
+	}
+
+	public function updateProvider($resource_count,$occurrence_count,$iso_country_code,$provider_name,$providr_url,$provider_city,$lat,$lon,$provider_id) {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");	    
+	    }
+        $sql="UPDATE providers SET resource_count=?,occurrence_count=?,iso_country_code=?,provider_name=?,providr_url=?,provider_city=?,lat=?,lon=? WHERE provider_id=?";
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->execute(array($resource_count,$occurrence_count,$iso_country_code,$provider_name,$providr_url,$provider_city,$lat,$lon,$provider_id));
+	    return;
+	}
+	
+	public function updateField($table,$field,$newValue,$id) {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");	    
+	    }
+	    if(!is_numeric($newValue)){
+	        $newValue="'".$newValue."'";
+	    }
+	    if($table=="providers") {
+	        $sql="UPDATE providers SET ".$field."=".$newValue." WHERE provider_id=".$id;
+	    } elseif($table=="countries") {
+	        $sql="UPDATE countries SET ".$field."=".$newValue." WHERE iso2='".$id."'";
+	    } else {
+	        throw new Exception("unkown table");
+	    }
+        return $this->dbHandle->exec($sql);
+        
+        
+
+	}
 	
 	public function logout() {
 	    session_destroy();
