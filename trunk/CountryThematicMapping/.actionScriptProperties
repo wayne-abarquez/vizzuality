@@ -10,6 +10,7 @@
 </compiler>
 <applications>
 <application path="CountryThematicMapping.mxml"/>
+<application path="admin.mxml"/>
 </applications>
 <modules/>
 <buildCSSFiles/>
