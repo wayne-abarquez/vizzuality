@@ -391,6 +391,7 @@
 				worldButton.selected = true;
 				tipImage.visible = true;
 				tipText.visible = true;
+				currentState = '';
 				
 			}
 			public function toggleFullScreen():void{
