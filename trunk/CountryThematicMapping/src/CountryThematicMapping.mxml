@@ -48,6 +48,7 @@
  
 	<mx:Script>
 		<![CDATA[
+			import mx.events.ResizeEvent;
 			import mx.collections.ArrayCollection;
 			import mx.effects.easing.Exponential;
 			import mx.effects.easing.Bounce;
@@ -362,7 +363,23 @@
 				providersButton.visible=false;
 				
 			}
-
+			public function toggleFullScreen():void{
+	            try {
+	                switch (Application.application.stage.displayState) {
+	                    case StageDisplayState.FULL_SCREEN:
+	                        Application.application.stage.displayState = StageDisplayState.NORMAL;
+	                        map.setZoom(map.getZoom()-2);                       
+	                        break;
+	                    default:
+	                        Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;	 
+	                        map.setZoom(map.getZoom()+2);                       
+	                        break;
+	                }
+	            } catch (err:SecurityError) {
+	                // ignore
+	                trace(err.message);
+	            }
+			}    
 			
 		]]>
 	</mx:Script>
@@ -408,6 +425,7 @@
 	  	  	<mx:Button label="Res" enabled="{selectedAttribute!='resources'}" click="chloropleth(countriesArr,'resources',6,new Color(Color.MAGENTA),new Color(Color.RED));" width="38" height="17" fontSize="6"/>
 	  	</mx:HBox>
   	</mx:Canvas>
+  	<mx:Button right="5" top="5" height="12" width="24" click="toggleFullScreen()"/>
   
   <mx:transitions>
   	<mx:Transition fromState="" toState="countries">
