@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="40" backgroundColor="#000000" backgroundAlpha="0.8" currentState="{AppStates.gi().topState}">
+	<mx:states>
+		<mx:State name="{AppStates.WORLD}">
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRY}">
+			<mx:AddChild position="lastChild">
+				<mx:Button x="81" label="SPAIN" verticalCenter="0" id="button0"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.PA}">
+			<mx:AddChild position="lastChild">
+				<mx:Button x="81" label="SPAIN" verticalCenter="0" id="button2" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'')"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="151" label="PROTECTED AREA" verticalCenter="0" id="button1"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}"/>
+	</mx:states>
+	<mx:Button x="3" label="WORLD" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.WORLD,'')"/>
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.view.AppStates;
+
+		]]>
+	</mx:Script>
+</mx:Canvas>

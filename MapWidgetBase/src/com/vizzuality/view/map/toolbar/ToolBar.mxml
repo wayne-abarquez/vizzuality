@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="0" backgroundColor="#FFFFFF" backgroundAlpha="0.84" 
-	currentState="{Application.application.appState}">
+	 currentState="{AppStates.gi().secondState}">
 	<mx:states>
-		<mx:State name="species">
-			<mx:SetProperty name="height" value="280"/>
-			<mx:AddChild position="lastChild">
-				<mx:Label text="Species browser" left="10" top="20" fontSize="21" fontWeight="normal"/>
-			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Button label="x" right="10" top="10" click="SWFAddress.setValue('/')" width="37"/>
-			</mx:AddChild>
-		</mx:State>
-		<mx:State name="help">
+		<mx:State name="{AppStates.HELP}">
 			<mx:SetProperty name="height" value="100"/>
 			<mx:AddChild position="lastChild">
 				<mx:Label text="Help" left="10" top="20" fontSize="21" fontWeight="normal"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Button label="x" right="10" top="10" click="SWFAddress.setValue('/')" width="37"/>
+				<mx:Button label="x" right="10" top="10" click="AppStates.gi().setSecondState('')" width="37"/>
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="about">
+		<mx:State name="{AppStates.ABOUT}">
 			<mx:SetProperty name="height" value="190"/>
 			<mx:AddChild position="lastChild">
 				<mx:Label text="Global Registry of Migratory Species" left="10" top="20" fontSize="21" fontWeight="normal"/>
@@ -32,15 +23,36 @@
 				<mx:Label text="Featured species" fontSize="17" fontWeight="normal" right="67" width="192" top="24" textAlign="left"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Button label="x" right="10" top="10" click="SWFAddress.setValue('/')" width="37"/>
+				<mx:Button label="x" right="10" top="10" click="AppStates.gi().setSecondState('')" width="37"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.SEARCH}">
+			<mx:SetProperty name="height" value="190"/>
+			<mx:AddChild position="lastChild">
+				<mx:Label text="SEARCH" left="10" top="20" fontSize="21" fontWeight="normal"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{text1}" position="before">
+				<mx:Label text="Featured species" fontSize="17" fontWeight="normal" right="67" width="192" top="24" textAlign="left"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.FILTER}">
+			<mx:SetProperty name="height" value="190"/>
+			<mx:AddChild position="lastChild">
+				<mx:Label text="FILTER" left="10" top="20" fontSize="21" fontWeight="normal"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button label="x" right="10" top="10" click="AppStates.gi().setSecondState('')" width="37"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.view.AppStates;
 			import mx.effects.easing.Exponential;
 			import mx.core.Application;
 			import asual.SWFAddress;
+			
+			
 		]]>
 	</mx:Script>
 	<mx:transitions>

@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#95B5D5" width="100%" height="30">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#95B5D5" width="100%" height="30"
+	 currentState="{AppStates.gi().topState}">
+	<mx:states>
+		<mx:State name="{AppStates.WORLD}">
+			<mx:RemoveChild target="{button0}"/>
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRIES}">
+			<mx:RemoveChild target="{button2}"/>
+			<mx:RemoveChild target="{button1}"/>
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRY}"></mx:State>
+		<mx:State name="{AppStates.PA}"></mx:State>
+	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import com.vizzuality.view.AppStates;
 		import asual.SWFAddress;
 		import com.google.maps.MapType;
 		import com.vizzuality.view.map.MapCanvas;
@@ -30,11 +43,14 @@
 		<mx:Button label="terrain" click="map.setMapType(MapType.PHYSICAL_MAP_TYPE)"/>
 		<mx:Button label="satellite" click="map.setMapType(MapType.SATELLITE_MAP_TYPE)"/>
 		<mx:Button label="map" click="map.setMapType(MapType.NORMAL_MAP_TYPE)"/>
+		<mx:Button label="countries" click="AppStates.gi().setAllStates(AppStates.COUNTRIES,'')" id="button1"/>
+		<mx:Button label="world" click="AppStates.gi().setAllStates(AppStates.WORLD,'')" id="button0"/>
 	</mx:HBox>
 	<mx:HBox right="10" verticalCenter="0">
-		<mx:Button label="species" click="SWFAddress.setValue('/species')" />
-		<mx:Button label="help" click="SWFAddress.setValue('/help')" />
-		<mx:Button label="about" click="SWFAddress.setValue('/about')" />
+		<mx:Button label="search" click="AppStates.gi().setSecondState(AppStates.SEARCH)" />
+		<mx:Button label="filter" click="AppStates.gi().setSecondState(AppStates.FILTER)"  id="button2"/>
+		<mx:Button label="about" click="AppStates.gi().setSecondState(AppStates.ABOUT)" />
+		<mx:Button label="help" click="AppStates.gi().setSecondState(AppStates.HELP)" />
 	</mx:HBox>
 	
 </mx:Canvas>

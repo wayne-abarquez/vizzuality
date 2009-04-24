@@ -6,8 +6,6 @@
 		]]>
 	</mx:Script>
 	<mx:Button label="Full" right="10" top="10" click="Application.application.toggleFullScreen();"/>
-	<mx:Button label="&gt;" right="64" top="10" click="Application.application.moveToRight();"/>
-	<mx:Button label="&lt;" right="112" top="10" click="Application.application.moveToLeft();"/>
 	<mx:Image source="assets/logo.png" left="3" top="3"/>
 	
 </mx:Canvas>
