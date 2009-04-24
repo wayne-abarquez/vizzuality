@@ -6,7 +6,7 @@
 			<mx:RemoveChild target="{hbox1}"/>
 			<mx:AddChild position="lastChild">
 				<mx:Canvas width="160" height="75" horizontalCenter="0" verticalCenter="0" backgroundColor="#000000" backgroundAlpha="0.6">
-					<mx:ProgressBar x="10" y="28" label="CARGANDO" color="#FFFFFF" fontWeight="normal" fontStyle="normal" 
+					<mx:ProgressBar x="10" y="28" label="LOADING" color="#FFFFFF" fontWeight="normal" fontStyle="normal" 
 						fontFamily="DINOT-Medium" width="140" indeterminate="true" trackHeight="8"/>
 				</mx:Canvas>
 			</mx:AddChild>
@@ -358,7 +358,7 @@
 				infowindow.position = infowindow.getBestAlignment(map, event.latLng, new Point(providerInfoWindow.width, providerInfoWindow.height));
 				infowindow.padding = 3;
 				infowindow.cornerRadius = 3;
-				infowindow.fillStyle = new FillStyle({color:0xFFFFFF, alpha:1});
+				infowindow.fillStyle = new FillStyle({color:0x000000, alpha:0.8});
 				infowindow.strokeStyle =  
 				    new StrokeStyle({color:0x000000, alpha:1, thickness:1, pixelHinting:true});
 				

@@ -3,8 +3,14 @@ package com.vizzuality.map
 	import com.vizzuality.feature.Provider;
 	
 	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
+	
+	import mx.core.Application;
 
 	public class InfoWindowSprite extends Sprite
 	{
@@ -30,7 +36,7 @@ package com.vizzuality.map
 		
 		private function init():void {
 
-			graphics.beginFill(0xFFFFFF, 1);
+			graphics.beginFill(0x000000,0);
       		graphics.drawRect(0, 0, 150, 100);
       		graphics.endFill();
 /* 		    // Create info window frame
@@ -47,37 +53,55 @@ package com.vizzuality.map
 			
 			var xTextFormat:TextFormat = new TextFormat();
     		xTextFormat.font = "Verdana";
-    		xTextFormat.size = 10;
-    		xTextFormat.color = 0x2A2A2A;
+    		xTextFormat.size = 12;
+    		xTextFormat.color = 0xFFFFFF;
+    		
+			var x2TextFormat:TextFormat = new TextFormat();
+    		x2TextFormat.font = "Verdana";
+    		x2TextFormat.size = 14;
+    		x2TextFormat.color = 0xFFFFFF;
+    		
+			var urlFormat:TextFormat = new TextFormat();
+    		urlFormat.font = "Verdana";
+    		urlFormat.size = 10;
+    		urlFormat.underline = true;
+    		urlFormat.color = 0xFFFFFF;
     		
     		//NAME
     		var nameText:TextField = new TextField();
-		    nameText.x = 10;
-		    nameText.y = 10;
-		    nameText.text = this.provide_name;
+		    nameText.x = 5;
+		    nameText.y = 0;
+		    nameText.text = this.provide_name + ' ('+city+')';
 		    nameText.selectable = true;
+		    nameText.wordWrap=true;
+		    nameText.autoSize = TextFieldAutoSize.LEFT;
+		    nameText.width=132;
 		    nameText.setTextFormat(xTextFormat);		    
 		    addChild(nameText);
 		    
-    		//CITY
-    		var cityText:TextField = new TextField();
-		    cityText.x = 10;
-		    cityText.y = 26;
-		    cityText.text = city;
-		    cityText.selectable = true;
-		    cityText.setTextFormat(xTextFormat);
-		    addChild(cityText);
+    		//URL
+    		var urlText:TextField = new TextField();
+		    urlText.x = 5;
+		    urlText.y = nameText.height +5;
+		    urlText.text = 'Visit website';
+		    urlText.selectable = true;
+		    urlText.wordWrap=true;
+		    urlText.autoSize = TextFieldAutoSize.LEFT;
+		    urlText.width=132;
+		    urlText.setTextFormat(urlFormat);		    
+		    addChild(urlText);
+		    urlText.addEventListener(MouseEvent.CLICK, onUrlClick,false,0,true);
 		    
     		//OCCURRENCES
     		var occText:TextField = new TextField();
-		    occText.x = 10;
-		    occText.y = 58;
-		    occText.text = occurrences + ' occ.';
+		    occText.x = 5;
+		    occText.y = 65;
+		    occText.text = Application.application.numberFormatter.format(occurrences) + '\noccurrences';
 		    occText.selectable = true;
-		    occText.setTextFormat(xTextFormat);
+		    occText.setTextFormat(x2TextFormat);
 		    addChild(occText);
 		    
-    		//RESOURCES
+/*     		//RESOURCES
     		var resText:TextField = new TextField();
 		    resText.x = 10;
 		    resText.y = 73;
@@ -85,9 +109,13 @@ package com.vizzuality.map
 		    resText.selectable = true;
 		    resText.setTextFormat(xTextFormat);
 		    addChild(resText);
-    		
+    		 */
     		cacheAsBitmap = true;
     		
+		}
+		
+		private function onUrlClick(event:MouseEvent):void {
+			navigateToURL(new URLRequest(this.url));
 		}
 	}
 }

@@ -57,11 +57,12 @@ package com.vizzuality.map {
 	  var top:int = 0;
 	  var right:int = 2 * padding + content.width;
 	  //var bottom:int = 2 * padding + content.height;
-	  var bottom:int = 103;
+	  var bottom:int = 110;
 	  
 	  switch (position) {
 	    case ABOVE:
           anchorPointValue = new Point((left + right) / 2, bottom + anchorSize);
+          //anchorPointValue.y=anchorPointValue.y-10;
           position = ABOVE;
           break;
 	  	case BELOW:
