@@ -18,8 +18,8 @@ package asual {
     import flash.events.EventDispatcher;
     import flash.events.TimerEvent;
     import flash.external.ExternalInterface;
-    import flash.net.navigateToURL;
     import flash.net.URLRequest;
+    import flash.net.navigateToURL;
     import flash.system.Capabilities;
     import flash.utils.Timer;
     

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" xmlns:header="com.vizzuality.view.map.header.*" xmlns:toolbar="com.vizzuality.view.map.toolbar.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" xmlns:header="com.vizzuality.view.map.header.*" xmlns:toolbar="com.vizzuality.view.map.toolbar.*" xmlns:map="com.vizzuality.view.map.*">
+	<mx:states>
+		<mx:State name="{AppStates.WORLD}"/>
+		<mx:State name="{AppStates.COUNTRIES}"/>
+		<mx:State name="{AppStates.COUNTRY}"/>
+		<mx:State name="{AppStates.PA}"/>
+	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.view.AppStates;
 			import com.google.maps.MapZoomEvent;
 			import com.google.maps.MapType;
 			import com.google.maps.controls.MapTypeControl;
@@ -11,6 +18,9 @@
 			import com.google.maps.MapOptions;
 			import com.google.maps.MapEvent;
 			import mx.core.Application;
+			
+			private var aSprite:Sprite;
+			private var bSprite:Sprite;   			
 
 			private function onMapPreInitialize(event:MapEvent):void {
 				var options:MapOptions = new MapOptions({
@@ -40,12 +50,30 @@
 				mapHeader.zoomSlider.value = map.getZoom();
 			}
 			
+			public function setMapLoading():void {
+				if (bSprite==null) {
+					aSprite = map.getChildAt(1) as Sprite;
+					bSprite = aSprite.getChildAt(0) as Sprite;
+				}
+				bSprite.filters = [new ColorMatrixFilter([0.13238779460000002,1.0025112879999998,0.0490316186,0,-43.75271063919999,0.0749877946,1.230711288,0.0490316186,0,-78.25571063919999,0.0749877946,1.0025112879999998,0.15963161860000002,0,-56.89591063919999,0,0,0,1,0])];
+				loadingBar.visible=true;
+			
+			}
+			
+			public function setMapLoaded():void {
+				bSprite.filters = null;
+				loadingBar.visible=false;
+			}
+			
 		]]>
 	</mx:Script>
 	<mx:VBox width="100%" height="100%" verticalGap="0">
 		<header:MapHeader id="mapHeader" map="{map}" />
 		<mx:Canvas width="100%" height="100%">
 			<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" resize="map.invalidateDisplayList()" key="{Application.application.parameters.gmap_key}" width="100%" height="100%"/>
+			<mx:ProgressBar id="loadingBar" visible="false" label="LOADING" color="#FFFFFF" fontWeight="normal" fontStyle="normal" 
+						fontFamily="Verdana" width="140" indeterminate="true" trackHeight="8" verticalCenter="0" horizontalCenter="0"/>				
+			<map:BreadCrumb id="breadcrumb" top="0" left="0" />
 			<toolbar:ToolBar id="toolBar" top="0" left="0" currentState="about" />
 		</mx:Canvas>
 		<mx:Canvas id="mapControl"  height="70" width="100%" backgroundColor="#E2E2E2"/>
