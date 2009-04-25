@@ -25,6 +25,12 @@ package com.vizzuality.view
 		[Bindable]
 		public var secondState:String;
 		
+		[Bindable]
+		public var activePaId:Number;
+		[Bindable]
+		public var activeCountryIsoCode:String;
+		
+		
 		private static var instance:AppStates = new AppStates();
 		
 		public function AppStates() {
@@ -40,7 +46,15 @@ package com.vizzuality.view
 			SWFAddress.setValue(tState);
 		}
 		public function setSecondState(sState:String):void {
-			SWFAddress.setValue(gi().topState + '/' + sState);
+			if (topState==COUNTRY) {
+				SWFAddress.setValue(gi().topState + '/' +activeCountryIsoCode +'/' + sState);				
+			} 
+			else if (topState==PA) {
+				SWFAddress.setValue(gi().topState + '/' +activePaId +'/' + sState);							
+			} 
+			else {
+				SWFAddress.setValue(gi().topState + '/' + sState);
+			}
 		}
 		public function setAllStates(tState:String,sState:String):void {
 			SWFAddress.setValue(tState + '/' + sState);
