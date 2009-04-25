@@ -33,6 +33,22 @@ class WDPAServices {
         
         return $result;
 	}
+	
+	public function getCountryList() {
+	    $result=array();
+	    $c=array();
+	    $c['name']="Spain";
+	    $c['isocode']="ES";
+	    $c['numAreas']=2323;
+	    $result[]=$c;
+	    $result[]=$c;
+	    $result[]=$c;
+	    $result[]=$c;
+	    $result[]=$c;
+	    $result[]=$c;
+	    
+	    return $result;
+	}
 
 }
 ?>
