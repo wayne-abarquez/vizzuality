@@ -12,7 +12,7 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.ABOUT}">
-			<mx:SetProperty name="height" value="190"/>
+			<mx:SetProperty name="height" value="80%"/>
 			<mx:AddChild position="lastChild">
 				<mx:Label text="Global Registry of Migratory Species" left="10" top="20" fontSize="21" fontWeight="normal"/>
 			</mx:AddChild>
@@ -24,6 +24,12 @@
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Button label="x" right="10" top="10" click="AppStates.gi().setSecondState('')" width="37"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button label="View Spain" horizontalCenter="0" bottom="30" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button label="View PA 5" horizontalCenter="123" bottom="30" click="AppStates.gi().setAllStates(AppStates.PA,'5')"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.SEARCH}">
