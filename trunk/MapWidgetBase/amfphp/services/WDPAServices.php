@@ -11,6 +11,46 @@ class WDPAServices {
 	**/
 	function __construct() {
 	}
+
+    public function getPaData($siteid) {
+        $result=array();
+        $result['name']="Yosemite";
+        $result['country']="Spain";
+        $result['countryIsoCode']="ES";
+        $result['has']=138000;
+        
+        return $result;
+	}
+
+
+	public function searchAreasByName($search) {
+	    $result=array();
+	    $c=array();
+	    $c['name']="Spain";
+	    $c['siteId']=975;
+	    $c['has']=2323;
+	    $c['countryName']="Spain";
+	    $c['countryIsoCode']="ES";	    	    
+	    $result[]=$c;
+	    $result[]=$c;
+	    $result[]=$c;
+	    $result[]=$c;
+	    $result[]=$c;
+	    $result[]=$c;
+	    
+	    return $result;
+	}
+    
+    public function getCountryStatsByISO($iso) {
+        $result=array();
+        $result['numAreas']=130000;
+        $result['coveragePercentage']=34;
+        $result['numberCoral']=138000;
+        $result['numMangrove']=74;
+        $result['numSeagrass']=345;
+        
+        return $result;
+    }
     
     public function getFeaturedArea() {
         $featurearea=array();
