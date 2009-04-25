@@ -10,7 +10,7 @@
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
 			<mx:AddChild position="lastChild">
-				<mx:Button x="81" label="SPAIN" verticalCenter="0" id="button2" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'')"/>
+				<mx:Button x="81" label="SPAIN" verticalCenter="0" id="button2" click="AppStates.gi().setAllStates(AppStates.COUNTRY,AppStates.gi().activeCountryIsoCode)"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Button x="151" label="PROTECTED AREA" verticalCenter="0" id="button1"/>
