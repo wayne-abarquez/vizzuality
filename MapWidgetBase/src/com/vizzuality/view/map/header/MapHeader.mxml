@@ -55,27 +55,35 @@
 		}
 	]]>
 </mx:Script>
-	<mx:HBox left="10" verticalCenter="0" verticalAlign="middle" horizontalGap="1" backgroundColor="#FFFFFF" cornerRadius="6" width="229.5" height="27" horizontalAlign="center" borderStyle="solid" borderColor="#94B6D2">
-		<mx:Button label="-" width="21" click="zoomOut()" height="16"/>
-		<mx:HSlider id="zoomSlider" minimum="0" maximum="16" snapInterval="1" liveDragging="true" styleName="zoomSlider" change="onZoomSliderChange()"/>
-		<mx:Button label="+" width="21" click="zoomIn()" height="16"/>
-	</mx:HBox>
-	<mx:HBox left="247" verticalCenter="0" styleName="darkTopContainer" backgroundSize="100%" 
+	<mx:Canvas styleName="darkTopContainer" backgroundSize="100%" verticalCenter="0" height="21" x="12">
+		<mx:Canvas height="4" backgroundColor="#FFFFFF" verticalCenter="-1" left="50" right="15"/>
+		<mx:HBox left="0" verticalCenter="0" verticalAlign="middle" horizontalGap="0" 
+			paddingLeft="3" paddingRight="6" height="21" horizontalAlign="center">
+			<mx:Label text="zoom" width="35" fontFamily="DINOT-Medium" color="#5D643E" fontSize="11"/>
+			<mx:Button styleName="btnZoomMinus" click="zoomOut()" height="14" width="14"
+				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
+			<mx:HSlider id="zoomSlider" minimum="0" maximum="16" snapInterval="1" tickInterval="1" 
+				liveDragging="true" styleName="zoomSlider" change="onZoomSliderChange()"/>
+			<mx:Button styleName="btnZoomMore" click="zoomIn()" height="14" width="14"
+				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
+		</mx:HBox>
+	</mx:Canvas>	
+	<mx:HBox left="248" verticalCenter="0" styleName="darkTopContainer" backgroundSize="100%" 
 		paddingTop="3" paddingBottom="3" paddingRight="3" height="21" horizontalGap="1">
 		<mx:Button label="terrain" click="changeMapType(MapType.PHYSICAL_MAP_TYPE,event)" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
-		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="18"/>
+		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="15"/>
 		<mx:Button label="satellite" click="changeMapType(MapType.SATELLITE_MAP_TYPE,event)" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
-		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="18"/>
+		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="15"/>
 		<mx:Button label="map" click="changeMapType(MapType.NORMAL_MAP_TYPE,event)" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
-		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="18"/>
+		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="15"/>
 		<mx:Button label="countries" click="changeToCountries(event)" id="button1" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 		<!--<mx:Button label="world" click="AppStates.gi().setAllStates(AppStates.WORLD,'')" id="button0"/>-->
 	</mx:HBox>
-	<mx:HBox right="10" verticalCenter="1" horizontalGap="2">
+	<mx:HBox right="9" verticalCenter="1" horizontalGap="2">
 		<mx:Button label="search" click="AppStates.gi().setSecondState(AppStates.SEARCH)" styleName="btnTool"
 			height="23" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
 		<mx:Button label="filter" click="AppStates.gi().setSecondState(AppStates.FILTER)"  id="button2" styleName="btnTool"

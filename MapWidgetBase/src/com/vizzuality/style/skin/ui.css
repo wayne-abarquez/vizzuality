@@ -43,6 +43,51 @@ Button.btnTool{
 	padding-top: 0; 	
 }
 
+Button.btnZoomMore{
+	up-skin: Embed(source="ui.swf",symbol="btn_zoom_more_up");	
+	over-skin: Embed(source="ui.swf",symbol="btn_zoom_more_over");	
+	down-skin: Embed(source="ui.swf",symbol="btn_zoom_more_over");	
+	color: #4a4f33;
+	text-roll-over-color: #333333;
+	text-selected-color: #333333;
+	font-family: "DINOT-Medium";
+	font-size: 12;
+	font-weight: normal;
+	padding-top: 0; 	
+}
+
+Button.btnZoomMinus{
+	up-skin: Embed(source="ui.swf",symbol="btn_zoom_minus_up");	
+	over-skin: Embed(source="ui.swf",symbol="btn_zoom_minus_over");	
+	down-skin: Embed(source="ui.swf",symbol="btn_zoom_minus_over");	
+	color: #4a4f33;
+	text-roll-over-color: #333333;
+	text-selected-color: #333333;
+	font-family: "DINOT-Medium";
+	font-size: 12;
+	font-weight: normal;
+	padding-top: 0; 	
+}
+
+
+
+HSlider, VSlider{
+	thumbDisabledSkin: Embed(source="ui.swf", symbol="SliderThumb_disabledSkin");
+	thumbDownSkin: Embed(source="ui.swf", symbol="SliderThumb_downSkin");
+	thumbOverSkin: Embed(source="ui.swf", symbol="SliderThumb_overSkin");
+	thumbUpSkin: Embed(source="ui.swf", symbol="SliderThumb_upSkin");
+	trackHighlightSkin: Embed(source="ui.swf", symbol="SliderHighlight_Skin");
+	trackSkin: Embed(source="ui.swf", symbol="SliderTrack_Skin");
+	tickColor:#FFFFFF;
+	tick-length:8;
+	tickOffset:6;
+	tickInterval:1;
+	tickThickness:1;
+	thumb-offset: 0;
+}
+
+
+
 /* Button.BreadCrumbButton{
 	up-skin: Embed(source="ui.swf",symbol="breadcrumb_up");	
 	over-skin: Embed(source="ui.swf",symbol="breadcrumb_active_up");	
