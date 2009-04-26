@@ -37,7 +37,7 @@ package com.vizzuality.map
 		private function init():void {
 
 			graphics.beginFill(0x000000,0);
-      		graphics.drawRect(0, 0, 150, 100);
+      		graphics.drawRect(0, 0, 200, 100);
       		graphics.endFill();
 /* 		    // Create info window frame
 		    graphics.lineStyle(2, 0x2A2A2A, 1, true);
@@ -58,7 +58,7 @@ package com.vizzuality.map
     		
 			var x2TextFormat:TextFormat = new TextFormat();
     		x2TextFormat.font = "Verdana";
-    		x2TextFormat.size = 14;
+    		x2TextFormat.size = 13;
     		x2TextFormat.color = 0xFFFFFF;
     		
 			var urlFormat:TextFormat = new TextFormat();
@@ -75,7 +75,7 @@ package com.vizzuality.map
 		    nameText.selectable = true;
 		    nameText.wordWrap=true;
 		    nameText.autoSize = TextFieldAutoSize.LEFT;
-		    nameText.width=132;
+		    nameText.width=182;
 		    nameText.setTextFormat(xTextFormat);		    
 		    addChild(nameText);
 		    
@@ -95,8 +95,9 @@ package com.vizzuality.map
     		//OCCURRENCES
     		var occText:TextField = new TextField();
 		    occText.x = 5;
-		    occText.y = 65;
-		    occText.text = Application.application.numberFormatter.format(occurrences) + '\noccurrences';
+		    occText.y = urlText.y +13;
+		    occText.width=182;
+		    occText.text = Application.application.numberFormatter.format(occurrences) + ' occurrences';
 		    occText.selectable = true;
 		    occText.setTextFormat(x2TextFormat);
 		    addChild(occText);
