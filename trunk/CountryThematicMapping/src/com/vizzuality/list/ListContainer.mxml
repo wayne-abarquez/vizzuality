@@ -7,7 +7,7 @@
 			import mx.core.Application;
 		]]>
 	</mx:Script>
-	<mx:Label x="165" y="10" text="Occurences" color="#FFFFFF" fontFamily="DINOT-Medium"/>
+	<mx:Label x="165" y="10" text="Occurrences" color="#FFFFFF" fontFamily="DINOT-Medium"/>
 	<mx:Label x="235" y="10" text="Providers" color="#FFFFFF" fontFamily="DINOT-Medium"/>
 	<mx:Label x="304" y="10" text="Resources" color="#FFFFFF" fontFamily="DINOT-Medium"/>
 	<mx:Label x="11" y="7.8999996" text="Name" color="#FFFFFF" fontFamily="DINOT-Medium" fontSize="13"/>

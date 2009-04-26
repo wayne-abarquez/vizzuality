@@ -7,7 +7,7 @@
 		]]>
 	</mx:Script>
 	<mx:Label x="225" y="10" text="City" color="#FFFFFF" fontFamily="DINOT-Medium"/>
-	<mx:Label x="295" y="10" text="Occurences" color="#FFFFFF" fontFamily="DINOT-Medium"/>
+	<mx:Label x="295" y="10" text="Occurrences" color="#FFFFFF" fontFamily="DINOT-Medium"/>
 	<mx:Label x="11" y="8" text="Name" color="#FFFFFF" fontFamily="DINOT-Medium" fontSize="13"/>
 	<mx:HRule y="28" strokeWidth="1" strokeColor="#FFFFFF" left="10" width="210"/>
 	<mx:HRule strokeWidth="1" strokeColor="#FFFFFF" left="1" top="0" right="1"/>

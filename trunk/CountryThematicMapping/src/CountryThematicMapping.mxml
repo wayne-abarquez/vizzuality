@@ -115,7 +115,7 @@
 			[Embed(source="/com/vizzuality/style/assets/legend_3.png")]
             [Bindable] public var legend3:Class;
 
-			private var dp:ArrayCollection = new ArrayCollection(["OCCURENCES","COUNTRIES","RESOURCES"])
+			private var dp:ArrayCollection = new ArrayCollection(["OCCURRENCES","COUNTRIES","RESOURCES"])
 
 			private function onMapPreInitialize(event:MapEvent):void {
 				var options:MapOptions = new MapOptions({
@@ -321,7 +321,7 @@
 				
 				tipImage.visible = false;
 				tipText.visible = false;
-				countryText.label = c.name.toUpperCase() + " [" + numberFormatter.format(c.attributes['providers']) +" PROVIDERS]";
+				countryText.label = c.name.toUpperCase() + " [" + numberFormatter.format(c.attributes['providers']) +" DATA ACCESS POINTS]";
 				countryText.visible=true;
 				worldButton.selected = false;
 				countryText.selected = true;
@@ -469,13 +469,13 @@
 		</mx:Canvas>
 	</mx:HBox>
   
-  	<mx:Canvas height="26" top="0" left="0" right="0" backgroundColor="#000000" backgroundAlpha="0.79" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+  	<mx:Canvas height="26" top="0" left="0" right="0" backgroundColor="#000000" backgroundAlpha="0.79" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
   		<mx:Button label="COUNTRY" selected="true" styleName="BreadCrumbButton" fontWeight="normal"
   			id="countryText" visible="false" x="{worldButton.x + worldButton.width - 12}" y="1"/>
   		<mx:Button label="WORLD OVERVIEW" selected="true" styleName="BreadCrumbButton" click="goToWorldOverview()" mouseChildren="false" 
   			useHandCursor="true" buttonMode="true" x="1" y="1" id="worldButton" fontWeight="normal"/>
-  		<mx:Label id="tipText" y="5" text="CLICK ON A COUNTRY" fontFamily="DINOT-Medium" fontSize="10" color="#FFFFFF" right="28"/>
-  		<mx:Image id="tipImage" y="7" source="@Embed('/com/vizzuality/style/assets/advertIcon.png')" right="136"/>
+  		<mx:Label id="tipText" y="5" text="VIEW FULL SCREEN!" fontFamily="DINOT-Medium" fontSize="10" color="#FFFFFF" right="28" click="toggleFullScreen()" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+  		<mx:Image id="tipImage" y="7" source="@Embed('/com/vizzuality/style/assets/advertIcon.png')" right="136" click="toggleFullScreen()" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
   	</mx:Canvas>
   	<mx:Canvas height="36" bottom="0" right="0" left="0" backgroundColor="#8B8B8B" styleName="greyCanvas" backgroundSize="100%">
   	  	<mx:Button visible="true" id="countriesButton" label="VIEW COUNTRIES" left="5" verticalCenter="0" click="currentState=(currentState=='countries')?'':'countries'" 
@@ -484,7 +484,7 @@
   	  		buttonMode="true" mouseChildren="false" useHandCursor="true" styleName="greyButton" height="27" fontWeight="normal"/>
 	
 	 	<mx:HBox right="4" id="hbox1" verticalCenter="1" verticalAlign="middle" horizontalGap="1">
-		  	<mx:ComboBox id="comboType" x="156" dataProvider="['OCCURENCES','PROVIDERS','RESOURCES']"  height="22" verticalCenter="0" change="changeComboType(event)"/>
+		  	<mx:ComboBox id="comboType" x="156" dataProvider="['OCCURRENCES','PROVIDERS','RESOURCES']"  height="22" verticalCenter="0" change="changeComboType(event)"/>
 		  	<mx:Image source="@Embed('/com/vizzuality/style/assets/separator1.png')"/>
 		  	<mx:Image id="legendImg" source="{legend}"/>
 		  		
@@ -493,7 +493,6 @@
 	  	  	<mx:Button label="Res" enabled="{selectedAttribute!='resources'}" click="chloropleth(countriesArr,'resources',6,new Color(Color.MAGENTA),new Color(Color.RED));" width="38" height="17" fontSize="6"/>-->
 	  	</mx:HBox>
   	</mx:Canvas>
-  	<mx:Button right="5" top="5" height="12" width="24" click="toggleFullScreen()" visible="false"/>
   
   <mx:transitions>
   	<mx:Transition fromState="" toState="countries">
