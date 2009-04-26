@@ -155,7 +155,8 @@
 			    
 			    
 			    //map.disableDragging();
-			    server.endpoint = this.parameters.data_server_endpoint;
+			    //server.endpoint = this.parameters.data_server_endpoint;
+			    server.endpoint = "http://67.202.26.58/gbifwidget/amfphp/gateway.php";
 			    server.getCountries();
 			    
 			    
@@ -436,7 +437,8 @@
   		<mx:method name="getProvidersByCountry" result="onGetProvidersByCountryResult(event)" fault="onGetProvidersByCountryFault(event)" />
   	</mx:RemoteObject>
   
-	<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" resize="map.invalidateDisplayList()" key="{Application.application.parameters.gmap_key}" width="100%" bottom="36"/>
+	<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" resize="map.invalidateDisplayList()" 
+		key="ABQIAAAA8WiVnvDbbHhJBKZ12cLTLBT6VWwCFN8et7Qz9xcAdQ8dcWf3jxTXfxwWdFXO4FBbpyYYa3sEb1krXQ" width="100%" bottom="36"/>
 	<mx:HBox id="legendBox" visible="false" includeInLayout="false" horizontalGap="0" right="0" left="0" top="28">
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="89" id="type"  alpha="0.7" backgroundColor="#DEDEDE"><mx:Label id="typeLabel" top="0" alpha="0.7" text="OCCURRENCES"  horizontalCenter="0"/>
 		</mx:Canvas>
