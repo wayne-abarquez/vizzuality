@@ -234,10 +234,22 @@
 						label4.text =numberFormatter.format(sobjects[i+1].attributes[field]);											
 				}
 				
+				var tooltip:String="<b>"+sobjects[i].name +"</b>\n";
+				if (field=='occurrences') {
+					tooltip+=numberFormatter.format(sobjects[i].attributes[field]) + "\noccurrence records\nhosted";
+				}
+				if (field=='providers') {
+					tooltip+=numberFormatter.format(sobjects[i].attributes[field]) + "\nData Access point(s)";
+				}
+				if (field=='occurrences') {
+					tooltip+=numberFormatter.format(sobjects[i].attributes[field]) + "\ndatasets hosted";
+				}
+				
+				
 				var polOp:PolygonOptions = new PolygonOptions({
 					fillStyle: {color : Color(colors[curClass]).rgb, alpha:0.4},
 					strokeStyle: {alpha:1,thickness: 1,color:Color.GRAY4},
-					tooltip:sobjects[i].name +"\n"+numberFormatter.format(sobjects[i].attributes[field]) + " " + field
+					tooltip:tooltip
 					});
 				sobjects[i].shape.setOptions(polOp);
 				(sobjects[i] as Country).polOpt = polOp;
@@ -432,11 +444,12 @@
 		]]>
 	</mx:Script>
   	<mx:NumberFormatter id="numberFormatter" useThousandsSeparator="true" thousandsSeparatorFrom="," />
-  	<mx:RemoteObject id="server" source="GBIFMetadataServices" destination="GBIFMetadataServices">
+  	<mx:RemoteObject id="server" endpoint="http://67.202.26.58/gbifwidget/amfphp/gateway.php" source="GBIFMetadataServices" destination="GBIFMetadataServices">
   		<mx:method name="getCountries" result="onGetCountriesResult(event)" fault="onGetCountriesFault(event)" />
   		<mx:method name="getProvidersByCountry" result="onGetProvidersByCountryResult(event)" fault="onGetProvidersByCountryFault(event)" />
   	</mx:RemoteObject>
   
+
 	<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" resize="map.invalidateDisplayList()" 
 		key="ABQIAAAA8WiVnvDbbHhJBKZ12cLTLBT6VWwCFN8et7Qz9xcAdQ8dcWf3jxTXfxwWdFXO4FBbpyYYa3sEb1krXQ" width="100%" bottom="36"/>
 	<mx:HBox id="legendBox" visible="false" includeInLayout="false" horizontalGap="0" right="0" left="0" top="28">
