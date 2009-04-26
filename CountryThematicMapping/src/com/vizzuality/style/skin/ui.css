@@ -95,3 +95,9 @@ ProgressBar {
    letterSpacing: 0;
    verticalGap: 0;
 }
+HRule.markerPointer
+{
+	strokeColor: #0A0A0A;
+	strokeWidth: 2;
+	shadowColor: #000000;
+}

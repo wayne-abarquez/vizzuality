@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" preloader="com.vizzuality.Preloader"
   width="100%" height="100%" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" xmlns:list="com.vizzuality.list.*">
 	<mx:states>
 		<mx:State name="Loading" enterState="onEnterLoading()" exitState="onExitLoading()">
@@ -51,6 +51,11 @@
 			<mx:SetProperty target="{providersButton}" name="label" value="BACK TO MAP"/>
 		
 		</mx:State>
+<!--		<mx:State name="providerinfo">
+			<mx:AddChild position="lastChild">
+				<list:ProviderInfo id="providerInfo" horizontalCenter="0" height="160" width="270" verticalCenter="0"/>
+			</mx:AddChild>
+		</mx:State>-->
 	</mx:states>
  
  	<mx:Style source="/com/vizzuality/style/skin/ui.css"/>
@@ -108,6 +113,8 @@
 			
 			[Bindable] private var legend:Class;
 			
+			[Bindable] public var provider:Provider
+			
 			[Embed(source="/com/vizzuality/style/assets/legend_1.png")]
             [Bindable] public var legend1:Class;
 			[Embed(source="/com/vizzuality/style/assets/legend_2.png")]
@@ -152,7 +159,7 @@
 				}});
 				
 				//map.addOverlay(new Marker(new LatLng(21.332963,-157.87077)));
-			    
+			    //åmap.addEventListener(MapMouseEvent.
 			    
 			    //map.disableDragging();
 			    //server.endpoint = this.parameters.data_server_endpoint;
@@ -362,12 +369,13 @@
 			
 			private function onMarkerClick(event:MapMouseEvent):void {			       
 			    
-			    var provider:Provider = markers[event.currentTarget];
+			    provider = markers[event.currentTarget];
+//				currentState='providerinfo';
+
 			    var providerInfoWindow:InfoWindowSprite=new InfoWindowSprite(provider);
-			    //providerInfoWindow.width=150;
-			    //providerInfoWindow.height=100;
+
 			      
-				var infowindow:SmartInfoWindow = new SmartInfoWindow();
+ 				var infowindow:SmartInfoWindow = new SmartInfoWindow();
 				infowindow.position = infowindow.getBestAlignment(map, event.latLng, new Point(providerInfoWindow.width, providerInfoWindow.height));
 				infowindow.padding = 3;
 				infowindow.cornerRadius = 3;
@@ -387,7 +395,7 @@
 				options.customCloseRect = infowindow.closeButtonRect;
 				options.pointOffset = new Point(0, 0);
 				  
-				map.openInfoWindow(event.latLng, options);				
+				map.openInfoWindow(event.latLng, options);	 			
 				
 			}
 			
@@ -474,8 +482,8 @@
   			id="countryText" visible="false" x="{worldButton.x + worldButton.width - 12}" y="1"/>
   		<mx:Button label="WORLD OVERVIEW" selected="true" styleName="BreadCrumbButton" click="goToWorldOverview()" mouseChildren="false" 
   			useHandCursor="true" buttonMode="true" x="1" y="1" id="worldButton" fontWeight="normal"/>
-  		<mx:Label id="tipText" y="5" text="VIEW FULL SCREEN!" fontFamily="DINOT-Medium" fontSize="10" color="#FFFFFF" right="28" click="toggleFullScreen()" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
-  		<mx:Image id="tipImage" y="7" source="@Embed('/com/vizzuality/style/assets/advertIcon.png')" right="136" click="toggleFullScreen()" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+  		<mx:Label id="tipText" y="5" text="VIEW FULL SCREEN!" fontFamily="DINOT-Medium" fontSize="10" color="#FFFFFF" right="23" click="toggleFullScreen()" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+  		<mx:Image id="tipImage" y="7" source="@Embed('/com/vizzuality/style/assets/advertIcon.png')" right="7" click="toggleFullScreen()" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
   	</mx:Canvas>
   	<mx:Canvas height="36" bottom="0" right="0" left="0" backgroundColor="#8B8B8B" styleName="greyCanvas" backgroundSize="100%">
   	  	<mx:Button visible="true" id="countriesButton" label="VIEW COUNTRIES" left="5" verticalCenter="0" click="currentState=(currentState=='countries')?'':'countries'" 
