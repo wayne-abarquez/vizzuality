@@ -16,16 +16,6 @@
 		<mx:State name="countries">
 			<mx:AddChild position="lastChild">
 				<list:ListContainer id="countryCanvas" top="26" bottom="36" />
-	<!--			<mx:Canvas id="countryCanvas" top="28" bottom="40" left="0" right="0" backgroundColor="#FFFFFF">
-					<mx:DataGrid id="countriesDataGrid" left="5" right="5" top="10" bottom="10" dataProvider="{new ArrayCollection(countriesArr)}">
-						<mx:columns>
-							<mx:DataGridColumn headerText="Name" dataField="name"/>
-							<mx:DataGridColumn headerText="Occurrences" dataField="occurrences"/>
-							<mx:DataGridColumn headerText="Providers" dataField="providers"/>
-							<mx:DataGridColumn headerText="Resouces" dataField="resources"/>
-						</mx:columns>
-					</mx:DataGrid>
-				</mx:Canvas>-->
 			</mx:AddChild>
 			<mx:SetProperty target="{countriesButton}" name="label" value="BACK TO MAP"/>
 			<mx:RemoveChild target="{hbox1}"/>
@@ -36,17 +26,6 @@
 		<mx:State name="providers">
 			<mx:AddChild position="lastChild">
 				<list:ListProvidersContainer id="providersCanvas" top="26" bottom="36"/>
-				<!--<mx:Canvas id="providersCanvas" top="28" bottom="40" left="0" right="0" backgroundColor="#FFFFFF">
-					<mx:DataGrid id="providersDataGrid" left="5" right="5" top="10" bottom="10" dataProvider="{providersArrC}">
-						<mx:columns>
-							<mx:DataGridColumn headerText="Name" dataField="name"/>
-							<mx:DataGridColumn headerText="City" dataField="city"/>
-							<mx:DataGridColumn headerText="Occurrences" dataField="occurrence_count"/>
-							<mx:DataGridColumn headerText="Resouces" dataField="resource_count"/>
-							<mx:DataGridColumn headerText="URL" dataField="url"/>
-						</mx:columns>
-					</mx:DataGrid>
-				</mx:Canvas>-->
 			</mx:AddChild>		
 			<mx:SetProperty target="{providersButton}" name="label" value="BACK TO MAP"/>
 		

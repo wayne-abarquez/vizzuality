@@ -52,38 +52,39 @@ package com.vizzuality.map
 		    graphics.endFill();	 */		
 			
 			var xTextFormat:TextFormat = new TextFormat();
-    		xTextFormat.font = "Verdana";
-    		xTextFormat.size = 12;
+    		xTextFormat.font = "DINOT-Medium";
+    		xTextFormat.size = 16;
     		xTextFormat.color = 0xFFFFFF;
+    		xTextFormat.leading = -4;
     		
 			var x2TextFormat:TextFormat = new TextFormat();
-    		x2TextFormat.font = "Verdana";
-    		x2TextFormat.size = 13;
-    		x2TextFormat.color = 0xFFFFFF;
+    		x2TextFormat.font = "DINOT-Medium";
+    		x2TextFormat.size = 15;
+    		x2TextFormat.color = 0xa7e66b;
     		
 			var urlFormat:TextFormat = new TextFormat();
-    		urlFormat.font = "Verdana";
+    		urlFormat.font = "DINOT-Medium";
     		urlFormat.size = 10;
     		urlFormat.underline = true;
     		urlFormat.color = 0xFFFFFF;
-    		
+    		   		
     		//NAME
     		var nameText:TextField = new TextField();
-		    nameText.x = 5;
+		    nameText.x = 3;
 		    nameText.y = 0;
 		    nameText.text = this.provide_name + ' ('+city+')';
 		    nameText.selectable = true;
 		    nameText.wordWrap=true;
 		    nameText.autoSize = TextFieldAutoSize.LEFT;
-		    nameText.width=182;
-		    nameText.setTextFormat(xTextFormat);		    
+		    nameText.width=178;
+		    nameText.setTextFormat(xTextFormat);
 		    addChild(nameText);
 		    
     		//URL
     		var urlText:TextField = new TextField();
-		    urlText.x = 5;
-		    urlText.y = nameText.height +5;
-		    urlText.text = 'Visit website';
+		    urlText.x = 3;
+		    urlText.y = nameText.height - 4;
+		    urlText.text = 'visit website';
 		    urlText.selectable = true;
 		    urlText.wordWrap=true;
 		    urlText.autoSize = TextFieldAutoSize.LEFT;
@@ -94,8 +95,8 @@ package com.vizzuality.map
 		    
     		//OCCURRENCES
     		var occText:TextField = new TextField();
-		    occText.x = 5;
-		    occText.y = urlText.y +13;
+		    occText.x = 3;
+		    occText.y = urlText.y +16;
 		    occText.width=182;
 		    occText.text = Application.application.numberFormatter.format(occurrences) + ' occurrences';
 		    occText.selectable = true;
@@ -114,6 +115,7 @@ package com.vizzuality.map
     		cacheAsBitmap = true;
     		
 		}
+		
 		
 		private function onUrlClick(event:MouseEvent):void {
 			navigateToURL(new URLRequest(this.url));

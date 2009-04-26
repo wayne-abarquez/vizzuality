@@ -98,8 +98,8 @@ package com.vizzuality.map {
       
       content.x = left + padding;
       content.y = top + padding;
-      closeButton.x = right - cornerRadius - closeButton.width;
-      closeButton.y = top + cornerRadius;
+      closeButton.x = right - cornerRadius - closeButton.width - 2;
+      closeButton.y = top + cornerRadius + 5;
       
       graphics.clear();
       graphics.lineStyle(Number(strokeStyle.thickness), 
