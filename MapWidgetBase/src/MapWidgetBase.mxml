@@ -145,6 +145,10 @@
 			
 		]]>
 	</mx:Script>
+	
+	<mx:Style source="com/vizzuality/style/skin/ui.css"/>
+	<mx:Style source="com/vizzuality/style/skin/fonts.css"/>
+	
 	<mx:VBox id="mainVBox" width="100%" height="100%" verticalGap="0">
 		<header:Header id="header" />
 		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8"/>

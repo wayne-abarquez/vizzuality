@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="71" backgroundColor="#629ACC">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="86" styleName="headerCanvas"
+	verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
 			import mx.core.Application;
 		]]>
 	</mx:Script>
-	<mx:Button label="Full" right="10" top="10" click="Application.application.toggleFullScreen();"/>
-	<mx:Image source="assets/logo.png" left="3" top="3"/>
+	<!--TODO METER EL BOTON-->
+	<!--<mx:Button label="Full" right="10" top="10" click="Application.application.toggleFullScreen();"/>-->
+	<mx:Image source="@Embed('/com/vizzuality/style/assets/logo.jpg')" left="3" top="5"/>
 	
 </mx:Canvas>
