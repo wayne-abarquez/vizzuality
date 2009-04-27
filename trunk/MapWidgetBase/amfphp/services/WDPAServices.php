@@ -31,7 +31,7 @@ class WDPAServices {
 	    $result=array();
 	    $result['index']="";
 	    $result['data']=array();
-	    for($i=0;$i<130000;$i++) {
+	    for($i=0;$i<30000;$i++) {
 	        $result['data'][]="lala"+$i;
 	        $result['index']+="lala<"+$i+">";
 	    }
