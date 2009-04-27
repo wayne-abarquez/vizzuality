@@ -44,6 +44,8 @@ class WDPAServices {
     public function getCountryStatsByISO($iso) {
         $result=array();
         $result['numAreas']=130000;
+        $result['iso']=$iso;
+        $result['name']="Spain";
         $result['coveragePercentage']=34;
         $result['numberCoral']=138000;
         $result['numMangrove']=74;
