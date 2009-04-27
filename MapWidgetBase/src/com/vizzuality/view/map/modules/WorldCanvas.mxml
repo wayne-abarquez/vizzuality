@@ -32,6 +32,7 @@
 		private function init():void {
 			
 			DataServices.gi().addEventListener(DataServiceEvent.WORLD_DATA_LOADED,onDataLoaded);
+			DataServices.gi().getWorldStats();
 		}
 		
 		private function onDataLoaded(event:DataServiceEvent):void {			

@@ -3,11 +3,15 @@ package com.vizzuality.view.map
 	import com.google.maps.Map;
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
+	import com.vizzuality.view.map.overlays.CustomTileLayer;
+	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
 	
 	import flash.display.Sprite;
 	import flash.filters.ColorMatrixFilter;
 	
+	import mx.binding.utils.BindingUtils;
 	import mx.core.Application;
+	
 	
 	public final class MapController
 	{
@@ -15,6 +19,7 @@ package com.vizzuality.view.map
 		private static var instance:MapController;
 		private var map:Map;
 		private var mapCanvas:MapCanvas;
+		public var ctl:CustomTileLayer;
 
 		private var aSprite:Sprite;
 		private var bSprite:Sprite;   			
@@ -40,6 +45,8 @@ package com.vizzuality.view.map
 
 			Application.application.onMapReady();	
 			
+			addCustomTileLayer();
+			
 		}
 		
 		private function onMapZoomChanged(event:MapZoomEvent):void {
@@ -63,6 +70,17 @@ package com.vizzuality.view.map
 			mapCanvas.loadingBar.visible=false;
 		}		
 		
+		public function addCustomTileLayer():void {
+			
+			ctl = new CustomTileLayer("http://gbiftilecache|N|.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_13839800");			
+			var ctlo:CustomTileLayerOverlay = new CustomTileLayerOverlay(ctl);
+			ctl.ctlo = ctlo;
+			
+			BindingUtils.bindProperty(mapCanvas.temp,"text",ctlo,"numRunningRequest");
+			
+			
+			map.addOverlay(ctlo);
+		}
 		
 
 	}

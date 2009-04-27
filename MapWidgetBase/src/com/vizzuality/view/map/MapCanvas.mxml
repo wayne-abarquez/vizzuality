@@ -71,6 +71,7 @@
 						fontFamily="Verdana" width="140" indeterminate="true" trackHeight="8" verticalCenter="0" horizontalCenter="0"/>				
 			<map:BreadCrumb id="breadcrumb" top="3" left="7" />
 			<toolbar:ToolBar id="toolBar" top="0" left="0" currentState="about" />
+			<mx:Label x="294" y="201" id="temp"/>
 		</mx:Canvas>
 	</mx:VBox>
 </mx:Canvas>
