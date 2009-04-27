@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="40" backgroundColor="#000000" backgroundAlpha="0.8" currentState="{AppStates.gi().topState}">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="40" currentState="{AppStates.gi().topState}"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off">
 	<mx:states>
 		<mx:State name="{AppStates.WORLD}">
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
-			<mx:AddChild position="lastChild">
-				<mx:Button x="81" label="{DataServices.gi().selectedCountry.name}" verticalCenter="0" id="button0"/>
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="{(DataServices.gi().selectedCountry.name).toUpperCase()}" verticalCenter="0" id="countryButton" styleName="breadCrumbButton" enabled="false" height="26" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
+			<mx:SetProperty target="{worldButton}" name="height" value="26"/>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
-			<mx:AddChild position="lastChild">
-				<mx:Button x="81" label="{AppStates.gi().activeCountryName}" verticalCenter="0" id="button2" click="AppStates.gi().setAllStates(AppStates.COUNTRY,AppStates.gi().activeCountryIsoCode)"/>
+			<mx:AddChild position="firstChild">
+				<mx:Button id="countryButton2" x="{worldButton.x + worldButton.width - 15}" label="{(AppStates.gi().activeCountryName).toUpperCase()}" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.COUNTRY,AppStates.gi().activeCountryIsoCode)" styleName="breadCrumbButton" height="26" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Button x="151" label="{DataServices.gi().selectedPA.name}" verticalCenter="0" id="button1"/>
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{countryButton2.x + countryButton2.width - 15}" label="{(DataServices.gi().selectedPA.name).toUpperCase()}" verticalCenter="0" id="paButton" styleName="breadCrumbButton" height="26" enabled="false" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
+			<mx:SetProperty target="{worldButton}" name="height" value="26"/>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}"/>
 	</mx:states>
-	<mx:Button x="3" label="WORLD" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.WORLD,'')"/>
+	<mx:Button x="3" label="WORLD" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.WORLD,'')" styleName="breadCrumbButton" id="worldButton" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 	<mx:Script>
 		<![CDATA[
 			import com.vizzuality.services.DataServices;

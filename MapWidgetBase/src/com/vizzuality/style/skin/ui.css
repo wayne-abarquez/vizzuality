@@ -38,6 +38,11 @@ Canvas.softWhiteContainer{
 	border-color: #FFFFFF;	
 }
 
+Canvas.greenContainer{
+	background-color: #e9ebdf;
+	border-style: none;
+}
+
 Canvas.whiteBoxBorder{
 	background-image: Embed(source="ui.swf",symbol="bkg_white_border");	
 }
@@ -97,6 +102,24 @@ Button.btnZoomMinus{
 	font-size: 12;
 	font-weight: normal;
 	padding-top: 0; 	
+}
+
+Button.breadCrumbButton{
+	up-skin: Embed(source="ui.swf",symbol="breadCrumb_up");	
+	over-skin: Embed(source="ui.swf",symbol="breadCrumb_over");	
+	down-skin: Embed(source="ui.swf",symbol="breadCrumb_over");	
+	disabled-skin: Embed(source="ui.swf",symbol="breadCrumb_actual_up");	
+	color: #375381;
+	text-roll-over-color: #FFFFFF;
+	text-selected-color: #FFFFFF;
+	font-family: "DINOT-Medium";
+	font-size: 12;
+	font-weight: normal;
+	padding-top: 4;
+	disabledColor: #6C88B6;
+	paddingRight: 20;
+	paddingLeft: 15;
+	paddingBottom: 1; 	
 }
 
 
