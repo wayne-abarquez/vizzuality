@@ -18,6 +18,10 @@ class WDPAServices {
         $result['country']="Spain";
         $result['countryIsoCode']="ES";
         $result['has']=138000;
+        $result['north']=62.23;
+        $result['south']=60.23;
+        $result['east']=34.233;
+        $result['west']=35.23;
         
         return $result;
 	}
@@ -50,6 +54,10 @@ class WDPAServices {
         $result['numberCoral']=138000;
         $result['numMangrove']=74;
         $result['numSeagrass']=345;
+        $result['north']=70.23;
+        $result['south']=60.23;
+        $result['east']=34.233;
+        $result['west']=39.23;
         
         return $result;
     }
