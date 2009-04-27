@@ -1,5 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="306" height="300" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:AddChild position="lastChild">
+				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{label2}"/>
+			<mx:RemoveChild target="{label3}"/>
+			<mx:RemoveChild target="{label4}"/>
+			<mx:RemoveChild target="{label5}"/>
+			<mx:RemoveChild target="{label6}"/>
+			<mx:RemoveChild target="{label7}"/>
+			<mx:RemoveChild target="{label8}"/>
+			<mx:RemoveChild target="{button1}"/>
+		</mx:State>
+		<mx:State name="moreinfo">
+			<mx:SetProperty name="width" value="726"/>
+			<mx:SetProperty name="height" value="382"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="171" y="185" label="less info" click="currentState=''"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{button1}"/>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import com.vizzuality.services.DataServiceEvent;
+		import mx.binding.utils.BindingUtils;
+		import com.vizzuality.data.PA;
+		import com.vizzuality.view.AppStates;
+		import com.vizzuality.data.Country;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import com.vizzuality.services.DataServices;
+		
+		private var currentId:Number;
+
+		public function set siteid(id:Number):void {
+			if (currentId!=id) {
+				currentState='loading';
+				DataServices.gi().addEventListener(DataServiceEvent.PA_DATA_LOADED,onDataLoaded);
+				DataServices.gi().selectedPAId=id;
+				currentId=id;
+			}
+		}
+		
+		private function onDataLoaded(event:DataServiceEvent):void {
+			currentState='';
+		}
+		
+	]]>
+</mx:Script>
 	<mx:Label x="10" y="10" text="PA Canvas"/>
+	<mx:Label x="20" y="61" text="name" id="label7"/>
+	<mx:Label x="20" y="81" text="has" id="label3"/>
+	<mx:Label x="93" y="81" text="{DataServices.gi().selectedPA.has}" id="label4"/>
+	<mx:Label x="20" y="101" text="countryIsoCode" id="label5"/>
+	<mx:Label x="113" y="101" text="{DataServices.gi().selectedPA.countryIsoCode}" id="label2"/>
+	<mx:Label x="20" y="121" text="country" id="label6"/>
+	<mx:Label x="93" y="121" text="{DataServices.gi().selectedPA.country}" id="label1"/>
+	<mx:Label x="93" y="61" text="{DataServices.gi().selectedPA.name}" id="label8"/>
+	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1"/>
 	
 </mx:Canvas>

@@ -1,5 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="306" height="300" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8">
-	<mx:Label x="10" y="10" text="Country Canvas"/>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="306" height="300" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8" currentState="loading">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{label2}"/>
+			<mx:RemoveChild target="{label3}"/>
+			<mx:RemoveChild target="{label4}"/>
+			<mx:RemoveChild target="{label5}"/>
+			<mx:RemoveChild target="{label6}"/>
+			<mx:RemoveChild target="{label7}"/>
+			<mx:RemoveChild target="{label8}"/>
+			<mx:RemoveChild target="{label9}"/>
+			<mx:RemoveChild target="{label10}"/>
+			<mx:RemoveChild target="{label11}"/>
+			<mx:RemoveChild target="{label12}"/>
+			<mx:RemoveChild target="{label13}"/>
+			<mx:RemoveChild target="{label14}"/>
+			<mx:RemoveChild target="{label15}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="moreinfo">
+			<mx:RemoveChild target="{button1}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="171" y="185" label="less info" click="currentState=''"/>
+			</mx:AddChild>
+			<mx:SetProperty name="width" value="706"/>
+			<mx:SetProperty name="height" value="248"/>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import com.vizzuality.services.DataServiceEvent;
+		import com.vizzuality.view.AppStates;
+		import com.vizzuality.data.Country;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import com.vizzuality.services.DataServices;
+		private var currentIso:String="";
+		
+		public function set isocode(iso:String):void {
+			if(iso!=currentIso && iso!=null) { 
+				currentState='loading';
+				DataServices.gi().addEventListener(DataServiceEvent.COUNTRY_DATA_LOADED,onDataLoaded);
+				DataServices.gi().selectedCountryIso=iso;
+				currentIso=iso;				
+			}
+		}
+		
+		private function onDataLoaded(event:DataServiceEvent):void {						
+			currentState='';
+		}
+			
+		
+	]]>
+</mx:Script>
+	<mx:Label x="10" y="10" text="Country Canvas" id="label1"/>
+	<mx:Label x="10" y="36" text="isocode" id="label2"/>
+	<mx:Label x="10" y="56" text="name" id="label13"/>
+	<mx:Label x="145" y="56" text="{DataServices.gi().selectedCountry.name}" id="label14"/>
+	<mx:Label x="10" y="76" text="coveragePercentage" id="label7"/>
+	<mx:Label x="145" y="76" text="{DataServices.gi().selectedCountry.coveragePercentage}" id="label8"/>
+	<mx:Label x="10" y="96" text="numAreas" id="label12"/>
+	<mx:Label x="145" y="96" text="{DataServices.gi().selectedCountry.numAreas}" id="label5"/>
+	<mx:Label x="10" y="116" text="numberCoral" id="label9"/>
+	<mx:Label x="145" y="116" text="{DataServices.gi().selectedCountry.numberCoral}" id="label6"/>
+	<mx:Label x="10" y="136" text="numMangrove" id="label10"/>
+	<mx:Label x="145" y="136" text="{DataServices.gi().selectedCountry.numMangrove}" id="label4"/>
+	<mx:Label x="10" y="156" text="numSeagrass" id="label11"/>
+	<mx:Label x="145" y="156" text="{DataServices.gi().selectedCountry.numSeagrass}" id="label3"/>
+	<mx:Label x="145" y="36" text="{DataServices.gi().selectedCountry.isocode}" id="label15"/>
+	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1"/>
 	
 </mx:Canvas>

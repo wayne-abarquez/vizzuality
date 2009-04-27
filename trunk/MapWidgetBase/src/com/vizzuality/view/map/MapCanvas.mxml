@@ -16,13 +16,13 @@
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
 			<mx:AddChild position="lastChild">
-				<ns1:CountryCanvas top="60" visible="{!(AppStates.gi().secondState!='')}" right="20" width="306" id="countryCanvas">
+				<ns1:CountryCanvas top="60" isocode="{AppStates.gi().activeCountryIsoCode}" visible="{!(AppStates.gi().secondState!='')}" right="20" width="306" id="countryCanvas">
 				</ns1:CountryCanvas>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
 			<mx:AddChild position="lastChild">
-				<ns1:PaCanvas top="60" visible="{!(AppStates.gi().secondState!='')}" right="20" width="306" id="paCanvas">
+				<ns1:PaCanvas top="60" siteid="{AppStates.gi().activePaId}" visible="{!(AppStates.gi().secondState!='')}" right="20" width="306" id="paCanvas">
 				</ns1:PaCanvas>
 			</mx:AddChild>
 		</mx:State>

@@ -5,15 +5,15 @@
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
 			<mx:AddChild position="lastChild">
-				<mx:Button x="81" label="SPAIN" verticalCenter="0" id="button0"/>
+				<mx:Button x="81" label="{DataServices.gi().selectedCountry.name}" verticalCenter="0" id="button0"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
 			<mx:AddChild position="lastChild">
-				<mx:Button x="81" label="SPAIN" verticalCenter="0" id="button2" click="AppStates.gi().setAllStates(AppStates.COUNTRY,AppStates.gi().activeCountryIsoCode)"/>
+				<mx:Button x="81" label="{AppStates.gi().activeCountryName}" verticalCenter="0" id="button2" click="AppStates.gi().setAllStates(AppStates.COUNTRY,AppStates.gi().activeCountryIsoCode)"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Button x="151" label="PROTECTED AREA" verticalCenter="0" id="button1"/>
+				<mx:Button x="151" label="{DataServices.gi().selectedPA.name}" verticalCenter="0" id="button1"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}"/>
@@ -21,6 +21,7 @@
 	<mx:Button x="3" label="WORLD" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.WORLD,'')"/>
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.services.DataServices;
 			import com.vizzuality.view.AppStates;
 
 		]]>

@@ -1,18 +1,23 @@
 package com.vizzuality.data
 {
+	[Bindable]
 	public class PA
 	{
 		
 		public var id:Number;
 		public var name:String;
-		public var isInternational:Boolean;
-		public var description:String;
+		public var country:String;
+		public var countryIsoCode:String;
+		public var has:Number;
 		
-		public function PA(id:Number,name:String,description:String)
+		public function PA(ob:Object)
 		{
-			this.id=id;
-			this.name =name;
-			this.description = description;
+			this.id=ob.id;
+			this.name =ob.name;
+			this.has =ob.has;
+			this.country =ob.country;
+			this.countryIsoCode =ob.countryIsoCode;	
+			
 		}
 
 	}
