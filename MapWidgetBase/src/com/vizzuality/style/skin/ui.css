@@ -10,10 +10,37 @@ Canvas.topToolbar{
 	background-image: Embed(source="ui.swf",symbol="bkg_top_toolbar");	
 }
 
+Canvas.whiteOverlay{
+	background-image: Embed(source="ui.swf",symbol="bkg_white_overlay");
+}
+
 Canvas.darkTopContainer{
 	background-image: Embed(source="ui.swf",symbol="dark_top_container");	
 }
 
+Canvas.bkgOrange{
+	background-image: Embed(source="ui.swf",symbol="bkg_orange");	
+}
+
+Canvas.softBlueContainer{
+	background-color: #375381;
+	background-alpha: .2;
+	border-style: solid;
+	corner-radius: 1;
+	border-color: #8e9cb4;	
+}
+
+Canvas.softWhiteContainer{
+	background-color: #FFFFFF;
+	background-alpha: .4;
+	border-style: solid;
+	corner-radius: 1;
+	border-color: #FFFFFF;	
+}
+
+Canvas.whiteBoxBorder{
+	background-image: Embed(source="ui.swf",symbol="bkg_white_border");	
+}
 
 Button.btnViewType{
 	skin: ClassReference(null);
@@ -34,6 +61,9 @@ Button.btnTool{
 	up-skin: Embed(source="ui.swf",symbol="btn_tool_up");	
 	over-skin: Embed(source="ui.swf",symbol="btn_tool_over");	
 	down-skin: Embed(source="ui.swf",symbol="btn_tool_over");	
+	selected-up-skin: Embed(source="ui.swf",symbol="btn_tool_selected");	
+	selected-over-skin: Embed(source="ui.swf",symbol="btn_tool_selected");	
+	selected-down-skin: Embed(source="ui.swf",symbol="btn_tool_selected");	
 	color: #4a4f33;
 	text-roll-over-color: #333333;
 	text-selected-color: #333333;
@@ -71,7 +101,7 @@ Button.btnZoomMinus{
 
 
 
-HSlider, VSlider{
+HSlider{
 	thumbDisabledSkin: Embed(source="ui.swf", symbol="SliderThumb_disabledSkin");
 	thumbDownSkin: Embed(source="ui.swf", symbol="SliderThumb_downSkin");
 	thumbOverSkin: Embed(source="ui.swf", symbol="SliderThumb_overSkin");
