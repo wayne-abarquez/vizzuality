@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="260" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8" creationComplete="init()" 
-	currentState="loading" xmlns:ns1="com.vizzuality.view.overlay.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="250" backgroundColor="#FFFFFF" backgroundAlpha="0.85" creationComplete="init()" 
+	currentState="loading" xmlns:ns1="com.vizzuality.view.overlay.*" filters="{[glowGrey]}">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
 				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
 			</mx:AddChild>
-			<mx:RemoveChild target="{label5}"/>
-			<mx:RemoveChild target="{label9}"/>
-			<mx:RemoveChild target="{label11}"/>
 			<mx:AddChild position="lastChild">
 				<mx:HRule strokeColor="#B4BB94" left="6" right="6" strokeWidth="3" top="0"/>
 			</mx:AddChild>
@@ -30,6 +27,7 @@
 		private function init():void {
 			
 			DataServices.gi().addEventListener(DataServiceEvent.WORLD_DATA_LOADED,onDataLoaded);
+			DataServices.gi().getWorldStats();
 		}
 		
 		private function onDataLoaded(event:DataServiceEvent):void {			
@@ -39,18 +37,29 @@
 		
 	]]>
 </mx:Script>
-	<mx:Canvas height="90" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
-		verticalScrollPolicy="off" horizontalScrollPolicy="off">
-		<mx:Label text="TOTAL PROTECTED AREAS" id="label0" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
+
+	<mx:Canvas styleName="softGreenContainer" left="10" right="10" top="136" id="canvas0"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="10">
+		<mx:Label text="WORLD COVERED BY WDPA" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+		<ns1:WorldCoverage percent="{DataServices.gi().worldStats.coveragePercentage}" horizontalCenter="0" top="27"/>
 	</mx:Canvas>
-	<mx:Label x="88" y="67" text="{DataServices.gi().worldStats.marine}" id="label5"/>
-	<mx:Label x="14" y="45" text="{DataServices.gi().worldStats.totalAreas}" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848"/>
-	<mx:Label x="88" y="107" text="{DataServices.gi().worldStats.terrestrial}" id="label9"/>
+	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<mx:Label text="TOTAL PROTECTED AREAS" id="label0" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="3"/>
+		<mx:Label text="{DataServices.gi().worldStats.totalAreas}" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848" letterSpacing="-1" left="3" top="10"/>
+	</mx:Canvas>
 	<mx:Label text="WORLD STATS" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4"/>
 	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="34"/>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="136"/>
 	<mx:Image right="14" width="7" top="17" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')"/>
-	<mx:Label text="WORLD COVERED BY WDPA" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="136"/>
-	<ns1:WorldCoverage y="157" percent="{DataServices.gi().worldStats.coveragePercentage}" horizontalCenter="0"/>
+	<mx:HBox horizontalGap="0" left="17" top="112">
+		<mx:Label text="{Math.floor((DataServices.gi().worldStats.marine * 100) / DataServices.gi().worldStats.totalAreas) +'% MARINE'}" id="label5" fontSize="11" fontFamily="DINOT-Bold" color="#375381"/>
+		<mx:Label text="|" id="label2" fontSize="11" fontFamily="DINOT-Bold" color="#4F4F4F" width="8" textAlign="center"/>
+		<mx:Label text="{Math.floor((DataServices.gi().worldStats.terrestrial * 100) / DataServices.gi().worldStats.totalAreas) +'% TERRESTRIAL'}" id="label9" color="#FF5A00" fontSize="11" fontFamily="DINOT-Bold"/>
+	</mx:HBox>
+	
 	
 </mx:Canvas>

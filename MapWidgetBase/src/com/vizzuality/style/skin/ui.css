@@ -43,6 +43,11 @@ Canvas.greenContainer{
 	border-style: none;
 }
 
+Canvas.softGreenContainer{
+	background-color: #f2f2f1;
+	border-style: none;
+}
+
 Canvas.whiteBoxBorder{
 	background-image: Embed(source="ui.swf",symbol="bkg_white_border");	
 }
