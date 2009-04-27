@@ -83,15 +83,15 @@
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 		<!--<mx:Button label="world" click="AppStates.gi().setAllStates(AppStates.WORLD,'')" id="button0"/>-->
 	</mx:HBox>
-	<mx:HBox right="8" verticalCenter="1" horizontalGap="2">
+	<mx:HBox right="9" horizontalGap="2" bottom="-1">
 		<mx:Button label="search" click="AppStates.gi().setSecondState(AppStates.SEARCH)" styleName="btnTool"
-			height="23" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
-		<mx:Button label="filter" click="AppStates.gi().setSecondState(AppStates.FILTER)"  id="button2" styleName="btnTool"
-			height="23" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" toggle="true"/>
+		<mx:Button label="filter" click="AppStates.gi().setSecondState(AppStates.FILTER)" id="button2" styleName="btnTool"
+			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" toggle="true"/>
 		<mx:Button label="about" click="AppStates.gi().setSecondState(AppStates.ABOUT)" styleName="btnTool" 
-			height="23" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" toggle="true"/>
 		<mx:Button label="help" click="AppStates.gi().setSecondState(AppStates.HELP)" styleName="btnTool"
-			height="23" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" toggle="true"/>
 	</mx:HBox>
 	
 </mx:Canvas>

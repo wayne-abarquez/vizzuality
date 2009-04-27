@@ -23,7 +23,6 @@
 			
 			private function initApp():void {
 				
-				
 				//Modify Tooltip behaviour so that it show inmediately
 				ToolTipManager.showDelay = 0;
 				ToolTipManager.hideDelay = 4000;		

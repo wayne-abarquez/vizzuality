@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="0" backgroundColor="#FFFFFF" backgroundAlpha="0.84" 
-	 currentState="{AppStates.gi().secondState}">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="0"
+	 currentState="{AppStates.gi().secondState}" styleName="whiteOverlay" backgroundSize="100%" xmlns:ns1="com.vizzuality.view.overlay.about.*">
 	<mx:states>
 		<mx:State name="{AppStates.HELP}">
 			<mx:SetProperty name="height" value="100"/>
@@ -12,24 +12,46 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.ABOUT}">
-			<mx:SetProperty name="height" value="80%"/>
+			<mx:SetProperty name="height" value="100%"/>
 			<mx:AddChild position="lastChild">
-				<mx:Label text="Global Registry of Migratory Species" left="10" top="20" fontSize="21" fontWeight="normal"/>
+				<mx:Text leading="-0.5" 
+					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-46" horizontalCenter="-144"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text text="The number of migratory animals can only be estimated at present (likely between 5,000 and 10,000 species). To help eliminate this deficit,a the UNEP/CMS Secretariat initiated the development of a database in 1997. The Federal Environment Ministry embraced this idea and financed the GROMS project from 1998 - 2002, scientifically supported by the German Federal Aagency for Nature Conservation, and in co-operation with the Zoological Research Museum Alexander Koenig in Bonn." width="686" left="10" top="59" fontSize="13" fontWeight="normal" id="text1"/>
-			</mx:AddChild>
-			<mx:AddChild relativeTo="{text1}" position="before">
-				<mx:Label text="Featured species" fontSize="17" fontWeight="normal" right="67" width="192" top="24" textAlign="left"/>
+				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-169" horizontalCenter="-366"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Button label="x" right="10" top="10" click="AppStates.gi().setSecondState('')" width="37"/>
+				<mx:Text text="World Database of Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
+					leading="-4" verticalCenter="-121" width="225" height="90" letterSpacing="-1" horizontalCenter="-292"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Button label="View Spain" horizontalCenter="0" bottom="30" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')"/>
+				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="82" horizontalCenter="-147">
+					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="7" left="9"/>
+					<mx:Canvas x="10" y="33" width="122" height="94" styleName="whiteBoxBorder" backgroundSize="100%" filters="{[glowGrey]}">
+						<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')"/>
+						<mx:Text x="3" y="64" text="WORLD PROTECTED&#xd;AREAS MAP" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
+					</mx:Canvas>
+					<mx:Canvas x="138" y="33" width="122" height="94" styleName="whiteBoxBorder" backgroundSize="100%" filters="{[glowGrey]}">
+						<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4" click="AppStates.gi().setAllStates(AppStates.PA,'5')"/>
+						<mx:Text x="3" y="64" text="WORLD PROTECTED&#xd;AREAS MAP" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
+					</mx:Canvas>
+					<mx:Canvas x="266" y="33" width="122" height="94" styleName="whiteBoxBorder" backgroundSize="100%" filters="{[glowGrey]}">
+						<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4"/>
+						<mx:Text x="3" y="64" text="WORLD PROTECTED&#xd;AREAS MAP" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
+					</mx:Canvas>
+					<mx:Canvas x="394" y="33" width="122" height="94" styleName="whiteBoxBorder" backgroundSize="100%" filters="{[glowGrey]}">
+						<mx:Canvas styleName="bkgOrange" left="4" right="5" top="4" bottom="5" backgroundSize="100%" click="AppStates.gi().setSecondState('')">
+							<mx:Text text="EXPLORE THE &#xd;WHOLE MAP" textAlign="center" leading="-3" 
+								fontFamily="DINOT-Bold" color="#c5922b" fontSize="15" horizontalCenter="-1" verticalCenter="-1" selectable="false"/>
+							<mx:Text text="EXPLORE THE &#xd;WHOLE MAP" textAlign="center" leading="-3" 
+								fontFamily="DINOT-Bold" color="#FFFFFF" fontSize="15" horizontalCenter="0" verticalCenter="0" selectable="false"/>
+						</mx:Canvas>
+					</mx:Canvas>
+				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Button label="View PA 5" horizontalCenter="123" bottom="30" click="AppStates.gi().setAllStates(AppStates.PA,'5')"/>
+				<ns1:RightArea verticalCenter="-15" horizontalCenter="291">
+				</ns1:RightArea>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.SEARCH}">
@@ -61,6 +83,9 @@
 			
 		]]>
 	</mx:Script>
+	
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
+	
 	<mx:transitions>
 		<mx:Transition id="myTransition" fromState="*" toState="*">
 			<mx:Parallel id="t1" targets="{[this]}">
