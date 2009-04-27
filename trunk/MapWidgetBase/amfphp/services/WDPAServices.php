@@ -26,6 +26,17 @@ class WDPAServices {
         
         return $result;
 	}
+	
+	public function getPaList($isocode='') {
+	    $result=array();
+	    $result['index']="";
+	    $result['data']=array();
+	    for($i=0;$i<130000;$i++) {
+	        $result['data'][]="lala"+$i;
+	        $result['index']+="lala<"+$i+">";
+	    }
+	    return $result;
+	}
 
 
 	public function searchAreasByName($search) {
@@ -45,21 +56,6 @@ class WDPAServices {
 	    
 	    return $result;
 	}
-    
-    public function getPaData($siteid) {
-        $result=array();
-        $result['id']=5;
-        $result['name']="Yosemite";
-        $result['country']="Spain";
-        $result['countryIsoCode']="ES";
-        $result['has']=138000;
-        $result['north']=62.23;
-        $result['south']=60.23;
-        $result['east']=34.233;
-        $result['west']=35.23;
-        
-        return $result;
-	}    
     
     public function getCountryStatsByISO($iso) {
         $result=array();
