@@ -4,7 +4,7 @@
 	<mx:states>
 		<mx:State name="{AppStates.WORLD}">
 			<mx:AddChild position="lastChild">
-				<ns1:WorldCanvas top="60" visible="{!(AppStates.gi().secondState!='')}" right="20" id="worldcanvas">
+				<ns1:WorldCanvas top="48" visible="{!(AppStates.gi().secondState!='')}" right="20" id="worldcanvas">
 				</ns1:WorldCanvas>
 			</mx:AddChild>
 		</mx:State>
