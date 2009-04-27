@@ -39,8 +39,14 @@ package com.vizzuality.services
 		public function DataServices()
 		{
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
-			roPa.endpoint=roCountry.endpoint=roCountry.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/wdpa/gateway.php";
-			roPa.source=roCountry.source=roWorld.source="WDPAServices";
+			var endpoint:String="http://ec2-67-202-26-58.compute-1.amazonaws.com/wdpa/gateway.php";
+			var source:String="WDPAServices";
+			roPa.endpoint=endpoint;
+			roCountry.endpoint=endpoint;
+			roWorld.endpoint=endpoint;
+			roPa.source=source;
+			roCountry.source=source;
+			roWorld.source=source;
 			
 			roPa.addEventListener(ResultEvent.RESULT,onGetPaDataResult);
 			roCountry.addEventListener(ResultEvent.RESULT,onGetCountryDataResult);	
