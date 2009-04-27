@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="306" height="300" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="306" height="300" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8" creationComplete="init()" currentState="loading">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:AddChild position="lastChild">
+				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{label2}"/>
+			<mx:RemoveChild target="{label8}"/>
+			<mx:RemoveChild target="{label10}"/>
+			<mx:RemoveChild target="{label4}"/>
+			<mx:RemoveChild target="{label6}"/>
+			<mx:RemoveChild target="{label0}"/>
+			<mx:RemoveChild target="{label3}"/>
+			<mx:RemoveChild target="{label5}"/>
+			<mx:RemoveChild target="{label7}"/>
+			<mx:RemoveChild target="{label9}"/>
+			<mx:RemoveChild target="{label11}"/>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import com.vizzuality.services.DataServiceEvent;
+		import com.vizzuality.view.AppStates;
+		import com.vizzuality.data.WorldStats;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.remoting.mxml.RemoteObject;
+		import com.vizzuality.services.DataServices;
+		
+		private var ro:RemoteObject;
+	
+		private function init():void {
+			
+			DataServices.gi().addEventListener(DataServiceEvent.WORLD_DATA_LOADED,onDataLoaded);
+		}
+		
+		private function onDataLoaded(event:DataServiceEvent):void {			
+			
+			currentState='';
+		}
+		
+	]]>
+</mx:Script>
+
 	<mx:Label x="10" y="10" text="World Canvas"/>
+	<mx:Label x="10" y="47" text="coveragePercentage" id="label1"/>
+	<mx:Label x="10" y="67" text="international" id="label0"/>
+	<mx:Label x="88" y="67" text="{DataServices.gi().worldStats.international}" id="label3"/>
+	<mx:Label x="10" y="87" text="marine" id="label4"/>
+	<mx:Label x="88" y="87" text="{DataServices.gi().worldStats.marine}" id="label5"/>
+	<mx:Label x="10" y="107" text="national" id="label6"/>
+	<mx:Label x="88" y="107" text="{DataServices.gi().worldStats.national}" id="label7"/>
+	<mx:Label x="10" y="127" text="terrestrial" id="label8"/>
+	<mx:Label x="10" y="147" text="totalAreas" id="label10"/>
+	<mx:Label x="88" y="147" text="{DataServices.gi().worldStats.totalAreas}" id="label11"/>
+	<mx:Label x="88" y="127" text="{DataServices.gi().worldStats.terrestrial}" id="label9"/>
+	<mx:Label x="128" y="47" text="{DataServices.gi().worldStats.coveragePercentage}" id="label2"/>
 	
 </mx:Canvas>

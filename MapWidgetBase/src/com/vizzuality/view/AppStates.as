@@ -2,6 +2,8 @@ package com.vizzuality.view
 {
 	import asual.SWFAddress;
 	
+	import com.vizzuality.services.DataServices;
+	
 	public final class AppStates
 	{
 		//TOP states
@@ -18,6 +20,7 @@ package com.vizzuality.view
 		public static const DETAILS:String='details';
 		public static const EXTRA_DETAILS:String='extraDetails';
 		
+		private static var instance:AppStates = new AppStates();
 		
 		//App current state
 		[Bindable]
@@ -25,13 +28,13 @@ package com.vizzuality.view
 		[Bindable]
 		public var secondState:String;
 		
+		private var _activePaId:Number;
+		private var _activeCountryIsoCode:String;
 		[Bindable]
-		public var activePaId:Number;
-		[Bindable]
-		public var activeCountryIsoCode:String;
+		
+		public var activeCountryName:String;
 		
 		
-		private static var instance:AppStates = new AppStates();
 		
 		public function AppStates() {
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
@@ -41,6 +44,28 @@ package com.vizzuality.view
 			return instance;
 		}
 		
+		[Bindable(event="changeActivePaId")]
+		public function get activePaId():Number {
+			return _activePaId;
+		}
+		
+		public function set activePaId(value:Number):void {
+			_activePaId=value;
+			dispatchEvent(new Event("changeActivePaId"));
+			DataServices.gi().selectedPAId=value;
+		}
+		
+		[Bindable(event="changeActiveCountryIsoCode")]
+		public function get activeCountryIsoCode():String {
+			return _activeCountryIsoCode;
+		}
+		
+		public function set activeCountryIsoCode(value:String):void {
+			_activeCountryIsoCode=value;
+			dispatchEvent(new Event("changeActiveCountryIsoCode"));
+		}
+
+
 		//We dont set the state directly here, it is set by the SWFAddress
 		public function setTopState(tState:String):void {
 			SWFAddress.setValue(tState);
