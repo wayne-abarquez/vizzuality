@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="306" height="300" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8" creationComplete="init()" currentState="loading">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="228" height="260" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8" creationComplete="init()" 
+	currentState="loading" xmlns:ns1="com.vizzuality.view.overlay.*">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
 				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
 			</mx:AddChild>
-			<mx:RemoveChild target="{label1}"/>
-			<mx:RemoveChild target="{label2}"/>
 			<mx:RemoveChild target="{label8}"/>
-			<mx:RemoveChild target="{label10}"/>
 			<mx:RemoveChild target="{label4}"/>
-			<mx:RemoveChild target="{label6}"/>
-			<mx:RemoveChild target="{label0}"/>
-			<mx:RemoveChild target="{label3}"/>
 			<mx:RemoveChild target="{label5}"/>
-			<mx:RemoveChild target="{label7}"/>
 			<mx:RemoveChild target="{label9}"/>
 			<mx:RemoveChild target="{label11}"/>
+			<mx:AddChild position="lastChild">
+				<mx:HRule strokeColor="#B4BB94" left="6" right="6" strokeWidth="3" top="0"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{canvas1}"/>
 		</mx:State>
 	</mx:states>
 <mx:Script>
@@ -43,19 +41,18 @@
 		
 	]]>
 </mx:Script>
-
-	<mx:Label x="10" y="10" text="World Canvas"/>
-	<mx:Label x="10" y="47" text="coveragePercentage" id="label1"/>
-	<mx:Label x="10" y="67" text="international" id="label0"/>
-	<mx:Label x="88" y="67" text="{DataServices.gi().worldStats.international}" id="label3"/>
-	<mx:Label x="10" y="87" text="marine" id="label4"/>
-	<mx:Label x="88" y="87" text="{DataServices.gi().worldStats.marine}" id="label5"/>
-	<mx:Label x="10" y="107" text="national" id="label6"/>
-	<mx:Label x="88" y="107" text="{DataServices.gi().worldStats.national}" id="label7"/>
-	<mx:Label x="10" y="127" text="terrestrial" id="label8"/>
-	<mx:Label x="10" y="147" text="totalAreas" id="label10"/>
-	<mx:Label x="88" y="147" text="{DataServices.gi().worldStats.totalAreas}" id="label11"/>
-	<mx:Label x="88" y="127" text="{DataServices.gi().worldStats.terrestrial}" id="label9"/>
-	<mx:Label x="128" y="47" text="{DataServices.gi().worldStats.coveragePercentage}" id="label2"/>
+	<mx:Canvas height="200" styleName="greenContainer" left="10" right="10" top="35" id="canvas1">
+		<mx:Label text="TOTAL PROTECTED AREAS" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+		<ns1:WorldCoverage x="10" y="37" percent="{DataServices.gi().worldStats.coveragePercentage}"/>
+	</mx:Canvas>
+	<mx:Label x="10" y="147" text="marine" id="label4"/>
+	<mx:Label x="88" y="147" text="{DataServices.gi().worldStats.marine}" id="label5"/>
+	<mx:Label x="10" y="187" text="terrestrial" id="label8"/>
+	<mx:Label x="88" y="207" text="{DataServices.gi().worldStats.totalAreas}" id="label11"/>
+	<mx:Label x="88" y="187" text="{DataServices.gi().worldStats.terrestrial}" id="label9"/>
+	<mx:Label text="WORLD STATS" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4"/>
+	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="34"/>
+	<mx:Image right="14" width="7" top="17" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')"/>
 	
 </mx:Canvas>
