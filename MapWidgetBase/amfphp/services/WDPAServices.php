@@ -14,6 +14,7 @@ class WDPAServices {
 
     public function getPaData($siteid) {
         $result=array();
+        $result['id']=5;
         $result['name']="Yosemite";
         $result['country']="Spain";
         $result['countryIsoCode']="ES";
