@@ -78,21 +78,21 @@
 </mx:Script>
 	<mx:Canvas x="0" y="0" width="230">
 		<mx:CheckBox x="10" label="NATIONAL AREAS" selected="true" id="typeNational"  change="onChange()" fontSize="16" top="9"/>
-		<mx:CheckBox x="26" label="Ia" selected="true" id="iucnCheckIa" enabled="{typeNational.selected}" change="onChange()" top="36"/>
-		<mx:CheckBox x="66" label="Ib" selected="true" id="iucnCheckIb" enabled="{typeNational.selected}" change="onChange()" top="36"/>
-		<mx:CheckBox x="106" label="II" selected="true" id="iucnCheckII" enabled="{typeNational.selected}" change="onChange()" top="36"/>
-		<mx:CheckBox x="26" label="III" selected="true" id="iucnCheckIII" enabled="{typeNational.selected}" change="onChange()" top="54"/>
-		<mx:CheckBox x="106" label="V" selected="true" id="iucnCheckV" enabled="{typeNational.selected}" change="onChange()" top="54"/>
-		<mx:CheckBox x="66" label="IV" selected="true" id="iucnCheckIV" enabled="{typeNational.selected}" change="onChange()" top="54"/>
-		<mx:CheckBox x="146" label="VI" selected="true" id="iucnCheckVI" enabled="{typeNational.selected}" change="onChange()" top="54"/>
-		<mx:CheckBox x="146" label="Unkown" selected="true" id="iucnCheckU" enabled="{typeNational.selected}" change="onChange()" top="36"/>
+		<mx:CheckBox x="26" label="Ia" selected="true" id="iucnCheckIa" enabled="{typeNational.selected}" change="onChange()" top="33"/>
+		<mx:CheckBox x="66" label="Ib" selected="true" id="iucnCheckIb" enabled="{typeNational.selected}" change="onChange()" top="33"/>
+		<mx:CheckBox x="106" label="II" selected="true" id="iucnCheckII" enabled="{typeNational.selected}" change="onChange()" top="33"/>
+		<mx:CheckBox x="26" label="III" selected="true" id="iucnCheckIII" enabled="{typeNational.selected}" change="onChange()" top="51"/>
+		<mx:CheckBox x="106" label="V" selected="true" id="iucnCheckV" enabled="{typeNational.selected}" change="onChange()" top="51"/>
+		<mx:CheckBox x="66" label="IV" selected="true" id="iucnCheckIV" enabled="{typeNational.selected}" change="onChange()" top="51"/>
+		<mx:CheckBox x="146" label="VI" selected="true" id="iucnCheckVI" enabled="{typeNational.selected}" change="onChange()" top="51"/>
+		<mx:CheckBox x="146" label="Unkown" selected="true" id="iucnCheckU" enabled="{typeNational.selected}" change="onChange()" top="33"/>
 		<mx:VRule x="0" y="10" height="61" strokeColor="#999999" strokeWidth="1"/>
 	</mx:Canvas>
 	<mx:Canvas x="228" y="0" width="257" >
-		<mx:CheckBox x="23" label="RAMSAR Wetlands" selected="true" id="convenRAM" enabled="{typeInternational.selected}" change="onChange()" top="54"/>
-		<mx:CheckBox x="23" label="World Heritage Site" selected="true" id="convenHERI" enabled="{typeInternational.selected}" change="onChange()" top="36"/>
-		<mx:CheckBox x="163" label="UNESCO Mab" selected="true" id="convenUNES" enabled="{typeInternational.selected}" change="onChange()" top="54"/>
-		<mx:CheckBox x="163" label="Other" selected="true" id="convenOther" enabled="{typeInternational.selected}" change="onChange()" top="36"/>
+		<mx:CheckBox x="23" label="RAMSAR Wetlands" selected="true" id="convenRAM" enabled="{typeInternational.selected}" change="onChange()" top="51"/>
+		<mx:CheckBox x="23" label="World Heritage Site" selected="true" id="convenHERI" enabled="{typeInternational.selected}" change="onChange()" top="33"/>
+		<mx:CheckBox x="163" label="UNESCO Mab" selected="true" id="convenUNES" enabled="{typeInternational.selected}" change="onChange()" top="51"/>
+		<mx:CheckBox x="163" label="Other" selected="true" id="convenOther" enabled="{typeInternational.selected}" change="onChange()" top="33"/>
 		<mx:CheckBox x="8" label="INTERNATIONAL AREAS" selected="true" id="typeInternational"  change="onChange()" fontSize="16" top="9"/>
 	</mx:Canvas>
 	<mx:VRule x="226" y="10" height="61" strokeColor="#999999" strokeWidth="1"/>

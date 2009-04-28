@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="306" height="300" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8" currentState="loading">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="250" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
+	currentState="loading" xmlns:overlay="com.vizzuality.view.overlay.*"  filters="{[glowGrey]}">
 	<mx:states>
 		<mx:State name="loading">
-			<mx:RemoveChild target="{label1}"/>
-			<mx:RemoveChild target="{label2}"/>
-			<mx:RemoveChild target="{label3}"/>
-			<mx:RemoveChild target="{label4}"/>
-			<mx:RemoveChild target="{label5}"/>
-			<mx:RemoveChild target="{label6}"/>
-			<mx:RemoveChild target="{label7}"/>
-			<mx:RemoveChild target="{label8}"/>
-			<mx:RemoveChild target="{label9}"/>
-			<mx:RemoveChild target="{label10}"/>
-			<mx:RemoveChild target="{label11}"/>
-			<mx:RemoveChild target="{label12}"/>
-			<mx:RemoveChild target="{label13}"/>
-			<mx:RemoveChild target="{label14}"/>
-			<mx:RemoveChild target="{label15}"/>
+
 			<mx:AddChild position="lastChild">
 				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
 			</mx:AddChild>
+			<mx:RemoveChild target="{canvas0}"/>
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:RemoveChild target="{hrule1}"/>
+			<mx:RemoveChild target="{hbox1}"/>
 		</mx:State>
 		<mx:State name="moreinfo">
-			<mx:RemoveChild target="{button1}"/>
 			<mx:AddChild position="lastChild">
 				<mx:Button x="171" y="185" label="less info" click="currentState=''"/>
 			</mx:AddChild>
@@ -56,21 +46,29 @@
 		
 	]]>
 </mx:Script>
-	<mx:Label x="10" y="10" text="Country Canvas" id="label1"/>
-	<mx:Label x="10" y="36" text="isocode" id="label2"/>
-	<mx:Label x="10" y="56" text="name" id="label13"/>
-	<mx:Label x="145" y="56" text="{DataServices.gi().selectedCountry.name}" id="label14"/>
-	<mx:Label x="10" y="76" text="coveragePercentage" id="label7"/>
-	<mx:Label x="145" y="76" text="{DataServices.gi().selectedCountry.coveragePercentage}" id="label8"/>
-	<mx:Label x="10" y="96" text="numAreas" id="label12"/>
-	<mx:Label x="145" y="96" text="{DataServices.gi().selectedCountry.numAreas}" id="label5"/>
-	<mx:Label x="10" y="116" text="numberCoral" id="label9"/>
-	<mx:Label x="145" y="116" text="{DataServices.gi().selectedCountry.numberCoral}" id="label6"/>
-	<mx:Label x="10" y="136" text="numMangrove" id="label10"/>
-	<mx:Label x="145" y="136" text="{DataServices.gi().selectedCountry.numMangrove}" id="label4"/>
-	<mx:Label x="10" y="156" text="numSeagrass" id="label11"/>
-	<mx:Label x="145" y="156" text="{DataServices.gi().selectedCountry.numSeagrass}" id="label3"/>
-	<mx:Label x="145" y="36" text="{DataServices.gi().selectedCountry.isocode}" id="label15"/>
-	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1"/>
+
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
+
+	<mx:Canvas styleName="softGreenContainer" left="10" right="10" top="136" id="canvas0"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="10">
+		<mx:Label text="COUNTRY COVERED BY WDPA" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+		<overlay:CountryCoverage percent="{DataServices.gi().selectedCountry.coveragePercentage}" horizontalCenter="0" top="27" id="worldcoverage1"/>
+	</mx:Canvas>
+	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<mx:Label text="COUNTRY PROTECTED AREAS" id="label0" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="3"/>
+		<mx:Label text="{DataServices.gi().worldStats.totalAreas}" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848" letterSpacing="-1" left="3" top="10"/>
+	</mx:Canvas>
+	<mx:Label text="{(DataServices.gi().selectedCountry.name).toUpperCase()}" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4" width="200"/>
+	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="34"/>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="136" id="hrule1"/>
+	<mx:Image right="14" width="7" top="17" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')"/>
+	<mx:HBox horizontalGap="0" left="17" top="112" id="hbox1">
+		<mx:Label text="{Math.floor((DataServices.gi().selectedCountry.numAreas * 100) / DataServices.gi().worldStats.totalAreas) +'% MARINE'}" id="label5" fontSize="11" fontFamily="DINOT-Bold" color="#375381"/>
+		<mx:Label text="|" id="label2" fontSize="11" fontFamily="DINOT-Bold" color="#4F4F4F" width="8" textAlign="center"/>
+		<mx:Label text="{Math.floor((DataServices.gi().selectedCountry.numAreas * 100) / DataServices.gi().worldStats.totalAreas) +'% TERRESTRIAL'}" id="label9" color="#FF5A00" fontSize="11" fontFamily="DINOT-Bold"/>
+	</mx:HBox>
+	
 	
 </mx:Canvas>
