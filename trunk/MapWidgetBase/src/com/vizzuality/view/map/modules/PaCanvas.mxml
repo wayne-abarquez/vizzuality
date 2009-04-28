@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="306" height="300" backgroundColor="#FFFFFF" backgroundAlpha="0.71" cornerRadius="8">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
+	filters="{[glowGrey]}">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
 				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
 			</mx:AddChild>
-			<mx:RemoveChild target="{label1}"/>
-			<mx:RemoveChild target="{label2}"/>
-			<mx:RemoveChild target="{label3}"/>
 			<mx:RemoveChild target="{label4}"/>
-			<mx:RemoveChild target="{label5}"/>
-			<mx:RemoveChild target="{label6}"/>
-			<mx:RemoveChild target="{label7}"/>
-			<mx:RemoveChild target="{label8}"/>
 			<mx:RemoveChild target="{button1}"/>
 		</mx:State>
 		<mx:State name="moreinfo">
@@ -52,15 +46,51 @@
 		
 	]]>
 </mx:Script>
-	<mx:Label x="10" y="10" text="PA Canvas"/>
-	<mx:Label x="20" y="61" text="name" id="label7"/>
-	<mx:Label x="20" y="81" text="has" id="label3"/>
-	<mx:Label x="93" y="81" text="{DataServices.gi().selectedPA.has}" id="label4"/>
-	<mx:Label x="20" y="101" text="countryIsoCode" id="label5"/>
-	<mx:Label x="113" y="101" text="{DataServices.gi().selectedPA.countryIsoCode}" id="label2"/>
-	<mx:Label x="20" y="121" text="country" id="label6"/>
-	<mx:Label x="93" y="121" text="{DataServices.gi().selectedPA.country}" id="label1"/>
-	<mx:Label x="93" y="61" text="{DataServices.gi().selectedPA.name}" id="label8"/>
-	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1"/>
+
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
+	
+	<!--ESTA A FALSO EH!-->
+	<mx:Label x="93" y="81" text="{DataServices.gi().selectedPA.has}" id="label4" visible="false"/>
+	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1" visible="false"/>
+	<!--                -->
+	
+	<mx:VBox verticalGap="3" horizontalAlign="center" left="6" right="6" top="0">
+		<mx:Canvas backgroundColor="#B4BB94" height="3" width="100%"/>
+		<mx:Canvas width="100%">
+			<mx:Text text="{(DataServices.gi().selectedPA.name + ', ' + DataServices.gi().selectedPA.country + ' [' + DataServices.gi().selectedPA.countryIsoCode + ']').toUpperCase()}" id="areaTitle" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="4" top="-1" width="197"/>
+			<mx:Image right="14" width="7" top="12" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')"/>
+		</mx:Canvas>
+		<mx:VBox verticalGap="0" paddingBottom="10" id="vboxLayers" horizontalAlign="center" width="100%" paddingLeft="4" paddingRight="4"> 
+			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%"/>
+			<mx:Canvas styleName="greenContainer" id="canvas0" width="100%"
+				verticalScrollPolicy="off" horizontalScrollPolicy="off">
+				<mx:Label text="WDPA LAYERS" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29">
+					<mx:CheckBox label="Coral"/>
+					<mx:CheckBox label="Cold Water Corals"/>
+					<mx:CheckBox label="SeaGrass"/>
+					<mx:CheckBox label="Mangroves"/>
+				</mx:VBox>
+			</mx:Canvas>
+			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%"/>
+			<mx:Canvas styleName="softGreenContainer" width="100%"
+				verticalScrollPolicy="off" horizontalScrollPolicy="off">
+				<mx:Label text="FROM THE WEB" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29">
+					<mx:CheckBox label="Wikipedia Articles"/>
+					<mx:CheckBox label="Photos &amp; Pictures"/>
+					<mx:CheckBox label="Videos"/>
+				</mx:VBox>
+			</mx:Canvas>
+			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%"/>
+			<mx:Canvas styleName="greenContainer" width="100%"
+				verticalScrollPolicy="off" horizontalScrollPolicy="off">
+				<mx:Label text="GBIF DATA"  color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29">
+					<mx:CheckBox label="Species primary distributions"/>
+				</mx:VBox>
+			</mx:Canvas>
+		</mx:VBox>
+	</mx:VBox>
 	
 </mx:Canvas>
