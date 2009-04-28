@@ -4,6 +4,7 @@ package com.vizzuality.view.map
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
 	import com.vizzuality.data.WdpaLayer;
+	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.overlays.CustomTileLayer;
 	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
 	
@@ -26,6 +27,7 @@ package com.vizzuality.view.map
 		private var aSprite:Sprite;
 		private var bSprite:Sprite;   			
 		
+		private var cacheLayers:Dictionary = new Dictionary();
 		private var activeLayers:Dictionary = new Dictionary();
 		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
@@ -73,6 +75,7 @@ package com.vizzuality.view.map
 		}		
 		
 		public function updateTileLayers(layers:Array):void {
+			
 			//first we remove from the map the layers that are active
 			//that should not longer be active
 			var searchForLayer:Function = function(search:String):Boolean {
@@ -85,20 +88,34 @@ package com.vizzuality.view.map
 			
 			for (var layerName:String in activeLayers) {
 				if (!searchForLayer(layerName)) {
+					trace("remove " +layerName);
 					map.removeOverlay(activeLayers[layerName]);
+					activeLayers[layerName]=null;
+					delete activeLayers[layerName];
 				}
 			}
 			
 			
 			//We create all the layer, or add all those CTLO 
 			for each(var la:String in layers) {
-				trace(la);
-				if(activeLayers[la]==null) {
+				//trace(la);
+				if(cacheLayers[la]==null) {
 					var ctlo:CustomTileLayerOverlay= createTileLayer(la);
 					activeLayers[la] = ctlo;
+					cacheLayers[la]=ctlo;
+					trace("add " +la);
+					map.addOverlay(activeLayers[la]);
+				} else {
+					if(activeLayers[la]==null) {
+						activeLayers[la]=cacheLayers[la];
+						trace("add " +la);
+						map.addOverlay(activeLayers[la]);
+					}
 				}
-				map.addOverlay(activeLayers[la]);
 			}
+			
+			//we set it into the state
+			AppStates.gi().visibleLayers[AppStates.gi().topState]=layers;
 		}
 		
 		public function createTileLayer(layer:String):CustomTileLayerOverlay {

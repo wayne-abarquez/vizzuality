@@ -5,6 +5,8 @@
 	backgroundGradientColors="[#E9F4FF, #D7E8FA]" creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.data.WdpaLayer;
+			import com.vizzuality.view.map.MapController;
 			import com.vizzuality.view.AppStates;
 			import asual.SWFAddressEvent;
 			import asual.SWFAddress;
@@ -47,6 +49,17 @@
 					
 					switch(event.pathNames[0]) {
 						case(AppStates.WORLD):
+							//control the layer state
+							
+							//if there was already a set of layers added at world zoom level use them
+							if((AppStates.gi().visibleLayers[AppStates.WORLD] as Array).length>0) {
+								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.WORLD]);
+							} 
+							//if there was nothing it is because is the first time we pass this state
+							else {
+								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
+							}
+							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];		
 							} else {
@@ -57,6 +70,13 @@
 							
 							
 						case(AppStates.COUNTRIES):
+							//control the layer state
+							if((AppStates.gi().visibleLayers[AppStates.COUNTRIES] as Array).length>0) {
+								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.COUNTRIES]);
+							} else {
+								MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_COVERAGE]);
+							}
+							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];
 							} else {
@@ -66,6 +86,13 @@
 							
 							
 						case(AppStates.COUNTRY):
+							//control the layer state
+							if((AppStates.gi().visibleLayers[AppStates.COUNTRY] as Array).length>0) {
+								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.COUNTRY]);
+							} else {
+								MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_BORDER]);
+							}
+	
 							if(event.pathNames.length==3) {
 								AppStates.gi().activeCountryIsoCode = (event.pathNames[1] as String).toUpperCase();
 								AppStates.gi().secondState=event.pathNames[2];
@@ -81,6 +108,14 @@
 							
 							
 						case(AppStates.PA):
+							
+							//control the layer state
+							if((AppStates.gi().visibleLayers[AppStates.PA] as Array).length>0) {
+								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.PA]);
+							} else {
+								MapController.gi().updateTileLayers([WdpaLayer.PA_BORDER]);
+							}
+							
 							if(event.pathNames.length==3) {
 								AppStates.gi().activePaId = Number(event.pathNames[1]);
 								AppStates.gi().secondState=event.pathNames[2];
@@ -99,13 +134,15 @@
 							//Not recognize params. Move them to the default states
 							trace( "Top level state not recognize!" );
 							AppStates.gi().topState=AppStates.WORLD;
-							AppStates.gi().secondState=AppStates.ABOUT;				
+							AppStates.gi().secondState=AppStates.ABOUT;
+							MapController.gi().updateTileLayers([WdpaLayer.ALL]);				
 						
 					}
 					
 				} else {
 					AppStates.gi().topState=AppStates.WORLD;
-					AppStates.gi().secondState=AppStates.ABOUT;				
+					AppStates.gi().secondState=AppStates.ABOUT;	
+					MapController.gi().updateTileLayers([WdpaLayer.ALL]);			
 					
 				}
 			}	
