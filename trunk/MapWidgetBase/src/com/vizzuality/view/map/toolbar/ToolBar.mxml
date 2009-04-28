@@ -60,9 +60,6 @@
 			<mx:AddChild position="lastChild">
 				<mx:Label text="SEARCH FOR PROTECTED AREA" left="12" fontSize="16" fontWeight="normal" fontFamily="DINOT-Medium" color="#375381" verticalCenter="-6"/>
 			</mx:AddChild>
-			<mx:AddChild relativeTo="{text1}" position="before">
-				<mx:Label text="Featured species" fontSize="17" fontWeight="normal" right="67" width="192" top="24" textAlign="left"/>
-			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:TextInput borderStyle="solid" cornerRadius="2" left="248" height="22" top="15" width="182"/>
 			</mx:AddChild>
