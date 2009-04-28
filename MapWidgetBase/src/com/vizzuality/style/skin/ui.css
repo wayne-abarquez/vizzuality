@@ -142,8 +142,8 @@ Button.breadCrumbButton{
 Button.invisibleButton{
 	skin: ClassReference(null);	
 	color: #375381;
-	text-roll-over-color: #FFFFFF;
-	text-selected-color: #FFFFFF;
+	text-roll-over-color: #375381;
+	text-selected-color: #375381;
 	font-family: "DINOT-Medium";
 	font-size: 12;
 	font-weight: normal;
@@ -172,6 +172,28 @@ HSlider{
 }
 
 
+
+
+CheckBox{
+	disabledIcon: Embed(source="ui.swf", symbol="CheckBox_disabledIcon");
+	downIcon: Embed(source="ui.swf", symbol="CheckBox_downIcon");
+	overIcon: Embed(source="ui.swf", symbol="CheckBox_overIcon");
+	selectedDisabledIcon: Embed(source="ui.swf", symbol="CheckBox_selectedDisabledIcon");
+	selectedDownIcon: Embed(source="ui.swf", symbol="CheckBox_selectedDownIcon");
+	selectedOverIcon: Embed(source="ui.swf", symbol="CheckBox_selectedOverIcon");
+	selectedUpIcon: Embed(source="ui.swf", symbol="CheckBox_selectedUpIcon");
+	upIcon: Embed(source="ui.swf", symbol="CheckBox_upIcon");
+	color: #777777;
+	textRollOverColor: #333333;
+	textSelectedColor:#333333;
+	textDisabledColor: #999999;
+	fontSize:12;
+	fontWeight:normal;
+	font-family: "DINOT-Medium";
+	horizontalGap:0;
+	paddingTop: -4;
+	paddingBottom: 0;
+}	
 
 
 /* Button.BreadCrumbButton{
