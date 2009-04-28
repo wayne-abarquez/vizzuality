@@ -17,14 +17,19 @@ package com.vizzuality.view.map.overlays
 	{
 		
 		private var srvNum:Number=0;
-		private var baseUrl:String;
+		private var staticTileServerUrl:String;
+		private var dynamicTileServerUrl:String;
+		private var zoomChange:Number;
 		private var loader:Loader;		
 		
 		public var ctlo:CustomTileLayerOverlay;
 		
-		public function CustomTileLayer(_baseUrl:String)
+		public function CustomTileLayer(_staticTileServerUrl:String,_dynamicTileServerUrl:String, _zoomChange:Number)
 		{
-			baseUrl=_baseUrl;
+			staticTileServerUrl=_staticTileServerUrl;
+			dynamicTileServerUrl=_dynamicTileServerUrl;
+			zoomChange=_zoomChange;
+			
 			var copyrightCollection:CopyrightCollection = new CopyrightCollection();
 			copyrightCollection.addCopyright(new Copyright("ennefox", new LatLngBounds(new LatLng(-180, 90), new LatLng(180, -90)), 21,"ennefox"));			
 			super(copyrightCollection, 0, 23,0.7);
@@ -36,12 +41,19 @@ package com.vizzuality.view.map.overlays
 			loader = new Loader()
 			loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loaded,false,0,true);
+			
+			
+           	var tileUrl:String;
+			if (zoom>zoomChange) {
+				tileUrl= dynamicTileServerUrl;					
+			} else {
+				tileUrl= staticTileServerUrl;	
+			}
 		
            	srvNum++;
            	if (srvNum>3)
            		srvNum=0;		
            		
-           	var tileUrl:String = baseUrl;	
            	if (tileUrl.indexOf("|N|")>0)
            		tileUrl = tileUrl.replace("|N|",srvNum);
            	
