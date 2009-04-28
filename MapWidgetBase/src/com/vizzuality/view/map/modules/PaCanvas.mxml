@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
-	filters="{[glowGrey]}">
+	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*">
 	<mx:states>
 		<mx:State name="loading">
-			<mx:AddChild position="lastChild">
-				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
-			</mx:AddChild>
 			<mx:RemoveChild target="{label4}"/>
 			<mx:RemoveChild target="{button1}"/>
+			<mx:RemoveChild target="{areaTitle}"/>
+			<mx:RemoveChild target="{hrule1}"/>
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:RemoveChild target="{label5}"/>
+			<mx:RemoveChild target="{hrule3}"/>
+			<mx:RemoveChild target="{label6}"/>
+			<mx:RemoveChild target="{vbox1}"/>
+			<mx:RemoveChild target="{vbox2}"/>
+			<mx:RemoveChild target="{vbox3}"/>
+			<mx:RemoveChild target="{image1}"/>
+			<mx:RemoveChild target="{canvas0}"/>
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:RemoveChild target="{canvas2}"/>
+			<mx:RemoveChild target="{canvas3}"/>
+			<mx:RemoveChild target="{vboxLayers}"/>
+			<mx:RemoveChild target="{vbox4}"/>
+			<mx:AddChild position="lastChild">
+				<ns1:GenericLoader left="0" right="0" top="0">
+				</ns1:GenericLoader>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+			</mx:AddChild>
 		</mx:State>
 		<mx:State name="moreinfo">
 			<mx:SetProperty name="width" value="726"/>
@@ -54,39 +75,39 @@
 	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1" visible="false"/>
 	<!--                -->
 	
-	<mx:VBox verticalGap="3" horizontalAlign="center" left="6" right="6" top="0">
+	<mx:VBox verticalGap="3" horizontalAlign="center" left="6" right="6" top="0" id="vbox4">
 		<mx:Canvas backgroundColor="#B4BB94" height="3" width="100%"/>
-		<mx:Canvas width="100%">
+		<mx:Canvas width="100%" id="canvas1">
 			<mx:Text text="{(DataServices.gi().selectedPA.name + ', ' + DataServices.gi().selectedPA.country + ' [' + DataServices.gi().selectedPA.countryIsoCode + ']').toUpperCase()}" id="areaTitle" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="4" top="-1" width="197"/>
-			<mx:Image right="14" width="7" top="12" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')"/>
+			<mx:Image right="14" width="7" top="12" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')" id="image1"/>
 		</mx:Canvas>
 		<mx:VBox verticalGap="0" paddingBottom="10" id="vboxLayers" horizontalAlign="center" width="100%" paddingLeft="4" paddingRight="4"> 
-			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%"/>
+			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule1"/>
 			<mx:Canvas styleName="greenContainer" id="canvas0" width="100%"
 				verticalScrollPolicy="off" horizontalScrollPolicy="off">
 				<mx:Label text="WDPA LAYERS" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
-				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29">
+				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
 					<mx:CheckBox label="Coral"/>
 					<mx:CheckBox label="Cold Water Corals"/>
 					<mx:CheckBox label="SeaGrass"/>
 					<mx:CheckBox label="Mangroves"/>
 				</mx:VBox>
 			</mx:Canvas>
-			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%"/>
+			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule2"/>
 			<mx:Canvas styleName="softGreenContainer" width="100%"
-				verticalScrollPolicy="off" horizontalScrollPolicy="off">
-				<mx:Label text="FROM THE WEB" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
-				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29">
+				verticalScrollPolicy="off" horizontalScrollPolicy="off" id="canvas2">
+				<mx:Label text="FROM THE WEB" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6" id="label5"/>
+				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox2">
 					<mx:CheckBox label="Wikipedia Articles"/>
 					<mx:CheckBox label="Photos &amp; Pictures"/>
 					<mx:CheckBox label="Videos"/>
 				</mx:VBox>
 			</mx:Canvas>
-			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%"/>
+			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule3"/>
 			<mx:Canvas styleName="greenContainer" width="100%"
-				verticalScrollPolicy="off" horizontalScrollPolicy="off">
-				<mx:Label text="GBIF DATA"  color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
-				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29">
+				verticalScrollPolicy="off" horizontalScrollPolicy="off" id="canvas3">
+				<mx:Label text="GBIF DATA"  color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6" id="label6"/>
+				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox3">
 					<mx:CheckBox label="Species primary distributions"/>
 				</mx:VBox>
 			</mx:Canvas>

@@ -22,7 +22,7 @@
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
 			<mx:AddChild position="lastChild">
-				<ns1:PaCanvas top="60" siteid="{AppStates.gi().activePaId}" visible="{!(AppStates.gi().secondState!='')}" right="20" id="paCanvas">
+				<ns1:PaCanvas top="48" siteid="{AppStates.gi().activePaId}" visible="{!(AppStates.gi().secondState!='')}" right="20" id="paCanvas">
 				</ns1:PaCanvas>
 			</mx:AddChild>
 		</mx:State>
