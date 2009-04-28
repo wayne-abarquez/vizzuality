@@ -4,6 +4,8 @@ package com.vizzuality.view
 	
 	import com.vizzuality.services.DataServices;
 	
+	import flash.utils.Dictionary;
+	
 	public final class AppStates
 	{
 		//TOP states
@@ -28,15 +30,26 @@ package com.vizzuality.view
 		[Bindable]
 		public var secondState:String;
 		
+/* 		public var worldVisibleLayers:Array = new Array();
+		public var countriesVisibleLayers:Array = new Array();
+		public var countryVisibleLayers:Array = new Array();
+		public var paVisibleLayers:Array = new Array(); */
+		public var visibleLayers:Dictionary=new Dictionary();
+		
 		private var _activePaId:Number;
 		private var _activeCountryIsoCode:String;
-		[Bindable]
-		
+		[Bindable]		
 		public var activeCountryName:String;
 		
 		
 		
 		public function AppStates() {
+			//initialize the layers state
+			visibleLayers[WORLD]=[];
+			visibleLayers[COUNTRIES]=[];
+			visibleLayers[COUNTRY]=[];
+			visibleLayers[PA]=[];
+			
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
 		}
 		
