@@ -147,11 +147,11 @@ Button.invisibleButton{
 	font-family: "DINOT-Medium";
 	font-size: 12;
 	font-weight: normal;
-	padding-top: 4;
 	disabledColor: #6C88B6;
-	paddingRight: 20;
-	paddingLeft: 15;
-	paddingBottom: 1; 	
+	padding-top: 0;
+	paddingRight: 0;
+	paddingLeft: 0;
+	paddingBottom: 0; 	
 }
 
 
