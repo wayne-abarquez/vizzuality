@@ -72,7 +72,7 @@
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Button right="3" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="2" height="15"/>
+				<mx:Button right="1" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.FILTER}">
