@@ -195,6 +195,10 @@ CheckBox{
 	paddingBottom: 0;
 }	
 
+ProgressBar {
+   barColor: #bfc69f;
+   trackHeight: 10;
+}
 
 /* Button.BreadCrumbButton{
 	up-skin: Embed(source="ui.swf",symbol="breadcrumb_up");	

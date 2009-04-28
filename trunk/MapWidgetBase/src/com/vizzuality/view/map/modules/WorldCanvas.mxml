@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="250" backgroundColor="#FFFFFF" backgroundAlpha="0.85" creationComplete="init()" 
-	currentState="loading" xmlns:ns1="com.vizzuality.view.overlay.*" filters="{[glowGrey]}">
+	currentState="loading" xmlns:ns1="com.vizzuality.view.overlay.*" filters="{[glowGrey]}" xmlns:ns2="com.vizzuality.view.loader.*">
 	<mx:states>
 		<mx:State name="loading">
-			<mx:AddChild position="lastChild">
-				<mx:Label text="Loading!!!" horizontalCenter="0" verticalCenter="-10" fontSize="25"/>
-			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:HRule strokeColor="#B4BB94" left="6" right="6" strokeWidth="3" top="0"/>
 			</mx:AddChild>
@@ -17,6 +14,14 @@
 			<mx:RemoveChild target="{label5}"/>
 			<mx:RemoveChild target="{label2}"/>
 			<mx:RemoveChild target="{hbox1}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:RemoveChild target="{label12}"/>
+			<mx:RemoveChild target="{image1}"/>
+			<mx:SetProperty name="height" value="60"/>
+			<mx:AddChild position="lastChild">
+				<ns2:GenericLoader left="0" right="0" top="0">
+				</ns2:GenericLoader>
+			</mx:AddChild>
 		</mx:State>
 	</mx:states>
 <mx:Script>
@@ -59,9 +64,9 @@
 	</mx:Canvas>
 	<mx:Label text="WORLD STATS" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4"/>
 	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
-	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="34"/>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="34" id="hrule2"/>
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="136" id="hrule1"/>
-	<mx:Image right="14" width="7" top="17" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')"/>
+	<mx:Image right="14" width="7" top="17" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')" id="image1"/>
 	<mx:HBox horizontalGap="0" left="17" top="112" id="hbox1">
 		<mx:Label text="{Math.floor((DataServices.gi().worldStats.marine * 100) / DataServices.gi().worldStats.totalAreas) +'% MARINE'}" id="label5" fontSize="11" fontFamily="DINOT-Bold" color="#375381"/>
 		<mx:Label text="|" id="label2" fontSize="11" fontFamily="DINOT-Bold" color="#4F4F4F" width="8" textAlign="center"/>
