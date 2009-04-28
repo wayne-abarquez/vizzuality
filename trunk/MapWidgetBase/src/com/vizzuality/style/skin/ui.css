@@ -14,6 +14,10 @@ Canvas.whiteOverlay{
 	background-image: Embed(source="ui.swf",symbol="bkg_white_overlay");
 }
 
+Canvas.whiteOverlayClose{
+	background-image: Embed(source="ui.swf",symbol="bkg_white_overlay_close");
+}
+
 Canvas.darkTopContainer{
 	background-image: Embed(source="ui.swf",symbol="dark_top_container");	
 }
@@ -36,6 +40,14 @@ Canvas.softWhiteContainer{
 	border-style: solid;
 	corner-radius: 1;
 	border-color: #FFFFFF;	
+}
+
+Canvas.softYellowContainer{
+	background-color: #f5f3ea;
+	background-alpha: .8;
+	border-style: solid;
+	corner-radius: 1;
+	border-color: #d9baae;	
 }
 
 Canvas.greenContainer{
@@ -127,6 +139,21 @@ Button.breadCrumbButton{
 	paddingBottom: 1; 	
 }
 
+Button.invisibleButton{
+	skin: ClassReference(null);	
+	color: #375381;
+	text-roll-over-color: #FFFFFF;
+	text-selected-color: #FFFFFF;
+	font-family: "DINOT-Medium";
+	font-size: 12;
+	font-weight: normal;
+	padding-top: 4;
+	disabledColor: #6C88B6;
+	paddingRight: 20;
+	paddingLeft: 15;
+	paddingBottom: 1; 	
+}
+
 
 
 HSlider{
@@ -143,6 +170,7 @@ HSlider{
 	tickThickness:1;
 	thumb-offset: 0;
 }
+
 
 
 

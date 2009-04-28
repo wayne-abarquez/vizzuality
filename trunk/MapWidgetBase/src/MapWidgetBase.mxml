@@ -20,7 +20,6 @@
 			
 			public var map:Map;
 			
-			
 			private function initApp():void {
 				
 				//Modify Tooltip behaviour so that it show inmediately
