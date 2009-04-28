@@ -8,8 +8,8 @@ package com.vizzuality.view.map
 	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
 	
 	import flash.display.Sprite;
-	import flash.events.EventDispatcher;
 	import flash.filters.ColorMatrixFilter;
+	import flash.utils.Dictionary;
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.core.Application;
@@ -25,6 +25,8 @@ package com.vizzuality.view.map
 
 		private var aSprite:Sprite;
 		private var bSprite:Sprite;   			
+		
+		private var activeLayers:Dictionary = new Dictionary();
 		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
 		{
@@ -45,10 +47,7 @@ package com.vizzuality.view.map
 		    //map.disableDragging();
 		    map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 
-			Application.application.onMapReady();	
-			
-			addCustomTileLayer();
-			
+			Application.application.onMapReady();				
 			
 		}
 		
@@ -73,7 +72,36 @@ package com.vizzuality.view.map
 			mapCanvas.loadingBar.visible=false;
 		}		
 		
-		public function addCustomTileLayer():void {
+		public function updateTileLayers(layers:Array):void {
+			//first we remove from the map the layers that are active
+			//that should not longer be active
+			var searchForLayer:Function = function(search:String):Boolean {
+				for (var i:Number=0; i<layers.length;i++) {
+					if(search == layers[i])
+						return true;
+				}
+				return false;
+			}
+			
+			for (var layerName:String in activeLayers) {
+				if (!searchForLayer(layerName)) {
+					map.removeOverlay(activeLayers[layerName]);
+				}
+			}
+			
+			
+			//We create all the layer, or add all those CTLO 
+			for each(var la:String in layers) {
+				trace(la);
+				if(activeLayers[la]==null) {
+					var ctlo:CustomTileLayerOverlay= createTileLayer(la);
+					activeLayers[la] = ctlo;
+				}
+				map.addOverlay(activeLayers[la]);
+			}
+		}
+		
+		public function createTileLayer(layer:String):CustomTileLayerOverlay {
 			
 			ctl = new CustomTileLayer(WdpaLayer.STATIC_LAYERS[WdpaLayer.ALL],WdpaLayer.DYNAMIC_LAYERS[WdpaLayer.ALL],8);		
 			var ctlo:CustomTileLayerOverlay = new CustomTileLayerOverlay(ctl);
@@ -81,8 +109,7 @@ package com.vizzuality.view.map
 			
 			BindingUtils.bindProperty(mapCanvas.temp,"text",ctlo,"numRunningRequest");
 			
-			
-			map.addOverlay(ctlo);
+			return ctlo;
 		}
 		
 
