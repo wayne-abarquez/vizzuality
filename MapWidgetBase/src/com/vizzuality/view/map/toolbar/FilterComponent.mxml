@@ -2,7 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="652" height="92">
 <mx:Script>
 	<![CDATA[
-		import com.vizzuality.services.LayerRefreshEvent;
+		import com.vizzuality.view.map.MapController;
 		import com.vizzuality.data.WdpaLayer;
 
 		private function onChange():void {
@@ -16,6 +16,7 @@
 				convenHERI.selected && convenUNES.selected && convenOther.selected && typeInternational.selected) {
 				
 				selectedLayers=[WdpaLayer.ALL];		
+				MapController.gi().updateTileLayers(selectedLayers);
 				return;
 			}
 			
@@ -37,7 +38,7 @@
 			
 			
 			//Mix of layers in the national pane
-			if(!natAdded) {
+			if(!natAdded && typeNational.selected) {
 				if (iucnCheckIa.selected)
 					selectedLayers.push(WdpaLayer.IUCN_IA);
 				if (iucnCheckIb.selected)
@@ -57,7 +58,7 @@
 			}
 			
 			//Mix of layers in the international pane
-			if(!intAdded) {
+			if(!intAdded && typeInternational.selected) {
 				if (convenRAM.selected)
 					selectedLayers.push(WdpaLayer.CON_RAMSAR);						
 				if (convenHERI.selected)
@@ -68,7 +69,7 @@
 					selectedLayers.push(WdpaLayer.CON_OTHER);										
 			}
 			
-			dispatchEvent(new LayerRefreshEvent(LayerRefreshEvent.LAYERS_REFRESHED,selectedLayers));
+			MapController.gi().updateTileLayers(selectedLayers);
 			
 			
 		}
