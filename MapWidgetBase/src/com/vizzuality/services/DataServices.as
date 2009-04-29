@@ -1,10 +1,17 @@
 package com.vizzuality.services
 {
+	import com.adobe.serialization.json.JSON;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
+	import com.google.maps.overlays.EncodedPolylineData;
+	import com.google.maps.overlays.Polygon;
+	import com.google.maps.overlays.PolygonOptions;
+	import com.google.maps.styles.FillStyle;
+	import com.google.maps.styles.StrokeStyle;
 	import com.vizzuality.data.Country;
 	import com.vizzuality.data.PA;
 	import com.vizzuality.data.WorldStats;
+	import com.vizzuality.utils.PolylineEncoder;
 	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.MapController;
 	
@@ -14,6 +21,7 @@ package com.vizzuality.services
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
+	import mx.rpc.http.mxml.HTTPService;
 	import mx.rpc.remoting.mxml.RemoteObject;
 
 	[Event(name="paDataLoaded", type="com.vizzuality.services.DataServiceEvent")]
@@ -30,11 +38,13 @@ package com.vizzuality.services
 		private var roWorld:RemoteObject;
 		private var roLat:RemoteObject;
 		
+		private var wdpaRestServ:HTTPService = new HTTPService();
+		
 		private var pasDict:Dictionary=new Dictionary();
 		private var countriesDict:Dictionary=new Dictionary();
 		
 		[Bindable]
-		public var areasForLatLng:ArrayCollection=new ArrayCollection();
+		public var areasForLatLng:ArrayCollection=new ArrayCollection();		
 		
 		public var bboxForAreas:LatLngBounds;
 		
@@ -59,6 +69,9 @@ package com.vizzuality.services
 			roCountry=createRemoteObject();
 			roWorld=createRemoteObject();
 			roLat=createRemoteObject();
+			
+			wdpaRestServ.resultFormat = 'text';	
+			wdpaRestServ.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);
 			
 			roArea.addEventListener(ResultEvent.RESULT,onGetPaDataResult);
 			roArea.addEventListener(FaultEvent.FAULT,onFault);	
@@ -179,21 +192,75 @@ package com.vizzuality.services
 		public function getAreasByLatLng(latlng:LatLng):void {
 			MapController.gi().setMapLoading();
 			resolvingLatLng=latlng;
-			roLat.getAreasByLatLng(latlng.lat(),latlng.lng());
+			//roLat.getAreasByLatLng(latlng.lat(),latlng.lng());
+			
+		 		
+		 	wdpaRestServ.url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0//query?text=&geometry=%7B%22x%22%3A"+latlng.lng()+"%2C%22y%22%3A"+latlng.lat()+"%7D&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=&returnGeometry=true&outSR=&outFields=Site_ID,English_Name&f=json";
+			trace(wdpaRestServ.url);
+			wdpaRestServ.send();
 		}
 		
 		private function onGetAreasByLatLngResult(event:ResultEvent):void {
-			if ((event.result.areas as Array).length>0) {
-				areasForLatLng = new ArrayCollection(event.result.areas as Array);
-				bboxForAreas = new LatLngBounds(
-						new LatLng(event.result.south,event.result.west),
-						new LatLng(event.result.north,event.result.east));
+			
+			var res:Object = JSON.decode(String(event.result));
+			if ((res.features as Array).length>0) {
+				areasForLatLng=new ArrayCollection();
 				
-				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());
-				MapController.gi().zoomToBbox(bboxForAreas);
+				for each(var feature:Object in res.features) {
+					
+					//check if the area is already on the areasForLatLng arrayCollection.
+					//	THIS IS AN ERROR ON THE WDPA REST SERVICES
+					var alreadyAdded:Boolean=false;
+					for each(var o:Object in areasForLatLng) {
+						if (o.name == feature.attributes['English_Name']) {
+							alreadyAdded=true;
+							break;
+						}
+					}
+					if(alreadyAdded)
+						break;
+					
+					
+					var polygon:Polygon;
+					var attributes:Object =  feature.attributes;
+					var rings:Array = feature.geometry.rings;
+					var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
+					var encodedPolyLines:Array = new Array();
+					
+					for each(var ring:Array in rings) {
+						var innerRing:Array = new Array();
+						for each(var j:Array in ring) {
+							innerRing.push(new LatLng(j[1],j[0]));
+						}
+						var inner:Object = p.dpEncode(innerRing);
+						encodedPolyLines.push(new EncodedPolylineData(inner.encodedPoints, 2, inner.encodedLevels, 18));
+					}
+					
+		
+				    var polOpt:PolygonOptions = new PolygonOptions({ 
+					        strokeStyle: new StrokeStyle({
+					        	color: 0xFFBB08,
+					        	thickness: 2,
+					        	alpha: 1}), 
+					        fillStyle: new FillStyle({
+					        	color: 0xFFBB08,
+					        	alpha:0.2})
+					        });		
+					        
+				    polygon = Polygon.fromEncoded(encodedPolyLines, polOpt);		
+				    
+				    areasForLatLng.addItem({name:attributes['English_Name'],siteid:attributes['Site_ID'],polygon:polygon});
+				    			
+					MapController.gi().map.addOverlay(polygon);
+					MapController.gi().zoomToBbox(polygon.getLatLngBounds());
+				}
+				
+				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
+				
+				
 			} else {
 				areasForLatLng=null;
-				AppStates.gi().goToPreviousState();
+				//AppStates.gi().goToPreviousState();
 			}
 			MapController.gi().setMapLoaded();
 		}

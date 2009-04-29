@@ -153,11 +153,7 @@
 							
 						case(AppStates.AREA_SELECTOR):
 							//control the layer state
-							if((AppStates.gi().visibleLayers[AppStates.AREA_SELECTOR] as Array).length>0) {
-								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.AREA_SELECTOR]);
-							} else {
-								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
-							}
+							MapController.gi().updateTileLayers([]);
 
 							//control the map state
 							if(AppStates.gi().mapPositions[AppStates.AREA_SELECTOR] == null) {
