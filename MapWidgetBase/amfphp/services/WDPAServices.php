@@ -146,17 +146,7 @@ class WDPAServices {
 	
         $url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0/query?geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&where=Site_ID%3D".$a['siteid']."&returnGeometry=true&f=json&outfields=Site_ID,English_Name,Local_Name";
         
-        return file_get_contents($url);
-        
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-
-        ob_start();
-        curl_exec ($ch);
-        curl_close ($ch);
-        $data = ob_get_contents();
-        ob_end_clean();
+        $data = file_get_contents($url);
         $json = json_decode($data,true); 
 
 		
