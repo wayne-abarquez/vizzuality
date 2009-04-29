@@ -10,7 +10,12 @@
 			<mx:SetProperty target="{button1}" name="enabled" value="false"/>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}"></mx:State>
-		<mx:State name="{AppStates.PA}"></mx:State>
+		<mx:State name="{AppStates.PA}">
+			<mx:AddChild relativeTo="{button2}" position="before">
+				<mx:Button label="area details" click="checkToolButton(event);AppStates.gi().setSecondState(AppStates.AREA_DETAILS)" styleName="btnTool"
+					height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
+			</mx:AddChild>
+		</mx:State>
 		<mx:State name="{AppStates.AREA_SELECTOR}"/>
 	</mx:states>
 <mx:Script>

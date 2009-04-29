@@ -25,6 +25,7 @@ package com.vizzuality.view
 		public static const HELP:String='help';
 		public static const DETAILS:String='details';
 		public static const EXTRA_DETAILS:String='extraDetails';
+		public static const AREA_DETAILS:String='extraDetails';
 		
 		private static var instance:AppStates = new AppStates();
 		
