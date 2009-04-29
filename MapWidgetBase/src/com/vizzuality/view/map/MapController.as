@@ -1,9 +1,14 @@
 package com.vizzuality.view.map
 {
+	import com.google.maps.LatLng;
+	import com.google.maps.LatLngBounds;
 	import com.google.maps.Map;
+	import com.google.maps.MapEvent;
 	import com.google.maps.MapMouseEvent;
+	import com.google.maps.MapMoveEvent;
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
+	import com.vizzuality.data.MapPosition;
 	import com.vizzuality.data.WdpaLayer;
 	import com.vizzuality.services.DataServiceEvent;
 	import com.vizzuality.services.DataServices;
@@ -33,6 +38,9 @@ package com.vizzuality.view.map
 		private var cacheLayers:Dictionary = new Dictionary();
 		private var activeLayers:Dictionary = new Dictionary();
 		
+		private var previousZoomLevel:Number;
+		private var previousCenter:LatLng;
+		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
 		{
 			this.map=map;
@@ -53,18 +61,59 @@ package com.vizzuality.view.map
 		    map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			
 			map.addEventListener(MapMouseEvent.CLICK, onMapClick);
+			map.addEventListener(MapMoveEvent.MOVE_END,onMapMoved);
+			map.addEventListener(MapEvent.MAPTYPE_CHANGED,onMaptypeChanged);
 			
-			Application.application.onMapReady();	
+			DataServices.gi().addEventListener(DataServiceEvent.PA_DATA_LOADED,onPaDataLoaded);
 			
-						
+			Application.application.onMapReady();				
 			
+		}
+		
+		public function getMapPosition():MapPosition {
+			return new MapPosition(map.getCenter(),map.getZoom(), map.getCurrentMapType());
+		}
+		
+		public function setMapPosition(mp:MapPosition):void {
+			//Only change of the mapPosition is different
+			if (mp.isNoEqualMapPosition(getMapPosition())) {
+				map.setCenter(mp.center,mp.zoom,mp.mapType);
+			}
 		}
 		
 		private function onMapZoomChanged(event:MapZoomEvent):void {
 			mapCanvas.mapHeader.zoomSlider.value = map.getZoom();
+
+			if (AppStates.gi().mapPositions[AppStates.gi().topState] !=null) {
+				(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).zoom = map.getZoom();
+			} else {
+				AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();
+			}
 		}		
 		
+		private function onMapMoved(event:MapMoveEvent):void {
+			if (AppStates.gi().mapPositions[AppStates.gi().topState] !=null) {
+				(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).center = map.getCenter();
+				AppStates.gi().debug(AppStates.gi().topState +':'+(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).toString());
+			} else {
+				AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();
+				AppStates.gi().debug(AppStates.gi().topState +':'+(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).toString());
+			}
+		}
 		
+		private function onMaptypeChanged(event:MapEvent):void {
+			if (AppStates.gi().mapPositions[AppStates.gi().topState] !=null) {
+				(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).mapType = map.getCurrentMapType();
+			} else {
+				AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();
+			}
+			
+		}
+		
+		public function zoomToBbox(bbox:LatLngBounds):void {
+			var z:Number = map.getBoundsZoomLevel(bbox);
+			map.setCenter(bbox.getCenter(),z);
+		}
 		
 		
 		public function setMapLoading():void {
@@ -84,12 +133,22 @@ package com.vizzuality.view.map
 		
 		
 		private function onMapClick(event:MapMouseEvent):void {
+			previousCenter=map.getCenter();
+			previousZoomLevel=map.getZoom();
+			
 			DataServices.gi().getAreasByLatLng(event.latLng);
 		}	
 		
-		private function onAreasForLatLngResult(event:DataServiceEvent):void {
-			
+		public function goToPreviousMapPosition():void {
+			map.setCenter(previousCenter,previousZoomLevel);
 		}
+		
+		
+		private function onPaDataLoaded(event:DataServiceEvent):void {
+			var z:Number = map.getBoundsZoomLevel(DataServices.gi().selectedPA.bbox);
+			map.setCenter(DataServices.gi().selectedPA.bbox.getCenter(),z);
+		}
+		
 		
 		public function updateTileLayers(layers:Array):void {
 			

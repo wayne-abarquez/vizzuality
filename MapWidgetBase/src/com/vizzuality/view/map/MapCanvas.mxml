@@ -30,7 +30,7 @@
 			<mx:AddChild position="lastChild">
 				<mx:Canvas width="382" height="244" horizontalCenter="0" verticalCenter="0" cornerRadius="6" borderStyle="solid" borderColor="#000000" backgroundColor="#000000" backgroundAlpha="0.54">
 					<mx:Label x="10" y="10" text="Click on the name of the are you want to open" color="#FFFFFF" fontSize="14"/>
-					<mx:Button x="140" label="Go back" click="AppStates.gi().goToPreviousState()" bottom="10"/>
+					<mx:Button x="140" label="Go back" click="AppStates.gi().goToPreviousState();MapController.gi().goToPreviousMapPosition()" bottom="10"/>
 					<mx:List id="areasList" y="41" left="10" right="10" dataProvider="{DataServices.gi().areasForLatLng}" labelField="name" 
 						change="AppStates.gi().setAllStates(AppStates.PA,List(event.target).selectedItem.siteid)">
 					</mx:List>

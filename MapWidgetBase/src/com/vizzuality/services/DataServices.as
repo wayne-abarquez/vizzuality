@@ -185,6 +185,7 @@ package com.vizzuality.services
 						new LatLng(event.result.north,event.result.east));
 				
 				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());
+				MapController.gi().zoomToBbox(bboxForAreas);
 			} else {
 				areasForLatLng=null;
 				AppStates.gi().goToPreviousState();

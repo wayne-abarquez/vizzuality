@@ -2,6 +2,7 @@ package com.vizzuality.view
 {
 	import asual.SWFAddress;
 	
+	import com.vizzuality.data.MapPosition;
 	import com.vizzuality.services.DataServices;
 	
 	import flash.utils.Dictionary;
@@ -33,11 +34,8 @@ package com.vizzuality.view
 		[Bindable]
 		public var secondState:String;
 		
-/* 		public var worldVisibleLayers:Array = new Array();
-		public var countriesVisibleLayers:Array = new Array();
-		public var countryVisibleLayers:Array = new Array();
-		public var paVisibleLayers:Array = new Array(); */
 		public var visibleLayers:Dictionary=new Dictionary();
+		public var mapPositions:Dictionary=new Dictionary();
 		
 		private var _activePaId:Number;
 		private var _activeCountryIsoCode:String;
