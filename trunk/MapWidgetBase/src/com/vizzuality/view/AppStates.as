@@ -101,6 +101,7 @@ package com.vizzuality.view
 		}
 		public function setAllStates(tState:String,sState:String):void {
 			previousAddress=SWFAddress.getPath();
+			trace(previousAddress);
 			SWFAddress.setValue(tState + '/' + sState);
 		}
 		

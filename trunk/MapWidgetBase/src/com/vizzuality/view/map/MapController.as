@@ -28,7 +28,7 @@ package com.vizzuality.view.map
 	{
 		
 		private static var instance:MapController;
-		private var map:Map;
+		public var map:Map;
 		private var mapCanvas:MapCanvas;
 		public var ctl:CustomTileLayer;
 
@@ -71,11 +71,15 @@ package com.vizzuality.view.map
 		}
 		
 		public function setClickListenerForAreas():void {
-			map.addEventListener(MapMouseEvent.CLICK, onMapClick);		
+			if(!map.hasEventListener(MapMouseEvent.CLICK)) {
+				map.addEventListener(MapMouseEvent.CLICK, onMapClick);		
+			}
 		}
 		
 		public function removeClickListenerForAreas():void {
-			map.removeEventListener(MapMouseEvent.CLICK, onMapClick);		
+			if(map.hasEventListener(MapMouseEvent.CLICK)) {
+				map.removeEventListener(MapMouseEvent.CLICK, onMapClick);		
+			}
 		}
 		
 		public function getMapPosition():MapPosition {
@@ -125,6 +129,9 @@ package com.vizzuality.view.map
 		
 		
 		public function setMapLoading():void {
+			//removeClickListenerForAreas();
+			map.disableDragging();
+			map.doubleClickEnabled=false;
 			if (bSprite==null) {
 				aSprite = map.getChildAt(1) as Sprite;
 				bSprite = aSprite.getChildAt(0) as Sprite;
@@ -136,6 +143,8 @@ package com.vizzuality.view.map
 		
 		public function setMapLoaded():void {
 			bSprite.filters = [emptyFilter];
+			map.enableDragging();
+			map.doubleClickEnabled=true;
 			mapCanvas.loadingBar.visible=false;
 		}	
 		
