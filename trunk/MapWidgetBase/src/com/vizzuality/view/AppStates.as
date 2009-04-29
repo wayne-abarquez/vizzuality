@@ -6,6 +6,8 @@ package com.vizzuality.view
 	
 	import flash.utils.Dictionary;
 	
+	import mx.core.Application;
+	
 	public final class AppStates
 	{
 		//TOP states
@@ -13,6 +15,7 @@ package com.vizzuality.view
 		public static const COUNTRIES:String='countries';
 		public static const COUNTRY:String='country';
 		public static const PA:String='pa';
+		public static const AREA_SELECTOR:String='areaSelector';
 		
 		//TOOLS OR SECOND LEVELS
 		public static const SEARCH:String='search';
@@ -41,6 +44,8 @@ package com.vizzuality.view
 		[Bindable]		
 		public var activeCountryName:String;
 		
+		public var previousAddress:String="";
+		
 		
 		
 		public function AppStates() {
@@ -49,6 +54,7 @@ package com.vizzuality.view
 			visibleLayers[COUNTRIES]=[];
 			visibleLayers[COUNTRY]=[];
 			visibleLayers[PA]=[];
+			visibleLayers[AREA_SELECTOR]=[];
 			
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
 		}
@@ -80,10 +86,10 @@ package com.vizzuality.view
 
 
 		//We dont set the state directly here, it is set by the SWFAddress
-		public function setTopState(tState:String):void {
-			SWFAddress.setValue(tState);
-		}
+
 		public function setSecondState(sState:String):void {
+			previousAddress=SWFAddress.getPath();
+			
 			if (topState==COUNTRY) {
 				SWFAddress.setValue(gi().topState + '/' +activeCountryIsoCode +'/' + sState);				
 			} 
@@ -95,7 +101,19 @@ package com.vizzuality.view
 			}
 		}
 		public function setAllStates(tState:String,sState:String):void {
+			previousAddress=SWFAddress.getPath();
 			SWFAddress.setValue(tState + '/' + sState);
+		}
+		
+		public function goToPreviousState():void {
+			SWFAddress.setValue(previousAddress);
+		}
+		
+		
+		
+		
+		public function debug(value:String):void {
+			Application.application.debuggerArea.text="\n"+value +Application.application.debuggerArea.text;
 		}
 		
 		

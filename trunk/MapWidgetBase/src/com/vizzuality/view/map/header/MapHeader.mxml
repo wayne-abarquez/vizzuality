@@ -11,6 +11,7 @@
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}"></mx:State>
 		<mx:State name="{AppStates.PA}"></mx:State>
+		<mx:State name="{AppStates.AREA_SELECTOR}"/>
 	</mx:states>
 <mx:Script>
 	<![CDATA[

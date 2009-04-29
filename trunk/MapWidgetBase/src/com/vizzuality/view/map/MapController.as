@@ -1,9 +1,12 @@
 package com.vizzuality.view.map
 {
 	import com.google.maps.Map;
+	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
 	import com.vizzuality.data.WdpaLayer;
+	import com.vizzuality.services.DataServiceEvent;
+	import com.vizzuality.services.DataServices;
 	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.overlays.CustomTileLayer;
 	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
@@ -48,14 +51,19 @@ package com.vizzuality.view.map
 		    map.setZoom(3);
 		    //map.disableDragging();
 		    map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
-
-			Application.application.onMapReady();				
+			
+			map.addEventListener(MapMouseEvent.CLICK, onMapClick);
+			
+			Application.application.onMapReady();	
+			
+						
 			
 		}
 		
 		private function onMapZoomChanged(event:MapZoomEvent):void {
 			mapCanvas.mapHeader.zoomSlider.value = map.getZoom();
 		}		
+		
 		
 		
 		
@@ -72,7 +80,16 @@ package com.vizzuality.view.map
 		public function setMapLoaded():void {
 			bSprite.filters = null;
 			mapCanvas.loadingBar.visible=false;
-		}		
+		}	
+		
+		
+		private function onMapClick(event:MapMouseEvent):void {
+			DataServices.gi().getAreasByLatLng(event.latLng);
+		}	
+		
+		private function onAreasForLatLngResult(event:DataServiceEvent):void {
+			
+		}
 		
 		public function updateTileLayers(layers:Array):void {
 			
@@ -89,6 +106,7 @@ package com.vizzuality.view.map
 			for (var layerName:String in activeLayers) {
 				if (!searchForLayer(layerName)) {
 					trace("remove " +layerName);
+					AppStates.gi().debug("remove "+layerName);
 					map.removeOverlay(activeLayers[layerName]);
 					activeLayers[layerName]=null;
 					delete activeLayers[layerName];
@@ -103,11 +121,12 @@ package com.vizzuality.view.map
 					var ctlo:CustomTileLayerOverlay= createTileLayer(la);
 					activeLayers[la] = ctlo;
 					cacheLayers[la]=ctlo;
-					trace("add " +la);
+					AppStates.gi().debug("add "+la);
 					map.addOverlay(activeLayers[la]);
 				} else {
 					if(activeLayers[la]==null) {
 						activeLayers[la]=cacheLayers[la];
+						AppStates.gi().debug("add "+la);
 						trace("add " +la);
 						map.addOverlay(activeLayers[la]);
 					}
@@ -120,7 +139,7 @@ package com.vizzuality.view.map
 		
 		public function createTileLayer(layer:String):CustomTileLayerOverlay {
 			
-			ctl = new CustomTileLayer(WdpaLayer.STATIC_LAYERS[WdpaLayer.ALL],WdpaLayer.DYNAMIC_LAYERS[WdpaLayer.ALL],8);		
+			ctl = new CustomTileLayer(WdpaLayer.STATIC_LAYERS[layer],WdpaLayer.DYNAMIC_LAYERS[layer],10);		
 			var ctlo:CustomTileLayerOverlay = new CustomTileLayerOverlay(ctl);
 			ctl.ctlo = ctlo;
 			

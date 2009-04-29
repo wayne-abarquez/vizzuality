@@ -5,6 +5,8 @@
 	backgroundGradientColors="[#E9F4FF, #D7E8FA]" creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
+			import com.google.maps.LatLng;
+			import com.vizzuality.services.DataServices;
 			import com.vizzuality.data.WdpaLayer;
 			import com.vizzuality.view.map.MapController;
 			import com.vizzuality.view.AppStates;
@@ -90,7 +92,7 @@
 							if((AppStates.gi().visibleLayers[AppStates.COUNTRY] as Array).length>0) {
 								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.COUNTRY]);
 							} else {
-								MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_BORDER]);
+								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
 							}
 	
 							if(event.pathNames.length==3) {
@@ -106,6 +108,29 @@
 							}
 							break;
 							
+						case(AppStates.AREA_SELECTOR):
+							//control the layer state
+							if((AppStates.gi().visibleLayers[AppStates.AREA_SELECTOR] as Array).length>0) {
+								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.AREA_SELECTOR]);
+							} else {
+								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
+							}
+							
+							//In this state there must be only 2 parameters in the URL
+							if(event.pathNames.length==2) {
+								//The second param is lat_lon where the user has click
+								var lat:Number = Number((event.pathNames[1] as String).split("_")[0]);
+								var lng:Number = Number((event.pathNames[1] as String).split("_")[1]);
+								if (DataServices.gi().areasForLatLng.length<1) {
+									DataServices.gi().getAreasByLatLng(new LatLng(lat,lng));
+								}
+								AppStates.gi().secondState='';
+							}
+							else {
+								trace('Wrong URL!');
+							}							
+							
+							break;
 							
 						case(AppStates.PA):
 							
@@ -189,6 +214,11 @@
 		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8"/>
 		<footer:Footer id="footer"/>
 	</mx:VBox>
+	<mx:Canvas right="5" bottom="40" width="246" height="157" backgroundColor="#FFFFFF" backgroundAlpha="0.66">
+		<mx:TextArea left="5" right="5" top="10" bottom="10" backgroundAlpha="0.0" borderStyle="none" id="debuggerArea"/>
+		
+	</mx:Canvas>
 	
  	<components:FlexTracker id="gaTracker" account="UA-7333475-1" mode="AS3" visualDebug="false" /> 	
+ 	
 </mx:Application>
