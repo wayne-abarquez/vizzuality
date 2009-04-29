@@ -2,7 +2,9 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:header="com.vizzuality.view.header.*" xmlns:footer="com.vizzuality.view.footer.*" addedToStage="gaTracker.debug.minimizedOnStart=true;"
 	layout="absolute" backgroundGradientAlphas="[1.0, 1.0]"
-	backgroundGradientColors="[#E9F4FF, #D7E8FA]" creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
+	backgroundGradientColors="[#E9F4FF, #D7E8FA]" 
+	applicationComplete="registerGlobalKeyHandler()"
+	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
 			import com.google.maps.LatLng;
@@ -35,12 +37,22 @@
 			public function onMapReady():void {				
 				//We initialize the SWFAddress
 				SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
-
-				
-				
-				
-				
 			}
+			
+			private function registerGlobalKeyHandler() :void {
+				stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
+			}	
+			
+			private function handleKeyDown(evt:KeyboardEvent) :void {
+				if(evt.altKey && evt.keyCode == 240) {
+					if (debugArea.visible==true) {
+						debugArea.visible=false;
+					} else {
+						debugArea.visible=true;
+						
+					}
+				}
+			}					
 			
 			private function handleSWFAddress(event:SWFAddressEvent):void {
 				
@@ -169,6 +181,14 @@
 							} else {
 								MapController.gi().updateTileLayers([WdpaLayer.PA_BORDER]);
 							}
+
+							//control the map state
+							if(AppStates.gi().mapPositions[AppStates.PA] == null) {
+								AppStates.gi().mapPositions[AppStates.PA] = MapController.gi().getMapPosition();
+							} else {
+								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.PA]);
+							}
+
 							
 							if(event.pathNames.length==3) {
 								AppStates.gi().activePaId = Number(event.pathNames[1]);
@@ -186,17 +206,21 @@
 							
 						default:
 							//Not recognize params. Move them to the default states
-							trace( "Top level state not recognize!" );
+/* 							trace( "Top level state not recognize!" );
 							AppStates.gi().topState=AppStates.WORLD;
 							AppStates.gi().secondState=AppStates.ABOUT;
 							MapController.gi().updateTileLayers([WdpaLayer.ALL]);				
+							AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
+							SWFAddress.setValue("world/about");
 						
 					}
 					
 				} else {
-					AppStates.gi().topState=AppStates.WORLD;
+					SWFAddress.setValue("world/about");
+/* 					AppStates.gi().topState=AppStates.WORLD;
 					AppStates.gi().secondState=AppStates.ABOUT;	
-					MapController.gi().updateTileLayers([WdpaLayer.ALL]);			
+					MapController.gi().updateTileLayers([WdpaLayer.ALL]);		
+					AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
 					
 				}
 			}	
@@ -243,7 +267,7 @@
 		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8"/>
 		<footer:Footer id="footer"/>
 	</mx:VBox>
-	<mx:Canvas right="5" bottom="40" width="358" height="157" backgroundColor="#FFFFFF" backgroundAlpha="0.66">
+	<mx:Canvas id="debugArea" visible="false" right="5" bottom="40" width="358" height="157" backgroundColor="#FFFFFF" backgroundAlpha="0.66">
 		<mx:TextArea left="5" right="5" top="10" bottom="10" backgroundAlpha="0.0" borderStyle="none" id="debuggerArea"/>
 		
 	</mx:Canvas>

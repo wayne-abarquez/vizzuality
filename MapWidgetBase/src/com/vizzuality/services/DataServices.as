@@ -129,7 +129,7 @@ package com.vizzuality.services
 					selectedCountry=countriesDict[value];
 					dispatchEvent(new DataServiceEvent(DataServiceEvent.COUNTRY_DATA_LOADED));
 				} else {
-						
+					MapController.gi().setMapLoading();
 					roCountry.getCountryStatsByISO(value);
 					resolvingIso=value;
 				}
@@ -144,6 +144,9 @@ package com.vizzuality.services
 			countriesDict[selectedCountry.isocode]=selectedCountry;
 			resolvingIso=null;
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.COUNTRY_DATA_LOADED));
+			
+			MapController.gi().zoomToBbox(selectedCountry.bbox);
+			MapController.gi().setMapLoaded();
 		}		
 		
 		
@@ -155,12 +158,14 @@ package com.vizzuality.services
 		 **/
 		 //-----------------------------------------------------------------------------------		
 		public function getWorldStats():void {
+			MapController.gi().setMapLoading();
 			roWorld.getWorldStats();
 		}
 		
 		private function onGetWorldStatsResult(event:ResultEvent):void {
 			worldStats = new WorldStats(event.result);
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.WORLD_DATA_LOADED));
+			MapController.gi().setMapLoaded();
 		}
 		
 		
