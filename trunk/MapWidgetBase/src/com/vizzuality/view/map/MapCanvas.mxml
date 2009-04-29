@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" xmlns:header="com.vizzuality.view.map.header.*" xmlns:toolbar="com.vizzuality.view.map.toolbar.*" xmlns:map="com.vizzuality.view.map.*" xmlns:ns1="com.vizzuality.view.map.modules.*"
-	currentState="{AppStates.gi().topState}">
+	currentState="{AppStates.gi().topState}" xmlns:ns2="com.vizzuality.view.overlay.*">
 	<mx:states>
 		<mx:State name="{AppStates.WORLD}">
 			<mx:AddChild position="lastChild">
@@ -71,7 +71,7 @@
 			
 			private function onMapReady(event:Event):void {
 				mapController = new MapController(map,this);
-		    }			
+		    }
 			
 			
 		]]>
@@ -83,6 +83,7 @@
 			<mx:ProgressBar id="loadingBar" visible="false" label="LOADING" color="#FFFFFF" fontWeight="normal" fontStyle="normal" 
 						fontFamily="Verdana" width="140" indeterminate="true" trackHeight="8" verticalCenter="0" horizontalCenter="0"/>				
 			<map:BreadCrumb id="breadcrumb" top="3" left="7" />
+			<ns2:DiscretLoading left="10" top="41"/>
 			<toolbar:ToolBar id="toolBar" top="0" left="0" currentState="about" />
 			<mx:Label x="294" y="201" id="temp"/>
 		</mx:Canvas>

@@ -62,6 +62,13 @@ Canvas.softYellowContainer{
 	border-color: #d9baae;	
 }
 
+Canvas.softYellowContainerRounded{
+	background-color: #f5f3ea;
+	border-style: solid;
+	corner-radius: 3;
+	border-color: #d9baae;	
+}
+
 Canvas.greenContainer{
 	background-color: #e9ebdf;
 	border-style: none;
