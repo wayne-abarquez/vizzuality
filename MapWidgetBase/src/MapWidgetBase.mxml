@@ -81,6 +81,9 @@
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
 							}
 							
+							//add the possibility to click on the areas
+							MapController.gi().setClickListenerForAreas();
+							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];		
 							} else {
@@ -103,7 +106,10 @@
 								AppStates.gi().mapPositions[AppStates.COUNTRIES] = MapController.gi().getMapPosition();
 							} else {
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);
-							}							
+							}		
+
+							//add the possibility to click on the areas
+							MapController.gi().removeClickListenerForAreas();												
 							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];
@@ -127,6 +133,10 @@
 							} else {
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRY]);
 							}							
+
+							//add the possibility to click on the areas
+							MapController.gi().setClickListenerForAreas();	
+	
 	
 							if(event.pathNames.length==3) {
 								AppStates.gi().activeCountryIsoCode = (event.pathNames[1] as String).toUpperCase();
@@ -155,6 +165,9 @@
 							} else {
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.AREA_SELECTOR]);
 							}
+
+							//add the possibility to click on the areas
+							MapController.gi().removeClickListenerForAreas();		
 							
 							//In this state there must be only 2 parameters in the URL
 							if(event.pathNames.length==2) {
@@ -189,6 +202,8 @@
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.PA]);
 							}
 
+							//add the possibility to click on the areas
+							MapController.gi().removeClickListenerForAreas();		
 							
 							if(event.pathNames.length==3) {
 								AppStates.gi().activePaId = Number(event.pathNames[1]);
