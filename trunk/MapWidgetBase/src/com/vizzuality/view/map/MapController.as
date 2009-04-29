@@ -33,7 +33,9 @@ package com.vizzuality.view.map
 		public var ctl:CustomTileLayer;
 
 		private var aSprite:Sprite;
-		private var bSprite:Sprite;   			
+		private var bSprite:Sprite;   	
+		private var filter:ColorMatrixFilter = new ColorMatrixFilter([0.13238779460000002,1.0025112879999998,0.0490316186,0,-43.75271063919999,0.0749877946,1.230711288,0.0490316186,0,-78.25571063919999,0.0749877946,1.0025112879999998,0.15963161860000002,0,-56.89591063919999,0,0,0,1,0]);
+		private var emptyFilter:ColorMatrixFilter = new ColorMatrixFilter();		
 		
 		private var cacheLayers:Dictionary = new Dictionary();
 		private var activeLayers:Dictionary = new Dictionary();
@@ -121,13 +123,13 @@ package com.vizzuality.view.map
 				aSprite = map.getChildAt(1) as Sprite;
 				bSprite = aSprite.getChildAt(0) as Sprite;
 			}
-			bSprite.filters = [new ColorMatrixFilter([0.13238779460000002,1.0025112879999998,0.0490316186,0,-43.75271063919999,0.0749877946,1.230711288,0.0490316186,0,-78.25571063919999,0.0749877946,1.0025112879999998,0.15963161860000002,0,-56.89591063919999,0,0,0,1,0])];
+			bSprite.filters = [filter];
 			mapCanvas.loadingBar.visible=true;
 		
 		}
 		
 		public function setMapLoaded():void {
-			bSprite.filters = null;
+			bSprite.filters = [emptyFilter];
 			mapCanvas.loadingBar.visible=false;
 		}	
 		
