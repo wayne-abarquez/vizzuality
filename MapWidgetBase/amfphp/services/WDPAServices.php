@@ -144,8 +144,7 @@ class WDPAServices {
 		$a['siteid']=189;
 		$result['areas'][]=$a;		
 		
-        $outfields="Site_ID,English_Name,Local_Name";
-        $url = 'http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0/query?geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&where=Site_ID%3D'.$a['siteid'].'&returnGeometry=true&f=json&outfields='+outFields);
+        $url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0/query?geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&where=Site_ID%3D".$a['siteid']."&returnGeometry=true&f=json&outfields=Site_ID,English_Name,Local_Name";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HEADER, 0);
