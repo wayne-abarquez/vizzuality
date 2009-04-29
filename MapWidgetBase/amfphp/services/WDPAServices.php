@@ -111,6 +111,42 @@ class WDPAServices {
 	    
 	    return $result;
 	}
+	
+	public function getCountryByLatLng($lat,$lng) {
+        $result=array();
+        $result['numAreas']=130000;
+        $result['iso']=$iso;
+        $result['name']="Spain";
+        $result['coveragePercentage']=34;
+        $result['numberCoral']=138000;
+        $result['numMangrove']=74;
+        $result['numSeagrass']=345;
+        $result['north']=70.23;
+        $result['south']=60.23;
+        $result['east']=34.233;
+        $result['west']=39.23;		
+	}
+	
+	public function getAreasByLatLng($lat,$lng) {
+		$result=array();
+		//This is the Boundig Box for all areas
+        $result['north']=70.23;
+        $result['south']=60.23;
+        $result['east']=34.233;
+        $result['west']=39.23;
+		$result['areas']=array();
+		$a=array();
+		$a['name']="Sample area 1";
+		$a['siteid']=975;
+		$result['areas'][]=$a;
+		$a=array();
+		$a['name']="Sample area 2";
+		$a['siteid']=189;
+		$result['areas'][]=$a;		
+		
+        
+        return $result;
+	}
 
 }
 ?>
