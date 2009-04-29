@@ -80,7 +80,7 @@
 			<mx:Button styleName="btnZoomMinus" click="zoomOut()" height="14" width="14"
 				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 			<mx:HSlider id="zoomSlider" minimum="0" maximum="16" snapInterval="1" tickInterval="1" 
-				liveDragging="true" styleName="zoomSlider" change="onZoomSliderChange()"/>
+				liveDragging="true" value="2" styleName="zoomSlider" change="onZoomSliderChange()"/>
 			<mx:Button styleName="btnZoomMore" click="zoomIn()" height="14" width="14"
 				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 		</mx:HBox>
