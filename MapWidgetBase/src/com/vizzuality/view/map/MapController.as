@@ -62,7 +62,6 @@ package com.vizzuality.view.map
 		    //map.disableDragging();
 		    map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			
-			map.addEventListener(MapMouseEvent.CLICK, onMapClick);
 			map.addEventListener(MapMoveEvent.MOVE_END,onMapMoved);
 			map.addEventListener(MapEvent.MAPTYPE_CHANGED,onMaptypeChanged);
 			
@@ -70,6 +69,10 @@ package com.vizzuality.view.map
 			
 			Application.application.onMapReady();				
 			
+		}
+		
+		public function setClickListenerForAreas():void {
+			map.addEventListener(MapMouseEvent.CLICK, onMapClick);		
 		}
 		
 		public function getMapPosition():MapPosition {

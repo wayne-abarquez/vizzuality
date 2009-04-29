@@ -88,6 +88,12 @@
 					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="{AppStates.AREA_DETAILS}">
+			<mx:SetProperty name="height" value="100"/>
+			<mx:AddChild position="lastChild">
+				<mx:Label text="AREA DETAILS" left="10" top="20" fontSize="21" fontWeight="normal"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
