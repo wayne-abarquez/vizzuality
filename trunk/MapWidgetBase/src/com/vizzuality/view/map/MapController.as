@@ -57,8 +57,7 @@ package com.vizzuality.view.map
 		}
 		
 		private function init():void {
-		    map.setMapType(MapType.PHYSICAL_MAP_TYPE);
-		    map.setZoom(3);
+		    map.setCenter(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
 		    //map.disableDragging();
 		    map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			
@@ -73,6 +72,10 @@ package com.vizzuality.view.map
 		
 		public function setClickListenerForAreas():void {
 			map.addEventListener(MapMouseEvent.CLICK, onMapClick);		
+		}
+		
+		public function removeClickListenerForAreas():void {
+			map.removeEventListener(MapMouseEvent.CLICK, onMapClick);		
 		}
 		
 		public function getMapPosition():MapPosition {

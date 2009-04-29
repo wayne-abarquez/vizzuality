@@ -29,7 +29,7 @@ package com.vizzuality.data
 		//public static const COUNTRY_PA_ONLY:String="country_border";
 		
 		public static const STATIC_LAYERS:Object = {
-				all:					"http://geowebcache|N|.gbif.org/service/gmaps?layers=gbif%3Apolygon&zoom=|Z|&x=|X|&y=|Y|",
+				all:					"http://wdpa-maps.s3.amazonaws.com/tile_|X|_|Y|_|Z|.png",
 				national:				"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
 				international:			"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
 				marine_international:	"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
