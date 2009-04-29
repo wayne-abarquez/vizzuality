@@ -26,6 +26,18 @@ Canvas.bkgOrange{
 	background-image: Embed(source="ui.swf",symbol="bkg_orange");	
 }
 
+Canvas.bkgOrangeOver{
+	background-image: Embed(source="ui.swf",symbol="bkg_orange_over");	
+}
+
+Canvas.softWhiteGreyContainer{
+	background-color: #FFFFFF;
+	background-alpha: .6;
+	border-style: solid;
+	corner-radius: 1;
+	border-color: #d7d7d7;	
+}
+
 Canvas.softBlueContainer{
 	background-color: #375381;
 	background-alpha: .2;
@@ -64,6 +76,14 @@ Canvas.whiteBoxBorder{
 	background-image: Embed(source="ui.swf",symbol="bkg_white_border");	
 }
 
+Canvas.whiteBoxBorderOver{
+	background-image: Embed(source="ui.swf",symbol="bkg_white_border_over");	
+}
+
+Canvas.featuredAreaOver{
+	background-image: Embed(source="ui.swf",symbol="featuredAreaOver");	
+}
+
 Button.btnViewType{
 	skin: ClassReference(null);
 	color: #4a4f33;
@@ -83,12 +103,14 @@ Button.btnTool{
 	up-skin: Embed(source="ui.swf",symbol="btn_tool_up");	
 	over-skin: Embed(source="ui.swf",symbol="btn_tool_over");	
 	down-skin: Embed(source="ui.swf",symbol="btn_tool_over");	
+	disabled-skin: Embed(source="ui.swf",symbol="btn_tool_disabled");	
 	selected-up-skin: Embed(source="ui.swf",symbol="btn_tool_selected");	
 	selected-over-skin: Embed(source="ui.swf",symbol="btn_tool_selected");	
 	selected-down-skin: Embed(source="ui.swf",symbol="btn_tool_selected");	
 	color: #4a4f33;
 	text-roll-over-color: #333333;
 	text-selected-color: #333333;
+	disabled-color: #dee3c8;
 	font-family: "DINOT-Medium";
 	font-size: 12;
 	font-weight: normal;
