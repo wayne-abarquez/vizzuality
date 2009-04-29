@@ -130,10 +130,10 @@ class WDPAServices {
 	public function getAreasByLatLng($lat,$lng) {
 		$result=array();
 		//This is the Boundig Box for all areas
-        $result['north']=70.23;
-        $result['south']=60.23;
-        $result['east']=34.233;
-        $result['west']=39.23;
+        $result['north']=37.16;
+        $result['south']=37.13;
+        $result['east']=-6.2;
+        $result['west']=-6.05;
 		$result['areas']=array();
 		$a=array();
 		$a['name']="Sample area 1";
