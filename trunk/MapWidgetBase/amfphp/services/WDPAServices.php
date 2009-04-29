@@ -19,10 +19,10 @@ class WDPAServices {
         $result['country']="Spain";
         $result['countryIsoCode']="ES";
         $result['has']=138000;
-        $result['north']=62.23;
-        $result['south']=60.23;
-        $result['east']=34.233;
-        $result['west']=35.23;
+        $result['north']=38;
+        $result['south']=37.5;
+        $result['east']=-5.7;
+        $result['west']=-6;
         
         return $result;
 	}
