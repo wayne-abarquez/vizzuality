@@ -1,29 +1,42 @@
 package com.vizzuality.services
 {
+	import com.google.maps.LatLng;
+	import com.google.maps.LatLngBounds;
 	import com.vizzuality.data.Country;
 	import com.vizzuality.data.PA;
 	import com.vizzuality.data.WorldStats;
 	import com.vizzuality.view.AppStates;
+	import com.vizzuality.view.map.MapController;
 	
 	import flash.events.EventDispatcher;
 	import flash.utils.Dictionary;
 	
+	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.remoting.mxml.RemoteObject;
 
 	[Event(name="paDataLoaded", type="com.vizzuality.services.DataServiceEvent")]
+	[Event(name="countryDataLoaded", type="com.vizzuality.services.DataServiceEvent")]
+	[Event(name="worldDataLoaded", type="com.vizzuality.services.DataServiceEvent")]
+	[Event(name="areasForLatLngLoaded", type="com.vizzuality.services.DataServiceEvent")]
 	public final class DataServices extends EventDispatcher
 	{
 		
 		private static var instance:DataServices = new DataServices();
-		
-		private var roPa:RemoteObject = new RemoteObject("WDPAServices");		
-		private var roCountry:RemoteObject = new RemoteObject("WDPAServices");		
-		private var roWorld:RemoteObject = new RemoteObject("WDPAServices");		
+			
+		private var roArea:RemoteObject;
+		private var roCountry:RemoteObject;
+		private var roWorld:RemoteObject;
+		private var roLat:RemoteObject;
 		
 		private var pasDict:Dictionary=new Dictionary();
 		private var countriesDict:Dictionary=new Dictionary();
+		
+		[Bindable]
+		public var areasForLatLng:ArrayCollection=new ArrayCollection();
+		
+		public var bboxForAreas:LatLngBounds;
 		
 		[Bindable]
 		public var worldStats:WorldStats;
@@ -36,32 +49,42 @@ package com.vizzuality.services
 		public var selectedPA:PA;
 		private var resolvingId:Number;
 		
+		private var resolvingLatLng:LatLng;
+		
 		public function DataServices()
 		{
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
-			var endpoint:String="http://ec2-67-202-26-58.compute-1.amazonaws.com/wdpa/gateway.php";
-			var source:String="WDPAServices";
-			roPa.endpoint=endpoint;
-			roCountry.endpoint=endpoint;
-			roWorld.endpoint=endpoint;
-			roPa.source=source;
-			roCountry.source=source;
-			roWorld.source=source;
 			
-			roPa.addEventListener(ResultEvent.RESULT,onGetPaDataResult);
+			roArea=createRemoteObject();
+			roCountry=createRemoteObject();
+			roWorld=createRemoteObject();
+			roLat=createRemoteObject();
+			
+			roArea.addEventListener(ResultEvent.RESULT,onGetPaDataResult);
+			roArea.addEventListener(FaultEvent.FAULT,onFault);	
+			
 			roCountry.addEventListener(ResultEvent.RESULT,onGetCountryDataResult);	
-			roWorld.addEventListener(ResultEvent.RESULT,onGetWorldStatsResult);	
-			
-			
-			roPa.addEventListener(FaultEvent.FAULT,onFault);		
 			roCountry.addEventListener(FaultEvent.FAULT,onFault);		
+			
+			roWorld.addEventListener(ResultEvent.RESULT,onGetWorldStatsResult);	
 			roWorld.addEventListener(FaultEvent.FAULT,onFault);		
+			
+			roLat.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);	
+			roLat.addEventListener(FaultEvent.FAULT,onFault);		
+		
 		}
 		
 		
 		public static function gi():DataServices {
 			return instance;
 		}
+		
+		private function createRemoteObject():RemoteObject {     
+		    var ro:RemoteObject = new RemoteObject("WDPAServices");   
+		    ro.source="WDPAServices";
+		    ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/wdpa/gateway.php";   
+		    return ro;   
+		}   		
 		
 		
 		/**
@@ -77,7 +100,7 @@ package com.vizzuality.services
 					selectedPA=pasDict[value];
 					dispatchEvent(new DataServiceEvent(DataServiceEvent.PA_DATA_LOADED));
 				} else {
-					roPa.getPaData(value);
+					roArea.getPaData(value);
 					resolvingId=value;
 				}
 			}
@@ -139,6 +162,36 @@ package com.vizzuality.services
 			worldStats = new WorldStats(event.result);
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.WORLD_DATA_LOADED));
 		}
+		
+		
+		/**
+		 * 
+		 * 
+		 * AREAS BY LAT LON
+		 * 
+		 **/
+		 //-----------------------------------------------------------------------------------			
+		public function getAreasByLatLng(latlng:LatLng):void {
+			MapController.gi().setMapLoading();
+			resolvingLatLng=latlng;
+			roLat.getAreasByLatLng(latlng.lat(),latlng.lng());
+		}
+		
+		private function onGetAreasByLatLngResult(event:ResultEvent):void {
+			if ((event.result.areas as Array).length>0) {
+				areasForLatLng = new ArrayCollection(event.result.areas as Array);
+				bboxForAreas = new LatLngBounds(
+						new LatLng(event.result.south,event.result.west),
+						new LatLng(event.result.north,event.result.east));
+				
+				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());
+			} else {
+				areasForLatLng=null;
+				AppStates.gi().goToPreviousState();
+			}
+			MapController.gi().setMapLoaded();
+		}
+		
 		
 		
 		private function onFault(event:FaultEvent):void {
