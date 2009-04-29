@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="122" height="94" styleName="whiteBoxBorder" 
+	backgroundSize="100%" filters="{[glowGrey]}"
+	useHandCursor="true" buttonMode="true" mouseChildren="false" 
+	rollOut="handleOut(event)" rollOver="handleOver(event)" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.view.AppStates;
+			import gs.TweenLite;
+	
+			private function handleOver(e:MouseEvent):void {
+				this.txt.setStyle("color",0x333333);
+				TweenLite.to(overCanvas,0.2,{alpha:1});
+			}
+
+			private function handleOut(e:MouseEvent):void {
+				this.txt.setStyle("color",0x5A5A5A);
+				TweenLite.to(overCanvas,0.2,{alpha:0});
+			}
+			
+		]]>
+	</mx:Script>
+
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
+	
+	<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4" />
+	<mx:Text id="txt" x="3" y="64" text="WORLD PROTECTED&#xd;AREAS MAP" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
+	<mx:Canvas id="overCanvas" height="60" backgroundSize="100%" styleName="featuredAreaOver" left="4" right="5" top="4" alpha="0" />
+	
+</mx:Canvas>

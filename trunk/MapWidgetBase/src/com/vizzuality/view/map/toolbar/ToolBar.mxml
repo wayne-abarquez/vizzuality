@@ -27,26 +27,14 @@
 			<mx:AddChild position="lastChild">
 				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="82" horizontalCenter="-147">
 					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="7" left="9"/>
-					<mx:Canvas x="10" y="33" width="122" height="94" styleName="whiteBoxBorder" backgroundSize="100%" filters="{[glowGrey]}">
-						<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')"/>
-						<mx:Text x="3" y="64" text="WORLD PROTECTED&#xd;AREAS MAP" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
-					</mx:Canvas>
-					<mx:Canvas x="138" y="33" width="122" height="94" styleName="whiteBoxBorder" backgroundSize="100%" filters="{[glowGrey]}">
-						<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4" click="AppStates.gi().setAllStates(AppStates.PA,'5')"/>
-						<mx:Text x="3" y="64" text="WORLD PROTECTED&#xd;AREAS MAP" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
-					</mx:Canvas>
-					<mx:Canvas x="266" y="33" width="122" height="94" styleName="whiteBoxBorder" backgroundSize="100%" filters="{[glowGrey]}">
-						<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4"/>
-						<mx:Text x="3" y="64" text="WORLD PROTECTED&#xd;AREAS MAP" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
-					</mx:Canvas>
-					<mx:Canvas x="394" y="33" width="122" height="94" styleName="whiteBoxBorder" backgroundSize="100%" filters="{[glowGrey]}">
-						<mx:Canvas styleName="bkgOrange" left="4" right="5" top="4" bottom="5" backgroundSize="100%" click="AppStates.gi().setSecondState('')">
-							<mx:Text text="EXPLORE THE &#xd;WHOLE MAP" textAlign="center" leading="-3" 
-								fontFamily="DINOT-Bold" color="#c5922b" fontSize="15" horizontalCenter="-1" verticalCenter="-1" selectable="false"/>
-							<mx:Text text="EXPLORE THE &#xd;WHOLE MAP" textAlign="center" leading="-3" 
-								fontFamily="DINOT-Bold" color="#FFFFFF" fontSize="15" horizontalCenter="0" verticalCenter="0" selectable="false"/>
-						</mx:Canvas>
-					</mx:Canvas>
+					<ns1:FeaturedArea x="10" y="33">
+					</ns1:FeaturedArea>
+					<ns1:FeaturedArea x="138" y="33">
+					</ns1:FeaturedArea>
+					<ns1:FeaturedArea x="266" y="33">
+					</ns1:FeaturedArea>
+					<ns1:FeaturedExplore x="394" y="33">
+					</ns1:FeaturedExplore>
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
@@ -89,9 +77,62 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.AREA_DETAILS}">
-			<mx:SetProperty name="height" value="100"/>
+			<mx:SetProperty name="height" value="218"/>
+			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
 			<mx:AddChild position="lastChild">
-				<mx:Label text="AREA DETAILS" left="10" top="20" fontSize="21" fontWeight="normal"/>
+				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
+					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas y="1" width="821" height="194" horizontalCenter="0">
+					<mx:HBox verticalAlign="middle" horizontalGap="2" top="14" x="15">
+						<mx:Text text="YELLOWSTONE" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
+							leading="-4" letterSpacing="-1" paddingTop="0" paddingBottom="6"/>
+						<mx:Canvas width="17" height="17" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+							<mx:Image width="17" height="17" source="@Embed('/com/vizzuality/style/assets/circleIUCN.png')"/>
+							<mx:Label text="lb" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" textAlign="center" width="100%" height="100%"/>
+						</mx:Canvas>
+					</mx:HBox>
+					<mx:Button click="AppStates.gi().setSecondState('')" styleName="invisibleButton" height="15" label="view more images"
+						useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="170" textDecoration="underline" x="207"/>
+					<mx:Canvas width="296" height="65" styleName="softWhiteGreyContainer" top="48" id="canvas1" x="15">
+						<mx:Label y="3" text="United States" fontSize="16" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" left="5" right="130"/>
+						<mx:Label y="25" text="location: -10.54535435, 44.4234234" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
+						<mx:Label y="40" text="total area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102"/>
+						<mx:Label y="5.2" text="view in google earth" fontSize="12" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" right="25" textDecoration="underline" textAlign="right"/>
+						<mx:Image y="9" source="@Embed('/com/vizzuality/style/assets/iconGearth.png')"  right="8"/>
+					</mx:Canvas>
+					<mx:HBox verticalGap="0" horizontalGap="0" top="116" x="15">
+						<mx:Image source="@Embed('/assets/imageFoo.png')"/>
+						<mx:Image source="@Embed('/assets/imageFoo.png')"/>
+						<mx:Image source="@Embed('/assets/imageFoo.png')"/>
+						<mx:Image source="@Embed('/assets/imageFoo.png')"/>
+					</mx:HBox>
+					<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315">
+						<mx:Image source="@Embed('/assets/mapFoo.png')" left="3" top="3" bottom="3" scaleContent="false"/>
+					</mx:Canvas>
+					<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="49" x="540"/>
+					<mx:HBox horizontalGap="-3" top="75" x="540">
+						<mx:Label text="Established at" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+						<mx:Label text="1872" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+					</mx:HBox>
+					<mx:HBox horizontalGap="-3" top="93" x="540">
+						<mx:Label text="Currently" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+						<mx:Label text="Open" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+					</mx:HBox>
+					<mx:HBox horizontalGap="-3" top="110" x="540">
+						<mx:Label text="Designated," fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						<mx:Label text="National Park" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+					</mx:HBox>
+					<mx:HBox horizontalGap="-3" top="127" x="540">
+						<mx:Label text="Site gov." fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+						<mx:Label text="Government Managed Protected Areas" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+					</mx:HBox>
+					<mx:HBox horizontalGap="-3" top="144" x="540">
+						<mx:Label text="Management Effectiveness Assessed." fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+						<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+					</mx:HBox>
+				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -107,7 +148,7 @@
 	</mx:Script>
 	
 	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
-	
+
 	<mx:transitions>
 		<mx:Transition id="myTransition" fromState="*" toState="*">
 			<mx:Parallel id="t1" targets="{[this]}">
