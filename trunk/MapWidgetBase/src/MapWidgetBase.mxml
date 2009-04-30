@@ -7,6 +7,7 @@
 	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.data.PA;
 			import com.google.maps.LatLng;
 			import com.vizzuality.services.DataServices;
 			import com.vizzuality.data.WdpaLayer;
@@ -81,7 +82,9 @@
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
 							}
 							
-							//add the possibility to click on the areas
+							//Clear not neccessary panes and EventListeners
+							MapController.gi().clearPAs();
+							MapController.gi().clearOverlays();
 							MapController.gi().setClickListenerForAreas();
 							
 							if(event.pathNames.length>1) {
@@ -108,8 +111,10 @@
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);
 							}		
 
-							//add the possibility to click on the areas
-							MapController.gi().removeClickListenerForAreas();												
+							//Clear not neccessary panes and EventListeners
+							MapController.gi().clearPAs();
+							MapController.gi().clearOverlays();
+							MapController.gi().setClickListenerForAreas();												
 							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];
@@ -134,8 +139,10 @@
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRY]);
 							}							
 
-							//add the possibility to click on the areas
-							MapController.gi().setClickListenerForAreas();	
+							//Clear not neccessary panes and EventListeners
+							MapController.gi().clearPAs();
+							MapController.gi().clearOverlays();
+							MapController.gi().setClickListenerForAreas();
 	
 	
 							if(event.pathNames.length==3) {
@@ -162,8 +169,11 @@
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.AREA_SELECTOR]);
 							}
 
-							//add the possibility to click on the areas
-							MapController.gi().removeClickListenerForAreas();		
+							//Clear not neccessary panes and EventListeners
+							MapController.gi().clearPAs();
+							MapController.gi().clearOverlays();
+							MapController.gi().removeClickListenerForAreas();
+									
 							
 							//In this state there must be only 2 parameters in the URL
 							if(event.pathNames.length==2) {
@@ -171,9 +181,22 @@
 								var lat:Number = Number((event.pathNames[1] as String).split("_")[0]);
 								var lng:Number = Number((event.pathNames[1] as String).split("_")[1]);
 								//if there is no areas saved we have to check again.
-								if (DataServices.gi().areasForLatLng.length<1) {
+								if (DataServices.gi().preselectedPAs.length<1) {
 									DataServices.gi().getAreasByLatLng(new LatLng(lat,lng));
+								} else {
+									
+									var zoomedAlready:Boolean=false;
+									for each(var pa:PA in DataServices.gi().preselectedPAs) {
+										MapController.gi().addPa(pa);
+										if (pa.geomType == PA.POLYGON) {
+											MapController.gi().zoomToBbox(pa.polygon.getLatLngBounds());
+											zoomedAlready=true;
+										}
+									}
+									
 								}
+								
+								
 								AppStates.gi().secondState='';
 							}
 							else {

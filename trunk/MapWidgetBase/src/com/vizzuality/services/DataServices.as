@@ -16,6 +16,7 @@ package com.vizzuality.services
 	import com.vizzuality.view.map.MapController;
 	
 	import flash.events.EventDispatcher;
+	import flash.geom.Point;
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
@@ -37,14 +38,12 @@ package com.vizzuality.services
 		private var roCountry:RemoteObject;
 		private var roWorld:RemoteObject;
 		private var roLat:RemoteObject;
+		private var roSearch:RemoteObject;
 		
 		private var wdpaRestServ:HTTPService = new HTTPService();
 		
 		private var pasDict:Dictionary=new Dictionary();
-		private var countriesDict:Dictionary=new Dictionary();
-		
-		[Bindable]
-		public var areasForLatLng:ArrayCollection=new ArrayCollection();		
+		private var countriesDict:Dictionary=new Dictionary();	
 		
 		public var bboxForAreas:LatLngBounds;
 		
@@ -61,6 +60,11 @@ package com.vizzuality.services
 		
 		private var resolvingLatLng:LatLng;
 		
+		
+		public var activePA:PA;
+		[Bindable]
+		public var preselectedPAs:ArrayCollection=new ArrayCollection();
+		
 		public function DataServices()
 		{
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
@@ -69,6 +73,7 @@ package com.vizzuality.services
 			roCountry=createRemoteObject();
 			roWorld=createRemoteObject();
 			roLat=createRemoteObject();
+			roSearch=createRemoteObject();
 			
 			wdpaRestServ.resultFormat = 'text';	
 			wdpaRestServ.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);
@@ -194,8 +199,21 @@ package com.vizzuality.services
 			resolvingLatLng=latlng;
 			//roLat.getAreasByLatLng(latlng.lat(),latlng.lng());
 			
-		 		
-		 	wdpaRestServ.url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0//query?text=&geometry=%7B%22x%22%3A"+latlng.lng()+"%2C%22y%22%3A"+latlng.lat()+"%7D&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=&returnGeometry=true&outSR=&outFields=Site_ID,English_Name&f=json";
+			var mapBounds:LatLngBounds =MapController.gi().map.getLatLngBounds();
+			var mapSize:Point = MapController.gi().map.getSize();
+				
+			
+		 	var url:String ="http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/identify" + 
+		 			"?geometryType=esriGeometryPoint" + 
+		 			"&geometry="+latlng.lng()+"%2C"+latlng.lat()+
+		 			"&layers=All" + 
+		 			"&tolerance=2" + 
+		 			"&mapExtent="+mapBounds.getWest()+"%2C"+mapBounds.getSouth()+"%2C"+mapBounds.getEast()+"%2C" + mapBounds.getNorth() +
+		 			"&imageDisplay="+mapSize.x+"%2C"+mapSize.y+"%2C96" + 
+		 			"&returnGeometry=true" + 
+		 			"&f=json";	
+		 	wdpaRestServ.url=url;
+		 	//wdpaRestServ.url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0//query?text=&geometry=%7B%22x%22%3A"+latlng.lng()+"%2C%22y%22%3A"+latlng.lat()+"%7D&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=&returnGeometry=true&outSR=&outFields=Site_ID,English_Name&f=json";
 			trace(wdpaRestServ.url);
 			wdpaRestServ.send();
 		}
@@ -203,12 +221,12 @@ package com.vizzuality.services
 		private function onGetAreasByLatLngResult(event:ResultEvent):void {
 			
 			var res:Object = JSON.decode(String(event.result));
-			if ((res.features as Array).length>0) {
-				areasForLatLng=new ArrayCollection();
+			if ((res.results as Array).length>0) {
+				preselectedPAs=new ArrayCollection();
 				
-				for each(var feature:Object in res.features) {
+				for each(var feature:Object in res.results) {
 					
-					//check if the area is already on the areasForLatLng arrayCollection.
+/* 					//check if the area is already on the areasForLatLng arrayCollection.
 					//	THIS IS AN ERROR ON THE WDPA REST SERVICES
 					var alreadyAdded:Boolean=false;
 					for each(var o:Object in areasForLatLng) {
@@ -218,48 +236,85 @@ package com.vizzuality.services
 						}
 					}
 					if(alreadyAdded)
-						break;
+						break; */
 					
 					
 					var polygon:Polygon;
+					var point:LatLng;
 					var attributes:Object =  feature.attributes;
-					var rings:Array = feature.geometry.rings;
-					var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
-					var encodedPolyLines:Array = new Array();
+				    var pa:PA = new PA();
+				    pa.id =attributes['Site ID'];
+				    pa.name = attributes['English Name'];	
+				    pa.designation = attributes['English Designation'];		
+				    pa.geomType = feature.geometryType;
 					
-					for each(var ring:Array in rings) {
-						var innerRing:Array = new Array();
-						for each(var j:Array in ring) {
-							innerRing.push(new LatLng(j[1],j[0]));
+					if (pa.geomType==PA.POLYGON) {
+						var rings:Array = feature.geometry.rings;
+						var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
+						var encodedPolyLines:Array = new Array();
+						
+						for each(var ring:Array in rings) {
+							var innerRing:Array = new Array();
+							for each(var j:Array in ring) {
+								innerRing.push(new LatLng(j[1],j[0]));
+							}
+							var inner:Object = p.dpEncode(innerRing);
+							encodedPolyLines.push(new EncodedPolylineData(inner.encodedPoints, 2, inner.encodedLevels, 18));
 						}
-						var inner:Object = p.dpEncode(innerRing);
-						encodedPolyLines.push(new EncodedPolylineData(inner.encodedPoints, 2, inner.encodedLevels, 18));
+						
+			
+					    var polOpt:PolygonOptions = new PolygonOptions({ 
+						        strokeStyle: new StrokeStyle({
+						        	color: 0xFFBB08,
+						        	thickness: 2,
+						        	alpha: 1}), 
+						        fillStyle: new FillStyle({
+						        	color: 0xFFBB08,
+						        	alpha:0.2})
+						        });		
+						        
+					    polygon = Polygon.fromEncoded(encodedPolyLines, polOpt);		
+					    pa.polygon=polygon;
+						
+					} 
+					else if (pa.geomType==PA.POINT) {
+						var offsetLat:Number =0.0075;
+						var offsetLon:Number =0.015;
+						if (attributes['Documented Total Area (HA)']!='') {
+							
+							var offset:Number = Number(Math.sqrt(attributes['Documented Total Area (HA)']))/1110;
+							offsetLat = offset*0.5;
+							offsetLon = offset*1.5;
+							
+							AppStates.gi().debug("ha:"+attributes['Documented Total Area (HA)']+ " offset "+offset);
+						}
+						var center:LatLng = new LatLng(feature.geometry.points[0][1],feature.geometry.points[0][0]);
+						var polygonPoint:Polygon = new Polygon([
+							new LatLng(center.lat()-offsetLat,center.lng()-offsetLon),
+							new LatLng(center.lat()+offsetLat,center.lng()-offsetLon),
+							new LatLng(center.lat()+offsetLat,center.lng()+offsetLon),
+							new LatLng(center.lat()-offsetLat,center.lng()+offsetLon),
+							new LatLng(center.lat()-offsetLat,center.lng()-offsetLon)
+							]);
+							
+						pa.point=polygonPoint;
+					} else {
+						
 					}
-					
-		
-				    var polOpt:PolygonOptions = new PolygonOptions({ 
-					        strokeStyle: new StrokeStyle({
-					        	color: 0xFFBB08,
-					        	thickness: 2,
-					        	alpha: 1}), 
-					        fillStyle: new FillStyle({
-					        	color: 0xFFBB08,
-					        	alpha:0.2})
-					        });		
-					        
-				    polygon = Polygon.fromEncoded(encodedPolyLines, polOpt);		
 				    
-				    areasForLatLng.addItem({name:attributes['English_Name'],siteid:attributes['Site_ID'],polygon:polygon});
+
+				 
+				    preselectedPAs.addItem(pa);   
+//				    MapController.gi().addPa(pa);
 				    			
-					MapController.gi().map.addOverlay(polygon);
-					MapController.gi().zoomToBbox(polygon.getLatLngBounds());
+					
 				}
 				
 				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
 				
 				
 			} else {
-				areasForLatLng=null;
+				preselectedPAs=new ArrayCollection();
 				//AppStates.gi().goToPreviousState();
 			}
 			MapController.gi().setMapLoaded();
