@@ -30,9 +30,9 @@ package com.vizzuality.data
 		//public static const COUNTRY_PA_ONLY:String="country_border";
 		
 		public static const STATIC_LAYERS:Object = {
-				all:					"http://geowebcache|N|.gbif.org/service/gmaps?layers=gbif%3Apolygon&zoom=|Z|&x=|X|&y=|Y|",
-				national:				"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
-				international:			"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
+				all:					"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all/MapServer/tile/|Z|/|Y|/|X|.png",
+				national:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/WDPA_National_All/MapServer/tile/|Z|/|Y|/|X|.png",
+				international:			"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/WDPA_International_All/MapServer/tile/|Z|/|Y|/|X|.png",
 				marine_international:	"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
 				marine_national:		"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
 				iucn_Ia:				"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
