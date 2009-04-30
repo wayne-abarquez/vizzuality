@@ -23,6 +23,10 @@ Button.smallButton{
 	text-roll-over-color: #FFFFFF;
 	font-weight: normal;
 	padding-top: 4;
+	selectedDownSkin: Embed(source="ui.swf", symbol="btnSmall_over");
+	selectedOverSkin: Embed(source="ui.swf", symbol="btnSmall_over");
+	selectedUpSkin: Embed(source="ui.swf", symbol="btnSmall_over");
+	selectedDisabledSkin: Embed(source="ui.swf", symbol="btnSmall_over");
 }
 
 .buttonFoo{
