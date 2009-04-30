@@ -2,8 +2,8 @@ package com.vizzuality.view
 {
 	import asual.SWFAddress;
 	
-	import com.vizzuality.data.MapPosition;
 	import com.vizzuality.services.DataServices;
+	import com.vizzuality.view.map.MapController;
 	
 	import flash.utils.Dictionary;
 	
@@ -106,7 +106,9 @@ package com.vizzuality.view
 		}
 		
 		public function goToPreviousState():void {
-			SWFAddress.setValue(previousAddress);
+			SWFAddress.back();
+/* 			SWFAddress.setValue(previousAddress);
+			MapController.gi().goToPreviousMapPosition(); */
 		}
 		
 		

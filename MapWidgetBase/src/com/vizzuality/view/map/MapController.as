@@ -3,12 +3,16 @@ package com.vizzuality.view.map
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.Map;
+	import com.google.maps.MapAction;
 	import com.google.maps.MapEvent;
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapMoveEvent;
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
+	import com.google.maps.interfaces.IPane;
+	import com.google.maps.interfaces.IPaneManager;
 	import com.vizzuality.data.MapPosition;
+	import com.vizzuality.data.PA;
 	import com.vizzuality.data.WdpaLayer;
 	import com.vizzuality.services.DataServiceEvent;
 	import com.vizzuality.services.DataServices;
@@ -43,6 +47,14 @@ package com.vizzuality.view.map
 		private var previousZoomLevel:Number;
 		private var previousCenter:LatLng;
 		
+		private var paneManager:IPaneManager;
+		private var tileOverlaysPane:IPane;
+		private var polygonPane:IPane;
+		private var picturesPane:IPane;
+		private var wikipediaPane:IPane;
+		private var biodiversityPane:IPane;
+		
+		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
 		{
 			this.map=map;
@@ -57,14 +69,24 @@ package com.vizzuality.view.map
 		}
 		
 		private function init():void {
+			paneManager = map.getPaneManager();
+			var numPanes:Number = paneManager.paneCount;
+			tileOverlaysPane = paneManager.createPane(numPanes+1);
+			polygonPane = paneManager.createPane(numPanes+2);
+			picturesPane = paneManager.createPane(numPanes+3);
+			wikipediaPane = paneManager.createPane(numPanes+4);
+			biodiversityPane = paneManager.createPane(numPanes+5);
+			
 		    map.setCenter(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
 		    //map.disableDragging();
-		    map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
-			
+		    map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);			
 			map.addEventListener(MapMoveEvent.MOVE_END,onMapMoved);
 			map.addEventListener(MapEvent.MAPTYPE_CHANGED,onMaptypeChanged);
 			
 			DataServices.gi().addEventListener(DataServiceEvent.PA_DATA_LOADED,onPaDataLoaded);
+			
+			//Create Panes for polygons and markers
+			
 			
 			Application.application.onMapReady();				
 			
@@ -81,6 +103,7 @@ package com.vizzuality.view.map
 				map.removeEventListener(MapMouseEvent.CLICK, onMapClick);		
 			}
 		}
+			
 		
 		public function getMapPosition():MapPosition {
 			return new MapPosition(map.getCenter(),map.getZoom(), map.getCurrentMapType());
@@ -122,16 +145,24 @@ package com.vizzuality.view.map
 			
 		}
 		
-		public function zoomToBbox(bbox:LatLngBounds):void {
+		public function zoomToBbox(bbox:LatLngBounds,oneLevelUp:Boolean=false):void {
 			var z:Number = map.getBoundsZoomLevel(bbox);
+			if (oneLevelUp)
+				z=z-1;
 			map.setCenter(bbox.getCenter(),z);
 		}
 		
 		
+		private var mapWasClickableBeforeLoading:Boolean=false;
 		public function setMapLoading():void {
 			//removeClickListenerForAreas();
 			map.disableDragging();
-			map.doubleClickEnabled=false;
+			map.setDoubleClickMode(MapAction.ACTION_NOTHING);
+			
+			if (map.hasEventListener(MapMouseEvent.CLICK)) {
+				mapWasClickableBeforeLoading=true;
+				map.removeEventListener(MapMouseEvent.CLICK, onMapClick);				
+			}
 			if (bSprite==null) {
 				aSprite = map.getChildAt(1) as Sprite;
 				bSprite = aSprite.getChildAt(0) as Sprite;
@@ -144,7 +175,10 @@ package com.vizzuality.view.map
 		public function setMapLoaded():void {
 			bSprite.filters = [emptyFilter];
 			map.enableDragging();
-			map.doubleClickEnabled=true;
+			map.setDoubleClickMode(MapAction.ACTION_PAN_ZOOM_IN);
+			if(mapWasClickableBeforeLoading)
+				map.addEventListener(MapMouseEvent.CLICK, onMapClick);				
+				
 			mapCanvas.loadingBar.visible=false;
 		}	
 		
@@ -166,6 +200,38 @@ package com.vizzuality.view.map
 			map.setCenter(DataServices.gi().selectedPA.bbox.getCenter(),z);
 		}
 		
+		public function addActivePa():void {
+			if(DataServices.gi().activePA!=null) {
+				if (DataServices.gi().activePA.polygon!=null) { 
+				polygonPane.addOverlay(DataServices.gi().activePA.polygon);
+				} else {
+				//polygonPane.addOverlay(DataServices.gi().activePA.point);					
+				}
+			}
+		}
+		
+		public function addPa(pa:PA):void {
+			if (pa.geomType==PA.POLYGON) {
+				polygonPane.addOverlay(pa.polygon);
+				AppStates.gi().debug("added pa (POL) : "+pa.id);
+			} else if (pa.geomType==PA.POINT) {					
+				polygonPane.addOverlay(pa.point);
+				AppStates.gi().debug("added pa (POINT) : "+pa.id);
+			}
+		}		
+		
+		public function clearPAs():void {
+			AppStates.gi().debug("clear PAs");
+			polygonPane.clear();
+		}
+		
+		public function clearOverlays():void {
+			AppStates.gi().debug("clear all overlays");
+			picturesPane.clear();
+			wikipediaPane.clear();
+			biodiversityPane.clear();
+		}		
+		
 		
 		public function updateTileLayers(layers:Array):void {
 			
@@ -181,9 +247,8 @@ package com.vizzuality.view.map
 			
 			for (var layerName:String in activeLayers) {
 				if (!searchForLayer(layerName)) {
-					trace("remove " +layerName);
 					AppStates.gi().debug("remove "+layerName);
-					map.removeOverlay(activeLayers[layerName]);
+					tileOverlaysPane.removeOverlay(activeLayers[layerName]);
 					activeLayers[layerName]=null;
 					delete activeLayers[layerName];
 				}
@@ -198,13 +263,12 @@ package com.vizzuality.view.map
 					activeLayers[la] = ctlo;
 					cacheLayers[la]=ctlo;
 					AppStates.gi().debug("add "+la);
-					map.addOverlay(activeLayers[la]);
+					tileOverlaysPane.addOverlay(activeLayers[la]);
 				} else {
 					if(activeLayers[la]==null) {
 						activeLayers[la]=cacheLayers[la];
 						AppStates.gi().debug("add "+la);
-						trace("add " +la);
-						map.addOverlay(activeLayers[la]);
+						tileOverlaysPane.addOverlay(activeLayers[la]);
 					}
 				}
 			}
@@ -219,10 +283,11 @@ package com.vizzuality.view.map
 			var ctlo:CustomTileLayerOverlay = new CustomTileLayerOverlay(ctl);
 			ctl.ctlo = ctlo;
 			
-			BindingUtils.bindProperty(mapCanvas.temp,"text",ctlo,"numRunningRequest");
+			BindingUtils.bindProperty(mapCanvas.discretLoading,"visible",ctlo,"numRunningRequest");
 			
 			return ctlo;
 		}
+				
 		
 
 	}

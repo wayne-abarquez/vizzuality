@@ -28,11 +28,11 @@
 		</mx:State>
 		<mx:State name="{AppStates.AREA_SELECTOR}">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas width="382" height="244" horizontalCenter="0" verticalCenter="0" cornerRadius="6" borderStyle="solid" borderColor="#000000" backgroundColor="#000000" backgroundAlpha="0.54">
-					<mx:Label x="10" y="10" text="Click on the name of the are you want to open" color="#FFFFFF" fontSize="14"/>
-					<mx:Button x="140" label="Go back" click="AppStates.gi().goToPreviousState();MapController.gi().goToPreviousMapPosition();" bottom="10"/>
-					<mx:List id="areasList" y="41" left="10" right="10" dataProvider="{DataServices.gi().areasForLatLng}" labelField="name" 
-						change="AppStates.gi().setAllStates(AppStates.PA,List(event.target).selectedItem.siteid)">
+				<mx:Canvas width="230" cornerRadius="2" borderStyle="solid" borderColor="#000000" backgroundColor="#000000" backgroundAlpha="0.54" left="5" top="108" bottom="10">
+					<mx:Label x="4" y="5" text="Click on the name..." color="#FFFFFF" fontSize="12"/>
+					<mx:Button label="Go back" click="AppStates.gi().goToPreviousState();" bottom="10" horizontalCenter="0"/>
+					<mx:List id="areasList" left="5" right="5" dataProvider="{DataServices.gi().preselectedPAs}" labelFunction="labelData" 
+						change="AppStates.gi().setAllStates(AppStates.PA,(List(event.target).selectedItem as PA).id.toString())" top="31" bottom="40">
 					</mx:List>
 				</mx:Canvas>
 			</mx:AddChild>
@@ -40,6 +40,8 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.listClasses.ListData;
+			import com.vizzuality.data.PA;
 			import com.google.maps.PaneId;
 			import com.vizzuality.services.DataServices;
 			import com.vizzuality.view.AppStates;
@@ -72,6 +74,10 @@
 			private function onMapReady(event:Event):void {
 				mapController = new MapController(map,this);
 		    }
+		    
+		    private function labelData(item:Object):String {
+		    	return (item.name + '['+item.geomType+']');
+		    }
 			
 			
 		]]>
@@ -83,9 +89,9 @@
 			<mx:ProgressBar id="loadingBar" visible="false" label="LOADING" color="#FFFFFF" fontWeight="normal" fontStyle="normal" 
 						fontFamily="Verdana" width="140" indeterminate="true" trackHeight="8" verticalCenter="0" horizontalCenter="0"/>				
 			<map:BreadCrumb id="breadcrumb" top="3" left="7" />
-			<ns2:DiscretLoading left="10" top="41"/>
+			<ns2:DiscretLoading left="10" top="41" id="discretLoading"/>
 			<toolbar:ToolBar id="toolBar" top="0" left="0" currentState="about" />
-			<mx:Label x="294" y="201" id="temp"/>
+			<!--mx:Label x="294" y="201" id="temp"/ -->
 		</mx:Canvas>
 	</mx:VBox>
 </mx:Canvas>
