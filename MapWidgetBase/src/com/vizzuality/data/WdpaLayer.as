@@ -53,7 +53,7 @@ package com.vizzuality.data
 				cold_walter_coral:		"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
 				pa_border:				"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
 				country_per_areas:		"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
-				country_per_coverage:	"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png"
+				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage/MapServer/tile/|Z|/|Y|/|X|.png"
 			};
 		public static const DYNAMIC_LAYERS:Object = {
 				all:					"http://geowebcache|N|.gbif.org/service/gmaps?layers=gbif%3Apolygon&zoom=|Z|&x=|X|&y=|Y|",
@@ -79,7 +79,7 @@ package com.vizzuality.data
 				cold_walter_coral:		"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
 				pa_border:				"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
 				country_per_areas:		"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png",
-				country_per_coverage:	"http://dkshzq8b2nyc7.cloudfront.net/|X|_|Y|_|Z|_13839800.png"				
+				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage/MapServer/tile/|Z|/|Y|/|X|.png"				
 			};			
 	}
 }

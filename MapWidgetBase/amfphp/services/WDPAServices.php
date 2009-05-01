@@ -13,18 +13,27 @@ class WDPAServices {
 	}
 
     public function getPaData($siteid) {
-        $result=array();
-        $result['id']=5;
-        $result['name']="Yosemite";
-        $result['country']="Spain";
-        $result['countryIsoCode']="ES";
-        $result['has']=138000;
-        $result['north']=38;
-        $result['south']=37.5;
-        $result['east']=-5.7;
-        $result['west']=-6;
         
-        return $result;
+        $url="http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=Site_ID%3D$siteid&returnGeometry=true&outSR=&outFields=Site_ID%2CEnglish_Name%2CCountry%2CDocumentedTotalArea%2CStatus&f=json";
+    
+        $data = file_get_contents($url);
+        $json = json_decode($data,true);
+        
+        return $url;   
+        
+        $result=array();
+        $result['id']=$json['features'][0]['attributes']['Site_ID'];
+        $result['name']=$json['features'][0]['attributes']['English_Name'];
+        $result['country']=$json['features'][0]['attributes']['Country'];
+        $result['has']=$json['features'][0]['attributes']['Shape_Area'];
+        $result['status']=$json['features'][0]['attributes']['Status'];
+        $result['countryIsoCode']=$json['features'][0]['attributes']['Country'];;
+        $result['geometry']=$json['features'][0]['geometry'];
+        $result['geomType']=$json['geometryType'];
+        
+        
+        return $result;        
+
 	}
 	
 	public function getPaList($isocode='') {
@@ -127,33 +136,47 @@ class WDPAServices {
         $result['west']=39.23;		
 	}
 	
-	public function getAreasByLatLng($lat,$lng) {
-		$result=array();
-		//This is the Boundig Box for all areas
-        $result['north']=38;
-        $result['south']=37.02;
-        $result['east']=-5.7;
-        $result['west']=-7.3;
-		$result['areas']=array();
-		$a=array();
-		$a['name']="Sample area 1";
-		$a['siteid']=975;
-		$result['areas'][]=$a;
-		$a=array();
-		$a['name']="Sample area 2";
-		$a['siteid']=189;
-		$result['areas'][]=$a;		
-	
-        $url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0/query?geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&where=Site_ID%3D".$a['siteid']."&returnGeometry=true&f=json&outfields=Site_ID,English_Name,Local_Name";
+	public function getAreasByLatLng($url) {
+
+        //$envelope=urlencode($envelope);
+        //$mapextent=urlencode($mapextent);
+        //$imagedisplay=urlencode($imagedisplay);
+	    //$url="http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/identify?geometryType=esriGeometryEnvelope&geometry=". $envelope ."&tolerance=0&mapExtent=". $mapextent ."&imageDisplay=".$imagedisplay."&returnGeometry=true&f=json";
+
+       // $url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0/query?geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&where=Site_ID%3D".$a['siteid']."&returnGeometry=true&f=json&outfields=Site_ID,English_Name,Local_Name";
         
         $data = file_get_contents($url);
         $json = json_decode($data,true); 
-
-		
-		
-		
         
-        return $json;
+        $numres=count($json['results']);
+        
+        $result=array();
+        if($numres==0) {
+            $result['numres']=0;
+            return $result;
+        }
+        if($numres==1) {
+            $result['numres']=1;
+            
+            $result['siteid']= $json['results'][0]['attributes']['Site ID'];
+            return $result;            
+        }
+        
+        if($numres<=10) {
+            $result['numres']=$numres;
+            $result['results']=$json['results'];
+            return $result;            
+        }  
+
+        if($numres>10) {
+              $result['numres']=$numres;
+              return $result;            
+          }              
+        
+	}
+	
+	public function getAreasByPoint($lat,$lon) {
+	    
 	}
 
 }

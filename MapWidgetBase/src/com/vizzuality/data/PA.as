@@ -36,5 +36,24 @@ package com.vizzuality.data
 			}
 		}
 
+		public function getBbox():LatLngBounds {
+			if(bbox!=null)
+				return bbox;
+			
+			if (geomType == POLYGON) {
+				bbox = polygon.getLatLngBounds();
+			} else {
+				bbox = point.getLatLngBounds();
+			}		
+			return bbox;
+		}
+		
+		public function getCenter():LatLng {
+			if (geomType == POLYGON) {
+				return polygon.getLatLngBounds().getCenter();
+			} else {
+				return point.getLatLngBounds().getCenter();
+			}		
+		}
 	}
 }

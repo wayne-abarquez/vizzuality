@@ -24,6 +24,8 @@ package com.vizzuality.view.map
 	import flash.filters.ColorMatrixFilter;
 	import flash.utils.Dictionary;
 	
+	import gs.TweenLite;
+	
 	import mx.binding.utils.BindingUtils;
 	import mx.core.Application;
 	
@@ -53,7 +55,11 @@ package com.vizzuality.view.map
 		private var picturesPane:IPane;
 		private var wikipediaPane:IPane;
 		private var biodiversityPane:IPane;
+		public var infowindowPane:IPane;
 		
+		private var currentLayersOpacity:Number=0.8;
+		
+		public var defaultMapPosition:MapPosition;
 		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
 		{
@@ -76,8 +82,12 @@ package com.vizzuality.view.map
 			picturesPane = paneManager.createPane(numPanes+3);
 			wikipediaPane = paneManager.createPane(numPanes+4);
 			biodiversityPane = paneManager.createPane(numPanes+5);
+			infowindowPane = paneManager.createPane(numPanes+6);
 			
-		    map.setCenter(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
+			defaultMapPosition = new MapPosition(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
+			setMapPosition(defaultMapPosition);
+			
+			
 		    //map.disableDragging();
 		    map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);			
 			map.addEventListener(MapMoveEvent.MOVE_END,onMapMoved);
@@ -182,6 +192,17 @@ package com.vizzuality.view.map
 			mapCanvas.loadingBar.visible=false;
 		}	
 		
+		public function showMapWarning(text:String,duration:Number):void {
+			
+			//should only be displayed 4 secs.
+			mapCanvas.alertCanvas.visible=true;
+			mapCanvas.alertLabel.text=text;
+			mapCanvas.alertCanvas.alpha=1;
+			TweenLite.to(mapCanvas.alertCanvas,duration,{alpha:0,onComplete:function():void{
+				mapCanvas.alertCanvas.visible=false;
+				}});
+			
+		}
 		
 		private function onMapClick(event:MapMouseEvent):void {
 			previousCenter=map.getCenter();
@@ -230,8 +251,18 @@ package com.vizzuality.view.map
 			picturesPane.clear();
 			wikipediaPane.clear();
 			biodiversityPane.clear();
+			infowindowPane.clear();
 		}		
 		
+
+		public function updateTileLayersOpacity(opacity:Number):void {
+			if (currentLayersOpacity!=opacity) {
+				for (var layerName:String in activeLayers) {
+					(activeLayers[layerName] as CustomTileLayerOverlay).setAlpha(opacity);
+				}
+				currentLayersOpacity=opacity;
+			}
+		}
 		
 		public function updateTileLayers(layers:Array):void {
 			

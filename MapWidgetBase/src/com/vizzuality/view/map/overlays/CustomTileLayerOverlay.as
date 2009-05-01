@@ -27,6 +27,10 @@ package com.vizzuality.view.map.overlays
 			
 		}	
 		
+		public function setAlpha(value:Number):void {
+			this.foreground.alpha=value;
+		}
+		
 		private function initRequestController():void {
 			var t:Timer = new Timer(2000,0);
 			t.addEventListener(TimerEvent.TIMER,checkRequests,false,0,true);
