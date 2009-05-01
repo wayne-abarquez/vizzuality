@@ -7,6 +7,8 @@
 	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.view.map.overlays.ToolTipOverlay;
+			import com.google.maps.InfoWindowOptions;
 			import com.vizzuality.data.PA;
 			import com.google.maps.LatLng;
 			import com.vizzuality.services.DataServices;
@@ -65,6 +67,7 @@
 					switch(event.pathNames[0]) {
 						case(AppStates.WORLD):
 							//control the layer state
+							MapController.gi().updateTileLayersOpacity(0.8);
 							
 							//if there was already a set of layers added at world zoom level use them
 							if((AppStates.gi().visibleLayers[AppStates.WORLD] as Array).length>0) {
@@ -77,10 +80,9 @@
 							
 							//control the map state
 							if(AppStates.gi().mapPositions[AppStates.WORLD] == null) {
-								AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();
-							} else {
-								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
+								AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().defaultMapPosition;
 							}
+							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
 							
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
@@ -91,7 +93,8 @@
 								AppStates.gi().secondState=event.pathNames[1];		
 							} else {
 								AppStates.gi().secondState='';								
-							}								
+							}		
+													
 							break;
 							
 							
@@ -160,7 +163,8 @@
 							
 						case(AppStates.AREA_SELECTOR):
 							//control the layer state
-							MapController.gi().updateTileLayers([]);
+							//MapController.gi().updateTileLayers([]);
+							MapController.gi().updateTileLayersOpacity(0.3);
 
 							//control the map state
 							if(AppStates.gi().mapPositions[AppStates.AREA_SELECTOR] == null) {
@@ -185,13 +189,13 @@
 									DataServices.gi().getAreasByLatLng(new LatLng(lat,lng));
 								} else {
 									
-									var zoomedAlready:Boolean=false;
+									MapController.gi().zoomToBbox(DataServices.gi().preselectedPAsBounds,true);
 									for each(var pa:PA in DataServices.gi().preselectedPAs) {
 										MapController.gi().addPa(pa);
-										if (pa.geomType == PA.POLYGON) {
-											MapController.gi().zoomToBbox(pa.polygon.getLatLngBounds());
-											zoomedAlready=true;
-										}
+									}
+									
+									for each(var tooltip:ToolTipOverlay in DataServices.gi().preselectedPAsTooltips) {
+										MapController.gi().infowindowPane.addOverlay(tooltip);
 									}
 									
 								}
@@ -211,7 +215,7 @@
 							if((AppStates.gi().visibleLayers[AppStates.PA] as Array).length>0) {
 								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.PA]);
 							} else {
-								MapController.gi().updateTileLayers([WdpaLayer.PA_BORDER]);
+								MapController.gi().updateTileLayers([]);
 							}
 
 							//control the map state
@@ -221,7 +225,7 @@
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.PA]);
 							}
 
-							//add the possibility to click on the areas
+							//remove the possibility to click on the areas
 							MapController.gi().removeClickListenerForAreas();		
 							
 							if(event.pathNames.length==3) {
@@ -299,7 +303,7 @@
 	<mx:VBox id="mainVBox" width="100%" height="100%" verticalGap="0">
 		<header:Header id="header" />
 		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8"/>
-		<footer:Footer id="footer"/>
+		<!--footer:Footer id="footer"/ -->
 	</mx:VBox>
 	<mx:Canvas id="debugArea" visible="false" right="5" bottom="40" width="358" height="157" backgroundColor="#FFFFFF" backgroundAlpha="0.66">
 		<mx:TextArea left="5" right="5" top="10" bottom="10" backgroundAlpha="0.0" borderStyle="none" id="debuggerArea"/>

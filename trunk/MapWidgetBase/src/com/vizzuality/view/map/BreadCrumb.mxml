@@ -20,7 +20,11 @@
 			<mx:SetProperty target="{worldButton}" name="height" value="26"/>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}"/>
-		<mx:State name="{AppStates.AREA_SELECTOR}"/>
+		<mx:State name="{AppStates.AREA_SELECTOR}">
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="PRESELECT AREAS" verticalCenter="0" id="countryButton0" styleName="breadCrumbButton" enabled="false" height="26" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	<mx:Button x="3" label="WORLD" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.WORLD,'')" styleName="breadCrumbButton" id="worldButton" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 	<mx:Script>
