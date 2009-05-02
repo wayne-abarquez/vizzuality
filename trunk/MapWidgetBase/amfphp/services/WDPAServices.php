@@ -19,6 +19,13 @@ class WDPAServices {
         $data = file_get_contents($url);
         $json = json_decode($data,true);
         
+        if(count($json['features']<1)) {
+ $url="http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=site_id%3D$siteid&returnGeometry=true&outSR=&outFields=Site_ID%2CEnglish_Name%2CCountry%2CDocumentedTotalArea%2CStatus&f=json";           
+ 
+         $data = file_get_contents($url);
+         $json = json_decode($data,true);
+        }
+        
         //return $url;   
         
         $result=array();
@@ -68,17 +75,17 @@ class WDPAServices {
     
     public function getCountryStatsByISO($iso) {
         $result=array();
-        $result['numAreas']=130000;
+        $result['numAreas']=750;
         $result['iso']=$iso;
         $result['name']="Spain";
         $result['coveragePercentage']=34;
-        $result['numberCoral']=138000;
-        $result['numMangrove']=74;
-        $result['numSeagrass']=345;
-        $result['north']=70.23;
-        $result['south']=60.23;
-        $result['east']=34.233;
-        $result['west']=39.23;
+        $result['numberCoral']=100;
+        $result['numMangrove']=0;
+        $result['numSeagrass']=4;
+        $result['north']=43.7917251586914;
+        $result['south']=27.6388168334961;
+        $result['east']=4.31538963317871;
+        $result['west']=-18.169641494751;
         
         return $result;
     }
@@ -96,8 +103,8 @@ class WDPAServices {
     public function getWorldStats() {
         $result=array();
         $result['totalAreas']=130000;
-        $result['international']=200;
-        $result['national']=138000;
+        $result['international']=750;
+        $result['national']=110000;
         $result['coveragePercentage']=74;
         $result['marine']=345;
         $result['terrestrial']=345345;
@@ -119,21 +126,6 @@ class WDPAServices {
 	    $result[]=$c;
 	    
 	    return $result;
-	}
-	
-	public function getCountryByLatLng($lat,$lng) {
-        $result=array();
-        $result['numAreas']=130000;
-        $result['iso']=$iso;
-        $result['name']="Spain";
-        $result['coveragePercentage']=34;
-        $result['numberCoral']=138000;
-        $result['numMangrove']=74;
-        $result['numSeagrass']=345;
-        $result['north']=70.23;
-        $result['south']=60.23;
-        $result['east']=34.233;
-        $result['west']=39.23;		
 	}
 	
 	public function getAreasByLatLng($url) {

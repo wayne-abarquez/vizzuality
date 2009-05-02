@@ -1,5 +1,7 @@
 package com.vizzuality.services
 {
+	import asual.SWFAddress;
+	
 	import com.adobe.utils.StringUtil;
 	import com.google.maps.Color;
 	import com.google.maps.LatLng;
@@ -43,7 +45,6 @@ package com.vizzuality.services
 		private var roWorld:RemoteObject;
 		private var roLat:RemoteObject;
 		private var roSearch:RemoteObject;
-		private var roCountries:RemoteObject;
 		
 		private var wdpaRestServ:HTTPService = new HTTPService();
 		
@@ -80,7 +81,6 @@ package com.vizzuality.services
 			
 			roArea=createRemoteObject();
 			roCountry=createRemoteObject();
-			roCountries=createRemoteObject();
 			roWorld=createRemoteObject();
 			roLat=createRemoteObject();
 			roSearch=createRemoteObject();
@@ -99,9 +99,6 @@ package com.vizzuality.services
 			
 			roLat.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);	
 			roLat.addEventListener(FaultEvent.FAULT,onFault);		
-			
-			roCountries.addEventListener(ResultEvent.RESULT,onGetCountyByLatLngResult);	
-			roCountries.addEventListener(FaultEvent.FAULT,onFault);		
 		
 			geocoder.addEventListener(ResultEvent.RESULT,onGeoCodeSuccess);
 			geocoder.addEventListener(FaultEvent.FAULT,onGeoCodeFault);
@@ -248,18 +245,12 @@ package com.vizzuality.services
 		
 		private function onGeoCodeSuccess(event:ResultEvent):void {
 			//roCountries.getCountryByLatLng(latlng.lat(),latlng.lng());
-			selectedCountryIso = StringUtil.trim(String(event.result));
-
-			trace(StringUtil.trim(String(event.result)));
+			MapController.gi().setMapLoaded();
+			SWFAddress.setValue('/'+AppStates.WORLD+'/'+StringUtil.trim(String(event.result)));
 			
 		}
 		private function onGeoCodeFault(event:FaultEvent):void {
-			MapController.gi().setMapLoaded();
 			MapController.gi().showMapWarning("You have not clicked in any country",5);
-		}
-		
-		private function onGetCountyByLatLngResult(event:ResultEvent):void {			
-			MapController.gi().setMapLoaded();
 		}
 		
 		
