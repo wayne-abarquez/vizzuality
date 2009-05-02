@@ -11,8 +11,8 @@
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}">
 			<mx:AddChild position="lastChild">
-				<ns1:CountriesCanvas top="60" visible="{!(AppStates.gi().secondState!='')}" right="20" id="countriesCanvas">
-				</ns1:CountriesCanvas>
+				<ns1:WorldCanvas top="48" visible="{!(AppStates.gi().secondState!='')}" right="20" id="worldcanvas0">
+				</ns1:WorldCanvas>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
