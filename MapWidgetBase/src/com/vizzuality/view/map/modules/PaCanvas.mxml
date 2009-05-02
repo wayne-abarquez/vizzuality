@@ -11,15 +11,12 @@
 			<mx:RemoveChild target="{hrule2}"/>
 			<mx:RemoveChild target="{label5}"/>
 			<mx:RemoveChild target="{hrule3}"/>
-			<mx:RemoveChild target="{label6}"/>
 			<mx:RemoveChild target="{vbox1}"/>
 			<mx:RemoveChild target="{vbox2}"/>
-			<mx:RemoveChild target="{vbox3}"/>
 			<mx:RemoveChild target="{image1}"/>
 			<mx:RemoveChild target="{canvas0}"/>
 			<mx:RemoveChild target="{canvas1}"/>
 			<mx:RemoveChild target="{canvas2}"/>
-			<mx:RemoveChild target="{canvas3}"/>
 			<mx:RemoveChild target="{vboxLayers}"/>
 			<mx:RemoveChild target="{vbox4}"/>
 			<mx:AddChild position="lastChild">
@@ -41,6 +38,7 @@
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import com.vizzuality.view.map.MapController;
 		import com.vizzuality.services.DataServiceEvent;
 		import mx.binding.utils.BindingUtils;
 		import com.vizzuality.data.PA;
@@ -104,13 +102,6 @@
 				</mx:VBox>
 			</mx:Canvas>
 			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule3"/>
-			<mx:Canvas styleName="greenContainer" width="100%"
-				verticalScrollPolicy="off" horizontalScrollPolicy="off" id="canvas3">
-				<mx:Label text="GBIF DATA"  color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6" id="label6"/>
-				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox3">
-					<mx:CheckBox label="Species primary distributions"/>
-				</mx:VBox>
-			</mx:Canvas>
 		</mx:VBox>
 	</mx:VBox>
 	
