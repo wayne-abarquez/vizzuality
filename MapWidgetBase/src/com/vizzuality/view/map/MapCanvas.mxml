@@ -62,8 +62,8 @@
 				  },
 				  controlByKeyboard: false,
 				  overlayRaising: true,
-				  dragging: true,
-				  continuousZoom: false
+				  dragging: true
+
 				});	
 				map.setInitOptions(options);
 						

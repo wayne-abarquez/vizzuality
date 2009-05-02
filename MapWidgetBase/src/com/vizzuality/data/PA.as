@@ -48,6 +48,13 @@ package com.vizzuality.data
 			return bbox;
 		}
 		
+		public function get geometry():Polygon {
+			if (geomType == POLYGON) {
+				return polygon;
+			}
+			return point;				
+		}
+		
 		public function getCenter():LatLng {
 			if (geomType == POLYGON) {
 				return polygon.getLatLngBounds().getCenter();
