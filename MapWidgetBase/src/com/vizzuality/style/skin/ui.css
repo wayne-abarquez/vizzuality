@@ -91,6 +91,8 @@ Canvas.featuredAreaOver{
 	background-image: Embed(source="ui.swf",symbol="featuredAreaOver");	
 }
 
+
+
 Button.btnViewType{
 	skin: ClassReference(null);
 	color: #4a4f33;
@@ -183,6 +185,25 @@ Button.invisibleButton{
 	paddingBottom: 0; 	
 }
 
+Button.btnMiniTab{
+	up-skin: Embed(source="ui.swf",symbol="miniTab_up");	
+	over-skin: Embed(source="ui.swf",symbol="miniTab_over");	
+	down-skin: Embed(source="ui.swf",symbol="miniTab_selected");	
+	selected-up-skin: Embed(source="ui.swf",symbol="miniTab_selected");	
+	selected-over-skin: Embed(source="ui.swf",symbol="miniTab_selected");	
+	selected-down-skin: Embed(source="ui.swf",symbol="miniTab_selected");	
+	color: #4a4f33;
+	text-roll-over-color: #4a4f33;
+	text-selected-color: #4a4f33;
+	disabled-color: #dee3c8;
+	font-family: "DINOT-Medium";
+	font-size: 13;
+	font-weight: normal;
+	padding-top: 0; 	
+	padding-left: 3;
+	padding-right: 3;
+}
+
 
 
 HSlider{
@@ -224,6 +245,26 @@ CheckBox{
 	paddingBottom: 0;
 }	
 
+RadioButton{
+	disabledIcon: Embed(source="ui.swf", symbol="RadioButton_disabledIcon");
+	downIcon: Embed(source="ui.swf", symbol="RadioButton_downIcon");
+	overIcon: Embed(source="ui.swf", symbol="RadioButton_overIcon");
+	selectedDisabledIcon: Embed(source="ui.swf", symbol="RadioButtonSelected_disabledIcon");
+	selectedDownIcon: Embed(source="ui.swf", symbol="RadioButtonSelected_downIcon");
+	selectedOverIcon: Embed(source="ui.swf", symbol="RadioButtonSelected_overIcon");
+	selectedUpIcon: Embed(source="ui.swf", symbol="RadioButtonSelected_upIcon");
+	upIcon: Embed(source="ui.swf", symbol="RadioButton_upIcon");
+	color: #777777;
+	textRollOverColor: #333333;
+	textSelectedColor:#333333;
+	textDisabledColor: #999999;
+	fontSize:12;
+	fontWeight:normal;
+	font-family: "DINOT-Medium";
+	horizontalGap:0;
+	paddingTop: -1;
+	paddingBottom: 0;
+}
 
 
 ProgressBar {

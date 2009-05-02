@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" xmlns:header="com.vizzuality.view.map.header.*" xmlns:toolbar="com.vizzuality.view.map.toolbar.*" xmlns:map="com.vizzuality.view.map.*" xmlns:ns1="com.vizzuality.view.map.modules.*"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" xmlns:header="com.vizzuality.view.map.header.*" 
+	xmlns:toolbar="com.vizzuality.view.map.toolbar.*" xmlns:map="com.vizzuality.view.map.*" xmlns:ns1="com.vizzuality.view.map.modules.*"
 	currentState="{AppStates.gi().topState}" xmlns:ns2="com.vizzuality.view.overlay.*" xmlns:loader="com.vizzuality.view.loader.*" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
 	<mx:states>
 		<mx:State name="{AppStates.WORLD}">
