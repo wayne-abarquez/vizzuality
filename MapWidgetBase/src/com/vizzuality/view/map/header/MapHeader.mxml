@@ -32,7 +32,6 @@
 		
 		private var lastSelected:Button;
 		
-		private var toolSelected:Button;
 		
 		public var map:Map;
 		
@@ -68,13 +67,6 @@
 			map.setZoom(map.getZoom()-1);
 		}
 		
-		private function checkToolButton(event:MouseEvent):void {
-			if (toolSelected!=null) {
-				toolSelected.selected=false;
-			}
-			toolSelected=event.target as Button;
-			toolSelected.selected=true;
-		}
 		
 	]]>
 </mx:Script>
@@ -107,15 +99,15 @@
 		<!--<mx:Button label="world" click="AppStates.gi().setAllStates(AppStates.WORLD,'')" id="button0"/>-->
 	</mx:HBox>
 	<mx:HBox right="9" horizontalGap="2" bottom="-1">
-		<mx:Button label="area details" click="checkToolButton(event);AppStates.gi().setSecondState(AppStates.AREA_DETAILS)" styleName="btnTool"
+		<mx:Button label="area details" selected="{(AppStates.gi().secondState==AppStates.AREA_DETAILS)}" click="AppStates.gi().setSecondState(AppStates.AREA_DETAILS)" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button3"/>
-		<mx:Button label="search" click="checkToolButton(event);AppStates.gi().setSecondState(AppStates.SEARCH)" styleName="btnTool"
+		<mx:Button label="search" selected="{(AppStates.gi().secondState==AppStates.SEARCH)}" click="AppStates.gi().setSecondState(AppStates.SEARCH)" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
-		<mx:Button label="filter" click="checkToolButton(event);AppStates.gi().setSecondState(AppStates.FILTER)" id="button2" styleName="btnTool"
+		<mx:Button label="filter" selected="{(AppStates.gi().secondState==AppStates.FILTER)}" click="AppStates.gi().setSecondState(AppStates.FILTER)" id="button2" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
-		<mx:Button label="about" click="checkToolButton(event);AppStates.gi().setSecondState(AppStates.ABOUT)" styleName="btnTool" 
+		<mx:Button label="about" selected="{(AppStates.gi().secondState==AppStates.ABOUT)}" click="AppStates.gi().setSecondState(AppStates.ABOUT)" styleName="btnTool" 
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
-		<mx:Button label="help" click="checkToolButton(event);AppStates.gi().setSecondState(AppStates.HELP)" styleName="btnTool"
+		<mx:Button label="help" selected="{(AppStates.gi().secondState==AppStates.HELP)}" click="AppStates.gi().setSecondState(AppStates.HELP)" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
 	</mx:HBox>
 	
