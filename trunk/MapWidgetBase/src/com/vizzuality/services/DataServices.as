@@ -1,5 +1,6 @@
 package com.vizzuality.services
 {
+	import com.adobe.utils.StringUtil;
 	import com.google.maps.Color;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
@@ -42,6 +43,7 @@ package com.vizzuality.services
 		private var roWorld:RemoteObject;
 		private var roLat:RemoteObject;
 		private var roSearch:RemoteObject;
+		private var roCountries:RemoteObject;
 		
 		private var wdpaRestServ:HTTPService = new HTTPService();
 		
@@ -70,12 +72,15 @@ package com.vizzuality.services
 		public var preselectedPAsBounds:LatLngBounds;
 		public var preselectedPAsTooltips:Array;
 		
+		private var geocoder:HTTPService = new HTTPService();
+		
 		public function DataServices()
 		{
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
 			
 			roArea=createRemoteObject();
 			roCountry=createRemoteObject();
+			roCountries=createRemoteObject();
 			roWorld=createRemoteObject();
 			roLat=createRemoteObject();
 			roSearch=createRemoteObject();
@@ -94,6 +99,13 @@ package com.vizzuality.services
 			
 			roLat.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);	
 			roLat.addEventListener(FaultEvent.FAULT,onFault);		
+			
+			roCountries.addEventListener(ResultEvent.RESULT,onGetCountyByLatLngResult);	
+			roCountries.addEventListener(FaultEvent.FAULT,onFault);		
+		
+			geocoder.addEventListener(ResultEvent.RESULT,onGeoCodeSuccess);
+			geocoder.addEventListener(FaultEvent.FAULT,onGeoCodeFault);
+		
 		
 		}
 		
@@ -220,6 +232,37 @@ package com.vizzuality.services
 		}
 		
 		
+		/**
+		 * 
+		 * 
+		 * COUNTRIES BY LAT LON
+		 * 
+		 **/
+		 //-----------------------------------------------------------------------------------			
+		public function getCountryByLatLng(latlng:LatLng):void {
+						
+			MapController.gi().setMapLoading();
+			geocoder.url = "http://ws.geonames.org/countryCode?lat="+latlng.lat()+"&lng="+latlng.lng();
+			geocoder.send();
+		}
+		
+		private function onGeoCodeSuccess(event:ResultEvent):void {
+			//roCountries.getCountryByLatLng(latlng.lat(),latlng.lng());
+			selectedCountryIso = StringUtil.trim(String(event.result));
+
+			trace(StringUtil.trim(String(event.result)));
+			
+		}
+		private function onGeoCodeFault(event:FaultEvent):void {
+			MapController.gi().setMapLoaded();
+			MapController.gi().showMapWarning("You have not clicked in any country",5);
+		}
+		
+		private function onGetCountyByLatLngResult(event:ResultEvent):void {			
+			MapController.gi().setMapLoaded();
+		}
+		
+		
 		
 		
 		/**
@@ -278,7 +321,7 @@ package com.vizzuality.services
 			if(res.numres>1) {
 				MapController.gi().setMapLoaded();
 				MapController.gi().showMapWarning("There are too many areas where you have clicked. Please Zoom further",5);
-				MapController.gi().map.setCenter(clickedLatLng,MapController.gi().map.getZoom()+2);
+				MapController.gi().map.setCenter(clickedLatLng,MapController.gi().map.getZoom()+1);
 				return;
 			}
 			if(res.numres==1) {

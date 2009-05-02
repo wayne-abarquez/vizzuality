@@ -18,10 +18,16 @@ package com.vizzuality.data
 		}
 
 		public function isNoEqualMapPosition(mp:MapPosition):Boolean {
-			return(this.center.lat() != mp.center.lat() ||
-				this.center.lng() != mp.center.lng() ||
-				this.zoom != mp.zoom||
-				this.mapType.getName() != mp.mapType.getName());
+			if(this.center.lat() != mp.center.lat())
+				return true;
+			if(this.center.lng() != mp.center.lng())
+				return true;
+			if (this.zoom != mp.zoom)
+				return true;
+			if(this.mapType.getName() != mp.mapType.getName())
+				return true;
+			
+			return false	
 		}
 		
 		public function toString():String{
