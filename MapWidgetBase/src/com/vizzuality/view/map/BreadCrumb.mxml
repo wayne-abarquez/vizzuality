@@ -3,27 +3,27 @@
 	horizontalScrollPolicy="off" verticalScrollPolicy="off">
 	<mx:states>
 		<mx:State name="{AppStates.WORLD}">
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="Select a country to explore it or switch to area navigation" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.WORLD,'')" styleName="breadCrumbButton" id="worldButton0" enabled="false"/>
+			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
 			<mx:AddChild position="firstChild">
 				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="{(DataServices.gi().selectedCountry.name).toUpperCase()}" verticalCenter="0" id="countryButton" styleName="breadCrumbButton" enabled="false" height="26" />
 			</mx:AddChild>
-			<mx:SetProperty target="{worldButton}" name="height" value="26"/>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
 			<mx:AddChild position="firstChild">
-				<mx:Button id="countryButton2" x="{worldButton.x + worldButton.width - 15}" label="{(AppStates.gi().activeCountryName).toUpperCase()}" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.COUNTRY,AppStates.gi().activeCountryIsoCode)" styleName="breadCrumbButton" height="26" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+				<mx:Button id="countryButton2" x="{worldButton.x + worldButton.width - 15}" label="{(AppStates.gi().activeCountryName).toUpperCase()}" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.COUNTRY,AppStates.gi().activeCountryIsoCode)" styleName="breadCrumbButton" height="26" useHandCursor="true" mouseChildren="false" buttonMode="true" enabled="false"/>
 			</mx:AddChild>
 			<mx:AddChild position="firstChild">
 				<mx:Button x="{countryButton2.x + countryButton2.width - 15}" label="{(DataServices.gi().selectedPA.name).toUpperCase()}" verticalCenter="0" id="paButton" styleName="breadCrumbButton" height="26" enabled="false"/>
 			</mx:AddChild>
-			<mx:SetProperty target="{worldButton}" name="height" value="26"/>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}">
 			<mx:AddChild position="firstChild">
 				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="COUNTRY SELECTOR" verticalCenter="0" id="countriesButton" styleName="breadCrumbButton" enabled="false" height="26" />
 			</mx:AddChild>
-			<mx:SetProperty target="{worldButton}" name="height" value="26"/>			
 		</mx:State>
 		<mx:State name="{AppStates.AREA_SELECTOR}">
 			<mx:AddChild position="firstChild">
