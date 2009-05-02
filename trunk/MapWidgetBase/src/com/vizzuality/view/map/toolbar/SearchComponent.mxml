@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="64">
+	<mx:Label text="SEARCH FOR PROTECTED AREA" left="13" fontSize="16" fontWeight="normal" fontFamily="DINOT-Medium" color="#375381" top="14"/>
+	<mx:TextInput borderStyle="solid" cornerRadius="2" left="248" height="22" top="15" width="182"/>
+	<mx:Canvas styleName="softYellowContainer" right="18" left="438" height="22" cornerRadius="2" top="15">
+		<mx:Label text="Start typing to further to get suggestions. When done, click on the area to get details." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
+	</mx:Canvas>
+	
+</mx:Canvas>
