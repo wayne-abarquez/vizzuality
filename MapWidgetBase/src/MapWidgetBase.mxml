@@ -7,6 +7,7 @@
 	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.data.MapPosition;
 			import com.vizzuality.view.map.overlays.ToolTipOverlay;
 			import com.google.maps.InfoWindowOptions;
 			import com.vizzuality.data.PA;
@@ -80,7 +81,7 @@
 							
 							//control the map state
 							if(AppStates.gi().mapPositions[AppStates.WORLD] == null) {
-								AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().defaultMapPosition;
+								AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getDefaultMapPosition();
 							}
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
 							
@@ -88,6 +89,7 @@
 							MapController.gi().clearPAs();
 							MapController.gi().clearOverlays();
 							MapController.gi().setClickListenerForAreas();
+							MapController.gi().removeClickListenerForCountries();
 							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];		
@@ -109,15 +111,15 @@
 							
 							//control the map state
 							if(AppStates.gi().mapPositions[AppStates.COUNTRIES] == null) {
-								AppStates.gi().mapPositions[AppStates.COUNTRIES] = MapController.gi().getMapPosition();
-							} else {
-								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);
-							}		
+								AppStates.gi().mapPositions[AppStates.COUNTRIES] = MapController.gi().getDefaultMapPosition();
+							}
+							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);	
 
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
 							MapController.gi().clearOverlays();
-							MapController.gi().setClickListenerForAreas();												
+							MapController.gi().removeClickListenerForAreas();											
+							MapController.gi().setClickListenerForCountries();											
 							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];
@@ -146,6 +148,7 @@
 							MapController.gi().clearPAs();
 							MapController.gi().clearOverlays();
 							MapController.gi().setClickListenerForAreas();
+							MapController.gi().removeClickListenerForCountries();
 	
 	
 							if(event.pathNames.length==3) {
@@ -177,6 +180,7 @@
 							MapController.gi().clearPAs();
 							MapController.gi().clearOverlays();
 							MapController.gi().removeClickListenerForAreas();
+							MapController.gi().removeClickListenerForCountries();
 									
 							
 							//In this state there must be only 2 parameters in the URL
@@ -227,6 +231,7 @@
 
 							//remove the possibility to click on the areas
 							MapController.gi().removeClickListenerForAreas();		
+							MapController.gi().removeClickListenerForCountries();
 							
 							if(event.pathNames.length==3) {
 								AppStates.gi().activePaId = Number(event.pathNames[1]);

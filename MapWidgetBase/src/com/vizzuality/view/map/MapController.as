@@ -57,9 +57,9 @@ package com.vizzuality.view.map
 		private var biodiversityPane:IPane;
 		public var infowindowPane:IPane;
 		
-		private var currentLayersOpacity:Number=0.8;
+		private var mapClickCurrentAction:String;
 		
-		public var defaultMapPosition:MapPosition;
+		private var currentLayersOpacity:Number=0.8;
 		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
 		{
@@ -84,8 +84,7 @@ package com.vizzuality.view.map
 			biodiversityPane = paneManager.createPane(numPanes+5);
 			infowindowPane = paneManager.createPane(numPanes+6);
 			
-			defaultMapPosition = new MapPosition(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
-			setMapPosition(defaultMapPosition);
+			setMapPosition(getDefaultMapPosition());
 			
 			
 		    //map.disableDragging();
@@ -102,15 +101,36 @@ package com.vizzuality.view.map
 			
 		}
 		
+		
+		public function getDefaultMapPosition():MapPosition {
+			return new MapPosition(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
+		}
+		
 		public function setClickListenerForAreas():void {
 			if(!map.hasEventListener(MapMouseEvent.CLICK)) {
-				map.addEventListener(MapMouseEvent.CLICK, onMapClick);		
+				map.addEventListener(MapMouseEvent.CLICK, onAreaMapClick);	
+				mapClickCurrentAction="goToArea";	
 			}
 		}
 		
 		public function removeClickListenerForAreas():void {
 			if(map.hasEventListener(MapMouseEvent.CLICK)) {
-				map.removeEventListener(MapMouseEvent.CLICK, onMapClick);		
+				map.removeEventListener(MapMouseEvent.CLICK, onAreaMapClick);		
+				mapClickCurrentAction=null;	
+			}
+		}
+		
+		public function setClickListenerForCountries():void {
+			if(!map.hasEventListener(MapMouseEvent.CLICK)) {
+				map.addEventListener(MapMouseEvent.CLICK, onCountriesMapClick);		
+				mapClickCurrentAction="goToCountry";	
+			}
+		}
+		
+		public function removeClickListenerForCountries():void {
+			if(map.hasEventListener(MapMouseEvent.CLICK)) {
+				map.removeEventListener(MapMouseEvent.CLICK, onCountriesMapClick);		
+				mapClickCurrentAction=null;	
 			}
 		}
 			
@@ -121,6 +141,7 @@ package com.vizzuality.view.map
 		
 		public function setMapPosition(mp:MapPosition):void {
 			//Only change of the mapPosition is different
+			//trace(mp.zoom);
 			if (mp.isNoEqualMapPosition(getMapPosition())) {
 				map.setCenter(mp.center,mp.zoom,mp.mapType);
 			}
@@ -163,15 +184,18 @@ package com.vizzuality.view.map
 		}
 		
 		
-		private var mapWasClickableBeforeLoading:Boolean=false;
+		
 		public function setMapLoading():void {
 			//removeClickListenerForAreas();
 			map.disableDragging();
 			map.setDoubleClickMode(MapAction.ACTION_NOTHING);
 			
-			if (map.hasEventListener(MapMouseEvent.CLICK)) {
-				mapWasClickableBeforeLoading=true;
-				map.removeEventListener(MapMouseEvent.CLICK, onMapClick);				
+			if (mapClickCurrentAction!=null) {
+				if(mapClickCurrentAction=="goToArea") {
+					map.removeEventListener(MapMouseEvent.CLICK, onAreaMapClick);				
+				} else {
+					map.removeEventListener(MapMouseEvent.CLICK, onCountriesMapClick);									
+				}
 			}
 			if (bSprite==null) {
 				aSprite = map.getChildAt(1) as Sprite;
@@ -186,8 +210,13 @@ package com.vizzuality.view.map
 			bSprite.filters = [emptyFilter];
 			map.enableDragging();
 			map.setDoubleClickMode(MapAction.ACTION_PAN_ZOOM_IN);
-			if(mapWasClickableBeforeLoading)
-				map.addEventListener(MapMouseEvent.CLICK, onMapClick);				
+			if(mapClickCurrentAction!=null) {
+				if(mapClickCurrentAction=="goToArea") {
+					map.addEventListener(MapMouseEvent.CLICK, onAreaMapClick);		
+				} else {
+					map.addEventListener(MapMouseEvent.CLICK, onCountriesMapClick);		
+				}
+			}		
 				
 			mapCanvas.loadingBar.visible=false;
 		}	
@@ -204,12 +233,16 @@ package com.vizzuality.view.map
 			
 		}
 		
-		private function onMapClick(event:MapMouseEvent):void {
-			previousCenter=map.getCenter();
-			previousZoomLevel=map.getZoom();
+		private function onAreaMapClick(event:MapMouseEvent):void {
+/* 			previousCenter=map.getCenter();
+			previousZoomLevel=map.getZoom(); */
 			
 			DataServices.gi().getAreasByLatLng(event.latLng);
 		}	
+		
+		private function onCountriesMapClick(event:MapMouseEvent):void {
+			DataServices.gi().getCountryByLatLng(event.latLng);
+		}		
 		
 		public function goToPreviousMapPosition():void {
 			map.setCenter(previousCenter,previousZoomLevel);
