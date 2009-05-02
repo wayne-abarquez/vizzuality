@@ -84,6 +84,8 @@ package com.vizzuality.view.map
 			biodiversityPane = paneManager.createPane(numPanes+5);
 			infowindowPane = paneManager.createPane(numPanes+6);
 			
+			map.enableContinuousZoom();
+			
 			setMapPosition(getDefaultMapPosition());
 			
 			

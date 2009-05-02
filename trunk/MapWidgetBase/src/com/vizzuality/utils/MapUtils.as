@@ -56,7 +56,28 @@ package com.vizzuality.utils
             var polygon:Polygon = new Polygon(circleLatLngs, polygonOptions);
             
             return polygon;
-        }		
+        }	
+        
+		public static function pointInPolygon(point:LatLng,polygon:Polygon):Boolean { 
+	        var j:Number=0; 
+	        var func_oddNodes:Boolean = false; 
+	        var x:Number = point.lng(); 
+	        var y:Number = point.lat(); 
+	        for (var i:Number=0; i < polygon.getOuterVertexCount(); i++) { 
+	          j++; 
+	          if (j == polygon.getOuterVertexCount()) {j = 0;} 
+	          if (((polygon.getOuterVertex(i).lat() < y) && (polygon.getOuterVertex(j).lat() >= y)) 
+	          || ((polygon.getOuterVertex(j).lat() < y) && 
+				(polygon.getOuterVertex(i).lat() >= y))) { 
+	            if ( polygon.getOuterVertex(i).lng() + (y - polygon.getOuterVertex(i).lat()) 
+	            /  (polygon.getOuterVertex(j).lat()-polygon.getOuterVertex(i).lat()) 
+	            *  (polygon.getOuterVertex(j).lng() - polygon.getOuterVertex(i).lng())<x ) { 
+	              func_oddNodes = !func_oddNodes 
+	            } 
+	          } 
+	        } 
+	        return func_oddNodes; 
+	      } 
 		
 
 	}

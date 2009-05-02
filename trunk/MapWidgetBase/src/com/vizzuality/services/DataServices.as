@@ -173,6 +173,10 @@ package com.vizzuality.services
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.PA_DATA_LOADED));
 			MapController.gi().setMapLoaded();
 			
+			
+			//Start loading multimedia resources
+			MediaServices.gi().getAllMedia(selectedPA.getBbox());
+			
 		}
 		
 
@@ -313,6 +317,7 @@ package com.vizzuality.services
 				MapController.gi().setMapLoaded();
 				MapController.gi().showMapWarning("There are too many areas where you have clicked. Please Zoom further",5);
 				MapController.gi().map.setCenter(clickedLatLng,MapController.gi().map.getZoom()+1);
+				MapController.gi().map.setZoom(MapController.gi().map.getZoom()+1,true);
 				return;
 			}
 			if(res.numres==1) {
