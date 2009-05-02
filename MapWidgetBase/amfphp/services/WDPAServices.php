@@ -14,12 +14,12 @@ class WDPAServices {
 
     public function getPaData($siteid) {
         
-        $url="http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=Site_ID%3D$siteid&returnGeometry=true&outSR=&outFields=Site_ID%2CEnglish_Name%2CCountry%2CDocumentedTotalArea%2CStatus&f=json";
+        $url="http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/1/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=site_id%3D$siteid&returnGeometry=true&outSR=&outFields=Site_ID%2CEnglish_Name%2CCountry%2CDocumentedTotalArea%2CStatus&f=json";
     
         $data = file_get_contents($url);
         $json = json_decode($data,true);
         
-        return $url;   
+        //return $url;   
         
         $result=array();
         $result['id']=$json['features'][0]['attributes']['Site_ID'];
