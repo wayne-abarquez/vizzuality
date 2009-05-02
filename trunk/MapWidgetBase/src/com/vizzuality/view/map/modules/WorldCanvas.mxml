@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="250" backgroundColor="#FFFFFF" backgroundAlpha="0.85" creationComplete="init()" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="318" backgroundColor="#FFFFFF" backgroundAlpha="0.85" creationComplete="init()" 
 	currentState="loading" xmlns:ns1="com.vizzuality.view.overlay.*" filters="{[glowGrey]}" xmlns:ns2="com.vizzuality.view.loader.*">
 	<mx:states>
 		<mx:State name="loading">
@@ -23,6 +23,18 @@
 				</ns2:GenericLoader>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="Areas">
+			<mx:RemoveChild target="{radiobutton1}"/>
+			<mx:RemoveChild target="{radiobutton2}"/>
+			<mx:SetProperty target="{button1}" name="selected" value="false"/>
+			<mx:SetProperty name="height" value="282"/>
+			<mx:RemoveChild target="{button2}"/>
+			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
+				<mx:Button x="79" label="Areas" bottom="0" styleName="btnMiniTab" height="19" id="button0"
+				buttonMode="true" mouseChildren="false" useHandCursor="true" selected="true"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Countries"/>
 	</mx:states>
 <mx:Script>
 	<![CDATA[
@@ -54,8 +66,17 @@
 
 	<mx:Canvas styleName="softGreenContainer" left="10" right="10" top="136" id="canvas0"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="10">
-		<mx:Label text="WORLD COVERED BY WDPA" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
-		<ns1:WorldCoverage percent="{DataServices.gi().worldStats.coveragePercentage}" horizontalCenter="0" top="27" id="worldcoverage1"/>
+		<mx:Canvas height="50" width="100%" styleName="greenContainer" top="1" id="canvas2">
+			<mx:Button x="75" label="Areas" bottom="0" styleName="btnMiniTab" height="19" id="button2"
+			buttonMode="true" mouseChildren="false" useHandCursor="true"/>
+			<mx:HRule strokeColor="#B5B9A3" strokeWidth="1" width="100%" bottom="0"/>
+			<mx:Button x="9" label="Countries" bottom="0" styleName="btnMiniTab" height="19" selected="true" id="button1"
+				buttonMode="true" mouseChildren="false" useHandCursor="true"/>
+		</mx:Canvas>
+		<mx:Label text="NAVIGATE THROW" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+		<ns1:CountriesCoverage horizontalCenter="0" top="54" id="worldcoverage1"/>
+		<mx:RadioButton x="10" y="126" label="by country coverage" id="radiobutton2"/>
+		<mx:RadioButton x="10" y="145" label="by number of areas" id="radiobutton1"/>
 	</mx:Canvas>
 	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
