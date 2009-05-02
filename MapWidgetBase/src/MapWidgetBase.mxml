@@ -254,12 +254,12 @@
 							AppStates.gi().secondState=AppStates.ABOUT;
 							MapController.gi().updateTileLayers([WdpaLayer.ALL]);				
 							AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
-							SWFAddress.setValue("world/about");
+							SWFAddress.setValue("countries/about");
 						
 					}
 					
 				} else {
-					SWFAddress.setValue("world/about");
+					SWFAddress.setValue("countries/about");
 /* 					AppStates.gi().topState=AppStates.WORLD;
 					AppStates.gi().secondState=AppStates.ABOUT;	
 					MapController.gi().updateTileLayers([WdpaLayer.ALL]);		
