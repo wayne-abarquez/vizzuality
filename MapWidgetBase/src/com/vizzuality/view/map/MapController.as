@@ -239,17 +239,21 @@ package com.vizzuality.view.map
 		}
 		
 		private function onAreaMapClick(event:MapMouseEvent):void {
-/* 			previousCenter=map.getCenter();
-			previousZoomLevel=map.getZoom(); */
-			AppStates.gi().debug("onAreaMapClick");
-
-			
-			DataServices.gi().getAreasByLatLng(event.latLng);
+			if(AppStates.gi().secondState==AppStates.ABOUT) {
+				AppStates.gi().setSecondState('');
+			} else {
+				AppStates.gi().debug("onAreaMapClick");	
+				DataServices.gi().getAreasByLatLng(event.latLng);
+			}
 		}	
 		
 		private function onCountriesMapClick(event:MapMouseEvent):void {
-			DataServices.gi().getCountryByLatLng(event.latLng);
-			AppStates.gi().debug("onCountriesMapClick");
+			if(AppStates.gi().secondState==AppStates.ABOUT) {
+				AppStates.gi().setSecondState('');
+			} else {
+				DataServices.gi().getCountryByLatLng(event.latLng);
+				AppStates.gi().debug("onCountriesMapClick");
+			}
 		}		
 		
 		public function goToPreviousMapPosition():void {
