@@ -12,6 +12,8 @@
 			<mx:RemoveChild target="{button3}"/>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
+			<mx:RemoveChild target="{button2}"/>
+			<mx:RemoveChild target="{button4}"/>
 		</mx:State>
 		<mx:State name="{AppStates.AREA_SELECTOR}">
 			<mx:RemoveChild target="{button3}"/>
@@ -99,7 +101,7 @@
 		<mx:Button label="area details" selected="{(AppStates.gi().secondState==AppStates.AREA_DETAILS)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.AREA_DETAILS):AppStates.gi().setSecondState('');" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button3"/>
 		<mx:Button label="search" selected="{(AppStates.gi().secondState==AppStates.SEARCH)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.SEARCH):AppStates.gi().setSecondState('');" styleName="btnTool"
-			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
+			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button4"/>
 		<mx:Button label="filter" selected="{(AppStates.gi().secondState==AppStates.FILTER)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.FILTER):AppStates.gi().setSecondState('');" id="button2" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
 		<mx:Button label="about" selected="{(AppStates.gi().secondState==AppStates.ABOUT)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.ABOUT):AppStates.gi().setSecondState('');" styleName="btnTool" 

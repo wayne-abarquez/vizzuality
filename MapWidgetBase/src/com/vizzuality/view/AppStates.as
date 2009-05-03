@@ -96,6 +96,10 @@ package com.vizzuality.view
 			else if (topState==PA) {
 				SWFAddress.setValue(gi().topState + '/' +activePaId +'/' + sState);							
 			} 
+			else if(topState==COUNTRIES && sState==FILTER) {
+				SWFAddress.setValue(WORLD + '/' +FILTER);							
+				
+			}
 			else {
 				SWFAddress.setValue(gi().topState + '/' + sState);
 			}
