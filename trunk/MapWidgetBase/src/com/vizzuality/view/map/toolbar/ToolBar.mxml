@@ -12,7 +12,7 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.ABOUT}">
-			<mx:SetProperty name="height" value="100%"/>
+			<mx:SetProperty name="height" value="85%"/>
 			<mx:AddChild position="lastChild">
 				<mx:Text leading="-0.5" 
 					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-46" horizontalCenter="-144"/>
