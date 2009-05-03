@@ -28,16 +28,13 @@
 			<mx:RemoveChild target="{radiobutton2}"/>
 			<mx:SetProperty target="{button1}" name="selected" value="false"/>
 			<mx:SetProperty name="height" value="282"/>
-			<mx:RemoveChild target="{button2}"/>
-			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
-				<mx:Button x="79" label="Areas" bottom="0" styleName="btnMiniTab" height="19" id="button0"
-				buttonMode="true" mouseChildren="false" useHandCursor="true" selected="true"/>
-			</mx:AddChild>
+			<mx:SetProperty target="{button2}" name="selected" value="true"/>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}"/>
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import mx.binding.utils.BindingUtils;
 		import asual.SWFAddress;
 		import com.vizzuality.data.WdpaLayer;
 		import com.vizzuality.view.map.MapController;
@@ -50,6 +47,8 @@
 		import com.vizzuality.services.DataServices;
 		
 		private var ro:RemoteObject;
+		
+		private var loaded:Boolean=false;
 	
 		private function init():void {
 			
@@ -59,13 +58,20 @@
 		}
 		
 		private function onDataLoaded(event:DataServiceEvent):void {			
-			
-			if(AppStates.gi().topState==AppStates.WORLD) {
-				currentState=AppStates.WORLD;
-			} else {
-				currentState=AppStates.COUNTRIES;
+			loaded=true;			
+			BindingUtils.bindSetter(setState,AppStates.gi(),"topState");
+		}
+		
+		private function setState(value:String):void {
+			if(!loaded) {
+				currentState = "loading";
+			}
+			if (value==AppStates.WORLD || value==AppStates.COUNTRIES) {
+				currentState = value;
+				AppStates.gi().worldOrCountries=value;
 			}
 		}
+		
 		
 	]]>
 </mx:Script>
@@ -76,11 +82,11 @@
 		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="10">
 		<mx:Canvas height="50" width="100%" styleName="greenContainer" top="1" id="canvas2">
 			<mx:Button x="75" label="Areas" bottom="0" styleName="btnMiniTab" height="19" id="button2"
-			buttonMode="true" mouseChildren="false" useHandCursor="true" click="SWFAddress.setValue(AppStates.WORLD);currentState=AppStates.WORLD;"/>
+			buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState=AppStates.WORLD;SWFAddress.setValue(AppStates.WORLD);"/>
 			<mx:HRule strokeColor="#B5B9A3" strokeWidth="1" width="100%" bottom="0"/>
 			<mx:Button x="9" label="Countries" bottom="0" styleName="btnMiniTab" height="19" selected="true" id="button1"
-				 click="SWFAddress.setValue(AppStates.COUNTRIES);currentState=AppStates.COUNTRIES;"
-				buttonMode="true" mouseChildren="false" useHandCursor="true"/>
+				buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState='';SWFAddress.setValue(AppStates.COUNTRIES);">
+			</mx:Button>
 		</mx:Canvas>
 		<mx:Label text="NAVIGATE THROW" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 		<ns1:CountriesCoverage horizontalCenter="0" top="54" id="worldcoverage1"/>

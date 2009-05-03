@@ -163,8 +163,8 @@ package com.vizzuality.services
 			}
 			
 			//display the polygon
-			MapController.gi().zoomToBbox(selectedPA.getBbox());
 			MapController.gi().addPa(selectedPA);
+			MapController.gi().zoomToBbox(selectedPA.getBbox());
 			
 			AppStates.gi().activeCountryIsoCode = selectedPA.countryIsoCode;
 			AppStates.gi().activeCountryName = selectedPA.country;
@@ -175,7 +175,7 @@ package com.vizzuality.services
 			
 			
 			//Start loading multimedia resources
-			MediaServices.gi().getAllMedia(selectedPA.getBbox());
+			//MediaServices.gi().getAllMedia(selectedPA.getBbox());
 			
 		}
 		
@@ -250,7 +250,7 @@ package com.vizzuality.services
 		private function onGeoCodeSuccess(event:ResultEvent):void {
 			//roCountries.getCountryByLatLng(latlng.lat(),latlng.lng());
 			MapController.gi().setMapLoaded();
-			SWFAddress.setValue('/'+AppStates.WORLD+'/'+StringUtil.trim(String(event.result)));
+			SWFAddress.setValue('/'+AppStates.COUNTRY+'/'+StringUtil.trim(String(event.result)));
 			
 		}
 		private function onGeoCodeFault(event:FaultEvent):void {

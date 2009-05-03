@@ -3,7 +3,6 @@ package com.vizzuality.view
 	import asual.SWFAddress;
 	
 	import com.vizzuality.services.DataServices;
-	import com.vizzuality.view.map.MapController;
 	
 	import flash.utils.Dictionary;
 	
@@ -34,6 +33,8 @@ package com.vizzuality.view
 		public var topState:String;
 		[Bindable]
 		public var secondState:String;
+		
+		public var worldOrCountries:String=COUNTRIES;
 		
 		public var visibleLayers:Dictionary=new Dictionary();
 		public var mapPositions:Dictionary=new Dictionary();
@@ -103,6 +104,8 @@ package com.vizzuality.view
 			previousAddress=SWFAddress.getPath();
 			trace(previousAddress);
 			SWFAddress.setValue(tState + '/' + sState);
+			if(tState==COUNTRIES || tState==WORLD)
+				worldOrCountries=tState;
 		}
 		
 		public function goToPreviousState():void {

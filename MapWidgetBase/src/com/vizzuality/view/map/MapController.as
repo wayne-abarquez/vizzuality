@@ -86,6 +86,8 @@ package com.vizzuality.view.map
 			
 			map.enableContinuousZoom();
 			
+			AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getDefaultMapPosition();
+			AppStates.gi().mapPositions[AppStates.COUNTRIES] = MapController.gi().getDefaultMapPosition();
 			setMapPosition(getDefaultMapPosition());
 			
 			
@@ -183,6 +185,7 @@ package com.vizzuality.view.map
 			if (oneLevelUp)
 				z=z-1;
 			map.setCenter(bbox.getCenter(),z);
+			AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();			
 		}
 		
 		

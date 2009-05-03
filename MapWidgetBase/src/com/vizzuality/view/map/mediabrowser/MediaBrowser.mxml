@@ -12,9 +12,9 @@
 			private var i : int = 0;
 			
 			private function onCreationComplete():void {
-				dataLength = arr.length;
-				addEventListener(Event.ENTER_FRAME, addComponent);
-				hList.dataProvider = arrAux;
+//				dataLength = arr.length;
+//				addEventListener(Event.ENTER_FRAME, addComponent);
+//				hList.dataProvider = arrAux;
 			}
 			
 			private function addComponent(ev:Event):void{
