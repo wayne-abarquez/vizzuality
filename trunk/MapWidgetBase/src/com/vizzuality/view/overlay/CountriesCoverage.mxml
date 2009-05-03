@@ -8,6 +8,6 @@
 			
 		]]>
 	</mx:Script>
-	<mx:Image x="3" y="3" source="@Embed('/assets/worldCovered.jpg')"/>
+	<mx:Image x="3" y="3" source="@Embed('/assets/country_per_coverage.png')"/>
 	
 </mx:Canvas>

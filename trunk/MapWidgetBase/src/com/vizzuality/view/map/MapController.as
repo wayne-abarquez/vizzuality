@@ -118,7 +118,7 @@ package com.vizzuality.view.map
 		}
 		
 		public function removeClickListenerForAreas():void {
-			if(map.hasEventListener(MapMouseEvent.CLICK)) {
+			if(mapClickCurrentAction=="goToArea") {
 				map.removeEventListener(MapMouseEvent.CLICK, onAreaMapClick);		
 				mapClickCurrentAction=null;	
 			}
@@ -132,7 +132,7 @@ package com.vizzuality.view.map
 		}
 		
 		public function removeClickListenerForCountries():void {
-			if(map.hasEventListener(MapMouseEvent.CLICK)) {
+			if(mapClickCurrentAction=="goToCountry") {
 				map.removeEventListener(MapMouseEvent.CLICK, onCountriesMapClick);		
 				mapClickCurrentAction=null;	
 			}
@@ -241,12 +241,15 @@ package com.vizzuality.view.map
 		private function onAreaMapClick(event:MapMouseEvent):void {
 /* 			previousCenter=map.getCenter();
 			previousZoomLevel=map.getZoom(); */
+			AppStates.gi().debug("onAreaMapClick");
+
 			
 			DataServices.gi().getAreasByLatLng(event.latLng);
 		}	
 		
 		private function onCountriesMapClick(event:MapMouseEvent):void {
 			DataServices.gi().getCountryByLatLng(event.latLng);
+			AppStates.gi().debug("onCountriesMapClick");
 		}		
 		
 		public function goToPreviousMapPosition():void {
