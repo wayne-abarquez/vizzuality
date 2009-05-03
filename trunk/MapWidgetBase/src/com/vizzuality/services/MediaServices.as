@@ -59,7 +59,7 @@ package com.vizzuality.services
 		}		
 		
 		
-		public function getAllMedia(bbox:LatLngBounds):void {
+		public function getAllMedia2(bbox:LatLngBounds):void {
 			getPictures(bbox);
 			getVideos(bbox);
 			getWikipedia(bbox);

@@ -67,8 +67,6 @@
 					
 					switch(event.pathNames[0]) {
 						case(AppStates.WORLD):
-							//control the layer state
-							MapController.gi().updateTileLayersOpacity(0.8);
 							
 							//if there was already a set of layers added at world zoom level use them
 							if((AppStates.gi().visibleLayers[AppStates.WORLD] as Array).length>0) {
@@ -78,18 +76,17 @@
 							else {
 								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
 							}
+							//control the layer state
+							MapController.gi().updateTileLayersOpacity(0.8);
 							
 							//control the map state
-							if(AppStates.gi().mapPositions[AppStates.WORLD] == null) {
-								AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getDefaultMapPosition();
-							}
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
 							
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
 							MapController.gi().clearOverlays();
-							MapController.gi().setClickListenerForAreas();
 							MapController.gi().removeClickListenerForCountries();
+							MapController.gi().setClickListenerForAreas();
 							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];		
@@ -110,11 +107,11 @@
 							}
 							
 							//control the map state
-							if(AppStates.gi().mapPositions[AppStates.COUNTRIES] == null) {
-								AppStates.gi().mapPositions[AppStates.COUNTRIES] = MapController.gi().getDefaultMapPosition();
-							}
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);	
 
+							//control the layer state
+							MapController.gi().updateTileLayersOpacity(0.8);
+							
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
 							MapController.gi().clearOverlays();
@@ -147,8 +144,8 @@
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
 							MapController.gi().clearOverlays();
-							MapController.gi().setClickListenerForAreas();
 							MapController.gi().removeClickListenerForCountries();
+							MapController.gi().setClickListenerForAreas();
 	
 	
 							if(event.pathNames.length==3) {
@@ -223,10 +220,10 @@
 							}
 
 							//control the map state
-							if(AppStates.gi().mapPositions[AppStates.PA] == null) {
-								AppStates.gi().mapPositions[AppStates.PA] = MapController.gi().getMapPosition();
-							} else {
+							if(AppStates.gi().mapPositions[AppStates.PA] != null) {
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.PA]);
+							} else {
+								//AppStates.gi().mapPositions[AppStates.PA] = MapController.gi().getMapPosition();
 							}
 
 							//remove the possibility to click on the areas
@@ -254,12 +251,12 @@
 							AppStates.gi().secondState=AppStates.ABOUT;
 							MapController.gi().updateTileLayers([WdpaLayer.ALL]);				
 							AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
-							SWFAddress.setValue("countries/about");
+							SWFAddress.setValue(AppStates.COUNTRIES+"/"+AppStates.ABOUT);
 						
 					}
 					
 				} else {
-					SWFAddress.setValue("countries/about");
+					SWFAddress.setValue(AppStates.COUNTRIES+"/"+AppStates.ABOUT);
 /* 					AppStates.gi().topState=AppStates.WORLD;
 					AppStates.gi().secondState=AppStates.ABOUT;	
 					MapController.gi().updateTileLayers([WdpaLayer.ALL]);		

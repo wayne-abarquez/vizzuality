@@ -31,10 +31,10 @@ class WDPAServices {
         $result=array();
         $result['id']=$json['features'][0]['attributes']['Site_ID'];
         $result['name']=$json['features'][0]['attributes']['English_Name'];
-        $result['country']=$json['features'][0]['attributes']['Country'];
+        $result['country']="Spain";
         $result['has']=$json['features'][0]['attributes']['Shape_Area'];
         $result['status']=$json['features'][0]['attributes']['Status'];
-        $result['countryIsoCode']=$json['features'][0]['attributes']['Country'];;
+        $result['countryIsoCode']="ES";
         $result['geometry']=$json['features'][0]['geometry'];
         $result['geomType']=$json['geometryType'];
         

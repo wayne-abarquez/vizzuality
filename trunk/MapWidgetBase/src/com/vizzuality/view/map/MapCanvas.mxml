@@ -9,11 +9,7 @@
 				</ns1:WorldCanvas>
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="{AppStates.COUNTRIES}">
-			<mx:AddChild position="lastChild">
-				<ns1:WorldCanvas top="48" visible="{!(AppStates.gi().secondState!='')}" right="20" id="worldcanvas0">
-				</ns1:WorldCanvas>
-			</mx:AddChild>
+		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}">
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
 			<mx:AddChild position="lastChild">
