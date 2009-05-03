@@ -28,6 +28,7 @@ package com.vizzuality.view.map
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.core.Application;
+	import mx.managers.CursorManager;
 	
 	
 	public final class MapController
@@ -194,6 +195,7 @@ package com.vizzuality.view.map
 			//removeClickListenerForAreas();
 			map.disableDragging();
 			map.setDoubleClickMode(MapAction.ACTION_NOTHING);
+			CursorManager.setBusyCursor();
 			
 			if (mapClickCurrentAction!=null) {
 				if(mapClickCurrentAction=="goToArea") {
@@ -215,6 +217,7 @@ package com.vizzuality.view.map
 			bSprite.filters = [emptyFilter];
 			map.enableDragging();
 			map.setDoubleClickMode(MapAction.ACTION_PAN_ZOOM_IN);
+			CursorManager.removeBusyCursor();
 			if(mapClickCurrentAction!=null) {
 				if(mapClickCurrentAction=="goToArea") {
 					map.addEventListener(MapMouseEvent.CLICK, onAreaMapClick);		
