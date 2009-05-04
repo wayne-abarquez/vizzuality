@@ -114,7 +114,7 @@ package com.vizzuality.services
 		private function createRemoteObject():RemoteObject {     
 		    var ro:RemoteObject = new RemoteObject("WDPAServices");   
 		    ro.source="WDPAServices";
-		    ro.endpoint="http://localhost/gateway.php";   
+		    ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/wdpa/gateway.php";   
 		    return ro;   
 		}   		
 		
