@@ -1,0 +1,208 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>OpenLayers Layer Load Monitoring Example</title>
+    <link rel="stylesheet" href="../theme/default/style.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <style type="text/css">
+        #controls {
+            float: right;
+            text-align: right;
+        }
+        #eventsLogID {
+            text-align: left;
+            width: 350px;
+            height: 475px;
+            overflow: auto;
+            border: 1px solid black;
+        }
+.smallmap {
+    width: 512px;
+    height: 512px;
+    border: 1px solid #ccc;
+	float:left;
+}			
+    </style>
+	<script src="OpenLayers.js"></script>
+	<script src="EventMonitoringTMS.js"></script>
+	<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'></script>
+    <script type="text/javascript">
+        var lon = 5;
+        var lat = 40;
+        var zoom = 5;
+        var map, layer, gbif, control;
+
+        function init(){
+
+				eventsLog = OpenLayers.Util.getElement("eventsLogID");
+		
+		
+		
+				OpenLayers.Control.Hover = OpenLayers.Class(OpenLayers.Control, {                
+					defaultHandlerOptions: {
+						'delay': 100,
+						'pixelTolerance': null,
+						'stopMove': false
+					},
+	
+					initialize: function(options) {
+						this.handlerOptions = OpenLayers.Util.extend(
+							{}, this.defaultHandlerOptions
+						);
+						OpenLayers.Control.prototype.initialize.apply(
+							this, arguments
+						); 
+						this.handler = new OpenLayers.Handler.Hover(
+							this,
+							{'pause': this.onPause, 'move': this.onMove},
+							this.handlerOptions
+						);
+					}, 
+	
+					onPause: function(evt) {
+						alert("pause");
+						var msg = 'pause ' + evt.xy;
+						window.status = output.value + msg;
+					},
+	
+					onMove: function(evt) {
+						// if this control sent an Ajax request (e.g. GetFeatureInfo) when
+						// the mouse pauses the onMove callback could be used to abort that
+						// request.
+						window.status = "move";
+					}
+            });
+		
+		
+		
+		
+
+				map = new OpenLayers.Map('map', {
+				   maxExtent: new OpenLayers.Bounds(-20037508.3427892,-20037508.3427892,20037508.3427892,20037508.3427892),
+				   numZoomLevels:18, 
+				   maxResolution:156543.0339, 
+				   units:'m', 
+				   projection: "EPSG:900913",
+				   displayProjection: new OpenLayers.Projection("EPSG:4326"),
+				   controls: [  
+					 new OpenLayers.Control.PanZoomBar(), 
+					 new OpenLayers.Control.Navigation(), 
+					 new OpenLayers.Control.Attribution(),
+					new OpenLayers.Control.LayerSwitcher()
+					],						
+				});
+		
+ 
+                   control = new OpenLayers.Control.Hover({
+                        handlerOptions: {
+                            'delay': 2000
+                        }
+                    });
+				alert(control);
+				map.addControl(control);
+				
+					
+				gbif = new OpenLayers.Layer.TMS("GBIF", "http://eol-map.gbif.org/php/map/getEolTile.php", 
+					{ 'type':'png', isBaseLayer:false, 'getURL': 
+						function(bounds) {
+							return "file:///Users/tim/dev/ibiodiversity/EOLSpeciesMap/html-template/openlayers/tile.png";
+						},
+		
+					});
+		
+				registerEvents(gbif);
+		
+				var gphy = new OpenLayers.Layer.Google("Google Physical",{type: G_PHYSICAL_MAP, 'sphericalMercator': true});
+				registerEvents(gphy);
+				var gmap = new OpenLayers.Layer.Google("Google Streets", {numZoomLevels: 20, 'sphericalMercator': true});
+				var ghyb = new OpenLayers.Layer.Google("Google Hybrid",{type: G_HYBRID_MAP, numZoomLevels: 20, 'sphericalMercator': true});
+				var gsat = new OpenLayers.Layer.Google("Google Satellite",{type: G_SATELLITE_MAP, numZoomLevels: 20, 'sphericalMercator': true});
+				registerEvents(gsat);
+		
+		
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+			map.addControl(new OpenLayers.Control.MousePosition());
+
+            map.setCenter(new OpenLayers.LonLat(0, 0), 1);
+			map.addLayers([gsat, gphy, gmap, ghyb, gbif]);		
+        }
+
+        function registerEvents(layer) {
+
+            layer.logEvent = function(event) {
+                eventsLog.innerHTML += "<br>(" + getTimeStamp() + ") " +
+                                       this.name + ": " + event;
+            }
+
+            layer.events.register("loadstart", layer, function() {
+                this.logEvent("Load Start");
+            });
+
+            layer.events.register("tileloaded", layer, function(e) {
+				// this is the layer
+				this.logEvent(this.isBaseLayer);
+				// e is... event?
+				//this.logEvent("target: " + e.target);
+				//this.logEvent(e.srcElement);
+				
+				// safari:
+				//this.logEvent(window.event.srcElement.src);
+		
+				// firefox:
+				this.logEvent(e.events);
+				
+                this.logEvent("Tile loaded. " + this.numLoadingTiles + " left.");
+            });
+
+            layer.events.register("loadend", layer, function() {
+                this.logEvent("Load End. Grid:" + this.grid.length + "x" + this.grid[0].length);
+            });
+
+            map.addLayer(layer);
+        }
+
+
+        function getTimeStamp() {
+            var date = new Date();
+
+            var timeParts = [
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds()
+            ];
+
+            var timeStamp = timeParts.join(":");
+
+            return timeStamp;
+        }
+
+        function clearLog() {
+            eventsLog.innerHTML = "<b>Events Log:</b>";
+        }
+    </script>
+  </head>
+  <body onload="init()">
+      <h1 id="title">Layer Load Monitoring Example</h1>
+
+      <div id="tags"></div>
+
+      <p id="shortdesc">
+          Demonstrate a method for monitoring tile loading performance.
+      </p>
+
+    <div id="map" class="smallMap"></div>
+
+    <div id="controls">
+        <div id="eventsLogID">
+            <b>Events Log:</b>
+        </div>
+
+        <input type="button" value="Clear" onclick="clearLog()"/>
+    </div>
+
+    <div id="docs">
+    </div>
+	  <div>
+<input type="text" size="100" id="tileUrl"></input>		  
+	  </div>
+  </body>
+</html>
