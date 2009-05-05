@@ -92,7 +92,6 @@
 		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="15"/>
 		<mx:Button label="map" click="changeMapType(MapType.NORMAL_MAP_TYPE,event)" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
-		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="15"/>
 		<!--mx:Button label="countries" click="changeToCountries(event)" id="button1" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true" enabled="true"/ -->
 		<!--<mx:Button label="world" click="AppStates.gi().setAllStates(AppStates.WORLD,'')" id="button0"/>-->

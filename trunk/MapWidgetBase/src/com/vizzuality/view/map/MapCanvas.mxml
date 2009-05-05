@@ -4,25 +4,22 @@
 	currentState="{AppStates.gi().topState}" xmlns:ns2="com.vizzuality.view.overlay.*" xmlns:loader="com.vizzuality.view.loader.*" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
 	<mx:states>
 		<mx:State name="{AppStates.WORLD}">
-			<mx:AddChild position="lastChild">
-				<ns1:WorldCanvas top="48" visible="{!(AppStates.gi().secondState!='')}" right="20" id="worldcanvas">
-				</ns1:WorldCanvas>
+			<mx:AddChild position="before" relativeTo="{loadingBar}">
+				<ns1:WorldCanvas top="48" visible="{!(AppStates.gi().secondState!='')}" right="20" id="worldcanvas"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}">
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
-			<mx:AddChild position="lastChild">
-				<ns1:CountryCanvas top="48" isocode="{AppStates.gi().activeCountryIsoCode}" visible="{!(AppStates.gi().secondState!='')}" right="20" id="countryCanvas">
-				</ns1:CountryCanvas>
+			<mx:AddChild position="before" relativeTo="{loadingBar}">
+				<ns1:CountryCanvas top="48" isocode="{AppStates.gi().activeCountryIsoCode}" visible="{!(AppStates.gi().secondState!='')}" right="20" id="countryCanvas"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
-			<mx:AddChild position="lastChild">
-				<ns1:PaCanvas top="48" siteid="{AppStates.gi().activePaId}" visible="{!(AppStates.gi().secondState!='')}" right="20" id="paCanvas">
-				</ns1:PaCanvas>
+			<mx:AddChild position="before" relativeTo="{loadingBar}">
+				<ns1:PaCanvas top="48" siteid="{AppStates.gi().activePaId}" visible="{!(AppStates.gi().secondState!='')}" right="20" id="paCanvas"/>
 			</mx:AddChild>
-			<mx:AddChild position="lastChild">
+			<mx:AddChild position="before" relativeTo="{loadingBar}">
 				<mediabrowser:MediaBrowser  width="100%" bottom="35" height="60" />
 			</mx:AddChild>
 		</mx:State>
@@ -83,9 +80,9 @@
 			<mx:Canvas height="20" styleName="softYellowContainerRounded" horizontalCenter="0" top="40" id="alertCanvas" alpha="0">
 				<mx:Label horizontalCenter="0" top="0" id="alertLabel" />
 			</mx:Canvas>
-			<loader:GenericLoader id="loadingBar" visible="false" width="140" verticalCenter="0" horizontalCenter="0"/>
 			<map:BreadCrumb id="breadcrumb" top="3" left="7" />
 			<ns2:DiscretLoading left="10" top="41" id="discretLoading"/>
+			<ns2:GeneralLoader id="loadingBar" visible="false" width="100%" height="100%" verticalCenter="0" horizontalCenter="0"/>
 			<toolbar:ToolBar id="toolBar" top="0" left="0" currentState="about" />
 			<!--mx:Label x="294" y="201" id="temp"/ -->
 		</mx:Canvas>

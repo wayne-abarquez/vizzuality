@@ -12,20 +12,20 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.ABOUT}">
-			<mx:SetProperty name="height" value="85%"/>
+			<mx:SetProperty name="height" value="95%"/>
 			<mx:AddChild position="lastChild">
 				<mx:Text leading="-0.5" 
-					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-46" horizontalCenter="-144"/>
+					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-36" horizontalCenter="-144"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-169" horizontalCenter="-366"/>
+				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-159" horizontalCenter="-366"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Text text="World Database of Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
-					leading="-4" verticalCenter="-121" width="225" height="90" letterSpacing="-1" horizontalCenter="-292"/>
+					leading="-4" verticalCenter="-111" width="225" height="90" letterSpacing="-1" horizontalCenter="-292"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="82" horizontalCenter="-147">
+				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="92" horizontalCenter="-147">
 					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="7" left="9"/>
 					<ns1:FeaturedArea x="10" y="33">
 					</ns1:FeaturedArea>
@@ -38,7 +38,7 @@
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<ns1:RightArea verticalCenter="-15" horizontalCenter="291">
+				<ns1:RightArea verticalCenter="-5" horizontalCenter="291">
 				</ns1:RightArea>
 			</mx:AddChild>
 		</mx:State>
