@@ -4,24 +4,55 @@
 		<script src='http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjpkAC9ePGem0lIq5XcMiuhR_wWLPFku8Ix9i2SXYRVK3e45q1BQUd_beF8dtzKET_EteAjPdGDwqpQ'></script>
         <script type="text/javascript">
             var map;
-            function init() {
-				var map = new OpenLayers.Map('map', {
+			var gbif;
+            
+			
+			function init() {
+				map = new OpenLayers.Map('map', {
 				   maxExtent: new OpenLayers.Bounds(-20037508.3427892,-20037508.3427892,20037508.3427892,20037508.3427892),
 				   numZoomLevels:18, 
 				   maxResolution:156543.0339, 
 				   units:'m', 
 				   projection: "EPSG:900913",
 				   displayProjection: new OpenLayers.Projection("EPSG:4326"),
-               controls: [  
-                 new OpenLayers.Control.PanZoomBar(), 
-                 new OpenLayers.Control.Navigation(), 
-                 new OpenLayers.Control.Attribution(),
-				new OpenLayers.Control.LayerSwitcher()
-                ]
+				   controls: [  
+					 new OpenLayers.Control.PanZoomBar(), 
+					 new OpenLayers.Control.Navigation(), 
+					 new OpenLayers.Control.Attribution(),
+					new OpenLayers.Control.LayerSwitcher()
+					],
+			
+					eventListeners: {
+							"mousemove": tim,
+							"moveend": tom
+					}			
 						
 				});
-
-				var gbif = new OpenLayers.Layer.TMS("GBIF", "http://eol-map.gbif.org/php/map/getEolTile.php", 
+				
+			function tim(e) {
+				//window.status=e.xy + ":" + gbif.getId(e.xy) + ":" + map.getLayerPxFromViewPortPx(e.xy) + ":" + gbif.getTopLeft(e.xy);
+			
+				
+			}
+			function tom(e) {
+				//window.status="tom: "+ e.element.childNodes[0].childNodes[0].childNodes[0].childNodes[0].childNodes[0].src;
+				findChild(e.element, "IMG");
+			}
+			
+    function findChild(element, tagName) {
+        var children = element.getElementsByTagName(tagName);
+		window.status="1234: " + children.length;
+			for (var i=0; i<children.length; i++) {
+				children[i].useMap="#planetmap"; //>
+			}
+			window.status="set";
+    }
+			
+			
+			
+			
+			
+				gbif = new OpenLayers.Layer.TMS("GBIF", "http://eol-map.gbif.org/php/map/getEolTile.php", 
 					{ 'type':'png', isBaseLayer:false, 'getURL': 
 						function(bounds) {
 							var res = this.map.getResolution();
@@ -40,7 +71,27 @@
 							}
 							document.getElementById("tileUrl").value=url + path;
 							return url + path;
-						}
+						},
+			
+						'getId':
+						function(viewPortPx) {
+							var bounds = this.getTileBounds(viewPortPx);
+							var res = this.map.getResolution();
+							var x = Math.round ((bounds.left - this.maxExtent.left) / (res * this.tileSize.w));
+							var y = Math.round ((this.maxExtent.top - bounds.top) / (res * this.tileSize.h));
+							var z = this.map.getZoom();
+							return x + "_" + y + "_" + z;
+						},
+			
+						'getTopLeft':
+						function(viewPortPx) {
+							//var bounds = this.getTileBounds(viewPortPx);
+							//var res = this.map.getResolution();
+							//return "tim:" + Math.round ((bounds.left - this.maxExtent.left) / (res))+viewPortPx.x;
+							//return this.map.getLayerPxFromLonLat(viewPortPx);
+							return map.layers[4];
+						},
+						
 					});
 			
 				var gphy = new OpenLayers.Layer.Google("Google Physical",{type: G_PHYSICAL_MAP, 'sphericalMercator': true});
@@ -52,10 +103,12 @@
 				//map.addLayers([gbif]);						
 				var lonLat = new OpenLayers.LonLat(0, 0) ;
 				lonLat.transform(map.displayProjection,map.getProjectionObject());
-				map.setCenter(lonLat, 1);				
+				map.setCenter(lonLat, 1);
+			
+							
             }
 			
-
+			
         </script>
 		<style>
 .smallmap {
@@ -70,6 +123,9 @@
         <div id="map" class="smallmap"></div>
 		<br/>
 		<p>sample tile:</p>
-		<input type="text" size="100" id="tileUrl"></input>    
+		<input type="text" size="100" id="tileUrl"></input>
+		    <map name="planetmap">
+  <area shape="rect" coords="0,0,200,200" href="javascript:go()" alt="Sun" />
+</map>
     </body>
 </html>
