@@ -10,7 +10,6 @@
 			<mx:RemoveChild target="{label1}"/>
 			<mx:RemoveChild target="{hrule2}"/>
 			<mx:RemoveChild target="{label5}"/>
-			<mx:RemoveChild target="{hrule3}"/>
 			<mx:RemoveChild target="{vbox1}"/>
 			<mx:RemoveChild target="{vbox2}"/>
 			<mx:RemoveChild target="{image1}"/>
@@ -101,7 +100,6 @@
 					<mx:CheckBox label="Videos"/>
 				</mx:VBox>
 			</mx:Canvas>
-			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule3"/>
 		</mx:VBox>
 	</mx:VBox>
 	

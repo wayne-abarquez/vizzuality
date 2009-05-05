@@ -254,7 +254,7 @@ package com.vizzuality.services
 			
 		}
 		private function onGeoCodeFault(event:FaultEvent):void {
-			MapController.gi().showMapWarning("You have not clicked in any country",5);
+			MapController.gi().showMapWarning("You have not clicked in any country",2);
 		}
 		
 		
@@ -310,12 +310,12 @@ package com.vizzuality.services
 			
 			if(res.numres==0) {
 				MapController.gi().setMapLoaded();
-				MapController.gi().showMapWarning("No Protected Areas where you have clicked",3);
+				MapController.gi().showMapWarning("No Protected Areas where you have clicked",2);
 				return;
 			}
 			if(res.numres>1) {
 				MapController.gi().setMapLoaded();
-				MapController.gi().showMapWarning("There are too many areas where you have clicked. Please Zoom further",5);
+				MapController.gi().showMapWarning("There are too many areas where you have clicked. Please Zoom further",2);
 				MapController.gi().map.setCenter(clickedLatLng,MapController.gi().map.getZoom()+1);
 				MapController.gi().map.setZoom(MapController.gi().map.getZoom()+1,true);
 				return;
