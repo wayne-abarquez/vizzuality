@@ -28,7 +28,11 @@
 			<mx:RemoveChild target="{radiobutton2}"/>
 			<mx:SetProperty target="{button1}" name="selected" value="false"/>
 			<mx:SetProperty name="height" value="282"/>
-			<mx:SetProperty target="{button2}" name="selected" value="true"/>
+			<mx:RemoveChild target="{button2}"/>
+			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
+				<mx:Button x="75" label="Areas" bottom="0" styleName="btnMiniTab" height="19" id="button0"
+				buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState=AppStates.WORLD;SWFAddress.setValue(AppStates.WORLD);" selected="true"/>
+			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}"/>
 	</mx:states>
