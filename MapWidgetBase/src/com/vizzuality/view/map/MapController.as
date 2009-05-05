@@ -233,9 +233,9 @@ package com.vizzuality.view.map
 			
 			//should only be displayed 4 secs.
 			mapCanvas.alertCanvas.visible=true;
-			mapCanvas.alertLabel.text=text;
+			mapCanvas.alertCanvas.alertText = text;
 			mapCanvas.alertCanvas.alpha=1;
-			TweenLite.to(mapCanvas.alertCanvas,duration,{alpha:0,onComplete:function():void{
+			TweenLite.to(mapCanvas.alertCanvas,duration,{alpha:0,delay:1.3,onComplete:function():void{
 				mapCanvas.alertCanvas.visible=false;
 				}});
 			
