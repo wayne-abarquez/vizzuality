@@ -7,7 +7,6 @@ package com.vizzuality.view.map.overlays
 	import com.google.maps.TileLayerBase;
 	
 	import flash.display.DisplayObject;
-	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.geom.Point;
@@ -20,7 +19,7 @@ package com.vizzuality.view.map.overlays
 		private var staticTileServerUrl:String;
 		private var dynamicTileServerUrl:String;
 		private var zoomChange:Number;
-		private var loader:Loader;		
+		private var loader:CustomTile;		
 		
 		public var ctlo:CustomTileLayerOverlay;
 		
@@ -38,9 +37,9 @@ package com.vizzuality.view.map.overlays
 		
 		public override function loadTile(tile:Point,zoom:Number):DisplayObject {
 			
-			loader = new Loader()
-			loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
-			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loaded,false,0,true);
+			loader = new CustomTile();
+			loader.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
+			loader.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loaded,false,0,true);
 			
 			
            	var tileUrl:String;
@@ -61,7 +60,7 @@ package com.vizzuality.view.map.overlays
            	tileUrl = tileUrl.replace("|Y|",tile.y);	
            	tileUrl = tileUrl.replace("|Z|",zoom);	
            	
-            loader.load(new URLRequest(tileUrl));
+            loader.loader.load(new URLRequest(tileUrl));
 			ctlo.numRunningRequest++;
 			
 			
