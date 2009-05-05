@@ -279,6 +279,7 @@
 					pol.addEventListener(MapMouseEvent.ROLL_OUT,onCountryRollOut);
 					pol.addEventListener(MapMouseEvent.CLICK,onCountryClicked);
 					
+					
 					var country:Country = new Country(c.iso2,attributes,pol,defaultPolOpt,bbox,c.name);
 					countries[pol]=country;
 					countriesArr.push(country);
@@ -295,9 +296,11 @@
 			
 			private function onCountryRollOver(event:MapMouseEvent):void {
 				(event.target as Polygon).setOptions(new PolygonOptions({fillStyle:{alpha : 0.9},strokeStyle:{color:Color.WHITE,thickness: 2}}));
+				map.buttonMode=true;
 			}
 			private function onCountryRollOut(event:MapMouseEvent):void {
 				(event.target as Polygon).setOptions((countries[event.target] as Country).polOpt);
+				map.buttonMode=false;
 			}
 			
 			private function onCountryClicked(event:MapMouseEvent):void {
