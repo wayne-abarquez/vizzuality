@@ -112,16 +112,16 @@ package com.vizzuality.services
 		}
 		
 		private function createRemoteObject():RemoteObject {     
-		    var ro:RemoteObject = new RemoteObject("WDPAServices");   
-		    ro.source="WDPAServices";
-		    ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/wdpa/gateway.php";   
+		    var ro:RemoteObject = new RemoteObject("GenericDestination");   
+		    ro.source="WDPASummary.WDPAQuery";
+		    ro.endpoint="http://development3.unep-wcmc.org/weborb30/console/weborb.aspx";   
 		    return ro;   
 		}   		
 		
 		
 		/**
 		 * 
-		 * 
+		 * 5
 		 * PA
 		 * 
 		 **/
@@ -227,7 +227,15 @@ package com.vizzuality.services
 		}
 		
 		private function onGetWorldStatsResult(event:ResultEvent):void {
-			worldStats = new WorldStats(event.result);
+			var res:Object = event.result[0];
+			
+			worldStats = new WorldStats();
+			worldStats.coveragePercentage = res.CoveragePercentage;
+			worldStats.international = res.InternationalCount;
+			worldStats.marine = res.MarineCount;
+			worldStats.totalAreas = res.TotalAreasCount;
+			worldStats.terrestrial = res.TerrestrialCount;
+			
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.WORLD_DATA_LOADED));
 			MapController.gi().setMapLoaded();
 		}
