@@ -37,14 +37,13 @@ package com.vizzuality.view.map.overlays
 			bmd = new BitmapData(256, 256);
 			bmd.draw(bm.bitmapData);
 			var color:int = bmd.getPixel(evt.localX, evt.localY);
-			if (color.toString(16).toUpperCase()!="FFFFFF") {
+			if (color != 0xFFFFFF) {
 				this.buttonMode=true;
 				
 			} else {
 				this.buttonMode=false;
 				
 			}
-			AppStates.gi().debug(color.toString(16).toUpperCase());
 		}
 		
 		
