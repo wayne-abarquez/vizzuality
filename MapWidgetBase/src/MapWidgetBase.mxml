@@ -77,7 +77,7 @@
 								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
 							}
 							//control the layer state
-							MapController.gi().updateTileLayersOpacity(0.8);
+							//MapController.gi().updateTileLayersOpacity(1);
 							
 							//control the map state
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
@@ -110,7 +110,7 @@
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);	
 
 							//control the layer state
-							MapController.gi().updateTileLayersOpacity(0.8);
+							//MapController.gi().updateTileLayersOpacity(1);
 							
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();

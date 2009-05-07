@@ -99,13 +99,13 @@
 	<mx:HBox right="9" horizontalGap="2" bottom="-1">
 		<mx:Button label="area details" selected="{(AppStates.gi().secondState==AppStates.AREA_DETAILS)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.AREA_DETAILS):AppStates.gi().setSecondState('');" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button3"/>
-		<mx:Button label="search" selected="{(AppStates.gi().secondState==AppStates.SEARCH)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.SEARCH):AppStates.gi().setSecondState('');" styleName="btnTool"
+		<mx:Button label="search" selected="{(AppStates.gi().secondState==AppStates.SEARCH)}" click="(AppStates.gi().secondState=='' || AppStates.gi().secondState!=AppStates.SEARCH)?AppStates.gi().setSecondState(AppStates.SEARCH):AppStates.gi().setSecondState('');" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button4"/>
-		<mx:Button label="filter" selected="{(AppStates.gi().secondState==AppStates.FILTER)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.FILTER):AppStates.gi().setSecondState('');" id="button2" styleName="btnTool"
+		<mx:Button label="filter" selected="{(AppStates.gi().secondState==AppStates.FILTER)}" click="(AppStates.gi().secondState=='' || AppStates.gi().secondState!=AppStates.FILTER)?AppStates.gi().setSecondState(AppStates.FILTER):AppStates.gi().setSecondState('');" id="button2" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
-		<mx:Button label="about" selected="{(AppStates.gi().secondState==AppStates.ABOUT)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.ABOUT):AppStates.gi().setSecondState('');" styleName="btnTool" 
+		<mx:Button label="about" selected="{(AppStates.gi().secondState==AppStates.ABOUT)}" click="(AppStates.gi().secondState=='' || AppStates.gi().secondState!=AppStates.ABOUT)?AppStates.gi().setSecondState(AppStates.ABOUT):AppStates.gi().setSecondState('');" styleName="btnTool" 
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
-		<mx:Button label="help" selected="{(AppStates.gi().secondState==AppStates.HELP)}" click="(AppStates.gi().secondState=='')?AppStates.gi().setSecondState(AppStates.HELP):AppStates.gi().setSecondState('');" styleName="btnTool"
+		<mx:Button label="help" selected="{(AppStates.gi().secondState==AppStates.HELP)}" click="(AppStates.gi().secondState=='' || AppStates.gi().secondState!=AppStates.HELP)?AppStates.gi().setSecondState(AppStates.HELP):AppStates.gi().setSecondState('');" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
 	</mx:HBox>
 	

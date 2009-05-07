@@ -1,5 +1,7 @@
 package com.vizzuality.data
 {
+	import mx.formatters.NumberFormatter;
+	
 	[Bindable]
 	public class WorldStats
 	{
@@ -22,6 +24,7 @@ package com.vizzuality.data
 				this.totalAreas=ob.totalAreas;
 			}
 		}
+		
 
 	}
 }

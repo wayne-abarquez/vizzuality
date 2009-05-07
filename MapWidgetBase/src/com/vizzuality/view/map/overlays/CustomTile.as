@@ -1,6 +1,6 @@
 package com.vizzuality.view.map.overlays
 {
-	import com.vizzuality.view.AppStates;
+	import com.vizzuality.view.map.MapController;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -39,9 +39,11 @@ package com.vizzuality.view.map.overlays
 			var color:int = bmd.getPixel(evt.localX, evt.localY);
 			if (color != 0xFFFFFF) {
 				this.buttonMode=true;
+				MapController.gi().enableClick();
 				
 			} else {
 				this.buttonMode=false;
+				MapController.gi().disableClick();
 				
 			}
 		}
