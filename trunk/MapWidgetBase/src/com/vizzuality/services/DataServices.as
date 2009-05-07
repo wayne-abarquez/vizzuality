@@ -118,7 +118,7 @@ package com.vizzuality.services
 			return instance;
 		}
 		
-		private function createRemoteObject():RemoteObject {     
+		public function createRemoteObject():RemoteObject {     
 		    var ro:RemoteObject = new RemoteObject("GenericDestination");   
 		    ro.source="WDPASummary.WDPAQuery";
 		    ro.endpoint="http://development3.unep-wcmc.org/weborb30/console/weborb.aspx";   
@@ -201,7 +201,8 @@ package com.vizzuality.services
 					dispatchEvent(new DataServiceEvent(DataServiceEvent.COUNTRY_DATA_LOADED));
 				} else {
 					MapController.gi().setMapLoading();
-					roCountry.getCountryStatsByISO(value);
+					//roCountry.getCountryStatsByISO(value);
+					roCountry.getCountryStatsByISO('ESP');
 					resolvingIso=value;
 				}
 			}
@@ -209,7 +210,23 @@ package com.vizzuality.services
 		
 		
 		private function onGetCountryDataResult(event:ResultEvent):void {			
-			selectedCountry = new Country(event.result);
+			var reso:Object = event.result[0];
+			selectedCountry = new Country();
+			selectedCountry.name = reso.Country;
+			selectedCountry.isocode = reso.ISO3;
+			selectedCountry.numberCoral = reso.CoralArea;
+			selectedCountry.numMangrove = reso.MangroveArea;
+			selectedCountry.coveragePercentage = reso.TerrestrialCoveragePercentage + reso.MarineCoveragePercentage;
+			selectedCountry.marineCoveragePercentage = reso.MarineCoveragePercentage;
+			selectedCountry.terrestrialCoveragePercentage = reso.TerrestrialCoveragePercentage;
+			selectedCountry.numAreas = reso.PATotal;
+			selectedCountry.terrestrialNumAreas = reso.PATerrestrialTotal;
+			selectedCountry.marineNumAreas = reso.PAMarineTotal;
+			selectedCountry.bbox = new LatLngBounds(new LatLng(27.638816833496,-18.169641494751),
+													new LatLng(43.7917251586914,4.31538963317871));
+			
+			
+			
 			AppStates.gi().activeCountryIsoCode = selectedCountry.isocode;
 			AppStates.gi().activeCountryName = selectedCountry.name;
 			countriesDict[selectedCountry.isocode]=selectedCountry;

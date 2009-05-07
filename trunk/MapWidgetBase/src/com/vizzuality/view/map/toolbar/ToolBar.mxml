@@ -69,22 +69,15 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.SEARCH}">
-			<mx:SetProperty name="height" value="64"/>
+			<mx:SetProperty name="height" value="170"/>
 			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
-			<mx:AddChild position="lastChild">
-				<mx:Label text="SEARCH FOR PROTECTED AREA" left="13" fontSize="16" fontWeight="normal" fontFamily="DINOT-Medium" color="#375381" top="14"/>
-			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:TextInput borderStyle="solid" cornerRadius="2" left="248" height="22" top="15" width="182"/>
-			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Canvas styleName="softYellowContainer" right="18" left="438" height="22" cornerRadius="2" top="15">
-					<mx:Label text="Start typing to further to get suggestions. When done, click on the area to get details." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
-				</mx:Canvas>
-			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
 					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<ns2:SearchComponent>
+				</ns2:SearchComponent>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.FILTER}">
