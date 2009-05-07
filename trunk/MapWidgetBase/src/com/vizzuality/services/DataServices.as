@@ -26,6 +26,7 @@ package com.vizzuality.services
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
+	import mx.formatters.NumberFormatter;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
@@ -45,6 +46,8 @@ package com.vizzuality.services
 		private var roWorld:RemoteObject;
 		private var roLat:RemoteObject;
 		private var roSearch:RemoteObject;
+		
+		public var nf:NumberFormatter;
 		
 		private var wdpaRestServ:HTTPService = new HTTPService();
 		
@@ -102,6 +105,10 @@ package com.vizzuality.services
 		
 			geocoder.addEventListener(ResultEvent.RESULT,onGeoCodeSuccess);
 			geocoder.addEventListener(FaultEvent.FAULT,onGeoCodeFault);
+			
+			
+			nf=new NumberFormatter();
+			nf.useThousandsSeparator=true;
 		
 		
 		}
@@ -443,7 +450,7 @@ package com.vizzuality.services
 		
 		private function onFault(event:FaultEvent):void {
 			trace(event.message);
-		}			
+		}		
 		
 		
 	}

@@ -60,7 +60,7 @@ package com.vizzuality.view.map
 		
 		private var mapClickCurrentAction:String;
 		
-		private var currentLayersOpacity:Number=0.8;
+		private var currentLayersOpacity:Number=0;
 		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
 		{
@@ -112,33 +112,53 @@ package com.vizzuality.view.map
 		}
 		
 		public function setClickListenerForAreas():void {
-			if(!map.hasEventListener(MapMouseEvent.CLICK)) {
-				map.addEventListener(MapMouseEvent.CLICK, onAreaMapClick);	
-				mapClickCurrentAction="goToArea";	
+			if(!map.hasEventListener(MapMouseEvent.CLICK)) {				
+				map.addEventListener(MapMouseEvent.CLICK, onAreaMapClick);					
 			}
+			mapClickCurrentAction="goToArea";
 		}
 		
-		public function removeClickListenerForAreas():void {
+		public function removeClickListenerForAreas(temporal:Boolean=false):void {
 			if(mapClickCurrentAction=="goToArea") {
 				map.removeEventListener(MapMouseEvent.CLICK, onAreaMapClick);		
-				mapClickCurrentAction=null;	
+				if(!temporal)
+					mapClickCurrentAction=null;	
 			}
 		}
 		
 		public function setClickListenerForCountries():void {
-			if(!map.hasEventListener(MapMouseEvent.CLICK)) {
-				map.addEventListener(MapMouseEvent.CLICK, onCountriesMapClick);		
-				mapClickCurrentAction="goToCountry";	
+			
+			if(mapClickCurrentAction=="goToArea") {
+				removeClickListenerForAreas();
 			}
+			if(!map.hasEventListener(MapMouseEvent.CLICK)) {
+				map.addEventListener(MapMouseEvent.CLICK, onCountriesMapClick);					
+			}		
+			mapClickCurrentAction="goToCountry";	
 		}
 		
-		public function removeClickListenerForCountries():void {
+		
+		public function removeClickListenerForCountries(temporal:Boolean=false):void {
 			if(mapClickCurrentAction=="goToCountry") {
 				map.removeEventListener(MapMouseEvent.CLICK, onCountriesMapClick);		
-				mapClickCurrentAction=null;	
+				if(!temporal)
+					mapClickCurrentAction=null;	
 			}
 		}
 			
+		public function disableClick():void {
+			removeClickListenerForAreas(true);			
+			removeClickListenerForCountries(true);									
+		}
+		
+		public function enableClick():void {
+			if(mapClickCurrentAction=="goToArea") {
+				setClickListenerForAreas();
+			} else if(mapClickCurrentAction=="goToCountry") {
+				setClickListenerForCountries();
+			}			
+		}		
+		
 		
 		public function getMapPosition():MapPosition {
 			return new MapPosition(map.getCenter(),map.getZoom(), map.getCurrentMapType());
@@ -190,20 +210,13 @@ package com.vizzuality.view.map
 		}
 		
 		
-		
 		public function setMapLoading():void {
 			//removeClickListenerForAreas();
 			map.disableDragging();
 			map.setDoubleClickMode(MapAction.ACTION_NOTHING);
 			CursorManager.setBusyCursor();
 			
-			if (mapClickCurrentAction!=null) {
-				if(mapClickCurrentAction=="goToArea") {
-					map.removeEventListener(MapMouseEvent.CLICK, onAreaMapClick);				
-				} else {
-					map.removeEventListener(MapMouseEvent.CLICK, onCountriesMapClick);									
-				}
-			}
+			disableClick();
 			if (bSprite==null) {
 				aSprite = map.getChildAt(1) as Sprite;
 				bSprite = aSprite.getChildAt(0) as Sprite;
@@ -218,13 +231,7 @@ package com.vizzuality.view.map
 			map.enableDragging();
 			map.setDoubleClickMode(MapAction.ACTION_PAN_ZOOM_IN);
 			CursorManager.removeBusyCursor();
-			if(mapClickCurrentAction!=null) {
-				if(mapClickCurrentAction=="goToArea") {
-					map.addEventListener(MapMouseEvent.CLICK, onAreaMapClick);		
-				} else {
-					map.addEventListener(MapMouseEvent.CLICK, onCountriesMapClick);		
-				}
-			}		
+			enableClick();	
 				
 			mapCanvas.loadingBar.visible=false;
 		}	
@@ -242,6 +249,7 @@ package com.vizzuality.view.map
 		}
 		
 		private function onAreaMapClick(event:MapMouseEvent):void {
+			trace("onAreaMapClick");
 			if(AppStates.gi().secondState==AppStates.ABOUT) {
 				AppStates.gi().setSecondState('');
 			} else {
@@ -251,6 +259,7 @@ package com.vizzuality.view.map
 		}	
 		
 		private function onCountriesMapClick(event:MapMouseEvent):void {
+			trace("onCountriesMapClick");
 			if(AppStates.gi().secondState==AppStates.ABOUT) {
 				AppStates.gi().setSecondState('');
 			} else {
@@ -361,6 +370,7 @@ package com.vizzuality.view.map
 			ctl = new CustomTileLayer(WdpaLayer.STATIC_LAYERS[layer],WdpaLayer.DYNAMIC_LAYERS[layer],10);		
 			var ctlo:CustomTileLayerOverlay = new CustomTileLayerOverlay(ctl);
 			ctl.ctlo = ctlo;
+			ctlo.foreground.alpha=0.8;
 			
 			BindingUtils.bindProperty(mapCanvas.discretLoading,"visible",ctlo,"numRunningRequest");
 			
