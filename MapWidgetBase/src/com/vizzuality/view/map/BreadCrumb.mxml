@@ -16,6 +16,7 @@
 			<mx:AddChild position="firstChild">
 				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="{(DataServices.gi().selectedCountry.name).toUpperCase()}" verticalCenter="0" id="countryButton" styleName="breadCrumbButton" enabled="false" height="26" />
 			</mx:AddChild>
+			<mx:SetProperty target="{worldButton}" name="buttonMode" value="true"/>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
 			<mx:AddChild position="firstChild">
