@@ -2,7 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="122" height="94" styleName="whiteBoxBorder" 
 	backgroundSize="100%" filters="{[glowGrey]}"
 	useHandCursor="true" buttonMode="true" mouseChildren="false" 
-	rollOut="handleOut(event)" rollOver="handleOver(event)" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
+	rollOut="handleOut(event)" rollOver="handleOver(event)">
 	<mx:Script>
 		<![CDATA[
 			import com.vizzuality.view.AppStates;

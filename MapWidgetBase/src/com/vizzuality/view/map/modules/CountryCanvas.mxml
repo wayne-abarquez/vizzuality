@@ -28,6 +28,7 @@
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import mx.effects.easing.Exponential;
 		import com.vizzuality.services.DataServiceEvent;
 		import com.vizzuality.view.AppStates;
 		import com.vizzuality.data.Country;
@@ -77,5 +78,11 @@
 	</mx:HBox>
 	<mx:Button label="more info" click="currentState='moreinfo'" horizontalCenter="0" bottom="2" id="button1"/>
 	
-	
+	<mx:transitions>
+		<mx:Transition fromState="*" toState="*">
+			<mx:Parallel targets="{[this]}">
+				<mx:Resize duration="800" easingFunction="{Exponential.easeInOut}" />
+			</mx:Parallel>
+		</mx:Transition>		
+	</mx:transitions>		
 </mx:Canvas>
