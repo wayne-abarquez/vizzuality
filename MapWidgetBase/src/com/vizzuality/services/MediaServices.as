@@ -7,6 +7,7 @@ package com.vizzuality.services
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
+	import com.google.maps.styles.StrokeStyle;
 	import com.vizzuality.data.PA;
 	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.view.map.MapController;
@@ -178,6 +179,7 @@ package com.vizzuality.services
 			infowindow.html=html;					
 			var options2:InfoWindowOptions = new InfoWindowOptions({
                 customContent: infowindow,
+                strokeStyle: new StrokeStyle({thickness: 0}),
                 customOffset: new Point(0, 10),
                 cornerRadius:0,
                 width: 397,
