@@ -3,7 +3,7 @@
 	 currentState="{AppStates.gi().secondState}" styleName="whiteOverlay" backgroundSize="100%" xmlns:ns1="com.vizzuality.view.overlay.about.*" xmlns:ns2="com.vizzuality.view.map.toolbar.*">
 	<mx:states>
 		<mx:State name="{AppStates.HELP}">
-			<mx:SetProperty name="height" value="82"/>
+			<mx:SetProperty name="height" value="90"/>
 			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
 			<mx:AddChild position="lastChild">
 				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
@@ -25,7 +25,7 @@
 				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" right="230" width="1"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:Label y="13" text="Search" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" right="197" width="56"/>
+				<mx:Label y="13" text="Toolbar" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" right="197" width="56"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:HRule strokeWidth="1" strokeColor="#777777" top="5" left="10" width="232"/>
@@ -43,13 +43,7 @@
 				<mx:Text y="31" text="Change the map background" width="174" left="257" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text y="31" text="Explain the different options..." height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" right="14" width="231"/>
-			</mx:AddChild>
-			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" right="180" width="1"/>
-			</mx:AddChild>
-			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:Label y="13" text="Filter" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" right="147" width="56"/>
+				<mx:Text y="31" text="Handle the different information that is showed in the map&#xd;&#xd;" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" right="18" width="231" leading="-3" textAlign="left"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.ABOUT}">
