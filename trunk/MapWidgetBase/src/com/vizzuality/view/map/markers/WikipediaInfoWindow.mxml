@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="397" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundColor="#FFFFFF" fontSize="9" xmlns:components="org.gbif.components.*" height="{(thumbnailImg)?157:128}">
+<mx:Script>
+	<![CDATA[
+		import flash.net.navigateToURL;
+		import mx.core.Application;
+		import mx.managers.PopUpManager;
+		[Bindable]
+		public var title:String;
+		[Bindable]
+		public var html:String;
+		[Bindable]
+		public var wikipediaUrl:String;		
+		[Bindable]
+		public var thumbnailImg:String;				
+			
+	]]>
+</mx:Script>
+<mx:VBox verticalGap="2" width="100%" height="100%" horizontalAlign="center">
+	<mx:Spacer height="2" />
+	<mx:Canvas width="393" height="21" backgroundColor="#86A0AF" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Label x="4" y="0" text="{title}" color="#FFFFFF" fontSize="12"/>
+	</mx:Canvas>
+	<mx:TextArea  width="393" htmlText="{html}" color="#191919" editable="false" borderThickness="0" height="{(thumbnailImg)?99:60}" verticalScrollPolicy="off" horizontalScrollPolicy="off"/>
+	<mx:Label width="393" textAlign="right" text="View in Wikipedia" fontSize="9" color="#484848" textDecoration="underline" fontWeight="bold" useHandCursor="true" buttonMode="true" mouseChildren="false" click="navigateToURL(new URLRequest('http://'+wikipediaUrl));"/>
+	<mx:Spacer height="10" />
+</mx:VBox>
+	
+</mx:Canvas>
