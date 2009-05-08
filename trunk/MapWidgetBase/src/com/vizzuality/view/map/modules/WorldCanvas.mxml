@@ -34,7 +34,12 @@
 				buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState=AppStates.WORLD;SWFAddress.setValue(AppStates.WORLD);" selected="true"/>
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="{AppStates.COUNTRIES}"/>
+		<mx:State name="{AppStates.COUNTRIES}">
+			<mx:RemoveChild target="{worldcoverage1}"/>
+			<mx:AddChild relativeTo="{canvas0}" position="lastChild">
+				<ns1:WorldCoverage horizontalCenter="0" top="54" id="worldcoverage0"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 <mx:Script>
 	<![CDATA[
@@ -93,7 +98,7 @@
 			</mx:Button>
 		</mx:Canvas>
 		<mx:Label text="NAVIGATE THROW" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
-		<ns1:CountriesCoverage horizontalCenter="0" top="54" id="worldcoverage1"/>
+		<ns1:WorldCoverage horizontalCenter="0" top="54" id="worldcoverage1"/>
 		<mx:RadioButton x="10" y="126" label="by country coverage" id="radiobutton2" click="MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_COVERAGE])" selected="true"/>
 		<mx:RadioButton x="10" y="145" label="by number of areas" id="radiobutton1" click="MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_AREAS])"/>
 	</mx:Canvas>
