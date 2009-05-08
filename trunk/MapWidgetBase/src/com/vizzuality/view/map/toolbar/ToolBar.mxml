@@ -16,10 +16,10 @@
 				<mx:Label y="13" text="Zoom control" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" left="17" id="label1"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" left="296"/>
+				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" left="264"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:Label y="13" text="Map Type" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" left="289" fontWeight="normal"/>
+				<mx:Label y="13" text="Map Type" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" left="257" fontWeight="normal"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{label1}" position="before">
 				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" right="230" width="1"/>
@@ -37,10 +37,10 @@
 				<mx:HRule strokeWidth="1" strokeColor="#777777" top="5" right="10" width="250"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text y="31" text="Use the zoom controls to zoom in the map" width="245" left="10" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" textAlign="center"/>
+				<mx:Text y="31" text="Use the zoom controls to zoom in the map" width="211" left="17" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" textAlign="left" leading="-3"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text y="31" text="Change the map background" width="174" left="289" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777"/>
+				<mx:Text y="31" text="Change the map background" width="174" left="257" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Text y="31" text="Explain the different options..." height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" right="14" width="231"/>
@@ -53,46 +53,55 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.ABOUT}">
-			<mx:SetProperty name="height" value="390"/>
+			<mx:SetProperty name="height" value="398"/>
 			<mx:AddChild position="lastChild">
-				<mx:Text leading="-0.5" 
-					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-46" horizontalCenter="-144"/>
+				<mx:Text leading="-0.8" 
+					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-50" horizontalCenter="-144"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-139" horizontalCenter="-366"/>
+				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-160" horizontalCenter="-366"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text text="World Database of Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
-					leading="-4" verticalCenter="-114" width="411" height="40" letterSpacing="-1" horizontalCenter="-197"/>
+				<mx:Text text="World Database of &#xd;Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
+					leading="-6" verticalCenter="-125" width="411" height="64" letterSpacing="-1" horizontalCenter="-199"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="110" horizontalCenter="-147">
-					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="-3" left="9"/>
-					<ns1:FeaturedArea x="10" y="23" click="AppStates.gi().setAllStates(AppStates.PA,'975')">
+				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="86" horizontalCenter="-147">
+					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="6" left="9"/>
+					<ns1:FeaturedArea x="10" y="33" click="AppStates.gi().setAllStates(AppStates.PA,'975')">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedArea x="138" y="23" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
+					<ns1:FeaturedArea x="138" y="33" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedArea x="266" y="23">
+					<ns1:FeaturedArea x="266" y="33">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedExplore x="394" y="23">
+					<ns1:FeaturedExplore x="394" y="33">
 					</ns1:FeaturedExplore>
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<ns1:RightArea verticalCenter="15" horizontalCenter="291">
+				<ns1:RightArea verticalCenter="-11" horizontalCenter="291">
 				</ns1:RightArea>
 			</mx:AddChild>
-		</mx:State>
-		<mx:State name="{AppStates.SEARCH}">
-			<mx:SetProperty name="height" value="124"/>
 			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
 			<mx:AddChild position="lastChild">
 				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
 					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.SEARCH}">
+			<mx:SetProperty name="height" value="225"/>
+			<mx:SetProperty name="styleName"/>
 			<mx:AddChild position="lastChild">
-				<ns2:SearchComponent>
+				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" label="close"
+					useHandCursor="true" mouseChildren="false" buttonMode="true" top="71" height="22"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<ns2:SearchComponent height="224">
 				</ns2:SearchComponent>
+			</mx:AddChild>
+			<mx:AddChild position="firstChild">
+				<mx:Canvas width="100%" height="90" top="0" left="0" styleName="whiteOverlayClose" backgroundSize="100%">
+				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.FILTER}">

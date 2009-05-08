@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="112" creationComplete="init()" >
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" creationComplete="init()" >
 <mx:Script>
 	<![CDATA[
 		import mx.binding.utils.BindingUtils;
@@ -78,14 +78,14 @@
 
 
 	<mx:Text id="labelText" text="SEARCH FOR PROTECTED AREAS WORLDWIDE" left="13" fontSize="16" fontWeight="normal" fontFamily="DINOT-Medium" color="#375381" top="14" width="227" height="62" />
-	<mx:TextInput id="searchInput" change="callService()" 
-		borderStyle="solid" cornerRadius="2" left="248" height="22" top="15" width="182" fontSize="12"/>
-	<mx:Canvas styleName="softYellowContainer" right="18" left="438" height="22" cornerRadius="2" top="15">
+	<mx:TextInput id="searchInput" change="callService()" focusAlpha="0" 
+		borderStyle="solid" cornerRadius="2" left="220" height="22" top="15" width="297" fontSize="13" fontFamily="DINOT-Medium" color="#777777"/>
+	<mx:Canvas styleName="softYellowContainer" right="18" left="525" height="22" cornerRadius="2" top="15">
 		<mx:Label text="Start typing to get a list of matching areas. Click on the name to get details." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
 	</mx:Canvas>
 	<mx:List dataProvider="{searchResults}" labelFunction="getLabel" itemClick="AppStates.gi().setAllStates(AppStates.PA,event.currentTarget.selectedItem.Site_ID);" 
-		y="36" height="69" borderStyle="none" backgroundAlpha="0" left="248" right="18"></mx:List>
-	<mx:Label id="numResults" y="18" text="{DataServices.gi().worldStats.totalAreas} " left="361" color="#A1A1A1" textAlign="right"/>
-	<mx:Image y="19" left="411" source="assets/closebutton_over.png" click="clearForm()" buttonMode="true"/>
+		y="36" height="150" borderStyle="solid"  width="297" left="220" borderColor="#ACACAC" backgroundColor="#FFFFFF" fontFamily="DINOT-Medium" fontSize="12" color="#999999" themeColor="#999999"></mx:List>
+	<mx:Label id="numResults" y="18" text="{DataServices.gi().worldStats.totalAreas} " color="#A1A1A1" textAlign="right" left="406" width="90"/>
+	<mx:Image y="20" left="498" source="assets/closebutton_over.png" click="clearForm()" buttonMode="true"/>
 	
 </mx:Canvas>
