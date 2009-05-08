@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" creationComplete="init()" >
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" creationComplete="init()"  >
 <mx:Script>
 	<![CDATA[
+		import mx.rpc.AsyncToken;
 		import mx.binding.utils.BindingUtils;
 		import com.vizzuality.view.AppStates;
 		import mx.rpc.events.FaultEvent;
@@ -15,6 +16,8 @@
 		private var ro:RemoteObject = DataServices.gi().createRemoteObject();
 		
 		private var state:String = AppStates.WORLD;
+		
+		private var lastSearch:AsyncToken;
 		
 		private function init():void {
 			ro.addEventListener(ResultEvent.RESULT,onResult)
@@ -46,13 +49,34 @@
 		
 		private function callService():void {
 			if (searchInput.text.length>1) {
-				ro.searchAreasByName(searchInput.text);
+				lastSearch = ro.searchAreasByName(searchInput.text);
+				loadingIcon.visible=true;
+				numResults.visible=false;
+				
+			} else {
+				vBox.visible=false;
 			}
 		}	
 		
 		private function onResult(event:ResultEvent):void {
-			searchResults = new ArrayCollection(event.result as Array);
-			numResults.text = searchResults.length.toString();
+			if (event.token == lastSearch) {
+				searchResults = new ArrayCollection(event.result as Array);
+				loadingIcon.visible=false;
+				numResults.visible=true;
+
+				if (searchResults.length<1) {
+					vBox.visible=false;
+				} else {
+					vBox.visible=true;				
+				}
+				
+
+				if(searchResults.length<6) {
+					searchResultsList.rowCount=searchResults.length;
+				} else {
+					searchResultsList.rowCount=6;				
+				}
+			}
 		}
 		
 		private function onFault(event:FaultEvent):void {
@@ -66,11 +90,8 @@
 		private function clearForm():void {
 			searchResults = new ArrayCollection();
 			searchInput.text = '';
-			if(state==AppStates.COUNTRY) { 
-				numResults.text = DataServices.gi().selectedCountry.numAreas.toString();				
-			} else {
-				numResults.text = DataServices.gi().worldStats.totalAreas.toString();
-			}
+			vBox.visible=false;
+			numResults.visible=false;		
 		}
 		
 	]]>
@@ -83,9 +104,13 @@
 	<mx:Canvas styleName="softYellowContainer" right="18" left="525" height="22" cornerRadius="2" top="15">
 		<mx:Label text="Start typing to get a list of matching areas. Click on the name to get details." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
 	</mx:Canvas>
-	<mx:List dataProvider="{searchResults}" labelFunction="getLabel" itemClick="AppStates.gi().setAllStates(AppStates.PA,event.currentTarget.selectedItem.Site_ID);" 
-		y="36" height="150" borderStyle="solid"  width="297" left="220" borderColor="#ACACAC" backgroundColor="#FFFFFF" fontFamily="DINOT-Medium" fontSize="12" color="#999999" themeColor="#999999"></mx:List>
-	<mx:Label id="numResults" y="18" text="{DataServices.gi().worldStats.totalAreas} " color="#A1A1A1" textAlign="right" left="406" width="90"/>
-	<mx:Image y="20" left="498" source="assets/closebutton_over.png" click="clearForm()" buttonMode="true"/>
+	<mx:VBox id="vBox" height="100%" y="36" left="220" visible="false">
+		<mx:List id="searchResultsList" dataProvider="{searchResults}" maxHeight="{vBox.height}" labelFunction="getLabel" itemClick="AppStates.gi().setAllStates(AppStates.PA,event.currentTarget.selectedItem.Site_ID);" 
+		 rowCount="0"
+		 borderStyle="solid"  width="297"  borderColor="#ACACAC" backgroundColor="#FFFFFF" fontFamily="DINOT-Medium" fontSize="12" color="#999999" themeColor="#999999"></mx:List>
+	</mx:VBox>
+	<mx:Label id="numResults" y="18" text="{searchResults.length}" color="#A1A1A1" textAlign="right" left="406" width="90" visible="{searchInput.text.length>0}"/>
+	<mx:SWFLoader id="loadingIcon" y="18" source="@Embed('assets/tinyLoading.swf')" left="479"  width="12" height="12" visible="false"/>
+	<mx:Image y="20" left="498" source="assets/closebutton_over.png" visible="{searchInput.text.length>0}" click="clearForm()" buttonMode="true"/>
 	
 </mx:Canvas>

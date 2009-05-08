@@ -82,7 +82,7 @@
 					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="{AppStates.SEARCH}">
+		<mx:State name="{AppStates.SEARCH}" enterState="focusManager.setFocus(searchComponent.searchInput);">
 			<mx:SetProperty name="height" value="225"/>
 			<mx:SetProperty name="styleName"/>
 			<mx:AddChild position="lastChild">
@@ -90,7 +90,7 @@
 					useHandCursor="true" mouseChildren="false" buttonMode="true" top="71" height="22"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<ns2:SearchComponent height="224">
+				<ns2:SearchComponent id="searchComponent" height="224">
 				</ns2:SearchComponent>
 			</mx:AddChild>
 			<mx:AddChild position="firstChild">
