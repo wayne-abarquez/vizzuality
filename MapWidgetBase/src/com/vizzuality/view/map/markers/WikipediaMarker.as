@@ -1,8 +1,10 @@
 package com.vizzuality.view.map.markers
 {
-	public class WikipediaMarker
+	import flash.display.Sprite;
+	
+	public class WikipediaMarker extends Sprite
 	{
-		[Embed('assets/marker.png')] private var Icon:Class;
+		[Embed('assets/wikipediaIcon.png')] private var Icon:Class;
   
   
 		  public function WikipediaMarker() {

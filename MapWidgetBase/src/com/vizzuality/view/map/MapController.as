@@ -52,9 +52,9 @@ package com.vizzuality.view.map
 		
 		private var paneManager:IPaneManager;
 		private var tileOverlaysPane:IPane;
-		private var polygonPane:IPane;
+		public var polygonPane:IPane;
 		private var picturesPane:IPane;
-		private var wikipediaPane:IPane;
+		public var wikipediaPane:IPane;
 		private var biodiversityPane:IPane;
 		public var infowindowPane:IPane;
 		
@@ -78,12 +78,12 @@ package com.vizzuality.view.map
 		private function init():void {
 			paneManager = map.getPaneManager();
 			var numPanes:Number = paneManager.paneCount;
-			tileOverlaysPane = paneManager.createPane(numPanes+1);
-			polygonPane = paneManager.createPane(numPanes+2);
-			picturesPane = paneManager.createPane(numPanes+3);
-			wikipediaPane = paneManager.createPane(numPanes+4);
-			biodiversityPane = paneManager.createPane(numPanes+5);
-			infowindowPane = paneManager.createPane(numPanes+6);
+			tileOverlaysPane = paneManager.createPane(numPanes);
+			polygonPane = paneManager.createPane(numPanes+1);
+			picturesPane = paneManager.createPane(numPanes+2);
+			wikipediaPane = paneManager.createPane(numPanes+3);
+			biodiversityPane = paneManager.createPane(numPanes+4);
+			infowindowPane = paneManager.createPane(numPanes+5);
 			
 			map.enableContinuousZoom();
 			
@@ -231,6 +231,9 @@ package com.vizzuality.view.map
 			map.enableDragging();
 			map.setDoubleClickMode(MapAction.ACTION_PAN_ZOOM_IN);
 			CursorManager.removeBusyCursor();
+			CursorManager.removeBusyCursor();
+			CursorManager.removeBusyCursor();
+			
 			enableClick();	
 				
 			mapCanvas.loadingBar.visible=false;

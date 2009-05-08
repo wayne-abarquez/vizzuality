@@ -145,6 +145,7 @@ package com.vizzuality.services
 					MapController.gi().zoomToBbox(selectedPA.getBbox());
 				} else {
 					AppStates.gi().debug("Requesting PA: "+value);
+					roArea.showBusyCursor=true;
 					roArea.getPAData(value);
 					resolvingId=value;
 				}
@@ -156,12 +157,15 @@ package com.vizzuality.services
 
 			var res:Object=event.result[0];
 			selectedPA = new PA();
-			selectedPA.geomType = res.GeommetryType;
+			//selectedPA.geomType = res.GeommetryType;
+			selectedPA.geomType = PA.POINT;
 			selectedPA.name=res.English_Name;
 			selectedPA.country=res.Country;
 			selectedPA.id=res.Site_ID;
 			selectedPA.has=res.DocumentedTotalArea;
-			selectedPA.countryIsoCode=res.ISO3;
+			selectedPA.countryIsoCode=res.ISO3;			
+			
+			selectedPA.point = createCircleArea(new LatLng(36.97582451068759,-6.442108154296875),50000);
 			
 /* 			if(selectedPA.geomType==PA.POINT) {
 				selectedPA.point = createCircleArea(res.geometry,selectedPA.has);
@@ -171,20 +175,21 @@ package com.vizzuality.services
 			} */
 			
 			//display the polygon
-			//MapController.gi().addPa(selectedPA);
-			//MapController.gi().zoomToBbox(selectedPA.getBbox());
+			MapController.gi().addPa(selectedPA);
+			MapController.gi().zoomToBbox(selectedPA.getBbox());
 			
 			
 			AppStates.gi().activeCountryIsoCode = selectedPA.countryIsoCode;
 			AppStates.gi().activeCountryName = selectedPA.country;
 			pasDict[selectedPA.id]=selectedPA;
+			activePA= selectedPA;
 			resolvingId=NaN;
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.PA_DATA_LOADED));
 			MapController.gi().setMapLoaded();
 			
 			
 			//Start loading multimedia resources
-			//MediaServices.gi().getAllMedia(selectedPA.getBbox());
+			MediaServices.gi().getAllMedia(selectedPA.getBbox());
 			
 		}
 		
@@ -456,13 +461,13 @@ package com.vizzuality.services
 
 		}
 		
-		private function createCircleArea(geometry:Object, area:Number):Polygon {
+		private function createCircleArea(center:LatLng, area:Number):Polygon {
 			var radius_km:Number = 20;
 			if (!isNaN(area)) {
 				radius_km = Math.sqrt((Number(area)/100)/Math.PI);
 			}
 			var radius:Number = Math.round((Number(radius_km)/1.609)*100000)/100000;
-			var center:LatLng = new LatLng(geometry.points[0][1],geometry.points[0][0]);						
+			//var center:LatLng = new LatLng(geometry.points[0][1],geometry.points[0][0]);															
 			return MapUtils.drawCircle(center.lat(),center.lng(),radius,0x0099FF,1,1,0x0099FF,0.5);						
 		}	
 		

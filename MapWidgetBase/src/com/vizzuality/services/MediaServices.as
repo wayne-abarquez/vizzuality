@@ -1,11 +1,25 @@
 package com.vizzuality.services
 {
 	import com.adobe.serialization.json.JSON;
+	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
+	import com.google.maps.MapMouseEvent;
+	import com.google.maps.overlays.Marker;
+	import com.google.maps.overlays.MarkerOptions;
+	import com.vizzuality.data.PA;
 	import com.vizzuality.utils.MapUtils;
+	import com.vizzuality.view.map.MapController;
+	import com.vizzuality.view.map.markers.ImageInfoWindow;
+	import com.vizzuality.view.map.markers.WikipediaInfoWindow;
+	import com.vizzuality.view.map.markers.WikipediaMarker;
 	
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.Sprite;
 	import flash.events.EventDispatcher;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
 	
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.ResultEvent;
@@ -36,10 +50,6 @@ package com.vizzuality.services
 		public function MediaServices()
 		{
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
-		}
-		
-		public static function gi():MediaServices {
-			return instance;
 			
 			panoramioServ.url="http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=10&size=mini_square";
 			flickrServ.url="http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json" + 
@@ -55,11 +65,16 @@ package com.vizzuality.services
 			wikiGeonamesSrv.addEventListener(ResultEvent.RESULT,onWikiGeonamesResult);
 			flickrServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
 			panoramioServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
+		}
+		
+		public static function gi():MediaServices {
+			return instance;
+			
 			
 		}		
 		
 		
-		public function getAllMedia2(bbox:LatLngBounds):void {
+		public function getAllMedia(bbox:LatLngBounds):void {
 			getPictures(bbox);
 			getVideos(bbox);
 			getWikipedia(bbox);
@@ -100,9 +115,16 @@ package com.vizzuality.services
 		private function onWikiGeonamesResult(event:ResultEvent):void {
 			
 			var jsonObj:Object = JSON.decode(String(event.result))
+			var pa:PA = DataServices.gi().activePA;
 			for each(var w:Object in jsonObj.geonames as Array) {
-				if (MapUtils.pointInPolygon(new LatLng(w.lat, w.lng),DataServices.gi().activePA.geometry)) {
-					wikipedias.addItem(w);  				
+				if (MapUtils.pointInPolygon(new LatLng(w.lat, w.lng),pa.geometry)) {
+					wikipedias.addItem(w);  
+					
+					
+					
+					var marker:Marker = createWikipediaMarker(w);
+					MapController.gi().wikipediaPane.addOverlay(marker);
+									
 				}
 			}		
 			
@@ -134,6 +156,89 @@ package com.vizzuality.services
 			wikipedias=new ArrayCollection();
 			youtubes=new ArrayCollection();
 		}	
+		
+		
+		private function createWikipediaMarker(w:Object):Marker {
+			
+			var latlng:LatLng = new LatLng(w.lat, w.lng);		      	
+	        var marker:Marker = new Marker(latlng, new MarkerOptions(
+			       	{tooltip: w.title,
+			       	 draggable:false,
+			       	 icon: new WikipediaMarker()}));	
+			
+			var infowindow:WikipediaInfoWindow= new WikipediaInfoWindow();	        
+				infowindow.title=w.title;
+				infowindow.wikipediaUrl=w.wikipediaUrl;
+				infowindow.thumbnailImg=w.thumbnailImg;
+				
+			var html:String = "";
+			if (w.thumbnailImg!=null) {html+='<img src="'+w.thumbnailImg+'" />';}
+			html+=w.summary; 
+				
+			infowindow.html=html;					
+			var options2:InfoWindowOptions = new InfoWindowOptions({
+                customContent: infowindow,
+                customOffset: new Point(0, 10),
+                cornerRadius:0,
+                width: 397,
+                drawDefaultFrame: true					
+			});
+			marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
+				//marker.openInfoWindow(options2);
+				MapController.gi().map.openInfoWindow(e.latLng,options2);
+				
+				//This is a hack so that infowindows appear above the polygons.
+				//HACK TODO!!
+				MapController.gi().map.getPaneManager().placePaneAt(MapController.gi().polygonPane,1);
+			});
+			
+			return marker;
+		}		
+		
+		private function createFlickrMarker(bitmap:Bitmap,photo:Object):Marker {
+			
+			var bmd:BitmapData = Bitmap(bitmap).bitmapData;
+			var bmd2:BitmapData = new BitmapData(32,32)
+			var m:Matrix = new Matrix();
+			m.scale(0.43,0.43);
+			bmd2.draw(bmd,m);		
+			var sp:Sprite= new Sprite();
+            sp.graphics.lineStyle(3,0xFF0071);
+            sp.graphics.beginFill(0xFFFFFF,0);
+            sp.graphics.drawRect(0,0,31,31);
+            sp.graphics.endFill();
+            bmd2.draw(sp);
+			var iconBitmap:Bitmap= new Bitmap(bmd2);
+			
+			var latlng:LatLng = new LatLng(photo.latitude, photo.longitude);
+	      	var photoUrl:String = "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg";
+	      	
+	       var marker:Marker = new Marker(latlng, new MarkerOptions(
+	       	{tooltip: photo.title,
+	       	 draggable:false,
+	       	 icon: iconBitmap}));		        
+                
+	    	var infowindow:ImageInfoWindow= new ImageInfoWindow();
+        	infowindow.ownerName=photo.ownername;
+        	infowindow.ownerURL="http://www.flickr.com/"+photo.owner;
+        	infowindow.title=photo.title;
+        	infowindow.photoFileURL=photoUrl;
+        	infowindow.photoURL="http://www.flickr.com/photos/"+photo.owner+"/"+photo.id;
+        	infowindow.source="flickr";
+        	infowindow.photoId="flickr"+photo.id;
+	       	
+	   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
+	            customContent: infowindow,
+	            customOffset: new Point(0, 10),
+	            width: 215,
+	            drawDefaultFrame: true					
+			});  	 
+	        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
+	      		marker.openInfoWindow(optionsMark);          
+	        });      
+	        
+	        return marker;			
+		} 		
 		
 
 	}
