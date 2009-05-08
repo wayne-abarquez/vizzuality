@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="250" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="359" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
 	currentState="loading" xmlns:overlay="com.vizzuality.view.overlay.*"  filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*">
 	<mx:states>
 		<mx:State name="loading">
@@ -16,14 +16,6 @@
 				</ns1:GenericLoader>
 			</mx:AddChild>
 			<mx:SetProperty name="height" value="60"/>
-		</mx:State>
-		<mx:State name="moreinfo">
-			<mx:AddChild position="lastChild">
-				<mx:Button x="171" y="185" label="less info" click="currentState=''"/>
-			</mx:AddChild>
-			<mx:SetProperty name="width" value="706"/>
-			<mx:SetProperty name="height" value="248"/>
-			<mx:RemoveChild target="{button1}"/>
 		</mx:State>
 	</mx:states>
 <mx:Script>
@@ -57,7 +49,7 @@
 	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
 
 	<mx:Canvas styleName="softGreenContainer" left="10" right="10" top="136" id="canvas0"
-		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="10">
+		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="110">
 		<mx:Label text="COUNTRY COVERED BY WDPA" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 		<overlay:CountryCoverage percent="{DataServices.gi().selectedCountry.coveragePercentage}" horizontalCenter="0" top="27" id="worldcoverage1"/>
 	</mx:Canvas>
@@ -76,7 +68,6 @@
 		<mx:Label text="|" id="label2" fontSize="11" fontFamily="DINOT-Bold" color="#4F4F4F" width="8" textAlign="center"/>
 		<mx:Label text="{Math.floor((DataServices.gi().selectedCountry.terrestrialNumAreas * 100) / DataServices.gi().selectedCountry.numAreas) +'% TERRESTRIAL'}" id="label9" color="#FF5A00" fontSize="11" fontFamily="DINOT-Bold"/>
 	</mx:HBox>
-	<mx:Button label="more info" click="currentState='moreinfo'" horizontalCenter="0" bottom="2" id="button1"/>
 	
 	<mx:transitions>
 		<mx:Transition fromState="*" toState="*">
@@ -85,4 +76,15 @@
 			</mx:Parallel>
 		</mx:Transition>		
 	</mx:transitions>		
+	<mx:Canvas styleName="greenContainer" id="canvas2"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off" y="239" left="10" right="10">
+		<mx:Label text="WDPA-MARINE LAYERS" id="label3" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+		<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
+			<mx:CheckBox label="Coral (15% COVERED)"/>
+			<mx:CheckBox label="SaltMarsh (15% COVERED)"/>
+			<mx:CheckBox label="SeaGrass (15% COVERED)"/>
+			<mx:CheckBox label="Mangroves (15% COVERED)"/>
+		</mx:VBox>
+	</mx:Canvas>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="239" id="hrule0"/>
 </mx:Canvas>
