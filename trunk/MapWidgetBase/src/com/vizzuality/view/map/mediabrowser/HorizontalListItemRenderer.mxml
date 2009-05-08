@@ -35,7 +35,7 @@
 	
 	<mx:Zoom id="zoomAll" zoomWidthTo="1.2" zoomHeightTo="1.2" zoomWidthFrom="1" zoomHeightFrom="1" duration="200"/>
 
-	<mx:Image id="imageItem" source="{data.src}" height="55" width="74"  x="1" y="0" />
+	<mx:Image id="imageItem" source="{data.thumbnail}" height="55" width="74"  x="1" y="0" />
 	<mx:Image id="imageItemOver" source="@Embed('/assets/capa.png')" x="1" y="0" height="55" width="74" visible="false"/>
 	
 </mx:Canvas>

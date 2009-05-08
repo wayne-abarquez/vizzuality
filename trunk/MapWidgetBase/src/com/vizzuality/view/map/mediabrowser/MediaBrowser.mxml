@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" addedToStage="onCreationComplete()">
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="onCreationComplete()">
 
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.services.DataServiceEvent;
+			import com.vizzuality.services.MediaServices;
 			import mx.collections.ArrayCollection;
 			import mx.events.SliderEvent;
 			
 			[Bindable]
 			private var arrAux: ArrayCollection = new ArrayCollection();
+			private var arr:Array;
 			private var dataLength : int;
 			private var i : int = 0;
 			
 			private function onCreationComplete():void {
-//				dataLength = arr.length;
-//				addEventListener(Event.ENTER_FRAME, addComponent);
-//				hList.dataProvider = arrAux;
+				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,onPicturesLoaded);
+			}
+			
+			private function onPicturesLoaded(event:DataServiceEvent):void {
+				dataLength = MediaServices.gi().pictures.length;
+				addEventListener(Event.ENTER_FRAME, addComponent);
+				arr = MediaServices.gi().pictures.source;
+				hList.dataProvider = arr;
 			}
 			
 			private function addComponent(ev:Event):void{
@@ -46,32 +54,6 @@
 			}
 		]]>
 	</mx:Script>
-	<mx:Array id="arr">
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-		<mx:Object src="assets/duck.jpg" />
-		<mx:Object src="assets/sergio.jpg" />
-	</mx:Array>
 
 	<mx:Button label="&lt;" click="prev();"  width="34" toolTip="Previous"/>
 	<mx:HorizontalList id="hList" 				
