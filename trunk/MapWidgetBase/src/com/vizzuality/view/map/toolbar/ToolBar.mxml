@@ -68,9 +68,9 @@
 			<mx:AddChild position="lastChild">
 				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="110" horizontalCenter="-147">
 					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="-3" left="9"/>
-					<ns1:FeaturedArea x="10" y="23">
+					<ns1:FeaturedArea x="10" y="23" click="AppStates.gi().setAllStates(AppStates.PA,'975')">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedArea x="138" y="23">
+					<ns1:FeaturedArea x="138" y="23" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
 					</ns1:FeaturedArea>
 					<ns1:FeaturedArea x="266" y="23">
 					</ns1:FeaturedArea>

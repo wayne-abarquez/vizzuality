@@ -145,7 +145,7 @@ package com.vizzuality.services
 					MapController.gi().zoomToBbox(selectedPA.getBbox());
 				} else {
 					AppStates.gi().debug("Requesting PA: "+value);
-					roArea.getPaData(value);
+					roArea.getPAData(value);
 					resolvingId=value;
 				}
 			}
@@ -154,24 +154,26 @@ package com.vizzuality.services
 		
 		private function onGetPaDataResult(event:ResultEvent):void {			
 
-			var res:Object=event.result;
+			var res:Object=event.result[0];
 			selectedPA = new PA();
-			selectedPA.geomType = res.geomType;
-			selectedPA.name=res.name;
-			selectedPA.country=res.country;
-			selectedPA.id=res.id;
-			selectedPA.has=res.has;
-			selectedPA.countryIsoCode=res.countryIsoCode;
-			if(selectedPA.geomType==PA.POINT) {
+			selectedPA.geomType = res.GeommetryType;
+			selectedPA.name=res.English_Name;
+			selectedPA.country=res.Country;
+			selectedPA.id=res.Site_ID;
+			selectedPA.has=res.DocumentedTotalArea;
+			selectedPA.countryIsoCode=res.ISO3;
+			
+/* 			if(selectedPA.geomType==PA.POINT) {
 				selectedPA.point = createCircleArea(res.geometry,selectedPA.has);
 			}
 			else if (selectedPA.geomType==PA.POLYGON) {
 				selectedPA.polygon = createPolygon(res.geometry);	
-			}
+			} */
 			
 			//display the polygon
-			MapController.gi().addPa(selectedPA);
-			MapController.gi().zoomToBbox(selectedPA.getBbox());
+			//MapController.gi().addPa(selectedPA);
+			//MapController.gi().zoomToBbox(selectedPA.getBbox());
+			
 			
 			AppStates.gi().activeCountryIsoCode = selectedPA.countryIsoCode;
 			AppStates.gi().activeCountryName = selectedPA.country;
