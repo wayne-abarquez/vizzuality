@@ -24,7 +24,7 @@
 	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
 	
 	<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4" />
-	<mx:Text id="txt" x="3" y="64" text="WORLD PROTECTED&#xd;AREAS MAP" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
+	<mx:Text id="txt" x="3" y="64" text="YOSEMITE NATIONAL &#xd;PARK [US]" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
 	<mx:Canvas id="overCanvas" height="60" backgroundSize="100%" styleName="featuredAreaOver" left="4" right="5" top="4" alpha="0" />
 	
 </mx:Canvas>

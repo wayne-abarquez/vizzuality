@@ -3,29 +3,29 @@
 	 currentState="{AppStates.gi().secondState}" styleName="whiteOverlay" backgroundSize="100%" xmlns:ns1="com.vizzuality.view.overlay.about.*" xmlns:ns2="com.vizzuality.view.map.toolbar.*">
 	<mx:states>
 		<mx:State name="{AppStates.HELP}">
-			<mx:SetProperty name="height" value="50"/>
+			<mx:SetProperty name="height" value="82"/>
 			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
 			<mx:AddChild position="lastChild">
 				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
 					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" left="125"/>
+				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" left="25"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Label y="13" text="Zoom control" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#777777" left="87" id="label1"/>
+				<mx:Label y="13" text="Zoom control" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" left="17" id="label1"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" left="316"/>
+				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" left="296"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:Label y="13" text="Map Type" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#777777" left="289"/>
+				<mx:Label y="13" text="Map Type" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" left="289" fontWeight="normal"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" right="135" width="1"/>
+				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" right="230" width="1"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{label1}" position="before">
-				<mx:Label y="13" text="Tools" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#777777" right="107" width="56"/>
+				<mx:Label y="13" text="Search" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" right="197" width="56"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:HRule strokeWidth="1" strokeColor="#777777" top="5" left="10" width="232"/>
@@ -36,40 +36,55 @@
 			<mx:AddChild position="lastChild">
 				<mx:HRule strokeWidth="1" strokeColor="#777777" top="5" right="10" width="250"/>
 			</mx:AddChild>
-		</mx:State>
-		<mx:State name="{AppStates.ABOUT}">
-			<mx:SetProperty name="height" value="100%"/>
 			<mx:AddChild position="lastChild">
-				<mx:Text leading="-0.5" 
-					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-36" horizontalCenter="-144"/>
+				<mx:Text y="31" text="Use the zoom controls to zoom in the map" width="245" left="10" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" textAlign="center"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-159" horizontalCenter="-366"/>
+				<mx:Text y="31" text="Change the map background" width="174" left="289" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Text y="31" text="Explain the different options..." height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" right="14" width="231"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{label1}" position="before">
+				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" right="180" width="1"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{label1}" position="before">
+				<mx:Label y="13" text="Filter" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" right="147" width="56"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.ABOUT}">
+			<mx:SetProperty name="height" value="390"/>
+			<mx:AddChild position="lastChild">
+				<mx:Text leading="-0.5" 
+					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-46" horizontalCenter="-144"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-139" horizontalCenter="-366"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Text text="World Database of Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
-					leading="-4" verticalCenter="-111" width="225" height="90" letterSpacing="-1" horizontalCenter="-292"/>
+					leading="-4" verticalCenter="-114" width="411" height="40" letterSpacing="-1" horizontalCenter="-197"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="92" horizontalCenter="-147">
-					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="7" left="9"/>
-					<ns1:FeaturedArea x="10" y="33">
+				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="110" horizontalCenter="-147">
+					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="-3" left="9"/>
+					<ns1:FeaturedArea x="10" y="23">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedArea x="138" y="33">
+					<ns1:FeaturedArea x="138" y="23">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedArea x="266" y="33">
+					<ns1:FeaturedArea x="266" y="23">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedExplore x="394" y="33">
+					<ns1:FeaturedExplore x="394" y="23">
 					</ns1:FeaturedExplore>
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<ns1:RightArea verticalCenter="-5" horizontalCenter="291">
+				<ns1:RightArea verticalCenter="15" horizontalCenter="291">
 				</ns1:RightArea>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.SEARCH}">
-			<mx:SetProperty name="height" value="170"/>
+			<mx:SetProperty name="height" value="124"/>
 			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
 			<mx:AddChild position="lastChild">
 				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
@@ -166,13 +181,25 @@
 		]]>
 	</mx:Script>
 	
-	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
+
 
 	<mx:transitions>
-		<mx:Transition id="myTransition" fromState="*" toState="*">
-			<mx:Parallel id="t1" targets="{[this]}">
+		<mx:Transition fromState="*" toState="">
+			<mx:Parallel targets="{[this]}">
 				<mx:Resize duration="800" easingFunction="{Exponential.easeInOut}" />
+				<mx:Fade alphaTo="0" alphaFrom="1" duration="800" />
 			</mx:Parallel>
 		</mx:Transition>
+		<mx:Transition fromState="" toState="*">
+			<mx:Parallel targets="{[this]}">
+				<mx:Resize duration="800" easingFunction="{Exponential.easeInOut}" />
+				<mx:Fade alphaTo="1" alphaFrom="0" duration="800" />
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition fromState="*" toState="*">
+			<mx:Parallel targets="{[this]}">
+				<mx:Resize duration="800" easingFunction="{Exponential.easeInOut}" />
+			</mx:Parallel>
+		</mx:Transition>		
 	</mx:transitions>	
 </mx:Canvas>

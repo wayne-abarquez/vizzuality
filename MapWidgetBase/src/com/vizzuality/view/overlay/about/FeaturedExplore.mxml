@@ -23,8 +23,8 @@
 	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
 	
 	<mx:Canvas id="gradCanvas" styleName="bkgOrange" left="4" right="5" top="4" bottom="5" backgroundSize="100%"/>
-	<mx:Text text="EXPLORE THE &#xd;WHOLE MAP" textAlign="center" leading="-3" 
+	<mx:Text text="EXPLORE THE &#xd;ALL AREAS" textAlign="center" leading="-3" 
 		fontFamily="DINOT-Bold" color="#c5922b" fontSize="15" horizontalCenter="-1" verticalCenter="-1" selectable="false"/>
-	<mx:Text text="EXPLORE THE &#xd;WHOLE MAP" textAlign="center" leading="-3" 
+	<mx:Text text="EXPLORE THE &#xd;ALL AREAS" textAlign="center" leading="-3" 
 		fontFamily="DINOT-Bold" color="#FFFFFF" fontSize="15" horizontalCenter="0" verticalCenter="0" selectable="false"/>
 </mx:Canvas>
