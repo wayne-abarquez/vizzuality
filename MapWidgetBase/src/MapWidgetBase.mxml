@@ -31,6 +31,19 @@
 			public var map:Map;
 			
 			private function initApp():void {
+				var externalDomains:Array=[
+					"farm1.static.flickr.com",
+					"farm2.static.flickr.com",
+					"farm3.static.flickr.com",
+					"farm4.static.flickr.com",
+					"ws.geonames.org"];
+				for each(var dom:String in externalDomains) {
+				    Security.allowDomain(dom);
+				    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
+				    var request:URLRequest = new URLRequest("http://"+dom+"/crossdomain.xml");
+				    var loader:URLLoader = new URLLoader();
+				    loader.load(request);				
+				}					
 				
 				//Modify Tooltip behaviour so that it show inmediately
 				ToolTipManager.showDelay = 0;

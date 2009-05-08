@@ -53,7 +53,7 @@ package com.vizzuality.view.map
 		private var paneManager:IPaneManager;
 		private var tileOverlaysPane:IPane;
 		public var polygonPane:IPane;
-		private var picturesPane:IPane;
+		public var picturesPane:IPane;
 		public var wikipediaPane:IPane;
 		private var biodiversityPane:IPane;
 		public var infowindowPane:IPane;
