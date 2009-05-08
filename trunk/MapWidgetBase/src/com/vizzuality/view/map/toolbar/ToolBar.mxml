@@ -121,7 +121,7 @@
 					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Canvas y="1" width="821" height="194" horizontalCenter="0">
+				<mx:Canvas y="1" width="821" height="194" horizontalCenter="0" id="canvas2">
 					<mx:HBox verticalAlign="middle" horizontalGap="2" top="14" x="15">
 						<mx:Text text="YELLOWSTONE" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
 							leading="-4" letterSpacing="-1" paddingTop="0" paddingBottom="6"/>
@@ -130,13 +130,13 @@
 							<mx:Label text="lb" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" textAlign="center" width="100%" height="100%"/>
 						</mx:Canvas>
 					</mx:HBox>
-					<mx:Button click="AppStates.gi().setSecondState('')" styleName="invisibleButton" height="15" label="view more images"
-						useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="170" textDecoration="underline" x="207"/>
+					<mx:Button click="AppStates.gi().setSecondState('')" styleName="invisibleButton" height="15" label="view GBIF biodiversity data "
+						useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="169" textDecoration="underline" x="385"/>
 					<mx:Canvas width="296" height="65" styleName="softWhiteGreyContainer" top="48" id="canvas1" x="15">
 						<mx:Label y="3" text="United States" fontSize="16" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" left="5" right="130"/>
 						<mx:Label y="25" text="location: -10.54535435, 44.4234234" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
-						<mx:Label y="40" text="total area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102"/>
-						<mx:Label y="5.2" text="view in google earth" fontSize="12" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" right="25" textDecoration="underline" textAlign="right"/>
+						<mx:Label y="40" text="total area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102" id="label4"/>
+						<mx:Label y="5.2" text="view in google earth" fontSize="12" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" right="25" textDecoration="underline" textAlign="right" id="label5"/>
 						<mx:Image y="9" source="@Embed('/com/vizzuality/style/assets/iconGearth.png')"  right="8"/>
 					</mx:Canvas>
 					<mx:HBox verticalGap="0" horizontalGap="0" top="116" x="15">
@@ -148,28 +148,79 @@
 					<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315">
 						<mx:Image source="@Embed('/assets/mapFoo.png')" left="3" top="3" bottom="3" scaleContent="false"/>
 					</mx:Canvas>
-					<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="49" x="540"/>
-					<mx:HBox horizontalGap="-3" top="75" x="540">
-						<mx:Label text="Established at" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-						<mx:Label text="1872" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-					</mx:HBox>
-					<mx:HBox horizontalGap="-3" top="93" x="540">
-						<mx:Label text="Currently" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-						<mx:Label text="Open" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-					</mx:HBox>
-					<mx:HBox horizontalGap="-3" top="110" x="540">
-						<mx:Label text="Designated," fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-						<mx:Label text="National Park" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-					</mx:HBox>
-					<mx:HBox horizontalGap="-3" top="127" x="540">
-						<mx:Label text="Site gov." fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-						<mx:Label text="Government Managed Protected Areas" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-					</mx:HBox>
-					<mx:HBox horizontalGap="-3" top="144" x="540">
-						<mx:Label text="Management Effectiveness Assessed." fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-						<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-					</mx:HBox>
+					<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="41" x="540" id="label3"/>
+					<mx:VBox x="541" y="65" verticalGap="-5" id="vbox1">
+						<mx:HBox horizontalGap="-3" id="hbox6">
+							<mx:Label text="Established at" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+							<mx:Label text="1872" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox1">
+							<mx:Label text="Currently" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" id="label7"/>
+							<mx:Label text="Open" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" id="label8"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox2">
+							<mx:Label text="Designated," fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" id="label2"/>
+							<mx:Label text="National Park" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox3">
+							<mx:Label text="Site gov." fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+							<mx:Label text="Government Managed Protected Areas" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox4">
+							<mx:Label text="Management Authority" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+							<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox5">
+							<mx:Label text="Management Effectiveness " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+							<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+					</mx:VBox>
 				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="NATIONAL" basedOn="{AppStates.AREA_DETAILS}"/>
+		<mx:State name="INTERNATIONAL" basedOn="{AppStates.AREA_DETAILS}">
+			<mx:SetProperty target="{label7}" name="text" value="Criteria"/>
+			<mx:SetProperty target="{label8}" name="text" value="No"/>
+		</mx:State>
+		<mx:State name="NATIONAL_MARINE" basedOn="NATIONAL">
+			<mx:SetStyle target="{label4}" name="right" value="167"/>
+			<mx:AddChild relativeTo="{label5}" position="before">
+				<mx:Label y="40" text="marine area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="157" right="5" id="label0"/>
+			</mx:AddChild>
+			<mx:SetProperty name="height" value="232"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="221"/>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox horizontalGap="-3" id="hbox0">
+					<mx:Label text="Nº Take Regulation" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+					<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+				</mx:HBox>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox horizontalGap="-3" id="hbox7">
+					<mx:Label text="Nº TakeArea" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+					<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+				</mx:HBox>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="INTERNATIONAL_MARINE" basedOn="INTERNATIONAL">
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Label y="40" text="marine area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="157" right="5" id="label6"/>
+			</mx:AddChild>
+			<mx:SetProperty name="height" value="232"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="221"/>
+			<mx:SetStyle target="{label3}" name="top" value="41"/>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox horizontalGap="-3" id="hbox8">
+					<mx:Label text="Nº Take Regulation" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+					<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+				</mx:HBox>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox horizontalGap="-3" id="hbox9">
+					<mx:Label text="Nº Take Area" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+					<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+				</mx:HBox>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
