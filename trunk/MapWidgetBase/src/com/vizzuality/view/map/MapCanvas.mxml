@@ -5,19 +5,19 @@
 	<mx:states>
 		<mx:State name="{AppStates.WORLD}">
 			<mx:AddChild position="before" relativeTo="{alertCanvas}">
-				<ns1:WorldCanvas top="18" visible="{!(AppStates.gi().secondState!='')}" right="18" id="worldcanvas"/>
+				<ns1:WorldCanvas top="18" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="{!(AppStates.gi().secondState!='')}" right="18" id="worldcanvas"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}">
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
 			<mx:AddChild position="before" relativeTo="{alertCanvas}">
-				<ns1:CountryCanvas top="20" isocode="{AppStates.gi().activeCountryIsoCode}" visible="{!(AppStates.gi().secondState!='')}" right="20" id="countryCanvas"/>
+				<ns1:CountryCanvas top="20" isocode="{AppStates.gi().activeCountryIsoCode}" showEffect="{fadeIn}" hideEffect="{fadeOut}"  visible="{!(AppStates.gi().secondState!='')}" right="20" id="countryCanvas"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
 			<mx:AddChild position="before" relativeTo="{alertCanvas}">
-				<ns1:PaCanvas top="18" siteid="{AppStates.gi().activePaId}" visible="{!(AppStates.gi().secondState!='')}" right="18" id="paCanvas"/>
+				<ns1:PaCanvas top="18" siteid="{AppStates.gi().activePaId}" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="{!(AppStates.gi().secondState!='')}" right="18" id="paCanvas"/>
 			</mx:AddChild>
 			<mx:AddChild position="before" relativeTo="{alertCanvas}">
 				<mediabrowser:MediaBrowser  width="100%" bottom="35" height="60" />
@@ -85,4 +85,7 @@
 			<!--mx:Label x="294" y="201" id="temp"/ -->
 		</mx:Canvas>
 	</mx:VBox>
+	
+    <mx:Fade id="fadeOut" alphaFrom="1.0" alphaTo="0.0"/>
+    <mx:Fade id="fadeIn" alphaFrom="0.0" alphaTo="1.0"/>	
 </mx:Canvas>
