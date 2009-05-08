@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="397" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundColor="#FFFFFF" fontSize="9" xmlns:components="org.gbif.components.*" height="{(thumbnailImg)?157:128}">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="397" 
+	horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	styleName="bkgInfoWindow" backgroundSize="100%"
+	xmlns:components="org.gbif.components.*" height="{(thumbnailImg)?216:190}">
 <mx:Script>
 	<![CDATA[
 		import flash.net.navigateToURL;
@@ -16,14 +19,20 @@
 			
 	]]>
 </mx:Script>
-<mx:VBox verticalGap="2" width="100%" height="100%" horizontalAlign="center">
+<mx:VBox verticalGap="2" height="100%" horizontalAlign="left" top="4" left="5" right="5">
 	<mx:Spacer height="2" />
-	<mx:Canvas width="393" height="21" backgroundColor="#86A0AF" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-		<mx:Label x="4" y="0" text="{title}" color="#FFFFFF" fontSize="12"/>
+	<mx:Label text="{title.toUpperCase()}" color="#575E41" fontSize="16" fontFamily="DINOT-Medium"/>
+	<mx:HRule strokeColor="#575E41" width="100%" strokeWidth="1" alpha=".6"/>
+	<mx:TextArea htmlText="{html}" color="#666666" backgroundAlpha="0" paddingTop="4" paddingLeft="5" paddingRight="5"
+		editable="false" borderThickness="0" height="{(thumbnailImg)?140:100}" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%"/>
+	<mx:Canvas width="100%">
+		<mx:Button label="view in wikipedia" click="navigateToURL(new URLRequest('http://'+wikipediaUrl));" styleName="btnInfoWindow"
+			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button4" right="5"/>
 	</mx:Canvas>
-	<mx:TextArea  width="393" htmlText="{html}" color="#191919" editable="false" borderThickness="0" height="{(thumbnailImg)?99:60}" verticalScrollPolicy="off" horizontalScrollPolicy="off"/>
-	<mx:Label width="393" textAlign="right" text="View in Wikipedia" fontSize="9" color="#484848" textDecoration="underline" fontWeight="bold" useHandCursor="true" buttonMode="true" mouseChildren="false" click="navigateToURL(new URLRequest('http://'+wikipediaUrl));"/>
-	<mx:Spacer height="10" />
+	<mx:Spacer height="30" />
 </mx:VBox>
+	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+	<mx:Button right="6" width="60" styleName="invisibleButton" height="15" label="close"
+		useHandCursor="true" mouseChildren="false" buttonMode="true" color="#575E41" top="14" textAlign="right"/>
 	
 </mx:Canvas>

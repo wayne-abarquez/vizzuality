@@ -233,6 +233,7 @@ package com.vizzuality.view.map
 			CursorManager.removeBusyCursor();
 			CursorManager.removeBusyCursor();
 			CursorManager.removeBusyCursor();
+			CursorManager.removeBusyCursor();
 			
 			enableClick();	
 				
