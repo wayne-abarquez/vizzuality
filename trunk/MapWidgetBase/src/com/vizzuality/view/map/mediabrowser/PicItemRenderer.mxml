@@ -7,6 +7,8 @@
 		<![CDATA[
 			import gs.TweenLite;
 			
+			[Bindable] public var pic:String; 
+			
 			private function handleOver(e:MouseEvent):void{
 				TweenLite.to(overBorder,0.5,{alpha: 1});			
 			}
@@ -18,7 +20,7 @@
 		]]>
 	</mx:Script>
 	
-		<mx:Image id="pic" verticalCenter="0" horizontalCenter="0" scaleContent="false" width="75" height="75"/>
+		<mx:Image source="{pic}" verticalCenter="0" horizontalCenter="0" scaleContent="false" width="75" height="75"/>
 		<mx:Image source="@Embed('/com/vizzuality/style/assets/pic_whiteBorder.png')"/>
 		<mx:Image id="overBorder" source="@Embed('/com/vizzuality/style/assets/pic_blueBorder.png')" alpha="0"/>
 		
