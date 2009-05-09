@@ -48,7 +48,7 @@
 	
 	<mx:HBox height="60" left="35" right="35">
 		<mx:Repeater id="hList">
-			<mediabrowser:PicItemRenderer pic="{data.thumbnail}" />
+			<mediabrowser:PicItemRenderer pic="{hList.currentItem.thumbnail}" />
 		</mx:Repeater>
 	</mx:HBox>
 	<mx:Button label="&gt;" click="next();"  width="32" toolTip="Next" right="0" top="0" bottom="0"/>
