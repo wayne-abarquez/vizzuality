@@ -77,7 +77,7 @@ package com.vizzuality.view.map
 		
 		private function init():void {
 			paneManager = map.getPaneManager();
-			var numPanes:Number = paneManager.paneCount;
+			var numPanes:Number = paneManager.paneCount-1;
 			tileOverlaysPane = paneManager.createPane(numPanes);
 			polygonPane = paneManager.createPane(numPanes+1);
 			picturesPane = paneManager.createPane(numPanes+2);
