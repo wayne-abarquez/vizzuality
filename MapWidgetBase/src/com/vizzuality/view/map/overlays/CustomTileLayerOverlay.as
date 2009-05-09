@@ -32,7 +32,7 @@ package com.vizzuality.view.map.overlays
 		}
 		
 		private function initRequestController():void {
-			var t:Timer = new Timer(2000,0);
+			var t:Timer = new Timer(8000,0);
 			t.addEventListener(TimerEvent.TIMER,checkRequests,false,0,true);
 			t.start();
 		}	
