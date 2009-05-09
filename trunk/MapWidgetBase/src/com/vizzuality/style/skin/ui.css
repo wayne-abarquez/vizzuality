@@ -229,6 +229,12 @@ Button.btnMediaBrowserRight{
 	down-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_right_over");	
 }
 
+Button.btnMediaBrowserLeft{
+	up-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_left_up");	
+	over-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_left_over");	
+	down-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_left_over");	
+}
+
 
 
 HSlider{
