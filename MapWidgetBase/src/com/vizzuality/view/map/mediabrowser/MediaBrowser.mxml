@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="onCreationComplete()" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="onCreationComplete()" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
 
 	<mx:Script>
 		<![CDATA[
@@ -11,7 +11,7 @@
 			
 			[Bindable]
 			private var arrAux: ArrayCollection = new ArrayCollection();
-			private var arr:Array;
+			
 			private var dataLength : int;
 			private var i : int = 0;
 			
@@ -21,50 +21,36 @@
 			
 			private function onPicturesLoaded(event:DataServiceEvent):void {
 				dataLength = MediaServices.gi().pictures.length;
-				addEventListener(Event.ENTER_FRAME, addComponent);
-				arr = MediaServices.gi().pictures.source;
-				hList.dataProvider = arr;
+				arrAux = new ArrayCollection(MediaServices.gi().pictures.source);
+ 				hList.dataProvider = arrAux;
 			}
 			
-			private function addComponent(ev:Event):void{
-				if (i == (dataLength-1)) {
-					removeEventListener(Event.ENTER_FRAME,addComponent);
-					arrAux.addItemAt(arr[i],i);
-				} else {
-					arrAux.addItemAt(arr[i],i);
-					i++;					
-				}
-			}
 
 			private function prev():void {
-				var pos:int = hList.horizontalScrollPosition-1;
+/* 				var pos:int = hList.horizontalScrollPosition-1;
 				var min:int = 0;
 				var value:int = Math.max(min, pos);
-				hList.scrollToIndex(value);
+				hList.scrollToIndex(value); */
 			}
 
 			private function next():void {
-				var pos:int = hList.horizontalScrollPosition+1;
+/* 				var pos:int = hList.horizontalScrollPosition+1;
 				var max:int = hList.maxHorizontalScrollPosition;
 				var value:int = Math.min(pos, max);
-				hList.scrollToIndex(value+3);
+				hList.scrollToIndex(value+3); */
 				
 			}
 
-			private function slider_change(evt:SliderEvent):void {
-				hList.horizontalScrollPosition = evt.value;
-			}
 		]]>
 	</mx:Script>
 
-	<mx:Button label="&lt;" click="prev();"  width="34" toolTip="Previous"/>
+	<mx:Button label="&lt;" click="prev();"  width="34" toolTip="Previous" top="0" bottom="0"/>
 	
-	<mediabrowser:SmoothHorizontalList id="hList"				
-			dataProvider="{arrAux}"
-			itemRenderer="com.vizzuality.view.map.mediabrowser.HorizontalListItemRenderer"
-			verticalScrollPolicy="off"
-			horizontalScrollPolicy="off"
-			borderSkin="{null}"  width="100%" height="60"/>
-	<mx:Button label="&gt;" click="next();"  width="32" toolTip="Next"/>	
+	<mx:HBox height="60" left="35" right="35">
+		<mx:Repeater id="hList">
+			<mediabrowser:PicItemRenderer pic="{data.thumbnail}" />
+		</mx:Repeater>
+	</mx:HBox>
+	<mx:Button label="&gt;" click="next();"  width="32" toolTip="Next" right="0" top="0" bottom="0"/>
 	
-</mx:HBox>
+</mx:Canvas>
