@@ -220,9 +220,6 @@ package com.vizzuality.services
 				//marker.openInfoWindow(options2);
 				MapController.gi().map.openInfoWindow(e.latLng,options2);
 				
-				//This is a hack so that infowindows appear above the polygons.
-				//HACK TODO!!
-				MapController.gi().map.getPaneManager().placePaneAt(MapController.gi().polygonPane,1);
 			});
 			
 			return marker;
@@ -256,20 +253,21 @@ package com.vizzuality.services
         	infowindow.ownerName=photo.owner;
         	infowindow.ownerURL=photo.sourceUrl;
         	infowindow.title=photo.title;
-        	infowindow.photoFileURL=photoUrl;
+        	infowindow.photoFileURL=photo.imageUrl;
         	infowindow.photoURL=photo.sourceUrl;
         	infowindow.source="flickr";
         	infowindow.photoId="flickr"+photo.id;
 	       	
 	   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
-	            customContent: infowindow,
-	            customOffset: new Point(0, 10),
-	            width: 215,
-	            drawDefaultFrame: true					
+                customContent: infowindow,
+                strokeStyle: new StrokeStyle({thickness: 0}),
+                customOffset: new Point(0, 10),
+                cornerRadius:0,
+                width: 215,
+                drawDefaultFrame: true					
 			});  	 
 	        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
 	      		marker.openInfoWindow(optionsMark);     
-	      		MapController.gi().map.getPaneManager().placePaneAt(MapController.gi().polygonPane,1);     
 	        });      
 	        
 	        MapController.gi().picturesPane.addOverlay(marker);
