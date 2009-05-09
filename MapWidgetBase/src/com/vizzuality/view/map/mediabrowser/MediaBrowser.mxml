@@ -31,7 +31,6 @@
 				arrAux = new ArrayCollection(MediaServices.gi().pictures.source);
  				hList.dataProvider = arrAux;
 			}
-			
 
 			private function prev():void {
 				if(!playing && (picList.x <= 18 - offset)){
