@@ -44,7 +44,6 @@
 					playing = true;
 					TweenLite.to(picList,0.3,{x: picList.x - offset, onComplete: function ():void{ playing = false}});
 				}
-				
 			}
 
 		]]>
