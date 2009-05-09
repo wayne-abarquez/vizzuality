@@ -46,7 +46,7 @@
 
 	<mx:HBox id="picList" height="55" x="18" verticalCenter="0" horizontalGap="4">
 		<mx:Repeater id="hList">
-			<mediabrowser:PicItemRenderer pic="{hList.currentItem.thumbnail}" />
+			<mediabrowser:PicItemRenderer pic="{hList.currentItem.thumbnail}" picId="{hList.currentItem.id}" />
 		</mx:Repeater>
 	</mx:HBox>
 
