@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="74" height="55"
-	rollOver="handleOver(event)" rollOut="handleOut(event)"
+	rollOver="handleOver(event)" rollOut="handleOut(event)" click="dispatchEvent(new PicClickEvent(PicClickEvent.PIC_CLICK_EVENT,picId))"
 	backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.services.PicClickEvent;
 			import gs.TweenLite;
+			
+			public var picId:String;
 			
 			[Bindable] public var pic:String; 
 			

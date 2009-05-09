@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="onCreationComplete()" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="onCreationComplete()"
+	backgroundColor="#FFFFFF" backgroundAlpha=".65" 
+	xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 
 	<mx:Script>
 		<![CDATA[
+			import gs.TweenLite;
 			import com.vizzuality.services.DataServiceEvent;
 			import com.vizzuality.services.MediaServices;
 			import mx.collections.ArrayCollection;
@@ -14,6 +17,8 @@
 			
 			private var dataLength : int;
 			private var i : int = 0;
+			
+			private var picWidth: int = 78;
 			
 			private function onCreationComplete():void {
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,onPicturesLoaded);
@@ -27,30 +32,30 @@
 			
 
 			private function prev():void {
-/* 				var pos:int = hList.horizontalScrollPosition-1;
-				var min:int = 0;
-				var value:int = Math.max(min, pos);
-				hList.scrollToIndex(value); */
+				/* if(TweenLite. */
+				TweenLite.to(picList,0.3,{x: picList.x + picWidth});
 			}
 
 			private function next():void {
-/* 				var pos:int = hList.horizontalScrollPosition+1;
-				var max:int = hList.maxHorizontalScrollPosition;
-				var value:int = Math.min(pos, max);
-				hList.scrollToIndex(value+3); */
+				TweenLite.to(picList,0.3,{x: picList.x - picWidth});
 				
 			}
 
 		]]>
 	</mx:Script>
 
-	<mx:Button label="&lt;" click="prev();"  width="34" toolTip="Previous" top="0" bottom="0"/>
-	
-	<mx:HBox height="60" left="35" right="35">
+	<mx:HBox id="picList" height="55" x="18" verticalCenter="0" horizontalGap="4">
 		<mx:Repeater id="hList">
 			<mediabrowser:PicItemRenderer pic="{hList.currentItem.thumbnail}" />
 		</mx:Repeater>
 	</mx:HBox>
-	<mx:Button label="&gt;" click="next();"  width="32" toolTip="Next" right="0" top="0" bottom="0"/>
+
+	<mx:Button click="prev();"  width="15" height="55" verticalCenter="0" left="0"
+		styleName="btnMediaBrowserLeft"
+		buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+	
+	<mx:Button click="next();" width="15" height="55" verticalCenter="0" right="0"
+		styleName="btnMediaBrowserRight"
+		buttonMode="true" useHandCursor="true" mouseChildren="false"/>
 	
 </mx:Canvas>
