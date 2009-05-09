@@ -103,6 +103,7 @@ package com.vizzuality.view.map
 			map.addEventListener(MapMoveEvent.MOVE_END,onMapMoved);
 			map.addEventListener(MapEvent.MAPTYPE_CHANGED,onMaptypeChanged);
 			
+			
 			DataServices.gi().addEventListener(DataServiceEvent.PA_DATA_LOADED,onPaDataLoaded);
 			
 			//Create Panes for polygons and markers
@@ -361,6 +362,15 @@ package com.vizzuality.view.map
 				hidePictures();
 			} else {
 				displayPictures();
+			}
+		}
+		
+		public function onPicClick(id:String):void {
+			for (var photo:Object in MediaServices.gi().picturesMarkers) {
+				if (photo.id==id) {
+					var m:Marker = MediaServices.gi().picturesMarkers[photo];
+					m.openInfoWindow();
+				}
 			}
 		}
 		

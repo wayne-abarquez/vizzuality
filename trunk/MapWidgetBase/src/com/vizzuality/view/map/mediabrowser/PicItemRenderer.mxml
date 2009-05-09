@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="74" height="55"
-	rollOver="handleOver(event)" rollOut="handleOut(event)" click="dispatchEvent(new PicClickEvent(PicClickEvent.PIC_CLICK_EVENT,picId))"
+	rollOver="handleOver(event)" rollOut="handleOut(event)" click="MapController.gi().onPicClick(picId)"
 	backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	
 	<mx:Script>
 		<![CDATA[
-			import com.vizzuality.services.PicClickEvent;
+			import com.vizzuality.view.map.MapController;
 			import gs.TweenLite;
 			
 			public var picId:String;
