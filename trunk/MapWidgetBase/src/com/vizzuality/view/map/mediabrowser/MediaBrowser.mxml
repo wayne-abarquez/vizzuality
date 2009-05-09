@@ -18,7 +18,9 @@
 			private var dataLength : int;
 			private var i : int = 0;
 			
-			private var picWidth: int = 78;
+			private var offset: int = 78 * 4;
+			private var playing:Boolean = false;
+			
 			
 			private function onCreationComplete():void {
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,onPicturesLoaded);
@@ -32,12 +34,17 @@
 			
 
 			private function prev():void {
-				/* if(TweenLite. */
-				TweenLite.to(picList,0.3,{x: picList.x + picWidth});
+				if(!playing && (picList.x <= 18 - offset)){
+					playing = true;
+					TweenLite.to(picList,0.3,{x: picList.x + offset, onComplete: function ():void{ playing = false}});
+				}
 			}
 
 			private function next():void {
-				TweenLite.to(picList,0.3,{x: picList.x - picWidth});
+				if(!playing && ((picList.x + picList.width - offset) >= (this.width - 18))){
+					playing = true;
+					TweenLite.to(picList,0.3,{x: picList.x - offset, onComplete: function ():void{ playing = false}});
+				}
 				
 			}
 
