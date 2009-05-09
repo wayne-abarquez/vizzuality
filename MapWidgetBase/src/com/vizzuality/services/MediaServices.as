@@ -57,9 +57,9 @@ package com.vizzuality.services
 		public var picturesInfoWindows:Dictionary = new Dictionary();
 		
 		
-		private var numPicturesRequest:Number=0;
-		private var numVideosRequest:Number=0;
-		private var numWikipediasRequest:Number=0;
+		[Bindable] public var numPicturesRequest:Number=0;
+		[Bindable] public var numVideosRequest:Number=0;
+		[Bindable] public var numWikipediasRequest:Number=0;
 		
 		public function MediaServices()
 		{
@@ -97,7 +97,6 @@ package com.vizzuality.services
 		
 		
 		public function getPictures(bbox:LatLngBounds):void {
-			
 			//divide the boundig box into 4 little boundig boxes
 			var firstBBox:LatLngBounds = new LatLngBounds(bbox.getSouthWest(),bbox.getCenter());
 			var secondBBox:LatLngBounds = new LatLngBounds(bbox.getCenter(),bbox.getNorthEast());
@@ -121,8 +120,7 @@ package com.vizzuality.services
 		}
 		
 		public function getWikipedia(bbox:LatLngBounds):void {
-			wikiGeonamesSrv.send({north:bbox.getNorth(),east:bbox.getEast(),west:bbox.getWest(),south:bbox.getSouth()});
-			
+			wikiGeonamesSrv.send({north:bbox.getNorth(),east:bbox.getEast(),west:bbox.getWest(),south:bbox.getSouth()});			
 			numWikipediasRequest++;
 		}		
 		

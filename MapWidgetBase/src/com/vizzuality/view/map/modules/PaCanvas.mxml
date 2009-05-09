@@ -104,9 +104,18 @@
 				verticalScrollPolicy="off" horizontalScrollPolicy="off" id="canvas2">
 				<mx:Label text="FROM THE WEB" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6" id="label5"/>
 				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox2">
-					<mx:CheckBox label="Wikipedia Articles" enabled="{MediaServices.gi().wikipedias.length>0}" change="MapController.gi().toggleWikipedias()"/>
-					<mx:CheckBox id="pictureChbox" label="Photos &amp; Pictures" enabled="{MediaServices.gi().pictures.length>0}" change="MapController.gi().togglePictures()"/>
-					<mx:CheckBox label="Videos"/>
+					<mx:HBox>
+						<mx:CheckBox label="Wikipedia Articles" enabled="{MediaServices.gi().numWikipediasRequest==0}" change="MapController.gi().toggleWikipedias()"/>
+						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="{MediaServices.gi().numWikipediasRequest>0}"/>
+					</mx:HBox>
+					<mx:HBox>
+						<mx:CheckBox id="pictureChbox" label="Photos" enabled="{MediaServices.gi().numPicturesRequest==0}" change="MapController.gi().togglePictures()"/>
+						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="{MediaServices.gi().numPicturesRequest>0}"/>
+					</mx:HBox>
+					<mx:HBox>
+						<mx:CheckBox label="Videos" enabled="false"/>
+						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="false"/>
+					</mx:HBox>
 				</mx:VBox>
 			</mx:Canvas>
 		</mx:VBox>
