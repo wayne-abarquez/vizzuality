@@ -369,7 +369,7 @@ package com.vizzuality.view.map
 			for (var photo:Object in MediaServices.gi().picturesMarkers) {
 				if (photo.id==id) {
 					var m:Marker = MediaServices.gi().picturesMarkers[photo];
-					m.openInfoWindow();
+					m.openInfoWindow(MediaServices.gi().picturesInfoWindows[m]);
 				}
 			}
 		}
