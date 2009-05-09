@@ -238,6 +238,7 @@
 							} else {
 								//AppStates.gi().mapPositions[AppStates.PA] = MapController.gi().getMapPosition();
 							}
+							mapCanvas.discretLoading.visible=false;
 
 							//remove the possibility to click on the areas
 							MapController.gi().removeClickListenerForAreas();		
