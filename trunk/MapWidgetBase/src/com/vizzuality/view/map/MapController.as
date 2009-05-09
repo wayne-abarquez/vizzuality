@@ -63,6 +63,7 @@ package com.vizzuality.view.map
 		private var mapClickCurrentAction:String;
 		
 		public var isWikipediaActive:Boolean=false;
+		[Bindable] 
 		public var isPicturesActive:Boolean=false;
 		
 		private var currentLayersOpacity:Number=0;
