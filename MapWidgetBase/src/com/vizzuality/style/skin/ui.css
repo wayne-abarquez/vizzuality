@@ -223,6 +223,12 @@ Button.btnMiniTab{
 	padding-right: 3;
 }
 
+Button.btnMediaBrowserRight{
+	up-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_right_up");	
+	over-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_right_over");	
+	down-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_right_over");	
+}
+
 
 
 HSlider{
