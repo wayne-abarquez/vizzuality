@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="55" width="76" horizontalScrollPolicy="off" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="55" width="75" horizontalScrollPolicy="off" 
 	verticalScrollPolicy="off" alpha="0" addedToStage="doEffect()" mouseOver="imageItemOver.visible = true" 
-	mouseOut="imageItemOver.visible = false" rollOver="doZoom(event)" rollOut="doZoom(event)"
-	>
+	mouseOut="imageItemOver.visible = false" rollOver="doZoom(event)" rollOut="doZoom(event)">
 
 	<mx:Script>
         <![CDATA[        
@@ -35,7 +34,7 @@
 	
 	<mx:Zoom id="zoomAll" zoomWidthTo="1.2" zoomHeightTo="1.2" zoomWidthFrom="1" zoomHeightFrom="1" duration="200"/>
 
-	<mx:Image id="imageItem" source="{data.thumbnail}" height="55" width="74"  x="1" y="0" />
+	<mx:Image id="imageItem" source="{data.thumbnail}" horizontalCenter="0" verticalCenter="0" scaleContent="false" />
 	<mx:Image id="imageItemOver" source="@Embed('/assets/capa.png')" x="1" y="0" height="55" width="74" visible="false"/>
 	
 </mx:Canvas>
