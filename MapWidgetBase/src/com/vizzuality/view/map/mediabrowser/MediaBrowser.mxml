@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="onCreationComplete()">
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="onCreationComplete()" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
 
 	<mx:Script>
 		<![CDATA[
@@ -7,6 +7,7 @@
 			import com.vizzuality.services.MediaServices;
 			import mx.collections.ArrayCollection;
 			import mx.events.SliderEvent;
+			import mx.effects.easing.Cubic;
 			
 			[Bindable]
 			private var arrAux: ArrayCollection = new ArrayCollection();
@@ -39,14 +40,15 @@
 				var pos:int = hList.horizontalScrollPosition-1;
 				var min:int = 0;
 				var value:int = Math.max(min, pos);
-				hList.horizontalScrollPosition = value;
+				hList.scrollToIndex(value);
 			}
 
 			private function next():void {
 				var pos:int = hList.horizontalScrollPosition+1;
 				var max:int = hList.maxHorizontalScrollPosition;
 				var value:int = Math.min(pos, max);
-				hList.horizontalScrollPosition = value;
+				hList.scrollToIndex(value+3);
+				
 			}
 
 			private function slider_change(evt:SliderEvent):void {
@@ -56,11 +58,13 @@
 	</mx:Script>
 
 	<mx:Button label="&lt;" click="prev();"  width="34" toolTip="Previous"/>
-	<mx:HorizontalList id="hList" 				
+	
+	<mediabrowser:SmoothHorizontalList id="hList"				
 			dataProvider="{arrAux}"
 			itemRenderer="com.vizzuality.view.map.mediabrowser.HorizontalListItemRenderer"
 			verticalScrollPolicy="off"
 			horizontalScrollPolicy="off"
 			borderSkin="{null}"  width="100%" height="60"/>
 	<mx:Button label="&gt;" click="next();"  width="32" toolTip="Next"/>	
+	
 </mx:HBox>

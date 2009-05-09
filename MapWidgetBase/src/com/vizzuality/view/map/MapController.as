@@ -11,11 +11,13 @@ package com.vizzuality.view.map
 	import com.google.maps.MapZoomEvent;
 	import com.google.maps.interfaces.IPane;
 	import com.google.maps.interfaces.IPaneManager;
+	import com.google.maps.overlays.Marker;
 	import com.vizzuality.data.MapPosition;
 	import com.vizzuality.data.PA;
 	import com.vizzuality.data.WdpaLayer;
 	import com.vizzuality.services.DataServiceEvent;
 	import com.vizzuality.services.DataServices;
+	import com.vizzuality.services.MediaServices;
 	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.overlays.CustomTileLayer;
 	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
@@ -59,6 +61,9 @@ package com.vizzuality.view.map
 		public var infowindowPane:IPane;
 		
 		private var mapClickCurrentAction:String;
+		
+		public var isWikipediaActive:Boolean=false;
+		public var isPicturesActive:Boolean=false;
 		
 		private var currentLayersOpacity:Number=0;
 		
@@ -315,6 +320,49 @@ package com.vizzuality.view.map
 			infowindowPane.clear();
 		}		
 		
+		
+		public function displayWikipedias():void {
+			for each (var m:Marker in MediaServices.gi().wikipediaMarkers) {
+				wikipediaPane.addOverlay(m);
+			}
+			isWikipediaActive=true;
+		}
+		
+		public function hideWikipedias():void {
+			wikipediaPane.clear();
+			map.closeInfoWindow();
+			isWikipediaActive=false;
+		}
+		
+		public function toggleWikipedias():void {
+			if(isWikipediaActive) {
+				hideWikipedias();
+			} else {
+				displayWikipedias();
+			}
+		}
+
+		public function displayPictures():void {
+			for each (var m:Marker in MediaServices.gi().picturesMarkers) {
+				picturesPane.addOverlay(m);
+			}
+			isPicturesActive=true;
+		}
+		
+		public function hidePictures():void {
+			picturesPane.clear();
+			map.closeInfoWindow();
+			isPicturesActive=false;
+		}
+		
+		public function togglePictures():void {
+			if(isPicturesActive) {
+				hidePictures();
+			} else {
+				displayPictures();
+			}
+		}
+		
 
 		public function updateTileLayersOpacity(opacity:Number):void {
 			if (currentLayersOpacity!=opacity) {
@@ -324,6 +372,35 @@ package com.vizzuality.view.map
 				currentLayersOpacity=opacity;
 			}
 		}
+		
+		public function addLayerToCurrentState(layer:String):void {
+			var newLayers:Array =[];		
+			for each(var l:String in (AppStates.gi().visibleLayers[AppStates.gi().topState] as Array)) {
+				newLayers.push(l);
+			}
+			newLayers.push(layer);
+			updateTileLayers(newLayers);
+			
+		}
+		
+		public function removeLayerToCurrentState(layer:String):void {
+			var newLayers:Array =[];		
+			for each(var l:String in (AppStates.gi().visibleLayers[AppStates.gi().topState] as Array)) {
+				if (l!=layer)
+					newLayers.push(l);
+			}
+			updateTileLayers(newLayers);			
+		}		
+		
+		public function toggleLayerToCurrentState(layer:String):void {
+			for each(var l:String in (AppStates.gi().visibleLayers[AppStates.gi().topState] as Array)) {
+				if(l==layer) {
+					removeLayerToCurrentState(layer);
+					return;
+				}
+			}			
+			addLayerToCurrentState(layer);
+		}			
 		
 		public function updateTileLayers(layers:Array):void {
 			

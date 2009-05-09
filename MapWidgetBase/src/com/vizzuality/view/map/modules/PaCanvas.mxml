@@ -37,6 +37,8 @@
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import com.vizzuality.data.WdpaLayer;
+		import com.vizzuality.services.MediaServices;
 		import com.vizzuality.view.map.MapController;
 		import com.vizzuality.services.DataServiceEvent;
 		import mx.binding.utils.BindingUtils;
@@ -48,11 +50,12 @@
 		import com.vizzuality.services.DataServices;
 		
 		private var currentId:Number;
-
+		
 		public function set siteid(id:Number):void {
 			if (currentId!=id) {
 				currentState='loading';
 				DataServices.gi().addEventListener(DataServiceEvent.PA_DATA_LOADED,onDataLoaded);
+				MediaServices.gi().addEventListener(DataServiceEvent.WIKIPEDIAS_LOADED,onWikipediasLoaded);
 				DataServices.gi().selectedPAId=id;
 				currentId=id;
 			}
@@ -61,6 +64,12 @@
 		private function onDataLoaded(event:DataServiceEvent):void {
 			currentState='';
 		}
+		
+		private function onWikipediasLoaded(event:DataServiceEvent):void {
+			
+		}
+		
+		
 		
 	]]>
 </mx:Script>
@@ -84,10 +93,10 @@
 				verticalScrollPolicy="off" horizontalScrollPolicy="off">
 				<mx:Label text="WDPA LAYERS" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
-					<mx:CheckBox label="Coral"/>
-					<mx:CheckBox label="Cold Water Corals"/>
-					<mx:CheckBox label="SeaGrass"/>
-					<mx:CheckBox label="Mangroves"/>
+					<mx:CheckBox label="Coral" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
+					<mx:CheckBox label="Cold Water Corals" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
+					<mx:CheckBox label="SeaGrass" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
+					<mx:CheckBox label="Mangroves" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
 				</mx:VBox>
 			</mx:Canvas>
 			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule2"/>
@@ -95,8 +104,8 @@
 				verticalScrollPolicy="off" horizontalScrollPolicy="off" id="canvas2">
 				<mx:Label text="FROM THE WEB" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6" id="label5"/>
 				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox2">
-					<mx:CheckBox label="Wikipedia Articles"/>
-					<mx:CheckBox label="Photos &amp; Pictures"/>
+					<mx:CheckBox label="Wikipedia Articles" enabled="{MediaServices.gi().wikipedias.length>0}" change="MapController.gi().toggleWikipedias()"/>
+					<mx:CheckBox label="Photos &amp; Pictures" enabled="{MediaServices.gi().pictures.length>0}" change="MapController.gi().togglePictures()"/>
 					<mx:CheckBox label="Videos"/>
 				</mx:VBox>
 			</mx:Canvas>
