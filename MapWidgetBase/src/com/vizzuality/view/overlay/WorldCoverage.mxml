@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="219" height="72">
-
-	<mx:Script>
-		<![CDATA[
-			
-			[Bindable] public var percent:String = "17%";
-			
-		]]>
-	</mx:Script>
-
-	<mx:Label x="14" text="{percent}" top="11" color="#939E6A" fontFamily="DINOT-Bold" fontSize="34" letterSpacing="-1"/>
+	<mx:Label x="14" text="17%" top="11" color="#939E6A" fontFamily="DINOT-Bold" fontSize="34" letterSpacing="-1"/>
 	<mx:Image x="74" y="3" source="@Embed('/assets/worldCovered.jpg')"/>
 	<mx:HRule x="9" y="55" strokeColor="#939E6A" strokeWidth="1"/>
 	

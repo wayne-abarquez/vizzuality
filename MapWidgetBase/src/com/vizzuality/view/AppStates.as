@@ -26,6 +26,11 @@ package com.vizzuality.view
 		public static const EXTRA_DETAILS:String='extraDetails';
 		public static const AREA_DETAILS:String='extraDetails';
 		
+		
+		public static const AP_TYPE:String='marine';
+		
+		
+		
 		private static var instance:AppStates = new AppStates();
 		
 		//App current state
