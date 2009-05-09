@@ -54,6 +54,7 @@ package com.vizzuality.services
 		
 		public var wikipediaMarkers:Dictionary = new Dictionary();
 		public var picturesMarkers:Dictionary = new Dictionary();
+		public var picturesInfoWindows:Dictionary = new Dictionary();
 		
 		
 		private var numPicturesRequest:Number=0;
@@ -270,6 +271,8 @@ package com.vizzuality.services
                 width: 215,
                 drawDefaultFrame: true					
 			});  	 
+			picturesInfoWindows[marker]=optionsMark;
+			
 	        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
 	      		marker.openInfoWindow(optionsMark);     
 	        });      
