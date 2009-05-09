@@ -7,6 +7,8 @@
 	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
+			import com.google.maps.overlays.Polyline;
+			import com.google.maps.overlays.Marker;
 			import com.vizzuality.data.MapPosition;
 			import com.vizzuality.view.map.overlays.ToolTipOverlay;
 			import com.google.maps.InfoWindowOptions;
@@ -199,18 +201,26 @@
 								var lat:Number = Number((event.pathNames[1] as String).split("_")[0]);
 								var lng:Number = Number((event.pathNames[1] as String).split("_")[1]);
 								//if there is no areas saved we have to check again.
-								if (DataServices.gi().preselectedPAs.length<1) {
+								if (DataServices.gi().preselectedPAsDic["numElements"]<1) {
 									DataServices.gi().getAreasByLatLng(new LatLng(lat,lng));
 								} else {
 									
 									MapController.gi().zoomToBbox(DataServices.gi().preselectedPAsBounds,true);
-									for each(var pa:PA in DataServices.gi().preselectedPAs) {
-										MapController.gi().addPa(pa);
+									
+									for (var m:Object in DataServices.gi().preselectedPAsDic) {
+										if(m!="numElements") {
+											MapController.gi().infowindowPane.addOverlay(m as Marker);
+											MapController.gi().addPa(DataServices.gi().preselectedPAsDic[m]);
+											var tail:Polyline = new Polyline([
+															m.getLatLng(),
+															(DataServices.gi().preselectedPAsDic[m] as PA).getCenter()
+															]);
+											MapController.gi().infowindowPane.addOverlay(tail);				
+										}
+										
+										
 									}
 									
-									for each(var tooltip:ToolTipOverlay in DataServices.gi().preselectedPAsTooltips) {
-										MapController.gi().infowindowPane.addOverlay(tooltip);
-									}
 									
 								}
 								

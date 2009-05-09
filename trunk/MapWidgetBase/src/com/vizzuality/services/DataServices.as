@@ -7,6 +7,8 @@ package com.vizzuality.services
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.overlays.EncodedPolylineData;
+	import com.google.maps.overlays.Marker;
+	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.Polygon;
 	import com.google.maps.overlays.PolygonOptions;
 	import com.google.maps.styles.FillStyle;
@@ -18,14 +20,13 @@ package com.vizzuality.services
 	import com.vizzuality.utils.PolylineEncoder;
 	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.MapController;
-	import com.vizzuality.view.map.overlays.ToolTipOverlay;
+	import com.vizzuality.view.map.overlays.PaTitleMarkerIcon;
 	
 	import flash.events.EventDispatcher;
 	import flash.geom.Point;
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
-	import mx.collections.ArrayCollection;
 	import mx.formatters.NumberFormatter;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
@@ -70,11 +71,10 @@ package com.vizzuality.services
 		private var resolvingLatLng:LatLng;
 		
 		
-		public var activePA:PA;
-		[Bindable]
-		public var preselectedPAs:ArrayCollection=new ArrayCollection();		
+		public var activePA:PA;	
 		public var preselectedPAsBounds:LatLngBounds;
-		public var preselectedPAsTooltips:Array;
+		public var preselectedPAsDic:Dictionary = new Dictionary(true);
+		
 		
 		private var geocoder:HTTPService = new HTTPService();
 		
@@ -102,6 +102,11 @@ package com.vizzuality.services
 			
 			roLat.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);	
 			roLat.addEventListener(FaultEvent.FAULT,onFault);		
+			//TEMPORARY HACK
+			roLat.endpoint="http://localhost/gateway.php";
+			roLat.source="WDPAServices";
+			roLat.source="WDPAServices";
+			roLat.destination="WDPAServices";
 		
 			geocoder.addEventListener(ResultEvent.RESULT,onGeoCodeSuccess);
 			geocoder.addEventListener(FaultEvent.FAULT,onGeoCodeFault);
@@ -327,7 +332,7 @@ package com.vizzuality.services
 		 			"&f=json";	
 		 	//wdpaRestServ.url=url;
 		 	//wdpaRestServ.url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0//query?text=&geometry=%7B%22x%22%3A"+latlng.lng()+"%2C%22y%22%3A"+latlng.lat()+"%7D&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=&returnGeometry=true&outSR=&outFields=Site_ID,English_Name&f=json";
-			//trace(url);
+			trace(url);
 			//wdpaRestServ.send();
 			
 			clickedLatLng=latlng;
@@ -352,7 +357,7 @@ package com.vizzuality.services
 				MapController.gi().showMapWarning("No Protected Areas where you have clicked",2);
 				return;
 			}
-			if(res.numres>1) {
+			if(res.numres>10) {
 				MapController.gi().setMapLoaded();
 				MapController.gi().showMapWarning("There are too many areas where you have clicked. Please Zoom further",2);
 				MapController.gi().map.setCenter(clickedLatLng,MapController.gi().map.getZoom()+1);
@@ -365,39 +370,46 @@ package com.vizzuality.services
 				return;
 			}
 			
-			
+			//There are less than 5 but more than 1. PRESELECTION!
 			if ((res.results as Array).length>0) {
-				preselectedPAs=new ArrayCollection();
+				preselectedPAsDic= new Dictionary(true);
 				preselectedPAsBounds = new LatLngBounds();
-				preselectedPAsTooltips=[];
 				
 				
 				var contentFormat:TextFormat = new TextFormat("Arial", 10,Color.WHITE);
 				
 				for each(var feature:Object in res.results) {				
 				    var pa:PA = createPa(feature);
-				    var center_tooltip:LatLng;
-				    if (pa.geomType==PA.POLYGON) {
-				    	center_tooltip=pa.polygon.getLatLngBounds().getCenter();
-				    } else {
-				    	center_tooltip=pa.point.getLatLngBounds().getCenter();
-				    }			    
-					
 				    
-					var customToolTip:ToolTipOverlay = new ToolTipOverlay(center_tooltip,pa.name);
-					preselectedPAsTooltips.push(customToolTip);	
-				 
-				    preselectedPAs.addItem(pa);   
-//				    MapController.gi().addPa(pa);
-				    			
+				    //find a random point inside the bbox of the PA for representation
+				    var bounds:LatLngBounds = preselectedPAsBounds;
+				    
+				    var lng:Number = bounds.getWest() + (bounds.getEast() - bounds.getWest()) * Math.random();
+				    var lat:Number = bounds.getSouth() + (bounds.getNorth() - bounds.getSouth()) * Math.random();
+				    
+				    var center_tooltip:LatLng = new LatLng(lat,lng);		 
+				       
+					var icon:PaTitleMarkerIcon = new PaTitleMarkerIcon(pa.name + ' [' + pa.countryIsoCode + ']');
+					icon.buttonMode=true;
+	       			 var m:Marker = new Marker(center_tooltip, new MarkerOptions(
+			       		{
+			       			clickable:true,
+			       			hasShadow:false,
+			       	 	draggable:false,
+			       	 	icon: icon}));	
+					//var customToolTip:ToolTipOverlay = new ToolTipOverlay(center_tooltip,pa.name);
 					
+					preselectedPAsDic[m]=pa;		
+					if (preselectedPAsDic["numElements"]==null)
+						preselectedPAsDic["numElements"]=1;
+					preselectedPAsDic["numElements"]++;
 				}
 				
 				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
 				
 				
 			} else {
-				preselectedPAs=new ArrayCollection();
+				preselectedPAsDic=new Dictionary(true);
 				//AppStates.gi().goToPreviousState();
 			}
 			MapController.gi().setMapLoaded();

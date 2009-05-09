@@ -156,6 +156,19 @@ class WDPAServices {
         
         if($numres<=10) {
             $result['numres']=$numres;
+            $result['results']=array();
+            
+            /*foreach ($json['results'] as $_pa) {
+                $pa=array();
+                $pa['siteId']=$_pa['attributes']['Site ID'];
+                $pa['name']=$_pa['attributes']['English Name'];
+                $pa['siteType']=$_pa['attributes']['Site Type'];
+                $pa['east']=$_pa['geometry']['rings'][0][0][1];
+                $pa['west']=$_pa['geometry']['rings'][0][0][0];
+                $pa['north']=$_pa['geometry']['rings'][0][0][1];
+                $pa['south']=$_pa['geometry']['rings'][0][0][0];                
+                $result['results'][]=$pa;
+            }*/
             $result['results']=$json['results'];
             return $result;            
         }  

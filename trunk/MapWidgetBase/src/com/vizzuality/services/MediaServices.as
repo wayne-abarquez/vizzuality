@@ -47,16 +47,16 @@ package com.vizzuality.services
 		
 		private var existingPoints:Array = new Array();	
 		
-		private var flickrDict:Dictionary = new Dictionary();	
+		private var flickrDict:Dictionary = new Dictionary(true);	
 		
 		
 		[Bindable] public var pictures:ArrayCollection = new ArrayCollection();
 		[Bindable] public var wikipedias:ArrayCollection = new ArrayCollection();
 		[Bindable] public var youtubes:ArrayCollection = new ArrayCollection();
 		
-		public var wikipediaMarkers:Dictionary = new Dictionary();
-		public var picturesMarkers:Dictionary = new Dictionary();
-		public var picturesInfoWindows:Dictionary = new Dictionary();
+		public var wikipediaMarkers:Dictionary = new Dictionary(true);
+		public var picturesMarkers:Dictionary = new Dictionary(true);
+		public var picturesInfoWindows:Dictionary = new Dictionary(true);
 		
 		
 		[Bindable] public var numPicturesRequest:Number=0;
