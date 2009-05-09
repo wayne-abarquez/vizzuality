@@ -12,7 +12,6 @@ package com.vizzuality.services
 	import com.vizzuality.data.PA;
 	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.view.map.MapController;
-	import com.vizzuality.view.map.markers.ImageInfoWindow;
 	import com.vizzuality.view.map.markers.WikipediaInfoWindow;
 	import com.vizzuality.view.map.markers.WikipediaMarker;
 	
@@ -20,10 +19,13 @@ package com.vizzuality.services
 	import flash.display.BitmapData;
 	import flash.display.Loader;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
@@ -252,28 +254,46 @@ package com.vizzuality.services
 	       	 draggable:false,
 	       	 icon: iconBitmap}));		        
                 
-	    	var infowindow:ImageInfoWindow= new ImageInfoWindow();
+/* 	    	var infowindow:ImageInfoWindow= new ImageInfoWindow();
         	infowindow.ownerName=photo.owner;
         	infowindow.ownerURL=photo.sourceUrl;
         	infowindow.title=photo.title;
         	infowindow.photoFileURL=photo.imageUrl;
         	infowindow.photoURL=photo.sourceUrl;
         	infowindow.source="flickr";
-        	infowindow.photoId="flickr"+photo.id;
+        	infowindow.photoId="flickr"+photo.id; */
+        	var infowindow:Loader= new Loader();
+        	infowindow.load(new URLRequest(photo.imageUrl));
+        	infowindow.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void {
+        		navigateToURL(new URLRequest(photo.sourceUrl));
+        	});
+        	
+        	infowindow.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void {
+		   	
+		   		var bm:Bitmap = Bitmap(event.currentTarget.content)
+		   		var bmd:BitmapData = bm.bitmapData;
+		   		
+		   		var s:Sprite=new Sprite();
+		   		s.addChild(infowindow);
+		   		s.buttonMode=true;
+		   		
+		   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
+	                customContent: s,
+	                strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
+	                customOffset: new Point(0, 10),
+	                cornerRadius:0,
+	                width: bmd.width,
+	                height: bmd.height,
+	                drawDefaultFrame: true					
+				});  	 
+				picturesInfoWindows[marker]=optionsMark;
+				
+		        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
+		      		marker.openInfoWindow(optionsMark);     
+		        });      
+        		
+        	});
 	       	
-	   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
-                customContent: infowindow,
-                strokeStyle: new StrokeStyle({thickness: 0}),
-                customOffset: new Point(0, 10),
-                cornerRadius:0,
-                width: 215,
-                drawDefaultFrame: true					
-			});  	 
-			picturesInfoWindows[marker]=optionsMark;
-			
-	        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
-	      		marker.openInfoWindow(optionsMark);     
-	        });      
 	        
 	        picturesMarkers[photo]=marker;
 		} 		
