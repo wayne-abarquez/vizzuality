@@ -7,8 +7,8 @@ package com.vizzuality.services
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
-	import com.vizzuality.data.ImageData;
 	import com.google.maps.styles.StrokeStyle;
+	import com.vizzuality.data.ImageData;
 	import com.vizzuality.data.PA;
 	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.view.map.MapController;
@@ -51,6 +51,10 @@ package com.vizzuality.services
 		[Bindable] public var pictures:ArrayCollection = new ArrayCollection();
 		[Bindable] public var wikipedias:ArrayCollection = new ArrayCollection();
 		[Bindable] public var youtubes:ArrayCollection = new ArrayCollection();
+		
+		public var wikipediaMarkers:Dictionary = new Dictionary();
+		public var picturesMarkers:Dictionary = new Dictionary();
+		
 		
 		private var numPicturesRequest:Number=0;
 		private var numVideosRequest:Number=0;
@@ -129,7 +133,7 @@ package com.vizzuality.services
 				if (MapUtils.pointInPolygon(new LatLng(w.lat, w.lng),pa.geometry)) {
 					wikipedias.addItem(w);  
 					var marker:Marker = createWikipediaMarker(w);
-					MapController.gi().wikipediaPane.addOverlay(marker);					
+					wikipediaMarkers[w]=marker;				
 				}
 			}		
 			numWikipediasRequest--;			
@@ -270,7 +274,7 @@ package com.vizzuality.services
 	      		marker.openInfoWindow(optionsMark);     
 	        });      
 	        
-	        MapController.gi().picturesPane.addOverlay(marker);
+	        picturesMarkers[photo]=marker;
 		} 		
 		
 
