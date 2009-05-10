@@ -14,9 +14,12 @@
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRY}">
 			<mx:AddChild position="firstChild">
-				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="{(DataServices.gi().selectedCountry.name).toUpperCase()}" verticalCenter="0" id="countryButton" styleName="breadCrumbButton" enabled="false" height="26" />
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="{(DataServices.gi().selectedCountry.name).toUpperCase()}" verticalCenter="0" id="countryButton" styleName="breadCrumbButton" enabled="true" height="26" />
 			</mx:AddChild>
 			<mx:SetProperty target="{worldButton}" name="buttonMode" value="true"/>
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{countryButton.x + countryButton.width - 15}" label="Click on an area to see details" verticalCenter="0" styleName="breadCrumbButton" id="worldButton1" enabled="false"/>
+			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.PA}">
 			<mx:AddChild position="firstChild">
@@ -28,7 +31,7 @@
 		</mx:State>
 		<mx:State name="{AppStates.AREA_SELECTOR}">
 			<mx:AddChild position="firstChild">
-				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="PRESELECT AREAS" verticalCenter="0" id="countryButton0" styleName="breadCrumbButton" enabled="false" height="26" />
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="There are multiples areas on this region. Click on the name to select one." verticalCenter="0" id="countryButton0" styleName="breadCrumbButton" enabled="false" height="26" />
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>

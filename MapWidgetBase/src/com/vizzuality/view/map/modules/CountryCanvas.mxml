@@ -27,6 +27,8 @@
 		import mx.rpc.events.FaultEvent;
 		import mx.rpc.events.ResultEvent;
 		import com.vizzuality.services.DataServices;
+		import com.vizzuality.view.map.MapController;
+		import com.vizzuality.data.WdpaLayer;
 		private var currentIso:String="";
 		
 		public function set isocode(iso:String):void {
@@ -80,10 +82,10 @@
 		verticalScrollPolicy="off" horizontalScrollPolicy="off" y="239" left="10" right="10">
 		<mx:Label text="WDPA-MARINE LAYERS" id="label3" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 		<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
-			<mx:CheckBox label="Coral (15% COVERED)"/>
-			<mx:CheckBox label="SaltMarsh (15% COVERED)"/>
-			<mx:CheckBox label="SeaGrass (15% COVERED)"/>
-			<mx:CheckBox label="Mangroves (15% COVERED)"/>
+			<mx:CheckBox label="Coral (15% COVERED)" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
+			<mx:CheckBox label="SaltMarsh (15% COVERED)" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
+			<mx:CheckBox label="SeaGrass (15% COVERED)" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
+			<mx:CheckBox label="Mangroves (15% COVERED)" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
 		</mx:VBox>
 	</mx:Canvas>
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="239" id="hrule0"/>

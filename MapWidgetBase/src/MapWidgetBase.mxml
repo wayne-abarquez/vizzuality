@@ -7,6 +7,7 @@
 	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
+			import com.google.maps.overlays.PolylineOptions;
 			import com.google.maps.overlays.Polyline;
 			import com.google.maps.overlays.Marker;
 			import com.vizzuality.data.MapPosition;
@@ -211,10 +212,20 @@
 										if(m!="numElements") {
 											MapController.gi().infowindowPane.addOverlay(m as Marker);
 											MapController.gi().addPa(DataServices.gi().preselectedPAsDic[m]);
+											
+											var options:PolylineOptions = new PolylineOptions({
+												  strokeStyle: {
+												    thickness: 2,
+												    color: 0x333333,
+												    alpha: 0.8,
+												    pixelHinting: true
+												  }
+												});
+											
 											var tail:Polyline = new Polyline([
 															m.getLatLng(),
 															(DataServices.gi().preselectedPAsDic[m] as PA).getCenter()
-															]);
+															],options);
 											MapController.gi().infowindowPane.addOverlay(tail);				
 										}
 										
