@@ -374,24 +374,34 @@ package com.vizzuality.services
 			if ((res.results as Array).length>0) {
 				preselectedPAsDic= new Dictionary(true);
 				preselectedPAsBounds = new LatLngBounds();
+				var pas:Array = [];
 				
-				
-				var contentFormat:TextFormat = new TextFormat("Arial", 10,Color.WHITE);
-				
+				//First create the PAs and at the same time
+				//calculate the preselectedPAsBounds
 				for each(var feature:Object in res.results) {				
-				    var pa:PA = createPa(feature);
+				    pas.push(createPa(feature));
+				}
+				
+				//Now create the markers
+				var contentFormat:TextFormat = new TextFormat("Arial", 10,Color.WHITE);				
+				var i:Number=0;
+				var num_res:Number = (res.results as Array).length;
+				var ang:Number = (360/5) /(180/Math.PI) ;
+				var radio:Number = preselectedPAsBounds.getEast() - preselectedPAsBounds.getCenter().lng();
+				var radio2:Number =  preselectedPAsBounds.getNorth() - preselectedPAsBounds.getCenter().lat();
+				if(radio2<radio)
+					radio=radio2;
+				for each(var pa:PA in pas) {    
+				    i++;
+				    trace(pa.getCenter());
+				    var lng:Number = (Math.cos(ang*i) * radio)+pa.getCenter().lng();
+				    var lat:Number = (Math.sin(ang*i) * radio)+pa.getCenter().lat();		    
 				    
-				    //find a random point inside the bbox of the PA for representation
-				    var bounds:LatLngBounds = preselectedPAsBounds;
-				    
-				    var lng:Number = bounds.getWest() + (bounds.getEast() - bounds.getWest()) * Math.random();
-				    var lat:Number = bounds.getSouth() + (bounds.getNorth() - bounds.getSouth()) * Math.random();
-				    
-				    var center_tooltip:LatLng = new LatLng(lat,lng);		 
+				    var markerPosition:LatLng = new LatLng(lat,lng);		 
 				       
-					var icon:PaTitleMarkerIcon = new PaTitleMarkerIcon(pa.name + ' [' + pa.countryIsoCode + ']');
+					var icon:PaTitleMarkerIcon = new PaTitleMarkerIcon(pa.name + ' [' + pa.countryIsoCode + ']',pa.id);
 					icon.buttonMode=true;
-	       			 var m:Marker = new Marker(center_tooltip, new MarkerOptions(
+	       			 var m:Marker = new Marker(markerPosition, new MarkerOptions(
 			       		{
 			       			clickable:true,
 			       			hasShadow:false,
@@ -400,10 +410,15 @@ package com.vizzuality.services
 					//var customToolTip:ToolTipOverlay = new ToolTipOverlay(center_tooltip,pa.name);
 					
 					preselectedPAsDic[m]=pa;		
-					if (preselectedPAsDic["numElements"]==null)
-						preselectedPAsDic["numElements"]=1;
-					preselectedPAsDic["numElements"]++;
+					if (preselectedPAsDic["numElements"]==null) {
+						preselectedPAsDic["numElements"]=1;						
+					} else {
+						preselectedPAsDic["numElements"]++;					
+					}
 				}
+				
+				
+				
 				
 				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
 				
