@@ -50,23 +50,23 @@
 			<mx:SetProperty name="height" value="398"/>
 			<mx:AddChild position="lastChild">
 				<mx:Text leading="-0.8" 
-					text="The WDPA is a foundation dataset for conservation decision making. &#xd;It contains crucial information from national governments, non-governmental organizations, academic institutions, international biodiversity convention secretariats and many others. It is used for ecological gap analysis, environmental impact analysis and is increasingly used for private sector decision-making. " width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-50" horizontalCenter="-144"/>
+					text="The WDPA-Marine is dedicated to providing the most comprehensive set of marine protected areas (MPAs) data available. With less than one percent of the oceans under legal protection, it is essential to maintain a dataset that focuses on MPAs and representation of the diverse species and habitats found in the marine environment." width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-50" horizontalCenter="-144"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-160" horizontalCenter="-366"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Text text="World Database of &#xd;Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
+				<mx:Text text="World Database on&#xd;Marine Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
 					leading="-6" verticalCenter="-125" width="411" height="64" letterSpacing="-1" horizontalCenter="-199"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="86" horizontalCenter="-147">
 					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="6" left="9"/>
-					<ns1:FeaturedArea x="10" y="33" click="AppStates.gi().setAllStates(AppStates.PA,'890')">
+					<ns1:FeaturedArea imageSource="assets/galapagos.jpg" labelText="The Galápagos Marine Reserve" x="10" y="33" click="AppStates.gi().setAllStates(AppStates.PA,'890')">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedArea x="138" y="33" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
+					<ns1:FeaturedArea imageSource="assets/barrier_reef.jpg" labelText="The Great Barrier Reef" x="138" y="33" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
 					</ns1:FeaturedArea>
-					<ns1:FeaturedArea x="266" y="33">
+					<ns1:FeaturedArea imageSource="assets/phoenix.jpg" labelText="Phoenix Islands" x="266" y="33">
 					</ns1:FeaturedArea>
 					<ns1:FeaturedExplore x="394" y="33">
 					</ns1:FeaturedExplore>

@@ -113,7 +113,7 @@
 						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="{MediaServices.gi().numPicturesRequest>0}"/>
 					</mx:HBox>
 					<mx:HBox>
-						<mx:CheckBox label="Videos" enabled="false"/>
+						<mx:CheckBox label="Videos" enabled="{MediaServices.gi().numVideosRequest==0}" change="MapController.gi().toggleYoutubes()"/>
 						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="false"/>
 					</mx:HBox>
 				</mx:VBox>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="236" height="333" styleName="softWhiteContainer" xmlns:ns1="com.vizzuality.view.overlay.*">
-	<mx:Text text="World percentage coverage" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
+	<mx:Text text="&lt; 1% of oceans are under protection?" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
 		leading="-6" verticalCenter="-115" width="225" height="64" left="6" letterSpacing="-1"/>
 	<mx:Text text="What's the mean of..." color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
 		leading="-4" width="225" left="6" letterSpacing="-1" top="157"/>
-	<mx:Text text="Do you know the..." color="#375381" fontFamily="DINOT-Medium" fontSize="14" 
+	<mx:Text text="Do you know that..." color="#375381" fontFamily="DINOT-Medium" fontSize="14" 
 		verticalCenter="-150" width="225" left="6"/>
 	<ns1:WorldCoverage left="7" top="84">
 	</ns1:WorldCoverage>

@@ -36,16 +36,11 @@
 			}	
 		var so = new SWFObject("${swf}.swf", "swf", "967", "450", "9"); 
 		so.addParam("allowFullScreen", "true");
+		so.addParam("allowScriptAccess", "always");
 		so.addVariable("swf", "");
 		so.addVariable("data_server_endpoint", 'http://localhost/php/amfphp/gateway.php');
 		so.addVariable("gmap_key", 'ABQIAAAAUdCLksixDAgnY8JZ7a6YJBRTcWW-xOIMiY0s20UEUW3xpxovahQClZ42LV_3hgyp4oBrgebTRrNDXg');
 		so.addVariable("hide_header",'true');
-		var gbifTileServers = new Array();
-		gbifTileServers[0]="http://gbiftilecache0.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|";
-		gbifTileServers[1]="http://gbiftilecache1.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|";
-		gbifTileServers[2]="http://gbiftilecache2.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|";
-		gbifTileServers[3]="http://gbiftilecache3.biodiversityatlas.com/getTile?tile=|X|_|Y|_|Z|_|T|";
-		so.addVariable("tile_servers", gbifTileServers);		
 		so.write("flexapp");
 		// ]]>
 	</script>
