@@ -84,7 +84,7 @@
 	<mx:VBox verticalGap="3" horizontalAlign="center" left="6" right="6" top="0" id="vbox4">
 		<mx:Canvas backgroundColor="#B4BB94" height="3" width="100%"/>
 		<mx:Canvas width="100%" id="canvas1">
-			<mx:Text text="{(DataServices.gi().selectedPA.name + ', ' + DataServices.gi().selectedPA.country + ' [' + DataServices.gi().selectedPA.countryIsoCode + ']').toUpperCase()}" id="areaTitle" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="4" top="-1" width="197"/>
+			<mx:Text text="{(DataServices.gi().selectedPA.name + ', ' + DataServices.gi().selectedPA.country + ' [' + DataServices.gi().selectedPA.countryIsoCode + ']').toUpperCase()}" id="areaTitle" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="4" top="-1" width="197" leading="-4"/>
 			<mx:Image right="14" width="7" top="12" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')" id="image1"/>
 		</mx:Canvas>
 		<mx:VBox verticalGap="0" paddingBottom="10" id="vboxLayers" horizontalAlign="center" width="100%" paddingLeft="4" paddingRight="4"> 
