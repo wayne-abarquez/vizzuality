@@ -76,8 +76,6 @@ package com.vizzuality.services
 		public var preselectedPAsDic:Dictionary = new Dictionary(true);
 		
 		
-		private var geocoder:HTTPService = new HTTPService();
-		
 		public function DataServices()
 		{
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
@@ -107,9 +105,6 @@ package com.vizzuality.services
 			roLat.source="WDPAServices";
 			roLat.source="WDPAServices";
 			roLat.destination="WDPAServices";
-		
-			geocoder.addEventListener(ResultEvent.RESULT,onGeoCodeSuccess);
-			geocoder.addEventListener(FaultEvent.FAULT,onGeoCodeFault);
 			
 			
 			nf=new NumberFormatter();
@@ -210,43 +205,70 @@ package com.vizzuality.services
 			if(value!=null && value!=resolvingIso) {
 				if(countriesDict[value]!=null) {
 					selectedCountry=countriesDict[value];
+					AppStates.gi().activeCountryIsoCode = selectedCountry.isocode;
+					AppStates.gi().activeCountryName = selectedCountry.name;	
+					MapController.gi().zoomToBbox(selectedCountry.bbox);
+					MapController.gi().setMapLoaded();									
+					
 					dispatchEvent(new DataServiceEvent(DataServiceEvent.COUNTRY_DATA_LOADED));
 				} else {
 					MapController.gi().setMapLoading();
-					//roCountry.getCountryStatsByISO(value);
-					roCountry.getCountryStatsByISO('ESP');
+					roCountry.getCountryStatsByISO(value,0,0);
 					resolvingIso=value;
 				}
 			}
 		}
 		
 		
-		private function onGetCountryDataResult(event:ResultEvent):void {			
-			var reso:Object = event.result[0];
-			selectedCountry = new Country();
-			selectedCountry.name = reso.Country;
-			selectedCountry.isocode = reso.ISO3;
-			selectedCountry.numberCoral = reso.CoralArea;
-			selectedCountry.numMangrove = reso.MangroveArea;
-			selectedCountry.coveragePercentage = reso.TerrestrialCoveragePercentage + reso.MarineCoveragePercentage;
-			selectedCountry.marineCoveragePercentage = reso.MarineCoveragePercentage;
-			selectedCountry.terrestrialCoveragePercentage = reso.TerrestrialCoveragePercentage;
-			selectedCountry.numAreas = reso.PATotal;
-			selectedCountry.terrestrialNumAreas = reso.PATerrestrialTotal;
-			selectedCountry.marineNumAreas = reso.PAMarineTotal;
-			selectedCountry.bbox = new LatLngBounds(new LatLng(27.638816833496,-18.169641494751),
-													new LatLng(43.7917251586914,4.31538963317871));
-			
-			
-			
-			AppStates.gi().activeCountryIsoCode = selectedCountry.isocode;
-			AppStates.gi().activeCountryName = selectedCountry.name;
-			countriesDict[selectedCountry.isocode]=selectedCountry;
-			resolvingIso=null;
-			dispatchEvent(new DataServiceEvent(DataServiceEvent.COUNTRY_DATA_LOADED));
-			
-			MapController.gi().zoomToBbox(selectedCountry.bbox);
-			MapController.gi().setMapLoaded();
+		private function onGetCountryDataResult(event:ResultEvent):void {		
+			if(event.result!=null) {
+				var reso:Object = event.result[0];
+				selectedCountry = new Country();
+				selectedCountry.name = reso.Country;
+				selectedCountry.isocode = reso.ISO2;
+				selectedCountry.numberCoral = reso.CoralArea;
+				selectedCountry.numMangrove = reso.MangroveArea;
+				selectedCountry.coveragePercentage = reso.TerrestrialCoveragePercentage + reso.MarineCoveragePercentage;
+				selectedCountry.marineCoveragePercentage = reso.MarineCoveragePercentage;
+				selectedCountry.terrestrialCoveragePercentage = reso.TerrestrialCoveragePercentage;
+				selectedCountry.numAreas = reso.PATotal;
+				selectedCountry.terrestrialNumAreas = reso.PATerrestrialTotal;
+				selectedCountry.marineNumAreas = reso.PAMarineTotal;
+				var geom:String = reso.Geometry;
+				//POLYGON ((-18.169 27.637486, 4.316 27.6374, 4.31695 43.76, -18.1698 43.7642, -18.169 27.6374))
+				var ta:Array = geom.replace("POLYGON ((","").replace("))","").split(",");
+				var s1:Array = (ta[0] as String).split(" ");
+				var s2:Array = (ta[2] as String).split(" ");		
+				var eastSouth:LatLng = new LatLng(
+					s1[1],
+					s1[0]);	
+				var westNorth:LatLng = new LatLng(
+					s2[2],
+					s2[1]);
+	
+				
+				selectedCountry.bbox = new LatLngBounds(eastSouth,westNorth);	
+	
+				countriesDict[selectedCountry.isocode]=selectedCountry;
+				resolvingIso=null;
+						
+				dispatchEvent(new DataServiceEvent(DataServiceEvent.COUNTRY_DATA_LOADED));			
+				
+				//the request is comming from a click on the map. We have to change the URL
+				if(AppStates.gi().topState!=AppStates.COUNTRY) {
+					SWFAddress.setValue('/'+AppStates.COUNTRY+'/'+selectedCountry.isocode);
+				} 
+				// the request is comming from a direct link via ISO code. No need to go further
+				else {
+					MapController.gi().zoomToBbox(selectedCountry.bbox);
+					MapController.gi().setMapLoaded();	
+				}			
+			} else {
+				AppStates.gi().activeCountryIsoCode = selectedCountry.isocode;
+				AppStates.gi().activeCountryName = selectedCountry.name;	
+				MapController.gi().setMapLoaded();
+				MapController.gi().showMapWarning("No countries where you have clicked",2);				
+			}
 		}		
 		
 		
@@ -287,23 +309,9 @@ package com.vizzuality.services
 		public function getCountryByLatLng(latlng:LatLng):void {
 						
 			MapController.gi().setMapLoading();
-			geocoder.url = "http://ws.geonames.org/countryCode?lat="+latlng.lat()+"&lng="+latlng.lng();
-			geocoder.send();
-		}
-		
-		private function onGeoCodeSuccess(event:ResultEvent):void {
-			//roCountries.getCountryByLatLng(latlng.lat(),latlng.lng());
-			MapController.gi().setMapLoaded();
-			SWFAddress.setValue('/'+AppStates.COUNTRY+'/'+StringUtil.trim(String(event.result)));
-			
-		}
-		private function onGeoCodeFault(event:FaultEvent):void {
-			MapController.gi().showMapWarning("You have not clicked in any country",2);
-		}
-		
-		
-		
-		
+			roCountry.getCountryStatsByISO("",latlng.lng(),latlng.lat());
+		}	
+
 		/**
 		 * 
 		 * 
