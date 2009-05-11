@@ -89,6 +89,23 @@ class WDPAServices {
         
         return $result;
     }
+
+    public function getCountryStatsByLatLng($lat,$lng) {
+        $result=array();
+        $result['numAreas']=750;
+        $result['iso']="ES";
+        $result['name']="Spain";
+        $result['coveragePercentage']=34;
+        $result['numberCoral']=100;
+        $result['numMangrove']=0;
+        $result['numSeagrass']=4;
+        $result['north']=43.7917251586914;
+        $result['south']=27.6388168334961;
+        $result['east']=4.31538963317871;
+        $result['west']=-18.169641494751;
+        
+        return $result;
+    }
     
     public function getFeaturedArea() {
         $featurearea=array();

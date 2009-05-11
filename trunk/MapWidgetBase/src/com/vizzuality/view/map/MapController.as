@@ -56,6 +56,7 @@ package com.vizzuality.view.map
 		private var tileOverlaysPane:IPane;
 		public var polygonPane:IPane;
 		public var picturesPane:IPane;
+		public var youtubesPane:IPane;
 		public var wikipediaPane:IPane;
 		private var biodiversityPane:IPane;
 		public var infowindowPane:IPane;
@@ -65,6 +66,8 @@ package com.vizzuality.view.map
 		public var isWikipediaActive:Boolean=false;
 		[Bindable] 
 		public var isPicturesActive:Boolean=false;
+		[Bindable] 
+		public var isYoutubesActive:Boolean=false;
 		
 		private var currentLayersOpacity:Number=0;
 		
@@ -87,9 +90,10 @@ package com.vizzuality.view.map
 			tileOverlaysPane = paneManager.createPane(numPanes);
 			polygonPane = paneManager.createPane(numPanes+1);
 			picturesPane = paneManager.createPane(numPanes+2);
-			wikipediaPane = paneManager.createPane(numPanes+3);
-			biodiversityPane = paneManager.createPane(numPanes+4);
-			infowindowPane = paneManager.createPane(numPanes+5);
+			youtubesPane = paneManager.createPane(numPanes+3);
+			wikipediaPane = paneManager.createPane(numPanes+4);
+			biodiversityPane = paneManager.createPane(numPanes+5);
+			infowindowPane = paneManager.createPane(numPanes+6);
 			
 			map.enableContinuousZoom();
 			
@@ -318,11 +322,12 @@ package com.vizzuality.view.map
 			AppStates.gi().debug("clear all overlays");
 			picturesPane.clear();
 			wikipediaPane.clear();
+			youtubesPane.clear();
 			biodiversityPane.clear();
 			infowindowPane.clear();
 		}		
 		
-		
+//WIKIPEDIAS--------------------------		
 		public function displayWikipedias():void {
 			for each (var m:Marker in MediaServices.gi().wikipediaMarkers) {
 				wikipediaPane.addOverlay(m);
@@ -344,6 +349,7 @@ package com.vizzuality.view.map
 			}
 		}
 
+//PICTURES------------------------
 		public function displayPictures():void {
 			for each (var m:Marker in MediaServices.gi().picturesMarkers) {
 				picturesPane.addOverlay(m);
@@ -373,7 +379,37 @@ package com.vizzuality.view.map
 				}
 			}
 		}
+
+//YOUTUBES---------------------
+		public function displayYoutubes():void {
+			for each (var m:Marker in MediaServices.gi().youtubesMarkers) {
+				youtubesPane.addOverlay(m);
+			}
+			isYoutubesActive=true;
+		}
 		
+		public function hideYoutubes():void {
+			youtubesPane.clear();
+			map.closeInfoWindow();
+			isYoutubesActive=false;
+		}
+		
+		public function toggleYoutubes():void {
+			if(isYoutubesActive) {
+				hideYoutubes();
+			} else {
+				displayYoutubes();
+			}
+		}
+		
+		public function onYoutubeClick(id:String):void {
+			for (var video:Object in MediaServices.gi().youtubesMarkers) {
+				if (video.link==id) {
+					var m:Marker = MediaServices.gi().youtubesMarkers[video];
+					m.openInfoWindow(MediaServices.gi().youtubesInfoWindows[m]);
+				}
+			}
+		}		
 
 		public function updateTileLayersOpacity(opacity:Number):void {
 			if (currentLayersOpacity!=opacity) {

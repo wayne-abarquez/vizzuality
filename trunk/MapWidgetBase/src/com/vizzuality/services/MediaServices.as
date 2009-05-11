@@ -10,10 +10,12 @@ package com.vizzuality.services
 	import com.google.maps.styles.StrokeStyle;
 	import com.vizzuality.data.ImageData;
 	import com.vizzuality.data.PA;
+	import com.vizzuality.data.YoutubeVideoData;
 	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.view.map.MapController;
 	import com.vizzuality.view.map.markers.WikipediaInfoWindow;
 	import com.vizzuality.view.map.markers.WikipediaMarker;
+	import com.vizzuality.view.map.markers.YoutubeSprite;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -48,6 +50,7 @@ package com.vizzuality.services
 		private var existingPoints:Array = new Array();	
 		
 		private var flickrDict:Dictionary = new Dictionary(true);	
+		private var youtubeDict:Dictionary = new Dictionary(true);	
 		
 		
 		[Bindable] public var pictures:ArrayCollection = new ArrayCollection();
@@ -57,11 +60,15 @@ package com.vizzuality.services
 		public var wikipediaMarkers:Dictionary = new Dictionary(true);
 		public var picturesMarkers:Dictionary = new Dictionary(true);
 		public var picturesInfoWindows:Dictionary = new Dictionary(true);
+		public var youtubesMarkers:Dictionary = new Dictionary(true);
+		public var youtubesInfoWindows:Dictionary = new Dictionary(true);
 		
 		
 		[Bindable] public var numPicturesRequest:Number=0;
 		[Bindable] public var numVideosRequest:Number=0;
 		[Bindable] public var numWikipediasRequest:Number=0;
+		
+		private var youtubeSprite:YoutubeSprite = new YoutubeSprite();
 		
 		public function MediaServices()
 		{
@@ -73,14 +80,17 @@ package com.vizzuality.services
 					"&extras=icon_server,geo,owner_name"+
 					"&per_page=20&min_taken_date=2000-1-1";					
 			wikiGeonamesSrv.url = "http://ws.geonames.org/wikipediaBoundingBoxJSON?&maxRows=10";		
+			youtubeServ.url = "http://gdata.youtube.com/feeds/api/videos?max-results=10&v=2&alt=json";
 			panoramioServ.resultFormat = "text";
 			wikiGeonamesSrv.resultFormat = "text";
 			flickrServ.resultFormat = "text";
-			
+			youtubeServ.resultFormat = "text";
+			//"http://gdata.youtube.com/feeds/api/videos?max-results=10&v=2&alt=json&location=37.42307,-122.08427&location-radius=100km"
 			
 			wikiGeonamesSrv.addEventListener(ResultEvent.RESULT,onWikiGeonamesResult);
 			flickrServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
 			panoramioServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
+			youtubeServ.addEventListener(ResultEvent.RESULT,onYoutubeResult);
 		}
 		
 		public static function gi():MediaServices {
@@ -117,7 +127,16 @@ package com.vizzuality.services
 		}
 		
 		public function getVideos(bbox:LatLngBounds):void {
-			
+			var radius:Number = bbox.getNorthEast().distanceFrom(bbox.getSouthEast());
+			var radius2:Number = bbox.getNorthEast().distanceFrom(bbox.getNorthWest());
+			if(radius2>radius)
+				radius=radius2;
+			radius=radius/1000;
+			var location:String = bbox.getCenter().lat() + ","+bbox.getCenter().lng() + "!";
+			youtubeServ.send({
+				location:location,
+				"location-radius":radius +"km"
+			});
 			numVideosRequest++;
 		}
 		
@@ -178,7 +197,29 @@ package com.vizzuality.services
 		} 	
 			
 		private function onYoutubeResult(event:ResultEvent):void {
-			
+			var jsonObj:Object = JSON.decode(String(event.result));	
+			var pa:PA = DataServices.gi().activePA;
+			for each(var v:Object in (jsonObj.feed.entry as Array)) {
+				var coords:Array = (v["georss$where"]["gml$Point"]["gml$pos"]["$t"] as String).split(" ");
+				var coor:LatLng =new LatLng(coords[0],coords[1]);
+				if (MapUtils.pointInPolygon(coor,pa.geometry) && (!existingPoints.indexOf(coor.lat()+coor.lng())>=0)) {
+					var video:YoutubeVideoData=new YoutubeVideoData();
+					video.link = v.link[0].href;
+					video.title = v.title["$t"];
+					video.latlng = coor;
+					var idString:String = v.id["$t"];
+					video.id = idString.substr(idString.lastIndexOf("video:")+6,idString.length-1);
+					video.thumbnail = v["media$group"]["media$thumbnail"][0]["url"];
+									
+					youtubes.addItem(video);
+	
+					var loader:Loader = new Loader();
+					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createYoutubeMarker);
+					youtubeDict[loader]=video;
+					loader.load(new URLRequest(video.thumbnail));		
+				}			
+			}		
+			numVideosRequest--;	
 			if (numVideosRequest==0) {
 				dispatchEvent(new DataServiceEvent(DataServiceEvent.YOUTUBES_LOADED));
 			}
@@ -253,15 +294,7 @@ package com.vizzuality.services
 	       	{tooltip: photo.title,
 	       	 draggable:false,
 	       	 icon: iconBitmap}));		        
-                
-/* 	    	var infowindow:ImageInfoWindow= new ImageInfoWindow();
-        	infowindow.ownerName=photo.owner;
-        	infowindow.ownerURL=photo.sourceUrl;
-        	infowindow.title=photo.title;
-        	infowindow.photoFileURL=photo.imageUrl;
-        	infowindow.photoURL=photo.sourceUrl;
-        	infowindow.source="flickr";
-        	infowindow.photoId="flickr"+photo.id; */
+              
         	var infowindow:Loader= new Loader();
         	infowindow.load(new URLRequest(photo.imageUrl));
         	infowindow.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void {
@@ -297,6 +330,48 @@ package com.vizzuality.services
 	        
 	        picturesMarkers[photo]=marker;
 		} 		
+		
+		private function createYoutubeMarker(ev:Event):void {
+			
+			var video:YoutubeVideoData=youtubeDict[ev.target.loader];
+			var bmd:BitmapData = Bitmap(ev.currentTarget.content).bitmapData;
+			var bmd2:BitmapData = new BitmapData(32,32)
+			var m:Matrix = new Matrix();
+			m.scale(0.43,0.43);
+			bmd2.draw(bmd,m);		
+			var sp:Sprite= new Sprite();
+            sp.graphics.lineStyle(3,0x000000);
+            sp.graphics.beginFill(0xFFFFFF,0);
+            sp.graphics.drawRect(0,0,31,31);
+            sp.graphics.endFill();
+            bmd2.draw(sp);
+			var iconBitmap:Bitmap= new Bitmap(bmd2);
+			
+			var latlng:LatLng = video.latlng;
+	      	var photoUrl:String = video.link;
+	      	
+	       var marker:Marker = new Marker(latlng, new MarkerOptions(
+	       	{tooltip: video.title,
+	       	 draggable:false,
+	       	 icon: iconBitmap}));		
+	       	 
+		   var optionsMark:InfoWindowOptions = new InfoWindowOptions({
+	                customContent: youtubeSprite,
+	                strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
+	                customOffset: new Point(0, 10),
+	                cornerRadius:0,
+	                width: 300,
+	                height: 225,
+	                drawDefaultFrame: true	   
+	       });  	
+	       
+	       marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
+		      		marker.openInfoWindow(optionsMark);  
+		      		youtubeSprite.loadVideo(video.id);   
+		      }); 	
+	        
+	        youtubesMarkers[video]=marker;
+		} 			
 		
 
 	}

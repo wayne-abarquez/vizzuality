@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="122" height="94" styleName="whiteBoxBorder" 
+	 horizontalScrollPolicy="off" verticalScrollPolicy="off"
 	backgroundSize="100%" filters="{[glowGrey]}"
 	useHandCursor="true" buttonMode="true" mouseChildren="false" 
 	rollOut="handleOut(event)" rollOver="handleOver(event)">
@@ -7,6 +8,9 @@
 		<![CDATA[
 			import com.vizzuality.view.AppStates;
 			import gs.TweenLite;
+			
+			[Bindable] public var imageSource:String;
+			[Bindable] public var labelText:String;
 	
 			private function handleOver(e:MouseEvent):void {
 				this.txt.setStyle("color",0x333333);
@@ -23,8 +27,8 @@
 
 	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
 	
-	<mx:Image source="@Embed('/assets/mapThumb1.jpg')" horizontalCenter="-1" top="4" />
-	<mx:Text id="txt" x="3" y="64" text="YOSEMITE NATIONAL &#xd;PARK [US]" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false"/>
+	<mx:Image source="{imageSource}" width="113" height="60" horizontalCenter="-1" top="4" />
+	<mx:Text id="txt" text="{labelText}" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false" left="3" right="3" height="26" y="66"/>
 	<mx:Canvas id="overCanvas" height="60" backgroundSize="100%" styleName="featuredAreaOver" left="4" right="5" top="4" alpha="0" />
 	
 </mx:Canvas>
