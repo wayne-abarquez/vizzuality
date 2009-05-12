@@ -2,7 +2,6 @@ package com.vizzuality.services
 {
 	import asual.SWFAddress;
 	
-	import com.adobe.utils.StringUtil;
 	import com.google.maps.Color;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
@@ -158,14 +157,21 @@ package com.vizzuality.services
 			var res:Object=event.result[0];
 			selectedPA = new PA();
 			//selectedPA.geomType = res.GeommetryType;
-			selectedPA.geomType = PA.POINT;
+			selectedPA.geomType = PA.POLYGON;
 			selectedPA.name=res.English_Name;
 			selectedPA.country=res.Country;
 			selectedPA.id=res.Site_ID;
 			selectedPA.has=res.DocumentedTotalArea;
-			selectedPA.countryIsoCode=res.ISO3;			
+			selectedPA.countryIsoCode=res.ISO2;			
+
+			var points:String = "~zfjL~hwfB?ooccC_kbvD??noccC~jbvD?";			
+			var levels:String = "PPPPP";			
 			
-			selectedPA.point = createCircleArea(new LatLng(36.97582451068759,-6.442108154296875),50000);
+			var ep:EncodedPolylineData = new EncodedPolylineData(points, 2, levels, 18);
+			var poli:Polygon = Polygon.fromEncoded([ep]);
+
+			selectedPA.polygon = poli;
+			//selectedPA.point = createCircleArea(new LatLng(36.97582451068759,-6.442108154296875),50000);
 			
 /* 			if(selectedPA.geomType==PA.POINT) {
 				selectedPA.point = createCircleArea(res.geometry,selectedPA.has);
