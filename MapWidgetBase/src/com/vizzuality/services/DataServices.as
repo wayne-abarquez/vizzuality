@@ -162,10 +162,12 @@ package com.vizzuality.services
 			selectedPA.country=res.Country;
 			selectedPA.id=res.Site_ID;
 			selectedPA.has=res.DocumentedTotalArea;
+
 			selectedPA.countryIsoCode=res.ISO2;			
 
 			var points:String = "~zfjL~hwfB?ooccC_kbvD??noccC~jbvD?";			
 			var levels:String = "PPPPP";			
+
 			
 			var ep:EncodedPolylineData = new EncodedPolylineData(points, 2, levels, 18);
 			var poli:Polygon = Polygon.fromEncoded([ep]);
