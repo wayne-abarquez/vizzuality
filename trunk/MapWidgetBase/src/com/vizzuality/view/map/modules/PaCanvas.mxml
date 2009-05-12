@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
-	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*">
+	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:RemoveChild target="{label4}"/>
