@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="359" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
-	currentState="loading" xmlns:overlay="com.vizzuality.view.overlay.*"  filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*">
+	currentState="loading" xmlns:overlay="com.vizzuality.view.overlay.*"  filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off">
 	<mx:states>
 		<mx:State name="loading">
 
