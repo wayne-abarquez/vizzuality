@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="75">
+<mx:Script>
+	<![CDATA[
+		import com.vizzuality.view.map.MapController;
+		import com.vizzuality.data.WdpaLayer;
+
+		private function onChange():void {
+			
+			if (typeNational.selected && !iucnCheckIa.selected && !iucnCheckIb.selected && !iucnCheckII.selected && !iucnCheckIII.selected && 
+				!iucnCheckV.selected && !iucnCheckIV.selected && !iucnCheckVI.selected && !iucnCheckU.selected) {			
+				typeNational.selected=false;		
+			}
+			
+			if (!convenRAM.selected && !convenHERI.selected && !convenUNES.selected && !convenOther.selected && typeInternational.selected) {
+				typeInternational.selected=false;
+			}
+			
+			if (!typeNational.selected &&(iucnCheckIa.selected || iucnCheckIb.selected || iucnCheckII.selected || iucnCheckIII.selected && 
+				!iucnCheckV.selected || iucnCheckIV.selected || iucnCheckVI.selected || iucnCheckU.selected)) {			
+				typeNational.selected=true;		
+			}
+			
+			if ((convenRAM.selected || convenHERI.selected || convenUNES.selected || convenOther.selected) && !typeInternational.selected) {
+				typeInternational.selected=true;
+			}			
+			
+			var selectedLayers:Array= [];
+			var natAdded:Boolean=false;
+			var intAdded:Boolean=false;
+			
+			//All checked
+			if (typeNational.selected && iucnCheckIa.selected && iucnCheckIb.selected && iucnCheckII.selected && iucnCheckIII.selected && 
+				iucnCheckV.selected && iucnCheckIV.selected && iucnCheckVI.selected && iucnCheckU.selected && convenRAM.selected && 
+				convenHERI.selected && convenUNES.selected && convenOther.selected && typeInternational.selected) {
+				
+				selectedLayers=[WdpaLayer.ALL];		
+				MapController.gi().updateTileLayers(selectedLayers);
+				return;
+			}
+			
+			
+			//All national, no international
+			if (typeNational.selected && iucnCheckIa.selected && iucnCheckIb.selected && iucnCheckII.selected && iucnCheckIII.selected && 
+				iucnCheckV.selected && iucnCheckIV.selected && iucnCheckVI.selected && iucnCheckU.selected) {
+				
+				selectedLayers.push(WdpaLayer.NATIONAL);
+				natAdded=true;
+			}
+			
+			//All international, no national
+			if (convenRAM.selected && convenHERI.selected && convenUNES.selected && convenOther.selected && typeInternational.selected) {
+				
+				selectedLayers.push(WdpaLayer.INTERNATIONAL);
+				intAdded=true;
+			}
+			
+			
+			//Mix of layers in the national pane
+			if(!natAdded && typeNational.selected) {
+				if (iucnCheckIa.selected)
+					selectedLayers.push(WdpaLayer.IUCN_IA);
+				if (iucnCheckIb.selected)
+					selectedLayers.push(WdpaLayer.IUCN_IB);
+				if (iucnCheckII.selected)
+					selectedLayers.push(WdpaLayer.IUCN_II);
+				if (iucnCheckIII.selected)
+					selectedLayers.push(WdpaLayer.IUCN_III);
+				if (iucnCheckV.selected)
+					selectedLayers.push(WdpaLayer.IUCN_V);
+				if (iucnCheckIV.selected)
+					selectedLayers.push(WdpaLayer.IUCN_IV);
+				if (iucnCheckVI.selected)
+					selectedLayers.push(WdpaLayer.IUCN_VI);
+				if (iucnCheckU.selected)
+					selectedLayers.push(WdpaLayer.IUCN_UNKNOWN);
+			}
+			
+			//Mix of layers in the international pane
+			if(!intAdded && typeInternational.selected) {
+				if (convenRAM.selected)
+					selectedLayers.push(WdpaLayer.CON_RAMSAR);						
+				if (convenHERI.selected)
+					selectedLayers.push(WdpaLayer.CON_HERITAGE);						
+				if (convenUNES.selected)
+					selectedLayers.push(WdpaLayer.CON_UNESCO);						
+				if (convenOther.selected)
+					selectedLayers.push(WdpaLayer.CON_OTHER);										
+			}
+			
+			MapController.gi().updateTileLayers(selectedLayers);
+			
+			
+			
+		}
+		
+		private function toggleNational():void {
+			if (typeNational.selected) {
+				iucnCheckIa.selected=true;
+				iucnCheckIb.selected=true;
+				iucnCheckII.selected=true;
+				iucnCheckIII.selected=true;
+				iucnCheckV.selected=true;
+				iucnCheckIV.selected=true;
+				iucnCheckVI.selected=true;
+				iucnCheckU.selected=true;
+			} else {
+				iucnCheckIa.selected=false;
+				iucnCheckIb.selected=false;
+				iucnCheckII.selected=false;
+				iucnCheckIII.selected=false;
+				iucnCheckV.selected=false;
+				iucnCheckIV.selected=false;
+				iucnCheckVI.selected=false;
+				iucnCheckU.selected=false;
+				
+			}
+		}
+		
+		private function toggleInternational():void {
+			if(typeInternational.selected) {
+				convenRAM.selected=true;
+				convenHERI.selected=true;
+				convenUNES.selected=true;
+				convenOther.selected=true;
+			}else {
+				convenRAM.selected=false;
+				convenHERI.selected=false;
+				convenUNES.selected=false;
+				convenOther.selected=false;
+				
+			}
+		}
+		
+	]]>
+</mx:Script>
+	<mx:Canvas x="0" y="0" width="230">
+		<mx:CheckBox x="10" label="NATIONAL AREAS" selected="true" id="typeNational"  change="toggleNational();onChange()" fontSize="16" top="9"/>
+		<mx:CheckBox x="26" label="Ia" selected="true" id="iucnCheckIa"  change="onChange()" top="33"/>
+		<mx:CheckBox x="66" label="Ib" selected="true" id="iucnCheckIb"  change="onChange()" top="33"/>
+		<mx:CheckBox x="106" label="II" selected="true" id="iucnCheckII"  change="onChange()" top="33"/>
+		<mx:CheckBox x="26" label="III" selected="true" id="iucnCheckIII"  change="onChange()" top="51"/>
+		<mx:CheckBox x="106" label="V" selected="true" id="iucnCheckV"  change="onChange()" top="51"/>
+		<mx:CheckBox x="66" label="IV" selected="true" id="iucnCheckIV"  change="onChange()" top="51"/>
+		<mx:CheckBox x="146" label="VI" selected="true" id="iucnCheckVI"  change="onChange()" top="51"/>
+		<mx:CheckBox x="146" label="Unkown" selected="true" id="iucnCheckU"  change="onChange()" top="33"/>
+		<mx:VRule x="0" y="10" height="61" strokeColor="#999999" strokeWidth="1"/>
+	</mx:Canvas>
+	<mx:Canvas x="228" y="0" width="257" >
+		<mx:CheckBox x="23" label="RAMSAR Wetlands" selected="true" id="convenRAM"  change="onChange()" top="51"/>
+		<mx:CheckBox x="23" label="World Heritage Site" selected="true" id="convenHERI"  change="onChange()" top="33"/>
+		<mx:CheckBox x="163" label="UNESCO Mab" selected="true" id="convenUNES"  change="onChange()" top="51"/>
+		<mx:CheckBox x="163" label="Other" selected="true" id="convenOther"  change="onChange()" top="33"/>
+		<mx:CheckBox x="8" label="INTERNATIONAL AREAS" selected="true" id="typeInternational"  change="toggleInternational();onChange()" fontSize="16" top="9"/>
+	</mx:Canvas>
+	<mx:VRule x="226" y="10" height="61" strokeColor="#999999" strokeWidth="1"/>
+	
+</mx:Canvas>

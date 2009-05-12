@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
+	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:RemoveChild target="{label4}"/>
+			<mx:RemoveChild target="{button1}"/>
+			<mx:RemoveChild target="{areaTitle}"/>
+			<mx:RemoveChild target="{hrule1}"/>
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:RemoveChild target="{label5}"/>
+			<mx:RemoveChild target="{vbox1}"/>
+			<mx:RemoveChild target="{vbox2}"/>
+			<mx:RemoveChild target="{image1}"/>
+			<mx:RemoveChild target="{canvas0}"/>
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:RemoveChild target="{canvas2}"/>
+			<mx:RemoveChild target="{vboxLayers}"/>
+			<mx:RemoveChild target="{vbox4}"/>
+			<mx:AddChild position="lastChild">
+				<ns1:GenericLoader left="0" right="0" top="0">
+				</ns1:GenericLoader>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="moreinfo">
+			<mx:SetProperty name="width" value="726"/>
+			<mx:SetProperty name="height" value="382"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="171" y="185" label="less info" click="currentState=''"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{button1}"/>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import com.vizzuality.data.WdpaLayer;
+		import com.vizzuality.services.MediaServices;
+		import com.vizzuality.view.map.MapController;
+		import com.vizzuality.services.DataServiceEvent;
+		import mx.binding.utils.BindingUtils;
+		import com.vizzuality.data.PA;
+		import com.vizzuality.view.AppStates;
+		import com.vizzuality.data.Country;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import com.vizzuality.services.DataServices;
+		
+		private var currentId:Number;
+		
+		public function set siteid(id:Number):void {
+			if (currentId!=id) {
+				currentState='loading';
+				DataServices.gi().addEventListener(DataServiceEvent.PA_DATA_LOADED,onDataLoaded);
+				MediaServices.gi().addEventListener(DataServiceEvent.WIKIPEDIAS_LOADED,onWikipediasLoaded);
+				DataServices.gi().selectedPAId=id;
+				currentId=id;
+			}
+		}
+		
+		private function onDataLoaded(event:DataServiceEvent):void {
+			currentState='';
+		}
+		
+		private function onWikipediasLoaded(event:DataServiceEvent):void {
+			
+		}
+		
+		
+		
+	]]>
+</mx:Script>
+
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
+	
+	<!--ESTA A FALSO EH!-->
+	<mx:Label x="93" y="81" text="{DataServices.gi().selectedPA.has}" id="label4" visible="false"/>
+	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1" visible="false"/>
+	<!--                -->
+	
+	<mx:VBox verticalGap="3" horizontalAlign="center" left="6" right="6" top="0" id="vbox4">
+		<mx:Canvas backgroundColor="#B4BB94" height="3" width="100%"/>
+		<mx:Canvas width="100%" id="canvas1">
+			<mx:Text text="{(DataServices.gi().selectedPA.name + ', ' + DataServices.gi().selectedPA.country + ' [' + DataServices.gi().selectedPA.countryIsoCode + ']').toUpperCase()}" id="areaTitle" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="4" top="-1" width="197" leading="-4"/>
+			<mx:Image right="14" width="7" top="12" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')" id="image1"/>
+		</mx:Canvas>
+		<mx:VBox verticalGap="0" paddingBottom="10" id="vboxLayers" horizontalAlign="center" width="100%" paddingLeft="4" paddingRight="4"> 
+			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule1"/>
+			<mx:Canvas styleName="greenContainer" id="canvas0" width="100%"
+				verticalScrollPolicy="off" horizontalScrollPolicy="off">
+				<mx:Label text="WDPA LAYERS" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
+					<mx:CheckBox label="Coral" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
+					<mx:CheckBox label="Cold Water Corals" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
+					<mx:CheckBox label="SeaGrass" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
+					<mx:CheckBox label="Mangroves" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
+				</mx:VBox>
+			</mx:Canvas>
+			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule2"/>
+			<mx:Canvas styleName="softGreenContainer" width="100%"
+				verticalScrollPolicy="off" horizontalScrollPolicy="off" id="canvas2">
+				<mx:Label text="FROM THE WEB" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6" id="label5"/>
+				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox2">
+					<mx:HBox>
+						<mx:CheckBox label="Wikipedia Articles" enabled="{MediaServices.gi().numWikipediasRequest==0}" change="MapController.gi().toggleWikipedias()"/>
+						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="{MediaServices.gi().numWikipediasRequest>0}"/>
+					</mx:HBox>
+					<mx:HBox>
+						<mx:CheckBox id="pictureChbox" label="Photos" enabled="{MediaServices.gi().numPicturesRequest==0}" change="MapController.gi().togglePictures()"/>
+						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="{MediaServices.gi().numPicturesRequest>0}"/>
+					</mx:HBox>
+					<mx:HBox>
+						<mx:CheckBox label="Videos" enabled="{MediaServices.gi().numVideosRequest==0}" change="MapController.gi().toggleYoutubes()"/>
+						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="false"/>
+					</mx:HBox>
+				</mx:VBox>
+			</mx:Canvas>
+		</mx:VBox>
+	</mx:VBox>
+	
+</mx:Canvas>

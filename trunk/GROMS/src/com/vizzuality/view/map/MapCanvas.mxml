@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" xmlns:header="com.vizzuality.view.map.header.*" 
+	xmlns:toolbar="com.vizzuality.view.map.toolbar.*" xmlns:map="com.vizzuality.view.map.*" xmlns:ns1="com.vizzuality.view.map.modules.*"
+	currentState="{AppStates.gi().topState}" xmlns:ns2="com.vizzuality.view.overlay.*" xmlns:loader="com.vizzuality.view.loader.*" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
+	<mx:states>
+		<mx:State name="{AppStates.WORLD}">
+			<mx:AddChild position="before" relativeTo="{alertCanvas}">
+				<ns1:WorldCanvas top="18" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="{!(AppStates.gi().secondState!='')}" right="18" id="worldcanvas"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}">
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRY}">
+			<mx:AddChild position="before" relativeTo="{alertCanvas}">
+				<ns1:CountryCanvas top="20" isocode="{AppStates.gi().activeCountryIsoCode}" showEffect="{fadeIn}" hideEffect="{fadeOut}"  visible="{!(AppStates.gi().secondState!='')}" right="20" id="countryCanvas"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.PA}">
+			<mx:AddChild position="before" relativeTo="{alertCanvas}">
+				<ns1:PaCanvas top="18" siteid="{AppStates.gi().activePaId}" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="{!(AppStates.gi().secondState!='')}" right="18" id="paCanvas"/>
+			</mx:AddChild>
+			<mx:AddChild position="before" relativeTo="{alertCanvas}">
+				<mediabrowser:MediaBrowser  width="100%" bottom="35" height="60" visible="{paCanvas.pictureChbox.selected}" showEffect="{fadeIn}" hideEffect="{fadeOut}" />
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.AREA_SELECTOR}">
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Button label="Go back" click="AppStates.gi().goToPreviousState();" width="79" top="39" horizontalCenter="245"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.ListData;
+			import com.vizzuality.data.PA;
+			import com.google.maps.PaneId;
+			import com.vizzuality.services.DataServices;
+			import com.vizzuality.view.AppStates;
+			import com.google.maps.MapZoomEvent;
+			import com.google.maps.MapType;
+			import com.google.maps.Color;
+			import com.google.maps.MapOptions;
+			import com.google.maps.MapEvent;
+			import mx.core.Application;
+			
+
+			
+			private var mapController:MapController;		
+
+			private function onMapPreInitialize(event:MapEvent):void {
+				var options:MapOptions = new MapOptions({
+				  backgroundFillStyle: {
+				    alpha: 1,
+				    color: Color.WHITE
+				  },
+				  controlByKeyboard: false,
+				  overlayRaising: true,
+				  dragging: true
+
+				});	
+				map.setInitOptions(options);
+						
+			}			
+			
+			private function onMapReady(event:Event):void {
+				mapController = new MapController(map,this);
+		    }
+		    
+		    private function labelData(item:Object):String {
+		    	return (item.name + '['+item.geomType+']');
+		    }
+			
+			
+		]]>
+	</mx:Script>
+	<mx:VBox width="100%" height="100%" verticalGap="0">
+		<header:MapHeader id="mapHeader" map="{map}" />
+		<mx:Canvas width="100%" height="100%" id="canvas1">
+			<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" key="{Application.application.parameters.gmap_key}" width="100%" height="100%"/>
+			<map:BreadCrumb id="breadcrumb" top="3" left="7" />
+			<ns2:DiscretLoading left="10" top="{(toolBar.currentState==AppStates.FILTER)?90:41}" id="discretLoading"/>
+			<ns2:MapWarning id="alertCanvas" visible="false"/>
+			<ns2:GeneralLoader id="loadingBar" visible="false" width="100%" height="100%" verticalCenter="0" horizontalCenter="0"/>
+			<toolbar:ToolBar id="toolBar" top="0" left="0" currentState="about" />
+			<!--mx:Label x="294" y="201" id="temp"/ -->
+		</mx:Canvas>
+	</mx:VBox>
+	
+    <mx:Fade id="fadeOut" alphaFrom="1.0" alphaTo="0.0"/>
+    <mx:Fade id="fadeIn" alphaFrom="0.0" alphaTo="1.0"/>	
+</mx:Canvas>

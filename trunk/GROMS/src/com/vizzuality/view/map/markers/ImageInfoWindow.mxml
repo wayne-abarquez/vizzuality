@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="215" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundColor="#FFFFFF" height="212">
+<mx:Script>
+	<![CDATA[
+		import flash.net.navigateToURL;
+		import mx.core.Application;
+		import mx.managers.PopUpManager;
+		[Bindable]
+		public var title:String;
+		[Bindable]
+		public var photoURL:String;
+		[Bindable]
+		public var photoFileURL:String;
+		[Bindable]
+		public var ownerName:String;
+		[Bindable]
+		public var ownerURL:String;
+		[Bindable]
+		public var source:String;	
+		
+		public var photoId:String;
+			
+	]]>
+</mx:Script>
+<mx:VBox verticalGap="2" width="100%" height="100%" horizontalAlign="center">
+	<mx:Spacer height="2" />
+	<mx:Canvas width="209" height="21" backgroundColor="{(source=='flickr')?0xFF0071:0x00A8FF}" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Label x="4" y="0" text="{title}" color="#FFFFFF" fontSize="12" width="180"/>
+		<mx:Image x="192" y="4" source="@Embed('assets/closebutton.png')" click="PopUpManager.removePopUp(this)" useHandCursor="true" buttonMode="true"/>
+	</mx:Canvas>
+	<mx:Image source="{photoFileURL}" width="209" height="126" scaleContent="true" useHandCursor="true" buttonMode="true" click="PopUpManager.removePopUp(this);Application.application.viewSelectPhotoInCoverFlow(photoId);"/>
+	<mx:HBox width="209" horizontalGap="0">
+		<mx:Image source="assets/linkb.png" />
+		<mx:Label text="View it" fontSize="9" color="#484848" textDecoration="underline" fontWeight="bold" useHandCursor="true" buttonMode="true" mouseChildren="false" click="PopUpManager.removePopUp(this);Application.application.viewSelectPhotoInCoverFlow(photoId);"/>
+		<mx:Spacer width="100%" />
+		<mx:Label text="by:" fontSize="9" color="#484848" textDecoration="normal"/>
+		<mx:Label text="{ownerName}" fontSize="9" color="#484848" textDecoration="underline" fontWeight="bold" useHandCursor="true" buttonMode="true" mouseChildren="false" click="navigateToURL(new URLRequest(ownerURL))"/>
+	</mx:HBox>
+	<mx:Spacer height="15" />
+	<mx:HBox width="209" horizontalGap="0" horizontalAlign="right" right="2" bottom="2">
+		<mx:Label text="picked from" fontSize="9" color="#484848" textDecoration="normal"/>
+		<mx:Label text="{source}" fontSize="9" color="#484848" textDecoration="underline" fontWeight="bold" useHandCursor="true" buttonMode="true" mouseChildren="false" click="navigateToURL(new URLRequest(photoURL));"/>
+	</mx:HBox>
+</mx:VBox>
+	
+</mx:Canvas>

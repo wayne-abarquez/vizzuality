@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="40" currentState="{AppStates.gi().topState}"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	<mx:states>
+		<mx:State name="{AppStates.WORLD}">
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="Click on the map to view area details or zoom" verticalCenter="0" styleName="breadCrumbButton" id="worldButton0" enabled="false"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}">
+			<mx:SetProperty target="{worldButton0}" name="label">
+				<mx:value>Select a country to explore it</mx:value>
+			</mx:SetProperty>
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRY}">
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="{(DataServices.gi().selectedCountry.name).toUpperCase()}" verticalCenter="0" id="countryButton" styleName="breadCrumbButton" enabled="true" height="26" />
+			</mx:AddChild>
+			<mx:SetProperty target="{worldButton}" name="buttonMode" value="true"/>
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{countryButton.x + countryButton.width - 15}" label="Click on an area to see details" verticalCenter="0" styleName="breadCrumbButton" id="worldButton1" enabled="false"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.PA}">
+			<mx:AddChild position="firstChild">
+				<mx:Button id="countryButton2" x="{worldButton.x + worldButton.width - 15}" label="{(AppStates.gi().activeCountryName).toUpperCase()}" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.COUNTRY,AppStates.gi().activeCountryIsoCode)" styleName="breadCrumbButton" height="26" useHandCursor="true" mouseChildren="false" buttonMode="true" enabled="true"/>
+			</mx:AddChild>
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{countryButton2.x + countryButton2.width - 15}" label="{(DataServices.gi().selectedPA.name).toUpperCase()}" verticalCenter="0" id="paButton" styleName="breadCrumbButton" height="26" enabled="false"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.AREA_SELECTOR}">
+			<mx:AddChild position="firstChild">
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="There are multiples areas on this region. Click on the name to select one." verticalCenter="0" id="countryButton0" styleName="breadCrumbButton" enabled="false" height="26" />
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Button x="3" label="WORLD" verticalCenter="0" click="AppStates.gi().setAllStates(AppStates.gi().worldOrCountries,'')" styleName="breadCrumbButton" id="worldButton"/>
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.services.DataServices;
+			import com.vizzuality.view.AppStates;
+
+		]]>
+	</mx:Script>
+</mx:Canvas>
