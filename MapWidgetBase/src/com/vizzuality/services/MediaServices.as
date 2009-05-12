@@ -4,6 +4,7 @@ package com.vizzuality.services
 	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
+	import com.google.maps.MapEvent;
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
@@ -369,6 +370,9 @@ package com.vizzuality.services
 		      		marker.openInfoWindow(optionsMark);  
 		      		youtubeSprite.loadVideo(video.id);   
 		      }); 	
+		   marker.addEventListener(MapEvent.INFOWINDOW_CLOSED,function(e:MapEvent):void {
+		   		youtubeSprite.unLoadVideo();
+		   });
 	        
 	        youtubesMarkers[video]=marker;
 		} 			
