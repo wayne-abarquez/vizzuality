@@ -32,6 +32,7 @@ package com.vizzuality.services
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
+	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
 	
@@ -92,14 +93,18 @@ package com.vizzuality.services
 			flickrServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
 			panoramioServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
 			youtubeServ.addEventListener(ResultEvent.RESULT,onYoutubeResult);
+			
+			wikiGeonamesSrv.addEventListener(FaultEvent.FAULT,onFault);
+			flickrServ.addEventListener(FaultEvent.FAULT,onFault);
+			panoramioServ.addEventListener(FaultEvent.FAULT,onFault);
+			youtubeServ.addEventListener(FaultEvent.FAULT,onFault);
 		}
 		
 		public static function gi():MediaServices {
 			return instance;
 			
 			
-		}		
-		
+		}	
 		
 		public function getAllMedia(bbox:LatLngBounds):void {
 			getPictures(bbox);
@@ -107,6 +112,10 @@ package com.vizzuality.services
 			getWikipedia(bbox);
 		}
 
+			
+		private function onFault(event:FaultEvent):void {
+			trace(event.message);
+		}			
 		
 		
 		public function getPictures(bbox:LatLngBounds):void {
