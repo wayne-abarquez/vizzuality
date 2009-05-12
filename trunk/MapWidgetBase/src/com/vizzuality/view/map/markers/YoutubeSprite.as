@@ -22,6 +22,10 @@ package com.vizzuality.view.map.markers
 			addChild(youtubeMovie);
 			
 		}
+		
+		public function unLoadVideo():void {
+			youtubeMovie.destroy();
+		}
 
 		private function onPlayerReady(event_p:PlayerReadyEvent):void {
 			youtubeMovie.width = 300;
