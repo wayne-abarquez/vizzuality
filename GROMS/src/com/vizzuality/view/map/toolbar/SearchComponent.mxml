@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" creationComplete="init()"  >
+<mx:Script>
+	<![CDATA[
+		import mx.rpc.AsyncToken;
+		import mx.binding.utils.BindingUtils;
+		import com.vizzuality.view.AppStates;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import com.vizzuality.services.DataServices;
+		import mx.rpc.remoting.mxml.RemoteObject;
+		import mx.collections.ArrayCollection;
+		
+		[Bindable]
+		private var searchResults:ArrayCollection = new ArrayCollection();
+		private var ro:RemoteObject = DataServices.gi().createRemoteObject();
+		
+		private var state:String = AppStates.WORLD;
+		
+		private var lastSearch:AsyncToken;
+		
+		private function init():void {
+			ro.addEventListener(ResultEvent.RESULT,onResult)
+			ro.addEventListener(FaultEvent.FAULT,onFault);
+			ro.concurrency = "last";
+			BindingUtils.bindSetter(setState,AppStates.gi(),"topState");
+			BindingUtils.bindSetter(setCountryName,AppStates.gi(),"activeCountryName");
+		}	
+		
+		private function setState(value:String):void {
+			if(AppStates.gi().topState != AppStates.COUNTRY && state!=AppStates.WORLD) {
+				state = AppStates.WORLD;
+				if(labelText!= null) {
+					labelText.text="SEARCH FOR PROTECTED AREAS WORLDWIDE";		
+					numResults.text = DataServices.gi().worldStats.totalAreas.toString();	
+				}	
+			}
+		}
+		
+		private function setCountryName(value:String):void {
+			if(AppStates.gi().activeCountryName!=null && labelText!=null) {
+				state = AppStates.COUNTRY;
+				labelText.text="SEARCH FOR PROTECTED AREAS IN "+AppStates.gi().activeCountryName.toUpperCase();	
+				searchResults = new ArrayCollection();
+				numResults.text = DataServices.gi().selectedCountry.numAreas.toString();
+			}
+				
+		}
+		
+		private function callService():void {
+			if (searchInput.text.length>1) {
+				lastSearch = ro.searchAreasByName(searchInput.text);
+				loadingIcon.visible=true;
+				numResults.visible=false;
+				
+			} else {
+				vBox.visible=false;
+			}
+		}	
+		
+		private function onResult(event:ResultEvent):void {
+			if (event.token == lastSearch) {
+				searchResults = new ArrayCollection(event.result as Array);
+				loadingIcon.visible=false;
+				numResults.visible=true;
+
+				if (searchResults.length<1) {
+					vBox.visible=false;
+				} else {
+					vBox.visible=true;				
+				}
+				
+
+				if(searchResults.length<6) {
+					searchResultsList.rowCount=searchResults.length;
+				} else {
+					searchResultsList.rowCount=6;				
+				}
+			}
+		}
+		
+		private function onFault(event:FaultEvent):void {
+			
+		}
+		
+		private function getLabel(ob:Object):String {
+			return ob.English_Name + ' ['+ob.ISO2 + '] - '+ob.Site_ID;
+		}
+		
+		private function clearForm():void {
+			searchResults = new ArrayCollection();
+			searchInput.text = '';
+			vBox.visible=false;
+			numResults.visible=false;		
+		}
+		
+	]]>
+</mx:Script>
+
+
+	<mx:Text id="labelText" text="SEARCH FOR PROTECTED AREAS WORLDWIDE" left="13" fontSize="16" fontWeight="normal" fontFamily="DINOT-Medium" color="#375381" top="14" width="227" height="62" />
+	<mx:TextInput id="searchInput" change="callService()" focusAlpha="0" 
+		borderStyle="solid" cornerRadius="2" left="220" height="22" top="15" width="297" fontSize="13" fontFamily="DINOT-Medium" color="#777777"/>
+	<mx:Canvas styleName="softYellowContainer" right="18" left="525" height="22" cornerRadius="2" top="15">
+		<mx:Label text="Start typing to get a list of matching areas. Click on the name to get details." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
+	</mx:Canvas>
+	<mx:VBox id="vBox" height="100%" y="36" left="220" visible="false">
+		<mx:List id="searchResultsList" dataProvider="{searchResults}" maxHeight="{vBox.height}" labelFunction="getLabel" itemClick="AppStates.gi().setAllStates(AppStates.PA,event.currentTarget.selectedItem.Site_ID);" 
+		 rowCount="0"
+		 borderStyle="solid"  width="297"  borderColor="#ACACAC" backgroundColor="#FFFFFF" fontFamily="DINOT-Medium" fontSize="12" color="#999999" themeColor="#999999"></mx:List>
+	</mx:VBox>
+	<mx:Label id="numResults" y="18" text="{searchResults.length}" color="#A1A1A1" textAlign="right" left="406" width="90" visible="{searchInput.text.length>0}"/>
+	<mx:SWFLoader id="loadingIcon" y="18" source="@Embed('assets/tinyLoading.swf')" left="479"  width="12" height="12" visible="false"/>
+	<mx:Image y="20" left="498" source="assets/closebutton_over.png" visible="{searchInput.text.length>0}" click="clearForm()" buttonMode="true"/>
+	
+</mx:Canvas>

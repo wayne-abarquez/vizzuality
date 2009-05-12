@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="318" backgroundColor="#FFFFFF" backgroundAlpha="0.85" creationComplete="init()" 
+	currentState="loading" xmlns:ns1="com.vizzuality.view.overlay.*" filters="{[glowGrey]}" xmlns:ns2="com.vizzuality.view.loader.*">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:AddChild position="lastChild">
+				<mx:HRule strokeColor="#B4BB94" left="6" right="6" strokeWidth="3" top="0"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:RemoveChild target="{worldcoverage1}"/>
+			<mx:RemoveChild target="{canvas0}"/>
+			<mx:RemoveChild target="{label9}"/>
+			<mx:RemoveChild target="{hrule1}"/>
+			<mx:RemoveChild target="{label5}"/>
+			<mx:RemoveChild target="{label2}"/>
+			<mx:RemoveChild target="{hbox1}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:RemoveChild target="{label12}"/>
+			<mx:RemoveChild target="{image1}"/>
+			<mx:SetProperty name="height" value="60"/>
+			<mx:AddChild position="lastChild">
+				<ns2:GenericLoader left="0" right="0" top="0">
+				</ns2:GenericLoader>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.WORLD}">
+			<mx:RemoveChild target="{radiobutton1}"/>
+			<mx:RemoveChild target="{radiobutton2}"/>
+			<mx:SetProperty target="{button1}" name="selected" value="false"/>
+			<mx:SetProperty name="height" value="282"/>
+			<mx:RemoveChild target="{button2}"/>
+			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
+				<mx:Button x="75" label="Areas" bottom="0" styleName="btnMiniTab" height="19" id="button0"
+				buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState=AppStates.WORLD;SWFAddress.setValue(AppStates.WORLD);" selected="true"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.COUNTRIES}">
+			<mx:RemoveChild target="{worldcoverage1}"/>
+			<mx:AddChild relativeTo="{canvas0}" position="lastChild">
+				<ns1:WorldCoverage horizontalCenter="0" top="54" id="worldcoverage0"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import mx.binding.utils.BindingUtils;
+		import asual.SWFAddress;
+		import com.vizzuality.data.WdpaLayer;
+		import com.vizzuality.view.map.MapController;
+		import com.vizzuality.services.DataServiceEvent;
+		import com.vizzuality.view.AppStates;
+		import com.vizzuality.data.WorldStats;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.remoting.mxml.RemoteObject;
+		import com.vizzuality.services.DataServices;
+		
+		private var ro:RemoteObject;
+		
+		private var loaded:Boolean=false;
+	
+		private function init():void {
+			
+			DataServices.gi().addEventListener(DataServiceEvent.WORLD_DATA_LOADED,onDataLoaded);
+			DataServices.gi().getWorldStats();
+			
+		}
+		
+		private function onDataLoaded(event:DataServiceEvent):void {			
+			loaded=true;			
+			BindingUtils.bindSetter(setState,AppStates.gi(),"topState");
+		}
+		
+		private function setState(value:String):void {
+			if(!loaded) {
+				currentState = "loading";
+			}
+			if (value==AppStates.WORLD || value==AppStates.COUNTRIES) {
+				currentState = value;
+				AppStates.gi().worldOrCountries=value;
+			}
+		}
+		
+		
+	]]>
+</mx:Script>
+
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
+
+	<mx:Canvas styleName="softGreenContainer" left="10" right="10" top="136" id="canvas0"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="10">
+		<mx:Canvas height="50" width="100%" styleName="greenContainer" top="1" id="canvas2">
+			<mx:Button x="75" label="Areas" bottom="0" styleName="btnMiniTab" height="19" id="button2"
+			buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState=AppStates.WORLD;SWFAddress.setValue(AppStates.WORLD);"/>
+			<mx:HRule strokeColor="#B5B9A3" strokeWidth="1" width="100%" bottom="0"/>
+			<mx:Button x="9" label="Countries" bottom="0" styleName="btnMiniTab" height="19" selected="true" id="button1"
+				buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState='';SWFAddress.setValue(AppStates.COUNTRIES);">
+			</mx:Button>
+		</mx:Canvas>
+		<mx:Label text="NAVIGATE THROW" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+		<ns1:WorldCoverage horizontalCenter="0" top="54" id="worldcoverage1"/>
+		<mx:RadioButton x="10" y="126" label="by country coverage" id="radiobutton2" click="MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_COVERAGE])" selected="true"/>
+		<mx:RadioButton x="10" y="145" label="by number of areas" id="radiobutton1" click="MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_AREAS])"/>
+	</mx:Canvas>
+	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<mx:Label text="TOTAL PROTECTED AREAS" id="label0" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="3"/>
+		<mx:Label text="{DataServices.gi().worldStats.totalAreas}" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848" letterSpacing="-1" left="3" top="10"/>
+	</mx:Canvas>
+	<mx:Label text="WORLD STATS" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4"/>
+	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="34" id="hrule2"/>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="136" id="hrule1"/>
+	<mx:Image right="14" width="7" top="17" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')" id="image1"/>
+	<mx:HBox horizontalGap="0" left="17" top="112" id="hbox1">
+		<mx:Label text="{Math.floor((DataServices.gi().worldStats.marine * 100) / DataServices.gi().worldStats.totalAreas) +'% MARINE'}" id="label5" fontSize="11" fontFamily="DINOT-Bold" color="#375381"/>
+		<mx:Label text="|" id="label2" fontSize="11" fontFamily="DINOT-Bold" color="#4F4F4F" width="8" textAlign="center"/>
+		<mx:Label text="{Math.floor((DataServices.gi().worldStats.terrestrial * 100) / DataServices.gi().worldStats.totalAreas) +'% TERRESTRIAL'}" id="label9" color="#FF5A00" fontSize="11" fontFamily="DINOT-Bold"/>
+	</mx:HBox>
+	
+	
+</mx:Canvas>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="0"
+	 currentState="{AppStates.gi().secondState}" styleName="whiteOverlay" backgroundSize="100%" xmlns:ns1="com.vizzuality.view.overlay.about.*" xmlns:ns2="com.vizzuality.view.map.toolbar.*">
+	<mx:states>
+		<mx:State name="{AppStates.HELP}">
+			<mx:SetProperty name="height" value="90"/>
+			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
+					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" left="25"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Label y="13" text="Zoom control" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" left="17" id="label1"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{label1}" position="before">
+				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" left="264"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{label1}" position="before">
+				<mx:Label y="13" text="Map Type" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" left="257" fontWeight="normal"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{label1}" position="before">
+				<mx:VRule strokeWidth="1" strokeColor="#777777" top="5" height="10" right="230" width="1"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{label1}" position="before">
+				<mx:Label y="13" text="Toolbar" textAlign="center" fontFamily="DINOT-Medium" fontSize="12" color="#2E2E2E" right="197" width="56"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:HRule strokeWidth="1" strokeColor="#777777" top="5" left="10" width="232"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:HRule strokeWidth="1" strokeColor="#777777" top="5" left="250" width="134"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:HRule strokeWidth="1" strokeColor="#777777" top="5" right="10" width="250"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Text y="31" text="Use the zoom controls to zoom in the map" width="211" left="17" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" textAlign="left" leading="-3"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Text y="31" text="Change the map background" width="174" left="257" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Text y="31" text="Handle the different information that is showed in the map&#xd;&#xd;" height="41" fontFamily="DINOT-Medium" fontSize="12" color="#777777" right="18" width="231" leading="-3" textAlign="left"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.ABOUT}">
+			<mx:SetProperty name="height" value="398"/>
+			<mx:AddChild position="lastChild">
+				<mx:Text leading="-0.8" 
+					text="The WDPA-Marine is dedicated to providing the most comprehensive set of marine protected areas (MPAs) data available. With less than one percent of the oceans under legal protection, it is essential to maintain a dataset that focuses on MPAs and representation of the diverse species and habitats found in the marine environment." width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-50" horizontalCenter="-144"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-160" horizontalCenter="-366"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Text text="World Database on&#xd;Marine Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
+					leading="-6" verticalCenter="-125" width="411" height="64" letterSpacing="-1" horizontalCenter="-199"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="86" horizontalCenter="-147">
+					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="6" left="9"/>
+					<ns1:FeaturedArea imageSource="assets/galapagos.jpg" labelText="The Galápagos Marine Reserve" x="10" y="33" click="AppStates.gi().setAllStates(AppStates.PA,'890')">
+					</ns1:FeaturedArea>
+					<ns1:FeaturedArea imageSource="assets/barrier_reef.jpg" labelText="The Great Barrier Reef" x="138" y="33" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
+					</ns1:FeaturedArea>
+					<ns1:FeaturedArea imageSource="assets/phoenix.jpg" labelText="Phoenix Islands" x="266" y="33">
+					</ns1:FeaturedArea>
+					<ns1:FeaturedExplore x="394" y="33">
+					</ns1:FeaturedExplore>
+				</mx:Canvas>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<ns1:RightArea verticalCenter="-11" horizontalCenter="291">
+				</ns1:RightArea>
+			</mx:AddChild>
+			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
+					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.SEARCH}" enterState="focusManager.setFocus(searchComponent.searchInput);">
+			<mx:SetProperty name="height" value="225"/>
+			<mx:SetProperty name="styleName"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" label="close"
+					useHandCursor="true" mouseChildren="false" buttonMode="true" top="71" height="22"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<ns2:SearchComponent id="searchComponent" height="224">
+				</ns2:SearchComponent>
+			</mx:AddChild>
+			<mx:AddChild position="firstChild">
+				<mx:Canvas width="100%" height="90" top="0" left="0" styleName="whiteOverlayClose" backgroundSize="100%">
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.FILTER}">
+			<mx:SetProperty name="height" value="100"/>
+			<mx:AddChild position="lastChild">
+				<ns2:FilterComponent right="5" top="4">
+				</ns2:FilterComponent>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Label text="SELECT TO FURTHER FILTER THE MAP" left="13" fontSize="16" fontWeight="normal" fontFamily="DINOT-Medium" color="#375381" top="14"/>
+			</mx:AddChild>
+			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
+					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="{AppStates.AREA_DETAILS}">
+			<mx:SetProperty name="height" value="218"/>
+			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
+			<mx:AddChild position="lastChild">
+				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
+					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas y="1" width="821" height="194" horizontalCenter="0" id="canvas2">
+					<mx:HBox verticalAlign="middle" horizontalGap="2" top="14" x="15">
+						<mx:Text text="YELLOWSTONE" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
+							leading="-4" letterSpacing="-1" paddingTop="0" paddingBottom="6"/>
+						<mx:Canvas width="17" height="17" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+							<mx:Image width="17" height="17" source="@Embed('/com/vizzuality/style/assets/circleIUCN.png')"/>
+							<mx:Label text="lb" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" textAlign="center" width="100%" height="100%"/>
+						</mx:Canvas>
+					</mx:HBox>
+					<mx:Button click="AppStates.gi().setSecondState('')" styleName="invisibleButton" height="15" label="view GBIF biodiversity data "
+						useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="169" textDecoration="underline" x="385"/>
+					<mx:Canvas width="296" height="65" styleName="softWhiteGreyContainer" top="48" id="canvas1" x="15">
+						<mx:Label y="3" text="United States" fontSize="16" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" left="5" right="130"/>
+						<mx:Label y="25" text="location: -10.54535435, 44.4234234" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
+						<mx:Label y="40" text="total area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102" id="label4"/>
+						<mx:Label y="5.2" text="view in google earth" fontSize="12" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" right="25" textDecoration="underline" textAlign="right" id="label5"/>
+						<mx:Image y="9" source="@Embed('/com/vizzuality/style/assets/iconGearth.png')"  right="8"/>
+					</mx:Canvas>
+					<mx:HBox verticalGap="0" horizontalGap="0" top="116" x="15">
+						<mx:Image source="@Embed('/assets/imageFoo.png')"/>
+						<mx:Image source="@Embed('/assets/imageFoo.png')"/>
+						<mx:Image source="@Embed('/assets/imageFoo.png')"/>
+						<mx:Image source="@Embed('/assets/imageFoo.png')"/>
+					</mx:HBox>
+					<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315">
+						<mx:Image source="@Embed('/assets/mapFoo.png')" left="3" top="3" bottom="3" scaleContent="false"/>
+					</mx:Canvas>
+					<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="41" x="540" id="label3"/>
+					<mx:VBox x="541" y="65" verticalGap="-5" id="vbox1">
+						<mx:HBox horizontalGap="-3" id="hbox6">
+							<mx:Label text="Established at" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+							<mx:Label text="1872" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox1">
+							<mx:Label text="Currently" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" id="label7"/>
+							<mx:Label text="Open" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" id="label8"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox2">
+							<mx:Label text="Designated," fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" id="label2"/>
+							<mx:Label text="National Park" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox3">
+							<mx:Label text="Site gov." fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+							<mx:Label text="Government Managed Protected Areas" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox4">
+							<mx:Label text="Management Authority" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+							<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+						<mx:HBox horizontalGap="-3" id="hbox5">
+							<mx:Label text="Management Effectiveness " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+							<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+						</mx:HBox>
+					</mx:VBox>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="NATIONAL" basedOn="{AppStates.AREA_DETAILS}"/>
+		<mx:State name="INTERNATIONAL" basedOn="{AppStates.AREA_DETAILS}">
+			<mx:SetProperty target="{label7}" name="text" value="Criteria"/>
+			<mx:SetProperty target="{label8}" name="text" value="No"/>
+		</mx:State>
+		<mx:State name="NATIONAL_MARINE" basedOn="NATIONAL">
+			<mx:SetStyle target="{label4}" name="right" value="167"/>
+			<mx:AddChild relativeTo="{label5}" position="before">
+				<mx:Label y="40" text="marine area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="157" right="5" id="label0"/>
+			</mx:AddChild>
+			<mx:SetProperty name="height" value="232"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="221"/>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox horizontalGap="-3" id="hbox0">
+					<mx:Label text="Nº Take Regulation" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+					<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+				</mx:HBox>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox horizontalGap="-3" id="hbox7">
+					<mx:Label text="Nº TakeArea" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+					<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+				</mx:HBox>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="INTERNATIONAL_MARINE" basedOn="INTERNATIONAL">
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Label y="40" text="marine area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="157" right="5" id="label6"/>
+			</mx:AddChild>
+			<mx:SetProperty name="height" value="232"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="221"/>
+			<mx:SetStyle target="{label3}" name="top" value="41"/>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox horizontalGap="-3" id="hbox8">
+					<mx:Label text="Nº Take Regulation" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+					<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+				</mx:HBox>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{vbox1}" position="lastChild">
+				<mx:HBox horizontalGap="-3" id="hbox9">
+					<mx:Label text="Nº Take Area" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+					<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+				</mx:HBox>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.view.AppStates;
+			import mx.effects.easing.Exponential;
+			import mx.core.Application;
+			import asual.SWFAddress;
+			
+			
+		]]>
+	</mx:Script>
+	
+
+
+	<mx:transitions>
+		<mx:Transition fromState="*" toState="">
+			<mx:Parallel targets="{[this]}">
+				<mx:Resize duration="800" easingFunction="{Exponential.easeInOut}" />
+				<mx:Fade alphaTo="0" alphaFrom="1" duration="800" />
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition fromState="" toState="*">
+			<mx:Parallel targets="{[this]}">
+				<mx:Resize duration="800" easingFunction="{Exponential.easeInOut}" />
+				<mx:Fade alphaTo="1" alphaFrom="0" duration="800" />
+			</mx:Parallel>
+		</mx:Transition>
+		<mx:Transition fromState="*" toState="*">
+			<mx:Parallel targets="{[this]}">
+				<mx:Resize duration="800" easingFunction="{Exponential.easeInOut}" />
+			</mx:Parallel>
+		</mx:Transition>		
+	</mx:transitions>	
+</mx:Canvas>
