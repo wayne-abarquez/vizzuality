@@ -2,7 +2,10 @@ package com.vizzuality.data
 {
 	import com.google.maps.LatLng;
 	
-	public class ImageData
+	import flash.events.EventDispatcher;
+	
+	[Bindable]
+	public class ImageData extends EventDispatcher
 	{
 		public var title:String;
 		public var thumbnail:String;

@@ -139,11 +139,11 @@
 		<mx:CheckBox x="26" label="Ia" selected="true" id="iucnCheckIa"  change="onChange()" top="33"/>
 		<mx:CheckBox x="66" label="Ib" selected="true" id="iucnCheckIb"  change="onChange()" top="33"/>
 		<mx:CheckBox x="106" label="II" selected="true" id="iucnCheckII"  change="onChange()" top="33"/>
-		<mx:CheckBox x="26" label="III" selected="true" id="iucnCheckIII"  change="onChange()" top="51"/>
-		<mx:CheckBox x="106" label="V" selected="true" id="iucnCheckV"  change="onChange()" top="51"/>
-		<mx:CheckBox x="66" label="IV" selected="true" id="iucnCheckIV"  change="onChange()" top="51"/>
-		<mx:CheckBox x="146" label="VI" selected="true" id="iucnCheckVI"  change="onChange()" top="51"/>
-		<mx:CheckBox x="146" label="Unkown" selected="true" id="iucnCheckU"  change="onChange()" top="33"/>
+		<mx:CheckBox x="146" label="III" selected="true" id="iucnCheckIII"  change="onChange()" top="31"/>
+		<mx:CheckBox x="66" label="V" selected="true" id="iucnCheckV"  change="onChange()" top="51"/>
+		<mx:CheckBox x="26" label="IV" selected="true" id="iucnCheckIV"  change="onChange()" top="51"/>
+		<mx:CheckBox x="106" label="VI" selected="true" id="iucnCheckVI"  change="onChange()" top="51"/>
+		<mx:CheckBox x="146" label="Unkown" selected="true" id="iucnCheckU"  change="onChange()" top="49"/>
 		<mx:VRule x="0" y="10" height="61" strokeColor="#999999" strokeWidth="1"/>
 	</mx:Canvas>
 	<mx:Canvas x="228" y="0" width="257" >

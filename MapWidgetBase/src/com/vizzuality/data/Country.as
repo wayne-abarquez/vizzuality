@@ -3,8 +3,10 @@ package com.vizzuality.data
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	
+	import flash.events.EventDispatcher;
+	
 	[Bindable]
-	public class Country
+	public class Country extends EventDispatcher
 	{
 		
 		public var isocode:String;
