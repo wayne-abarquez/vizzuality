@@ -119,7 +119,7 @@ package com.vizzuality.view.map
 		
 		
 		public function getDefaultMapPosition():MapPosition {
-			return new MapPosition(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
+			return new MapPosition(new LatLng(26.909682205382914,-68.73046875),2,MapType.PHYSICAL_MAP_TYPE);
 		}
 		
 		public function setClickListenerForAreas():void {
@@ -188,7 +188,7 @@ package com.vizzuality.view.map
 
 			if (AppStates.gi().mapPositions[AppStates.gi().topState] !=null) {
 				(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).zoom = map.getZoom();
-			} else {
+			} else {		
 				AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();
 			}
 		}		
@@ -289,28 +289,19 @@ package com.vizzuality.view.map
 		
 		
 		private function onPaDataLoaded(event:DataServiceEvent):void {
-			var z:Number = map.getBoundsZoomLevel(DataServices.gi().selectedPA.bbox);
-			map.setCenter(DataServices.gi().selectedPA.bbox.getCenter(),z);
+			var z:Number = map.getBoundsZoomLevel(DataServices.gi().selectedPA.getBbox());
+			map.setCenter(DataServices.gi().selectedPA.getCenter(),z);
 		}
 		
 		public function addActivePa():void {
 			if(DataServices.gi().activePA!=null) {
-				if (DataServices.gi().activePA.polygon!=null) { 
-				polygonPane.addOverlay(DataServices.gi().activePA.polygon);
-				} else {
-				//polygonPane.addOverlay(DataServices.gi().activePA.point);					
-				}
+				DataServices.gi().activePA.geometry.addToMap();
 			}
 		}
 		
 		public function addPa(pa:PA):void {
-			if (pa.geomType==PA.POLYGON) {
-				polygonPane.addOverlay(pa.polygon);
-				AppStates.gi().debug("added pa (POL) : "+pa.id);
-			} else if (pa.geomType==PA.POINT) {					
-				polygonPane.addOverlay(pa.point);
-				AppStates.gi().debug("added pa (POINT) : "+pa.id);
-			}
+			
+			pa.geometry.addToMap();
 		}		
 		
 		public function clearPAs():void {

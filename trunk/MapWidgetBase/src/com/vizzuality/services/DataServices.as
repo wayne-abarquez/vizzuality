@@ -19,6 +19,7 @@ package com.vizzuality.services
 	import com.vizzuality.utils.PolylineEncoder;
 	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.MapController;
+	import com.vizzuality.view.map.overlays.MultiPolygon;
 	import com.vizzuality.view.map.overlays.PaTitleMarkerIcon;
 	
 	import flash.events.EventDispatcher;
@@ -98,13 +99,7 @@ package com.vizzuality.services
 			roWorld.addEventListener(FaultEvent.FAULT,onFault);		
 			
 			roLat.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);	
-			roLat.addEventListener(FaultEvent.FAULT,onFault);		
-			//TEMPORARY HACK
-			roLat.endpoint="http://localhost/gateway.php";
-			roLat.source="WDPAServices";
-			roLat.source="WDPAServices";
-			roLat.destination="WDPAServices";
-			
+			roLat.addEventListener(FaultEvent.FAULT,onFault);					
 			
 			nf=new NumberFormatter();
 			nf.useThousandsSeparator=true;
@@ -156,24 +151,55 @@ package com.vizzuality.services
 
 			var res:Object=event.result[0];
 			selectedPA = new PA();
-			//selectedPA.geomType = res.GeommetryType;
-			selectedPA.geomType = PA.POLYGON;
+			//Mandatory
+			selectedPA.id=res.Site_ID;
 			selectedPA.name=res.English_Name;
 			selectedPA.country=res.Country;
-			selectedPA.id=res.Site_ID;
-			selectedPA.has=res.DocumentedTotalArea;
+			selectedPA.countryIsoCode=res.ISO2;		
+			selectedPA.geomType = res.GeometryType;
+			
+			
+			if(res['Designation']!=null) {
+				selectedPA.designation = res.Designation;
+			}
+			if(res['TotalArea']!=null) {
+				selectedPA.has = res.TotalArea;
+				selectedPA.totalArea = res.TotalArea;
+			}
+			if(res['CurrentStatus']!=null) {
+				selectedPA.currentStatus = res.CurrentStatus;
+				selectedPA.status = res.CurrentStatus;
+			}
+			if(res['EstablishmentYear']!=null) {
+				selectedPA.establishmentYear = res.EstablishmentYear;
+			}
+			if(res['IUCNCategory']!=null) {
+				selectedPA.iucnCategory = res.IUCNCategory;
+			}
+			if(res['SiteGovernance']!=null) {
+				selectedPA.siteGovernance = res.SiteGovernance;
+			}
+			if(res['Designation']!=null) {
+				selectedPA.designation = res.Designation;
+			}
+			if(res['SiteType']!=null) {
+				selectedPA.siteType = res.SiteType;
+			}
+			
+			
+				
 
-			selectedPA.countryIsoCode=res.ISO2;			
-
-			var points:String = "~zfjL~hwfB?ooccC_kbvD??noccC~jbvD?";			
-			var levels:String = "PPPPP";			
+			//var points:String = "~zfjL~hwfB?ooccC_kbvD??noccC~jbvD?";			
+			//var levels:String = "PPPPP";			
 
 			
-			var ep:EncodedPolylineData = new EncodedPolylineData(points, 2, levels, 18);
-			var poli:Polygon = Polygon.fromEncoded([ep]);
+/* 			var ep:EncodedPolylineData = new EncodedPolylineData(points, 2, levels, 18);
+			var poli:Polygon = Polygon.fromEncoded([ep]); */
+			//selectedPA.polygon = poli;
 
-			selectedPA.polygon = poli;
-			//selectedPA.point = createCircleArea(new LatLng(36.97582451068759,-6.442108154296875),50000);
+			selectedPA.geomType=PA.POINT;
+			
+			selectedPA.geometry.addPolygon(createCircleArea(new LatLng(36.97582451068759,-6.442108154296875),50000));
 			
 /* 			if(selectedPA.geomType==PA.POINT) {
 				selectedPA.point = createCircleArea(res.geometry,selectedPA.has);
@@ -326,33 +352,27 @@ package com.vizzuality.services
 		 * AREAS BY LAT LON
 		 * 
 		 **/
-		 //-----------------------------------------------------------------------------------	
-		private var clickedLatLng:LatLng;		
+		 //-----------------------------------------------------------------------------------		
 		public function getAreasByLatLng(latlng:LatLng):void {
 			MapController.gi().setMapLoading();
-			resolvingLatLng=latlng;
-			//roLat.getAreasByLatLng(latlng.lat(),latlng.lng());
+			resolvingLatLng=latlng;			
 			
-			var mapBounds:LatLngBounds =MapController.gi().map.getLatLngBounds();
-			var mapSize:Point = MapController.gi().map.getSize();
-				
+			//Create a 2 by 2 pixels box
+			var centerPoint:Point = MapController.gi().map.fromLatLngToPoint(latlng);
+			var llPoint:Point = new Point(centerPoint.x-1,centerPoint.y-1);
+			var urPoint:Point = new Point(centerPoint.x+1,centerPoint.y+1);
+			var bbox:LatLngBounds = new LatLngBounds(
+				MapController.gi().map.fromPointToLatLng(llPoint),
+				MapController.gi().map.fromPointToLatLng(urPoint));
 			
-		 	var url:String ="http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/identify" + 
-		 			"?geometryType=esriGeometryPoint" + 
-		 			"&geometry="+latlng.lng()+"%2C"+latlng.lat()+
-		 			"&layers=All" + 
-		 			"&tolerance=2" + 
-		 			"&mapExtent="+mapBounds.getWest()+"%2C"+mapBounds.getSouth()+"%2C"+mapBounds.getEast()+"%2C" + mapBounds.getNorth() +
-		 			"&imageDisplay="+mapSize.x+"%2C"+mapSize.y+"%2C96" + 
-		 			"&returnGeometry=true" + 
-		 			"&f=json";	
-		 	//wdpaRestServ.url=url;
-		 	//wdpaRestServ.url = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv1_IdentifyResults/MapServer/0//query?text=&geometry=%7B%22x%22%3A"+latlng.lng()+"%2C%22y%22%3A"+latlng.lat()+"%7D&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&where=&returnGeometry=true&outSR=&outFields=Site_ID,English_Name&f=json";
-			trace(url);
-			//wdpaRestServ.send();
-			
-			clickedLatLng=latlng;
-			roLat.getAreasByLatLng(url);
+			roLat.source ="WDPA_BB.TestBB"
+			roLat.getThePADetailsFromBB(
+				bbox.getNorth(),
+				bbox.getSouth(),
+				bbox.getEast(),
+				bbox.getWest(),
+				0);
+			trace(bbox.getNorth()+','+bbox.getSouth()+','+bbox.getEast()+','+bbox.getWest());
 		}
 		
 		private function onGetAreasByLatLngResult(event:ResultEvent):void {
@@ -363,45 +383,43 @@ package com.vizzuality.services
 			//3) There is <=10 areas for the clic. Go to PRESELCT state
 			//4) There is >10 areas. Show a warning (and maybe zoom?).
 			
+			var res:Object = event.result as Array;
 			
-			
-			//var res:Object = JSON.decode(String(event.result));
-			var res:Object = event.result;
-			
-			if(res.numres==0) {
+			//This scenario is very unlikely to happen as we are controlling the mouse click on the map loking
+			//at the layers
+			if(res.length==0) {
 				MapController.gi().setMapLoaded();
 				MapController.gi().showMapWarning("No Protected Areas where you have clicked",2);
 				return;
 			}
-			if(res.numres>10) {
+			if(res.length>10) {
 				MapController.gi().setMapLoaded();
 				MapController.gi().showMapWarning("There are too many areas where you have clicked. Please Zoom further",2);
-				MapController.gi().map.setCenter(clickedLatLng,MapController.gi().map.getZoom()+1);
+				MapController.gi().map.setCenter(resolvingLatLng,MapController.gi().map.getZoom()+1);
 				MapController.gi().map.setZoom(MapController.gi().map.getZoom()+1,true);
 				return;
 			}
-			if(res.numres==1) {
-				AppStates.gi().setAllStates(AppStates.PA,res.siteid);
-				//MapController.gi().setMapLoaded();
+			if(res.length==1) {
+				AppStates.gi().setAllStates(AppStates.PA,res[0]['site_Id']);
 				return;
 			}
 			
-			//There are less than 5 but more than 1. PRESELECTION!
-			if ((res.results as Array).length>0) {
+			//There are less than 10 but more than 1. PRESELECTION!
+			if (res.length>0) {
 				preselectedPAsDic= new Dictionary(true);
 				preselectedPAsBounds = new LatLngBounds();
 				var pas:Array = [];
 				
 				//First create the PAs and at the same time
 				//calculate the preselectedPAsBounds
-				for each(var feature:Object in res.results) {				
+				for each(var feature:Object in res) {				
 				    pas.push(createPa(feature));
 				}
 				
 				//Now create the markers
 				var contentFormat:TextFormat = new TextFormat("Arial", 10,Color.WHITE);				
 				var i:Number=0;
-				var num_res:Number = (res.results as Array).length;
+				var num_res:Number = (res as Array).length;
 				var ang:Number = (360/5) /(180/Math.PI) ;
 				var radio:Number = preselectedPAsBounds.getEast() - preselectedPAsBounds.getCenter().lng();
 				var radio2:Number =  preselectedPAsBounds.getNorth() - preselectedPAsBounds.getCenter().lat();
@@ -415,7 +433,7 @@ package com.vizzuality.services
 				    
 				    var markerPosition:LatLng = new LatLng(lat,lng);		 
 				       
-					var icon:PaTitleMarkerIcon = new PaTitleMarkerIcon(pa.name + ' [' + pa.countryIsoCode + ']',pa.id);
+					var icon:PaTitleMarkerIcon = new PaTitleMarkerIcon(pa.name + ' [' + pa.siteType + ']',pa.id);
 					icon.buttonMode=true;
 	       			 var m:Marker = new Marker(markerPosition, new MarkerOptions(
 			       		{
@@ -432,10 +450,6 @@ package com.vizzuality.services
 						preselectedPAsDic["numElements"]++;					
 					}
 				}
-				
-				
-				
-				
 				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
 				
 				
@@ -449,24 +463,24 @@ package com.vizzuality.services
 		private function createPa(feature:Object):PA {
 			var polygon:Polygon;
 			var point:LatLng;
-			var attributes:Object =  feature.attributes;
 		    var pa:PA = new PA();
-		    pa.id =attributes['Site ID'];
-		    pa.name = attributes['English Name'];	
-		    pa.designation = attributes['English Designation'];		
+		    pa.id =feature['site_Id'];
+		    pa.name = feature['Name'];	
+		    pa.siteType = feature['SiteType'];		
 		    pa.geomType = feature.geometryType;			
 			
-			if (pa.geomType==PA.POLYGON) {
-				var poli:Polygon=createPolygon(feature.geometry);
+			
+			if (pa.geomType=="polygon") {
+				var mp:MultiPolygon=createPolygon(feature.epolygons as Array);
 				        		
-			    preselectedPAsBounds.union(poli.getLatLngBounds());
-			    pa.polygon=poli;
+			    preselectedPAsBounds.union(mp.getBBox());
+			    pa.geometry=mp;
 				
 			} 
-			else if (pa.geomType==PA.POINT) {
-				var pol:Polygon = createCircleArea(feature.geometry,attributes['Documented Total Area (HA)']);				
+			else if (pa.geomType== "point") {
+/* 				var pol:Polygon = createCircleArea(feature.geometry,attributes['Documented Total Area (HA)']);				
 				preselectedPAsBounds.union(pol.getLatLngBounds());
-				pa.point=pol;
+				pa.point=pol; */
 				
 			} else {
 				
@@ -475,32 +489,33 @@ package com.vizzuality.services
 			return pa;
 		}
 		
-		private function createPolygon(geometry:Object):Polygon {
-			var rings:Array = geometry.rings;
-			var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
-			var encodedPolyLines:Array = new Array();
-			
-			for each(var ring:Array in rings) {
-				var innerRing:Array = new Array();
-				for each(var j:Array in ring) {
-					innerRing.push(new LatLng(j[1],j[0]));
+		private function createPolygon(epolygons:Array):MultiPolygon {
+ 			var mp:MultiPolygon = new MultiPolygon();
+ 			for each (var pol:Object in epolygons) {
+				var rings:Array = pol.rings;
+				var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
+				var encodedPolyLines:Array = new Array();
+				
+				for each(var ring:Object in rings) {
+					encodedPolyLines.push(new EncodedPolylineData(ring['Points'], ring['ZoomFactor'], ring['Levels'], ring['NumLevels']));
 				}
-				var inner:Object = p.dpEncode(innerRing);
-				encodedPolyLines.push(new EncodedPolylineData(inner.encodedPoints, 2, inner.encodedLevels, 18));
-			}
-			
-
-		    var polOpt:PolygonOptions = new PolygonOptions({ 
-			        strokeStyle: new StrokeStyle({
-			        	color: 0xFFBB08,
-			        	thickness: 2,
-			        	alpha: 1}), 
-			        fillStyle: new FillStyle({
-			        	color: 0xFFBB08,
-			        	alpha:0.2})
-			        });		
+				
+	
+			    var polOpt:PolygonOptions = new PolygonOptions({ 
+				        strokeStyle: new StrokeStyle({
+				        	color: 0xFFBB08,
+				        	thickness: 2,
+				        	alpha: 1}), 
+				        fillStyle: new FillStyle({
+				        	color: 0xFFBB08,
+				        	alpha:0.2})
+				        });		
+				        
+				mp.addEncodedPolygon(encodedPolyLines,polOpt);
+				
+			} 		
 			        
-		    return Polygon.fromEncoded(encodedPolyLines, polOpt);		
+		    return mp;		
 
 		}
 		
