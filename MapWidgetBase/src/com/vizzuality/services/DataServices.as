@@ -187,8 +187,7 @@ package com.vizzuality.services
 			}
 			
 			
-				
-
+			
 			//var points:String = "~zfjL~hwfB?ooccC_kbvD??noccC~jbvD?";			
 			//var levels:String = "PPPPP";			
 
