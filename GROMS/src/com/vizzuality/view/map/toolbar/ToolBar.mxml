@@ -48,39 +48,43 @@
 		</mx:State>
 		<mx:State name="{AppStates.ABOUT}">
 			<mx:SetProperty name="height" value="398"/>
+			<mx:SetProperty name="styleName"/>
 			<mx:AddChild position="lastChild">
-				<mx:Text leading="-0.8" 
-					text="The WDPA-Marine is dedicated to providing the most comprehensive set of marine protected areas (MPAs) data available. With less than one percent of the oceans under legal protection, it is essential to maintain a dataset that focuses on MPAs and representation of the diverse species and habitats found in the marine environment." width="521" fontSize="14" fontWeight="normal" id="text1" color="#393939" fontFamily="DINOT-Medium" verticalCenter="-50" horizontalCenter="-144"/>
-			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Text text="Explore the" color="#375381" fontFamily="DINOT-Medium" fontSize="14" verticalCenter="-160" horizontalCenter="-366"/>
-			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Text text="World Database on&#xd;Marine Protected Areas" color="#375381" fontFamily="DINOT-Medium" fontSize="24" 
-					leading="-6" verticalCenter="-125" width="411" height="64" letterSpacing="-1" horizontalCenter="-199"/>
-			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="86" horizontalCenter="-147">
-					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="6" left="9"/>
-					<ns1:FeaturedArea imageSource="assets/galapagos.jpg" labelText="The Galápagos Marine Reserve" x="10" y="33" click="AppStates.gi().setAllStates(AppStates.FEATURE,'890')">
-					</ns1:FeaturedArea>
-					<ns1:FeaturedArea imageSource="assets/barrier_reef.jpg" labelText="The Great Barrier Reef" x="138" y="33" click="AppStates.gi().setAllStates(AppStates.COUNTRY,'ES')">
-					</ns1:FeaturedArea>
-					<ns1:FeaturedArea imageSource="assets/phoenix.jpg" labelText="Phoenix Islands" x="266" y="33">
-					</ns1:FeaturedArea>
-					<ns1:FeaturedExplore x="394" y="33">
-					</ns1:FeaturedExplore>
+				<mx:Canvas width="570" height="346" horizontalCenter="0" verticalCenter="0" backgroundColor="#FFFFFF" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="6"
+					verticalScrollPolicy="off" horizontalScrollPolicy="off" filters="{[glowGrey]}">
+					<mx:Text x="19" y="20" text="Explore the" fontFamily="DINOT-Medium" fontSize="18" color="#666666"/>
+					<mx:Text y="82" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in ornare tellus. Praesent volutpat posuere odio sed cursus. Phasellus molestie auctor tellus, quis gravida nibh sollicitudin eget. Donec eget dapibus erat. Maecenas quis tortor odio.&#xd;" fontFamily="DINOT-Medium" fontSize="14" color="#666666" left="19" width="519" leading="-1"/>
+					<mx:Text x="19" y="40" text="GLOBAL REGISTRY OF MIGRATORY SPECIES&#xd;" fontFamily="DINOT-Bold" fontSize="27" color="#88B54F" letterSpacing="-1"/>
+					<mx:Canvas height="107" left="-10" right="-10" styleName="bkgAboutGradient" backgroundSize="100%" bottom="-10">
+						<mx:Canvas x="27" y="25" width="365" height="6" styleName="fakeShadow" backgroundSize="100%" alpha="0.3">
+						</mx:Canvas>
+						<mx:Canvas y="25" width="160" height="6" styleName="fakeShadow" backgroundSize="100%" alpha="0.3" x="397">
+						</mx:Canvas>
+						<mx:Text x="188" y="44" text="or search directly&#xd;" fontFamily="DINOT-Medium" fontSize="14" color="#666666"/>
+						<mx:Button x="377" y="68" label="e.g.ursus maritimus" styleName="invisibleButton" textDecoration="underline"/>
+					</mx:Canvas>
+					<mx:HBox x="21" y="171" horizontalGap="2">
+						<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+						</mx:Canvas>
+						<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+						</mx:Canvas>
+						<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+						</mx:Canvas>
+						<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+						</mx:Canvas>
+						<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+						</mx:Canvas>
+					</mx:HBox>
+					<mx:Text x="29" y="160" text="01679" fontSize="80" color="#6b6b6b" fontFamily="DINOT-Bold" letterSpacing="29"/>
+					<mx:Text x="30" y="161" text="01679" fontSize="80" color="#FFFFFF" fontFamily="DINOT-Bold" letterSpacing="29"/>
+					<mx:Text x="387" y="169" text="DIFERENT SPECIES MIGRATORY  DISTRIBUTIONS" fontFamily="DINOT-Bold" fontSize="16" color="#666666" width="155" leading="-4"/>
+					<mx:Button x="389" y="233" label="LET'S EXPLORE" styleName="btnOrange" width="158"
+						useHandCursor="true" buttonMode="true" mouseChildren="false" fontFamily="DINOT-Bold"/>
+					<ns2:SearchComponent x="298" bottom="26">
+					</ns2:SearchComponent>
 				</mx:Canvas>
 			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<ns1:RightArea verticalCenter="-11" horizontalCenter="291">
-				</ns1:RightArea>
-			</mx:AddChild>
-			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
-			<mx:AddChild position="lastChild">
-				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
-					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
-			</mx:AddChild>
+			<mx:SetStyle name="backgroundAlpha" value="0.0"/>
 		</mx:State>
 		<mx:State name="{AppStates.SEARCH}" enterState="focusManager.setFocus(searchComponent.searchInput);">
 			<mx:SetProperty name="height" value="225"/>
@@ -235,7 +239,7 @@
 		]]>
 	</mx:Script>
 	
-
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
 
 	<mx:transitions>
 		<mx:Transition fromState="*" toState="">
