@@ -12,7 +12,6 @@ package com.vizzuality.services
 	import com.vizzuality.data.ImageData;
 	import com.vizzuality.data.PA;
 	import com.vizzuality.data.YoutubeVideoData;
-	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.view.map.MapController;
 	import com.vizzuality.view.map.markers.WikipediaInfoWindow;
 	import com.vizzuality.view.map.markers.WikipediaMarker;
@@ -32,6 +31,7 @@ package com.vizzuality.services
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
+	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
 	
@@ -92,21 +92,43 @@ package com.vizzuality.services
 			flickrServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
 			panoramioServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
 			youtubeServ.addEventListener(ResultEvent.RESULT,onYoutubeResult);
+			
+			wikiGeonamesSrv.addEventListener(FaultEvent.FAULT,onFault);
+			flickrServ.addEventListener(FaultEvent.FAULT,onFault);
+			panoramioServ.addEventListener(FaultEvent.FAULT,onFault);
+			youtubeServ.addEventListener(FaultEvent.FAULT,onFault);
 		}
 		
 		public static function gi():MediaServices {
 			return instance;
 			
 			
-		}		
-		
+		}	
 		
 		public function getAllMedia(bbox:LatLngBounds):void {
+			//resete everything
+			pictures = new ArrayCollection();
+			wikipedias = new ArrayCollection();
+			youtubes = new ArrayCollection();
+			
+			wikipediaMarkers = new Dictionary(true);
+			picturesMarkers = new Dictionary(true);
+			picturesInfoWindows = new Dictionary(true);
+			youtubesMarkers = new Dictionary(true);
+			youtubesInfoWindows = new Dictionary(true);
+			existingPoints=[];
+			MapController.gi().clearOverlays();
+			
+		
 			getPictures(bbox);
 			getVideos(bbox);
 			getWikipedia(bbox);
 		}
 
+			
+		private function onFault(event:FaultEvent):void {
+			trace(event.message);
+		}			
 		
 		
 		public function getPictures(bbox:LatLngBounds):void {
@@ -114,7 +136,7 @@ package com.vizzuality.services
 			var firstBBox:LatLngBounds = new LatLngBounds(bbox.getSouthWest(),bbox.getCenter());
 			var secondBBox:LatLngBounds = new LatLngBounds(bbox.getCenter(),bbox.getNorthEast());
 			var thirdBBox:LatLngBounds = new LatLngBounds(firstBBox.getNorthWest(),new LatLng(secondBBox.getNorth(),bbox.getCenter().lng()));
-			var fourthBBox:LatLngBounds = new LatLngBounds(firstBBox.getSouthEast(),secondBBox.getNorthEast());
+			var fourthBBox:LatLngBounds = new LatLngBounds(firstBBox.getSouthEast(),secondBBox.getSouthEast());
 			flickrServ.send({bbox:firstBBox.getWest()+","+firstBBox.getSouth()+","+firstBBox.getEast()+","+firstBBox.getNorth()});			
 			flickrServ.send({bbox:secondBBox.getWest()+","+secondBBox.getSouth()+","+secondBBox.getEast()+","+secondBBox.getNorth()});			
 			flickrServ.send({bbox:thirdBBox.getWest()+","+thirdBBox.getSouth()+","+thirdBBox.getEast()+","+thirdBBox.getNorth()});			
@@ -123,7 +145,6 @@ package com.vizzuality.services
 			panoramioServ.send({minx:secondBBox.getWest(),miny:secondBBox.getSouth(),maxx:secondBBox.getEast(),maxy:secondBBox.getNorth()});
 			panoramioServ.send({minx:thirdBBox.getWest(),miny:thirdBBox.getSouth(),maxx:thirdBBox.getEast(),maxy:thirdBBox.getNorth()});
 			panoramioServ.send({minx:fourthBBox.getWest(),miny:fourthBBox.getSouth(),maxx:fourthBBox.getEast(),maxy:fourthBBox.getNorth()});			 */
-			
 			numPicturesRequest=numPicturesRequest+4;
 		}
 		
@@ -151,7 +172,7 @@ package com.vizzuality.services
 			var jsonObj:Object = JSON.decode(String(event.result))
 			var pa:PA = DataServices.gi().activePA;
 			for each(var w:Object in jsonObj.geonames as Array) {
-				if (MapUtils.pointInPolygon(new LatLng(w.lat, w.lng),pa.geometry)) {
+				if(pa.geometry.pointInPolygon(new LatLng(w.lat, w.lng))) {
 					wikipedias.addItem(w);  
 					var marker:Marker = createWikipediaMarker(w);
 					wikipediaMarkers[w]=marker;				
@@ -168,7 +189,7 @@ package com.vizzuality.services
 			var pa:PA = DataServices.gi().activePA;
 			
 			for each(var photo:Object in jsonObj.photos.photo) {
-				if (MapUtils.pointInPolygon(new LatLng(photo.latitude, photo.longitude),pa.geometry) && (!existingPoints.indexOf(photo.latitude+photo.longitude)>=0)) {
+				if(pa.geometry.pointInPolygon(new LatLng(photo.latitude, photo.longitude)) && (!existingPoints.indexOf(photo.latitude+photo.longitude)>=0)) {
 					existingPoints.push(photo.latitude+photo.longitude);
 					
 					var img:ImageData=new ImageData();
@@ -203,7 +224,7 @@ package com.vizzuality.services
 			for each(var v:Object in (jsonObj.feed.entry as Array)) {
 				var coords:Array = (v["georss$where"]["gml$Point"]["gml$pos"]["$t"] as String).split(" ");
 				var coor:LatLng =new LatLng(coords[0],coords[1]);
-				if (MapUtils.pointInPolygon(coor,pa.geometry) && (!existingPoints.indexOf(coor.lat()+coor.lng())>=0)) {
+				if (pa.geometry.pointInPolygon(coor) && (!existingPoints.indexOf(coor.lat()+coor.lng())>=0)) {
 					var video:YoutubeVideoData=new YoutubeVideoData();
 					video.link = v.link[0].href;
 					video.title = v.title["$t"];

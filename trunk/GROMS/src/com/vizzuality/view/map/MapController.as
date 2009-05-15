@@ -289,28 +289,18 @@ package com.vizzuality.view.map
 		
 		
 		private function onPaDataLoaded(event:DataServiceEvent):void {
-			var z:Number = map.getBoundsZoomLevel(DataServices.gi().selectedPA.bbox);
-			map.setCenter(DataServices.gi().selectedPA.bbox.getCenter(),z);
+			var z:Number = map.getBoundsZoomLevel(DataServices.gi().selectedPA.getBbox());
+			map.setCenter(DataServices.gi().selectedPA.getCenter(),z);
 		}
 		
 		public function addActivePa():void {
 			if(DataServices.gi().activePA!=null) {
-				if (DataServices.gi().activePA.polygon!=null) { 
-				polygonPane.addOverlay(DataServices.gi().activePA.polygon);
-				} else {
-				//polygonPane.addOverlay(DataServices.gi().activePA.point);					
-				}
+				DataServices.gi().activePA.geometry.addToMap();
 			}
 		}
 		
 		public function addPa(pa:PA):void {
-			if (pa.geomType==PA.POLYGON) {
-				polygonPane.addOverlay(pa.polygon);
-				AppStates.gi().debug("added pa (POL) : "+pa.id);
-			} else if (pa.geomType==PA.POINT) {					
-				polygonPane.addOverlay(pa.point);
-				AppStates.gi().debug("added pa (POINT) : "+pa.id);
-			}
+			pa.geometry.addToMap();
 		}		
 		
 		public function clearPAs():void {

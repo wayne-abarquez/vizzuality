@@ -41,29 +41,8 @@
 			ro.addEventListener(ResultEvent.RESULT,onResult)
 			ro.addEventListener(FaultEvent.FAULT,onFault);
 			ro.concurrency = "last";
-			BindingUtils.bindSetter(setState,AppStates.gi(),"topState");
-			BindingUtils.bindSetter(setCountryName,AppStates.gi(),"activeCountryName");
 		}	
 		
-		private function setState(value:String):void {
-			if(AppStates.gi().topState != AppStates.COUNTRY && state!=AppStates.WORLD) {
-				state = AppStates.WORLD;
-				/* if(labelText!= null) {
-					labelText.text="SEARCH FOR PROTECTED AREAS WORLDWIDE";		
-					numResults.text = DataServices.gi().worldStats.numberSpecies.toString();	
-				} */	
-			}
-		}
-		
-		private function setCountryName(value:String):void {
-			/* if(AppStates.gi().activeCountryName!=null && labelText!=null) {
-				state = AppStates.COUNTRY;
-				labelText.text="SEARCH FOR PROTECTED AREAS IN "+AppStates.gi().activeCountryName.toUpperCase();	
-				searchResults = new ArrayCollection();
-				numResults.text = DataServices.gi().selectedCountry.numAreas.toString();
-			} */
-				
-		}
 		
 		private function callService():void {
 			if (searchInput.text.length>1) {

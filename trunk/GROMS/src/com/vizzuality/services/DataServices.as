@@ -86,9 +86,6 @@ package com.vizzuality.services
 			roLat=createRemoteObject();
 			roSearch=createRemoteObject();
 			
-			wdpaRestServ.resultFormat = 'text';	
-			wdpaRestServ.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);
-			
 			roArea.addEventListener(ResultEvent.RESULT,onGetPaDataResult);
 			roArea.addEventListener(FaultEvent.FAULT,onFault);	
 			
@@ -97,14 +94,7 @@ package com.vizzuality.services
 			
 			roWorld.addEventListener(ResultEvent.RESULT,onGetWorldStatsResult);	
 			roWorld.addEventListener(FaultEvent.FAULT,onFault);		
-			
-			roLat.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);	
-			roLat.addEventListener(FaultEvent.FAULT,onFault);		
-			//TEMPORARY HACK
-			roLat.endpoint="http://localhost/gateway.php";
-			roLat.source="WDPAServices";
-			roLat.source="WDPAServices";
-			roLat.destination="WDPAServices";
+				
 			
 			
 			nf=new NumberFormatter();
@@ -144,9 +134,9 @@ package com.vizzuality.services
 					MapController.gi().setMapLoaded();
 					MapController.gi().zoomToBbox(selectedPA.getBbox());
 				} else {
-					AppStates.gi().debug("Requesting PA: "+value);
+					AppStates.gi().debug("Requesting Feature: "+value);
 					roArea.showBusyCursor=true;
-					roArea.getPAData(value);
+					roArea.getTaxonById(value);
 					resolvingId=value;
 				}
 			}
@@ -155,32 +145,29 @@ package com.vizzuality.services
 		
 		private function onGetPaDataResult(event:ResultEvent):void {			
 
-			var res:Object=event.result[0];
-			selectedPA = new PA();
-			//selectedPA.geomType = res.GeommetryType;
-			selectedPA.geomType = PA.POINT;
-			selectedPA.name=res.English_Name;
-			selectedPA.country=res.Country;
-			selectedPA.id=res.Site_ID;
-			selectedPA.has=res.DocumentedTotalArea;
-			selectedPA.countryIsoCode=res.ISO3;			
+			var res:Object=event.result;
+			selectedPA = new PA();			
 			
-			selectedPA.point = createCircleArea(new LatLng(36.97582451068759,-6.442108154296875),50000);
+			selectedPA.id=res.id;
+			selectedPA.name=res.name;
+			selectedPA.source=res.source;
+			selectedPA.commonNameEnglish=res.commonNameEnglish;
+			selectedPA.commonNameGerman=res.commonNameGerman;
+			selectedPA.commonNameSpanish=res.commonNameSpanish;
+			selectedPA.commonNameFreanch=res.commonNameFreanch;
+			selectedPA.genus=res.genus;
+			selectedPA.group=res.group;
+			selectedPA.className=res.className;
+			selectedPA.migrationType=res.migrationType;
+			selectedPA.cms=res.cms;
+			selectedPA.cms_link=res.cms_link;
+			selectedPA.red_list=res.red_list;
+			selectedPA.cites=res.cites;
+	
 			
-/* 			if(selectedPA.geomType==PA.POINT) {
-				selectedPA.point = createCircleArea(res.geometry,selectedPA.has);
-			}
-			else if (selectedPA.geomType==PA.POLYGON) {
-				selectedPA.polygon = createPolygon(res.geometry);	
-			} */
-			
-			//display the polygon
+
 			MapController.gi().addPa(selectedPA);
-			MapController.gi().zoomToBbox(selectedPA.getBbox());
 			
-			
-			AppStates.gi().activeCountryIsoCode = selectedPA.countryIsoCode;
-			AppStates.gi().activeCountryName = selectedPA.country;
 			pasDict[selectedPA.id]=selectedPA;
 			activePA= selectedPA;
 			resolvingId=NaN;
@@ -342,125 +329,7 @@ package com.vizzuality.services
 			roLat.getAreasByLatLng(url);
 		}
 		
-		private function onGetAreasByLatLngResult(event:ResultEvent):void {
-			
-			//After Click on the map 4 things can happen:
-			//1) There is nothing were it has been clicked -> Show warning.
-			//2) There is only 1 area where clicked. Go to this area directly
-			//3) There is <=10 areas for the clic. Go to PRESELCT state
-			//4) There is >10 areas. Show a warning (and maybe zoom?).
-			
-			
-			
-			//var res:Object = JSON.decode(String(event.result));
-			var res:Object = event.result;
-			
-			if(res.numres==0) {
-				MapController.gi().setMapLoaded();
-				MapController.gi().showMapWarning("No Protected Areas where you have clicked",2);
-				return;
-			}
-			if(res.numres>10) {
-				MapController.gi().setMapLoaded();
-				MapController.gi().showMapWarning("There are too many areas where you have clicked. Please Zoom further",2);
-				MapController.gi().map.setCenter(clickedLatLng,MapController.gi().map.getZoom()+1);
-				MapController.gi().map.setZoom(MapController.gi().map.getZoom()+1,true);
-				return;
-			}
-			if(res.numres==1) {
-				AppStates.gi().setAllStates(AppStates.FEATURE,res.siteid);
-				//MapController.gi().setMapLoaded();
-				return;
-			}
-			
-			//There are less than 5 but more than 1. PRESELECTION!
-			if ((res.results as Array).length>0) {
-				preselectedPAsDic= new Dictionary(true);
-				preselectedPAsBounds = new LatLngBounds();
-				var pas:Array = [];
-				
-				//First create the PAs and at the same time
-				//calculate the preselectedPAsBounds
-				for each(var feature:Object in res.results) {				
-				    pas.push(createPa(feature));
-				}
-				
-				//Now create the markers
-				var contentFormat:TextFormat = new TextFormat("Arial", 10,Color.WHITE);				
-				var i:Number=0;
-				var num_res:Number = (res.results as Array).length;
-				var ang:Number = (360/5) /(180/Math.PI) ;
-				var radio:Number = preselectedPAsBounds.getEast() - preselectedPAsBounds.getCenter().lng();
-				var radio2:Number =  preselectedPAsBounds.getNorth() - preselectedPAsBounds.getCenter().lat();
-				if(radio2<radio)
-					radio=radio2;
-				for each(var pa:PA in pas) {    
-				    i++;
-				    trace(pa.getCenter());
-				    var lng:Number = (Math.cos(ang*i) * radio)+pa.getCenter().lng();
-				    var lat:Number = (Math.sin(ang*i) * radio)+pa.getCenter().lat();		    
-				    
-				    var markerPosition:LatLng = new LatLng(lat,lng);		 
-				       
-					var icon:PaTitleMarkerIcon = new PaTitleMarkerIcon(pa.name + ' [' + pa.countryIsoCode + ']',pa.id);
-					icon.buttonMode=true;
-	       			 var m:Marker = new Marker(markerPosition, new MarkerOptions(
-			       		{
-			       			clickable:true,
-			       			hasShadow:false,
-			       	 	draggable:false,
-			       	 	icon: icon}));	
-					//var customToolTip:ToolTipOverlay = new ToolTipOverlay(center_tooltip,pa.name);
-					
-					preselectedPAsDic[m]=pa;		
-					if (preselectedPAsDic["numElements"]==null) {
-						preselectedPAsDic["numElements"]=1;						
-					} else {
-						preselectedPAsDic["numElements"]++;					
-					}
-				}
-				
-				
-				
-				
-				AppStates.gi().setAllStates(AppStates.FEATURE_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
-				
-				
-			} else {
-				preselectedPAsDic=new Dictionary(true);
-				//AppStates.gi().goToPreviousState();
-			}
-			MapController.gi().setMapLoaded();
-		}
 		
-		private function createPa(feature:Object):PA {
-			var polygon:Polygon;
-			var point:LatLng;
-			var attributes:Object =  feature.attributes;
-		    var pa:PA = new PA();
-		    pa.id =attributes['Site ID'];
-		    pa.name = attributes['English Name'];	
-		    pa.designation = attributes['English Designation'];		
-		    pa.geomType = feature.geometryType;			
-			
-			if (pa.geomType==PA.POLYGON) {
-				var poli:Polygon=createPolygon(feature.geometry);
-				        		
-			    preselectedPAsBounds.union(poli.getLatLngBounds());
-			    pa.polygon=poli;
-				
-			} 
-			else if (pa.geomType==PA.POINT) {
-				var pol:Polygon = createCircleArea(feature.geometry,attributes['Documented Total Area (HA)']);				
-				preselectedPAsBounds.union(pol.getLatLngBounds());
-				pa.point=pol;
-				
-			} else {
-				
-			}		    
-			
-			return pa;
-		}
 		
 		private function createPolygon(geometry:Object):Polygon {
 			var rings:Array = geometry.rings;
