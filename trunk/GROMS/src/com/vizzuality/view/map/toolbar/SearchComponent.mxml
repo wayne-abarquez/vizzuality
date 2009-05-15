@@ -28,7 +28,7 @@
 		private var state:String = AppStates.WORLD;
 		
 		private var lastSearch:AsyncToken;
-		private var listPosition: String = "up";
+		public var listPosition: String = "up";
 		
 		private function init():void {
 			if (listPosition == "up") {
