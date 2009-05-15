@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()" width="250"
 	verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:states>
+		<mx:State name="ListUp"/>
+		<mx:State name="ListDown">
+			<mx:SetStyle target="{canvas1}" name="bottom"/>
+			<mx:SetStyle target="{canvas1}" name="top" value="0"/>
+			<mx:SetStyle target="{searchResultsList}" name="bottom"/>
+			<mx:SetStyle target="{searchResultsList}" name="top" value="29"/>
+		</mx:State>
+	</mx:states>
 <mx:Script>
 	<![CDATA[
 		import mx.rpc.AsyncToken;
@@ -19,8 +28,14 @@
 		private var state:String = AppStates.WORLD;
 		
 		private var lastSearch:AsyncToken;
+		private var listPosition: String = "up";
 		
 		private function init():void {
+			if (listPosition == "up") {
+				this.currentState = "ListUp";
+			} else {
+				this.currentState = "ListDown";
+			}
 			ro.addEventListener(ResultEvent.RESULT,onResult)
 			ro.addEventListener(FaultEvent.FAULT,onFault);
 			ro.concurrency = "last";
@@ -95,11 +110,17 @@
 			numResults.visible=false;		
 		}
 		
+		private function clearSearchInput():void {
+			if (searchInput.text == 'Insert scientific name') 
+				searchInput.text = "";
+			
+		}
+		
 	]]>
 </mx:Script>
-	<mx:Canvas height="30" backgroundColor="#FFFFFF" cornerRadius="6" borderColor="#999999" borderStyle="solid" left="0" right="0" bottom="0">
+	<mx:Canvas height="30" backgroundColor="#FFFFFF" cornerRadius="6" borderColor="#999999" borderStyle="solid" left="0" right="0" bottom="0" id="canvas1">
 		<mx:VRule x="186" top="2" bottom="2" strokeColor="#999999" strokeWidth="2"/>
-		<mx:TextInput id="searchInput" change="callService()" focusAlpha="0" 
+		<mx:TextInput id="searchInput" change="callService()" focusAlpha="0" text="Insert scientific name" click="clearSearchInput()"
 			borderStyle="none" cornerRadius="2" left="10" height="22" fontSize="13" fontFamily="DINOT-Medium" color="#777777" right="70" verticalCenter="0"/>
 		<mx:Label id="numResults" text="{searchResults.length}" color="#A1A1A1" textAlign="right" width="90" visible="false" verticalCenter="0" left="74"/>
 		<mx:Image source="assets/closebutton_over.png" visible="{searchInput.text.length>0}" click="clearForm()" buttonMode="true" verticalCenter="0" left="166"/>
