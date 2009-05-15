@@ -268,7 +268,9 @@
 							//remove the possibility to click on the areas
 							MapController.gi().removeClickListenerForAreas();		
 							MapController.gi().removeClickListenerForCountries();
-							
+							MapController.gi().clearPAs();
+							MapController.gi().clearOverlays();
+
 							if(event.pathNames.length==3) {
 								AppStates.gi().activePaId = Number(event.pathNames[1]);
 								AppStates.gi().secondState=event.pathNames[2];
@@ -285,21 +287,12 @@
 							
 						default:
 							//Not recognize params. Move them to the default states
-/* 							trace( "Top level state not recognize!" );
-							AppStates.gi().topState=AppStates.WORLD;
-							AppStates.gi().secondState=AppStates.ABOUT;
-							MapController.gi().updateTileLayers([WdpaLayer.ALL]);				
-							AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
 							SWFAddress.setValue(AppStates.COUNTRIES+"/"+AppStates.ABOUT);
 						
 					}
 					
 				} else {
 					SWFAddress.setValue(AppStates.COUNTRIES+"/"+AppStates.ABOUT);
-/* 					AppStates.gi().topState=AppStates.WORLD;
-					AppStates.gi().secondState=AppStates.ABOUT;	
-					MapController.gi().updateTileLayers([WdpaLayer.ALL]);		
-					AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
 					
 				}
 			}	

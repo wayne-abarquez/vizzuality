@@ -62,7 +62,7 @@
 			<mx:AddChild position="lastChild">
 				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="86" horizontalCenter="-147">
 					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="6" left="9"/>
-					<ns1:FeaturedArea imageSource="assets/feature1.jpg" labelText="Bacalar Chico Marine Reserve" x="10" y="33" click="AppStates.gi().setAllStates(AppStates.PA,'99651')">
+					<ns1:FeaturedArea imageSource="assets/feature1.jpg" labelText="Bacalar Chico Marine Reserve" x="10" y="33" click="AppStates.gi().setAllStates(AppStates.PA,'12345')">
 					</ns1:FeaturedArea>
 					<ns1:FeaturedArea imageSource="assets/feature2.jpg" labelText="Pemba Channel Conservation Area" x="138" y="33" click="AppStates.gi().setAllStates(AppStates.PA,'352710')">
 					</ns1:FeaturedArea>
