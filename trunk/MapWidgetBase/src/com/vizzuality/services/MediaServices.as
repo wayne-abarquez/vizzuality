@@ -12,7 +12,6 @@ package com.vizzuality.services
 	import com.vizzuality.data.ImageData;
 	import com.vizzuality.data.PA;
 	import com.vizzuality.data.YoutubeVideoData;
-	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.view.map.MapController;
 	import com.vizzuality.view.map.markers.WikipediaInfoWindow;
 	import com.vizzuality.view.map.markers.WikipediaMarker;
@@ -107,6 +106,20 @@ package com.vizzuality.services
 		}	
 		
 		public function getAllMedia(bbox:LatLngBounds):void {
+			//resete everything
+			pictures = new ArrayCollection();
+			wikipedias = new ArrayCollection();
+			youtubes = new ArrayCollection();
+			
+			wikipediaMarkers = new Dictionary(true);
+			picturesMarkers = new Dictionary(true);
+			picturesInfoWindows = new Dictionary(true);
+			youtubesMarkers = new Dictionary(true);
+			youtubesInfoWindows = new Dictionary(true);
+			existingPoints=[];
+			MapController.gi().clearOverlays();
+			
+		
 			getPictures(bbox);
 			getVideos(bbox);
 			getWikipedia(bbox);

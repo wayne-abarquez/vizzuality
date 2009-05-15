@@ -149,14 +149,15 @@ package com.vizzuality.services
 		
 		private function onGetPaDataResult(event:ResultEvent):void {			
 
-			var res:Object=event.result[0];
+			var res:Object=event.result[0]['PAData'][0];
+			var epolygons:Array = event.result[0]['epolygons'] as Array;
 			selectedPA = new PA();
 			//Mandatory
 			selectedPA.id=res.Site_ID;
 			selectedPA.name=res.English_Name;
 			selectedPA.country=res.Country;
 			selectedPA.countryIsoCode=res.ISO2;		
-			selectedPA.geomType = res.GeometryType;
+			selectedPA.geomType = event.result[0].geometryType;
 			
 			
 			if(res['Designation']!=null) {
@@ -186,26 +187,21 @@ package com.vizzuality.services
 				selectedPA.siteType = res.SiteType;
 			}
 			
-			
-			
-			//var points:String = "~zfjL~hwfB?ooccC_kbvD??noccC~jbvD?";			
-			//var levels:String = "PPPPP";			
-
-			
-/* 			var ep:EncodedPolylineData = new EncodedPolylineData(points, 2, levels, 18);
-			var poli:Polygon = Polygon.fromEncoded([ep]); */
-			//selectedPA.polygon = poli;
-
-			selectedPA.geomType=PA.POINT;
-			
-			selectedPA.geometry.addPolygon(createCircleArea(new LatLng(36.97582451068759,-6.442108154296875),50000));
-			
-/* 			if(selectedPA.geomType==PA.POINT) {
-				selectedPA.point = createCircleArea(res.geometry,selectedPA.has);
+			if (selectedPA.geomType=="polygon") {
+				var mp:MultiPolygon=createPolygon(epolygons);
+			    selectedPA.geometry=mp;
+				
+			} 
+			else if (selectedPA.geomType== "point") {
+				var mpp:MultiPolygon=new MultiPolygon();
+ 				var pol:Polygon = createCircleArea(new LatLng(event.result[0]['lat'],event.result[0]['_long']),event.result[0]['_area']);				
+				mpp.addPolygon(pol);
+				selectedPA.geometry=mpp;
+				
+			} else {
+				
 			}
-			else if (selectedPA.geomType==PA.POLYGON) {
-				selectedPA.polygon = createPolygon(res.geometry);	
-			} */
+
 			
 			//display the polygon
 			MapController.gi().addPa(selectedPA);
@@ -364,14 +360,23 @@ package com.vizzuality.services
 				MapController.gi().map.fromPointToLatLng(llPoint),
 				MapController.gi().map.fromPointToLatLng(urPoint));
 			
-			roLat.source ="WDPA_BB.TestBB"
+			
+/* 			MapController.gi().map.addOverlay(new Polygon([
+				bbox.getNorthEast(),
+				bbox.getNorthWest(),
+				bbox.getSouthWest(),
+				bbox.getSouthEast(),
+				bbox.getNorthEast()
+				
+			])); */
+			
 			roLat.getThePADetailsFromBB(
 				bbox.getNorth(),
 				bbox.getSouth(),
 				bbox.getEast(),
 				bbox.getWest(),
-				0);
-			trace(bbox.getNorth()+','+bbox.getSouth()+','+bbox.getEast()+','+bbox.getWest());
+				true,
+				'0');
 		}
 		
 		private function onGetAreasByLatLngResult(event:ResultEvent):void {
@@ -477,9 +482,11 @@ package com.vizzuality.services
 				
 			} 
 			else if (pa.geomType== "point") {
-/* 				var pol:Polygon = createCircleArea(feature.geometry,attributes['Documented Total Area (HA)']);				
+				var mpp:MultiPolygon=new MultiPolygon();
+ 				var pol:Polygon = createCircleArea(new LatLng(feature.lat,feature['_long']),feature['_area']);				
 				preselectedPAsBounds.union(pol.getLatLngBounds());
-				pa.point=pol; */
+				mpp.addPolygon(pol);
+				pa.geometry=mpp;
 				
 			} else {
 				
