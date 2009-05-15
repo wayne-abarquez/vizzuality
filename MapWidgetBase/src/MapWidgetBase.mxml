@@ -348,6 +348,6 @@
 		click="navigateToURL(new URLRequest('http://code.google.com/p/vizzuality/issues/list'));"
 		useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 	
- 	<components:FlexTracker id="gaTracker" account="UA-7333475-1" mode="AS3" visualDebug="false" /> 	
+ 	<components:FlexTracker id="gaTracker" account="UA-7333475-1" mode="AS3" visualDebug="false" />
  	
 </mx:Application>
