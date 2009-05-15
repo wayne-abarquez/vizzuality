@@ -8,6 +8,8 @@
 			<mx:SetStyle target="{canvas1}" name="top" value="0"/>
 			<mx:SetStyle target="{searchResultsList}" name="bottom"/>
 			<mx:SetStyle target="{searchResultsList}" name="top" value="29"/>
+			<mx:SetStyle target="{loadingIcon}" name="top" value="7"/>
+			<mx:SetStyle target="{loadingIcon}" name="bottom"/>
 		</mx:State>
 	</mx:states>
 <mx:Script>

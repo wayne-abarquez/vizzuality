@@ -80,8 +80,7 @@
 					<mx:Text x="387" y="169" text="DIFERENT SPECIES MIGRATORY  DISTRIBUTIONS" fontFamily="DINOT-Bold" fontSize="16" color="#666666" width="155" leading="-4"/>
 					<mx:Button x="389" y="233" label="LET'S EXPLORE" styleName="btnOrange" width="158"
 						useHandCursor="true" buttonMode="true" mouseChildren="false" fontFamily="DINOT-Bold"/>
-					<ns2:SearchComponent x="298" bottom="26">
-					</ns2:SearchComponent>
+					<ns2:SearchComponent bottom="26" listPosition="up" right="20"/>
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:SetStyle name="backgroundAlpha" value="0.0"/>
@@ -94,7 +93,7 @@
 					verticalScrollPolicy="off" horizontalScrollPolicy="off" filters="{[glowGrey]}">
 					<mx:Text x="19" y="20" text="Explore the" fontFamily="DINOT-Medium" fontSize="18" color="#666666"/>
 					<mx:Text x="19" y="40" text="TAXON TREE OF GROMS SPECIES DATA" fontFamily="DINOT-Bold" fontSize="27" color="#88B54F" letterSpacing="-1"/>
-					<ns2:SearchComponent bottom="171" right="20" listPosition="down"/>
+					<ns2:SearchComponent right="20" listPosition="down" top="41"/>
 					<mx:Canvas borderColor="#999999" borderStyle="solid" cornerRadius="2" left="19" right="20" bottom="35" top="89">
 					</mx:Canvas>
 				</mx:Canvas>
