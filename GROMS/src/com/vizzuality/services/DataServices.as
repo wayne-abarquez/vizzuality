@@ -285,14 +285,9 @@ package com.vizzuality.services
 		}
 		
 		private function onGetWorldStatsResult(event:ResultEvent):void {
-			var res:Object = event.result[0];
-			
+		
 			worldStats = new WorldStats();
-			worldStats.coveragePercentage = res.CoveragePercentage;
-			worldStats.international = res.InternationalCount;
-			worldStats.marine = res.MarineCount;
-			worldStats.totalAreas = res.TotalAreasCount;
-			worldStats.terrestrial = res.TerrestrialCount;
+			worldStats.numberSpecies=event.result.numberSpecies;
 			
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.WORLD_DATA_LOADED));
 			MapController.gi().setMapLoaded();

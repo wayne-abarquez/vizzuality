@@ -32,7 +32,7 @@
 				state = AppStates.WORLD;
 				if(labelText!= null) {
 					labelText.text="SEARCH FOR PROTECTED AREAS WORLDWIDE";		
-					numResults.text = DataServices.gi().worldStats.totalAreas.toString();	
+					numResults.text = DataServices.gi().worldStats.numberSpecies.toString();	
 				}	
 			}
 		}
