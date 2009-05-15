@@ -42,7 +42,8 @@
 				state = AppStates.COUNTRY;
 				labelText.text="SEARCH FOR PROTECTED AREAS IN "+AppStates.gi().activeCountryName.toUpperCase();	
 				searchResults = new ArrayCollection();
-				numResults.text = DataServices.gi().selectedCountry.numAreas.toString();
+				if (DataServices.gi().selectedCountry !=null)
+					numResults.text = DataServices.gi().selectedCountry.numAreas.toString();
 			}
 				
 		}
