@@ -61,7 +61,7 @@ package com.vizzuality.view.map
 		private var biodiversityPane:IPane;
 		public var infowindowPane:IPane;
 		
-		private var mapClickCurrentAction:String;
+		public var mapClickCurrentAction:String;
 		
 		public var isWikipediaActive:Boolean=false;
 		[Bindable] 

@@ -33,18 +33,20 @@ package com.vizzuality.view.map.overlays
 		}
 		
 		private function onMouseOver(evt:MouseEvent):void {
-			bm = this.loader.content as Bitmap;
-			bmd = new BitmapData(256, 256);
-			bmd.draw(bm.bitmapData);
-			var color:int = bmd.getPixel(evt.localX, evt.localY);
-			if (color != 0xFFFFFF) {
-				this.buttonMode=true;
-				MapController.gi().enableClick();
-				
-			} else {
-				this.buttonMode=false;
-				MapController.gi().disableClick();
-				
+			if(MapController.gi().mapClickCurrentAction!=null) {
+				bm = this.loader.content as Bitmap;
+				bmd = new BitmapData(256, 256);
+				bmd.draw(bm.bitmapData);
+				var color:int = bmd.getPixel(evt.localX, evt.localY);
+				if (color != 0xFFFFFF) {
+					this.buttonMode=true;
+					MapController.gi().enableClick();
+					
+				} else {
+					this.buttonMode=false;
+					MapController.gi().disableClick();
+					
+				}
 			}
 		}
 		
