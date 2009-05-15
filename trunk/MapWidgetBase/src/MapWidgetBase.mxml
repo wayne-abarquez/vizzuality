@@ -7,6 +7,7 @@
 	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
 	<mx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
 			import com.google.maps.overlays.PolylineOptions;
 			import com.google.maps.overlays.Polyline;
 			import com.google.maps.overlays.Marker;
@@ -95,7 +96,7 @@
 								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
 							}
 							//control the layer state
-							MapController.gi().updateTileLayersOpacity(0.8);
+							//MapController.gi().updateTileLayersOpacity(1);
 							
 							//control the map state
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
@@ -343,6 +344,9 @@
 		<mx:TextArea left="5" right="5" top="10" bottom="10" backgroundAlpha="0.0" borderStyle="none" id="debuggerArea"/>
 		
 	</mx:Canvas>
+	<mx:Image source="@Embed('/com/vizzuality/style/assets/feedback.png')" right="0" top="28"
+		click="navigateToURL(new URLRequest('http://code.google.com/p/vizzuality/issues/list'));"
+		useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 	
  	<components:FlexTracker id="gaTracker" account="UA-7333475-1" mode="AS3" visualDebug="false" /> 	
  	
