@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" creationComplete="init()"  >
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()" width="250"
+	verticalScrollPolicy="off" horizontalScrollPolicy="off">
 <mx:Script>
 	<![CDATA[
 		import mx.rpc.AsyncToken;
@@ -30,20 +31,20 @@
 		private function setState(value:String):void {
 			if(AppStates.gi().topState != AppStates.COUNTRY && state!=AppStates.WORLD) {
 				state = AppStates.WORLD;
-				if(labelText!= null) {
+				/* if(labelText!= null) {
 					labelText.text="SEARCH FOR PROTECTED AREAS WORLDWIDE";		
 					numResults.text = DataServices.gi().worldStats.numberSpecies.toString();	
-				}	
+				} */	
 			}
 		}
 		
 		private function setCountryName(value:String):void {
-			if(AppStates.gi().activeCountryName!=null && labelText!=null) {
+			/* if(AppStates.gi().activeCountryName!=null && labelText!=null) {
 				state = AppStates.COUNTRY;
 				labelText.text="SEARCH FOR PROTECTED AREAS IN "+AppStates.gi().activeCountryName.toUpperCase();	
 				searchResults = new ArrayCollection();
 				numResults.text = DataServices.gi().selectedCountry.numAreas.toString();
-			}
+			} */
 				
 		}
 		
@@ -54,7 +55,7 @@
 				numResults.visible=false;
 				
 			} else {
-				vBox.visible=false;
+				searchResultsList.visible=false;
 			}
 		}	
 		
@@ -62,12 +63,12 @@
 			if (event.token == lastSearch) {
 				searchResults = new ArrayCollection(event.result as Array);
 				loadingIcon.visible=false;
-				numResults.visible=true;
+				/* numResults.visible=true; */
 
 				if (searchResults.length<1) {
-					vBox.visible=false;
+					searchResultsList.visible=false;
 				} else {
-					vBox.visible=true;				
+					searchResultsList.visible=true;				
 				}
 				
 
@@ -90,27 +91,23 @@
 		private function clearForm():void {
 			searchResults = new ArrayCollection();
 			searchInput.text = '';
-			vBox.visible=false;
+			searchResultsList.visible=false;
 			numResults.visible=false;		
 		}
 		
 	]]>
 </mx:Script>
-
-
-	<mx:Text id="labelText" text="SEARCH FOR SPECIES" left="13" fontSize="16" fontWeight="normal" fontFamily="DINOT-Medium" color="#375381" top="14" width="227" height="62" />
-	<mx:TextInput id="searchInput" change="callService()" focusAlpha="0" 
-		borderStyle="solid" cornerRadius="2" left="220" height="22" top="15" width="297" fontSize="13" fontFamily="DINOT-Medium" color="#777777"/>
-	<mx:Canvas styleName="softYellowContainer" right="18" height="22" cornerRadius="2" top="15" left="544">
-		<mx:Label text="Start typing to get a list of matching taxon. Click on the name to get details." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
+	<mx:Canvas height="30" backgroundColor="#FFFFFF" cornerRadius="6" borderColor="#999999" borderStyle="solid" left="0" right="0" bottom="0">
+		<mx:VRule x="186" top="2" bottom="2" strokeColor="#999999" strokeWidth="2"/>
+		<mx:TextInput id="searchInput" change="callService()" focusAlpha="0" 
+			borderStyle="none" cornerRadius="2" left="10" height="22" fontSize="13" fontFamily="DINOT-Medium" color="#777777" right="70" verticalCenter="0"/>
+		<mx:Label id="numResults" text="{searchResults.length}" color="#A1A1A1" textAlign="right" width="90" visible="false" verticalCenter="0" left="74"/>
+		<mx:Image source="assets/closebutton_over.png" visible="{searchInput.text.length>0}" click="clearForm()" buttonMode="true" verticalCenter="0" left="166"/>
+		<mx:Button x="192" y="0" label="search" styleName="invisibleButton" fontFamily="DINOT-Bold" color="#666666" fontSize="16" letterSpacing="-1"/>
 	</mx:Canvas>
-	<mx:VBox id="vBox" height="100%" y="36" left="220" visible="false">
-		<mx:List id="searchResultsList" dataProvider="{searchResults}" maxHeight="{vBox.height}" labelFunction="getLabel" itemClick="AppStates.gi().setAllStates(AppStates.FEATURE,event.currentTarget.selectedItem.id);" 
-		 rowCount="0"
-		 borderStyle="solid"  width="297"  borderColor="#ACACAC" backgroundColor="#FFFFFF" fontFamily="DINOT-Medium" fontSize="12" color="#999999" themeColor="#999999"></mx:List>
-	</mx:VBox>
-	<mx:Label id="numResults" y="18" text="{searchResults.length}" color="#A1A1A1" textAlign="right" left="406" width="90" visible="{searchInput.text.length>0}"/>
-	<mx:SWFLoader id="loadingIcon" y="18" source="@Embed('assets/tinyLoading.swf')" left="479"  width="12" height="12" visible="false"/>
-	<mx:Image y="20" left="498" source="assets/closebutton_over.png" visible="{searchInput.text.length>0}" click="clearForm()" buttonMode="true"/>
+	<mx:List id="searchResultsList" dataProvider="{searchResults}" visible="false" maxHeight="{200}" labelFunction="getLabel" itemClick="AppStates.gi().setAllStates(AppStates.FEATURE,event.currentTarget.selectedItem.id);" 
+		 rowCount="0" verticalScrollPolicy="off"
+		 borderStyle="solid" borderColor="#ACACAC" backgroundColor="#FFFFFF" fontFamily="DINOT-Medium" fontSize="12" color="#999999" themeColor="#999999" bottom="29" left="0" right="0"></mx:List>
+	<mx:SWFLoader id="loadingIcon" source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="false" right="87" bottom="10"/>
 	
 </mx:Canvas>
