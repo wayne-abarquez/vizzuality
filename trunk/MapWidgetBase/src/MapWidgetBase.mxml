@@ -95,7 +95,7 @@
 								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
 							}
 							//control the layer state
-							//MapController.gi().updateTileLayersOpacity(1);
+							MapController.gi().updateTileLayersOpacity(0.8);
 							
 							//control the map state
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.WORLD]);
@@ -128,7 +128,7 @@
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);	
 
 							//control the layer state
-							//MapController.gi().updateTileLayersOpacity(1);
+							MapController.gi().updateTileLayersOpacity(0.8);
 							
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
@@ -158,6 +158,8 @@
 							} else {
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRY]);
 							}							
+							
+							MapController.gi().updateTileLayersOpacity(0.8);
 
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
