@@ -178,16 +178,16 @@
 							}
 							break;
 							
-						case(AppStates.AREA_SELECTOR):
+						case(AppStates.FEATURE_SELECTOR):
 							//control the layer state
 							//MapController.gi().updateTileLayers([]);
 							MapController.gi().updateTileLayersOpacity(0.3);
 
 							//control the map state
-							if(AppStates.gi().mapPositions[AppStates.AREA_SELECTOR] == null) {
-								AppStates.gi().mapPositions[AppStates.AREA_SELECTOR] = MapController.gi().getMapPosition();
+							if(AppStates.gi().mapPositions[AppStates.FEATURE_SELECTOR] == null) {
+								AppStates.gi().mapPositions[AppStates.FEATURE_SELECTOR] = MapController.gi().getMapPosition();
 							} else {
-								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.AREA_SELECTOR]);
+								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.FEATURE_SELECTOR]);
 							}
 
 							//Clear not neccessary panes and EventListeners
@@ -245,18 +245,18 @@
 							
 							break;
 							
-						case(AppStates.PA):
+						case(AppStates.FEATURE):
 							
 							//control the layer state
-							if((AppStates.gi().visibleLayers[AppStates.PA] as Array).length>0) {
-								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.PA]);
+							if((AppStates.gi().visibleLayers[AppStates.FEATURE] as Array).length>0) {
+								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.FEATURE]);
 							} else {
 								MapController.gi().updateTileLayers([]);
 							}
 
 							//control the map state
-							if(AppStates.gi().mapPositions[AppStates.PA] != null) {
-								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.PA]);
+							if(AppStates.gi().mapPositions[AppStates.FEATURE] != null) {
+								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.FEATURE]);
 							} else {
 								//AppStates.gi().mapPositions[AppStates.PA] = MapController.gi().getMapPosition();
 							}
