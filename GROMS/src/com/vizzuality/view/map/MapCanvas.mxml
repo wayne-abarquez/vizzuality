@@ -4,9 +4,9 @@
 	currentState="{AppStates.gi().topState}" xmlns:ns2="com.vizzuality.view.overlay.*" xmlns:loader="com.vizzuality.view.loader.*" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
 	<mx:states>
 		<mx:State name="{AppStates.WORLD}">
-			<mx:AddChild position="before" relativeTo="{alertCanvas}">
+		<!--<mx:AddChild position="before" relativeTo="{alertCanvas}">
 				<ns1:WorldCanvas top="18" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="{!(AppStates.gi().secondState!='')}" right="18" id="worldcanvas"/>
-			</mx:AddChild>
+			</mx:AddChild>-->
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}" basedOn="{AppStates.WORLD}">
 		</mx:State>
