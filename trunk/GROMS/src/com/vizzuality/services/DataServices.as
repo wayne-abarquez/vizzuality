@@ -373,7 +373,7 @@ package com.vizzuality.services
 				return;
 			}
 			if(res.numres==1) {
-				AppStates.gi().setAllStates(AppStates.PA,res.siteid);
+				AppStates.gi().setAllStates(AppStates.FEATURE,res.siteid);
 				//MapController.gi().setMapLoaded();
 				return;
 			}
@@ -428,7 +428,7 @@ package com.vizzuality.services
 				
 				
 				
-				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
+				AppStates.gi().setAllStates(AppStates.FEATURE_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
 				
 				
 			} else {

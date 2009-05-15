@@ -14,8 +14,8 @@ package com.vizzuality.view
 		public static const WORLD:String='world';
 		public static const COUNTRIES:String='countries';
 		public static const COUNTRY:String='country';
-		public static const PA:String='pa';
-		public static const AREA_SELECTOR:String='areaSelector';
+		public static const FEATURE:String='taxon';
+		public static const FEATURE_SELECTOR:String='taxonSelector';
 		
 		//TOOLS OR SECOND LEVELS
 		public static const SEARCH:String='search';
@@ -58,8 +58,8 @@ package com.vizzuality.view
 			visibleLayers[WORLD]=[];
 			visibleLayers[COUNTRIES]=[];
 			visibleLayers[COUNTRY]=[];
-			visibleLayers[PA]=[];
-			visibleLayers[AREA_SELECTOR]=[];
+			visibleLayers[FEATURE]=[];
+			visibleLayers[FEATURE_SELECTOR]=[];
 			
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
 		}
@@ -98,7 +98,7 @@ package com.vizzuality.view
 			if (topState==COUNTRY) {
 				SWFAddress.setValue(gi().topState + '/' +activeCountryIsoCode +'/' + sState);				
 			} 
-			else if (topState==PA) {
+			else if (topState==FEATURE) {
 				SWFAddress.setValue(gi().topState + '/' +activePaId +'/' + sState);							
 			} 
 			else if(topState==COUNTRIES && sState==FILTER) {

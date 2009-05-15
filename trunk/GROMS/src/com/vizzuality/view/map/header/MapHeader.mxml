@@ -11,11 +11,11 @@
 		<mx:State name="{AppStates.COUNTRY}">
 			<mx:RemoveChild target="{button3}"/>
 		</mx:State>
-		<mx:State name="{AppStates.PA}">
+		<mx:State name="{AppStates.FEATURE}">
 			<mx:RemoveChild target="{button2}"/>
 			<mx:RemoveChild target="{button4}"/>
 		</mx:State>
-		<mx:State name="{AppStates.AREA_SELECTOR}">
+		<mx:State name="{AppStates.FEATURE_SELECTOR}">
 			<mx:RemoveChild target="{button3}"/>
 		</mx:State>
 	</mx:states>

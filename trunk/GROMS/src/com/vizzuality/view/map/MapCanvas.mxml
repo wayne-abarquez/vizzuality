@@ -15,7 +15,7 @@
 				<ns1:CountryCanvas top="20" isocode="{AppStates.gi().activeCountryIsoCode}" showEffect="{fadeIn}" hideEffect="{fadeOut}"  visible="{!(AppStates.gi().secondState!='')}" right="20" id="countryCanvas"/>
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="{AppStates.PA}">
+		<mx:State name="{AppStates.FEATURE}">
 			<mx:AddChild position="before" relativeTo="{alertCanvas}">
 				<ns1:PaCanvas top="18" siteid="{AppStates.gi().activePaId}" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="{!(AppStates.gi().secondState!='')}" right="18" id="paCanvas"/>
 			</mx:AddChild>
@@ -23,7 +23,7 @@
 				<mediabrowser:MediaBrowser  width="100%" bottom="35" height="60" visible="{paCanvas.pictureChbox.selected}" showEffect="{fadeIn}" hideEffect="{fadeOut}" />
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="{AppStates.AREA_SELECTOR}">
+		<mx:State name="{AppStates.FEATURE_SELECTOR}">
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
 				<mx:Button label="Go back" click="AppStates.gi().goToPreviousState();" width="79" top="39" horizontalCenter="245"/>
 			</mx:AddChild>

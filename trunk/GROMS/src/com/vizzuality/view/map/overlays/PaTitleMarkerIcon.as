@@ -45,7 +45,7 @@ public class PaTitleMarkerIcon extends Sprite {
   }
   
   private function onClick(event:MouseEvent):void {
-  	AppStates.gi().setAllStates(AppStates.PA,this.siteId.toString())
+  	AppStates.gi().setAllStates(AppStates.FEATURE,this.siteId.toString())
   }
   
 }
