@@ -3,17 +3,12 @@
 	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*">
 	<mx:states>
 		<mx:State name="loading">
-			<mx:RemoveChild target="{label4}"/>
 			<mx:RemoveChild target="{button1}"/>
-			<mx:RemoveChild target="{areaTitle}"/>
 			<mx:RemoveChild target="{hrule1}"/>
-			<mx:RemoveChild target="{label1}"/>
 			<mx:RemoveChild target="{hrule2}"/>
 			<mx:RemoveChild target="{label5}"/>
-			<mx:RemoveChild target="{vbox1}"/>
 			<mx:RemoveChild target="{vbox2}"/>
 			<mx:RemoveChild target="{image1}"/>
-			<mx:RemoveChild target="{canvas0}"/>
 			<mx:RemoveChild target="{canvas1}"/>
 			<mx:RemoveChild target="{canvas2}"/>
 			<mx:RemoveChild target="{vboxLayers}"/>
@@ -77,28 +72,17 @@
 	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
 	
 	<!--ESTA A FALSO EH!-->
-	<mx:Label x="93" y="81" text="{DataServices.gi().selectedPA.has}" id="label4" visible="false"/>
 	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1" visible="false"/>
 	<!--                -->
 	
 	<mx:VBox verticalGap="3" horizontalAlign="center" left="6" right="6" top="0" id="vbox4">
 		<mx:Canvas backgroundColor="#B4BB94" height="3" width="100%"/>
 		<mx:Canvas width="100%" id="canvas1">
-			<mx:Text text="{(DataServices.gi().selectedPA.name + ', ' + DataServices.gi().selectedPA.country + ' [' + DataServices.gi().selectedPA.countryIsoCode + ']').toUpperCase()}" id="areaTitle" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="4" top="-1" width="197" leading="-4"/>
+
 			<mx:Image right="14" width="7" top="12" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')" id="image1"/>
 		</mx:Canvas>
 		<mx:VBox verticalGap="0" paddingBottom="10" id="vboxLayers" horizontalAlign="center" width="100%" paddingLeft="4" paddingRight="4"> 
 			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule1"/>
-			<mx:Canvas styleName="greenContainer" id="canvas0" width="100%"
-				verticalScrollPolicy="off" horizontalScrollPolicy="off">
-				<mx:Label text="WDPA LAYERS" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
-				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
-					<mx:CheckBox label="Coral" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
-					<mx:CheckBox label="Cold Water Corals" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
-					<mx:CheckBox label="SeaGrass" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
-					<mx:CheckBox label="Mangroves" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
-				</mx:VBox>
-			</mx:Canvas>
 			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule2"/>
 			<mx:Canvas styleName="softGreenContainer" width="100%"
 				verticalScrollPolicy="off" horizontalScrollPolicy="off" id="canvas2">
