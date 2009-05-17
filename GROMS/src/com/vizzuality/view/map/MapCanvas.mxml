@@ -15,9 +15,9 @@
 				<ns1:CountryCanvas top="20" isocode="{AppStates.gi().activeCountryIsoCode}" showEffect="{fadeIn}" hideEffect="{fadeOut}"  visible="{!(AppStates.gi().secondState!='')}" right="20" id="countryCanvas"/>
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="{AppStates.FEATURE}">
+		<mx:State name="{AppStates.FEATURE}" enterState="Application.application.expandWidget()" exitState="Application.application.contractWidget()">
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<ns1:SpecieCanvas right="25" top="20">
+				<ns1:SpecieCanvas right="20" top="20">
 				</ns1:SpecieCanvas>
 			</mx:AddChild>
 		</mx:State>
