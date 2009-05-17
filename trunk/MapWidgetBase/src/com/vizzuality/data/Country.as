@@ -11,17 +11,18 @@ package com.vizzuality.data
 		
 		public var isocode:String;
 		public var name:String;
-		public var coveragePercentage:Number;
-		public var marineCoveragePercentage:Number;
-		public var terrestrialCoveragePercentage:Number;
-		public var numAreas:Number;
-		public var marineNumAreas:Number;
-		public var terrestrialNumAreas:Number;
-		public var numNational:Number;
-		public var numInternational:Number;
-		public var numberCoral:Number;
-		public var numMangrove:Number;
-		public var numSeagrass:Number;
+		public var coveragePercentage:Number=0;
+		public var marineCoveragePercentage:Number=0;
+		public var terrestrialCoveragePercentage:Number=0;
+		public var numAreas:Number=0;
+		public var marineNumAreas:Number=0;
+		public var terrestrialNumAreas:Number=0;
+		public var numNational:Number=0;
+		public var numInternational:Number=0;
+		public var numberCoral:Number=0;
+		public var numMangrove:Number=0;
+		public var numSeagrass:Number=0;
+		public var numSaltMarsh:Number=0;
 		public var bbox:LatLngBounds;
 		
 		public function Country(ob:Object=null)

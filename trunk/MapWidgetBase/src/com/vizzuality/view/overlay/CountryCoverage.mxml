@@ -4,12 +4,16 @@
 	<mx:Script>
 		<![CDATA[
 			
-			[Bindable] public var percent:String = "17%";
+			public function set percent(value:Number):void {
+				percenLabel.text=value.toFixed(2)+"%";
+				var r:Number=Math.round(100-value);
+				percenSource.source="http://chart.apis.google.com/chart?cht=p&chd=t:"+r+","+Math.round(value)+"&chs=88x88&chco=c0c79f,D5D6CE&chf=bg,s,65432100";
+			}
 			
 		]]>
 	</mx:Script>
 
-	<mx:Label x="24" text="{percent+'%'}" top="11" color="#939E6A" fontFamily="DINOT-Bold" fontSize="34" letterSpacing="-1" width="101"/>
+	<mx:Label id="percenLabel" x="19" top="11" color="#939E6A" fontFamily="DINOT-Bold" fontSize="34" letterSpacing="-1" width="115"/>
 	<mx:HRule y="55" strokeColor="#939E6A" strokeWidth="1" left="19" right="85"/>
-	<mx:Image source="http://chart.apis.google.com/chart?cht=p&amp;chd=s:Uf9a&amp;chs=88x88&amp;chco=c0c79f&amp;chf=bg,s,65432100"  y="-8" x="122"/>	
+	<mx:Image id="percenSource"  y="-8" x="122"/>	
 </mx:Canvas>
