@@ -457,7 +457,6 @@
 			removeEventListener( MouseEvent.MOUSE_MOVE, onMouseMove );
 		}
 		
-		
 		protected function onMouseOver(event:MouseEvent) : void
 		{
 			if( ! event.buttonDown )
