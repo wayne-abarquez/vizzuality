@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="{Application.application.backgroundComponent.width}" height="{Application.application.backgroundComponent.height}" 
+	verticalScrollPolicy="off" horizontalScrollPolicy="off" borderStyle="solid" borderThickness="1" borderColor="#d3d3d3" backgroundColor="#fefefe">
+		
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.VRule;
+			import mx.controls.Label;
+			import mx.controls.Text;
+			import mx.collections.ArrayCollection;
+			import mx.core.Application;
+			
+			private var monthProvider: ArrayCollection = new ArrayCollection();
+			private var _caNew: Canvas;
+			private var _chartNew: Canvas;
+			private var _status: Label;
+			private var _verLine: VRule;
+			
+			
+			override public function set data(obj: Object):void {
+				this.removeAllChildren();
+				for (var z:int=1;z<12;z++) {	
+					_verLine = new VRule();
+					_verLine.setStyle("strokeWidth","1");
+					_verLine.x = (Application.application.monthWidth)*z;
+					_verLine.height=this.height;
+					_verLine.setStyle("strokeColor","#d7d7d7");	
+					this.addChild(_verLine);
+				}
+				
+				monthProvider = obj as ArrayCollection;
+				if (monthProvider != null) {
+					for (var j:int=0;j<monthProvider.length;j++) {	
+						_chartNew = new Canvas();
+						
+						if (j==0) {
+							_chartNew.y = 16;
+						} else {
+							_chartNew.y = 17 + (16*j)+(10*j);
+						}
+												
+						for(var i:int=0;i<((monthProvider[j].chart).length);i++) {
+						    _caNew = new Canvas();
+						    _caNew.x = ((monthProvider[j].chart)[i].monthStart)*(Application.application.monthWidth);
+						    _caNew.width = ((monthProvider[j].chart)[i].monthEnd - (monthProvider[j].chart)[i].monthStart)*(Application.application.monthWidth);    
+						    _caNew.height = 16;
+						    _caNew.setStyle("backgroundColor",(monthProvider[j].chart)[i].color); 
+						    _status = new Label();
+						    _status.text = (monthProvider[j].chart)[i].status;
+						    _status.setStyle("color","#3d313b");
+						    _caNew.addChild(_status);
+						    _chartNew.addChild(_caNew);
+						}
+						
+					    this.addChild(_chartNew);
+												
+					}
+				}
+			}
+		]]>
+	</mx:Script>
+	
+				
+	
+	
+</mx:Canvas>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:moveFlex="com.roguedevelopment.objecthandles.*" creationComplete="onCreationComplete()" xmlns:filters="flash.filters.*"
+	width="966" height="125" xmlns:components="com.vizzuality.view.timeline.components.*">
+	
+	<mx:states>
+		<mx:State name="Loading">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas x="0" y="0" width="100%" height="100%" backgroundColor="black" backgroundAlpha="0.2" click="{this.currentState = ''}">
+					<mx:Label text="Loading..." width="236" horizontalCenter="0" verticalCenter="0" textAlign="center" 
+						color="#FFFFFF" fontWeight="bold" fontFamily="Arial" height="33" fontSize="20"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ResizeEvent;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var monthWidth: Number;
+			public var statusBefore: String = "";
+			
+			[Bindable] private var timeline:ArrayCollection = new ArrayCollection( [
+            {id: 0003, name: "Addax nocomalucatus",chart: [{ monthStart: 0, monthEnd: 4, color:0xa9db9c,status:"breeding"},
+            													{ monthStart: 4, monthEnd: 8, color:0xa98297,status:"feeding,wintering"},
+            													{ monthStart: 8, monthEnd: 10, color:0xe6d29f,status:"resident"},
+            													{ monthStart: 10, monthEnd: 12, color:0xbdbbbb,status:"all year round"}]},
+            {id: 2346, name: "Addax nominalis",chart: [{ monthStart: 0, monthEnd: 6, color:0xb8c2ce,status:"breeding"},
+            											{ monthStart: 6, monthEnd: 8, color:0x9597ac,status:"feeding,wintering"},
+            											{ monthStart: 8, monthEnd: 9, color:0xf5704f,status:"resident"},
+            											{ monthStart: 9, monthEnd: 12, color:0xfb6b86,status:"all year round"}]},
+            {id: 0040, name: "Addax nocomalucatus",chart: [{ monthStart: 0, monthEnd: 4, color:0xa9db9c,status:"breeding"},
+            													{ monthStart: 4, monthEnd: 8, color:0xa98297,status:"feeding,wintering"},
+            													{ monthStart: 8, monthEnd: 10, color:0xe6d29f,status:"resident"},
+            													{ monthStart: 10, monthEnd: 12, color:0xbdbbbb,status:"all year round"}]}
+            ]);
+            
+            
+            
+            private var timeline2:ArrayCollection = new ArrayCollection( [
+            {id: 1200, name: "Puma Concolor",chart: [{ monthStart: 3, monthEnd: 4, color:0xa9db9c,status:"breeding"},
+            													{ monthStart: 10, monthEnd: 12, color:0xff00ff,status:"all year round"}]},
+            {id: 0908, name: "Sergio Lucidoides",chart: [{ monthStart: 2, monthEnd: 3, color:0xb8c2ce,status:"jamoning"},
+            											{ monthStart: 5, monthEnd: 6, color:0xfb6b86,status:"come on"}]}
+            ]);
+            
+            
+            
+            private var timeline3:ArrayCollection = new ArrayCollection( [
+            {id: 0034, name: "Addax nocomalucatus",chart: [{ monthStart: 0, monthEnd: 4, color:0xa9db9c,status:"breeding"},
+            													{ monthStart: 4, monthEnd: 8, color:0xa98297,status:"feeding,wintering"},
+            													{ monthStart: 8, monthEnd: 10, color:0xe6d29f,status:"resident"},
+            													{ monthStart: 10, monthEnd: 13, color:0xbdbbbb,status:"all year round"}]},
+            {id: 1234, name: "Addax nominalis",chart: [{ monthStart: 0, monthEnd: 6, color:0xb8c2ce,status:"breeding"},
+            											{ monthStart: 6, monthEnd: 8, color:0x9597ac,status:"feeding,wintering"},
+            											{ monthStart: 8, monthEnd: 9, color:0xf5704f,status:"resident"},
+            											{ monthStart: 9, monthEnd: 12, color:0xfb6b86,status:"all year round"}]}
+            ]);
+			
+			
+			
+			private function onCreationComplete():void {
+				this.addEventListener(ResizeEvent.RESIZE,onResize);
+				monthWidth = backgroundComponent.width/12;
+ 				timeChart.data = timeline3;
+				timelineLabels.data = timeline3;
+				
+			}
+			
+			private function onResize(ev:Event):void {
+				monthWidth = backgroundComponent.width/12;
+				timeChart.data = timeline;
+				timelineLabels.data = timeline;
+			}
+			
+/* 
+			private function onClickButton1():void {
+				timeline = timeline3;
+				b2.enabled = true;
+				b1.enabled = false;
+			}
+			
+			private function onClickButton2():void {
+				timeline = timeline2;
+				b1.enabled = true;
+				b2.enabled = false;
+			} 
+*/
+			
+			private function changeState():void {
+				if ((this.currentState == null) || (this.currentState == '')) {
+					this.currentState = 'Loading';
+				} else {
+					this.currentState = '';
+				}
+				
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Canvas width="100%" height="100%" borderStyle="solid" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" backgroundColor="#ededed" verticalCenter="0">
+		<mx:Canvas id="backgroundComponent" width="775" height="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" verticalCenter="0" borderStyle="solid" borderThickness="0" right="0">								
+			<components:TimelineChart  id="timeChart" y="23"/>
+					
+			<mx:Label text="JUA" y="6" x="{(monthWidth)*0}"  color="#828181"/>			
+			<mx:Label text="FEB" y="6" x="{(monthWidth)*1}" horizontalCenter="{-(monthWidth)*5}" color="#828181"/>	
+			<mx:Label text="MAR" y="6" x="{(monthWidth)*2}" horizontalCenter="{-(monthWidth)*4}" color="#828181"/>		
+			<mx:Label text="APR" y="6" x="{(monthWidth)*3}" horizontalCenter="{-(monthWidth)*3}" color="#828181"/>			
+			<mx:Label text="MAY" y="6" x="{(monthWidth)*4}" horizontalCenter="{-(monthWidth)*2}" color="#828181"/>					
+			<mx:Label text="JUN" y="6" x="{(monthWidth)*5}" horizontalCenter="{-(monthWidth)*1}" color="#828181"/>			
+			<mx:Label text="JUL" y="6" x="{(monthWidth)*6}" horizontalCenter="0" color="#828181"/>			
+			<mx:Label text="AGO" y="6" x="{(monthWidth)*7}" horizontalCenter="{(monthWidth)}" color="#828181"/>			
+			<mx:Label text="SEP" y="6" x="{(monthWidth)*8}" horizontalCenter="{(monthWidth)*2}" color="#828181"/>			
+			<mx:Label text="OCT" y="6" x="{(monthWidth)*9}" horizontalCenter="{(monthWidth)*3}" color="#828181"/>			
+			<mx:Label text="NOV" y="6" x="{(monthWidth)*10}" horizontalCenter="{(monthWidth)*4}" color="#828181"/>			
+			<mx:Label text="DEC" y="6" x="{(monthWidth)*11}" horizontalCenter="{(monthWidth)*5}" color="#828181"/>
+				
+			<moveFlex:ObjectHandles id="oh" allowRotate="false" allowVResize="false" x="0" y="{timeChart.y}" width="{monthWidth}" height="{backgroundComponent.height - oh.y}" 
+				minWidth="{monthWidth}" allowVMove="false">
+					<mx:Box id="box" width="100%" height="100%"  y="0" x="0" borderThickness="2" borderColor="#666666" borderStyle="solid"/>
+			</moveFlex:ObjectHandles>	
+					
+		</mx:Canvas>
+		
+		
+		<components:TimelineLabelContainer id="timelineLabels" width="191" height="100%" data="{timeline}"/>
+	
+	</mx:Canvas>
+	
+	
+	<!--<mx:Button label="Opcion1" id="b1" click="onClickButton1()" enabled="false" left="10" bottom="12"/>
+	<mx:Button x="90" label="Opcion2" enabled="true" id="b2" click="onClickButton2()" bottom="12"/>
+	<mx:Button x="170" label="Loading" enabled="true" id="state" 
+		click="{changeState()}" bottom="12"/>-->
+	
+</mx:Canvas>
