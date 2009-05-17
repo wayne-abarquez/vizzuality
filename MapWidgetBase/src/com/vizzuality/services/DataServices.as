@@ -404,7 +404,7 @@ package com.vizzuality.services
 				return;
 			}
 			if(res.length==1) {
-				AppStates.gi().setAllStates(AppStates.PA,res[0]['site_Id']);
+				AppStates.gi().goToPa(res[0]['site_Id']);
 				return;
 			}
 			
@@ -527,6 +527,10 @@ package com.vizzuality.services
 				radius_km = Math.sqrt((Number(area)/100)/Math.PI);
 			}
 			var radius:Number = Math.round((Number(radius_km)/1.609)*100000)/100000;
+			
+			if (radius<2) {
+				radius=2;
+			}
 			//var center:LatLng = new LatLng(geometry.points[0][1],geometry.points[0][0]);															
 			return MapUtils.drawCircle(center.lat(),center.lng(),radius,0x0099FF,1,1,0x0099FF,0.5);						
 		}	

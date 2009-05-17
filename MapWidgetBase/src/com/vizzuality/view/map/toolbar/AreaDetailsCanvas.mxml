@@ -9,7 +9,7 @@
 	</mx:State>
 	<mx:State name="NATIONAL_MARINE" basedOn="NATIONAL">
 		<mx:SetStyle target="{label4}" name="right" value="167"/>
-		<mx:AddChild relativeTo="{label5}" position="before">
+		<mx:AddChild relativeTo="{canvas1}" position="lastChild">
 			<mx:Label y="40" text="marine area (ha): 2545685.2 " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="157" right="5" id="label0"/>
 		</mx:AddChild>
 		<mx:SetProperty name="height" value="232"/>
@@ -50,10 +50,26 @@
 </mx:states>
 	<mx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
+			import mx.collections.ArrayCollection;
 			import com.vizzuality.data.ImageData;
 			import com.vizzuality.services.MediaServices;
 			import com.vizzuality.view.AppStates;
 			import com.vizzuality.services.DataServices;
+			
+			
+			private function viewGoogleEarth():void {
+				var url:String = "http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/0/query?" + 
+						"where=Site_ID+%3D+"+DataServices.gi().selectedPA.id +
+						"&returnGeometry=true&f=kmz";
+				if(DataServices.gi().selectedPA.geomType =="point") {
+					url="http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_WGS84/MapServer/1/query?" + 
+							"where=Site_ID+%3D+" +DataServices.gi().selectedPA.id +
+							"&returnGeometry=true&f=kmz";
+				}
+				navigateToURL(new URLRequest(url));
+			}
+			
 		]]>
 	</mx:Script>
 
@@ -65,23 +81,24 @@
 			<mx:Label text="{DataServices.gi().selectedPA.iucnCategory}" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" textAlign="center" width="100%" height="100%"/>
 		</mx:Canvas>
 	</mx:HBox>
-	<mx:Button styleName="invisibleButton" height="15" label="view GBIF biodiversity data "
+	<mx:Button styleName="invisibleButton" height="15" label="view GBIF biodiversity data " 
+		click="navigateToURL(new URLRequest('http://widgets.gbif.org/pa/index.html#/area/'+DataServices.gi().selectedPA.id))"
 		useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="169" textDecoration="underline" x="385"/>
 	<mx:Canvas width="296" height="65" styleName="softWhiteGreyContainer" top="48" id="canvas1" x="15">
-		<mx:Label y="3" text="{DataServices.gi().selectedPA.country}" fontSize="16" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" left="5" right="130"/>
+		<mx:Label y="3" text="{DataServices.gi().selectedPA.country}" fontSize="16" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" left="5" width="289"/>
 		<mx:Label y="25" text="{'location: '+DataServices.gi().selectedPA.getCenter().lng().toFixed(4) + ' , '+DataServices.gi().selectedPA.getCenter().lat().toFixed(4)}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
 		<mx:Label y="40" text="{'total area (ha): ' +DataServices.gi().selectedPA.totalArea}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102" id="label4"/>
-		<mx:Label y="5.2" text="view in google earth" fontSize="12" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" right="25" textDecoration="underline" textAlign="right" id="label5"/>
-		<mx:Image y="9" source="@Embed('/com/vizzuality/style/assets/iconGearth.png')"  right="8"/>
 	</mx:Canvas>
 	<mx:HBox verticalGap="0" horizontalGap="0" top="116" x="15">
-		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).thumbnail}" picId="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).id}" />
-		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(1) as ImageData).thumbnail}" picId="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).id}" />
-		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(2) as ImageData).thumbnail}" picId="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).id}" />
-		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(3) as ImageData).thumbnail}" picId="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).id}" />
+		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).imageUrl}" picId="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).id}" />
+		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(1) as ImageData).imageUrl}" picId="{(MediaServices.gi().pictures.getItemAt(1) as ImageData).id}" />
+		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(2) as ImageData).imageUrl}" picId="{(MediaServices.gi().pictures.getItemAt(2) as ImageData).id}" />
+		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(3) as ImageData).imageUrl}" picId="{(MediaServices.gi().pictures.getItemAt(3) as ImageData).id}" />
 	</mx:HBox>
-	<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315">
-		<mx:Image source="@Embed('/assets/mapFoo.png')" left="3" top="3" bottom="3" scaleContent="false"/>
+	<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315" useHandCursor="true" buttonMode="true" mouseChildren="false"
+		click="navigateToURL(new URLRequest('http://widgets.gbif.org/pa/index.html#/area/'+DataServices.gi().selectedPA.id))"
+		>
+		<mx:Image source="@Embed('/assets/mapFoo.jpg')" left="3" top="3" bottom="3" scaleContent="false"/>
 	</mx:Canvas>
 	<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="41" x="540" id="label3"/>
 	<mx:VBox x="541" y="65" verticalGap="-5" id="vbox1">
@@ -106,4 +123,8 @@
 			<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
 		</mx:HBox>
 	</mx:VBox>
+	<mx:Label text="view in google earth" fontSize="12" fontFamily="DINOT-Medium" color="#375381"
+		 letterSpacing="-1" textDecoration="underline" textAlign="right" id="label5" top="169" left="201"
+		  useHandCursor="true" buttonMode="true" mouseChildren="false" click="viewGoogleEarth()"/>
+	<mx:Image source="@Embed('/com/vizzuality/style/assets/iconGearth.png')" top="174" left="298"/>
 </mx:Canvas>
