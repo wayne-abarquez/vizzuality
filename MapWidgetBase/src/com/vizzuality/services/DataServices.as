@@ -411,6 +411,7 @@ package com.vizzuality.services
 			//There are less than 10 but more than 1. PRESELECTION!
 			if (res.length>0) {
 				preselectedPAsDic= new Dictionary(true);
+				preselectedPAsDic["numElements"]=0;
 				preselectedPAsBounds = new LatLngBounds();
 				var pas:Array = [];
 				
@@ -431,7 +432,6 @@ package com.vizzuality.services
 					radio=radio2;
 				for each(var pa:PA in pas) {    
 				    i++;
-				    trace(pa.getCenter());
 				    var lng:Number = (Math.cos(ang*i) * radio)+pa.getCenter().lng();
 				    var lat:Number = (Math.sin(ang*i) * radio)+pa.getCenter().lat();		    
 				    
@@ -448,11 +448,7 @@ package com.vizzuality.services
 					//var customToolTip:ToolTipOverlay = new ToolTipOverlay(center_tooltip,pa.name);
 					
 					preselectedPAsDic[m]=pa;		
-					if (preselectedPAsDic["numElements"]==null) {
-						preselectedPAsDic["numElements"]=1;						
-					} else {
-						preselectedPAsDic["numElements"]++;					
-					}
+					preselectedPAsDic["numElements"]++;					
 				}
 				AppStates.gi().setAllStates(AppStates.AREA_SELECTOR,resolvingLatLng.lat() +"_"+resolvingLatLng.lng());	
 				

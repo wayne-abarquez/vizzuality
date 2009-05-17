@@ -105,11 +105,11 @@
 				<mx:Label text="FROM THE WEB" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6" id="label5"/>
 				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox2">
 					<mx:HBox>
-						<mx:CheckBox label="Wikipedia Articles" enabled="{MediaServices.gi().numWikipediasRequest==0}" change="MapController.gi().toggleWikipedias()"/>
+						<mx:CheckBox label="Wikipedia Articles" enabled="{MediaServices.gi().numWikipediasRequest==0}" change="MapController.gi().toggleWikipedias()" selected="true"/>
 						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="{MediaServices.gi().numWikipediasRequest>0}"/>
 					</mx:HBox>
 					<mx:HBox>
-						<mx:CheckBox id="pictureChbox" label="Photos" enabled="{MediaServices.gi().numPicturesRequest==0}" change="MapController.gi().togglePictures()"/>
+						<mx:CheckBox id="pictureChbox" label="Photos" enabled="{MediaServices.gi().pictures.length&gt;0}" change="MapController.gi().togglePictures()" selected="true"/>
 						<mx:SWFLoader source="@Embed('assets/tinyLoading.swf')" width="12" height="12" visible="{MediaServices.gi().numPicturesRequest>0}"/>
 					</mx:HBox>
 					<mx:HBox>

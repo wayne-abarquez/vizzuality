@@ -129,7 +129,7 @@
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);	
 
 							//control the layer state
-							MapController.gi().updateTileLayersOpacity(0.8);
+							//MapController.gi().updateTileLayersOpacity(0.8);
 							
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
@@ -160,7 +160,7 @@
 								MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRY]);
 							}							
 							
-							MapController.gi().updateTileLayersOpacity(0.8);
+							//MapController.gi().updateTileLayersOpacity(0.8);
 
 							//Clear not neccessary panes and EventListeners
 							MapController.gi().clearPAs();
@@ -185,7 +185,7 @@
 						case(AppStates.AREA_SELECTOR):
 							//control the layer state
 							//MapController.gi().updateTileLayers([]);
-							MapController.gi().updateTileLayersOpacity(0.3);
+							//MapController.gi().updateTileLayersOpacity(0.3);
 
 							//control the map state
 							if(AppStates.gi().mapPositions[AppStates.AREA_SELECTOR] == null) {
@@ -207,7 +207,7 @@
 								var lat:Number = Number((event.pathNames[1] as String).split("_")[0]);
 								var lng:Number = Number((event.pathNames[1] as String).split("_")[1]);
 								//if there is no areas saved we have to check again.
-								if (DataServices.gi().preselectedPAsDic["numElements"]<1) {
+								if (!DataServices.gi().preselectedPAsDic["numElements"]) {
 									DataServices.gi().getAreasByLatLng(new LatLng(lat,lng));
 								} else {
 									

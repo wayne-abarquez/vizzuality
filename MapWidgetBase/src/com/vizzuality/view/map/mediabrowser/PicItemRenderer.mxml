@@ -22,8 +22,8 @@
 			
 		]]>
 	</mx:Script>
-	
-		<mx:Image source="{pic}" verticalCenter="0" horizontalCenter="0" scaleContent="false" width="75" height="75"/>
+		<mx:SWFLoader id="loadingSwf" source="@Embed('assets/tinyLoading.swf')" width="18" height="18"  horizontalCenter="0" verticalCenter="0"/>
+		<mx:Image source="{pic}" complete="this.removeChild(loadingSwf)" verticalCenter="0" horizontalCenter="0" scaleContent="false" width="75" height="75"/>
 		<mx:Image source="@Embed('/com/vizzuality/style/assets/pic_whiteBorder.png')"/>
 		<mx:Image id="overBorder" source="@Embed('/com/vizzuality/style/assets/pic_blueBorder.png')" alpha="0"/>
 		

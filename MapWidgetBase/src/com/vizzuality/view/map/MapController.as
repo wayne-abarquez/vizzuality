@@ -63,9 +63,9 @@ package com.vizzuality.view.map
 		
 		public var mapClickCurrentAction:String;
 		
-		public var isWikipediaActive:Boolean=false;
+		public var isWikipediaActive:Boolean=true;
 		[Bindable] 
-		public var isPicturesActive:Boolean=false;
+		public var isPicturesActive:Boolean=true;
 		[Bindable] 
 		public var isYoutubesActive:Boolean=false;
 		
@@ -367,6 +367,7 @@ package com.vizzuality.view.map
 				if (photo.id==id) {
 					var m:Marker = MediaServices.gi().picturesMarkers[photo];
 					m.openInfoWindow(MediaServices.gi().picturesInfoWindows[m]);
+					map.panTo(m.getLatLng());
 				}
 			}
 		}

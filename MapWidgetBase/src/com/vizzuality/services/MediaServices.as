@@ -1,6 +1,7 @@
 package com.vizzuality.services
 {
 	import com.adobe.serialization.json.JSON;
+	import com.google.maps.Color;
 	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
@@ -51,6 +52,7 @@ package com.vizzuality.services
 		private var existingPoints:Array = new Array();	
 		
 		private var flickrDict:Dictionary = new Dictionary(true);	
+		private var panoramioDict:Dictionary = new Dictionary(true);	
 		private var youtubeDict:Dictionary = new Dictionary(true);	
 		
 		
@@ -90,7 +92,7 @@ package com.vizzuality.services
 			
 			wikiGeonamesSrv.addEventListener(ResultEvent.RESULT,onWikiGeonamesResult);
 			flickrServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
-			panoramioServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
+			panoramioServ.addEventListener(ResultEvent.RESULT,onPanoramioServiceResult);
 			youtubeServ.addEventListener(ResultEvent.RESULT,onYoutubeResult);
 			
 			wikiGeonamesSrv.addEventListener(FaultEvent.FAULT,onFault);
@@ -137,14 +139,14 @@ package com.vizzuality.services
 			var secondBBox:LatLngBounds = new LatLngBounds(bbox.getCenter(),bbox.getNorthEast());
 			var thirdBBox:LatLngBounds = new LatLngBounds(firstBBox.getNorthWest(),new LatLng(secondBBox.getNorth(),bbox.getCenter().lng()));
 			var fourthBBox:LatLngBounds = new LatLngBounds(firstBBox.getSouthEast(),secondBBox.getSouthEast());
-			flickrServ.send({bbox:firstBBox.getWest()+","+firstBBox.getSouth()+","+firstBBox.getEast()+","+firstBBox.getNorth()});			
+/* 			flickrServ.send({bbox:firstBBox.getWest()+","+firstBBox.getSouth()+","+firstBBox.getEast()+","+firstBBox.getNorth()});			
 			flickrServ.send({bbox:secondBBox.getWest()+","+secondBBox.getSouth()+","+secondBBox.getEast()+","+secondBBox.getNorth()});			
 			flickrServ.send({bbox:thirdBBox.getWest()+","+thirdBBox.getSouth()+","+thirdBBox.getEast()+","+thirdBBox.getNorth()});			
 			flickrServ.send({bbox:fourthBBox.getWest()+","+fourthBBox.getSouth()+","+fourthBBox.getEast()+","+fourthBBox.getNorth()});
-	/* 		panoramioServ.send({minx:firstBBox.getWest(),miny:firstBBox.getSouth(),maxx:firstBBox.getEast(),maxy:firstBBox.getNorth()});
+*/ 	 		panoramioServ.send({minx:firstBBox.getWest(),miny:firstBBox.getSouth(),maxx:firstBBox.getEast(),maxy:firstBBox.getNorth()});
 			panoramioServ.send({minx:secondBBox.getWest(),miny:secondBBox.getSouth(),maxx:secondBBox.getEast(),maxy:secondBBox.getNorth()});
 			panoramioServ.send({minx:thirdBBox.getWest(),miny:thirdBBox.getSouth(),maxx:thirdBBox.getEast(),maxy:thirdBBox.getNorth()});
-			panoramioServ.send({minx:fourthBBox.getWest(),miny:fourthBBox.getSouth(),maxx:fourthBBox.getEast(),maxy:fourthBBox.getNorth()});			 */
+			panoramioServ.send({minx:fourthBBox.getWest(),miny:fourthBBox.getSouth(),maxx:fourthBBox.getEast(),maxy:fourthBBox.getNorth()});			 
 			numPicturesRequest=numPicturesRequest+4;
 		}
 		
@@ -176,6 +178,9 @@ package com.vizzuality.services
 					wikipedias.addItem(w);  
 					var marker:Marker = createWikipediaMarker(w);
 					wikipediaMarkers[w]=marker;				
+					
+					if(MapController.gi().isWikipediaActive)
+						MapController.gi().wikipediaPane.addOverlay(marker);
 				}
 			}		
 			numWikipediasRequest--;			
@@ -207,6 +212,39 @@ package com.vizzuality.services
 					var loader:Loader = new Loader();
 					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createFlickrMarker);
 					flickrDict[loader]=img;
+					loader.load(new URLRequest(img.thumbnail));				
+					
+				}
+			}
+			
+			numPicturesRequest--;	
+			if (numPicturesRequest==0) {
+				dispatchEvent(new DataServiceEvent(DataServiceEvent.PICTURES_LOADED));
+			}
+		} 	
+		private function onPanoramioServiceResult(event:ResultEvent):void {
+			var jsonObj:Object = JSON.decode(String(event.result));		
+			var pa:PA = DataServices.gi().activePA;
+			
+			for each(var photo:Object in jsonObj.photos) {
+				if(pa.geometry.pointInPolygon(new LatLng(photo.latitude, photo.longitude)) && (!existingPoints.indexOf(photo.latitude+photo.longitude)>=0)) {
+					existingPoints.push(photo.latitude+photo.longitude);
+					
+					var img:ImageData=new ImageData();
+					img.latlng = new LatLng(photo.latitude,photo.longitude);
+					img.source="Panoramio";
+					img.owner = photo.owner_name
+					img.sourceUrl = photo.photo_url;
+					img.title = photo.photo_title;
+					img.imageUrl = "http://www.imastedev.com/ba/proxy.php?file="+escape((photo.photo_file_url as String).replace("medium","small"));
+					img.thumbnail = "http://www.imastedev.com/ba/proxy.php?file="+escape(photo.photo_file_url as String).replace("medium","square");
+					img.id=photo.photo_id;
+					
+					
+					pictures.addItem(img);
+					var loader:Loader = new Loader();
+					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createPanoramioMarker);
+					panoramioDict[loader]=img;
 					loader.load(new URLRequest(img.thumbnail));				
 					
 				}
@@ -350,6 +388,69 @@ package com.vizzuality.services
         	});
 	       	
 	        
+	        picturesMarkers[photo]=marker;
+		} 		
+		
+		private function createPanoramioMarker(ev:Event):void {
+			
+			var photo:ImageData=panoramioDict[ev.target.loader];
+			var bmd:BitmapData = Bitmap(ev.currentTarget.content).bitmapData;
+			var bmd2:BitmapData = new BitmapData(32,32)
+			var m:Matrix = new Matrix();
+			m.scale(0.5,0.5);
+			bmd2.draw(bmd,m);		
+			var sp:Sprite= new Sprite();
+            sp.graphics.lineStyle(3,Color.BLUE);
+            sp.graphics.beginFill(0xFFFFFF,0);
+            sp.graphics.drawRect(0,0,31,31);
+            sp.graphics.endFill();
+            bmd2.draw(sp);
+			var iconBitmap:Bitmap= new Bitmap(bmd2);
+			
+			var latlng:LatLng = photo.latlng;
+	      	var photoUrl:String = photo.imageUrl;
+	      	
+	       var marker:Marker = new Marker(latlng, new MarkerOptions(
+	       	{tooltip: photo.title,
+	       	 draggable:false,
+	       	 icon: iconBitmap}));		        
+              
+        	var infowindow:Loader= new Loader();
+        	infowindow.load(new URLRequest(photo.imageUrl));
+        	infowindow.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void {
+        		navigateToURL(new URLRequest(photo.sourceUrl));
+        	});
+        	
+        	infowindow.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void {
+		   	
+		   		var bm:Bitmap = Bitmap(event.currentTarget.content)
+		   		var bmd:BitmapData = bm.bitmapData;
+		   		
+		   		var s:Sprite=new Sprite();
+		   		s.addChild(infowindow);
+		   		s.buttonMode=true;
+		   		
+		   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
+	                customContent: s,
+	                strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
+	                customOffset: new Point(0, 10),
+	                cornerRadius:0,
+	                width: bmd.width,
+	                height: bmd.height,
+	                drawDefaultFrame: true					
+				});  	 
+				picturesInfoWindows[marker]=optionsMark;
+				
+		        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
+		      		marker.openInfoWindow(optionsMark);  
+		      		MapController.gi().map.panTo(e.latLng);   
+		        });      
+		        
+		       	if(MapController.gi().isPicturesActive) {
+	        		MapController.gi().picturesPane.addOverlay(marker);
+	        	}
+        		
+        	});
 	        picturesMarkers[photo]=marker;
 		} 		
 		
