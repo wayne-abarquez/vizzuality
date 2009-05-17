@@ -4,7 +4,8 @@
 	layout="absolute" backgroundGradientAlphas="[1.0, 1.0]"
 	backgroundGradientColors="[#E9F4FF, #D7E8FA]" 
 	applicationComplete="registerGlobalKeyHandler()"
-	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
+	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" 
+	xmlns:map="com.vizzuality.view.map.*" preloader="com.vizzuality.view.Preloader">
 	<mx:Script>
 		<![CDATA[
 			import flash.net.navigateToURL;
