@@ -3,13 +3,16 @@ package com.vizzuality.view
 	import asual.SWFAddress;
 	
 	import com.vizzuality.data.WdpaLayer;
+	import com.vizzuality.services.AppStateEvent;
 	import com.vizzuality.services.DataServices;
 	
+	import flash.events.EventDispatcher;
 	import flash.utils.Dictionary;
 	
 	import mx.core.Application;
 	
-	public final class AppStates
+	[Event(name="areaDetailsDisplay", type="com.vizzuality.services.DataServiceEvent")]
+	public final class AppStates extends EventDispatcher
 	{
 		//TOP states
 		public static const WORLD:String='world';
@@ -100,7 +103,7 @@ package com.vizzuality.view
 				SWFAddress.setValue(gi().topState + '/' +activeCountryIsoCode +'/' + sState);				
 			} 
 			else if (topState==PA) {
-				SWFAddress.setValue(gi().topState + '/' +activePaId +'/' + sState);							
+				SWFAddress.setValue(gi().topState + '/' +activePaId +'/' + sState);						
 			} 
 			else if(topState==COUNTRIES && sState==FILTER) {
 				SWFAddress.setValue(WORLD + '/' +FILTER);							
@@ -119,8 +122,6 @@ package com.vizzuality.view
 		
 		public function goToPreviousState():void {
 			SWFAddress.back();
-/* 			SWFAddress.setValue(previousAddress);
-			MapController.gi().goToPreviousMapPosition(); */
 		}
 		
 		public function goToPa(id:Object):void {

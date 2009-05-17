@@ -41,6 +41,7 @@ package com.vizzuality.services
 	[Event(name="picturesLoaded", type="com.vizzuality.services.DataServiceEvent")]
 	[Event(name="wikipediasLoaded", type="com.vizzuality.services.DataServiceEvent")]
 	[Event(name="picturesLoaded", type="com.vizzuality.services.DataServiceEvent")]
+	[Event(name="picturesLoading", type="com.vizzuality.services.DataServiceEvent")]
 	public final class MediaServices extends EventDispatcher
 	{
 		
@@ -147,11 +148,13 @@ package com.vizzuality.services
 */ 	 		
 
 			//Make the calls delayed to not killed the client
-			TweenLite.delayedCall(0.5,panoramioServ.send,[{minx:firstBBox.getWest(),miny:firstBBox.getSouth(),maxx:firstBBox.getEast(),maxy:firstBBox.getNorth()}]);
-			TweenLite.delayedCall(1,panoramioServ.send,[{minx:secondBBox.getWest(),miny:secondBBox.getSouth(),maxx:secondBBox.getEast(),maxy:secondBBox.getNorth()}]);
-			TweenLite.delayedCall(1.5,panoramioServ.send,[{minx:thirdBBox.getWest(),miny:thirdBBox.getSouth(),maxx:thirdBBox.getEast(),maxy:thirdBBox.getNorth()}]);
-			TweenLite.delayedCall(2,panoramioServ.send,[{minx:fourthBBox.getWest(),miny:fourthBBox.getSouth(),maxx:fourthBBox.getEast(),maxy:fourthBBox.getNorth()}]);
-			 
+			TweenLite.delayedCall(0.1,panoramioServ.send,[{minx:firstBBox.getWest(),miny:firstBBox.getSouth(),maxx:firstBBox.getEast(),maxy:firstBBox.getNorth()}]);
+			TweenLite.delayedCall(0.5,panoramioServ.send,[{minx:secondBBox.getWest(),miny:secondBBox.getSouth(),maxx:secondBBox.getEast(),maxy:secondBBox.getNorth()}]);
+			TweenLite.delayedCall(1,panoramioServ.send,[{minx:thirdBBox.getWest(),miny:thirdBBox.getSouth(),maxx:thirdBBox.getEast(),maxy:thirdBBox.getNorth()}]);
+			TweenLite.delayedCall(1.5,panoramioServ.send,[{minx:fourthBBox.getWest(),miny:fourthBBox.getSouth(),maxx:fourthBBox.getEast(),maxy:fourthBBox.getNorth()}]);
+			
+			dispatchEvent(new DataServiceEvent(DataServiceEvent.PICTURES_LOADING));
+			
 			numPicturesRequest=numPicturesRequest+4;
 		}
 		

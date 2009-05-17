@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="821" height="194" horizontalCenter="0" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*"
+	width="821" height="194" horizontalCenter="0" creationComplete="init();" xmlns:maps="com.google.maps.*">
 
 <mx:states>
 	<mx:State name="NATIONAL" />
@@ -50,6 +51,17 @@
 </mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.data.WdpaLayer;
+			import com.vizzuality.view.map.MapController;
+			import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
+			import com.google.maps.MapType;
+			import asual.SWFAddress;
+			import asual.SWFAddressEvent;
+			import com.google.maps.LatLngBounds;
+			import com.vizzuality.services.AppStateEvent;
+			import mx.core.Application;
+			import com.vizzuality.view.map.mediabrowser.PicItemRenderer;
+			import com.vizzuality.services.DataServiceEvent;
 			import flash.net.navigateToURL;
 			import mx.collections.ArrayCollection;
 			import com.vizzuality.data.ImageData;
@@ -70,6 +82,35 @@
 				navigateToURL(new URLRequest(url));
 			}
 			
+			private function init():void {
+				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,function(event:DataServiceEvent):void {
+					for(var i:Number=0;i<4;i++) {
+						var picItemRend:PicItemRenderer = new PicItemRenderer();
+						var imgd:ImageData =MediaServices.gi().pictures.getItemAt(i) as ImageData;
+						picItemRend.pic=imgd.imageUrl;
+						picItemRend.picId=imgd.id;					
+						picContainer.addChild(picItemRend);
+					}
+					zoomToPa();
+				});
+				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADING,function(event:DataServiceEvent):void {
+					picContainer.removeAllChildren();
+				});
+				
+				var ctlo:CustomTileLayerOverlay = MapController.gi().createTileLayer(WdpaLayer.GBIF_DATA);
+				gbifMap.addOverlay(ctlo);
+				
+				zoomToPa();
+			}
+			
+			
+			private function zoomToPa():void {
+				var bounds:LatLngBounds = DataServices.gi().activePA.getBbox();
+				var zoomForArea:Number = gbifMap.getBoundsZoomLevel(bounds);					
+				gbifMap.setCenter(bounds.getCenter(),zoomForArea,MapType.SATELLITE_MAP_TYPE);
+				
+			}		
+			
 		]]>
 	</mx:Script>
 
@@ -89,16 +130,10 @@
 		<mx:Label y="25" text="{'location: '+DataServices.gi().selectedPA.getCenter().lng().toFixed(4) + ' , '+DataServices.gi().selectedPA.getCenter().lat().toFixed(4)}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
 		<mx:Label y="40" text="{'total area (ha): ' +DataServices.gi().selectedPA.totalArea}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102" id="label4"/>
 	</mx:Canvas>
-	<mx:HBox verticalGap="0" horizontalGap="0" top="116" x="15">
-		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).imageUrl}" picId="{(MediaServices.gi().pictures.getItemAt(0) as ImageData).id}" />
-		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(1) as ImageData).imageUrl}" picId="{(MediaServices.gi().pictures.getItemAt(1) as ImageData).id}" />
-		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(2) as ImageData).imageUrl}" picId="{(MediaServices.gi().pictures.getItemAt(2) as ImageData).id}" />
-		<mediabrowser:PicItemRenderer pic="{(MediaServices.gi().pictures.getItemAt(3) as ImageData).imageUrl}" picId="{(MediaServices.gi().pictures.getItemAt(3) as ImageData).id}" />
+	<mx:HBox id="picContainer" verticalGap="0" horizontalGap="0" top="116" x="15">
 	</mx:HBox>
-	<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315" useHandCursor="true" buttonMode="true" mouseChildren="false"
-		click="navigateToURL(new URLRequest('http://widgets.gbif.org/pa/index.html#/area/'+DataServices.gi().selectedPA.id))"
-		>
-		<mx:Image source="@Embed('/assets/mapFoo.jpg')" left="3" top="3" bottom="3" scaleContent="false"/>
+	<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315">
+		<maps:Map id="gbifMap" key="{Application.application.parameters.gmap_key}" width="100%" height="100%" /> 
 	</mx:Canvas>
 	<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="41" x="540" id="label3"/>
 	<mx:VBox x="541" y="65" verticalGap="-5" id="vbox1">
