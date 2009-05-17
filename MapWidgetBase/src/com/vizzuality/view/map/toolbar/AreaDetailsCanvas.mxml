@@ -84,13 +84,17 @@
 			
 			private function init():void {
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,function(event:DataServiceEvent):void {
-					for(var i:Number=0;i<4;i++) {
+					var i:Number=0;
+					for each(var imgd:ImageData in MediaServices.gi().pictures) {
 						var picItemRend:PicItemRenderer = new PicItemRenderer();
-						var imgd:ImageData =MediaServices.gi().pictures.getItemAt(i) as ImageData;
 						picItemRend.pic=imgd.imageUrl;
 						picItemRend.picId=imgd.id;					
 						picContainer.addChild(picItemRend);
+						i++;
+						if (i==4)
+							break;
 					}
+					
 					zoomToPa();
 				});
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADING,function(event:DataServiceEvent):void {

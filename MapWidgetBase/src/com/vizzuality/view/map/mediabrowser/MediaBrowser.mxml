@@ -23,7 +23,10 @@
 
 			private function init():void {
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,function(event:DataServiceEvent):void {
-					hList.dataProvider=MediaServices.gi().pictures;
+					if(MediaServices.gi().pictures.length>0) {						
+						hList.dataProvider=MediaServices.gi().pictures;
+					} else {
+					}
 				});
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADING,function(event:DataServiceEvent):void {
 					hList.dataProvider=new ArrayCollection();
