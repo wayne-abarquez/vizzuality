@@ -113,6 +113,24 @@ package com.vizzuality.view
 				SWFAddress.setValue(gi().topState + '/' + sState);
 			}
 		}
+		
+		public function removeSecondState():void {
+			previousAddress=SWFAddress.getPath();
+			
+			if (topState==COUNTRY) {
+				SWFAddress.setValue(gi().topState + '/' +activeCountryIsoCode);				
+			} 
+			else if (topState==PA) {
+				SWFAddress.setValue(gi().topState + '/' +activePaId);						
+			} 
+			else if(topState==COUNTRIES && secondState==FILTER) {
+				SWFAddress.setValue(WORLD + '/' +FILTER);							
+				
+			}
+			else {
+				SWFAddress.setValue(gi().topState);
+			}
+		}
 		public function setAllStates(tState:String,sState:String):void {
 			previousAddress=SWFAddress.getPath();
 			SWFAddress.setValue(tState + '/' + sState);

@@ -131,8 +131,8 @@
 		useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="169" textDecoration="underline" x="385"/>
 	<mx:Canvas width="296" height="65" styleName="softWhiteGreyContainer" top="48" id="canvas1" x="15">
 		<mx:Label y="3" text="{DataServices.gi().selectedPA.country}" fontSize="16" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" left="5" width="289"/>
-		<mx:Label y="25" text="{'location: '+DataServices.gi().selectedPA.getCenter().lng().toFixed(4) + ' , '+DataServices.gi().selectedPA.getCenter().lat().toFixed(4)}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
-		<mx:Label y="40" text="{'total area (ha): ' +DataServices.gi().selectedPA.totalArea}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102" id="label4"/>
+		<mx:Label y="25" text="{'location: '+DataServices.gi().selectedPA.getCenter().lng().toFixed(3) + ' , '+DataServices.gi().selectedPA.getCenter().lat().toFixed(3)}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
+		<mx:Label y="40" text="{'total area (ha): ' +nf.format(DataServices.gi().selectedPA.totalArea.toFixed(2))}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102" id="label4"/>
 	</mx:Canvas>
 	<mx:HBox id="picContainer" verticalGap="0" horizontalGap="0" top="116" x="15">
 	</mx:HBox>
@@ -141,15 +141,15 @@
 	</mx:Canvas>
 	<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="41" x="540" id="label3"/>
 	<mx:VBox x="541" y="65" verticalGap="-5" id="vbox1">
-		<mx:HBox horizontalGap="-3" id="hbox6" visible="{DataServices.gi().selectedPA.establishmentYear!=null}">
+		<mx:HBox horizontalGap="-3" id="hbox6" includeInLayout="{DataServices.gi().selectedPA.establishmentYear!=null}" visible="{DataServices.gi().selectedPA.establishmentYear!=null}">
 			<mx:Label text="Established at" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
 			<mx:Label text="{DataServices.gi().selectedPA.establishmentYear}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
 		</mx:HBox>
-		<mx:HBox horizontalGap="-3" id="hbox1" visible="{DataServices.gi().selectedPA.currentStatus!=null}">
+		<mx:HBox horizontalGap="-3" id="hbox1" includeInLayout="{DataServices.gi().selectedPA.currentStatus!=null}" visible="{DataServices.gi().selectedPA.currentStatus!=null}">
 			<mx:Label text="Current status" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" id="label7"/>
 			<mx:Label text="{DataServices.gi().selectedPA.currentStatus}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" id="label8"/>
 		</mx:HBox>
-		<mx:HBox horizontalGap="-3" id="hbox3" visible="{DataServices.gi().selectedPA.siteGovernance!=null}">
+		<mx:HBox horizontalGap="-3" id="hbox3" includeInLayout="{DataServices.gi().selectedPA.siteGovernance!=null}" visible="{DataServices.gi().selectedPA.siteGovernance!=null}">
 			<mx:Label text="Site governance" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
 			<mx:Label text="{DataServices.gi().selectedPA.siteGovernance}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
 		</mx:HBox>
@@ -166,4 +166,5 @@
 		 letterSpacing="-1" textDecoration="underline" textAlign="right" id="label5" top="169" left="201"
 		  useHandCursor="true" buttonMode="true" mouseChildren="false" click="viewGoogleEarth()"/>
 	<mx:Image source="@Embed('/com/vizzuality/style/assets/iconGearth.png')" top="174" left="298"/>
+	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />
 </mx:Canvas>

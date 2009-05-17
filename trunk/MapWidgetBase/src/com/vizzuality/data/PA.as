@@ -17,6 +17,7 @@ package com.vizzuality.data
 		public var country:String;
 		public var countryIsoCode:String;
 		public var geomType:String;
+		public var isInternational:Boolean=false;
 		
 		//Non mandatory
 		public var designation:String;

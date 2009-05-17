@@ -371,6 +371,9 @@ package com.vizzuality.view.map
 					var m:Marker = MediaServices.gi().picturesMarkers[photo];
 					m.openInfoWindow(MediaServices.gi().picturesInfoWindows[m]);
 					map.panTo(m.getLatLng());
+					
+					AppStates.gi().removeSecondState();
+					break;
 				}
 			}
 		}
