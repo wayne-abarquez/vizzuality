@@ -21,6 +21,7 @@ package com.vizzuality.services
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Loader;
+	import flash.display.LoaderInfo;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -91,7 +92,6 @@ package com.vizzuality.services
 			//"http://gdata.youtube.com/feeds/api/videos?max-results=10&v=2&alt=json&location=37.42307,-122.08427&location-radius=100km"
 			
 			wikiGeonamesSrv.addEventListener(ResultEvent.RESULT,onWikiGeonamesResult);
-			flickrServ.addEventListener(ResultEvent.RESULT,onImageServiceResult);
 			panoramioServ.addEventListener(ResultEvent.RESULT,onPanoramioServiceResult);
 			youtubeServ.addEventListener(ResultEvent.RESULT,onYoutubeResult);
 			
@@ -188,40 +188,7 @@ package com.vizzuality.services
 				dispatchEvent(new DataServiceEvent(DataServiceEvent.WIKIPEDIAS_LOADED));
 			}
 		} 		
-		
-		private function onImageServiceResult(event:ResultEvent):void {
-			var jsonObj:Object = JSON.decode(String(event.result));		
-			var pa:PA = DataServices.gi().activePA;
 			
-			for each(var photo:Object in jsonObj.photos.photo) {
-				if(pa.geometry.pointInPolygon(new LatLng(photo.latitude, photo.longitude)) && (!existingPoints.indexOf(photo.latitude+photo.longitude)>=0)) {
-					existingPoints.push(photo.latitude+photo.longitude);
-					
-					var img:ImageData=new ImageData();
-					img.latlng = new LatLng(photo.latitude,photo.longitude);
-					img.source="Flickr";
-					img.owner = photo.ownername;
-					img.sourceUrl = "http://www.flickr.com/photos/"+photo.owner+"/"+photo.id;
-					img.title = photo.title;
-					img.imageUrl = "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg";
-					img.thumbnail = "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_s.jpg";
-					img.id=photo.id;
-					
-					
-					pictures.addItem(img);
-					var loader:Loader = new Loader();
-					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createFlickrMarker);
-					flickrDict[loader]=img;
-					loader.load(new URLRequest(img.thumbnail));				
-					
-				}
-			}
-			
-			numPicturesRequest--;	
-			if (numPicturesRequest==0) {
-				dispatchEvent(new DataServiceEvent(DataServiceEvent.PICTURES_LOADED));
-			}
-		} 	
 		private function onPanoramioServiceResult(event:ResultEvent):void {
 			var jsonObj:Object = JSON.decode(String(event.result));		
 			var pa:PA = DataServices.gi().activePA;
@@ -236,16 +203,20 @@ package com.vizzuality.services
 					img.owner = photo.owner_name
 					img.sourceUrl = photo.photo_url;
 					img.title = photo.photo_title;
-					img.imageUrl = "http://www.imastedev.com/ba/proxy.php?file="+escape((photo.photo_file_url as String).replace("medium","small"));
-					img.thumbnail = "http://www.imastedev.com/ba/proxy.php?file="+escape(photo.photo_file_url as String).replace("medium","square");
+					//img.imageUrl = "http://www.imastedev.com/ba/proxy.php?file="+escape((photo.photo_file_url as String).replace("medium","small"));
+					img.imageUrl = (photo.photo_file_url as String).replace("medium","small");
+					//img.thumbnail = "http://www.imastedev.com/ba/proxy.php?file="+escape(photo.photo_file_url as String).replace("medium","square");
+					img.thumbnail = (photo.photo_file_url as String).replace("medium","mini_square");
 					img.id=photo.photo_id;
+					img.height=photo.height;
+					img.width=photo.width;
 					
 					
 					pictures.addItem(img);
 					var loader:Loader = new Loader();
-					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createPanoramioMarker);
+					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createPanoramioMarker,false,0,true);
 					panoramioDict[loader]=img;
-					loader.load(new URLRequest(img.thumbnail));				
+					loader.load(new URLRequest(img.thumbnail));			
 					
 				}
 			}
@@ -274,7 +245,7 @@ package com.vizzuality.services
 					youtubes.addItem(video);
 	
 					var loader:Loader = new Loader();
-					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createYoutubeMarker);
+					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createYoutubeMarker,false,0,true);
 					youtubeDict[loader]=video;
 					loader.load(new URLRequest(video.thumbnail));		
 				}			
@@ -331,81 +302,10 @@ package com.vizzuality.services
 			return marker;
 		}		
 		
-		private function createFlickrMarker(ev:Event):void {
-			
-			var photo:ImageData=flickrDict[ev.target.loader];
-			var bmd:BitmapData = Bitmap(ev.currentTarget.content).bitmapData;
-			var bmd2:BitmapData = new BitmapData(32,32)
-			var m:Matrix = new Matrix();
-			m.scale(0.43,0.43);
-			bmd2.draw(bmd,m);		
-			var sp:Sprite= new Sprite();
-            sp.graphics.lineStyle(3,0xFF0071);
-            sp.graphics.beginFill(0xFFFFFF,0);
-            sp.graphics.drawRect(0,0,31,31);
-            sp.graphics.endFill();
-            bmd2.draw(sp);
-			var iconBitmap:Bitmap= new Bitmap(bmd2);
-			
-			var latlng:LatLng = photo.latlng;
-	      	var photoUrl:String = photo.imageUrl;
-	      	
-	       var marker:Marker = new Marker(latlng, new MarkerOptions(
-	       	{tooltip: photo.title,
-	       	 draggable:false,
-	       	 icon: iconBitmap}));		        
-              
-        	var infowindow:Loader= new Loader();
-        	infowindow.load(new URLRequest(photo.imageUrl));
-        	infowindow.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void {
-        		navigateToURL(new URLRequest(photo.sourceUrl));
-        	});
-        	
-        	infowindow.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void {
-		   	
-		   		var bm:Bitmap = Bitmap(event.currentTarget.content)
-		   		var bmd:BitmapData = bm.bitmapData;
-		   		
-		   		var s:Sprite=new Sprite();
-		   		s.addChild(infowindow);
-		   		s.buttonMode=true;
-		   		
-		   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
-	                customContent: s,
-	                strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
-	                customOffset: new Point(0, 10),
-	                cornerRadius:0,
-	                width: bmd.width,
-	                height: bmd.height,
-	                drawDefaultFrame: true					
-				});  	 
-				picturesInfoWindows[marker]=optionsMark;
-				
-		        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
-		      		marker.openInfoWindow(optionsMark);     
-		        });      
-        		
-        	});
-	       	
-	        
-	        picturesMarkers[photo]=marker;
-		} 		
-		
+
 		private function createPanoramioMarker(ev:Event):void {
 			
 			var photo:ImageData=panoramioDict[ev.target.loader];
-			var bmd:BitmapData = Bitmap(ev.currentTarget.content).bitmapData;
-			var bmd2:BitmapData = new BitmapData(32,32)
-			var m:Matrix = new Matrix();
-			m.scale(0.5,0.5);
-			bmd2.draw(bmd,m);		
-			var sp:Sprite= new Sprite();
-            sp.graphics.lineStyle(3,Color.BLUE);
-            sp.graphics.beginFill(0xFFFFFF,0);
-            sp.graphics.drawRect(0,0,31,31);
-            sp.graphics.endFill();
-            bmd2.draw(sp);
-			var iconBitmap:Bitmap= new Bitmap(bmd2);
 			
 			var latlng:LatLng = photo.latlng;
 	      	var photoUrl:String = photo.imageUrl;
@@ -413,7 +313,8 @@ package com.vizzuality.services
 	       var marker:Marker = new Marker(latlng, new MarkerOptions(
 	       	{tooltip: photo.title,
 	       	 draggable:false,
-	       	 icon: iconBitmap}));		        
+	       	 hasShadow:false,	        
+	       	 icon: ev.target.loader}));		        
               
         	var infowindow:Loader= new Loader();
         	infowindow.load(new URLRequest(photo.imageUrl));
@@ -422,21 +323,21 @@ package com.vizzuality.services
         	});
         	
         	infowindow.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void {
-		   	
-		   		var bm:Bitmap = Bitmap(event.currentTarget.content)
-		   		var bmd:BitmapData = bm.bitmapData;
+        				   		
+		   		var loader:LoaderInfo= event.currentTarget as LoaderInfo;
 		   		
 		   		var s:Sprite=new Sprite();
 		   		s.addChild(infowindow);
 		   		s.buttonMode=true;
 		   		
 		   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
-	                customContent: s,
+	                customContent: loader.loader,
 	                strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
 	                customOffset: new Point(0, 10),
 	                cornerRadius:0,
-	                width: bmd.width,
-	                height: bmd.height,
+					hasShadow:false,
+	                width: (photo.width/2.1),
+	                height: (photo.height/2.1),
 	                drawDefaultFrame: true					
 				});  	 
 				picturesInfoWindows[marker]=optionsMark;

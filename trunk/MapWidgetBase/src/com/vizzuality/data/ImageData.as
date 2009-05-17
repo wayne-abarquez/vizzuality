@@ -15,6 +15,8 @@ package com.vizzuality.data
 		public var source:String;
 		public var latlng:LatLng;
 		public var id:String;
+		public var height:Number;
+		public var width:Number;
 
 	}
 }
