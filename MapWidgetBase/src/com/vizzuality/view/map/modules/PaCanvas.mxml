@@ -34,6 +34,21 @@
 			</mx:AddChild>
 			<mx:RemoveChild target="{button1}"/>
 		</mx:State>
+		<mx:State name="collapse">
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:RemoveChild target="{vbox1}"/>
+			<mx:RemoveChild target="{image2}"/>
+			<mx:RemoveChild target="{image3}"/>
+			<mx:RemoveChild target="{image4}"/>
+			<mx:RemoveChild target="{canvas2}"/>
+			<mx:RemoveChild target="{canvas0}"/>
+			<mx:RemoveChild target="{vboxLayers}"/>
+			<mx:SetStyle target="{image1}" name="top" value="17"/>
+			<mx:SetStyle target="{image1}" name="right" value="4"/>
+			<mx:SetProperty target="{image1}" name="rotation" value="180"/>
+			<mx:SetProperty name="height" value="{vbox4.height + 5}"/>
+		</mx:State>
 	</mx:states>
 <mx:Script>
 	<![CDATA[
@@ -49,6 +64,18 @@
 		import mx.rpc.events.ResultEvent;
 		import com.vizzuality.services.DataServices;
 		
+		
+		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='SeaGrassSmallLegend')]
+		[Bindable]
+		public var SeaGrassSmallLegend:Class;
+		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='MangrovesSmallLegend')]
+		[Bindable]
+		public var MangrovesSmallLegend:Class;
+		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='CoralSmallLegend')]
+		[Bindable]
+		public var CoralSmallLegend:Class;
+
+
 		private var currentId:Number;
 		
 		public function set siteid(id:Number):void {
@@ -69,7 +96,13 @@
 			
 		}
 		
-		
+		private function handleCollapse():void{
+			if(this.currentState == ''){
+				this.currentState = 'collapse';
+			}else{
+				this.currentState = '';
+			}
+		}		
 		
 	]]>
 </mx:Script>
@@ -93,11 +126,14 @@
 				verticalScrollPolicy="off" horizontalScrollPolicy="off">
 				<mx:Label text="WDPA LAYERS" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
-					<mx:CheckBox label="Coral" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
-					<mx:CheckBox label="Cold Water Corals" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
-					<mx:CheckBox label="SeaGrass" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
-					<mx:CheckBox label="Mangroves" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
+					<mx:CheckBox id="cb" label="Coral" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
+					<mx:CheckBox id="cwb" label="Cold Water Corals" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
+					<mx:CheckBox id="sgb" label="SeaGrass" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
+					<mx:CheckBox id="mb" label="Mangroves" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
 				</mx:VBox>
+				<mx:Image x="200" y="33" scaleContent="false" width="8" height="8" source="{CoralSmallLegend}" visible="{cb.selected}" id="image2"/>
+				<mx:Image x="200" y="69" scaleContent="false" width="8" height="8" source="{SeaGrassSmallLegend}" visible="{sgb.selected}" id="image3"/>
+				<mx:Image x="200" y="86" scaleContent="false" width="8" height="8" source="{MangrovesSmallLegend}" visible="{mb.selected}" id="image4"/>
 			</mx:Canvas>
 			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule2"/>
 			<mx:Canvas styleName="softGreenContainer" width="100%"
@@ -120,5 +156,7 @@
 			</mx:Canvas>
 		</mx:VBox>
 	</mx:VBox>
+	<mx:Button y="8" styleName="invisibleButtonDos" right="10" width="20" click="handleCollapse()"
+		useHandCursor="true" mouseChildren="false" buttonMode="true" id="button2"/>
 	
 </mx:Canvas>

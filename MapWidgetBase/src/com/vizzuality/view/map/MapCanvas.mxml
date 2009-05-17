@@ -24,9 +24,6 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.AREA_SELECTOR}">
-			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:Button label="Go back" click="AppStates.gi().goToPreviousState();" width="79" top="39" horizontalCenter="245"/>
-			</mx:AddChild>
 		</mx:State>
 	</mx:states>
 	<mx:Script>

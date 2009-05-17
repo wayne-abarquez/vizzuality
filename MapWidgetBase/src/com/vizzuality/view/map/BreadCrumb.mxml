@@ -31,7 +31,11 @@
 		</mx:State>
 		<mx:State name="{AppStates.AREA_SELECTOR}">
 			<mx:AddChild position="firstChild">
-				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="There are multiples areas on this region. Click on the name to select one." verticalCenter="0" id="countryButton0" styleName="breadCrumbButton" enabled="false" height="26" />
+				<mx:Button x="{worldButton.x + worldButton.width - 15}" label="There are multiples areas on this region. Click on the name to select one.      ." verticalCenter="0" id="btn2" styleName="breadCrumbButton" enabled="false" height="26" />
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Button x="{btn2.x + btn2.width - 30}" label="GO BACK" verticalCenter="0" styleName="breadCrumbButtonClose" enabled="true" height="26" 
+					click="AppStates.gi().goToPreviousState();"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
