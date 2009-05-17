@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="360" height="100%" xmlns:components = "com.vizzuality.components.*">
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Application;
+			
+			private function changeSizeImage(str:String):String {
+				var source: String;
+				source = Application.application.resolvedImages[str];
+				return source.replace("_s","");
+			}
+		]]>
+	</mx:Script>
+	<mx:Label y="10" text="{data.name}" fontSize="14" width="310.5" textAlign="center" height="29" horizontalCenter="0" fontStyle="normal" fontWeight="bold" color="#030505" fontFamily="Verdana"/>
+	<mx:Canvas y="36" width="310.19998" height="341.6" horizontalScrollPolicy="off" verticalScrollPolicy="off" horizontalCenter="0" >
+		<mx:Image width="100%" height="100%" source="{changeSizeImage(data.name)}" verticalAlign="middle" horizontalAlign="center"/>
+	</mx:Canvas>
+	<mx:Label y="400" text="Description:" width="139.45" height="18" textAlign="right" fontSize="12" horizontalCenter="-92"/>
+	<mx:Label y="400" width="175.6" height="18" text="{data.name}" fontSize="12" horizontalCenter="73"/>
+	<mx:Label y="420.7" text="ID:" width="57.449997" height="18" textAlign="right" fontSize="12" horizontalCenter="-52"/>
+	<mx:Label y="420.7" width="86.5" height="18" text="--------" fontSize="12" horizontalCenter="35"/>
+	<mx:Button y="476.2" label="More information" width="114.100006" height="16.560001" color="#0A0A0A" fontWeight="normal" cornerRadius="10" 
+		click="{navigateToURL (new URLRequest ('http://data.gbif.org/welcome.htm;jsessionid=66E130897B04FBFE9D5CDD497572177C'), '_blank')}" horizontalCenter="-7" fontSize="9" fontFamily="Verdana"/>
+</mx:Canvas>

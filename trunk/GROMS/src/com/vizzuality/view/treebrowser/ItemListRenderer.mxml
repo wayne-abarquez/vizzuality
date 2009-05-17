@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" xmlns:components = "com.vizzuality.components.*" backgroundColor="#FF00FF"
+	 verticalScrollPolicy="off" horizontalScrollPolicy="off" dataChange="doEffect()" alpha="0" xmlns:treebrowser="com.vizzuality.view.treebrowser.*">
+
+ 	<!--click="onClickItemList()"-->
+
+	<mx:Script>
+		<![CDATA[
+			import gs.TweenLite;
+			import mx.binding.utils.BindingUtils;
+			import mx.collections.ArrayCollection;
+			import mx.core.Application;
+			
+			[Bindable]
+            private var taxon:String;
+            [Bindable]
+            private var bool:Boolean;
+			[Bindable]
+            private var commonName:ArrayCollection;
+
+			
+			private var object: Object;
+		
+			
+           	public override function set data(value:Object):void{
+                super.data = value;
+                if(value == null){
+                	taxon="";
+                	//this.alpha=0;
+                	flickrImg.source=null;
+                	combo.visible=false;
+                	bool=false;
+                    return;
+                }
+                if(value.name != taxon) {
+	                taxon = value.name;
+                	flickrImg.query=taxon;
+                	if (value.english!=null) {
+                		commonName = new ArrayCollection();
+                		if (value.english!=null) {
+		                	commonName.addItem("[EN] " + value.english);
+		                } else {
+		                	commonName.addItem("[EN]");
+		                }
+		                if (value.english!=null) {
+		                	commonName.addItem("[ES] " + value.spanish);
+		                } else {
+		                	commonName.addItem("[ES]");
+		                }
+		                if (value.english!=null) {
+		                	commonName.addItem("[DE] " + value.german);
+		                } else {
+		                	commonName.addItem("[DE]");
+		                }
+		                if (value.english!=null) {
+		                	commonName.addItem("[FR] " + value.french);
+		                } else {
+		                	commonName.addItem("[FR]");
+		                }
+		                combo.dataProvider=commonName;
+		                combo.visible = true;
+                		BindingUtils.bindProperty(combo, "selectedIndex", Application.application,"comboDefault");
+                	} else {
+                		combo.visible = false;
+                	}
+	                bool = value.has_children;
+	                if (!data.has_children) {
+	                	arrow.visible=false;
+	                }
+                }
+                this.alpha=0;
+            }
+                
+            private function doEffect():void{
+            	TweenLite.to(this,1,{alpha:1});	 
+            }
+            private function changeCombo(ev: Event):void {
+            	Application.application.comboDefault = ev.target.selectedIndex;
+            }
+		]]>
+	</mx:Script>
+	    
+ 	<treebrowser:FlickrImage id="flickrImg" width="75" height="75" y="2" left="0" horizontalAlign="center" verticalAlign="middle"/>
+    <mx:Label text="{taxon}" textAlign="left" verticalCenter="-8" left="83" fontSize="14" width="183.93333" height="23"/>
+    <mx:ComboBox id="combo" textAlign="left" verticalCenter="11" left="83" fontSize="13" fontStyle="italic" width="183.93333" height="22" change="changeCombo(event)"/>
+    <mx:Image id="arrow"  width="15" height="10" right="-0.049987793" verticalCenter="-2"/>
+   
+</mx:Canvas>
