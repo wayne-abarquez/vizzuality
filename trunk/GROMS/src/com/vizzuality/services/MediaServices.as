@@ -119,10 +119,10 @@ package com.vizzuality.services
 			existingPoints=[];
 			MapController.gi().clearOverlays();
 			
-		
+/* 		
 			getPictures(bbox);
 			getVideos(bbox);
-			getWikipedia(bbox);
+			getWikipedia(bbox); */
 		}
 
 			

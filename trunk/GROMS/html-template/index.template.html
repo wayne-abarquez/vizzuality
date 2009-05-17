@@ -22,7 +22,7 @@
 			</ul>
 		</div>
 		<div class="span-24 widgetContainer">
-			<div class="span-24" id="widget">
+			<div class="span-24" id="widget" style="height:447px;">
 			<h1>This site requieres Flash to run</h1>
 			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
 			</div>
@@ -71,6 +71,8 @@
 
 <script type="text/javascript" src="js/swfobject.js"></script>
 <script type="text/javascript" src="js/swfaddress.js"></script>
+<script language="javascript" src="js/Tween.js"></script>
+<script language="javascript" src="js/Sequence.js"></script>
 <script type="text/javascript">
     var flashvars = {
       gmap_key: "ABQIAAAAUdCLksixDAgnY8JZ7a6YJBRTcWW-xOIMiY0s20UEUW3xpxovahQClZ42LV_3hgyp4oBrgebTRrNDXg",
@@ -82,10 +84,16 @@
       
     };
     var attributes = {
-      id: "myDynamicContent",
-      name: "myDynamicContent"
+      id: "widget"
     };		
     swfobject.embedSWF("MapWidgetBase.swf", "widget", "940", "447", "9.0.0", "expressInstall.swf",flashvars, params, attributes);
+    
+    function setHeight(start,end) { 
+        t1 = new Sequence();
+        t1.addChild(new Tween(document.getElementById('widget').style, 'height', Tween.strongEaseOut, start, end, 0.5, 'px'));
+        t1.start();
+    }     
+    
 </script>
 
 </body>

@@ -15,7 +15,6 @@
 	import flash.ui.Keyboard;
 	
 	import mx.containers.Canvas;
-	import mx.core.Application;
 	import mx.core.ScrollPolicy;
 	import mx.core.UIComponent;
 	import mx.effects.Rotate;
@@ -196,6 +195,10 @@
 		
 		private var event:MonthSelectedEvent;
 		
+		[Bindable] public var monthWidth:Number;
+		
+		[Bindable] public var parentWidth:Number;
+		
 		public function ObjectHandles()
 		{
 			super();
@@ -250,47 +253,47 @@
 		}
 		
 		protected function onMoveObject(ev: Event):void {
-			if (this.x % Application.application.monthWidth != 0) {
-				if (this.x % Application.application.monthWidth >= Application.application.monthWidth/2) {
-					super.x = this.x + (Application.application.monthWidth - this.x % Application.application.monthWidth);
+			if (this.x % monthWidth != 0) {
+				if (this.x % this.monthWidth >= monthWidth/2) {
+					super.x = this.x + (this.monthWidth - this.x % monthWidth);
 				} else {
-					super.x = this.x - (this.x % Application.application.monthWidth);;
+					super.x = this.x - (this.x % monthWidth);;
 				}
 			}
 			
 			event = new MonthSelectedEvent(MonthSelectedEvent.ON_CHOOSE_MONTHS);
-			event.monthStart = Math.round(super.x/Application.application.monthWidth);
+			event.monthStart = Math.round(super.x/monthWidth);
 			trace("mes empieza: " + event.monthStart);
-			event.monthEnd = Math.round((super.x + this.width)/Application.application.monthWidth);
+			event.monthEnd = Math.round((super.x + this.width)/monthWidth);
 			trace("mes final: " + event.monthEnd);
 			dispatchEvent(event);
 		}
 		
 		protected function onResizeObject(ev: Event):void {
 			if (ev.target.isResizingRight) {
-				if ((this.x+this.width) % Application.application.monthWidth != 0) {
-					if ((this.x+this.width) % Application.application.monthWidth >= Application.application.monthWidth/2) {
-						super.width = this.width + (Application.application.monthWidth - (this.x+this.width) % Application.application.monthWidth);
+				if ((this.x+this.width) % this.monthWidth != 0) {
+					if ((this.x+this.width) % this.monthWidth >= monthWidth/2) {
+						super.width = this.width + (this.monthWidth - (this.x+this.width) % monthWidth);
 					} else {
-						super.width = this.width - ((this.x+this.width) % Application.application.monthWidth);
+						super.width = this.width - ((this.x+this.width) % monthWidth);
 					}
 				}
 			} else {
-				 if (this.x % Application.application.monthWidth != 0) {
-					if (this.x % Application.application.monthWidth >= Application.application.monthWidth/2) {
-						super.x=this.x + (Application.application.monthWidth - this.x % Application.application.monthWidth);
-						super.width = this.width - (this.width % Application.application.monthWidth);
+				 if (this.x % this.monthWidth != 0) {
+					if (this.x % this.monthWidth >= monthWidth/2) {
+						super.x=this.x + (this.monthWidth - this.x % monthWidth);
+						super.width = this.width - (this.width % monthWidth);
 					} else {
-						super.x= this.x - (this.x % Application.application.monthWidth);
-						super.width = this.width + (Application.application.monthWidth - this.width % Application.application.monthWidth);
+						super.x= this.x - (this.x % monthWidth);
+						super.width = this.width + (this.monthWidth - this.width % monthWidth);
 					}
 				} 
 			}
 						
 			event = new MonthSelectedEvent(MonthSelectedEvent.ON_CHOOSE_MONTHS);
-			event.monthStart = Math.round(super.x/Application.application.monthWidth);
+			event.monthStart = Math.round(super.x/monthWidth);
 			trace("mes empieza: " + event.monthStart);
-			event.monthEnd = Math.round((super.x + this.width)/Application.application.monthWidth);
+			event.monthEnd = Math.round((super.x + this.width)/monthWidth);
 			trace("mes final: " + event.monthEnd);
 			dispatchEvent(event);
 		}
@@ -900,9 +903,9 @@
 		{
 			//trace("W" + value);
 			if (this.isResizingRight) {
-				if ( (this.x+value)<Application.application.backgroundComponent.width) {
-					if ((value % Application.application.monthWidth > Application.application.monthWidth/2)) {				
-						super.width = value + (Application.application.monthWidth - (value % Application.application.monthWidth));	
+				if ( (this.x+value)<parentWidth) {
+					if ((value % this.monthWidth > this.monthWidth/2)) {				
+						super.width = value + (this.monthWidth - (value % monthWidth));	
 					} else {
 						super.width = value;
 					}
@@ -912,7 +915,7 @@
 					if (this.x>0) {
 						super.width = value;
 					} else {
-						super.width = this.originalPosition.x + this.originalSize.length - (this.originalSize.length % Application.application.monthWidth);
+						super.width = this.originalPosition.x + this.originalSize.length - (this.originalSize.length % monthWidth);
 					}
 				}
 			}	
@@ -924,8 +927,8 @@
 			 if (value<0) {
 				super.x = 0;
 			} else {
-				if (value+this.width>Application.application.backgroundComponent.width) {
-					super.x = Application.application.backgroundComponent.width - this.width;
+				if (value+this.width>parentWidth) {
+					super.x = parentWidth - this.width;
 				} else {
 					super.x = value;
 				}
