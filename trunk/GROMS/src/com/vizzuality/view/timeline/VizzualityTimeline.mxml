@@ -78,7 +78,8 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Canvas width="100%" height="100%" borderStyle="none" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" backgroundColor="#ededed" verticalCenter="0">
+	<mx:Canvas width="100%" height="100%" borderStyle="none" verticalScrollPolicy="off" horizontalScrollPolicy="off" 
+		horizontalCenter="0" verticalCenter="0" styleName="bkgTotal" backgroundSize="100%">
 		<mx:Canvas id="backgroundComponent" width="{this.width - 200}" height="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" verticalCenter="0" borderStyle="solid" borderThickness="0" right="0">								
 			
 			<components:TimelineChart  id="timeChart" monthWidth="{monthWidth}" right="10" left="0" top="23" bottom="7"/>
@@ -105,7 +106,7 @@
 		
 		<components:TimelineLabelContainer id="timelineLabels" width="200" height="100%" labelProvider="{timeline}"/>
 		<mx:HRule left="0" right="0" top="0" strokeColor="#999999" strokeWidth="1"/>
-	
+
 	</mx:Canvas>
 	
 </mx:Canvas>

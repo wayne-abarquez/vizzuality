@@ -50,7 +50,9 @@ Box.bkgBox{
 	background-image: Embed(source="timelineStyles.swf",symbol="bkgBox");
 }
 
-
+Canvas.bkgTotal{
+	background-image: Embed(source="timelineStyles.swf",symbol="bkgTotal");
+}
 
 
 Button.btnDelete{
