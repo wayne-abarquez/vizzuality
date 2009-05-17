@@ -1,7 +1,6 @@
 package com.vizzuality.services
 {
 	import com.adobe.serialization.json.JSON;
-	import com.google.maps.Color;
 	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
@@ -31,6 +30,8 @@ package com.vizzuality.services
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	import flash.utils.Dictionary;
+	
+	import gs.TweenLite;
 	
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
@@ -143,10 +144,14 @@ package com.vizzuality.services
 			flickrServ.send({bbox:secondBBox.getWest()+","+secondBBox.getSouth()+","+secondBBox.getEast()+","+secondBBox.getNorth()});			
 			flickrServ.send({bbox:thirdBBox.getWest()+","+thirdBBox.getSouth()+","+thirdBBox.getEast()+","+thirdBBox.getNorth()});			
 			flickrServ.send({bbox:fourthBBox.getWest()+","+fourthBBox.getSouth()+","+fourthBBox.getEast()+","+fourthBBox.getNorth()});
-*/ 	 		panoramioServ.send({minx:firstBBox.getWest(),miny:firstBBox.getSouth(),maxx:firstBBox.getEast(),maxy:firstBBox.getNorth()});
-			panoramioServ.send({minx:secondBBox.getWest(),miny:secondBBox.getSouth(),maxx:secondBBox.getEast(),maxy:secondBBox.getNorth()});
-			panoramioServ.send({minx:thirdBBox.getWest(),miny:thirdBBox.getSouth(),maxx:thirdBBox.getEast(),maxy:thirdBBox.getNorth()});
-			panoramioServ.send({minx:fourthBBox.getWest(),miny:fourthBBox.getSouth(),maxx:fourthBBox.getEast(),maxy:fourthBBox.getNorth()});			 
+*/ 	 		
+
+			//Make the calls delayed to not killed the client
+			TweenLite.delayedCall(0.5,panoramioServ.send,[{minx:firstBBox.getWest(),miny:firstBBox.getSouth(),maxx:firstBBox.getEast(),maxy:firstBBox.getNorth()}]);
+			TweenLite.delayedCall(1,panoramioServ.send,[{minx:secondBBox.getWest(),miny:secondBBox.getSouth(),maxx:secondBBox.getEast(),maxy:secondBBox.getNorth()}]);
+			TweenLite.delayedCall(1.5,panoramioServ.send,[{minx:thirdBBox.getWest(),miny:thirdBBox.getSouth(),maxx:thirdBBox.getEast(),maxy:thirdBBox.getNorth()}]);
+			TweenLite.delayedCall(2,panoramioServ.send,[{minx:fourthBBox.getWest(),miny:fourthBBox.getSouth(),maxx:fourthBBox.getEast(),maxy:fourthBBox.getNorth()}]);
+			 
 			numPicturesRequest=numPicturesRequest+4;
 		}
 		

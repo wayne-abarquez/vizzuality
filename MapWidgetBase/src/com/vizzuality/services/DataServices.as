@@ -99,7 +99,7 @@ package com.vizzuality.services
 			roWorld.addEventListener(FaultEvent.FAULT,onFault);		
 			
 			roLat.addEventListener(ResultEvent.RESULT,onGetAreasByLatLngResult);	
-			roLat.addEventListener(FaultEvent.FAULT,onFault);					
+			roLat.addEventListener(FaultEvent.FAULT,onGetAreasByLatLngResultFault);					
 			
 			nf=new NumberFormatter();
 			nf.useThousandsSeparator=true;
@@ -282,6 +282,12 @@ package com.vizzuality.services
 				resolvingIso=null;
 						
 				dispatchEvent(new DataServiceEvent(DataServiceEvent.COUNTRY_DATA_LOADED));			
+				
+				//if this is comming from a PA details with orphan Country details we have to stop here
+				if(AppStates.gi().topState==AppStates.PA) {
+					return;
+				}
+				
 				
 				//the request is comming from a click on the map. We have to change the URL
 				if(AppStates.gi().topState!=AppStates.COUNTRY) {
@@ -535,6 +541,11 @@ package com.vizzuality.services
 			return MapUtils.drawCircle(center.lat(),center.lng(),radius,0x0099FF,1,1,0x0099FF,0.5);						
 		}	
 		
+		
+		private function onGetAreasByLatLngResultFault(event:FaultEvent):void {
+				MapController.gi().setMapLoaded();
+				MapController.gi().showMapWarning("Sorry, there has been an error, please click again or \nreport back using the button on top right.\nERROR TYPE: onGetAreasByLatLngResultFault",2);			
+		}
 		
 		private function onFault(event:FaultEvent):void {
 			trace(event.message);
