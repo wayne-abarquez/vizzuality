@@ -4,6 +4,7 @@
 		
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Image;
 			import mx.controls.VRule;
 			import mx.controls.Label;
 			import mx.controls.Text;
@@ -14,20 +15,23 @@
 			private var _caNew: Canvas;
 			private var _chartNew: Canvas;
 			private var _status: Label;
-			private var _verLine: VRule;
+			private var _verLine: Image;
 			
 			[Bindable] public var monthWidth:Number;
 			
+			[Embed(source="/com/vizzuality/style/assets/vRuleDashed500.png")]
+			[Bindable]
+			public var vLine:Class;
 			
 			override public function set data(obj: Object):void {
 				this.removeAllChildren();
 				for (var z:int=1;z<12;z++) {	
-					_verLine = new VRule();
-					_verLine.setStyle("strokeWidth","1");
+					_verLine = new Image();
+					_verLine.source = vLine;
+					_verLine.scaleContent = false;
 					_verLine.x = (monthWidth)*z;
 					_verLine.height=this.height;
-					_verLine.setStyle("strokeColor","#d7d7d7");	
-					this.addChild(_verLine);
+					this.addChild(_verLine); 
 				}
 				
 				monthProvider = obj as ArrayCollection;
@@ -38,7 +42,7 @@
 						if (j==0) {
 							_chartNew.y = 16;
 						} else {
-							_chartNew.y = 17 + (16*j)+(10*j);
+							_chartNew.y = 14 + (16*j)+(10*j);
 						}
 												
 						for(var i:int=0;i<((monthProvider[j].chart).length);i++) {
@@ -46,10 +50,16 @@
 						    _caNew.x = ((monthProvider[j].chart)[i].monthStart)*(monthWidth);
 						    _caNew.width = ((monthProvider[j].chart)[i].monthEnd - (monthProvider[j].chart)[i].monthStart)*(monthWidth);    
 						    _caNew.height = 16;
-						    _caNew.setStyle("backgroundColor",(monthProvider[j].chart)[i].color); 
+						    _caNew.styleName = ((monthProvider[j].chart)[i].style) as String;
+						    /* _caNew.styleName = "s21"; */
+						    _caNew.setStyle("backgroundSize","100%");
 						    _status = new Label();
 						    _status.text = (monthProvider[j].chart)[i].status;
-						    _status.setStyle("color","#3d313b");
+						    _status.setStyle("color","#FFFFFF");
+						    _status.setStyle("fontFamily","DINOT-Medium");
+							_status.setStyle("fontSize",12);  
+							_status.setStyle("paddingTop",-3); 
+							_status.alpha = .6;							
 						    _caNew.addChild(_status);
 						    _chartNew.addChild(_caNew);
 						}
