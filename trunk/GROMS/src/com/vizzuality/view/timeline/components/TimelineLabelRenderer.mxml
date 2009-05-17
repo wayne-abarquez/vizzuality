@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="23">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="25"
+	verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
 			import com.vizzuality.view.timeline.events.TimelineButtonEvent;
@@ -39,9 +40,12 @@
 		]]>
 	</mx:Script>
 
-	<mx:CheckBox width="14.400024" height="19" verticalCenter="0" left="4"/>
-	<mx:Label text="{taxon}" verticalCenter="0" left="20" width="100"/>
-	<mx:Button label="Button" width="15" height="15" right="45" verticalCenter="0"/>
-	<mx:Button label="Button" width="15" height="15" right="10" verticalCenter="0"/>
-	<mx:Button label="Button" width="15" height="15" right="27" verticalCenter="0"/>
+	<mx:CheckBox height="19" verticalCenter="0" left="9"/>
+	<mx:Label text="{taxon}" verticalCenter="0" left="20" width="120" color="#333333" fontFamily="DINOT-Medium" fontSize="12"/>
+	<mx:Button width="14" height="14" right="42" verticalCenter="0" styleName="btnInfo" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
+	<mx:Button width="14" height="14" right="10" verticalCenter="0" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
+	<mx:Button width="14" height="14" right="26" verticalCenter="0" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
+	<mx:Image bottom="0" left="8" right="8" scaleContent="false">
+		<mx:source>@Embed('/com/vizzuality/style/assets/hRuleDashed500.png')</mx:source>
+	</mx:Image>
 </mx:Canvas>
