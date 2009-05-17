@@ -2,6 +2,11 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="onCreationComplete()"
 	backgroundColor="#FFFFFF" backgroundAlpha=".65" 
 	xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:states>
+		<mx:State name="noPictures">
+			<mx:SetProperty name="alpha" value="0.3"/>
+		</mx:State>
+	</mx:states>
 
 	<mx:Script>
 		<![CDATA[
@@ -23,11 +28,17 @@
 			
 			
 			private function onCreationComplete():void {
+				currentState='noPictures';
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,onPicturesLoaded);
 			}
 			
 			private function onPicturesLoaded(event:DataServiceEvent):void {
 				dataLength = MediaServices.gi().pictures.length;
+				if(dataLength>0) {
+					currentState='';
+				} else {
+					currentState='noPictures';
+				}
 				arrAux = new ArrayCollection(MediaServices.gi().pictures.source);
  				hList.dataProvider = arrAux;
 			}
@@ -51,7 +62,7 @@
 
 	<mx:HBox id="picList" height="55" x="18" verticalCenter="0" horizontalGap="4">
 		<mx:Repeater id="hList">
-			<mediabrowser:PicItemRenderer pic="{hList.currentItem.thumbnail}" picId="{hList.currentItem.id}" />
+			<mediabrowser:PicItemRenderer pic="{hList.currentItem.imageUrl}" picId="{hList.currentItem.id}" />
 		</mx:Repeater>
 	</mx:HBox>
 
