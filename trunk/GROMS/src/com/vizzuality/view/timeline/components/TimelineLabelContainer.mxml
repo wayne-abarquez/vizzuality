@@ -27,17 +27,18 @@
 				
 				_status = new Label();
 				_status.text = "Data Timeline";
-				_status.setStyle("color","#a1a1a1");
-				_status.setStyle("fontSize","15");
-				_status.x = 30;
+				_status.setStyle("color","#8f8f8f");
+				_status.setStyle("fontSize","16");
+				_status.setStyle("fontFamily","DINOT-Medium");				
+				_status.x = 10;
 				_status.y = 5;
 				this.addChild(_status);
 				
 				_horLine = new HRule();
 				_horLine.setStyle("color","#a1a1a1");
-				_horLine.y = 31;
-				_horLine.x = 5;
-				_horLine.width = this.width-13;
+				_horLine.y = 33;
+				_horLine.x = 10;
+				_horLine.width = this.width-20;
 				this.addChild(_horLine);
 				
 				
