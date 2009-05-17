@@ -19,6 +19,10 @@
 			
 			[Bindable] public var monthWidth:Number;
 			
+			[Bindable]public var visible1: Boolean = true;
+			[Bindable]public var visible2: Boolean = true;
+			[Bindable]public var visible3: Boolean = true;
+			
 			[Embed(source="/com/vizzuality/style/assets/vRuleDashed500.png")]
 			[Bindable]
 			public var vLine:Class;
@@ -41,8 +45,14 @@
 						
 						if (j==0) {
 							_chartNew.y = 16;
+							if (!visible1) _chartNew.alpha=0.3;
 						} else {
 							_chartNew.y = 14 + (16*j)+(10*j);
+							if (j==1) {
+								if (!visible2) _chartNew.alpha=0.3;								
+							} else {
+								if (!visible3) _chartNew.alpha=0.3;
+							}
 						}
 												
 						for(var i:int=0;i<((monthProvider[j].chart).length);i++) {

@@ -12,7 +12,7 @@ package com.vizzuality.view.timeline.events
 		public var specieID: int;
 		public var visible: Boolean = true;
 		
-		public function TimelineButtonEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function TimelineButtonEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
 		}
