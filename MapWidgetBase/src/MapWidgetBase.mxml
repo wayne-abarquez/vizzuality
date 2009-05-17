@@ -260,7 +260,7 @@
 							//remove the possibility to click on the areas
 							MapController.gi().removeClickListenerForAreas();		
 							MapController.gi().removeClickListenerForCountries();
-							MapController.gi().map.closeInfoWindow();
+							//MapController.gi().map.closeInfoWindow();
 							
 							if(AppStates.gi().activePaId != Number(event.pathNames[1])) {
 								MapController.gi().clearPAs();
