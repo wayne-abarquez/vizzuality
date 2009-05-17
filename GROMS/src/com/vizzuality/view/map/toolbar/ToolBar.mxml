@@ -81,6 +81,8 @@
 					<mx:Button x="389" y="233" label="LET'S EXPLORE" styleName="btnOrange" width="158"
 						useHandCursor="true" buttonMode="true" mouseChildren="false" fontFamily="DINOT-Bold"/>
 					<ns2:SearchComponent bottom="26" listPosition="up" right="20"/>
+					<mx:Button width="55" height="17" styleName="closeButton" top="-1" right="20" click="AppStates.gi().setSecondState('')"
+						useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:SetStyle name="backgroundAlpha" value="0.0"/>
@@ -96,6 +98,8 @@
 					<ns2:SearchComponent right="20" listPosition="down" top="41"/>
 					<mx:Canvas borderColor="#999999" borderStyle="solid" cornerRadius="2" left="19" right="20" bottom="35" top="89">
 					</mx:Canvas>
+					<mx:Button width="55" height="17" styleName="closeButton" top="-1" right="20" click="AppStates.gi().setSecondState('')"
+						useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:SetStyle name="backgroundAlpha" value="0.0"/>

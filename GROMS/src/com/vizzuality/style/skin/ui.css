@@ -227,6 +227,16 @@ Button.invisibleButton{
 	paddingBottom: 0; 	
 }
 
+Button.closeButton{
+	up-skin: Embed(source="ui.swf",symbol="closeButton_up");	
+	over-skin: Embed(source="ui.swf",symbol="closeButton_up");	
+	down-skin: Embed(source="ui.swf",symbol="closeButton_up");	
+	disabled-skin: Embed(source="ui.swf",symbol="closeButton_up");	
+	selected-up-skin: Embed(source="ui.swf",symbol="closeButton_up");	
+	selected-over-skin: Embed(source="ui.swf",symbol="closeButton_up");	
+	selected-down-skin: Embed(source="ui.swf",symbol="closeButton_up");	
+}
+
 Button.btnMiniTab{
 	up-skin: Embed(source="ui.swf",symbol="miniTab_up");	
 	over-skin: Embed(source="ui.swf",symbol="miniTab_over");	
@@ -245,20 +255,6 @@ Button.btnMiniTab{
 	padding-left: 3;
 	padding-right: 3;
 }
-
-Button.btnMediaBrowserRight{
-	up-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_right_up");	
-	over-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_right_over");	
-	down-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_right_over");	
-}
-
-Button.btnMediaBrowserLeft{
-	up-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_left_up");	
-	over-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_left_over");	
-	down-skin: Embed(source="ui.swf",symbol="btn_mediaBrowser_left_over");	
-}
-
-
 
 HSlider{
 	thumbDisabledSkin: Embed(source="ui.swf", symbol="SliderThumb_disabledSkin");
@@ -318,6 +314,46 @@ RadioButton{
 	horizontalGap:0;
 	paddingTop: -1;
 	paddingBottom: 0;
+}
+
+ComboBox.lenguageDark{
+	disabledSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_disabledSkin");
+	downSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_downSkin");
+	editableDisabledSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_editableDisabledSkin");
+	editableDownSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_editableDownSkin");
+	editableOverSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_editableOverSkin");
+	editableUpSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_editableUpSkin");
+	overSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_overSkin");
+	upSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_upSkin");
+	color: #cccccc;
+	textRollOverColor: #ffffff;
+	textSelectedColor:#ffffff;
+	textDisabledColor: #1e1e1e;
+	dropDownStyleName: "dropDown";
+	arrowButtonWidth:12;
+	paddingRight:0;
+	paddingLeft:12;
+	padding-top: 0;
+}
+
+.dropDown {
+	branchIcon: Embed(source="ui.swf",symbol="Menu_branchIcon");
+	branchDisabledIcon: Embed(source="ui.swf",symbol="Menu_branchDisabledIcon");
+	checkIcon: Embed(source="ui.swf",symbol="Menu_checkIcon");
+	checkDisabledIcon: Embed(source="ui.swf",symbol="Menu_checkDisabledIcon");
+	radioIcon: Embed(source="ui.swf",symbol="Menu_radioIcon");
+	radioDisabledIcon: Embed(source="ui.swf",symbol="Menu_radioDisabledIcon");
+	separatorSkin: Embed(source="ui.swf",symbol="Menu_separatorSkin");
+	backgroundColor: #ffffff;
+	backgroundAlpha: .9;
+	borderStyle: solid;
+	borderThickness: 1;
+	borderColor: #1e1e1e;
+	cornerRadius:0;
+	color: #1e1e1e;
+	textRollOverColor: #ffffff;
+	textSelectedColor:#1e1e1e;
+	rollOverColor: #333333;
 }
 
 

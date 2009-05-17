@@ -3,9 +3,9 @@
 	
 	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
 	
-	<mx:Canvas width="238" height="60" backgroundColor="#FFFFFF" backgroundAlpha="0.85" filters="{[glowGrey]}" horizontalCenter="0" verticalCenter="0">
-		<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
-		<ns1:GenericLoader left="0" right="0" top="0">
+	<mx:Canvas width="238" height="60" backgroundColor="#FFFFFF" backgroundAlpha="0.85" filters="{[glowGrey]}" horizontalCenter="0" verticalCenter="0" 
+		borderStyle="solid" borderColor="#FFFFFF" cornerRadius="6" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<ns1:GenericLoader left="0" right="0" top="0" cornerRadius="6" borderStyle="solid" borderColor="#FFFFFF">
 		</ns1:GenericLoader>
 	</mx:Canvas>
 	
