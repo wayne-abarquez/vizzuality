@@ -14,6 +14,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
 			import com.google.maps.overlays.PolylineOptions;
 			import com.google.maps.overlays.Polyline;
 			import com.google.maps.overlays.Marker;
@@ -268,6 +269,7 @@
 								//AppStates.gi().mapPositions[AppStates.PA] = MapController.gi().getMapPosition();
 							}
 							mapCanvas.discretLoading.visible=false;
+							
 
 							//remove the possibility to click on the areas
 							MapController.gi().removeClickListenerForAreas();		
@@ -306,6 +308,15 @@
 					AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
 					
 				}
+			}	
+
+			public function expandWidget():void {
+				//navigateToURL(new URLRequest("javascript:setHeight(447,570);"),'_self');		
+				currentState='timeline';		
+			}	
+			public function contractWidget():void {
+				//navigateToURL(new URLRequest("javascript:setHeight(570,447);"),'_self');				
+				currentState='';		
 			}	
 				
 

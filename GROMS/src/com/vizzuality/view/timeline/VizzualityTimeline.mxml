@@ -103,7 +103,7 @@
 	
 	<mx:Canvas width="100%" height="100%" borderStyle="solid" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" backgroundColor="#ededed" verticalCenter="0">
 		<mx:Canvas id="backgroundComponent" width="775" height="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" verticalCenter="0" borderStyle="solid" borderThickness="0" right="0">								
-			<components:TimelineChart  id="timeChart" y="23"/>
+			<components:TimelineChart  id="timeChart" y="23" monthWidth="{monthWidth}"/>
 					
 			<mx:Label text="JUA" y="6" x="{(monthWidth)*0}"  color="#828181"/>			
 			<mx:Label text="FEB" y="6" x="{(monthWidth)*1}" horizontalCenter="{-(monthWidth)*5}" color="#828181"/>	
@@ -118,7 +118,7 @@
 			<mx:Label text="NOV" y="6" x="{(monthWidth)*10}" horizontalCenter="{(monthWidth)*4}" color="#828181"/>			
 			<mx:Label text="DEC" y="6" x="{(monthWidth)*11}" horizontalCenter="{(monthWidth)*5}" color="#828181"/>
 				
-			<moveFlex:ObjectHandles id="oh" allowRotate="false" allowVResize="false" x="0" y="{timeChart.y}" width="{monthWidth}" height="{backgroundComponent.height - oh.y}" 
+			<moveFlex:ObjectHandles id="oh" allowRotate="false" allowVResize="false" x="0" y="{timeChart.y}" width="{monthWidth}" parentWidth="{backgroundComponent.width}" monthWidth="{monthWidth}" height="{backgroundComponent.height - oh.y}" 
 				minWidth="{monthWidth}" allowVMove="false">
 					<mx:Box id="box" width="100%" height="100%"  y="0" x="0" borderThickness="2" borderColor="#666666" borderStyle="solid"/>
 			</moveFlex:ObjectHandles>	
