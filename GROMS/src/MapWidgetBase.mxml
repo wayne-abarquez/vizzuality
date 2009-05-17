@@ -39,6 +39,8 @@
 			private var isResizing:Boolean=false;
 			private var isInLeftState:Boolean=true;
 			
+			public var resolvedImages:Dictionary = new Dictionary();
+			
 			public var map:Map;
 			
 			private function initApp():void {
