@@ -9,7 +9,7 @@ package com.vizzuality.view.timeline.events
 		public var monthStart: Number;
 		public var monthEnd: Number;
 		
-		public function MonthSelectedEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function MonthSelectedEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
 		}
