@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="359" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="371" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
 	currentState="loading" xmlns:overlay="com.vizzuality.view.overlay.*"  filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off">
 	<mx:states>
@@ -89,5 +89,8 @@
 			<mx:CheckBox label="{'Mangroves ('+DataServices.gi().selectedCountry.numMangrove+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
 		</mx:VBox>
 	</mx:Canvas>
+	<mx:Button styleName="invisibleButton" height="15" label="view GBIF biodiversity data " 
+		click="navigateToURL(new URLRequest('http://widgets.gbif.org/pa/index.html#/country/'+currentIso))"
+		useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" textDecoration="underline" bottom="5" horizontalCenter="0"/>
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="239" id="hrule0"/>
 </mx:Canvas>
