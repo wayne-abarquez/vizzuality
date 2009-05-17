@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="371" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="359" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
 	currentState="loading" xmlns:overlay="com.vizzuality.view.overlay.*"  filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off">
 	<mx:states>
@@ -18,6 +18,21 @@
 			</mx:AddChild>
 			<mx:SetProperty name="height" value="60"/>
 		</mx:State>
+		<mx:State name="collapse">
+			<mx:RemoveChild target="{canvas0}"/>
+			<mx:RemoveChild target="{hrule1}"/>
+			<mx:RemoveChild target="{hbox1}"/>
+			<mx:RemoveChild target="{canvas2}"/>
+			<mx:RemoveChild target="{hrule0}"/>
+			<mx:RemoveChild target="{label0}"/>
+			<mx:RemoveChild target="{label11}"/>
+			<mx:RemoveChild target="{hrule2}"/>
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:SetProperty name="height" value="40"/>
+			<mx:SetProperty target="{image1}" name="rotation" value="180"/>
+			<mx:SetStyle target="{image1}" name="top" value="22"/>
+			<mx:SetStyle target="{image1}" name="right" value="5"/>
+		</mx:State>
 	</mx:states>
 <mx:Script>
 	<![CDATA[
@@ -32,6 +47,17 @@
 		import com.vizzuality.data.WdpaLayer;
 		private var currentIso:String="";
 		
+		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='SeaGrassSmallLegend')]
+		[Bindable]
+		public var SeaGrassSmallLegend:Class;
+		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='MangrovesSmallLegend')]
+		[Bindable]
+		public var MangrovesSmallLegend:Class;
+		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='CoralSmallLegend')]
+		[Bindable]
+		public var CoralSmallLegend:Class;
+		
+		
 		public function set isocode(iso:String):void {
 			if(iso!=currentIso && iso!=null) { 
 				currentState='loading';
@@ -43,6 +69,14 @@
 		
 		private function onDataLoaded(event:DataServiceEvent):void {						
 			currentState='';
+		}
+		
+		private function handleCollapse():void{
+			if(this.currentState == ''){
+				this.currentState = 'collapse';
+			}else{
+				this.currentState = '';
+			}
 		}
 			
 		
@@ -83,14 +117,16 @@
 		verticalScrollPolicy="off" horizontalScrollPolicy="off" y="239" left="10" right="10">
 		<mx:Label text="WDPA-MARINE LAYERS" id="label3" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 		<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
-			<mx:CheckBox label="{'Coral ('+DataServices.gi().selectedCountry.numberCoral+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
+			<mx:CheckBox label="{'Coral ('+DataServices.gi().selectedCountry.numberCoral+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)" id="cb"/>
 			<mx:CheckBox label="{'SaltMarsh ('+DataServices.gi().selectedCountry.numSaltMarsh+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
-			<mx:CheckBox label="{'SeaGrass ('+DataServices.gi().selectedCountry.numSeagrass+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
-			<mx:CheckBox label="{'Mangroves ('+DataServices.gi().selectedCountry.numMangrove+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
+			<mx:CheckBox label="{'SeaGrass ('+DataServices.gi().selectedCountry.numSeagrass+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)" id="sgb"/>
+			<mx:CheckBox label="{'Mangroves ('+DataServices.gi().selectedCountry.numMangrove+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)" id="mb"/>
 		</mx:VBox>
+		<mx:Image x="200" y="31" scaleContent="false" width="8" height="8" source="{CoralSmallLegend}" visible="{cb.selected}"/>
+		<mx:Image x="200" y="67" scaleContent="false" width="8" height="8" source="{SeaGrassSmallLegend}" visible="{sgb.selected}"/>
+		<mx:Image x="200" y="86" scaleContent="false" width="8" height="8" source="{MangrovesSmallLegend}" visible="{mb.selected}"/>
 	</mx:Canvas>
-	<mx:Button styleName="invisibleButton" height="15" label="view GBIF biodiversity data " 
-		click="navigateToURL(new URLRequest('http://widgets.gbif.org/pa/index.html#/country/'+currentIso))"
-		useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" textDecoration="underline" bottom="5" horizontalCenter="0"/>
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="239" id="hrule0"/>
+	<mx:Button y="8" styleName="invisibleButtonDos" right="10" width="20" click="handleCollapse()"
+		useHandCursor="true" mouseChildren="false" buttonMode="true" id="button1"/>
 </mx:Canvas>
