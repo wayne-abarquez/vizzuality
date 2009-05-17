@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" backgroundColor="#FFFFFF" backgroundAlpha="1.0" 
+	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="6">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:RemoveChild target="{label4}"/>
+			<mx:RemoveChild target="{button1}"/>
+			<mx:RemoveChild target="{areaTitle}"/>
+			<mx:RemoveChild target="{image1}"/>
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:RemoveChild target="{vbox4}"/>
+			<mx:AddChild position="lastChild">
+				<ns1:GenericLoader left="0" right="0" top="0">
+				</ns1:GenericLoader>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import com.vizzuality.data.WdpaLayer;
+		import com.vizzuality.services.MediaServices;
+		import com.vizzuality.view.map.MapController;
+		import com.vizzuality.services.DataServiceEvent;
+		import mx.binding.utils.BindingUtils;
+		import com.vizzuality.data.PA;
+		import com.vizzuality.view.AppStates;
+		import com.vizzuality.data.Country;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import com.vizzuality.services.DataServices;
+		
+		private var currentId:Number;
+		
+		public function set siteid(id:Number):void {
+			if (currentId!=id) {
+				currentState='loading';
+				DataServices.gi().addEventListener(DataServiceEvent.PA_DATA_LOADED,onDataLoaded);
+				MediaServices.gi().addEventListener(DataServiceEvent.WIKIPEDIAS_LOADED,onWikipediasLoaded);
+				DataServices.gi().selectedPAId=id;
+				currentId=id;
+			}
+		}
+		
+		private function onDataLoaded(event:DataServiceEvent):void {
+			currentState='';
+		}
+		
+		private function onWikipediasLoaded(event:DataServiceEvent):void {
+			
+		}
+		
+		
+		
+	]]>
+</mx:Script>
+
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
+	
+	<!--ESTA A FALSO EH!-->
+	<mx:Label x="93" y="81" text="{DataServices.gi().selectedPA.has}" id="label4" visible="false"/>
+	<mx:Button x="82" y="185" label="more info" click="currentState='moreinfo'" id="button1" visible="false"/>
+	<!--                -->
+	
+	<mx:VBox verticalGap="3" horizontalAlign="center" left="6" right="6" top="0" id="vbox4">
+		<mx:HBox width="100%" horizontalGap="2" verticalAlign="middle">
+			<mx:Label text="Mammalia" fontFamily="DINOT-Medium" fontSize="12" color="#666666"/>
+			<mx:Image source="@Embed('/com/vizzuality/style/assets/smallArrow.png')" />
+		</mx:HBox>
+		<mx:Canvas width="100%" id="canvas1">
+			<mx:Text text="{(DataServices.gi().selectedPA.name + ', ' + DataServices.gi().selectedPA.country + ' [' + DataServices.gi().selectedPA.countryIsoCode + ']').toUpperCase()}" id="areaTitle" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="4" top="-1" width="197" leading="-4"/>
+		</mx:Canvas>
+	</mx:VBox>
+	
+</mx:Canvas>
