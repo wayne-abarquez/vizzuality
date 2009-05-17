@@ -4,7 +4,14 @@
 	layout="absolute" backgroundGradientAlphas="[1.0, 1.0]"
 	backgroundGradientColors="[#E9F4FF, #D7E8FA]" 
 	applicationComplete="registerGlobalKeyHandler()"
-	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*">
+	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*" xmlns:timeline="com.vizzuality.view.timeline.*">
+	<mx:states>
+		<mx:State name="timeline">
+			<mx:AddChild relativeTo="{mainVBox}" position="lastChild">
+				<timeline:VizzualityTimeline width="100%" height="123" />
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
 	<mx:Script>
 		<![CDATA[
 			import com.google.maps.overlays.PolylineOptions;
@@ -341,7 +348,6 @@
 	<mx:VBox id="mainVBox" width="100%" height="100%" verticalGap="0">
 		<header:Header id="header" />
 		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8"/>
-		<!--footer:Footer id="footer"/ -->
 	</mx:VBox>
 	<mx:Canvas id="debugArea" visible="false" right="5" bottom="40" width="358" height="157" backgroundColor="#FFFFFF" backgroundAlpha="0.66">
 		<mx:TextArea left="5" right="5" top="10" bottom="10" backgroundAlpha="0.0" borderStyle="none" id="debuggerArea"/>
