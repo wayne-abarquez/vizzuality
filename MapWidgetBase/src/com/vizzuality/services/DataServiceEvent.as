@@ -11,6 +11,7 @@ package com.vizzuality.services
 		public static const AREAS_FOR_LATLNG_LOADED:String='areasForLatLngLoaded';
 		
 		public static const PICTURES_LOADED:String="picturesLoaded";
+		public static const PICTURES_LOADING:String="picturesLoading";
 		public static const WIKIPEDIAS_LOADED:String="wikipediasLoaded";
 		public static const YOUTUBES_LOADED:String="youtubesLoaded";
 		

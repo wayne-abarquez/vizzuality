@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="60" creationComplete="init()"
 	backgroundColor="#FFFFFF" backgroundAlpha=".65" 
 	xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 
@@ -21,6 +21,14 @@
 			private var offset: int = 78 * 4;
 			private var playing:Boolean = false;
 
+			private function init():void {
+				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,function(event:DataServiceEvent):void {
+					hList.dataProvider=MediaServices.gi().pictures;
+				});
+				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADING,function(event:DataServiceEvent):void {
+					hList.dataProvider=new ArrayCollection();
+				});
+			}
 
 			private function prev():void {
 				if(!playing && (picList.x <= 18 - offset)){
@@ -40,7 +48,7 @@
 	</mx:Script>
 
 	<mx:HBox id="picList" height="55" x="18" verticalCenter="0" horizontalGap="4">
-		<mx:Repeater id="hList" dataProvider="{MediaServices.gi().pictures}">
+		<mx:Repeater id="hList">
 			<mediabrowser:PicItemRenderer pic="{hList.currentItem.imageUrl}" picId="{hList.currentItem.id}" />
 		</mx:Repeater>
 	</mx:HBox>

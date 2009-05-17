@@ -26,6 +26,7 @@ package com.vizzuality.data
 		public static const PA_BORDER:String="pa_border";
 		public static const COUNTRY_PER_AREAS:String="country_per_areas";
 		public static const COUNTRY_PER_COVERAGE:String="country_per_coverage";
+		public static const GBIF_DATA:String="gbif_data";
 		public static const NONE:String="none";
 		//public static const COUNTRY_PA_ONLY:String="country_border";
 		
@@ -53,7 +54,8 @@ package com.vizzuality.data
 				cold_walter_coral:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/cold_water_coral/MapServer/tile/|Z|/|Y|/|X|.png",
 				pa_border:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_international_all/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_areas:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_areas_marine/MapServer/tile/|Z|/|Y|/|X|.png",
-				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage_marine/MapServer/tile/|Z|/|Y|/|X|.png"
+				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage_marine/MapServer/tile/|Z|/|Y|/|X|.png",
+				gbif_data:	"http://tools.gbif.org/geoBalance/data/|Z|_|X|_|Y|.png"
 			};
 		public static const DYNAMIC_LAYERS:Object = {
 				all:					"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_marine/MapServer/tile/|Z|/|Y|/|X|.png",
@@ -79,7 +81,8 @@ package com.vizzuality.data
 				cold_walter_coral:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/cold_water_coral/MapServer/tile/|Z|/|Y|/|X|.png",
 				pa_border:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_international_all/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_areas:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_areas_marine/MapServer/tile/|Z|/|Y|/|X|.png",
-				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage_marine/MapServer/tile/|Z|/|Y|/|X|.png"
+				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage_marine/MapServer/tile/|Z|/|Y|/|X|.png",
+				gbif_data:	"http://tools.gbif.org/geoBalance/data/|Z|_|X|_|Y|.png"				
 			};			
 	}
 }
