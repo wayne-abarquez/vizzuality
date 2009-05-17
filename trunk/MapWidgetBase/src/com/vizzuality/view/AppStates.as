@@ -2,6 +2,7 @@ package com.vizzuality.view
 {
 	import asual.SWFAddress;
 	
+	import com.vizzuality.data.WdpaLayer;
 	import com.vizzuality.services.DataServices;
 	
 	import flash.utils.Dictionary;
@@ -55,11 +56,11 @@ package com.vizzuality.view
 		
 		public function AppStates() {
 			//initialize the layers state
-			visibleLayers[WORLD]=[];
-			visibleLayers[COUNTRIES]=[];
-			visibleLayers[COUNTRY]=[];
+			visibleLayers[WORLD]=[WdpaLayer.ALL];
+			visibleLayers[COUNTRIES]=[WdpaLayer.COUNTRY_PER_COVERAGE];
+			visibleLayers[COUNTRY]=[WdpaLayer.ALL];
 			visibleLayers[PA]=[];
-			visibleLayers[AREA_SELECTOR]=[];
+			visibleLayers[AREA_SELECTOR]=[WdpaLayer.ALL];
 			
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
 		}
@@ -111,7 +112,6 @@ package com.vizzuality.view
 		}
 		public function setAllStates(tState:String,sState:String):void {
 			previousAddress=SWFAddress.getPath();
-			trace(previousAddress);
 			SWFAddress.setValue(tState + '/' + sState);
 			if(tState==COUNTRIES || tState==WORLD)
 				worldOrCountries=tState;
@@ -123,6 +123,9 @@ package com.vizzuality.view
 			MapController.gi().goToPreviousMapPosition(); */
 		}
 		
+		public function goToPa(id:Object):void {
+			SWFAddress.setValue(PA + '/' + id + "/"+AREA_DETAILS);
+		}
 		
 		
 		

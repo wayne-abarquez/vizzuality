@@ -216,6 +216,9 @@ package com.vizzuality.view.map
 			var z:Number = map.getBoundsZoomLevel(bbox);
 			if (oneLevelUp)
 				z=z-1;
+				
+			if (z>15)
+				z=15;	
 			map.setCenter(bbox.getCenter(),z);
 			AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();			
 		}

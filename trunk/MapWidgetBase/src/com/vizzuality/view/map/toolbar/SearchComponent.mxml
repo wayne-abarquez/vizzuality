@@ -106,7 +106,7 @@
 		<mx:Label text="Start typing to get a list of matching areas. Click on the name to get details." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
 	</mx:Canvas>
 	<mx:VBox id="vBox" height="100%" y="36" left="220" visible="false">
-		<mx:List id="searchResultsList" dataProvider="{searchResults}" maxHeight="{vBox.height}" labelFunction="getLabel" itemClick="AppStates.gi().setAllStates(AppStates.PA,event.currentTarget.selectedItem.Site_ID);" 
+		<mx:List id="searchResultsList" dataProvider="{searchResults}" maxHeight="{vBox.height}" labelFunction="getLabel" itemClick="AppStates.gi().goToPa(event.currentTarget.selectedItem.Site_ID);" 
 		 rowCount="0"
 		 borderStyle="solid"  width="297"  borderColor="#ACACAC" backgroundColor="#FFFFFF" fontFamily="DINOT-Medium" fontSize="12" color="#999999" themeColor="#999999"></mx:List>
 	</mx:VBox>

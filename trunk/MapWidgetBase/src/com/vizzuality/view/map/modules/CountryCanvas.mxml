@@ -54,7 +54,7 @@
 	<mx:Canvas styleName="softGreenContainer" left="10" right="10" top="136" id="canvas0"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="110">
 		<mx:Label text="COUNTRY COVERED BY WDPA" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
-		<overlay:CountryCoverage percent="{DataServices.gi().selectedCountry.coveragePercentage}" horizontalCenter="0" top="27" id="worldcoverage1"/>
+		<overlay:CountryCoverage percent="{DataServices.gi().selectedCountry.coveragePercentage.toFixed(2)}" horizontalCenter="0" top="27" id="worldcoverage1"/>
 	</mx:Canvas>
 	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">

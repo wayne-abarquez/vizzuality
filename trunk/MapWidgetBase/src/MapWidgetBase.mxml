@@ -88,14 +88,8 @@
 					switch(event.pathNames[0]) {
 						case(AppStates.WORLD):
 							
-							//if there was already a set of layers added at world zoom level use them
-							if((AppStates.gi().visibleLayers[AppStates.WORLD] as Array).length>0) {
-								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.WORLD]);
-							} 
-							//if there was nothing it is because is the first time we pass this state
-							else {
-								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
-							}
+							MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.WORLD]);
+
 							//control the layer state
 							//MapController.gi().updateTileLayersOpacity(1);
 							
@@ -107,6 +101,7 @@
 							MapController.gi().clearOverlays();
 							MapController.gi().removeClickListenerForCountries();
 							MapController.gi().setClickListenerForAreas();
+							MapController.gi().map.closeInfoWindow();
 							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];		
@@ -120,11 +115,7 @@
 							
 						case(AppStates.COUNTRIES):
 							//control the layer state
-							if((AppStates.gi().visibleLayers[AppStates.COUNTRIES] as Array).length>0) {
-								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.COUNTRIES]);
-							} else {
-								MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_COVERAGE]);
-							}
+							MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.COUNTRIES]);
 							
 							//control the map state
 							MapController.gi().setMapPosition(AppStates.gi().mapPositions[AppStates.COUNTRIES]);	
@@ -136,7 +127,8 @@
 							MapController.gi().clearPAs();
 							MapController.gi().clearOverlays();
 							MapController.gi().removeClickListenerForAreas();											
-							MapController.gi().setClickListenerForCountries();											
+							MapController.gi().setClickListenerForCountries();	
+							MapController.gi().map.closeInfoWindow();										
 							
 							if(event.pathNames.length>1) {
 								AppStates.gi().secondState=event.pathNames[1];
@@ -148,11 +140,7 @@
 							
 						case(AppStates.COUNTRY):
 							//control the layer state
-							if((AppStates.gi().visibleLayers[AppStates.COUNTRY] as Array).length>0) {
-								MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.COUNTRY]);
-							} else {
-								MapController.gi().updateTileLayers([WdpaLayer.ALL]);
-							}
+							MapController.gi().updateTileLayers(AppStates.gi().visibleLayers[AppStates.COUNTRY]);
 							
 							//control the map state
 							if(AppStates.gi().mapPositions[AppStates.COUNTRY] == null) {
@@ -168,6 +156,7 @@
 							MapController.gi().clearOverlays();
 							MapController.gi().removeClickListenerForCountries();
 							MapController.gi().setClickListenerForAreas();
+							MapController.gi().map.closeInfoWindow();
 	
 	
 							if(event.pathNames.length==3) {
@@ -200,6 +189,7 @@
 							MapController.gi().clearOverlays();
 							MapController.gi().removeClickListenerForAreas();
 							MapController.gi().removeClickListenerForCountries();
+							MapController.gi().map.closeInfoWindow();
 									
 							
 							//In this state there must be only 2 parameters in the URL
@@ -270,8 +260,13 @@
 							//remove the possibility to click on the areas
 							MapController.gi().removeClickListenerForAreas();		
 							MapController.gi().removeClickListenerForCountries();
-							MapController.gi().clearPAs();
-							MapController.gi().clearOverlays();
+							MapController.gi().map.closeInfoWindow();
+							
+							if(AppStates.gi().activePaId != Number(event.pathNames[1])) {
+								MapController.gi().clearPAs();
+								MapController.gi().clearOverlays();
+							}
+							
 
 							if(event.pathNames.length==3) {
 								AppStates.gi().activePaId = Number(event.pathNames[1]);

@@ -17,6 +17,8 @@ package com.vizzuality.data
 		public var numAreas:Number;
 		public var marineNumAreas:Number;
 		public var terrestrialNumAreas:Number;
+		public var numNational:Number;
+		public var numInternational:Number;
 		public var numberCoral:Number;
 		public var numMangrove:Number;
 		public var numSeagrass:Number;

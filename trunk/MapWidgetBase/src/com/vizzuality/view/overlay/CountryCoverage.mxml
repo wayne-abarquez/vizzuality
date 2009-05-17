@@ -9,7 +9,7 @@
 		]]>
 	</mx:Script>
 
-	<mx:Label x="24" text="{percent+'%'}" top="11" color="#939E6A" fontFamily="DINOT-Bold" fontSize="34" letterSpacing="-1"/>
+	<mx:Label x="24" text="{percent+'%'}" top="11" color="#939E6A" fontFamily="DINOT-Bold" fontSize="34" letterSpacing="-1" width="101"/>
 	<mx:HRule y="55" strokeColor="#939E6A" strokeWidth="1" left="19" right="85"/>
 	<mx:Image source="http://chart.apis.google.com/chart?cht=p&amp;chd=s:Uf9a&amp;chs=88x88&amp;chco=c0c79f&amp;chf=bg,s,65432100"  y="-8" x="122"/>	
 </mx:Canvas>
