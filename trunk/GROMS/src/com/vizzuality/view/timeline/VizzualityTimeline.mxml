@@ -81,7 +81,7 @@
 	<mx:Canvas width="100%" height="100%" borderStyle="solid" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" backgroundColor="#ededed" verticalCenter="0">
 		<mx:Canvas id="backgroundComponent" width="{this.width - 200}" height="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" verticalCenter="0" borderStyle="solid" borderThickness="0" right="0">								
 			
-			<components:TimelineChart  id="timeChart" y="23" monthWidth="{monthWidth}" right="0" left="0"/>
+			<components:TimelineChart  id="timeChart" monthWidth="{monthWidth}" right="10" left="0" top="23" bottom="7"/>
 			
 			<mx:Label text="JUA" y="6" x="{(monthWidth)*0}"  color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>			
 			<mx:Label text="FEB" y="6" x="{(monthWidth)*1}" horizontalCenter="{-(monthWidth)*5}" color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>	
