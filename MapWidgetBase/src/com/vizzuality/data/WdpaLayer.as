@@ -55,7 +55,7 @@ package com.vizzuality.data
 				pa_border:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_international_all/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_areas:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_areas_marine/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage_marine/MapServer/tile/|Z|/|Y|/|X|.png",
-				gbif_data:	"http://tools.gbif.org/geoBalance/data/|Z|_|X|_|Y|.png"
+				gbif_data:	"http://maps0.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_13140803"	
 			};
 		public static const DYNAMIC_LAYERS:Object = {
 				all:					"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_all_marine/MapServer/tile/|Z|/|Y|/|X|.png",
@@ -82,7 +82,7 @@ package com.vizzuality.data
 				pa_border:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_international_all/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_areas:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_areas_marine/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage_marine/MapServer/tile/|Z|/|Y|/|X|.png",
-				gbif_data:	"http://tools.gbif.org/geoBalance/data/|Z|_|X|_|Y|.png"				
+				gbif_data:	"http://maps0.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_13140803"				
 			};			
 	}
 }

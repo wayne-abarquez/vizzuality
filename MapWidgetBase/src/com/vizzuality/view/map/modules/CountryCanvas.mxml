@@ -87,8 +87,8 @@
 
 	<mx:Canvas styleName="softGreenContainer" left="10" right="10" top="136" id="canvas0"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off" bottom="110">
-		<mx:Label text="COUNTRY COVERED BY WDPA" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
-		<overlay:CountryCoverage percent="{DataServices.gi().selectedCountry.coveragePercentage}" horizontalCenter="0" top="27" id="worldcoverage1"/>
+		<mx:Label text="TERRITORIAL SEAS COVERED BY PA" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="0" top="6" width="218" textAlign="center"/>
+		<overlay:CountryCoverage percent="{DataServices.gi().selectedCountry.marineCoveragePercentage}" horizontalCenter="0" top="27" id="worldcoverage1"/>
 	</mx:Canvas>
 	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
@@ -117,10 +117,10 @@
 		verticalScrollPolicy="off" horizontalScrollPolicy="off" y="239" left="10" right="10">
 		<mx:Label text="WDPA-MARINE LAYERS" id="label3" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 		<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
-			<mx:CheckBox label="{'Coral ('+DataServices.gi().selectedCountry.numberCoral+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)" id="cb"/>
-			<mx:CheckBox label="{'SaltMarsh ('+DataServices.gi().selectedCountry.numSaltMarsh+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
-			<mx:CheckBox label="{'SeaGrass ('+DataServices.gi().selectedCountry.numSeagrass+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)" id="sgb"/>
-			<mx:CheckBox label="{'Mangroves ('+DataServices.gi().selectedCountry.numMangrove+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)" id="mb"/>
+			<mx:CheckBox label="{'Coral ('+nf.format(DataServices.gi().selectedCountry.numberCoral.toFixed(2))+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)" id="cb"/>
+			<mx:CheckBox label="{'SaltMarsh ('+nf.format(DataServices.gi().selectedCountry.numSaltMarsh.toFixed(2))+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
+			<mx:CheckBox label="{'SeaGrass ('+nf.format(DataServices.gi().selectedCountry.numSeagrass.toFixed(2))+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)" id="sgb"/>
+			<mx:CheckBox label="{'Mangroves ('+nf.format(DataServices.gi().selectedCountry.numMangrove.toFixed(2))+')'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)" id="mb"/>
 		</mx:VBox>
 		<mx:Image x="200" y="31" scaleContent="false" width="8" height="8" source="{CoralSmallLegend}" visible="{cb.selected}"/>
 		<mx:Image x="200" y="67" scaleContent="false" width="8" height="8" source="{SeaGrassSmallLegend}" visible="{sgb.selected}"/>
@@ -129,4 +129,7 @@
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="239" id="hrule0"/>
 	<mx:Button y="8" styleName="invisibleButtonDos" right="10" width="20" click="handleCollapse()"
 		useHandCursor="true" mouseChildren="false" buttonMode="true" id="button1"/>
+		
+		
+	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />	
 </mx:Canvas>

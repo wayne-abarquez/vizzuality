@@ -109,9 +109,11 @@
 			
 			
 			private function zoomToPa():void {
-				var bounds:LatLngBounds = DataServices.gi().activePA.getBbox();
-				var zoomForArea:Number = gbifMap.getBoundsZoomLevel(bounds);					
-				gbifMap.setCenter(bounds.getCenter(),zoomForArea,MapType.SATELLITE_MAP_TYPE);
+				if (DataServices.gi().activePA!=null) {
+					var bounds:LatLngBounds = DataServices.gi().activePA.getBbox();
+					var zoomForArea:Number = gbifMap.getBoundsZoomLevel(bounds);					
+					gbifMap.setCenter(bounds.getCenter(),zoomForArea,MapType.SATELLITE_MAP_TYPE);
+				}
 				
 			}		
 			

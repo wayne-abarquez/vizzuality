@@ -50,7 +50,7 @@
 		
 		private function callService():void {
 			if (searchInput.text.length>1) {
-				lastSearch = ro.searchAreasByName(searchInput.text);
+				lastSearch = ro.searchAreasByName(searchInput.text,true);
 				loadingIcon.visible=true;
 				numResults.visible=false;
 				
