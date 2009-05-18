@@ -29,15 +29,15 @@ package com.roguedevelopment.objecthandles
 {
 	public class ObjectHandlesMouseCursors2 implements OHMouseCursors
 	{
-		[Embed("../../../assets/cursors/set1/resize-v.png")]
+		[Embed("/assets/cursors/cursorResize.png")]
 		protected var sizeNS:Class;
-		[Embed("../../../assets/cursors/set2/move.png")]
+		[Embed("/assets/cursors/cursorMove.png")]
 		protected var sizeAll:Class;
-		[Embed("../../../assets/cursors/set1/resize-l.png")]
+		[Embed("/assets/cursors/cursorResize.png")]
 		protected var sizeNESW:Class;
-		[Embed("../../../assets/cursors/set1/resize-r.png")]
+		[Embed("/assets/cursors/cursorResize.png")]
 		protected var sizeNWSE:Class;
-		[Embed("../../../assets/cursors/set1/resize-h.png")]
+		[Embed("/assets/cursors/cursorResize.png")]
 		protected var sizeWE:Class;
 	
 		protected var map:Object = new Object();

@@ -90,7 +90,8 @@
         * If you leave this null it will be programatically drawn.
         **/
         [Inspectable]
-        [Embed(source="resizeHandle.png")]
+        /* [Embed(source="resizeHandle.png")] */
+		[Embed(source="/assets/handleResizeBis.png")]
         public var resizeHandleImage:Class ;
         
         /**
