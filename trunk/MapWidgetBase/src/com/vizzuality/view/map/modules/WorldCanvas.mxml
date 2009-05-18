@@ -105,8 +105,8 @@
 	</mx:Canvas>
 	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
-		<mx:Label text="TOTAL PROTECTED AREAS" id="label0" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="3"/>
-		<mx:Label text="{DataServices.gi().worldStats.totalAreas}" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848" letterSpacing="-1" left="3" top="10"/>
+		<mx:Label text="TOTAL MARINE PROTECTED AREAS" id="label0" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="3" top="3"/>
+		<mx:Label text="{nf.format(DataServices.gi().worldStats.totalAreas)}" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848" letterSpacing="-1" left="3" top="8"/>
 	</mx:Canvas>
 	<mx:Label text="WORLD STATS" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4"/>
 	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
@@ -119,5 +119,6 @@
 		<mx:Label text="{Math.floor((DataServices.gi().worldStats.terrestrial * 100) / DataServices.gi().worldStats.totalAreas) +'% TERRESTRIAL'}" id="label9" color="#FF5A00" fontSize="11" fontFamily="DINOT-Bold"/>
 	</mx:HBox>
 	
+	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />
 	
 </mx:Canvas>
