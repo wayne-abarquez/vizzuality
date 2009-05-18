@@ -84,6 +84,8 @@
 				monthWidth = backgroundComponent.width/12;
 				timeChart.data = timeline;
 				timelineLabels.data = timeline;
+				monthEnd=1;
+				monthStart=0;
 				oh.x = 0;
 			}
 			
@@ -119,8 +121,8 @@
 			<mx:Label text="NOV" y="6" x="{(monthWidth)*10}" horizontalCenter="{(monthWidth)*4}" color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>			
 			<mx:Label text="DEC" y="6" x="{(monthWidth)*11}" horizontalCenter="{(monthWidth)*5}" color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>
 				
-			<mx:Canvas id="fist" x="0" y="{timeChart.y}" height="{timeChart.height}" width="{monthStart*monthWidth}" backgroundColor="white" alpha="0.6"/>
-			<mx:Canvas id="last" x="{monthEnd*monthWidth}" y="{timeChart.y}" height="{timeChart.height}" width="{timeChart.width - (monthEnd*monthWidth)}" backgroundColor="white" alpha="0.6"/>
+			<mx:Canvas id="fist" x="0" y="{timeChart.y}" height="{timeChart.height}" width="{monthStart*monthWidth}" backgroundColor="white" alpha="0.8"/>
+			<mx:Canvas id="last" x="{monthEnd*monthWidth}" y="{timeChart.y}" height="{timeChart.height}" width="{timeChart.width - (monthEnd*monthWidth)}" backgroundColor="white" alpha="0.8"/>
 
 			<moveFlex:ObjectHandles id="oh" allowRotate="false" allowVResize="false" x="0" y="{timeChart.y}"  parentWidth="{timeChart.width}" 
 				monthWidth="{monthWidth}" height="{timeChart.height}" minWidth="{monthWidth}" allowVMove="false">

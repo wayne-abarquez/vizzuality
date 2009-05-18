@@ -417,30 +417,6 @@ package com.ninem.controls
 			remoteService.removeEventListener(FaultEvent.FAULT,onFaultTaxon);
 			trace(ev.fault.faultDetail);
 		}
-			
-			
-		/* private function onResultGbif(ev: ResultEvent):void {
-			var resultObj:Object = JSON.decode(String(ev.result));				
-			var resultAc:ArrayCollection = new ArrayCollection();
-			var getTaxon: Boolean = false;
-			for each(var co:Object in resultObj.classificationSearch.classification) {
-				if (getTaxon) {
-					var clasOb:Object= new Object();
-					clasOb.id = co.id;
-					clasOb.type = co.rank;
-					clasOb.description ="";
-					clasOb.labelField = co.scientificName;
-					clasOb.children=true;
-					resultAc.addItem(clasOb);
-				} else {
-					if (co.scientificName == _selectedItem.labelField) {
-						getTaxon=true;
-					}
-				} 
-			}			
-			(_rootModel as ArrayCollection).addItemAt(resultAc,index);
-			selectionChangeHandler();
-		} */
 
 		
 		private function selectionChangeHandler():void{
