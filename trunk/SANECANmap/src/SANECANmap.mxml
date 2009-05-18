@@ -6,6 +6,11 @@
 		<mx:State name="loading">
 			<mx:SetProperty target="{addressInput}" name="enabled" value="false"/>
 			<mx:SetProperty target="{button1}" name="enabled" value="false"/>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas height="326" backgroundColor="#000000" backgroundAlpha="0.85" left="0" right="0" top="72">
+					<mx:Label text="Loading" horizontalCenter="-1" verticalCenter="-10" color="#FFFFFF" fontSize="17"/>
+				</mx:Canvas>
+			</mx:AddChild>
 		</mx:State>
 	</mx:states>
 <mx:Script>
@@ -146,9 +151,9 @@
 		private function onGeocodeResponse(event:GeocodingEvent):void {
 			var result:GeocodingResponse = event.response as GeocodingResponse;
 			var pm:Placemark = result.placemarks[0] as Placemark;
-			var pointCoords:LatLng=new LatLng(pm.point.lat(),pm.point.lng());
+	/* 		var pointCoords:LatLng=new LatLng(pm.point.lat(),pm.point.lng());
 			var marker:Marker = new Marker(pm.point);
-			map.addOverlay(marker);
+			map.addOverlay(marker); */
 			map.setCenter(pm.point,16);
 			
 		}
