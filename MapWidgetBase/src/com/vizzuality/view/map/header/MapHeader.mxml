@@ -107,7 +107,7 @@
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
 		<mx:Button label="help" selected="{(AppStates.gi().secondState==AppStates.HELP)}" click="(AppStates.gi().secondState=='' || AppStates.gi().secondState!=AppStates.HELP)?AppStates.gi().setSecondState(AppStates.HELP):AppStates.gi().setSecondState('');" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
-		<mx:Button label="fullscreen" selected="{(AppStates.gi().secondState==AppStates.HELP)}" click="Application.application.toggleFullScreen()" styleName="btnTool"
+		<mx:Button label="fullscreen" selected="false" click="Application.application.toggleFullScreen()" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
 	</mx:HBox>
 	
