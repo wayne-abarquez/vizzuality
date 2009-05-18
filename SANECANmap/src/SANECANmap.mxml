@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:maps="com.google.maps.*"
+	 layout="absolute" width="721" height="423" color="#747474" backgroundGradientAlphas="[1.0, 1.0]"
+	 backgroundGradientColors="[#E6F7F7, #E6F7F7]" currentState="loading">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:SetProperty target="{addressInput}" name="enabled" value="false"/>
+			<mx:SetProperty target="{button1}" name="enabled" value="false"/>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import mx.controls.Alert;
+		import com.google.maps.overlays.Marker;
+		import com.google.maps.services.Placemark;
+		import com.google.maps.services.GeocodingResponse;
+		import com.google.maps.services.GeocodingEvent;
+		import com.google.maps.services.ClientGeocoderOptions;
+		import com.google.maps.services.ClientGeocoder;
+		import com.google.maps.controls.ControlPosition;
+		import com.google.maps.controls.ZoomControlOptions;
+		import com.google.maps.controls.ZoomControl;
+		import com.google.maps.LatLng;
+		import com.google.maps.MapEvent;
+		
+		private var geocoder:ClientGeocoder;
+		
+	
+		private function onMapReady(event:MapEvent):void {
+			map.setCenter(new LatLng(40.3228,-3.8655),14);
+			map.enableContinuousZoom();
+			var zco:ZoomControlOptions=new ZoomControlOptions({
+				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 22, 22)
+			});
+			var zc:ZoomControl = new ZoomControl(zco);
+			map.addControl(zc);
+			
+			
+			geocoder = new ClientGeocoder(
+			    new ClientGeocoderOptions({
+			      language: "es",
+			      viewport: map.getLatLngBounds()
+			    }));
+			
+			geocoder.addEventListener(GeocodingEvent.GEOCODING_SUCCESS,onGeocodeResponse);    
+			geocoder.addEventListener(GeocodingEvent.GEOCODING_FAILURE,onGeocodeFault);    
+			    
+			currentState='';    
+		}
+	
+		private function onAddressClick():void {
+			var address:String = addressInput.text;
+			if (address.toLowerCase().indexOf("mostoles")<1)
+				address+=",mostoles";
+			if (address.toLowerCase().indexOf("españa")<1)
+				address+=",españa";
+			geocoder.geocode(address);
+		}
+		
+		private function onGeocodeResponse(event:GeocodingEvent):void {
+			var result:GeocodingResponse = event.response as GeocodingResponse;
+			var pm:Placemark = result.placemarks[0] as Placemark;
+			var pointCoords:LatLng=new LatLng(pm.point.lat(),pm.point.lng());
+			var marker:Marker = new Marker(pm.point);
+			map.addOverlay(marker);
+			map.setCenter(pm.point,16);
+			
+		}
+		
+		private function onGeocodeFault(event:GeocodingEvent):void {
+			Alert.show("Disculpa, no hemos encontrado la dirección que has introducido");
+		}
+		
+		private var alreadyCleaned:Boolean=false;
+		private function clearInput():void {
+			if (!alreadyCleaned) {
+				addressInput.text="";
+				alreadyCleaned=true;
+			}
+		}
+		
+	]]>
+</mx:Script>
+
+	<mx:Label x="10" y="10" text="Localiza los sanecan, tiendas y clínicas más cercanas a tí" fontSize="15"/>
+	<mx:TextInput id="addressInput" y="42" left="10" right="83" enter="onAddressClick()" text="Introduce tu dirección" click="clearInput()"/>
+	<mx:Button y="42" label="Buscar" right="10" id="button1" click="onAddressClick()"/>
+	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTJgdjRiA1iEZLNaLDwBpXQC8fT5xQjnAIzzs7GWWt3bGiUN4mI-fpuBg" 
+		mapevent_mapready="onMapReady(event)"/>
+</mx:Application>
