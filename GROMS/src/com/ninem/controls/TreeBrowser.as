@@ -98,6 +98,7 @@ package com.ninem.controls
 		public var remoteService:RemoteObject;
 		[Bindable] public var comboDefault: int = 1;
 		
+		private var lastSelected:Array = new Array();
 
 
 		public function TreeBrowser()
@@ -337,21 +338,32 @@ package com.ninem.controls
 			}
 		}
 		
+		/* private function handleItemClick(e:ListEvent):void{
+			if(lastSelected){
+				(lastSelected as ItemListRenderer).setUnselected();
+			}
+			lastSelected = (e.itemRenderer as ItemListRenderer);
+			(lastSelected as ItemListRenderer).setSelected();
+		} */
+		
 	    /**
 	     *  @private
 	     *  creates a new TreeBrowserList instance for a column
 	     */
 		private function createColumn():TreeBrowserList{
 			var list:TreeBrowserList = new TreeBrowserList();
+			list.styleName = "TreeColumn";
 			list.percentHeight = 100;
 			list.percentWidth = 100;
+			list.rowHeight = 47;
 			list.width = list.minWidth = columnWidth - 2; 
-			list.doubleClickEnabled = doubleClickEnabled;		
+			list.doubleClickEnabled = doubleClickEnabled;
 			var listItemRenderer:ClassFactory = new ClassFactory(ItemListRenderer);
-			listItemRenderer.properties = { treeBrowserParent: this };
+			listItemRenderer.properties = { treeBrowserParent: this, style: "firstColumnItem" };
 			list.itemRenderer = listItemRenderer;
 			
 			//change listener for use Gbif taxonomy
+			/* list.addEventListener(ListEvent.ITEM_CLICK,handleItemClick); */
 			list.addEventListener(ListEvent.ITEM_CLICK, updateDataProvider);
 			return list;
  		}
@@ -363,7 +375,12 @@ package com.ninem.controls
 			index = getChildIndex(column);
 			//select the item in column
 			_selectedItem = column.selectedItem;
-			
+
+			if(lastSelected[index]){
+				(lastSelected[index] as ItemListRenderer).setUnselected();
+			}
+			lastSelected[index] = (ev.itemRenderer as ItemListRenderer);
+			(lastSelected[index] as ItemListRenderer).setSelected();
 
 			if (_selectedItem.has_children) {
 				remoteService.addEventListener(ResultEvent.RESULT,onResultTaxon);
@@ -436,6 +453,13 @@ package com.ninem.controls
 						addEventListener(FlexEvent.UPDATE_COMPLETE, onUpdateComplete);
 					}
 					if(nextColumn is TreeBrowserList) {
+						switch(index){
+							case 0:((TreeBrowserList(nextColumn).itemRenderer) as ClassFactory).properties = { style: "secondColumnItem" };
+								break;
+							case 1:((TreeBrowserList(nextColumn).itemRenderer) as ClassFactory).properties = { style: "thirdColumnItem" };
+								break;
+						}
+						(TreeBrowserList(nextColumn).itemRenderer) as ClassFactory
 						dataChild = children as ArrayCollection;
 						dataLength = children.length;
 						auxArrayCollec = new ArrayCollection();
@@ -443,6 +467,7 @@ package com.ninem.controls
 						addEventListener(Event.ENTER_FRAME, addComponent);
 						//BindingUtils.bindProperty(auxArrayCollec, "source", TreeBrowserList(nextColumn),"dataProvider");
 						TreeBrowserList(nextColumn).dataProvider = auxArrayCollec;
+						(lastSelected[nextColumn] as ItemListRenderer).setUnselected();
 						//TreeBrowserList(nextColumn).dataProvider = children;
 					}
 					else

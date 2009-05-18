@@ -65,9 +65,7 @@
 					}
 					dispatchEvent(_ev);					
 				}
-			
 			}
-			
 		]]>
 	</mx:Script>
 

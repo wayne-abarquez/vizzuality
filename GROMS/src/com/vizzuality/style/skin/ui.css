@@ -109,6 +109,33 @@ Canvas.fakeShadow{
 
 
 
+
+Canvas.firstColumnItem{
+	background-image: Embed(source="treeBrowserSkin.swf",symbol="firstColumnItem_up");	
+}
+
+Canvas.secondColumnItem{
+	background-image: Embed(source="treeBrowserSkin.swf",symbol="secondColumnItem_up");	
+}
+
+Canvas.thirdColumnItem{
+	background-image: Embed(source="treeBrowserSkin.swf",symbol="thirdColumnItem_up");	
+}
+
+Canvas.itemOver{
+	background-image: Embed(source="treeBrowserSkin.swf",symbol="Item_over");	
+}
+
+.TreeColumn{
+	backgroundAlpha: 1;
+   	borderStyle: none;
+   	borderThickness: 0;
+  	padding-bottom: -2;  
+  	padding-left: 0;
+  	padding-top: 0;
+  	vertical-scroll-bar-style-name: "TreeBrowserScrollBar";
+}
+
 Button.btnViewType{
 	skin: ClassReference(null);
 	color: #4a4f33;
@@ -360,5 +387,21 @@ ComboBox.lenguageDark{
 ProgressBar {
    barColor: #bfc69f;
    trackHeight: 10;
+}
+
+.TreeBrowserScrollBar{
+	downArrowDisabledSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowDown_disabledSkin");
+	downArrowDownSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowDown_downSkin");
+	downArrowOverSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowDown_overSkin");
+	downArrowUpSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowDown_upSkin");
+	thumbDownSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollThumb_downSkin");
+	thumbIcon: Embed(source="treeBrowserSkin.swf", symbol="ScrollBar_thumbIcon");
+	thumbOverSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollThumb_overSkin");
+	thumbUpSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollThumb_upSkin");
+	trackSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollTrack_Skin");
+	upArrowDisabledSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowUp_disabledSkin");
+	upArrowDownSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowUp_downSkin");
+	upArrowOverSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowUp_overSkin");
+	upArrowUpSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowUp_upSkin");
 }
 
