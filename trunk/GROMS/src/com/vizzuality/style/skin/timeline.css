@@ -61,7 +61,8 @@ Button.btnDelete{
 	down-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");	
 	selected-up-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");	
 	selected-over-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");	
-	selected-down-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");	
+	selected-down-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");
+	disabled-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_disabled");		
 }
 
 Button.btnGbif{
@@ -71,6 +72,7 @@ Button.btnGbif{
 	selected-up-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_over");	
 	selected-over-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_over");	
 	selected-down-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_over");	
+	disabled-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_disabled");		
 }
 
 Button.btnInfo{
@@ -80,4 +82,5 @@ Button.btnInfo{
 	selected-up-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_over");	
 	selected-over-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_over");	
 	selected-down-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_over");	
+	disabled-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_disabled");		
 }
