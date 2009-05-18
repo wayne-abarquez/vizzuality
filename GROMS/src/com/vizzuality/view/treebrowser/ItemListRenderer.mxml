@@ -20,6 +20,8 @@
             private var bool:Boolean;
 			[Bindable]
             private var commonName:ArrayCollection;
+			[Bindable]
+			private var sel:Boolean = false;
 
 			public var treeBrowserParent:TreeBrowser;
 			[Bindable]
@@ -31,7 +33,6 @@
 			
 			private var object: Object;
 			
-			private var sel:Boolean = false;
 		
 			
            	public override function set data(value:Object):void{
@@ -42,6 +43,7 @@
                 	flickrImg.source=null;
                 	combo.visible=false;
                 	bool=false;
+                	sel=false;
                     return;
                 }
                 if(value.name != taxon) {

@@ -338,13 +338,6 @@ package com.ninem.controls
 			}
 		}
 		
-		/* private function handleItemClick(e:ListEvent):void{
-			if(lastSelected){
-				(lastSelected as ItemListRenderer).setUnselected();
-			}
-			lastSelected = (e.itemRenderer as ItemListRenderer);
-			(lastSelected as ItemListRenderer).setSelected();
-		} */
 		
 	    /**
 	     *  @private
@@ -352,6 +345,7 @@ package com.ninem.controls
 	     */
 		private function createColumn():TreeBrowserList{
 			var list:TreeBrowserList = new TreeBrowserList();
+			list.addEventListener(ListEvent.ITEM_CLICK, updateDataProvider);
 			list.styleName = "TreeColumn";
 			list.percentHeight = 100;
 			list.percentWidth = 100;
@@ -364,7 +358,6 @@ package com.ninem.controls
 			
 			//change listener for use Gbif taxonomy
 			/* list.addEventListener(ListEvent.ITEM_CLICK,handleItemClick); */
-			list.addEventListener(ListEvent.ITEM_CLICK, updateDataProvider);
 			return list;
  		}
 		
@@ -382,13 +375,13 @@ package com.ninem.controls
 			lastSelected[index] = (ev.itemRenderer as ItemListRenderer);
 			(lastSelected[index] as ItemListRenderer).setSelected();
 
-			if (_selectedItem.has_children) {
+			/* if (_selectedItem.has_children) {
 				remoteService.addEventListener(ResultEvent.RESULT,onResultTaxon);
 				remoteService.addEventListener(FaultEvent.FAULT,onFaultTaxon);
 				remoteService.getTaxon(_selectedItem.name,index+1);
 			} else {
 				onEmptyChildren();
-			}
+			} */
 		}
 		
 		private function onEmptyChildren():void {
@@ -398,7 +391,7 @@ package com.ninem.controls
 		}
 		
 		private function onResultTaxon(ev: ResultEvent):void {
-			remoteService.removeEventListener(ResultEvent.RESULT,onResultTaxon);			
+			//remoteService.removeEventListener(ResultEvent.RESULT,onResultTaxon);			
 			var aux: Array = new Array();
 			aux = ev.result as Array;
 			var aux2 : ArrayCollection = new ArrayCollection (aux);
@@ -407,7 +400,7 @@ package com.ninem.controls
 		}
 		
 		private function onFaultTaxon(ev: FaultEvent):void {
-			remoteService.removeEventListener(FaultEvent.FAULT,onFaultTaxon);
+			//remoteService.removeEventListener(FaultEvent.FAULT,onFaultTaxon);
 			trace(ev.fault.faultDetail);
 		}
 
@@ -467,7 +460,6 @@ package com.ninem.controls
 						addEventListener(Event.ENTER_FRAME, addComponent);
 						//BindingUtils.bindProperty(auxArrayCollec, "source", TreeBrowserList(nextColumn),"dataProvider");
 						TreeBrowserList(nextColumn).dataProvider = auxArrayCollec;
-						(lastSelected[nextColumn] as ItemListRenderer).setUnselected();
 						//TreeBrowserList(nextColumn).dataProvider = children;
 					}
 					else
