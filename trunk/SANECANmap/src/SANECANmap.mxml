@@ -176,6 +176,8 @@
 	<mx:Label x="10" y="10" text="Localiza los sanecan, tiendas y clínicas más cercanas a tí" fontSize="15"/>
 	<mx:TextInput id="addressInput" y="42" left="10" right="83" enter="onAddressClick()" text="Introduce tu dirección" click="clearInput()"/>
 	<mx:Button y="42" label="Buscar" right="10" id="button1" click="onAddressClick()"/>
-	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTJgdjRiA1iEZLNaLDwBpXQC8fT5xQjnAIzzs7GWWt3bGiUN4mI-fpuBg" 
+	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQ90078BGwgMQ1AXXdPNoLNuCNk4hQ4ed9_s377T8EfU8iTpdFjsz8dgA" 
 		mapevent_mapready="onMapReady(event)"/>	
+<!--	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTJgdjRiA1iEZLNaLDwBpXQC8fT5xQjnAIzzs7GWWt3bGiUN4mI-fpuBg" 
+		mapevent_mapready="onMapReady(event)"/>	-->
 </mx:Application>
