@@ -116,11 +116,11 @@
 			import asual.SWFAddress;
 
 			[Bindable] public var comboDefault: int = 1;
-			
-			[Bindable]
-			public var gbifTaxonomy : ArrayCollection = new ArrayCollection();			
+		
 			
 			private function init():void {
+				server.addEventListener(ResultEvent.RESULT,onResult);
+				server.addEventListener(FaultEvent.FAULT,onFault);
 				server.getTaxon("",0);
 			}
 
@@ -161,8 +161,7 @@
 	</mx:transitions>	
 	
 	
-	<mx:RemoteObject id="server" endpoint="http://67.202.26.58/groms/amfphp/gateway.php" source="GROMSServices" destination="GROMSServices"
-		 result="onResult(event)" fault="onFault(event)">
+	<mx:RemoteObject id="server" endpoint="http://67.202.26.58/groms/amfphp/gateway.php" source="GROMSServices" destination="GROMSServices">
 		<mx:method name="getTaxon" />
 	</mx:RemoteObject>	
 	
