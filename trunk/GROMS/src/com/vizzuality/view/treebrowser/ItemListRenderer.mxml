@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="150" height="75" xmlns:components = "com.vizzuality.components.*" backgroundColor="#FFFFFF"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="48" xmlns:components = "com.vizzuality.components.*" backgroundColor="#FFFFFF"
 	 verticalScrollPolicy="off" horizontalScrollPolicy="off" dataChange="doEffect()" alpha="0" xmlns:treebrowser="com.vizzuality.view.treebrowser.*">
 
  	<!--click="onClickItemList()"-->
 
 	<mx:Script>
 		<![CDATA[
+			import com.ninem.controls.TreeBrowser;
 			import gs.TweenLite;
 			import mx.binding.utils.BindingUtils;
 			import mx.collections.ArrayCollection;
@@ -18,6 +19,7 @@
 			[Bindable]
             private var commonName:ArrayCollection;
 
+			public var treeBrowserParent:TreeBrowser;
 			
 			private var object: Object;
 		
@@ -59,14 +61,11 @@
 		                }
 		                combo.dataProvider=commonName;
 		                combo.visible = true;
-                		BindingUtils.bindProperty(combo, "selectedIndex", Application.application,"comboDefault");
+                		BindingUtils.bindProperty(combo, "selectedIndex", treeBrowserParent,"comboDefault");
                 	} else {
                 		combo.visible = false;
                 	}
 	                bool = value.has_children;
-	                if (!data.has_children) {
-	                	arrow.visible=false;
-	                }
                 }
                 this.alpha=0;
             }
@@ -75,14 +74,14 @@
             	TweenLite.to(this,1,{alpha:1});	 
             }
             private function changeCombo(ev: Event):void {
-            	Application.application.comboDefault = ev.target.selectedIndex;
+            	
+            	treeBrowserParent.comboDefault = ev.target.selectedIndex;
             }
 		]]>
 	</mx:Script>
 	    
- 	<mx:Image id="flickrImg" width="75" height="75" y="2" left="0" horizontalAlign="center" verticalAlign="middle"/>
+ 	<mx:Image id="flickrImg" width="51" height="48" y="0" left="0" horizontalAlign="center" verticalAlign="middle"/>
     <mx:Label text="{taxon}" textAlign="left" verticalCenter="-8" left="83" fontSize="14" width="183.93333" height="23"/>
     <mx:ComboBox id="combo" textAlign="left" verticalCenter="11" left="83" fontSize="13" fontStyle="italic" width="183.93333" height="22" change="changeCombo(event)"/>
-    <mx:Image id="arrow"  width="15" height="10" right="-0.049987793" verticalCenter="-2"/>
    
 </mx:Canvas>

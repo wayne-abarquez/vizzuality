@@ -32,8 +32,6 @@ package com.ninem.controls
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.remoting.mxml.RemoteObject;
-	import mx.styles.CSSStyleDeclaration;
-	import mx.styles.StyleManager;
 
 	//--------------------------------------
 	//  Events
@@ -98,30 +96,12 @@ package com.ninem.controls
 		public var auxArrayCollec : ArrayCollection;
 		
 		public var remoteService:RemoteObject;
+		[Bindable] public var comboDefault: int = 1;
 		
-		/**
-		 * @private
-		 */
-		private static function initializeStyles():void
-		{
-			var selector:CSSStyleDeclaration = StyleManager.getStyleDeclaration("TreeBrowser");
-			
-			if(!selector)
-			{
-				selector = new CSSStyleDeclaration();
-			}
-			
-			selector.defaultFactory = function():void
-			{
-				this.scrollTweenRate = 3;
-			}
-			
-			StyleManager.setStyleDeclaration("TreeBrowser", selector, false);
-		}
-		initializeStyles();
+
 
 		public function TreeBrowser()
-		{
+		{	
 			super();
 			setStyle("horizontalGap", 1);
 			addEventListener(ResizeEvent.RESIZE, onResize);
@@ -366,8 +346,10 @@ package com.ninem.controls
 			list.percentHeight = 100;
 			list.percentWidth = 100;
 			list.width = list.minWidth = columnWidth - 2; 
-			list.doubleClickEnabled = doubleClickEnabled;			
-			list.itemRenderer = new ClassFactory(ItemListRenderer);
+			list.doubleClickEnabled = doubleClickEnabled;		
+			var listItemRenderer:ClassFactory = new ClassFactory(ItemListRenderer);
+			listItemRenderer.properties = { treeBrowserParent: this };
+			list.itemRenderer = listItemRenderer;
 			
 			//change listener for use Gbif taxonomy
 			list.addEventListener(ListEvent.ITEM_CLICK, updateDataProvider);
@@ -382,13 +364,7 @@ package com.ninem.controls
 			//select the item in column
 			_selectedItem = column.selectedItem;
 			
-			/* var httpsrv:HTTPService = new HTTPService();
-			httpsrv.resultFormat = "text";
-			httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+escape((_selectedItem.labelField).toString());
-			//petition
-			trace(httpsrv.url);
-			httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
-			httpsrv.send(); */
+
 			if (_selectedItem.has_children) {
 				remoteService.addEventListener(ResultEvent.RESULT,onResultTaxon);
 				remoteService.addEventListener(FaultEvent.FAULT,onFaultTaxon);
