@@ -143,7 +143,7 @@ package com.vizzuality.view
 		}
 		
 		public function goToPa(id:Object):void {
-			SWFAddress.setValue(PA + '/' + id + "/"+AREA_DETAILS);
+			SWFAddress.setValue(PA + '/' + id );
 		}
 		
 		

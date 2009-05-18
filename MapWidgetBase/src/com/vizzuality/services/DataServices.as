@@ -328,6 +328,9 @@ package com.vizzuality.services
 			worldStats.marine = res.MarineCount;
 			worldStats.totalAreas = res.TotalAreasCount;
 			worldStats.terrestrial = res.TerrestrialCount;
+			worldStats.marineTerrestrialCount = res.MarineTerrestrialCount;
+			
+
 			
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.WORLD_DATA_LOADED));
 			MapController.gi().setMapLoaded();
