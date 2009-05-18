@@ -10,6 +10,13 @@
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.overlays.MarkerOptions;
+		import com.google.maps.controls.MapTypeControlOptions;
+		import com.google.maps.controls.MapTypeControl;
+		import com.google.maps.LatLngBounds;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.http.mxml.HTTPService;
 		import mx.controls.Alert;
 		import com.google.maps.overlays.Marker;
 		import com.google.maps.services.Placemark;
@@ -24,16 +31,22 @@
 		import com.google.maps.MapEvent;
 		
 		private var geocoder:ClientGeocoder;
+		private var sanecans:Array=new Array();
 		
 	
 		private function onMapReady(event:MapEvent):void {
-			map.setCenter(new LatLng(40.3228,-3.8655),14);
-			map.enableContinuousZoom();
+			//map.setCenter(new LatLng(40.3228,-3.8655),13);
 			var zco:ZoomControlOptions=new ZoomControlOptions({
-				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 22, 22)
+				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 12, 12)
 			});
 			var zc:ZoomControl = new ZoomControl(zco);
 			map.addControl(zc);
+			
+			var mtco:MapTypeControlOptions=new MapTypeControlOptions({
+				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 32, 12)
+			});
+			var mtc:MapTypeControl = new MapTypeControl(mtco);
+			map.addControl(mtc);
 			
 			
 			geocoder = new ClientGeocoder(
@@ -44,10 +57,83 @@
 			
 			geocoder.addEventListener(GeocodingEvent.GEOCODING_SUCCESS,onGeocodeResponse);    
 			geocoder.addEventListener(GeocodingEvent.GEOCODING_FAILURE,onGeocodeFault);    
-			    
-			currentState='';    
+		
+		
+			var srv:HTTPService =  new HTTPService();
+			srv.url = "http://spreadsheets.google.com/pub?key=r1nD0NusVHyIyRKVbDoMX2A&output=csv";
+			srv.addEventListener(ResultEvent.RESULT,onSrvResult);
+			srv.addEventListener(FaultEvent.FAULT,onSrvFault);
+			srv.send();
 		}
-	
+		
+		private function onSrvResult(event:ResultEvent):void {
+			var bbox:LatLngBounds=new LatLngBounds();
+			
+			var result:String=event.result as String;
+			var properties:Array = new Array();
+			var headings:Boolean = false;
+			var carriage:Number = NaN;
+			var comma:Number = NaN;
+			var cursor:Number = 0;
+			var sub:Number = NaN;
+			var item:Object = null;
+			var value:String = null;
+			var line:String = null;			
+			while(result.indexOf( "\n", cursor ) != -1 ) {
+				carriage = result.indexOf( "\n", cursor );
+				line = result.substring( cursor, carriage );
+				line=line+",";
+				cursor = 0;
+				sub = 0;		
+				item = new Object();		
+				while( line.indexOf( ",", cursor ) != -1 ) {
+				  comma = line.indexOf( ",", cursor );
+				  value = line.substring( cursor, comma );
+				
+				  if( !headings ) {
+				    properties.push( value );
+				  } else {
+				    item[properties[sub]] = value;
+				  }				
+				  cursor = comma + 1;
+				  sub++;
+				} 		
+			    value = line.substring( cursor, line.length - 1 );
+			
+			    if( !headings ) {
+			      properties.push( value );
+			      headings = true;
+			    } else {
+			      item[properties[sub]] = value;
+			      sanecans.push( item );
+			      
+			      //create markers
+			      var latlng:LatLng=new LatLng(item["latitude"],item["longitude"]);
+				  var options:MarkerOptions = new MarkerOptions({
+							icon: new CustomIconSprite(item["type"]),
+							iconAlignment: MarkerOptions.ALIGN_BOTTOM,
+							iconOffset: new Point(-11,0),
+							clickable:false
+							});			      
+			      
+			      
+			      var m:Marker = new Marker(latlng,options);
+			      bbox.extend(latlng);
+			      map.addOverlay(m);			      		      
+			      
+			    }		
+				cursor = carriage + 1;
+  			}	
+  			
+  			map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));	
+  			currentState='';
+  			    		
+		}
+		private function onSrvFault(event:FaultEvent):void {
+			trace(event.fault);
+		}
+		
+		
 		private function onAddressClick():void {
 			var address:String = addressInput.text;
 			if (address.toLowerCase().indexOf("mostoles")<1)
@@ -86,5 +172,5 @@
 	<mx:TextInput id="addressInput" y="42" left="10" right="83" enter="onAddressClick()" text="Introduce tu dirección" click="clearInput()"/>
 	<mx:Button y="42" label="Buscar" right="10" id="button1" click="onAddressClick()"/>
 	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTJgdjRiA1iEZLNaLDwBpXQC8fT5xQjnAIzzs7GWWt3bGiUN4mI-fpuBg" 
-		mapevent_mapready="onMapReady(event)"/>
+		mapevent_mapready="onMapReady(event)"/>	
 </mx:Application>
