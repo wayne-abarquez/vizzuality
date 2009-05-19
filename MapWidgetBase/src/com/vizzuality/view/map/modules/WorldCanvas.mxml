@@ -62,9 +62,14 @@
 	
 		private function init():void {
 			
-			DataServices.gi().addEventListener(DataServiceEvent.WORLD_DATA_LOADED,onDataLoaded);
-			DataServices.gi().getWorldStats();
+			//There has been code commented here to make data static.
 			
+			//DataServices.gi().addEventListener(DataServiceEvent.WORLD_DATA_LOADED,onDataLoaded);
+			//DataServices.gi().getWorldStats();
+
+			//Added to avoid loading...
+			loaded=true;			
+			BindingUtils.bindSetter(setState,AppStates.gi(),"topState");
 		}
 		
 		private function onDataLoaded(event:DataServiceEvent):void {			
@@ -106,7 +111,8 @@
 	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
 		<mx:Label text="TOTAL MARINE PROTECTED AREAS" id="label0" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="3" top="3"/>
-		<mx:Label text="{nf.format(DataServices.gi().worldStats.totalAreas)}" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848" letterSpacing="-1" left="3" top="8"/>
+<!--		<mx:Label text="{nf.format(DataServices.gi().worldStats.totalAreas)}" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848" letterSpacing="-1" left="3" top="8"/>
+-->		<mx:Label text="2,100" id="label11" fontFamily="DINOT-Bold" fontSize="60" color="#484848" letterSpacing="-1" left="3" top="8" width="205" textAlign="center"/>
 	</mx:Canvas>
 	<mx:Label text="WORLD STATS" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4"/>
 	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
@@ -114,9 +120,11 @@
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="136" id="hrule1"/>
 	<mx:Image right="14" width="7" top="17" source="@Embed('/com/vizzuality/style/assets/collapseOverlayPanelArrow.png')" id="image1"/>
 	<mx:HBox horizontalGap="0" left="17" top="112" id="hbox1">
-		<mx:Label text="{Math.floor((DataServices.gi().worldStats.marine * 100) / DataServices.gi().worldStats.totalAreas) +'% MARINE'}" id="label5" fontSize="11" fontFamily="DINOT-Bold" color="#375381"/>
+		<mx:Label text="90% NATIONAL" id="label5" fontSize="11" fontFamily="DINOT-Bold" color="#375381"/>
+<!--		<mx:Label text="{Math.floor((DataServices.gi().worldStats.marine * 100) / DataServices.gi().worldStats.totalAreas) +'% MARINE'}" id="label5" fontSize="11" fontFamily="DINOT-Bold" color="#375381"/>-->
 		<mx:Label text="|" id="label2" fontSize="11" fontFamily="DINOT-Bold" color="#4F4F4F" width="8" textAlign="center"/>
-		<mx:Label text="{Math.floor((DataServices.gi().worldStats.terrestrial * 100) / DataServices.gi().worldStats.totalAreas) +'% TERRESTRIAL'}" id="label9" color="#FF5A00" fontSize="11" fontFamily="DINOT-Bold"/>
+<!--		<mx:Label text="{Math.floor((DataServices.gi().worldStats.terrestrial * 100) / DataServices.gi().worldStats.totalAreas) +'% TERRESTRIAL'}" id="label9" color="#1582ED" fontSize="11" fontFamily="DINOT-Bold"/>
+-->		<mx:Label text="10% INTERNATIONAL" id="label9" color="#1582ED" fontSize="11" fontFamily="DINOT-Bold"/>
 	</mx:HBox>
 	
 	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />
