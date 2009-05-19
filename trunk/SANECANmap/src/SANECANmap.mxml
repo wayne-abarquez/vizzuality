@@ -15,6 +15,8 @@
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.MapType;
+		import com.adobe.serialization.json.JSON;
 		import com.google.maps.overlays.MarkerOptions;
 		import com.google.maps.controls.MapTypeControlOptions;
 		import com.google.maps.controls.MapTypeControl;
@@ -47,11 +49,11 @@
 			var zc:ZoomControl = new ZoomControl(zco);
 			map.addControl(zc);
 			
-			var mtco:MapTypeControlOptions=new MapTypeControlOptions({
+/* 			var mtco:MapTypeControlOptions=new MapTypeControlOptions({
 				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 32, 12)
 			});
 			var mtc:MapTypeControl = new MapTypeControl(mtco);
-			map.addControl(mtc);
+			map.addControl(mtc); */
 			
 			
 			geocoder = new ClientGeocoder(
@@ -65,16 +67,40 @@
 		
 		
 			var srv:HTTPService =  new HTTPService();
-			srv.url = "http://spreadsheets.google.com/pub?key=r1nD0NusVHyIyRKVbDoMX2A&output=csv";
-			srv.addEventListener(ResultEvent.RESULT,onSrvResult);
+			srv.url = "http://pipes.yahooapis.com/pipes/pipe.run?_id=bLTo_nJE3hGRRTLFggSecQ&_render=json";
+			srv.addEventListener(ResultEvent.RESULT,onSrvResultJSON);
 			srv.addEventListener(FaultEvent.FAULT,onSrvFault);
 			srv.send();
 		}
 		
-		private function onSrvResult(event:ResultEvent):void {
+		private function onSrvResultJSON(event:ResultEvent):void {
+			var bbox:LatLngBounds=new LatLngBounds();
+			var jsonObj:Object =  JSON.decode(event.result as String);
+			for each (var item:Object in jsonObj.value.items as Array) {
+			      //create markers
+			      var latlng:LatLng=new LatLng(item["latitude"],item["longitude"]);
+				  var options:MarkerOptions = new MarkerOptions({
+							icon: new CustomIconSprite(item["type"]),
+							iconAlignment: MarkerOptions.ALIGN_BOTTOM,
+							iconOffset: new Point(-11,0),
+							clickable:false
+							});			      
+			      
+			      
+			      var m:Marker = new Marker(latlng,options);
+			      bbox.extend(latlng);
+			      map.addOverlay(m);					
+			}
+			
+  			map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));	
+  			currentState='';			
+		}
+		
+		
+		private function onSrvResultCSV(event:ResultEvent):void {
 			var bbox:LatLngBounds=new LatLngBounds();
 			
-			var result:String=event.result as String;
+			var result:String=(event.result as String);
 			var properties:Array = new Array();
 			var headings:Boolean = false;
 			var carriage:Number = NaN;
@@ -112,6 +138,7 @@
 			      item[properties[sub]] = value;
 			      sanecans.push( item );
 			      
+			      trace(item["latitude"] +","+item["longitude"]);
 			      //create markers
 			      var latlng:LatLng=new LatLng(item["latitude"],item["longitude"]);
 				  var options:MarkerOptions = new MarkerOptions({
@@ -170,6 +197,13 @@
 			}
 		}
 		
+		private function checkCurrentMapType(event:MouseEvent):void {
+			sat.selected=false;
+			normal.selected=false;
+			hybrid.selected=false;
+			(event.currentTarget as Button).selected=true;
+		}
+		
 	]]>
 </mx:Script>
 
@@ -178,6 +212,9 @@
 	<mx:Button y="42" label="Buscar" right="10" id="button1" click="onAddressClick()"/>
 	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQ90078BGwgMQ1AXXdPNoLNuCNk4hQ4ed9_s377T8EfU8iTpdFjsz8dgA" 
 		mapevent_mapready="onMapReady(event)"/>	
+	<mx:Button id="sat" x="48" y="86" label="Satélite" click="map.setMapType(MapType.SATELLITE_MAP_TYPE);checkCurrentMapType(event)"/>
+	<mx:Button id="normal" x="128" y="86" label="Mapa" click="map.setMapType(MapType.NORMAL_MAP_TYPE);checkCurrentMapType(event)" selected="true"/>
+	<mx:Button id="hybrid" x="188" y="86" label="Híbrido" click="map.setMapType(MapType.HYBRID_MAP_TYPE);checkCurrentMapType(event)"/>
 <!--	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTJgdjRiA1iEZLNaLDwBpXQC8fT5xQjnAIzzs7GWWt3bGiUN4mI-fpuBg" 
 		mapevent_mapready="onMapReady(event)"/>	-->
 </mx:Application>
