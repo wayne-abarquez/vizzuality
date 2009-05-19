@@ -20,7 +20,7 @@
 				<ns1:PaCanvas top="18" siteid="{AppStates.gi().activePaId}" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="{!(AppStates.gi().secondState!='')}" right="18" id="paCanvas"/>
 			</mx:AddChild>
 			<mx:AddChild position="before" relativeTo="{alertCanvas}">
-				<mediabrowser:MediaBrowser width="100%" bottom="35" height="60" visible="{paCanvas.pictureChbox.selected}" showEffect="{fadeIn}" hideEffect="{fadeOut}" />
+				<mediabrowser:MediaBrowser width="100%" bottom="35" height="60" visible="{(paCanvas.pictureChbox.selected &amp;&amp; AppStates.gi().secondState=='')}" showEffect="{fadeIn}" hideEffect="{fadeOut}" />
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.AREA_SELECTOR}">

@@ -49,6 +49,9 @@
 				    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
 				    var request:URLRequest = new URLRequest("http://"+dom+"/crossdomain.xml");
 				    var loader:URLLoader = new URLLoader();
+				    loader.addEventListener(IOErrorEvent.IO_ERROR,function(event:IOErrorEvent):void {
+				    	trace("error");
+				    });
 				    loader.load(request);				
 				}					
 				
