@@ -85,14 +85,9 @@
 		return results[1];
 	}	
 		
-    function setHeight(start,end) { 
-        //t1 = new Sequence();
-        //t1.addChild(new Tween(document.getElementById('widget').style, 'height', Tween.strongEaseOut, start, end, 0.5, 'px'));
-        //t1.addChild(new Tween(document.getElementById('swf').style, 'height', Tween.strongEaseOut, start, end, 0.5, 'px'));
-        //t1.start();
-        //document.getElementById('widget').style, 'height', Tween.strongEaseOut, start, end, 0.5, 'px'));
-       document.getElementById('widget').style.height=end+"px";
-       document.getElementById('swf').style.height=end+"px";
+    function setHeight(value) { 
+       document.getElementById('widget').style.height=value+"px";
+       document.getElementById('swf').style.height=value+"px";
     }     		
 		
 	var so = new SWFObject("${swf}.swf", "swf", "940", "447", "9"); 
