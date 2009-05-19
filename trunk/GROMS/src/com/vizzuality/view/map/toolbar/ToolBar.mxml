@@ -119,6 +119,7 @@
 			import asual.SWFAddress;
 
 			[Bindable] public var comboDefault: int = 1;
+			private var initial: int = 0;
 		
 			
 			private function init():void {
@@ -128,14 +129,23 @@
 			}
 
 			private function onResult(ev: ResultEvent):void {
-				server.removeEventListener(ResultEvent.RESULT,onResult);
+				//server.removeEventListener(ResultEvent.RESULT,onResult);
 				var auxDP:ArrayCollection = new ArrayCollection();
 				auxDP.addItem(ev.result);
-				treeB.dataProvider = auxDP;
+				/* initial++;
+				if (initial<2) {
+					if (initial == 0) server.getTaxon("Aves",1);
+					if (initial == 1) server.getTaxon("Cuckoos",1);
+				} else { */
+					server.removeEventListener(ResultEvent.RESULT,onResult);
+					treeB.dataProvider = auxDP;					
+				
 			}
 			
 			private function onFault(ev: FaultEvent):void {
-				server.removeEventListener(FaultEvent.FAULT,onFault);
+				if (initial>=1) {
+					server.removeEventListener(FaultEvent.FAULT,onFault);
+				}
 			}
 			
 		]]>

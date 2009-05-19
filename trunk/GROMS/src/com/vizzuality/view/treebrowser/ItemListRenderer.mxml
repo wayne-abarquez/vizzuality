@@ -24,7 +24,7 @@
 			[Bindable]
 			private var sel:Boolean = false;
 
-			public var treeBrowserParent:TreeBrowser;
+			[Bindable] public var treeBrowserParent:TreeBrowser;
 			[Bindable]
 			public var style:String;
 			
@@ -84,7 +84,15 @@
             }
             
             private function handleClick():void{
-				//dispatchEvent(new TreeBrowserItemClickEvent("ITEM_CLICK",this,true));            	
+				parent.parent.parent.addEventListener("loadingFinish",onLoadingEnds);
+				loading.visible = true;
+				arrow.visible = false;			
+            }
+            
+            private function onLoadingEnds(ev: Event):void {
+            	parent.parent.parent.removeEventListener("loadingFinish",onLoadingEnds);
+            	arrow.visible = true;
+            	loading.visible = false;
             }
             
 		]]>
@@ -96,6 +104,7 @@
         <mx:Image id="flickrImg" horizontalAlign="center" verticalAlign="middle" verticalCenter="0" horizontalCenter="0"/>
         <mx:Image source="@Embed('/com/vizzuality/style/assets/borderTreeThumb.png')"  y="0"/>
     </mx:Canvas>
-    <mx:Image source="{miniArrow}" right="8" verticalCenter="-2"/>
+    <mx:Image id="arrow" source="{miniArrow}" right="8" verticalCenter="-2"/>
+    <mx:SWFLoader id="loading" right="8" verticalCenter="-2" source="@Embed('assets/tinyLoading.swf')" width="15" height="15" visible="false"/>
    
 </mx:Canvas>
