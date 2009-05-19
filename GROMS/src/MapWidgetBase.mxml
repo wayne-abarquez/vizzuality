@@ -297,7 +297,7 @@
 			}	
 
 			public function expandWidget():void {
-				//navigateToURL(new URLRequest("javascript:setHeight(447,570);"),'_self');		
+				navigateToURL(new URLRequest("javascript:setHeight(447,570);"),'_self');		
 				currentState='timeline';		
 			}	
 			public function contractWidget():void {
