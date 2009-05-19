@@ -10,6 +10,7 @@ public class CustomIconSprite extends Sprite {
   [Embed('assets/green.png')] private var green:Class;
   [Embed('assets/grey.png')] private var grey:Class;
   [Embed('assets/red.png')] private var red:Class;
+  [Embed('assets/picOrange.png')] private var picOrange:Class;
   
   
   public function CustomIconSprite(type:String) {
@@ -25,6 +26,9 @@ public class CustomIconSprite extends Sprite {
       		break;
       	case "4":
 		      addChild(new blue());
+      		break;
+      	case "position":
+		      addChild(new picOrange());
       		break;
       }
     cacheAsBitmap = true;

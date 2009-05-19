@@ -40,6 +40,8 @@
 		private var geocoder:ClientGeocoder;
 		private var sanecans:Array=new Array();
 		
+		private var positionMarker:Marker;
+		
 	
 		private function onMapReady(event:MapEvent):void {
 			//map.setCenter(new LatLng(40.3228,-3.8655),13);
@@ -173,14 +175,23 @@
 			if (address.toLowerCase().indexOf("españa")<1)
 				address+=",españa";
 			geocoder.geocode(address);
+			if(positionMarker!=null)
+				map.removeOverlay(positionMarker);
 		}
 		
 		private function onGeocodeResponse(event:GeocodingEvent):void {
 			var result:GeocodingResponse = event.response as GeocodingResponse;
 			var pm:Placemark = result.placemarks[0] as Placemark;
-	/* 		var pointCoords:LatLng=new LatLng(pm.point.lat(),pm.point.lng());
-			var marker:Marker = new Marker(pm.point);
-			map.addOverlay(marker); */
+	 		var pointCoords:LatLng=new LatLng(pm.point.lat(),pm.point.lng());
+			  var options:MarkerOptions = new MarkerOptions({
+						icon: new CustomIconSprite("position"),
+						iconAlignment: MarkerOptions.ALIGN_BOTTOM,
+						iconOffset: new Point(-11,0),
+						clickable:false
+						});			 		
+	 		
+			positionMarker = new Marker(pm.point,options);
+			map.addOverlay(positionMarker);
 			map.setCenter(pm.point,16);
 			
 		}
