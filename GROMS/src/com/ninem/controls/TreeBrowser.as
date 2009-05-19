@@ -1,6 +1,4 @@
-package com.ninem.controls
-{
-
+package com.ninem.controls{
 	
 	import com.ninem.controls.treebrowserclasses.TreeBrowserList;
 	import com.ninem.events.TreeBrowserEvent;
