@@ -336,8 +336,10 @@ package com.ninem.controls{
  				if (index==1) {
 					(lastSelected[1] as ItemListRenderer).setUnselected(); 					
  				} else {
- 					(lastSelected[0] as ItemListRenderer).setUnselected(); 		
-					(lastSelected[1] as ItemListRenderer).setUnselected(); 				
+ 					(lastSelected[0] as ItemListRenderer).setUnselected();	
+ 					if (lastSelected.length>1) {
+						(lastSelected[1] as ItemListRenderer).setUnselected(); 				 						
+ 					}
 				}
 			}
 			lastSelected[index] = (ev.itemRenderer as ItemListRenderer);
