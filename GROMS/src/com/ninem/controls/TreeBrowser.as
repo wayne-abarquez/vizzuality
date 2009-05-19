@@ -2,8 +2,8 @@ package com.ninem.controls{
 	
 	import com.ninem.controls.treebrowserclasses.TreeBrowserList;
 	import com.ninem.events.TreeBrowserEvent;
-	import com.vizzuality.view.treebrowser.ItemListRenderer;
 	import com.vizzuality.view.treebrowser.ItemListLastRenderer;
+	import com.vizzuality.view.treebrowser.ItemListRenderer;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -138,44 +138,7 @@ package com.ninem.controls{
 	            invalidateProperties();
 	        }
 	    }
-	    
 
-	    public function get showDetails():Boolean{
-	    	return _showDetails;
-	    }
-	    
-
-	    public function set showDetails(value:Boolean):void{
-	    	_showDetails = value;
-	    }
-	    
-
-	    public function get iconField():String
-	    {
-	        return _iconField;
-	    }
-	
-
-	    public function set iconField(value:String):void
-	    {
-	        _iconField = value;
-	        iconFieldChanged = true;
-	        invalidateProperties();
-	    }
-	
-
-	    public function get iconFunction():Function
-	    {
-	        return _iconFunction;
-	    }
-	
-
-	    public function set iconFunction(value:Function):void
-	    {
-	        _iconFunction = value;
-			iconFunctionChanged = true;
-			invalidateProperties();
-	    }
 	
 
 	    public function get labelField():String
@@ -335,15 +298,13 @@ package com.ninem.controls{
 			list.styleName = "TreeColumn";
 			list.percentHeight = 100;
 			list.percentWidth = 100;
+			list.verticalScrollPolicy = "auto";
 			list.rowHeight = 47;
 			list.width = list.minWidth = columnWidth - 2; 
 			list.doubleClickEnabled = doubleClickEnabled;
 			var listItemRenderer:ClassFactory = new ClassFactory(ItemListRenderer);
 			listItemRenderer.properties = { treeBrowserParent: this, style: "firstColumnItem" };
 			list.itemRenderer = listItemRenderer;
-			
-			//change listener for use Gbif taxonomy
-			/* list.addEventListener(ListEvent.ITEM_CLICK,handleItemClick); */
 			return list;
  		}
  		
@@ -354,14 +315,12 @@ package com.ninem.controls{
 			list.percentHeight = 100;
 			list.percentWidth = 100;
 			list.rowHeight = 47;
+			list.verticalScrollPolicy = "auto";
 			list.width = 300;
 			list.doubleClickEnabled = doubleClickEnabled;
 			var listItemRenderer:ClassFactory = new ClassFactory(ItemListLastRenderer);
 			listItemRenderer.properties = { treeBrowserParent: this, style: "thirdColumnItem" };
 			list.itemRenderer = listItemRenderer;
-			
-			//change listener for use Gbif taxonomy
-			/* list.addEventListener(ListEvent.ITEM_CLICK,handleItemClick); */
 			return list;
  		}
 		
@@ -373,12 +332,16 @@ package com.ninem.controls{
 			//select the item in column
 			_selectedItem = column.selectedItem;
 
-/* 			if(lastSelected[index]){
-				(lastSelected[0] as ItemListRenderer).setUnselected();
-				(lastSelected[1] as ItemListRenderer).setUnselected();
+ 			if(lastSelected[index]){
+ 				if (index==1) {
+					(lastSelected[1] as ItemListRenderer).setUnselected(); 					
+ 				} else {
+ 					(lastSelected[0] as ItemListRenderer).setUnselected(); 		
+					(lastSelected[1] as ItemListRenderer).setUnselected(); 				
+				}
 			}
 			lastSelected[index] = (ev.itemRenderer as ItemListRenderer);
-			(lastSelected[index] as ItemListRenderer).setSelected(); */
+			(lastSelected[index] as ItemListRenderer).setSelected();
 
 			if (_selectedItem.has_children) {
 				remoteService.addEventListener(ResultEvent.RESULT,onResultTaxon);
@@ -396,7 +359,7 @@ package com.ninem.controls{
 		}
 		
 		private function onResultTaxon(ev: ResultEvent):void {
-			//remoteService.removeEventListener(ResultEvent.RESULT,onResultTaxon);			
+			remoteService.removeEventListener(ResultEvent.RESULT,onResultTaxon);			
 			var aux: Array = new Array();
 			aux = ev.result as Array;
 			var aux2 : ArrayCollection = new ArrayCollection (aux);
@@ -405,17 +368,16 @@ package com.ninem.controls{
 		}
 		
 		private function onFaultTaxon(ev: FaultEvent):void {
-			//remoteService.removeEventListener(FaultEvent.FAULT,onFaultTaxon);
+			remoteService.removeEventListener(FaultEvent.FAULT,onFaultTaxon);
 			trace(ev.fault.faultDetail);
 		}
 
 		
 		private function selectionChangeHandler():void{
-			if(tween && tween.isPlaying) return;
 			var children:ICollectionView;
 			if (_selectedItem){
 				children = _rootModel[index+1];
-				if (children.length >= 0 || showDetails){
+				if (children.length >= 0){
 					// item clicked has children or we are displaying object details
 					var nextColumn:UIComponent;
 					if (index < numChildren - 1){
@@ -442,11 +404,12 @@ package com.ninem.controls{
 							scrollToEnd(); */
 					}else{
 						// item clicked is in the last column, new column needs to be added
-						if(children.length == 0) {
-							//nextColumn = createDetailRenderer();	
+						/* if(children.length == 0) {
+							nextColumn = createDetailRenderer();	
 						}
-						else{}
-							//nextColumn = createColumn();
+						else{
+							nextColumn = createColumn();
+						} */
 						addChild(nextColumn);
 						// need to wait until display has updated to scroll
 						addEventListener(FlexEvent.UPDATE_COMPLETE, onUpdateComplete);
@@ -487,8 +450,11 @@ package com.ninem.controls{
 		}
 		
 		private function addComponent(ev:Event):void{
-			if ((i+1) == dataLength)
+			if ((i+1) == dataLength) {
 				removeEventListener(Event.ENTER_FRAME,addComponent);
+ 				var ev: Event = new Event("loadingFinish",true);
+				dispatchEvent(ev); 
+			}
 			auxArrayCollec.addItem(dataChild[i]);
 			i++;
 		}
@@ -554,25 +520,8 @@ package com.ninem.controls{
 						removeChildAt(i);
 				}
 			}
-			if(useTween && removeCount > 0){
-				var scrollTweenRate:Number = getStyle("scrollTweenRate");
-				if(!tween) tween = new AnimateProperty(this);
-				tween.addEventListener(EffectEvent.EFFECT_END, onRemoveTweenFinished);
-				tween.property = "horizontalScrollPosition";
-				storedValue = startIndex;
-				// calculate scrollposition of column that will now be last
-				var toValue:Number = Math.max((numChildren - removeCount) * (columnWidth - 2) - width, 0);
-				tween.toValue = toValue;
-				tween.duration = scrollTweenRate * (horizontalScrollPosition - toValue);
-				tween.play([this]);
-			}
 		}
-		
-		private function onRemoveTweenFinished(event:EffectEvent):void{
-			tween.removeEventListener(EffectEvent.EFFECT_END, onRemoveTweenFinished);
-			clearColumns(storedValue);
-			checkScrollBar(); 
-		}
+
 		
 		private function onResize(event:ResizeEvent):void{
 	    	updateColumns(width);
@@ -622,28 +571,6 @@ package com.ninem.controls{
 			measuredMinWidth = columnWidth;
 		}
 		
-	    /**
-	     *  @private
-	     */
-	     override protected function commitProperties():void{
-	     	super.commitProperties();
-	     	if(iconFieldChanged){
-	     		updateColumnProperty("iconField", iconField);
-	     		iconFieldChanged = false;
-	     	}
-	     	if(iconFunctionChanged){
-	     		updateColumnProperty("iconFunction", iconFunction);
-	     		iconFunctionChanged = false;
-	     	}
-	     	if(labelFieldChanged){
-	     		updateColumnProperty("labelField", labelField);
-	     		labelFieldChanged = false;
-	     	}
-	     	if(labelFunctionChanged){
-	     		updateColumnProperty("labelFunction", labelFunction);
-	     		labelFunctionChanged = false;
-	     	}
-	     }
 	     
 	    /**
 	     *  @private
