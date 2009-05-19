@@ -466,7 +466,7 @@ package com.ninem.controls
  						dataChild = children as ArrayCollection;
 						dataLength = children.length;
 						auxArrayCollec = new ArrayCollection();
-						i=1;
+						i=0;
 						addEventListener(Event.ENTER_FRAME, addComponent);
 						//TreeBrowserList(nextColumn).dataProvider = children;
 						TreeBrowserList(nextColumn).dataProvider = auxArrayCollec;
