@@ -16,10 +16,10 @@ public class CustomIconSprite extends Sprite {
   public function CustomIconSprite(type:String) {
       switch (type) {
       	case "1":
-		      addChild(new red());
+		      addChild(new green());
       		break;
       	case "2":
-		      addChild(new green());
+		      addChild(new red());
       		break;
       	case "3":
 		      addChild(new grey());
