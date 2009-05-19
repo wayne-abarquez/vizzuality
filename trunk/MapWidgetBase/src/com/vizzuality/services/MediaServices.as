@@ -41,6 +41,7 @@ package com.vizzuality.services
 	[Event(name="picturesLoaded", type="com.vizzuality.services.DataServiceEvent")]
 	[Event(name="wikipediasLoaded", type="com.vizzuality.services.DataServiceEvent")]
 	[Event(name="picturesLoaded", type="com.vizzuality.services.DataServiceEvent")]
+	[Event(name="picturesAvailable", type="com.vizzuality.services.DataServiceEvent")]
 	[Event(name="picturesLoading", type="com.vizzuality.services.DataServiceEvent")]
 	public final class MediaServices extends EventDispatcher
 	{
@@ -230,6 +231,7 @@ package com.vizzuality.services
 			}
 			
 			numPicturesRequest--;	
+			dispatchEvent(new DataServiceEvent(DataServiceEvent.PICTURES_AVAILABLE));
 			if (numPicturesRequest==0) {
 				dispatchEvent(new DataServiceEvent(DataServiceEvent.PICTURES_LOADED));
 			}

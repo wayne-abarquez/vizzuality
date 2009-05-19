@@ -357,6 +357,7 @@ package com.vizzuality.services
 		 * 
 		 **/
 		 //-----------------------------------------------------------------------------------		
+		private var queriedParams:String="";
 		public function getAreasByLatLng(latlng:LatLng):void {
 			MapController.gi().setMapLoading();
 			resolvingLatLng=latlng;			
@@ -369,16 +370,6 @@ package com.vizzuality.services
 				MapController.gi().map.fromPointToLatLng(llPoint),
 				MapController.gi().map.fromPointToLatLng(urPoint));
 			
-			
-/* 			MapController.gi().map.addOverlay(new Polygon([
-				bbox.getNorthEast(),
-				bbox.getNorthWest(),
-				bbox.getSouthWest(),
-				bbox.getSouthEast(),
-				bbox.getNorthEast()
-				
-			])); */
-			
 			roLat.getThePADetailsFromBB(
 				bbox.getNorth(),
 				bbox.getSouth(),
@@ -386,6 +377,13 @@ package com.vizzuality.services
 				bbox.getWest(),
 				true,
 				'0');
+				
+			queriedParams=	bbox.getNorth()+","+
+				bbox.getSouth()+","+
+				bbox.getEast()+","+
+				bbox.getWest()+","+
+				"true,0";
+				
 		}
 		
 		private function onGetAreasByLatLngResult(event:ResultEvent):void {
@@ -547,7 +545,8 @@ package com.vizzuality.services
 		
 		private function onGetAreasByLatLngResultFault(event:FaultEvent):void {
 				MapController.gi().setMapLoaded();
-				MapController.gi().showMapWarning("Sorry, there has been an error, please click again or \nreport back using the button on top right.\nERROR TYPE: onGetAreasByLatLngResultFault",2);			
+				MapController.gi().showMapWarning("Sorry, there has been an error, try clicking again.",2);	
+				AppStates.gi().debug("ERROR: onGetAreasByLatLngResultFault("+queriedParams+")");	
 		}
 		
 		private function onFault(event:FaultEvent):void {

@@ -12,8 +12,8 @@
 			import mx.events.SliderEvent;
 			import mx.effects.easing.Cubic;
 			
-			[Bindable]
-			private var arrAux: ArrayCollection = new ArrayCollection();
+/* 			[Bindable]
+			private var arrAux: ArrayCollection = new ArrayCollection(); */
 			
 			private var dataLength : int;
 			private var i : int = 0;
@@ -22,7 +22,7 @@
 			private var playing:Boolean = false;
 
 			private function init():void {
-				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,function(event:DataServiceEvent):void {
+				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_AVAILABLE,function(event:DataServiceEvent):void {
 					if(MediaServices.gi().pictures.length>0) {						
 						hList.dataProvider=MediaServices.gi().pictures;
 					} else {
