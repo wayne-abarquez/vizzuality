@@ -7,8 +7,9 @@
 			<mx:SetProperty target="{addressInput}" name="enabled" value="false"/>
 			<mx:SetProperty target="{button1}" name="enabled" value="false"/>
 			<mx:AddChild position="lastChild">
-				<mx:Canvas backgroundColor="#000000" backgroundAlpha="0.85" left="10" right="10" top="80" bottom="23">
-					<mx:Label text="Loading" horizontalCenter="-1" verticalCenter="-10" color="#FFFFFF" fontSize="17"/>
+				<mx:Canvas backgroundColor="#000000" backgroundAlpha="0.7" left="10" right="10" top="80" bottom="23">
+					<mx:Label text="Cargando" horizontalCenter="-1" verticalCenter="-30" color="#FFFFFF" fontSize="17" fontFamily="DINOT-Medium"/>
+					<mx:Text text="Estamos conectando con nuestro servicio de geoposicionamiento,&#xd;Por favor espere unos instantes...&#xd;&#xd;" verticalCenter="19" color="#FFFFFF" fontSize="14" fontFamily="DINOT-Medium" width="490" x="105" textAlign="center"/>
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
