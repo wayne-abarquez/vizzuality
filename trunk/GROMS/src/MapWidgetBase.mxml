@@ -44,13 +44,7 @@
 			public var map:Map;
 			
 			private function initApp():void {
-				var externalDomains:Array=[
-					"farm1.static.flickr.com",
-					"farm2.static.flickr.com",
-					"farm3.static.flickr.com",
-					"farm4.static.flickr.com",
-					"i.ytimg.com",
-					"ws.geonames.org"];
+				var externalDomains:Array=[];
 				for each(var dom:String in externalDomains) {
 				    Security.allowDomain(dom);
 				    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
@@ -292,22 +286,12 @@
 							
 							
 						default:
-							//Not recognize params. Move them to the default states
-/* 							trace( "Top level state not recognize!" );
-							AppStates.gi().topState=AppStates.WORLD;
-							AppStates.gi().secondState=AppStates.ABOUT;
-							MapController.gi().updateTileLayers([WdpaLayer.ALL]);				
-							AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
 							SWFAddress.setValue(AppStates.COUNTRIES+"/"+AppStates.ABOUT);
 						
 					}
 					
 				} else {
 					SWFAddress.setValue(AppStates.COUNTRIES+"/"+AppStates.ABOUT);
-/* 					AppStates.gi().topState=AppStates.WORLD;
-					AppStates.gi().secondState=AppStates.ABOUT;	
-					MapController.gi().updateTileLayers([WdpaLayer.ALL]);		
-					AppStates.gi().mapPositions[AppStates.WORLD] = MapController.gi().getMapPosition();	 */
 					
 				}
 			}	
