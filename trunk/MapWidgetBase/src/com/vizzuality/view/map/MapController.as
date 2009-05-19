@@ -228,7 +228,7 @@ package com.vizzuality.view.map
 			//removeClickListenerForAreas();
 			map.disableDragging();
 			map.setDoubleClickMode(MapAction.ACTION_NOTHING);
-			CursorManager.setBusyCursor();
+			//CursorManager.setBusyCursor();
 			
 			disableClick();
 			if (bSprite==null) {

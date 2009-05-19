@@ -139,7 +139,7 @@ package com.vizzuality.services
 					MapController.gi().zoomToBbox(selectedPA.getBbox());
 				} else {
 					AppStates.gi().debug("Requesting PA: "+value);
-					roArea.showBusyCursor=true;
+					//roArea.showBusyCursor=true;
 					roArea.getPAData(value);
 					resolvingId=value;
 				}

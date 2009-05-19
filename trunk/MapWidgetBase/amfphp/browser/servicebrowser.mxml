@@ -157,7 +157,7 @@
 			}
 		]]>
 	</mx:Script>
-	<mx:RemoteObject showBusyCursor="true" destination="amfphp" endpoint="http://flashservices/gateway.php" source="amfphp.DiscoveryService" id="ro">
+	<mx:RemoteObject showBusyCursor="false" destination="amfphp" endpoint="http://flashservices/gateway.php" source="amfphp.DiscoveryService" id="ro">
 		<mx:method name="getServices" result="methodTree.dataProvider = event.result"/>
 		<mx:method name="describeService" result="describeService(event.result)" />
 	</mx:RemoteObject>
