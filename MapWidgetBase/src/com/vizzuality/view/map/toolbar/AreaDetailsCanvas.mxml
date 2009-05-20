@@ -144,7 +144,7 @@
 	<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="41" x="540" id="label3"/>
 	<mx:VBox x="541" y="65" verticalGap="-5" id="vbox1">
 		<mx:HBox horizontalGap="-3" id="hbox6" includeInLayout="{DataServices.gi().selectedPA.establishmentYear!=null}" visible="{DataServices.gi().selectedPA.establishmentYear!=null}">
-			<mx:Label text="Established at" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="Established in" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
 			<mx:Label text="{DataServices.gi().selectedPA.establishmentYear}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
 		</mx:HBox>
 		<mx:HBox horizontalGap="-3" id="hbox1" includeInLayout="{DataServices.gi().selectedPA.currentStatus!=null}" visible="{DataServices.gi().selectedPA.currentStatus!=null}">
