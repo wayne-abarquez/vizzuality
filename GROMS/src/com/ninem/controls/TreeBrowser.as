@@ -361,10 +361,9 @@ package com.ninem.controls{
 		}
 		
 		private function onResultTaxon(ev: ResultEvent):void {
+			trace(index);
 			remoteService.removeEventListener(ResultEvent.RESULT,onResultTaxon);			
-			var aux: Array = new Array();
-			aux = ev.result as Array;
-			var aux2 : ArrayCollection = new ArrayCollection (aux);
+			var aux2 : ArrayCollection = new ArrayCollection (ev.result as Array);
 			(_rootModel as ArrayCollection).addItemAt(aux2,index+1);
 			selectionChangeHandler();
 		}
@@ -426,13 +425,15 @@ package com.ninem.controls{
 								((TreeBrowserList(nextColumn).itemRenderer) as ClassFactory).properties = { style: "secondColumnItem" };
 							}
 						}
- 						dataChild = children as ArrayCollection;
+/*  						dataChild = children as ArrayCollection;
 						dataLength = children.length;
 						auxArrayCollec = new ArrayCollection();
 						i=0;
-						addEventListener(Event.ENTER_FRAME, addComponent);
-						//TreeBrowserList(nextColumn).dataProvider = children;
-						TreeBrowserList(nextColumn).dataProvider = auxArrayCollec;
+						addEventListener(Event.ENTER_FRAME, addComponent); */
+						var ev: Event = new Event("loadingFinish",true);
+						dispatchEvent(ev); 
+						TreeBrowserList(nextColumn).dataProvider = children;
+						//TreeBrowserList(nextColumn).dataProvider = auxArrayCollec;
 					}
 					else
 						IListItemRenderer(nextColumn).data = column.selectedItem;
