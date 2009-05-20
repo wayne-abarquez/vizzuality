@@ -5,6 +5,7 @@
 
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.view.AppStates;
 			import mx.effects.Tween;
 			import com.ninem.controls.TreeBrowser;
 			import gs.TweenLite;
@@ -14,6 +15,8 @@
 			
 			[Bindable]
             private var taxon:String;
+     
+            private var idTaxon: Number;
             [Bindable]
             private var bool:Boolean;
 			[Bindable]
@@ -72,6 +75,7 @@
                 		combo.visible = false;
                 	}
 	                bool = value.has_children;
+	                idTaxon= value.id;
                 }
                 this.alpha=0;
             }
@@ -118,6 +122,6 @@
         <mx:Image id="flickrImg" horizontalAlign="center" verticalAlign="middle" verticalCenter="0" horizontalCenter="0"/>
         <mx:Image source="@Embed('/com/vizzuality/style/assets/borderTreeThumb.png')"  y="0"/>
     </mx:Canvas>
-	<mx:Button id="viewButton" right="5" verticalCenter="-1" styleName="viewSpecie" height="15" width="58" alpha="0" buttonMode="true" useHandCursor="true" mouseChildren="false"/>    
+	<mx:Button id="viewButton" right="5" verticalCenter="-1" styleName="viewSpecie" height="15" width="58" alpha="0" buttonMode="true" useHandCursor="true" mouseChildren="false" click="AppStates.gi().setAllStates(AppStates.FEATURE,idTaxon.toString())"/>    
    
 </mx:Canvas>

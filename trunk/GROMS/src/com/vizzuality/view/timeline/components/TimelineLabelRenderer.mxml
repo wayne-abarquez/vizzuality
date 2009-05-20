@@ -32,9 +32,9 @@
 			
 			
 			private function onClickVisible(ev: Event):void {
+				_ev = new TimelineButtonEvent(TimelineButtonEvent.TIMELINE_VISIBLE);
+				_ev.specieID = identity;
 				if (ev.target is UITextField) {
-					_ev = new TimelineButtonEvent(TimelineButtonEvent.TIMELINE_VISIBLE);
-					_ev.specieID = identity;
 					if (this.visCheck.selected) {
 						visCheck.selected = false;
 						info.enabled = false;
@@ -48,10 +48,7 @@
 						visCheck.selected = true;
 						_ev.visible = true;					
 					}
-					dispatchEvent(_ev);
 				} else {
-					_ev = new TimelineButtonEvent(TimelineButtonEvent.TIMELINE_VISIBLE);
-					_ev.specieID = identity;
 					if (this.visCheck.selected) {
 						info.enabled = true;
 						gbif.enabled = true;
@@ -63,8 +60,8 @@
 						specie.alpha = 0.3;
 						_ev.visible = false;					
 					}
-					dispatchEvent(_ev);					
 				}
+				dispatchEvent(_ev);					
 			}
 		]]>
 	</mx:Script>
@@ -73,8 +70,8 @@
 	<mx:Label id="specie" text="{taxon}" verticalCenter="0" left="20" width="120" color="#333333" fontFamily="DINOT-Medium" 
 		fontSize="12" click="onClickVisible(event)" toolTip=""/>
 	<mx:Button id="info" width="14" height="14" right="42" verticalCenter="0" styleName="btnInfo" mouseChildren="false" buttonMode="true" useHandCursor="true" data="1" click="onClickButton(event)"/>
-	<mx:Button id="del" width="14" height="14" right="10" verticalCenter="0" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" click="onClickButton(event)"/>
-	<mx:Button id="gbif" width="14" height="14" right="26" verticalCenter="0" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" click="onClickButton(event)"/>
+	<mx:Button id="del" width="14" height="14" right="10" verticalCenter="0" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" click="onClickButton(event)"/>
+	<mx:Button id="gbif" width="14" height="14" right="26" verticalCenter="0" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" click="onClickButton(event)"/>
 	<mx:Image bottom="0" left="8" right="8" scaleContent="false">
 		<mx:source>@Embed('/com/vizzuality/style/assets/hRuleDashed500.png')</mx:source>
 	</mx:Image>

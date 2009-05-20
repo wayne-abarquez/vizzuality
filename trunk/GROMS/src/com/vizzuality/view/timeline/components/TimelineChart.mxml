@@ -44,7 +44,7 @@
 						_chartNew = new Canvas();
 						
 						if (j==0) {
-							_chartNew.y = 16;
+							_chartNew.y = 14;
 							if (!visible1) _chartNew.alpha=0.3;
 						} else {
 							_chartNew.y = 14 + (16*j)+(10*j);
