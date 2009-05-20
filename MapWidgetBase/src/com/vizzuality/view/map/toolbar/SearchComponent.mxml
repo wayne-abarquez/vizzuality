@@ -102,8 +102,9 @@
 	<mx:Text id="labelText" text="SEARCH FOR PROTECTED AREAS WORLDWIDE" left="13" fontSize="16" fontWeight="normal" fontFamily="DINOT-Medium" color="#375381" top="14" width="227" height="62" />
 	<mx:TextInput id="searchInput" change="callService()" focusAlpha="0" 
 		borderStyle="solid" cornerRadius="2" left="220" height="22" top="15" width="297" fontSize="13" fontFamily="DINOT-Medium" color="#777777"/>
-	<mx:Canvas styleName="softYellowContainer" right="18" left="525" height="22" cornerRadius="2" top="15">
-		<mx:Label text="Start typing to get a list of matching areas. Click on the name to get details." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
+	<mx:Canvas styleName="softYellowContainer" right="18" left="525" 
+		height="22" cornerRadius="2" top="15" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<mx:Label text="Start typing to get a list of matching areas." fontFamily="DINOT-Medium" color="#333333" fontSize="12" left="5" right="5" y="0"/>
 	</mx:Canvas>
 	<mx:VBox id="vBox" height="100%" y="36" left="220" visible="false">
 		<mx:List id="searchResultsList" dataProvider="{searchResults}" maxHeight="{vBox.height}" labelFunction="getLabel" itemClick="AppStates.gi().goToPa(event.currentTarget.selectedItem.Site_ID);" 
