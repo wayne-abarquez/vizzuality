@@ -103,7 +103,7 @@
 				buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState='';SWFAddress.setValue(AppStates.COUNTRIES);">
 			</mx:Button>
 		</mx:Canvas>
-		<mx:Label text="NAVIGATE THROW" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
+		<mx:Label text="NAVIGATE" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 		<ns1:WorldCoverage horizontalCenter="0" top="54" id="worldcoverage1"/>
 		<mx:RadioButton x="10" y="126" label="by country coverage" id="radiobutton2" click="MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_COVERAGE])" selected="true"/>
 		<mx:RadioButton x="10" y="145" label="by number of areas" id="radiobutton1" click="MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_AREAS])"/>
