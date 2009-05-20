@@ -1,6 +1,6 @@
 body{
 	background: #f0f0f0;
-	background-image: url(../img/bkg1.jpg);
+	background-image: url(../img/bkg0.jpg);
 	background-repeat: repeat-x;
 	background-position: center top;
 }
@@ -10,13 +10,19 @@ div.header{
 }
 
 div.logoContainer{
-	height: 95px;
+	background-image: url(../img/logo.jpg);
+	background-position-y: -15px;
+	background-repeat: no-repeat;
+	height: 87px;
 	margin-top: 15px;
 }
 
 div.widgetContainer{
 	background-image: url(../img/bkgWidget.jpg);
-	padding: 5px;
+	background-repeat: no-repeat;
+	padding-top: 12px;
+	padding-left: 8px;
+	padding-right: 8px;
 	width: 940px;
 }
 

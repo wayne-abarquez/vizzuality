@@ -292,16 +292,15 @@
 					
 				} else {
 					SWFAddress.setValue(AppStates.COUNTRIES+"/"+AppStates.ABOUT);
-					
 				}
 			}	
 
 			public function expandWidget():void {
-				navigateToURL(new URLRequest("javascript:setHeight(570);"),'_self');		
+				navigateToURL(new URLRequest("javascript:expandHeight();"),'_self');		
 				currentState='timeline';		
 			}	
 			public function contractWidget():void {
-				navigateToURL(new URLRequest("javascript:setHeight(447);"),'_self');				
+				navigateToURL(new URLRequest("javascript:contractHeight();"),'_self');				
 				currentState='';		
 			}	
 				
