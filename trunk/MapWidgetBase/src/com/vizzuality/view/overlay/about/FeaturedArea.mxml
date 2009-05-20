@@ -28,7 +28,7 @@
 	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".2" color="#000000" quality="2" />
 	
 	<mx:Image source="{imageSource}" width="113" height="60" horizontalCenter="-1" top="4" />
-	<mx:Text id="txt" text="{labelText}" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-2" selectable="false" left="3" right="3" height="26" y="66"/>
+	<mx:Text id="txt" text="{labelText}" fontFamily="DINOT-Medium" color="#5A5A5A" leading="-3" selectable="false" left="3" height="27" y="65" width="116"/>
 	<mx:Canvas id="overCanvas" height="60" backgroundSize="100%" styleName="featuredAreaOver" left="4" right="5" top="4" alpha="0" />
 	
 </mx:Canvas>
