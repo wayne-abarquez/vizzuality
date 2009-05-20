@@ -62,7 +62,11 @@ div.title{
 
 div.new{
 	height: 100%;
-	width: 25%;
+ 	width: 33%;
+}
+
+.new.soft{
+	width: 34%;
 }
 
 div.biggest{
