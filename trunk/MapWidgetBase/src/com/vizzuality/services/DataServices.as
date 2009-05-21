@@ -164,7 +164,7 @@ package com.vizzuality.services
 				selectedPA.designation = res.Designation;
 			}
 			if(res['Convention']!=null) {
-				selectedPA.designation = res.Convention;
+				selectedPA.convention = res.Convention;
 			}
 			if(res['TotalArea']!=null) {
 				selectedPA.has = res.TotalArea;
