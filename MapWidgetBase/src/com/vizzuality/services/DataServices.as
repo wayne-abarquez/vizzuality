@@ -260,7 +260,7 @@ package com.vizzuality.services
 				selectedCountry.coveragePercentage = reso.TerrestrialCoveragePercentage + reso.MarineCoveragePercentage;
 				selectedCountry.marineCoveragePercentage = reso.MarineCoveragePercentage;
 				selectedCountry.terrestrialCoveragePercentage = reso.TerrestrialCoveragePercentage;
-				selectedCountry.numAreas = reso.PATotal;
+				selectedCountry.numAreas = reso.PAMarineBothTotal;
 				selectedCountry.terrestrialNumAreas = reso.PATerrestrialTotal;
 				selectedCountry.marineNumAreas = reso.PAMarineTotal;
 				var geom:String = reso.Geometry;
