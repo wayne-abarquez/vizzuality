@@ -193,7 +193,7 @@
 	 		
 			positionMarker = new Marker(pm.point,options);
 			map.addOverlay(positionMarker);
-			map.setCenter(pm.point,16);
+			map.setCenter(pm.point,17);
 			
 		}
 		
