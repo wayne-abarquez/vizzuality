@@ -150,6 +150,7 @@ package com.vizzuality.services
 		private function onGetPaDataResult(event:ResultEvent):void {			
 
 			var res:Object=event.result[0]['PAData'][0];
+			var sourceData:Object=event.result[0]['SourceData'][0];
 			var epolygons:Array = event.result[0]['epolygons'] as Array;
 			selectedPA = new PA();
 			//Mandatory
@@ -185,6 +186,18 @@ package com.vizzuality.services
 			}
 			if(res['SiteType']!=null) {
 				selectedPA.siteType = res.SiteType;
+			}
+			if(sourceData['OriginalFormat']!=null) {
+				selectedPA.sourceOriginalFormat = sourceData.OriginalFormat;
+			}
+			if(sourceData['Responsible_Party']!=null) {
+				selectedPA.sourceResponsibleParty = sourceData['Responsible_Party'];
+			}
+			if(sourceData['Title']!=null) {
+				selectedPA.sourceTitle = sourceData['Title'];
+			}
+			if(sourceData['Year_']!=null) {
+				selectedPA.sourceYear = sourceData['Year_'];
 			}
 			
 			if (selectedPA.geomType=="polygon") {
