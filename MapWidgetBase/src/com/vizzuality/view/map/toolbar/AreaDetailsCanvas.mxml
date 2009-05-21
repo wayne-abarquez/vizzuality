@@ -87,7 +87,7 @@
 			private var pic3:String;
 			private var pic4:String;
 			private function init():void {
-				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,function(event:DataServiceEvent):void {
+/* 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADED,function(event:DataServiceEvent):void {
 					trace(MediaServices.gi().pictures.length);
 					if (MediaServices.gi().pictures.length>0 &&
 					(MediaServices.gi().pictures.getItemAt(0) as ImageData).id != image1.picId) {
@@ -110,7 +110,7 @@
 						image4.pic = (MediaServices.gi().pictures.getItemAt(3) as ImageData).imageUrl;
 					}
 					
-				});	
+				});	 */
 				
 				var ctlo:CustomTileLayerOverlay = MapController.gi().createTileLayer(WdpaLayer.GBIF_DATA);
 				gbifMap.addOverlay(ctlo);
@@ -147,12 +147,32 @@
 		<mx:Label y="25" text="{'location: '+DataServices.gi().selectedPA.getCenter().lng().toFixed(3) + ' , '+DataServices.gi().selectedPA.getCenter().lat().toFixed(3)}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
 		<mx:Label y="40" text="{'total area (ha): ' +nf.format(DataServices.gi().selectedPA.totalArea.toFixed(2))}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="5" right="102" id="label4"/>
 	</mx:Canvas>
-	<mx:HBox id="picContainer" verticalGap="0" horizontalGap="0" top="116" x="15">
+<!--	<mx:HBox id="picContainer" verticalGap="0" horizontalGap="0" top="116" x="15">
 		<mediabrowser:PicItemRenderer id="image1" />
 		<mediabrowser:PicItemRenderer id="image2" />
 		<mediabrowser:PicItemRenderer id="image3" />
 		<mediabrowser:PicItemRenderer id="image4" />
-	</mx:HBox>
+	</mx:HBox>-->
+	<mx:VBox top="116" x="15" verticalGap="-5" >
+		<mx:HBox horizontalGap="-3" id="hbox61" includeInLayout="{DataServices.gi().selectedPA.sourceTitle!=null}" visible="{DataServices.gi().selectedPA.sourceTitle!=null}">
+			<mx:Label text="Title" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.sourceTitle}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+		</mx:HBox>		
+		<mx:HBox horizontalGap="-3" id="hbox62" includeInLayout="{DataServices.gi().selectedPA.sourceResponsibleParty!=null}" visible="{DataServices.gi().selectedPA.sourceResponsibleParty!=null}">
+			<mx:Label text="Responsible party" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.sourceResponsibleParty}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+		</mx:HBox>		
+		<mx:HBox horizontalGap="-3" id="hbox63" includeInLayout="{DataServices.gi().selectedPA.sourceYear!=null}" visible="{DataServices.gi().selectedPA.sourceYear!=null}">
+			<mx:Label text="Year" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.sourceYear}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+		</mx:HBox>		
+		<mx:HBox horizontalGap="-3" id="hbox64" includeInLayout="{DataServices.gi().selectedPA.sourceOriginalFormat!=null}" visible="{DataServices.gi().selectedPA.sourceOriginalFormat!=null}">
+			<mx:Label text="Original format" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.sourceOriginalFormat}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+		</mx:HBox>		
+	</mx:VBox>
+	
+	
 	<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315">
 		<maps:Map id="gbifMap" key="{Application.application.parameters.gmap_key}" width="100%" height="100%" /> 
 	</mx:Canvas>

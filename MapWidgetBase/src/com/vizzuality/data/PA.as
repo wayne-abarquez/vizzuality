@@ -31,6 +31,15 @@ package com.vizzuality.data
 		public var status:String;
 		public var siteType:String;
 		
+		//Source data. This will be eventually an ArrayCollection. For the moment
+		//there is only one source of data.
+		public var sourceOriginalFormat:String;
+		public var sourceResponsibleParty:String;
+		public var sourceTitle:String;
+		public var sourceYear:String;
+		
+		
+		
 		//The geometry of the PA could be a POLYGON or a POINT	
 		public var geometry:MultiPolygon = new MultiPolygon();
 		
