@@ -62,14 +62,10 @@
 			<mx:AddChild position="lastChild">
 				<mx:Canvas width="529" height="139" styleName="softBlueContainer" verticalCenter="86" horizontalCenter="-147">
 					<mx:Text text="WHERE TO START?" color="#375381" fontFamily="DINOT-Bold" fontSize="14" top="6" left="9"/>
-					<ns1:FeaturedArea imageSource="assets/feature1.jpg" labelText="BACALAR CHICO MARINE RESERVE" x="10" y="33" click="AppStates.gi().goToPa('99651')">
-					</ns1:FeaturedArea>
-					<ns1:FeaturedArea imageSource="assets/feature2.jpg" labelText="PEMBA CHANNEL CONSERVATION AREA" x="138" y="33" click="AppStates.gi().goToPa('352710')">
-					</ns1:FeaturedArea>
-					<ns1:FeaturedArea imageSource="assets/galapagos.jpg" labelText="GALAPAGOS ISLANDS" x="266" y="33" click="AppStates.gi().goToPa('191')">
-					</ns1:FeaturedArea>
-					<ns1:FeaturedExplore x="394" y="33">
-					</ns1:FeaturedExplore>
+					<ns1:FeaturedArea imageSource="assets/feature1.jpg" labelText="BACALAR CHICO MARINE RESERVE" x="10" y="33" click="AppStates.gi().goToPa('99651')" />
+					<ns1:FeaturedArea imageSource="assets/feature2.jpg" labelText="PEMBA CHANNEL CONSERVATION AREA" x="138" y="33" click="AppStates.gi().goToPa('352710')" />
+					<ns1:FeaturedArea imageSource="assets/galapagos.jpg" labelText="GALAPAGOS ISLANDS" x="266" y="33" click="AppStates.gi().goToPa('191')" />
+					<ns1:FeaturedExplore x="394" y="33" />
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
