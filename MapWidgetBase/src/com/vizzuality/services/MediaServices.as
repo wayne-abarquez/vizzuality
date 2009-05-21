@@ -81,7 +81,7 @@ package com.vizzuality.services
 		{
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
 			
-			panoramioServ.url="http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=10&size=mini_square";
+			panoramioServ.url="http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=5&size=mini_square";
 			flickrServ.url="http://api.flickr.com/services/rest/?method=flickr.photos.search&format=json" + 
 					"&api_key=35479722da32ce91e47ae1147c41cfd9&content_type=1&nojsoncallback=1" + 
 					"&extras=icon_server,geo,owner_name"+

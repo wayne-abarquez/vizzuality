@@ -163,6 +163,9 @@ package com.vizzuality.services
 			if(res['Designation']!=null) {
 				selectedPA.designation = res.Designation;
 			}
+			if(res['Convention']!=null) {
+				selectedPA.designation = res.Convention;
+			}
 			if(res['TotalArea']!=null) {
 				selectedPA.has = res.TotalArea;
 				selectedPA.totalArea = res.TotalArea;
@@ -179,9 +182,6 @@ package com.vizzuality.services
 			}
 			if(res['SiteGovernance']!=null) {
 				selectedPA.siteGovernance = res.SiteGovernance;
-			}
-			if(res['Designation']!=null) {
-				selectedPA.designation = res.Designation;
 			}
 			if(res['SiteType']!=null) {
 				selectedPA.siteType = res.SiteType;

@@ -21,6 +21,7 @@ package com.vizzuality.data
 		
 		//Non mandatory
 		public var designation:String;
+		public var convention:String;
 		public var has:Number;
 		public var totalArea:Number;
 		public var currentStatus:String;
