@@ -347,7 +347,6 @@
 				case Keyboard.DOWN: handleDownPress(event.shiftKey); break;
 				case Keyboard.LEFT: handleLeftPress(event.shiftKey); break;
 				case Keyboard.RIGHT:handleRightPress(event.shiftKey); break;
-				//case Keyboard.TAB:  handleTabPress(event); break;
 				case Keyboard.SPACE:handleSpace(); break;
 				
 			}
@@ -901,7 +900,7 @@
 		
 		override public function set width(value:Number):void
 		{
-			//trace("W" + value);
+			trace("W" + value);
 			if (this.isResizingRight) {
 				if ( (this.x+value)<parentWidth) {
 					if ((value % this.monthWidth > this.monthWidth/2)) {				
@@ -923,7 +922,7 @@
 		
 		override public function set x(value:Number):void
 		{
-			//trace("X" + value);
+			trace("X" + value);
 			 if (value<0) {
 				super.x = 0;
 			} else {
