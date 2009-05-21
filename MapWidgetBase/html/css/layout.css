@@ -43,7 +43,7 @@ div.tools{
 
 div.biggestContainer{
 	background-color: white;
-	height: 156px;
+	height: 146px;
 }
 
 div.biggests{
@@ -72,7 +72,7 @@ div.new{
 div.biggest{
 	margin-top: 1px;
 	width: 100%;
-	height: 112px;
+	height: 102px;
 }
 
 img.imgBiggest{
@@ -95,7 +95,7 @@ div.minus10{
 
 div.footerContainer{
 /* 	background-color: #8192ad; */
-	height: 30px;
+	height: 60px;
 	color: #666666;
 	font-size: 11px;
 	padding-top: 20px;
@@ -155,5 +155,6 @@ ul.menu li.active {
 }
 
 .footerLogos{
+	height: 60px;
 	float: right;
 }
