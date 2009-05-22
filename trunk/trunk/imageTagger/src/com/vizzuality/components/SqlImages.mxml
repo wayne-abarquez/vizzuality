@@ -255,6 +255,6 @@
 			</mx:HBox>	
 		</mx:HBox>
 		<mx:TileList selectionColor="#4a4a4a" selectionDisabledColor="#4a4a4a" rollOverColor="#4a4a4a" id="tilelist"  dataProvider="{sqlArray}"
-		itemRenderer="com.vizzuality.components.PhotoRenderer" borderThickness="1" width="100%" height="94%" borderColor="#A7ABAE" backgroundColor="#4A4A4A" alpha="1.0" themeColor="#4A4A4A"/>			
+		itemRenderer="com.vizzuality.components.ImageRenderer" borderThickness="1" width="100%" height="94%" borderColor="#A7ABAE" backgroundColor="#4A4A4A" alpha="1.0" themeColor="#4A4A4A"/>			
 	</mx:VBox>
 </mx:Canvas>
