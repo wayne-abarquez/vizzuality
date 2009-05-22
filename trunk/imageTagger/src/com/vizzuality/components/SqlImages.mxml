@@ -22,7 +22,6 @@
 			import mx.controls.Image;
 			import mx.controls.TileList;
 			import mx.collections.ArrayCollection;
-			import com.vizzuality.components.PhotoRenderer;
 			import com.vizzuality.dao.DataAccessObject;
 			import flash.filesystem.File;
 			import flash.net.FileFilter;
