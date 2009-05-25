@@ -26,7 +26,15 @@
 					"entry.2.single":"miemail",
 					"entry.3.single":"tlf",
 					"entry.4.single":"calle",
-					"entry.5.single":"28931"
+					"entry.5.single":"28931",
+					
+					
+					"emailToName":"Javier de la Torre",
+					//si esta direccion no es puesta no se enviara el email.
+					"emailToEmail":"jatorre@gmail.com",
+					"emailBody":"Cuerpo del mensaje",
+					"emailSender":"jatorre@gmail.com",
+					"emailSubject":"Mensaje de prueba"
 				};
 				
 				srv.send(params);
