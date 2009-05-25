@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.mxml.HTTPService;
+			private function init():void {
+				var srv:HTTPService = new HTTPService();
+				srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
+				srv.method = "POST";
+				srv.resultFormat = "text";
+				srv.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void {
+					trace(ev.result);
+				});
+				srv.addEventListener(FaultEvent.FAULT,function(ev:FaultEvent):void {
+					trace(ev.fault);
+				});
+				
+				var params:Object = {
+					"formkey":"ckZ3MXlBMFNVM0xtTmF1NDFlT3NMTWc6MA..",
+					"theme": "0AX42CRMsmRFbUy1kN2NjY2Y0Mi1iYWFmLTQxMWMtYjM0NC04NmZmYTIwZDRkMGQ",
+					"entry.0.single":"Javi",
+					"entry.1.single":"1",
+					"entry.2.single":"miemail",
+					"entry.3.single":"tlf",
+					"entry.4.single":"calle",
+					"entry.5.single":"28931"
+				};
+				
+				srv.send(params);
+				
+			}
+		]]>
+	</mx:Script>
+</mx:Application>
