@@ -19,7 +19,7 @@ public class CustomIconSprite extends Sprite {
 		      addChild(new red());
       		break;
       	case "2":
-		      addChild(new green());
+ 		      addChild(new green());
       		break;
       	case "3":
 		      addChild(new grey());
