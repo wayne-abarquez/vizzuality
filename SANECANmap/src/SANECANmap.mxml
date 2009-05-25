@@ -141,7 +141,6 @@
 			      item[properties[sub]] = value;
 			      sanecans.push( item );
 			      
-			      trace(item["latitude"] +","+item["longitude"]);
 			      //create markers
 			      var latlng:LatLng=new LatLng(item["latitude"],item["longitude"]);
 				  var options:MarkerOptions = new MarkerOptions({
@@ -254,6 +253,6 @@
 		<mx:Label text="tiendas y clínicas mas cercanas a tí" fontSize="22" fontFamily="DINOT-Bold" id="label1" color="#FF9900"/>
 	</mx:HBox>
 	<mx:HRule x="0" strokeWidth="1" strokeColor="#C0E7F0" width="100%" top="0"/>
-<!--	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTJgdjRiA1iEZLNaLDwBpXQC8fT5xQjnAIzzs7GWWt3bGiUN4mI-fpuBg" 
+<!--	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRSui_TM3dx1Xffr0c1tcoZScRSfIRSMhmiIWn7Ae8_4g_NWAxgwpf0yAg" 
 		mapevent_mapready="onMapReady(event)"/>	-->
 </mx:Application>
