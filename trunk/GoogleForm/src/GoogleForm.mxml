@@ -49,7 +49,7 @@
 			private function emailValidator_valid(evt:ValidationResultEvent):void {
                 if (petsInput.text != "" && nameInput.text!="" && streetInput.text!="" && phoneInput.text!="" && postalInput.text!="") {
 	                errorText.text="";
-	                sendForm();
+	                //sendForm();
                 } else {
                 	errorText.text="Existen campos vacios.";
                 }
@@ -82,7 +82,10 @@
     />
     
 	
-	<mx:Canvas id="background" width="724" height="188" backgroundColor="#EAF7FA">
+	<mx:Canvas id="background" width="724" height="188" backgroundColor="#EAF7FA" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Canvas x="0" y="156" width="724" height="32" backgroundColor="#d9f0f6"/>
+		<mx:Canvas x="579" y="138" width="160" height="67" backgroundColor="#D9F0F6" borderStyle="solid" cornerRadius="5" borderThickness="0"/>
+		
 		<mx:Text x="10" y="10" text="Pide tus bolsitas&#xd;&#xd;" width="155" fontFamily="DINOT-Bold" fontSize="20" height="25" color="#346376"/>
 		<mx:HBox right="10" left="10" y="43">
 			<mx:VBox verticalGap="-1">
@@ -117,9 +120,9 @@
 					fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1"/>
 			</mx:VBox>
 		</mx:HBox>
-		<mx:Button id="sendFormButton" label="Realizar Pedido" right="10" bottom="10" height="31" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" fontSize="11" click="validation(event)"/>
+		<mx:Button id="sendFormButton" label="Realizar Pedido" right="7" bottom="8" height="31" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" fontSize="11" click="validation(event)"/>
 		<mx:Text x="163" y="10" text="a domicilio&#xd;" height="25" color="#FF9900" fontFamily="DINOT-Bold" fontSize="20"/>
-		<mx:Text id="errorText" x="10" y="152" width="569" height="26" color="#F53D3D" fontFamily="DINOT-Medium" fontSize="13" paddingLeft="5" paddingTop="2"/>
+		<mx:Text id="errorText" x="10" y="156" width="569" height="26" color="#F53D3D" fontFamily="DINOT-Medium" fontSize="13" paddingLeft="5" paddingTop="2"/>		
 	</mx:Canvas>
 	
 </mx:Application>
