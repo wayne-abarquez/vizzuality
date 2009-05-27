@@ -290,7 +290,7 @@
 						
 					}
 					
-				} else {
+				} else { 
 					SWFAddress.setValue(AppStates.COUNTRIES+"/"+AppStates.ABOUT);
 				}
 			}	
