@@ -82,7 +82,7 @@
 			}					
 			
 			private function handleSWFAddress(event:SWFAddressEvent):void {
-				tracker.trackPageview(event.path);
+				gaTracker.trackPageview(event.path);
 				if(event.pathNames.length>0) {
 					//we set the top state
 					AppStates.gi().topState = event.pathNames[0];
