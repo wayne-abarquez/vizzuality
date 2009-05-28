@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="570" height="346" 
+	horizontalCenter="0" verticalCenter="0" backgroundColor="#FFFFFF" borderStyle="solid" 
+	borderColor="#FFFFFF" cornerRadius="6" verticalScrollPolicy="off" horizontalScrollPolicy="off" filters="{[glowGrey]}" xmlns:toolbar="com.vizzuality.view.map.toolbar.*">
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.view.AppStates;
+		]]>
+	</mx:Script>
+	<mx:Button top="0" right="20" styleName="closeButton" width="55" height="17"
+		useHandCursor="true" buttonMode="true" mouseChildren="false" click="AppStates.gi().topState=''"/>
+	<mx:Text x="19" y="20" text="Explore the" fontFamily="DINOT-Medium" fontSize="18" color="#666666"/>
+	<mx:Text y="82" text="The number of migratory animals can only be estimated at present (likely between 5,000 and 10,000 species). To help eliminate this deficit, the UNEP/CMS Secretariat initiated the development of a database in 1997. The Federal Environment Ministry embraced this idea and financed the GROMS project from 1998 - 2002, scientifically supported by the German Federal Agency for Nature Conservation, and in co-operation with the Zoological Research Museum Alexander Koenig in Bonn." fontFamily="DINOT-Medium" fontSize="14" color="#666666" left="19" width="519" leading="-1" height="79"/>
+	<mx:Text x="19" y="40" text="GLOBAL REGISTRY OF MIGRATORY SPECIES&#xd;" fontFamily="DINOT-Bold" fontSize="27" color="#88B54F" letterSpacing="-1"/>
+	<mx:Canvas height="107" left="-10" right="-10" styleName="bkgAboutGradient" backgroundSize="100%" bottom="-10">
+		<mx:Canvas x="27" y="25" width="365" height="6" styleName="fakeShadow" backgroundSize="100%" alpha="0.3">
+		</mx:Canvas>
+		<mx:Canvas y="25" width="160" height="6" styleName="fakeShadow" backgroundSize="100%" alpha="0.3" x="397">
+		</mx:Canvas>
+		<mx:Text x="188" y="44" text="or search directly&#xd;" fontFamily="DINOT-Medium" fontSize="14" color="#666666"/>
+		<mx:Button x="377" y="68" label="e.g.ursus maritimus" styleName="invisibleButton" textDecoration="underline"/>
+	</mx:Canvas>
+	<mx:HBox x="21" y="171" horizontalGap="2">
+		<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+		</mx:Canvas>
+		<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+		</mx:Canvas>
+		<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+		</mx:Canvas>
+		<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+		</mx:Canvas>
+		<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
+		</mx:Canvas>
+	</mx:HBox>
+	<mx:Text x="29" y="160" text="01679" fontSize="80" color="#6b6b6b" fontFamily="DINOT-Bold" letterSpacing="29"/>
+	<mx:Text x="30" y="161" text="01679" fontSize="80" color="#FFFFFF" fontFamily="DINOT-Bold" letterSpacing="29"/>
+	<mx:Text x="387" y="169" text="DIFERENT SPECIES MIGRATORY  DISTRIBUTIONS" fontFamily="DINOT-Bold" fontSize="16" color="#666666" width="155" leading="-4"/>
+	<mx:Button x="389" y="233" label="LET'S EXPLORE" styleName="btnOrange" width="158"
+		useHandCursor="true" buttonMode="true" mouseChildren="false" fontFamily="DINOT-Bold"/>
+	<toolbar:SearchComponent bottom="26" listPosition="up" right="20"/>
+	
+		<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
+	
+	
+</mx:Canvas>
+

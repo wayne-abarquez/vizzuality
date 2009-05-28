@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" horizontalScrollPolicy="off" xmlns:comp = "com.vizzuality.view.timeline.components" 
+	xmlns:components="com.vizzuality.view.timeline.components.*">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+
+			[Bindable]
+			public var labelProvider: ArrayCollection = new ArrayCollection();
+			
+			
+		]]> 
+	</mx:Script> 
+	<mx:Label id="title" text="Data Timeline" color="#8F8F8F" fontFamily="DINOT-Medium" fontSize="16" x="18" y="4"/>
+	<mx:VBox width="100%" height="100%" x="0" y="34" verticalScrollPolicy="off" verticalGap="1">
+		<mx:Repeater id="myRepeater" dataProvider="{labelProvider}">
+			<components:TimelineLabelRenderer taxon="{myRepeater.currentItem.name}" identity="{myRepeater.currentItem.id}"/>	
+		</mx:Repeater>			
+	</mx:VBox>
+	<mx:Image left="8" right="8" scaleContent="false" top="33">
+		<mx:source>@Embed('/com/vizzuality/style/assets/hRuleDashed500.png')</mx:source>
+	</mx:Image>
+	
+</mx:Canvas>

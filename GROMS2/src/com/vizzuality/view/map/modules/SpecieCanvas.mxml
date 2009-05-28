@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="226" backgroundColor="#FFFFFF" backgroundAlpha="1.0" 
+	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="6">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:RemoveChild target="{areaTitle}"/>
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:RemoveChild target="{vbox4}"/>
+			<mx:AddChild position="lastChild">
+				<ns1:GenericLoader left="0" right="0" top="0">
+				</ns1:GenericLoader>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import com.vizzuality.data.WdpaLayer;
+		import com.vizzuality.view.map.MapController;
+		import com.vizzuality.services.DataServiceEvent;
+		import mx.binding.utils.BindingUtils;
+		import com.vizzuality.view.AppStates;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import com.vizzuality.services.DataServices;
+		
+		
+		private function onDataLoaded(event:DataServiceEvent):void {
+			currentState='';
+		}
+		
+		private function onWikipediasLoaded(event:DataServiceEvent):void {
+			
+		}
+		
+		
+		
+	]]>
+</mx:Script>
+
+	<mx:GlowFilter id="glowGrey" blurX="10" blurY="10" alpha=".2" color="#000000" quality="2" />
+	
+	<mx:VBox verticalGap="0" horizontalAlign="center" left="9" right="9" top="15" id="vbox4" bottom="15">
+		<mx:HBox width="100%" horizontalGap="2" verticalAlign="middle" paddingBottom="-2">
+			<mx:Label text="Mammalia" fontFamily="DINOT-Medium" fontSize="12" color="#666666"/>
+			<mx:Image source="@Embed('/com/vizzuality/style/assets/smallArrow.png')" />
+			<mx:Label text="Terrestial Mammals" fontFamily="DINOT-Medium" fontSize="12" color="#666666"/>
+		</mx:HBox>
+		<mx:Canvas width="100%" id="canvas1">
+			<mx:Text text="PUMA CONCOLOR" id="areaTitle" color="#88B54F" fontFamily="DINOT-Bold" fontSize="22" letterSpacing="-1" left="4" top="-1" width="197" leading="-4" paddingTop="-8" paddingLeft="-5"/>
+		</mx:Canvas>
+		<mx:Canvas width="100%" height="30">
+			<mx:ComboBox prompt="[es] Puma comun" styleName="lenguageDark" fontFamily="DINOT-Medium" fontSize="12" color="#666666" height="18" width="100%" fontWeight="normal"/>
+		</mx:Canvas>
+		<mx:Canvas height="110" width="100%" backgroundColor="#E4EEDA">
+			<mx:Canvas height="2" width="100%" backgroundColor="#8db857" top="0">
+			</mx:Canvas>
+			<mx:HBox y="5" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
+				<mx:Label text="map by:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
+				<mx:Label text="Ridway, Harrison, 1898" color="#333333" fontFamily="DINOT-Bold" fontSize="12"/>
+			</mx:HBox>
+			<mx:HBox y="23" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
+				<mx:Label text="migration Type:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
+				<mx:Label text="Range Extension" color="#333333" fontFamily="DINOT-Bold" fontSize="12"/>
+			</mx:HBox>
+			<mx:HBox y="49" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
+				<mx:Label text="CMS:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
+				<mx:Label text="App I &amp; II" color="#333333" fontFamily="DINOT-Bold" fontSize="12"/>
+			</mx:HBox>
+			<mx:HBox y="66" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
+				<mx:Label text="Red List 2000:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
+				<mx:Label text="CR" color="#333333" fontFamily="DINOT-Bold" fontSize="12"/>
+			</mx:HBox>
+			<mx:HBox y="83" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
+				<mx:Label text="CITES:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
+				<mx:Label text="I" color="#333333" fontFamily="DINOT-Bold" fontSize="12"/>
+			</mx:HBox>
+		</mx:Canvas>
+		<mx:Canvas height="63" width="100%" backgroundColor="#C3DAA9">
+			<mx:HBox x="10" y="10" width="100%" horizontalGap="2">
+				<mx:Canvas width="45" height="45" backgroundColor="#FFFFFF">
+				</mx:Canvas>
+				<mx:Canvas width="45" height="45" backgroundColor="#FFFFFF">
+				</mx:Canvas>
+				<mx:Canvas width="45" height="45" backgroundColor="#FFFFFF">
+				</mx:Canvas>
+				<mx:Canvas width="45" height="45" backgroundColor="#FFFFFF">
+				</mx:Canvas>
+			</mx:HBox>
+		</mx:Canvas>
+	</mx:VBox>
+	
+</mx:Canvas>

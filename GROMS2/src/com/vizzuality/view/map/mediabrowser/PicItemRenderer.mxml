@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="74" height="55" buttonMode="true"
+	rollOver="handleOver(event)" rollOut="handleOut(event)" click="MapController.gi().onPicClick(picId)"
+	backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.view.map.MapController;
+			import gs.TweenLite;
+			
+			public var picId:String;
+			
+			[Bindable] public var pic:String; 
+			
+			private function handleOver(e:MouseEvent):void{
+				TweenLite.to(overBorder,0.5,{alpha: 1});			
+			}
+			
+			private function handleOut(e:MouseEvent):void{
+				TweenLite.to(overBorder,0.5,{alpha: 0});			
+			}
+			
+		]]>
+	</mx:Script>
+	
+		<mx:Image source="{pic}" verticalCenter="0" horizontalCenter="0" scaleContent="false" width="75" height="75"/>
+		<mx:Image source="@Embed('/com/vizzuality/style/assets/pic_whiteBorder.png')"/>
+		<mx:Image id="overBorder" source="@Embed('/com/vizzuality/style/assets/pic_blueBorder.png')" alpha="0"/>
+		
+</mx:Canvas>
