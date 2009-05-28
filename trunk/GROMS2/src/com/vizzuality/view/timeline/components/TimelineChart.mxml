@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" 
+	verticalScrollPolicy="off" horizontalScrollPolicy="off" borderStyle="solid" borderThickness="1" borderColor="#d3d3d3" backgroundColor="#fefefe">
+		
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Image;
+			import mx.controls.VRule;
+			import mx.controls.Label;
+			import mx.controls.Text;
+			import mx.collections.ArrayCollection;
+			import mx.core.Application;
+			
+			private var monthProvider: ArrayCollection = new ArrayCollection();
+			private var _caNew: Canvas;
+			private var _chartNew: Canvas;
+			private var _status: Label;
+			private var _verLine: Image;
+			
+			[Bindable] public var monthWidth:Number;
+			
+			[Bindable]public var visible1: Boolean = true;
+			[Bindable]public var visible2: Boolean = true;
+			[Bindable]public var visible3: Boolean = true;
+			
+			[Embed(source="/com/vizzuality/style/assets/vRuleDashed500.png")]
+			[Bindable]
+			public var vLine:Class;
+			
+			override public function set data(obj: Object):void {
+				this.removeAllChildren();
+				for (var z:int=1;z<12;z++) {	
+					_verLine = new Image();
+					_verLine.source = vLine;
+					_verLine.scaleContent = false;
+					_verLine.x = (monthWidth)*z;
+					_verLine.height=this.height;
+					this.addChild(_verLine); 
+				}
+				
+				monthProvider = obj as ArrayCollection;
+				if (monthProvider != null) {
+					for (var j:int=0;j<monthProvider.length;j++) {	
+						_chartNew = new Canvas();
+						
+						if (j==0) {
+							_chartNew.y = 14;
+							if (!visible1) _chartNew.alpha=0.3;
+						} else {
+							_chartNew.y = 14 + (16*j)+(10*j);
+							if (j==1) {
+								if (!visible2) _chartNew.alpha=0.3;								
+							} else {
+								if (!visible3) _chartNew.alpha=0.3;
+							}
+						}
+												
+						for(var i:int=0;i<((monthProvider[j].chart).length);i++) {
+						    _caNew = new Canvas();
+						    _caNew.x = ((monthProvider[j].chart)[i].monthStart)*(monthWidth);
+						    _caNew.width = ((monthProvider[j].chart)[i].monthEnd - (monthProvider[j].chart)[i].monthStart)*(monthWidth);    
+						    _caNew.height = 16;
+						    _caNew.styleName = ((monthProvider[j].chart)[i].style) as String;
+						    /* _caNew.styleName = "s21"; */
+						    _caNew.setStyle("backgroundSize","100%");
+						    _status = new Label();
+						    _status.text = (monthProvider[j].chart)[i].status;
+						    _status.setStyle("color","#FFFFFF");
+						    _status.setStyle("fontFamily","DINOT-Medium");
+							_status.setStyle("fontSize",12);  
+							_status.setStyle("paddingTop",-3); 
+							_status.alpha = .6;							
+						    _caNew.addChild(_status);
+						    _chartNew.addChild(_caNew);
+						}
+						
+					    this.addChild(_chartNew);
+												
+					}
+				}
+			}
+		]]>
+	</mx:Script>
+	
+				
+	
+	
+</mx:Canvas>

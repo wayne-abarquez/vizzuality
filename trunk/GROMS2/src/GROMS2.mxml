@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns:header="com.vizzuality.view.header.*" xmlns:footer="com.vizzuality.view.footer.*" addedToStage="gaTracker.debug.minimizedOnStart=true;"
+	layout="absolute" backgroundGradientAlphas="[1.0, 1.0]"
+	backgroundGradientColors="[#E9F4FF, #D7E8FA]" 
+	applicationComplete="registerGlobalKeyHandler()"
+	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*" xmlns:timeline="com.vizzuality.view.timeline.*">
+	<mx:states>
+		<mx:State name="timeline">
+			<mx:AddChild relativeTo="{mainVBox}" position="lastChild">
+				<timeline:VizzualityTimeline width="100%" height="123" />
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+			import com.google.maps.overlays.PolylineOptions;
+			import com.google.maps.overlays.Polyline;
+			import com.google.maps.overlays.Marker;
+			import com.vizzuality.data.MapPosition;
+			import com.vizzuality.view.map.overlays.ToolTipOverlay;
+			import com.google.maps.InfoWindowOptions;
+			import com.google.maps.LatLng;
+			import com.vizzuality.services.DataServices;
+			import com.vizzuality.data.WdpaLayer;
+			import com.vizzuality.view.map.MapController;
+			import com.vizzuality.view.AppStates;
+			import com.google.maps.MapEvent;
+			import com.google.maps.Map;
+			import mx.effects.easing.Exponential;
+			import mx.events.ResizeEvent;
+			import mx.managers.ToolTipManager;
+			
+			public var resolvedImages:Dictionary = new Dictionary();
+			
+			
+			private function initApp():void {
+				var externalDomains:Array=[];
+				for each(var dom:String in externalDomains) {
+				    Security.allowDomain(dom);
+				    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
+				    var request:URLRequest = new URLRequest("http://"+dom+"/crossdomain.xml");
+				    var loader:URLLoader = new URLLoader();
+				    loader.load(request);				
+				}					
+				
+				//Modify Tooltip behaviour so that it show inmediately
+				ToolTipManager.showDelay = 0;
+				ToolTipManager.hideDelay = 4000;		
+				
+			}
+			
+			public function onMapReady():void {				
+
+			}
+			
+			private function registerGlobalKeyHandler() :void {
+				stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
+			}	
+			
+			private function handleKeyDown(evt:KeyboardEvent) :void {
+				if(evt.altKey && evt.keyCode == 240) {
+					if (debugArea.visible==true) {
+						debugArea.visible=false;
+					} else {
+						debugArea.visible=true;
+						
+					}
+				}
+			}					
+				
+
+			/**
+			 * Toggle between full screen and not full screen.
+			 */ 			
+			public function toggleFullScreen():void{
+	            try {
+	            	var tim:Timer;
+	                switch (Application.application.stage.displayState) {
+	                    case StageDisplayState.FULL_SCREEN:
+	                        Application.application.stage.displayState = StageDisplayState.NORMAL;
+	                        tim = new Timer(1000,1);
+			            	tim.addEventListener(TimerEvent.TIMER, function(event:TimerEvent):void {	
+			            		dispatchEvent(new Event(ResizeEvent.RESIZE));
+			            	});
+	                        break;
+	                    default:
+	                        Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
+	                        tim = new Timer(1000,1);
+			            	tim.addEventListener(TimerEvent.TIMER, function(event:TimerEvent):void {	
+			            		dispatchEvent(new Event(ResizeEvent.RESIZE));
+			            	});
+	                        
+	                        break;
+	                }
+	            } catch (err:SecurityError) {
+	                // ignore
+	                trace(err.message);
+	            }
+			}    
+			
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Style source="com/vizzuality/style/skin/ui.css"/>
+	<mx:Style source="com/vizzuality/style/skin/fonts.css"/>
+	<mx:Style source="com/vizzuality/style/skin/timeline.css"/>
+	
+	<mx:VBox id="mainVBox" width="100%" height="100%" verticalGap="0">
+		<header:Header id="header" />
+		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8"/>
+	</mx:VBox>
+	<mx:Canvas id="debugArea" visible="false" right="5" bottom="40" width="358" height="157" backgroundColor="#FFFFFF" backgroundAlpha="0.66">
+		<mx:TextArea left="5" right="5" top="10" bottom="10" backgroundAlpha="0.0" borderStyle="none" id="debuggerArea"/>
+		
+	</mx:Canvas>
+	
+ 	<components:FlexTracker id="gaTracker" account="UA-7333475-1" mode="AS3" visualDebug="false" /> 	
+ 	
+</mx:Application>

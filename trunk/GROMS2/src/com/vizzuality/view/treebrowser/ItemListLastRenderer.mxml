@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="47" xmlns:components = "com.vizzuality.components.*" backgroundColor="#FFFFFF"
+	 verticalScrollPolicy="off" horizontalScrollPolicy="off" dataChange="doEffect()" alpha="0" xmlns:treebrowser="com.vizzuality.view.treebrowser.*"
+	 styleName="{style}" backgroundSize="100%" rollOver="handleOver()" rollOut="handleOut()" >
+
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.view.AppStates;
+			import mx.effects.Tween;
+			import com.ninem.controls.TreeBrowser;
+			import gs.TweenLite;
+			import mx.binding.utils.BindingUtils;
+			import mx.collections.ArrayCollection;
+			import mx.core.Application;
+			
+			[Bindable]
+            private var taxon:String;
+     
+            private var idTaxon: Number;
+            [Bindable]
+            private var bool:Boolean;
+			[Bindable]
+            private var commonName:ArrayCollection;
+
+			public var treeBrowserParent:TreeBrowser;
+			[Bindable]
+			public var style:String;
+			
+
+			
+			private var object: Object;
+			
+			private var sel:Boolean = false;
+		
+			
+           	public override function set data(value:Object):void{
+                super.data = value;
+                if(value == null){
+                	taxon="";
+                	//this.alpha=0;
+                	flickrImg.source=null;
+                	combo.visible=false;
+                	bool=false;
+                    return;
+                }
+                if(value.name != taxon) {
+	                taxon = value.name;
+                	flickrImg.source=value.icon_url;
+                	if (value.english!=null) {
+                		commonName = new ArrayCollection();
+                		if (value.english!=null) {
+		                	commonName.addItem("[EN] " + value.english);
+		                } else {
+		                	commonName.addItem("[EN]");
+		                }
+		                if (value.english!=null) {
+		                	commonName.addItem("[ES] " + value.spanish);
+		                } else {
+		                	commonName.addItem("[ES]");
+		                }
+		                if (value.english!=null) {
+		                	commonName.addItem("[DE] " + value.german);
+		                } else {
+		                	commonName.addItem("[DE]");
+		                }
+		                if (value.english!=null) {
+		                	commonName.addItem("[FR] " + value.french);
+		                } else {
+		                	commonName.addItem("[FR]");
+		                }
+		                combo.dataProvider=commonName;
+		                combo.visible = true;
+                		BindingUtils.bindProperty(combo, "selectedIndex", treeBrowserParent,"comboDefault");
+                	} else {
+                		combo.visible = false;
+                	}
+	                bool = value.has_children;
+	                idTaxon= value.id;
+                }
+                this.alpha=0;
+            }
+
+            private function doEffect():void{
+            	TweenLite.to(this,1,{alpha:1});	 
+            }
+            private function changeCombo(ev: Event):void {
+            	treeBrowserParent.comboDefault = ev.target.selectedIndex;
+            }
+            
+            private function handleOver():void{
+            	if(!sel){
+            		TweenLite.to(canvasOver,.3,{alpha:1});
+            		TweenLite.to(viewButton,.3,{alpha:1});
+            	}	
+            }
+            
+            private function handleOut():void{
+            	if(!sel){
+            		TweenLite.to(canvasOver,.3,{alpha:0});
+            		TweenLite.to(viewButton,.3,{alpha:0});
+            	}	
+            }
+            
+            public function setSelected():void{
+            	sel = true;
+            	canvasOver.alpha = 1;
+            }
+
+            public function setUnselected():void{
+            	sel = false;
+            	canvasOver.alpha = 0;
+            }
+
+            
+		]]>
+	</mx:Script>
+	<mx:Canvas id="canvasOver" width="100%" height="100%" styleName="itemOver" alpha="0" backgroundSize="100%"/>
+    <mx:Text text="{taxon}" selectable="false" textAlign="left" left="49" fontSize="14" width="165" fontFamily="DINOT-Bold" color="#FFFFFF" leading="-4" letterSpacing="-1" top="2"/>
+    <mx:ComboBox id="combo" textAlign="left" verticalCenter="9" left="49" fontSize="12" fontStyle="DINOT-Bold" color="#FFFFFF" height="22" change="changeCombo(event)" fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageWhite" fontWeight="normal"/>
+    <mx:Canvas x="5" width="41" height="38" backgroundColor="#FFFFFF" verticalCenter="-2" borderStyle="none"
+    	verticalScrollPolicy="off" horizontalScrollPolicy="off">
+        <mx:Image id="flickrImg" horizontalAlign="center" verticalAlign="middle" verticalCenter="0" horizontalCenter="0"/>
+        <mx:Image source="@Embed('/com/vizzuality/style/assets/borderTreeThumb.png')"  y="0"/>
+    </mx:Canvas>
+	<mx:Button id="viewButton" right="5" verticalCenter="-1" styleName="viewSpecie" height="15" width="58" alpha="0" buttonMode="true" useHandCursor="true" mouseChildren="false" click="AppStates.gi().setAllStates(AppStates.FEATURE,idTaxon.toString())"/>    
+   
+</mx:Canvas>
