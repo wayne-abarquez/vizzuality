@@ -61,7 +61,8 @@
 						_ev.visible = false;					
 					}
 				}
-				dispatchEvent(_ev);					
+				dispatchEvent(_ev);		
+				trace(ev);			
 			}
 		]]>
 	</mx:Script>

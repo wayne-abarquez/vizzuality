@@ -31,7 +31,7 @@
 			[Bindable]public var monthWidth: Number;
 			public var statusBefore: String = "";
 			
-            [Bindable] private var timeline:ArrayCollection = DataServices.gi().selectedTaxons;
+            [Bindable] private var timeline:ArrayCollection;
             
 /* 			[Bindable] private var timeline:ArrayCollection = new ArrayCollection( [
             {id: 0003, name: "Addax nocomalucatus",chart: [{ monthStart: 0, monthEnd: 4, style:"s11",status:"breeding"},
@@ -45,6 +45,11 @@
             													{ monthStart: 10, monthEnd: 12, style:"s32",status:"all year round"}]}
             ]); */
             
+			
+			public function set dataProvider(data:ArrayCollection):void {
+				timeline=data;
+				timeChart.data=timeline;
+			}
 			
 			
 			private function onCreationComplete():void {
