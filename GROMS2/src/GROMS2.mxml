@@ -2,13 +2,13 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
 	xmlns:header="com.vizzuality.view.header.*" xmlns:footer="com.vizzuality.view.footer.*" addedToStage="gaTracker.debug.minimizedOnStart=true;"
 	layout="absolute" backgroundGradientAlphas="[1.0, 1.0]"
-	backgroundGradientColors="[#E9F4FF, #D7E8FA]" 
+	backgroundGradientColors="[#E9F4FF, #D7E8FA]"
 	applicationComplete="registerGlobalKeyHandler()"
 	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*" xmlns:timeline="com.vizzuality.view.timeline.*">
 	<mx:states>
 		<mx:State name="timeline">
 			<mx:AddChild relativeTo="{mainVBox}" position="lastChild">
-				<timeline:VizzualityTimeline width="100%" height="123" />
+				<timeline:VizzualityTimeline width="100%" height="123" id="timeLine" />
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>

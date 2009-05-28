@@ -4,6 +4,8 @@ package com.vizzuality.data
 	import com.google.maps.LatLngBounds;
 	import com.vizzuality.view.map.overlays.MultiPolygon;
 	
+	import mx.collections.ArrayCollection;
+	
 	[Bindable]
 	public class Taxon
 	{
@@ -22,7 +24,7 @@ package com.vizzuality.data
 		public var cms_link:String;
 		public var red_list:String;
 		public var cites:String;	
-		public var chart:Object;
+		public var chart:ArrayCollection;
 		
 		public var geometry:MultiPolygon = new MultiPolygon();
 		

@@ -205,7 +205,6 @@
 			super();
 			focusEnabled = true;
 			
-			
 			creationPolicy = "all";
 			mouseChildren = false;
 			mouseEnabled = true;
@@ -216,6 +215,7 @@
 			horizontalScrollPolicy = ScrollPolicy.OFF;
 			verticalScrollPolicy = ScrollPolicy.OFF;			
 			clipContent = false;
+			
 		}
 		
 		
@@ -248,9 +248,11 @@
 			addEventListener(ObjectHandleEvent.OBJECT_MOVED_EVENT,onMoveObject);
 			addEventListener(ObjectHandleEvent.OBJECT_RESIZED_EVENT,onResizeObject);
 			
-			SelectionManager.instance.addSelectable(this);
 			
 			setupKeyboardListeners();
+			
+			//we wanted selected by default.
+			dispatchEvent(new MouseEvent(MouseEvent.MOUSE_DOWN));
 		}
 		
 		protected function onMoveObject(ev: Event):void {
@@ -900,7 +902,7 @@
 		
 		override public function set width(value:Number):void
 		{
-			trace("W" + value);
+			//trace("W" + value);
 			if (this.isResizingRight) {
 				if ( (this.x+value)<parentWidth) {
 					if ((value % this.monthWidth > this.monthWidth/2)) {				
@@ -918,20 +920,30 @@
 					}
 				}
 			}	
+			
+			if((value+this.x)>parentWidth) {
+				super.width = (parentWidth-this.x);
+			}
+			
 		}
 		
 		override public function set x(value:Number):void
 		{
-			trace("X" + value);
+			//trace("X" + value);
 			 if (value<0) {
 				super.x = 0;
 			} else {
+				super.x=value;
+			} 
+			
+/* 			else {
+				if(value
 				if (value+this.width>parentWidth) {
 					super.x = parentWidth - this.width;
 				} else {
 					super.x = value;
 				}
-			} 
+			}  */
 		}
 
 		protected function showHandles( visible:Boolean ) : void

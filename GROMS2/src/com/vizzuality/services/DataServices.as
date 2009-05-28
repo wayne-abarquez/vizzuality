@@ -40,6 +40,7 @@ package com.vizzuality.services
 		public var selectedTaxon2:Taxon;
 		public var selectedTaxon3:Taxon;
 		
+		[Bindable]
 		public var selectedTaxons:ArrayCollection=new ArrayCollection();
 
 		
@@ -90,16 +91,19 @@ package com.vizzuality.services
 			selectedTaxon1.name="Balaena mysticetus";
 			selectedTaxon1.red_list="CR";
 			selectedTaxon1.source="Ridgway SH & Harrisson SR (1985), Handbook of marine Mammals: Sirenians and baleen whales, Academic Press, London";
-			selectedTaxon1.chart = [{ monthStart: 0, monthEnd: 4, style:"s11",status:"breeding"},
+			selectedTaxon1.chart = new ArrayCollection( [{ monthStart: 0, monthEnd: 4, style:"s11",status:"breeding"},
             													{ monthStart: 4, monthEnd: 8, style:"s12",status:"feeding,wintering"},
             													{ monthStart: 8, monthEnd: 10, style:"s13",status:"resident"},
-            													{ monthStart: 10, monthEnd: 12, style:"s14",status:"all year round"}];
+            													{ monthStart: 10, monthEnd: 12, style:"s14",status:"all year round"}]);
 			
 			selectedTaxons.addItem(selectedTaxon1);
+			
 			
 			AppStates.gi().topState='';
 			Application.application.currentState='timeline';
 		
+			Application.application.timeLine.dataProvider=selectedTaxons;
+			
 		}		
 		
 		
