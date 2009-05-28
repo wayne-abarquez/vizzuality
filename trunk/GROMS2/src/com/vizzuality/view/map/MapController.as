@@ -13,7 +13,6 @@ package com.vizzuality.view.map
 	import com.google.maps.interfaces.IPaneManager;
 	import com.google.maps.overlays.Marker;
 	import com.vizzuality.data.MapPosition;
-	import com.vizzuality.data.PA;
 	import com.vizzuality.data.WdpaLayer;
 	import com.vizzuality.services.DataServiceEvent;
 	import com.vizzuality.services.DataServices;
