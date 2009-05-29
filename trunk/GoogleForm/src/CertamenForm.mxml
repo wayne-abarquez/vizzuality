@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" width="500" height="393"
+	verticalScrollPolicy="off" horizontalScrollPolicy="off" verticalAlign="middle" horizontalAlign="center">
+	<mx:states>
+		<mx:State name="sentForm">
+			<mx:AddChild relativeTo="{background}" position="lastChild">
+				<mx:Canvas x="0" y="165" width="500" height="228" backgroundColor="#FFFFFF" backgroundAlpha="0.6">
+					<mx:Canvas width="300" height="129" backgroundColor="#9D9D9D" horizontalCenter="0" verticalCenter="-31" cornerRadius="8" borderStyle="solid">
+						<mx:Text text="Gracias por inscribirte&#xd;" color="#FFFFFF" fontFamily="DINOT-Bold" fontSize="18" width="194" verticalCenter="0" horizontalCenter="0"/>
+					</mx:Canvas>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.mxml.HTTPService;
+			import mx.events.ValidationResultEvent;
+		    import mx.controls.Alert;
+		    		
+			
+			private function sendForm():void {
+				
+				var codigoInscripcion:String = generateRandomString(6);
+				
+				
+				var srv:HTTPService = new HTTPService();
+				srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
+				srv.method = "POST";
+				srv.resultFormat = "text";
+				srv.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void {
+					trace(ev.result);
+				});
+				srv.addEventListener(FaultEvent.FAULT,function(ev:FaultEvent):void {
+					trace(ev.fault);
+				});
+				
+				var params:Object = {
+					"formkey":application.parameters.formKey,
+					"theme": "0AX42CRMsmRFbUy1mZjU1N2I3Ni1lMjE0LTRmNDQtOTM5Ny0yMDRjNDVjZGFkYjI",
+					"entry.0.single":nameInput.text,
+					"entry.1.single":ageInput.text,
+					"entry.2.single":dniInput.text,
+					"entry.3.single":streetInput.text,
+					"entry.4.single":phoneInput.text,
+					"entry.5.single":cityInput.text,
+					"entry.6.single":condInput.text,
+					"entry.7.single":postalInput.text,
+					"entry.8.single":mailInput.text,
+					"entry.9.single":codigoInscripcion,
+					"emailToName":"BACK RVS",
+					"emailToEmail":mailInput.text,
+					"emailBody":"Cuerpo del mensaje",
+					"emailSender":"inscripciones@certamenpinturarapida.es",
+					"emailSubject":"Certamen de pintura rápida 2009:" + codigoInscripcion
+				};
+				
+				srv.send(params);
+				this.currentState='sentForm';
+				
+			}
+			
+			private function emailValidator_valid(evt:ValidationResultEvent):void {
+                if (ageInput.text != "" && nameInput.text!="" && streetInput.text!="" && phoneInput.text!="" && postalInput.text!="" && dniInput.text!="" && cityInput.text!="" && condInput.text!="") {
+	                errorText.text="";
+	                sendForm();
+                } else {
+                	errorText.text="Existen campos vacios.";
+                }
+            }
+
+            private function emailValidator_invalid(evt:ValidationResultEvent):void {
+                errorText.text=evt.message;
+            }
+
+            private function validation(evt:MouseEvent):void {
+                emailValidator.validate(mailInput.text);
+            }
+            
+		    public static function generateRandomString(newLength:uint = 1, userAlphabet:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"):String{
+		      var alphabet:Array = userAlphabet.split("");
+		      var alphabetLength:int = alphabet.length;
+		      var randomLetters:String = "";
+		      for (var i:uint = 0; i < newLength; i++){
+		        randomLetters += alphabet[int(Math.floor(Math.random() * alphabetLength))];
+		      }
+		      return randomLetters;
+		    }
+		            
+		]]>
+	</mx:Script>
+	
+	<mx:Style source="com/vizzuality/skin/ui.css"/>
+    <mx:Style source="com/vizzuality/skin/fonts.css"/>
+    
+    
+    <mx:EmailValidator id="emailValidator" source="{mailInput}" property="text"
+    	invalidCharError="Su dirección de e-mail contiene caracteres incorrectos."
+    	invalidDomainError= "El dominio en su e-mail es incorrecto o esta mal formado." 
+    	invalidIPDomainError="La IP del dominio en su e-mail es incorrecto o esta mal formado." 
+    	invalidPeriodsInDomainError="El dominio en su e-mail tiene períodos consecutivos." 
+    	missingAtSignError="El signo @ no se encuentra en su e-mail."
+    	missingPeriodInDomainError="Falta el dominio en su e-mail." 
+    	missingUsernameError="No se especifica el usuario en su e-mail." 
+    	tooManyAtSignsError="Su e-mail contiene demasiados caracteres."
+    	requiredFieldError="El e-mail es un campo obligatorio a rellenar."
+    	valid="emailValidator_valid(event);" invalid="emailValidator_invalid(event);"
+    />
+    
+	
+	<mx:Canvas id="background" width="500" height="393" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundColor="#FFFFFF">
+    	<mx:Image source="@Embed('com/backForm.jpg')" y="-1"/>
+		
+		<mx:HBox right="15" left="15" top="177" height="49">
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="Nombre y Apellidos" fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="nameInput" height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" width="180" 
+					cornerRadius="5" fontStyle="italic" fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" 
+					paddingTop="1" paddingBottom="1" click="{(nameInput.text=='Introduce tu nombre...')?nameInput.text='':nameInput.text=nameInput.text}"/>
+			</mx:VBox>
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="Edad" fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="ageInput" height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" cornerRadius="5" width="66" fontStyle="italic" fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1" maxChars="3"/>
+			</mx:VBox>
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="DNI" fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="dniInput" height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" cornerRadius="5" width="103" fontStyle="italic" fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1" maxChars="9"/>
+			</mx:VBox>	
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="Teléfono" fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="phoneInput" height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" cornerRadius="5" width="97" fontStyle="italic" fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1" maxChars="9"/>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:HBox right="15" y="232" left="15">
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="Calle/Vía/Pza/Avda" fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="streetInput" text="c/..." height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" cornerRadius="5" width="185" 
+					fontStyle="italic" fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1"
+					click="{(streetInput.text=='c/...')?streetInput.text='':streetInput.text=streetInput.text}"/>
+			</mx:VBox>
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="Población" fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="cityInput" height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" cornerRadius="5" width="199" fontStyle="italic" fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1"/>
+			</mx:VBox>
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="C.P." fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="postalInput" height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" cornerRadius="5" width="70" fontStyle="italic" 
+					fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1" maxChars="5"/>
+			</mx:VBox>
+		</mx:HBox>
+		<mx:Text id="errorText" x="10" width="370" height="26" color="#F53D3D" fontFamily="DINOT-Medium" fontSize="13" paddingLeft="5" paddingTop="2" bottom="6"/>		
+		<mx:HBox right="15" y="291" left="15">
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="Provincia" fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="condInput" height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" cornerRadius="5" width="150" fontStyle="italic" fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1"/>
+			</mx:VBox>	
+			<mx:VBox verticalGap="-1">
+				<mx:Text text="e-mail" fontFamily="Arial" fontSize="13" fontWeight="bold" color="#878A8B"/>
+				<mx:TextInput id="mailInput" height="26" borderStyle="solid" borderThickness="1" borderColor="#C4C2C2" cornerRadius="5" width="182" fontStyle="italic" fontFamily="Arial" fontSize="15" textAlign="left" color="#B3B3B3" paddingLeft="5" paddingRight="5" paddingTop="1" paddingBottom="1"/>
+			</mx:VBox>			
+		</mx:HBox>
+		<mx:Button id="sendFormButton" label="Inscribirme" right="10" bottom="10" height="31" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" fontSize="11" click="validation(event)"/>
+	</mx:Canvas>
+	
+</mx:Application>
