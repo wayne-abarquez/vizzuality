@@ -6,7 +6,8 @@
 			<mx:AddChild relativeTo="{background}" position="lastChild">
 				<mx:Canvas x="0" y="165" width="500" height="228" backgroundColor="#FFFFFF" backgroundAlpha="0.6">
 					<mx:Canvas width="300" height="129" backgroundColor="#9D9D9D" horizontalCenter="0" verticalCenter="-31" cornerRadius="8" borderStyle="solid">
-						<mx:Text text="Gracias por inscribirte&#xd;" color="#FFFFFF" fontFamily="DINOT-Bold" fontSize="18" width="194" verticalCenter="0" horizontalCenter="0"/>
+						<mx:Text text="Gracias por inscribirte&#xd;" color="#FFFFFF" fontFamily="DINOT-Bold" fontSize="18" width="194" verticalCenter="-21" horizontalCenter="0"/>
+						<mx:Text text="Hemos enviado un email con el código de inscripción" color="#FFFFFF" fontFamily="DINOT-Bold" fontSize="14" width="236" verticalCenter="27" horizontalCenter="0" textAlign="center"/>
 					</mx:Canvas>
 				</mx:Canvas>
 			</mx:AddChild>
@@ -55,7 +56,8 @@
 					"entry.9.single":codigoInscripcion,
 					"emailToName":"BACK RVS",
 					"emailToEmail":mailInput.text,
-					"emailBody":"Cuerpo del mensaje",
+					"emailBody":"Bienvenido al certamen. \n\n Tu número de inscripción es: " + codigoInscripcion + 
+						"\n Bienvenido al certamen de pintura rápida 2009 \n Esperamos que disfrutes de tu participación tanto como nosotros \n\n Un saludo. \n\n El equipo organizador",
 					"emailSender":"inscripciones@certamenpinturarapida.es",
 					"emailSubject":"Certamen de pintura rápida 2009:" + codigoInscripcion
 				};
