@@ -30,6 +30,7 @@
 				
 				var srv:HTTPService = new HTTPService();
 				srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
+				//srv.url = "http://localhost:8081/gpreadsheets/";
 				srv.method = "POST";
 				srv.resultFormat = "text";
 				srv.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void {
