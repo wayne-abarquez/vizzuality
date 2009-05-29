@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"  addedToStage="init()" xmlns:ns1="*">
+	<mx:states>
+		<mx:State name="loaded">
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Panel styleName="mapOverlayed" width="292" height="74" layout="absolute" title="Search scientific name" right="10" bottom="20">
+					<mx:TextInput x="10" y="10" width="200" text="Puma concolor" id="scientificNameInput"/>
+					<mx:Button id="searchButton" x="228" y="10" label="Display" fontSize="12" click="onSearchClicked()"/>
+				</mx:Panel>
+			</mx:AddChild>
+			<mx:SetProperty target="{text1}" name="text">
+				<mx:value><![CDATA[Search for a scientific name in the panel below. A Heat Map for available data in GBIF will be displayed.The Heat Map is produced dynamically in the client so possible live filters could be applied.]]></mx:value>
+			</mx:SetProperty>
+		</mx:State>
+	</mx:states>
+	<mx:Style source="Application.css" />
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.FaultEvent;
+			import com.google.maps.overlays.GroundOverlayOptions;
+			import com.google.maps.LatLngBounds;
+			import com.google.maps.overlays.GroundOverlay;
+			import mx.controls.Alert;
+			import com.google.maps.LatLng;
+			import com.google.maps.MapType;
+			import com.google.maps.controls.MapTypeControl;
+			import com.google.maps.controls.ControlPosition;
+			import com.google.maps.controls.ZoomControl;
+			import com.google.maps.MapEvent;
+			import com.google.maps.Map;
+			import mx.collections.ArrayCollection;
+			import mx.rpc.events.ResultEvent;
+			import mx.core.UIComponent;
+			import com.seld.draw.HeatMap;
+			import de.polygonal.ds.HashMap;
+
+			
+			
+			public var map:Map;
+			public 	var hm:HeatMap = new HeatMap(600, 600);
+			[Bindable] public var activeTaxon:Object;	
+			
+			
+			
+			public function startMap(event:Event):void { 	
+				map = new Map();
+				map.key = "ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQnxaq0cC7VDYP-5q9tm7_AuQLbSxTBYfo4p7JAadZaCgOqmQk-6UwXvQ";
+				map.addEventListener(MapEvent.MAP_READY, onMapReady);
+				mapContainer.addChild(map);				
+			}			
+			
+			private function onMapReady(e:Event):void {
+			    //Ad zoom control
+			    map.addControl(new ZoomControl());
+			    
+			    //We have to position the MapType Control or our new MapType will not appear
+			    var topRight:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_RIGHT, 75, 15);
+			    var mapTypeControl:MapTypeControl = new MapTypeControl();
+			    map.addControl(mapTypeControl);  
+			    mapTypeControl.setControlPosition(topRight);
+			    
+			   	map.setCenter(new LatLng(30,-20),3,MapType.SATELLITE_MAP_TYPE);	
+			   	map.setSize(new Point(mapContainer.width, mapContainer.height));
+			   	
+			   	currentState = "loaded";
+			   	
+			}			
+			
+
+		
+		private function onSearchClicked():void {
+		  	searchButton.enabled = false;
+		  	baServices.getDataForHeatMap(scientificNameInput.text);		
+		}
+		
+		private function onBaServiceResponse(ev:ResultEvent):void {
+		    var dataX:Array = ev.result.dataX as Array;
+		    var dataY:Array = ev.result.dataY as Array;
+		    var re:Rectangle = new Rectangle(0,0,360,360);
+			hm.setData(dataX,dataY,re);  
+			var go:GroundOverlay = new GroundOverlay(hm,new LatLngBounds(new LatLng(-70.05,-179.78), new LatLng(70.05,179.78)), 
+				new GroundOverlayOptions(
+	                  {name: "TestGroundOverlay",
+	                   description: "Test of GroundOverlay functionality" }));										
+			map.addOverlay(go);
+			
+			searchButton.enabled = true;
+	
+		}
+		
+		private function onBaServiceFault(ev:FaultEvent):void {
+			Alert.show("The name you have entered does not exist on the database","Name not found!");
+			searchButton.enabled = true;
+		}
+		
+		  
+		  public function onHeatMapRender(e:Event):void {
+			var go:GroundOverlay = new GroundOverlay(hm,new LatLngBounds(new LatLng(-70.05,-179.78), new LatLng(70.05,179.78)), 
+				new GroundOverlayOptions(
+	                  {name: "TestGroundOverlay",
+	                   description: "Test of GroundOverlay functionality" }));										
+			map.addOverlay(go);
+		  	
+		  }	
+				
+		]]>
+	</mx:Script>
+	<mx:VBox width="100%" height="100%" verticalGap="0">
+		<mx:Canvas width="100%" height="50" backgroundColor="#090909" id="canvas2">
+			<mx:Label x="6" y="3" text="GBIF Heat Maps" fontSize="18" fontWeight="normal"/>
+			<mx:Text y="7.1000004" text="Browse the taxonomy by clicking on the name of the groups or searching and click on View to select a taxon.&#xd;When selected a Heat Map for available data in GBIF will be displayed." width="578" height="40" textAlign="right" right="10" id="text1"/>
+			<mx:Label x="7" y="25" text="Just another Biodiversity Atlas test"/>
+			<mx:Button x="216" y="10" label="More info" click="navigateToURL(new URLRequest('http://biodivertido.blogspot.com/'))"/>
+			<mx:Button label="jatorre@gmail.com" click="navigateToURL(new URLRequest('mailto:jatorre@gmail.com'))" x="282" y="10"/>
+		</mx:Canvas>
+		<mx:Canvas width="100%" height="100%" id="canvas1">
+	    	<mx:UIComponent id="mapContainer" 
+	        	initialize="startMap(event);" 
+	        	width="100%" height="100%"/>
+	  	</mx:Canvas>
+	</mx:VBox>
+  	<mx:RemoteObject 
+  		id="baServices" 
+  		destination="BaServices" source="BaServices"  
+  		result="onBaServiceResponse(event)"
+  		fault="onBaServiceFault(event)"
+  		endpoint="http://www.imastedev.com/ba/amfphp/gateway.php" />
+</mx:Application>
