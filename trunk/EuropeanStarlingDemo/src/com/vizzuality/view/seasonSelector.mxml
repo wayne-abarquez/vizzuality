@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="95">
+	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="0"/>
+	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="20"/>
+	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="40"/>
+	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="50"/>
+	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="60"/>
+	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="30" selected="true"/>
+	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="10"/>
+	
+</mx:Canvas>

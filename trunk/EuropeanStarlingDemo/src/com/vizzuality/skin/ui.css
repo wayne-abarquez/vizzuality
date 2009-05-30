@@ -1,0 +1,33 @@
+/* CSS file */
+
+
+Button.seasonButtonPassed{
+	up-skin: Embed(source='ui.swf', symbol='btn_season_passed_up');
+	over-skin: Embed(source='ui.swf', symbol='btn_season_selected');
+	selected-up-skin: Embed(source='ui.swf', symbol='btn_season_selected');
+	selected-over-skin: Embed(source='ui.swf', symbol='btn_season_selected');	
+}
+
+Button.seasonButtonFuture{
+	up-skin: Embed(source='ui.swf', symbol='btn_season_future_up');
+	over-skin: Embed(source='ui.swf', symbol='btn_season_selected');
+	selected-up-skin: Embed(source='ui.swf', symbol='btn_season_selected');
+	selected-over-skin: Embed(source='ui.swf', symbol='btn_season_selected');	
+}
+
+Button.playButton{
+	up-skin: Embed(source='ui.swf', symbol='playButton_up');
+	over-skin: Embed(source='ui.swf', symbol='playButton_over');
+	selected-up-skin: Embed(source='ui.swf', symbol='playButton_selected');
+	selected-over-skin: Embed(source='ui.swf', symbol='playButton_selected_over');	
+}
+
+Button.nextButton{
+	up-skin: Embed(source='ui.swf', symbol='nextButton_up');
+	over-skin: Embed(source='ui.swf', symbol='nextButton_over');	
+}
+
+Button.prevButton{
+	up-skin: Embed(source='ui.swf', symbol='prevButton_up');
+	over-skin: Embed(source='ui.swf', symbol='prevButton_over');	
+}

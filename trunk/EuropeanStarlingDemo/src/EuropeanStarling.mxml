@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.vizzuality.view.*">
 	<mx:Script>
 		<![CDATA[
 			import com.vizzuality.utils.MapUtils;
@@ -107,10 +107,12 @@
 		]]>
 	</mx:Script>
 	
+	<mx:Style source="/com/vizzuality/skin/ui.css" />
+	
 	<maps:Map id="map" width="100%" height="100%" key="2323" mapevent_mapready="init()" />
-	<mx:TextArea x="434" y="164" id="descriptionArea" text="{currentDistribution.description}" width="253" height="200"/>
-	<mx:Label x="434" y="138" id="yearLabel" text="{currentDistribution.year}"/>
-	<mx:HBox x="10" width="621" bottom="29">
+	<mx:TextArea x="598" y="127" id="descriptionArea" text="{currentDistribution.description}" width="253" height="200"/>
+	<mx:Label x="598" y="101" id="yearLabel" text="{currentDistribution.year}"/>
+	<mx:HBox x="25" width="621" bottom="447">
 		<mx:Button id="but1880" label="1880" width="78" click="setStep(0)"/>
 		<mx:Button id="but1900" label="1900" width="78" click="setStep(1)"/>
 		<mx:Button id="but1920" label="1920" width="78" click="setStep(2)"/>
@@ -119,4 +121,13 @@
 		<mx:Button id="but1980" label="1980" width="78" click="setStep(5)"/>
 		<mx:Button id="but2000" label="2000" width="78" click="setStep(6)"/>
 	</mx:HBox>
+	<ns1:headerTitle left="0" bottom="60">
+	</ns1:headerTitle>
+	<mx:Button styleName="playButton" height="75" width="56" left="470" bottom="60"/>
+	<mx:Button styleName="prevButton" height="75" width="56" left="596" bottom="60"/>
+	<mx:Button styleName="nextButton" height="75" width="56" bottom="60" right="0"/>
+	<mx:Canvas y="366" height="75" left="653" right="57" backgroundColor="#000000" backgroundAlpha="0.6">
+	</mx:Canvas>
+	<ns1:seasonSelector x="527" y="356" height="95">
+	</ns1:seasonSelector>
 </mx:Application>
