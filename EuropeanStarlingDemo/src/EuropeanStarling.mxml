@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*">
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.utils.MapUtils;
+			import com.google.maps.LatLng;
+			import com.google.maps.overlays.Polygon;
+			import com.vizzuality.datatypes.Distribution;
+			import mx.collections.ArrayCollection;
+		
+			public var distributions:Array=[];
+			
+			public var currentStep:Number=0;
+			public var tim:Timer;
+			
+			[Bindable] public var currentDistribution:Distribution;
+			
+			private function setup():void {
+				tim = new Timer(4000);
+				tim.addEventListener(TimerEvent.TIMER, onStep);
+							
+			}
+		
+			private function init():void {
+				var pol:Polygon;
+				
+				
+				var d0:Distribution=new Distribution();
+				d0.description="first description";
+				d0.id=1;
+				d0.year=1880;
+				
+				pol=MapUtils.drawCircle(10,10,10,0x000000,1,0.6,0x000000,0.3);				
+				d0.geometry.addPolygon(pol);
+				distributions.push(d0);
+				currentDistribution= d0;
+				
+				setup();
+			}
+			
+			private function playInteraction():void {
+				tim.start();
+			}
+			private function stopInteraction():void {
+				tim.stop();
+			}
+			
+			
+			
+			private function onStep(event:TimerEvent):void {
+				setStep(currentStep);	
+				
+				
+				currentStep++;
+				if (currentStep>6)
+					currentStep=0;
+			}
+			
+			private function setStep(step:Number):void {
+				
+				//set the button controlers
+				but1880.selected=false;
+				but1900.selected=false;
+				but1920.selected=false;
+				but1940.selected=false;
+				but1960.selected=false;
+				but1980.selected=false;
+				but2000.selected=false;
+				
+				switch (step) {
+					case(0):
+						but1880.selected=true;
+						break
+					case(1):
+						but1900.selected=true;
+						break
+					case(2):
+						but1920.selected=true;
+						break
+					case(3):
+						but1940.selected=true;
+						break
+					case(4):
+						but1960.selected=true;
+						break
+					case(5):
+						but1980.selected=true;
+						break
+					case(6):
+						but2000.selected=true;
+						break
+					
+				}
+				
+				
+				//If i am on the first i clear all overlays
+				if (currentStep==0)
+					map.clearOverlays();
+				currentDistribution = distributions[currentStep] as Distribution;
+				//Add the current polygon with a fade effect
+				currentDistribution.geometry.addToMapSmooth();
+				
+				
+				
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<maps:Map id="map" width="100%" height="100%" key="2323" mapevent_mapready="init()" />
+	<mx:TextArea x="434" y="164" id="descriptionArea" text="{currentDistribution.description}" width="253" height="200"/>
+	<mx:Label x="434" y="138" id="yearLabel" text="{currentDistribution.year}"/>
+	<mx:HBox x="10" width="621" bottom="29">
+		<mx:Button id="but1880" label="1880" width="78" click="setStep(0)"/>
+		<mx:Button id="but1900" label="1900" width="78" click="setStep(1)"/>
+		<mx:Button id="but1920" label="1920" width="78" click="setStep(2)"/>
+		<mx:Button id="but1940" label="1940" width="78" click="setStep(3)"/>
+		<mx:Button id="but1960" label="1960" width="78" click="setStep(4)"/>
+		<mx:Button id="but1980" label="1980" width="78" click="setStep(5)"/>
+		<mx:Button id="but2000" label="2000" width="78" click="setStep(6)"/>
+	</mx:HBox>
+</mx:Application>
