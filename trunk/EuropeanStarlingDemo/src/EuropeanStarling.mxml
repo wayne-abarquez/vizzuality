@@ -2,6 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.vizzuality.view.*">
 	<mx:Script>
 		<![CDATA[
+			import com.google.maps.MapType;
 			import com.vizzuality.utils.MapUtils;
 			import com.google.maps.LatLng;
 			import com.google.maps.overlays.Polygon;
@@ -12,37 +13,94 @@
 			
 			public var currentStep:Number=0;
 			public var tim:Timer;
+			[Bindable] public var running:Boolean=false;
 			
 			[Bindable] public var currentDistribution:Distribution;
 			 
 			private function setup():void {
-				tim = new Timer(4000);
+				tim = new Timer(1000);
 				tim.addEventListener(TimerEvent.TIMER, onStep);
+				
+				
+				setStep(0);
 							
 			}
 		
 			private function init():void {
+				map.setCenter(new LatLng(20,0),2,MapType.PHYSICAL_MAP_TYPE);
+				
+				
 				var pol:Polygon;
 				
 				
 				var d0:Distribution=new Distribution();
-				d0.description="first description";
+				d0.description="1880 description";
 				d0.id=1;
-				d0.year=1880;
-				
-				pol=MapUtils.drawCircle(10,10,10,0x000000,1,0.6,0x000000,0.3);				
+				d0.year=1880;				
+				pol=MapUtils.drawCircle(10,10,100,0x000000,1,0.6,0x000000,0.3);				
 				d0.geometry.addPolygon(pol);
 				distributions.push(d0);
 				currentDistribution= d0;
+				
+				var d1:Distribution=new Distribution();
+				d1.description="1900 description";
+				d1.id=2;
+				d1.year=1900;				
+				pol=MapUtils.drawCircle(10,10,200,0x000000,1,0.6,0x000000,0.3);				
+				d1.geometry.addPolygon(pol);
+				distributions.push(d1);
+				
+				var d2:Distribution=new Distribution();
+				d2.description="1920 description";
+				d2.id=3;
+				d2.year=1920;				
+				pol=MapUtils.drawCircle(10,10,300,0x000000,1,0.6,0x000000,0.3);				
+				d2.geometry.addPolygon(pol);
+				distributions.push(d2);
+
+				var d3:Distribution=new Distribution();
+				d3.description="1940 description";
+				d3.id=4;
+				d3.year=1940;				
+				pol=MapUtils.drawCircle(10,10,400,0x000000,1,0.6,0x000000,0.3);				
+				d3.geometry.addPolygon(pol);
+				distributions.push(d3);
+
+				var d4:Distribution=new Distribution();
+				d4.description="1960 description";
+				d4.id=5;
+				d4.year=1960;				
+				pol=MapUtils.drawCircle(10,10,500,0x000000,1,0.6,0x000000,0.3);				
+				d4.geometry.addPolygon(pol);
+				distributions.push(d4);
+
+				var d5:Distribution=new Distribution();
+				d5.description="1980 description";
+				d5.id=6;
+				d5.year=1980;				
+				pol=MapUtils.drawCircle(10,10,600,0x000000,1,0.6,0x000000,0.3);				
+				d5.geometry.addPolygon(pol);
+				distributions.push(d5);
+
+				var d6:Distribution=new Distribution();
+				d6.description="2000 description";
+				d6.id=6;
+				d6.year=2000;				
+				pol=MapUtils.drawCircle(10,10,700,0x000000,1,0.6,0x000000,0.3);				
+				d6.geometry.addPolygon(pol);
+				distributions.push(d6);
+
 				
 				setup();
 			}
 			
 			private function playInteraction():void {
 				tim.start();
+				running=true;
 			}
 			private function stopInteraction():void {
 				tim.stop();
+				running=false;
 			}
 			
 			
@@ -56,38 +114,88 @@
 					currentStep=0;
 			}
 			
-			private function setStep(step:Number):void {
-				
+			public function setStep(step:Number):void {
+				if(step<0)
+					step=6;
 				//set the button controlers
-				but1880.selected=false;
-				but1900.selected=false;
-				but1920.selected=false;
-				but1940.selected=false;
-				but1960.selected=false;
-				but1980.selected=false;
-				but2000.selected=false;
+				sselector.but1880.selected=false;
+				sselector.but1900.selected=false;
+				sselector.but1920.selected=false;
+				sselector.but1940.selected=false;
+				sselector.but1960.selected=false;
+				sselector.but1980.selected=false;
+				sselector.but2000.selected=false;
 				
 				switch (step) {
 					case(0):
-						but1880.selected=true;
+						sselector.but1880.styleName="seasonButtonPassed";
+						sselector.but1900.styleName="seasonButtonFuture";
+						sselector.but1920.styleName="seasonButtonFuture";
+						sselector.but1940.styleName="seasonButtonFuture";
+						sselector.but1960.styleName="seasonButtonFuture";
+						sselector.but1980.styleName="seasonButtonFuture";
+						sselector.but2000.styleName="seasonButtonFuture";
+						sselector.but1880.selected=true;
 						break
 					case(1):
-						but1900.selected=true;
+						sselector.but1880.styleName="seasonButtonPassed";
+						sselector.but1900.styleName="seasonButtonPassed";
+						sselector.but1920.styleName="seasonButtonFuture";
+						sselector.but1940.styleName="seasonButtonFuture";
+						sselector.but1960.styleName="seasonButtonFuture";
+						sselector.but1980.styleName="seasonButtonFuture";
+						sselector.but2000.styleName="seasonButtonFuture";
+						sselector.but1900.selected=true;
 						break
 					case(2):
-						but1920.selected=true;
+						sselector.but1880.styleName="seasonButtonPassed";
+						sselector.but1900.styleName="seasonButtonPassed";
+						sselector.but1920.styleName="seasonButtonPassed";
+						sselector.but1940.styleName="seasonButtonFuture";
+						sselector.but1960.styleName="seasonButtonFuture";
+						sselector.but1980.styleName="seasonButtonFuture";
+						sselector.but2000.styleName="seasonButtonFuture";
+						sselector.but1920.selected=true;
 						break
 					case(3):
-						but1940.selected=true;
+						sselector.but1880.styleName="seasonButtonPassed";
+						sselector.but1900.styleName="seasonButtonPassed";
+						sselector.but1920.styleName="seasonButtonPassed";
+						sselector.but1940.styleName="seasonButtonPassed";
+						sselector.but1960.styleName="seasonButtonFuture";
+						sselector.but1980.styleName="seasonButtonFuture";
+						sselector.but2000.styleName="seasonButtonFuture";
+						sselector.but1940.selected=true;
 						break
 					case(4):
-						but1960.selected=true;
+						sselector.but1880.styleName="seasonButtonPassed";
+						sselector.but1900.styleName="seasonButtonPassed";
+						sselector.but1920.styleName="seasonButtonPassed";
+						sselector.but1940.styleName="seasonButtonPassed";
+						sselector.but1960.styleName="seasonButtonPassed";
+						sselector.but1980.styleName="seasonButtonFuture";
+						sselector.but2000.styleName="seasonButtonFuture";
+						sselector.but1960.selected=true;
 						break
 					case(5):
-						but1980.selected=true;
+						sselector.but1880.styleName="seasonButtonPassed";
+						sselector.but1900.styleName="seasonButtonPassed";
+						sselector.but1920.styleName="seasonButtonPassed";
+						sselector.but1940.styleName="seasonButtonPassed";
+						sselector.but1960.styleName="seasonButtonPassed";
+						sselector.but1980.styleName="seasonButtonPassed";
+						sselector.but2000.styleName="seasonButtonFuture";
+						sselector.but1980.selected=true;
 						break
 					case(6):
-						but2000.selected=true;
+						sselector.but1880.styleName="seasonButtonPassed";
+						sselector.but1900.styleName="seasonButtonPassed";
+						sselector.but1920.styleName="seasonButtonPassed";
+						sselector.but1940.styleName="seasonButtonPassed";
+						sselector.but1960.styleName="seasonButtonPassed";
+						sselector.but1980.styleName="seasonButtonPassed";
+						sselector.but2000.styleName="seasonButtonPassed";
+						sselector.but2000.selected=true;
 						break
 					
 				}
@@ -110,24 +218,17 @@
 	<mx:Style source="/com/vizzuality/skin/ui.css" />
 	
 	<maps:Map id="map" width="100%" height="100%" key="2323" mapevent_mapready="init()"  y="0"/>
-	<mx:HBox x="25" width="621" bottom="447">
-		<mx:Button id="but1880" label="1880" width="78" click="setStep(0)"/>
-		<mx:Button id="but1900" label="1900" width="78" click="setStep(1)"/>
-		<mx:Button id="but1920" label="1920" width="78" click="setStep(2)"/>
-		<mx:Button id="but1940" label="1940" width="78" click="setStep(3)"/>
-		<mx:Button id="but1960" label="1960" width="78" click="setStep(4)"/>
-		<mx:Button id="but1980" label="1980" width="78" click="setStep(5)"/>
-		<mx:Button id="but2000" label="2000" width="78" click="setStep(6)"/>
-	</mx:HBox>
 	<ns1:headerTitle left="0" bottom="130">
 	</ns1:headerTitle>
-	<mx:Button styleName="playButton" height="75" width="56" left="470" bottom="130"/>
-	<mx:Button styleName="prevButton" height="75" width="56" left="597" bottom="130"/>
-	<mx:Button styleName="nextButton" height="75" width="56" right="0" bottom="130"/>
+
+	<mx:Button styleName="playButton" height="75" width="56" left="470" bottom="130" click="(running)?stopInteraction():playInteraction();" selected="{running}"/>
+	<mx:Button styleName="prevButton" height="75" width="56" left="597" bottom="130" click="stopInteraction();setStep(currentStep-1)"/>
+	<mx:Button styleName="nextButton" height="75" width="56" right="0" bottom="130" click="stopInteraction();setStep(currentStep+1)"/>
 	<mx:Canvas height="75" left="654" right="57" backgroundColor="#000000" backgroundAlpha="0.6" bottom="130">
-		<mx:Text text="Lorem ipsum dolor&#xd;sit" fontFamily="Helvetica" fontSize="12" color="#FFFFFF" fontStyle="italic" right="10" left="80" verticalCenter="0" height="30" selectable="false"/>
-		<mx:Label y="22" id="yearLabel" text="1940" fontFamily="Helvetica" color="#FFFFFF" fontSize="34" letterSpacing="-4" fontWeight="bold" left="8" width="72"/>
+		<mx:Text text="{currentDistribution.description}" fontFamily="Helvetica" fontSize="12" color="#FFFFFF" fontStyle="italic" right="10" left="80" verticalCenter="0" height="30" selectable="false"/>
+		<mx:Label y="22" id="yearLabel" text="{currentDistribution.year}" fontFamily="Helvetica" color="#FFFFFF" fontSize="34" letterSpacing="-4" fontWeight="bold" left="8" width="72"/>
 	</mx:Canvas>
-	<ns1:seasonSelector x="527" height="95" bottom="120">
+	<ns1:seasonSelector id="sselector" x="527" height="95" bottom="120">
+
 	</ns1:seasonSelector>
 </mx:Application>
