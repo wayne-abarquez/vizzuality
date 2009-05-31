@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="95">
-	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="0"/>
-	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="20"/>
-	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="40"/>
-	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="50"/>
-	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="60"/>
-	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="30" selected="true"/>
-	<mx:Button label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="10"/>
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Application;
+		]]>
+	</mx:Script>
+	<mx:Button id="but1880" label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="0" click="Application.application.setStep(0)" selected="true"/>
+	<mx:Button id="but1900" label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="10" click="Application.application.setStep(1)"/>
+	<mx:Button id="but1920" label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="20" click="Application.application.setStep(2)"/>
+	<mx:Button id="but1940" label="Button" height="95" width="9" styleName="seasonButtonPassed" top="0" left="30" click="Application.application.setStep(3)"/>
+	<mx:Button id="but1960" label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="40" click="Application.application.setStep(4)"/>
+	<mx:Button id="but1980" label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="50" click="Application.application.setStep(5)"/>
+	<mx:Button id="but2000" label="Button" height="95" width="9" styleName="seasonButtonFuture" top="0" left="60" click="Application.application.setStep(6)"/>
 	
 </mx:Canvas>

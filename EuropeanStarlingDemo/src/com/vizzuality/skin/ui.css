@@ -21,6 +21,7 @@ Button.playButton{
 	down-skin:  Embed(source='ui.swf', symbol='playButton_over');	
 	selected-up-skin: Embed(source='ui.swf', symbol='playButton_selected');
 	selected-over-skin: Embed(source='ui.swf', symbol='playButton_selected_over');	
+	selected-down-skin: Embed(source='ui.swf', symbol='playButton_selected_over');	
 }
 
 Button.nextButton{
