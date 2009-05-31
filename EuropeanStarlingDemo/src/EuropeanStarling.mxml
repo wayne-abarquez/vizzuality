@@ -109,7 +109,7 @@
 	
 	<mx:Style source="/com/vizzuality/skin/ui.css" />
 	
-	<maps:Map id="map" width="100%" height="100%" key="2323" mapevent_mapready="init()" />
+	<maps:Map id="map" width="100%" height="100%" key="2323" mapevent_mapready="init()"  y="0"/>
 	<mx:TextArea x="598" y="127" id="descriptionArea" text="{currentDistribution.description}" width="253" height="200"/>
 	<mx:Label x="598" y="101" id="yearLabel" text="{currentDistribution.year}"/>
 	<mx:HBox x="25" width="621" bottom="447">
@@ -121,13 +121,13 @@
 		<mx:Button id="but1980" label="1980" width="78" click="setStep(5)"/>
 		<mx:Button id="but2000" label="2000" width="78" click="setStep(6)"/>
 	</mx:HBox>
-	<ns1:headerTitle left="0" bottom="60">
+	<ns1:headerTitle left="0" bottom="90">
 	</ns1:headerTitle>
-	<mx:Button styleName="playButton" height="75" width="56" left="470" bottom="60"/>
-	<mx:Button styleName="prevButton" height="75" width="56" left="596" bottom="60"/>
-	<mx:Button styleName="nextButton" height="75" width="56" bottom="60" right="0"/>
-	<mx:Canvas y="366" height="75" left="653" right="57" backgroundColor="#000000" backgroundAlpha="0.6">
+	<mx:Button styleName="playButton" height="75" width="56" left="470" bottom="90"/>
+	<mx:Button styleName="prevButton" height="75" width="56" left="596" bottom="90"/>
+	<mx:Button styleName="nextButton" height="75" width="56" right="0" bottom="90"/>
+	<mx:Canvas height="75" left="653" right="57" backgroundColor="#000000" backgroundAlpha="0.6" bottom="90">
 	</mx:Canvas>
-	<ns1:seasonSelector x="527" y="356" height="95">
+	<ns1:seasonSelector x="527" height="95" bottom="80">
 	</ns1:seasonSelector>
 </mx:Application>
