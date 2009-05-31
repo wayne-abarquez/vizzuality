@@ -14,7 +14,7 @@
 			public var tim:Timer;
 			
 			[Bindable] public var currentDistribution:Distribution;
-			
+			 
 			private function setup():void {
 				tim = new Timer(4000);
 				tim.addEventListener(TimerEvent.TIMER, onStep);
