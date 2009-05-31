@@ -110,8 +110,6 @@
 	<mx:Style source="/com/vizzuality/skin/ui.css" />
 	
 	<maps:Map id="map" width="100%" height="100%" key="2323" mapevent_mapready="init()"  y="0"/>
-	<mx:TextArea x="598" y="127" id="descriptionArea" text="{currentDistribution.description}" width="253" height="200"/>
-	<mx:Label x="598" y="101" id="yearLabel" text="{currentDistribution.year}"/>
 	<mx:HBox x="25" width="621" bottom="447">
 		<mx:Button id="but1880" label="1880" width="78" click="setStep(0)"/>
 		<mx:Button id="but1900" label="1900" width="78" click="setStep(1)"/>
@@ -121,13 +119,15 @@
 		<mx:Button id="but1980" label="1980" width="78" click="setStep(5)"/>
 		<mx:Button id="but2000" label="2000" width="78" click="setStep(6)"/>
 	</mx:HBox>
-	<ns1:headerTitle left="0" bottom="90">
+	<ns1:headerTitle left="0" bottom="130">
 	</ns1:headerTitle>
-	<mx:Button styleName="playButton" height="75" width="56" left="470" bottom="90"/>
-	<mx:Button styleName="prevButton" height="75" width="56" left="597" bottom="90"/>
-	<mx:Button styleName="nextButton" height="75" width="56" right="0" bottom="90"/>
-	<mx:Canvas height="75" left="654" right="57" backgroundColor="#000000" backgroundAlpha="0.6" bottom="90">
+	<mx:Button styleName="playButton" height="75" width="56" left="470" bottom="130"/>
+	<mx:Button styleName="prevButton" height="75" width="56" left="597" bottom="130"/>
+	<mx:Button styleName="nextButton" height="75" width="56" right="0" bottom="130"/>
+	<mx:Canvas height="75" left="654" right="57" backgroundColor="#000000" backgroundAlpha="0.6" bottom="130">
+		<mx:Text text="Lorem ipsum dolor&#xd;sit" fontFamily="Helvetica" fontSize="12" color="#FFFFFF" fontStyle="italic" right="10" left="80" verticalCenter="0" height="30" selectable="false"/>
+		<mx:Label y="22" id="yearLabel" text="1940" fontFamily="Helvetica" color="#FFFFFF" fontSize="34" letterSpacing="-4" fontWeight="bold" left="8" width="72"/>
 	</mx:Canvas>
-	<ns1:seasonSelector x="527" height="95" bottom="80">
+	<ns1:seasonSelector x="527" height="95" bottom="120">
 	</ns1:seasonSelector>
 </mx:Application>
