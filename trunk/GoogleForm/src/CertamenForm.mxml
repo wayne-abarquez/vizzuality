@@ -30,7 +30,8 @@
 				
 				
 				var srv:HTTPService = new HTTPService();
-				srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
+				//srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
+				srv.url = "http://localhost:8080/gpreadsheets/";
 				srv.method = "POST";
 				srv.resultFormat = "text";
 				srv.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void {
@@ -52,12 +53,12 @@
 					"entry.6.single":condInput.text,
 					"entry.7.single":postalInput.text,
 					"entry.8.single":mailInput.text,
-					"entry.9.single":codigoInscripcion,
+					//"entry.9.single":codigoInscripcion,
 					"emailToName":"BACK RVS",
 					"emailToEmail":mailInput.text,
 					"emailBody":"Bienvenido al certamen." + 
 						"\n Bienvenido al certamen de pintura rápida 2009 del Parque del Retiro:" + 
-						"\n     Tu número de inscripción es: " + codigoInscripcion +
+						"\n     Tu número de inscripción lo puedes encontrar en el asunto de este mensaje"+
 						"\n     Este comprobante debe ser presentado el Domingo 21, día del certamen." +
 						"\n     Esperamos que disfrutes de tu participación tanto como nosotros. " + 
 						"\n\n   Un saludo. " + 
@@ -67,7 +68,7 @@
 				};
 				
 				srv.send(params);
-				this.currentState='sentForm';
+				//this.currentState='sentForm';
 				
 			}
 			
