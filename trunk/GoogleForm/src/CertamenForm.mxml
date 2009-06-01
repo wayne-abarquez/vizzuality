@@ -57,7 +57,11 @@
 					"emailToName":"BACK RVS",
 					"emailToEmail":mailInput.text,
 					"emailBody":"Bienvenido al certamen. \n\n Tu número de inscripción es: " + codigoInscripcion + 
-						"\n Bienvenido al certamen de pintura rápida 2009 \n Esperamos que disfrutes de tu participación tanto como nosotros \n\n Un saludo. \n\n El equipo organizador",
+						"\n Bienvenido al certamen de pintura rápida 2009 " + 
+						"\n Este comprobante debe ser presentado el Domingo 21, día del certamen."
+						"\n Esperamos que disfrutes de tu participación tanto como nosotros. " + 
+						"\n\n Un saludo. " + 
+						"\n\n El equipo organizador",
 					"emailSender":"inscripciones@certamenpinturarapida.es",
 					"emailSubject":"Certamen de pintura rápida 2009:" + codigoInscripcion
 				};
