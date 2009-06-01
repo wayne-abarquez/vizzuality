@@ -68,7 +68,7 @@
 				};
 				
 				srv.send(params);
-				//this.currentState='sentForm';
+				this.currentState='sentForm';
 				
 			}
 			
