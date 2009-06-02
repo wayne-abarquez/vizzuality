@@ -6,8 +6,9 @@
 			<mx:AddChild relativeTo="{background}" position="lastChild">
 				<mx:Canvas x="0" y="165" width="500" height="228" backgroundColor="#FFFFFF" backgroundAlpha="0.6">
 					<mx:Canvas width="300" height="129" backgroundColor="#9D9D9D" horizontalCenter="0" verticalCenter="-31" cornerRadius="8" borderStyle="solid">
-						<mx:Text text="Gracias por inscribirte&#xd;" color="#FFFFFF" fontFamily="DINOT-Bold" fontSize="18" width="194" verticalCenter="-21" horizontalCenter="0"/>
-						<mx:Text text="Hemos enviado un email con el código de inscripción" color="#FFFFFF" fontFamily="DINOT-Bold" fontSize="14" width="236" verticalCenter="27" horizontalCenter="0" textAlign="center"/>
+						<mx:Text text="Gracias por inscribirte&#xd;" color="#FFFFFF" fontFamily="DINOT-Bold" fontSize="18" width="194" verticalCenter="-38" horizontalCenter="0"/>
+						<mx:Text text="Hemos enviado un email con el código de inscripción" color="#FFFFFF" fontFamily="DINOT-Bold" fontSize="14" width="236" verticalCenter="8" horizontalCenter="0" textAlign="center"/>
+						<mx:Text text="Esta ventana se cerrará en 5 segundos" horizontalCenter="0" bottom="8" color="#FFFFFF" fontWeight="normal" fontFamily="DINOT-Bold"/>
 					</mx:Canvas>
 				</mx:Canvas>
 			</mx:AddChild>
@@ -22,16 +23,17 @@
 			import mx.rpc.http.mxml.HTTPService;
 			import mx.events.ValidationResultEvent;
 		    import mx.controls.Alert;
+		    import flash.external.*;
 		    		
 			
 			private function sendForm():void {
 				
 				var codigoInscripcion:String = generateRandomString(6);
-				
+				var myTimer: Timer = new Timer(5000);
 				
 				var srv:HTTPService = new HTTPService();
-				//srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
-				srv.url = "http://localhost:8080/gpreadsheets/";
+				srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
+				//srv.url = "http://localhost:8080/gpreadsheets/";
 				srv.method = "POST";
 				srv.resultFormat = "text";
 				srv.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void {
@@ -54,7 +56,7 @@
 					"entry.7.single":postalInput.text,
 					"entry.8.single":mailInput.text,
 					//"entry.9.single":codigoInscripcion,
-					"emailToName":"BACK RVS",
+					"emailToName":mailInput.text,
 					"emailToEmail":mailInput.text,
 					"emailBody":"Bienvenido al certamen." + 
 						"\n Bienvenido al certamen de pintura rápida 2009 del Parque del Retiro:" + 
@@ -68,9 +70,21 @@
 				};
 				
 				srv.send(params);
-				this.currentState='sentForm';
-				
+                myTimer.addEventListener(TimerEvent.TIMER, callCloseWindowHTML);
+                myTimer.start();
+				this.currentState='sentForm';		
 			}
+			
+			private function callCloseWindowHTML(time: TimerEvent):void {
+				var s:String;
+		        if (ExternalInterface.available) {
+		           var closeWindow:String = "closeWindow";
+		           s = ExternalInterface.call(closeWindow);
+		        } else {
+		           s = "Wrapper not available";
+		        }
+			}
+			
 			
 			private function emailValidator_valid(evt:ValidationResultEvent):void {
                 if (ageInput.text != "" && nameInput.text!="" && streetInput.text!="" && phoneInput.text!="" && postalInput.text!="" && dniInput.text!="" && cityInput.text!="" && condInput.text!="") {
