@@ -87,19 +87,22 @@
 			var bbox:LatLngBounds=new LatLngBounds();
 			var jsonObj:Object =  JSON.decode(event.result as String);
 			for each (var item:Object in jsonObj.value.items as Array) {
-			      //create markers
-			      var latlng:LatLng=new LatLng(item["lat2"],item["long2"]);
-				  var options:MarkerOptions = new MarkerOptions({
-							icon: new CustomIconSprite(item["type"]),
-							iconAlignment: MarkerOptions.ALIGN_BOTTOM,
-							iconOffset: new Point(-11,0),
-							clickable:false
-							});			      
-			      
-			      
-			      var m:Marker = new Marker(latlng,options);
-			      bbox.extend(latlng);
-			      map.addOverlay(m);									
+			      if (item["lat2"]!=null || item["long2"]!=null) {
+				      //create markers
+				      var latlng:LatLng=new LatLng(item["lat2"],item["long2"]);
+					  var options:MarkerOptions = new MarkerOptions({
+								icon: new CustomIconSprite(item["type"]),
+								iconAlignment: MarkerOptions.ALIGN_BOTTOM,
+								iconOffset: new Point(-11,0),
+								tooltip:item["description"],
+								clickable:false
+								});			      
+				      
+				      
+				      var m:Marker = new Marker(latlng,options);
+				      bbox.extend(latlng);
+				      map.addOverlay(m);
+			      }									
 			}
 			
 			
