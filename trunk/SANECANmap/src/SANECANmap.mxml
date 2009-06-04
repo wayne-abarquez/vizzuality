@@ -77,7 +77,7 @@
 		
 		
 			var srv:HTTPService =  new HTTPService();
-			srv.url = "http://pipes.yahooapis.com/pipes/pipe.run?_id=bLTo_nJE3hGRRTLFggSecQ&_render=json&v1";
+			srv.url = "http://pipes.yahooapis.com/pipes/pipe.run?_id=bLTo_nJE3hGRRTLFggSecQ&_render=json&v1&r=" +Math.random().toFixed(2);
 			srv.addEventListener(ResultEvent.RESULT,onSrvResultJSON);
 			srv.addEventListener(FaultEvent.FAULT,onSrvFault);
 			srv.send();
