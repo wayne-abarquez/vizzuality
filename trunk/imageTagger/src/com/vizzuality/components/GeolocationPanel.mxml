@@ -40,10 +40,9 @@
 		      	refreshMarkers();
 		    }
 		    
-		    public function refreshMarkers():void {
-		      			      	
+		    public function refreshMarkers():void {	      			      	
 		      	if (map.isLoaded()) {
-		      		
+		      				      		
 			      	if (marker != null) {
 			    		map.clearOverlays();
 			    	}
