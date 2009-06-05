@@ -94,7 +94,7 @@
 								icon: new CustomIconSprite(item["type"]),
 								iconAlignment: MarkerOptions.ALIGN_BOTTOM,
 								iconOffset: new Point(-11,0),
-								tooltip:item["description"],
+								tooltip:(item["description"] as String).toUpperCase(),
 								clickable:false
 								});			      
 				      
