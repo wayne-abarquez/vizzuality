@@ -2,6 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo" minWidth="800" minHeight="600" xmlns:maps="com.google.maps.*">
 <fx:Script>
 	<![CDATA[
+		import com.google.maps.overlays.Marker;
 		import mx.controls.Text;
 		import mx.collections.ArrayCollection;
 		import com.adobe.serialization.json.JSON;
@@ -13,7 +14,7 @@
 		public var tweets:ArrayCollection = new ArrayCollection();
 		
 		private function init():void {
-			map.setCenter(new LatLng(20,0),2,MapType.PHYSICAL_MAP_TYPE);
+			map.setCenter(new LatLng(0,0),2,MapType.PHYSICAL_MAP_TYPE);
 			
 			var srv:HTTPService = new HTTPService();
 			srv.resultFormat = "text";
@@ -23,13 +24,50 @@
 			srv.send();
 		}
 		
+		
+		private function scientificSlice(str:String):String {
+			var start: int;
+			var end: int;
+			var aux: String;
+
+			start=str.indexOf("#",1);
+			aux = str.substring(start);
+			end=aux.indexOf(" ");
+			return aux.substring(1,end-1);
+		}
+		
+		private function getLatLon(str:String):LatLng {
+			var point: LatLng;
+			var start: int;
+			var end: int;
+			var lat: String;
+			var lon: String;
+			
+			start=str.indexOf("/");
+			end=str.indexOf(" ",start+2);
+			lat=str.substring(start+1,end);
+			
+			lon=str.substring(end+1,end+10);
+			
+			point = new LatLng(parseFloat(lat),parseFloat(lon));
+			return point;
+		}
+		
+		private function addOnMap(point: LatLng):void {
+			var m:Marker = new Marker(point);
+		    map.addOverlay(m);
+		}
+		
 		private function onResult(event:ResultEvent):void {
 			var resOb:Object = JSON.decode(event.result as String);
+			connectLabel.visible = false;
+			
 			for each(var t:Object in resOb.results) {
-				if ((t.text as String).toLowerCase().indexOf("#ebio observation:")>0) {
+				if ((t.text as String).toLowerCase().indexOf("#ebio observation:")>=0) {
 					
 					
 					var tweet:Tweet = new Tweet();
+					
 					tweet.created_at = t.created_at;
 					tweet.from_user = t.from_user;
 					tweet.from_user_id = t.from_user_id;
@@ -38,7 +76,10 @@
 					tweet.profile_image_url = t.profile_image_url;
 					tweet.source = t.source;
 					tweet.text = t.text;
-	
+					tweet.scientific_name = scientificSlice(t.text).replace("_"," ");
+					tweet.position = getLatLon(t.text);
+					
+					addOnMap(tweet.position);
 					tweets.addItem(tweet);
 					
 				}
@@ -61,5 +102,6 @@
 			</s:layout>
 		</s:DataGroup>
 	</s:Panel>
+	<s:TextArea id="connectLabel" text="Conecting server..." right="0" top="0" x="690" width="110" contentBackgroundColor="#ffffcc" height="20" fontSize="12"/>
 	
 </s:Application>
