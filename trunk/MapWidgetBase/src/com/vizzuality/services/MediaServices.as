@@ -12,6 +12,7 @@ package com.vizzuality.services
 	import com.vizzuality.data.ImageData;
 	import com.vizzuality.data.PA;
 	import com.vizzuality.data.YoutubeVideoData;
+	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.MapController;
 	import com.vizzuality.view.map.markers.WikipediaInfoWindow;
 	import com.vizzuality.view.map.markers.WikipediaMarker;
@@ -188,7 +189,7 @@ package com.vizzuality.services
 					var marker:Marker = createWikipediaMarker(w);
 					wikipediaMarkers[w]=marker;				
 					
-					if(MapController.gi().isWikipediaActive)
+					if(MapController.gi().isWikipediaActive && AppStates.gi().topState==AppStates.PA)
 						MapController.gi().wikipediaPane.addOverlay(marker);
 				}
 			}		
@@ -357,7 +358,7 @@ package com.vizzuality.services
 		      		MapController.gi().map.panTo(e.latLng);   
 		        });      
 		        
-		       	if(MapController.gi().isPicturesActive) {
+		       	if(MapController.gi().isPicturesActive && AppStates.gi().topState==AppStates.PA) {
 	        		MapController.gi().picturesPane.addOverlay(marker);
 	        	}
         		

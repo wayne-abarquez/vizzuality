@@ -21,6 +21,8 @@
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.MapEvent;
+		import com.vizzuality.view.map.MapController;
 		import mx.core.Application;
 		import com.google.maps.interfaces.IMapType;
 		import com.vizzuality.view.AppStates;
@@ -29,31 +31,32 @@
 		import com.vizzuality.view.map.MapCanvas;
 		import com.google.maps.Map;
 		
-		private var lastSelected:Button;
-		
 		
 		public var map:Map;
 		
 		private function init():void {
-			lastSelected =terrainButton;
+			
+			map.addEventListener(MapEvent.MAPTYPE_CHANGED,onMaptypeChanged);
 		}
+		
+		private function onMaptypeChanged(event:MapEvent):void {
+			trace((event.target as Map).getCurrentMapType().getName());
+		
+			terrainButton.enabled=true;
+			satelliteButton.enabled=true;
+			mapButton.enabled=true;
+			if ((event.target as Map).getCurrentMapType() == MapType.PHYSICAL_MAP_TYPE)
+				terrainButton.enabled=false;
+			if ((event.target as Map).getCurrentMapType() == MapType.SATELLITE_MAP_TYPE)
+				satelliteButton.enabled=false;
+			if ((event.target as Map).getCurrentMapType() == MapType.NORMAL_MAP_TYPE)
+				mapButton.enabled=false;
+		}
+		
 		
 		private function changeMapType(m:IMapType,e:Event):void{
-			if(lastSelected){
-				lastSelected.enabled =true;
-			}
 			map.setMapType(m);
-			lastSelected = e.currentTarget as Button;
-			lastSelected.enabled = false;
-		}
-		
-		private function changeToCountries(e:Event):void{
-			if(lastSelected){
-				lastSelected.enabled =true;
-			}
-			//lastSelected = e.currentTarget as Button;
-			//lastSelected.enabled = false;
-			AppStates.gi().setAllStates(AppStates.COUNTRIES,'');
+
 		}
 		
 		private function onZoomSliderChange():void {
@@ -65,6 +68,7 @@
 		private function zoomOut():void {
 			map.setZoom(map.getZoom()-1);
 		}
+		
 		
 		
 	]]>
@@ -84,13 +88,13 @@
 	</mx:Canvas>	
 	<mx:HBox left="248" verticalCenter="0" styleName="darkTopContainer" backgroundSize="100%" 
 		paddingTop="3" paddingBottom="3" paddingRight="3" height="21" horizontalGap="1">
-		<mx:Button id="terrainButton" label="terrain" enabled="false" click="changeMapType(MapType.PHYSICAL_MAP_TYPE,event)" styleName="btnViewType" height="15"
+		<mx:Button id="terrainButton" label="terrain" styleName="btnViewType" height="15" click="changeMapType(MapType.PHYSICAL_MAP_TYPE,event)"
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="15"/>
-		<mx:Button label="satellite" click="changeMapType(MapType.SATELLITE_MAP_TYPE,event)" styleName="btnViewType" height="15"
+		<mx:Button id="satelliteButton" label="satellite" click="changeMapType(MapType.SATELLITE_MAP_TYPE,event)" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 		<mx:Image source="@Embed(source='/com/vizzuality/style/skin/ui.swf',symbol='dark_top_container_separator')" scaleContent="true" height="15"/>
-		<mx:Button label="map" click="changeMapType(MapType.NORMAL_MAP_TYPE,event)" styleName="btnViewType" height="15"
+		<mx:Button id="mapButton" label="map" click="changeMapType(MapType.NORMAL_MAP_TYPE,event)" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 		<!--mx:Button label="countries" click="changeToCountries(event)" id="button1" styleName="btnViewType" height="15"
 			mouseChildren="false" useHandCursor="true" buttonMode="true" enabled="true"/ -->
