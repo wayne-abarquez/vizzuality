@@ -69,7 +69,7 @@ package com.vizzuality.view.map
 		[Bindable] 
 		public var isYoutubesActive:Boolean=false;
 		
-		private var currentLayersOpacity:Number=0;
+		private var currentLayersOpacity:Number=0; 
 		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
 		{
@@ -192,8 +192,52 @@ package com.vizzuality.view.map
 				AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();
 			}
 		}		
+
+		private function checkIfInsideBbox(pabox:LatLngBounds,mapCenter:LatLng):Boolean {
+			if(pabox.containsLatLng(mapCenter)==false) {
+				var x:Number = mapCenter.lng(); 
+				var y:Number = mapCenter.lat(); 
+                var maxX:Number = pabox.getNorthEast().lng(); 
+                var maxY:Number = pabox.getNorthEast().lat(); 
+                var minX:Number = pabox.getSouthWest().lng(); 
+                var minY:Number = pabox.getSouthWest().lat(); 
+                if (x < minX) 
+                { 
+                        x = minX; 
+                } 
+                if (x > maxX) 
+                { 
+                        x = maxX; 
+                } 
+                if (y < minY) 
+                { 
+                        y = minY; 
+                } 
+                if (y > maxY) 
+                { 
+                        y = maxY; 
+                } 
+                map.setCenter(new LatLng(y, x)); 				
+                return true;
+   			}
+   				
+   			return false;		
+		}
+
 		
 		private function onMapMoved(event:MapMoveEvent):void {
+			//if the user is inside a PA do not allow to pan outside of the PA bounding box
+			if (AppStates.gi().topState==AppStates.PA) {
+				if (checkIfInsideBbox(DataServices.gi().selectedPA.getBbox(),map.getCenter()) )
+					return;	
+			}
+			
+			//if the user is inside a COUNTRY do not allow to pan outside of the PA bounding box
+			if (AppStates.gi().topState==AppStates.COUNTRY) {
+				if (checkIfInsideBbox(DataServices.gi().selectedCountry.bbox,map.getCenter()) )
+					return;	
+			}			
+			
 			if (AppStates.gi().mapPositions[AppStates.gi().topState] !=null) {
 				(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).center = map.getCenter();
 				AppStates.gi().debug(AppStates.gi().topState +':'+(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).toString());
@@ -201,6 +245,8 @@ package com.vizzuality.view.map
 				AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();
 				AppStates.gi().debug(AppStates.gi().topState +':'+(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).toString());
 			}
+			
+			
 		}
 		
 		private function onMaptypeChanged(event:MapEvent):void {
