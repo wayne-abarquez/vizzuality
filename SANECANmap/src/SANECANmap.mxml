@@ -87,7 +87,7 @@
 			var bbox:LatLngBounds=new LatLngBounds();
 			var jsonObj:Object =  JSON.decode(event.result as String);
 			for each (var item:Object in jsonObj.value.items as Array) {
-			      if (item["lat2"]!=null || item["long2"]!=null) {
+			      if (item["lat2"]!=null && item["long2"]!=null && item["lat2"]!="" && item["long2"]!="") {
 				      //create markers
 				      var latlng:LatLng=new LatLng(item["lat2"],item["long2"]);
 					  var options:MarkerOptions = new MarkerOptions({
