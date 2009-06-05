@@ -11,13 +11,13 @@
   
  <s:states>
     <s:State name="normal"/>
-    <!--<s:State name="hovered"/>-->
+    <s:State name="hovered"/>
   </s:states>
   
 	
   	<mx:Image source="{data.profile_image_url}" width="55" height="55"/>
   <s:VGroup x="65">
-	<s:SimpleText text="3 minutes ago" color="#989898" fontSize="10"/>
+	<s:SimpleText text="{data.created_at}" color="#989898" fontSize="10"/>
 	<s:SimpleText text="{data.scientific_name}" width="200" height="12" verticalAlign="middle" 
 		color="#FFFFFF" fontSize="14" fontWeight="normal"/>
 	<s:SimpleText text="{data.from_user}" width="100" height="12" color="#E4E706" fontSize="11"/>		  	
