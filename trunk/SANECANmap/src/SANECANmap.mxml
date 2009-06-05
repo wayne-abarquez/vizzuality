@@ -12,23 +12,6 @@
 					<mx:Text text="Estamos conectando con nuestro servicio de geoposicionamiento,&#xd;Por favor espere unos instantes...&#xd;&#xd;" verticalCenter="19" color="#FFFFFF" fontSize="14" fontFamily="DINOT-Medium" width="490" x="105" textAlign="center"/>
 				</mx:Canvas>
 			</mx:AddChild>
-			<mx:AddChild relativeTo="{label2}" position="before">
-				<mx:Canvas x="160" y="409" width="5" height="5" backgroundColor="#FF9000">
-				</mx:Canvas>
-			</mx:AddChild>
-			<mx:AddChild relativeTo="{label2}" position="before">
-				<mx:Label x="168" y="403" text="Dirección introducida" fontFamily="DINOT-Medium" color="#666666"/>
-			</mx:AddChild>
-			<mx:SetProperty target="{label3}" name="text" value="Tiendas adheridas"/>
-			<mx:SetProperty target="{label4}" name="x" value="615"/>
-			<mx:SetProperty target="{label5}" name="x" value="516"/>
-			<mx:SetProperty target="{label2}" name="x" value="406"/>
-			<mx:SetProperty target="{canvas3}" name="x" value="398"/>
-			<mx:SetProperty target="{canvas4}" name="x" value="508"/>
-			<mx:SetProperty target="{canvas5}" name="x" value="607"/>
-			<mx:SetStyle target="{canvas2}" name="backgroundColor" value="#5F5F5F"/>
-			<mx:SetProperty target="{label4}" name="width" value="101"/>
-			<mx:SetProperty target="{label4}" name="height" value="19"/>
 		</mx:State>
 	</mx:states>
 <mx:Script>
@@ -251,19 +234,22 @@
 	<mx:Style source="com/vizzuality/skin/fonts.css"/>
 	<mx:Style source="com/vizzuality/skin/ui.css"/>
 
-	<mx:Canvas backgroundColor="#eaf7fa" width="100%" height="100%" id="canvas1" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-		<mx:Canvas x="409" y="409" width="5" height="5" backgroundColor="#DB1B29" id="canvas3">
+	<mx:Canvas backgroundColor="#eaf7fa" width="100%" height="100%" id="canvas1">
+		<mx:Canvas x="397" y="409" width="5" height="5" backgroundColor="#DB1B29">
 		</mx:Canvas>
-		<mx:Canvas x="287" y="409" width="5" height="5" backgroundColor="#FF9000" id="canvas2">
+		<mx:Canvas x="287" y="409" width="5" height="5" backgroundColor="#6B6A68">
 		</mx:Canvas>
-		<mx:Label x="295" y="403" text="Dirección introducida" fontFamily="DINOT-Medium" color="#666666" id="label3"/>
-		<mx:Label x="417" y="403" text="Clínicas adheridas" fontFamily="DINOT-Medium" color="#666666" id="label2"/>
-		<mx:Canvas x="519" y="409" width="5" height="5" backgroundColor="#3F9042" id="canvas4">
+		<mx:Label x="295" y="403" text="Tiendas adheridas" fontFamily="DINOT-Medium" color="#666666"/>
+		<mx:Canvas x="163" y="409" width="5" height="5" backgroundColor="#FF9000">
 		</mx:Canvas>
-		<mx:Canvas x="618" y="409" width="5" height="5" backgroundColor="#00A3DB" id="canvas5">
+		<mx:Label x="171" y="403" text="Dirección introducida" fontFamily="DINOT-Medium" color="#666666" width="104.5" height="19"/>
+		<mx:Label x="405" y="403" text="Clínicas adheridas" fontFamily="DINOT-Medium" color="#666666"/>
+		<mx:Canvas x="507" y="409" width="5" height="5" backgroundColor="#3F9042">
 		</mx:Canvas>
-		<mx:Label x="626" y="403" text="Centros municipales" fontFamily="DINOT-Medium" color="#666666" id="label4"/>
-		<mx:Label x="527" y="403" text="Puntos Sanecan" fontFamily="DINOT-Medium" color="#666666" id="label5"/>
+		<mx:Canvas x="606" y="409" width="5" height="5" backgroundColor="#00A3DB">
+		</mx:Canvas>
+		<mx:Label x="614" y="403" text="Centros municipales" fontFamily="DINOT-Medium" color="#666666" width="97" height="19"/>
+		<mx:Label x="515" y="403" text="Puntos Sanecan" fontFamily="DINOT-Medium" color="#666666"/>
 	</mx:Canvas>
 	<mx:Canvas backgroundColor="#999999" left="9" right="9" top="79" bottom="22"/>
 	<mx:TextInput id="addressInput" left="10" right="93" enter="onAddressClick()" 
