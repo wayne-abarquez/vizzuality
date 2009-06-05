@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo" minWidth="800" minHeight="600" xmlns:maps="com.google.maps.*">
+<fx:Script>
+	<![CDATA[
+		import mx.controls.Text;
+		import mx.collections.ArrayCollection;
+		import com.adobe.serialization.json.JSON;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.http.mxml.HTTPService;
+		import com.google.maps.MapType;
+		import com.google.maps.LatLng;
+		
+		public var tweets:ArrayCollection = new ArrayCollection();
+		
+		private function init():void {
+			map.setCenter(new LatLng(20,0),2,MapType.PHYSICAL_MAP_TYPE);
+			
+			var srv:HTTPService = new HTTPService();
+			srv.resultFormat = "text";
+			srv.url="http://search.twitter.com/search.json?q=%23ebio+observation";
+			srv.addEventListener(ResultEvent.RESULT,onResult);
+			
+			srv.send();
+		}
+		
+		private function onResult(event:ResultEvent):void {
+			var resOb:Object = JSON.decode(event.result as String);
+			for each(var t:Object in resOb.results) {
+				if ((t.text as String).toLowerCase().indexOf("#ebio observation:")>0) {
+					
+					
+					var tweet:Tweet = new Tweet();
+					tweet.created_at = t.created_at;
+					tweet.from_user = t.from_user;
+					tweet.from_user_id = t.from_user_id;
+					tweet.id = t.id;
+					tweet.iso_language_code = t.iso_language_code;
+					tweet.profile_image_url = t.profile_image_url;
+					tweet.source = t.source;
+					tweet.text = t.text;
+	
+					tweets.addItem(tweet);
+					
+				}
+
+			}
+			repeaterTweets.dataProvider=tweets;
+		}
+	]]>
+</fx:Script>
+	<fx:Style source="TwitterClient.css"/>
+
+	<maps:Map id="map" height="100%" width="100%" key="lala"  left="250" mapevent_mapready="init()"/>
+	<s:Panel width="250" title="Tweets on Biodiversity" left="0" top="0" bottom="0" contentBackgroundColor="#393939" baseColor="#5B5B5B" color="#FEFEFE" fontFamily="Verdana" fontSize="11">
+		<s:TextInput x="65" y="8" contentBackgroundColor="#FFFFFF" color="#202020"/>
+		<mx:Label x="13" y="9" text="Search" fontSize="13"/>
+		<s:DataGroup id="repeaterTweets" top="36" left="5" right="5" bottom="10"
+			 itemRenderer="TweetItem">
+			<s:layout>
+				<s:VerticalLayout />
+			</s:layout>
+		</s:DataGroup>
+	</s:Panel>
+	
+</s:Application>
