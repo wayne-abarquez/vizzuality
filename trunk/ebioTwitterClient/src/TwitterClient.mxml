@@ -2,6 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo" minWidth="800" minHeight="600" xmlns:maps="com.google.maps.*">
 <fx:Script>
 	<![CDATA[
+		import com.google.maps.overlays.MarkerOptions;
 		import com.google.maps.controls.MapTypeControl;
 		import com.google.maps.controls.ZoomControl;
 		import com.google.maps.LatLngBounds;
@@ -62,8 +63,16 @@
 
 		
 		private function addOnMap(point: LatLng):void {
+			var options:MarkerOptions = new MarkerOptions({
+								icon: new IconCustomSprite(),
+								iconAlignment: MarkerOptions.ALIGN_BOTTOM,
+								//iconOffset: new Point(-11,0),
+								//tooltip:(item["description"] as String).toUpperCase(),
+								clickable:false
+								});			      
+								
+			var m:Marker = new Marker(point,options);
 			bbox.extend(point);
-			var m:Marker = new Marker(point);
 		    map.addOverlay(m);
 		}
 		
@@ -193,10 +202,10 @@
 	<s:Panel width="250" title="Tweets on Biodiversity" left="0" top="0" bottom="0" contentBackgroundColor="#393939" baseColor="#5B5B5B" color="#FEFEFE" fontFamily="Verdana" fontSize="11">
 		<s:TextInput x="65" y="8" contentBackgroundColor="#FFFFFF" color="#202020"/>
 		<mx:Label x="13" y="9" text="Search" fontSize="13"/>
-		<s:DataGroup id="repeaterTweets" top="36" left="5" right="5" bottom="10"
+		<s:DataGroup id="repeaterTweets" top="36" bottom="10"
 			 itemRenderer="TweetItem">
 			<s:layout>
-				<s:VerticalLayout />
+				<s:VerticalLayout gap="0"/>
 			</s:layout>
 		</s:DataGroup>
 	</s:Panel>

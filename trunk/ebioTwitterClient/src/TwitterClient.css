@@ -6,4 +6,10 @@
 global
 {
 	fontSize: 14;
+	baseColor: #E3E52F;
+	focusColor: #E1EE70;
+	symbolColor: #E1EE70;
+	contentBackgroundColor: #D4B538;
+	selectionColor: #F2F8BC;
+	rollOverColor: #F2F6CD;
 }
