@@ -52,6 +52,8 @@
 </mx:states>
 	<mx:Script>
 		<![CDATA[
+			import mx.managers.PopUpManager;
+			import com.vizzuality.view.overlay.ModalAcceptTerms;
 			import com.vizzuality.data.WdpaLayer;
 			import com.vizzuality.view.map.MapController;
 			import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
@@ -80,7 +82,11 @@
 							"where=Site_ID+%3D+" +DataServices.gi().selectedPA.id +
 							"&returnGeometry=true&f=kmz";
 				}
-				navigateToURL(new URLRequest(url));
+				
+				var modalWindow:ModalAcceptTerms = new ModalAcceptTerms();
+				modalWindow.downloadUrl = url;
+				PopUpManager.addPopUp(modalWindow,Application.application.mapCanvas,true);
+				PopUpManager.centerPopUp(modalWindow);
 			}
 			
 			private var pic1:String;
@@ -140,9 +146,9 @@
 			<mx:Label text="{DataServices.gi().selectedPA.iucnCategory}" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" textAlign="center" width="100%" height="100%" x="-1"/>
 		</mx:Canvas>
 	</mx:HBox>
-	<mx:Button styleName="invisibleButton" height="15" label="view GBIF biodiversity data " 
+	<mx:Button styleName="invisibleButton" height="15" label="view GBIF network biodiversity data " 
 		click="navigateToURL(new URLRequest('http://widgets.gbif.org/pa/index.html#/area/'+DataServices.gi().selectedPA.id))"
-		useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="231" textDecoration="underline" x="164"/>
+		useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="231" textDecoration="underline" x="117"/>
 	<mx:Canvas width="296" height="65" styleName="softWhiteGreyContainer" top="48" id="canvas1" x="15">
 		<mx:Label y="3" text="{DataServices.gi().selectedPA.country}" fontSize="16" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" left="5" width="289"/>
 		<mx:Label y="25" text="{'location: '+DataServices.gi().selectedPA.getCenter().lng().toFixed(3) + ' , '+DataServices.gi().selectedPA.getCenter().lat().toFixed(3)}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
