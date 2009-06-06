@@ -71,7 +71,7 @@
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<ns1:RightArea verticalCenter="-11" horizontalCenter="291">
+				<ns1:RightArea verticalCenter="-11" horizontalCenter="290">
 				</ns1:RightArea>
 			</mx:AddChild>
 			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
