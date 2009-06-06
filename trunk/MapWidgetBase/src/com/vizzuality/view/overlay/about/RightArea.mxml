@@ -6,7 +6,7 @@
 		leading="-4" width="225" left="6" letterSpacing="-1" top="157"/>
 	<mx:Text text="Powered by" color="#375381" fontFamily="DINOT-Medium" fontSize="16" 
 		leading="-4" width="225" left="8" letterSpacing="-1" top="257"/>
-	<mx:Text text="Do you know that..." color="#375381" fontFamily="DINOT-Medium" fontSize="14" 
+	<mx:Text text="Did you know that..." color="#375381" fontFamily="DINOT-Medium" fontSize="14" 
 		verticalCenter="-150" width="225" left="6"/>
 	<ns1:WorldCoverage left="7" top="84">
 	</ns1:WorldCoverage>
