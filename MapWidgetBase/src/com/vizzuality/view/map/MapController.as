@@ -313,7 +313,6 @@ package com.vizzuality.view.map
 		}
 		
 		private function onAreaMapClick(event:MapMouseEvent):void {
-			trace("onAreaMapClick");
 			if(AppStates.gi().secondState==AppStates.ABOUT) {
 				AppStates.gi().setSecondState('');
 			} else {
@@ -323,7 +322,6 @@ package com.vizzuality.view.map
 		}	
 		
 		private function onCountriesMapClick(event:MapMouseEvent):void {
-			trace("onCountriesMapClick");
 			if(AppStates.gi().secondState==AppStates.ABOUT) {
 				AppStates.gi().setSecondState('');
 			} else {
