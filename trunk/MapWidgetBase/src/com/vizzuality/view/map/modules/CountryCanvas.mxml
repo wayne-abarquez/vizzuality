@@ -124,7 +124,7 @@
 		</mx:VBox>
 		<mx:Image x="200" y="31" scaleContent="false" width="8" height="8" source="{CoralSmallLegend}" visible="{cb.selected}"/>
 		<mx:Image x="200" y="67" scaleContent="false" width="8" height="8" source="{SeaGrassSmallLegend}" visible="{sgb.selected}"/>
-		<mx:Image x="200" y="86" scaleContent="false" width="8" height="8" source="{MangrovesSmallLegend}" visible="{mb.selected}"/>
+		<mx:Image x="200" y="49" scaleContent="false" width="8" height="8" source="{MangrovesSmallLegend}" visible="{mb.selected}"/>
 	</mx:Canvas>
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="239" id="hrule0"/>
 	<mx:Button y="8" styleName="invisibleButtonDos" right="10" width="20" click="handleCollapse()"
