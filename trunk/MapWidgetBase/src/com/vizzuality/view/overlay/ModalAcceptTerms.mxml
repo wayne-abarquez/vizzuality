@@ -4,48 +4,10 @@
 	horizontalScrollPolicy="off" verticalScrollPolicy="off">
 <mx:Script>
 	<![CDATA[
-		import mx.effects.easing.Exponential;
-		import com.vizzuality.services.DataServiceEvent;
-		import com.vizzuality.view.AppStates;
-		import com.vizzuality.data.Country;
-		import mx.rpc.events.FaultEvent;
-		import mx.rpc.events.ResultEvent;
-		import com.vizzuality.services.DataServices;
-		import com.vizzuality.view.map.MapController;
-		import com.vizzuality.data.WdpaLayer;
-		private var currentIso:String="";
+		import mx.managers.PopUpManager;
+		import flash.net.navigateToURL;
 		
-		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='SeaGrassSmallLegend')]
-		[Bindable]
-		public var SeaGrassSmallLegend:Class;
-		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='MangrovesSmallLegend')]
-		[Bindable]
-		public var MangrovesSmallLegend:Class;
-		[Embed(source='/com/vizzuality/style/skin/ui.swf', symbol='CoralSmallLegend')]
-		[Bindable]
-		public var CoralSmallLegend:Class;
-		
-		
-		public function set isocode(iso:String):void {
-			if(iso!=currentIso && iso!=null) { 
-				currentState='loading';
-				DataServices.gi().addEventListener(DataServiceEvent.COUNTRY_DATA_LOADED,onDataLoaded);
-				DataServices.gi().selectedCountryIso=iso;
-				currentIso=iso;				
-			}
-		}
-		
-		private function onDataLoaded(event:DataServiceEvent):void {						
-			currentState='';
-		}
-		
-		private function handleCollapse():void{
-			if(this.currentState == ''){
-				this.currentState = 'collapse';
-			}else{
-				this.currentState = '';
-			}
-		}
+		public var downloadUrl:String;
 			
 		
 	]]>
@@ -136,23 +98,13 @@ Any communication with respect to these Terms and Conditions and any issue arisi
 shall be in writing, in English, and sent by email. The address for communication with the WDPA 
 supplier is:protectedareas@unep-wcmc.org]]></mx:text>
 		</mx:TextArea>
-		<mx:Button label="Continue" styleName="btnInfoWindow"
+		<mx:Button label="Continue" styleName="btnInfoWindow" click="navigateToURL(new URLRequest(downloadUrl))"
 			height="36" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button4" right="10" y="270" width="120" fontSize="14"/>
-		<mx:Button label="Cancel" styleName="btnInfoWindow"
+		<mx:Button label="Cancel" styleName="btnInfoWindow" click="PopUpManager.removePopUp(this)"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button0" y="276" width="100" x="392"/>
 	</mx:Canvas>
 	<mx:Label text="YOU MUST ACCEPT THE TERMS AND CONDITIONS BEFORE CONTINUE" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4"/>
 	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
 	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="34" id="hrule2"/>
 	
-	<mx:transitions>
-		<mx:Transition fromState="*" toState="*">
-			<mx:Parallel targets="{[this]}">
-				<mx:Resize duration="800" easingFunction="{Exponential.easeInOut}" />
-			</mx:Parallel>
-		</mx:Transition>		
-	</mx:transitions>		
-		
-		
-	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />	
 </mx:Canvas>
