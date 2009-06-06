@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*"
-	width="821" height="194" horizontalCenter="0" creationComplete="init();" xmlns:maps="com.google.maps.*">
+	width="821" horizontalCenter="0" creationComplete="init();" xmlns:maps="com.google.maps.*" height="260"
+	verticalScrollPolicy="off" horizontalScrollPolicy="off">
 
 <mx:states>
 	<mx:State name="NATIONAL" />
@@ -136,12 +137,12 @@
 			leading="-4" letterSpacing="-1" paddingTop="0" paddingBottom="6"/>
 		<mx:Canvas width="17" height="17" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<mx:Image width="17" height="17" source="@Embed('/com/vizzuality/style/assets/circleIUCN.png')"/>
-			<mx:Label text="{DataServices.gi().selectedPA.iucnCategory}" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" textAlign="center" width="100%" height="100%"/>
+			<mx:Label text="{DataServices.gi().selectedPA.iucnCategory}" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" textAlign="center" width="100%" height="100%" x="-1"/>
 		</mx:Canvas>
 	</mx:HBox>
 	<mx:Button styleName="invisibleButton" height="15" label="view GBIF biodiversity data " 
 		click="navigateToURL(new URLRequest('http://widgets.gbif.org/pa/index.html#/area/'+DataServices.gi().selectedPA.id))"
-		useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="169" textDecoration="underline" x="385"/>
+		useHandCursor="true" mouseChildren="false" buttonMode="true" textAlign="left" top="231" textDecoration="underline" x="164"/>
 	<mx:Canvas width="296" height="65" styleName="softWhiteGreyContainer" top="48" id="canvas1" x="15">
 		<mx:Label y="3" text="{DataServices.gi().selectedPA.country}" fontSize="16" fontFamily="DINOT-Medium" color="#375381" letterSpacing="-1" left="5" width="289"/>
 		<mx:Label y="25" text="{'location: '+DataServices.gi().selectedPA.getCenter().lng().toFixed(3) + ' , '+DataServices.gi().selectedPA.getCenter().lat().toFixed(3)}" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" left="6" right="101"/>
@@ -153,63 +154,61 @@
 		<mediabrowser:PicItemRenderer id="image3" />
 		<mediabrowser:PicItemRenderer id="image4" />
 	</mx:HBox>-->
-	<mx:VBox top="116" x="15" verticalGap="-5" >
-		<mx:HBox horizontalGap="-3" id="hbox61" includeInLayout="{DataServices.gi().selectedPA.sourceTitle!=null}" visible="{DataServices.gi().selectedPA.sourceTitle!=null}">
-			<mx:Label text="Title" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-			<mx:Label text="{DataServices.gi().selectedPA.sourceTitle}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-		</mx:HBox>		
-		<mx:HBox horizontalGap="-3" id="hbox62" includeInLayout="{DataServices.gi().selectedPA.sourceResponsibleParty!=null}" visible="{DataServices.gi().selectedPA.sourceResponsibleParty!=null}">
-			<mx:Label text="Responsible party" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-			<mx:Label text="{DataServices.gi().selectedPA.sourceResponsibleParty}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-		</mx:HBox>		
-		<mx:HBox horizontalGap="-3" id="hbox63" includeInLayout="{DataServices.gi().selectedPA.sourceYear!=null}" visible="{DataServices.gi().selectedPA.sourceYear!=null}">
-			<mx:Label text="Year" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-			<mx:Label text="{DataServices.gi().selectedPA.sourceYear}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-		</mx:HBox>		
-		<mx:HBox horizontalGap="-3" id="hbox64" includeInLayout="{DataServices.gi().selectedPA.sourceOriginalFormat!=null}" visible="{DataServices.gi().selectedPA.sourceOriginalFormat!=null}">
-			<mx:Label text="Original format" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-			<mx:Label text="{DataServices.gi().selectedPA.sourceOriginalFormat}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-		</mx:HBox>		
-	</mx:VBox>
 	
 	
-	<mx:Canvas width="218" height="123" styleName="softWhiteGreyContainer" top="48" id="canvas0" x="315">
+	<mx:Canvas width="297" height="110" styleName="softWhiteGreyContainer" top="117" id="canvas0" x="15">
 		<maps:Map id="gbifMap" key="{Application.application.parameters.gmap_key}" width="100%" height="100%" /> 
 	</mx:Canvas>
-	<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="41" x="540" id="label3"/>
-	<mx:VBox x="541" y="65" verticalGap="-5" id="vbox1">
+	<mx:Label text="Area details" color="#375381" fontFamily="DINOT-Medium" fontSize="16" top="47" x="315" id="label3"/>
+	<mx:VBox y="71" verticalGap="-5" id="vbox1" right="20" left="316">
 		<mx:HBox horizontalGap="-3" id="hbox70" includeInLayout="{DataServices.gi().selectedPA.convention!=null}" visible="{DataServices.gi().selectedPA.convention!=null}">
 			<mx:Label text="International Convention" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-			<mx:Label text="{DataServices.gi().selectedPA.convention}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.convention}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" truncateToFit="true" letterSpacing="-1" width="100%"/>
 		</mx:HBox>
 		<mx:HBox horizontalGap="-3" id="hbox80" includeInLayout="{DataServices.gi().selectedPA.designation!=null}" visible="{DataServices.gi().selectedPA.designation!=null}">
 			<mx:Label text="Designation" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-			<mx:Label text="{DataServices.gi().selectedPA.designation}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.designation}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" truncateToFit="true" width="100%"/>
 		</mx:HBox>
 		<mx:HBox horizontalGap="-3" id="hbox6" includeInLayout="{DataServices.gi().selectedPA.establishmentYear!=null}" visible="{DataServices.gi().selectedPA.establishmentYear!=null}">
 			<mx:Label text="Established in" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-			<mx:Label text="{DataServices.gi().selectedPA.establishmentYear}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.establishmentYear}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" truncateToFit="true" width="100%"/>
 		</mx:HBox>
 		<mx:HBox horizontalGap="-3" id="hbox1" includeInLayout="{DataServices.gi().selectedPA.currentStatus!=null}" visible="{DataServices.gi().selectedPA.currentStatus!=null}">
 			<mx:Label text="Current status" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1" id="label7"/>
-			<mx:Label text="{DataServices.gi().selectedPA.currentStatus}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" id="label8"/>
+			<mx:Label text="{DataServices.gi().selectedPA.currentStatus}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" id="label8" truncateToFit="true" width="100%"/>
 		</mx:HBox>
 		<mx:HBox horizontalGap="-3" id="hbox3" includeInLayout="{DataServices.gi().selectedPA.siteGovernance!=null}" visible="{DataServices.gi().selectedPA.siteGovernance!=null}">
 			<mx:Label text="Site governance" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
-			<mx:Label text="{DataServices.gi().selectedPA.siteGovernance}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.siteGovernance}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" truncateToFit="true" width="100%"/>
 		</mx:HBox>
-		<mx:HBox horizontalGap="-3" id="hbox4">
+		<mx:HBox horizontalGap="-3" id="hbox61" includeInLayout="{DataServices.gi().selectedPA.sourceTitle!=null}" visible="{DataServices.gi().selectedPA.sourceTitle!=null}">
+			<mx:Label text="Title" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.sourceTitle}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" truncateToFit="true" width="100%"/>
+		</mx:HBox>
+		<mx:HBox horizontalGap="-3" id="hbox62" includeInLayout="{DataServices.gi().selectedPA.sourceResponsibleParty!=null}" visible="{DataServices.gi().selectedPA.sourceResponsibleParty!=null}">
+			<mx:Label text="Responsible party" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.sourceResponsibleParty}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" truncateToFit="true" width="100%"/>
+		</mx:HBox>
+		<mx:HBox horizontalGap="-3" id="hbox63" includeInLayout="{DataServices.gi().selectedPA.sourceYear!=null}" visible="{DataServices.gi().selectedPA.sourceYear!=null}">
+			<mx:Label text="Year" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.sourceYear}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" truncateToFit="true" width="100%"/>
+		</mx:HBox>
+		<mx:HBox horizontalGap="-3" id="hbox64" includeInLayout="{DataServices.gi().selectedPA.sourceOriginalFormat!=null}" visible="{DataServices.gi().selectedPA.sourceOriginalFormat!=null}">
+			<mx:Label text="Original format" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
+			<mx:Label text="{DataServices.gi().selectedPA.sourceOriginalFormat}" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1" truncateToFit="true" width="100%"/>
+		</mx:HBox>
+		<!--<mx:HBox horizontalGap="-3" id="hbox4">
 			<mx:Label text="Management Authority" fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
 			<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
 		</mx:HBox>
 		<mx:HBox horizontalGap="-3" id="hbox5">
 			<mx:Label text="Management Effectiveness " fontSize="12" fontFamily="DINOT-Medium" color="#666666" letterSpacing="-1"/>
 			<mx:Label text="No / Info not aviable" fontSize="12" fontFamily="DINOT-Bold" color="#555555" letterSpacing="-1"/>
-		</mx:HBox>
+		</mx:HBox>-->
 	</mx:VBox>
 	<mx:Label text="view in google earth" fontSize="12" fontFamily="DINOT-Medium" color="#375381"
-		 letterSpacing="-1" textDecoration="underline" textAlign="right" id="label5" top="169" left="201"
+		 letterSpacing="-1" textDecoration="underline" textAlign="right" id="label5" top="54" left="192"
 		  useHandCursor="true" buttonMode="true" mouseChildren="false" click="viewGoogleEarth()"/>
-	<mx:Image source="@Embed('/com/vizzuality/style/assets/iconGearth.png')" top="174" left="298"/>
+	<mx:Image source="@Embed('/com/vizzuality/style/assets/iconGearth.png')" top="58" left="289"/>
 	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />
 </mx:Canvas>
