@@ -40,7 +40,6 @@
 		}
 		
 		private function onMaptypeChanged(event:MapEvent):void {
-			trace((event.target as Map).getCurrentMapType().getName());
 		
 			terrainButton.enabled=true;
 			satelliteButton.enabled=true;

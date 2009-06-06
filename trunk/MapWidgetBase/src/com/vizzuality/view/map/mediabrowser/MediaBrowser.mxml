@@ -24,12 +24,12 @@
 			private function init():void {
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_AVAILABLE,function(event:DataServiceEvent):void {
 					if(MediaServices.gi().pictures.length>0) {						
-						hList.dataProvider=MediaServices.gi().pictures;
+						picList.dataProvider=MediaServices.gi().pictures;
 					} else {
 					}
 				});
 				MediaServices.gi().addEventListener(DataServiceEvent.PICTURES_LOADING,function(event:DataServiceEvent):void {
-					hList.dataProvider=new ArrayCollection();
+					picList.dataProvider=new ArrayCollection();
 				});
 			}
 
@@ -50,11 +50,17 @@
 		]]>
 	</mx:Script>
 
-	<mx:HBox id="picList" height="55" x="18" verticalCenter="0" horizontalGap="4">
+	<mx:HorizontalList id="picList" height="55" verticalCenter="0" itemRenderer="com.vizzuality.view.map.mediabrowser.PicItemRenderer" 
+		 horizontalScrollPolicy="off"
+		left="18" right="18" borderThickness="0">
+		
+	</mx:HorizontalList>
+<!--	<mx:HBox id="picList" height="55" x="18" verticalCenter="0" horizontalGap="4">
+		
 		<mx:Repeater id="hList">
 			<mediabrowser:PicItemRenderer pic="{hList.currentItem.imageUrl}" picId="{hList.currentItem.id}" />
 		</mx:Repeater>
-	</mx:HBox>
+	</mx:HBox>-->
 
 	<mx:Button click="prev();"  width="15" height="55" verticalCenter="0" left="0"
 		styleName="btnMediaBrowserLeft"
