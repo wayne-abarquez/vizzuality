@@ -118,9 +118,9 @@
 		<mx:Label text="WDPA-MARINE LAYERS" id="label3" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 		<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
 			<mx:CheckBox label="{'Coral ('+nf.format(DataServices.gi().selectedCountry.numberCoral.toFixed(2))+' km2)'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)" id="cb"/>
-			<mx:CheckBox label="{'SaltMarsh'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
-			<mx:CheckBox label="{'SeaGrass'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)" id="sgb"/>
 			<mx:CheckBox label="{'Mangroves ('+nf.format(DataServices.gi().selectedCountry.numMangrove.toFixed(2))+' km2)'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)" id="mb"/>
+			<mx:CheckBox label="{'SeaGrass'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)" id="sgb"/>
+			<mx:CheckBox label="{'SaltMarsh'}" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
 		</mx:VBox>
 		<mx:Image x="200" y="31" scaleContent="false" width="8" height="8" source="{CoralSmallLegend}" visible="{cb.selected}"/>
 		<mx:Image x="200" y="67" scaleContent="false" width="8" height="8" source="{SeaGrassSmallLegend}" visible="{sgb.selected}"/>
