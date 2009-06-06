@@ -127,13 +127,13 @@
 				<mx:Label text="WDPA LAYERS" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 				<mx:VBox verticalGap="0" paddingLeft="15" paddingBottom="8" top="29" id="vbox1">
 					<mx:CheckBox id="cb" label="Coral" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
-					<mx:CheckBox id="cwb" label="Cold Water Corals" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
-					<mx:CheckBox id="sgb" label="SeaGrass" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
 					<mx:CheckBox id="mb" label="Mangroves" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
+					<mx:CheckBox id="sgb" label="SeaGrass" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
+					<mx:CheckBox id="cwb" label="Cold Water Corals" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
 				</mx:VBox>
 				<mx:Image x="200" y="33" scaleContent="false" width="8" height="8" source="{CoralSmallLegend}" visible="{cb.selected}" id="image2"/>
 				<mx:Image x="200" y="69" scaleContent="false" width="8" height="8" source="{SeaGrassSmallLegend}" visible="{sgb.selected}" id="image3"/>
-				<mx:Image x="200" y="86" scaleContent="false" width="8" height="8" source="{MangrovesSmallLegend}" visible="{mb.selected}" id="image4"/>
+				<mx:Image x="200" y="51" scaleContent="false" width="8" height="8" source="{MangrovesSmallLegend}" visible="{mb.selected}" id="image4"/>
 			</mx:Canvas>
 			<mx:HRule strokeColor="#B4BB94" strokeWidth="1" width="100%" id="hrule2"/>
 			<mx:Canvas styleName="softGreenContainer" width="100%"
