@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="0"
-	 currentState="{AppStates.gi().secondState}" styleName="whiteOverlay" backgroundSize="100%" xmlns:ns1="com.vizzuality.view.overlay.about.*" xmlns:ns2="com.vizzuality.view.map.toolbar.*">
+	 currentState="{AppStates.gi().secondState}" styleName="whiteOverlay" backgroundSize="100%" 
+	 xmlns:ns1="com.vizzuality.view.overlay.about.*" xmlns:ns2="com.vizzuality.view.map.toolbar.*"
+	 verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	<mx:states>
 		<mx:State name="{AppStates.HELP}">
 			<mx:SetProperty name="height" value="90"/>
@@ -110,7 +112,7 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.AREA_DETAILS}">
-			<mx:SetProperty name="height" value="218"/>
+			<mx:SetProperty name="height" value="275"/>
 			<mx:SetProperty name="styleName" value="whiteOverlayClose"/>
 			<mx:AddChild position="lastChild">
 				<mx:Button right="0" click="AppStates.gi().setSecondState('')" width="50" styleName="invisibleButton" bottom="4" height="15" label="close"
