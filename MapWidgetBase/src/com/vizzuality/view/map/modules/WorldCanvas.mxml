@@ -28,17 +28,23 @@
 			<mx:RemoveChild target="{radiobutton1}"/>
 			<mx:RemoveChild target="{radiobutton2}"/>
 			<mx:SetProperty target="{button1}" name="selected" value="false"/>
-			<mx:SetProperty name="height" value="282"/>
+			<mx:SetProperty name="height" value="332"/>
 			<mx:RemoveChild target="{button2}"/>
 			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
 				<mx:Button x="75" label="Areas" bottom="0" styleName="btnMiniTab" height="19" id="button0"
 				buttonMode="true" mouseChildren="false" useHandCursor="true" click="currentState=AppStates.WORLD;SWFAddress.setValue(AppStates.WORLD);" selected="true"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas0}" position="lastChild">
+				<mx:Image x="-2" source="@Embed('/assets/legend_marine.png')" top="118"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="{AppStates.COUNTRIES}">
 			<mx:RemoveChild target="{worldcoverage1}"/>
 			<mx:AddChild relativeTo="{canvas0}" position="lastChild">
 				<ns1:WorldCoverage horizontalCenter="0" top="54" id="worldcoverage0"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas0}" position="lastChild">
+				<mx:Image id="legend" source="{legendBlue}"  top="102" right="15"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -60,6 +66,13 @@
 		
 		private var loaded:Boolean=false;
 	
+		[Embed(source="/assets/legendBlue.png")]
+		[Bindable]
+		public var legendBlue:Class;
+		[Embed(source="/assets/legendPink.png")]
+		[Bindable]
+		public var legendPink:Class;
+		
 		private function init():void {
 			
 			//There has been code commented here to make data static.
@@ -105,8 +118,8 @@
 		</mx:Canvas>
 		<mx:Label text="NAVIGATE" id="label1" color="#484848" fontFamily="DINOT-Medium" fontSize="13" left="7" top="6"/>
 		<ns1:WorldCoverage horizontalCenter="0" top="54" id="worldcoverage1"/>
-		<mx:RadioButton x="10" y="126" label="by country coverage" id="radiobutton2" click="MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_COVERAGE])" selected="true"/>
-		<mx:RadioButton x="10" y="145" label="by number of areas" id="radiobutton1" click="MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_AREAS])"/>
+		<mx:RadioButton x="10" y="126" label="by country coverage" id="radiobutton2" click="{MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_COVERAGE]);legend.source=legendBlue}" selected="true"/>
+		<mx:RadioButton x="10" y="145" label="by number of areas" id="radiobutton1" click="{MapController.gi().updateTileLayers([WdpaLayer.COUNTRY_PER_AREAS]);legend.source=legendPink}" />
 	</mx:Canvas>
 	<mx:Canvas height="102" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
