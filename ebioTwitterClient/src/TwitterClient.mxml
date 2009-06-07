@@ -18,6 +18,8 @@
 		public var tweets:ArrayCollection = new ArrayCollection();
 		
 		public var bbox:LatLngBounds;
+		private var flickrImage: FlickrImage = new FlickrImage();
+		
 		
 		private function init():void {
 			map.setCenter(new LatLng(0,0),2,MapType.SATELLITE_MAP_TYPE);
@@ -62,14 +64,15 @@
 		}
 
 		
-		private function addOnMap(point: LatLng):void {
+		private function addOnMap(point: LatLng,num:Number,name:String):void {
 			var options:MarkerOptions = new MarkerOptions({
-								icon: new IconCustomSprite(),
+								icon: new CustomIconSprite(),
 								iconAlignment: MarkerOptions.ALIGN_BOTTOM,
-								//iconOffset: new Point(-11,0),
-								//tooltip:(item["description"] as String).toUpperCase(),
 								clickable:false
-								});			      
+								});	
+			if (num<6) {
+				options.icon = new CustomIconSprite(name);
+			}		      
 								
 			var m:Marker = new Marker(point,options);
 			bbox.extend(point);
@@ -164,27 +167,27 @@
                 
 		private function onResult(event:ResultEvent):void {
 			var resOb:Object = JSON.decode(event.result as String);
+			var i: int = 0;
 			connectLabel.visible = false;
 			
 			for each(var t:Object in resOb.results) {
 				if ((t.text as String).toLowerCase().indexOf("#ebio observation:")>=0) {
-					
+					i = i + 1;
 					
 					var tweet:Tweet = new Tweet();
 					
+					tweet.text = t.text;
+					tweet.scientific_name = scientificSlice(t.text).replace("_"," ");					
 					tweet.created_at = returnTweetAge(t.created_at);
-					
 					tweet.from_user = t.from_user;
 					tweet.from_user_id = t.from_user_id;
 					tweet.id = t.id;
 					tweet.iso_language_code = t.iso_language_code;
 					tweet.profile_image_url = t.profile_image_url;
 					tweet.source = t.source;
-					tweet.text = t.text;
-					tweet.scientific_name = scientificSlice(t.text).replace("_"," ");
 					tweet.position = getLatLon(t.text);
 					
-					addOnMap(tweet.position);
+					addOnMap(tweet.position,i,tweet.scientific_name);
 					tweets.addItem(tweet);
 					
 				}
