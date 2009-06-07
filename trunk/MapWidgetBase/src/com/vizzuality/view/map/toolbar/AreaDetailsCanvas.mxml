@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:mediabrowser="com.vizzuality.view.map.mediabrowser.*"
-	width="821" horizontalCenter="0" creationComplete="init();" xmlns:maps="com.google.maps.*" height="260"
+	horizontalCenter="0" creationComplete="init();" xmlns:maps="com.google.maps.*" height="260"
 	verticalScrollPolicy="off" horizontalScrollPolicy="off">
 
 <mx:states>
