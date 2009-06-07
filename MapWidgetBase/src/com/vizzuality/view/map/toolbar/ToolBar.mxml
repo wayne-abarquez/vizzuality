@@ -119,7 +119,7 @@
 					useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<ns2:AreaDetailsCanvas id="canvas2" />
+				<ns2:AreaDetailsCanvas id="canvas2" width="100%"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
