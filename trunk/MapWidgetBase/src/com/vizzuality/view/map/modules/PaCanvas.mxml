@@ -129,7 +129,7 @@
 					<mx:CheckBox id="cb" label="Coral" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.CORAL)"/>
 					<mx:CheckBox id="mb" label="Mangroves" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.MANGROVE)"/>
 					<mx:CheckBox id="sgb" label="SeaGrass" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SEAGRASS)"/>
-					<mx:CheckBox id="cwb" label="Cold Water Corals" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.COLD_WALTER_CORAL)"/>
+					<mx:CheckBox id="cwb" label="Saltmarsh" change="MapController.gi().toggleLayerToCurrentState(WdpaLayer.SALTMARSH)"/>
 				</mx:VBox>
 				<mx:Image x="200" y="33" scaleContent="false" width="8" height="8" source="{CoralSmallLegend}" visible="{cb.selected}" id="image2"/>
 				<mx:Image x="200" y="69" scaleContent="false" width="8" height="8" source="{SeaGrassSmallLegend}" visible="{sgb.selected}" id="image3"/>
