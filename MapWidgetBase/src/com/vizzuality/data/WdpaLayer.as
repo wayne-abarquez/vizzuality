@@ -22,7 +22,7 @@ package com.vizzuality.data
 		public static const MANGROVE:String="mangrove";
 		public static const CORAL:String="coral";
 		public static const SEAGRASS:String="seagrass";
-		public static const COLD_WALTER_CORAL:String="cold_walter_coral";
+		public static const SALTMARSH:String="saltmarsh";
 		public static const PA_BORDER:String="pa_border";
 		public static const COUNTRY_PER_AREAS:String="country_per_areas";
 		public static const COUNTRY_PER_COVERAGE:String="country_per_coverage";
@@ -51,7 +51,7 @@ package com.vizzuality.data
 				mangrove:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/mangrove/MapServer/tile/|Z|/|Y|/|X|.png",
 				coral:					"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/coral/MapServer/tile/|Z|/|Y|/|X|.png",
 				seagrass:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/seagrass/MapServer/tile/|Z|/|Y|/|X|.png",
-				cold_walter_coral:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/cold_water_coral/MapServer/tile/|Z|/|Y|/|X|.png",
+				saltmarsh:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/saltmarsh/MapServer/tile/|Z|/|Y|/|X|.png",
 				pa_border:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_international_all/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_areas:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_areas_marine/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage_marine/MapServer/tile/|Z|/|Y|/|X|.png",
@@ -78,7 +78,7 @@ package com.vizzuality.data
 				mangrove:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/mangrove/MapServer/tile/|Z|/|Y|/|X|.png",
 				coral:					"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/coral/MapServer/tile/|Z|/|Y|/|X|.png",
 				seagrass:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/seagrass/MapServer/tile/|Z|/|Y|/|X|.png",
-				cold_walter_coral:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/cold_water_coral/MapServer/tile/|Z|/|Y|/|X|.png",
+				saltmarsh:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/saltmarsh/MapServer/tile/|Z|/|Y|/|X|.png",
 				pa_border:				"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/wdpa_international_all/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_areas:		"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_areas_marine/MapServer/tile/|Z|/|Y|/|X|.png",
 				country_per_coverage:	"http://maps.unep-wcmc.org/ArcGIS/rest/services/WDPAv2_0/country_per_coverage_marine/MapServer/tile/|Z|/|Y|/|X|.png",
