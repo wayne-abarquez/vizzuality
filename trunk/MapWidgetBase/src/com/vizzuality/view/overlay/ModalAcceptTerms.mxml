@@ -98,7 +98,7 @@ Any communication with respect to these Terms and Conditions and any issue arisi
 shall be in writing, in English, and sent by email. The address for communication with the WDPA 
 supplier is:protectedareas@unep-wcmc.org]]></mx:text>
 		</mx:TextArea>
-		<mx:Button label="Continue" styleName="btnInfoWindow" click="navigateToURL(new URLRequest(downloadUrl))"
+		<mx:Button label="Continue" styleName="btnInfoWindow" click="navigateToURL(new URLRequest(downloadUrl));PopUpManager.removePopUp(this);"
 			height="36" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button4" right="10" y="270" width="120" fontSize="14"/>
 		<mx:Button label="Cancel" styleName="btnInfoWindow" click="PopUpManager.removePopUp(this)"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button0" y="276" width="100" x="392"/>
