@@ -11,22 +11,10 @@ package {
 		  
 		  public function CustomIconSprite(name:String="") {
 		  	if (name=="") {
-			  	addChild(new marker());		  		
-		  	} else {
-		  		var image: FlickrImage = new FlickrImage();
-		  		image.query = name;
-		  		image.width = 30;
-		  		image.height = 30;
-		  		image.addEventListener(FlexEvent.DATA_CHANGE,changeImage);
-		  		//addChild(image);
-		  	}		  	
-		  	cacheAsBitmap = true;
-		  } 
-		  
-		  public function changeImage(ev:FlexEvent):void {
-		  	trace("jam");
-		  	//addChild(
-		  	//cacheAsBitmap = true;
+			  	addChild(new marker());		  		  	
+		  		cacheAsBitmap = true;
+		  	} 
+
 		  }
 	}
 }

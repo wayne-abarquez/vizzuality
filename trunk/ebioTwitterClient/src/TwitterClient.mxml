@@ -2,6 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo" minWidth="800" minHeight="600" xmlns:maps="com.google.maps.*">
 <fx:Script>
 	<![CDATA[
+		import mx.events.FlexEvent;
 		import com.google.maps.overlays.MarkerOptions;
 		import com.google.maps.controls.MapTypeControl;
 		import com.google.maps.controls.ZoomControl;
@@ -19,9 +20,27 @@
 		
 		public var bbox:LatLngBounds;
 		private var flickrImage: FlickrImage = new FlickrImage();
-		
+		private var dictionary: Dictionary = new Dictionary();
+			
 		
 		private function init():void {
+			var externalDomains:Array=[
+			"farm1.static.flickr.com",
+			"farm2.static.flickr.com",
+			"farm3.static.flickr.com",
+			"farm4.static.flickr.com"];
+			for each(var dom:String in externalDomains) {
+			   Security.allowDomain(dom);
+			   Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
+			   var request:URLRequest = new URLRequest("http://"+dom+"/crossdomain.xml");
+			   var loader:URLLoader = new URLLoader();
+			   loader.addEventListener(IOErrorEvent.IO_ERROR,function(event:IOErrorEvent):void {
+			   	trace("error");
+			   });
+			   loader.load(request);	
+			}
+
+			Security.loadPolicyFile("http://flickr.com/crossdomain.xml");
 			map.setCenter(new LatLng(0,0),2,MapType.SATELLITE_MAP_TYPE);
 			map.addControl(new ZoomControl());
 			map.addControl(new MapTypeControl());
@@ -33,6 +52,8 @@
 			
 			srv.send();
 		}
+		
+		
 		
 		
 		private function scientificSlice(str:String):String {
@@ -64,18 +85,15 @@
 		}
 
 		
-		private function addOnMap(point: LatLng,num:Number,name:String):void {
+		private function addOnMap(point: LatLng):void {
 			var options:MarkerOptions = new MarkerOptions({
 								icon: new CustomIconSprite(),
 								iconAlignment: MarkerOptions.ALIGN_BOTTOM,
 								clickable:false
-								});	
-			if (num<6) {
-				options.icon = new CustomIconSprite(name);
-			}		      
+								});	    
 								
 			var m:Marker = new Marker(point,options);
-			bbox.extend(point);
+			//bbox.extend(point);
 		    map.addOverlay(m);
 		}
 		
@@ -168,6 +186,7 @@
 		private function onResult(event:ResultEvent):void {
 			var resOb:Object = JSON.decode(event.result as String);
 			var i: int = 0;
+			var image: FlickrImage = new FlickrImage();
 			connectLabel.visible = false;
 			
 			for each(var t:Object in resOb.results) {
@@ -177,7 +196,10 @@
 					var tweet:Tweet = new Tweet();
 					
 					tweet.text = t.text;
-					tweet.scientific_name = scientificSlice(t.text).replace("_"," ");					
+					tweet.scientific_name = scientificSlice(t.text).replace("_"," ");	
+					tweet.position = getLatLon(t.text);
+					
+									
 					tweet.created_at = returnTweetAge(t.created_at);
 					tweet.from_user = t.from_user;
 					tweet.from_user_id = t.from_user_id;
@@ -185,9 +207,14 @@
 					tweet.iso_language_code = t.iso_language_code;
 					tweet.profile_image_url = t.profile_image_url;
 					tweet.source = t.source;
-					tweet.position = getLatLon(t.text);
 					
-					addOnMap(tweet.position,i,tweet.scientific_name);
+					if (i<6) {	
+						image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
+						image.query = tweet.scientific_name;
+					} else {
+						addOnMap(tweet.position);						
+					}
+					dictionary[tweet.scientific_name] = tweet.position;
 					tweets.addItem(tweet);
 					
 				}
@@ -197,16 +224,62 @@
 			
 			map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));
 		}
+		
+		
+		private function getURLImage(ev:FlickrImageEvent):void {
+			if (ev.url!=null) {			
+				var loader : Loader = new Loader();
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createFlickrMarker,false,0,true);
+				loader.load(new URLRequest(ev.url));
+			}
+		}
+		
+		
+		private function createFlickrMarker(ev:Event):void {
+		
+			var bmd:BitmapData = Bitmap(ev.currentTarget.content).bitmapData;
+			var bmd2:BitmapData = new BitmapData(58,58)
+			var m:Matrix = new Matrix();
+			m.scale(0.81,0.81);
+			bmd2.draw(bmd,m);	
+			var sp:Sprite= new Sprite();
+			           sp.graphics.lineStyle(5,0xffcc00);
+			           sp.graphics.beginFill(0xFFFFFF,0);
+			           sp.graphics.drawRect(0,0,56,56);
+			           sp.graphics.endFill();
+			           bmd2.draw(sp);
+			
+			var iconBitmap:Bitmap= new Bitmap(bmd2);
+			
+/* 			var photo:Object = flickrDict[ev.target.loader];
+			var latlng:LatLng = new LatLng(photo.latitude, photo.longitude);
+			var photoUrl:String = "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg"; */
+			     
+			var x: Number = Math.random();
+			var y: Number = Math.random();
+			
+			var latlng: LatLng = new LatLng(x,y);
+		    var marker:Marker = new Marker(latlng, new MarkerOptions({draggable:false,icon: iconBitmap}));
+	   	 	map.addOverlay(marker);
+		      
+		}
+		 
+
+		
 	]]>
 </fx:Script>
 	<fx:Style source="TwitterClient.css"/>
 
 	<maps:Map id="map" height="100%" width="100%" key="lala"  left="250" mapevent_mapready="init()"/>
 	<s:Panel width="250" title="Tweets on Biodiversity" left="0" top="0" bottom="0" contentBackgroundColor="#393939" baseColor="#5B5B5B" color="#FEFEFE" fontFamily="Verdana" fontSize="11">
-		<s:TextInput x="65" y="8" contentBackgroundColor="#FFFFFF" color="#202020"/>
-		<mx:Label x="13" y="9" text="Search" fontSize="13"/>
-		<s:DataGroup id="repeaterTweets" top="36" bottom="10"
-			 itemRenderer="TweetItem">
+		<s:Rect width="235" height="23" x="7" y="8" radiusX="3" radiusY="3">
+	        <s:fill>
+	            <s:SolidColor color="#ffffff" />
+	        </s:fill>
+	    </s:Rect>
+		<s:TextInput x="9" y="7" contentBackgroundColor="#FFFFFF" color="#858484" width="175" height="25" fontStyle="italic"/>
+		<mx:Label x="188" y="9" text="search" fontSize="13" color="#2B2B2B" textDecoration="underline"/>        
+		<s:DataGroup id="repeaterTweets" top="36" bottom="10" itemRenderer="TweetItem">
 			<s:layout>
 				<s:VerticalLayout gap="0"/>
 			</s:layout>
