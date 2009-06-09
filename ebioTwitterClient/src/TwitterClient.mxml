@@ -93,7 +93,7 @@
 								});	    
 								
 			var m:Marker = new Marker(point,options);
-			//bbox.extend(point);
+			bbox.extend(point);
 		    map.addOverlay(m);
 		}
 		
@@ -207,14 +207,15 @@
 					tweet.iso_language_code = t.iso_language_code;
 					tweet.profile_image_url = t.profile_image_url;
 					tweet.source = t.source;
+					tweet.url_image = null;
 					
 					if (i<6) {	
+						dictionary[tweet.scientific_name] = tweet;
 						image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
 						image.query = tweet.scientific_name;
 					} else {
 						addOnMap(tweet.position);						
 					}
-					dictionary[tweet.scientific_name] = tweet.position;
 					tweets.addItem(tweet);
 					
 				}
@@ -227,41 +228,46 @@
 		
 		
 		private function getURLImage(ev:FlickrImageEvent):void {
-			if (ev.url!=null) {			
+			var tweet: Tweet = new Tweet();			
+			tweet = dictionary[ev.name];
+			if (ev.url!=null) {	
+				tweet.url_image = ev.url;
+				dictionary[ev.url] = tweet;	
 				var loader : Loader = new Loader();
 				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createFlickrMarker,false,0,true);
-				loader.load(new URLRequest(ev.url));
+				loader.load(new URLRequest(ev.url),null);
+			} else {
+				
+				addOnMap(tweet.position);
 			}
+			delete dictionary[ev.name];	
 		}
 		
 		
 		private function createFlickrMarker(ev:Event):void {
 		
 			var bmd:BitmapData = Bitmap(ev.currentTarget.content).bitmapData;
-			var bmd2:BitmapData = new BitmapData(58,58)
+			var bmd2:BitmapData = new BitmapData(57,57)
 			var m:Matrix = new Matrix();
 			m.scale(0.81,0.81);
 			bmd2.draw(bmd,m);	
 			var sp:Sprite= new Sprite();
-			           sp.graphics.lineStyle(5,0xffcc00);
-			           sp.graphics.beginFill(0xFFFFFF,0);
+			           sp.graphics.lineStyle(4,0xffcc00);
+			           sp.graphics.beginFill(0xffcc00,0);
 			           sp.graphics.drawRect(0,0,56,56);
 			           sp.graphics.endFill();
 			           bmd2.draw(sp);
 			
 			var iconBitmap:Bitmap= new Bitmap(bmd2);
 			
-/* 			var photo:Object = flickrDict[ev.target.loader];
-			var latlng:LatLng = new LatLng(photo.latitude, photo.longitude);
-			var photoUrl:String = "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg"; */
-			     
-			var x: Number = Math.random();
-			var y: Number = Math.random();
-			
-			var latlng: LatLng = new LatLng(x,y);
+			var latlng: LatLng;
+			var tweet : Tweet = new Tweet();
+			tweet = dictionary[ev.target.url];
+			latlng = tweet.position;
 		    var marker:Marker = new Marker(latlng, new MarkerOptions({draggable:false,icon: iconBitmap}));
 	   	 	map.addOverlay(marker);
-		      
+		    bbox.extend(latlng);
+		    map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));	      
 		}
 		 
 
