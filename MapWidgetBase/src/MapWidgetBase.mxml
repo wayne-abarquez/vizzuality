@@ -43,7 +43,7 @@
 					"farm4.static.flickr.com", */
 					"maps.unep-wcmc.org",
 					"i.ytimg.com",
-					"ws.geonames.org"];
+					"ws.geonames.net"];
 				for each(var dom:String in externalDomains) {
 				    Security.allowDomain(dom);
 				    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
