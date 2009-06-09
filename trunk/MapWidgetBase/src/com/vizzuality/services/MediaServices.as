@@ -87,7 +87,7 @@ package com.vizzuality.services
 					"&api_key=35479722da32ce91e47ae1147c41cfd9&content_type=1&nojsoncallback=1" + 
 					"&extras=icon_server,geo,owner_name"+
 					"&per_page=20&min_taken_date=2000-1-1";					
-			wikiGeonamesSrv.url = "http://ws.geonames.org/wikipediaBoundingBoxJSON?&maxRows=10";		
+			wikiGeonamesSrv.url = "http://ws.geonames.net/wikipediaBoundingBoxJSON?&maxRows=10&username=jatorre";		
 			youtubeServ.url = "http://gdata.youtube.com/feeds/api/videos?max-results=10&v=2&alt=json";
 			panoramioServ.resultFormat = "text";
 			wikiGeonamesSrv.resultFormat = "text";
