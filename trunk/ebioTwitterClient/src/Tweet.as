@@ -15,6 +15,7 @@ package
 		public var position:LatLng;
 		public var common_name:String;
 		public var scientific_name:String;
+		public var url_image:String;
 
 	}
 }
