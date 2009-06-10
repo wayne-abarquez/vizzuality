@@ -423,7 +423,8 @@ package com.vizzuality.services
 			if(res.length==0) {
 				MapController.gi().setMapLoaded();
 				MapController.gi().showMapWarning("No Protected Areas where you have clicked",2);
-				Application.application.gaTracker.trackEvent("error","mapClickNoPa","No protected are where user has clicked");
+				Application.application.gaTracker.trackEvent("error","mapClickNoPa","No protected are where user has clicked ("+
+					resolvingLatLng.lat() +","+resolvingLatLng.lng()+")");
 				return;
 			}
 			if(res.length>10) {
@@ -575,7 +576,10 @@ package com.vizzuality.services
 		}
 		
 		private function onFault(event:FaultEvent):void {
-			trace(event.message);
+			MapController.gi().setMapLoaded();
+			MapController.gi().showMapWarning("Sorry, there has been an error, please try again.",2);
+			Application.application.gaTracker.trackEvent("error","onFault","ERROR: " + event.fault.faultString);
+			trace(event.fault.faultString);
 		}		
 		
 		
