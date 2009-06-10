@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="15" doubleClickEnabled="true" doubleClick="{navigateToURL(new URLRequest(data.url))}">
+	<mx:Label x="15" verticalCenter="0" text="{data.name}" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" width="190" truncateToFit="true"/>
+	<mx:Label x="212" text="{data.city}" verticalCenter="0" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF" width="65" truncateToFit="true"/>
+	<mx:Label x="282" text="{data.occurrence_count}" verticalCenter="0" fontFamily="DINOT-Medium" fontSize="11" color="#9DE866"/>
+	<mx:Image x="0" y="0" source="@Embed('/com/vizzuality/style/assets/linkIcon.png')" click="{navigateToURL(new URLRequest(data.url))}"
+	useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+</mx:Canvas>
