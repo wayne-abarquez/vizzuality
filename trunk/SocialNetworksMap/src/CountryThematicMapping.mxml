@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" preloader="com.vizzuality.Preloader"
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
   width="100%" height="100%" layout="absolute" xmlns:maps="com.google.maps.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" xmlns:list="com.vizzuality.list.*">
 	<mx:states>
 		<mx:State name="Loading" enterState="onEnterLoading()" exitState="onExitLoading()">
@@ -42,6 +42,8 @@
  
 	<mx:Script>
 		<![CDATA[
+			import com.google.maps.overlays.PolylineOptions;
+			import mx.collections.Sort;
 			import com.vizzuality.map.InfoWindowSprite;
 			import mx.events.ResizeEvent;
 			import mx.collections.ArrayCollection;
@@ -79,6 +81,7 @@
 			[Bindable]
 			public var selectedAttribute:String;
 			public var countries:Dictionary = new Dictionary();
+			public var countriesByName:Dictionary = new Dictionary();
 			public var providers:Dictionary = new Dictionary();
 			public var markers:Dictionary = new Dictionary();
 			public var countriesArr:Array = new Array();
@@ -89,6 +92,8 @@
 			public var defaultPolOpt:PolygonOptions;
 			private var aSprite:Sprite;
 			private var bSprite:Sprite;   
+			
+			public var socialData:Dictionary = new Dictionary();
 			
 			[Bindable] private var legend:Class;
 			
@@ -123,13 +128,13 @@
 			private function onMapReady(event:Event):void {
 				currentState="Loading";
 			    map.setMapType(MapType.PHYSICAL_MAP_TYPE);
-			    map.setCenter(new LatLng(35,0),1);
+			    map.setCenter(new LatLng(35,0),2);
 				var topLeft:ControlPosition = new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,10,35);
                 var zoomControl:ZoomControl = new ZoomControl(new ZoomControlOptions({hasScrollTrack: false}));
                 zoomControl.setControlPosition(topLeft);
                 map.addControl(zoomControl);			    
 			    
-			    defaultPolOpt= new PolygonOptions({fillStyle:{alpha : 0.4}
+			    defaultPolOpt= new PolygonOptions({fillStyle:{alpha : 0.6}
 				,strokeStyle:
 					{
 						thickness: 1,
@@ -143,7 +148,136 @@
 			    //map.disableDragging();
 			    //server.endpoint = this.parameters.data_server_endpoint;
 			    server.endpoint = "http://67.202.26.58/gbifwidget/amfphp/gateway.php";
-			    server.getCountries();
+			    server.getAllCountries();
+			    
+			    
+				socialData['Albania']='Facebook';
+				socialData['Algeria']='Facebook';
+				socialData['Argentina']='Facebook';
+				socialData['Armenia']='Odnoklassniki';
+				socialData['Australia']='Facebook';
+				socialData['Austria']='Facebook';
+				socialData['Azerbaijan']='Odnoklassniki';
+				socialData['Bahamas']='Facebook';
+				socialData['Bahrain']='Facebook';
+				socialData['Bangladesh']='Facebook';
+				socialData['Barbados']='Facebook';
+				socialData['Belarus']='V Kontakte';
+				socialData['Belgium']='Facebook';
+				socialData['Bolivia']='Facebook';
+				socialData['Bosnia and Herzegovina']='Facebook';
+				socialData['Brazil']='Orkut';
+				socialData['Brunei']='Facebook';
+				socialData['Bulgaria']='Facebook';
+				socialData['Cambodia']='Facebook';
+				socialData['Cameroon']='Hi5';
+				socialData['Canada']='Facebook';
+				socialData['Chile']='Facebook';
+				socialData['China']='QQ';
+				socialData['Colombia']='Facebook';
+				socialData['Costa Rica']='Hi5';
+				socialData['Cote d\'Ivoire']='Facebook';
+				socialData['Croatia']='Facebook';
+				socialData['Cyprus']='Facebook';
+				socialData['Czech Republic']='Lidé';
+				socialData['Denmark']='Facebook';
+				socialData['Dominican Republic']='Hi5';
+				socialData['Ecuador']='Hi5';
+				socialData['Egypt']='Facebook';
+				socialData['El Salvador']='Hi5';
+				socialData['Estonia']='Orkut';
+				socialData['Finland']='Facebook';
+				socialData['France']='Facebook';
+				socialData['French Polynesia']='Facebook';
+				socialData['Georgia']='Odnoklassniki';
+				socialData['Germany']='Facebook';
+				socialData['Ghana']='Facebook';
+				socialData['Greece']='Facebook';
+				socialData['Guadeloupe']='Skyrock';
+				socialData['Guam']='MySpace';
+				socialData['Guatemala']='Hi5';
+				socialData['Honduras']='Hi5';
+				socialData['Hong Kong']='Facebook';
+				socialData['Hungary']='Iwiw';
+				socialData['Iceland']='Facebook';
+				socialData['India']='Orkut';
+				socialData['Indonesia']='Facebook';
+				socialData['Iran']='Facebook';
+				socialData['Iraq']='Facebook';
+				socialData['Ireland']='Facebook';
+				socialData['Israel']='Facebook';
+				socialData['Italy']='Facebook';
+				socialData['Jamaica']='Facebook';
+				socialData['Japan']='Mixi';
+				socialData['Jordan']='Facebook';
+				socialData['Kazakhstan']='V Kontakte';
+				socialData['Kenya']='Facebook';
+				socialData['Kuwait']='Facebook';
+				socialData['Kyrgyzstan']='Odnoklassniki';
+				socialData['Latvia']='One';
+				socialData['Lebanon']='Facebook';
+				socialData['Libyan Arab Jamahiriya']='Maktoob';
+				socialData['Lithuania']='One';
+				socialData['Luxembourg']='Facebook';
+				socialData['Malaysia']='Facebook';
+				socialData['Mexico']='Hi5';
+				socialData['Morocco']='Facebook';
+				socialData['Macao']='Facebook';
+				socialData['Macedonia']='Facebook';
+				socialData['Madagascar']='Facebook';
+				socialData['Maldives']='Facebook';
+				socialData['Malta']='Facebook';
+				socialData['Martinique']='Skyrock';
+				socialData['Mauritius']='Facebook';
+				socialData['Moldova']='Odnoklassniki';
+				socialData['Mongolia']='Hi5';
+				socialData['Nepal']='Facebook';
+				socialData['Netherlands']='Hyves';
+				socialData['Netherlands Antilles']='Facebook';
+				socialData['New Zealand']='Facebook';
+				socialData['New Caledonia']='Facebook';
+				socialData['Nicaragua']='Hi5';
+				socialData['Nigeria']='Facebook';
+				socialData['Norway']='Facebook';
+				socialData['Oman']='Maktoob';
+				socialData['Pakistan']='Facebook';
+				socialData['Palestinian Territory']='Facebook';
+				socialData['Panama']='Facebook';
+				socialData['Paraguay']='Orkut';
+				socialData['Peru']='Hi5';
+				socialData['Philippines']='Friendster';
+				socialData['Poland']='Nasza-klasa';
+				socialData['Portugal']='Hi5';
+				socialData['Purto Rico']='Facebook';
+				socialData['Romania']='Hi5';
+				socialData['Russia']='V Kontakte';
+				socialData['Saudi Arabi']='Maktoob';
+				socialData['Senegal']='Facebook';
+				socialData['Serbia and Montenegro']='Facebook';
+				socialData['Singapore']='Facebook';
+				socialData['Slovakia']='Facebook';
+				socialData['Slovenia']='Facebook';
+				socialData['South Africa']='Facebook';
+				socialData['South Korea']='Cyworld';
+				socialData['Spain']='Facebook';
+				socialData['Sri Lanka']='Facebook';
+				socialData['Sudan']='Facebook';
+				socialData['Sweden']='Facebook';
+				socialData['Switzerland']='Facebook';
+				socialData['Syrian Arab Republic']='Maktoob';
+				socialData['Taiwan']='Wretch';
+				socialData['Thailand']='Hi5';
+				socialData['Trinidad and Tobago']='Facebook';
+				socialData['Tunisia']='Facebook';
+				socialData['Turkey']='Facebook';
+				socialData['United Kingdom']='Facebook';
+				socialData['Ukraine']='V Kontakte';
+				socialData['United Arab Emirates']='Facebook';
+				socialData['Uruguay']='Facebook';
+				socialData['United States']='Facebook';
+				socialData['Venezuela']='Facebook';
+				socialData['Vietnam']='Zing';
+				socialData['Yemen']='Maktoob';
 			    
 			    
 			    
@@ -162,6 +296,8 @@
 		private function onExitLoading():void {
 			bSprite.filters = null;
 		}	
+			
+
 			
 		public function chloropleth(objects:Array, field:String, numClasses:int, colorBegin:Color, colorEnd: Color): void
 		{
@@ -221,14 +357,8 @@
 				}
 				
 				var tooltip:String="<b>"+sobjects[i].name +"</b>\n";
-				if (field=='occurrences') {
+				if (field=='socialNetwork') {
 					tooltip+=numberFormatter.format(sobjects[i].attributes[field]) + "\noccurrence records\nhosted";
-				}
-				if (field=='providers') {
-					tooltip+=numberFormatter.format(sobjects[i].attributes[field]) + "\nData Access point(s)";
-				}
-				if (field=='occurrences') {
-					tooltip+=numberFormatter.format(sobjects[i].attributes[field]) + "\ndatasets hosted";
 				}
 				
 				
@@ -247,60 +377,102 @@
 			typeLabel.text= field.toUpperCase();
 		}			
 			
+		public var colors:Dictionary =new Dictionary();	
+		public function getColorByValue(value:String):Number {
+			if(colors[value]==null)
+				colors[value]=	Math.random() * 0xFFFFFF;				
+			
+
+			return colors[value];
+		}				
+			
+			
  			private function onGetCountriesResult(event:ResultEvent):void {
 				var res:Array = event.result as Array;
 				
 				for each(var c:Object in res) {
-					var epolis:Array = new Array();
-					
-					var encoded_levels:Array = (c.encoded_levels as String).slice(1,c.encoded_levels.length-1).split(",");
-					var encoded_num_levels:Array = (c.encoded_num_levels as String).slice(1,c.encoded_num_levels.length-1).split(",");
-					var encoded_points:Array = (c.encoded_points as String).slice(1,c.encoded_points.length-1).replace(/\u0022+/g,'').split(",");
-					var encoded_zoom_factor:Array = (c.encoded_zoom_factor as String).slice(1,c.encoded_zoom_factor.length-1).split(",");
-					var polygonsArr:Array=new Array();
-					
-					for (var i:int=0;i<encoded_points.length;i++) {
-						epolis.push(new EncodedPolylineData(encoded_points[i],encoded_zoom_factor[i],encoded_levels[i],encoded_num_levels[i]));
-					} 					
 					
 					var attributes:Object=new Object();
-					attributes.occurrences=c.num_occurrences;
-					attributes.providers=c.num_providers;
-					attributes.resources=c.num_resources;
+					if (socialData[c.name]!=null) {
+						attributes.socialNetwork=socialData[c.name];
+						attributes.color=getColorByValue(attributes.socialNetwork);
+						var epolis:Array = new Array();
+						
+						var encoded_levels:Array = (c.encoded_levels as String).slice(1,c.encoded_levels.length-1).split(",");
+						var encoded_num_levels:Array = (c.encoded_num_levels as String).slice(1,c.encoded_num_levels.length-1).split(",");
+						var encoded_points:Array = (c.encoded_points as String).slice(1,c.encoded_points.length-1).replace(/\u0022+/g,'').split(",");
+						var encoded_zoom_factor:Array = (c.encoded_zoom_factor as String).slice(1,c.encoded_zoom_factor.length-1).split(",");
+						var polygonsArr:Array=new Array();
+						
+						for (var i:int=0;i<encoded_points.length;i++) {
+							epolis.push(new EncodedPolylineData(encoded_points[i],encoded_zoom_factor[i],encoded_levels[i],encoded_num_levels[i]));
+						} 					
+						
+	/* 					attributes.occurrences=c.num_occurrences;
+						attributes.providers=c.num_providers;
+						attributes.resources=c.num_resources; */
+						
+	 					attributes.occurrences= Math.round((Math.random()*100));
+	 					
+	 					
+	 					
+						var sw:LatLng = new LatLng(c.south,c.west);
+						var ne:LatLng = new LatLng(c.north,c.east);
+						
+						var bbox:LatLngBounds=new LatLngBounds(sw,ne);
+						
+
+						var polOp:PolygonOptions = new PolygonOptions({
+							fillStyle: {color : attributes.color, alpha:0.6},
+							strokeStyle: {alpha:1,thickness: 1,color:Color.GRAY4},
+							tooltip:'<b>'+c.name+'</b>\n'+attributes.socialNetwork
+							});			
+			
+						
+						var pol:Polygon = Polygon.fromEncoded(epolis,polOp);
+						pol.addEventListener(MapMouseEvent.ROLL_OVER,onCountryRollOver);
+						pol.addEventListener(MapMouseEvent.ROLL_OUT,onCountryRollOut);
+						//pol.addEventListener(MapMouseEvent.CLICK,onCountryClicked);
+						
+						
+						var country:Country = new Country(c.iso2,attributes,pol,defaultPolOpt,bbox,c.name);
+						countries[pol]=country;
+						countriesByName[country.name]=pol;
+						countriesArr.push(country);
+						map.addOverlay(pol);	
+						
+					}
 					
-					var sw:LatLng = new LatLng(c.south,c.west);
-					var ne:LatLng = new LatLng(c.north,c.east);
 					
-					var bbox:LatLngBounds=new LatLngBounds(sw,ne);
-					
-					
-					var pol:Polygon = Polygon.fromEncoded(epolis,defaultPolOpt);
-					pol.addEventListener(MapMouseEvent.ROLL_OVER,onCountryRollOver);
-					pol.addEventListener(MapMouseEvent.ROLL_OUT,onCountryRollOut);
-					pol.addEventListener(MapMouseEvent.CLICK,onCountryClicked);
-					
-					
-					var country:Country = new Country(c.iso2,attributes,pol,defaultPolOpt,bbox,c.name);
-					countries[pol]=country;
-					countriesArr.push(country);
-					map.addOverlay(pol);	
 															
 																			
 				}
 				
-				chloropleth(countriesArr,"occurrences",6,new Color(Color.YELLOW),new Color(Color.GREEN));	
-				legend = legend1;
+				//chloropleth(countriesArr,"socialNetwork",6,new Color(Color.YELLOW),new Color(Color.GREEN));	
+				
+				
+				//legend = legend1;
 				currentState='';
+				countriesArr.sortOn("name");
 				
 			} 
 			
-			private function onCountryRollOver(event:MapMouseEvent):void {
+			public function onCountryRollOver(event:MapMouseEvent):void {
 				(event.target as Polygon).setOptions(new PolygonOptions({fillStyle:{alpha : 0.9},strokeStyle:{color:Color.WHITE,thickness: 2}}));
 				map.buttonMode=true;
 			}
+			
+			public function onCountryRollOverByName(countryName:String):void {
+				(countriesByName[countryName] as Polygon).setOptions(new PolygonOptions({fillStyle:{alpha : 0.9},strokeStyle:{color:Color.WHITE,thickness: 2}}));
+			}
+			
 			private function onCountryRollOut(event:MapMouseEvent):void {
 				(event.target as Polygon).setOptions((countries[event.target] as Country).polOpt);
 				map.buttonMode=false;
+			}
+			public function onCountryRollOutByName(countryName:String):void {
+				(countriesByName[countryName] as Polygon).setOptions((countries[countriesByName[countryName]] as Country).polOpt);
+
 			}
 			
 			private function onCountryClicked(event:MapMouseEvent):void {
@@ -435,7 +607,7 @@
 	</mx:Script>
   	<mx:NumberFormatter id="numberFormatter" useThousandsSeparator="true" thousandsSeparatorFrom="," />
   	<mx:RemoteObject id="server" endpoint="http://67.202.26.58/gbifwidget/amfphp/gateway.php" source="GBIFMetadataServices" destination="GBIFMetadataServices">
-  		<mx:method name="getCountries" result="onGetCountriesResult(event)" fault="onGetCountriesFault(event)" />
+  		<mx:method name="getAllCountries" result="onGetCountriesResult(event)" fault="onGetCountriesFault(event)" />
   		<mx:method name="getProvidersByCountry" result="onGetProvidersByCountryResult(event)" fault="onGetProvidersByCountryFault(event)" />
   	</mx:RemoteObject>
   
