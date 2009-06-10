@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="378" height="300" backgroundColor="#000000" backgroundAlpha="0.85">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.core.Application;
+		]]>
+	</mx:Script>
+	<mx:Label x="225" y="10" text="City" color="#FFFFFF" fontFamily="DINOT-Medium"/>
+	<mx:Label x="295" y="10" text="Occurrences" color="#FFFFFF" fontFamily="DINOT-Medium"/>
+	<mx:Label x="11" y="8" text="Name" color="#FFFFFF" fontFamily="DINOT-Medium" fontSize="13"/>
+	<mx:HRule y="28" strokeWidth="1" strokeColor="#FFFFFF" left="10" width="210"/>
+	<mx:HRule strokeWidth="1" strokeColor="#FFFFFF" left="1" top="0" right="1"/>
+	<mx:HRule y="28" strokeWidth="1" strokeColor="#FFFFFF" left="224" width="65"/>
+	<mx:HRule y="28" strokeWidth="1" strokeColor="#FFFFFF" left="293" width="65"/>
+	<mx:List left="10" right="10" top="34" bottom="7" itemRenderer="com.vizzuality.list.ProviderItemRenderer" rollOverColor="#000000" selectionColor="#000000" 
+		dataProvider="{Application.application.providersArrC}" backgroundAlpha="0" borderStyle="none"/>
+</mx:Canvas>
