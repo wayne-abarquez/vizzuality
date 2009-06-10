@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="105" styleName="headerCanvas"
-	verticalScrollPolicy="off" horizontalScrollPolicy="off" creationComplete="init()">
-	<mx:states>
-		<mx:State name="with_header">
-			<mx:AddChild position="lastChild">
-				<mx:Image source="@Embed('/com/vizzuality/style/assets/logo.jpg')" left="3" top="5"/>
-			</mx:AddChild>
-			<mx:SetProperty name="height" value="86"/>
-		</mx:State>
-	</mx:states>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="105" 
+	verticalScrollPolicy="off" horizontalScrollPolicy="off" creationComplete="init()" backgroundColor="#7E7E7E">
 	<mx:Script>
 		<![CDATA[
 			import mx.core.Application;
 			
 			private function init():void {
-				if(Application.application.parameters.hide_header=='true') {
-					currentState='';
-				} else {
-					currentState='with_header';
-					
-				}	
+
 			}
 		]]>
 	</mx:Script>
-	<mx:Image left="0" top="0" source="@Embed('/assets/header/bkg.jpg')"/>
+	<mx:Image left="0" top="0" source="@Embed('/assets/header/bkg.jpg')" scaleContent="false" right="0" bottom="0"/>
 	<mx:Image top="0" source="@Embed('/assets/header/map.png')" horizontalCenter="0"/>
 	<mx:Label text="GLOBAL REGISTRY OF MIGRATORY SPECIES" fontFamily="DINOT-Medium" fontSize="12" color="#FFFFFF" left="14" bottom="1" height="26"/>
 	<mx:HRule strokeWidth="1" strokeColor="#FFFFFF" bottom="29" right="16" width="121"/>
