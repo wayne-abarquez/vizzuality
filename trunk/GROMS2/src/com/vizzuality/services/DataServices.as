@@ -1,6 +1,8 @@
 package com.vizzuality.services
 {
 	
+	import com.adobe.utils.StringUtil;
+	import com.google.maps.Color;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.overlays.EncodedPolylineData;
@@ -12,6 +14,7 @@ package com.vizzuality.services
 	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.utils.PolylineEncoder;
 	import com.vizzuality.view.AppStates;
+	import com.vizzuality.view.map.overlays.MultiPolygon;
 	
 	import flash.events.EventDispatcher;
 	
@@ -19,6 +22,7 @@ package com.vizzuality.services
 	import mx.core.Application;
 	import mx.formatters.NumberFormatter;
 	import mx.rpc.events.FaultEvent;
+	import mx.rpc.events.ResultEvent;
 	import mx.rpc.remoting.mxml.RemoteObject;
 
 	[Event(name="paDataLoaded", type="com.vizzuality.services.DataServiceEvent")]
@@ -51,7 +55,7 @@ package com.vizzuality.services
 			
 			roTaxon=createRemoteObject();
 			
-			//roArea.addEventListener(ResultEvent.RESULT,onGetPaDataResult);
+			roTaxon.addEventListener(ResultEvent.RESULT,onTaxonResult);
 			roTaxon.addEventListener(FaultEvent.FAULT,onFault);	
 				
 			
@@ -70,33 +74,108 @@ package com.vizzuality.services
 		public function createRemoteObject():RemoteObject {     
 		    var ro:RemoteObject = new RemoteObject("GROMSServices");   
 		    ro.source="GROMSServices";
-		    ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/groms/amfphp/gateway.php";   
+		    //ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/groms/amfphp/gateway.php";   
+		    ro.endpoint="http://localhost/amfphp/gateway.php";   
 		    return ro;   
 		}   		
 		
 		
 		public function getTaxon(id:Number):void {
-			selectedTaxon1= new Taxon();
-			selectedTaxon1.cites="I";
-			selectedTaxon1.className="Mammalia";
-			selectedTaxon1.cms="App I & II";
-			selectedTaxon1.commonNameEnglish="lalaen";
-			selectedTaxon1.commonNameFreanch="lalafr";
-			selectedTaxon1.commonNameGerman="lalade";
-			selectedTaxon1.commonNameSpanish="lalaes";
-			selectedTaxon1.genus="Balaena";
-			selectedTaxon1.group="Whales";
-			selectedTaxon1.id=id;
-			selectedTaxon1.migrationType="Range extension";
-			selectedTaxon1.name="Balaena mysticetus";
-			selectedTaxon1.red_list="CR";
-			selectedTaxon1.source="Ridgway SH & Harrisson SR (1985), Handbook of marine Mammals: Sirenians and baleen whales, Academic Press, London";
-			selectedTaxon1.chart = new ArrayCollection( [{ monthStart: 0, monthEnd: 4, style:"s11",status:"breeding"},
-            													{ monthStart: 4, monthEnd: 8, style:"s12",status:"feeding,wintering"},
-            													{ monthStart: 8, monthEnd: 10, style:"s13",status:"resident"},
-            													{ monthStart: 10, monthEnd: 12, style:"s14",status:"all year round"}]);
 			
+			roTaxon.getTaxonById(1036);
+			trace(id);
+			
+			
+		}		
+		
+		private function onTaxonResult(event:ResultEvent):void {
+
+			var c:Object=event.result;
+
+			selectedTaxon1= new Taxon();
+			selectedTaxon1.cites=c.cites;
+			selectedTaxon1.className=c.className;
+			selectedTaxon1.cms=c.cms;
+			selectedTaxon1.commonNameEnglish=c.commonNameEnglish;
+			selectedTaxon1.commonNameFreanch=c.commonNameFreanch;
+			selectedTaxon1.commonNameGerman=c.commonNameGerman;
+			selectedTaxon1.commonNameSpanish=c.commonNameSpanish;
+			selectedTaxon1.genus=c.genus;
+			selectedTaxon1.group=c.group;
+			selectedTaxon1.id=c.id;
+			selectedTaxon1.migrationType=c.migrationType;
+			selectedTaxon1.name=c.name;
+			selectedTaxon1.red_list=c.red_list;
+			selectedTaxon1.source=c.source;
+			
+			
+			selectedTaxon1.chart =  new ArrayCollection();
+			
+			var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
+			var currentGid:Number=0;
+			var currentChart:Object;
+			for each(var geom:Object in c.geometries) {
+				if(geom.gid!=currentGid) {
+					if(currentGid!=0) {
+						selectedTaxon1.chart.addItem(currentChart);
+						(currentChart.geometry as MultiPolygon).addToMap();
+
+					}
+					currentChart=new Object();
+					currentChart.monthStart = geom.monthstart;
+					currentChart.monthEnd = geom.monthend;
+					currentChart.status = geom.status;
+					currentChart.style = "s11";
+					currentChart.geometry=new MultiPolygon();
+					
+					var color:Number = Math.random()*0xFFFFFF;
+					
+					var polOp:PolygonOptions = new PolygonOptions({
+					fillStyle: {alpha:1,color:color},
+					strokeStyle: {alpha:1,thickness: 1,color:Color.GRAY4},
+					tooltip:'<b>'+currentChart.status+'</b>\n'
+					});	
+					
+				}
+				
+				var encodedPolyLines:Array=[];
+				var parsing_string:String = (geom.the_geom as String).replace("POLYGON((","");
+				var paths:Array = parsing_string.split(")");
+				for each(var ring:String in paths) {
+					if (ring!=""){
+						var currentRingPoints:Array =[];
+						if(ring.indexOf(",(")==0)
+							ring=ring.substring(2);
+							
+						ring=	StringUtil.replace(ring,")","");
+						ring=	StringUtil.replace(ring,"(","");
+						trace(ring);
+						var points:Array = ring.split( "," );
+						for each(var point:String in points) {
+							var coords:Array = point.split(" ");
+							if(!isNaN(Number(coords[1])) && !isNaN(Number(coords[0]))) {
+								currentRingPoints.push(new LatLng(coords[1],coords[0]));
+							}
+						}
+						var encodedRing:Object = p.dpEncode(currentRingPoints);
+						encodedPolyLines.push(new EncodedPolylineData(encodedRing.encodedPoints, 2, encodedRing.encodedLevels, 18));
+					}
+					
+					
+				}
+				(currentChart.geometry as MultiPolygon).addEncodedPolygon(encodedPolyLines,polOp);
+				
+				currentGid=geom.gid;
+			}
+			
+			selectedTaxon1.chart.addItem(currentChart);
+			(currentChart.geometry as MultiPolygon).addToMap();
+			
+
 			selectedTaxons.addItem(selectedTaxon1);
+			
+			
+			
 			
 			
 			AppStates.gi().topState='';
@@ -104,7 +183,7 @@ package com.vizzuality.services
 		
 			Application.application.timeLine.dataProvider=selectedTaxons;
 			
-		}		
+		}
 		
 		
 		

@@ -9,7 +9,7 @@ package com.vizzuality.view.map.overlays
 
 	public class MultiPolygon
 	{
-		public var polygons:Array=[]
+		public var polygons:Array=[];
 		public var numPolygons:Number=0;
 		private var bbox:LatLngBounds = new LatLngBounds();
 		
