@@ -240,10 +240,10 @@ package com.vizzuality.view.map
 			
 			if (AppStates.gi().mapPositions[AppStates.gi().topState] !=null) {
 				(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).center = map.getCenter();
-				AppStates.gi().debug(AppStates.gi().topState +':'+(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).toString());
+				//AppStates.gi().debug(AppStates.gi().topState +':'+(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).toString());
 			} else {
 				AppStates.gi().mapPositions[AppStates.gi().topState] = getMapPosition();
-				AppStates.gi().debug(AppStates.gi().topState +':'+(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).toString());
+				//AppStates.gi().debug(AppStates.gi().topState +':'+(AppStates.gi().mapPositions[AppStates.gi().topState] as MapPosition).toString());
 			}
 			
 			

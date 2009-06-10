@@ -27,6 +27,7 @@ package com.vizzuality.services
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	
+	import mx.core.Application;
 	import mx.formatters.NumberFormatter;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
@@ -290,6 +291,13 @@ package com.vizzuality.services
 	
 				
 				selectedCountry.bbox = new LatLngBounds(eastSouth,westNorth);	
+
+				if (selectedCountry.isocode=="US") {
+					selectedCountry.bbox = new LatLngBounds(
+						new LatLng(22.466134579491346, -130.69589149304372),
+						new LatLng(51.36784856692176, -45.70565711804372)
+					);						
+				}
 	
 				countriesDict[selectedCountry.isocode]=selectedCountry;
 				resolvingIso=null;
@@ -315,7 +323,8 @@ package com.vizzuality.services
 				AppStates.gi().activeCountryIsoCode = selectedCountry.isocode;
 				AppStates.gi().activeCountryName = selectedCountry.name;	
 				MapController.gi().setMapLoaded();
-				MapController.gi().showMapWarning("No countries where you have clicked",2);				
+				MapController.gi().showMapWarning("No countries where you have clicked",2);		
+				Application.application.gaTracker.trackEvent("error","mapClickNoCountry","No coumtry where user has clicked");		
 			}
 		}		
 		
@@ -414,6 +423,7 @@ package com.vizzuality.services
 			if(res.length==0) {
 				MapController.gi().setMapLoaded();
 				MapController.gi().showMapWarning("No Protected Areas where you have clicked",2);
+				Application.application.gaTracker.trackEvent("error","mapClickNoPa","No protected are where user has clicked");
 				return;
 			}
 			if(res.length>10) {
@@ -421,6 +431,7 @@ package com.vizzuality.services
 				MapController.gi().showMapWarning("There are too many areas where you have clicked. Please Zoom further",2);
 				MapController.gi().map.setCenter(resolvingLatLng,MapController.gi().map.getZoom()+1);
 				MapController.gi().map.setZoom(MapController.gi().map.getZoom()+1,true);
+				Application.application.gaTracker.trackEvent("error","mapClickTooMany","Too many areas where user has clicked");
 				return;
 			}
 			if(res.length==1) {
@@ -560,6 +571,7 @@ package com.vizzuality.services
 				MapController.gi().setMapLoaded();
 				MapController.gi().showMapWarning("Sorry, there has been an error, try clicking again.",2);	
 				AppStates.gi().debug("ERROR: onGetAreasByLatLngResultFault("+queriedParams+")");	
+				Application.application.gaTracker.trackEvent("error","mapClick","ERROR: onGetAreasByLatLngResultFault("+queriedParams+")");
 		}
 		
 		private function onFault(event:FaultEvent):void {

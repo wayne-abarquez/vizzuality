@@ -2,8 +2,8 @@ package com.vizzuality.view
 {
 	import asual.SWFAddress;
 	
+	import com.google.analytics.GATracker;
 	import com.vizzuality.data.WdpaLayer;
-	import com.vizzuality.services.AppStateEvent;
 	import com.vizzuality.services.DataServices;
 	
 	import flash.events.EventDispatcher;
@@ -55,8 +55,6 @@ package com.vizzuality.view
 		
 		public var previousAddress:String="";
 		
-		
-		
 		public function AppStates() {
 			//initialize the layers state
 			visibleLayers[WORLD]=[WdpaLayer.ALL];
@@ -64,6 +62,7 @@ package com.vizzuality.view
 			visibleLayers[COUNTRY]=[WdpaLayer.ALL];
 			visibleLayers[PA]=[];
 			visibleLayers[AREA_SELECTOR]=[WdpaLayer.ALL];
+			
 			
 			if( instance ) throw new Error( "Singleton and can only be accessed through Singleton.getInstance()" ); 
 		}
