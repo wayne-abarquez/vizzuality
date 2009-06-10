@@ -222,7 +222,6 @@
 
 			}
 			repeaterTweets.dataProvider=tweets;
-			
 			map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));
 		}
 		
@@ -274,6 +273,7 @@
 		
 	]]>
 </fx:Script>
+
 	<fx:Style source="TwitterClient.css"/>
 
 	<maps:Map id="map" height="100%" width="100%" key="lala"  left="250" mapevent_mapready="init()"/>
@@ -284,12 +284,14 @@
 	        </s:fill>
 	    </s:Rect>
 		<s:TextInput x="9" y="7" contentBackgroundColor="#FFFFFF" color="#858484" width="175" height="25" fontStyle="italic"/>
-		<mx:Label x="188" y="9" text="search" fontSize="13" color="#2B2B2B" textDecoration="underline"/>        
-		<s:DataGroup id="repeaterTweets" top="36" bottom="10" itemRenderer="TweetItem">
+		<mx:Label x="188" y="9" text="search" fontSize="13" color="#2B2B2B" textDecoration="underline"/>
+		<s:Button label="Next" right="5" bottom="5" width="50"/>
+		<s:Button label="Prev" bottom="5" right="65" width="50"/>
+		<s:List id="repeaterTweets" itemRenderer="TweetItem" top="35" bottom="35" width="100%" >
 			<s:layout>
-				<s:VerticalLayout gap="0"/>
+				<s:VerticalLayout id="verticalLayout" gap="0"/>				
 			</s:layout>
-		</s:DataGroup>
+		</s:List>
 	</s:Panel>
 	<s:TextArea id="connectLabel" text="Conecting server..." right="0" top="0" x="690" width="110" contentBackgroundColor="#ffffcc" height="20" fontSize="12"/>
 	
