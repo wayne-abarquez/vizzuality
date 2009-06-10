@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="378" height="300" backgroundColor="#000000" backgroundAlpha="0.85">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="262" height="300" backgroundColor="#000000" backgroundAlpha="0.85">
 	<mx:Script>
 		<![CDATA[
 			import flash.net.navigateToURL;
@@ -7,15 +7,14 @@
 			import mx.core.Application;
 		]]>
 	</mx:Script>
-	<mx:Label x="165" y="10" text="Occurrences" color="#FFFFFF" fontFamily="DINOT-Medium"/>
-	<mx:Label x="235" y="10" text="Providers" color="#FFFFFF" fontFamily="DINOT-Medium"/>
-	<mx:Label x="304" y="10" text="Resources" color="#FFFFFF" fontFamily="DINOT-Medium"/>
+	<mx:Label x="165" y="10" text="Social Network" color="#FFFFFF" fontFamily="DINOT-Medium"/>
 	<mx:Label x="11" y="7.8999996" text="Name" color="#FFFFFF" fontFamily="DINOT-Medium" fontSize="13"/>
 	<mx:HRule y="28" strokeWidth="1" strokeColor="#FFFFFF" left="10" width="150"/>
 	<mx:HRule strokeWidth="1" strokeColor="#FFFFFF" left="1" top="0" right="1"/>
 	<mx:HRule y="28" strokeWidth="1" strokeColor="#FFFFFF" left="164" width="65"/>
-	<mx:HRule y="28" strokeWidth="1" strokeColor="#FFFFFF" left="233" width="65"/>
-	<mx:HRule y="28" strokeWidth="1" strokeColor="#FFFFFF" left="302" width="65"/>
-	<mx:List id="Plist" left="10" right="10" top="34" bottom="7" itemRenderer="com.vizzuality.list.CountryItemRenderer" rollOverColor="#000000" selectionColor="#000000" 
+	<mx:List id="Plist" left="10" right="10" top="34" bottom="7" itemRenderer="com.vizzuality.list.CountryItemRenderer" 
+	 itemRollOver="Application.application.onCountryRollOverByName(event.itemRenderer.data.name)"	
+	 itemRollOut="Application.application.onCountryRollOutByName(event.itemRenderer.data.name)"	
+		rollOverColor="#000000" selectionColor="#000000" 
 		dataProvider="{new ArrayCollection(Application.application.countriesArr)}" backgroundAlpha="0" borderStyle="none" />
 </mx:Canvas>
