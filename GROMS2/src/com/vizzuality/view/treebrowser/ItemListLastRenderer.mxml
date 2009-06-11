@@ -124,6 +124,6 @@
         <mx:Image source="@Embed('/com/vizzuality/style/assets/borderTreeThumb.png')"  y="0"/>
     </mx:Canvas>
 	<mx:Button id="viewButton" right="5" verticalCenter="-1" styleName="viewSpecie" height="15" width="58" alpha="0" buttonMode="true" useHandCursor="true" mouseChildren="false" 
-		click="DataServices.gi().getTaxon(event.currentTarget.selectedItem.id);"/>    
+		click="DataServices.gi().getTaxon(this.idTaxon);"/>    
    
 </mx:Canvas>
