@@ -40,9 +40,9 @@ package com.vizzuality.services
 		
 		public var bboxForAreas:LatLngBounds;
 		
-		public var selectedTaxon1:Taxon;
-		public var selectedTaxon2:Taxon;
-		public var selectedTaxon3:Taxon;
+		[Bindable] public var selectedTaxon1:Taxon;
+		[Bindable] public var selectedTaxon2:Taxon;
+		[Bindable] public var selectedTaxon3:Taxon;
 		
 		[Bindable]
 		public var selectedTaxons:ArrayCollection=new ArrayCollection();
@@ -82,34 +82,55 @@ package com.vizzuality.services
 		
 		public function getTaxon(id:Number):void {
 			
-			roTaxon.getTaxonById(1036);
+			roTaxon.getTaxonById(id);		
 			trace(id);
-			
-			
 		}		
 		
+		private var lastTaxonInserted:Number =0;
 		private function onTaxonResult(event:ResultEvent):void {
 
+			//check which slot is free
+			var taxon:Taxon;
+			if(lastTaxonInserted==0) {
+				selectedTaxon1 = new Taxon();
+				taxon=selectedTaxon1;
+				lastTaxonInserted=1;
+			}else if(lastTaxonInserted==1) {
+				selectedTaxon2 = new Taxon();
+				taxon=selectedTaxon2;
+				lastTaxonInserted=2;
+			}else if(lastTaxonInserted==2) {
+				selectedTaxon3 = new Taxon();
+				taxon=selectedTaxon3;
+				lastTaxonInserted=3;
+			} else if(lastTaxonInserted==3) {
+				selectedTaxon1 = new Taxon();
+				taxon=selectedTaxon1;
+				lastTaxonInserted=1;
+			}
+			
+			
+			
 			var c:Object=event.result;
 
-			selectedTaxon1= new Taxon();
-			selectedTaxon1.cites=c.cites;
-			selectedTaxon1.className=c.className;
-			selectedTaxon1.cms=c.cms;
-			selectedTaxon1.commonNameEnglish=c.commonNameEnglish;
-			selectedTaxon1.commonNameFreanch=c.commonNameFreanch;
-			selectedTaxon1.commonNameGerman=c.commonNameGerman;
-			selectedTaxon1.commonNameSpanish=c.commonNameSpanish;
-			selectedTaxon1.genus=c.genus;
-			selectedTaxon1.group=c.group;
-			selectedTaxon1.id=c.id;
-			selectedTaxon1.migrationType=c.migrationType;
-			selectedTaxon1.name=c.name;
-			selectedTaxon1.red_list=c.red_list;
-			selectedTaxon1.source=c.source;
+			taxon= new Taxon();
+			taxon.cites=c.cites;
+			taxon.className=c.className;
+			taxon.cms=c.cms;
+			taxon.commonNameEnglish=c.commonNameEnglish;
+			taxon.commonNameFreanch=c.commonNameFreanch;
+			taxon.commonNameGerman=c.commonNameGerman;
+			taxon.commonNameSpanish=c.commonNameSpanish;
+			taxon.genus=c.genus;
+			taxon.group=c.group;
+			taxon.id=c.id;
+			taxon.migrationType=c.migrationType;
+			taxon.name=c.name;
+			taxon.red_list=c.red_list;
+			taxon.source=c.source;
 			
 			
-			selectedTaxon1.chart =  new ArrayCollection();
+			taxon.chart =  new ArrayCollection();
 			
 			var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
 			var currentGid:Number=0;
@@ -117,8 +138,8 @@ package com.vizzuality.services
 			for each(var geom:Object in c.geometries) {
 				if(geom.gid!=currentGid) {
 					if(currentGid!=0) {
-						selectedTaxon1.chart.addItem(currentChart);
-						(currentChart.geometry as MultiPolygon).addToMap();
+						taxon.chart.addItem(currentChart);
+						(currentChart.geometry as MultiPolygon).addToMap(lastTaxonInserted);
 
 					}
 					currentChart=new Object();
@@ -149,7 +170,6 @@ package com.vizzuality.services
 							
 						ring=	StringUtil.replace(ring,")","");
 						ring=	StringUtil.replace(ring,"(","");
-						trace(ring);
 						var points:Array = ring.split( "," );
 						for each(var point:String in points) {
 							var coords:Array = point.split(" ");
@@ -168,18 +188,18 @@ package com.vizzuality.services
 				currentGid=geom.gid;
 			}
 			
-			selectedTaxon1.chart.addItem(currentChart);
-			(currentChart.geometry as MultiPolygon).addToMap();
+			taxon.chart.addItem(currentChart);
+			(currentChart.geometry as MultiPolygon).addToMap(lastTaxonInserted);
 			
 
-			selectedTaxons.addItem(selectedTaxon1);
+			selectedTaxons.addItem(taxon);
 			
 			
 			
+			dispatchEvent(new DataServiceEvent(DataServiceEvent.PA_DATA_LOADED,true));
 			
-			
-			AppStates.gi().topState='';
-			Application.application.currentState='timeline';
+/* 			AppStates.gi().topState='';
+			Application.application.currentState='timeline'; */
 		
 			Application.application.timeLine.dataProvider=selectedTaxons;
 			

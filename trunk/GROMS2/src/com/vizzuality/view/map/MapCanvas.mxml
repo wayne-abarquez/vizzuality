@@ -5,22 +5,33 @@
     currentState="{AppStates.gi().topState}" xmlns:ns3="com.vizzuality.view.overlaycomponents.*">
 	<mx:states>
 		<mx:State name="about">
-			<mx:SetProperty target="{speciecanvas1}" name="visible" value="false"/>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
 				<ns3:About horizontalCenter="0" verticalCenter="0">
 				</ns3:About>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="speciesBrowser">
-			<mx:SetProperty target="{speciecanvas1}" name="visible" value="false"/>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
 				<ns3:SpeciesBrowser horizontalCenter="0" verticalCenter="0">
 				</ns3:SpeciesBrowser>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="details">
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:HBox right="20" top="20" left="20" horizontalAlign="right" id="hbox1" showEffect="{fadeIn}" hideEffect="{fadeOut}">
+					<ns1:SpecieCanvas id="speciecanvas1" visible="{DataServices.gi().selectedTaxon1!=null}" taxon="{DataServices.gi().selectedTaxon1}">
+					</ns1:SpecieCanvas>
+					<ns1:SpecieCanvas id="speciecanvas2" visible="{DataServices.gi().selectedTaxon2!=null}" taxon="{DataServices.gi().selectedTaxon2}">
+					</ns1:SpecieCanvas>
+					<ns1:SpecieCanvas id="speciecanvas0" visible="{DataServices.gi().selectedTaxon3!=null}" taxon="{DataServices.gi().selectedTaxon3}">
+					</ns1:SpecieCanvas>
+				</mx:HBox>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.services.DataServiceEvent;
 			import mx.controls.listClasses.ListData;
 			import com.google.maps.PaneId;
 			import com.vizzuality.services.DataServices;
@@ -53,11 +64,23 @@
 			
 			private function onMapReady(event:Event):void {
 				mapController = new MapController(map,this);
+				
+				DataServices.gi().addEventListener(DataServiceEvent.PA_DATA_LOADED,onSpeciesLoaded);
 		    }
+		    
+		    private function onSpeciesLoaded(event:DataServiceEvent):void {
+		    	
+		    	
+		    	Application.application.currentState='timeline';
+		    }
+		    
+		    
 		    
 		    private function labelData(item:Object):String {
 		    	return (item.name + '['+item.geomType+']');
 		    }
+		    
+		    
 			
 			
 		]]>
@@ -71,8 +94,6 @@
 			<ns2:MapWarning id="alertCanvas" visible="false"/>
 			<ns2:GeneralLoader id="loadingBar" visible="false" width="100%" height="100%" verticalCenter="0" horizontalCenter="0"/>
 			<!--toolbar:ToolBar id="toolBar" top="0" left="0" currentState="about" / -->
-			<ns1:SpecieCanvas right="20" top="20" showEffect="{fadeIn}" hideEffect="{fadeOut}" visible="true" id="speciecanvas1">
-			</ns1:SpecieCanvas>
 		</mx:Canvas>
 	</mx:VBox>
 	
