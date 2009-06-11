@@ -455,7 +455,7 @@
 		}
 		protected function switchToGlobalMouseListener() : void
 		{
-			stage.addEventListener( MouseEvent.MOUSE_MOVE, onMouseMove );
+			if( stage ) stage.addEventListener( MouseEvent.MOUSE_MOVE, onMouseMove );
 			removeEventListener( MouseEvent.MOUSE_MOVE, onMouseMove );
 		}
 		
@@ -708,7 +708,8 @@
 			SelectionManager.instance.setSelected(this);
 			
 			// Add a stage listener in case the mouse up comes out of the control.
-			stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp );
+			if(stage!=null)
+				stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp );
 			
 			switchToGlobalMouseListener();
 			

@@ -47,8 +47,10 @@
             
 			
 			public function set dataProvider(data:ArrayCollection):void {
-				timeline=data;
-				timeChart.data=timeline;
+				if(data!=null) {
+					timeline=data;
+					timeChart.data=timeline;
+				}
 			}
 			
 			

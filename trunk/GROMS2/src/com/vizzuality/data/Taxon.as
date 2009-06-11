@@ -10,6 +10,7 @@ package com.vizzuality.data
 	public class Taxon
 	{
 		public var id:Number;
+		public var gbif_id:Number;
 		public var name:String;
 		public var source:String;
 		public var commonNameEnglish:String;
@@ -26,16 +27,8 @@ package com.vizzuality.data
 		public var cites:String;	
 		public var chart:ArrayCollection;
 		
-		public var geometry:MultiPolygon = new MultiPolygon();
-		
-
-		public function getBbox():LatLngBounds {			
-			return geometry.getBBox();
-		}
-		
-		public function getCenter():LatLng {
-			return geometry.getCenter();	
-		}
+		public var isVisible:Boolean=true;
+		public var isGbifDataVisible:Boolean=true;
 		
 	}
 }

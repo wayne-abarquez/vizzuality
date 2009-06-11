@@ -55,6 +55,14 @@ package com.vizzuality.view.map.overlays
 			}
 		}
 		
+		private var originalAlpha:Number=1;
+		public function changeAlpha(value:Number):void {
+			for each(var pol:Polygon in polygons) {
+				pol.foreground.alpha=value;
+			}
+		}
+		
+		
 		public function removeFromMap():void {
 			for each(var pol:Polygon in polygons) {
 				currentPane.removeOverlay(pol);
