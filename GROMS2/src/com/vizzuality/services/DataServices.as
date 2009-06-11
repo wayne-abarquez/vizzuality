@@ -1,8 +1,6 @@
 package com.vizzuality.services
 {
 	
-	import com.adobe.utils.StringUtil;
-	import com.google.maps.Color;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.overlays.EncodedPolylineData;
@@ -14,7 +12,6 @@ package com.vizzuality.services
 	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.utils.PolylineEncoder;
 	import com.vizzuality.view.map.MapController;
-	import com.vizzuality.view.map.overlays.MultiPolygon;
 	
 	import flash.events.EventDispatcher;
 	
@@ -120,7 +117,17 @@ package com.vizzuality.services
 			
 			taxon.chart =  new ArrayCollection();
 			
-			var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
+			for each(var ch:Object in c.charts) {
+				taxon.chart.addItem(
+					{
+						monthStart:ch.monthstart,
+						monthEnd:ch.monthend,
+						status:ch.status,
+						style:"s11"
+					});
+			}
+			
+/* 			var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
 			var currentGid:Number=0;
 			var currentChart:Object;
 			for each(var geom:Object in c.geometries) {
@@ -135,7 +142,7 @@ package com.vizzuality.services
 					currentChart.style = "s11";
 					currentChart.geometry=new MultiPolygon();
 					
-					var color:Number = Math.random()*0xFFFFFF;
+/					var color:Number = Math.random()*0xFFFFFF;
 					
 					var polOp:PolygonOptions = new PolygonOptions({
 					fillStyle: {alpha:1,color:color},
@@ -145,7 +152,7 @@ package com.vizzuality.services
 					
 				}
 				
-				var encodedPolyLines:Array=[];
+ 				var encodedPolyLines:Array=[];
 				var parsing_string:String = (geom.the_geom as String).replace("POLYGON((","");
 				var paths:Array = parsing_string.split(")");
 				for each(var ring:String in paths) {
@@ -170,10 +177,10 @@ package com.vizzuality.services
 					
 				}
 				(currentChart.geometry as MultiPolygon).addEncodedPolygon(encodedPolyLines,polOp);
-				
+ 			
 				currentGid=geom.gid;
 			}
-			taxon.chart.addItem(currentChart);
+			taxon.chart.addItem(currentChart); */
 			
 			
 			if(lastTaxonInserted==0) {
@@ -190,15 +197,14 @@ package com.vizzuality.services
 				lastTaxonInserted=1;
 			}			
 			
-			for each(var ch:Object in taxon.chart) {
+/* 			for each(var ch:Object in taxon.chart) {
 				(ch.geometry as MultiPolygon).addToMap(lastTaxonInserted);
-			}
+			} */
 			
-			
-			
+			MapController.gi().createWMSTileLayer(taxon.id);
 
 			selectedTaxons.addItem(taxon);	
-			Application.application.timeLineDataProvider = selectedTaxons;
+			Application.application.timeLine.dataProvider = selectedTaxons;
 			
 			
 			
