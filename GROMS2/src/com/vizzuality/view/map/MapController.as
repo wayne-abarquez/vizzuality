@@ -52,7 +52,9 @@ package com.vizzuality.view.map
 		
 		private var paneManager:IPaneManager;
 		private var tileOverlaysPane:IPane;
-		public var polygonPane:IPane;
+		public var polygonPane1:IPane;
+		public var polygonPane2:IPane;
+		public var polygonPane3:IPane;
 		public var picturesPane:IPane;
 		public var youtubesPane:IPane;
 		public var wikipediaPane:IPane;
@@ -86,12 +88,14 @@ package com.vizzuality.view.map
 			paneManager = map.getPaneManager();
 			var numPanes:Number = paneManager.paneCount-1;
 			tileOverlaysPane = paneManager.createPane(numPanes);
-			polygonPane = paneManager.createPane(numPanes+1);
-			picturesPane = paneManager.createPane(numPanes+2);
+			polygonPane1 = paneManager.createPane(numPanes+1);
+			polygonPane2 = paneManager.createPane(numPanes+2);
+			polygonPane3 = paneManager.createPane(numPanes+3);
+/* 			picturesPane = paneManager.createPane(numPanes+2);
 			youtubesPane = paneManager.createPane(numPanes+3);
-			wikipediaPane = paneManager.createPane(numPanes+4);
-			biodiversityPane = paneManager.createPane(numPanes+5);
-			infowindowPane = paneManager.createPane(numPanes+6);
+			wikipediaPane = paneManager.createPane(numPanes+4); */
+			biodiversityPane = paneManager.createPane(numPanes+4);
+			infowindowPane = paneManager.createPane(numPanes+5);
 			
 			map.enableContinuousZoom();
 			
