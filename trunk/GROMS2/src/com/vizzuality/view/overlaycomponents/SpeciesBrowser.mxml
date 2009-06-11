@@ -5,6 +5,8 @@
 	verticalScrollPolicy="off" horizontalScrollPolicy="off" filters="{[glowGrey]}" xmlns:controls="com.ninem.controls.*" xmlns:toolbar="com.vizzuality.view.map.toolbar.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.rpc.remoting.mxml.RemoteObject;
+			import com.vizzuality.services.DataServices;
 			import com.vizzuality.view.AppStates;
 			import mx.collections.ArrayCollection;
 			import mx.rpc.events.ResultEvent;
@@ -16,8 +18,9 @@
 			[Bindable] public var comboDefault: int = 1;
 			private var initial: int = 0;
 		
-			
+			[Bindable] private var server:RemoteObject;
 			private function init():void {
+				server = DataServices.gi().createRemoteObject();
 				server.addEventListener(ResultEvent.RESULT,onResult);
 				server.addEventListener(FaultEvent.FAULT,onFault);
 				server.getTaxon("",0);
@@ -55,8 +58,5 @@
 		
 		
 		<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />	
-		
-	<mx:RemoteObject id="server" endpoint="http://67.202.26.58/groms/amfphp/gateway.php" source="GROMSServices" destination="GROMSServices">
-		<mx:method name="getTaxon" />
-	</mx:RemoteObject>			
+			
 </mx:Canvas>

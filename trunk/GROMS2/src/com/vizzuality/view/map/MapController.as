@@ -11,11 +11,9 @@ package com.vizzuality.view.map
 	import com.google.maps.interfaces.IPane;
 	import com.google.maps.interfaces.IPaneManager;
 	import com.vizzuality.data.MapPosition;
-	import com.vizzuality.data.Taxon;
-	import com.vizzuality.data.WdpaLayer;
-	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.overlays.CustomTileLayer;
-	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
+	import com.vizzuality.view.map.overlays.CustomWMSTileLayer;
+	import com.vizzuality.view.map.overlays.CustomWMSTileLayerOverlay;
 	
 	import flash.display.Sprite;
 	import flash.filters.ColorMatrixFilter;
@@ -35,6 +33,7 @@ package com.vizzuality.view.map
 		public var map:Map;
 		private var mapCanvas:MapCanvas;
 		public var ctl:CustomTileLayer;
+		public var ctlwms:CustomWMSTileLayer;
 
 		private var aSprite:Sprite;
 		private var bSprite:Sprite;   	
@@ -195,98 +194,26 @@ package com.vizzuality.view.map
 		}		
 		
 
-		public function updateTileLayersOpacity(opacity:Number):void {
-			if (currentLayersOpacity!=opacity) {
-				for (var layerName:String in activeLayers) {
-					(activeLayers[layerName] as CustomTileLayerOverlay).setAlpha(opacity);
-				}
-				currentLayersOpacity=opacity;
-			}
-		}
 		
-		public function addLayerToCurrentState(layer:String):void {
-			var newLayers:Array =[];		
-			for each(var l:String in (AppStates.gi().visibleLayers[AppStates.gi().topState] as Array)) {
-				newLayers.push(l);
-			}
-			newLayers.push(layer);
-			updateTileLayers(newLayers);
-			
-		}
+		private var ctloDic:Dictionary = new Dictionary();	
 		
-		public function removeLayerToCurrentState(layer:String):void {
-			var newLayers:Array =[];		
-			for each(var l:String in (AppStates.gi().visibleLayers[AppStates.gi().topState] as Array)) {
-				if (l!=layer)
-					newLayers.push(l);
-			}
-			updateTileLayers(newLayers);			
-		}		
 		
-		public function toggleLayerToCurrentState(layer:String):void {
-			for each(var l:String in (AppStates.gi().visibleLayers[AppStates.gi().topState] as Array)) {
-				if(l==layer) {
-					removeLayerToCurrentState(layer);
-					return;
-				}
-			}			
-			addLayerToCurrentState(layer);
-		}			
-		
-		public function updateTileLayers(layers:Array):void {
-			
-			//first we remove from the map the layers that are active
-			//that should not longer be active
-			var searchForLayer:Function = function(search:String):Boolean {
-				for (var i:Number=0; i<layers.length;i++) {
-					if(search == layers[i])
-						return true;
-				}
-				return false;
+		public function removeWMSTileLayer(speciesId:Number):void {
+			if (ctloDic[speciesId]!=null) {
+				tileOverlaysPane.removeOverlay(ctloDic[speciesId] as CustomWMSTileLayerOverlay);
 			}
+		}	
+		public function createWMSTileLayer(speciesId:Number):void {
 			
-			for (var layerName:String in activeLayers) {
-				if (!searchForLayer(layerName)) {
-					AppStates.gi().debug("remove "+layerName);
-					tileOverlaysPane.removeOverlay(activeLayers[layerName]);
-					activeLayers[layerName]=null;
-					delete activeLayers[layerName];
-				}
-			}
-			
-			
-			//We create all the layer, or add all those CTLO 
-			for each(var la:String in layers) {
-				//trace(la);
-				if(cacheLayers[la]==null) {
-					var ctlo:CustomTileLayerOverlay= createTileLayer(la);
-					activeLayers[la] = ctlo;
-					cacheLayers[la]=ctlo;
-					AppStates.gi().debug("add "+la);
-					tileOverlaysPane.addOverlay(activeLayers[la]);
-				} else {
-					if(activeLayers[la]==null) {
-						activeLayers[la]=cacheLayers[la];
-						AppStates.gi().debug("add "+la);
-						tileOverlaysPane.addOverlay(activeLayers[la]);
-					}
-				}
-			}
-			
-			//we set it into the state
-			AppStates.gi().visibleLayers[AppStates.gi().topState]=layers;
-		}
-		
-		public function createTileLayer(layer:String):CustomTileLayerOverlay {
-			
-			ctl = new CustomTileLayer(WdpaLayer.STATIC_LAYERS[layer],WdpaLayer.DYNAMIC_LAYERS[layer],10);		
-			var ctlo:CustomTileLayerOverlay = new CustomTileLayerOverlay(ctl);
-			ctl.ctlo = ctlo;
-			ctlo.foreground.alpha=0.8;
+			ctlwms = new CustomWMSTileLayer(speciesId);		
+			var ctlo:CustomWMSTileLayerOverlay = new CustomWMSTileLayerOverlay(ctlwms);
+			ctlwms.ctlo = ctlo;
+			ctlo.foreground.alpha=0.9;
 			
 			BindingUtils.bindProperty(mapCanvas.discretLoading,"visible",ctlo,"numRunningRequest");
 			
-			return ctlo;
+			ctloDic[speciesId]=ctlo;
+			tileOverlaysPane.addOverlay(ctlo);
 		}
 				
 		

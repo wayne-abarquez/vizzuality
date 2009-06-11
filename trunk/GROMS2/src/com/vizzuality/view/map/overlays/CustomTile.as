@@ -23,7 +23,7 @@ package com.vizzuality.view.map.overlays
 			loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loaded,false,0,true);		
 			
-			this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver);	
+			//this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver);	
 		}
 		
 		
