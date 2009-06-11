@@ -4,16 +4,27 @@
 	layout="absolute" backgroundGradientAlphas="[1.0, 1.0]"
 	backgroundGradientColors="[#E9F4FF, #D7E8FA]"
 	applicationComplete="registerGlobalKeyHandler()"
-	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*" xmlns:timeline="com.vizzuality.view.timeline.*">
+	creationComplete="initApp()" xmlns:components="com.google.analytics.components.*" xmlns:map="com.vizzuality.view.map.*" xmlns:timeline="com.vizzuality.view.timeline.*" xmlns:ns1="com.vizzuality.view.loader.*">
 	<mx:states>
 		<mx:State name="timeline">
-			<mx:AddChild relativeTo="{mainVBox}" position="lastChild">
-				<timeline:VizzualityTimeline width="100%" height="123" id="timeLine" />
+			<mx:SetProperty target="{timeLine}" name="height" value="123"/>
+		</mx:State>
+		<mx:State name="loading">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas top="104" left="0" right="0" bottom="0" backgroundColor="#000000" backgroundAlpha="0.55">
+					<ns1:GenericLoader width="400" horizontalCenter="0" verticalCenter="0">
+					</ns1:GenericLoader>
+				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.view.map.overlays.MultiPolygon;
+			import mx.controls.Alert;
+			import com.vizzuality.view.timeline.events.TimelineButtonEvent;
+			import mx.collections.ArrayCollection;
+			import com.vizzuality.data.Taxon;
 			import flash.net.navigateToURL;
 			import com.google.maps.overlays.PolylineOptions;
 			import com.google.maps.overlays.Polyline;
@@ -34,6 +45,13 @@
 			
 			public var resolvedImages:Dictionary = new Dictionary();
 			
+			[Bindable] public var timeLineDataProvider:ArrayCollection=new ArrayCollection();
+
+			[Bindable] public var selectedTaxon1:Taxon;
+			[Bindable] public var selectedTaxon2:Taxon;
+			[Bindable] public var selectedTaxon3:Taxon;
+
+			
 			
 			private function initApp():void {
 				var externalDomains:Array=[];
@@ -49,7 +67,43 @@
 				ToolTipManager.showDelay = 0;
 				ToolTipManager.hideDelay = 4000;		
 				
+				
+				//set up listener for acctions
+				timeLine.addEventListener(TimelineButtonEvent.DELETE_SPECIE,onRemoveTaxon);
+				timeLine.addEventListener(TimelineButtonEvent.TIMELINE_VISIBLE,onTaxonVisibilityChange);
 			}
+			
+			private function onTaxonVisibilityChange(event:TimelineButtonEvent):void {
+				var taxon:Taxon;
+				if (selectedTaxon1.id==event.specieID) {
+					taxon=selectedTaxon1;					
+				}else if (selectedTaxon2.id==event.specieID) {
+					taxon=selectedTaxon2;
+				}else if (selectedTaxon3.id==event.specieID) {
+					taxon=selectedTaxon3;
+				}
+					
+				if (taxon.isVisible) {
+					for each(var c:Object in taxon.chart) {
+						((c.geometry) as MultiPolygon).changeAlpha(0.3);
+					}
+					taxon.isVisible=false;
+				} else {
+					for each(var c2:Object in taxon.chart) {
+						((c2.geometry) as MultiPolygon).changeAlpha(1);
+					}
+					taxon.isVisible=true;
+				}
+			}
+			
+			
+			private function onRemoveTaxon(event:TimelineButtonEvent):void {
+				Alert.show("hey "+ event.specieID);
+			}
+			
+			
+			
+			
 			
 			public function onMapReady():void {				
 
@@ -111,6 +165,7 @@
 	<mx:VBox id="mainVBox" width="100%" height="100%" verticalGap="0">
 		<header:Header id="header" />
 		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8"/>
+		<timeline:VizzualityTimeline width="100%" height="0" id="timeLine" dataProvider="{timeLineDataProvider}"/>
 	</mx:VBox>
 	<mx:Canvas id="debugArea" visible="false" right="5" bottom="40" width="358" height="157" backgroundColor="#FFFFFF" backgroundAlpha="0.66">
 		<mx:TextArea left="5" right="5" top="10" bottom="10" backgroundAlpha="0.0" borderStyle="none" id="debuggerArea"/>

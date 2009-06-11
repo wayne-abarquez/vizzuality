@@ -5,17 +5,14 @@ package com.vizzuality.view.map
 	import com.google.maps.Map;
 	import com.google.maps.MapAction;
 	import com.google.maps.MapEvent;
-	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapMoveEvent;
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
 	import com.google.maps.interfaces.IPane;
 	import com.google.maps.interfaces.IPaneManager;
-	import com.google.maps.overlays.Marker;
 	import com.vizzuality.data.MapPosition;
+	import com.vizzuality.data.Taxon;
 	import com.vizzuality.data.WdpaLayer;
-	import com.vizzuality.services.DataServiceEvent;
-	import com.vizzuality.services.DataServices;
 	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.overlays.CustomTileLayer;
 	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
@@ -110,8 +107,6 @@ package com.vizzuality.view.map
 			Application.application.onMapReady();				
 			
 		}
-		
-		
 		
 		
 		

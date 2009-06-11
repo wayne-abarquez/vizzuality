@@ -19,11 +19,11 @@
 		<mx:State name="details">
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
 				<mx:HBox right="20" top="20" left="20" horizontalAlign="right" id="hbox1" showEffect="{fadeIn}" hideEffect="{fadeOut}">
-					<ns1:SpecieCanvas id="speciecanvas1" visible="{DataServices.gi().selectedTaxon1!=null}" taxon="{DataServices.gi().selectedTaxon1}">
+					<ns1:SpecieCanvas id="speciecanvas1" visible="{Application.application.selectedTaxon3!=null}" taxon="{Application.application.selectedTaxon3}">
 					</ns1:SpecieCanvas>
-					<ns1:SpecieCanvas id="speciecanvas2" visible="{DataServices.gi().selectedTaxon2!=null}" taxon="{DataServices.gi().selectedTaxon2}">
+					<ns1:SpecieCanvas id="speciecanvas2" visible="{Application.application.selectedTaxon2!=null}" taxon="{Application.application.selectedTaxon2}">
 					</ns1:SpecieCanvas>
-					<ns1:SpecieCanvas id="speciecanvas0" visible="{DataServices.gi().selectedTaxon3!=null}" taxon="{DataServices.gi().selectedTaxon3}">
+					<ns1:SpecieCanvas id="speciecanvas0" visible="{Application.application.electedTaxon1!=null}" taxon="{Application.application.selectedTaxon1}">
 					</ns1:SpecieCanvas>
 				</mx:HBox>
 			</mx:AddChild>
@@ -72,6 +72,7 @@
 		    	
 		    	
 		    	Application.application.currentState='timeline';
+		    	AppStates.gi().topState=AppStates.DETAILS;
 		    }
 		    
 		    

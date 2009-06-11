@@ -13,7 +13,7 @@ package com.vizzuality.services
 	import com.vizzuality.data.Taxon;
 	import com.vizzuality.utils.MapUtils;
 	import com.vizzuality.utils.PolylineEncoder;
-	import com.vizzuality.view.AppStates;
+	import com.vizzuality.view.map.MapController;
 	import com.vizzuality.view.map.overlays.MultiPolygon;
 	
 	import flash.events.EventDispatcher;
@@ -40,9 +40,7 @@ package com.vizzuality.services
 		
 		public var bboxForAreas:LatLngBounds;
 		
-		[Bindable] public var selectedTaxon1:Taxon;
-		[Bindable] public var selectedTaxon2:Taxon;
-		[Bindable] public var selectedTaxon3:Taxon;
+		private var lastTaxonInserted:Number =0;
 		
 		[Bindable]
 		public var selectedTaxons:ArrayCollection=new ArrayCollection();
@@ -82,34 +80,24 @@ package com.vizzuality.services
 		
 		public function getTaxon(id:Number):void {
 			
+			if((Application.application.selectedTaxon1!=null &&
+				Application.application.selectedTaxon1.id==id) ||
+				(Application.application.selectedTaxon2!=null &&
+				Application.application.selectedTaxon2.id==id) ||
+				(Application.application.selectedTaxon3!=null &&
+				Application.application.selectedTaxon3.id==id)) {
+					MapController.gi().showMapWarning("You have already included this species, please select another",2);
+					return;
+				}
+			Application.application.currentState="loading";
 			roTaxon.getTaxonById(id);		
 			trace(id);
 		}		
 		
-		private var lastTaxonInserted:Number =0;
+		
 		private function onTaxonResult(event:ResultEvent):void {
-
 			//check which slot is free
-			var taxon:Taxon;
-			if(lastTaxonInserted==0) {
-				selectedTaxon1 = new Taxon();
-				taxon=selectedTaxon1;
-				lastTaxonInserted=1;
-			}else if(lastTaxonInserted==1) {
-				selectedTaxon2 = new Taxon();
-				taxon=selectedTaxon2;
-				lastTaxonInserted=2;
-			}else if(lastTaxonInserted==2) {
-				selectedTaxon3 = new Taxon();
-				taxon=selectedTaxon3;
-				lastTaxonInserted=3;
-			} else if(lastTaxonInserted==3) {
-				selectedTaxon1 = new Taxon();
-				taxon=selectedTaxon1;
-				lastTaxonInserted=1;
-			}
-			
-			
+			var taxon:Taxon;			
 			
 			var c:Object=event.result;
 
@@ -139,8 +127,6 @@ package com.vizzuality.services
 				if(geom.gid!=currentGid) {
 					if(currentGid!=0) {
 						taxon.chart.addItem(currentChart);
-						(currentChart.geometry as MultiPolygon).addToMap(lastTaxonInserted);
-
 					}
 					currentChart=new Object();
 					currentChart.monthStart = geom.monthstart;
@@ -187,21 +173,36 @@ package com.vizzuality.services
 				
 				currentGid=geom.gid;
 			}
-			
 			taxon.chart.addItem(currentChart);
-			(currentChart.geometry as MultiPolygon).addToMap(lastTaxonInserted);
+			
+			
+			if(lastTaxonInserted==0) {
+				Application.application.selectedTaxon1 = taxon;
+				lastTaxonInserted=1;
+			}else if(lastTaxonInserted==1) {
+				Application.application.selectedTaxon2 = taxon;
+				lastTaxonInserted=2;
+			}else if(lastTaxonInserted==2) {
+				Application.application.selectedTaxon3 = taxon;
+				lastTaxonInserted=3;
+			} else if(lastTaxonInserted==3) {
+				Application.application.selectedTaxon1 = taxon;
+				lastTaxonInserted=1;
+			}			
+			
+			for each(var ch:Object in taxon.chart) {
+				(ch.geometry as MultiPolygon).addToMap(lastTaxonInserted);
+			}
+			
+			
 			
 
-			selectedTaxons.addItem(taxon);
+			selectedTaxons.addItem(taxon);	
+			Application.application.timeLineDataProvider = selectedTaxons;
 			
 			
 			
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.PA_DATA_LOADED,true));
-			
-/* 			AppStates.gi().topState='';
-			Application.application.currentState='timeline'; */
-		
-			Application.application.timeLine.dataProvider=selectedTaxons;
 			
 		}
 		

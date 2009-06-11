@@ -19,7 +19,7 @@
 		<mx:Canvas y="25" width="160" height="6" styleName="fakeShadow" backgroundSize="100%" alpha="0.3" x="397">
 		</mx:Canvas>
 		<mx:Text x="188" y="44" text="or search directly&#xd;" fontFamily="DINOT-Medium" fontSize="14" color="#666666"/>
-		<mx:Button x="377" y="68" label="e.g.ursus maritimus" styleName="invisibleButton" textDecoration="underline" click="DataServices.gi().getTaxon(1248)" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		<mx:Button x="377" y="68" label="e.g.Eidolon helvum" styleName="invisibleButton" textDecoration="underline" click="DataServices.gi().getTaxon(1623)" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 	</mx:Canvas>
 	<mx:HBox x="21" y="171" horizontalGap="2">
 		<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
@@ -34,7 +34,7 @@
 		</mx:Canvas>
 	</mx:HBox>
 	<mx:Text x="29" y="160" text="01679" fontSize="80" color="#6b6b6b" fontFamily="DINOT-Bold" letterSpacing="29"/>
-	<mx:Text x="30" y="161" text="01679" fontSize="80" color="#FFFFFF" fontFamily="DINOT-Bold" letterSpacing="29"/>
+	<mx:Text x="30" y="161" text="01325" fontSize="80" color="#FFFFFF" fontFamily="DINOT-Bold" letterSpacing="29"/>
 	<mx:Text x="387" y="169" text="DIFERENT SPECIES MIGRATORY  DISTRIBUTIONS" fontFamily="DINOT-Bold" fontSize="16" color="#666666" width="155" leading="-4"/>
 	<mx:Button x="389" y="233" label="LET'S EXPLORE" styleName="btnOrange" width="158"
 		click="AppStates.gi().topState=(AppStates.SEARCH)"
