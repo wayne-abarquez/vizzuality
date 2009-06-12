@@ -138,12 +138,15 @@ package com.vizzuality.services
 			taxon.chart =  new ArrayCollection();
 			
 			for each(var ch:Object in c.charts) {
+				
+				var st:String = ch.status;
+				if(st=='' || st==null)
+					st='none';
 				taxon.chart.addItem(
 					{
 						monthStart:ch.monthstart,
 						monthEnd:ch.monthend,
-						status:ch.status,
-						style:"s11"
+						status:st
 					});
 			}
 			
