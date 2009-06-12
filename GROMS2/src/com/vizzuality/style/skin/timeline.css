@@ -49,6 +49,10 @@ Canvas.s34{
 	background-image: Embed(source="timelineStyles.swf",symbol="s3_4");		
 }
 
+Canvas.sgbif{
+	background-image: Embed(source="timelineStyles.swf",symbol="sgbif");		
+}
+
 Box.bkgBox{
 	background-image: Embed(source="timelineStyles.swf",symbol="bkgBox");
 }
