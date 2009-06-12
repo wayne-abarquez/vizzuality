@@ -3,6 +3,7 @@
 	verticalScrollPolicy="off" horizontalScrollPolicy="off" creationComplete="init()" backgroundColor="#7E7E7E">
 	<mx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
 			import mx.core.Application;
 			
 			private function init():void {
@@ -18,6 +19,9 @@
 	<mx:Label text="http://www.groms.de" fontFamily="DINOT-Medium" fontSize="12" color="#FFB400" bottom="1" height="26" right="12"/>
 	<mx:Image source="@Embed('/assets/header/dottedLine.png')" left="30" scaleContent="false" right="30" bottom="29"/>
 	<mx:HRule strokeWidth="1" strokeColor="#FFFFFF" left="16" bottom="29" width="116"/>
+	<mx:Image source="@Embed('/assets/logosBranding.png')" right="16" bottom="31"/>
+	<mx:Canvas width="40" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.gbif.org'))" bottom="32" right="90" />
+	<mx:Canvas width="67" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.cms.int/species/groms/groms.htm'))" bottom="32" right="16" />
 	<!--TODO METER EL BOTON-->
 	<!--<mx:Button label="Full" right="10" top="10" click="Application.application.toggleFullScreen();"/>-->
 	
