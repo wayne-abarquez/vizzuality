@@ -11,12 +11,16 @@ package com.vizzuality.data
 
 	    
 	    public function set query(value:Object):void {
-            var imageServ:HTTPService = new HTTPService();
-            imageServ.resultFormat = 'text';
-            imageServ.url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=48e37f8de83dcd4366e5f3be69c01c1f&content_type=1&per_page=4&format=json&nojsoncallback=1&text=" 
-            	+ escape(value as String);
-            imageServ.addEventListener(ResultEvent.RESULT,onImageSearchResult);
-            imageServ.send();       
+            if (value!=null) {
+	            var imageServ:HTTPService = new HTTPService();
+	            imageServ.resultFormat = 'text';
+	            imageServ.url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=48e37f8de83dcd4366e5f3be69c01c1f&content_type=1&per_page=4&format=json&nojsoncallback=1&text=" 
+	            	+ escape(value as String);
+	            imageServ.addEventListener(ResultEvent.RESULT,onImageSearchResult);
+	            imageServ.send();                   
+            } else {
+            	super.source=null;
+            }
         }
 	    
 	    
@@ -24,6 +28,7 @@ package com.vizzuality.data
 	    
 		private function onImageSearchResult(event:ResultEvent):void {
 			try {
+
 				var rawData:String = String(event.result);
 				var jsonObj:Object = JSON.decode(rawData);
 				var arr:Array = (jsonObj.photos.photo as Array);	
