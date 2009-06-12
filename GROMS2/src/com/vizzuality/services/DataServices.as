@@ -37,6 +37,8 @@ package com.vizzuality.services
 		[Bindable]
 		public var selectedTaxons:ArrayCollection=new ArrayCollection();
 
+
+		public var statesStyles:Dictionary=new Dictionary();
 		
 		
 		public function DataServices()
@@ -53,6 +55,21 @@ package com.vizzuality.services
 			nf=new NumberFormatter();
 			nf.useThousandsSeparator=true;
 		
+			
+			statesStyles['none']='s00';
+			statesStyles['all year round']='s22';
+			statesStyles['breeding']='s23';
+			statesStyles['feeding, wintering']='s31';
+			statesStyles['general distribution']='s21';
+			statesStyles['moulting']='s24';
+			statesStyles['non breeding summer']='s11';
+			statesStyles['prior wintering area']='s32';
+			statesStyles['resident']='s34';
+			statesStyles['sightings']='s31';
+			statesStyles['staging areas']='s13';
+
+			
+		
 		
 		}	
 		
@@ -64,8 +81,8 @@ package com.vizzuality.services
 		public function createRemoteObject():RemoteObject {     
 		    var ro:RemoteObject = new RemoteObject("GROMSServices");   
 		    ro.source="GROMSServices";
-		    //ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/groms/amfphp/gateway.php";   
-		    ro.endpoint="http://localhost/amfphp/gateway.php";   
+		    ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/groms/amfphp/gateway.php";   
+		    //ro.endpoint="http://localhost/amfphp/gateway.php";   
 		    return ro;   
 		}   		
 		
