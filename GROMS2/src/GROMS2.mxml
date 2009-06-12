@@ -70,35 +70,56 @@
 				
 				//set up listener for acctions
 				timeLine.addEventListener(TimelineButtonEvent.DELETE_SPECIE,onRemoveTaxon);
-				timeLine.addEventListener(TimelineButtonEvent.TIMELINE_VISIBLE,onTaxonVisibilityChange);
+				timeLine.addEventListener(TimelineButtonEvent.TIMELINE_VISIBLE,function(event:TimelineButtonEvent):void {
+					toggleTaxonVisibility(event.specieID);
+				});
 			}
 			
-			private function onTaxonVisibilityChange(event:TimelineButtonEvent):void {
-				var taxon:Taxon;
-				if (selectedTaxon1.id==event.specieID) {
-					taxon=selectedTaxon1;					
-				}else if (selectedTaxon2.id==event.specieID) {
-					taxon=selectedTaxon2;
-				}else if (selectedTaxon3.id==event.specieID) {
-					taxon=selectedTaxon3;
-				}
-					
-				if (taxon.isVisible) {
-					for each(var c:Object in taxon.chart) {
-						((c.geometry) as MultiPolygon).changeAlpha(0.3);
-					}
-					taxon.isVisible=false;
-				} else {
-					for each(var c2:Object in taxon.chart) {
-						((c2.geometry) as MultiPolygon).changeAlpha(1);
-					}
-					taxon.isVisible=true;
-				}
+			public function toggleTaxonVisibility(speciesId:Number):void {
+				if ((DataServices.gi().taxonDictionary[speciesId] as Taxon).isVisible) {
+					MapController.gi().changeTileOpacity(speciesId,0.3);
+					(DataServices.gi().taxonDictionary[speciesId] as Taxon).isVisible=false;
+				}else {
+					MapController.gi().changeTileOpacity(speciesId,0.8);					
+					(DataServices.gi().taxonDictionary[speciesId] as Taxon).isVisible=true;
+				}	
+				
 			}
+			
+			public function removeSpecies(speciesId:Number):void{
+				MapController.gi().removeGbifTileLayer(speciesId);
+				MapController.gi().removeWMSTileLayer(speciesId);
+				
+				if(selectedTaxon1!=null && selectedTaxon1.id==speciesId) {
+					selectedTaxon1=null;
+				}
+				if(selectedTaxon2!=null && selectedTaxon2.id==speciesId) {
+					selectedTaxon2=null;
+				}
+				if(selectedTaxon3!=null && selectedTaxon3.id==speciesId) {
+					selectedTaxon3=null;
+				}
+				
+				DataServices.gi().selectedTaxons.removeAll();
+				if(Application.application.selectedTaxon1!=null)
+					DataServices.gi().selectedTaxons.addItem(Application.application.selectedTaxon1);	
+				if(Application.application.selectedTaxon2!=null)
+					DataServices.gi().selectedTaxons.addItem(Application.application.selectedTaxon2);	
+				if(Application.application.selectedTaxon3!=null)
+					DataServices.gi().selectedTaxons.addItem(Application.application.selectedTaxon3);					
+				
+				if(DataServices.gi().selectedTaxons.length==0) {
+					AppStates.gi().topState=AppStates.SEARCH;
+					//MapController.gi().showMapWarning("All species removed",2);
+				}
+				
+			}
+			
+			
 			
 			
 			private function onRemoveTaxon(event:TimelineButtonEvent):void {
-				Alert.show("hey "+ event.specieID);
+				removeSpecies(event.specieID);
 			}
 			
 			
@@ -172,6 +193,6 @@
 		
 	</mx:Canvas>
 	
- 	<components:FlexTracker id="gaTracker" account="UA-7333475-1" mode="AS3" visualDebug="false" /> 	
+ 	<components:FlexTracker id="gaTracker" account="UA-9286769-1" mode="AS3" visualDebug="false" /> 	
  	
 </mx:Application>

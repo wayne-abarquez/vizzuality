@@ -1,6 +1,9 @@
 package com.vizzuality.view
 {
 	
+	import com.vizzuality.services.DataServices;
+	import com.vizzuality.view.map.MapController;
+	
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
@@ -46,18 +49,16 @@ package com.vizzuality.view
 			return instance;
 		}
 
-		//We dont set the state directly here, it is set by the SWFAddress
-
-		public function setSecondState(sState:String):void {
-			
-		}
-		public function setAllStates(tState:String,sState:String):void {
-
+		public function gotoBaseState():void {
+			if(DataServices.gi().selectedTaxons.length==0) {
+				MapController.gi().showMapWarning("Select or search for a species",2);
+				topState=AppStates.SEARCH;
+			} else {
+				topState=DETAILS;
+			}
+				
 		}
 		
-		public function goToPreviousState():void {
-
-		}
 		
 		
 		

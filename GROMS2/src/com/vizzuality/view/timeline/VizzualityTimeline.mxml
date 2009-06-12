@@ -115,7 +115,7 @@
 			
 			<components:TimelineChart  id="timeChart" monthWidth="{monthWidth}" right="10" left="0" top="23" bottom="7" visible1="{visible1}" visible2="{visible2}" visible3="{visible3}"/>
 			
-			<mx:Label text="JUA" y="6" x="{(monthWidth)*0}"  color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>			
+			<mx:Label text="JAN" y="6" x="{(monthWidth)*0}"  color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>			
 			<mx:Label text="FEB" y="6" x="{(monthWidth)*1}" horizontalCenter="{-(monthWidth)*5}" color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>	
 			<mx:Label text="MAR" y="6" x="{(monthWidth)*2}" horizontalCenter="{-(monthWidth)*4}" color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>		
 			<mx:Label text="APR" y="6" x="{(monthWidth)*3}" horizontalCenter="{-(monthWidth)*3}" color="#7C7C7C" fontFamily="DINOT-Medium" fontSize="10"/>			
@@ -131,7 +131,9 @@
 			<mx:Canvas id="fist" x="0" y="{timeChart.y}" height="{timeChart.height}" width="{monthStart*monthWidth}" backgroundColor="white" alpha="0.8"/>
 			<mx:Canvas id="last" x="{monthEnd*monthWidth}" y="{timeChart.y}" height="{timeChart.height}" width="{timeChart.width - (monthEnd*monthWidth)}" backgroundColor="white" alpha="0.8"/>
 
-			<moveFlex:ObjectHandles id="oh" allowRotate="false" allowVResize="false" x="0" y="{timeChart.y}"  parentWidth="{timeChart.width}"
+			<moveFlex:ObjectHandles 
+				 toolTip="Using the sliders select the range of months to display on the map"
+				id="oh" allowRotate="false" allowVResize="false" x="0" y="{timeChart.y}"  parentWidth="{timeChart.width}"
 				monthWidth="{monthWidth}" height="{timeChart.height}" minWidth="{monthWidth}" allowVMove="false" explicitWidth="{timeChart.width}">
 					<mx:Box id="box" width="100%" height="100%" y="0" x="0" styleName="bkgBox" backgroundSize="100%"/>
 			</moveFlex:ObjectHandles>	

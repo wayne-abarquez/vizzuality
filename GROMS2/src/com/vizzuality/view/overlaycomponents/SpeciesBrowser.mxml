@@ -47,10 +47,10 @@
 	<mx:Text x="19" y="20" text="Explore the" fontFamily="DINOT-Medium" fontSize="18" color="#666666"/>
 	<mx:Text x="19" y="40" text="TAXON TREE OF GROMS SPECIES DATA" fontFamily="DINOT-Bold" fontSize="27" color="#88B54F" letterSpacing="-1"/>
 	<mx:Button top="0" right="20" styleName="closeButton" width="55" height="17"
-		useHandCursor="true" buttonMode="true" mouseChildren="false" click="AppStates.gi().topState=''"/>
-	<mx:Canvas left="20" right="20" bottom="36" top="85" cornerRadius="3" borderColor="#CBCBCB" borderStyle="solid">
+		useHandCursor="true" buttonMode="true" mouseChildren="false" click="AppStates.gi().gotoBaseState()"/>
+	<mx:Canvas left="20" right="20" bottom="36" top="85" cornerRadius="3" borderColor="#CBCBCB" borderStyle="solid" >
 
-		<controls:TreeBrowser id="treeB" remoteService="{server}" columnWidth="250" top="2" bottom="2" 
+		<controls:TreeBrowser id="treeB" remoteService="{server}" backgroundColor="#EBEBEB" columnWidth="250" top="2" bottom="2" 
 			left="2" right="2" borderStyle="solid" borderColor="#FFFFFF"/>
 	</mx:Canvas>
 	<toolbar:SearchComponent right="20" listPosition="down" top="43"/>
