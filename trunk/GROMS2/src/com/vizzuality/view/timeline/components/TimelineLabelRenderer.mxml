@@ -3,6 +3,7 @@
 	verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.view.map.MapController;
 			import mx.core.UITextField;
 			import mx.core.UIComponent;
 			import com.vizzuality.view.timeline.events.TimelineButtonEvent;
@@ -38,12 +39,12 @@
 				if (ev.target is UITextField) {
 					if (this.visCheck.selected) {
 						visCheck.selected = false;
-						info.enabled = false;
+						//info.enabled = false;
 						gbif.enabled = false;
 						specie.alpha = 0.3;
 						_ev.visible = false;					
 					} else {
-						info.enabled = true;
+						//info.enabled = true;
 						gbif.enabled = true;
 						specie.alpha = 1;
 						visCheck.selected = true;
@@ -51,12 +52,12 @@
 					}
 				} else {
 					if (this.visCheck.selected) {
-						info.enabled = true;
+						//info.enabled = true;
 						gbif.enabled = true;
 						specie.alpha = 1;
 						_ev.visible = true;					
 					} else {
-						info.enabled = false;
+						//info.enabled = false;
 						gbif.enabled = false;
 						specie.alpha = 0.3;
 						_ev.visible = false;					
@@ -68,14 +69,23 @@
 		]]>
 	</mx:Script>
 
-	<mx:CheckBox id="visCheck" height="19" verticalCenter="0" left="9" click="onClickVisible(event)" selected="{visibleComp}"/>
+	<mx:CheckBox
+		toolTip="Maximize/Minimize the info component"
+		 id="visCheck" height="19" verticalCenter="0" left="9" click="onClickVisible(event)" selected="{visibleComp}"/>
 	<mx:Label id="specie" text="{taxon}" verticalCenter="0" left="20" width="120" color="#333333" fontFamily="DINOT-Medium" 
+		mouseOut="MapController.gi().highlightSpeciesOff()"
+		mouseOver="MapController.gi().highlightSpeciesOn(identity)" 
 		fontSize="12" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}"/>
-	<mx:Button id="info" width="14" height="14" right="42" verticalCenter="0" styleName="btnInfo" mouseChildren="false" buttonMode="true" useHandCursor="true" 
+	<!-- mx:Button id="info" width="14" height="14" right="42" verticalCenter="0" styleName="btnInfo" mouseChildren="false" buttonMode="true" useHandCursor="true" 
 		 selected="true"
-		data="1" click="onClickButton(event)" enabled="{visibleComp}"/>
-	<mx:Button id="del" width="14" height="14" right="10" verticalCenter="0" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" click="onClickButton(event)"/>
-	<mx:Button id="gbif" width="14" height="14" right="26" verticalCenter="0" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" click="onClickButton(event)" enabled="{visibleComp}"/>
+		data="1" click="onClickButton(event)" enabled="{visibleComp}"/ -->
+	<mx:Button 
+		toolTip="Remove this species from the map"
+		id="del" width="14" height="14" right="10" verticalCenter="0" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" click="onClickButton(event)"/>
+	<mx:Button id="gbif" 
+		toolTip="Show/Hide the GBIF network data layer"
+		 click="MapController.gi().toggleGbifLayer(identity);(MapController.gi().gbifLayersActive[identity])?event.target.selected=false:event.target.selected=true;"
+		width="14" height="14" right="26" verticalCenter="0" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" enabled="{visibleComp}"/>
 	<mx:Image bottom="0" left="8" right="8" scaleContent="false">
 		<mx:source>@Embed('/com/vizzuality/style/assets/hRuleDashed500.png')</mx:source>
 	</mx:Image>

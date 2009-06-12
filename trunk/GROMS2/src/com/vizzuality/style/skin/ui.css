@@ -1,4 +1,10 @@
 /* CSS file */
+ToolTip
+{
+	backgroundColor: #3C3C3C;
+	color: #CFF1A4;
+	cornerRadius: 3;
+}
 
 
 Canvas.headerCanvas{

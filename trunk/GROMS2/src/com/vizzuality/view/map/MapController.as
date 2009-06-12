@@ -12,6 +12,7 @@ package com.vizzuality.view.map
 	import com.google.maps.interfaces.IPaneManager;
 	import com.vizzuality.data.MapPosition;
 	import com.vizzuality.view.map.overlays.CustomTileLayer;
+	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
 	import com.vizzuality.view.map.overlays.CustomWMSTileLayer;
 	import com.vizzuality.view.map.overlays.CustomWMSTileLayerOverlay;
 	
@@ -66,6 +67,10 @@ package com.vizzuality.view.map
 		public var isYoutubesActive:Boolean=false;
 		
 		private var currentLayersOpacity:Number=0;
+
+		private var ctloDic:Dictionary = new Dictionary();	
+		private var gbifTileOverlayDic:Dictionary = new Dictionary();		
+		
 		
 		public function MapController(map:Map,mapCanvas:MapCanvas)
 		{
@@ -195,7 +200,89 @@ package com.vizzuality.view.map
 		
 
 		
-		private var ctloDic:Dictionary = new Dictionary();	
+
+		
+		public function changeTileOpacity(speciesId:Number,value:Number):void {
+			if (ctloDic[speciesId]!=null) {
+				TweenLite.to(
+					(ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground,
+					0.6,
+					{alpha:value});
+			}
+			
+		}
+		
+		public function highlightSpeciesOn(speciesId:Number):void {
+			for each(var ctlo:CustomWMSTileLayerOverlay in ctloDic) {
+				if(ctlo==ctloDic[speciesId]) {
+					TweenLite.to(ctlo.foreground,0.5,{alpha:1});
+				} else {
+					TweenLite.to(ctlo.foreground,0.5,{alpha:0.3});					
+				}
+			}
+			for each(var ctlogbif:CustomTileLayerOverlay in gbifTileOverlayDic) {
+				if(ctlogbif==gbifTileOverlayDic[speciesId]) {
+					TweenLite.to(ctlogbif.foreground,0.5,{alpha:0.8});
+				} else {
+					TweenLite.to(ctlogbif.foreground,0.5,{alpha:0.3});					
+				}
+			}
+		}
+		public function highlightSpeciesOff():void {
+			for each(var ctlo:CustomWMSTileLayerOverlay in ctloDic) {
+				TweenLite.to(ctlo.foreground,0.5,{alpha:0.9});
+			}
+			for each(var ctlogbif:CustomTileLayerOverlay in gbifTileOverlayDic) {
+				TweenLite.to(ctlogbif.foreground,0.5,{alpha:0.9});
+			}
+			
+		}
+		
+		
+		public var gbifLayersActive:Dictionary=new Dictionary();
+		public function toggleGbifLayer(speciesId:Number):void {
+			if(gbifLayersActive[speciesId]==true) {
+				tileOverlaysPane.removeOverlay(gbifTileOverlayDic[speciesId]);
+				gbifLayersActive[speciesId]=false;
+			} else {
+				tileOverlaysPane.addOverlay(gbifTileOverlayDic[speciesId]);	
+				gbifLayersActive[speciesId]=true;
+				
+			}
+			
+		}
+		
+		
+		public function makeTileShine(speciesId:Number):void {
+			
+			
+			if (ctloDic[speciesId]!=null) {
+				(ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground.alpha=0.1;
+				TweenLite.to(
+					(ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground,
+					0.6,
+					{alpha:0.9});
+			}
+			
+		}
+		
+		public function createGbifLayer(gbifId:Number,speciesId:Number):void {
+			if(gbifId!=0) {
+				var ctlgbif:CustomTileLayer= new CustomTileLayer("http://maps3.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+gbifId,"",23);
+				var ctlo:CustomTileLayerOverlay = new CustomTileLayerOverlay(ctlgbif);
+				ctlgbif.ctlo=ctlo;
+				ctlo.foreground.alpha=0.9;
+				BindingUtils.bindProperty(mapCanvas.discretLoading,"visible",ctlo,"numRunningRequest");
+				gbifTileOverlayDic[speciesId]=ctlo;
+				tileOverlaysPane.addOverlay(ctlo);
+			}
+			
+		}
+		public function removeGbifTileLayer(speciesId:Number):void {
+			if (gbifTileOverlayDic[speciesId]!=null) {
+				tileOverlaysPane.removeOverlay(gbifTileOverlayDic[speciesId] as CustomTileLayerOverlay);
+			}			
+		}
 		
 		
 		public function removeWMSTileLayer(speciesId:Number):void {
@@ -214,6 +301,7 @@ package com.vizzuality.view.map
 			
 			ctloDic[speciesId]=ctlo;
 			tileOverlaysPane.addOverlay(ctlo);
+			gbifLayersActive[speciesId]=true;
 		}
 				
 		

@@ -1,19 +1,12 @@
 package com.vizzuality.services
 {
 	
-	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
-	import com.google.maps.overlays.EncodedPolylineData;
-	import com.google.maps.overlays.Polygon;
-	import com.google.maps.overlays.PolygonOptions;
-	import com.google.maps.styles.FillStyle;
-	import com.google.maps.styles.StrokeStyle;
 	import com.vizzuality.data.Taxon;
-	import com.vizzuality.utils.MapUtils;
-	import com.vizzuality.utils.PolylineEncoder;
 	import com.vizzuality.view.map.MapController;
 	
 	import flash.events.EventDispatcher;
+	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
 	import mx.core.Application;
@@ -38,6 +31,8 @@ package com.vizzuality.services
 		public var bboxForAreas:LatLngBounds;
 		
 		private var lastTaxonInserted:Number =0;
+		
+		public var taxonDictionary:Dictionary=new Dictionary();
 		
 		[Bindable]
 		public var selectedTaxons:ArrayCollection=new ArrayCollection();
@@ -86,9 +81,16 @@ package com.vizzuality.services
 					MapController.gi().showMapWarning("You have already included this species, please select another",2);
 					return;
 				}
-			Application.application.currentState="loading";
-			roTaxon.getTaxonById(id);		
-			trace(id);
+				
+			if (taxonDictionary[id]!=null) {
+				addTaxon(taxonDictionary[id]);
+			}else {
+				Application.application.currentState="loading";
+				roTaxon.getTaxonById(id);		
+				Application.application.gaTracker.trackPageview("/taxon/"+id);
+				trace("requestion ID: " + id);
+			}
+				
 		}		
 		
 		
@@ -109,6 +111,7 @@ package com.vizzuality.services
 			taxon.genus=c.genus;
 			taxon.group=c.group;
 			taxon.id=c.id;
+			taxon.gbif_id=c.gbif_id;
 			taxon.migrationType=c.migrationType;
 			taxon.name=c.name;
 			taxon.red_list=c.red_list;
@@ -126,6 +129,9 @@ package com.vizzuality.services
 						style:"s11"
 					});
 			}
+			
+			taxonDictionary[c.id]=taxon;
+			addTaxon(taxon);
 			
 /* 			var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
 			var currentGid:Number=0;
@@ -183,38 +189,45 @@ package com.vizzuality.services
 			taxon.chart.addItem(currentChart); */
 			
 			
-			if(lastTaxonInserted==0) {
-				Application.application.selectedTaxon1 = taxon;
-				lastTaxonInserted=1;
-			}else if(lastTaxonInserted==1) {
-				Application.application.selectedTaxon2 = taxon;
-				lastTaxonInserted=2;
-			}else if(lastTaxonInserted==2) {
-				Application.application.selectedTaxon3 = taxon;
-				lastTaxonInserted=3;
-			} else if(lastTaxonInserted==3) {
-				Application.application.selectedTaxon1 = taxon;
-				lastTaxonInserted=1;
-			}			
 			
 /* 			for each(var ch:Object in taxon.chart) {
 				(ch.geometry as MultiPolygon).addToMap(lastTaxonInserted);
 			} */
 			
-			MapController.gi().createWMSTileLayer(taxon.id);
-
-			selectedTaxons.addItem(taxon);	
-			Application.application.timeLine.dataProvider = selectedTaxons;
-			
-			
-			
-			dispatchEvent(new DataServiceEvent(DataServiceEvent.PA_DATA_LOADED,true));
 			
 		}
 		
 		
+		private function addTaxon(taxon:Taxon):void {
+			if(Application.application.selectedTaxon1==null) {
+				Application.application.selectedTaxon1 = taxon;
+			} else if(Application.application.selectedTaxon2==null) {
+				Application.application.selectedTaxon2 = taxon;
+			} else if(Application.application.selectedTaxon3==null) {
+				Application.application.selectedTaxon3 = taxon;
+			}	
+					
+			
+			MapController.gi().createWMSTileLayer(taxon.id);
+			MapController.gi().createGbifLayer(taxon.gbif_id,taxon.id);
+			
+			selectedTaxons.removeAll();
+			if(Application.application.selectedTaxon1!=null)
+				selectedTaxons.addItem(Application.application.selectedTaxon1);	
+			if(Application.application.selectedTaxon2!=null)
+				selectedTaxons.addItem(Application.application.selectedTaxon2);	
+			if(Application.application.selectedTaxon3!=null)
+				selectedTaxons.addItem(Application.application.selectedTaxon3);	
+				
+			
+			
+			Application.application.timeLine.dataProvider = selectedTaxons;
+			dispatchEvent(new DataServiceEvent(DataServiceEvent.PA_DATA_LOADED,true));
+		}
 		
-		private function createPolygon(geometry:Object):Polygon {
+		
+		
+/* 		private function createPolygon(geometry:Object):Polygon {
 			var rings:Array = geometry.rings;
 			var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
 			var encodedPolyLines:Array = new Array();
@@ -241,9 +254,9 @@ package com.vizzuality.services
 			        
 		    return Polygon.fromEncoded(encodedPolyLines, polOpt);		
 
-		}
+		} */
 		
-		private function createCircleArea(center:LatLng, area:Number):Polygon {
+/* 		private function createCircleArea(center:LatLng, area:Number):Polygon {
 			var radius_km:Number = 20;
 			if (!isNaN(area)) {
 				radius_km = Math.sqrt((Number(area)/100)/Math.PI);
@@ -251,7 +264,7 @@ package com.vizzuality.services
 			var radius:Number = Math.round((Number(radius_km)/1.609)*100000)/100000;
 			//var center:LatLng = new LatLng(geometry.points[0][1],geometry.points[0][0]);															
 			return MapUtils.drawCircle(center.lat(),center.lng(),radius,0x0099FF,1,1,0x0099FF,0.5);						
-		}	
+		}	 */
 		
 		
 		private function onFault(event:FaultEvent):void {
