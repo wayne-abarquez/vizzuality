@@ -2,12 +2,30 @@ package com.vizzuality.data
 {
 	import com.adobe.serialization.json.JSON;
 	
+	import flash.events.MouseEvent;
+	
+	import mx.containers.Canvas;
+	import mx.controls.Button;
 	import mx.controls.Image;
+	import mx.core.Application;
+	import mx.managers.PopUpManager;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.HTTPService;
 
 	public class FlickrImage extends Image
 	{
+		
+		private var url:String='';
+		private var title:String='';
+		private var ownerId:String='';
+		private var imageId:String='';
+		
+		public function FlickrImage():void {
+			this.addEventListener(MouseEvent.CLICK,onClick);
+			this.useHandCursor=true;
+			this.buttonMode=true;
+			this.mouseChildren=false;
+		}		
 
 	    
 	    public function set query(value:Object):void {
@@ -23,6 +41,32 @@ package com.vizzuality.data
             }
         }
 	    
+	    private function onClick(event:MouseEvent):void {
+	    	if (url!='') {
+	    		var tw:Canvas=new Canvas();
+	    		//tw.title=title;
+	    		var imgBig:Image = new Image();
+	    		imgBig.source=url.replace("_s.jpg",".jpg");
+	    		tw.addChild(imgBig);
+	    		
+	    		var btClose:Button = new Button();
+	    		btClose.setStyle("right",5);
+	    		btClose.setStyle("top",5);
+	    		btClose.setStyle("styleName","btnDelete");
+	    		btClose.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void {
+	    			PopUpManager.removePopUp(tw);
+	    		});
+	    		tw.addChild(btClose);
+	    		
+	    		
+	    		
+	    		PopUpManager.addPopUp(tw,Application.application.mapCanvas.mapHeader.terrainButton,true);
+	    		PopUpManager.centerPopUp(tw);
+	    		
+	    		
+	    	}
+	    }
+	    
 	    
 	    public var numImageInResult:Number=0;
 	    
@@ -33,7 +77,10 @@ package com.vizzuality.data
 				var jsonObj:Object = JSON.decode(rawData);
 				var arr:Array = (jsonObj.photos.photo as Array);	
 		
-				var url:String="http://farm" + arr[numImageInResult].farm + ".static.flickr.com/" +  arr[numImageInResult].server + "/" +  arr[numImageInResult].id + "_" +  arr[numImageInResult].secret + "_s.jpg";
+				title=arr[numImageInResult].title;
+				ownerId=arr[numImageInResult].owner;
+				imageId=arr[numImageInResult].id;
+				url="http://farm" + arr[numImageInResult].farm + ".static.flickr.com/" +  arr[numImageInResult].server + "/" +  arr[numImageInResult].id + "_" +  arr[numImageInResult].secret + "_s.jpg";
             	super.source = url; 
 			 } catch(e:Error) {
 				

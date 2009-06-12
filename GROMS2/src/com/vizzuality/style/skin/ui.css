@@ -1,4 +1,16 @@
 /* CSS file */
+TitleWindow
+{
+	fontFamily: "DINOT-Medium";
+	borderColor: #FFFFFF;
+	cornerRadius: 2;
+	borderThicknessTop: 0;
+	borderThicknessLeft: 0;
+	borderThicknessRight: 0;
+	controlBarStyleName: titleWindowControlBar;
+	backgroundColor: #3B3B3B;
+	backgroundAlpha: 0.44;
+}
 ToolTip
 {
 	backgroundColor: #3C3C3C;
@@ -440,5 +452,11 @@ ProgressBar {
 	upArrowDownSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowUp_downSkin");
 	upArrowOverSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowUp_overSkin");
 	upArrowUpSkin: Embed(source="treeBrowserSkin.swf", symbol="ScrollArrowUp_upSkin");
+}
+.titleWindowControlBar
+{
+	color: #353535;
+	horizontalGap: 6;
+	fontFamily: "DINOT-Medium";
 }
 

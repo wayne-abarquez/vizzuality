@@ -82,7 +82,8 @@
 		<mx:Canvas width="100%" backgroundColor="#C3DAA9" height="66">
 			<mx:HBox y="10" horizontalGap="2" left="10" right="10">
 				<mx:Canvas width="45" height="45" backgroundColor="#FFFFFF">
-					<data:FlickrImage query="{_taxon.name}" numImageInResult="0" width="42" height="42" horizontalCenter="0" verticalCenter="0"/>
+					<data:FlickrImage
+						 query="{_taxon.name}" numImageInResult="0" width="42" height="42" horizontalCenter="0" verticalCenter="0"/>
 				</mx:Canvas>
 				<mx:Canvas width="45" height="45" backgroundColor="#FFFFFF">
 					<data:FlickrImage query="{_taxon.name}" numImageInResult="1" width="42" height="42" horizontalCenter="0" verticalCenter="0"/>
