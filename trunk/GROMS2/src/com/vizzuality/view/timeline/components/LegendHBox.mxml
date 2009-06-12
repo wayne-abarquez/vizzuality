@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" horizontalGap="2">
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.services.DataServices;
+			import mx.controls.Label;
+			import mx.containers.Canvas;
+			import mx.collections.ArrayCollection;
+			
+			public function set taxonCharts(value:ArrayCollection):void {
+				for each(var chart:Object in value) {
+					var can:Canvas = new Canvas();
+					can.setStyle("backgroundSize","100%");
+					can.percentWidth=100;
+					can.setStyle("styleName",DataServices.gi().statesStyles[chart.status]);
+					
+					var lab:Label = new Label();
+				    lab.setStyle("color","#FFFFFF");
+				    lab.setStyle("fontFamily","DINOT-Medium");
+					lab.setStyle("fontSize",11);  					
+					lab.text=chart.status;
+					can.addChild(lab);
+					
+					this.addChild(can);
+				}
+				
+				var canGbif:Canvas = new Canvas();
+				canGbif.setStyle("backgroundSize","100%");
+				canGbif.percentWidth=100;
+				canGbif.setStyle("styleName","s1gbif");
+				
+				var labGbif:Label = new Label();
+			    labGbif.setStyle("color","#FFFFFF");
+			    labGbif.setStyle("fontFamily","DINOT-Medium");
+				labGbif.setStyle("fontSize",11);  					
+				labGbif.text="GBIF network data";
+				canGbif.addChild(labGbif);
+				
+				this.addChild(canGbif);
+				
+				
+			}
+		]]>
+	</mx:Script>
+</mx:HBox>
