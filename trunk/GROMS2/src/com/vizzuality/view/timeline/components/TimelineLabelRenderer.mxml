@@ -72,10 +72,10 @@
 	<mx:CheckBox
 		toolTip="Maximize/Minimize the info component"
 		 id="visCheck" height="19" verticalCenter="0" left="9" click="onClickVisible(event)" selected="{visibleComp}"/>
-	<mx:Label id="specie" text="{taxon}" verticalCenter="0" left="20" width="120" color="#333333" fontFamily="DINOT-Medium" 
+	<mx:Label id="specie" text="{taxon}" verticalCenter="0" left="20" color="#333333" fontFamily="DINOT-Medium" 
 		mouseOut="MapController.gi().highlightSpeciesOff()"
 		mouseOver="MapController.gi().highlightSpeciesOn(identity)" 
-		fontSize="12" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}"/>
+		fontSize="12" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" right="48"/>
 	<!-- mx:Button id="info" width="14" height="14" right="42" verticalCenter="0" styleName="btnInfo" mouseChildren="false" buttonMode="true" useHandCursor="true" 
 		 selected="true"
 		data="1" click="onClickButton(event)" enabled="{visibleComp}"/ -->
