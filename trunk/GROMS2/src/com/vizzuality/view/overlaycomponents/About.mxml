@@ -20,6 +20,8 @@
 		</mx:Canvas>
 		<mx:Text x="188" y="44" text="or search directly&#xd;" fontFamily="DINOT-Medium" fontSize="14" color="#666666"/>
 		<mx:Button x="377" y="68" label="e.g.Eidolon helvum" styleName="invisibleButton" textDecoration="underline" click="DataServices.gi().getTaxon(1623)" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		<mx:Image source="@Embed('/assets/logosBrandingDark.png')" left="32" bottom="23"/>
+		<mx:Label x="31" y="29" text="powered by" color="#6C6C6C"/>
 	</mx:Canvas>
 	<mx:HBox x="21" y="171" horizontalGap="2">
 		<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
@@ -42,6 +44,8 @@
 	<toolbar:SearchComponent bottom="26" listPosition="up" right="20"/>
 	
 		<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
+		<mx:Canvas width="40" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.gbif.org'))" bottom="11" left="18"/>
+		<mx:Canvas width="67" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.cms.int/species/groms/groms.htm'))" bottom="11" left="65"/>
 	
 	
 </mx:Canvas>
