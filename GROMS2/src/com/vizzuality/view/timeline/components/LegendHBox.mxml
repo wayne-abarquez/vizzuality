@@ -18,7 +18,11 @@
 				    lab.setStyle("color","#FFFFFF");
 				    lab.setStyle("fontFamily","DINOT-Medium");
 					lab.setStyle("fontSize",11);  					
-					lab.text=chart.status;
+					if(chart.status=='none') {
+						lab.text="Unknown";
+					} else {
+						lab.text=chart.status;
+					}
 					can.addChild(lab);
 					
 					this.addChild(can);
@@ -27,13 +31,13 @@
 				var canGbif:Canvas = new Canvas();
 				canGbif.setStyle("backgroundSize","100%");
 				canGbif.percentWidth=100;
-				canGbif.setStyle("styleName","s1gbif");
+				canGbif.setStyle("styleName","sgbif");
 				
 				var labGbif:Label = new Label();
 			    labGbif.setStyle("color","#FFFFFF");
 			    labGbif.setStyle("fontFamily","DINOT-Medium");
 				labGbif.setStyle("fontSize",11);  					
-				labGbif.text="GBIF network data";
+				labGbif.text=" - | GBIF network data | +";
 				canGbif.addChild(labGbif);
 				
 				this.addChild(canGbif);
