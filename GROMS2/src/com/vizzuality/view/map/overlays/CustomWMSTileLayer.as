@@ -21,13 +21,15 @@ package com.vizzuality.view.map.overlays
 	    private var offset:Number=16777216;
 	    private var radius:Number=offset / Math.PI; 		
 		private var speciesId:Number;
+		private var colorizeColor:Number;
 		
 		
 		public var ctlo:CustomWMSTileLayerOverlay;
 		
-		public function CustomWMSTileLayer(speciesId:Number)
+		public function CustomWMSTileLayer(speciesId:Number,colorizeColor:Number=NaN)
 		{
 				this.speciesId=speciesId;
+				this.colorizeColor= colorizeColor;
 			
 			var copyrightCollection:CopyrightCollection = new CopyrightCollection();
 			copyrightCollection.addCopyright(new Copyright("ennefox", new LatLngBounds(new LatLng(-180, 90), new LatLng(180, -90)), 21,"ennefox"));			
@@ -37,7 +39,7 @@ package com.vizzuality.view.map.overlays
 		
 		public override function loadTile(tile:Point,zoom:Number):DisplayObject {
 			
-			loader = new CustomTile();
+			loader = new CustomTile(colorizeColor);
 			loader.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
 			loader.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loaded,false,0,true);
 			

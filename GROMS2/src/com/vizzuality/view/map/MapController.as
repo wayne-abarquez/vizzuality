@@ -290,9 +290,9 @@ package com.vizzuality.view.map
 				tileOverlaysPane.removeOverlay(ctloDic[speciesId] as CustomWMSTileLayerOverlay);
 			}
 		}	
-		public function createWMSTileLayer(speciesId:Number):void {
+		public function createWMSTileLayer(speciesId:Number,colorizeColor:Number=NaN):void {
 			
-			ctlwms = new CustomWMSTileLayer(speciesId);		
+			ctlwms = new CustomWMSTileLayer(speciesId,colorizeColor);		
 			var ctlo:CustomWMSTileLayerOverlay = new CustomWMSTileLayerOverlay(ctlwms);
 			ctlwms.ctlo = ctlo;
 			ctlo.foreground.alpha=0.9;
