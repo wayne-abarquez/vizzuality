@@ -1,6 +1,7 @@
 package com.vizzuality.services
 {
 	
+	import com.google.maps.Color;
 	import com.google.maps.LatLngBounds;
 	import com.vizzuality.data.Taxon;
 	import com.vizzuality.view.map.MapController;
@@ -219,26 +220,51 @@ package com.vizzuality.services
 		
 		
 		private function addTaxon(taxon:Taxon):void {
+			var num:Number=1;
+			
 			if(Application.application.selectedTaxon1==null) {
 				Application.application.selectedTaxon1 = taxon;
+				num=1;
 			} else if(Application.application.selectedTaxon2==null) {
 				Application.application.selectedTaxon2 = taxon;
+				num=2;
 			} else if(Application.application.selectedTaxon3==null) {
 				Application.application.selectedTaxon3 = taxon;
+				num=3;
 			}	
-					
 			
-			MapController.gi().createWMSTileLayer(taxon.id);
+			var colorizeColor:Number;
+			switch(num) {
+				case 1:
+					colorizeColor=Color.YELLOW;
+					break;
+				case 2:
+					colorizeColor=Color.RED;
+					break;						
+				case 3:
+					colorizeColor=Color.GREEN;
+					break;						
+			}		
+			
+			
+			MapController.gi().createWMSTileLayer(taxon.id,colorizeColor);
 			MapController.gi().createGbifLayer(taxon.gbif_id,taxon.id);
 			
+			var t:Taxon;
 			selectedTaxons.removeAll();
-			if(Application.application.selectedTaxon1!=null)
-				selectedTaxons.addItem(Application.application.selectedTaxon1);	
-			if(Application.application.selectedTaxon2!=null)
-				selectedTaxons.addItem(Application.application.selectedTaxon2);	
-			if(Application.application.selectedTaxon3!=null)
-				selectedTaxons.addItem(Application.application.selectedTaxon3);	
-				
+			if(Application.application.selectedTaxon1!=null) {
+				t=Application.application.selectedTaxon1;
+				t.chart.addItemAt(colorizeColor,0);
+				selectedTaxons.addItem(t);	
+			}if(Application.application.selectedTaxon2!=null){
+				t=Application.application.selectedTaxon2;
+				t.chart.addItemAt(colorizeColor,0);
+				selectedTaxons.addItem(t);	
+			}if(Application.application.selectedTaxon3!=null){
+				t=Application.application.selectedTaxon3;
+				t.chart.addItemAt(colorizeColor,0);
+				selectedTaxons.addItem(t);	
+			}	
 			
 			
 			Application.application.timeLine.dataProvider = selectedTaxons;
