@@ -77,10 +77,10 @@
 			
 			public function toggleTaxonVisibility(speciesId:Number):void {
 				if ((DataServices.gi().taxonDictionary[speciesId] as Taxon).isVisible) {
-					MapController.gi().changeTileOpacity(speciesId,0.3);
+					//MapController.gi().changeTileOpacity(speciesId,0.3);
 					(DataServices.gi().taxonDictionary[speciesId] as Taxon).isVisible=false;
 				}else {
-					MapController.gi().changeTileOpacity(speciesId,0.8);					
+					//MapController.gi().changeTileOpacity(speciesId,0.8);					
 					(DataServices.gi().taxonDictionary[speciesId] as Taxon).isVisible=true;
 				}	
 				

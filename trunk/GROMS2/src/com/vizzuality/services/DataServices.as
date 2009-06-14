@@ -236,7 +236,7 @@ package com.vizzuality.services
 			var colorizeColor:Number;
 			switch(num) {
 				case 1:
-					colorizeColor=Color.YELLOW;
+					colorizeColor=NaN;
 					break;
 				case 2:
 					colorizeColor=Color.RED;

@@ -55,7 +55,7 @@ package com.vizzuality.view.map.overlays
 			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
 			
 			if(!isNaN(colorizeColor)){
-				TweenMax.to(loader, 1, {colorMatrixFilter:{colorize:colorizeColor, amount:1}});
+				TweenMax.to(loader, 0, {colorMatrixFilter:{colorize:colorizeColor, amount:1}});
 			}
 			
 			
