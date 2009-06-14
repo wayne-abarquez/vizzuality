@@ -1,10 +1,10 @@
 package com.vizzuality.data
 {
 	import com.adobe.serialization.json.JSON;
+	import com.vizzuality.view.map.modules.ImagePopup;
 	
 	import flash.events.MouseEvent;
 	
-	import mx.containers.Canvas;
 	import mx.controls.Button;
 	import mx.controls.Image;
 	import mx.core.Application;
@@ -18,6 +18,7 @@ package com.vizzuality.data
 		private var url:String='';
 		private var title:String='';
 		private var ownerId:String='';
+		private var ownerName:String='';
 		private var imageId:String='';
 		
 		public function FlickrImage():void {
@@ -32,7 +33,7 @@ package com.vizzuality.data
             if (value!=null) {
 	            var imageServ:HTTPService = new HTTPService();
 	            imageServ.resultFormat = 'text';
-	            imageServ.url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=48e37f8de83dcd4366e5f3be69c01c1f&content_type=1&per_page=4&format=json&nojsoncallback=1&text=" 
+	            imageServ.url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=48e37f8de83dcd4366e5f3be69c01c1f&content_type=1&extras=owner_name&per_page=4&format=json&nojsoncallback=1&text=" 
 	            	+ escape(value as String);
 	            imageServ.addEventListener(ResultEvent.RESULT,onImageSearchResult);
 	            imageServ.send();                   
@@ -43,20 +44,21 @@ package com.vizzuality.data
 	    
 	    private function onClick(event:MouseEvent):void {
 	    	if (url!='') {
-	    		var tw:Canvas=new Canvas();
-	    		//tw.title=title;
-	    		var imgBig:Image = new Image();
-	    		imgBig.source=url.replace("_s.jpg",".jpg");
-	    		tw.addChild(imgBig);
 	    		
-	    		var btClose:Button = new Button();
+	    		var tw:ImagePopup=new ImagePopup();
+	    		//tw.title=title;
+	    		tw.imageSource=url.replace("_s.jpg",".jpg");
+	    		tw.copyrightText = "Picture from "+ ownerName + ", at Flickr."
+	    		tw.imageUrl="http://www.flickr.com/photos/"+ownerId+"/"+imageId;
+	    		
+/* 	    		var btClose:Button = new Button();
 	    		btClose.setStyle("right",5);
 	    		btClose.setStyle("top",5);
 	    		btClose.setStyle("styleName","btnDelete");
 	    		btClose.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void {
 	    			PopUpManager.removePopUp(tw);
 	    		});
-	    		tw.addChild(btClose);
+	    		tw.addChild(btClose); */
 	    		
 	    		
 	    		
@@ -79,6 +81,7 @@ package com.vizzuality.data
 		
 				title=arr[numImageInResult].title;
 				ownerId=arr[numImageInResult].owner;
+				ownerName=arr[numImageInResult].ownername;
 				imageId=arr[numImageInResult].id;
 				url="http://farm" + arr[numImageInResult].farm + ".static.flickr.com/" +  arr[numImageInResult].server + "/" +  arr[numImageInResult].id + "_" +  arr[numImageInResult].secret + "_s.jpg";
             	super.source = url; 
