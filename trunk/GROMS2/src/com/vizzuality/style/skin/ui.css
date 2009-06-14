@@ -1,4 +1,11 @@
 /* CSS file */
+global{
+	modalTransparency: 0.7;
+	modalTransparencyBlur: 3;
+	modalTransparencyColor: #000000;
+	modalTransparencyDuration: 100;
+}
+
 TitleWindow
 {
 	fontFamily: "DINOT-Medium";
