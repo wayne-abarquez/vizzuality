@@ -21,7 +21,9 @@
 						can.percentWidth=100;
 						can.setStyle("styleName",DataServices.gi().statesStyles[chart.status]);
 						
-						TweenMax.to(can, 1, {colorMatrixFilter:{colorize:colorizeColor, amount:1}});
+						if(!isNaN(colorizeColor)) {
+							TweenMax.to(can, 0, {colorMatrixFilter:{colorize:colorizeColor, amount:1}});
+						}
 						
 						var lab:Label = new Label();
 					    lab.setStyle("color","#FFFFFF");

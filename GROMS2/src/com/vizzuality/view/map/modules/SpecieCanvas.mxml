@@ -7,6 +7,8 @@
 	<mx:states>
 		<mx:State name="minimized">
 			<mx:SetProperty name="height" value="86"/>
+			<mx:SetProperty target="{image1}" name="source" value="assets/minim.png"/>
+			<mx:SetStyle target="{image1}" name="top" value="4"/>
 		</mx:State>
 	</mx:states>
 <mx:Script>
@@ -103,17 +105,11 @@
 			<mx:Resize duration="300" target="{this}" easingFunction="Quadratic.easeOut"/>
 		</mx:Transition>
 	</mx:transitions>
-	<mx:CheckBox 
-		 toolTip="Maximize/Minimize this info component"
-		id="visCheck" height="19" click="Application.application.toggleTaxonVisibility(_taxon.id)" selected="true" top="0" right="38" width="12.400008"/>
-	<mx:Button id="gbif" 
-		toolTip="Show/Hide the GBIF network data layer"
-		 click="MapController.gi().toggleGbifLayer(_taxon.id);(MapController.gi().gbifLayersActive[_taxon.id])?event.target.selected=false:event.target.selected=true;"
-		width="14" height="14" right="22" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" top="2"/>
 	<mx:Button
 		  toolTip="Remove this species from the map"
 		  click="Application.application.removeSpecies(_taxon.id)"
 		 id="del" width="14" height="14" right="5" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" top="2"/>
+	<mx:Image source="assets/maxim.png" click="Application.application.toggleTaxonVisibility(_taxon.id)" right="25" top="4" id="image1"/>
 
 	
 </mx:Canvas>
