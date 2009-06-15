@@ -141,7 +141,7 @@
 		</mx:Canvas -->
 		
 		<components:TimelineLabelContainer id="timelineLabels" width="100%" height="100%" labelProvider="{timeline}" visible1="{visible1}" visible2="{visible2}" visible3="{visible3}"/>
-		<mx:HRule left="0" right="0" top="0" strokeColor="#999999" strokeWidth="1"/>
+		<!--<mx:HRule left="0" right="0" top="0" strokeColor="#999999" strokeWidth="1"/>-->
 
 	</mx:Canvas>
 	
