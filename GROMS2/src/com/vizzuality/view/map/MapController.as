@@ -11,6 +11,8 @@ package com.vizzuality.view.map
 	import com.google.maps.interfaces.IPane;
 	import com.google.maps.interfaces.IPaneManager;
 	import com.vizzuality.data.MapPosition;
+	import com.vizzuality.data.Taxon;
+	import com.vizzuality.services.DataServices;
 	import com.vizzuality.view.map.overlays.CustomTileLayer;
 	import com.vizzuality.view.map.overlays.CustomTileLayerOverlay;
 	import com.vizzuality.view.map.overlays.CustomWMSTileLayer;
@@ -21,6 +23,7 @@ package com.vizzuality.view.map
 	import flash.utils.Dictionary;
 	
 	import gs.TweenLite;
+	import gs.TweenMax;
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.core.Application;
@@ -98,7 +101,7 @@ package com.vizzuality.view.map
 			biodiversityPane = paneManager.createPane(numPanes+4);
 			infowindowPane = paneManager.createPane(numPanes+5);
 			
-			map.enableContinuousZoom();
+			//map.enableContinuousZoom();
 			
 			
 		    //map.disableDragging();
@@ -208,32 +211,32 @@ package com.vizzuality.view.map
 					(ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground,
 					0.6,
 					{alpha:value});
+				TweenLite.to(
+					(gbifTileOverlayDic[speciesId] as CustomTileLayerOverlay).foreground,
+					0.6,
+					{alpha:value});
 			}
 			
 		}
 		
+		private var tween:TweenMax;
 		public function highlightSpeciesOn(speciesId:Number):void {
-			for each(var ctlo:CustomWMSTileLayerOverlay in ctloDic) {
-				if(ctlo==ctloDic[speciesId]) {
-					TweenLite.to(ctlo.foreground,0.5,{alpha:1});
+			if(!(DataServices.gi().taxonDictionary[speciesId] as Taxon).isHiddenFromMap) {
+				tween = TweenMax.from((ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground,
+						0.6,
+						{alpha:0.1,loop:0}
+						);						
+				if(tween==null) {
 				} else {
-					TweenLite.to(ctlo.foreground,0.5,{alpha:0.3});					
-				}
+					//tween.
+				}			
 			}
-			for each(var ctlogbif:CustomTileLayerOverlay in gbifTileOverlayDic) {
-				if(ctlogbif==gbifTileOverlayDic[speciesId]) {
-					TweenLite.to(ctlogbif.foreground,0.5,{alpha:0.8});
-				} else {
-					TweenLite.to(ctlogbif.foreground,0.5,{alpha:0.3});					
-				}
-			}
+			
 		}
-		public function highlightSpeciesOff():void {
-			for each(var ctlo:CustomWMSTileLayerOverlay in ctloDic) {
-				TweenLite.to(ctlo.foreground,0.5,{alpha:0.9});
-			}
-			for each(var ctlogbif:CustomTileLayerOverlay in gbifTileOverlayDic) {
-				TweenLite.to(ctlogbif.foreground,0.5,{alpha:0.9});
+		public function highlightSpeciesOff(speciesId:Number):void {
+			if(!(DataServices.gi().taxonDictionary[speciesId] as Taxon).isHiddenFromMap) {
+				tween.clear();
+				(ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground.alpha=0.9;
 			}
 			
 		}
@@ -257,11 +260,12 @@ package com.vizzuality.view.map
 			
 			
 			if (ctloDic[speciesId]!=null) {
-				(ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground.alpha=0.1;
-				TweenLite.to(
+				//(ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground.alpha=0.1;
+				TweenMax.from(
 					(ctloDic[speciesId] as CustomWMSTileLayerOverlay).foreground,
 					0.6,
-					{alpha:0.9});
+					{alpha:0.1,remove:true,loop:0}
+					);
 			}
 			
 		}
@@ -271,7 +275,7 @@ package com.vizzuality.view.map
 				var ctlgbif:CustomTileLayer= new CustomTileLayer("http://maps3.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+gbifId,"",23);
 				var ctlo:CustomTileLayerOverlay = new CustomTileLayerOverlay(ctlgbif);
 				ctlgbif.ctlo=ctlo;
-				ctlo.foreground.alpha=0.9;
+				ctlo.foreground.alpha=0.7;
 				BindingUtils.bindProperty(mapCanvas.discretLoading,"visible",ctlo,"numRunningRequest");
 				gbifTileOverlayDic[speciesId]=ctlo;
 				tileOverlaysPane.addOverlay(ctlo);

@@ -28,6 +28,7 @@ package com.vizzuality.data
 		public var chart:ArrayCollection;
 		
 		public var isVisible:Boolean=true;
+		public var isHiddenFromMap:Boolean=false;
 		public var isGbifDataVisible:Boolean=true;
 		
 	}

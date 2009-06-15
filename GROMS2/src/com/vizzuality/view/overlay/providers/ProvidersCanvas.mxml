@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="625" height="307" currentState="loading">
+		<mx:states>
+				<mx:State name="loading">
+						<mx:AddChild position="lastChild">
+								<mx:Label text="Loading data..." horizontalCenter="0" verticalCenter="0" fontSize="28" fontFamily="DINOT-Medium" color="#666666" fontStyle="normal" fontWeight="normal"/>
+						</mx:AddChild>
+				</mx:State>
+		</mx:states>
+		<mx:Script>
+			<![CDATA[
+				import mx.collections.Grouping;
+				import mx.collections.SummaryRow;
+				import mx.collections.SummaryField;
+				import mx.collections.GroupingField;
+				import mx.collections.ArrayCollection;
+				import mx.rpc.events.ResultEvent;
+				import mx.managers.PopUpManager;
+				import flash.net.navigateToURL;
+				import mx.core.Application;
+
+				[Bindable]
+				public var providersAc:ArrayCollection = new ArrayCollection();	
+				
+				private var dcGc:GroupingCollectionWithTimer;						
+
+				private function onGetDataProviders(ev:ResultEvent):void {
+		 			providersAc = new ArrayCollection(ev.result as Array);
+			        //providersCanvas.providersAdg.dataProvider=providersAc;			
+			        
+					
+					dcGc = new GroupingCollectionWithTimer();		
+					dcGc.source = providersAc;
+					var summRow:SummaryRow = new SummaryRow();
+					summRow.summaryPlacement = "group";
+					summRow.fields = [new SummaryField("num_occ")];
+					var provGf:GroupingField = new GroupingField("data_provider_name");
+					provGf.summaries = [summRow];
+					dcGc.grouping = new Grouping();
+					dcGc.grouping.fields = [provGf];
+					dcGc.refresh(true);     
+		
+					var timer:Timer = new Timer(500,0);
+					timer.addEventListener(TimerEvent.TIMER,function():void{
+									if(dcGc.protectedTimer == null) {
+										timer.stop();
+										providersAdg.dataProvider=dcGc;		
+										providersAdg.validateNow();
+										currentState='';
+										
+									}});
+					timer.start();	        
+			        
+				}				
+				
+			]]>
+		</mx:Script>
+
+		<mx:AdvancedDataGrid id="providersAdg" x="0" width="100%"
+		defaultLeafIcon="@Embed('/assets/itemDataGridIconProvider.png')"
+		disclosureClosedIcon="@Embed('/assets/arrowClosed.png')"
+		disclosureOpenIcon="@Embed('/assets/arrowOpen.png')"
+		folderClosedIcon="@Embed('/assets/groupDataGridIconProvider.png')" 
+		folderOpenIcon="@Embed('/assets/groupDataGridIconProvider.png')"
+		designViewDataType="tree" styleName="advancedDataGrid" 
+		itemClick="providersAdg.expandItem(providersAdg.selectedItem,(!providersAdg.isItemOpen(providersAdg.selectedItem)),true);"
+		sortableColumns="false" sortExpertMode="true"
+		draggableColumns="false" verticalScrollPolicy="on"
+		rowHeight="28" paddingTop="6" top="30" bottom="0">
+			<mx:columns>
+				<mx:AdvancedDataGridColumn headerText="Data Source/Provider" itemRenderer="com.vizzuality.view.overlay.providers.ProviderTitleRenderer" width="280" />
+				<mx:AdvancedDataGridColumn headerText="Occurrences" dataField="num_occ" width="80" textAlign="center">
+					<mx:formatter>
+						<mx:NumberFormatter id="numberFormatter" precision="0" useThousandsSeparator="true" useNegativeSign="false" />
+					</mx:formatter>
+				</mx:AdvancedDataGridColumn>
+			</mx:columns>		
+	</mx:AdvancedDataGrid>		
+		
+	<mx:Canvas x="0" y="0" width="100%" height="61" styleName="headerCanvas">
+		<mx:Label y="36" text="NUMBER OF OCCURENCES" fontFamily="DINOT-Medium" fontSize="12" color="#666666" right="12"/>
+		<mx:Label y="29" text="DATA PROVIDERS/RESOURCES" fontFamily="DINOT-Medium" fontSize="18" color="#666666" left="10" width="323"/>
+	</mx:Canvas>
+	<mx:Button
+		  click="PopUpManager.removePopUp(this);"
+		 id="del" width="14" height="14" right="3" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" top="5"/>
+	
+	<mx:RemoteObject id="server" 
+	 endpoint="http://services.eol.org/pleary/maps/php/amfphp/gateway.php"
+	result="onGetDataProviders(event)"
+	fault="trace(event)"
+	destination="EolServices" source="EolServices"
+	showBusyCursor="false" />	
+</mx:Canvas>

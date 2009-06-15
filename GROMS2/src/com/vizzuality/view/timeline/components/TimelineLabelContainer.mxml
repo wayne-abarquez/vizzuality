@@ -29,7 +29,7 @@
 			
 		]]> 
 	</mx:Script> 
-	<mx:Label id="title" text="Species Season" color="#8F8F8F" fontFamily="DINOT-Medium" fontSize="16" x="18" y="4"/>
+	<mx:Label id="title" text="Species legend" color="#8F8F8F" fontFamily="DINOT-Medium" fontSize="16" x="18" y="4"/>
 	<mx:VBox width="100%" height="100%" x="0" y="34" verticalScrollPolicy="off" verticalGap="1">
 		<mx:Repeater id="myRepeater" dataProvider="{labelProvider}" >
 			<mx:HBox width="100%" verticalAlign="middle" paddingRight="5">

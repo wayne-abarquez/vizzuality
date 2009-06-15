@@ -71,7 +71,7 @@
 				//set up listener for acctions
 				timeLine.addEventListener(TimelineButtonEvent.DELETE_SPECIE,onRemoveTaxon);
 				timeLine.addEventListener(TimelineButtonEvent.TIMELINE_VISIBLE,function(event:TimelineButtonEvent):void {
-					toggleTaxonVisibility(event.specieID);
+					toggleTaxonHideShownInMap(event.specieID);
 				});
 			}
 			
@@ -85,6 +85,17 @@
 				}	
 				
 			}
+			public function toggleTaxonHideShownInMap(speciesId:Number):void {
+				if (!(DataServices.gi().taxonDictionary[speciesId] as Taxon).isHiddenFromMap) {
+					MapController.gi().changeTileOpacity(speciesId,0.1);
+					(DataServices.gi().taxonDictionary[speciesId] as Taxon).isHiddenFromMap=true;
+				}else {
+					MapController.gi().changeTileOpacity(speciesId,0.9);					
+					(DataServices.gi().taxonDictionary[speciesId] as Taxon).isHiddenFromMap=false;
+				}	
+				
+			}
+			
 			
 			public function removeSpecies(speciesId:Number):void{
 				MapController.gi().removeGbifTileLayer(speciesId);
