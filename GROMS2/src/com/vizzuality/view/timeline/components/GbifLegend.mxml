@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" styleName="sgbif" backgroundSize="100%">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" styleName="sgbif" backgroundSize="100%" xmlns:ns1="com.vizzuality.view.overlaycomponents.*">
 <mx:Script>
 	<![CDATA[
 		import mx.core.Application;
@@ -16,6 +16,7 @@
 </mx:Script>
 	<mx:HBox width="100%" height="100%" verticalAlign="middle">
 		<mx:Label x="4" y="2" text="- | GBIF network data | +" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF"/>
+		<ns1:GbifTaxonNumberOccurrences gbifTaxonId="13839800"/>
 		<!--mx:Button height="14" label="providers" fontFamily="Arial" fontWeight="bold" click="openProviders()" /-->
 	</mx:HBox>
 	

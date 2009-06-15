@@ -35,8 +35,8 @@
 		<mx:Canvas width="70" height="93" styleName="bkgNumber" backgroundSize="100%">
 		</mx:Canvas>
 	</mx:HBox>
-	<mx:Text x="29" y="160" text="01325" fontSize="80" color="#6b6b6b" fontFamily="DINOT-Bold" letterSpacing="29"/>
-	<mx:Text x="30" y="161" text="01325" fontSize="80" color="#FFFFFF" fontFamily="DINOT-Bold" letterSpacing="29"/>
+	<mx:Text x="29" y="160" text="01148" fontSize="80" color="#6b6b6b" fontFamily="DINOT-Bold" letterSpacing="29"/>
+	<mx:Text x="30" y="161" text="01148" fontSize="80" color="#FFFFFF" fontFamily="DINOT-Bold" letterSpacing="29"/>
 	<mx:Text x="387" y="169" text="DIFERENT SPECIES MIGRATORY  DISTRIBUTIONS" fontFamily="DINOT-Bold" fontSize="16" color="#666666" width="155" leading="-4"/>
 	<mx:Button x="389" y="233" label="LET'S EXPLORE" styleName="btnOrange" width="158"
 		click="AppStates.gi().topState=(AppStates.SEARCH)"
