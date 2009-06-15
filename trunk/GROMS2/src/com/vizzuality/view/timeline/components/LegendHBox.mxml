@@ -40,17 +40,7 @@
 					}
 				}
 				
-				var canGbif:Canvas = new Canvas();
-				canGbif.setStyle("backgroundSize","100%");
-				canGbif.percentWidth=100;
-				canGbif.setStyle("styleName","sgbif");
-				
-				var labGbif:Label = new Label();
-			    labGbif.setStyle("color","#FFFFFF");
-			    labGbif.setStyle("fontFamily","DINOT-Medium");
-				labGbif.setStyle("fontSize",11);  					
-				labGbif.text=" - | GBIF network data | +";
-				canGbif.addChild(labGbif);
+				var canGbif:GbifLegend = new GbifLegend();
 				
 				this.addChild(canGbif);
 				

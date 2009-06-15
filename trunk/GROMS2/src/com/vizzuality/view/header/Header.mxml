@@ -16,12 +16,12 @@
 	<mx:Label text="GLOBAL REGISTRY OF MIGRATORY SPECIES" fontFamily="DINOT-Medium" fontSize="12" color="#FFFFFF" left="14" bottom="1" height="26"/>
 	<mx:HRule strokeWidth="1" strokeColor="#FFFFFF" bottom="29" right="16" width="121"/>
 	<mx:Label text="GROMS" fontFamily="DINOT-Bold" fontSize="40" color="#FFFFFF" letterSpacing="-3" left="10" bottom="24"/>
-	<mx:Label text="http://www.groms.de" fontFamily="DINOT-Medium" fontSize="12" color="#FFB400" bottom="1" height="26" right="12"/>
+	<mx:Label useHandCursor="true" buttonMode="true" mouseChildren="false" text="http://www.groms.de" click="navigateToURL(new URLRequest('http://www.groms.de'))" fontFamily="DINOT-Medium" fontSize="12" color="#FFB400" bottom="1" height="26" right="12"/>
 	<mx:Image source="@Embed('/assets/header/dottedLine.png')" left="30" scaleContent="false" right="30" bottom="29"/>
 	<mx:HRule strokeWidth="1" strokeColor="#FFFFFF" left="16" bottom="29" width="116"/>
 	<mx:Image source="@Embed('/assets/logosBranding.png')" right="16" bottom="31"/>
-	<mx:Canvas width="40" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.gbif.org'))" bottom="32" right="90" />
-	<mx:Canvas width="67" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.cms.int/species/groms/groms.htm'))" bottom="32" right="16" />
+	<mx:Canvas width="40" height="44" useHandCursor="true" buttonMode="true" mouseChildren="false" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.gbif.org'))" bottom="32" right="90" />
+	<mx:Canvas width="67" height="44" useHandCursor="true" buttonMode="true" mouseChildren="false" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.cms.int/species/groms/groms.htm'))" bottom="32" right="16" />
 	<!--TODO METER EL BOTON-->
 	<!--<mx:Button label="Full" right="10" top="10" click="Application.application.toggleFullScreen();"/>-->
 	

@@ -50,12 +50,19 @@
 		</mx:HBox>
 		<mx:Canvas width="100%" id="canvas1">
 			<mx:Text text="{_taxon.name}" id="areaTitle" 
-				mouseOut="if(_taxon)MapController.gi().highlightSpeciesOff();"
+				mouseOut="if(_taxon)MapController.gi().highlightSpeciesOff(_taxon.id);"
 				mouseOver="if(_taxon)MapController.gi().highlightSpeciesOn(_taxon.id);" 
 				color="#88B54F" fontFamily="DINOT-Bold" fontSize="22" letterSpacing="-1" left="4" top="-1" width="206" leading="-5" paddingTop="-8" paddingLeft="-5"/>
 		</mx:Canvas>
 		<mx:Canvas width="100%" height="30">
-			<mx:ComboBox prompt="{'[en] '+_taxon.commonNameEnglish}" styleName="lenguageDark" fontFamily="DINOT-Medium" fontSize="12" color="#666666" height="18" width="100%" fontWeight="normal"/>
+			<mx:ComboBox prompt="{'[en] '+_taxon.commonNameEnglish}" styleName="lenguageDark" fontFamily="DINOT-Medium" fontSize="12" color="#666666" height="18" width="100%" fontWeight="normal">
+				<mx:ArrayCollection>
+					<mx:Object label="{'[en] '+_taxon.commonNameEnglish}" />
+					<mx:Object label="{'[es] '+_taxon.commonNameSpanish}" />
+					<mx:Object label="{'[de] '+_taxon.commonNameGerman}" />
+					<mx:Object label="{'[fr] '+_taxon.commonNameFreanch}" />
+				</mx:ArrayCollection>
+			</mx:ComboBox>
 		</mx:Canvas>
 		<mx:Canvas height="110" width="100%" backgroundColor="#E4EEDA">
 			<mx:Canvas height="2" width="100%" backgroundColor="#8db857" top="0">
@@ -109,7 +116,7 @@
 		  toolTip="Remove this species from the map"
 		  click="Application.application.removeSpecies(_taxon.id)"
 		 id="del" width="14" height="14" right="5" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" top="2"/>
-	<mx:Image source="assets/maxim.png" click="Application.application.toggleTaxonVisibility(_taxon.id)" right="25" top="4" id="image1"/>
+	<mx:Image source="assets/maxim.png" click="Application.application.toggleTaxonVisibility(_taxon.id)" right="25" top="4" id="image1" toolTip="Maximize/Minimize info box"/>
 
 	
 </mx:Canvas>
