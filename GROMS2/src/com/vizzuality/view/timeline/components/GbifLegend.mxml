@@ -16,9 +16,7 @@
 </mx:Script>
 	<mx:HBox width="100%" height="100%" verticalAlign="middle">
 		<mx:Label x="4" y="2" text="- | GBIF network data | +" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF"/>
-		<mx:Button height="14" label="providers" fontFamily="Arial" fontWeight="bold" click="openProviders()">
-			
-		</mx:Button>
+		<!--mx:Button height="14" label="providers" fontFamily="Arial" fontWeight="bold" click="openProviders()" /-->
 	</mx:HBox>
 	
 </mx:Canvas>
