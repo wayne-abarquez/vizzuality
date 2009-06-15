@@ -29,7 +29,7 @@
 					    lab.setStyle("color","#FFFFFF");
 					    lab.setStyle("fontFamily","DINOT-Medium");
 						lab.setStyle("fontSize",11);  					
-						if(chart.status=='none') {
+						if(chart.status=='none' || chart.status=='0' ) {
 							lab.text="Unknown";
 						} else {
 							lab.text=chart.status;

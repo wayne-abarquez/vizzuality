@@ -4,6 +4,7 @@ package com.vizzuality.services
 	import com.google.maps.Color;
 	import com.google.maps.LatLngBounds;
 	import com.vizzuality.data.Taxon;
+	import com.vizzuality.view.AppStates;
 	import com.vizzuality.view.map.MapController;
 	
 	import flash.events.EventDispatcher;
@@ -57,7 +58,8 @@ package com.vizzuality.services
 			nf.useThousandsSeparator=true;
 		
 			
-			statesStyles['none']='s00';
+			statesStyles['none']='s21';
+			statesStyles['0']='s21';
 			statesStyles['all year round']='s22';
 			statesStyles['breeding']='s23';
 			statesStyles['feeding, wintering']='s31';
@@ -107,6 +109,7 @@ package com.vizzuality.services
 				roTaxon.getTaxonById(id);		
 				Application.application.gaTracker.trackPageview("/taxon/"+id);
 				trace("requestion ID: " + id);
+				AppStates.gi().debug("Requesting ID: "+id);
 			}
 				
 		}		
