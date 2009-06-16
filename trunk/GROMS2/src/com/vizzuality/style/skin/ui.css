@@ -195,13 +195,13 @@ Button.btnTool{
 }
 
 Button.btnShowHide{
-	up-skin: Embed(source="ui.swf",symbol="btn_hide_up");	
-	over-skin: Embed(source="ui.swf",symbol="btn_hide_over");	
-	down-skin: Embed(source="ui.swf",symbol="btn_hide_over");	
+	up-skin: Embed(source="ui.swf",symbol="btn_show_up");	
+	over-skin: Embed(source="ui.swf",symbol="btn_show_over");	
+	down-skin: Embed(source="ui.swf",symbol="btn_show_over");	
 	disabled-skin: Embed(source="ui.swf",symbol="btn_tool_disabled");	
-	selected-up-skin: Embed(source="ui.swf",symbol="btn_show_up");	
-	selected-over-skin: Embed(source="ui.swf",symbol="btn_show_over");	
-	selected-down-skin: Embed(source="ui.swf",symbol="btn_show_over");	
+	selected-up-skin: Embed(source="ui.swf",symbol="btn_hide_up");	
+	selected-over-skin: Embed(source="ui.swf",symbol="btn_hide_over");	
+	selected-down-skin: Embed(source="ui.swf",symbol="btn_hide_over");	
 	color: #4a4f33;
 	text-roll-over-color: #333333;
 	text-selected-color: #333333;
