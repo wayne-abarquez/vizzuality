@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="250" height="123"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="123"
 	verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:ns1="com.vizzuality.view.overlaycomponents.*">
 	<mx:Script>
 		<![CDATA[
@@ -111,12 +111,12 @@
 	<mx:CheckBox
 		toolTip="Maximize/Minimize the info component"
 		 id="visCheck" height="19" click="onClickVisible(event)" selected="{visibleComp}" right="26" top="8" width="12.4"/>
-	<mx:Label id="specie" text="{taxonObject.name as String}" left="8" color="#333333" fontFamily="DINOT-Medium" 
+	<mx:Label id="specie" text="{taxonObject.name as String}" left="6" color="#333333" fontFamily="DINOT-Medium" 
 		mouseOut="MapController.gi().highlightSpeciesOff(identity)"
 		mouseOver="MapController.gi().highlightSpeciesOn(identity)" 
-		fontSize="16" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" right="60" top="8"/>
-	<mx:ComboBox id="combo" textAlign="left" left="8" fontSize="12" fontStyle="DINOT-Bold" color="#333333" height="22" 
-		fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageDark" fontWeight="normal" right="65" top="30" letterSpacing="-1"/>
+		fontSize="16" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" top="6" width="189" letterSpacing="-1"/>
+	<mx:ComboBox id="combo" textAlign="left" left="6" fontSize="12" fontStyle="DINOT-Medium" color="#7D7B7B" height="22" 
+		fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageDark" right="65" top="28" letterSpacing="-1" fontWeight="normal"/>
 	<mx:Button 
 		toolTip="Remove this species from the map"
 		id="del" width="14" height="14" right="10" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" click="onClickButton(event)" top="10"/>
@@ -124,9 +124,9 @@
 		toolTip="Show/Hide the GBIF network data layer"
 		 click="MapController.gi().toggleGbifLayer(identity);(MapController.gi().gbifLayersActive[identity])?event.target.selected=false:event.target.selected=true;"
 		width="14" height="14" right="43" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" enabled="{visibleComp}" top="10"/>
-	<mx:VBox verticalGap="0" top="53" bottom="3" right="140" left="12">
+	<mx:VBox verticalGap="-4" top="53" bottom="3" left="10" width="132">
 		<mx:Repeater id="myRepeater" dataProvider="{taxonCharts}">
-			<mx:HBox verticalAlign="middle" horizontalGap="0">
+			<mx:HBox verticalAlign="middle" horizontalGap="-1">
 				<mx:Canvas width="10" height="10" styleName="{getTaxonStyle(myRepeater.currentItem.status)}"/>
 				<mx:Label text="{myRepeater.currentItem.status}" fontFamily="DINOT-Medium" fontSize="12" color="#898989"/>				
 			</mx:HBox>
@@ -137,9 +137,9 @@
 		<mx:Label text="{gbifRecords.text}" fontFamily="DINOT-Bold" fontSize="25" color="#868686" letterSpacing="-3" x="-1" textAlign="right" width="96" y="0"/>		
 		<ns1:GbifTaxonNumberOccurrences id="gbifRecords" gbifTaxonId="{taxonObject.gbif_id as Number}" fontFamily="DINOT-Bold" fontSize="25" color="#FFFFFF" letterSpacing="-3" x="0" textAlign="right" width="96" y="1"/>
 
-		<mx:Label text="GBIF RECORDS" fontFamily="DINOT-Bold" fontSize="12" color="#F7F7F7" y="29" x="15" letterSpacing="-1" textAlign="right" width="79"/>		
+		<mx:Label text="GBIF RECORDS" fontFamily="DINOT-Medium" fontSize="12" color="#F5F4F4" y="29" x="17" letterSpacing="-1" textAlign="right" width="79"/>		
 	</mx:Canvas>
-	<mx:Image scaleContent="false" y="3" width="120" rotation="90" x="250">
+	<mx:Image scaleContent="false" y="3" width="120" rotation="90" x="260">
 		<mx:source>@Embed('/com/vizzuality/style/assets/hRuleDashed500.png')</mx:source>
 	</mx:Image>
 </mx:Canvas>

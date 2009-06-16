@@ -29,7 +29,7 @@
 			
 		]]> 
 	</mx:Script> 
-	<mx:HBox width="100%" height="100%" x="0" y="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:HBox width="100%" height="100%" x="0" y="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalGap="-2">
 		<mx:Repeater id="myRepeater" dataProvider="{labelProvider}">
 			<components:NewTimelineContainer data="{myRepeater.currentItem}" taxonCharts="{myRepeater.currentItem.chart}" identity="{myRepeater.currentItem.id}" id="LabelTimeline"/>
 			<!--<mx:HBox width="100%" verticalAlign="middle" paddingRight="5">
