@@ -78,11 +78,13 @@
 				if (ev.target is UITextField) {
 					if (this.visCheck.selected) {
 						visCheck.selected = false;
+						combo.enabled = false;
 						gbif.enabled = false;
 						specie.alpha = 0.3;
 						_ev.visible = false;					
 					} else {
 						gbif.enabled = true;
+						combo.enabled = true;
 						specie.alpha = 1;
 						visCheck.selected = true;
 						_ev.visible = true;					
@@ -90,10 +92,12 @@
 				} else {
 					if (this.visCheck.selected) {
 						gbif.enabled = true;
+						combo.enabled = true;
 						specie.alpha = 1;
 						_ev.visible = true;					
 					} else {
 						gbif.enabled = false;
+						combo.enabled = false;
 						specie.alpha = 0.3;
 						_ev.visible = false;					
 					}
@@ -115,7 +119,7 @@
 		mouseOut="MapController.gi().highlightSpeciesOff(identity)"
 		mouseOver="MapController.gi().highlightSpeciesOn(identity)" 
 		fontSize="16" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" top="6" width="189" letterSpacing="-1"/>
-	<mx:ComboBox id="combo" textAlign="left" left="6" fontSize="12" fontStyle="DINOT-Medium" color="#7D7B7B" height="22" 
+	<mx:ComboBox id="combo" textAlign="left" left="6" fontSize="12" fontStyle="DINOT-Medium" color="#5D5A5A" height="22" 
 		fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageDark" right="65" top="28" letterSpacing="-1" fontWeight="normal"/>
 	<mx:Button 
 		toolTip="Remove this species from the map"
