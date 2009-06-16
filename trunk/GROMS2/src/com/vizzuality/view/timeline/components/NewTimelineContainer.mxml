@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="123"
 	verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:ns1="com.vizzuality.view.overlaycomponents.*" xmlns:components="com.vizzuality.view.timeline.components.*" xmlns:filters="flash.filters.*">
+	
+	<mx:states>
+		<mx:State name="OverGBIF">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas x="150" y="56" width="102" height="51" backgroundColor="#000000" backgroundAlpha="0.71" cornerRadius="20">
+					<mx:Text text="VIEW PROVIDERS" width="59.759995" height="39.2" textAlign="center" horizontalCenter="-1" verticalCenter="5" fontFamily="DINOT-Bold" color="#FFFFFF" letterSpacing="-1" leading="-3" fontSize="12"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
 	<mx:Script>
 		<![CDATA[
 			import mx.states.SetStyle;
@@ -109,6 +120,19 @@
 			private function getTaxonStyle(str: String):String{
 				return DataServices.gi().statesStyles[str];
 			}
+			
+			private function onMouseOver(event: MouseEvent):void{
+				if (currentState=='' || currentState==null) {
+					currentState='OverGBIF';
+				}
+			}
+			
+			private function onMouseOut(event: MouseEvent):void{
+				if (currentState=='OverGBIF') {
+					currentState=null;
+				}
+			}
+
 		]]>
 	</mx:Script>
 
@@ -128,7 +152,7 @@
 		toolTip="Show/Hide the GBIF network data layer"
 		 click="MapController.gi().toggleGbifLayer(identity);(MapController.gi().gbifLayersActive[identity])?event.target.selected=false:event.target.selected=true;"
 		width="14" height="14" right="43" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" enabled="{visibleComp}" top="10"/>
-	<mx:VBox verticalGap="-4" top="53" bottom="3" left="10" width="132">
+	<mx:VBox verticalGap="-5" top="53" bottom="3" left="15" width="132">
 		<mx:Repeater id="myRepeater" dataProvider="{taxonCharts}">
 			<mx:HBox verticalAlign="middle" horizontalGap="-1">
 				<components:Circle data="{myRepeater.currentItem}" />		
@@ -136,13 +160,14 @@
 			</mx:HBox>
 		</mx:Repeater>
 	</mx:VBox>
-	<mx:Canvas bottom="16" right="8">
+	<mx:Canvas bottom="16" right="8" rollOver="{onMouseOver(event)}" rollOut="{onMouseOut(event)}" mouseChildren="false">
 		<mx:Image scaleContent="false" source="@Embed('/com/vizzuality/style/assets/gbifRecords.png')"/>
-		<mx:Label text="{gbifRecords.text}" fontFamily="DINOT-Bold" fontSize="25" color="#868686" letterSpacing="-3" x="-1" textAlign="right" width="96" y="0"/>		
+		<mx:Label text="{gbifRecords.text}" fontFamily="DINOT-Bold" fontSize="25" color="#ce4e53" letterSpacing="-3" x="-1" textAlign="right" width="96" y="0"/>		
 		<ns1:GbifTaxonNumberOccurrences id="gbifRecords" gbifTaxonId="{taxonObject.gbif_id as Number}" fontFamily="DINOT-Bold" fontSize="25" 
 			color="#FFFFFF" letterSpacing="-3" x="0" textAlign="right" width="96" y="1"/>
 		<mx:Label text="GBIF RECORDS" fontFamily="DINOT-Medium" fontSize="12" color="#F5F4F4" y="29" x="17" letterSpacing="-1" textAlign="right" width="79"/>		
 	</mx:Canvas>
+	
 	<mx:Image scaleContent="false" y="3" width="120" rotation="90" x="260">
 		<mx:source>@Embed('/com/vizzuality/style/assets/hRuleDashed500.png')</mx:source>
 	</mx:Image>
