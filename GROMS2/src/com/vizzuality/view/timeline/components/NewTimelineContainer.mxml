@@ -131,8 +131,8 @@
 	<mx:VBox verticalGap="-4" top="53" bottom="3" left="10" width="132">
 		<mx:Repeater id="myRepeater" dataProvider="{taxonCharts}">
 			<mx:HBox verticalAlign="middle" horizontalGap="-1">
-				<components:Circle data="{myRepeater.currentItem.status}" colorizeNum="{myRepeater.currentItem.colorizeColor}"/>		
-				<mx:Label text="{myRepeater.currentItem.status}" fontFamily="DINOT-Medium" fontSize="12" color="#898989"/>				
+				<components:Circle data="{myRepeater.currentItem}" />		
+				<mx:Label text="{(myRepeater.currentItem.status=='none')?'unknown':myRepeater.currentItem.status}" fontFamily="DINOT-Medium" fontSize="12" color="#898989"/>				
 			</mx:HBox>
 		</mx:Repeater>
 	</mx:VBox>

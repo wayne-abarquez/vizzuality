@@ -66,8 +66,8 @@
 	<mx:Zoom id="zoom"  easingFunction="Bounce.easeOut" />
 	<mx:GlowFilter id="glowGrey" blurX="10" blurY="10" alpha=".2" color="#000000" quality="2" />
 	
-	<mx:VBox verticalGap="0" horizontalAlign="center" left="9" right="9" top="15" id="vbox4" bottom="15">
-		<mx:HBox width="100%" horizontalGap="2" verticalAlign="middle" paddingBottom="-2">
+	<mx:VBox verticalGap="0" horizontalAlign="center" left="9" right="9" top="15" id="vbox4" bottom="15" horizontalScrollPolicy="off">
+		<mx:HBox width="100%" horizontalGap="2" verticalAlign="middle" paddingBottom="-2" horizontalScrollPolicy="off">
 			<mx:Label text="{_taxon.group}" fontFamily="DINOT-Medium" fontSize="12" color="#666666"/>
 			<mx:Image source="@Embed('/com/vizzuality/style/assets/smallArrow.png')" />
 			<mx:Label text="{_taxon.className}" fontFamily="DINOT-Medium" fontSize="12" color="#666666"/>
