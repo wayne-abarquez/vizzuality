@@ -16,7 +16,7 @@
 	<mx:Canvas height="125" left="-10" right="-10" styleName="bkgAboutGradient" backgroundSize="100%" bottom="-10">
 		<mx:Text x="195" y="21" text="or search directly&#xd;" fontFamily="DINOT-Medium" fontSize="13" color="#666666"/>
 		<mx:Button x="377" y="45" label="e.g.Eidolon helvum" styleName="invisibleButton" textDecoration="underline" click="DataServices.gi().getTaxon(1623)" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-		<mx:Image source="@Embed('/assets/logosBrandingDark.png')" left="32" bottom="24"/>
+		<mx:Image source="@Embed('/assets/logosBrandingDark2.png')" left="32" bottom="24"/>
 	</mx:Canvas>
 	<mx:Button x="20" label="LET'S EXPLORE" styleName="btnOrange" width="158"
 		click="AppStates.gi().topState=(AppStates.SEARCH)"
