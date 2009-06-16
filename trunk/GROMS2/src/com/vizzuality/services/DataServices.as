@@ -157,7 +157,7 @@ package com.vizzuality.services
 			for each(var ch:Object in c.charts) {
 				
 				var st:String = ch.status;
-				if(st=='' || st==null)
+				if(st=='' || st==null || st=='0')
 					st='none';
 				taxon.chart.addItem(
 					{

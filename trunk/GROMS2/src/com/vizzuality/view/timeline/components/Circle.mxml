@@ -9,10 +9,10 @@
 			
 			public override function set data (value: Object):void {
 				graphics.clear();
-                graphics.beginFill(DataServices.gi().statesColors[value]);
+                graphics.beginFill(DataServices.gi().statesColors[value.status]);
                 graphics.drawCircle(0, 2.7, 3.5);
-                if(!isNaN(colorizeNum)) {
-					TweenMax.to(this, 0, {colorMatrixFilter:{colorize:colorizeNum, amount:1}});
+                if(!isNaN(value.colorizeColor)) {
+					TweenMax.to(this, 0, {colorMatrixFilter:{colorize:value.colorizeColor, amount:1}});
 				}
 			}
 		]]>
