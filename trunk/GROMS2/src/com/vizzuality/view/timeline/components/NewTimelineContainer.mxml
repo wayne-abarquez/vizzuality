@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="244" height="123"
-	verticalScrollPolicy="off" horizontalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="250" height="123"
+	verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:ns1="com.vizzuality.view.overlaycomponents.*">
 	<mx:Script>
 		<![CDATA[
 			import mx.states.SetStyle;
@@ -17,8 +17,40 @@
 			public var identity: int;
 			[Bindable] public var visibleComp: Boolean = true;
 			[Bindable] public var taxonCharts: ArrayCollection;	
-					
+			[Bindable] private var commonName:ArrayCollection;		
 		
+		
+			public override function set data(value:Object):void{
+				taxonObject = value;
+				if (value.commonNameEnglish!=null) {
+                		commonName = new ArrayCollection();
+                		if (value.commonNameEnglish!=null) {
+		                	commonName.addItem("[EN] " + value.commonNameEnglish);
+		                } else {
+		                	commonName.addItem("[EN]");
+		                }
+		                if (value.commonNameEnglish!=null) {
+		                	commonName.addItem("[ES] " + value.commonNameSpanish);
+		                } else {
+		                	commonName.addItem("[ES]");
+		                }
+		                if (value.commonNameEnglish!=null) {
+		                	commonName.addItem("[DE] " + value.commonNameGerman);
+		                } else {
+		                	commonName.addItem("[DE]");
+		                }
+		                if (value.commonNameEnglish!=null) {
+		                	commonName.addItem("[FR] " + value.commonNameFreanch);
+		                } else {
+		                	commonName.addItem("[FR]");
+		                }
+		                combo.dataProvider=commonName;
+		                combo.visible = true;
+                		//BindingUtils.bindProperty(combo, "selectedIndex", treeBrowserParent,"comboDefault");
+                	} else {
+                		combo.visible = false;
+                	}
+			}
  			
  			private function onClickButton(ev: Event):void {							
 				switch (ev.target.data as int) {
@@ -84,7 +116,7 @@
 		mouseOver="MapController.gi().highlightSpeciesOn(identity)" 
 		fontSize="16" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" right="60" top="8"/>
 	<mx:ComboBox id="combo" textAlign="left" left="8" fontSize="12" fontStyle="DINOT-Bold" color="#333333" height="22" 
-		fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageDark" fontWeight="normal" right="65" top="30"/>
+		fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageDark" fontWeight="normal" right="65" top="30" letterSpacing="-1"/>
 	<mx:Button 
 		toolTip="Remove this species from the map"
 		id="del" width="14" height="14" right="10" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" click="onClickButton(event)" top="10"/>
@@ -100,10 +132,10 @@
 			</mx:HBox>
 		</mx:Repeater>
 	</mx:VBox>
-	<mx:Canvas bottom="20" right="5">
+	<mx:Canvas bottom="16" right="5">
 		<mx:Image scaleContent="false" source="@Embed('/com/vizzuality/style/assets/gbifRecords.png')"/>
-		<mx:Label text="02112381" fontFamily="DINOT-Bold" fontSize="25" color="#868686" letterSpacing="-3" x="-1" textAlign="right" width="96" y="0"/>		
-		<mx:Label text="02112381" fontFamily="DINOT-Bold" fontSize="25" color="#FFFFFF" letterSpacing="-3" x="0" textAlign="right" width="96" y="1"/>		
+		<ns1:GbifTaxonNumberOccurrences gbifTaxonId="{taxonObject.gbif_id as Number}" fontFamily="DINOT-Bold" fontSize="25" color="#868686" letterSpacing="-3" x="-1" textAlign="right" width="96" y="0"/>
+		<ns1:GbifTaxonNumberOccurrences gbifTaxonId="{taxonObject.gbif_id as Number}" fontFamily="DINOT-Bold" fontSize="25" color="#FFFFFF" letterSpacing="-3" x="0" textAlign="right" width="96" y="1"/>
 		<mx:Label text="GBIF RECORDS" fontFamily="DINOT-Bold" fontSize="12" color="#F7F7F7" y="29" x="15" letterSpacing="-1" textAlign="right" width="79"/>		
 	</mx:Canvas>
 <!--	<mx:Image bottom="0" left="8" right="8" scaleContent="false">
