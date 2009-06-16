@@ -271,6 +271,7 @@ package com.vizzuality.services
 			
 			
 			Application.application.timeLine.dataProvider = selectedTaxons;
+			Application.application.expandWidget();
 			dispatchEvent(new DataServiceEvent(DataServiceEvent.PA_DATA_LOADED,true));
 		}
 		

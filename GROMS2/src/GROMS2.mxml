@@ -11,7 +11,7 @@
 		</mx:State>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas top="104" left="0" right="0" bottom="0" backgroundColor="#000000" backgroundAlpha="0.55">
+				<mx:Canvas top="0" left="0" right="0" bottom="0" backgroundColor="#000000" backgroundAlpha="0.55">
 					<ns1:GenericLoader width="400" horizontalCenter="0" verticalCenter="0">
 					</ns1:GenericLoader>
 				</mx:Canvas>
@@ -54,6 +54,9 @@
 			
 			
 			private function initApp():void {
+				
+				ExternalInterface.addCallback("openSpecies",openSpecies);
+				
 				var externalDomains:Array=[];
 				for each(var dom:String in externalDomains) {
 				    Security.allowDomain(dom);
@@ -121,7 +124,10 @@
 				
 				if(DataServices.gi().selectedTaxons.length==0) {
 					AppStates.gi().topState=AppStates.SEARCH;
+					contractWidget();
 					//MapController.gi().showMapWarning("All species removed",2);
+				} else {
+					expandWidget();
 				}
 				
 			}
@@ -154,7 +160,21 @@
 						
 					}
 				}
-			}					
+			}	
+			
+			public function openSpecies(id:Number):void {
+				DataServices.gi().getTaxon(id)
+			}
+			
+			
+            public function expandWidget():void {
+                    navigateToURL(new URLRequest("javascript:expandHeight();"),'_self');            
+                    currentState='timeline';                
+            }       
+            public function contractWidget():void {
+                    navigateToURL(new URLRequest("javascript:contractHeight();"),'_self');                          
+                    currentState='';                
+            }     							
 				
 
 			/**
