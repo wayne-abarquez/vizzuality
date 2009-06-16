@@ -31,7 +31,7 @@
 	</mx:Script> 
 	<mx:HBox width="100%" height="100%" x="0" y="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 		<mx:Repeater id="myRepeater" dataProvider="{labelProvider}">
-			<components:NewTimelineContainer taxon="{myRepeater.currentItem.name}" identity="{myRepeater.currentItem.id}" id="LabelTimeline"/>
+			<components:NewTimelineContainer taxonObject="{myRepeater.currentItem}" taxonCharts="{myRepeater.currentItem.chart}" identity="{myRepeater.currentItem.id}" id="LabelTimeline"/>
 			<!--<mx:HBox width="100%" verticalAlign="middle" paddingRight="5">
 				<components:TimelineLabelRenderer taxon="{myRepeater.currentItem.name}" identity="{myRepeater.currentItem.id}" id="LabelTimeline" width="297"/>	
 				<components:LegendHBox taxonCharts="{myRepeater.currentItem.chart}" width="100%" />

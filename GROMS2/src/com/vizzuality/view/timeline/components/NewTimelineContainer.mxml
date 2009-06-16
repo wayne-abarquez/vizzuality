@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="100%"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="244" height="123"
 	verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
+			import mx.states.SetStyle;
 			import com.vizzuality.view.map.MapController;
 			import mx.core.UITextField;
 			import mx.core.UIComponent;
 			import com.vizzuality.view.timeline.events.TimelineButtonEvent;
-			[Bindable] public var taxon: String = "";
+			import mx.collections.ArrayCollection;
+			import com.vizzuality.services.DataServices;
+			
+			
+			[Bindable] public var taxonObject: Object;
 			private var _ev: TimelineButtonEvent;
 			public var identity: int;
-			[Bindable] public var visibleComp: Boolean = true;			
+			[Bindable] public var visibleComp: Boolean = true;
+			[Bindable] public var taxonCharts: ArrayCollection;	
+					
 		
  			
  			private function onClickButton(ev: Event):void {							
@@ -39,12 +46,10 @@
 				if (ev.target is UITextField) {
 					if (this.visCheck.selected) {
 						visCheck.selected = false;
-						//info.enabled = false;
 						gbif.enabled = false;
 						specie.alpha = 0.3;
 						_ev.visible = false;					
 					} else {
-						//info.enabled = true;
 						gbif.enabled = true;
 						specie.alpha = 1;
 						visCheck.selected = true;
@@ -52,12 +57,10 @@
 					}
 				} else {
 					if (this.visCheck.selected) {
-						//info.enabled = true;
 						gbif.enabled = true;
 						specie.alpha = 1;
 						_ev.visible = true;					
 					} else {
-						//info.enabled = false;
 						gbif.enabled = false;
 						specie.alpha = 0.3;
 						_ev.visible = false;					
@@ -66,18 +69,22 @@
 				dispatchEvent(_ev);		
 				trace(ev);			
 			}
+			
+			private function getTaxonStyle(str: String):String{
+				return DataServices.gi().statesStyles[str];
+			}
 		]]>
 	</mx:Script>
 
 	<mx:CheckBox
 		toolTip="Maximize/Minimize the info component"
 		 id="visCheck" height="19" click="onClickVisible(event)" selected="{visibleComp}" right="26" top="8" width="12.4"/>
-	<mx:Label id="specie" text="{taxon}" left="8" color="#333333" fontFamily="DINOT-Medium" 
+	<mx:Label id="specie" text="{taxonObject.name as String}" left="8" color="#333333" fontFamily="DINOT-Medium" 
 		mouseOut="MapController.gi().highlightSpeciesOff(identity)"
 		mouseOver="MapController.gi().highlightSpeciesOn(identity)" 
-		fontSize="12" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" right="60" top="8"/>
-	<mx:ComboBox id="combo" textAlign="left" verticalCenter="-24" left="8" fontSize="12" fontStyle="DINOT-Bold" color="#333333" height="22" 
-		fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageWhite" fontWeight="normal" right="65"/>
+		fontSize="16" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" right="60" top="8"/>
+	<mx:ComboBox id="combo" textAlign="left" left="8" fontSize="12" fontStyle="DINOT-Bold" color="#333333" height="22" 
+		fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageDark" fontWeight="normal" right="65" top="30"/>
 	<mx:Button 
 		toolTip="Remove this species from the map"
 		id="del" width="14" height="14" right="10" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" click="onClickButton(event)" top="10"/>
@@ -85,6 +92,20 @@
 		toolTip="Show/Hide the GBIF network data layer"
 		 click="MapController.gi().toggleGbifLayer(identity);(MapController.gi().gbifLayersActive[identity])?event.target.selected=false:event.target.selected=true;"
 		width="14" height="14" right="43" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" enabled="{visibleComp}" top="10"/>
+	<mx:VBox verticalGap="0" top="53" bottom="3" right="140" left="12">
+		<mx:Repeater id="myRepeater" dataProvider="{taxonCharts}">
+			<mx:HBox verticalAlign="middle" horizontalGap="0">
+				<mx:Canvas width="10" height="10" styleName="{getTaxonStyle(myRepeater.currentItem.status)}"/>
+				<mx:Label text="{myRepeater.currentItem.status}" fontFamily="DINOT-Medium" fontSize="12" color="#898989"/>				
+			</mx:HBox>
+		</mx:Repeater>
+	</mx:VBox>
+	<mx:Canvas bottom="20" right="5">
+		<mx:Image scaleContent="false" source="@Embed('/com/vizzuality/style/assets/gbifRecords.png')"/>
+		<mx:Label text="02112381" fontFamily="DINOT-Bold" fontSize="25" color="#868686" letterSpacing="-3" x="-1" textAlign="right" width="96" y="0"/>		
+		<mx:Label text="02112381" fontFamily="DINOT-Bold" fontSize="25" color="#FFFFFF" letterSpacing="-3" x="0" textAlign="right" width="96" y="1"/>		
+		<mx:Label text="GBIF RECORDS" fontFamily="DINOT-Bold" fontSize="12" color="#F7F7F7" y="29" x="15" letterSpacing="-1" textAlign="right" width="79"/>		
+	</mx:Canvas>
 <!--	<mx:Image bottom="0" left="8" right="8" scaleContent="false">
 		<mx:source>@Embed('/com/vizzuality/style/assets/hRuleDashed500.png')</mx:source>
 	</mx:Image>-->
