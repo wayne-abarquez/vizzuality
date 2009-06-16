@@ -195,9 +195,9 @@ Button.btnTool{
 }
 
 Button.btnShowHide{
-	up-skin: Embed(source="ui.swf",symbol="btn_show_up");	
-	over-skin: Embed(source="ui.swf",symbol="btn_show_over");	
-	down-skin: Embed(source="ui.swf",symbol="btn_show_over");	
+	up-skin: Embed(source="ui.swf",symbol="btn_show_over");	
+	over-skin: Embed(source="ui.swf",symbol="btn_show_up");	
+	down-skin: Embed(source="ui.swf",symbol="btn_show_up");	
 	disabled-skin: Embed(source="ui.swf",symbol="btn_tool_disabled");	
 	selected-up-skin: Embed(source="ui.swf",symbol="btn_hide_up");	
 	selected-over-skin: Embed(source="ui.swf",symbol="btn_hide_over");	
