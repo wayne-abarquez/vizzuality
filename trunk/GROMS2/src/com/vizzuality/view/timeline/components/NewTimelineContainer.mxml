@@ -132,13 +132,14 @@
 			</mx:HBox>
 		</mx:Repeater>
 	</mx:VBox>
-	<mx:Canvas bottom="16" right="5">
+	<mx:Canvas bottom="16" right="8">
 		<mx:Image scaleContent="false" source="@Embed('/com/vizzuality/style/assets/gbifRecords.png')"/>
-		<ns1:GbifTaxonNumberOccurrences gbifTaxonId="{taxonObject.gbif_id as Number}" fontFamily="DINOT-Bold" fontSize="25" color="#868686" letterSpacing="-3" x="-1" textAlign="right" width="96" y="0"/>
-		<ns1:GbifTaxonNumberOccurrences gbifTaxonId="{taxonObject.gbif_id as Number}" fontFamily="DINOT-Bold" fontSize="25" color="#FFFFFF" letterSpacing="-3" x="0" textAlign="right" width="96" y="1"/>
+		<mx:Label text="{gbifRecords.text}" fontFamily="DINOT-Bold" fontSize="25" color="#868686" letterSpacing="-3" x="-1" textAlign="right" width="96" y="0"/>		
+		<ns1:GbifTaxonNumberOccurrences id="gbifRecords" gbifTaxonId="{taxonObject.gbif_id as Number}" fontFamily="DINOT-Bold" fontSize="25" color="#FFFFFF" letterSpacing="-3" x="0" textAlign="right" width="96" y="1"/>
+
 		<mx:Label text="GBIF RECORDS" fontFamily="DINOT-Bold" fontSize="12" color="#F7F7F7" y="29" x="15" letterSpacing="-1" textAlign="right" width="79"/>		
 	</mx:Canvas>
-<!--	<mx:Image bottom="0" left="8" right="8" scaleContent="false">
+	<mx:Image scaleContent="false" y="3" width="120" rotation="90" x="250">
 		<mx:source>@Embed('/com/vizzuality/style/assets/hRuleDashed500.png')</mx:source>
-	</mx:Image>-->
+	</mx:Image>
 </mx:Canvas>
