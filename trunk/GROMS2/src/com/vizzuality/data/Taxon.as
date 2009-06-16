@@ -1,9 +1,5 @@
 package com.vizzuality.data
 {
-	import com.google.maps.LatLng;
-	import com.google.maps.LatLngBounds;
-	import com.vizzuality.view.map.overlays.MultiPolygon;
-	
 	import mx.collections.ArrayCollection;
 	
 	[Bindable]

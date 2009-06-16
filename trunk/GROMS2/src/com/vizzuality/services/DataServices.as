@@ -41,6 +41,7 @@ package com.vizzuality.services
 
 
 		public var statesStyles:Dictionary=new Dictionary();
+		public var statesColors:Dictionary=new Dictionary();
 		
 		
 		public function DataServices()
@@ -70,6 +71,18 @@ package com.vizzuality.services
 			statesStyles['resident']='s34';
 			statesStyles['sightings']='s31';
 			statesStyles['staging areas']='s13';
+			
+			statesColors['none']='0xFE81D6';
+			statesColors['all year round']='0xFE2CD4';
+			statesColors['breeding']='0xE700B8';
+			statesColors['feeding, wintering']='0x29ADE9';
+			statesColors['general distribution']='0xFE81D6';
+			statesColors['moulting']='0x7915A7';
+			statesColors['non breeding summer']='0xF0C001';
+			statesColors['prior wintering area']='0x3677E5';
+			statesColors['resident']='0x00289C';
+			statesColors['sightings']='0x1BA6E4';
+			statesColors['staging areas']='0xED5E00';
 
 			
 		
@@ -256,16 +269,24 @@ package com.vizzuality.services
 			var t:Taxon;
 			selectedTaxons.removeAll();
 			if(Application.application.selectedTaxon1!=null) {
+				
+				for each(var c:Object in Application.application.selectedTaxon1.chart) {
+					c.colorizeColor=NaN;
+				}
+				
 				t=Application.application.selectedTaxon1;
-				t.chart.addItemAt(colorizeColor,0);
 				selectedTaxons.addItem(t);	
 			}if(Application.application.selectedTaxon2!=null){
+				for each(var c1:Object in Application.application.selectedTaxon2.chart) {
+					c1.colorizeColor=Color.RED;
+				}
 				t=Application.application.selectedTaxon2;
-				t.chart.addItemAt(colorizeColor,0);
 				selectedTaxons.addItem(t);	
 			}if(Application.application.selectedTaxon3!=null){
+				for each(var c2:Object in Application.application.selectedTaxon3.chart) {
+					c2.colorizeColor=Color.GREEN;
+				}
 				t=Application.application.selectedTaxon3;
-				t.chart.addItemAt(colorizeColor,0);
 				selectedTaxons.addItem(t);	
 			}	
 			
