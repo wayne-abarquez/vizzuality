@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#FFFFFF" backgroundAlpha="1.0" verticalScrollPolicy="off" horizontalScrollPolicy="off" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" 
+	 creationComplete="init()"
+	backgroundColor="#FFFFFF" backgroundAlpha="1.0" verticalScrollPolicy="off" horizontalScrollPolicy="off" 
             showEffect="{zoom}"
             hideEffect="{zoom}"
 	currentState="{_taxon.isVisible?'':'minimized'}"	  
@@ -29,6 +31,18 @@
 		import com.vizzuality.services.DataServices;
 		
 		[Bindable] private var commonNames:ArrayCollection = new ArrayCollection();
+		
+		private function init():void {
+			this.addEventListener(MouseEvent.MOUSE_DOWN, dragStartEventHandler);
+			this.addEventListener(MouseEvent.MOUSE_UP, dragDropEventHandler);
+		}
+		
+		private function dragStartEventHandler(event:MouseEvent):void {
+			this.startDrag(false, new Rectangle(0, 0, screen.width - this.width, screen.height - this.height));
+		}
+		private function dragDropEventHandler(event:MouseEvent):void {
+			this.stopDrag();
+		}
 		
 		public function set taxon(value:Taxon):void {
 			_taxon=value;
