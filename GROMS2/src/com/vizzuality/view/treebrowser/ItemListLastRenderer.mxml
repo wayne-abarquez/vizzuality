@@ -49,24 +49,24 @@
                 	if (value.english!=null) {
                 		commonName = new ArrayCollection();
                 		if (value.english!=null) {
-		                	commonName.addItem("[EN] " + value.english);
+		                	commonName.addItem("[en] " + value.english);
 		                } else {
-		                	commonName.addItem("[EN]");
+		                	commonName.addItem("[en]");
 		                }
 		                if (value.english!=null) {
-		                	commonName.addItem("[ES] " + value.spanish);
+		                	commonName.addItem("[es] " + value.spanish);
 		                } else {
-		                	commonName.addItem("[ES]");
+		                	commonName.addItem("[es]");
 		                }
 		                if (value.english!=null) {
-		                	commonName.addItem("[DE] " + value.german);
+		                	commonName.addItem("[de] " + value.german);
 		                } else {
-		                	commonName.addItem("[DE]");
+		                	commonName.addItem("[de]");
 		                }
 		                if (value.english!=null) {
-		                	commonName.addItem("[FR] " + value.french);
+		                	commonName.addItem("[fr] " + value.french);
 		                } else {
-		                	commonName.addItem("[FR]");
+		                	commonName.addItem("[fr]");
 		                }
 		                combo.dataProvider=commonName;
 		                combo.visible = true;
