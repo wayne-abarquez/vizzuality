@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="47" xmlns:components = "com.vizzuality.components.*" backgroundColor="#FFFFFF"
 	 verticalScrollPolicy="off" horizontalScrollPolicy="off" dataChange="doEffect()" alpha="0" xmlns:treebrowser="com.vizzuality.view.treebrowser.*"
-	 styleName="{style}" backgroundSize="100%" rollOver="handleOver()" rollOut="handleOut()" >
+	 styleName="{style}" backgroundSize="100%" rollOver="handleOver()" rollOut="handleOut()" click="DataServices.gi().getTaxon(this.idTaxon)">
 
 	<mx:Script>
 		<![CDATA[
