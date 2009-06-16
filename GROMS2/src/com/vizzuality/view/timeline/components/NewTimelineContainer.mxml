@@ -17,7 +17,7 @@
 			public var identity: int;
 			[Bindable] public var visibleComp: Boolean = true;
 			[Bindable] public var taxonCharts: ArrayCollection;	
-			[Bindable] private var commonName:ArrayCollection;		
+			[Bindable] private var commonName:ArrayCollection;	
 		
 		
 			public override function set data(value:Object):void{
@@ -131,9 +131,7 @@
 	<mx:VBox verticalGap="-4" top="53" bottom="3" left="10" width="132">
 		<mx:Repeater id="myRepeater" dataProvider="{taxonCharts}">
 			<mx:HBox verticalAlign="middle" horizontalGap="-1">
-				<components:Circle data="{getTaxonStyle(myRepeater.currentItem.status)}" />
-				<!--<mx:Canvas id="maskCanvas" x="10" y="10" width="10" height="10" cornerRadius="5" borderStyle="solid" backgroundAlpha="0.0"/>-->
-				<!--<mx:Canvas styleName="{getTaxonStyle(myRepeater.currentItem.status)}" width="10" height="10" mask="{circle}"/>-->				
+				<components:Circle data="{myRepeater.currentItem.status}" colorizeNum="{myRepeater.currentItem.colorizeColor}"/>		
 				<mx:Label text="{myRepeater.currentItem.status}" fontFamily="DINOT-Medium" fontSize="12" color="#898989"/>				
 			</mx:HBox>
 		</mx:Repeater>
