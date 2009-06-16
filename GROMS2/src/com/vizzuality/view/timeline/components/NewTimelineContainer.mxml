@@ -86,8 +86,8 @@
 			private function onClickVisible(ev: Event):void {
 				_ev = new TimelineButtonEvent(TimelineButtonEvent.TIMELINE_VISIBLE);
 				_ev.specieID = identity;
-				if (ev.target is UITextField) {
-					if (this.visCheck.selected) {
+/* 				if (ev.target is UITextField) { */
+					if (visCheck.selected) {
 						visCheck.selected = false;
 						combo.enabled = false;
 						gbif.enabled = false;
@@ -100,7 +100,7 @@
 						visCheck.selected = true;
 						_ev.visible = true;					
 					}
-				} else {
+				/* } else {
 					if (this.visCheck.selected) {
 						gbif.enabled = true;
 						combo.enabled = true;
@@ -111,8 +111,8 @@
 						combo.enabled = false;
 						specie.alpha = 0.3;
 						_ev.visible = false;					
-					}
-				}
+					} 
+				}*/
 				dispatchEvent(_ev);		
 				trace(ev);			
 			}
@@ -136,22 +136,19 @@
 		]]>
 	</mx:Script>
 
-	<mx:CheckBox
-		toolTip="Maximize/Minimize the info component"
-		 id="visCheck" height="19" click="onClickVisible(event)" selected="{visibleComp}" right="26" top="8" width="12.4"/>
+	<mx:Button
+		 id="visCheck" height="13" click="onClickVisible(event)" selected="{visibleComp}" right="42" top="10" width="35" styleName="btnShowHide"/>
 	<mx:Label id="specie" text="{taxonObject.name as String}" left="6" color="#333333" fontFamily="DINOT-Medium" 
 		mouseOut="MapController.gi().highlightSpeciesOff(identity)"
 		mouseOver="MapController.gi().highlightSpeciesOn(identity)" 
-		fontSize="16" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" top="6" width="189" letterSpacing="-1"/>
+		fontSize="16" click="onClickVisible(event)" toolTip="" alpha="{(visibleComp)?specie.alpha=1:specie.alpha=0.3}" top="6" width="174.6" letterSpacing="-1" height="27"/>
 	<mx:ComboBox id="combo" textAlign="left" left="6" fontSize="12" fontStyle="DINOT-Medium" color="#5D5A5A" height="22" 
 		fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageDark" right="65" top="28" letterSpacing="-1" fontWeight="normal"/>
 	<mx:Button 
-		toolTip="Remove this species from the map"
 		id="del" width="14" height="14" right="10" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" click="onClickButton(event)" top="10"/>
 	<mx:Button id="gbif" 
-		toolTip="Show/Hide the GBIF network data layer"
 		 click="MapController.gi().toggleGbifLayer(identity);(MapController.gi().gbifLayersActive[identity])?event.target.selected=false:event.target.selected=true;"
-		width="14" height="14" right="43" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" enabled="{visibleComp}" top="10"/>
+		width="14" height="14" right="26" styleName="btnGbif" mouseChildren="false" buttonMode="true" useHandCursor="true" data="2" enabled="{visibleComp}" top="10"/>
 	<mx:VBox verticalGap="-5" top="53" bottom="3" left="15" width="132">
 		<mx:Repeater id="myRepeater" dataProvider="{taxonCharts}">
 			<mx:HBox verticalAlign="middle" horizontalGap="-1">
