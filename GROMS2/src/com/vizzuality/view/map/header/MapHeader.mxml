@@ -71,15 +71,12 @@
 	</mx:HBox>
 	<mx:HBox right="9" horizontalGap="2" bottom="-1">
 		<mx:Button 
-			 toolTip="About this application"
 			label="about" selected="{(AppStates.gi().topState==AppStates.ABOUT)}" click="(AppStates.gi().topState=='' || AppStates.gi().topState!=AppStates.ABOUT)?AppStates.gi().topState=(AppStates.ABOUT):AppStates.gi().topState='';" styleName="btnTool" 
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false" />
 		<mx:Button 
-			 toolTip="Select species to add to the map"
 			label="species" selected="{(AppStates.gi().topState==AppStates.SEARCH)}" click="(AppStates.gi().topState=='' || AppStates.gi().topState!=AppStates.SEARCH)?AppStates.gi().topState=(AppStates.SEARCH):AppStates.gi().topState='';" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button4"/>
 		<mx:Button 
-			 toolTip="Toggle Fullscreen mode"
 			label="fullscreen" selected="{(AppStates.gi().secondState==AppStates.HELP)}" click="Application.application.toggleFullScreen()" styleName="btnTool"
 			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button5"/>
 	</mx:HBox>

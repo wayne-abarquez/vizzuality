@@ -9,6 +9,12 @@ div.header{
 	height: 110px;
 }
 
+div.headerImage{
+	background-image: url(../img/cabgrey.jpg);
+	background-repeat: no-repeat;
+	height: 105px;
+}
+
 div.logoContainer{
 	background-image: url(../img/logo.jpg);
 	background-position-y: -15px;
