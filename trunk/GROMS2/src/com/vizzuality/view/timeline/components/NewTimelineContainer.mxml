@@ -57,7 +57,6 @@
 		                }
 		                combo.dataProvider=commonName;
 		                combo.visible = true;
-                		//BindingUtils.bindProperty(combo, "selectedIndex", treeBrowserParent,"comboDefault");
                 	} else {
                 		combo.visible = false;
                 	}
@@ -86,33 +85,19 @@
 			private function onClickVisible(ev: Event):void {
 				_ev = new TimelineButtonEvent(TimelineButtonEvent.TIMELINE_VISIBLE);
 				_ev.specieID = identity;
-/* 				if (ev.target is UITextField) { */
-					if (visCheck.selected) {
-						visCheck.selected = false;
-						combo.enabled = false;
-						gbif.enabled = false;
-						specie.alpha = 0.3;
-						_ev.visible = false;					
-					} else {
-						gbif.enabled = true;
-						combo.enabled = true;
-						specie.alpha = 1;
-						visCheck.selected = true;
-						_ev.visible = true;					
-					}
-				/* } else {
-					if (this.visCheck.selected) {
-						gbif.enabled = true;
-						combo.enabled = true;
-						specie.alpha = 1;
-						_ev.visible = true;					
-					} else {
-						gbif.enabled = false;
-						combo.enabled = false;
-						specie.alpha = 0.3;
-						_ev.visible = false;					
-					} 
-				}*/
+				if (visCheck.selected) {
+					visCheck.selected = false;
+					combo.enabled = false;
+					gbif.enabled = false;
+					specie.alpha = 0.3;
+					_ev.visible = true;					
+				} else {
+					gbif.enabled = true;
+					combo.enabled = true;
+					specie.alpha = 1;
+					visCheck.selected = true;
+					_ev.visible = false;					
+				}
 				dispatchEvent(_ev);		
 				trace(ev);			
 			}

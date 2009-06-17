@@ -24,8 +24,10 @@
 	<toolbar:SearchComponent bottom="68" listPosition="up" right="20"/>
 	
 		<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
-		<mx:Canvas width="40" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.gbif.org'))" bottom="12" left="18"/>
-		<mx:Canvas width="67" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.cms.int/species/groms/groms.htm'))" bottom="12" left="65"/>
+		<mx:Canvas width="40" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.gbif.org'))" 
+			bottom="12" left="18" buttonMode="true" useHandCursor="true" mouseChildren="true"/>
+		<mx:Canvas width="67" height="44" backgroundAlpha="0.01" backgroundColor="#FFFFFF" click="navigateToURL(new URLRequest('http://www.cms.int/species/groms/groms.htm'))" 
+			bottom="12" left="65" buttonMode="true" useHandCursor="true" mouseChildren="true"/>
 	
 	
 </mx:Canvas>
