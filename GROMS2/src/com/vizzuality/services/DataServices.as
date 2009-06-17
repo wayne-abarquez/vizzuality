@@ -247,6 +247,14 @@ package com.vizzuality.services
 			} else if(Application.application.selectedTaxon3==null) {
 				Application.application.selectedTaxon3 = taxon;
 				num=3;
+			} else {
+				MapController.gi().removeGbifTileLayer(Application.application.selectedTaxon1.id);
+				MapController.gi().removeWMSTileLayer(Application.application.selectedTaxon1.id);
+				Application.application.selectedTaxon1 = Application.application.selectedTaxon2;
+				Application.application.selectedTaxon2 = Application.application.selectedTaxon3;
+				Application.application.selectedTaxon3 = taxon;
+				num=3;
+				
 			}	
 			
 			var colorizeColor:Number;
