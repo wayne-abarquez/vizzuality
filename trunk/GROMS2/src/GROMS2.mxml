@@ -105,10 +105,14 @@
 				MapController.gi().removeWMSTileLayer(speciesId);
 				
 				if(selectedTaxon1!=null && selectedTaxon1.id==speciesId) {
-					selectedTaxon1=null;
+					selectedTaxon1=selectedTaxon2;
+					selectedTaxon2=selectedTaxon3;
+					selectedTaxon3=null;
+		
 				}
 				if(selectedTaxon2!=null && selectedTaxon2.id==speciesId) {
-					selectedTaxon2=null;
+					selectedTaxon2=selectedTaxon3;
+					selectedTaxon3=null;
 				}
 				if(selectedTaxon3!=null && selectedTaxon3.id==speciesId) {
 					selectedTaxon3=null;
