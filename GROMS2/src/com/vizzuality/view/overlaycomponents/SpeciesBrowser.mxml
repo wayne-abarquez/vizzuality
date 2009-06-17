@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="850" height="365" horizontalCenter="0" 
+	 currentState="loading"
 	 creationComplete="init()"
 	verticalCenter="0" backgroundColor="#FFFFFF" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="6"
-	verticalScrollPolicy="off" horizontalScrollPolicy="off" filters="{[glowGrey]}" xmlns:controls="com.ninem.controls.*" xmlns:toolbar="com.vizzuality.view.map.toolbar.*">
+	verticalScrollPolicy="off" horizontalScrollPolicy="off" filters="{[glowGrey]}" xmlns:controls="com.ninem.controls.*" xmlns:toolbar="com.vizzuality.view.map.toolbar.*" xmlns:ns1="com.vizzuality.view.loader.*">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Canvas x="0" y="0" width="806" height="240" backgroundColor="#000000" backgroundAlpha="0.35">
+					<ns1:GenericLoader width="287.5" horizontalCenter="0" verticalCenter="0">
+					</ns1:GenericLoader>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
 	<mx:Script>
 		<![CDATA[
 			import mx.rpc.remoting.mxml.RemoteObject;
@@ -18,6 +29,7 @@
 			[Bindable] public var comboDefault: int = 1;
 			private var initial: int = 0;
 		
+		
 			[Bindable] private var server:RemoteObject;
 			private function init():void {
 				server = DataServices.gi().createRemoteObject();
@@ -32,7 +44,8 @@
 				auxDP.addItem(ev.result);
 				auxDP.addItem(ev.result);
 				server.removeEventListener(ResultEvent.RESULT,onResult);
-				treeB.dataProvider = auxDP;					
+				treeB.dataProvider = auxDP;		
+				
 				
 			}
 			
@@ -48,7 +61,7 @@
 	<mx:Text x="19" y="40" text="TAXON TREE OF GROMS SPECIES DATA" fontFamily="DINOT-Bold" fontSize="27" color="#88B54F" letterSpacing="-1"/>
 	<mx:Button top="0" right="20" styleName="closeButton" width="55" height="17"
 		useHandCursor="true" buttonMode="true" mouseChildren="false" click="AppStates.gi().gotoBaseState()"/>
-	<mx:Canvas left="20" right="20" bottom="36" top="85" cornerRadius="3" borderColor="#CBCBCB" borderStyle="solid" >
+	<mx:Canvas left="20" right="20" bottom="36" top="85" cornerRadius="3" borderColor="#CBCBCB" borderStyle="solid"  id="canvas1">
 
 		<controls:TreeBrowser id="treeB" remoteService="{server}" backgroundColor="#EBEBEB" columnWidth="250" top="2" bottom="2" 
 			left="2" right="2" borderStyle="solid" borderColor="#FFFFFF"/>

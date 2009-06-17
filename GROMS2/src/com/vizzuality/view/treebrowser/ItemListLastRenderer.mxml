@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="47" xmlns:components = "com.vizzuality.components.*" backgroundColor="#FFFFFF"
 	 verticalScrollPolicy="off" horizontalScrollPolicy="off" dataChange="doEffect()" alpha="0" xmlns:treebrowser="com.vizzuality.view.treebrowser.*"
-	 styleName="{style}" backgroundSize="100%" rollOver="handleOver()" rollOut="handleOut()" click="DataServices.gi().getTaxon(this.idTaxon)">
+	   styleName="{style}" backgroundSize="100%" rollOver="handleOver()" rollOut="handleOut()">
 
 	<mx:Script>
 		<![CDATA[
@@ -84,6 +84,7 @@
             	TweenLite.to(this,1,{alpha:1});	 
             }
             private function changeCombo(ev: Event):void {
+            	
             	treeBrowserParent.comboDefault = ev.target.selectedIndex;
             }
             
@@ -116,12 +117,20 @@
 	</mx:Script>
 	<mx:Canvas id="canvasOver" width="100%" height="100%" styleName="itemOver" alpha="0" backgroundSize="100%"/>
     <mx:Text text="{taxon}" selectable="false" textAlign="left" left="49" fontSize="14" width="165" fontFamily="DINOT-Bold" color="#FFFFFF" leading="-4" letterSpacing="-1" top="2"/>
-    <mx:ComboBox id="combo" textAlign="left" verticalCenter="9" left="49" fontSize="12" fontStyle="DINOT-Bold" color="#FFFFFF" height="22" change="changeCombo(event)" fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageWhite" fontWeight="normal"/>
+    <mx:HBox verticalCenter="9" left="49">
+	    <mx:ComboBox id="combo" textAlign="left" fontSize="12" fontStyle="DINOT-Bold" color="#FFFFFF" height="22" change="changeCombo(event)" fillAlphas="[0.0, 0.0, 0.0, 0.0]" styleName="lenguageWhite" fontWeight="normal"/>
+	   	<mx:Canvas width="100%" height="100%" left="208" verticalCenter="0" click="DataServices.gi().getTaxon(this.idTaxon)"	  useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+    </mx:HBox>
     <mx:Canvas x="5" width="41" height="38" backgroundColor="#FFFFFF" verticalCenter="-2" borderStyle="none"
     	verticalScrollPolicy="off" horizontalScrollPolicy="off">
         <mx:Image id="flickrImg" horizontalAlign="center" verticalAlign="middle" verticalCenter="0" horizontalCenter="0"/>
         <mx:Image source="@Embed('/com/vizzuality/style/assets/borderTreeThumb.png')"  y="0"/>
     </mx:Canvas>
 	<mx:Button id="viewButton" right="5" verticalCenter="-1" styleName="viewSpecie" height="15" width="58" alpha="0" buttonMode="true" useHandCursor="true" mouseChildren="false" />    
-   
+   	<mx:Canvas width="100%" height="23" click="DataServices.gi().getTaxon(this.idTaxon)"	  useHandCursor="true" buttonMode="true" mouseChildren="false">
+   		
+   	</mx:Canvas>
+   	<mx:Canvas width="100%" bottom="0" height="5" click="DataServices.gi().getTaxon(this.idTaxon)"	  useHandCursor="true" buttonMode="true" mouseChildren="false">
+   		
+   	</mx:Canvas>
 </mx:Canvas>
