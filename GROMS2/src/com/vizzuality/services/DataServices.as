@@ -287,21 +287,27 @@ package com.vizzuality.services
 			selectedTaxons.removeAll();
 			if(Application.application.selectedTaxon1!=null) {
 				
-				for each(var c:Object in Application.application.selectedTaxon1.chart) {
-					c.colorizeColor=NaN;
-				}
+/* 				for each(var c:Object in Application.application.selectedTaxon1.chart) {
+					if(isNaN(c.colorizeColor==NaN) {
+						c.colorizeColor=NaN;
+					}
+				} */
 				
 				t=Application.application.selectedTaxon1;
 				selectedTaxons.addItem(t);	
 			}if(Application.application.selectedTaxon2!=null){
 				for each(var c1:Object in Application.application.selectedTaxon2.chart) {
-					c1.colorizeColor=Color.RED;
+					if(isNaN(c1.colorizeColor)) {
+						c1.colorizeColor=Color.RED;
+					}
 				}
 				t=Application.application.selectedTaxon2;
 				selectedTaxons.addItem(t);	
 			}if(Application.application.selectedTaxon3!=null){
 				for each(var c2:Object in Application.application.selectedTaxon3.chart) {
-					c2.colorizeColor=Color.GREEN;
+					if(isNaN(c2.colorizeColor)) {
+						c2.colorizeColor=Color.GREEN;
+					}
 				}
 				t=Application.application.selectedTaxon3;
 				selectedTaxons.addItem(t);	
