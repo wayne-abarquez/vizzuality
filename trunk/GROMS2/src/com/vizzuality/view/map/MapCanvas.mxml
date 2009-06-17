@@ -17,16 +17,16 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="details">
-			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:HBox id="speciesBoxesContainer" right="20" top="20" left="20" horizontalAlign="right" showEffect="{fadeIn}" hideEffect="{fadeOut}">
-					<ns1:SpecieCanvas id="speciecanvas3" visible="{Application.application.selectedTaxon3!=null}" taxon="{Application.application.selectedTaxon3}">
-					</ns1:SpecieCanvas>
-					<ns1:SpecieCanvas id="speciecanvas2" visible="{Application.application.selectedTaxon2!=null}" taxon="{Application.application.selectedTaxon2}">
-					</ns1:SpecieCanvas>
-					<ns1:SpecieCanvas id="speciecanvas1" visible="{Application.application.selectedTaxon1!=null}" taxon="{Application.application.selectedTaxon1}">
-					</ns1:SpecieCanvas>
-				</mx:HBox>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">	
+					<ns1:SpecieCanvas id="speciecanvas3" visible="{Application.application.selectedTaxon3!=null}" taxon="{Application.application.selectedTaxon3}"  x="156" y="10"/>
 			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+					<ns1:SpecieCanvas id="speciecanvas2" visible="{Application.application.selectedTaxon2!=null}" taxon="{Application.application.selectedTaxon2}"  x="398" y="10"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+					<ns1:SpecieCanvas id="speciecanvas1" visible="{Application.application.selectedTaxon1!=null}" taxon="{Application.application.selectedTaxon1}" x="640" y="10" />
+			</mx:AddChild>
+		
 		</mx:State>
 	</mx:states>
 	<mx:Script>

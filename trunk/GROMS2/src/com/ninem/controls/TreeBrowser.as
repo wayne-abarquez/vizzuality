@@ -2,12 +2,15 @@ package com.ninem.controls{
 	
 	import com.ninem.controls.treebrowserclasses.TreeBrowserList;
 	import com.ninem.events.TreeBrowserEvent;
+	import com.vizzuality.view.overlaycomponents.SpeciesBrowser;
 	import com.vizzuality.view.treebrowser.ItemListLastRenderer;
 	import com.vizzuality.view.treebrowser.ItemListRenderer;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.xml.XMLNode;
+	
+	import gs.TweenLite;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ICollectionView;
@@ -93,6 +96,9 @@ package com.ninem.controls{
 		
 		public var remoteService:RemoteObject;
 		[Bindable] public var comboDefault: int = 0;
+		
+		[Bindable] private var treeInitialized:Boolean=false;
+		private var numRequest:Number=0;
 		
 		private var lastSelected:Array = new Array();
 
@@ -236,6 +242,36 @@ package com.ninem.controls{
 	        invalidateProperties();
 	        invalidateDisplayList();
 	        
+	        //simulat a click to preopen the tree
+	        if(!treeInitialized) {
+	        	
+	        	TweenLite.delayedCall(0.5,function():void {
+	        	
+	        		var colum:UIComponent = getChildAt(0) as UIComponent;
+	        		TreeBrowserList(colum).selectedIndex=0;
+	        		index=1;
+ 		        	TreeBrowserList(colum).dispatchEvent(
+	        		new ListEvent(ListEvent.ITEM_CLICK,false,false,-1,0));	        		
+
+	        		
+	        		//column.selectedIndex=(column.dataProvider as ArrayCollection).getItemAt(0);
+ 		        	//(getChildAt(0) as UIComponent).dispatchEvent(
+	        		//new ListEvent(ListEvent.ITEM_CLICK,false,false,-1,0));
+	        		
+	        	});
+	        	TweenLite.delayedCall(1,function():void {
+	        	
+	        		var colum:UIComponent = getChildAt(1) as UIComponent;
+	        		
+	        		TreeBrowserList(colum).selectedIndex=0;
+	        		index=2;
+ 		        	TreeBrowserList(colum).dispatchEvent(
+	        		new ListEvent(ListEvent.ITEM_CLICK,false,false,-1,0));	        		
+		        	treeInitialized = true;
+	        	});
+	        	
+	        }
+	        
 	        
 	    }
 	
@@ -342,8 +378,11 @@ package com.ninem.controls{
  					}
 				}
 			}
-			lastSelected[index] = (ev.itemRenderer as ItemListRenderer);
-			(lastSelected[index] as ItemListRenderer).setSelected();
+			if(ev.itemRenderer !=null) {
+				lastSelected[index] = (ev.itemRenderer as ItemListRenderer);
+				(lastSelected[index] as ItemListRenderer).setSelected();
+				
+			}
 
 			if (_selectedItem.has_children) {
 				remoteService.addEventListener(ResultEvent.RESULT,onResultTaxon);
@@ -361,16 +400,21 @@ package com.ninem.controls{
 		}
 		
 		private function onResultTaxon(ev: ResultEvent):void {
-			trace(index);
+			//trace(index);
 			remoteService.removeEventListener(ResultEvent.RESULT,onResultTaxon);			
 			var aux2 : ArrayCollection = new ArrayCollection (ev.result as Array);
 			(_rootModel as ArrayCollection).addItemAt(aux2,index+1);
 			selectionChangeHandler();
+			numRequest++;
+			if(numRequest==2) {
+				(this.parent.parent as SpeciesBrowser).currentState='';
+				treeInitialized = true;
+			}
 		}
 		
 		private function onFaultTaxon(ev: FaultEvent):void {
 			remoteService.removeEventListener(FaultEvent.FAULT,onFaultTaxon);
-			trace(ev.fault.faultDetail);
+			//trace(ev.fault.faultDetail);
 		}
 
 		
