@@ -218,9 +218,9 @@
 	<mx:Style source="com/vizzuality/style/skin/fonts.css"/>
 	<mx:Style source="com/vizzuality/style/skin/timeline.css"/>
 	
-	<mx:VBox id="mainVBox" width="100%" height="100%" verticalGap="0">
+	<mx:VBox id="mainVBox" width="100%" height="100%" verticalGap="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 		<header:Header id="header" />
-		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8"/>
+		<map:MapCanvas id="mapCanvas" width="100%" height="100%" backgroundColor="#A8A8A8" verticalScrollPolicy="off" horizontalScrollPolicy="off"/>
 		<timeline:VizzualityTimeline width="100%" height="0" id="timeLine" dataProvider="{timeLineDataProvider}"/>
 	</mx:VBox>
 	<mx:Canvas id="debugArea" visible="false" right="5" bottom="40" width="358" height="157" backgroundColor="#FFFFFF" backgroundAlpha="0.66">
