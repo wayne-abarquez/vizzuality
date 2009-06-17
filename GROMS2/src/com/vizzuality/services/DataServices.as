@@ -42,6 +42,7 @@ package com.vizzuality.services
 
 		public var statesStyles:Dictionary=new Dictionary();
 		public var statesColors:Dictionary=new Dictionary();
+		public var listIcons:Dictionary= new Dictionary();
 		
 		
 		public function DataServices()
@@ -83,10 +84,18 @@ package com.vizzuality.services
 			statesColors['resident']='0x00289C';
 			statesColors['sightings']='0x1BA6E4';
 			statesColors['staging areas']='0xED5E00';
-
 			
-		
-		
+			listIcons['Not listed']="@Embed('/com/vizzuality/style/assets/categories/cd.jpg')";
+			listIcons['(CR) Critically Endangered']="@Embed('/com/vizzuality/style/assets/categories/cr.jpg')";
+			listIcons['(LR/nt) Lower Risk, near threatened']="@Embed('/com/vizzuality/style/assets/categories/nt.jpg')";
+			listIcons['(VU) Vulnerable']="@Embed('/com/vizzuality/style/assets/categories/vu.jpg')";
+			listIcons['(DD) Data Deficient']="@Embed('/com/vizzuality/style/assets/categories/elc.jpg')";
+			listIcons['(LR/cd) Lower Risk, conservation dependent']="@Embed('/com/vizzuality/style/assets/categories/cd.jpg')";
+			listIcons['(EX) Extinct']="@Embed('/com/vizzuality/style/assets/categories/ex.jpg')";
+			listIcons['(EW) Extinct in the Wild']="@Embed('/com/vizzuality/style/assets/categories/ew.jpg')";
+			listIcons['(EN) Endangered']="@Embed('/com/vizzuality/style/assets/categories/en.jpg')";
+			
+	
 		}	
 		
 		
