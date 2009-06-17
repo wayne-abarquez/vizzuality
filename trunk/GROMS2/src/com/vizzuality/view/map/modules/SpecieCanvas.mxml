@@ -69,7 +69,7 @@
 	<mx:VBox verticalGap="0" horizontalAlign="center" left="9" right="9" top="15" id="vbox4" bottom="15" horizontalScrollPolicy="off">
 		<mx:HBox width="100%" horizontalGap="2" verticalAlign="middle" paddingBottom="-2" horizontalScrollPolicy="off">
 			<mx:Label text="{_taxon.group}" fontFamily="DINOT-Medium" fontSize="12" color="#666666"/>
-			<mx:Image source="@Embed('/com/vizzuality/style/assets/smallArrow.png')" />
+			<mx:Image id="list" source="@Embed('/com/vizzuality/style/assets/smallArrow.png')" toolTip="{list.source}"/>
 			<mx:Label text="{_taxon.className}" fontFamily="DINOT-Medium" fontSize="12" color="#666666"/>
 		</mx:HBox>
 		<mx:Canvas width="100%" id="canvas1">
@@ -100,7 +100,8 @@
 			</mx:HBox>
 			<mx:HBox y="66" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
 				<mx:Label text="Red List 2000:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
-				<mx:Label text="{_taxon.red_list}" color="#333333" fontFamily="DINOT-Bold" fontSize="12" width="135" height="22"/>
+				<!--<mx:Label text="{_taxon.red_list}" color="#333333" fontFamily="DINOT-Bold" fontSize="12" width="135" height="22"/>-->
+				<mx:Image source="{DataServices.gi().listIcons[_taxon.red_list]}"/>
 			</mx:HBox>
 			<mx:HBox y="83" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
 				<mx:Label text="CITES:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
