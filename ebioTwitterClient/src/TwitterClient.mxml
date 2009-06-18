@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo" minWidth="800" minHeight="600" xmlns:maps="com.google.maps.*">
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo" 
+	xmlns:local="*" minWidth="800" minHeight="600" xmlns:maps="com.google.maps.*">
+	
+<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+	    s|TextInput {
+            fontSize: 14;
+        }
+	</fx:Style>
+
 <fx:Script>
 	<![CDATA[
 		import mx.events.FlexEvent;
@@ -16,12 +25,14 @@
 		import com.google.maps.MapType;
 		import com.google.maps.LatLng;
 		
-		public var tweets:ArrayCollection = new ArrayCollection();
+		[Bindable]public var tweets:ArrayCollection = new ArrayCollection();
 		
 		public var bbox:LatLngBounds;
 		private var flickrImage: FlickrImage = new FlickrImage();
 		private var dictionary: Dictionary = new Dictionary();
-			
+		private var i:int;
+		
+		
 		
 		private function init():void {
 			var externalDomains:Array=[
@@ -53,9 +64,18 @@
 			srv.send();
 		}
 		
+		private function searchTwitter(str:String):void {
+			map.clearOverlays();
+			tweets=new ArrayCollection();
+			var srv:HTTPService = new HTTPService();
+			srv.resultFormat = "text";
+			srv.url="http://search.twitter.com/search.json?q=%23ebio+observation+" + escape(str);
+			srv.addEventListener(ResultEvent.RESULT,onResult);		
+			srv.send();
+		}
 		
 		
-		
+				
 		private function scientificSlice(str:String):String {
 			var start: int;
 			var end: int;
@@ -64,7 +84,7 @@
 			start=str.indexOf("#",1);
 			aux = str.substring(start);
 			end=aux.indexOf(" ");
-			return aux.substring(1,end-1);
+			return aux.substring(1,end);
 		}
 		
 		private function getLatLon(str:String):LatLng {
@@ -75,7 +95,7 @@
 			var lon: String;
 			
 			start=str.indexOf("/");
-			end=str.indexOf(" ",start+2);
+			end=str.indexOf(",",start+2);
 			lat=str.substring(start+1,end);
 			
 			lon=str.substring(end+1,end+10);
@@ -185,10 +205,9 @@
                 
 		private function onResult(event:ResultEvent):void {
 			var resOb:Object = JSON.decode(event.result as String);
-			var i: int = 0;
 			var image: FlickrImage = new FlickrImage();
 			connectLabel.visible = false;
-			
+			i=0;
 			for each(var t:Object in resOb.results) {
 				if ((t.text as String).toLowerCase().indexOf("#ebio observation:")>=0) {
 					i = i + 1;
@@ -265,8 +284,13 @@
 			latlng = tweet.position;
 		    var marker:Marker = new Marker(latlng, new MarkerOptions({draggable:false,icon: iconBitmap}));
 	   	 	map.addOverlay(marker);
-		    bbox.extend(latlng);
-		    map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));	      
+		    if (i==1) {
+		    	map.setCenter(latlng,17);
+		    } else {
+			    bbox.extend(latlng);
+			    map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));	
+		    }
+		          
 		}
 		 
 
@@ -278,16 +302,14 @@
 
 	<maps:Map id="map" height="100%" width="100%" key="lala"  left="250" mapevent_mapready="init()"/>
 	<s:Panel width="250" title="Tweets on Biodiversity" left="0" top="0" bottom="0" contentBackgroundColor="#393939" baseColor="#5B5B5B" color="#FEFEFE" fontFamily="Verdana" fontSize="11">
-		<s:Rect width="235" height="23" x="7" y="8" radiusX="3" radiusY="3">
-	        <s:fill>
-	            <s:SolidColor color="#ffffff" />
-	        </s:fill>
-	    </s:Rect>
-		<s:TextInput x="9" y="7" contentBackgroundColor="#FFFFFF" color="#858484" width="175" height="25" fontStyle="italic"/>
-		<mx:Label x="188" y="9" text="search" fontSize="13" color="#2B2B2B" textDecoration="underline"/>
-		<s:Button label="Next" right="5" bottom="5" width="50"/>
-		<s:Button label="Prev" bottom="5" right="65" width="50"/>
-		<s:List id="repeaterTweets" itemRenderer="TweetItem" top="35" bottom="35" width="100%" >
+
+		<s:TextInput id="searchInput" x="9" y="7" contentBackgroundColor="#FFFFFF" color="#858484" width="175" height="25" fontStyle="italic" 
+			enter="searchTwitter(searchInput.text)" focusColor="#FFFFFF" selectionColor="#FFFFFF" baseColor="#FFFFFF"/>
+		<mx:Label x="188" y="9" text="search" fontSize="13" color="#FFFFFF" textDecoration="underline"/>
+		<s:Button label="Next" right="5" bottom="5" width="50" enabled="false"/>
+		<s:Button label="Prev" bottom="5" right="65" width="50" enabled="false"/>
+		<s:List id="repeaterTweets" itemRenderer="TweetItem" top="35" bottom="35" width="100%"  focusColor="#393939" selectionColor="#393939"
+			 symbolColor="#393939" contentBackgroundColor="#393939" rollOverColor="#393939" baseColor="#393939">
 			<s:layout>
 				<s:VerticalLayout id="verticalLayout" gap="0"/>				
 			</s:layout>
