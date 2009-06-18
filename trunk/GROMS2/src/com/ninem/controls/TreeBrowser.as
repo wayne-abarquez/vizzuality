@@ -247,26 +247,20 @@ package com.ninem.controls{
 	        	
 	        	TweenLite.delayedCall(0.5,function():void {
 	        	
-	        		var colum:UIComponent = getChildAt(0) as UIComponent;
-	        		TreeBrowserList(colum).selectedIndex=0;
+	        		var colum:TreeBrowserList = getChildAt(0) as TreeBrowserList;
+	        		colum.selectedIndex=0;
 	        		index=1;
- 		        	TreeBrowserList(colum).dispatchEvent(
-	        		new ListEvent(ListEvent.ITEM_CLICK,false,false,-1,0));	        		
+ 		        	colum.dispatchEvent(
+	        		new ListEvent(ListEvent.ITEM_CLICK,true,true,0,0,null,ItemListRenderer as IListItemRenderer));	        		
 
-	        		
-	        		//column.selectedIndex=(column.dataProvider as ArrayCollection).getItemAt(0);
- 		        	//(getChildAt(0) as UIComponent).dispatchEvent(
-	        		//new ListEvent(ListEvent.ITEM_CLICK,false,false,-1,0));
-	        		
 	        	});
 	        	TweenLite.delayedCall(1,function():void {
 	        	
-	        		var colum:UIComponent = getChildAt(1) as UIComponent;
-	        		
-	        		TreeBrowserList(colum).selectedIndex=0;
+	        		var colum:TreeBrowserList = getChildAt(1) as TreeBrowserList;
+	        		colum.selectedIndex=0;
 	        		index=2;
  		        	TreeBrowserList(colum).dispatchEvent(
-	        		new ListEvent(ListEvent.ITEM_CLICK,false,false,-1,0));	        		
+	        		new ListEvent(ListEvent.ITEM_CLICK,false,false,0,0,null,ItemListRenderer as IListItemRenderer));	        		
 		        	treeInitialized = true;
 	        	});
 	        	
@@ -363,6 +357,7 @@ package com.ninem.controls{
 		private function updateDataProvider(ev:ListEvent):void {
 			//choose the column
 			column = ev.currentTarget as TreeBrowserList;
+			
 			//catch column number
 			index = getChildIndex(column);
 			//select the item in column
@@ -380,8 +375,11 @@ package com.ninem.controls{
 			}
 			if(ev.itemRenderer !=null) {
 				lastSelected[index] = (ev.itemRenderer as ItemListRenderer);
+				(lastSelected[index] as ItemListRenderer).setSelected();			
+			} else {
+				var array : Array = column.renderers;
+				lastSelected[index] = (array[ev.rowIndex][0]);
 				(lastSelected[index] as ItemListRenderer).setSelected();
-				
 			}
 
 			if (_selectedItem.has_children) {
