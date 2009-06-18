@@ -4,8 +4,10 @@
 	borderColor="#FFFFFF" cornerRadius="6" verticalScrollPolicy="off" horizontalScrollPolicy="off" filters="{[glowGrey]}" xmlns:toolbar="com.vizzuality.view.map.toolbar.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.managers.PopUpManager;
 			import com.vizzuality.services.DataServices;
 			import com.vizzuality.view.AppStates;
+			
 		]]>
 	</mx:Script>
 	<mx:Button top="0" right="20" styleName="closeButton" width="55" height="17"

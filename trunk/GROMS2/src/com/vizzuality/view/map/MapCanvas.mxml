@@ -28,6 +28,11 @@
 			</mx:AddChild>
 		
 		</mx:State>
+		<mx:State name="help">
+			<mx:AddChild relativeTo="{discretLoading}" position="before">
+				<ns3:aboutProject horizontalCenter="0" verticalCenter="0" />
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
