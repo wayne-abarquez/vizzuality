@@ -59,6 +59,11 @@
 		
 		[Bindable] public var _taxon:Taxon;	
 		
+		private function setSourceImage(str: String):String {
+			trace(DataServices.gi().listIcons[str]);
+			return DataServices.gi().listIcons[str];
+		}
+		
 		
 
 	]]>
@@ -101,7 +106,7 @@
 			<mx:HBox y="66" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
 				<mx:Label text="Red List 2000:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
 				<!--<mx:Label text="{_taxon.red_list}" color="#333333" fontFamily="DINOT-Bold" fontSize="12" width="135" height="22"/>-->
-				<mx:Image source="{DataServices.gi().listIcons[_taxon.red_list]}"/>
+				<mx:Image source="{setSourceImage(_taxon.red_list)}"/>
 			</mx:HBox>
 			<mx:HBox y="83" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
 				<mx:Label text="CITES:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
