@@ -5,7 +5,7 @@
             showEffect="{zoom}"
             hideEffect="{zoom}"
 	currentState="{_taxon.isVisible?'':'minimized'}"	  
-	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="6" height="308" width="234" xmlns:components="org.gbif.components.*" xmlns:data="com.vizzuality.data.*">
+	filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*" borderStyle="solid" borderColor="#FFFFFF" cornerRadius="6" height="332" width="234" xmlns:components="org.gbif.components.*" xmlns:data="com.vizzuality.data.*">
 	<mx:states>
 		<mx:State name="minimized">
 			<mx:SetProperty name="height" value="86"/>
@@ -15,6 +15,7 @@
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import flash.net.navigateToURL;
 		import mx.collections.ArrayCollection;
 		import mx.effects.easing.Bounce;
 		import mx.effects.easing.Quadratic;
@@ -88,7 +89,7 @@
 				fontFamily="DINOT-Medium" fontSize="12" color="#666666" height="18" width="100%" fontWeight="normal">
 			</mx:ComboBox>
 		</mx:Canvas>
-		<mx:Canvas height="110" width="100%" backgroundColor="#E4EEDA">
+		<mx:Canvas height="125" width="100%" backgroundColor="#E4EEDA" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 			<mx:Canvas height="2" width="100%" backgroundColor="#8db857" top="0">
 			</mx:Canvas>
 			<mx:HBox y="5" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
@@ -101,16 +102,21 @@
 			</mx:HBox>
 			<mx:HBox y="49" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
 				<mx:Label text="CMS:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
-				<mx:Label text="{_taxon.cms}" color="#333333" fontFamily="DINOT-Bold" fontSize="12" width="175.6" height="22"/>
+				<mx:Label text="{_taxon.cms_status}" color="#333333" fontFamily="DINOT-Bold" fontSize="12" width="175.6" height="22"/>
 			</mx:HBox>
 			<mx:HBox y="66" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
 				<mx:Label text="Red List 2000:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
-				<!--<mx:Label text="{_taxon.red_list}" color="#333333" fontFamily="DINOT-Bold" fontSize="12" width="135" height="22"/>-->
-				<mx:Image source="{setSourceImage(_taxon.red_list)}"/>
+				<mx:Label text="{_taxon.red_list}" color="#333333" fontFamily="DINOT-Bold" fontSize="12" width="135" height="22"/>
+				<mx:Image source="assets/link.png" visible="{_taxon.redlist_id!=null}" click="navigateToURL(new URLRequest('http://www.iucnredlist.org/details/'+_taxon.redlist_id))" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+
 			</mx:HBox>
-			<mx:HBox y="83" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
+<!--			<mx:HBox y="83" left="8" horizontalGap="-1" letterSpacing="-1" right="8">
 				<mx:Label text="CITES:" color="#666666" fontFamily="DINOT-Medium" fontSize="12"/>
 				<mx:Label text="{_taxon.cites}" color="#333333" fontFamily="DINOT-Bold" fontSize="12" width="169.2" height="22"/>
+			</mx:HBox>-->
+			<mx:HBox y="83" left="8" horizontalGap="-1" letterSpacing="-1" right="8" verticalAlign="middle" visible="{(_taxon.external_url!=null)}">
+				<mx:Label text="More info" color="#00619F" fontFamily="DINOT-Medium" fontSize="12" textDecoration="underline" click="navigateToURL(new URLRequest(_taxon.external_url))" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+				<mx:Image source="assets/link.png"/>
 			</mx:HBox>
 		</mx:Canvas>
 		<mx:Canvas width="100%" backgroundColor="#C3DAA9" height="66">
