@@ -87,7 +87,7 @@ package com.vizzuality.services
 			statesColors['sightings']='0x1BA6E4';
 			statesColors['staging areas']='0xED5E00';
 			
-			listIcons['Not listed']="@Embed('/assets/categories/cd.jpg')";
+/* 			listIcons['Not listed']="@Embed('/assets/categories/cd.jpg')";
 			listIcons['(CR) Critically Endangered']="@Embed('/assets/categories/cr.jpg')";
 			listIcons['(LR/nt) Lower Risk, near threatened']="@Embed('/assets/categories/nt.jpg')";
 			listIcons['(VU) Vulnerable']="@Embed('/assets/categories/vu.jpg')";
@@ -95,7 +95,7 @@ package com.vizzuality.services
 			listIcons['(LR/cd) Lower Risk, conservation dependent']="@Embed('/assets/categories/cd.jpg')";
 			listIcons['(EX) Extinct']="@Embed('/assets/categories/ex.jpg')";
 			listIcons['(EW) Extinct in the Wild']="@Embed('/assets/categories/ew.jpg')";
-			listIcons['(EN) Endangered']="@Embed('/assets/categories/en.jpg')";
+			listIcons['(EN) Endangered']="@Embed('/assets/categories/en.jpg')"; */
 			
 	
 		}	
@@ -161,6 +161,12 @@ package com.vizzuality.services
 			taxon.name=c.name;
 			taxon.red_list=c.red_list;
 			taxon.source=c.source;
+			if(String(c.redlist_id).length>0)
+				taxon.redlist_id=c.redlist_id;
+			taxon.cms_status=c.cms_status_2;
+			taxon.cms_description=c.cms_description;
+			if(String(c.external_url).length>0)
+				taxon.external_url=String(c.external_url).substr(1,String(c.external_url).length-2);	
 			
 			
 			taxon.chart =  new ArrayCollection();

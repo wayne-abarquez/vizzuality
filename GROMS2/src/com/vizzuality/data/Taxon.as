@@ -22,8 +22,13 @@ package com.vizzuality.data
 		public var red_list:String;
 		public var cites:String;	
 		public var chart:ArrayCollection;
-		public var colorizedColor:Number;
+		public var redlist_id:String;
+		public var cms_status:String;
+		public var cms_description:String;
+		public var external_url:String;
 		
+		
+		public var colorizedColor:Number;
 		public var isVisible:Boolean=true;
 		public var isHiddenFromMap:Boolean=false;
 		public var isGbifDataVisible:Boolean=true;
