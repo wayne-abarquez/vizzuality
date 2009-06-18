@@ -22,6 +22,7 @@ package com.vizzuality.data
 		public var red_list:String;
 		public var cites:String;	
 		public var chart:ArrayCollection;
+		public var colorizedColor:Number;
 		
 		public var isVisible:Boolean=true;
 		public var isHiddenFromMap:Boolean=false;

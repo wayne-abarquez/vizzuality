@@ -44,6 +44,8 @@ package com.vizzuality.services
 		public var statesColors:Dictionary=new Dictionary();
 		public var listIcons:Dictionary= new Dictionary();
 		
+		public var availableColors:Array=[NaN,Color.RED,Color.GREEN];
+		
 		
 		public function DataServices()
 		{
@@ -245,69 +247,51 @@ package com.vizzuality.services
 		
 		
 		private function addTaxon(taxon:Taxon):void {
-			var num:Number=1;
 			
 			if(Application.application.selectedTaxon1==null) {
+				taxon.colorizedColor =availableColors[0];
 				Application.application.selectedTaxon1 = taxon;
-				num=1;
 			} else if(Application.application.selectedTaxon2==null) {
+				taxon.colorizedColor =availableColors[1];
 				Application.application.selectedTaxon2 = taxon;
-				num=2;
 			} else if(Application.application.selectedTaxon3==null) {
+				
+				taxon.colorizedColor =availableColors[2];
 				Application.application.selectedTaxon3 = taxon;
-				num=3;
 			} else {
+				taxon.colorizedColor= Application.application.selectedTaxon1.colorizedColor;
 				MapController.gi().removeGbifTileLayer(Application.application.selectedTaxon1.id);
 				MapController.gi().removeWMSTileLayer(Application.application.selectedTaxon1.id);
 				Application.application.selectedTaxon1 = Application.application.selectedTaxon2;
 				Application.application.selectedTaxon2 = Application.application.selectedTaxon3;
 				Application.application.selectedTaxon3 = taxon;
-				num=3;
 				
 			}	
-			
-			var colorizeColor:Number;
-			switch(num) {
-				case 1:
-					colorizeColor=NaN;
-					break;
-				case 2:
-					colorizeColor=Color.RED;
-					break;						
-				case 3:
-					colorizeColor=Color.GREEN;
-					break;						
-			}		
+	
 			
 			
-			MapController.gi().createWMSTileLayer(taxon.id,colorizeColor);
+			MapController.gi().createWMSTileLayer(taxon.id,taxon.colorizedColor);
 			MapController.gi().createGbifLayer(taxon.gbif_id,taxon.id);
 			
 			var t:Taxon;
 			selectedTaxons.removeAll();
 			if(Application.application.selectedTaxon1!=null) {
 				
-/* 				for each(var c:Object in Application.application.selectedTaxon1.chart) {
-					if(isNaN(c.colorizeColor==NaN) {
-						c.colorizeColor=NaN;
-					}
-				} */
+ 				for each(var c:Object in Application.application.selectedTaxon1.chart) {
+					c.colorizeColor=Application.application.selectedTaxon1.colorizedColor;
+				} 
 				
 				t=Application.application.selectedTaxon1;
 				selectedTaxons.addItem(t);	
 			}if(Application.application.selectedTaxon2!=null){
 				for each(var c1:Object in Application.application.selectedTaxon2.chart) {
-					if(isNaN(c1.colorizeColor)) {
-						c1.colorizeColor=Color.RED;
-					}
+					c1.colorizeColor=Application.application.selectedTaxon2.colorizedColor;
 				}
 				t=Application.application.selectedTaxon2;
 				selectedTaxons.addItem(t);	
 			}if(Application.application.selectedTaxon3!=null){
 				for each(var c2:Object in Application.application.selectedTaxon3.chart) {
-					if(isNaN(c2.colorizeColor)) {
-						c2.colorizeColor=Color.GREEN;
-					}
+					c2.colorizeColor=Application.application.selectedTaxon3.colorizedColor;
 				}
 				t=Application.application.selectedTaxon3;
 				selectedTaxons.addItem(t);	
