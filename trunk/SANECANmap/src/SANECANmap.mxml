@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:maps="com.google.maps.*"
 	 layout="absolute" width="721" height="423" color="#747474" backgroundGradientAlphas="[1.0, 1.0]"
-	 backgroundGradientColors="[#EAF7FA, #E6F7F7]" currentState="loading">
+	 backgroundGradientColors="[#EAF7FA, #E6F7F7]" currentState="loading" xmlns:components="com.google.analytics.components.*">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:SetProperty target="{addressInput}" name="enabled" value="false"/>
@@ -48,6 +48,7 @@
 		
 	
 		private function onMapReady(event:MapEvent):void {
+			tracker.trackPageview("/");
 			//map.setCenter(new LatLng(40.3228,-3.8655),13);
 			var zco:ZoomControlOptions=new ZoomControlOptions({
 				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 12, 12)
@@ -271,4 +272,6 @@
 	<mx:HRule x="0" strokeWidth="1" strokeColor="#C0E7F0" width="100%" top="0"/>
 <!--	<maps:Map id="map" height="326" left="2" right="2" top="72" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRSui_TM3dx1Xffr0c1tcoZScRSfIRSMhmiIWn7Ae8_4g_NWAxgwpf0yAg" 
 		mapevent_mapready="onMapReady(event)"/>	-->
+		
+		<components:FlexTracker id="tracker" mode="AS3" account="UA-6363508-4" visualDebug="false" />
 </mx:Application>
