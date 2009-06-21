@@ -36,6 +36,8 @@
 		private var noTweets:int;
 		private var maxTweetsPerList:int;
 		private var page:int = 0;
+		private var noImages: int = 0;
+		private var arriveImages: int=0;
 		
 		
 		private function init():void {
@@ -81,6 +83,7 @@
 		
 		private function searchTwitter(str:String):void {
 			map.clearOverlays();
+			mamufas.visible=true;
 			next.enabled=false;
 			prev.enabled=false;
 			page=0;
@@ -252,11 +255,13 @@
 				}
 
 			}
-			
+			noImages = 0;
+			arriveImages = 0;
 			for each(var ta:Tweet in allTweets) {
 				if (tweets.length<maxTweetsPerList) {
 					tweets.addItem(ta);
 					dictionary[ta.scientific_name] = ta;
+					noImages++;
 					image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
 					image.query = ta.scientific_name;					
 				}
@@ -271,15 +276,19 @@
 		}
 		
 		private function nextPage():void {
+			mamufas.visible=true;
 			page++;
 			map.clearOverlays();
 			tweets = new ArrayCollection();
 			var endTweets: Boolean=false;
 			var i: int = (page * maxTweetsPerList);
 			var image: FlickrImage = new FlickrImage();
+			noImages=0;
+			arriveImages=0;
 			
 			while (!endTweets) {
 				if (((page*maxTweetsPerList)+maxTweetsPerList>i) && (allTweets.length > i)) {
+					noImages++;
 					tweets.addItem(allTweets[i]);
 					dictionary[allTweets[i].scientific_name] = allTweets[i];
 					image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
@@ -289,7 +298,6 @@
 					endTweets=true;
 				}
 			}
-			//buttons previous and next
 			prev.enabled=true;
 			if (i<allTweets.length) {
 				next.enabled=true;
@@ -299,15 +307,19 @@
 		}
 		
 		private function prevPage():void {
+			mamufas.visible=true;
 			page--;
 			map.clearOverlays();
 			tweets = new ArrayCollection();
 			var endTweets: Boolean=false;
 			var i: int = (page * maxTweetsPerList);
 			var image: FlickrImage = new FlickrImage();
+			noImages=0;
+			arriveImages=0;
 			
 			while (!endTweets) {
 				if (((page*maxTweetsPerList)+maxTweetsPerList>i) && (allTweets.length > i)) {
+					noImages++;
 					tweets.addItem(allTweets[i]);
 					dictionary[allTweets[i].scientific_name] = allTweets[i];
 					image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
@@ -317,7 +329,6 @@
 					endTweets=true;
 				}
 			}
-			//buttons previous and next
 			next.enabled=true;
 			if (page*maxTweetsPerList>0) {
 				prev.enabled=true;
@@ -337,13 +348,20 @@
 				loader.load(new URLRequest(ev.url),null);
 			} else {	
 				addOnMap(tweet.position);
+				arriveImages++;
 			}
 			//delete dictionary[ev.name];	
 		}
 		
 		
 		private function createFlickrMarker(ev:Event):void {
-		
+			
+			//Mamufas for pagination
+			arriveImages++;
+			if (arriveImages>=noImages) {
+				mamufas.visible=false;
+			}
+			
 			var bmd:BitmapData = Bitmap(ev.currentTarget.content).bitmapData;
 			var bmd2:BitmapData = new BitmapData(57,57)
 			var m:Matrix = new Matrix();
@@ -369,11 +387,8 @@
 		    } else {
 			    bbox.extend(latlng);
 			    map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));	
-		    }
-		          
+		    }          
 		}
-
-
 	]]>
 </fx:Script>
 
@@ -388,6 +403,14 @@
 			useHandCursor="true" mouseChildren="false" buttonMode="true" click="searchTwitter(searchInput.text)"/>
 		<s:Button id="next" label="Next" right="5" bottom="5" width="50" enabled="false" click="nextPage()"/>
 		<s:Button id="prev" label="Prev" bottom="5" right="65" width="50" enabled="false" click="prevPage()"/>
+		<s:Rect width="249" bottom="0" height="36" visible="true" id="mamufas" alpha="0.5">
+			<s:fill>
+            	<s:LinearGradient rotation="90">
+                	<s:GradientEntry color="#000000" />
+                	<s:GradientEntry color="#000000" />
+            	</s:LinearGradient>
+        	</s:fill>
+		</s:Rect>
 		<s:List id="repeaterTweets" itemRenderer="TweetItem" top="35" bottom="35" width="100%"  focusColor="#393939" selectionColor="#393939"
 			 symbolColor="#393939" contentBackgroundColor="#393939" rollOverColor="#393939" baseColor="#393939" dataProvider="{tweets}">
 			<s:layout>
