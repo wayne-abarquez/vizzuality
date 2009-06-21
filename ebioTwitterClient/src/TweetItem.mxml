@@ -22,8 +22,8 @@
         </s:fill.hovered>
         <s:fill.selected>
             <s:LinearGradient rotation="90">
-                <s:GradientEntry color="#e3e52f" />
-                <s:GradientEntry color="#d4b538" />
+                <s:GradientEntry color="#fecc04" />
+                <s:GradientEntry color="#c9a206" />
             </s:LinearGradient>
         </s:fill.selected>
     </s:Rect>

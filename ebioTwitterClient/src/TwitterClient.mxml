@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/halo" 
-	xmlns:local="*" minWidth="800" minHeight="600" xmlns:maps="com.google.maps.*">
+	xmlns:local="*" minWidth="800" minHeight="600" xmlns:maps="com.google.maps.*" resize="onResizeApplication(event)">
 	
 <fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
@@ -11,6 +11,7 @@
 
 <fx:Script>
 	<![CDATA[
+		import mx.events.ResizeEvent;
 		import mx.events.FlexEvent;
 		import com.google.maps.overlays.MarkerOptions;
 		import com.google.maps.controls.MapTypeControl;
@@ -26,12 +27,15 @@
 		import com.google.maps.LatLng;
 		
 		[Bindable]public var tweets:ArrayCollection = new ArrayCollection();
+		private var allTweets: ArrayCollection = new ArrayCollection();
 		
 		public var bbox:LatLngBounds;
 		private var flickrImage: FlickrImage = new FlickrImage();
 		private var dictionary: Dictionary = new Dictionary();
 		private var i:int;
-		
+		private var noTweets:int;
+		private var maxTweetsPerList:int;
+		private var page:int = 0;
 		
 		
 		private function init():void {
@@ -50,6 +54,9 @@
 			   });
 			   loader.load(request);	
 			}
+			
+			maxTweetsPerList = repeaterTweets.height / 72;
+			trace(maxTweetsPerList);
 
 			Security.loadPolicyFile("http://flickr.com/crossdomain.xml");
 			map.setCenter(new LatLng(0,0),2,MapType.SATELLITE_MAP_TYPE);
@@ -63,9 +70,21 @@
 			
 			srv.send();
 		}
+
+
+		private function onResizeApplication(event:ResizeEvent):void {
+			//init();
+		}
+		
+		
+		
 		
 		private function searchTwitter(str:String):void {
 			map.clearOverlays();
+			next.enabled=false;
+			prev.enabled=false;
+			page=0;
+			allTweets=new ArrayCollection();
 			tweets=new ArrayCollection();
 			var srv:HTTPService = new HTTPService();
 			srv.resultFormat = "text";
@@ -205,12 +224,12 @@
                 
 		private function onResult(event:ResultEvent):void {
 			var resOb:Object = JSON.decode(event.result as String);
+			tweets = new ArrayCollection();
 			var image: FlickrImage = new FlickrImage();
 			connectLabel.visible = false;
 			i=0;
 			for each(var t:Object in resOb.results) {
 				if ((t.text as String).toLowerCase().indexOf("#ebio observation:")>=0) {
-					i = i + 1;
 					
 					var tweet:Tweet = new Tweet();
 					
@@ -228,22 +247,84 @@
 					tweet.source = t.source;
 					tweet.url_image = null;
 					
-					if (i<6) {	
-						dictionary[tweet.scientific_name] = tweet;
-						image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
-						image.query = tweet.scientific_name;
-					} else {
-						addOnMap(tweet.position);						
-					}
-					tweets.addItem(tweet);
+					allTweets.addItem(tweet);
 					
 				}
 
 			}
+			
+			for each(var ta:Tweet in allTweets) {
+				if (tweets.length<maxTweetsPerList) {
+					tweets.addItem(ta);
+					dictionary[ta.scientific_name] = ta;
+					image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
+					image.query = ta.scientific_name;					
+				}
+			}
+			
+			if (tweets.length<allTweets.length) {
+				next.enabled=true;
+			}
+			
 			repeaterTweets.dataProvider=tweets;
 			map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));
 		}
 		
+		private function nextPage():void {
+			page++;
+			map.clearOverlays();
+			tweets = new ArrayCollection();
+			var endTweets: Boolean=false;
+			var i: int = (page * maxTweetsPerList);
+			var image: FlickrImage = new FlickrImage();
+			
+			while (!endTweets) {
+				if (((page*maxTweetsPerList)+maxTweetsPerList>i) && (allTweets.length > i)) {
+					tweets.addItem(allTweets[i]);
+					dictionary[allTweets[i].scientific_name] = allTweets[i];
+					image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
+					image.query = allTweets[i].scientific_name;										
+					i++;
+				} else {
+					endTweets=true;
+				}
+			}
+			//buttons previous and next
+			prev.enabled=true;
+			if (i<allTweets.length) {
+				next.enabled=true;
+			} else {
+				next.enabled=false;
+			}
+		}
+		
+		private function prevPage():void {
+			page--;
+			map.clearOverlays();
+			tweets = new ArrayCollection();
+			var endTweets: Boolean=false;
+			var i: int = (page * maxTweetsPerList);
+			var image: FlickrImage = new FlickrImage();
+			
+			while (!endTweets) {
+				if (((page*maxTweetsPerList)+maxTweetsPerList>i) && (allTweets.length > i)) {
+					tweets.addItem(allTweets[i]);
+					dictionary[allTweets[i].scientific_name] = allTweets[i];
+					image.addEventListener(FlickrImageEvent.IMAGE_URL,getURLImage);
+					image.query = allTweets[i].scientific_name;										
+					i++;
+				} else {
+					endTweets=true;
+				}
+			}
+			//buttons previous and next
+			next.enabled=true;
+			if (page*maxTweetsPerList>0) {
+				prev.enabled=true;
+			} else {
+				prev.enabled=false;
+			}
+		}
 		
 		private function getURLImage(ev:FlickrImageEvent):void {
 			var tweet: Tweet = new Tweet();			
@@ -254,11 +335,10 @@
 				var loader : Loader = new Loader();
 				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createFlickrMarker,false,0,true);
 				loader.load(new URLRequest(ev.url),null);
-			} else {
-				
+			} else {	
 				addOnMap(tweet.position);
 			}
-			delete dictionary[ev.name];	
+			//delete dictionary[ev.name];	
 		}
 		
 		
@@ -285,16 +365,15 @@
 		    var marker:Marker = new Marker(latlng, new MarkerOptions({draggable:false,icon: iconBitmap}));
 	   	 	map.addOverlay(marker);
 		    if (i==1) {
-		    	map.setCenter(latlng,17);
+		    	map.setCenter(latlng,5);
 		    } else {
 			    bbox.extend(latlng);
 			    map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));	
 		    }
 		          
 		}
-		 
 
-		
+
 	]]>
 </fx:Script>
 
@@ -305,11 +384,12 @@
 
 		<s:TextInput id="searchInput" x="9" y="7" contentBackgroundColor="#FFFFFF" color="#858484" width="175" height="25" fontStyle="italic" 
 			enter="searchTwitter(searchInput.text)" focusColor="#FFFFFF" selectionColor="#FFFFFF" baseColor="#FFFFFF"/>
-		<mx:Label x="188" y="9" text="search" fontSize="13" color="#FFFFFF" textDecoration="underline"/>
-		<s:Button label="Next" right="5" bottom="5" width="50" enabled="false"/>
-		<s:Button label="Prev" bottom="5" right="65" width="50" enabled="false"/>
+		<mx:Label x="188" y="9" text="search" fontSize="13" color="#FFFFFF" textDecoration="underline" 
+			useHandCursor="true" mouseChildren="false" buttonMode="true" click="searchTwitter(searchInput.text)"/>
+		<s:Button id="next" label="Next" right="5" bottom="5" width="50" enabled="false" click="nextPage()"/>
+		<s:Button id="prev" label="Prev" bottom="5" right="65" width="50" enabled="false" click="prevPage()"/>
 		<s:List id="repeaterTweets" itemRenderer="TweetItem" top="35" bottom="35" width="100%"  focusColor="#393939" selectionColor="#393939"
-			 symbolColor="#393939" contentBackgroundColor="#393939" rollOverColor="#393939" baseColor="#393939">
+			 symbolColor="#393939" contentBackgroundColor="#393939" rollOverColor="#393939" baseColor="#393939" dataProvider="{tweets}">
 			<s:layout>
 				<s:VerticalLayout id="verticalLayout" gap="0"/>				
 			</s:layout>
