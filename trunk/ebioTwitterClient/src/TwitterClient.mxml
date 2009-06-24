@@ -453,17 +453,19 @@
 	</s:Rect>
 	
 	<maps:Map id="map" height="100%" width="100%" key="lala"  left="250" mapevent_mapready="init()"/>
+	<mx:Image source="@Embed('/logoMapVizz.png')" bottom="5" left="320"/>
 	<s:Group width="250" left="0" top="0" bottom="0" fontFamily="Verdana" fontSize="11" contentBackgroundColor="#393939" baseColor="#393939" 
 		focusColor="#393939" selectionColor="#393939" symbolColor="#393939" rollOverColor="#393939">
 		
 		<!--logos here Sergio!!!!!!-->
+		<mx:Image source="@Embed('/caca.png')" left="10" top="9"/>
 		
-		<mx:Label right="66" text="LATEST OBSERVATIONS OF" y="164" fontSize="13" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" letterSpacing="-1"/>
-		<local:AHTextInput id="cf" right="10" left="10" y="185" styleName="textInput" height="30" contentBackgroundColor="#FFFFFF" color="#727272" fontStyle="italic"
-			enter="searchTwitter(cf.text)"  baseColor="#FFFFFF"/>
-		<mx:Label x="189" y="192" text="search" fontSize="13" color="#333333" textDecoration="underline" 
+		<mx:Label text="LATEST OBSERVATIONS OF" fontSize="13" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" letterSpacing="-1" left="10" top="100" width="174"/>
+		<local:AHTextInput id="cf" right="10" left="10" styleName="textInput" height="30" contentBackgroundColor="#FFFFFF" color="#727272" fontStyle="italic"
+			enter="searchTwitter(cf.text)"  baseColor="#FFFFFF" top="120"/>
+		<mx:Label x="190" y="128" text="search" fontSize="13" color="#333333" textDecoration="underline" 
 			useHandCursor="true" mouseChildren="false" buttonMode="true" click="searchTwitter(cf.text)" fontFamily="Helvetica" fontWeight="bold"/>
-		<s:List id="repeaterTweets" itemRenderer="TweetItem" top="220" bottom="35" width="100%"  focusColor="#393939" selectionColor="#393939"
+		<s:List id="repeaterTweets" itemRenderer="TweetItem" top="160" bottom="35" width="100%"  focusColor="#393939" selectionColor="#393939"
 			 symbolColor="#393939" contentBackgroundColor="#393939" rollOverColor="#393939" baseColor="#393939" dataProvider="{tweets}">
 			<s:layout>
 				<s:VerticalLayout id="verticalLayout" gap="0"/>				
@@ -479,8 +481,8 @@
 		</s:Rect>-->
 		<mx:Label id="pagination" fontSize="13" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" letterSpacing="-1" bottom="9" left="5"/>
 		<s:Group id="mamufas" visible="false" bottom="0" right="0">
-			<s:Button id="next" label="Next" right="8" bottom="8" width="50" enabled="false" click="nextPage()"/>
-			<s:Button id="prev" label="Prev" bottom="8" right="62" width="50" enabled="false" click="prevPage()"/>			
+			<s:Button id="next" label="Next" right="8" bottom="8" width="50" enabled="false" click="nextPage()" focusColor="#969595" baseColor="#606060"/>
+			<s:Button id="prev" label="Prev" bottom="8" right="62" width="50" enabled="false" click="prevPage()" focusColor="#969595" baseColor="#606060"/>			
 		</s:Group>
 	</s:Group>
 	<s:TextArea id="connectLabel" text="conecting server..." right="0" top="0" x="690" width="110" contentBackgroundColor="#ffffcc" height="20" fontSize="12" 
