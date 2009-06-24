@@ -9,8 +9,9 @@ package
 	public class FlickrImage extends UIComponent
 	{
 
-		public function FlickrImage() {
-			
+		public var user: String;
+
+		public function FlickrImage() {	
 		}
 		
 		public function set query(value:Object):void {
@@ -37,15 +38,15 @@ package
 			taxon=taxon.replace("%20"," ");	
         	
             if (arr.length == 0) {
-        		//poner una image de no encontrado
             	ev.url = null;
             	ev.name = taxon;
+            	ev.user = user;
             	dispatchEvent(ev);       		
             } else {
-            	//poner una imagen guay, y cargarla en el diccionario.
             	var url:String="http://farm" + arr[0].farm + ".static.flickr.com/" +  arr[0].server + "/" +  arr[0].id + "_" +  arr[0].secret + "_s.jpg";
             	ev.url = url;
             	ev.name = taxon;
+            	ev.user = user;
             	dispatchEvent(ev); 
             }                                   
         }          	
