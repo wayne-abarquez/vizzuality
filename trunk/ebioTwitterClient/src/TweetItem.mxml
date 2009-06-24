@@ -31,7 +31,10 @@
   
      <s:Rect height="100%" width="100%">
         <s:fill>
-            <s:SolidColor color="{contentBackgroundColor}" />
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="#4a4a4a" />
+                <s:GradientEntry color="#3f3f3f" />
+            </s:LinearGradient>
         </s:fill>
         <s:fill.hovered>
             <s:LinearGradient rotation="90">
@@ -60,11 +63,12 @@
 	  <mx:Image source="{data.profile_image_url}" width="51" height="51" verticalCenter="0" horizontalCenter="0"/> 	
   </s:Group>
   
-  <s:VGroup y="8" height="58" x="70" left="70" right="5" gap="-1">
-	<s:SimpleText text="{data.created_at}" color="#989898" fontSize="10" fontFamily="Helvetica" color.hovered="#4C4C4C" color.selected="#4C4C4C"/>
-	<s:SimpleText text="{data.scientific_name}" verticalAlign="middle" 
+  <s:VGroup y="11" height="58" x="70" left="70" right="5" gap="-1">
+	<s:SimpleText text="{data.created_at}" color="#989898" fontSize="11" fontFamily="Helvetica" color.hovered="#2e2e2e" color.selected="#2e2e2e"/>
+	<s:SimpleText height="7"/>
+	<s:SimpleText text="{data.scientific_name}" verticalAlign="middle"
 		color="#FFFFFF" fontSize="14" fontFamily="Helvetica"  fontWeight="bold" height="23" width="100%"/>
-	<s:SimpleText text="{data.from_user}" height="12" color="#ffd200" fontSize="11" width="100%" color.selected="#FFF6CE" color.hovered="#FFF6CE"/>		  	
+	<s:SimpleText text="{data.from_user}" height="12" color="#ffd200" fontSize="11" width="100%" color.selected="#f7eec2" color.hovered="#f7eec2"/>		  	
   </s:VGroup>
 
 </s:ItemRenderer>

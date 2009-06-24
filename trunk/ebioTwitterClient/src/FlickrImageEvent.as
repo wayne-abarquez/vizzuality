@@ -8,6 +8,7 @@ package
 		
 		public var url: String;
 		public var name:String;
+		public var user:String;
 
 		
 		public function FlickrImageEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
