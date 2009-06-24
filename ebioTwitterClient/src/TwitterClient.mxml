@@ -477,7 +477,7 @@
             	</s:LinearGradient>
         	</s:fill>
 		</s:Rect>-->
-		<mx:Label id="pagination" fontSize="13" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" letterSpacing="-1" bottom="7" left="5"/>
+		<mx:Label id="pagination" fontSize="13" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" letterSpacing="-1" bottom="9" left="5"/>
 		<s:Group id="mamufas" visible="false" bottom="0" right="0">
 			<s:Button id="next" label="Next" right="8" bottom="8" width="50" enabled="false" click="nextPage()"/>
 			<s:Button id="prev" label="Prev" bottom="8" right="62" width="50" enabled="false" click="prevPage()"/>			
