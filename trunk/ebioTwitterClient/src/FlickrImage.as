@@ -30,6 +30,7 @@ package
         	var taxon: String;
         	var start: int;
         	var str: String = event.target.url;
+
         	
         	start=str.indexOf("&text=");
 			taxon=str.substring(start+6,str.length);

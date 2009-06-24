@@ -11,6 +11,13 @@
 
 <fx:Script>
 	<![CDATA[
+		import flash.net.navigateToURL;
+		import com.google.maps.MapMouseEvent;
+		import com.google.maps.styles.StrokeStyle;
+		import com.google.maps.InfoWindowOptions;
+		import mx.effects.Tween;
+		import com.google.maps.controls.ControlPosition;
+		import com.google.maps.controls.ZoomControlOptions;
 		import mx.events.ResizeEvent;
 		import mx.events.FlexEvent;
 		import com.google.maps.overlays.MarkerOptions;
@@ -38,9 +45,12 @@
 		private var page:int = 0;
 		private var noImages: int = 0;
 		private var arriveImages: int=0;
+		public var picturesInfoWindows:Dictionary = new Dictionary(true);
+		public var picturesIdInfoWindows:Dictionary = new Dictionary(true);
 		
 		
 		private function init():void {
+			
 			var externalDomains:Array=[
 			"farm1.static.flickr.com",
 			"farm2.static.flickr.com",
@@ -61,8 +71,11 @@
 			trace(maxTweetsPerList);
 
 			Security.loadPolicyFile("http://flickr.com/crossdomain.xml");
-			map.setCenter(new LatLng(0,0),2,MapType.SATELLITE_MAP_TYPE);
-			map.addControl(new ZoomControl());
+			map.setCenter(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
+			var zco:ZoomControlOptions=new ZoomControlOptions({
+                                position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 12, 12)
+                        });
+			map.addControl(new ZoomControl(zco));
 			map.addControl(new MapTypeControl());
 			bbox= new LatLngBounds();
 			var srv:HTTPService = new HTTPService();
@@ -363,24 +376,42 @@
 			}
 			
 			var bmd:BitmapData = Bitmap(ev.currentTarget.content).bitmapData;
-			var bmd2:BitmapData = new BitmapData(57,57)
+			var bmd2:BitmapData = new BitmapData(34,34)
 			var m:Matrix = new Matrix();
-			m.scale(0.81,0.81);
+			m.scale(0.50,0.50);
 			bmd2.draw(bmd,m);	
 			var sp:Sprite= new Sprite();
 			           sp.graphics.lineStyle(4,0xffcc00);
 			           sp.graphics.beginFill(0xffcc00,0);
-			           sp.graphics.drawRect(0,0,56,56);
+			           sp.graphics.drawRect(0,0,34,34);
 			           sp.graphics.endFill();
 			           bmd2.draw(sp);
 			
 			var iconBitmap:Bitmap= new Bitmap(bmd2);
 			
 			var latlng: LatLng;
-			var tweet : Tweet = new Tweet();
-			tweet = dictionary[ev.target.url];
+			var tweet : Tweet = dictionary[ev.target.url] as Tweet;
 			latlng = tweet.position;
+		    
+		    
 		    var marker:Marker = new Marker(latlng, new MarkerOptions({draggable:false,icon: iconBitmap}));
+			var optionsMark:InfoWindowOptions = new InfoWindowOptions({
+                    customContent: ev.target.loader,
+                    strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
+                    customOffset: new Point(0, 10),
+                    cornerRadius:0,
+                    hasShadow:false,
+                    width: bmd.width,
+                    height: bmd.height,
+                    drawDefaultFrame: true                                  
+                            });		    
+            picturesInfoWindows[marker]=optionsMark;
+            picturesIdInfoWindows[tweet.id]=marker;
+            marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
+                    marker.openInfoWindow(optionsMark);  
+                    map.panTo(e.latLng);   
+            });  		    
+		    
 	   	 	map.addOverlay(marker);
 		    if (i==1) {
 		    	map.setCenter(latlng,5);
@@ -395,7 +426,7 @@
 	<fx:Style source="TwitterClient.css"/>
 
 	<maps:Map id="map" height="100%" width="100%" key="lala"  left="250" mapevent_mapready="init()"/>
-	<s:Panel width="250" title="Tweets on Biodiversity" left="0" top="0" bottom="0" contentBackgroundColor="#393939" baseColor="#5B5B5B" color="#FEFEFE" fontFamily="Verdana" fontSize="11">
+	<s:Panel width="250" title="Tweets on #ebio #observation" left="0" top="0" bottom="0" contentBackgroundColor="#393939" baseColor="#5B5B5B" color="#FEFEFE" fontFamily="Verdana" fontSize="11">
 
 		<s:TextInput id="searchInput" x="9" y="7" contentBackgroundColor="#FFFFFF" color="#858484" width="175" height="25" fontStyle="italic" 
 			enter="searchTwitter(searchInput.text)" focusColor="#FFFFFF" selectionColor="#FFFFFF" baseColor="#FFFFFF"/>
