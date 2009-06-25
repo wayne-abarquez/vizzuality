@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:comp="com.vizzuality.components.*" creationComplete="onCreationComplete()" height="100%" width="100%" backgroundColor="#4a4a4a">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:comp="com.vizzuality.components.*" creationComplete="onCreationComplete()" backgroundColor="#4a4a4a">
 	
 	<!--<mx:states>
 		<mx:State name="geolocation" enterState="geolocalizationPanel.refreshMarkers()" >
@@ -245,16 +245,17 @@
 		
 	
 	<mx:VBox height="100%" width="100%">
-		<mx:HBox width="100%" height="6%" verticalAlign="middle" paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5">		
+		<mx:HBox width="100%" height="35" verticalAlign="middle" paddingLeft="5" paddingRight="5" paddingTop="5">		
 			<mx:HBox horizontalAlign="left" verticalAlign="middle" width="50%">			
-				<mx:Button label="Add Images" click="selectImageFile(fileToOpen)" />
+				<mx:Button label="Add Images" click="selectImageFile(fileToOpen)"  styleName="JamCreation"/>
 			</mx:HBox>
 			<mx:HBox horizontalAlign="right" verticalAlign="middle" width="50%">	
-				<mx:Button label="Delete All" click="confirmDelete()"/>
-				<mx:Button label="Upload All" click="confirmUpdate()"/>
+				<mx:Button label="Delete All" click="confirmDelete()" styleName="JamCreation"/>
+				<mx:Button label="Upload All" click="confirmUpdate()" styleName="JamCreation"/>
 			</mx:HBox>	
 		</mx:HBox>
 		<mx:TileList selectionColor="#4a4a4a" selectionDisabledColor="#4a4a4a" rollOverColor="#4a4a4a" id="tilelist"  dataProvider="{sqlArray}"
-		itemRenderer="com.vizzuality.components.ImageRenderer" borderThickness="1" width="100%" height="94%" borderColor="#A7ABAE" backgroundColor="#4A4A4A" alpha="1.0" themeColor="#4A4A4A"/>			
+			itemRenderer="com.vizzuality.components.ImageRenderer" borderThickness="0.5" width="100%" height="100%" borderColor="#999999" backgroundColor="#4A4A4A" themeColor="#4A4A4A"/>			
 	</mx:VBox>
+	
 </mx:Canvas>
