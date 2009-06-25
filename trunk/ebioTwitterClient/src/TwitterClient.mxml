@@ -452,7 +452,8 @@
     	</s:fill>
 	</s:Rect>
 	
-	<maps:Map id="map" height="100%" width="100%" key="lala"  left="250" mapevent_mapready="init()"/>
+	<maps:Map id="map" height="100%" width="100%" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQ90078BGwgMQ1AXXdPNoLNuCNk4hQ4ed9_s377T8EfU8iTpdFjsz8dgA"  left="250" mapevent_mapready="init()"/>
+
 	<mx:Image source="@Embed('/logoMapVizz.png')" bottom="5" left="320"/>
 	<s:Group width="250" left="0" top="0" bottom="0" fontFamily="Verdana" fontSize="11" contentBackgroundColor="#393939" baseColor="#393939" 
 		focusColor="#393939" selectionColor="#393939" symbolColor="#393939" rollOverColor="#393939">
