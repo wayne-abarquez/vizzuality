@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="720" width="506" creationComplete="	currentState='checkingtoken'" 
-	title="Vizzuality Image Tagger App" xmlns:comp="com.vizzuality.components.*"  xmlns:comps="com.adobe.webapis.flickr.authorization.*" minHeight="720" minWidth="506" borderColor="#B6ABAB" 
-	backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#2E2E2E, #2E2E2E]">
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" height="720" width="509" creationComplete="	currentState='checkingtoken'" 
+	title="Vizzuality Image Tagger App" xmlns:comp="com.vizzuality.components.*"  xmlns:comps="com.adobe.webapis.flickr.authorization.*" minHeight="720" minWidth="509" borderColor="#B6ABAB" 
+	backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#464646, #333333]">
 	
 	<mx:Script>
 		<![CDATA[
@@ -37,18 +37,21 @@
 			}
 		]]>
 	</mx:Script>
-	<mx:Label text="GBIF" fontSize="15" fontWeight="bold" color="#F2F6F7" left="10" top="10"/>
-	<mx:Label text="Image Tagger" fontSize="19" color="#3AD541" left="53" top="6"/>
-	<mx:Label text="close X" id="goOut" click="NativeApplication.nativeApplication.exit()" right="10" top="10" width="54" height="25" color="#DFE2E3" fontSize="12"/>
-	<mx:Label text="HELP" right="20" top="68" width="44" color="#CED0D1" fontSize="12" id="label1" textAlign="center"/>
+	
+	<mx:Style source="com/vizzuality/skin/fonts.css"/>
+	
+	<mx:Label text="GBIF" fontSize="14" fontWeight="normal" color="#F2F6F7" left="65" top="12" fontFamily="DINOT-Bold"/>
+	<mx:Label text="IMAGE TAGGER" fontSize="18" color="#99cc00" left="65" top="25" fontFamily="DINOT-Bold" letterSpacing="-1"/>
+	<mx:Label text="close x" id="goOut" click="NativeApplication.nativeApplication.exit()" right="10" top="10" width="54" 
+		height="25" color="#999999" fontSize="12" mouseChildren="false" useHandCursor="true" buttonMode="true" fontFamily="DINOT-Bold"  textAlign="right" fontWeight="normal"/>
+	<mx:Image top="10" left="15" source="@Embed('/com/vizzuality/assets/GBIF_logo.png')" width="47" height="44"/>
 	
 	<mx:states>
 		<mx:State name="imagetagger">
 			<mx:AddChild>
-				<comp:PrincipalView id="principalView"/>
+				<comp:PrincipalView id="principalView" left="6" right="6" top="70" bottom="25"/>
 			</mx:AddChild>
-			<mx:SetStyle target="{label1}" name="textAlign" value="center"/>
-			<mx:SetStyle target="{label1}" name="top" value="50"/>
+			<mx:SetProperty name="height" value="674"/>
 		</mx:State>
 		<mx:State name="checkingtoken">
 			<mx:AddChild>
@@ -56,13 +59,11 @@
 			</mx:AddChild>
 			<mx:SetStyle name="backgroundGradientAlphas" value="[1.0, 1.0]"/>
 			<mx:RemoveChild target="{goOut}"/>
-			<mx:RemoveChild target="{label1}"/>
 		</mx:State>
 		<mx:State name="authorizationFlickr">
 			<mx:AddChild>
 				<comps:AuthorizationView id="authorization" color="#F6F8F9" horizontalCenter="0" width="95%" top="70" bottom="15"/>
 			</mx:AddChild>
-			<mx:SetStyle target="{label1}" name="top" value="50"/>
 			<mx:SetStyle name="backgroundColor" value="#2E2E2E"/>
 		</mx:State>
 	</mx:states>
