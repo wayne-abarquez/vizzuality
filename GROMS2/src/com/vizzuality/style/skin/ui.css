@@ -6,7 +6,7 @@ global{
 	modalTransparencyDuration: 100;
 }
 
-TitleWindow
+/* TitleWindow
 {
 	fontFamily: "DINOT-Medium";
 	borderColor: #FFFFFF;
@@ -17,7 +17,7 @@ TitleWindow
 	controlBarStyleName: titleWindowControlBar;
 	backgroundColor: #3B3B3B;
 	backgroundAlpha: 0.44;
-}
+} */
 ToolTip
 {
 	backgroundColor: #3C3C3C;
@@ -354,7 +354,7 @@ HSlider{
 
 
 
-CheckBox{
+/* CheckBox{
 	disabledIcon: Embed(source="ui.swf", symbol="CheckBox_disabledIcon");
 	downIcon: Embed(source="ui.swf", symbol="CheckBox_downIcon");
 	overIcon: Embed(source="ui.swf", symbol="CheckBox_overIcon");
@@ -373,9 +373,9 @@ CheckBox{
 	horizontalGap:0;
 	paddingTop: -4;
 	paddingBottom: 0;
-}	
+}	 */
 
-RadioButton{
+/* RadioButton{
 	disabledIcon: Embed(source="ui.swf", symbol="RadioButton_disabledIcon");
 	downIcon: Embed(source="ui.swf", symbol="RadioButton_downIcon");
 	overIcon: Embed(source="ui.swf", symbol="RadioButton_overIcon");
@@ -394,7 +394,7 @@ RadioButton{
 	horizontalGap:0;
 	paddingTop: -1;
 	paddingBottom: 0;
-}
+} */
 
 ComboBox.lenguageDark{
 	disabledSkin: Embed(source="ui.swf", symbol="ComboBoxArrow_disabledSkin");
