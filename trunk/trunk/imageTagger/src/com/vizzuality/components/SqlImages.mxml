@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:comp="com.vizzuality.components.*" creationComplete="onCreationComplete()" backgroundColor="#4a4a4a">
 	
-	<!--<mx:states>
-		<mx:State name="geolocation" enterState="geolocalizationPanel.refreshMarkers()" >
-			<mx:AddChild>				
-				<comp:GeolocationPanel id="geolocalizationPanel" verticalCenter="0" horizontalCenter="0"/>
-			</mx:AddChild>
-		</mx:State>
-	</mx:states>-->
 		
 	<mx:Script>
 		<![CDATA[
