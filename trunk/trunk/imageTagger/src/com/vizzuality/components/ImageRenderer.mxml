@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
-        width="226" height="160" color="#040404" creationComplete="initRenderer()" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.components.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="170" color="#040404" creationComplete="initRenderer()" verticalScrollPolicy="off" 
+	horizontalScrollPolicy="off" xmlns:components="com.vizzuality.components.*" verticalCenter="0" horizontalCenter="0" top="3">
         
         <mx:states>
                 <mx:State name="uploadImage">
@@ -37,6 +37,16 @@
 	                        this.outerList = (this.parentDocument as SqlImages).tilelist;
 	                        this.outerList.addEventListener(ListEvent.CHANGE, updateSelected); 
 	                        this.addEventListener(FlexEvent.DATA_CHANGE, checkSelected);
+			                var glow:GlowFilter = new GlowFilter();
+
+			                glow.color = 0x000000;
+			                glow.alpha = 0.4;
+			                glow.blurX = 3;
+			                glow.blurY = 3;
+			                glow.strength =5;
+			                glow.quality = BitmapFilterQuality.HIGH;
+			
+			                itemSpace.filters = [glow];
 	                     }
 	                     
 	                     override public function set data(d:Object):void{
@@ -56,7 +66,7 @@
                         
                         private function changeColorInput():void {
                                 if(scientificNameInput.text =='' || scientificNameInput.text =='Tag this image!') {
-                                        scientificNameInput.setStyle("borderColor","#E30F04");
+                                        scientificNameInput.setStyle("borderColor","#f65951");
                                 } else {
                                         scientificNameInput.setStyle("borderColor","#5def0d");
                                 }
@@ -86,8 +96,7 @@
                                         del.enabled=false;
                                         flickrButton.enabled = false;
                                         geoButton.enabled = false;
-                                        canvas2.setStyle("backgroundAlpha","0.6");
-                                		canvas2.setStyle("backgroundColor","#0F0E0E");
+                                		canvas2.enabled=false;
                                         var upFlick: FlickrUploadService = new FlickrUploadService();
                                         upFlick.resolveTagsFlickr(data.path,scientificNameInput.text);
                                 }
@@ -99,7 +108,7 @@
                         
                         private function overImage():void {
                                 canvas2.setStyle("backgroundAlpha","0.6");
-                                canvas2.setStyle("backgroundColor","#0F0E0E");
+                                canvas2.setStyle("backgroundColor","#000000");
                         }
                         private function outImage():void {
                                 canvas2.setStyle("backgroundAlpha","0");
@@ -121,24 +130,30 @@
                         }
                 ]]>
         </mx:Script>
-        <mx:VBox width="100%" height="100%">
-                <mx:HBox width="100%" height="26" verticalAlign="middle" horizontalAlign="center">
-                        <mx:TextInput id="scientificNameInput" text="{data.scientific==null?'Tag this image!':data.scientific}" click="changeScientificName()" change="updateScientificName()" 
-                                textAlign="left" width="168" backgroundAlpha="0.0" color="#EFEBEB" creationComplete="changeColorInput()" borderColor="#E29390" height="21" 
-                                enter="changeTaxonomy()" borderStyle="solid" borderThickness="1"/>
-                        <mx:Button label="x" fontSize="7" click="eraseImage()" width="32" id="del"/>                        
-                </mx:HBox>
-                <mx:HBox width="100%" height="80%" id="hbox1" horizontalAlign="center" verticalAlign="middle">
-                        <mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="207" height="100%" id="canvas1"  mouseOver="overImage()" mouseOut="outImage()" borderThickness="1" borderColor="0">
-                                <components:CroppedImage pathImage="{data.path}" verticalCenter="0" horizontalCenter="0" />
-                                <mx:Canvas  id="canvas2" width="207" height="103" backgroundAlpha="0.0" horizontalCenter="0">
-                                	
-                                </mx:Canvas>
-                        </mx:Canvas> 
-                </mx:HBox>
-                <mx:HBox width="100%" height="23" horizontalAlign="center">
-                        <mx:Button x="133" y="26" label="Upload to Flickr" fontSize="8" click="uploadImage()" width="98" id="flickrButton"/>
-                        <mx:Button x="79" y="26" label="Georeference" fontSize="8" click="(this.parentDocument as SqlImages).geolocationState(scientificNameInput.text,data.path)" width="98" id="geoButton"/>     
-                </mx:HBox>
-        </mx:VBox>
+        
+        <mx:Canvas id="itemSpace" height="160" width="228" verticalScrollPolicy="off" horizontalScrollPolicy="off" horizontalCenter="0" verticalCenter="0" borderStyle="solid" 
+        	borderColor="#A1A0A0" borderThickness="0.5" backgroundColor="#434343">
+	        <mx:VBox width="100%" height="100%" verticalGap="4" paddingTop="4" paddingBottom="2">
+	                <mx:HBox width="100%" height="21" verticalAlign="middle" horizontalAlign="center" horizontalGap="3" paddingLeft="4" paddingRight="4">
+	                        <mx:TextInput id="scientificNameInput" text="{data.scientific==null?'Tag this image!':data.scientific}" click="changeScientificName()" change="updateScientificName()" 
+	                                textAlign="left" width="100%" backgroundAlpha="0.0" color="#EFEBEB" creationComplete="changeColorInput()" borderColor="#F65951" height="21" 
+	                                enter="changeTaxonomy()" borderStyle="solid" fontFamily="DINOT-Bold" borderThickness="0.5" fontSize="12" paddingLeft="2"/>
+	                        <mx:Button label="x" fontSize="10" click="eraseImage()" width="21" id="del" styleName="itemButton" height="21"/>                        
+	                </mx:HBox>
+	                <mx:HBox width="100%" height="80%" id="hbox1" horizontalAlign="center" verticalAlign="middle" verticalGap="0">
+	                        <mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="100%" id="canvas1"  mouseOver="overImage()" 
+	                        	mouseOut="outImage()" borderThickness="1" borderColor="0">
+	                                <components:CroppedImage pathImage="{data.path}" verticalCenter="0" horizontalCenter="0"/>
+	                                <mx:Canvas id="canvas2" height="100%" borderStyle="solid" right="4" left="4" styleName="Mamufas" />
+	                        </mx:Canvas> 
+	                </mx:HBox>
+	                <mx:HBox width="100%" height="23" verticalCenter="0" horizontalAlign="center" paddingLeft="4" paddingRight="4" horizontalGap="4">
+	                        <mx:Button label="Upload to Flickr" fontSize="10" click="uploadImage()" width="100%" id="flickrButton" height="21" 
+	                        	styleName="itemButton" icon="@Embed('/com/vizzuality/assets/logo_flickr.png')"/>
+	                        <mx:Button label="Georeference" click="(this.parentDocument as SqlImages).geolocationState(scientificNameInput.text,data.path)" 
+	                        	width="100%" id="geoButton" height="21" styleName="itemButton" icon="@Embed('/com/vizzuality/assets/world.png')"/>     
+	                </mx:HBox>
+	        </mx:VBox>   	
+        </mx:Canvas>
+        
 </mx:Canvas>

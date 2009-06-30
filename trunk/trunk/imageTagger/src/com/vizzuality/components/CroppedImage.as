@@ -67,9 +67,9 @@ package com.vizzuality.components
 			var startPoint:Point = new Point(((newWidth/2)-103), ((newHeight/2)-51));
 			
 			
-			var newBitmapData:BitmapData = new BitmapData(207,103);
+			var newBitmapData:BitmapData = new BitmapData(218,103);
 			newBitmapData.copyPixels(bmd2, 
-				new Rectangle(startPoint.x, startPoint.y, 207, 103), 
+				new Rectangle(startPoint.x, startPoint.y, 218, 103), 
                 new Point(0,0));
                 
           	source = new Bitmap(newBitmapData);     
