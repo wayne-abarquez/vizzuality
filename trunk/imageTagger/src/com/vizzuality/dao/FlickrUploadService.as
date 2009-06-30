@@ -75,7 +75,6 @@ package com.vizzuality.dao
 		
 		
 		private function onResult(ev: DataEvent):void {
-			trace("algo");
 			var xml: XML = new XML(ev.data);
 			var photoID: String = "";
 		   	for each( var id:XML in xml..photoid ) {
