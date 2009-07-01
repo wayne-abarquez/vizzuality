@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="344" height="462" xmlns:components="com.vizzuality.components.*" 
+	verticalScrollPolicy="off" horizontalScrollPolicy="off">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			[Bindable]public var animalName: String;
+			[Bindable]public var animalPath: String;
+			
+			public function closeForm():void {
+		    	PopUpManager.removePopUp(this);
+		    }
+		]]>
+	</mx:Script>	
+
+    <mx:TabNavigator id="viewStack"
+    	width="100%" height="100%" y="0" x="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="TabNavigatorFlickrTagger">
+
+        <mx:Form label="Taxonomy Panel" x="0" y="0" paddingTop="0" paddingRight="0" paddingLeft="0" paddingBottom="0" 
+        	verticalScrollPolicy="off" horizontalScrollPolicy="off" backgroundColor="#4F4C4C">
+            <components:TaxonomyPanel animalName="{animalName}" animalPath="{animalPath}" x="0" y="0" width="100%" height="100%"/>
+        </mx:Form>
+
+        <mx:Form label="Georeference your image" paddingBottom="0" paddingLeft="0" paddingRight="0" paddingTop="0" 
+        	verticalScrollPolicy="off" horizontalScrollPolicy="off" backgroundColor="#4F4C4C">
+            <components:GeolocationPanel animalName="{animalName}" animalPath="{animalPath}" x="0" y="0" width="100%" height="100%"/>
+        </mx:Form>
+
+    </mx:TabNavigator>
+
+</mx:Canvas>
