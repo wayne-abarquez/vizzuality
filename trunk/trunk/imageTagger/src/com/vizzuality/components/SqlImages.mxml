@@ -4,6 +4,7 @@
 		
 	<mx:Script>
 		<![CDATA[
+			import mx.containers.TabNavigator;
 			import com.vizzuality.dao.FlickrUploadService;
 			import mx.states.AddChild;
 			import mx.events.CloseEvent;
@@ -46,8 +47,7 @@
 			
 			private var path: String;
 			private var scientific: String;
-			public var geo:Object = new Object(); 
-			public var geoPop:IFlexDisplayObject;
+			private var tabPanel: TabNavigatorForm
 			//public var uploadedImage: Boolean = false;
 			
 			private var taxonomyResolutionService:TaxonomyResolutionService;
@@ -194,15 +194,6 @@
 					Application.application.deletingAllPictures=false;
 		  		}
 		   }
-		   
-		   
-		   public function geolocationState(name:String,path:String):void {
-				Application.application.animalName = name;
-				Application.application.imagePath = path;
-	   			geoPop = PopUpManager.createPopUp(this, GeolocationPanel, true);
-            	PopUpManager.centerPopUp(geoPop);
-					
-		   }
 
 
 		   private function confirmDelete():void {
@@ -228,10 +219,10 @@
 		   }
 		   
 		   public function openTaxonomyPanel(path:String,name:String):void {
-		   		var taxonPanel: TaxonomyPanel = TaxonomyPanel(PopUpManager.createPopUp(this, TaxonomyPanel, true));
-		   		taxonPanel.animalName = name;
-		   		taxonPanel.animalPath = path;
-            	PopUpManager.centerPopUp(taxonPanel);
+		   		tabPanel = TabNavigatorForm(PopUpManager.createPopUp(this, TabNavigatorForm, true));
+		   		tabPanel.animalName = name;
+		   		tabPanel.animalPath = path;
+		   		PopUpManager.centerPopUp(tabPanel);
 		   } 
 		]]>
 	</mx:Script>

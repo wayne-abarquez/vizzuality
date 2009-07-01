@@ -18,10 +18,7 @@
 			public var deletingAllPictures: Boolean=false;
 			[Bindable] public var taxon: String = "";
 			[Bindable] public var tagSequence: String = "";
-			public var animalName: String = "";
-			public var imagePath: String = "";
-			
-			
+				
 			public function onAuthorizationComplete():void {
 				var dao: DataAccessObject = new DataAccessObject();
 				
@@ -39,6 +36,14 @@
 	</mx:Script>
 	
 	<mx:Style source="com/vizzuality/skin/fonts.css"/>
+	<mx:Style>
+        global {
+            modalTransparencyBlur: 0;
+            modalTransparency: 0.6;
+            modalTransparencyColor: black;
+            modalTransparencyDuration: 300;
+        }
+    </mx:Style>
 	
 	<mx:Label text="GBIF" fontSize="14" fontWeight="normal" color="#F2F6F7" left="65" top="12" fontFamily="DINOT-Bold"/>
 	<mx:Label text="IMAGE TAGGER" fontSize="18" color="#99cc00" left="65" top="25" fontFamily="DINOT-Bold" letterSpacing="-1"/>

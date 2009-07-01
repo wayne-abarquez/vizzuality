@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="344" height="443" xmlns:maps="com.google.maps.*"  
-	alpha="1.0" backgroundColor="#4F4C4C">
+	alpha="1.0" backgroundColor="#4F4C4C" xmlns:components="com.vizzuality.components.*">
     
 	<mx:Script>
 	    <![CDATA[
+	    	import mx.core.IFlexDisplayObject;
 	    	import com.google.maps.Color;
-	    	import mx.core.Application;
 	    	import mx.controls.Alert;
 	    	import mx.managers.PopUpManager;
 	    	import mx.collections.ArrayCollection;
@@ -25,6 +25,9 @@
             import com.google.maps.services.GeocodingResponse;
             import com.google.maps.services.Placemark;
 
+
+			[Bindable]public var animalName: String;
+			[Bindable]public var animalPath: String;
 		    
 		    private var latitude: LatLng = new LatLng(0,0);
 		    private var options:MarkerOptions = new MarkerOptions({draggable: true});
@@ -47,7 +50,7 @@
 			    		map.clearOverlays();
 			    	}
 			    			    	
- 			    	dao.getLatitudes(Application.application.imagePath);
+ 			    	dao.getLatitudes(animalPath);
 			    	var arrayLatitudes: ArrayCollection = new ArrayCollection();
 			    	arrayLatitudes = dao.dbResult;
 			    	
@@ -55,7 +58,7 @@
 	   					marker = new Marker(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)),options);
 	   					map.setCenter(new LatLng(Number(arrayLatitudes[0].lat),Number(arrayLatitudes[0].lon)), arrayLatitudes[0].zoom);
 	   					map.addOverlay(marker);	
-	   					//changeStyle();
+	   					changeStyle();
 			    	}
 		      	}
 		      	
@@ -70,7 +73,7 @@
 		    
 		    private function changeStyle():void {
 			    if (marker != null) {
-				    instructionsText.text="click or move the marker to change the position";
+				    instructionsText.text="Click or move the marker to change the position";
 				    instructionsText.setStyle("color","#fcfbfb");			    		  		    				    
    				}
 			    
@@ -90,13 +93,13 @@
 		    		Alert.show(" No Marker ");	
 		    	} else { 
 		    		var position: LatLng = marker.getLatLng();
-		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),map.getZoom(),Application.application.imagePath);
+		    		dao.updateLatitudes(position.lat().toString(),position.lng().toString(),map.getZoom(),animalPath);
 		    		closeGeolocation();
 		    	}
 		    }
 		    
 		    private function closeGeolocation():void {
-		    	PopUpManager.removePopUp(this);
+		    	(this.parent.parent.parent as TabNavigatorForm).closeForm();
 		    }
 		    
 		    private function searchLocation():void {
@@ -111,11 +114,8 @@
                 var result:Placemark = GeocodingResponse(evt.response).placemarks[0];
 
                 var box:Object = result.ExtendedData.LatLonBox;
-                var pBbox:LatLngBounds = new LatLngBounds(
-                								new LatLng(box.north,box.west),
-                								new LatLng(box.south,box.east));
-                							
-                
+                var pBbox:LatLngBounds = new LatLngBounds(new LatLng(box.north,box.west),new LatLng(box.south,box.east));
+                							                
                 map.setCenter(result.point,map.getBoundsZoomLevel(pBbox));
                 latitude = result.point;
             }
@@ -132,21 +132,22 @@
 	    ]]>
 	</mx:Script>
 		
-	<maps:Map id="map" mapevent_mapready="onMapReady(event)" width="324" height="319" 
-    url="http://www.vizzuality.com" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RRtyGR_26Vh_v-YP2taQZno1YdgrhQJzeuNLwYCMpo8VRY9mC5aAjXmbQ" x="10" y="54"/>
-	<mx:Button  label="x" fillAlphas="[1.0, 1.0, 1.0, 1.0]" click="closeGeolocation()" y="10" right="10" width="32" cornerRadius="0"/>
-	<mx:Button x="236" y="411" label="Save &amp; close" click="saveGeolocation()"/>
+	<maps:Map id="map" mapevent_mapready="onMapReady(event)" height="319" 
+    url="http://www.vizzuality.com" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RRtyGR_26Vh_v-YP2taQZno1YdgrhQJzeuNLwYCMpo8VRY9mC5aAjXmbQ" y="54" right="10" left="10"/>
+	<mx:Button  label="x" fillAlphas="[1.0, 1.0, 1.0, 1.0]" click="closeGeolocation()" right="10" width="30" cornerRadius="0" styleName="itemButton" top="5"/>
+	<mx:Button label="Save &amp; close" click="saveGeolocation()" styleName="itemButton" right="10" bottom="5"/>
 	<mx:TextInput x="10" id="textSearch" y="381" width="251" text="Write your desired location" color="#C5C9CA" backgroundColor="#656363" enter="searchLocation()"
 		click="writeTextInput()" borderColor="#797A7B" fontWeight="bold"/>
-	<mx:Button x="269" y="381" label="Search" click="searchLocation()"/>
-	<mx:HRule x="10" y="36" width="324" height="6" strokeColor="#373A3A" strokeWidth="1"/>
+	<mx:Button y="381" label="Search" click="searchLocation()" styleName="itemButton" right="10"/>
+	<mx:HRule y="36" height="6" strokeColor="#373A3A" strokeWidth="1" right="10" left="10"/>
 	<mx:Label x="10" y="9" text="Georeference your image" width="193" color="#DADDDD" fontSize="13"/>
-	<mx:Canvas x="10" y="54" width="324" height="54" backgroundColor="#030000" backgroundAlpha="0.55">
-		<mx:Canvas x="10" y="10" width="47" height="34">
-			<mx:Image id="imageDisplay" source="{Application.application.imagePath}" width="47" height="34"/>
+	<mx:Canvas y="54" height="54" backgroundColor="#030000" backgroundAlpha="0.55" right="10" left="10">
+		<mx:Canvas x="7" y="7" width="40" height="40" borderStyle="solid" borderThickness="0.3" borderColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+			<mx:Image id="imageDisplay" source="{animalPath}" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle"/>
+			<!--<components:CroppedImage pathImage="{animalPath}" verticalCenter="0" horizontalCenter="0"/>-->
 		</mx:Canvas>
-		<mx:Label id="displayName" x="65" y="10" text="{Application.application.animalName}" fontSize="13" fontWeight="bold" color="#F0F7F8"/>
-		<mx:Label id="instructionsText" x="65" y="27" text="Click to set the new position"  color="#D99494" fontWeight="bold" fontSize="9" width="249"/>
+		<mx:Label id="displayName" x="55" y="10" text="{animalName}" fontSize="13" fontWeight="bold" color="#F0F7F8"/>
+		<mx:Label id="instructionsText" x="55" y="27" text="Click to set the new position"  color="#D99494" fontWeight="bold" fontSize="9" width="249"/>
 	</mx:Canvas>
-	<mx:Button x="10" y="411" label="Search Location" fillAlphas="[1.0, 1.0, 1.0, 1.0]" fillColors="[#414141, #414141]" color="#C0C2C3" borderColor="#414141" themeColor="#414141" cornerRadius="0"/>
+	<mx:Button label="Search Location" fillAlphas="[1.0, 1.0, 1.0, 1.0]" fillColors="[#414141, #414141]" color="#C0C2C3" borderColor="#414141" themeColor="#414141" cornerRadius="0" styleName="itemButton" bottom="5" left="10"/>
 </mx:Canvas>

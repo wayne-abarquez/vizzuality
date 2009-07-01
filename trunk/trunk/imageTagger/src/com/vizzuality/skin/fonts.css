@@ -53,4 +53,80 @@ Canvas.Mamufas
 	disabledColor: #000000;
 	backgroundDisabledColor: #000000;
 	disabledOverlayAlpha: 0.6;
-}   
+}
+
+TabNavigator.TabNavigatorFlickrTagger
+{
+	paddingBottom: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+	paddingTop: 0;
+	backgroundColor: #4F4C4C;
+	borderThickness: 1;
+	fontFamily: Arial;
+	color: #FFFFFF;
+	fontWeight: normal;
+	fontSize: 12;
+	tabStyleName: tabNavigatorTab;
+	selectedTabTextStyleName: tabNavigatorSelectedTabText;
+	firstTabStyleName: tabNavigatorFirstTab;
+	disabledColor: #E4E9E9;
+	lastTabStyleName: tabNavigatorLastTab;
+}
+
+.tabNavigatorSelectedTabText
+{
+	color: #FFFFFF;
+}
+.tabNavigatorFirstTab
+{
+	fillAlphas: 1.0, 1.0, 1.0, 1.0;
+	fillColors: #DADADA, #DADADA;
+	cornerRadius: 2;
+	themeColor: #B2B2B2;
+	color: #656565;
+	textRollOverColor: #8D8D8D;
+}
+.tabNavigatorLastTab
+{
+	color: #656565;
+	fillAlphas: 1.0, 1.0;
+	fillColors: #DADADA, #DADADA;
+	textRollOverColor: #8D8D8D;
+	themeColor: #B2B2B2;
+} 
+
+Alert {
+    titleStyleName: "alertTitle";
+    messageStyleName: "alertMessage";
+    buttonStyleName: "alertButton";
+    dropShadowEnabled: true;
+    shadowDistance: 5;
+    shadowDirection: right;
+    cornerRadius: 0;
+    embedFonts: true;
+    fontFamily: DINOT-Bold;
+}
+
+.alertTitle {
+    letterSpacing: 0;
+    fontSize: 14;
+    color: white;
+}
+
+.alertMessage {
+    letterSpacing: 0;
+    fontSize: 10;
+    fontWeight: normal;
+    color: black;
+}
+
+.alertButton {
+    letterSpacing: 0;
+    fontSize: 11;
+    cornerRadius: 0;
+    fontWeight: normal;
+    textRollOverColor: white;
+    color: grey;
+}
+ 
