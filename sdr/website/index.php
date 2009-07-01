@@ -1,10 +1,10 @@
 <?php
 
 require 'libs/Smarty.class.php';
-require 'services/GROMSServices.php';
+require 'services/SDRServices.php';
 
 $smarty = new Smarty;
-$services = new GROMSServices;
+$services = new SDRServices;
 
 
 //$data =$services->getItemList(10);
