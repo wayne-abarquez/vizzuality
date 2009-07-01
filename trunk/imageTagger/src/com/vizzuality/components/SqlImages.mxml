@@ -83,7 +83,18 @@
 	 			}
 	 			file.deleteFile();
 	 			//uploadedImage = true;
-	 			refreshTilelist();
+	 			
+	 			//search index item in ArrayCollection
+	 			for (var i:int=0;i<sqlArray.length;i++) {
+ 					if (file.url==sqlArray[i].path)
+ 						break;
+	 			}
+	 			
+	 			//lines for reusing Tilelist!!
+	 			tilelist.indexToItemRenderer(i).data=null;
+	 			sqlArray.removeItemAt(i);
+	 			
+	 			
 	 			if (Application.application.deletingAllPictures) {
 					Application.application.principalView.system.deleteAll();
 				}
@@ -134,7 +145,11 @@
 			  	newFile = File.applicationStorageDirectory.resolvePath(imagesDir + "/"+ identification +'.'+ object.extension);
 			  	original.copyTo(newFile, true);
 			  	dao.openConnection("UPDATE photos SET path='"+newFile.url+"' WHERE id='"+identification+"'");
-			  	refreshTilelist();
+			  	var obj: Object = new Object();
+			  	obj.path = newFile.url;
+			  	obj.scientific = null;
+			  	sqlArray.addItem(obj);
+			  	/* refreshTilelist(); */
 			}
 			
 			
@@ -168,7 +183,11 @@
 		      	newFile = File.applicationStorageDirectory.resolvePath(imagesDir + "/"+identification+"."+fileName);
 		     	original.copyTo(newFile, true);
 		     	dao.openConnection("UPDATE photos SET path='"+newFile.url+"' WHERE id='"+identification+"'");
-		     	refreshTilelist();
+		     	var obj: Object = new Object();
+			  	obj.path = newFile.url;
+			  	obj.scientific = null;
+			  	sqlArray.addItem(obj);
+		     	/* refreshTilelist(); */
 		   }
 		   
 		   
@@ -176,7 +195,6 @@
 		   		refreshTilelist();
 				if (sqlArray.length>0) {
 					Application.application.uploadingAllPictures=true;
-			   		//uploadPhoto(sqlArray[0].path,sqlArray[0].scientific);
 			   		var upFlickr: FlickrUploadService = new FlickrUploadService();
 			   		upFlickr.resolveTagsFlickr(sqlArray[0].path,sqlArray[0].scientific);				
 		  		} else {

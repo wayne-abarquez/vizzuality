@@ -2,142 +2,135 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="238" height="170" color="#040404" creationComplete="initRenderer()" verticalScrollPolicy="off" 
 	horizontalScrollPolicy="off" xmlns:components="com.vizzuality.components.*" verticalCenter="0" horizontalCenter="0" top="3">
         
-        <mx:states>
-                <mx:State name="uploadImage">
-                        <mx:SetProperty target="{del}" name="enabled" value="false"/>
-                        <mx:SetProperty target="{flickrButton}" name="enabled" value="false"/>
-                        <mx:SetProperty target="{geoButton}" name="enabled" value="false"/>
-                        <mx:SetProperty target="{scientificNameInput}" name="enabled" value="false"/>
-                        <mx:AddChild relativeTo="{canvas1}" position="lastChild">
-                                <mx:Canvas id="canvas3" backgroundAlpha="0.6" backgroundColor="#0F0E0E" width="226" height="103"/>
-                        </mx:AddChild>
-                        <mx:AddChild relativeTo="{canvas3}" position="lastChild">
-                                <mx:Label x="61.5" y="37" text="Uploading..." width="103" color="#FCFCFC" fontSize="15" fontWeight="bold"/>
-                        </mx:AddChild>
-                        <mx:SetProperty target="{canvas2}" name="height" value="99"/>
-                </mx:State>
-        </mx:states>
-        
-        
         <mx:Script>
                 <![CDATA[
                 	import mx.core.Application;
-                        import com.vizzuality.dao.FlickrUploadService;
-                        import mx.core.IFlexDisplayObject;
-                        import mx.managers.PopUpManager;
-                        import mx.events.EffectEvent;
-                        import mx.events.ChildExistenceChangedEvent;
-                        import mx.effects.RemoveItemAction;
-                        import mx.controls.Alert;
-                        import mx.events.ListEvent;
-                        import mx.controls.TileList;
-                        import mx.events.FlexEvent;
-                        import mx.managers.PopUpManager;
-                        
-                        [Bindable]private var isPhotoSelected:Boolean=false;
-                        private var outerList:TileList;
-                        private var popUpImage:PopUpManagerImage = new PopUpManagerImage();
-                        
-	                     private function initRenderer():void {
-	                        this.outerList = (this.parentDocument as SqlImages).tilelist;
-	                        this.outerList.addEventListener(ListEvent.CHANGE, updateSelected); 
-	                        this.addEventListener(FlexEvent.DATA_CHANGE, checkSelected);
-			                var glow:GlowFilter = new GlowFilter();
+                    import com.vizzuality.dao.FlickrUploadService;
+                    import mx.core.IFlexDisplayObject;
+                    import mx.managers.PopUpManager;
+                    import mx.events.EffectEvent;
+                    import mx.events.ChildExistenceChangedEvent;
+                    import mx.effects.RemoveItemAction;
+                    import mx.controls.Alert;
+                    import mx.events.ListEvent;
+                    import mx.controls.TileList;
+                    import mx.events.FlexEvent;
+                    import mx.managers.PopUpManager;
+                    
+                    [Bindable]private var isPhotoSelected:Boolean=false;
+                    private var outerList:TileList;
+                    private var popUpImage:PopUpManagerImage = new PopUpManagerImage();
+                    
+                    [Bindable]private var inputColor: uint;
+                    [Bindable]private var path: String;
+                    [Bindable]private var enabling: Boolean;                    
+                    
+                    override public function set data(value:Object):void{
+						  super.data = value;
+						  if (value != null) {
+						     //TextInputColor
+						     inputColor = 0xf65951;
+						     path = value.path;
+						  	 enabling = true;						     
+						  } else {
+						  	 inputColor = 0x5def0d;
+						  	 path = "";
+						  	 enabling = true;						     
+						  }
+					}
+					
+					
+                    private function initRenderer():void {
+                        this.outerList = (this.parentDocument as SqlImages).tilelist;
+                        this.outerList.addEventListener(ListEvent.CHANGE, updateSelected); 
+                        this.addEventListener(FlexEvent.DATA_CHANGE, checkSelected);
+		                var glow:GlowFilter = new GlowFilter();
 
-			                glow.color = 0x000000;
-			                glow.alpha = 0.4;
-			                glow.blurX = 3;
-			                glow.blurY = 3;
-			                glow.strength =5;
-			                glow.quality = BitmapFilterQuality.HIGH;
-			
-			                itemSpace.filters = [glow];
-	                     }
-	                     
-	                     override public function set data(d:Object):void{
-							  super.data = d;
-							  if (data != null) {
-							    //scientificNameInput.text = d.scientific;
-							    //changeColorInput();
-							  }
-						}
+		                glow.color = 0x000000;
+		                glow.alpha = 0.4;
+		                glow.blurX = 3;
+		                glow.blurY = 3;
+		                glow.strength =5;
+		                glow.quality = BitmapFilterQuality.HIGH;
+		
+		                itemSpace.filters = [glow];
+                    }
                      
-                        
-                        private function updateScientificName():void {
-                                (this.parentDocument as SqlImages).updateName(scientificNameInput.text,data.path);              
-                                changeColorInput();                             
-                        }
-                        
-                        private function changeColorInput():void {
-                                if(scientificNameInput.text =='' || scientificNameInput.text =='Tag this image!') {
-                                        scientificNameInput.setStyle("borderColor","#f65951");
-                                } else {
-                                        scientificNameInput.setStyle("borderColor","#5def0d");
-                                }
-                        }
-                        
-	                    private function updateSelected(event:ListEvent):void {
-	                       if(event.itemRenderer == this)
-	                         isPhotoSelected=true;
-	                       else
-	                         isPhotoSelected=false;
-	                    }
-                        
-                        private function checkSelected(event:FlexEvent):void {
-                                if(this.outerList.selectedItem == this.data)
-                               isPhotoSelected=true;
-                            else
-                               isPhotoSelected=false;
-                        }
-                        
-                        private function uploadImage():void {
-                                if (scientificNameInput.text=="" || scientificNameInput.text=="Tag this image!") {
-                                        Alert.show("Tag this image first!","Error uploading")
-                                } else {
-                                        //currentState="uploadImage";
-                                        canvas1.mouseChildren=false;
-                                        flickrButton.label = "Uploading now";
-                                        del.enabled=false;
-                                        flickrButton.enabled = false;
-                                        geoButton.enabled = false;
-                                		canvas2.enabled=false;
-                                        var upFlick: FlickrUploadService = new FlickrUploadService();
-                                        upFlick.resolveTagsFlickr(data.path,scientificNameInput.text);
-                                }
-                        }
-                        
-                        private function eraseImage():void {
-                                (this.parentDocument as SqlImages).deleteImage(data.path,1);
-                        }       
-                        
-                        private function overImage():void {
-                                canvas2.setStyle("backgroundAlpha","0.6");
-                                canvas2.setStyle("backgroundColor","#000000");
-                        }
-                        private function outImage():void {
-                                canvas2.setStyle("backgroundAlpha","0");
-                        }       
-                        
-                        
-                        private function changeScientificName():void {
-                                if (scientificNameInput.text == "Tag this image!") {
-                                        scientificNameInput.text = "";
-                                }
-                        }
-                        
-                        private function changeTaxonomy():void {
-                                if (scientificNameInput.text=="" || scientificNameInput.text=="Tag this image!") {
-                                        Alert.show("Tag this image first!","Error taxonoming!!!¿?");
-                                } else {
-                                        (this.parentDocument as SqlImages).openTaxonomyPanel(data.path,scientificNameInput.text);
-                                }
-                        }
-                        
-                        private function onClickImage(ev:MouseEvent):void {
-			                popUpImage.source = data.path;
-			                PopUpManager.addPopUp(popUpImage,this, true);
-			                
-			            }
+                 
+                    
+                    private function updateScientificName():void {
+                            (this.parentDocument as SqlImages).updateName(scientificNameInput.text,data.path);              
+                            changeColorInput();                             
+                    }
+                    
+                    private function changeColorInput():void {
+                            if(scientificNameInput.text =='' || scientificNameInput.text =='Tag this image!') {
+                                    scientificNameInput.setStyle("borderColor","#f65951");
+                            } else {
+                                    scientificNameInput.setStyle("borderColor","#5def0d");
+                            }
+                    }
+                    
+                    private function updateSelected(event:ListEvent):void {
+                       if(event.itemRenderer == this)
+                         isPhotoSelected=true;
+                       else
+                         isPhotoSelected=false;
+                    }
+                    
+                    private function checkSelected(event:FlexEvent):void {
+                            if(this.outerList.selectedItem == this.data)
+                           isPhotoSelected=true;
+                        else
+                           isPhotoSelected=false;
+                    }
+                    
+                    private function uploadImage():void {
+                            if (scientificNameInput.text=="" || scientificNameInput.text=="Tag this image!") {
+                                    Alert.show("Tag this image first!","Error uploading")
+                            } else {
+                                    flickrButton.label = "Uploading now";
+                                    del.enabled=false;
+                                    flickrButton.enabled = false;
+                                    geoButton.enabled = false;
+                            		canvas2.enabled=false;
+                                    var upFlick: FlickrUploadService = new FlickrUploadService();
+                                    upFlick.resolveTagsFlickr(data.path,scientificNameInput.text);
+                            }
+                    }
+                    
+                    private function eraseImage():void {
+                            (this.parentDocument as SqlImages).deleteImage(data.path,1);
+                    }       
+                    
+                    private function overImage():void {
+                            canvas2.setStyle("backgroundAlpha","0.6");
+                            canvas2.setStyle("backgroundColor","#000000");
+                    }
+                    private function outImage():void {
+                            canvas2.setStyle("backgroundAlpha","0");
+                    }       
+                    
+                    
+                    private function changeScientificName():void {
+                            if (scientificNameInput.text == "Tag this image!") {
+                                    scientificNameInput.text = "";
+                            }
+                    }
+                    
+                    private function changeTaxonomy():void {
+                            if (scientificNameInput.text=="" || scientificNameInput.text=="Tag this image!") {
+                                    Alert.show("Tag this image first!","Error taxonoming!!!¿?");
+                            } else {
+                                    (this.parentDocument as SqlImages).openTaxonomyPanel(data.path,scientificNameInput.text);
+                            }
+                    }
+                    
+                    private function onClickImage(ev:MouseEvent):void {
+		                popUpImage.source = data.path;
+		                PopUpManager.addPopUp(popUpImage,this, true);
+		                
+		            }
                 ]]>
         </mx:Script>
         
@@ -146,22 +139,22 @@
 	        <mx:VBox width="100%" height="100%" verticalGap="4" paddingTop="4" paddingBottom="2">
 	                <mx:HBox width="100%" height="21" verticalAlign="middle" horizontalAlign="center" horizontalGap="3" paddingLeft="4" paddingRight="4">
 	                        <mx:TextInput id="scientificNameInput" text="{data.scientific==null?'Tag this image!':data.scientific}" click="changeScientificName()" change="updateScientificName()" 
-	                                textAlign="left" width="100%" backgroundAlpha="0.0" color="#EFEBEB" creationComplete="changeColorInput()" borderColor="#F65951" height="21" 
+	                                textAlign="left" width="100%" backgroundAlpha="0.0" color="#EFEBEB" creationComplete="changeColorInput()" borderColor="{inputColor}" height="21" 
 	                                enter="changeTaxonomy()" borderStyle="solid" fontFamily="DINOT-Bold" borderThickness="0.5" fontSize="12" paddingLeft="2"/>
-	                        <mx:Button label="x" fontSize="10" click="eraseImage()" width="21" id="del" styleName="itemButton" height="21"/>                        
+	                        <mx:Button label="x" fontSize="10" click="eraseImage()" width="21" id="del" styleName="itemButton" height="21" enabled="{enabling}"/>                        
 	                </mx:HBox>
 	                <mx:HBox width="100%" height="80%" id="hbox1" horizontalAlign="center" verticalAlign="middle" verticalGap="0">
 	                        <mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="100%" id="canvas1"  mouseOver="overImage()" 
 	                        	mouseOut="outImage()" borderThickness="1" borderColor="0" click="onClickImage(event)" mouseChildren="false" useHandCursor="true" buttonMode="true">
-	                                <components:CroppedImage pathImage="{data.path}" verticalCenter="0" horizontalCenter="0"/>
-	                                <mx:Canvas id="canvas2" height="100%" borderStyle="solid" right="4" left="4" styleName="Mamufas" />
+	                                <components:CroppedImage pathImage="{path}" verticalCenter="0" horizontalCenter="0"/>
+	                                <mx:Canvas id="canvas2" height="100%" borderStyle="solid" right="4" left="4" styleName="Mamufas" enabled="{enabling}"/>
 	                        </mx:Canvas> 
 	                </mx:HBox>
 	                <mx:HBox width="100%" height="23" verticalCenter="0" horizontalAlign="center" paddingLeft="4" paddingRight="4" horizontalGap="4">
 	                        <mx:Button label="Upload to Flickr" fontSize="10" click="uploadImage()" width="100%" id="flickrButton" height="21" 
-	                        	styleName="itemButton" icon="@Embed('/com/vizzuality/assets/logo_flickr.png')"/>
+	                        	styleName="itemButton" icon="@Embed('/com/vizzuality/assets/logo_flickr.png')" enabled="{enabling}"/>
 	                        <mx:Button label="Tag me!" click="(this.parentDocument as SqlImages).openTaxonomyPanel(data.path,scientificNameInput.text)" 
-	                        	width="100%" id="geoButton" height="21" styleName="itemButton" icon="@Embed('/com/vizzuality/assets/world.png')" />     
+	                        	width="100%" id="geoButton" height="21" styleName="itemButton" icon="@Embed('/com/vizzuality/assets/world.png')" enabled="{enabling}"/>     
 	                </mx:HBox>
 	        </mx:VBox>   	
         </mx:Canvas>

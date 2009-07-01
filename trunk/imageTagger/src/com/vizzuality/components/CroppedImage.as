@@ -25,9 +25,13 @@ package com.vizzuality.components
 		public function set pathImage(_path:String):void {
 			if (_path!=this.path) {
 				this.path=_path;
-				loader = new Loader();
-				loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadedFinished);
-				loader.load(new URLRequest(this.path));
+				if (path!="") {
+					loader = new Loader();
+					loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadedFinished);
+					loader.load(new URLRequest(this.path));					
+				} else {
+					source = null;
+				}
 			}
 			
 		}
