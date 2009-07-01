@@ -90,10 +90,7 @@
                                     Alert.show("Tag this image first!","Error uploading")
                             } else {
                                     flickrButton.label = "Uploading now";
-                                    del.enabled=false;
-                                    flickrButton.enabled = false;
-                                    geoButton.enabled = false;
-                            		canvas2.enabled=false;
+                                    enabling = false;
                                     var upFlick: FlickrUploadService = new FlickrUploadService();
                                     upFlick.resolveTagsFlickr(data.path,scientificNameInput.text);
                             }
