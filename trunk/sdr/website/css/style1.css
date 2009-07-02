@@ -1,0 +1,111 @@
+.headerContainer{
+	background-color: silver;
+	height: 71px;
+}
+
+.searchContainer{
+	background-color: silver;
+	height: 36px;
+	padding-top: 9px;
+}
+
+.widgetContainer{
+	background-color: silver;
+	height: 452px;
+}
+
+.commentsContainer{
+	background-color: silver;
+	height: 500px;
+}
+
+.post{
+	background-color: green;
+	height: 100px;
+}
+
+.rightColumn{
+	background-color: silver;
+	height: 616px;
+}
+
+.contributors{
+	background-color: black;
+	height: 113px;
+}
+
+.species_details{
+	background-color: green;
+	height: 360px;
+}
+
+.related_species{
+	background-color: black;
+	height: 131px;
+}
+
+.footerContainer{
+	background-color: black;
+	height: 166px;
+}
+
+.footer_notices{
+	background-color: silver;
+	height: 90px;
+}
+
+
+.footer_logo{
+	background-color: silver;
+	height: 74px;
+}
+
+.subrayado{
+	background-color: white;
+	height: 1px;
+}
+
+.avatar{
+	background-color: white;
+	height: 52px;
+	width: 52px;
+	margin-top: 9px;
+	margin-bottom: 9px;
+	margin-left: 9px;
+}
+
+.separator40{
+	height: 40px;
+}
+
+.separator9{
+	height: 9px;
+}
+
+.separator7{
+	height: 7px;
+}
+
+.separator6{
+	height: 6px;
+}
+
+.separator1{
+	height: 1px;
+}
+
+.texto{
+ 	font-family: "Georgia";
+ 	font-style: italic;
+	font-size: 21px; 
+	margin-left: 10px;
+	margin-right: 10px;
+	color: #9db7d2;
+}
+
+.texto2{
+ 	font-family: "Arial";
+ 	font-weight: bold;
+	font-size: 16px; 
+	color: #9db7d2;
+}
