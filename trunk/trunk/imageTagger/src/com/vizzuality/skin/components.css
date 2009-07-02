@@ -123,3 +123,20 @@ Alert {
     textRollOverColor: white;
     color: grey;
 }
+
+.CustomTilelist{
+  	vertical-scroll-bar-style-name: "VScrollBar";
+}
+
+.VScrollBar {
+   cornerRadius: 0;
+   highlightAlphas: 0, 0;
+   fillAlphas: 0.75, 0.7, 0.6, 0.6;
+   fillColors: #000000, #000000, #000000, #000000;
+   trackColors: #999999, #999999;
+   themeColor: #999999;
+   borderColor: #b7babc;
+   iconColor: #ffffff;
+   thumbOffset: 1;
+}
+
