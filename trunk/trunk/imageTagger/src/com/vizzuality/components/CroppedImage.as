@@ -45,7 +45,7 @@ package com.vizzuality.components
 		
 		private function onLoadedFinished(event:Event):void {
 			loader.removeEventListener(Event.COMPLETE,onLoadedFinished);
-			var bitmap:Bitmap = Bitmap(loader.content);
+			var bitmap:Bitmap = Bitmap(event.target.content);
 			var bitmapData:BitmapData = bitmap.bitmapData;
 			
 		 				
