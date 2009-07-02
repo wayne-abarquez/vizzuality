@@ -18,6 +18,7 @@
 			public var deletingAllPictures: Boolean=false;
 			[Bindable] public var taxon: String = "";
 			[Bindable] public var tagSequence: String = "";
+			public var croppedImagesDictionary : Dictionary = new Dictionary();
 				
 			public function onAuthorizationComplete():void {
 				var dao: DataAccessObject = new DataAccessObject();

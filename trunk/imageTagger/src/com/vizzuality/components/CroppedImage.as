@@ -8,8 +8,10 @@ package com.vizzuality.components
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
+	import flash.utils.Dictionary;
 	
 	import mx.controls.Image;
+	import mx.core.Application;
 
 	public class CroppedImage extends Image
 	{
@@ -25,10 +27,15 @@ package com.vizzuality.components
 		public function set pathImage(_path:String):void {
 			if (_path!=this.path) {
 				this.path=_path;
-				if (path!="") {
-					loader = new Loader();
-					loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadedFinished);
-					loader.load(new URLRequest(this.path));					
+				if (path!="") {				
+					if(Application.application.croppedImagesDictionary[_path]!=null) {
+						var dic:Dictionary =Application.application.croppedImagesDictionary;
+						source = new Bitmap(Application.application.croppedImagesDictionary[_path] as BitmapData);
+					} else {
+						loader = new Loader();
+						loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadedFinished);
+						loader.load(new URLRequest(this.path));											
+					}
 				} else {
 					source = null;
 				}
@@ -59,7 +66,7 @@ package com.vizzuality.components
 	  		var scale:Number = Math.min(sx, sy);
 	  		newWidth = originalWidth * scale;
 	  		newHeight = originalHeight * scale;	
-			trace(originalWidth+"/"+newWidth +"----"+originalHeight+"/"+newHeight );
+			//trace(originalWidth+"/"+newWidth +"----"+originalHeight+"/"+newHeight );
 
 
 		 	m.scale(scale, scale);
@@ -75,10 +82,9 @@ package com.vizzuality.components
 			newBitmapData.copyPixels(bmd2, 
 				new Rectangle(startPoint.x, startPoint.y, 218, 103), 
                 new Point(0,0));
-                
-          	source = new Bitmap(newBitmapData);     
-			
-			
+                    
+          	source = new Bitmap(newBitmapData);  
+			Application.application.croppedImagesDictionary[this.path] = newBitmapData;          		
 		}
 		
 	}
