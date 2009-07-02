@@ -17,12 +17,10 @@
 			import mx.controls.TileList;
 			import mx.collections.ArrayCollection;
 			import com.vizzuality.dao.DataAccessObject;
-			import flash.filesystem.File;
+			import flash.filesystem.*;
 			import flash.net.FileFilter;
-			import flash.desktop.NativeDragManager;
-		   	import flash.desktop.NativeDragActions;
-		   	import flash.desktop.Clipboard;
-		   	import flash.desktop.ClipboardFormats;
+			import flash.desktop.*;
+			import flash.data.*;
 		   	import mx.controls.Alert;
 		   	import com.vizzuality.*;
 		    import mx.core.Application;
@@ -90,7 +88,8 @@
  						break;
 	 			}
 	 			
-	 			//lines for reusing Tilelist!!
+	 			//lines for reusing Tilelist!! and delete path reference to Dicciontary
+	 			delete Application.application.croppedImagesDictionary[file.url];
 	 			tilelist.indexToItemRenderer(i).data=null;
 	 			sqlArray.removeItemAt(i);
 	 			
@@ -123,7 +122,7 @@
 	
 			private function selectImageFile(root:File):void {
 				
-				var imgFilter:FileFilter = new FileFilter("Images", "*.jpg;*.gif;*.png");
+				var imgFilter:FileFilter = new FileFilter("Images", "*.jpg;*.jpeg;*.gif;*.png");
 				root.browseForOpenMultiple("Open", [imgFilter]);
 			  	root.addEventListener(FileListEvent.SELECT_MULTIPLE, fileSelected);
 			}
@@ -158,23 +157,51 @@
 	   		}
 	   		
 			private function onDragDrop(event:NativeDragEvent):void {
-			    NativeDragManager.dropAction = NativeDragActions.COPY;
+				NativeDragManager.dropAction = NativeDragActions.COPY;
 			    var droppedFiles:Array = event.clipboard.getData(ClipboardFormats.FILE_LIST_FORMAT) as Array;
 			    for each (var file:File in droppedFiles) {
-			       switch (file.extension) {
-			         case "jpg":
-			           addDroppedFile(file.nativePath,file.extension);
-			           break;
-			         case "png":
-			           addDroppedFile(file.nativePath,file.extension);
-			           break;
-			         case "gif":
-			           addDroppedFile(file.nativePath,file.extension);
-			           break;
-			         default: Alert.show("Unsupported file");       
-			       }
+			    	if (file.isDirectory) {						
+					     var dirContents:Array = file.getDirectoryListing();
+					     for each (var fi:File in dirContents) {
+							switch (fi.extension) {
+					        	case "jpg":
+					           		addDroppedFile(fi.nativePath,fi.extension);
+					           		break;
+					           	case "jpeg":
+					           		addDroppedFile(fi.nativePath,fi.extension);
+					           		break;
+					         	case "png":
+					           		addDroppedFile(fi.nativePath,fi.extension);
+					           		break;
+					         	case "gif":
+					           		addDroppedFile(fi.nativePath,fi.extension);
+					           		break;
+					         	default: Alert.show("Unsupported file");       
+				       		}
+			    		}	
+
+			    	} else {
+				    	switch (file.extension) {
+				        	case "jpg":
+				           		addDroppedFile(file.nativePath,file.extension);
+				           		break;
+				           	case "jpeg":
+				           		addDroppedFile(file.nativePath,file.extension);
+				           		break;
+				         	case "png":
+				           		addDroppedFile(file.nativePath,file.extension);
+				           		break;
+				         	case "gif":
+				           		addDroppedFile(file.nativePath,file.extension);
+				           		break;
+				         	default: Alert.show("Unsupported file");       
+				       	}
+			    	}			       
 			    }
 			}
+			
+
+
 			
 		   	private function addDroppedFile(nativePath:String,fileName:String):void {
 		   		var original:File = File.userDirectory.resolvePath(nativePath);
@@ -192,6 +219,7 @@
 		   
 		   
 		   public function getAllImages():void {
+		   		//Change this for reuse!!
 		   		refreshTilelist();
 				if (sqlArray.length>0) {
 					Application.application.uploadingAllPictures=true;
@@ -204,7 +232,7 @@
 		   }
 		   
 		   private function deleteAll():void {
-		   		refreshTilelist();
+		   		/* refreshTilelist(); */
 		   		if (sqlArray.length>0) {
 					Application.application.deletingAllPictures=true;
 		   			deleteImage(sqlArray[0].path,1);

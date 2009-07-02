@@ -23,20 +23,32 @@
                     
                     [Bindable]private var inputColor: uint;
                     [Bindable]private var path: String;
-                    [Bindable]private var enabling: Boolean;                    
+                    [Bindable]private var enabling: Boolean;  
+                    [Bindable]private var textButton: String; 
+                    [Bindable]private var textInput: String;                 
                     
                     override public function set data(value:Object):void{
-						  super.data = value;
+
 						  if (value != null) {
-						     //TextInputColor
-						     inputColor = 0xf65951;
 						     path = value.path;
-						  	 enabling = true;						     
+						     if (value.scientific == null || value.scientific == "") {						
+						     	textInput = 'Tag this image!';
+						     	inputColor = 0xf65951;
+						     } else {
+						     	textInput = value.scientific;
+						     	inputColor = 0x5def0d;
+						     }
+						     enabling = true;	
+						  	 textButton = "Upload to Flickr";	
+						  	 				     						     	
 						  } else {
-						  	 inputColor = 0x5def0d;
-						  	 path = "";
-						  	 enabling = true;						     
+						  	 inputColor = 0xf65951;
+						  	 textInput = "";
+						  	  path = ""; 
+						  	 enabling = true;
+						  	 textButton = "Upload to Flickr";						     
 						  }
+						  super.data = value;
 					}
 					
 					
@@ -59,15 +71,17 @@
                  
                     
                     private function updateScientificName():void {
-                            (this.parentDocument as SqlImages).updateName(scientificNameInput.text,data.path);              
+                            (this.parentDocument as SqlImages).updateName(scientificNameInput.text,data.path);  
+                            textInput = scientificNameInput.text;
+                            data.scientific = textInput;            
                             changeColorInput();                             
                     }
                     
                     private function changeColorInput():void {
-                            if(scientificNameInput.text =='' || scientificNameInput.text =='Tag this image!') {
-                                    scientificNameInput.setStyle("borderColor","#f65951");
+                            if(textInput =='' || textInput == 'Tag this image!') {
+                                    inputColor = 0xf65951;
                             } else {
-                                    scientificNameInput.setStyle("borderColor","#5def0d");
+                                    inputColor = 0x5def0d;
                             }
                     }
                     
@@ -86,10 +100,10 @@
                     }
                     
                     private function uploadImage():void {
-                            if (scientificNameInput.text=="" || scientificNameInput.text=="Tag this image!") {
+                            if (textInput == "" || textInput == "Tag this image!") {
                                     Alert.show("Tag this image first!","Error uploading")
                             } else {
-                                    flickrButton.label = "Uploading now";
+                                    textButton = "Uploading now";
                                     enabling = false;
                                     var upFlick: FlickrUploadService = new FlickrUploadService();
                                     upFlick.resolveTagsFlickr(data.path,scientificNameInput.text);
@@ -110,13 +124,13 @@
                     
                     
                     private function changeScientificName():void {
-                            if (scientificNameInput.text == "Tag this image!") {
-                                    scientificNameInput.text = "";
+                            if (textInput == "Tag this image!") {
+                                    textInput = "";
                             }
                     }
                     
                     private function changeTaxonomy():void {
-                            if (scientificNameInput.text=="" || scientificNameInput.text=="Tag this image!") {
+                            if (textInput == "" || textInput == "Tag this image!") {
                                     Alert.show("Tag this image first!","Error taxonoming!!!¿?");
                             } else {
                                     (this.parentDocument as SqlImages).openTaxonomyPanel(data.path,scientificNameInput.text);
@@ -135,7 +149,7 @@
         	borderColor="#A1A0A0" borderThickness="0.5" backgroundColor="#434343">
 	        <mx:VBox width="100%" height="100%" verticalGap="4" paddingTop="4" paddingBottom="2">
 	                <mx:HBox width="100%" height="21" verticalAlign="middle" horizontalAlign="center" horizontalGap="3" paddingLeft="4" paddingRight="4">
-	                        <mx:TextInput id="scientificNameInput" text="{data.scientific==null?'Tag this image!':data.scientific}" click="changeScientificName()" change="updateScientificName()" 
+	                        <mx:TextInput id="scientificNameInput" text="{textInput}" click="changeScientificName()" change="updateScientificName()" 
 	                                textAlign="left" width="100%" backgroundAlpha="0.0" color="#EFEBEB" creationComplete="changeColorInput()" borderColor="{inputColor}" height="21" 
 	                                enter="changeTaxonomy()" borderStyle="solid" fontFamily="DINOT-Bold" borderThickness="0.5" fontSize="12" paddingLeft="2"/>
 	                        <mx:Button label="x" fontSize="10" click="eraseImage()" width="21" id="del" styleName="itemButton" height="21" enabled="{enabling}"/>                        
@@ -148,7 +162,7 @@
 	                        </mx:Canvas> 
 	                </mx:HBox>
 	                <mx:HBox width="100%" height="23" verticalCenter="0" horizontalAlign="center" paddingLeft="4" paddingRight="4" horizontalGap="4">
-	                        <mx:Button label="Upload to Flickr" fontSize="10" click="uploadImage()" width="100%" id="flickrButton" height="21" 
+	                        <mx:Button label="{textButton}" fontSize="10" click="uploadImage()" width="100%" id="flickrButton" height="21" 
 	                        	styleName="itemButton" icon="@Embed('/com/vizzuality/assets/logo_flickr.png')" enabled="{enabling}"/>
 	                        <mx:Button label="Tag me!" click="(this.parentDocument as SqlImages).openTaxonomyPanel(data.path,scientificNameInput.text)" 
 	                        	width="100%" id="geoButton" height="21" styleName="itemButton" icon="@Embed('/com/vizzuality/assets/world.png')" enabled="{enabling}"/>     
