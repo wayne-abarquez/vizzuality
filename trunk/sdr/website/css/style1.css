@@ -15,12 +15,12 @@
 }
 
 .commentsContainer{
-	background-color: silver;
+	background-color: black;
 	height: 500px;
 }
 
 .post{
-	background-color: green;
+	background-color: #f2f7ef;
 	height: 100px;
 }
 
@@ -32,16 +32,19 @@
 .contributors{
 	background-color: black;
 	height: 113px;
+	padding-left: 9px;
 }
 
 .species_details{
 	background-color: green;
 	height: 360px;
+	padding-left: 9px;
 }
 
 .related_species{
 	background-color: black;
 	height: 131px;
+	padding-left: 9px;
 }
 
 .footerContainer{
@@ -54,25 +57,38 @@
 	height: 90px;
 }
 
-
 .footer_logo{
 	background-color: silver;
 	height: 74px;
 }
 
-.subrayado{
+.notice{
+	background-color: blue;
+	height: 60px;
+	width: 222px;
+}
+
+.separator_small{
 	background-color: white;
 	height: 1px;
+	width: 1px repeat-x;
+	margin-right: 9px;
+	margin-bottom: 9px;
+}
+
+.separator_big{
+	background-color: white;
+	height: 1px;
+	width: 1px repeat-x;
 }
 
 .avatar{
 	background-color: white;
 	height: 52px;
 	width: 52px;
-	margin-top: 9px;
-	margin-bottom: 9px;
-	margin-left: 9px;
 }
+
+/* separadores */
 
 .separator40{
 	height: 40px;
@@ -94,18 +110,21 @@
 	height: 1px;
 }
 
-.texto{
+/* tipograf’a */
+
+.title_blue{
+ 	font-family: "Georgia";
+ 	font-style: italic;
+	font-size: 21px; 
+	margin-right: 10px;
+	color: #9db7d2;
+}
+
+.title_gray{
  	font-family: "Georgia";
  	font-style: italic;
 	font-size: 21px; 
 	margin-left: 10px;
 	margin-right: 10px;
-	color: #9db7d2;
-}
-
-.texto2{
- 	font-family: "Arial";
- 	font-weight: bold;
-	font-size: 16px; 
-	color: #9db7d2;
+	color: #a9a9a9;
 }
