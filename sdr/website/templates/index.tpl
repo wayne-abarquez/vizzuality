@@ -17,14 +17,12 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-
 	<div class="container showgrid">
 		<div class="span-24 last headerContainer"></div>
 		<div class="span-24 last separator7"></div>
  		<div class="span-24 last searchContainer">
  			<span class="texto">Search for species</span>
 			<input class="span-17">
-			<button class="span-3">
  		</div>
 		<div class="span-24 last separator7"></div>		
 		<div class="span-24 last widgetContainer">
@@ -34,11 +32,11 @@
 		<div class="span-18 commentsContainer">
 		 	<span class="texto">Comments about this distribution map</span>
 			<div class="span-18 subrayado"></div>
-			<div class="span-18 avatar"></div>
+			<div class="span-18 avatar"><img src="/css/images/avatar5.jpg"></div>
 			<div class="span-18 subrayado"></div>
-			<div class="span-18 avatar"></div>
+			<div class="span-18 avatar"><img src="/css/images/avatar5.jpg"></div>
 			<div class="span-18 subrayado"></div>
-			<div class="span-18 avatar"></div>
+			<div class="span-18 avatar"><img src="/css/images/avatar5.jpg"></div>
 			<div class="span-18 subrayado"></div>
 			<div class="span-18 post">
 			    <span class="texto">Post your comment now</span>
@@ -48,8 +46,8 @@
 			<div class="span-6 last contributors">
 			 	<span class="texto">Contributors</span>
 			    <div class="span-6 subrayado"></div>
-			    <div class="span-6 avatar"></div>
-			    <div class="span-6 avatar"></div>
+			    <div class="span-6 avatar"><img src="/css/images/avatar1.jpg"></div>
+			    <div class="span-6 avatar"><img src="/css/images/avatar2.jpg"></div>
 			</div>
 			<div class="span-6 last separator6"></div>
 			<div class="span-6 last species_details">
@@ -60,7 +58,8 @@
 			<div class="span-6 last related_species">
 				<span class="texto">Species Details</span>
 				<div class="span-6 subrayado"></div>
-			    <div class="span-6 avatar"></div>
+			    <div class="span-6 avatar"><img src="/css/images/avatar3.jpg"></div>
+				<div class="span-6 avatar"><img src="/css/images/avatar4.jpg"></div>
 			</div>			
 		</div>
 		<div class="span-24 last separator40"></div>
