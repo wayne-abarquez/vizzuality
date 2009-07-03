@@ -20,8 +20,15 @@
 	<div class="container showgrid">
 	
 		<div class="span-24 last headerContainer">
-			<div class="span-1 headerLogo"></div>
-			<div class="headerList"></div>
+			<div class="span-1 last headerLogo"></div>
+			<div class="span-1 last headerList">
+				<ul>
+  					<li>BROWSE</li>
+  					<li>CREATE</li>
+  					<li>ABOUT</li>
+				</ul>
+			</div>
+			<div class="span-1 last headerSign"></div>
 		</div>
 	
 		<div class="span-24 last separator7"></div>
