@@ -98,6 +98,7 @@
 			<div class="span-24 last separator1"></div>
 		
 			<div class="span-24 last footer">
+			
 			    <div class="span-1 footer_logo"></div>
 			</div>
 		</div>
