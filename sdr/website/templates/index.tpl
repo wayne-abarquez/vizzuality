@@ -21,52 +21,59 @@
 		<div class="span-24 last headerContainer"></div>
 		<div class="span-24 last separator7"></div>
  		<div class="span-24 last searchContainer">
- 			<span class="texto">Search for species</span>
+ 			<span class="title_blue">Search for species</span>
 			<input class="span-17">
  		</div>
 		<div class="span-24 last separator7"></div>		
 		<div class="span-24 last widgetContainer">
-			<div class="span-6 avatar"></div>
 		</div>
 		<div class="span-24 last separator7"></div>		
 		<div class="span-18 commentsContainer">
-		 	<span class="texto">Comments about this distribution map</span>
-			<div class="span-18 subrayado"></div>
-			<div class="span-18 avatar"><img src="/css/images/avatar5.jpg"></div>
-			<div class="span-18 subrayado"></div>
-			<div class="span-18 avatar"><img src="/css/images/avatar5.jpg"></div>
-			<div class="span-18 subrayado"></div>
-			<div class="span-18 avatar"><img src="/css/images/avatar5.jpg"></div>
-			<div class="span-18 subrayado"></div>
+		 	<span class="title_blue">Comments about this distribution map</span>
+			<div class="separator_small"></div>
+			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
+			<div class="separator_small"></div>
+			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
+			<div class="separator_small"></div>
+			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
+			<div class="separator_small"></div>
 			<div class="span-18 post">
-			    <span class="texto">Post your comment now</span>
+			    <span class="title_gray">Post your comment now</span>
 			</div>
 		</div>
+		
 		<div class="span-6 last rightColumn">
-			<div class="span-6 last contributors">
-			 	<span class="texto">Contributors</span>
-			    <div class="span-6 subrayado"></div>
-			    <div class="span-6 avatar"><img src="/css/images/avatar1.jpg"></div>
-			    <div class="span-6 avatar"><img src="/css/images/avatar2.jpg"></div>
+			
+			<div class="contributors">
+			 	<span class="title_blue">Contributors</span>
+			    <div class="separator_small"></div>
+			    <span class="avatar"><img src="/css/images/avatar1.jpg"></span>
+			    <span class="avatar"><img src="/css/images/avatar2.jpg"></span>
 			</div>
-			<div class="span-6 last separator6"></div>
-			<div class="span-6 last species_details">
-				<span class="texto">Species Details</span>
-				<div class="span-6 subrayado"></div>
+			
+			<div class="separator6"></div>
+			
+			<div class="species_details">
+				<span class="title_blue">Species Details</span>
+			    <div class="separator_small"></div>
 			</div>
-			<div class="span-6 last separator6"></div>
-			<div class="span-6 last related_species">
-				<span class="texto">Species Details</span>
-				<div class="span-6 subrayado"></div>
-			    <div class="span-6 avatar"><img src="/css/images/avatar3.jpg"></div>
-				<div class="span-6 avatar"><img src="/css/images/avatar4.jpg"></div>
+			
+			<div class="separator6"></div>
+			<div class="related_species">
+				<span class="title_blue">Species Details</span>
+			    <div class="separator_small"></div>
+			    <span class="avatar"><img src="/css/images/avatar3.jpg"></span>
+				<span class="avatar"><img src="/css/images/avatar4.jpg"></span>
 			</div>			
 		</div>
 		<div class="span-24 last separator40"></div>
 		<div class="span-24 last footerContainer">
 			<div class="span-24 last separator1"></div>
 			<div class="span-24 last footer_notices">
-
+				<span class="span-5 notice"></span>
+				<span class="span-5 notice"></span>
+				<span class="span-5 notice"></span>
+				<span class="span-5 notice"></span>
 			</div>
 			<div class="span-24 last separator1"></div>
 			<div class="span-24 last footer_logo"></div>
