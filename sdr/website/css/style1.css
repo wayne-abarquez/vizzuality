@@ -12,6 +12,19 @@
 .headerList{
 	height: 71px;
 	width: 673px;
+	font-family: "Arial";
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.headerList ul{
+    padding-top: 39px;
+}
+
+.headerList li{
+	display: inline;
+	padding-left: 22px;
+	padding-right: 22px;
 }
 
 .headerSign{
