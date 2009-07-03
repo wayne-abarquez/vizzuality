@@ -89,8 +89,12 @@
 		<div class="span-24 last footerContainer">
 			<div class="span-24 last separator1"></div>
 		
-			<div class="span-24 last footer_notices"></div>
-		
+			<div class="span-24 last footer_notices">
+				<div class="span-1 noti"></div>
+				<div class="span-1 noti"></div>
+				<div class="span-1 noti"></div>
+				<div class="span-1 noti"></div>
+			</div>
 			<div class="span-24 last separator1"></div>
 		
 			<div class="span-24 last footer_logo"></div>
