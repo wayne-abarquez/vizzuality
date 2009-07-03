@@ -3,6 +3,25 @@
 	height: 71px;
 }
 
+.headerLogo{
+	background-color: silver;
+	height: 71px;
+	width: 180px;
+	background-color: green;
+}
+
+.headerList{
+	background-color: silver;
+	height: 71px;
+	width: 673px;
+    background-color: lime;
+}
+
+.headerSign{
+	background-color: silver;
+	height: 71px;
+}
+
 .searchContainer{
 	background-color: silver;
 	height: 36px;
@@ -80,6 +99,7 @@
 	background-color: white;
 	height: 1px;
 	width: 1px repeat-x;
+	margin-bottom: 9px;
 }
 
 .avatar{
@@ -116,7 +136,6 @@
  	font-family: "Georgia";
  	font-style: italic;
 	font-size: 21px; 
-	margin-right: 10px;
 	color: #9db7d2;
 }
 
@@ -125,6 +144,5 @@
  	font-style: italic;
 	font-size: 21px; 
 	margin-left: 10px;
-	margin-right: 10px;
-	color: #a9a9a9;
+	color: #a9a9a9	
 }
