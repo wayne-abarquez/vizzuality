@@ -35,12 +35,14 @@
  	
  		<div class="span-24 last searchContainer">
  			<span class="title_blue">Search for species</span>
-			<input class="span-17">
+			<input class="span-10">
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
 	
-		<div class="span-24 last widgetContainer"></div>
+		<div class="span-24 last widgetContainer">
+			<img src="/css/images/widget.jpg">
+		</div>
 		
 		<div class="span-24 last separator7"></div>		
 		
@@ -98,8 +100,7 @@
 			<div class="span-24 last separator1"></div>
 		
 			<div class="span-24 last footer">
-			
-			    <div class="span-1 footer_logo"></div>
+			    <div class="span-1 footer_logo"><img src="/css/images/logo_footer.jpg"></div>
 			</div>
 		</div>
 	</div>
