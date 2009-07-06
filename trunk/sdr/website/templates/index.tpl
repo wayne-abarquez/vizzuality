@@ -94,15 +94,19 @@
 			<div class="span-24 last footer_notices">
 				<div class="span-6 noti">
 					<div class="title_noti">Do you need help?</div>
+					<div class="noti_sub">Visit our Frequently Asked Questions or contact us</div>
 				</div>
 				<div class="span-6 noti">
 					<div class="title_noti">About the project</div>
+					<div class="noti_sub">Visit our Frequently Asked Questions or contact us</div>
 				</div>
 				<div class="span-6 noti">					
 					<div class="title_noti">Do you know that...</div>
+					<div class="noti_sub">Visit our Frequently Asked Questions or contact us</div>
 				</div>
 				<div class="span-6 noti">
 					<div class="title_noti">Do you want to contribute?</div>
+					<div class="noti_sub">Visit our Frequently Asked Questions or contact us</div>
 				</div>
 			</div>
 			<div class="span-24 last separator1"></div>
