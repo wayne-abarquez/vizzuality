@@ -50,7 +50,7 @@
 
 .post{
 	background-color: #f2f7ef;
-	height: 100px;
+	height: 131px;
 }
 
 .rightColumn{
@@ -190,4 +190,14 @@
 	word-spacing: -1px;
 	padding-top: 3px;
 	color: white;
+}
+
+.cajas{
+	margin-left: 9px;
+	margin-right: 9px;
+}
+
+.cajas2{
+	height: 57px;
+	width: 1px repeat-x;
 }
