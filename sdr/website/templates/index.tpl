@@ -34,8 +34,8 @@
 		<div class="span-24 last separator7"></div>
  	
  		<div class="span-24 last searchContainer">
- 			<span class="title_blue">Search for species</span>
-			<input class="span-16">
+ 			<div class="span-5 title_blue">Search for species</div>
+			<div class="cajas"><input class="span-16 text cajas"></div>
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
@@ -56,8 +56,8 @@
 			<span class="avatar"><img src="/css/images/avatar5.jpg"></span>
 			<div class="separator_big"></div>
 			<div class="span-18 post">
-			    <span class="title_gray">Post your comment now</span>
-			    <input class="span-17">
+			    <div class="title_gray">Post your comment now</div>
+			    <div class="span-1 cajas"><input class="span-17 text cajas2"></div>
 			</div>
 		</div>
 		
