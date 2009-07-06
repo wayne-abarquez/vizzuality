@@ -31,6 +31,8 @@
 	background-color: green;
 	height: 24px;
 	width: 97px;
+	font-family: "Arial";
+	font-size: 11px;
 }
 
 .searchContainer{
@@ -94,8 +96,8 @@
 
 .footer_logo{
 	background-color: gray;
-	height: 47px;
-	width: 74px;
+	height: 74px;
+	width: 47px;
 }
 
 .noti{
