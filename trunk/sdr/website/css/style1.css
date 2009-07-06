@@ -88,14 +88,15 @@
 }
 
 .footer{
-	background-color: gray;
+	background-color: green;
 	height: 74px;
 	
 }
 
 .footer_logo{
+	right: 2px;
 	background-color: gray;
-	height: 74px;
+	height: 47px;
 	width: 40px;
 }
 
@@ -153,14 +154,28 @@
 .title_blue{
  	font-family: "Georgia";
  	font-style: italic;
-	font-size: 21px; 
+	font-size: 20pt; 
 	color: #9db7d2;
 }
 
 .title_gray{
  	font-family: "Georgia";
  	font-style: italic;
-	font-size: 21px; 
+	font-size: 20pt; 
 	margin-left: 10px;
-	color: #a9a9a9	
+	color: #a9a9a9;	
+}
+
+.title_noti{
+ 	font-family: "Arial";
+ 	font-weight: bold;
+	font-size: 16pt; 
+	color: #99b3cc;
+	padding-top: 22px;	
+}
+
+.title_noti{
+ 	font-family: "Arial";
+	font-size: 13pt; 
+	color: #999999;
 }
