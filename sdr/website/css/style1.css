@@ -28,13 +28,9 @@
 }
 
 .headerSign{
-	text-align: center;
-	word-spacing: -1px;
 	background-color: green;
 	height: 24px;
 	width: 97px;
-	font-family: "Arial";
-	font-size: 12px;
 }
 
 .searchContainer{
@@ -171,8 +167,8 @@
 .title_noti{
  	font-family: "Arial";
 	font-size: 16px; 
-	color: #99b3cc;
 	padding-top: 21px;	
+	color: #99b3cc;
 }
 
 .noti_sub{
@@ -186,4 +182,13 @@
  	font-family: "Arial";
 	font-size: 13px; 
 	color: #999999;
+}
+
+.login_sign{
+	font-family: "Arial";
+	text-align: center;
+	font-size: 12px;
+	word-spacing: -1px;
+	padding-top: 3px;
+	color: white;
 }
