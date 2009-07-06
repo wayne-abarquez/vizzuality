@@ -28,7 +28,7 @@
   					<li>ABOUT</li>
 				</ul>
 			</div>
-			<div class="span-1 last headerSign"></div>
+			<div class="span-1 last headerSign">Login or Sign up!</div>
 		</div>
 	
 		<div class="span-24 last separator7"></div>
@@ -112,7 +112,8 @@
 			<div class="span-24 last separator1"></div>
 		
 			<div class="span-24 last footer">
-			    <div class="span-1 footer_logo"><img src="/css/images/logo_footer.jpg"></div>
+				<div class=" span-11 last footer_info">Species distribution repository. GBIF.org 2009. Legal terms  |  contact us</div>
+			    <div class="span-1 last footer_logo"><img src="/css/images/logo_footer.jpg"></div>
 			</div>
 		</div>
 	</div>
