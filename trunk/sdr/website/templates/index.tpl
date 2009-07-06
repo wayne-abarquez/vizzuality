@@ -92,10 +92,18 @@
 			<div class="span-24 last separator1"></div>
 		
 			<div class="span-24 last footer_notices">
-				<div class="span-6 noti"></div>
-				<div class="span-6 noti"></div>
-				<div class="span-6 noti"></div>
-				<div class="span-6 noti"></div>
+				<div class="span-6 noti">
+					<div class="title_noti">Do you need help?</div>
+				</div>
+				<div class="span-6 noti">
+					<div class="title_noti">About the project</div>
+				</div>
+				<div class="span-6 noti">					
+					<div class="title_noti">Do you know that...</div>
+				</div>
+				<div class="span-6 noti">
+					<div class="title_noti">Do you want to contribute?</div>
+				</div>
 			</div>
 			<div class="span-24 last separator1"></div>
 		
