@@ -89,15 +89,13 @@
 
 .footer{
 	background-color: green;
-	height: 74px;
-	
+	height: 74px;	
 }
 
 .footer_logo{
-	right: 2px;
 	background-color: gray;
 	height: 47px;
-	width: 40px;
+	width: 74px;
 }
 
 .noti{
