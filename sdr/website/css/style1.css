@@ -154,28 +154,28 @@
 .title_blue{
  	font-family: "Georgia";
  	font-style: italic;
-	font-size: 20pt; 
+	font-size: 20px; 
 	color: #9db7d2;
 }
 
 .title_gray{
  	font-family: "Georgia";
  	font-style: italic;
-	font-size: 20pt; 
+	font-size: 20px; 
 	margin-left: 10px;
 	color: #a9a9a9;	
 }
 
 .title_noti{
  	font-family: "Arial";
- 	font-weight: bold;
-	font-size: 16pt; 
+	font-size: 16px; 
 	color: #99b3cc;
-	padding-top: 22px;	
+	padding-top: 21px;	
 }
 
-.title_noti{
+.noti_sub{
  	font-family: "Arial";
-	font-size: 13pt; 
+  	line-height: 12px;
+	font-size: 13px; 
 	color: #999999;
 }
