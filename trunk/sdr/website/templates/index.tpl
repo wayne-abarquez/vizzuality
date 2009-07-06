@@ -49,11 +49,11 @@
 		<div class="span-18 commentsContainer">
 		 	<span class="title_blue">Comments about this distribution map</span>
 			<div class="separator_big"></div>
-			<span class="avatar"><img src="/css/images/avatar5.jpg"></span>
+			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
 			<div class="separator_big"></div>
-			<span class="avatar"><img src="/css/images/avatar5.jpg"></span>
+			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
 			<div class="separator_big"></div>
-			<span class="avatar"><img src="/css/images/avatar5.jpg"></span>
+			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
 			<div class="separator_big"></div>
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
