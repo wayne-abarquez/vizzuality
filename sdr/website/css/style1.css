@@ -45,7 +45,7 @@
 
 .commentsContainer{
 	background-color: black;
-	height: 500px;
+	height: 300px;
 }
 
 .post{
@@ -104,7 +104,7 @@
 }
 
 .separator_small{
-	background-color: white;
+	background-color: yellow;
 	height: 1px;
 	width: 1px repeat-x;
 	margin-right: 9px;
@@ -112,16 +112,17 @@
 }
 
 .separator_big{
-	background-color: white;
+	background-color: yellow;
 	height: 1px;
 	width: 1px repeat-x;
-	margin-bottom: 9px;
 }
 
 .avatar{
 	background-color: white;
 	height: 52px;
 	width: 52px;
+	margin-top: 9px;
+	margin-bottom: 9px;
 }
 
 /* separadores */
