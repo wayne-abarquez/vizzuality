@@ -1,5 +1,5 @@
 .headerContainer{
-	background-color: silver;
+	background-color: black;
 	height: 71px;
 }
 
@@ -10,7 +10,6 @@
 }
 
 .headerList{
-	height: 71px;
 	width: 673px;
 	font-family: "Arial";
 	font-weight: bold;
@@ -18,21 +17,24 @@
 }
 
 .headerList ul{
-    padding-top: 39px;
+    padding-top: 30px;
 }
 
 .headerList li{
 	display: inline;
 	padding-left: 22px;
 	padding-right: 22px;
+	color: #999999;
 }
 
 .headerSign{
+	text-align: center;
+	word-spacing: -1px;
 	background-color: green;
 	height: 24px;
 	width: 97px;
 	font-family: "Arial";
-	font-size: 11px;
+	font-size: 12px;
 }
 
 .searchContainer{
