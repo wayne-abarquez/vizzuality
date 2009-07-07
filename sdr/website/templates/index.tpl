@@ -63,6 +63,7 @@
 			</div>
 			<div class="comments">
 				<div class="avatar"></div>
+				<p class="title_comment">by jatorre, 2 hours ago</p>
 			</div>
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
