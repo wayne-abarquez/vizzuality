@@ -223,6 +223,11 @@
 	font-family: "Georgia";
 	font-size: 13px;
 	color: #d6d6d6;
-	padding-top: 5px;
-	padding-left: 150px;
+	float: left;
+}
+
+.title_comment_u{
+	font-size: 15px;
+	color: #bfbfbf;
+	float: left;
 }
