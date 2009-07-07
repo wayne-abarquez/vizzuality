@@ -40,9 +40,9 @@
 	
 		<div class="span-24 last separator7"></div>
  	
- 		<div class="span-24 last searchContainer">
+ 		<div class="span-23 last searchContainer">
  			<div class="span-5 title_blue">Search for species</div>
-			<div class="cajas"><input class="span-16 text cajas"></div>
+			<div class="cajas"><input class="span-10 text cajas"></div>
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
@@ -56,11 +56,11 @@
 		<div class="span-18 commentsContainer">
 		 	<span class="title_blue">Comments about this distribution map</span>
 			<div class="separator_big"></div>
-			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
+			<div class="avatar"></div>
 			<div class="separator_big"></div>
-			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
+			<div class="avatar"></div>
 			<div class="separator_big"></div>
-			<div class="avatar"><img src="/css/images/avatar5.jpg"></div>
+			<div class="avatar"></div>
 			<div class="separator_big"></div>
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
@@ -72,8 +72,8 @@
 			<div class="contributors">
 			 	<span class="title_blue">Contributors</span>
 			    <div class="separator_small"></div>
-			    <span class="avatar"><img src="/css/images/avatar1.jpg"></span>
-			    <span class="avatar"><img src="/css/images/avatar2.jpg"></span>
+			    <div class="span-1 avatar"></div>
+			    <div class="span-1 avatar"></div>
 			</div>
 			
 			<div class="separator6"></div>
@@ -88,10 +88,10 @@
 			<div class="related_species">
 				<span class="title_blue">Species Details</span>
 			    <div class="separator_small"></div>
-			    <span class="avatar"><img src="/css/images/avatar3.jpg"></span>
-				<span class="avatar"><img src="/css/images/avatar4.jpg"></span>
-			    <span class="avatar"><img src="/css/images/avatar3.jpg"></span>
-				<span class="avatar"><img src="/css/images/avatar4.jpg"></span>
+			    <div class="span-1 avatar"></div>
+			    <div class="span-1 avatar"></div>
+			    <div class="span-1 avatar"></div>
+			    <div class="span-1 avatar"></div>
 			</div>		
 		</div>
 		
