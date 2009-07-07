@@ -128,7 +128,7 @@
 
 .noti{
 	height: 90px;
-	width: 222px;
+	width: 220px;
 }
 
 /* others */
@@ -142,8 +142,11 @@
 
 .separator_vertical{
     border-left: #d6d6d6 1px dotted;
-	height: 50px;
-	width: 2px;
+    height: 67px;
+    width: 1px;
+    float: left;
+    margin-top: 12px;
+    padding-right: 7px;
 }
 
 .avatar{
@@ -154,14 +157,6 @@
 	margin-top: 9px;
 	margin-bottom: 9px;
 	float: left;
-}
-
-.comment_now{
-
-}
-
-.comment_now_post{
-
 }
 
 /* separator */
