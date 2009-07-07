@@ -1,18 +1,20 @@
 .headerContainer{
-	background-color: black;
 	height: 71px;
 }
 
 .headerLogo{
-	height: 71px;
+	height: 68px;
 	width: 180px;
 	background-color: #a8cd96;
+    border-bottom: green 1px solid;
+	border-left: green 1px solid;
+    border-right: green 1px solid;
 }
 
 .headerList{
-	width: 673px;
+    border-top: green 1px solid;
+	width: 662px;
 	font-family: "Arial";
-	font-weight: bold;
 	font-size: 14px;
 }
 
@@ -29,13 +31,18 @@
 
 .headerSign{
 	background-color: #a8cd96;
-	height: 24px;
-	width: 97px;
+	height: 23px;
+	width: 104px;
+    border-bottom: green 1px solid;
+	border-left: green 1px solid;
+    border-right: green 1px solid;
 }
 
 .searchContainer{
-	background-color: silver;
+    border: #d6d6d6 1px solid;
+	background-color: #f7f7f7;
 	height: 36px;
+	width: 948px;
 }
 
 .widgetContainer{
@@ -54,26 +61,30 @@
 }
 
 .rightColumn{
-	background-color: silver;
 	height: 616px;
 }
 
 .contributors{
-	background-color: black;
-	height: 113px;
+	background-color: #f7f7f7;
+	height: 111px;
+	width: 219px;
 	padding-left: 9px;
+    border: #d6d6d6 1px solid;
 }
 
 .species_details{
-	background-color: green;
+	background-color: #f7f7f7;
 	height: 360px;
+	width: 219px;
 	padding-left: 9px;
+	border: #d6d6d6 1px solid;
 }
 
 .related_species{
-	background-color: black;
-	height: 131px;
+	background-color: #f7f7f7;
+	height: 129px;
 	padding-left: 9px;
+	border: #d6d6d6 1px solid;
 }
 
 .footerContainer{
@@ -104,7 +115,7 @@
 }
 
 .separator_small{
-	background-color: yellow;
+	background-color: #d6d6d6;
 	height: 1px;
 	width: 1px repeat-x;
 	margin-right: 9px;
@@ -112,15 +123,16 @@
 }
 
 .separator_big{
-	background-color: yellow;
+	background-color: #d6d6d6;
 	height: 1px;
 	width: 1px repeat-x;
 }
 
 .avatar{
+	border: #d6d6d6 1px solid;
 	background-color: white;
 	height: 52px;
-	width: 52px;
+	width: 51px;
 	margin-top: 9px;
 	margin-bottom: 9px;
 }
