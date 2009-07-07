@@ -17,7 +17,7 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-	<div class="container showgrid">
+	<div class="container">
 	
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
