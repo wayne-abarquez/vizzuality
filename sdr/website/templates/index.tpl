@@ -28,7 +28,14 @@
   					<li>ABOUT</li>
 				</ul>
 			</div>
-			<div class="span-1 last headerSign"><div class="login_sign">Login or Sign up!</div></div>
+			<div class="span-1 last headerSign">
+				<div class="login_sign">
+					<a href="" class="login_sign_link">Login </a>or
+					<a href="" class="login_sign_link"> Sign up!</a>
+				</div>
+
+			<a href="" class="login_sign_link"></a>
+			</div>
 		</div>
 	
 		<div class="span-24 last separator7"></div>
