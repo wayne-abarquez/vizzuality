@@ -17,7 +17,7 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-	<div class="container">
+	<div class="container showgrid">
 	
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
@@ -89,7 +89,7 @@
 			<div class="separator6"></div>
 			
 			<div class="related_species">
-				<span class="title_blue">Species Details</span>
+				<span class="title_blue">Related Species</span>
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
@@ -105,19 +105,19 @@
 		
 			<div class="span-24 last footer_notices">
 				<div class="span-6 noti">
-					<div class="title_noti">Do you need help?</div>
+					<div class="title_notice">Do you need help?</div>
 					<div class="noti_sub">Visit our Frequently Asked Questions or contact us</div>
 				</div>
 				<div class="span-6 noti">
-					<div class="title_noti">About the project</div>
+					<div class="title_notice">About the project</div>
 					<div class="noti_sub">All the information about the Species Distribution Repository</div>
 				</div>
 				<div class="span-6 noti">					
-					<div class="title_noti">Do you know that...</div>
+					<div class="title_notice">Do you know that...</div>
 					<div class="noti_sub">Do you want to know more? Visit our blog</div>
 				</div>
 				<div class="span-6 noti">
-					<div class="title_noti">Do you want to contribute?</div>
+					<div class="title_notice">Do you want to contribute?</div>
 					<div class="noti_sub">Register now and get access to the distribution editor</div>
 				</div>
 			</div>
