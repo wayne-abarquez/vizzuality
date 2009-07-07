@@ -42,7 +42,7 @@
  	
  		<div class="span-23 last searchContainer">
  			<div class="span-5 title_blue">Search for species</div>
-			<div class="cajas"><input class="span-10 text cajas"></div>
+			<div class=""><input class="span-10 text "></div>
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
@@ -66,7 +66,7 @@
 			</div>
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
-			    <div class="span-1 cajas"><input class="span-17 text cajas2"></div>
+			    <div class="span-1 "><input class="span-17 text 2"></div>
 			</div>
 		</div>
 		
