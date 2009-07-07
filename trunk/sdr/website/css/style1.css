@@ -55,6 +55,8 @@
 	height: 452px;
 }
 
+/* comments */
+
 .commentsContainer{
 	height: 300px;
 }
@@ -70,6 +72,8 @@
 	height: 131px;
 }
 
+/* right column */
+
 .rightColumn{
 	height: 616px;
 }
@@ -77,25 +81,25 @@
 .contributors{
 	background-color: #f7f7f7;
 	height: 111px;
-	width: 219px;
-	padding-left: 9px;
+	padding-left: 5px;
     border: #d6d6d6 1px solid;
 }
 
 .species_details{
 	background-color: #f7f7f7;
 	height: 360px;
-	width: 219px;
-	padding-left: 9px;
+	padding-left: 5px;
 	border: #d6d6d6 1px solid;
 }
 
 .related_species{
 	background-color: #f7f7f7;
 	height: 129px;
-	padding-left: 9px;
+	padding-left: 6px;
 	border: #d6d6d6 1px solid;
 }
+
+/* footer */
 
 .footerContainer{
 	height: 166px;
@@ -123,11 +127,13 @@
 	width: 222px;
 }
 
+/* others */
+
 .separator_small{
     border-top: #d6d6d6 1px dotted;
 	height: 1px;
 	width: 1px repeat-x;
-	margin-right: 9px;
+	margin-right: 5px;
 }
 
 .avatar{
@@ -140,7 +146,7 @@
 	float: left
 }
 
-/* separadores */
+/* separator */
 
 .separator40{
 	height: 40px;
@@ -162,7 +168,7 @@
 	height: 1px;
 }
 
-/* tipograf’a */
+/* typography */
 
 .title_blue{
  	font-family: "Georgia";
@@ -179,7 +185,7 @@
 	color: #a9a9a9;	
 }
 
-.title_noti{
+.title_notice{
  	font-family: "Arial";
 	font-size: 16px; 
 	padding-top: 21px;	
