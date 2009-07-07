@@ -1,3 +1,4 @@
+/* header */
 .headerContainer{
 	height: 71px;
 }
@@ -38,12 +39,16 @@
     border-right: green 1px solid;
 }
 
+/* search */
+
 .searchContainer{
     border: #d6d6d6 1px solid;
 	background-color: #f7f7f7;
 	height: 36px;
 	width: 948px;
 }
+
+/* widget */
 
 .widgetContainer{
 	background-color: silver;
@@ -56,9 +61,11 @@
 
 .comments{
 	height: 97px;
+    border-top: #d6d6d6 1px dotted;
 }
 
 .post{
+    border-top: #d6d6d6 1px dotted;
 	background-color: #f2f7ef;
 	height: 131px;
 }
@@ -91,18 +98,17 @@
 }
 
 .footerContainer{
-	background-color: black;
 	height: 166px;
 }
 
 .footer_notices{
-	background-color: silver;
-	height: 90px;
+	border-top: black 1px solid;
+	height: 89px;
 }
 
 .footer{
-	background-color: green;
-	height: 74px;	
+	border-top: black 1px solid;
+	height: 73px;	
 }
 
 .footer_logo{
@@ -118,11 +124,10 @@
 }
 
 .separator_small{
-	background-color: #d6d6d6;
+    border-top: #d6d6d6 1px dotted;
 	height: 1px;
 	width: 1px repeat-x;
 	margin-right: 9px;
-	margin-bottom: 9px;
 }
 
 .avatar{
@@ -201,16 +206,6 @@
 	word-spacing: -1px;
 	padding-top: 3px;
 	color: white;
-}
-
-.cajas{
-	margin-left: 9px;
-	margin-right: 9px;
-}
-
-.cajas2{
-	height: 57px;
-	width: 1px repeat-x;
 }
 
 .login_sign_link{
