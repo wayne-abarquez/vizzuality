@@ -218,3 +218,8 @@
 	text-decoration: underline;
 	color: green;
 }
+
+.title_comment{
+	font-family: "Georgia";
+	font-size: 13px;
+}
