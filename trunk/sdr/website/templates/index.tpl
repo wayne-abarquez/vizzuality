@@ -32,8 +32,6 @@
 					<a href="" class="login_sign_link">Login </a>or
 					<a href="" class="login_sign_link"> Sign up!</a>
 				</div>
-
-			<a href="" class="login_sign_link"></a>
 			</div>
 		</div>
 	
