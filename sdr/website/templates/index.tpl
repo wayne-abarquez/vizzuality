@@ -54,19 +54,19 @@
 		 	<span class="title_blue">Comments about this distribution map</span>
 			<div class="comments">
 				<div class="avatar"></div>
-				<p class="title_comment">by jatorre, 2 hours ago</p>
+				<div class="title_comment">by jatorre, 2 hours ago</div>
 			</div>
 			<div class="comments">
 				<div class="avatar"></div>
-				<p class="title_comment">by jatorre, 2 hours ago</p>
+				<div class="title_comment">by jatorre, 2 hours ago</div>
 			</div>
 			<div class="comments">
 				<div class="avatar"></div>
-				<p class="title_comment">by jatorre, 2 hours ago</p>
+				<div class="title_comment">by <div class="title_comment_u">jatorre,</div> 2 hours ago</div>
 			</div>
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
-			    <p class="span-1 "><input class="span-17 text 2"></p>
+			    <div class="span-1 "><input class="span-17 text 2"></div>
 			</div>
 		</div>
 		
