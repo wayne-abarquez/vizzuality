@@ -6,7 +6,7 @@
 .headerLogo{
 	height: 71px;
 	width: 180px;
-	background-color: green;
+	background-color: #a8cd96;
 }
 
 .headerList{
@@ -28,7 +28,7 @@
 }
 
 .headerSign{
-	background-color: green;
+	background-color: #a8cd96;
 	height: 24px;
 	width: 97px;
 }
@@ -201,4 +201,9 @@
 .cajas2{
 	height: 57px;
 	width: 1px repeat-x;
+}
+
+.login_sign_link{
+	text-decoration: underline;
+	color: green;
 }
