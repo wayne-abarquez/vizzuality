@@ -108,16 +108,18 @@
 				<div class="span-6 noti">
 					<div class="title_notice">Do you need help?</div>
 					<div class="noti_sub">Visit our Frequently Asked Questions or contact us</div>
-					<div class="separator_vertical"></div>
 				</div>
+				<div class="separator_vertical"></div>
 				<div class="span-6 noti">
 					<div class="title_notice">About the project</div>
 					<div class="noti_sub">All the information about the Species Distribution Repository</div>
 				</div>
+				<div class="separator_vertical"></div>
 				<div class="span-6 noti">					
 					<div class="title_notice">Do you know that...</div>
 					<div class="noti_sub">Do you want to know more? Visit our blog</div>
 				</div>
+				<div class="separator_vertical"></div>
 				<div class="span-6 noti">
 					<div class="title_notice">Do you want to contribute?</div>
 					<div class="noti_sub">Register now and get access to the distribution editor</div>
