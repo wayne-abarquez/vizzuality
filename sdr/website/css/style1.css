@@ -83,6 +83,7 @@
 	height: 111px;
 	padding-left: 5px;
     border: #d6d6d6 1px solid;
+    margin-left: -5px;
 }
 
 .species_details{
@@ -90,6 +91,7 @@
 	height: 360px;
 	padding-left: 5px;
 	border: #d6d6d6 1px solid;
+	margin-left: -5px;
 }
 
 .related_species{
@@ -97,6 +99,7 @@
 	height: 129px;
 	padding-left: 6px;
 	border: #d6d6d6 1px solid;
+    margin-left: -5px;
 }
 
 /* footer */
@@ -106,23 +109,24 @@
 }
 
 .footer_notices{
-	border-top: black 1px solid;
+	border-top: #d6d6d6 1px solid;
 	height: 89px;
 }
 
 .footer{
-	border-top: black 1px solid;
-	height: 73px;	
+	border-top: #d6d6d6 1px solid;
+	height: 67px;	
 }
 
 .footer_logo{
-	background-color: gray;
-	height: 74px;
+    background-image: url(/css/images/logo_footer.jpg);
+	height: 67px;
 	width: 47px;
+	padding-top: 10px;
+	margin-right: 0px;
 }
 
 .noti{
-	background-color: yellow;
 	height: 90px;
 	width: 222px;
 }
@@ -136,14 +140,28 @@
 	margin-right: 5px;
 }
 
+.separator_vertical{
+    border-left: #d6d6d6 1px dotted;
+	height: 50px;
+	width: 2px;
+}
+
 .avatar{
 	border: #d6d6d6 1px solid;
 	height: 52px;
 	width: 51px;
-	margin-right: 1px;
+	margin-right: 3px;
 	margin-top: 9px;
 	margin-bottom: 9px;
-	float: left
+	float: left;
+}
+
+.comment_now{
+
+}
+
+.comment_now_post{
+
 }
 
 /* separator */
@@ -188,13 +206,13 @@
 .title_notice{
  	font-family: "Arial";
 	font-size: 16px; 
-	padding-top: 21px;	
+	padding-top: 19px;	
 	color: #99b3cc;
 }
 
 .noti_sub{
  	font-family: "Arial";
-  	line-height: 12px;
+  	line-height: 13px;
 	font-size: 13px; 
 	color: #999999;
 }
@@ -220,14 +238,32 @@
 }
 
 .title_comment{
+	font-style: italic;
 	font-family: "Georgia";
 	font-size: 13px;
 	color: #d6d6d6;
+	padding-top: 8px;
 	float: left;
 }
 
 .title_comment_u{
+	text-decoration: underline;
+	font-style: italic;
+	line-height: 32px;
 	font-size: 15px;
 	color: #bfbfbf;
 	float: left;
+	padding-left: 4px;
+	padding-right: 2px;
+}
+
+.view_more{
+	text-decoration: none;
+	text-align: right;
+	font-weight: bold;
+	font-family: "Arial";
+	font-size: 11px;
+	color: green;
+	float: right;
+	padding-right: 8px;
 }
