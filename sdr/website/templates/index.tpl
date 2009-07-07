@@ -16,7 +16,7 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-	<div class="container showgrid">
+	<div class="container">
 	
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
@@ -54,15 +54,15 @@
 		 	<span class="title_blue">Comments about this distribution map</span>
 			<div class="comments">
 				<div class="avatar"></div>
-				<div class="title_comment">by jatorre, 2 hours ago</div>
+				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
 			</div>
 			<div class="comments">
 				<div class="avatar"></div>
-				<div class="title_comment">by jatorre, 2 hours ago</div>
+				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
 			</div>
 			<div class="comments">
 				<div class="avatar"></div>
-				<div class="title_comment">by <div class="title_comment_u">jatorre,</div> 2 hours ago</div>
+				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
 			</div>
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
@@ -95,6 +95,7 @@
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
+				<a href="" class="view_more">view more</a>
 			</div>		
 		</div>
 		
@@ -107,6 +108,7 @@
 				<div class="span-6 noti">
 					<div class="title_notice">Do you need help?</div>
 					<div class="noti_sub">Visit our Frequently Asked Questions or contact us</div>
+					<div class="separator_vertical"></div>
 				</div>
 				<div class="span-6 noti">
 					<div class="title_notice">About the project</div>
@@ -124,8 +126,9 @@
 			<div class="span-24 last separator1"></div>
 		
 			<div class="span-24 last footer">
-				<div class=" span-22 last footer_info">Species distribution repository. GBIF.org 2009. Legal terms  |  contact us</div>
-			    <div class="span-1 last footer_logo"><img src="/css/images/logo_footer.jpg"></div>
+				<div class="span-24 last separator6"></div>
+				<div class=" span-22 last footer_info">Species distribution repository. GBIF.org 2009. <b>Legal terms  |  contact us</b></div>
+			    <div class="span-2 last footer_logo"></div>
 			</div>
 		</div>
 	</div>
