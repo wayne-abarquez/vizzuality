@@ -90,6 +90,8 @@
 			    <div class="separator_small"></div>
 			    <span class="avatar"><img src="/css/images/avatar3.jpg"></span>
 				<span class="avatar"><img src="/css/images/avatar4.jpg"></span>
+			    <span class="avatar"><img src="/css/images/avatar3.jpg"></span>
+				<span class="avatar"><img src="/css/images/avatar4.jpg"></span>
 			</div>		
 		</div>
 		
