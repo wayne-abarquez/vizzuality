@@ -66,19 +66,18 @@
 			</div>
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
-			    <div class="span-1 "><input class="span-17 text 2"></div>
+			    <input class="span-10 text">
 			</div>
 		</div>
 		
 		<div class="span-6 last rightColumn">
-			<!--
-<div class="contributors">
+<!--<div class="contributors">
 			 	<div class="title_blue">Contributors</div>
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 			</div>
-			
+
 			<div class="separator6"></div>
 			
 			<div class="species_details">
@@ -130,7 +129,7 @@
 			<div class="span-24 last footer">
 				<div class="span-24 last separator6"></div>
 				<div class=" span-22 last footer_info">Species distribution repository. GBIF.org 2009. <b>Legal terms  |  contact us</b></div>
-			    <div class="span-2 last footer_logo"></div>
+<!-- 			    <div class="span-2 last footer_logo"></div> -->
 			</div>
 		</div>
 	</div>
