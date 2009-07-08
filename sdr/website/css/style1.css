@@ -84,6 +84,7 @@
 }
 
 .contributors{
+display: inline;
 	background-color: #f7f7f7;
 	height: 111px;
     border: #d6d6d6 1px solid;
@@ -93,15 +94,17 @@
 .species_details{
 	background-color: #f7f7f7;
 	height: 360px;
-	padding-left: 5px;
 	border: #d6d6d6 1px solid;
+	width: 228px;
+
 }
 
 .related_species{
 	background-color: #f7f7f7;
 	height: 129px;
-	padding-left: 6px;
 	border: #d6d6d6 1px solid;
+	width: 228px;
+
 }
 
 /* footer */
