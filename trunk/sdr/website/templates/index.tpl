@@ -76,7 +76,6 @@
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
-
 			</div>
 			
 			<div class="separator6"></div>
