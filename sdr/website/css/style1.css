@@ -63,6 +63,10 @@
 	height: 300px;
 }
 
+.commentsContainer{
+	height: 399px;
+}
+
 .comments{
 	height: 97px;
     border-top: #d6d6d6 1px dotted;
