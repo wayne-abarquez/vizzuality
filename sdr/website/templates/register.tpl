@@ -37,50 +37,25 @@
 	
 		<div class="span-24 last separator7"></div>
  	
- 		<div class="span-23 last searchContainer">
- 			<div class="span-5 title_blue">Search for species</div>
-			<div class=""><input class="span-10 text "></div>
- 		</div>
-	
+		
 		<div class="span-24 last separator7"></div>		
-	
-		<div class="span-24 last widgetContainer">
-			<img src="/css/images/widget.jpg">
+		
+		<div class="span-18 commentsContainer">
+		 	<span class="title_blue">Register now in Species distribution repository, It’s easy and free</span>
 		</div>
 		
-<!--
 		<div class="span-6 last rightColumn">
-			<div class="contributors">
-			 	<span class="title_blue">Contributors</span>
+			<div class="register_info">
+			 	<span class="title_blue">Why I should to be registered?</span>
 			    <div class="separator_small"></div>
-			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
-				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
+			    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend convallis metus vitae scelerisque. Sed condimentum pellentesque nisi, ac lacinia felis sagittis bibendum.</p> 
+
+<p>Cras tempus ipsum nec urna condimentum vehicula. Nulla et nisl at nisi imperdiet fermentum ac sed arcu. Sed et ornare nulla. Pellentesque lobortis commodo ullamcorper.</p>
+
+<p>Nulla vitae aliquam augue. Ut vel nisi nibh, non dictum orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus rhoncus.</p>
 			</div>
-			
-			<div class="separator6"></div>
-			
-			<div class="species_details">
-				<span class="title_blue">Species Details</span>
-			    <div class="separator_small"></div>
-			</div>
-			
-			<div class="separator6"></div>
-			
-			<div class="related_species">
-				<span class="title_blue">Related Species</span>
-			    <div class="separator_small"></div>
-			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
-				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
-			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
-				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
-				<a href="" class="view_more">view more</a>
-			</div>		
 		</div>
--->
-		
-		<div class="span-24 last separator40"></div>
-		<div class="span-24 last separator40"></div>
-		<div class="span-24 last separator40"></div>
+
 		<div class="span-24 last separator40"></div>
 
 		<div class="span-24 last footerContainer">
