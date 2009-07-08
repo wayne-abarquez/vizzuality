@@ -82,13 +82,13 @@
 /* right column */
 
 .rightColumn{
+background-color: black;
 	height: 616px;
 }
 
 .register_info{
 	background-color: #f7f7f7;
-	height: 398px;
-	padding-left: 5px;
+	height: 399px;
     border: #d6d6d6 1px solid;
 }
 
