@@ -93,7 +93,6 @@
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
-				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<a href="" class="view_more">view more</a>
 			</div>		
 		</div>
