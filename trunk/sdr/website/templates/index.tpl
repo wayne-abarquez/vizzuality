@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/css/grid.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/css/style1.css" type="text/css" media="screen, projection">	
 	<link rel="stylesheet" href="/css/print.css" type="text/css" media="print">
-    <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection">
+  <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
 	<div class="container">
@@ -39,7 +39,7 @@
  	
  		<div class="span-23 last searchContainer">
  			<div class="span-5 title_blue">Search for species</div>
-			<div class=""><input class="span-10 text"></div>
+			<div class=""><input class="span-10 text "></div>
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
@@ -71,7 +71,7 @@
 		</div>
 		
 		<div class="span-6 last rightColumn">
-			<div class="contributors last">
+			<div class="contributors">
 			 	<span class="title_blue">Contributors</span>
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
@@ -89,10 +89,11 @@
 			
 			<div class="related_species">
 				<span class="title_blue">Related Species</span>
-			    <!--<div class="separator_small"></div>-->
+			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
+				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<a href="" class="view_more">view more</a>
 			</div>		
 		</div>
