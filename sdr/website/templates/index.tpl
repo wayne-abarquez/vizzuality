@@ -79,25 +79,26 @@
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 -->
 			</div>
-			<div class="separator6"></div>
-	<!--
-		
+			<div class="separator6"></div>		
 			<div class="species_details">
+<!--
 				<div class="title_blue">Species Details</div>
 			    <div class="separator_small"></div>
+-->
 			</div>
 			
 			<div class="separator6"></div>
 			
 			<div class="related_species">
-				<div class="title_blue">Related Species</div>
+				<!--
+<div class="title_blue">Related Species</div>
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<a href="" class="view_more">view more</a>
-			</div>		
 -->
+			</div>		
 		</div>
 		
 		<div class="span-24 last separator40"></div>
