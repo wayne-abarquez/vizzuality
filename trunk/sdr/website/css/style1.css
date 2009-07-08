@@ -63,8 +63,9 @@
 	height: 300px;
 }
 
-.commentsContainer{
+.registerContainer{
 	height: 399px;
+	background-color: black;
 }
 
 .comments{
