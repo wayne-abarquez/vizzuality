@@ -17,7 +17,6 @@
 </head>
 <body>
 	<div class="container showgrid">
-	
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
 			<div class="span-1 last headerList">
@@ -71,7 +70,7 @@
 		</div>
 		
 		<div class="span-6 last rightColumn">
-<div class="last contributors">
+            <div class="span-6 last contributors">
 			 	<div class="title_blue">Contributors</div>
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
@@ -102,7 +101,6 @@
 
 		<div class="span-24 last footerContainer">
 			<div class="span-24 last separator1"></div>
-		
 			<div class="span-24 last footer_notices">
 				<div class="span-6 noti">
 					<div class="title_notice">Do you need help?</div>
@@ -125,7 +123,6 @@
 				</div>
 			</div>
 			<div class="span-24 last separator1"></div>
-		
 			<div class="span-24 last footer">
 				<div class="span-24 last separator6"></div>
 				<div class=" span-22 last footer_info">Species distribution repository. GBIF.org 2009. <b>Legal terms  |  contact us</b></div>
