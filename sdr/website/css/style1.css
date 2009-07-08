@@ -264,3 +264,8 @@
 	float: right;
 	padding-right: 8px;
 }
+
+*html div { 
+    width: 130px; /* funciona en Internet Explorer 6 y 5 para mac*/ 
+    width: 100px; /* funciona unicamente en Internet Explorer 5.x para Windows */ 
+}
