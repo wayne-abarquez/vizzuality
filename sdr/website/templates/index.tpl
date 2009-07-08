@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/css/grid.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/css/style1.css" type="text/css" media="screen, projection">	
 	<link rel="stylesheet" href="/css/print.css" type="text/css" media="print">
-  <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection">
 </head>
 <body>
 	<div class="container">
