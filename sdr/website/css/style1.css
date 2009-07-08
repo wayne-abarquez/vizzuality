@@ -274,3 +274,25 @@
 }
 
 /* botones */ 
+
+.commentButton
+{
+   float: right;
+   font-size:14px;
+   font-family:Arial,sans-serif;
+   font-weight:bold;
+   color:#FFFFFF;
+   background-color:#7ec949;
+   border-top-style:double;
+   border-top-color:#a8dc82;
+   border-top-width:2px;
+   border-bottom-style:solid;
+   border-bottom-color:#7ec949;
+   border-left-style:double;
+   border-left-color:#a8dc82;
+   border-left-width:2px;
+   border-right-style:solid;
+   border-right-color:#7ec949;
+   background-image: url(../img/bkgButton.jpg);
+   background-repeat: repeat;
+}
