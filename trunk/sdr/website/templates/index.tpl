@@ -88,9 +88,9 @@
 			
 			<div class="related_species">
 <div class="title_blue">Related Species</div>
-				<!--
 
 			    <div class="separator_small"></div>
+				<!--
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
