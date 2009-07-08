@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Blueprint Grid Tests</title>
+	<title>Register</title>
 
   <!-- Framework CSS -->
   	<link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen, projection">
@@ -33,20 +33,17 @@
 					<a href="" class="login_sign_link"> Sign up!</a>
 				</div>
 			</div>
-		</div>
-	
-		<div class="span-24 last separator7"></div>
- 	
+		</div> 	
 		
 		<div class="span-24 last separator7"></div>		
 		
 		<div class="span-18 registerContainer">
-		 	<span class="title_blue">Register now in Species distribution repository, It’s easy and free</span>
+		 	<div class="title_blue">Register now in Species distribution repository, It’s easy and free</div>
 		</div>
 		
 		<div class="span-6 last rightColumn">
 			<div class="register_info">
-			 	<span class="title_blue">Why I should to be registered?</span>
+			 	<div class="title_blue">Why I should to be registered?</div>
 			    <div class="separator_small"></div>
 			    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend convallis metus vitae scelerisque. Sed condimentum pellentesque nisi, ac lacinia felis sagittis bibendum.</p> 
 
