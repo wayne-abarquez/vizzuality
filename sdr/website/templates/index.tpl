@@ -81,9 +81,7 @@
 				<div class="title_blue">Species Details</div>
 			    <div class="separator_small"></div>
 			</div>
-			
 			<div class="separator6"></div>
-			
 			<div class="related_species">
 			<div class="title_blue">Related Species</div>
 			    <div class="separator_small"></div>
