@@ -71,8 +71,8 @@
 		
 		<div class="span-6 last rightColumn">
             <div class="contributors">
- 		<div class="title_blue">Contributors</div>
-		<div class="separator_small"></div>
+ 				<div class="title_blue">Contributors</div>
+				<div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"></div>
 			</div>
