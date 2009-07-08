@@ -16,7 +16,7 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-	<div class="container">
+	<div class="container showgrid">
 	
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
@@ -72,7 +72,7 @@
 		
 		<div class="span-6 last rightColumn">
 			<div class="contributors">
-			 	<span class="title_blue">Contributors</span>
+			 	<div class="title_blue">Contributors</div>
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
