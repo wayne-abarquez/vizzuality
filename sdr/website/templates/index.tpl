@@ -70,7 +70,8 @@
 			</div>
 		</div>
 		
-		<div class="span-6 last rightColumn">
+		<!--
+<div class="span-6 last rightColumn">
 			<div class="contributors">
 			 	<span class="title_blue">Contributors</span>
 			    <div class="separator_small"></div>
@@ -97,9 +98,13 @@
 				<a href="" class="view_more">view more</a>
 			</div>		
 		</div>
+-->
 		
 		<div class="span-24 last separator40"></div>
-		
+		<div class="span-24 last separator40"></div>
+		<div class="span-24 last separator40"></div>
+		<div class="span-24 last separator40"></div>
+
 		<div class="span-24 last footerContainer">
 			<div class="span-24 last separator1"></div>
 		
