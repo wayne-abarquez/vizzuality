@@ -51,7 +51,7 @@
 		<div class="span-24 last separator7"></div>		
 		
 		<div class="span-18 commentsContainer">
-		 	<span class="title_blue">Comments about this distribution map</span>
+		 	<div class="title_blue">Comments about this distribution map</div>
 			<div class="comments">
 				<div class="avatar"></div>
 				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
@@ -81,14 +81,14 @@
 			<div class="separator6"></div>
 			
 			<div class="species_details">
-				<span class="title_blue">Species Details</span>
+				<div class="title_blue">Species Details</div>
 			    <div class="separator_small"></div>
 			</div>
 			
 			<div class="separator6"></div>
 			
 			<div class="related_species">
-				<span class="title_blue">Related Species</span>
+				<div class="title_blue">Related Species</div>
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
