@@ -89,7 +89,7 @@
 			
 			<div class="related_species">
 				<span class="title_blue">Related Species</span>
-			    <div class="separator_small"></div>
+			    <!--<div class="separator_small"></div>-->
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 				<div class="avatar"><img src="/css/images/avatar1.jpg"</div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
