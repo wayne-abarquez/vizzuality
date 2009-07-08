@@ -50,7 +50,7 @@
 		<div class="span-24 last separator7"></div>		
 		
 		<div class="span-18 commentsContainer">
-		 	<div class="title_blue">Comments about this distribution map</div>
+		 	<div class="title_blue">Comments about this distribution map<input class="commentButton"></div>
 			<div class="comments">
 				<div class="avatar"></div>
 				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
@@ -66,6 +66,7 @@
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
 			    <input class="span-10 text">
+			    <input class="commentButton">
 			</div>
 		</div>
 		
