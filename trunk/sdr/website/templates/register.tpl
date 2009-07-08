@@ -48,28 +48,6 @@
 			<img src="/css/images/widget.jpg">
 		</div>
 		
-		<div class="span-24 last separator7"></div>		
-		
-		<div class="span-18 commentsContainer">
-		 	<span class="title_blue">Comments about this distribution map</span>
-			<div class="comments">
-				<div class="avatar"></div>
-				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
-			</div>
-			<div class="comments">
-				<div class="avatar"></div>
-				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
-			</div>
-			<div class="comments">
-				<div class="avatar"></div>
-				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
-			</div>
-			<div class="span-18 post">
-			    <div class="title_gray">Post your comment now</div>
-			    <div class="span-1 "><input class="span-17 text 2"></div>
-			</div>
-		</div>
-		
 <!--
 		<div class="span-6 last rightColumn">
 			<div class="contributors">
