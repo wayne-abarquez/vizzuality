@@ -95,7 +95,7 @@
 .contributors{
 	background-color: #f7f7f7;
 	height: 111px;
-/* 	padding-left: 5px; */
+	padding-left: 5px;
     border: #d6d6d6 1px solid;
 }
 
@@ -185,6 +185,7 @@
 }
 
 .separator6{
+	background-color: aqua; 
 	height: 6px;
 }
 
