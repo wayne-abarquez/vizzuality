@@ -39,7 +39,7 @@
  	
  		<div class="span-23 last searchContainer">
  			<div class="span-5 title_blue">Search for species</div>
-			<div class=""><input class="span-10 text "></div>
+			<div class=""><input class="span-10 text"></div>
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
@@ -71,7 +71,7 @@
 		</div>
 		
 		<div class="span-6 last rightColumn">
-			<div class="contributors">
+			<div class="contributors last">
 			 	<span class="title_blue">Contributors</span>
 			    <div class="separator_small"></div>
 			    <div class="avatar"><img src="/css/images/avatar1.jpg"</div>
