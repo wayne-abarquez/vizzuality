@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:controls="com.ninem.controls.*" creationComplete="onCreationComplete()" backgroundColor="#fafbfb">
+
+	<mx:Style>
+		global {
+		    modalTransparencyBlur: 0;
+		    modalTransparency: 0.6;
+		    modalTransparencyColor: black;
+		    modalTransparencyDuration: 300;
+		}
+	</mx:Style>
+	
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.components.PopUpLoadingComplete;
+			import mx.managers.PopUpManager;
+			import com.vizzuality.components.ItemListRenderer;
+			import com.vizzuality.components.ItemClickTreeBrowserEvent;
+			import com.vizzuality.components.ItemTilelistRenderer;
+			import mx.controls.List;
+			import mx.rpc.events.FaultEvent;
+			import mx.controls.Alert;
+			import com.adobe.serialization.json.JSON;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.http.HTTPService;
+			import mx.collections.ArrayCollection;
+			
+			public var resolvedImages:Dictionary = new Dictionary();
+			[Bindable] public var comboDefault: int = 1;
+			[Bindable] public var gbifTaxonomy : ArrayCollection = new ArrayCollection();
+			private var specieID: String;
+			private var itemClickRenderer: ItemListRenderer;
+			
+			private function onCreationComplete():void {
+				this.addEventListener(ItemClickTreeBrowserEvent.ITEM_CLICK, updateProvaiderImages);
+				var httpsrv:HTTPService = new HTTPService();
+				httpsrv.resultFormat = "text";
+				httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
+				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
+				httpsrv.send();			
+			}
+			
+			private function onResultGbif(ev: ResultEvent):void {
+				var resultObj:Object = JSON.decode(String(ev.result));				
+				var resultAc:ArrayCollection = new ArrayCollection();
+				var resultAc2: ArrayCollection = new ArrayCollection();
+				var auxDP:ArrayCollection = new ArrayCollection()
+				
+				for each(var co:Object in resultObj.classificationSearch.classification) {
+					if (co.id != this.id) {
+						var clasOb:Object= new Object();
+						clasOb.id = co.id;
+						clasOb.type = co.rank;
+						clasOb.description ="";
+						clasOb.labelField = co.scientificName;
+						clasOb.children=true;
+						resultAc.addItem(clasOb);
+					}
+				}
+				auxDP.addItem(resultAc);
+				treeB.dataProvider = auxDP;
+			}
+			
+			private function updateProvaiderImages(ev: ItemClickTreeBrowserEvent):void {
+				var obj: Object = treeB.selectedItem;
+				specie.text = obj.labelField;	
+				specieID = obj.id;
+				itemClickRenderer = ev.itemRenderer; 
+				var imageServ:HTTPService = new HTTPService();
+	            imageServ.resultFormat = 'text';
+	            imageServ.url = "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=48e37f8de83dcd4366e5f3be69c01c1f&content_type=1&per_page=50&format=json&nojsoncallback=1&text=" 
+	            	+ escape(obj.labelField as String);
+	            imageServ.addEventListener(ResultEvent.RESULT,onImageSearchResult);
+	            imageServ.send();			
+			}
+			
+			private function onImageSearchResult(event:ResultEvent):void {
+	            var rawData:String = String(event.result);
+	            var jsonObj:Object = JSON.decode(rawData);
+	            var arr:Array = (jsonObj.photos.photo as Array);
+	            imageSelector.dataProvider = arr;                              
+	        }
+	        
+	        private function changeImageTaxon():void {
+	        	if (imageSelector.selectedItem) {
+		        	var obj:Object = imageSelector.selectedItem;
+		        	resolvedImages[specieID] = "http://farm" + obj.farm + ".static.flickr.com/" +  obj.server + "/" +  obj.id + "_" +  obj.secret + "_s.jpg";
+		        	itemClickRenderer.flickrImg.source = "http://farm" + obj.farm + ".static.flickr.com/" +  obj.server + "/" +  obj.id + "_" +  obj.secret + "_s.jpg";
+	        	}
+	        }
+			
+			
+		]]>
+	</mx:Script>
+	
+	<mx:VBox width="100%" height="100%" verticalGap="10" paddingBottom="10" paddingLeft="5" paddingTop="10" paddingRight="5">
+		<mx:Label text="Taxonomy Browser"  color="#000000" fontFamily="Verdana" fontWeight="bold" fontStyle="normal" fontSize="12"/>
+		<controls:TreeBrowser id="treeB" width="100%" height="100%"  columnWidth="300" detailRenderer="com.vizzuality.components.ItemDetailRenderer" />	
+		<mx:HBox verticalAlign="middle" width="100%">
+			<mx:Label text="Image Selector"  color="#000000" fontWeight="bold" fontSize="12"/>
+			<mx:Label id="specie" text="Choose your specie!!" fontStyle="italic" color="#585C5D"/>
+		</mx:HBox>
+		<mx:TileList id="imageSelector" width="100%" height="100%" itemRenderer="com.vizzuality.components.ItemTilelistRenderer"/>
+		<mx:HBox width="100%">
+			<mx:HBox horizontalAlign="left" verticalAlign="middle" width="100%">
+				<mx:Button label="Refresh" cornerRadius="0" color="#000000"/>
+			</mx:HBox>
+			<mx:HBox horizontalAlign="right" verticalAlign="middle" width="100%">
+				<mx:Button label="Choose Image" cornerRadius="0" color="#000000" click="changeImageTaxon()"/>
+			</mx:HBox>
+		</mx:HBox>
+	</mx:VBox>
+	
+</mx:Application>
