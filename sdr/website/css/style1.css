@@ -174,22 +174,27 @@
 
 .separator40{
 	height: 40px;
+	line-height: 0px;
 }
 
 .separator9{
 	height: 9px;
+	line-height: 0px;
 }
 
 .separator7{
 	height: 7px;
+	line-height: 0px;
 }
 
 .separator6{
 	height: 6px;
+	line-height: 0px;
 }
 
 .separator1{
 	height: 1px;
+	line-height: 0px;
 }
 
 /* typography */
@@ -202,14 +207,11 @@
 }
 
 .title_blue_search{
- 	line-height: 36px;
  	font-family: "Georgia";
  	font-style: italic;
 	font-size: 20px; 
 	color: #9db7d2;
 	margin-left: 9px;
-	width: 160px;
-	padding: 0px;
 }
 
 .title_gray{
@@ -318,23 +320,42 @@
 }
 
 .search{
-   font-style: italic;
-   text-align: center;
-   width: 96px;
-   height: 25px;
-   padding: 0px;
-   font-size:18px;
    font-family: Georgia;
+   font-style: italic;
+   font-size:18px;
    color:white;
+   text-align: center;
    border-style: solid;
    border-width: 1px;
    border-color: gray;
    background-image: url(/css/images/search.jpg);
-
-}
-
-input.text{
-   width: 665px;
+   width: 98px;
    height: 25px;
+   margin-top: 5px;
+   margin-left: -10px;
    padding: 0px;
 }
+
+.search_text_container{
+   background-color: black;
+   height: 25px;
+   width: 664px;
+   margin-left: -20px;
+   margin-top: 5px;
+}
+
+.search_title_container{
+	background-color: yellow;
+	height: 25px;
+	margin-left: 9px;
+	margin-top: 5px;
+	padding: 0px;
+}
+
+/*
+input.text{
+   height: 25px;
+   width: 665px;
+   padding: 0px;
+}
+*/
