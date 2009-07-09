@@ -305,3 +305,19 @@
    margin-top: 6px;
    background-image: url(/css/images/comment_now_post.jpg);
 }
+
+.search{
+   font-style: italic;
+   text-align: center;
+   width: 103px;
+   height: 17px;
+   float: right;
+   font-size:18px;
+   font-family: Georgia;
+   color:#797979;
+   border-style: solid;
+   border-width: 1px;
+   border-color: gray;
+   margin-top: 6px;
+   background-image: url(/css/images/comment_now_post.jpg);
+}
