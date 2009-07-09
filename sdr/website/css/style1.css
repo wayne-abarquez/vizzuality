@@ -201,6 +201,16 @@
 	color: #9db7d2;
 }
 
+.title_blue_search{
+ 	line-height: 36px;
+ 	font-family: "Georgia";
+ 	font-style: italic;
+	font-size: 20px; 
+	color: #9db7d2;
+	margin-left: 9px;
+	width: 160px;
+}
+
 .title_gray{
  	font-family: "Georgia";
  	font-style: italic;
@@ -318,4 +328,10 @@
    border-width: 1px;
    border-color: gray;
    background-image: url(/css/images/search.jpg);
+}
+
+input.text{
+   width:665px;
+   height: 20px;
+   margin-top: 2px;
 }
