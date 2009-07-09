@@ -16,7 +16,7 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-	<div class="container">
+	<div class="container showgrid">
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
 			<div class="span-1 last headerList">
@@ -37,9 +37,8 @@
 		<div class="span-24 last separator7"></div>
  	
  		<div class="span-23 last searchContainer">
- 			<div class="span-4 title_blue_search">Search for species</div>
-			<div class="span-17"><input class="text"></div>
-			<div class="span-2"><input class="search" value="search!"></div>
+ 			<div class="span-5 last search_title_container"></div>
+			<div class="span-17 last search_text_container"></div>
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
