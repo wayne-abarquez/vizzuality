@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="646" height="359" backgroundColor="#FFFFFF" backgroundAlpha="0.85" 
+	xmlns:overlay="com.vizzuality.view.overlay.*"  filters="{[glowGrey]}" xmlns:ns1="com.vizzuality.view.loader.*"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off">
+<mx:Script>
+	<![CDATA[
+		import mx.managers.PopUpManager;
+		import flash.net.navigateToURL;
+		
+		public var downloadUrl:String;
+			
+		
+	]]>
+</mx:Script>
+
+	<mx:GlowFilter id="glowGrey" blurX="5" blurY="5" alpha=".3" color="#000000" quality="2" />
+	<mx:Canvas height="314" styleName="greenContainer" left="10" right="10" top="35" id="canvas1"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<mx:TextArea x="10" y="10" width="606" height="253" fontFamily="Arial" fontSize="12" color="#676767">
+			<mx:text><![CDATA[Terms and Conditions of Use of the World Database on Protected Areas
+
+Access to all WDPA data (or the "WDPA materials") is provided on the understanding that the 
+end-user read and consents to be bound to the terms outlined in these Terms and Conditions of 
+Use.
+
+PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY. IF YOU DO NOT AGREE TO ANY OF 
+THE TERMS AND CONDITIONS DO NOT DOWNLOAD
+
+NO COMMERCIAL USE
+The WDPA and any derivatives must not be used or made available for any Commercial Purpose 
+without permission. Any use of WDPA content by an individual or entity operating within or on 
+behalf of or to the benefit of any organisation other than a not-for-profit organisation will be 
+deemed to be for a Commercial Purpose and will constitute a breach of the Terms and 
+Conditions. To apply for permission for commercial use please send an email to 
+wdpacommercial@unep-wcmc.org outlining your needs.
+
+NO SUB-LICENSING OR REDISTRIBUTING OF WDPA DATA
+The WDPA may not be sub-licensed in whole or in part without permission. You may not 
+redistribute the attributes or spatial data contained in the WDPA in whole or in part by any 
+means including (but not limited to) digitally, via web downloads, through web services, 
+interactive web maps or file transfer protocols. If you know of others who wish to use the WDPA 
+we suggest you refer them to this website. If you wish to provide a service through which the 
+attributes and/or spatial data of the WDPA are downloadable or otherwise made available for 
+redistribution please contact protectedareas@unep-wcmc.org for further guidance.
+
+PUBLISHING THE WDPA
+You may publish the WDPA in whole or in part, including on-line, providing the attributes and 
+spatial data are not downloadable. You must ensure that the latest released version of the WDPA 
+Materials is being used and the year of release is visible. Material published online must provide 
+a clear link to the original WDPA and the attribution below must be clearly visible in all 
+publications. We recommend that you have the material reviewed by UNEP-WCMC and/or the 
+IUCN-WCPA prior to publication and we require two copies of all published materials be lodged 
+free of charge with the supplier of the dataset, preferably in electronic format via: 
+protectedareas@unep-wcmc.org
+
+ATTRIBUTION
+You must ensure that the attribution set out below is always clearly reproduced in the use of any 
+part of the WDPA in any format, so that individual users are made aware of it:
+
+World Database on Protected Areas (WDPA) Annual Release 2009 (web download version), 
+February 2009. The WDPA is a joint product of UNEP and IUCN, prepared by UNEP-WCMC, 
+supported by IUCN WCPA and working with Governments, the Secretariats of MEAs and 
+collaborating NGOs. For further information protectedareas@unep-wcmc.org
+
+WDPA UPDATES
+Unless required to do so for specific analyses, you should not use any version of the WDPA after 
+it has been superseded by a subsequent version. It is your responsibility to check if an update of 
+the WDPA is available.
+
+NO WARRANTY AND WAIVER OF LIABILITY
+The WDPA is provided to you ‘as is’, and no warranty of any kind is given. In consideration of the 
+rights granted in this download, you hereby waive and release UNEP, IUCN and WCMC 2000 from 
+any liability whatsoever and howsoever arising in connection with use of the WDPA. You agree 
+that this waiver and release is effective in any and every jurisdiction in the world. UNEP, IUCN 
+and WCMC 2000 will not be responsible for negligence, strict liability or otherness in the use of 
+WDPA data by you or other users as a result of WDPA data being posted on any website following 
+this download. You download the WDPA at your own discretion and risk and are solely 
+responsible in the event of any damage occurring to computer systems as a result of attempts to 
+download WDPA data.
+
+FEEDBACK AND REVISED INFORMATION
+In order to keep the WDPA up to date, UNEP and IUCN would like you to provide feedback on the 
+quality, reliability and accuracy of the WDPA. We also welcome revised information on the WDPA 
+in the form of GIS data, electronic images, paper maps, tables, GPS coordinates, and/or in any 
+other useable format. Such contributions should be free of restrictions. The objective is to 
+improve the WDPA for the benefit of the global conservation community. You can register to 
+submit electronic protected area data via the WDPA website.
+
+LAW AND JURISDICTION
+Any dispute arising out of or in connection with this download and the subsequent use of the 
+WDPA shall be settled by amicable negotiation between you and the supplier of the dataset. 
+Should attempts at amicable negotiation fail, any such dispute shall, upon request by either you 
+or the supplier of the WDPA, be referred to arbitration in accordance with the UNCITRAL 
+arbitration rules then prevailing.
+
+COMMUNICATION
+Any communication with respect to these Terms and Conditions and any issue arising from them 
+shall be in writing, in English, and sent by email. The address for communication with the WDPA 
+supplier is:protectedareas@unep-wcmc.org]]></mx:text>
+		</mx:TextArea>
+		<mx:Button label="Continue" styleName="btnInfoWindow" click="navigateToURL(new URLRequest(downloadUrl));PopUpManager.removePopUp(this);"
+			height="36" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button4" right="10" y="270" width="120" fontSize="14"/>
+		<mx:Button label="Cancel" styleName="btnInfoWindow" click="PopUpManager.removePopUp(this)"
+			height="26" buttonMode="true" useHandCursor="true" mouseChildren="false"  id="button0" y="276" width="100" x="392"/>
+	</mx:Canvas>
+	<mx:Label text="YOU MUST ACCEPT THE TERMS AND CONDITIONS BEFORE CONTINUE" id="label12" color="#375381" fontFamily="DINOT-Bold" fontSize="18" letterSpacing="-1" left="10" top="4"/>
+	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+	<mx:HRule strokeColor="#B4BB94" left="10" right="10" strokeWidth="1" top="34" id="hrule2"/>
+	
+</mx:Canvas>
