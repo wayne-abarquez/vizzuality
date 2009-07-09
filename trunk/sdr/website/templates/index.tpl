@@ -38,7 +38,7 @@
  	
  		<div class="span-23 last searchContainer">
  			<div class="span-5 title_blue">Search for species</div>
-			<div class=""><input class="span-10 text "></div>
+			<div class=""><input class="span-10 text "><input class="last search" value="search!"></div>
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
