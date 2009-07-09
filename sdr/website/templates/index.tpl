@@ -37,7 +37,7 @@
 		<div class="span-24 last separator7"></div>
  	
  		<div class="span-23 last searchContainer">
- 			<div class="span-5 last search_title_container"></div>
+ 			<div class="span-5 last search_title_container"><p class="title_blue">Search for species</p></div>
 			<div class="span-17 last search_text_container"></div>
  		</div>
 	
