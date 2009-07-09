@@ -320,7 +320,9 @@
    font-style: italic;
    text-align: center;
    width: 96px;
-   height: 23px;
+   height: 25px;
+   padding: 0px;
+   margin-top: 5px;
    font-size:18px;
    font-family: Georgia;
    color:white;
@@ -328,10 +330,12 @@
    border-width: 1px;
    border-color: gray;
    background-image: url(/css/images/search.jpg);
+
 }
 
 input.text{
-   width:665px;
-   height: 20px;
-   margin-top: 2px;
+   width: 665px;
+   height: 25px;
+   padding: 0px;
+   margin-top: 5px;
 }
