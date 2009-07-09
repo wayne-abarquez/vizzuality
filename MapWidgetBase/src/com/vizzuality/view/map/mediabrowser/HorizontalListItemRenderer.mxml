@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="55" width="75" horizontalScrollPolicy="off" 
+	verticalScrollPolicy="off" alpha="0" addedToStage="doEffect()" mouseOver="imageItemOver.visible = true" 
+	mouseOut="imageItemOver.visible = false" rollOver="doZoom(event)" rollOut="doZoom(event)">
+
+	<mx:Script>
+        <![CDATA[        
+            import flash.events.MouseEvent;
+            import gs.*;
+
+            private function onOver(): void {
+            	imageItemOver.visible = true;
+            }
+            
+            private function onOut(): void {
+            	imageItemOver.visible = false;
+            }
+            
+            private function doZoom(event:MouseEvent):void {
+                if (zoomAll.isPlaying) {
+                    zoomAll.reverse();
+                }
+                else {
+                    zoomAll.play([imageItem], event.type == MouseEvent.ROLL_OUT ? true : false);
+                }
+            }
+            
+            private function doEffect():void{
+            	TweenLite.to(this,1,{alpha:1});	 
+            }
+        ]]>    
+    </mx:Script>
+
+	
+	<mx:Zoom id="zoomAll" zoomWidthTo="1.2" zoomHeightTo="1.2" zoomWidthFrom="1" zoomHeightFrom="1" duration="200"/>
+
+	<mx:Image id="imageItem" source="{data.thumbnail}" horizontalCenter="0" verticalCenter="0" scaleContent="false" />
+	<mx:Image id="imageItemOver" source="@Embed('/assets/capa.png')" x="1" y="0" height="55" width="74" visible="false"/>
+	
+</mx:Canvas>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<style>
+	body{
+		background-image : url(GhostCanvas2.jpg);
+		background-repeat : no-repeat;
+	}
+	#flexapp {
+		margin-top: 107px;
+    	margin-left: 21px;
+    	position: absolute;
+	}
+
+</style>
+	<title>Map Widget base HTML</title>
+
+	<script type="text/javascript" src="swfobject.js" ></script>
+	<script src="swfaddress/swfaddress.js" language="javascript"></script>
+
+</head>
+<body>
+	<div id="flexapp">Here should be the alternative content to the Flex app.</div>
+	<script type="text/javascript"> 
+    	// <![CDATA[
+    	function gup( name )
+			{
+			  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+			  var regexS = "[\\?&]"+name+"=([^&#]*)";
+			  var regex = new RegExp( regexS );
+			  var results = regex.exec( window.location.href );
+			  if( results == null )
+			    return "";
+			return results[1];
+			}	
+		var so = new SWFObject("${swf}.swf", "swf", "967", "450", "9"); 
+		so.addParam("allowFullScreen", "true");
+		so.addParam("allowScriptAccess", "always");
+		so.addVariable("swf", "");
+		so.addVariable("data_server_endpoint", 'http://localhost/php/amfphp/gateway.php');
+		so.addVariable("gmap_key", 'ABQIAAAAUdCLksixDAgnY8JZ7a6YJBRTcWW-xOIMiY0s20UEUW3xpxovahQClZ42LV_3hgyp4oBrgebTRrNDXg');
+		so.addVariable("hide_header",'true');
+		so.write("flexapp");
+		// ]]>
+	</script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-9168255-1");
+        pageTracker._trackPageview();
+    } catch (err) { }</script>
+</body>
+</html>
