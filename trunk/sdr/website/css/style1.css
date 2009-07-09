@@ -276,8 +276,8 @@
 
 /* botones */ 
 
-.commentButton
-{
+.commentButton{
+   text-align: center;
    width: 94px;
    height: 17px;
    float: right;
@@ -291,8 +291,8 @@
    margin-top: 6px;
 }
 
-.commentButtonPost
-{
+.commentButtonPost{
+   text-align: center;
    width: 94px;
    height: 17px;
    float: right;
