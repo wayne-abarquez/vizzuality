@@ -209,6 +209,7 @@
 	color: #9db7d2;
 	margin-left: 9px;
 	width: 160px;
+	padding: 0px;
 }
 
 .title_gray{
@@ -322,7 +323,6 @@
    width: 96px;
    height: 25px;
    padding: 0px;
-   margin-top: 5px;
    font-size:18px;
    font-family: Georgia;
    color:white;
@@ -337,5 +337,4 @@ input.text{
    width: 665px;
    height: 25px;
    padding: 0px;
-   margin-top: 5px;
 }
