@@ -16,7 +16,7 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-	<div class="container showgrid">
+	<div class="container">
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
 			<div class="span-1 last headerList">
@@ -50,7 +50,7 @@
 		<div class="span-24 last separator7"></div>		
 		
 		<div class="span-18 commentsContainer">
-		 	<div class="title_blue">Comments about this distribution map<input class="commentButton"></div>
+		 	<div class="title_blue">Comments about this distribution map<input class="last commentButton" value="Comment now"></div>
 			<div class="comments">
 				<div class="avatar"></div>
 				<p class="title_comment">by </p><p class="title_comment_u"> jatorre, </p><p class="title_comment">2 hours ago</p>
@@ -66,7 +66,7 @@
 			<div class="span-18 post">
 			    <div class="title_gray">Post your comment now</div>
 			    <input class="span-10 text">
-			    <input class="commentButton">
+			    <input class="last commentButtonPost" value="Comment now">
 			</div>
 		</div>
 		
