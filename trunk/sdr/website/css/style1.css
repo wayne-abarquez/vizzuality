@@ -309,15 +309,13 @@
 .search{
    font-style: italic;
    text-align: center;
-   width: 103px;
-   height: 17px;
-   float: right;
+   width: 96px;
+   height: 23px;
    font-size:18px;
    font-family: Georgia;
-   color:#797979;
+   color:white;
    border-style: solid;
    border-width: 1px;
    border-color: gray;
-   margin-top: 6px;
-   background-image: url(/css/images/comment_now_post.jpg);
+   background-image: url(/css/images/search.jpg);
 }
