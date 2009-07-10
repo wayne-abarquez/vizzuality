@@ -29,7 +29,7 @@
 	padding-left: 22px;
 	padding-right: 28px;
 	color: #999999;
-/*     border-right: #999999 1px solid; */
+    border-right: #999999 1px solid;
 
 }
 
@@ -206,6 +206,15 @@
 	color: #9db7d2;
 }
 
+.title_blue_search{
+ 	font-family: "Georgia";
+ 	font-style: italic;
+	font-size: 20px; 
+	color: #9db7d2;
+	margin-left: 9px;
+	margin-top: 2px;
+}
+
 .title_gray{
  	font-family: "Georgia";
  	font-style: italic;
@@ -328,26 +337,26 @@
    padding: 0px;
 }
 
+.search_title_container{
+	height: 36px;
+	width: 188px;
+	line-height: 30px;
+}
+
 .search_text_container{
    background-color: black;
-   height: 25px;
-   width: 664px;
-   margin-top: 5px;
+   height: 36px;
+   width: 650px;
+   margin-left: -9px;
 }
 
-.search_title_container{
-	background-color: yellow;
-	height: 25px;
-	width: 165px;
-	margin-left: 5px;
-	margin-top: 5px;
-	padding: 0px;
+.search_button_container{
+	background-color: green;
+    height: 36px;
+    width: 98px;
 }
 
-/*
 input.text{
-   height: 25px;
-   width: 665px;
-   padding: 0px;
+   height: 15px;
+   width: 650px;
 }
-*/
