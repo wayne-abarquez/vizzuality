@@ -39,9 +39,11 @@
 		
 		<div class="span-18 registerContainer">
 		 	<div class="title_blue">Register now in Species distribution repository, It’s easy and free</div>
-		 	<div class="span-18 campos">
-		 	<p class="register_14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend convallis metus vitae scelerisque. Sed 
-condimentum pellentesque nisi, ac lacinia felis sagittis bibendum. Cras tempus ipsum nec.</p></div>
+			<div class="campos">
+		 		<div class="register_14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend convallis metus vitae scelerisque. 					Sed condimentum pellentesque nisi, ac lacinia felis sagittis bibendum. Cras tempus ipsum nec.</div>
+				<div class="span-9 last columna1"></div>
+				<div class="last columna2"></div>			
+			</div>
 		</div>
 		
 		<div class="span-6 last rightColumn">
