@@ -21,9 +21,9 @@
 			<div class="span-1 last headerLogo"></div>
 			<div class="span-1 last headerList">
 				<ul>
-  					<li><a href="">BROWSE</a></li>
-  					<li><a href="">CREATE</a></li>
-  					<li><a href="">ABOUT</a></li>
+  					<li><a href="" class="lista">BROWSE</a></li>
+  					<li><a href="" class="lista">CREATE</a></li>
+  					<li><a href="" class="lista">ABOUT</a></li>
 				</ul>
 			</div>
 			<div class="span-1 last headerSign">
