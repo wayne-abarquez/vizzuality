@@ -21,9 +21,9 @@
 			<div class="span-1 last headerLogo"></div>
 			<div class="span-1 last headerList">
 				<ul>
-  					<li>BROWSE</li>
-  					<li>CREATE</li>
-  					<li>ABOUT</li>
+  					<li><a href="">BROWSE</a></li>
+  					<li><a href="">CREATE</a></li>
+  					<li><a href="">ABOUT</a></li>
 				</ul>
 			</div>
 			<div class="span-1 last headerSign">
@@ -37,8 +37,9 @@
 		<div class="span-24 last separator7"></div>
  	
  		<div class="span-23 last searchContainer">
- 			<div class="span-5 last search_title_container"><p class="title_blue">Search for species</p></div>
+ 			<div class="span-5 last search_title_container"><div class="title_blue_search">Search for species</div></div>
 			<div class="span-17 last search_text_container"></div>
+			<div class="span-2 last search_button_container"></div>
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
