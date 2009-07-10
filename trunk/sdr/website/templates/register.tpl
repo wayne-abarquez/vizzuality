@@ -39,17 +39,20 @@
 		
 		<div class="span-18 registerContainer">
 		 	<div class="title_blue">Register now in Species distribution repository, It’s easy and free</div>
+		 	<div class="span-18 campos">
+		 	<p class="register_14">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend convallis metus vitae scelerisque. Sed 
+condimentum pellentesque nisi, ac lacinia felis sagittis bibendum. Cras tempus ipsum nec.</p></div>
 		</div>
 		
 		<div class="span-6 last rightColumn">
 			<div class="register_info">
 			 	<div class="title_blue">Why I should to be registered?</div>
 			    <div class="separator_small"></div>
-			    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend convallis metus vitae scelerisque. Sed condimentum pellentesque nisi, ac lacinia felis sagittis bibendum.</p> 
+			    <p class="register_12">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend convallis metus vitae scelerisque. Sed condimentum pellentesque nisi, ac lacinia felis sagittis bibendum.</p> 
 
-<p>Cras tempus ipsum nec urna condimentum vehicula. Nulla et nisl at nisi imperdiet fermentum ac sed arcu. Sed et ornare nulla. Pellentesque lobortis commodo ullamcorper.</p>
+<p class="register_12">Cras tempus ipsum nec urna condimentum vehicula. Nulla et nisl at nisi imperdiet fermentum ac sed arcu. Sed et ornare nulla. Pellentesque lobortis commodo ullamcorper.</p>
 
-<p>Nulla vitae aliquam augue. Ut vel nisi nibh, non dictum orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus rhoncus.</p>
+<p class="register_12">Nulla vitae aliquam augue. Ut vel nisi nibh, non dictum orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus rhoncus.</p>
 			</div>
 		</div>
 
