@@ -49,6 +49,7 @@
 	background-color: #f7f7f7;
 	height: 36px;
 	width: 948px;
+
 }
 
 /* widget */
@@ -330,11 +331,9 @@
    border-width: 1px;
    border-color: gray;
    background-image: url(/css/images/search.jpg);
-   width: 98px;
+   width: 96px;
    height: 25px;
-   margin-top: 5px;
-   margin-left: -10px;
-   padding: 0px;
+   padding: 0px 0px 0px 0px;
 }
 
 .search_title_container{
@@ -344,10 +343,10 @@
 }
 
 .search_text_container{
-   background-color: black;
-   height: 36px;
-   width: 650px;
-   margin-left: -9px;
+    background-color: black;
+    height: 36px;
+    width: 665px;
+    margin-left: -9px;
 }
 
 .search_button_container{
@@ -357,6 +356,6 @@
 }
 
 input.text{
-   height: 15px;
-   width: 650px;
+	height: 34px;
+    width: 660px;
 }
