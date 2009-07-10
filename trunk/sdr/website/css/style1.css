@@ -89,10 +89,12 @@
 .columna1{
    background-color: yellow;
    height: 50px;
+   margin-bottom: 2px;
 }
 .columna2{
    background-color: lime;
    height: 50px;
+   margin-bottom: 2px;
 }
 
 /* right column */
@@ -326,6 +328,13 @@
 	padding-top: 6px;
 }
 
+.title_campo{
+	color: gray;
+	font-family: "Arial";
+	font-size: 14px;
+	padding-left: 9px;
+}
+
 /* botones */ 
 
 .commentButton{
@@ -390,9 +399,4 @@
 	background-color: green;
     height: 36px;
     width: 98px;
-}
-
-input.text{
-	height: 34px;
-    width: 660px;
 }
