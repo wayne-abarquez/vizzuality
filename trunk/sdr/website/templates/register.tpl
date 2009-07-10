@@ -34,7 +34,6 @@
 				</div>
 			</div>
 		</div> 	
-		
 		<div class="span-24 last separator7"></div>		
 		<div class="span-18 registerContainer">
 		 	<div class="title_blue">Register now in Species distribution repository, It’s easy and free</div>
