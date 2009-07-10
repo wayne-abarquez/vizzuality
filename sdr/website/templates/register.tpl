@@ -16,7 +16,7 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-	<div class="container showgrid">
+	<div class="container">
 	
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
@@ -76,8 +76,6 @@
 <p class="register_12">Nulla vitae aliquam augue. Ut vel nisi nibh, non dictum orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus rhoncus.</p>
 			</div>
 		</div>
-
-		<div class="span-24 last separator40"></div>
 
 		<div class="span-24 last footerContainer">
 			<div class="span-24 last separator1"></div>
