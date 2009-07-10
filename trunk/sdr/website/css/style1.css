@@ -48,12 +48,13 @@
 	background-color: #f7f7f7;
 	height: 36px;
 	width: 948px;
+
 }
 
 /* widget */
 
 .widgetContainer{
-	background-color: black;
+	background-color: silver;
 	height: 452px;
 }
 
@@ -66,6 +67,12 @@
 .registerContainer{
 	height: 399px;
 	background-color: black;
+}
+
+.campos{
+	background-color: green;
+	height: 370px;
+    border-top: #d6d6d6 1px dotted;
 }
 
 .comments{
@@ -89,26 +96,28 @@
 	background-color: #f7f7f7;
 	height: 399px;
     border: #d6d6d6 1px solid;
+	padding-left: 9px;
+	padding-right: 9px;
 }
 
 .contributors{
 	background-color: #f7f7f7;
 	height: 111px;
-	padding-left: 5px;
+	padding-left: 9px;
     border: #d6d6d6 1px solid;
 }
 
 .species_details{
 	background-color: #f7f7f7;
 	height: 360px;
-	padding-left: 5px;
+	padding-left: 9px;
 	border: #d6d6d6 1px solid;
 }
 
 .related_species{
 	background-color: #f7f7f7;
 	height: 129px;
-	padding-left: 5px;
+	padding-left: 9px;
 	border: #d6d6d6 1px solid;
 }
 
@@ -147,7 +156,7 @@
     border-top: #d6d6d6 1px dotted;
 	height: 1px;
 	width: 1px repeat-x;
-	margin-right: 5px;
+	margin-right: 9px;
 }
 
 .separator_vertical{
@@ -199,6 +208,9 @@
 /* typography */
 
 .title_blue{
+ 	line-height: 22px;
+ 	padding-bottom: 9px;
+ 	padding-top: 9px;
  	font-family: "Georgia";
  	font-style: italic;
 	font-size: 20px; 
@@ -206,11 +218,12 @@
 }
 
 .title_blue_search{
- 	text-align: center;
  	font-family: "Georgia";
  	font-style: italic;
 	font-size: 20px; 
 	color: #9db7d2;
+	margin-left: 9px;
+	margin-top: 2px;
 }
 
 .title_gray{
@@ -286,6 +299,23 @@
 	padding-right: 8px;
 }
 
+.register_14{
+	color: gray;
+	letter-spacing: -1px;
+	font-family: "Arial";
+	font-size: 14px;
+	padding-top: 19px;
+	padding-left: 9px;
+}
+
+.register_12{
+	color: gray;
+	letter-spacing: -1px;
+	font-family: "Arial";
+	font-size: 12px;
+	padding-top: 6px;
+}
+
 /* botones */ 
 
 .commentButton{
@@ -335,14 +365,15 @@
 
 .search_title_container{
 	height: 36px;
-	width: 189px;
+	width: 188px;
 	line-height: 30px;
 }
 
 .search_text_container{
     background-color: black;
     height: 36px;
-    width: 655px;
+    width: 665px;
+    margin-left: -9px;
 }
 
 .search_button_container{
