@@ -30,7 +30,6 @@
 	padding-right: 28px;
 	color: #999999;
     border-right: #999999 1px solid;
-
 }
 
 .headerSign{
@@ -49,13 +48,12 @@
 	background-color: #f7f7f7;
 	height: 36px;
 	width: 948px;
-
 }
 
 /* widget */
 
 .widgetContainer{
-	background-color: silver;
+	background-color: black;
 	height: 452px;
 }
 
@@ -208,12 +206,11 @@
 }
 
 .title_blue_search{
+ 	text-align: center;
  	font-family: "Georgia";
  	font-style: italic;
 	font-size: 20px; 
 	color: #9db7d2;
-	margin-left: 9px;
-	margin-top: 2px;
 }
 
 .title_gray{
@@ -338,15 +335,14 @@
 
 .search_title_container{
 	height: 36px;
-	width: 188px;
+	width: 189px;
 	line-height: 30px;
 }
 
 .search_text_container{
     background-color: black;
     height: 36px;
-    width: 665px;
-    margin-left: -9px;
+    width: 655px;
 }
 
 .search_button_container{
