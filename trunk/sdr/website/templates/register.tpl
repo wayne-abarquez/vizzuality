@@ -16,7 +16,7 @@
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
 <body>
-	<div class="container">
+	<div class="container showgrid">
 	
 		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
@@ -49,13 +49,10 @@
 					<div class="title_campo">Project name</div>
 					<input class="span-8 text">
 				</div>
-				<div class="span-18 last separator6"></div>
-				<div class="span-18 last separator6"></div>
 				<div class="span-9 last columna1">
 					<div class="title_campo">e-mail*</div>
 					<input class="span-8 text">
 				</div>
-				<div class="span-18 last separator6"></div>
 				<div class="span-18 last separator6"></div>
 				<div class="span-18 last separator6"></div>
 				<div class="span-18 last separator6"></div>				
