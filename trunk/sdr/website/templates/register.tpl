@@ -22,9 +22,9 @@
 			<div class="span-1 last headerLogo"></div>
 			<div class="span-1 last headerList">
 				<ul>
-  					<li>BROWSE</li>
-  					<li>CREATE</li>
-  					<li>ABOUT</li>
+  					<li><a href="">BROWSE</a></li>
+  					<li><a href="">CREATE</a></li>
+  					<li><a href="">ABOUT</a></li>
 				</ul>
 			</div>
 			<div class="span-1 last headerSign">
@@ -33,7 +33,8 @@
 					<a href="" class="login_sign_link"> Sign up!</a>
 				</div>
 			</div>
-		</div> 	
+		</div>
+		
 		<div class="span-24 last separator7"></div>		
 		<div class="span-18 registerContainer">
 		 	<div class="title_blue">Register now in Species distribution repository, It’s easy and free</div>
