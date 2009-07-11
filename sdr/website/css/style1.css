@@ -44,9 +44,10 @@
 /* search */
 
 .searchContainer{
+    border: #d6d6d6 1px solid;
 	background-color: #f7f7f7;
 	height: 36px;
-    border: #d6d6d6 1px solid;
+	width: 948px;
 }
 
 /* widget */
