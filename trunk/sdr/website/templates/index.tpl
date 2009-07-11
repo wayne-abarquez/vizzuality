@@ -15,10 +15,9 @@
 	<link rel="stylesheet" href="/css/print.css" type="text/css" media="print">
   <!--[if lt IE 8]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen, projection"><![endif]-->
 </head>
-
 <body>
-	<div class="container showgrid">
-		<div class="span-24 column headerContainer">
+	<div class="container">
+		<div class="span-24 last headerContainer">
 			<div class="span-1 last headerLogo"></div>
 			<div class="span-1 last headerList">
 				<ul>
@@ -35,14 +34,12 @@
 			</div>
 		</div>
 	
-		<div class="span-24 column separator7"></div>
+		<div class="span-24 last separator7"></div>
  	
- 		<div class="span-23 column searchContainer">
- 		<!--
-	<div class="span-5 last search_title_container"><div class="title_blue_search">Search for species</div></div>
+ 		<div class="span-23 last searchContainer">
+ 			<div class="span-5 last search_title_container"><div class="title_blue_search">Search for species</div></div>
 			<div class="span-17 last search_text_container"></div>
 			<div class="span-2 last search_button_container"><input class="button search" value="search!"></div>
--->
  		</div>
 	
 		<div class="span-24 last separator7"></div>		
