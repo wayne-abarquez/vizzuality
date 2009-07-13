@@ -34,7 +34,10 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="span-24 last separator1"></div>		
+		<div class="span-24 last separator1"></div>		
+		<div class="span-24 last separator7"></div>		
+		<div class="span-24 last separator7"></div>		
 		<div class="span-24 last separator7"></div>		
 		<div class="span-18 registerContainer">
 		 	<div class="title_blue">Register now in Species distribution repository, It’s easy and free</div>
@@ -62,6 +65,9 @@
 				<div class="span-9 last columna2">
 					<div class="title_campo">confirm password*</div>
 					<input class="span-8 text">
+				</div>
+				<div class="span-9 last columna1">
+					<input class="submit_button" value="submit">
 				</div>	
 			</div>
 		</div>
