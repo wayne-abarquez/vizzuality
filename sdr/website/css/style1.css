@@ -383,6 +383,20 @@
    padding: 0px 0px 0px 0px;
 }
 
+.submit_button{
+   font-family: [DINOT] medium;
+   font-size:18px;
+   color:white;
+   text-align: center;
+   border-style: solid;
+   border-width: 1px;
+   border-color: green;
+   background-image: url(/css/images/submit.jpg);
+   width: 114px;
+   height: 27px;
+   padding: 0px 0px 0px 0px;
+}
+
 .search_title_container{
 	height: 36px;
 	width: 188px;
