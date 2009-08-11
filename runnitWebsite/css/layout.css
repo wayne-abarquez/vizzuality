@@ -81,6 +81,18 @@ h2.newsTitle {
 	border-bottom: solid 2px #336699;
 }
 
+h2.newsTitle2 {
+	font-family: Arial;
+	font-size: 22px;
+	color: #336699;
+	font-weight: bold;
+}
+
+div.titleFeed {
+	border-bottom: solid 2px #336699;
+
+}
+
 div.importantRaces {
 	margin-top: 10px;
 }
