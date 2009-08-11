@@ -386,9 +386,10 @@ p,b{
 	color:gray;
 }
 
-a {
+a.special {
 	color: #336699;
 	text-decoration: none;
+	font-weight: bold;
 }
 
 .rightColumn{
