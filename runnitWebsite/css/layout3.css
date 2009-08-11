@@ -1,0 +1,444 @@
+/* PRINCIPAL */
+
+body{
+	background: #ffffff;
+	background-image: url(../img/repeat.jpg);
+	background-repeat: repeat-x;
+}
+
+div.container {
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: #336699;
+}
+
+/* LOGIN */
+
+a.hrefText{
+	font-size: 12px;
+	font-family: Arial;
+	font-weight: bold;
+	color: #336699;
+	text-decoration: none;
+}
+
+a.normalText{
+	font-size: 12px;
+	font-family: Arial;
+	color: #6699cc;
+	text-decoration: none;
+}
+
+div.loginImage{
+	margin-top: 0px;
+	background-image: url(../img/login.jpg);
+	background-repeat: no-repeat;
+	float: right;
+	height: 18px;
+	margin-right: -19px;
+}
+
+div.loginText {
+	text-align: left;
+	padding-left: 30px;
+}
+
+
+/* HEADER */
+
+div.header{
+	height: 165px;
+}
+
+div.headerImage{
+	background-image: url(../img/logo.jpg);
+	background-repeat: no-repeat;
+	height: 85px;
+	margin-top: 35px;
+	margin-left: -3px;
+}
+
+div.search {
+	float: right;
+}
+
+
+/* RACE CONTAINER */
+
+div.raceContainer {
+	background-color: #FFFFFF;
+}
+
+h2.newsTitle {
+	font-family: Arial;
+	font-size: 22px;
+	color: #336699;
+	font-weight: bold;
+	border-bottom: solid 2px #336699;
+}
+
+div.importantRaces {
+	margin-top: 10px;
+}
+
+div.events {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+div.month {
+	font-family: Arial;
+	color: white;
+	background-color: #cc3300;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+}
+
+div.day {
+	font-family: Arial;
+	font-size: 22px;
+	color: #666666;
+	font-weight: bold;
+	text-align: center;
+	margin-top: -5px;
+}
+
+div.nextRaceComment {
+	border-left: solid 1px #999999;
+	height: 36px;
+	padding-left: 5px;
+}
+
+div.raceDetails {
+	height: 45px;
+	border-bottom: dotted #666666 1px;
+	margin-bottom: 10px;
+}
+
+a.runnersLink {
+	font-size: 14px;
+	font-family: Arial;
+	color: #336699;
+	text-decoration: none;
+}
+
+.nameRace {
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: bold;
+	color: #666666;
+	letter-spacing: -1px;
+	text-decoration: none;
+}
+
+div.raceLocation {
+	font-family: Arial;
+	font-size: 14px;
+	color: grey;
+	letter-spacing: -1px;
+	margin-top: -4px;
+}
+
+div.dateButton {
+	float: right;
+}
+
+
+/* MORE RACES */
+
+div.moreRaces {
+	margin-top: 30px;
+}
+
+div.feedText {
+	padding-left: 10px;
+	margin-top: 3px;
+	margin-right: -3px;
+}
+
+div.imgFeed {
+	margin-left: 0px;
+}
+
+div.feed {
+	font-family: Arial;
+	font-size: 12px;
+	font-weight: bold;
+	color: #336699;
+	float: right;
+	text-align: right;
+	padding-top: 3px;
+}
+
+div.races {
+	height: 78px;
+	border-bottom: dotted #666666 1px;
+	margin-top: -5px;
+	margin-bottom: 15px;
+}
+
+div.nameRaceContainer {
+	margin-top: -4px;
+	line-height: 17px;
+	height: 48px;
+}
+
+a.runnersNumber {
+	font-family: Arial;
+	font-size: 12px;
+	color: #336699;
+	text-decoration: none;
+}
+
+div.raceDateDetails {
+	line-height: 12px;
+}
+
+div.raceDetailsStyle {
+	font-family: Arial;
+	font-size: 12px;
+	color: #999999;
+}
+
+div.raceUserDetails {
+	font-family: Arial;
+	font-size: 12px;
+	color: #666666;
+}
+
+div.image {
+	padding-left: 10px;
+}
+
+div.detailsUser {
+	line-height: 13px;
+	height: 52px;
+}
+
+/* PROMINENT */
+
+div.prominent {
+	margin-top: 30px;
+	background-image: url(../img/prominent.jpg);
+	background-repeat: repeat-x;
+	height: 220px;
+	font-family: Arial;
+	padding-top: 20px;
+	margin-bottom: 10px;
+}
+
+div.titleImportant {
+	padding-left: 20px;
+	padding-right: 18px;
+	color: #336699;
+	font-size: 20px;
+	line-height: 19px;
+	letter-spacing: -1px;
+	height: 75px;
+}
+
+div.contentImportant {
+	padding-left: 20px;
+	padding-right: 15px;
+	color: #6699cc;
+	line-height: 14px;
+	margin-top: 15px;
+	font-weight: bold;
+	font-size: 14px;
+	height: 50px;
+}
+
+div.buttonImportant {
+	margin-top: 15px;
+	padding-left: 20px;
+	padding-right: 15px;
+}
+
+
+/* SOCIAL */
+
+div.socialLinks {
+	margin-bottom: 40px;
+}
+
+
+div.twitterContent {
+	font-family: Arial;
+	color: #666666;
+	font-size: 14px;
+	line-height: 16px;
+	letter-spacing: -1px;
+}
+
+a.twitterLink {
+	font-family: Arial;
+	font-size: 14px;
+	color: #336699;
+	text-decoration: none;
+}
+
+div.tweet {
+	margin-left: -20px;
+}
+
+
+/* FOOTER */
+
+div.footerContainer {
+	background-image: url(../img/footerRepeat.jpg);
+	background-repeat: repeat-x;
+	height: 86px;
+	margin-top: 30px;
+	padding-top: 15px;
+	font-family: Arial;
+	font-size: 12px;
+	color: #336699;
+}
+
+div.suggestions {
+	text-align: right;
+}
+
+a.contactFooter {
+	text-decoration: none;
+	font-weight: bold;
+	color: #336699;
+}
+
+/* CARRERA */
+
+.navigationList ul{
+	margin-top: 4px;
+	margin-bottom: 0px;
+	margin-left: 16px;
+}
+
+.navigationList li{
+	list-style: none;
+	display: inline;
+}
+
+.navigationList a{
+	text-decoration: none;
+	color: #336699;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.navigationList a.selected{
+	color: gray;
+	font-weight: normal;
+}
+
+.calendar{
+	padding-left: 16px;
+	border-right: 1px solid gray;
+	padding-right: 10px;
+}
+
+.raceTitle{
+	color: #336699;
+	font-size: 28px;
+	font-weight: bold;
+	margin-top: -10px;
+}
+
+.raceDetailsTitle{
+	color: gray;
+	font-size: 14px;
+	margin-top: -48px;
+	font-weight: normal;
+	margin-top: -10px;
+}
+
+.carrera{
+	margin-left: 10px;
+}
+
+.blue{
+	color: #336699; 
+	border-bottom: 2px solid #336699;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 0px;
+	height: 20px;
+}
+
+
+
+.databox{
+	border-bottom: 1px dotted gray;
+}
+
+p,b{
+	color:gray;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.distanceInfo b{
+	color:gray;
+}
+
+a {
+	color: #336699;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.rightColumn{
+	background-color: #f6f6f6;
+}
+
+div.racesComment {
+	border-bottom: dotted #666666 1px;
+	margin-top: 10px;
+	padding-bottom: 6px;
+}
+
+p.textRace {
+	line-height: 17px;
+}
+
+div.raceContent {
+	margin-left: 10px;
+}
+
+div.marginDescription {
+	padding-right: 10px;
+}
+
+div.boxraceMap {
+	margin-right: 10px;
+}
+
+.noborder {
+	border: none;
+}
+
+div.boxComments {
+	margin-right: 10px;
+}
+
+.margin10 {
+	margin-bottom: 10px;
+}
+
+div.mapStyle {
+	border: solid 1px grey;
+}
+
+div.margins {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+div.correct {
+	margin-right: 10px;
+}
