@@ -27,3 +27,5 @@ form { margin-top: 2em; }
 form p .btn { margin-right: 1em; }
 textarea { margin: 1em 0;}
 */
+
+.btnblue * { background-image: url(../img/btn2blue.png);}
