@@ -67,6 +67,39 @@ div.search {
 }
 
 
+
+/* FLOAT RACE */
+div.vipRace {
+	background-color: white;
+	background-image: url(../img/example.jpg);
+	background-repeat: no-repeat;
+	height: 321px;
+}
+
+div.raceHome {
+	margin-top: 190px;
+	margin-left: 20px;
+	margin-right: 20px;
+	height: 100px;
+	background-color: black;
+	filter: alpha(opacity=65);
+	opacity: .65;
+}
+
+div.contentImportantRace {
+	margin-left: 20px;
+}
+
+div.dateImpRace {
+	background-color: white;
+	font-family: Arial;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+	text-align: center;
+}
+
+
 /* RACE CONTAINER */
 
 div.raceContainer {
