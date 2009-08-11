@@ -29,3 +29,5 @@ textarea { margin: 1em 0;}
 */
 
 .btnblue * { background-image: url(../img/btn2blue.png);}
+
+.left { float: left; }
