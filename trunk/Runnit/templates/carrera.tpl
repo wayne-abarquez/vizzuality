@@ -95,7 +95,7 @@
 					<div class="marginDescription commentArea">
 						<div class="span-14 titleComents">Anímate y publica tu comentario</div>
 						<textarea class="span-15 textArea"></textarea>
-						<input type="Button" value="publicar comentario" class="btn" />
+						<input type="Button" value="Publicar comentario" class="btn bold" />
 					</div>
 				</div>
 				
