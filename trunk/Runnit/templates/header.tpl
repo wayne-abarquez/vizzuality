@@ -82,7 +82,7 @@
 			<img src="/img/separator.jpg" alt="separator">
 		</div>
 		
-		<div class="column span-5 last lastColumn">
+		<div class="column span-5 last">
 			<div class="blankSpace"></div>
 			<h3>¿Aún no estas registrado?</h3>
 			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
