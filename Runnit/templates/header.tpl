@@ -83,8 +83,7 @@
 		</div>
 		
 		<div class="column span-5 last">
-			<div class="blankSpace"></div>
-			<h3>¿Aún no estas registrado?</h3>
+			<h3 class="registro">¿Aún no estas registrado?</h3>
 			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
 			<input type="Button" value="Mira la carrera destacada" class="btn btnblue" />
 		</div>
