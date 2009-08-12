@@ -138,12 +138,9 @@
 		</div>
  
 		<div class="span-24 headerImage">
-		<!--
-				<div class="searchC">
-					<input type="text"/>
-				</div>
--->
-			<input id="rounded_input1" type="text" class="rounded_input" style="width: 286px;" />
+			<div class="searchC">
+				<input id="rounded_input1" type="text" class="rounded_input" style="width: 286px;" />
+			</div>
 			<div class="span-18 prepend-6 last horizontalcssmenu">
 				<ul id="cssmenu1">
 					<li><a href="#">HOME</a> <a class="separator">|</a> </li>
