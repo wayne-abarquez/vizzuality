@@ -470,6 +470,7 @@ div.racesComment {
 	margin-top: 10px;
 	padding-bottom: 15px;
 	margin-right: 10px;
+	width: 618px;
 }
 
 p.textRace {
@@ -537,9 +538,7 @@ div.margins {
 	padding-left: 10px;
 }
 
-
-
-
-
-
-
+.searchC{
+	float: right;
+	background-color: #b4e6f2;
+}
