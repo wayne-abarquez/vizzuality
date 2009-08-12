@@ -1,11 +1,11 @@
 <!-- GLOBAL CONTAINER RACE -->
 	<div class="span-24 raceContainer" id="race">
-		
+	
 		<!-- RACE & IMAGE -->
 		<div class="span-16 first">
 			<div class="span-16 column raceTitle">
 				<div class="span-16 navigationList">
-					<ul>
+					<ul> 
 						<li><a href="">Calendario ></a></li>
 						<li><a href="" class="selected">detalle de carrera</a></li>
 					</ul>
