@@ -1,6 +1,7 @@
 .btn { 
-	font-size: 0.85em; 
-	line-height: 12px;
+	font-size: 12px; 
+	font-weight: bold;
+	line-height: 15px;
  }
 .btn { display: block; position: relative; background: #336699; padding: 5px; float: left; color: #fff; text-decoration: none; cursor: pointer; float: right; }
 .btn * { font-style: normal; background-image: url(../img/btn2.png); background-repeat: no-repeat; display: block; position: relative; }
@@ -13,7 +14,7 @@
 * html .btn i { float: left; width: auto; background-image: none; cursor: pointer; }
 
 .btn:hover { background-color: #003366; color: white; }
-.btn:active { background-color: #3399ff; color: white;}
+.btn:active { background-color: #3399ff; color: white; }
 
 * html .btn { border: 1px double #aaa; }
 * html .btn.blue { border-color: #2ae; }
@@ -21,12 +22,8 @@
 * html .btn.pink { border-color: #e1a; }
 * html .btn:hover { border-color: #a00; }
 
-/*
-p { clear: both; padding-bottom: 2em; }
-form { margin-top: 2em; }
-form p .btn { margin-right: 1em; }
-textarea { margin: 1em 0;}
-*/
+.btn{
+}
 
 .btnblue * { background-image: url(../img/btn2blue.png);}
 
