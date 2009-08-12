@@ -31,3 +31,20 @@ textarea { margin: 1em 0;}
 .btnblue * { background-image: url(../img/btn2blue.png);}
 
 .left { float: left; }
+
+div.rounded_container{
+			/* This background color should have the same background color as your text input */
+		    background-color: #fff;
+			/* This padding is between the text input and the rounded border on all sides */
+			/* Decreasing the value may interfere with the rounded corners */
+		}
+		
+		input.rounded_input{
+			border:0;
+			outline: none;
+		}
+
+		div.rounded_border {  
+			/* This is the color of your rounded border */
+			background: #cceaf3; 
+		}
