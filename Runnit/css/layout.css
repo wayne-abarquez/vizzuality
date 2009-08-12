@@ -16,6 +16,10 @@ a {
 	color: #336699;
 }
 
+a:hover {
+	color: #336690;
+}
+
 /* LOGIN */
 
 a.hrefText{
@@ -97,6 +101,23 @@ div.dateImpRace {
 	font-weight: bold;
 	color: black;
 	text-align: center;
+	margin-bottom: 10px;
+}
+
+div.titleImpRace {
+	font-family: Arial;
+	font-size: 28px;
+	color: white;
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+div.dataImpRace {
+	font-family: Arial;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+	margin-top: -8px;
 }
 
 
@@ -262,7 +283,6 @@ div.image {
 
 div.detailsUser {
 	line-height: 13px;
-	height: 52px;
 }
 
 
@@ -357,6 +377,8 @@ a.contactFooter {
 	color: #336699;
 }
 
+
+
 /* CARRERA */
 
 .navigationList ul{
@@ -446,7 +468,8 @@ a.special {
 div.racesComment {
 	border-bottom: dotted #666666 1px;
 	margin-top: 10px;
-	padding-bottom: 6px;
+	padding-bottom: 15px;
+	margin-right: 10px;
 }
 
 p.textRace {
@@ -458,11 +481,43 @@ div.raceContent {
 }
 
 div.marginDescription {
-	padding-right: 10px;
+	margin-right: 10px;
 }
 
 div.boxraceMap {
 	margin-right: 10px;
+}
+
+div.commentArea {
+	background-color: #f1f4f8;
+	height: 125px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
+	
+}
+
+div.mapStyle {
+	border: solid grey 1px;
+	vertical-align: middle;
+	padding-left: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 4px;
+	background-color: white;
+}
+
+textarea.textArea {
+	height: 50px;
+	max-height: 50px;
+}
+
+div.titleComents {
+	font-family: Arial;
+	font-size: 16px;
+	color: #336699;
+	font-weight: bold;
 }
 
 .noborder {
@@ -477,23 +532,13 @@ div.boxComments {
 	margin-bottom: 10px;
 }
 
-div.mapStyle {
-	border: solid 1px grey;
-}
-
 div.margins {
 	padding-right: 10px;
 	padding-left: 10px;
 }
 
-div.correct {
-	margin-right: 10px;
-}
 
-.hola{
-	margin-left: -10px;
-	padding-bottom: 10px;
-}
+
 
 
 
