@@ -442,3 +442,8 @@ div.margins {
 div.correct {
 	margin-right: 10px;
 }
+
+.hola{
+	margin-left: -10px;
+	padding-bottom: 10px;
+}
