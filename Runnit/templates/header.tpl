@@ -25,32 +25,11 @@
 	<script src='js/btn.js' type='text/javascript'></script>
 	<link type='text/css' href='css/botones.css' rel='stylesheet' media='screen'>
 	
-	<script src="js/corner.js" type="text/javascript"></script>
-	
 	<!-- IE 6 hacks -->
 	<!--[if lt IE 7]>
 	<link type='text/css' href='css/basic_ie.css' rel='stylesheet' media='screen' />
 	<![endif]-->
 	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAsaJV0TVHPBg8nbwHdCcdiBRVkIVFvQ8qAPeAWYgb5r01BBWCDxTPOQ0XxQRZeK1r5_6OEubQzygWew" type="text/javascript"></script>
-	
-	<script type="text/javascript" charset="utf-8">	
-		/* input_id is the ID of the input element */
-		/* container_class will let you control the text input background color and padding */
-		/* border_class will let you control the border color */
-		function roundInput(input_id, container_class, border_class){
-			var input = $('#'+input_id+'');
-			var input_width = input.css("width"); //get the width of input
-			var wrap_width = parseInt(input_width) + 10; //add 10 for padding
-			wrapper = input.wrap("<div class='"+container_class+"'></div>").parent();
-			wrapper.wrap("<div class='"+border_class+"' style='width: "+wrap_width+"px;'></div>"); //apply border
-			wrapper.corner("round 8px").parent().css('padding', '2px').corner("round 10px"); //round box and border
-		}
-		
-		$(function(){
-			roundInput('rounded_input1','rounded_container','rounded_border');
-			roundInput('rounded_input2','rounded_container','rounded_border');
-		});
-	</script>
 	
 </head>
 
