@@ -37,6 +37,7 @@ div.rounded_container{
 		    background-color: #fff;
 			/* This padding is between the text input and the rounded border on all sides */
 			/* Decreasing the value may interfere with the rounded corners */
+			padding: 4px;
 		}
 		
 		input.rounded_input{
@@ -46,5 +47,5 @@ div.rounded_container{
 
 		div.rounded_border {  
 			/* This is the color of your rounded border */
-			background: #cceaf3; 
+			border: none;
 		}
