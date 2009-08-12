@@ -70,49 +70,35 @@
 					
 				<div id="map2Container" class="span-16 boxraceMap">
 					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
-					<div id="map2" class="marginDescription mapStyle" style="width: 608px; height: 250px"></div>
+					<div class="mapStyle marginDescription">
+						<div id="map2" class="" style="width: 610px; height: 250px"></div>
+					</div>
 				</div>
 					
-				<div class="span-16 first boxComments">
+				<div class="span-16 marginDescription">
 					<div class="marginDescription"><h3 class="blue">Comentarios[3]</h3></div>			
-					<div class="marginDescription">
-						<div class="racesComment">			
-							<div class="image">
+					
+						<div class="column span-16 first racesComment">				
+							<div class="column span-3 first image">
 								<img src="img/user.jpg"/>	
 							</div>
-							<!--
-<div class="span-13 last hola">
-								<div class="span-13 detailsUser">
-									<div class="span-13 nameUser"><a class="nameRace" href="#">JCorrea</a></div>
-									<div class="span-13 commentUser"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper.<p>dolor sit amet!</p></p></div>
-								</div>
-							</div>
--->
-						</div>
-					</div>
-					<!--
-<div class="span-15 racesComment">
-						<div class="column first">
-							<img src="img/user.jpg"/>	
-						</div>
-						<div class="column span-5 last">
-							<div class="detailsUser">
+							<div class="column span-12 last detailsUser">
 								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
+								<p class="textRace">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper.dolor sit amet!sssssssssssssssssssssssss ssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+	
 							</div>
 						</div>
-					</div>
-					<div class="span-15 racesComment">
-						<div class="column first">
-							<img src="img/user.jpg"/>	
-						</div>
-						<div class="column span-5 last">
-							<div class="detailsUser">
-								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
-							</div>
-						</div>
-					</div>
--->
 				</div>
+				
+				<!-- PARA AÑADIR COMENTARIOS -->
+				<div class="span-16 boxraceMap">
+					<div class="marginDescription commentArea">
+						<div class="span-14 titleComents">Anímate y publica tu comentario</div>
+						<textarea class="span-15 textArea"></textarea>
+						<input type="Button" value="publicar comentario" class="btn" />
+					</div>
+				</div>
+				
 			</div>				
 		</div>
 		
@@ -122,7 +108,9 @@
 			<div class="span-8 importantRaces">
 				<div class="events"> 
 					<div><h2 class="newsTitle">Localización</h2></div>
-					<div id="map" style="width: 280px; height: 150px"></div>
+					<div class="mapStyle">
+						<div id="map" style="width: 270px; height: 142px;"></div>
+					</div>
 				</div>
 			</div>
 	

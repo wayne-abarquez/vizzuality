@@ -1,7 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
 <html>
 
+<html lang="es">
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=unicode">
+	<title>Runnit</title>
 	<style type="text/css"></style>
 
 	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">

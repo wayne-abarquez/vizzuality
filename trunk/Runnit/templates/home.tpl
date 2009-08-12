@@ -1,12 +1,17 @@
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
+		
 		<div class="column span-16 first vipRace">
 			<div class="raceHome">
 				<div class="contentImportantRace">
 					<div class="span-3 dateImpRace">13/Ago/09</div>
+					<div class="span-15 titleImpRace">XV Cross popular “Ascenso a la pedriza”</div>
+				<div class="span-15 dataImpRace">La pedriza | 1,2km - 10km | <a href="#">18 usuarios van </a></div>
 				</div>
+				
 			</div>
 		</div>
+		
 		<div class="column span-8 last importantRaces">
 			<div class="events"> 
 				<h2 class="newsTitle">Tus próximas carreras</h2>
