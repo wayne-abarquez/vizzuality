@@ -695,3 +695,9 @@ input.textInputUser {
 	width: 215px;
 	-moz-border-radius: 5px;
 }
+
+input.textInputUser2 {
+	height: 20px;
+	width: 223px;
+	-moz-border-radius: 5px;
+}
