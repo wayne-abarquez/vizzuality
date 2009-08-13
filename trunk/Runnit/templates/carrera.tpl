@@ -71,7 +71,10 @@
 				<div id="map2Container" class="span-16 boxraceMap">
 					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
 					<div class="mapStyle marginDescription">
-						<div id="map2" class="" style="width: 610px; height: 250px"></div>
+						<div id="map2"><img src="http://maps.google.com/staticmap?center=40.714728,-73.998672&zoom=14&size=610x250&maptype=mobile\
+&markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc\
+&key=MAPS_API_KEY&sensor=false
+"></div>
 					</div>
 				</div>
 					
@@ -108,8 +111,11 @@
 			<div class="span-8 importantRaces">
 				<div class="events"> 
 					<div><h2 class="newsTitle">Localización</h2></div>
-					<div class="mapStyle">
-						<div id="map" style="width: 270px; height: 142px;"></div>
+					<div id="map" class="mapStyle">
+					<img src="http://maps.google.com/staticmap?center=40.714728,-73.998672&zoom=14&size=270x152&maptype=mobile\
+&markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc\
+&key=MAPS_API_KEY&sensor=false
+">
 					</div>
 				</div>
 			</div>
