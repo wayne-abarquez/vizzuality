@@ -134,11 +134,13 @@
  
  		<a href="index.php"><div class="span-6 first headerImage"></div></a>
 		<div class="span-18 last">
-			<div class="searchC">
-				<form>
-					<div class="span-1 inputSearch"><input id="rounded_input1" type="text" class="rounded_input" style="width: 117px;" /></div>
-					<div class="span-1 buttonSearch"><input type="Button" value="Buscar" class="btn btnblue" /></div>
-				</form>
+			<div class="searchCont">
+				<div class="searchC">
+					<form>
+						<div class="span-1 inputSearch"><input class="input_Search" type="text" /></div>
+						<div class="span-1 buttonSearch"><input class="button_Search" type="submit" value="Buscar" /></div>
+					</form>
+				</div>
 			</div>
 			<div class="span-18 last horizontalcssmenu">
 				<ul id="cssmenu1">
