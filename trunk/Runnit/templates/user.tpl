@@ -24,19 +24,19 @@
 								<div class="inputBox marginTopMinus">
 									<div class="countAgo ">nombre y apellidos</div>
 									<div>
-										<input class="textInputUser" type="text">
+										<input class="textInputUser2" type="text">
 									</div>
 								</div>
 								<div class="inputBox marginTopBottom">
 									<div class="countAgo ">nombre de usuario</div>
 									<div>
-										<input class="textInputUser" type="text">
+										<input class="textInputUser2" type="text">
 									</div>
 								</div>
-								<div class="inputBox marginTopBottom">
+								<div class="inputBox marginTopBottom margin10">
 									<div class="countAgo ">email</div>
 									<div>
-										<input class="textInputUser" type="text">
+										<input class="textInputUser2" type="text">
 									</div>
 								</div>
 								<div>
@@ -51,7 +51,7 @@
 										<input class="textInputUser" type="text">
 									</div>
 								</div>
-								<div class="inputBox">
+								<div class="inputBox marginTopBottom">
 									<div class="inputTitle">nueva contraseña</div>
 									<div class="margin10">
 										<input class="textInputUser" type="text">
