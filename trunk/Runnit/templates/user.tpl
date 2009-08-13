@@ -24,19 +24,19 @@
 								<div class="inputBox marginTopMinus">
 									<div class="countAgo ">nombre y apellidos</div>
 									<div>
-										<input class="textInputRegister" type="text">
+										<input class="textInputUser" type="text">
 									</div>
 								</div>
 								<div class="inputBox">
 									<div class="countAgo ">nombre de usuario</div>
 									<div>
-										<input class="textInputRegister" type="text">
+										<input class="textInputUser" type="text">
 									</div>
 								</div>
 								<div class="inputBox">
 									<div class="countAgo ">email</div>
 									<div>
-										<input class="textInputRegister" type="text">
+										<input class="textInputUser" type="text">
 									</div>
 								</div>
 								<input type="Button" value="Guardar cambios" class="btn" />
