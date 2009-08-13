@@ -18,13 +18,11 @@ h2.registerTitle {
 .registerLeft{
 	width: 250px;
 	height: 358px;
-	background-color: lime;
 }
 
 .registerRight{
 	width: 250px;
 	height: 358px;
-	background-color: yellow;
 }
 
 .global{
