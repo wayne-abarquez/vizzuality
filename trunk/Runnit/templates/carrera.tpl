@@ -182,7 +182,7 @@
 								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
 								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
 							</div>
-							<div><p class="runnersNumber">2 van, apúntate con él</p></div>
+							<div><p class="runnersNumber">2 van, <a href="">apúntate con él</a></p></div>
 						</div>
 					</div>
 					<div class="races">
@@ -194,7 +194,7 @@
 								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
 								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
 							</div>
-							<div><p class="runnersNumber">2 van, apúntate con él</p></div>
+							<div><p class="runnersNumber">2 van, <a href="">apúntate con él</a></p></div>
 						</div>
 					</div>
 					<div class="races">
@@ -206,7 +206,7 @@
 								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
 								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
 							</div>
-							<div><p class="runnersNumber" >2 van, apúntate con él</p></div>
+							<div><p class="runnersNumber" >2 van, <a href="">apúntate con él</a></p></div>
 						</div>
 					</div>
 				</div>
