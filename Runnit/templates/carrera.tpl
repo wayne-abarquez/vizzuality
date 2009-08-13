@@ -141,7 +141,7 @@
 							<div class="day">01</div>
 						</div>
 						<div class="column span-6 last nextRaceComment">
-							<a href="#" class="nameRace">XVII Media Marathon de Madrid</a>
+							<a href="carrera.php" class="nameRace">XVII Media Marathon de Madrid</a>
 							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
@@ -151,7 +151,7 @@
 							<div class="day">01</div>
 						</div>
 						<div class="column span-6 last nextRaceComment">
-							<a href="#" class="nameRace">XXVI Carrera del Rock’n’Roll</a>
+							<a href="carrera.php" class="nameRace">XXVI Carrera del Rock’n’Roll</a>
 							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
@@ -161,7 +161,7 @@
 							<div class="day">01</div>
 						</div>
 						<div class="column span-6 last nextRaceComment">
-							<a href="#" class="nameRace">XV Cross popular “Ascenso a l...</a>
+							<a href="carrera.php" class="nameRace">XV Cross popular “Ascenso a l...</a>
 							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
