@@ -79,7 +79,7 @@
 				</div>
 					
 				<div class="span-16 marginDescription">
-					<div class="marginDescription"><h3 class="blue">Comentarios[3]</h3></div>			
+					<div class="marginDescription"><h3 class="blue">Comentarios[3]</h3><h5>publicar un comentario</h5></div>			
 					
 						<div class="column span-16 first racesComment">				
 							<div class="column span-3 first image">
