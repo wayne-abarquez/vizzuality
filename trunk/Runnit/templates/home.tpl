@@ -191,7 +191,7 @@
 					<div class="raceUserDetails"> dice que va a ir a </div>
 					<div class="raceUserDetails"> <b>XVII Carrera solidaria BBVA</b> </div>
 				</div>
-				<p class="runnersNumber">2 van, apúntate con él</p>
+				<p class="runnersNumber">2 van, <a href="">apúntate con él</a></p>
 			</div>
 		</div>
 		
@@ -205,7 +205,7 @@
 					<div class="raceUserDetails"> dice que va a ir a </div>
 					<div class="raceUserDetails"> <b>XVII Carrera solidaria BBVA</b> </div>
 				</div>
-				<p class="runnersNumber">2 van, apúntate con él</p>
+				<p class="runnersNumber">2 van, <a href="">apúntate con él</a></p>
 			</div>
 		</div>
 		
@@ -219,7 +219,7 @@
 					<div class="raceUserDetails"> dice que va a ir a </div>
 					<div class="raceUserDetails"> <b>XVII Carrera solidaria BBVA</b> </div>
 				</div>
-				<p class="runnersNumber">2 van, apúntate con él</p>
+				<p class="runnersNumber">2 van, <a href="">apúntate con él</a></p>
 			</div>
 		</div>
 	</div>
