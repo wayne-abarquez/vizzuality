@@ -122,7 +122,6 @@
 	</div>
 	
 	
-	
 	<!-- HEADER -->
 	<div class="span-24 header">
 		<div class="span-6 loginImage">
@@ -133,17 +132,21 @@
 			</div>
 		</div>
  
-		<div class="span-24 headerImage">
+ 		<a href="index.php"><div class="span-6 first headerImage"></div></a>
+		<div class="span-18 last">
 			<div class="searchC">
-				<input id="rounded_input1" type="text" class="rounded_input" style="width: 286px;" />
+				<form>
+					<div class="span-1 inputSearch"><input id="rounded_input1" type="text" class="rounded_input" style="width: 117px;" /></div>
+					<div class="span-1 buttonSearch"><input type="Button" value="Buscar" class="btn btnblue" /></div>
+				</form>
 			</div>
-			<div class="span-18 prepend-6 last horizontalcssmenu">
+			<div class="span-18 last horizontalcssmenu">
 				<ul id="cssmenu1">
-					<li><a href="#">HOME</a> <a class="separator">|</a> </li>
-					<li><a href="#">CALENDARIO</a> <a class="separator">|</a> </li>
-					<li><a href="#">SOBRE NOSOTROS</a> <a class="separator">|</a> </li>
+					<li><a href="index.php">HOME</a> <a class="separator">|</a> </li>
+					<li><a href="calendario.php">CALENDARIO</a> <a class="separator">|</a> </li>
+					<li><a href="about.php">SOBRE NOSOTROS</a> <a class="separator">|</a> </li>
 					<li><a href="#">BLOG</a> <a class="separator">|</a> </li>
-					<li><a href="#">CONTACTO</a> </li>
+					<li><a href="contacto.php">CONTACTO</a> </li>
 				</ul>
 			</div>
 		</div>
