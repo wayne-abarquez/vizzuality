@@ -79,33 +79,34 @@ div.buttonSearch{
 }
 
 div.inputSearch{
-	width: 117px;
-	margin-right: 0px;
-	background-image: url(../img/inputsearch.jpg);
-	background-repeat: no-repeat;
+	margin: 0px 0px 0px 0px;
 }
 
 .input_Search{
 	height: 21px;
-	border: none;
+	border: 0px;
+	background-image: url(../img/inputsearch.jpg);
+	background-repeat: no-repeat;
 }
 
 .button_Search{
 	width: 56px;
 	height: 23px;
 	background-image: url(../img/buttonsearch.jpg);
-	background-repeat: no-repeat;
 	border: none;
 	color: white;
 	font-weight: bold;
 	font-size: 12px;
+	text-align: center;
 }
 
+/*
 .button_Search:hover{
 	width: 56px;
 	height: 23px;
 	background-image: url(../img/buttonsearchhover.jpg);
 }
+*/
 
 .searchC{
 	float: right;
