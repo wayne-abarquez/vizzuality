@@ -9,23 +9,25 @@ div.conditions {
 }
 
 h2.registerTitle {
-	margin-bottom: 20px;
 	font-family: Arial;
 	font-size: 22px;
 	color: #336699;
 	font-weight: bold;
-	letter-spacing: -1px;
 }
 
 .registerLeft{
 	width: 250px;
-	padding-left: 20px;
+	height: 358px;
+	background-color: lime;
 }
 
 .registerRight{
 	width: 250px;
+	height: 358px;
+	background-color: yellow;
 }
 
 .global{
 	height: 358px;
 }
+
