@@ -21,19 +21,19 @@
 						</div>
 						<div class="paddingRightContainer">
 							<div class="column span-6 first marginTopBottom">
-								<div class="inputBox marginTopMinus">
+								<div class="inputBox">
 									<div class="countAgo ">nombre y apellidos</div>
 									<div>
 										<input class="textInputUser2" type="text">
 									</div>
 								</div>
-								<div class="inputBox marginTopBottom">
+								<div class=" marginTopBottom">
 									<div class="countAgo ">nombre de usuario</div>
 									<div>
 										<input class="textInputUser2" type="text">
 									</div>
 								</div>
-								<div class="inputBox marginTopBottom margin10">
+								<div class=" marginTopBottom margin10">
 									<div class="countAgo ">email</div>
 									<div>
 										<input class="textInputUser2" type="text">
@@ -45,13 +45,13 @@
 							</div>
 							<div class="column last passContainer">
 								<div class="changePass">Cambiar contraseña</div>
-								<div class="inputBox">
+								<div class="marginTopBottom">
 									<div class="inputTitle">contraseña anterior</div>
 									<div>
 										<input class="textInputUser" type="text">
 									</div>
 								</div>
-								<div class="inputBox marginTopBottom">
+								<div class=" marginTopBottom">
 									<div class="inputTitle">nueva contraseña</div>
 									<div class="margin10">
 										<input class="textInputUser" type="text">
@@ -112,10 +112,11 @@
 							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
 						</div>
 					</div>
-					<div class="first countAgo pagination">
-						<div class="column first pageShow">viendo del 1-5 de 21</div>
-						<div class="column btnMargin btnJoin"><input type="Button" value="x" class="btn " /></div>
-						<div class="column last btnMargin"><input type="Button" value="x" class="btn" />
+					<div class="span-7 countAgo">
+						<div class="span-3 pagination">viendo del 1-4 de 21</div>
+						<div class="span-3 pagination">
+							<div class="span-1 btnMargin btnJoin"><input type="Button" value="x" class="btn"></div>
+							<div class="span-1 btnMargin"><input type="Button" value="x" class="btn"></div>					
 						</div>
 					</div>
 				</div>
