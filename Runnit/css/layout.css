@@ -210,6 +210,11 @@ div.month {
 	text-align: center;
 }
 
+div.date {
+	background-color: white;
+	height: 40px;
+}
+
 div.day {
 	font-family: Arial;
 	font-size: 22px;
