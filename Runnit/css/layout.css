@@ -74,15 +74,47 @@ div.headerImage{
 }
 
 div.buttonSearch{
-	width: 100px;
-	margin-left: -12px;
-	margin-top: 3px;
+	width: 56px;
+	height: 23px;
 }
 
 div.inputSearch{
-	width: 100px;
+	width: 117px;
 	margin-right: 0px;
+	background-image: url(../img/inputsearch.jpg);
+	background-repeat: no-repeat;
 }
+
+.input_Search{
+	height: 21px;
+	border: none;
+}
+
+.button_Search{
+	width: 56px;
+	height: 23px;
+	background-image: url(../img/buttonsearch.jpg);
+	background-repeat: no-repeat;
+	border: none;
+	color: white;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.button_Search:hover{
+	width: 56px;
+	height: 23px;
+	background-image: url(../img/buttonsearchhover.jpg);
+}
+
+.searchC{
+	float: right;
+}
+
+.searchCont{
+	padding-top: 40px;
+}
+
 
 /* FLOAT RACE */
 div.vipRace {
@@ -509,7 +541,6 @@ div.commentArea {
 	padding-top: 10px;
 	padding-right: 20px;
 	padding-left: 20px;
-	
 }
 
 div.mapStyle {
@@ -549,10 +580,6 @@ div.boxComments {
 div.margins {
 	padding-right: 10px;
 	padding-left: 10px;
-}
-
-.searchC{
-	background-color: #c3e5f1;
 }
 
 /* USER */
