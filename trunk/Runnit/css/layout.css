@@ -396,7 +396,7 @@ a.contactFooter {
 .navigationList ul{
 	margin-top: 4px;
 	margin-bottom: 0px;
-	margin-left: 16px;
+	margin-left: 10px;
 }
 
 .navigationList li{
@@ -552,4 +552,112 @@ div.margins {
 
 .searchC{
 	background-color: #c3e5f1;
+}
+
+/* USER */
+
+.marginContainer {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.marginTopBottom {
+	margin-top: 10px;
+}
+
+.paddingRightContainer {
+	padding-right: 10px;
+}
+
+h2.userData {
+	font-family: Arial;
+	font-size: 16px;
+	color: #336699;
+	font-weight: bold;
+	border-bottom: solid 2px #336699;
+}
+
+div.userCount {
+	height: 40px;
+	line-height: 17px;
+}
+
+
+div.wellcome {
+	font-family: Arial;
+	font-size: 16px;
+	color: #666666;
+	letter-spacing: -1px;
+}
+
+a.wellcome {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+div.countAgo {
+	font-family: Arial;
+	font-size: 12px;
+	color: #666666;
+	letter-spacing: -1px;
+}
+
+div.passContainer {
+	background-image: url(../img/passContainer.jpg);
+	background-repeat: repeat; 
+	height: 165px;
+	margin-left: 10px;
+	width: 220px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+div.changePass {
+	font-family: Arial;
+	font-size: 14px;
+	color: #336699;
+	font-weight: bold;
+	letter-spacing: -1px;
+	margin-bottom: 10px;
+}
+
+.marginTopMinus {
+	margin-top: -13px;
+}
+
+.marginTopPlus {
+	margin-top: 20px;
+}
+
+div.pagination {
+	float: right;
+}
+
+div.showPage {
+	height: 20px;
+}
+
+div.contact {
+	letter-spacing: 0px;
+}
+
+.rightColumnUser {
+	background-color: #f1f1f1;
+	height: 380px;
+}
+
+div.btnMargin {
+	margin-top: -3px;
+}
+
+div.btnJoin {
+	margin-right: 1px;
+}
+
+input.textInputUser {
+	height: 20px;
+	width: 215px;
+	-moz-border-radius: 5px;
 }
