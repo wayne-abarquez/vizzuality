@@ -304,11 +304,11 @@ div.nameRaceContainer {
 	height: 48px;
 }
 
-a.runnersNumber {
+p.runnersNumber {
 	font-family: Arial;
 	font-size: 12px;
 	color: #336699;
-	text-decoration: none;
+	margin-top: 0px;
 }
 
 div.raceDateDetails {
