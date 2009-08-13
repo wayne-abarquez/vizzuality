@@ -709,3 +709,8 @@ h5{
 	float: right;
 	margin-top: -18px;
 }
+
+.dias{
+	display: inline;
+	margin-left: 4px;
+}
