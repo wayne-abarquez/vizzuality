@@ -24,7 +24,7 @@
 					</div>
 					<div class="column span-6 last nextRaceComment">
 						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | 22 van </div>
+						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 					</div>
 				</div>
 				<div class="raceDetails">
@@ -34,7 +34,7 @@
 					</div>
 					<div class="column span-6 last nextRaceComment">
 						<a href="carrera.php" class="nameRace">XVII Media Marathon de Madrid</a>
-						<div class="raceLocation">Madrid | 10km | 22 van </div>
+						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 					</div>
 				</div>
 				<div class="raceDetails">
@@ -44,7 +44,7 @@
 					</div>
 					<div class="column span-6 last nextRaceComment">
 						<a href="carrera.php" class="nameRace">XXVI Carrera del Rock’n’Roll</a>
-						<div class="raceLocation">Madrid | 10km | 22 van </div>
+						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 					</div>
 				</div>
 				<div class="raceDetails">
@@ -54,7 +54,7 @@
 					</div>
 					<div class="column span-6 last nextRaceComment">
 						<a href="carrera.php" class="nameRace">XV Cross popular “Ascenso a l...</a>
-						<div class="raceLocation">Madrid | 10km | 22 van</a> </div>
+						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 					</div>
 				</div>
 				<input type="Button" value="Ver tu calendario completo" class="btn" />
