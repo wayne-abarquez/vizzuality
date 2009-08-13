@@ -27,12 +27,6 @@
 	
 	<script src="js/corner.js" type="text/javascript"></script>
 	
-	<!-- IE 6 hacks -->
-	<!--[if lt IE 7]>
-	<link type='text/css' href='css/basic_ie.css' rel='stylesheet' media='screen' />
-	<![endif]-->
-	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAsaJV0TVHPBg8nbwHdCcdiBRVkIVFvQ8qAPeAWYgb5r01BBWCDxTPOQ0XxQRZeK1r5_6OEubQzygWew" type="text/javascript"></script>
-	
 	{literal}
 	<script type="text/javascript">	
 		/* input_id is the ID of the input element */
@@ -91,33 +85,36 @@
 	
 	<!-- REGISTER -->
 	<div id="registerWindow" style='display:none'>
-		<div class="span-12 first registerWindow">
-			<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
-			<div class="inputBox">
-				<div class="inputTitle">nombre y apellidos</div>
-				<div>
-					<input class="textInputRegister" type="text">
+		<div class="registerWindow">
+			<div class="registerLeft">
+				<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
+				<div class="inputBox">
+					<div class="inputTitle">nombre y apellidos</div>
+					<div>
+						<input class="textInputRegister" type="text">
+					</div>
 				</div>
-			</div>
-			<div class="inputBox">
-				<div class="inputTitle">nombre de usuario</div>
-				<div>
-					<input class="textInputRegister" type="text">
+				<div class="inputBox">
+					<div class="inputTitle">nombre de usuario</div>
+					<div>
+						<input class="textInputRegister" type="text">
+					</div>
 				</div>
-			</div>
-			<div class="inputBox">
-				<div class="inputTitle">contraseña</div>
-				<div>
-					<input class="textInputRegister" type="text">
+				<div class="inputBox">
+					<div class="inputTitle">contraseña</div>
+					<div>
+						<input class="textInputRegister" type="text">
+					</div>
 				</div>
-			</div>
-			<div class="inputBox">
-				<div class="inputTitle">email</div>
-				<div>
-					<input class="textInputRegister" type="text">
+				<div class="inputBox">
+					<div class="inputTitle">email</div>
+					<div>
+						<input class="textInputRegister" type="text">
+					</div>
 				</div>
+				<input type="Button" value="Crear mi cuenta" class="btn btnblue" />
 			</div>
-			<input type="Button" value="Crear mi cuenta" class="btn btnblue" />
+			<div class="registerRight"></div>
 			<div class="conditions">
 				Hacer click en “Crear mi cuenta” implica haber aceptado los términos y condiciones del servicio.	
 			</div>
