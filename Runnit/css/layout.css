@@ -73,11 +73,16 @@ div.headerImage{
 	margin-left: -3px;
 }
 
-div.search {
-	float: right;
+div.buttonSearch{
+	width: 100px;
+	margin-left: -12px;
+	margin-top: 3px;
 }
 
-
+div.inputSearch{
+	width: 100px;
+	margin-right: 0px;
+}
 
 /* FLOAT RACE */
 div.vipRace {
@@ -546,6 +551,5 @@ div.margins {
 }
 
 .searchC{
-	float: right;
 	background-color: #c3e5f1;
 }
