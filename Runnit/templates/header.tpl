@@ -67,35 +67,37 @@
 	
 	<!-- REGISTER -->
 	<div id="registerWindow" style='display:none'>
-		<div class="first registerLeft">
-			<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
-			<div class="inputBox">
-				<div class="inputTitle">nombre y apellidos</div>
-				<div>
-					<input class="textInputRegister" type="text">
+		<div>
+			<div class="first registerLeft">
+				<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
+				<div class="inputBox">
+					<div class="inputTitle">nombre y apellidos</div>
+					<div>
+						<input class="textInputRegister" type="text">
+					</div>
 				</div>
-			</div>
-			<div class="inputBox">
-				<div class="inputTitle">nombre de usuario</div>
-				<div>
-					<input class="textInputRegister" type="text">
+				<div class="inputBox">
+					<div class="inputTitle">nombre de usuario</div>
+					<div>
+						<input class="textInputRegister" type="text">
+					</div>
 				</div>
-			</div>
-			<div class="inputBox">
-				<div class="inputTitle">contraseña</div>
-				<div>
-					<input class="textInputRegister" type="text">
+				<div class="inputBox">
+					<div class="inputTitle">contraseña</div>
+					<div>
+						<input class="textInputRegister" type="text">
+					</div>
 				</div>
-			</div>
-			<div class="inputBox">
-				<div class="inputTitle">email</div>
-				<div>
-					<input class="textInputRegister" type="text">
+				<div class="inputBox">
+					<div class="inputTitle">email</div>
+					<div>
+						<input class="textInputRegister" type="text">
+					</div>
 				</div>
+				<div><input type="Button" value="Crear mi cuenta" class="btn btnblue" /></div>
 			</div>
-			<div><input type="Button" value="Crear mi cuenta" class="btn btnblue" /></div>
+			<div class="last registerRight"></div>
 		</div>
-		<div class="last registerRight"></div>
 		<div class="column conditions">
 			Hacer click en “Crear mi cuenta” implica haber aceptado los términos y condiciones del servicio.	
 		</div>
