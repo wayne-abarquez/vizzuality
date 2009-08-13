@@ -4,6 +4,7 @@ div.conditions {
 	color: white;
 	font-size: 11px;
 	text-align: center;
+	width: 500px;
 	height: 32px;
 }
 
@@ -18,8 +19,13 @@ h2.registerTitle {
 
 .registerLeft{
 	width: 250px;
+	padding-left: 20px;
 }
 
 .registerRight{
 	width: 250px;
+}
+
+.global{
+	height: 358px;
 }
