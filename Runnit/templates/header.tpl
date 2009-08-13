@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
 	<link rel="stylesheet" type="text/css" href="css/menu.css">	
+	<link rel="stylesheet" type="text/css" href="css/floating.css">	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection">
 	
 	<!-- Import jQuery and SimpleModal source files -->
