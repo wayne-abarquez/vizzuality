@@ -1,9 +1,7 @@
 
 //PARA COGER EL PRIMER POST DE LA CUENTA DE TWITTER
 	$(document).ready( function() {
-	
-		window.onload = showMap;
-	
+		
 		var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
 		$.getJSON(url,
         function(data){
@@ -51,18 +49,6 @@ function twitter_callback (){
 	return true;
 }
 
-function showMap() {
-    var map = new GMap(document.getElementById("map"));
-    map.addControl(new GSmallMapControl());
-    map.centerAndZoom(new GPoint(-122.1419, 37.4419), 4);
-    
-    var map2 = new GMap(document.getElementById("map2"));
-    map2.addControl(new GSmallMapControl());
-    map2.centerAndZoom(new GPoint(-122.1419, 37.4419), 4);
-}
-
-
-
 
 // PARA ABRIR VENTANA MODAL
 function showLoginBox() {
@@ -87,6 +73,25 @@ function showRegisterBox() {
 	$('#simplemodal-container').css("height",'390px');
 
 };
+
+
+/* input_id is the ID of the input element */
+/* container_class will let you control the text input background color and padding */
+/* border_class will let you control the border color */
+function roundInput(input_id, container_class, border_class){
+	var input = $('#'+input_id+'');
+	var input_width = input.css("width"); //get the width of input
+	var wrap_width = parseInt(input_width) + 10; //add 10 for padding
+	wrapper = input.wrap("<div class='"+container_class+"'></div>").parent();
+	wrapper.wrap("<div class='"+border_class+"' style='width: "+wrap_width+"px;'></div>"); //apply border
+	wrapper.corner("round 8px").parent().css('padding', '2px').corner("round 10px"); //round box and border
+}
+
+$(function(){
+	roundInput('rounded_input1','rounded_container','rounded_border');
+	roundInput('rounded_input2','rounded_container','rounded_border');
+});
+
 
 
 function updateField(target,selected) {
