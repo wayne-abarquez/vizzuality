@@ -67,36 +67,38 @@
 	
 	<!-- REGISTER -->
 	<div id="registerWindow" style='display:none'>
-		<div>
-			<div class="first registerLeft">
+		<div class="global">
+			<div class="registerLeft">
 				<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
 				<div class="inputBox">
 					<div class="inputTitle">nombre y apellidos</div>
 					<div>
-						<input class="textInputRegister" type="text">
+						<input class="textInput" type="text">
 					</div>
 				</div>
 				<div class="inputBox">
 					<div class="inputTitle">nombre de usuario</div>
 					<div>
-						<input class="textInputRegister" type="text">
+						<input class="textInput" type="text">
 					</div>
 				</div>
 				<div class="inputBox">
 					<div class="inputTitle">contraseña</div>
 					<div>
-						<input class="textInputRegister" type="text">
+						<input class="textInput" type="text">
 					</div>
 				</div>
 				<div class="inputBox">
 					<div class="inputTitle">email</div>
 					<div>
-						<input class="textInputRegister" type="text">
+						<input class="textInput" type="text">
 					</div>
 				</div>
-				<div><input type="Button" value="Crear mi cuenta" class="btn btnblue" /></div>
+				<div class="buttonRegister"><input type="Button" value="Crear mi cuenta" class="btn btnblue" /></div>
 			</div>
-			<div class="last registerRight"></div>
+			<div class="registerRight">
+			
+			</div>
 		</div>
 		<div class="column conditions">
 			Hacer click en “Crear mi cuenta” implica haber aceptado los términos y condiciones del servicio.	
