@@ -136,9 +136,9 @@
 		<div class="span-18 last">
 			<div class="searchCont">
 				<div class="searchC">
-					<form>
-						<div class="span-1 inputSearch"><input class="input_Search" type="text" /></div>
-						<div class="span-1 buttonSearch"><input class="button_Search" type="submit" value="Buscar" /></div>
+					<form id="searchForm" method="GET">
+						<div class="inputSearch"><input class="input_Search" type="text" /></div>
+						<div class="buttonSearch"><input id="search" class="button_Search" type="submit" value="Buscar" /></div>
 					</form>
 				</div>
 			</div>
