@@ -67,8 +67,25 @@
 	<div class="column first span-16 moreRaces">
 		<div> 
 			<div>
-				<h2 class="column span-16 first newsTitle ">
-					<div class="first span-11">Más carreras en Madrid</div>
+				<h2 class="column span-16 first newsTitle">
+					<div class="first span-11">
+						<div class="column first">Más carreras en</div>
+						<div id="containerStates" class="column last">
+							<form class="form" method="get" action="">
+								<input type="text" disabled="" class="fauxselect s4 state" id="category" value="Madrid" name="category"/>
+								<select class="s4 hidden" onchange="javascript:updateField('category',this);" name="cat">
+									<option selected="selected" value="">Madrid</option>
+									<option value="">Murcia</option>
+									<option value="">Ciudad Real</option>
+									<option value="">Valencia</option>
+									<option value="">Barcelona</option>
+									<option value="">Lerida</option>
+									<option value="">Tarragona</option>
+									<option value="">Gerona</option>
+								</select>
+							</form>
+						</div>
+					</div>
 					<div class=" last span-5 feed">
 						<div class="column fisrt span-4 feedText">suscríbete</div>
 						<div class="column span-1 imgFeed last">
