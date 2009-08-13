@@ -85,7 +85,7 @@
 								<img src="img/user.jpg"/>	
 							</div>
 							<div class="column span-12 last detailsUser">
-								<div class="nameUser"><a class="nameRace" href="#">JCorrea,</a><p class="dias">hace 2 dias</p></div>
+								<div class="nameUser"><a class="nameRace" href="#">JCorrea,</a> hace 3 dias</div>
 								<p class="textRace">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper.dolor sit amet!sssssssssssssssssssssssss ssssssssssssssssssssssssssssssssssssssssssssssssss</p>
 	
 							</div>
