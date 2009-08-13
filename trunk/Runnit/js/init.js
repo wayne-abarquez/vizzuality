@@ -46,6 +46,7 @@
 	  
 	  return r;
 }
+
 function twitter_callback (){
 	return true;
 }
@@ -86,3 +87,8 @@ function showRegisterBox() {
 	$('#simplemodal-container').css("height",'390px');
 
 };
+
+
+function updateField(target,selected) {
+	document.getElementById(target).value =$(selected.options[selected.selectedIndex]).html();
+}
