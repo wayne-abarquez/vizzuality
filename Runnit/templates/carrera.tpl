@@ -6,8 +6,8 @@
 			<div class="span-16 column raceTitle">
 				<div class="span-16 navigationList">
 					<ul> 
-						<li><a href="">Calendario ></a></li>
-						<li><a href="" class="selected">detalle de carrera</a></li>
+						<li><a href="calendario.php">Calendario ></a></li>
+						<li><a href="carrera.php" class="selected">detalle de carrera</a></li>
 					</ul>
 				</div>
 				
@@ -131,8 +131,8 @@
 							<div class="day">01</div>
 						</div>
 						<div class="column span-6 last nextRaceComment">
-							<a href="#" class="nameRace">XII Carrera de la mujer</a>
-							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
+							<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
+							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
 					<div class="raceDetails" id="raceDetails">
@@ -142,7 +142,7 @@
 						</div>
 						<div class="column span-6 last nextRaceComment">
 							<a href="#" class="nameRace">XVII Media Marathon de Madrid</a>
-							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
+							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
 					<div class="raceDetails" id="raceDetails">
@@ -152,7 +152,7 @@
 						</div>
 						<div class="column span-6 last nextRaceComment">
 							<a href="#" class="nameRace">XXVI Carrera del Rock’n’Roll</a>
-							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
+							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
 					<div class="raceDetails" id="raceDetails">
@@ -162,7 +162,7 @@
 						</div>
 						<div class="column span-6 last nextRaceComment">
 							<a href="#" class="nameRace">XV Cross popular “Ascenso a l...</a>
-							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
+							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
 					<input type="Button" value="Ver tu calendario completo" class="btn" />
@@ -182,7 +182,7 @@
 								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
 								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
 							</div>
-							<div><a class="runnersNumber" href="#">2 van, apúntate con él</a></div>
+							<div><p class="runnersNumber">2 van, apúntate con él</p></div>
 						</div>
 					</div>
 					<div class="races">
@@ -194,7 +194,7 @@
 								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
 								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
 							</div>
-							<div><a class="runnersNumber" href="#">2 van, apúntate con él</a></div>
+							<div><p class="runnersNumber">2 van, apúntate con él</p></div>
 						</div>
 					</div>
 					<div class="races">
@@ -206,7 +206,7 @@
 								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
 								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
 							</div>
-							<div><a class="runnersNumber" href="#">2 van, apúntate con él</a></div>
+							<div><p class="runnersNumber" >2 van, apúntate con él</p></div>
 						</div>
 					</div>
 				</div>
