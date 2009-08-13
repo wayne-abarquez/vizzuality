@@ -708,9 +708,14 @@ h5{
 	font-weight: bold;
 	float: right;
 	margin-top: -18px;
+	margin-bottom: 0px;
 }
 
 .dias{
 	display: inline;
 	margin-left: 4px;
+}
+
+.nameUser{
+	color: gray;
 }
