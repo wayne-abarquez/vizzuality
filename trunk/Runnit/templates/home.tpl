@@ -101,7 +101,7 @@
 				<img src="img/raceExample.jpg" alt="exampleImage"/>	
 			</div>
 			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="#">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
+				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
 				<div class="raceDateDetails">
 					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
 					<a class="runnersNumber" href="#">2 van</a>
@@ -114,7 +114,7 @@
 				<img src="img/raceExample.jpg" alt="exampleImage"/>	
 			</div>
 			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="#">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
+				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
 				<div class="raceDateDetails">
 					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
 					<a class="runnersNumber" href="#">2 van</a>
@@ -127,7 +127,7 @@
 				<img src="img/raceExample.jpg" alt="exampleImage"/>	
 			</div>
 			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="#">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
+				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
 				<div class="raceDateDetails">
 					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
 					<a class="runnersNumber" href="#">2 van</a>
@@ -140,7 +140,7 @@
 				<img src="img/raceExample.jpg" alt="exampleImage"/>	
 			</div>
 			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="#">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
+				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
 				<div class="raceDateDetails">
 					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
 					<a class="runnersNumber" href="#">2 van</a>
@@ -153,7 +153,7 @@
 				<img src="img/raceExample.jpg" alt="exampleImage"/>	
 			</div>
 			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="#">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
+				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
 				<div class="raceDateDetails">
 					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
 					<a class="runnersNumber" href="#">2 van</a>
@@ -166,7 +166,7 @@
 				<img src="img/raceExample.jpg" alt="exampleImage"/>	
 			</div>
 			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="#">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
+				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
 				<div class="raceDateDetails">
 					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
 					<a class="runnersNumber" href="#">2 van</a>
