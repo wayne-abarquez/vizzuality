@@ -59,8 +59,8 @@ div.loginText {
 	padding-top: 60px;
 }
 
-.conditions{
-	margin-top: 10px;
+.registerButton{
+	margin-bottom: 20px;
 }
 
 
@@ -552,5 +552,5 @@ div.margins {
 
 .searchC{
 	float: right;
-	background-color: #b4e6f2;
+	background-color: #c3e5f1;
 }
