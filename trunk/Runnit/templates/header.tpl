@@ -68,7 +68,7 @@
 	<!-- REGISTER -->
 	<div id="registerWindow" style='display:none'>
 		<div class="global">
-			<div class="registerLeft">
+			<div class="last registerLeft">
 				<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
 				<div class="inputBox">
 					<div class="inputTitle">nombre y apellidos</div>
@@ -96,7 +96,7 @@
 				</div>
 				<div class="buttonRegister"><input type="Button" value="Crear mi cuenta" class="btn btnblue" /></div>
 			</div>
-			<div class="registerRight">
+			<div class="last registerRight">
 			
 			</div>
 		</div>
