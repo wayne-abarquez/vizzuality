@@ -73,7 +73,7 @@
 						<div id="containerStates" class="column last">
 							<form class="form" method="get" action="">
 								<input type="text" disabled="" class="fauxselect s4 state" id="category" value="Madrid" name="category"/>
-								<select class="s4 hidden" onchange="javascript:updateField('category',this);" name="cat">
+								<select id="select" class="s4 hidden" onchange="javascript:updateField('category',this);" name="cat">
 									<option selected="selected" value="">Madrid</option>
 									<option value="">Murcia</option>
 									<option value="">Ciudad Real</option>

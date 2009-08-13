@@ -2,6 +2,15 @@
 //PARA COGER EL PRIMER POST DE LA CUENTA DE TWITTER
 	$(document).ready( function() {
 		
+	    var browserName=navigator.appName; 
+		 if (browserName=="Microsoft Internet Explorer"){
+		  $('#category').css("display",'none');
+		  $('#select').css("margin-left",'0px');
+		  $('#select').css("margin-top",'6px');
+		 }
+		 
+		
+		
 		var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
 		$.getJSON(url,
         function(data){
@@ -54,6 +63,7 @@ function twitter_callback (){
 function showLoginBox() {
 	$('#loginWindow').modal();
 };
+
 
 function showRegisterBox() {
 	$('#registerWindow').modal();

@@ -599,6 +599,10 @@ div.margins {
 	margin-top: 10px;
 }
 
+div.inputBox {
+	margin-top: -5px;
+}
+
 .paddingRightContainer {
 	padding-right: 10px;
 }
@@ -639,7 +643,7 @@ div.countAgo {
 div.passContainer {
 	background-image: url(../img/passContainer.jpg);
 	background-repeat: repeat; 
-	height: 165px;
+	height: 175px;
 	margin-left: 10px;
 	width: 220px;
 	padding-left: 15px;
@@ -654,7 +658,7 @@ div.changePass {
 	color: #336699;
 	font-weight: bold;
 	letter-spacing: -1px;
-	margin-bottom: 10px;
+	margin-bottom: 19px;
 }
 
 .marginTopMinus {
@@ -667,10 +671,6 @@ div.changePass {
 
 div.pagination {
 	float: right;
-}
-
-div.showPage {
-	height: 20px;
 }
 
 div.contact {
@@ -687,19 +687,17 @@ div.btnMargin {
 }
 
 div.btnJoin {
-	margin-right: 1px;
+	margin-right: 3px;
 }
 
 input.textInputUser {
 	height: 20px;
 	width: 215px;
-	-moz-border-radius: 5px;
 }
 
 input.textInputUser2 {
 	height: 20px;
 	width: 223px;
-	-moz-border-radius: 5px;
 }
 
 h5{
