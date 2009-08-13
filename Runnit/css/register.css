@@ -1,31 +1,17 @@
 div.registerWindow {
-	margin-top: 20px;
-	margin-left: 20px;
-	margin-right: 20px;
+	height: 358px;
+	width: 500px;
 }
 
 div.conditions {
 	background-color: #336699;
-	margin-left: -20px;
-	margin-right: -20px;
 	font-family: Arial;
 	color: white;
 	font-size: 11px;
-	width: 500px;
-	height: 30px;
 	text-align: center;
-	padding-top: 10px;
-}
-
-input.textInputRegister {
-	height: 20px;
-	width: 225px;
-	-moz-border-radius: 15px;
-	background-image: url(../img/topLeft.jpg) top left;
-}
-
-div.inputBox {
-	margin-bottom: 10px;
+	width: 500px;
+	height: 32px;
+	margin-bottom: 0px;
 }
 
 h2.registerTitle {
@@ -35,4 +21,14 @@ h2.registerTitle {
 	color: #336699;
 	font-weight: bold;
 	letter-spacing: -1px;
+}
+
+.registerLeft{
+	padding-left: 20px;	
+	width: 250px;
+}
+
+.registerRight{
+	padding-right: 20px;	
+	width: 250px;
 }
