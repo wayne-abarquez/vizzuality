@@ -113,8 +113,8 @@
 						</div>
 					</div>
 					<div class="span-7 countAgo">
-						<div class="span-3 pagination">viendo del 1-4 de 21</div>
-						<div class="span-3 pagination">
+						<div class="column span-3 pagination">viendo del 1-4 de 21</div>
+						<div class="column span-3 pagination">
 							<div class="span-1 btnMargin btnJoin"><input type="Button" value="x" class="btn"></div>
 							<div class="span-1 btnMargin"><input type="Button" value="x" class="btn"></div>					
 						</div>
