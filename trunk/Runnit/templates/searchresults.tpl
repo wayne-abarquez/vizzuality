@@ -21,8 +21,14 @@
 						<form id="searchForm" method="GET">
 							<div class="inputSearch"><input class="input_Search" type="text" /></div>
 							<div class="buttonSearch"><input type="Submit" value="Buscar" class="btn btnsearch" /></div>
-							
 						</form>
+					</div>
+					<div class="column pagination countAgo">
+						<div class="column pagination btnMargin">
+							<div class="column btnJoin"><input type="Button" value="<" class="btn btnsearchBlue"></div>
+							<div class="column"><input type="Button" value=">" class="btn btnsearchBlue"></div>	
+						</div>
+						<div class="column pagination">viendo del <b>1-4</b> de 21</div>			
 					</div>
 				</div>
 				<div class="raceDetails" id="raceDetails">
@@ -152,6 +158,13 @@
 							<div class="buttonSearch"><input type="Submit" value="Buscar" class="btn btnsearch" /></div>
 							
 						</form>
+					</div>
+					<div class="column pagination countAgo">
+						<div class="column pagination btnMargin">
+							<div class="column btnJoin"><input type="Button" value="<" class="btn btnsearchBlue"></div>
+							<div class="column"><input type="Button" value=">" class="btn btnsearchBlue"></div>	
+						</div>
+						<div class="column pagination">viendo del <b>1-4</b> de 21</div>			
 					</div>
 				</div>
 			</div>	
