@@ -114,7 +114,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="column last span-6 pagination countAgo showgrid">
+			<div class="column last span-6 pagination countAgo">
 				<div class="column last span-2 pagination btnMargin">
 					<div class="column first span-1 btnJoin"><input type="Button" value="x" class="btn"></div>
 					<div class="column last span-1"><input type="Button" value="y" class="btn"></div>	
