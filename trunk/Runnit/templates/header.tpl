@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="css/menu.css">	
 	<link rel="stylesheet" type="text/css" href="css/floating.css">	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="css/layoun.css" type="text/css" media="screen, projection">
 	
 	<!-- Import jQuery and SimpleModal source files -->
 	<script src='http://code.jquery.com/jquery-latest.pack.js' type='text/javascript'></script>
@@ -124,7 +125,7 @@
 				<div class="searchC">
 					<form id="searchForm" method="GET">
 						<div class="inputSearch"><input class="input_Search" type="text" /></div>
-						<div class="buttonSearch"><input id="search" class="button_Search" type="submit" value="Buscar" /></div>
+						<div class="buttonSearch"><input type="Button" value="Buscar" class="btn btnsearch" /></div>
 					</form>
 				</div>
 			</div>
