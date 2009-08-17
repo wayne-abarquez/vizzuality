@@ -255,7 +255,7 @@ a.runnersLink {
 div.raceLocation {
 	font-family: Arial;
 	font-size: 14px;
-	color: grey;
+	color: gray;
 	letter-spacing: -1px;
 	margin-top: -4px;
 }
@@ -333,7 +333,6 @@ div.image {
 
 div.detailsUser {
 	line-height: 13px;
-	height: 50px;
 }
 
 
@@ -514,6 +513,7 @@ a.special {
 
 .rightColumn{
 	background-color: #f1f1f1;
+	height: 100%;
 }
 
 div.racesComment {
@@ -550,7 +550,7 @@ div.commentArea {
 }
 
 div.mapStyle {
-	border: solid grey 1px;
+	border: solid gray 1px;
 	vertical-align: middle;
 	padding-left: 4px;
 	padding-top: 5px;
