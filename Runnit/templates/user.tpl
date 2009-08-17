@@ -112,14 +112,14 @@
 							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
 						</div>
 					</div>
-					<div class="span-7 countAgo">
-						<div class="column span-3 pagination">viendo del 1-4 de 21</div>
-						<div class="column span-3 pagination">
-							<div class="span-1 btnMargin btnJoin"><input type="Button" value="x" class="btn"></div>
-							<div class="span-1 btnMargin"><input type="Button" value="x" class="btn"></div>					
-						</div>
-					</div>
 				</div>
+			</div>
+			<div class="column last span-6 pagination countAgo showgrid">
+				<div class="column last span-2 pagination btnMargin">
+					<div class="column first span-1 btnJoin"><input type="Button" value="x" class="btn"></div>
+					<div class="column last span-1"><input type="Button" value="y" class="btn"></div>	
+				</div>
+				<div class="column first span-3 pagination">viendo del 1-4 de 21</div>			
 			</div>
 		</div>
 	</div>
