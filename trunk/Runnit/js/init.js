@@ -26,6 +26,7 @@
     return m.link(m);
   });
  }; 
+ 
   function relative_time(time_value) {
 	  var values = time_value.split(" ");
 	  time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
@@ -84,10 +85,36 @@ function showRegisterBox() {
 
 };
 
+/* FUNCION PARA COMENTAR -- REVISAR */
+function commentAction() {
 
-/* input_id is the ID of the input element */
-/* container_class will let you control the text input background color and padding */
-/* border_class will let you control the border color */
+		var comment = $("#comment").val();
+	    var dataObj = ({comment : comment,
+	        method: 'addComment'
+	        });
+
+		if(comment=='') {
+	    	alert('Error, comment area empty');
+	    } else {
+			$("#flash").show();
+			$("#flash").fadeIn(400).html('<img src="/images/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
+			$.ajax({
+				type: "POST",
+	 	 		url: "ajaxController.php",
+	   			data: dataObj,
+	  			cache: false,
+	  			success: function(html){
+	  				$("ol#update").append(html);
+	  				$("ol#update li:last").fadeIn("slow");
+	    			document.getElementById('comment').value='';
+	  				$("#flash").hide();
+	  			}
+	 		});
+		}
+		return false;
+};
+
+
 function roundInput(input_id, container_class, border_class){
 	var input = $('#'+input_id+'');
 	var input_width = input.css("width"); //get the width of input
@@ -96,6 +123,7 @@ function roundInput(input_id, container_class, border_class){
 	wrapper.wrap("<div class='"+border_class+"' style='width: "+wrap_width+"px;'></div>"); //apply border
 	wrapper.corner("round 8px").parent().css('padding', '2px').corner("round 10px"); //round box and border
 }
+
 
 $(function(){
 	roundInput('rounded_input1','rounded_container','rounded_border');
