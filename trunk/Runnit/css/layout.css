@@ -672,6 +672,8 @@ div.changePass {
 
 div.pagination {
 	float: right;
+	text-align: right;
+	line-height: 25px;
 }
 
 div.contact {
@@ -684,7 +686,7 @@ div.contact {
 }
 
 div.btnMargin {
-	margin-top: -3px;
+	margin-right: 7px;
 }
 
 div.btnJoin {
