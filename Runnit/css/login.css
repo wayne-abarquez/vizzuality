@@ -1,6 +1,8 @@
 /* Overlay */
 #simplemodal-overlay {
 	background-color:#000;
+	overflow: hidden;
+
 }
 
 /* Container */

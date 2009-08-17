@@ -28,8 +28,6 @@
 	<link type='text/css' href='css/botones.css' rel='stylesheet' media='screen'>
 	
 	<script src="js/corner.js" type="text/javascript"></script>
-	
-
 
 </head>
 
@@ -69,7 +67,7 @@
 	<!-- REGISTER -->
 	<div id="registerWindow" style='display:none'>
 		<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
-		<div class="global">
+		<div>
 			<div class="column first registerLeft">
 				<div class="margin10">
 					<div class="inputTitle">nombre y apellidos</div>
@@ -95,9 +93,7 @@
 						<input class="registerInputBox" type="text">
 					</div>
 				</div>
-				<div>
-					<input type="Button" value="Crear mi cuenta" class="btn btnblue">
-				</div>
+				<div><input type="Button" value="Crear mi cuenta" class="btn btnblue"></div>
 			</div>
 			<div class="column last registerRight">
 				
