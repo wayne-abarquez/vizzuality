@@ -116,8 +116,8 @@
 			</div>
 			<div class="column last span-6 pagination countAgo">
 				<div class="column last span-2 pagination btnMargin">
-					<div class="column first span-1 btnJoin"><input type="Button" value="x" class="btn"></div>
-					<div class="column last span-1"><input type="Button" value="y" class="btn"></div>	
+					<div class="column first span-1 btnJoin"><input type="Button" value="<" class="btn"></div>
+					<div class="column last span-1"><input type="Button" value=">" class="btn"></div>	
 				</div>
 				<div class="column first span-3 pagination">viendo del 1-4 de 21</div>			
 			</div>
