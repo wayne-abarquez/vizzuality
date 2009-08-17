@@ -67,37 +67,39 @@
 	
 	<!-- REGISTER -->
 	<div id="registerWindow" style='display:none'>
-		<div class="column global">
-			<div class="registerLeft">
-				<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
-				<div class="inputBox">
+		<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
+		<div class="global">
+			<div class="column first registerLeft">
+				<div class="margin10">
 					<div class="inputTitle">nombre y apellidos</div>
 					<div>
-						<input class="textInput" type="text">
+						<input class="registerInputBox" type="text">
 					</div>
 				</div>
-				<div class="inputBox">
+				<div class="margin10">
 					<div class="inputTitle">nombre de usuario</div>
 					<div>
-						<input class="textInput" type="text">
+						<input class="registerInputBox" type="text">
 					</div>
 				</div>
-				<div class="inputBox">
+				<div class="margin10">
 					<div class="inputTitle">contraseña</div>
 					<div>
-						<input class="textInput" type="text">
+						<input class="registerInputBox" type="text">
 					</div>
 				</div>
-				<div class="inputBox">
+				<div class="margin10">
 					<div class="inputTitle">email</div>
 					<div>
-						<input class="textInput" type="text">
+						<input class="registerInputBox" type="text">
 					</div>
 				</div>
-				<div class="buttonRegister"><input type="Button" value="Crear mi cuenta" class="btn btnblue" /></div>
+				<div>
+					<input type="Button" value="Crear mi cuenta" class="btn btnblue">
+				</div>
 			</div>
-			<div class="registerRight">
-			
+			<div class="column last registerRight">
+				
 			</div>
 		</div>
 		<div class="column conditions">

@@ -4,31 +4,38 @@ div.conditions {
 	color: white;
 	font-size: 11px;
 	text-align: center;
-	width: 500px;
+	width: 100%;
 	height: 32px;
+	line-height: 30px;
 }
 
 h2.registerTitle {
+	margin-left: 20px;
+	margin-top: 10px;
 	font-family: Arial;
 	font-size: 22px;
 	color: #336699;
 	font-weight: bold;
 }
 
+.compactTitle {
+	letter-spacing: -1px;
+}
+
 .registerLeft{
-	width: 250px;
-	height: 358px;
-	background-color: yellow;
+	width: 220px;
+	height: 299px;
+	padding-left: 20px;
 }
 
 .registerRight{
-	width: 250px;
-	height: 358px;
-	background-color: lime;
+	width: 235px;
+	height: 299px;
 }
 
-.global{
-	height: 358px;
-	width: 250px;
+input.registerInputBox {
+	height: 20px;
+	width: 214px;
 }
+
 
