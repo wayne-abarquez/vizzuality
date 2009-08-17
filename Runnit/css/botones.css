@@ -26,6 +26,10 @@
 }
 
 .btnblue * { background-image: url(../img/btn2blue.png);}
+.btnsearch * { 
+	background-image: url(../img/btn2search.png);
+	height: 13px;
+}
 
 .left { float: left; }
 
