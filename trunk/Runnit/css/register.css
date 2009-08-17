@@ -1,5 +1,8 @@
 div.conditions {
 	background-color: #336699;
+	position: absolute;
+	top: 358px;
+	left: 0px;
 	font-family: Arial;
 	color: white;
 	font-size: 11px;
@@ -24,13 +27,13 @@ h2.registerTitle {
 
 .registerLeft{
 	width: 220px;
-	height: 299px;
+	height: 298px;
 	padding-left: 20px;
 }
 
 .registerRight{
-	width: 235px;
-	height: 299px;
+	width: 230px;
+	height: 298px;
 }
 
 input.registerInputBox {
