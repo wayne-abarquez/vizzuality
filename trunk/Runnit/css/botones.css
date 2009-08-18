@@ -63,7 +63,7 @@ label.round {
 	clear:left;
 	background:url(/img/input-bg.gif) no-repeat 0 0;
 	padding:0 0 0 10px;
-	height:27px;
+	height: 27px;
 	margin:0 0 0px 0;
 }
 label.roundblue {
@@ -71,7 +71,7 @@ label.roundblue {
 	clear:left;
 	background:url(/img/input-bg-blue.gif) no-repeat 0 0;
 	padding:0 0 0 10px;
-	height:27px;
+	height: 27px;
 	margin:0 0 0px 0;
 }
 .round input {
@@ -79,12 +79,18 @@ label.roundblue {
 	padding-top: 6px;
 	float:left;
 	border: none;
+	color: gray;
+	font-style: italic;
+	font-size: 14px;
 }
 .roundblue input {
 	background:transparent;
 	padding-top: 6px;
 	float:left;
 	border: none;
+	color: gray;
+	font-style: italic;
+	font-size: 14px;
 }
 .round span {
 	background:url(/img/input-bg.gif) no-repeat 100% 0;
