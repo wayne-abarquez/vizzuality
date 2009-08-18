@@ -614,6 +614,11 @@ div.countAgo {
 	float: left;
 }
 
+.inputTitleBlue{
+	margin-top: 14px;
+	color: #336699;
+}
+
 div.passContainer {
 	background-image: url(../img/passContainer.jpg);
 	background-repeat: repeat; 
