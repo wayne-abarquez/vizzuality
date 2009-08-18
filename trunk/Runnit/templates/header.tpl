@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
 	<link rel="stylesheet" type="text/css" href="css/menu.css">	
 	<link rel="stylesheet" type="text/css" href="css/floating.css">	
+	<link rel="stylesheet" type="text/css" href="css/contact.css">	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection">
 	
 	<!-- Import jQuery and SimpleModal source files -->
@@ -103,6 +104,33 @@
 		</div>
 	</div>
 	
+	<!-- CONTACT -->
+	<div id="contactWindow" style='display:none'>
+		<h2 class="registerTitle">Sugerencias, dudas... escríbenos!</h2>
+		<div class="containerMargin">
+			<div class="margin10">
+				<div class="inputTitle">nombre y apellidos</div>
+				<div>
+					<input class="registerInputBox" type="text">
+				</div>
+			</div>
+			<div class="margin10">
+				<div class="inputTitle">email</div>
+				<div>
+					<input class="registerInputBox" type="text">
+				</div>
+			</div>
+			<div class="margin10">
+				<div class="inputTitle">mensaje</div>
+				<div>
+					<textarea name="textarea1" rows="3" cols="60" class="contactTextArea expand"></textarea>
+				</div>
+			</div>
+			<div><input type="Button" value="Enviar mensaje" class="btn btnblue"></div>
+		</div>
+			
+	</div>
+	
 	
 	<!-- HEADER -->
 	<div class="span-24 header">
@@ -126,11 +154,11 @@
 			</div>
 			<div class="span-18 last horizontalcssmenu">
 			<ul id="cssmenu1">
-		<li><a {if $section eq "home"} class="current"{/if} href="index.php">HOME</a> <a class="separator">|</a> </li>
-		<li><a {if $section eq "calendario"} class="current"{/if} href="calendario.php">CALENDARIO</a> <a class="separator">|</a> </li>
-		<li><a {if $section eq "about"} class="current"{/if} href="about.php">SOBRE NOSOTROS</a> <a class="separator">|</a> </li>
-		<li><a {if $section eq "blog"} class="current"{/if} href="#">BLOG</a> <a class="separator">|</a> </li>
-		<li><a {if $section eq "contacto"} class="current"{/if} href="contacto.php">CONTACTO</a> </li>
+				<li><a {if $section eq "home"} class="current"{/if} href="index.php">HOME</a> <a class="separator">|</a> </li>
+				<li><a {if $section eq "calendario"} class="current"{/if} href="calendario.php">CALENDARIO</a> <a class="separator">|</a> </li>
+				<li><a {if $section eq "about"} class="current"{/if} href="about.php">SOBRE NOSOTROS</a> <a class="separator">|</a> </li>
+				<li><a {if $section eq "blog"} class="current"{/if} href="#">BLOG</a> <a class="separator">|</a> </li>
+				<li><a {if $section eq "contacto"} class="current"{/if} href="javascript: void showContactBox()">CONTACTO</a> </li>
 			</ul>
 			</div>
 		</div>
