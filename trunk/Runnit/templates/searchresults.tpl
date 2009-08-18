@@ -1,3 +1,5 @@
+{include file="header.tpl"} 
+
 <!-- GLOBAL CONTAINER RACE -->
 	<div class="span-24 raceContainer" id="race">
 	
@@ -227,3 +229,5 @@
 		</div>
 	</div>
 </div>
+
+{include file="footer.tpl"} 
