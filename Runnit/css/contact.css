@@ -1,8 +1,10 @@
 div.containerMargin {
 	padding-left: 20px;
+	padding-right: 35px;
 }
 
-div.buttonMargin {
-	padding-right: 10px;
-	padding-bottom: 10px;
+textarea.contactTextArea {
+	height: 130px;
+	width: 435px;
+	max-width: 435px;
 }
