@@ -40,7 +40,7 @@
 									</div>
 								</div>
 								<div>
-									<input type="Button" value="Guardar cambios" class="btn" />
+									<input type="Button" value="Guardar cambios" class="btn">
 								</div>
 							</div>
 							<div class="column last passContainer">
@@ -56,12 +56,35 @@
 									<div class="margin10">
 										<input class="textInputUser" type="text">
 									</div>
-									<input type="Button" value="Cambiar contraseña" class="btn" />
+									<input type="Button" value="Cambiar contraseña" class="btn">
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="span-13 marginTopPlus countAgo contact">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
+					<div class="span-13 marginTopPlus">
+						<div class="paddingRightContainer"> 
+							<h2 class="userData">Alerta geográfica por email <span class="desactivate">(desactivado)</span></h2>
+						</div>
+						<div class="paddingRightContainer countAgo">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
+						<div class="marginTopBottom">
+							<div class="column first">
+								<div class="countAgo ">Localidad y provincia</div>
+								<div>
+									<input class="textInputUser2" type="text">
+								</div>
+							</div>
+							<div class="column">
+								<div class="countAgo ">Radio</div>
+								<div>
+									<input class="textInputRadio" type="text">
+								</div>
+							</div>
+							<div class="column paddingRightContainer last mailAlert">
+								<input type="Button" value="Activar alerta por email" class="btn">
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>	
 			
