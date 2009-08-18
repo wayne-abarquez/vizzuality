@@ -71,15 +71,15 @@
 						<div class="paddingRightContainer countAgo">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
 						<div class="marginTopBottom">
 							<div class="column first">
-								<div class="countAgo ">Localidad y provincia</div>
-								<div>
-									<input class="textInputUser2" type="text">
+								<div class="alertLabel">Localidad y provincia</div>
+								<div class="inputWhite">
+									<label class="round" for="input6"><span><input type="text" name="input6" id="input6"/></span></label>
 								</div>
 							</div>
 							<div class="column">
-								<div class="countAgo ">Radio</div>
-								<div>
-									<input class="textInputRadio" type="text">
+								<div class="alertLabel">Radio</div>
+								<div class="inputWhite">
+									<label class="round" for="input7"><span><input type="text" name="input7" id="input7"/></span></label>
 								</div>
 							</div>
 							<div class="column paddingRightContainer last mailAlert">
