@@ -32,7 +32,12 @@
 						</div>
 						<div class="column pagination">viendo del <b>1-4</b> de 21</div>			
 					</div>
+<label class="round" for="search1"><span><input type="text" name="search1" id="search1" /></span></label>
+<label class="round" for="search2"> <span>
+<input type="text" name="search2" id="search2" />
+</span> </label>
 				</div>
+				
 				<div class="dates">
 					<a href="carrera.php" class="nameRace">15- 31 de agosto</a>
 				</div>
