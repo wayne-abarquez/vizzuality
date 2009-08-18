@@ -617,7 +617,9 @@ div.countAgo {
 	font-family: Arial;
 	font-size: 12px;
 	color: #666666;
-	letter-spacing: -1px;
+	margin-bottom: 0px;
+	margin-top: 0px;
+	float: left;
 }
 
 div.passContainer {
@@ -678,7 +680,7 @@ input.textInputUser {
 }
 
 input.textInputUser2 {
-	height: 20px;
+	height: 30px;
 	width: 223px;
 }
 
