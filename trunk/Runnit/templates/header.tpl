@@ -125,13 +125,13 @@
 				</div>
 			</div>
 			<div class="span-18 last horizontalcssmenu">
-				<ul id="cssmenu1">
-					<li><a href="index.php">HOME</a> <a class="separator">|</a> </li>
-					<li><a href="calendario.php">CALENDARIO</a> <a class="separator">|</a> </li>
-					<li><a href="about.php">SOBRE NOSOTROS</a> <a class="separator">|</a> </li>
-					<li><a href="#">BLOG</a> <a class="separator">|</a> </li>
-					<li><a href="contacto.php">CONTACTO</a> </li>
-				</ul>
+			<ul id="cssmenu1">
+		<li><a {if $section eq "home"} class="current"{/if} href="index.php">HOME</a> <a class="separator">|</a> </li>
+		<li><a {if $section eq "calendario"} class="current"{/if} href="calendario.php">CALENDARIO</a> <a class="separator">|</a> </li>
+		<li><a {if $section eq "about"} class="current"{/if} href="about.php">SOBRE NOSOTROS</a> <a class="separator">|</a> </li>
+		<li><a {if $section eq "blog"} class="current"{/if} href="#">BLOG</a> <a class="separator">|</a> </li>
+		<li><a {if $section eq "contacto"} class="current"{/if} href="contacto.php">CONTACTO</a> </li>
+			</ul>
 			</div>
 		</div>
 	</div>
