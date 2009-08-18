@@ -23,40 +23,40 @@
 						</div>
 						<div class="paddingRightContainer">
 							<div class="column span-6 first marginTopBottom">
-								<div class="inputBox">
+								<div>
 									<div class="countAgo ">nombre y apellidos</div>
-									<div>
-								<label class="round" for="search1"><span><input type="text" name="search1" id="search1"/></span></label>
-									</div>
-								</div>
-								<div class=" marginTopBottom">
-									<div class="countAgo ">nombre de usuario</div>
-									<div>
-								<label class="round" for="search2"><span><input type="text" name="search2" id="search2"/></span></label>
-									</div>
-								</div>
-								<div class=" marginTopBottom margin10">
-									<div class="countAgo ">email</div>
-									<div>
-								<label class="round" for="search3"><span><input type="text" name="search3" id="search3"/></span></label>
+									<div class="inputWhite">
+								<label class="round" for="input1"><span><input type="text" name="input1" id="input1"/></span></label>
 									</div>
 								</div>
 								<div>
+									<div class="countAgo ">nombre de usuario</div>
+									<div class="inputWhite">
+								<label class="round" for="input2"><span><input type="text" name="input2" id="input2"/></span></label>
+									</div>
+								</div>
+								<div>
+									<div class="countAgo ">email</div>
+									<div class="inputWhite">
+								<label class="round" for="input2"><span><input type="text" name="input3" id="input3"/></span></label>
+									</div>
+								</div>
+								<div class="inputWhiteButton">
 									<input type="Button" value="Guardar cambios" class="btn">
 								</div>
 							</div>
 							<div class="column last passContainer">
 								<div class="changePass">Cambiar contraseña</div>
-								<div class="marginTopBottom">
+								<div>
 									<div class="inputTitle">contraseña anterior</div>
-									<div>
-										<input class="textInputUser" type="text">
+									<div class="inputBlue">
+								<label class="roundblue" for="input4"><span><input type="text" name="input4" id="input4"/></span></label>
 									</div>
 								</div>
-								<div class=" marginTopBottom">
+								<div>
 									<div class="inputTitle">nueva contraseña</div>
-									<div class="margin10">
-										<input class="textInputUser" type="text">
+									<div class="inputBlue">
+								<label class="roundblue" for="input5"><span><input type="text" name="input5" id="input5"/></span></label>
 									</div>
 									<input type="Button" value="Cambiar contraseña" class="btn">
 								</div>
