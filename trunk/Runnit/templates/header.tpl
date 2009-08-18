@@ -71,26 +71,26 @@
 			<div class="column first registerLeft">
 				<div class="margin10">
 					<div class="inputTitle">nombre y apellidos</div>
-					<div>
-						<input class="registerInputBox" type="text">
+					<div class="inputBlue">
+						<label class="roundblue" for="register1"><span><input type="text" name="register1" id="register1"/></span></label>
 					</div>
 				</div>
 				<div class="margin10">
 					<div class="inputTitle">nombre de usuario</div>
-					<div>
-						<input class="registerInputBox" type="text">
+					<div class="inputBlue">
+						<label class="roundblue" for="register2"><span><input type="text" name="register2" id="register2"/></span></label>
 					</div>
 				</div>
 				<div class="margin10">
 					<div class="inputTitle">contraseña</div>
-					<div>
-						<input class="registerInputBox" type="text">
+					<div class="inputBlue">
+						<label class="roundblue" for="register3"><span><input type="text" name="register3" id="register3"/></span></label>
 					</div>
 				</div>
 				<div class="margin10">
 					<div class="inputTitle">email</div>
-					<div>
-						<input class="registerInputBox" type="text">
+					<div class="inputBlue">
+						<label class="roundblue" for="register4"><span><input type="text" name="register4" id="register4"/></span></label>
 					</div>
 				</div>
 				<div><input type="Button" value="Crear mi cuenta" class="btn btnblue"></div>
