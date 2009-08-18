@@ -41,11 +41,15 @@
 			<h2 class="loginTitle">Accede a tu cuenta</h2>
 			<div>
 				<div class="inputTitle">e-mail</div>
-				<input class="textInput" type="text">
+				<div class="inputBlue">
+					<label class="roundblue" for="login1"><span><input type="text" name="login1" id="login1"/></span></label>
+				</div>
 			</div>
 			<div>
 				<div class="inputTitle">contraseña</div>
-				<input class="textInput" type="text">
+				<div class="inputBlue">
+					<label class="roundblue" for="login2"><span><input type="text" name="login2" id="login2"/></span></label>
+				</div>
 			</div>
 			<div class="forgetFind">
 				<div class="column first forgetPass">¿olvidaste tu contraseña?</div>
