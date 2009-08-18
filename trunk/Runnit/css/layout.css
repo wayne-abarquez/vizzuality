@@ -661,7 +661,7 @@ div.contact {
 
 .rightColumnUser {
 	background-color: #f1f1f1;
-	height: 380px;
+	height: 530px;
 }
 
 div.btnMargin {
@@ -682,6 +682,11 @@ input.textInputUser2 {
 	width: 223px;
 }
 
+input.textInputRadio {
+	height: 20px;
+	width: 60px;
+}
+
 h5{
 	color: #336699;
 	font-size: 12px;
@@ -700,6 +705,22 @@ h5{
 	color: gray;
 }
 
+.mailAlert {
+	height: 20px;
+	float: right;
+	padding-top: 18px;
+}
+
+.desactivate {
+	font-size: 13px;
+	color: red;
+}
+
+.activate {
+	font-size: 13px;
+	color: green;
+}
+
 /* SEARCH RESULTS */
 
 div.raceContent1{
@@ -711,7 +732,7 @@ div.raceSearch{
 	height: 45px;
 	border-bottom: dotted #666666 1px;
 	margin-bottom: 10px;
-	background-color: #b5e6f3;
+	background-image:url(../img/footerRepeat.jpg);
 	margin-top: 0px;
 	padding-top: 0px;
 }
