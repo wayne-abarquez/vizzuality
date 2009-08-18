@@ -1,3 +1,5 @@
+{include file="header.tpl"} 
+	
 	<div class="span-24 raceContainer" id="race">
 		<div class="column span-16 marginTopBottom">
 			<div class="span-16 navigationList">
@@ -146,5 +148,6 @@
 			</div>
 		</div>
 	</div>
-	
 </div>
+
+{include file="footer.tpl"} 
