@@ -40,3 +40,7 @@
 * html .horizontalcssmenu ul li { float: left; height: 1%; }
 * html .horizontalcssmenu ul li a { height: 1%; }
 /* End */
+
+.horizontalcssmenu ul li a.current{
+	color: #336699;
+}
