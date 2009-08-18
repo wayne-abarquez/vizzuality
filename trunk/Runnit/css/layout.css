@@ -575,14 +575,6 @@ div.margins {
 	padding-right: 10px;
 }
 
-.marginTopBottom {
-	margin-top: 10px;
-}
-
-div.inputBox {
-	margin-top: -5px;
-}
-
 .paddingRightContainer {
 	padding-right: 10px;
 }
@@ -640,7 +632,6 @@ div.changePass {
 	color: #336699;
 	font-weight: bold;
 	letter-spacing: -1px;
-	margin-bottom: 19px;
 }
 
 .marginTopMinus {
@@ -674,14 +665,20 @@ div.btnJoin {
 	margin-right: 3px;
 }
 
-input.textInputUser {
-	height: 20px;
-	width: 215px;
+.inputWhite{
+	margin-top: 0px;
+	margin-bottom: 10px;
+	float: left;
 }
 
-input.textInputUser2 {
-	height: 30px;
-	width: 223px;
+.inputBlue{
+	float: left;
+	margin-bottom: 10px;
+}
+
+.inputWhiteButton{
+	margin-top: 2px; 
+	margin-right: -6px;
 }
 
 input.textInputRadio {
