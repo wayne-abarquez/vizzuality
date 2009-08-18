@@ -9,7 +9,7 @@
 		  $('#select').css("margin-top",'6px');
 		 }
 		 
-		$("textarea").TextAreaExpander();
+		
 		
 		var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
 		$.getJSON(url,
@@ -19,6 +19,8 @@
 				$("#tweets").append( item.text.linkify() + relative_time(item.created_at) + " via " + item.source + ".");
 			});
         });
+        
+        $("textarea").TextAreaExpander();
 	});
 	
 	String.prototype.linkify = function() {
