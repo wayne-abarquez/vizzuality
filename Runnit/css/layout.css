@@ -728,13 +728,24 @@ div.raceContent1{
 	width: 618px;
 }
 
-div.raceSearch{
+div.raceSearchFirst{
+	height: 113px;
+	border-bottom: dotted #666666 1px;
+	margin-bottom: 10px;
+	background-color: #b5e6f3;
+	margin-top: 0px;
+	padding-top: 0px;
+	margin-bottom: 0px;
+}
+
+div.raceSearchLast{
 	height: 45px;
 	border-bottom: dotted #666666 1px;
 	margin-bottom: 10px;
-	background-image:url(../img/footerRepeat.jpg);
+	background-color: #b5e6f3;
 	margin-top: 0px;
 	padding-top: 0px;
+	margin-bottom: 0px;
 }
 
 h2.newsTitle3 {
@@ -756,4 +767,13 @@ div.raceDetailsBottom {
 	padding-top: 11px;
 	padding-left: 10px;
 	padding-right: 0px;
+}
+
+.dates{
+	height: 30px;
+	background-color: #e8e8e8;
+	padding: 0px 0px 0px 10px;
+	margin: 0px 0px 10px 0px;
+	border-bottom: dotted #666666 1px;
+	line-height: 32px;
 }
