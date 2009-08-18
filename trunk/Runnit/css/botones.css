@@ -25,14 +25,14 @@
 .btn{
 }
 
-.btnblue * { background-image: url(../img/btn2blue.png);}
+.btnblue * { background-image: url(../img/btn2blue.gif);}
 .btnsearch * { 
 	background-image: url(../img/btn2search.png);
 	height: 13px;
 }
 
 .btnsearchBlue * { 
-	background-image: url(../img/btn2blue.png);
+	background-image: url(../img/btn2blue.gif);
 	height: 13px;
 }
 
