@@ -12,7 +12,6 @@
 	<link rel="stylesheet" type="text/css" href="css/menu.css">	
 	<link rel="stylesheet" type="text/css" href="css/floating.css">	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="css/layoun.css" type="text/css" media="screen, projection">
 	
 	<!-- Import jQuery and SimpleModal source files -->
 	<script src='http://code.jquery.com/jquery-latest.pack.js' type='text/javascript'></script>
