@@ -614,6 +614,10 @@ div.countAgo {
 	float: left;
 }
 
+div.alertLabel{
+	color: #666666;
+}
+
 .inputTitleBlue{
 	margin-top: 14px;
 	color: #336699;
