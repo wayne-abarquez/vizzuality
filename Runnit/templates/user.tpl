@@ -26,19 +26,19 @@
 								<div class="inputBox">
 									<div class="countAgo ">nombre y apellidos</div>
 									<div>
-										<input class="textInputUser2" type="text">
+								<label class="round" for="search1"><span><input type="text" name="search1" id="search1"/></span></label>
 									</div>
 								</div>
 								<div class=" marginTopBottom">
 									<div class="countAgo ">nombre de usuario</div>
 									<div>
-										<input class="textInputUser2" type="text">
+								<label class="round" for="search2"><span><input type="text" name="search2" id="search2"/></span></label>
 									</div>
 								</div>
 								<div class=" marginTopBottom margin10">
 									<div class="countAgo ">email</div>
 									<div>
-										<input class="textInputUser2" type="text">
+								<label class="round" for="search3"><span><input type="text" name="search3" id="search3"/></span></label>
 									</div>
 								</div>
 								<div>
