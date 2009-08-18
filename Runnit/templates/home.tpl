@@ -1,3 +1,5 @@
+{include file="header.tpl"} 
+
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
 		
@@ -290,3 +292,5 @@
 	</div>
 	
 </div>
+
+{include file="footer.tpl"} 
