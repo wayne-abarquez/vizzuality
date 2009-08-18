@@ -55,3 +55,30 @@ div.rounded_container{
 			/* This is the color of your rounded border */
 			border: none;
 		}
+		
+label.round {
+	float:left;
+	clear:left;
+	background:url(/img/input-bg.gif) no-repeat 0 0;
+	padding:0 0 0 10px;
+	height:27px;
+	margin:0 0 0px 0;
+}
+.round input {
+	background:transparent;
+	padding-top: 6px;
+	float:left;
+	border: none;
+}
+.round span {
+	background:url(/img/input-bg.gif) no-repeat 100% 0;
+	padding:0 10px 0 0;
+	height:27px;
+	float:left;
+}
+.round input:focus {
+	outline:none;
+}
+#search1 {width:216px}
+#search2 {width:216px}
+#search3 {width:216px}
