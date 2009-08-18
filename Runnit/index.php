@@ -5,8 +5,10 @@ require 'libs/Smarty.class.php';
 
 $smarty = new Smarty; 
 
-$smarty->display('header.tpl');
+$smarty->assign('section', 'home');
+
+/* $smarty->display('header.tpl'); */
 $smarty->display('home.tpl');
-$smarty->display('footer.tpl');
+/* $smarty->display('footer.tpl'); */
 
 ?>
