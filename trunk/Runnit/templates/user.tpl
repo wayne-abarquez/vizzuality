@@ -58,7 +58,7 @@
 									<div class="inputBlue">
 								<label class="roundblue" for="input5"><span><input type="text" name="input5" id="input5"/></span></label>
 									</div>
-									<input type="Button" value="Cambiar contraseña" class="btn">
+									<input type="Button" value="Regístrate ahora" class="btn btnblue left" />
 								</div>
 							</div>
 						</div>
