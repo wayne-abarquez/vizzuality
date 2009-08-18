@@ -624,8 +624,7 @@ div.alertLabel{
 }
 
 div.passContainer {
-	background-image: url(../img/passContainer.jpg);
-	background-repeat: repeat; 
+	background-color: #b5e6f3;
 	height: 175px;
 	margin-left: 10px;
 	width: 220px;
