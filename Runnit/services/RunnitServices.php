@@ -164,7 +164,7 @@ class RunnitServices {
      	    $stmt->bindParam(':description', $description);	   
      	    $stmt->bindParam(':inscription_price', $inscription_price);	   
      	    $stmt->bindParam(':inscription_location', $inscription_location);	   
-     	    $stmt->bindParam(':inscription_email', $inscription_email);	   
+     	    $stmt->bindParam(':inscription_email', $inscription_email);	    
      	    $stmt->bindParam(':inscription_website', $inscription_website);	   
      	    $stmt->bindParam(':start_point_lat', $start_point_lat);	   
      	    $stmt->bindParam(':start_point_lon', $start_point_lon);	   
@@ -180,6 +180,58 @@ class RunnitServices {
     	    return $resultId['last_value'];
 	        
 	    }
+	    
+    	public function updateRun($id,$name,$event_location,$distance_meters,$distance_text,$event_date,
+    	    $category,$awards,$description,$inscription_price,$inscription_location,
+    	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon) {
+
+                try {
+        	        $sql="UPDATE run SET name=:name,event_location=:event_location,distance_meters=:distance_meters,distance_text=:distance_text,event_date=:event_date,category=:category,awards=:awards".
+        	            "description=:description, inscription_price=:inscription_price,inscription_location=:inscription_location,inscription_email=:inscription_email,inscription_website=:inscription_website,start_point_lat=:start_point_lat,start_point_lon=:start_point_lon,end_point_lat=:end_point_lat,end_point_lon=:end_point_lon".
+        	            " WHERE id=:id";
+            		$stmt = $this->dbHandle->prepare($sql);
+            		$stmt->bindParam(':id', $id);
+                    $stmt->bindParam(':name', $name);	     
+             	    $stmt->bindParam(':event_location', $event_location);	   
+             	    $stmt->bindParam(':distance_meters', $distance_meters);	   
+             	    $stmt->bindParam(':distance_text', $distance_text);	   
+             	    $stmt->bindParam(':event_date', $event_date);	   
+             	    $stmt->bindParam(':category', $category);	   
+             	    $stmt->bindParam(':awards', $awards);	   
+             	    $stmt->bindParam(':description', $description);	   
+             	    $stmt->bindParam(':inscription_price', $inscription_price);	   
+             	    $stmt->bindParam(':inscription_location', $inscription_location);	   
+             	    $stmt->bindParam(':inscription_email', $inscription_email);	    
+             	    $stmt->bindParam(':inscription_website', $inscription_website);	   
+             	    $stmt->bindParam(':start_point_lat', $start_point_lat);	   
+             	    $stmt->bindParam(':start_point_lon', $start_point_lon);	   
+             	    $stmt->bindParam(':end_point_lat', $end_point_lat);	   
+             	    $stmt->bindParam(':end_point_lon', $end_point_lon);	   
+            	    $stmt->execute();
+
+                    return true;
+        	    } catch(Exception $e) {
+        	        return false;
+        	    }
+    	    }	    
+    	    
+    public function removeRun($id) {
+        try {
+            $sql="DELETE FROM run WHERE id=:id";
+    		$stmt = $this->dbHandle->prepare($sql);
+    		$stmt->bindParam(':id', $id);
+    		$stmt->execute();        
+	    } catch(Exception $e) {
+	        return false;
+	    }    	
+    }	    
+    
+    public function getRunsList() {
+        $sql="select * from run ORDER BY id DESC";
+		$stmt = $this->dbHandle->prepare($sql);
+	    $stmt->execute(); 
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);        
+    }
 	
 	public function searchForName($name,$limit=10,$offset=0) {
 		//$time_start = microtime_float();
