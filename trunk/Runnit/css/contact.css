@@ -4,7 +4,7 @@ div.containerMargin {
 }
 
 textarea.contactTextArea {
-	height: 130px;
+	height: 125px;
 	width: 435px;
 	max-width: 435px;
 }
@@ -16,5 +16,4 @@ textarea.contactTextArea {
 
 .contactArea2 {
 	width: 465px;
-	padding-bottom: 20px;
 }
