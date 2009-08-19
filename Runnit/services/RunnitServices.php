@@ -37,7 +37,7 @@ class RunnitServices {
 	    
 	}
 	
-	public function registerUser($username,$projectname,$email,$password) {
+	public function registerUser($username,$completename,$email,$password) {
 	    
 	    if(strlen($username)<5) {
 	        throw new Exception('Username with not enough characters',101);
@@ -67,12 +67,12 @@ class RunnitServices {
 	        throw new Exception('Email already registered',105);
 	    }	   
 	    
-	    $sql="INSERT INTO users(username,pass,project_name,email) VALUES(:username,:password,:projectname,:email)";
+	    $sql="INSERT INTO users(username,pass,completename,email) VALUES(:username,:password,:completename,:email)";
 		$stmt = $this->dbHandle->prepare($sql);
         $stmt->bindParam(':email', $email);	     
 	    $stmt->bindParam(':username', $username);	     
 	    $stmt->bindParam(':password', $password);	     
-	    $stmt->bindParam(':projectname', $projectname);	        	    
+	    $stmt->bindParam(':completename', $completename);	        	    
 	    $stmt->execute();	       
 	    
 	    //get last ID
@@ -83,7 +83,7 @@ class RunnitServices {
 	    $user=array();
 	    $user['id']=$resultId['last_value'];
 	    $user['username']=$username;
-	    $user['projectname']=$projectname;
+	    $user['completename']=$projectname;
 	    $user['email']=$email;
 	    return $user;
 	}
@@ -93,13 +93,14 @@ class RunnitServices {
 	    session_destroy();
 	}	    
 	
-	public function addComment($userId,$comment,$speciesId) {
+	public function addComment($userId,$comment,$id,$table) {
 	    try {
-	        $sql="INSERT INTO comments(user_fk,commenttext,comment_type_fk,comment_on_id) VALUES(:user_fk,:comment,1,:comment_on_id)";
+	        $sql="INSERT INTO comments(user_fk,commenttext,on_table,on_id) VALUES(:user_fk,:comment,:table,:id)";
     		$stmt = $this->dbHandle->prepare($sql);    
     	    $stmt->bindParam(':user_fk', $userId);	     
     	    $stmt->bindParam(':comment', $comment);	        
-    	    $stmt->bindParam(':comment_on_id', $speciesId);	        	    
+    	    $stmt->bindParam(':id', $id);	     
+    	    $stmt->bindParam(':table', $table);	     	    
     	    $stmt->execute();
     	    return true;
 	    } catch(Exception $e) {
@@ -117,54 +118,6 @@ class RunnitServices {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);	    
 	    
 	    
-	}
-	
-	public function getGbifDetailsByNameId($nameId) {
-	    
-	    //update the species_view_stats
-	    $sql="select update_species_view_stats(:nameId)";
-	    $stmt = $this->dbHandle->prepare($sql);
-	    $stmt->bindParam(':nameId', $nameId);	     
-	    $stmt->execute();
-	    
-	    $sql="select nub_concept_id,scientific_name from scientific_name where id=:nameId";
-		$stmt = $this->dbHandle->prepare($sql);
-	    $stmt->bindParam(':nameId', $nameId); 
-	    $stmt->execute();
-	    
-
-	    
-	    
-		return $stmt->fetch(PDO::FETCH_ASSOC);	    
-	    
-	}
-	
-	public function getNameById($nameId) {
-		$sql="select d.id,resourcename, scientific_name,nub_concept_id, year_start, year_end, spatial_resolution_fk, record_base_fk, ". 
-		"spatial_accuracy,confidence_by_source,distribution_type_fk ".
-		"from (distribution as d inner join scientific_name as sn on d.name_fk=sn.id) inner join resource as r on d.resource_fk=r.id ".
-		"where name_fk=:nameId";
-		$stmt = $this->dbHandle->prepare($sql);
-	    $stmt->bindParam(':nameId', $nameId); 
-	    $stmt->execute();
-		$res= $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$sources=array();
-		foreach($res as $data) {
-			$source=array();
-			$source = $data;
-		
-			//Add the distribution units
-			$sql2="select distinct occurrence_status_fk,nativeness_fk,life_stage_fk from distribution_unit
-			where distribution_fk=:distributionId";
-			$stmt2 = $this->dbHandle->prepare($sql2);
-		    $stmt2->bindParam(':distributionId', $data['id']); 
-		    $stmt2->execute();
-			$res2= $stmt2->fetchAll(PDO::FETCH_ASSOC);			
-			$source['units_legend'] = $res2;
-			$sources[]=$source;
-		}
-		
-		return $sources;
 	}
 	
 	public function getSpeciesDetailsByNameId($speciesId) {
@@ -189,6 +142,43 @@ class RunnitServices {
 		
 		return $sources;	    
 	}
+	
+	public function createNewRun($name,$event_location,$distance_meters,$event_date,
+	    $category,$awards,$description,$inscription_price,$inscription_location,
+	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon) {
+	        
+	        $sql="INSERT INTO run(name,event_location,distance_meters,event_date,category,awards".
+	            "description, inscription_price,inscription_location,inscription_email,inscription_website,start_point_lat,start_point_lon,".
+	            "end_point_lat,end_point_lon".
+	            ") VALUES(:name,:event_location,:distance_meters,:event_date,".
+                ":category,:awards,:description,:inscription_price,:inscription_location,".
+                ":inscription_email,:inscription_website,:start_point_lat,:start_point_lon,:end_point_lat,:end_point_lon)";
+    		$stmt = $this->dbHandle->prepare($sql);
+            $stmt->bindParam(':name', $name);	     
+     	    $stmt->bindParam(':event_location', $event_location);	   
+     	    $stmt->bindParam(':distance_meters', $distance_meters);	   
+     	    $stmt->bindParam(':event_date', $event_date);	   
+     	    $stmt->bindParam(':category', $category);	   
+     	    $stmt->bindParam(':awards', $awards);	   
+     	    $stmt->bindParam(':description', $description);	   
+     	    $stmt->bindParam(':inscription_price', $inscription_price);	   
+     	    $stmt->bindParam(':inscription_location', $inscription_location);	   
+     	    $stmt->bindParam(':inscription_email', $inscription_email);	   
+     	    $stmt->bindParam(':inscription_website', $inscription_website);	   
+     	    $stmt->bindParam(':start_point_lat', $start_point_lat);	   
+     	    $stmt->bindParam(':start_point_lon', $start_point_lon);	   
+     	    $stmt->bindParam(':end_point_lat', $end_point_lat);	   
+     	    $stmt->bindParam(':end_point_lon', $end_point_lon);	   
+    	    $stmt->execute();
+	        
+	        
+	        //get last ID
+    	    $sql = "SELECT currval('run_id_seq') AS last_value";
+    	    $resultId = $this->dbHandle->query($sql)->fetch(PDO::FETCH_ASSOC);
+    	    
+    	    return $resultId['last_value'];
+	        
+	    }
 	
 	public function searchForName($name,$limit=10,$offset=0) {
 		//$time_start = microtime_float();
@@ -247,101 +237,6 @@ class RunnitServices {
 
 
 
-
-
-
-class PDOTester extends PDO {
-	public function __construct($dsn, $username = null, $password = null, $driver_options = array())
-	{
-		parent::__construct($dsn, $username, $password, $driver_options);
-		$this->setAttribute(PDO::ATTR_STATEMENT_CLASS, array('PDOStatementTester', array($this)));
-	}
-}
-
-class PDOStatementTester extends PDOStatement {
-	const NO_MAX_LENGTH = -1;
-
-	protected $connection;
-	protected $bound_params = array();
-
-	protected function __construct(PDO $connection)
-	{
-		$this->connection = $connection;
-	}
-
-	public function bindParam($paramno, &$param, $type = PDO::PARAM_STR, $maxlen = null, $driverdata = null)
-	{
-		$this->bound_params[$paramno] = array(
-			'value' => &$param,
-			'type' => $type,
-			'maxlen' => (is_null($maxlen)) ? self::NO_MAX_LENGTH : $maxlen,
-			// ignore driver data
-		);
-
-		$result = parent::bindParam($paramno, $param, $type, $maxlen, $driverdata);
-	}
-
-	public function bindValue($parameter, $value, $data_type = PDO::PARAM_STR)
-	{
-		$this->bound_params[$parameter] = array(
-			'value' => $value,
-			'type' => $data_type,
-			'maxlen' => self::NO_MAX_LENGTH
-		);
-		parent::bindValue($parameter, $value, $data_type);
-	}
-
-	public function getSQL($values = array())
-	{
-		$sql = $this->queryString;
-
-		if (sizeof($values) > 0) {
-			foreach ($values as $key => $value) {
-				$sql = str_replace($key, $this->connection->quote($value), $sql);
-			}
-		}
-
-		if (sizeof($this->bound_params)) {
-			foreach ($this->bound_params as $key => $param) {
-				$value = $param['value'];
-				if (!is_null($param['type'])) {
-					$value = self::cast($value, $param['type']);
-				}
-				if ($param['maxlen'] && $param['maxlen'] != self::NO_MAX_LENGTH) {
-					$value = self::truncate($value, $param['maxlen']);
-				}
-				if (!is_null($value)) {
-					$sql = str_replace($key, $this->connection->quote($value), $sql);
-				} else {
-					$sql = str_replace($key, 'NULL', $sql);
-				}
-			}
-		}
-		return $sql;
-	}
-
-	static protected function cast($value, $type)
-	{
-		switch ($type) {
-			case PDO::PARAM_BOOL:
-				return (bool) $value;
-				break;
-			case PDO::PARAM_NULL:
-				return null;
-				break;
-			case PDO::PARAM_INT:
-				return (int) $value;
-			case PDO::PARAM_STR:
-			default:
-				return $value;
-		}
-	}
-
-	static protected function truncate($value, $length)
-	{
-		return substr($value, 0, $length);
-	}
-}
 
 
 ?>
