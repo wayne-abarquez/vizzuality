@@ -143,20 +143,21 @@ class RunnitServices {
 		return $sources;	    
 	}
 	
-	public function createNewRun($name,$event_location,$distance_meters,$event_date,
+	public function createNewRun($name,$event_location,$distance_meters,$distance_text,$event_date,
 	    $category,$awards,$description,$inscription_price,$inscription_location,
 	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon) {
 	        
-	        $sql="INSERT INTO run(name,event_location,distance_meters,event_date,category,awards".
+	        $sql="INSERT INTO run(name,event_location,distance_meters,distance_text,event_date,category,awards".
 	            "description, inscription_price,inscription_location,inscription_email,inscription_website,start_point_lat,start_point_lon,".
 	            "end_point_lat,end_point_lon".
-	            ") VALUES(:name,:event_location,:distance_meters,:event_date,".
+	            ") VALUES(:name,:event_location,:distance_meters,:distance_text,:event_date,".
                 ":category,:awards,:description,:inscription_price,:inscription_location,".
                 ":inscription_email,:inscription_website,:start_point_lat,:start_point_lon,:end_point_lat,:end_point_lon)";
     		$stmt = $this->dbHandle->prepare($sql);
             $stmt->bindParam(':name', $name);	     
      	    $stmt->bindParam(':event_location', $event_location);	   
      	    $stmt->bindParam(':distance_meters', $distance_meters);	   
+     	    $stmt->bindParam(':distance_text', $distance_text);	   
      	    $stmt->bindParam(':event_date', $event_date);	   
      	    $stmt->bindParam(':category', $category);	   
      	    $stmt->bindParam(':awards', $awards);	   
