@@ -27,7 +27,7 @@
 
 .btnblue * { background-image: url(../img/btn2blue.gif);}
 .btnsearch * { 
-	background-image: url(../img/btn2search.png);
+	background-image: url(../img/btn2search.gif);
 	height: 13px;
 }
 
@@ -127,3 +127,38 @@ label.roundblue {
 
 #login1 {width:178px}
 #login2 {width:178px}
+
+label.roundsearch {
+	float:left;
+	clear:left;
+	background:url(/img/inputsearch.gif) no-repeat 0 0;
+	padding:0 0 0 10px;
+	height: 23px;
+	margin:0 0 0px 0;
+}
+
+.roundsearch input {
+	background:transparent;
+	padding-top: 6px;
+	float:left;
+	border: none;
+	color: gray;
+	font-style: italic;
+	font-size: 14px;
+}
+
+.roundsearch span {
+	background:url(/img/inputsearch.gif) no-repeat 100% 0;
+	padding:0 10px 0 0;
+	height:23px;
+	float:left;
+}
+
+.roundsearch input:focus {
+	outline:none;
+}
+
+#inputsearch {width:117px}
+#inputsearch1 {width:352px}
+#inputsearch2 {width:44px}
+#inputsearch3 {width:44px}
