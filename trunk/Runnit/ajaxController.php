@@ -41,7 +41,9 @@ if ($_REQUEST['method'] == 'addComment') {
 }
 
 if ($_REQUEST['method'] == 'login') {
-
+    echo('jatorre');
+    die();
+    
     try {
         $user= $services->login($_REQUEST['email'],$_REQUEST['password']);
         echo($user['username']);
