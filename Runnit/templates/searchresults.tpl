@@ -20,6 +20,10 @@
 				<h2 class="newsTitle3">Resultados de tu búsqueda (12)</h2>
 				<div class="raceSearchFirst">
 					<div class="searchPanel">
+						<div class="labels">
+							<div class="searchlabel">Localidad, nombre, etc...</div>
+							<div class="searchlabel searchlabel2">Distancia mín / max</div>
+						</div>
 						<form id="searchForm" method="GET">
 							<div class="inputSearch">
 			<label class="roundsearch" for="inputsearch1"><span><input type="text" name="inputsearch1" id="inputsearch1"></span></label>
