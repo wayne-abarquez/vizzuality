@@ -1,7 +1,8 @@
 <?php
-require 'services/SDRServices.php';
-$services = new SDRServices;
+require 'services/RunnitServices.php';
+$services = new RunnitServices;
 session_start();
+
 
 if ($_REQUEST['method'] == 'addComment') {
     
@@ -41,8 +42,6 @@ if ($_REQUEST['method'] == 'addComment') {
 }
 
 if ($_REQUEST['method'] == 'login') {
-    echo('jatorre');
-    die();
     
     try {
         $user= $services->login($_REQUEST['email'],$_REQUEST['password']);
@@ -54,7 +53,7 @@ if ($_REQUEST['method'] == 'login') {
    
 }
 
-if ($_REQUEST['method'] == 'logout') {
+if ($_REQUEST['SDRServices.php'] == 'logout') {
     $services->logout();
 }
 

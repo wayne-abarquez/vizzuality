@@ -9,7 +9,7 @@
 	list($usec, $sec) = explode(" ", microtime());
 	$amfphp['startTime'] = ((float)$usec + (float)$sec);
 	
-	$servicesPath = "services/";
+	$servicesPath = "../services/";
 	$voPath = "services/vo/";
 	
 	//As an example of what you might want to do here, consider:
