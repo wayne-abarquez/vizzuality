@@ -74,19 +74,16 @@ div.headerImage{
 }
 
 div.buttonSearch{
-	width: 56px;
 	float: left;
 }
 
 div.inputSearch{
 	float: left;
+	margin-right: 10px;
 }
 
-.input_Search{
-	height: 21px;
-	border: 0px;
-	background-image: url(../img/inputsearch.jpg);
-	background-repeat: no-repeat;
+div.inputSearchFirst{
+	float: left;
 }
 
 .searchC{
