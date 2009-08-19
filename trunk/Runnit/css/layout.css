@@ -573,6 +573,7 @@ div.margins {
 .marginContainer {
 	padding-left: 10px;
 	padding-right: 10px;
+	padding-top: 10px;
 }
 
 .paddingRightContainer {
@@ -703,14 +704,6 @@ h5{
 	margin-bottom: 0px;
 }
 
-.dias{
-	display: inline;
-	margin-left: 4px;
-}
-
-.nameUser{
-	color: gray;
-}
 
 .mailAlert {
 	height: 20px;
@@ -727,6 +720,13 @@ h5{
 	font-size: 13px;
 	color: green;
 }
+
+div.phraseGray {
+	font-family: Arial;
+	font-size: 12px;
+	color: #666666;
+}
+	
 
 /* SEARCH RESULTS */
 

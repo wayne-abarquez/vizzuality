@@ -8,7 +8,7 @@
 					<li><a href="" class="selected">Preferencias de usuario</a></li>
 				</ul>
 			</div>
-			<div class="span-16 marginContainer marginTopBottom">
+			<div class="span-16 marginContainer">
 				<div class="column span-3 first">
 					<img src="img/user.jpg"/>
 				</div>
@@ -26,19 +26,19 @@
 								<div>
 									<div class="countAgo">nombre y apellidos</div>
 									<div class="inputWhite">
-								<label class="round" for="input1"><span><input type="text" name="input1" id="input1"/></span></label>
+										<label class="round" for="input1"><span><input type="text" name="input1" id="input1"></span></label>
 									</div>
 								</div>
 								<div>
 									<div class="countAgo">nombre de usuario</div>
 									<div class="inputWhite">
-								<label class="round" for="input2"><span><input type="text" name="input2" id="input2"/></span></label>
+										<label class="round" for="input2"><span><input type="text" name="input2" id="input2"></span></label>
 									</div>
 								</div>
 								<div>
 									<div class="countAgo">email</div>
 									<div class="inputWhite">
-								<label class="round" for="input3"><span><input type="text" name="input3" id="input3"/></span></label>
+										<label class="round" for="input3"><span><input type="text" name="input3" id="input3"></span></label>
 									</div>
 								</div>
 								<div class="inputWhiteButton">
@@ -50,36 +50,36 @@
 								<div>
 									<div class="inputTitleBlue">contraseña anterior</div>
 									<div class="inputBlue">
-								<label class="roundblue" for="input4"><span><input type="text" name="input4" id="input4"/></span></label>
+								<label class="roundblue" for="input4"><span><input type="text" name="input4" id="input4"></span></label>
 									</div>
 								</div>
 								<div>
 									<div class="inputTitleBlue">nueva contraseña</div>
 									<div class="inputBlue">
-								<label class="roundblue" for="input5"><span><input type="text" name="input5" id="input5"/></span></label>
+										<label class="roundblue" for="input5"><span><input type="text" name="input5" id="input5"></span></label>
 									</div>
-									<input type="Button" value="Regístrate ahora" class="btn btnblue left" />
+									<input type="Button" value="Regístrate ahora" class="btn btnblue right">
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="span-13 marginTopPlus countAgo contact">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
+					<div class="span-13 marginTopPlus phraseGray">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
 					<div class="span-13 marginTopPlus">
 						<div class="paddingRightContainer"> 
 							<h2 class="userData">Alerta geográfica por email <span class="desactivate">(desactivado)</span></h2>
 						</div>
-						<div class="paddingRightContainer countAgo">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
-						<div class="marginTopBottom">
+						<div class="paddingRightContainer phraseGray">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
+						<div class="marginTopPlus">
 							<div class="column first">
 								<div class="alertLabel">Localidad y provincia</div>
 								<div class="inputWhite">
-									<label class="round" for="input6"><span><input type="text" name="input6" id="input6"/></span></label>
+									<label class="round" for="input6"><span><input type="text" name="input6" id="input6"></span></label>
 								</div>
 							</div>
 							<div class="column">
 								<div class="alertLabel">Radio</div>
 								<div class="inputWhite">
-									<label class="round" for="input7"><span><input type="text" name="input7" id="input7"/></span></label>
+									<label class="round" for="input7"><span><input type="text" name="input7" id="input7"></span></label>
 								</div>
 							</div>
 							<div class="column paddingRightContainer last mailAlert">
@@ -139,12 +139,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="column last span-6 pagination countAgo">
+			<div class="column last span-7 pagination countAgo">
 				<div class="column last span-2 pagination btnMargin">
 					<div class="column first span-1 btnJoin"><input type="Button" value="<" class="btn"></div>
 					<div class="column last span-1"><input type="Button" value=">" class="btn"></div>	
 				</div>
-				<div class="column first span-3 pagination">viendo del 1-4 de 21</div>			
+				<div class="column first span-4 pagination">viendo del 1-4 de 21</div>			
 			</div>
 		</div>
 	</div>

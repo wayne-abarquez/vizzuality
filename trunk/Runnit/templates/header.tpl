@@ -103,7 +103,7 @@
 				
 			</div>
 		</div>
-		<div class="column conditions">
+		<div class="column conditions phraseGray MarginTopPlus">
 			Hacer click en “Crear mi cuenta” implica haber aceptado los términos y condiciones del servicio.	
 		</div>
 	</div>
@@ -111,29 +111,33 @@
 	<!-- CONTACT -->
 	<div id="contactWindow" style='display:none'>
 		<h2 class="registerTitle">Sugerencias, dudas... escríbenos!</h2>
-		<div class="containerMargin">
-			<div class="margin10">
-				<div class="inputTitle">nombre y apellidos</div>
-				<div>
-					<input class="registerInputBox" type="text">
+		<div>
+			<div class="margin10 contactArea">
+				<div class="inputTitle">Nombre y apellidos</div>
+				<div class="inputBlue">
+					<label class="roundblue" for="register1"><span><input type="text" name="register1" id="register1"/></span></label>
 				</div>
 			</div>
-			<div class="margin10">
-				<div class="inputTitle">email</div>
-				<div>
-					<input class="registerInputBox" type="text">
+			<div class="margin10 contactArea">
+				<div class="inputTitle">Email</div>
+				<div class="inputBlue">
+					<label class="roundblue" for="register2"><span><input type="text" name="register2" id="register2"/></span></label>
 				</div>
 			</div>
-			<div class="margin10">
-				<div class="inputTitle">mensaje</div>
-				<div>
-					<textarea name="textarea1" rows="3" cols="60" class="contactTextArea expand"></textarea>
-				</div>
+			<div class="margin10 contactArea">
+				<div class="inputTitle">Mensaje</div>
+				<textarea name="textarea1" rows="3" cols="60" class="contactTextArea expand"></textarea>
 			</div>
-			<div><input type="Button" value="Enviar mensaje" class="btn btnblue"></div>
-		</div>
 			
+			<div class="margin10 contactArea2">
+				<input type="Button" value="Crear mi cuenta" class="btn btnblue">
+			</div>
+
+		</div>			
 	</div>
+	
+	
+	
 	
 	
 	<!-- HEADER -->
