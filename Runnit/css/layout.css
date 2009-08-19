@@ -781,3 +781,13 @@ div.raceDetailsBottom {
 	border-bottom: dotted #666666 1px;
 	line-height: 32px;
 }
+
+.searchlabel{
+	color: #336699;
+	display: inline;
+	font-weight: bold;
+}
+
+.searchlabel2{
+	margin-left: 243px;
+}
