@@ -21,21 +21,27 @@
 				<div class="raceSearchFirst">
 					<div class="searchPanel">
 						<form id="searchForm" method="GET">
-							<div class="inputSearch"><input class="input_Search" type="text" /></div>
+							<div class="inputSearch">
+			<label class="roundsearch" for="inputsearch1"><span><input type="text" name="inputsearch1" id="inputsearch1"></span></label>
+							</div>
+							<div class="inputSearch">
+			<label class="roundsearch" for="inputsearch2"><span><input type="text" name="inputsearch2" id="inputsearch2"></span></label>
+							</div>
+							<div class="inputSearch">
+			<label class="roundsearch" for="inputsearch3"><span><input type="text" name="inputsearch3" id="inputsearch3"></span></label>
+							</div>
 							<div class="buttonSearch"><input type="Submit" value="Buscar" class="btn btnsearch" /></div>
 						</form>
 					</div>
-					<div class="column pagination countAgo">
+					<!--
+<div class="column pagination countAgo">
 						<div class="column pagination btnMargin">
 							<div class="column btnJoin"><input type="Button" value="<" class="btn btnsearchBlue"></div>
 							<div class="column"><input type="Button" value=">" class="btn btnsearchBlue"></div>	
 						</div>
 						<div class="column pagination">viendo del <b>1-4</b> de 21</div>			
 					</div>
-<label class="round" for="search1"><span><input type="text" name="search1" id="search1" /></span></label>
-<label class="round" for="search2"> <span>
-<input type="text" name="search2" id="search2" />
-</span> </label>
+-->
 				</div>
 				
 				<div class="dates">
