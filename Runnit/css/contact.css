@@ -8,3 +8,13 @@ textarea.contactTextArea {
 	width: 435px;
 	max-width: 435px;
 }
+
+.contactArea {
+	width: 220px;
+	padding-left: 20px;
+}
+
+.contactArea2 {
+	width: 465px;
+	padding-bottom: 20px;
+}
