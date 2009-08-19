@@ -126,7 +126,7 @@
 			</div>
 			<div class="margin10 contactArea">
 				<div class="inputTitle">Mensaje</div>
-				<textarea name="textarea1" rows="3" cols="60" class="contactTextArea expand"></textarea>
+				<textarea name="textarea1" rows="3" cols="60" class="contactTextArea"></textarea>
 			</div>
 			
 			<div class="margin10 contactArea2">
