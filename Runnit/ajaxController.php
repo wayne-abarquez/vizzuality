@@ -3,6 +3,10 @@ require 'services/RunnitServices.php';
 $services = new RunnitServices;
 session_start();
 
+if ($_REQUEST['method'] == 'isUsernameFree') {
+    echo($services->isUsernameFree($_REQUEST['username']));
+    die();
+}
 
 if ($_REQUEST['method'] == 'addComment') {
     

@@ -37,6 +37,17 @@ class RunnitServices {
 	    
 	}
 	
+	public function isUsernameFree($username) {
+	    $sql="SELECT id from users WHERE username=:username";
+		$stmt = $this->dbHandle->prepare($sql);
+	    $stmt->bindParam(':username', $username);	     
+	    $stmt->execute();
+	    if (count($stmt->fetchAll()) > 0) {
+	        return false;
+	    }	    
+	    return true;
+	}
+	
 	public function registerUser($username,$completename,$email,$password) {
 	    
 	    if(strlen($username)<5) {
@@ -146,38 +157,35 @@ class RunnitServices {
 	public function createNewRun($name,$event_location,$distance_meters,$distance_text,$event_date,
 	    $category,$awards,$description,$inscription_price,$inscription_location,
 	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon) {
-	        
-	        $sql="INSERT INTO run(name,event_location,distance_meters,distance_text,event_date,category,awards".
-	            "description, inscription_price,inscription_location,inscription_email,inscription_website,start_point_lat,start_point_lon,".
-	            "end_point_lat,end_point_lon".
+	       try {
+	        $sql="INSERT INTO run(name,event_location,distance_meters,distance_text,event_date,category,awards,".
+	            "description, inscription_price,inscription_location,inscription_email,inscription_website,start_point,end_point".
 	            ") VALUES(:name,:event_location,:distance_meters,:distance_text,:event_date,".
                 ":category,:awards,:description,:inscription_price,:inscription_location,".
-                ":inscription_email,:inscription_website,:start_point_lat,:start_point_lon,:end_point_lat,:end_point_lon)";
+                ":inscription_email,:inscription_website, GeomFromText('POINT($start_point_lon $start_point_lat)',4326), GeomFromText('POINT($end_point_lon $end_point_lat)',4326))";
     		$stmt = $this->dbHandle->prepare($sql);
             $stmt->bindParam(':name', $name);	     
      	    $stmt->bindParam(':event_location', $event_location);	   
-     	    $stmt->bindParam(':distance_meters', $distance_meters);	   
+     	    $stmt->bindParam(':distance_meters', $distance_meters, PDO::PARAM_INT);	   
      	    $stmt->bindParam(':distance_text', $distance_text);	   
-     	    $stmt->bindParam(':event_date', $event_date);	   
+     	    $stmt->bindParam(':event_date', $event_date, PDO::PARAM_STR);	   
      	    $stmt->bindParam(':category', $category);	   
-     	    $stmt->bindParam(':awards', $awards);	   
-     	    $stmt->bindParam(':description', $description);	   
-     	    $stmt->bindParam(':inscription_price', $inscription_price);	   
-     	    $stmt->bindParam(':inscription_location', $inscription_location);	   
-     	    $stmt->bindParam(':inscription_email', $inscription_email);	    
-     	    $stmt->bindParam(':inscription_website', $inscription_website);	   
-     	    $stmt->bindParam(':start_point_lat', $start_point_lat);	   
-     	    $stmt->bindParam(':start_point_lon', $start_point_lon);	   
-     	    $stmt->bindParam(':end_point_lat', $end_point_lat);	   
-     	    $stmt->bindParam(':end_point_lon', $end_point_lon);	   
+     	    $stmt->bindParam(':awards', $awards);
+     	    $stmt->bindParam(':description', $description);
+     	    $stmt->bindParam(':inscription_price', $inscription_price);
+     	    $stmt->bindParam(':inscription_location', $inscription_location);
+     	    $stmt->bindParam(':inscription_email', $inscription_email); 
+     	    $stmt->bindParam(':inscription_website', $inscription_website);
     	    $stmt->execute();
-	        
 	        
 	        //get last ID
     	    $sql = "SELECT currval('run_id_seq') AS last_value";
     	    $resultId = $this->dbHandle->query($sql)->fetch(PDO::FETCH_ASSOC);
     	    
-    	    return $resultId['last_value'];
+    	        return (int)$resultId['last_value'];
+    	    } catch(Exception $e) {
+    	        return 0;
+    	    }    	    
 	        
 	    }
 	    
@@ -186,29 +194,24 @@ class RunnitServices {
     	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon) {
 
                 try {
-        	        $sql="UPDATE run SET name=:name,event_location=:event_location,distance_meters=:distance_meters,distance_text=:distance_text,event_date=:event_date,category=:category,awards=:awards".
-        	            "description=:description, inscription_price=:inscription_price,inscription_location=:inscription_location,inscription_email=:inscription_email,inscription_website=:inscription_website,start_point_lat=:start_point_lat,start_point_lon=:start_point_lon,end_point_lat=:end_point_lat,end_point_lon=:end_point_lon".
-        	            " WHERE id=:id";
+        	        $sql="UPDATE run SET name=:name,event_location=:event_location,distance_meters=:distance_meters,distance_text=:distance_text,event_date=:event_date,category=:category,awards=:awards,".
+        	            "description=:description, inscription_price=:inscription_price,inscription_location=:inscription_location,inscription_email=:inscription_email,inscription_website=:inscription_website,start_point=GeomFromText('POINT($start_point_lon $start_point_lat)',4326), end_point=GeomFromText('POINT($end_point_lon $end_point_lat)',4326)".
+        	            " WHERE id=:idrun";
             		$stmt = $this->dbHandle->prepare($sql);
-            		$stmt->bindParam(':id', $id);
+            		$stmt->bindParam(':idrun', $id, PDO::PARAM_INT);
                     $stmt->bindParam(':name', $name);	     
              	    $stmt->bindParam(':event_location', $event_location);	   
-             	    $stmt->bindParam(':distance_meters', $distance_meters);	   
+             	    $stmt->bindParam(':distance_meters', $distance_meters, PDO::PARAM_INT);	   
              	    $stmt->bindParam(':distance_text', $distance_text);	   
-             	    $stmt->bindParam(':event_date', $event_date);	   
+             	    $stmt->bindParam(':event_date', $event_date, PDO::PARAM_STR);	   
              	    $stmt->bindParam(':category', $category);	   
              	    $stmt->bindParam(':awards', $awards);	   
              	    $stmt->bindParam(':description', $description);	   
              	    $stmt->bindParam(':inscription_price', $inscription_price);	   
              	    $stmt->bindParam(':inscription_location', $inscription_location);	   
              	    $stmt->bindParam(':inscription_email', $inscription_email);	    
-             	    $stmt->bindParam(':inscription_website', $inscription_website);	   
-             	    $stmt->bindParam(':start_point_lat', $start_point_lat);	   
-             	    $stmt->bindParam(':start_point_lon', $start_point_lon);	   
-             	    $stmt->bindParam(':end_point_lat', $end_point_lat);	   
-             	    $stmt->bindParam(':end_point_lon', $end_point_lon);	   
+             	    $stmt->bindParam(':inscription_website', $inscription_website);	    
             	    $stmt->execute();
-
                     return true;
         	    } catch(Exception $e) {
         	        return false;
