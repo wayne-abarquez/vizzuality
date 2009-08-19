@@ -19,7 +19,7 @@
         function(data){
 			$.each(data, function(i, item) {
 				$("img#profile").attr("src", item.user["profile_image_url"]);
-				$("#tweets").append( item.text.linkify() + relative_time(item.created_at) + " via " + item.source + ".");
+				$("#tweets").append( item.text.linkify() + relative_time(item.created_at) );
 			});
         });
         
@@ -55,9 +55,9 @@ function relative_time(time_value) {
 	  } else if(delta < (24*60*60)) {
 	    r = '<p> Hace ' + (parseInt(delta / 3600)).toString() + ' horas';
 	  } else if(delta < (48*60*60)) {
-	    r = '<p> Hace un día';
+	    r = '<p> Hace un dÃ­a';
 	  } else {
-	    r ='<p> Hace ' + (parseInt(delta / 86400)).toString() + ' días';
+	    r ='<p> Hace ' + (parseInt(delta / 86400)).toString() + ' dÃ­as';
 	  }
 	  
 	  return r;
