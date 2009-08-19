@@ -1,6 +1,9 @@
 
 //FUNCIONES QUE SE REALIZAN CUANDO EL DOCUMENTO ESTA LISTO
   $(document).ready( function() {
+  
+  		
+  		
 		
 	    var browserName=navigator.appName; 
 		 if (browserName=="Microsoft Internet Explorer"){
@@ -20,7 +23,8 @@
 			});
         });
         
-        $("textarea").TextAreaExpander();
+        
+        
 	});
 	
 	String.prototype.linkify = function() {
@@ -67,12 +71,15 @@ function twitter_callback (){
 // PARA ABRIR VENTANAS MODALES
 function showLoginBox() {
 	$('#loginWindow').modal();
+	
+
 };
 
 
 function showRegisterBox() {
 	$('#registerWindow').modal();
 	
+	
 	var wscr = $(window).width();
     var hscr = $(window).height();
     
@@ -86,12 +93,14 @@ function showRegisterBox() {
 	
 	$('#simplemodal-container').css("width",'500px');
 	$('#simplemodal-container').css("height",'390px');
+	
 
 };
 
 function showContactBox() {
 	$('#contactWindow').modal();
 	
+	
 	var wscr = $(window).width();
     var hscr = $(window).height();
     
@@ -105,6 +114,7 @@ function showContactBox() {
 	
 	$('#simplemodal-container').css("width",'500px');
 	$('#simplemodal-container').css("height",'390px');
+	
 
 };
 
