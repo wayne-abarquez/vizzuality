@@ -53,7 +53,7 @@
 			</div>
 			<div class="forgetFind">
 				<div class="column first forgetPass">¿olvidaste tu contraseña?</div>
-				<input type="Button" value="Entrar" class="btn btnblue" />			
+				<input type="Button" value="Entrar" class="btn btnblue right" />			
 			</div>	
 		</div>
 		
@@ -64,7 +64,7 @@
 		<div class="column span-5 last">
 			<h3 class="registro">¿Aún no estas registrado?</h3>
 			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
-			<input type="Button" value="Mira la carrera destacada" class="btn btnblue" />
+			<input type="Button" value="Mira la carrera destacada" class="btn btnblue right" />
 		</div>
 	</div>
 	
@@ -97,7 +97,7 @@
 						<label class="roundblue" for="register4"><span><input type="text" name="register4" id="register4"/></span></label>
 					</div>
 				</div>
-				<div><input type="Button" value="Crear mi cuenta" class="btn btnblue"></div>
+				<div><input type="Button" value="Crear mi cuenta" class="btn btnblue right"></div>
 			</div>
 			<div class="column last registerRight">
 				
@@ -130,7 +130,7 @@
 			</div>
 			
 			<div class="margin10 contactArea2">
-				<input type="Button" value="Crear mi cuenta" class="btn btnblue">
+				<input type="Button" value="Crear mi cuenta" class="btn btnblue right">
 			</div>
 
 		</div>			
@@ -158,7 +158,7 @@
 						<div class="inputSearchFirst">
 			<label class="roundsearch" for="inputsearch"><span><input type="text" name="inputsearch" id="inputsearch"></span></label>
 						</div>
-						<div class="buttonSearch"><input type="Button" value="Buscar" class="btn btnsearch" /></div>
+						<div class="buttonSearch"><input type="Submit" value="Buscar" class="btn btnsearch left" /></div>
 					</form>
 				</div>
 			</div>
