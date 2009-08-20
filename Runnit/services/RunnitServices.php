@@ -15,7 +15,7 @@ class RunnitServices {
         // create page view database table
         $sql = "SELECT * FROM users WHERE (email='$email' AND pass='$pass') OR (username='$email' AND pass='$pass')";        
         $result = pg_query($this->conn, $sql);
-        if (!$result) {
+        if(pg_num_rows($result)<1) {
             $_SESSION['logged']=false;
             throw new Exception("user not logged in");
         } else {
