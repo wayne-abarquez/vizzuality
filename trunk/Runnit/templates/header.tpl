@@ -154,11 +154,11 @@
 		<div class="span-18 last">
 			<div class="searchCont">
 				<div class="searchC">
-					<form id="searchForm" method="GET">
+					<form id="searchForm" action="searchresults.php" method="GET">
 						<div class="inputSearchFirst">
 			<label class="roundsearch" for="inputsearch"><span><input type="text" name="inputsearch" id="inputsearch"></span></label>
 						</div>
-						<div class="buttonSearchFirst"><input type="Submit" value="Buscar" class="btn btnsearch" /></div>
+						<div class="buttonSearchFirst"><input type="Submit" id="search" value="Buscar" class="btn btnsearch" /></div>
 					</form>
 				</div>
 			</div>
