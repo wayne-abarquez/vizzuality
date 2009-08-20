@@ -74,8 +74,11 @@ div.headerImage{
 }
 
 div.buttonSearch{
-	float: right;
-	padding-right: 10px;
+	float: left;
+}
+
+div.buttonSearchFirst{
+	float: left;
 }
 
 div.inputSearch{
