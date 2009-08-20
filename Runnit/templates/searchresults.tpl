@@ -89,7 +89,7 @@
 						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 					</div>
 				</div>
-				<div class="dates">
+				<div class="datesmiddle">
 					<a href="carrera.php" class="nameRace">15- 31 de agosto</a>
 				</div>
 				<div class="raceDetails" id="raceDetails">
