@@ -131,6 +131,53 @@ class RunnitServices {
 	    
 	}
 	
+	public function getLastUsersInscribedToRuns() {
+	    $sql="select u.id as user_id,username, r.name as run_name, r.id as run_id, (select count(id) from users_run where run_fk=r.id) as num_participants from users_run as ur inner join users as u on ur.users_fk=u.id inner join run as r on ur.run_fk=r.id order by ur.id DESC limit 3";
+	    $stmt = $this->dbHandle->prepare($sql);
+	    $stmt->execute(); 
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);	    
+	}
+	
+	public function getHighlightedRun() {
+	    $sql="select id,name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users from run as r where r.event_date > now() order by event_date ASC LIMIT 1";
+	    $stmt = $this->dbHandle->prepare($sql);
+	    $stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+	
+	public function searchRuns($q,$max,$min) {
+	    $sql="select id,name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users from run as r where r.event_date > now() AND (name ilike :q or event_location ilike :q)";
+	    if((int)$min>0) {
+	        $sql.=" AND distance_meters >= :min";
+	    }
+	    if((int)$max>0) {
+	        $sql.=" AND distance_meters <= :max";	        
+	    }
+	    
+	    $sql.=" order by event_date ASC";
+	    $stmt = $this->dbHandle->prepare($sql);
+	    return $sql;
+	    $param= "%".$q."%";
+	    $stmt->bindParam(":q", $param, PDO::PARAM_STR,255);	  
+	    if((int)$min>0) {
+	        $stmt->bindParam(":min", $param, PDO::PARAM_INT);	
+	    }
+	    if((int)$max>0) {
+	        $stmt->bindParam(":max", $param, PDO::PARAM_INT);
+	    }
+	    $stmt->execute();
+	    
+		return $stmt->fetch(PDO::FETCH_ASSOC);	    
+        
+	}
+	
+	public function getNextRuns() {
+	    $sql="select id,name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users from run as r where r.event_date > now() order by event_date ASC limit 10";
+	    $stmt = $this->dbHandle->prepare($sql);
+	    $stmt->execute(); 
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);	    
+	}
+	
 	public function getSpeciesDetailsByNameId($speciesId) {
 	    $sql="SELECT d.id,code, resourcename,resource_fk as resource_id, (select count(id) from distribution_unit where distribution_fk=d.id) as num_units from distribution as d inner join resource as r on d.resource_fk=r.id where d.name_fk=:speciesId and d.resource_fk=2";
 		$stmt = $this->dbHandle->prepare($sql);
@@ -238,7 +285,7 @@ class RunnitServices {
     }	    
     
     public function getRunsList() {
-        $sql="select * from run ORDER BY id DESC";
+        $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon from run ORDER BY id DESC";
 		$stmt = $this->dbHandle->prepare($sql);
 	    $stmt->execute(); 
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);        
