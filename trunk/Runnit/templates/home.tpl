@@ -157,74 +157,28 @@
 		<div> 
 			<h2 class="newsTitle">Últimos valientes</h2>
 		</div>
-		
-		{foreach key=id item=person from=$runners}
-			<div class="span-8 races">
-				<div class="column first image">
-					<img src="img/user.jpg" alt="userImage"/>	
-				</div>
-				<div class="column span-5 last">
-					<div class="detailsUser">
-						<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
-						<div class="raceUserDetails"> dice que va a ir a </div>
-						<div class="raceUserDetails"> <b>{$person.run_name}</b> </div>
+			{foreach key=id item=person from=$runners}
+				{if $person eq "false"}
+					<div class="span-8 races">No hay valientes.</div> 
+				{else}
+					<div class="span-8 races">
+						<div class="column first image">
+							<img src="img/user.jpg" alt="userImage"/>	
+						</div>
+						<div class="column span-5 last">
+							<div class="detailsUser">
+								<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
+								<div class="raceUserDetails"> dice que va a ir a </div>
+								<div class="raceUserDetails"> <b>{$person.run_name}</b> </div>
+							</div>
+							<p class="runnersNumber">{$person.num_participants} van, <a href="">apúntate con él</a></p>
+						</div>
 					</div>
-					<p class="runnersNumber">{$person.num_participants} van, <a href="">apúntate con él</a></p>
-				</div>
-			</div>
-	    {foreachelse}
-	        <div class="span-8 races">No hay valientes.</div>    
-	    {/foreach}
-		
-		
-		
-		
-		
-		
-		<!--
-<div class="span-8 races">
-			<div class="column first image">
-				<img src="img/user.jpg" alt="userImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="detailsUser">
-					<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
-					<div class="raceUserDetails"> dice que va a ir a </div>
-					<div class="raceUserDetails"> <b>XVII Carrera solidaria BBVA</b> </div>
-				</div>
-				<p class="runnersNumber">2 van, <a href="">apúntate con él</a></p>
-			</div>
+				{/if}
+		    {foreachelse}
+		        <div class="span-8 races">No hay valientes.</div>    
+		    {/foreach}
 		</div>
-		
-		<div class="span-8 races">
-			<div class="column first image">
-				<img src="img/user.jpg" alt="userImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="detailsUser">
-					<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
-					<div class="raceUserDetails"> dice que va a ir a </div>
-					<div class="raceUserDetails"> <b>XVII Carrera solidaria BBVA</b> </div>
-				</div>
-				<p class="runnersNumber">2 van, <a href="">apúntate con él</a></p>
-			</div>
-		</div>
-		
-		<div class="span-8 races">
-			<div class="column first image">
-				<img src="img/user.jpg" alt="userImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="detailsUser">
-					<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
-					<div class="raceUserDetails"> dice que va a ir a </div>
-					<div class="raceUserDetails"> <b>XVII Carrera solidaria BBVA</b> </div>
-				</div>
-				<p class="runnersNumber">2 van, <a href="">apúntate con él</a></p>
-			</div>
-		</div>
--->
-	</div>
 		
 		
 	<!-- PROMINENT -->
