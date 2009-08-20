@@ -4,7 +4,7 @@
 	<div class="span-24 raceContainer" id="race">
 	
 		<!-- RACE & IMAGE -->
-		<div class="span-16 first">
+		<div class="span-16 first leftColumn">
 			<div class="span-16 column raceTitle">
 				<div class="span-16 navigationList">
 					<ul> 
