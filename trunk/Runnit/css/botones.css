@@ -3,7 +3,7 @@
 	font-weight: bold;
 	line-height: 15px;
  }
-.btn { display: block; position: relative; background: #336699; padding: 5px; float: left; color: #fff; text-decoration: none; cursor: pointer; float: right; }
+.btn { display: block; position: relative; background: #336699; padding: 5px; float: left; color: #fff; text-decoration: none; cursor: pointer;}
 .btn * { font-style: normal; background-image: url(../img/btn2.png); background-repeat: no-repeat; display: block; position: relative; }
 .btn i { background-position: top left; position: absolute; margin-bottom: -5px;  top: 0; left: 0; width: 5px; height: 5px; }
 .btn span { background-position: bottom left; left: -5px; padding: 0 0 5px 10px; margin-bottom: -5px; }
@@ -22,10 +22,8 @@
 * html .btn.pink { border-color: #e1a; }
 * html .btn:hover { border-color: #a00; }
 
-.btn{
+.btnblue * { background-image: url(../img/btn2blue.gif);
 }
-
-.btnblue * { background-image: url(../img/btn2blue.gif);}
 .btnsearch * { 
 	background-image: url(../img/btn2search.gif);
 	height: 13px;
@@ -37,6 +35,7 @@
 }
 
 .left { float: left; }
+.right { float: right; }
 
 div.rounded_container{
 			/* This background color should have the same background color as your text input */
