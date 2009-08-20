@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	
+	<mx:Canvas left="0" right="0" top="0" bottom="200">
+		<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)" width="100%" height="100%"
+    	key="ABQIAAAAsIunaSEq-72JsQD5i92_2RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSmXGohiWEDHFUoXFZA7xt2aNO4ww"/>
+		<mx:TextInput id="searchInput" left="96" top="10" enter="searchLocation(searchInput.text)"/>
+		<mx:Button label="Buscar" left="255" top="10" fillAlphas="[1.0, 1.0, 1.0, 1.0]" click="searchLocation(searchInput.text)"/>
+		<mx:Canvas width="226" height="22" backgroundColor="#FFFFFF" left="328" top="10">
+			<mx:Label x="10" y="4" text="Distancia de carrera:" id="expText"/>
+			<mx:Label x="129" y="4" width="97" id="distance" textAlign="right"/>
+		</mx:Canvas>
+	</mx:Canvas>
+	
+	<mx:Script>
+	    <![CDATA[
+	    	import mx.formatters.NumberFormatter;
+	    	import mx.formatters.Formatter;
+	    	import com.google.maps.services.GeocodingResponse;
+	    	import com.google.maps.services.Placemark;
+	    	import com.google.maps.services.GeocodingEvent;
+	    	import mx.rpc.events.FaultEvent;
+	    	import mx.rpc.events.ResultEvent;
+	    	import com.google.maps.services.ClientGeocoder;
+	    	import com.google.maps.overlays.Polyline;
+	    	import com.google.maps.services.DirectionsOptions;
+	    	import com.google.maps.interfaces.IPolyline;
+	    	import com.google.maps.LatLngBounds;
+	    	import com.google.maps.Color;
+	    	import mx.controls.Alert;
+	    	import com.google.maps.services.DirectionsEvent;
+	    	import com.google.maps.services.Directions;
+	    	import mx.controls.Label;
+	    	import com.google.maps.styles.StrokeStyle;
+	    	import com.google.maps.styles.FillStyle;
+	    	import com.google.maps.overlays.MarkerOptions;
+	    	import com.google.maps.overlays.Marker;
+	    	import com.google.maps.MapMouseEvent;
+	    	import com.google.maps.controls.MapTypeControl;
+	    	import com.google.maps.controls.PositionControl;
+	    	import com.google.maps.controls.ZoomControl;
+		    import com.google.maps.LatLng;
+		    import com.google.maps.Map;
+		    import com.google.maps.MapEvent;
+		    import com.google.maps.MapType;
+		    import com.google.maps.MapAction;
+		    
+		    private var count: int = 0;
+		    private var aux: int = 0;
+		    [Bindable]private var array: Array = new Array();
+		    [Bindable]private var altimetry: Array = new Array();
+		    private var pol: Polyline;
+		    private var endMarker: Marker;
+		    private var formatter:NumberFormatter = new NumberFormatter();
+
+		
+		    private function onMapReady(event:Event):void {
+		    	map.setDoubleClickMode(MapAction.ACTION_NOTHING); 
+		    	this.map.setCenter(new LatLng(40.736072,-73.992062), 3, MapType.NORMAL_MAP_TYPE);
+	  			map.addControl(new ZoomControl());
+	  			map.addControl(new PositionControl());
+	  			map.addControl(new MapTypeControl());
+		        map.addEventListener(MapMouseEvent.CLICK, onMapClick);			
+			}
+			
+			private function onDirFail(event:DirectionsEvent):void {
+			  // Process failure, perhaps by showing an alert
+			  trace("error")
+			}
+			
+			private function onDirLoad(event:DirectionsEvent):void {
+			    var dir:Directions = event.directions;
+			                
+			    map.clearOverlays();
+			    var directions:Directions =
+				event.directions;
+				var directionsPolyline:IPolyline = directions.createPolyline();
+				map.addOverlay(directionsPolyline);
+			  
+			    var directionsBounds:LatLngBounds = directionsPolyline.getLatLngBounds();
+				map.setCenter(directionsBounds.getCenter());
+				map.setZoom(map.getBoundsZoomLevel(directionsBounds));
+			}
+		    
+		  
+		
+		    protected function onMapClick(event:MapMouseEvent):void {  
+
+		       
+				array.push(event.latLng);
+				
+		    	if (array.length==1) {
+		    		var markerA:Marker = new Marker(event.latLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+								         labelFormat: {color: 0xFFFFFF, bold: true},
+								         draggeable: false,
+								         hasShadow: false, 
+								         radius: 12, 
+								         label: "S",
+								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+								         }));
+					map.addOverlay(markerA);
+					
+		    	} else {
+		    		pol = new Polyline(array);
+	 				if (array.length>1) {
+		 				var directionsBounds:LatLngBounds = pol.getLatLngBounds();
+						map.setCenter(directionsBounds.getCenter());
+						map.setZoom(map.getBoundsZoomLevel(directionsBounds));
+		      			map.addOverlay(pol); 	         					
+	 				}
+	 				var marker: Marker = new Marker(event.latLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+								         labelFormat: {color: 0xFFFFFF, bold: true},
+								         draggeable: false,
+								         hasShadow: false, 
+								         radius: 12, 
+								         label: "Ll",
+								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+								         }));
+					if (array.length>2) map.removeOverlay(endMarker);
+					endMarker = marker;
+					map.addOverlay(marker);
+		    		
+		    	}
+		    	calculateDistance();
+		    }
+		    
+		    private function undoRoute():void {
+			    array.pop();
+			    pol = new Polyline(array);
+			    aux--;
+			    altimetry.pop();
+
+			    map.clearOverlays();
+
+			    
+			    if (array.length==1) {
+			    	var marker: Marker = new Marker(array[0] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+								         labelFormat: {color: 0xFFFFFF, bold: true},
+								         draggeable: false,
+								         hasShadow: false, 
+								         radius: 12, 
+								         label: "S",
+								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+								         }));
+					endMarker = marker;
+					map.addOverlay(marker);
+					map.addOverlay(pol);
+			    } else {
+			    	if (array.length>1) {
+			    		var markerA: Marker = new Marker(array[0] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+								         labelFormat: {color: 0xFFFFFF, bold: true},
+								         draggeable: false,
+								         hasShadow: false, 
+								         radius: 12, 
+								         label: "S",
+								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+								         }));
+						map.addOverlay(markerA);
+						map.addOverlay(pol);
+						var markerB: Marker = new Marker(array[array.length - 1] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+								         labelFormat: {color: 0xFFFFFF, bold: true},
+								         draggeable: false,
+								         hasShadow: false, 
+								         radius: 12, 
+								         label: "Ll",
+								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+								         }));
+						endMarker = markerB;
+						map.addOverlay(markerB);
+			    		
+			    	}
+			    	
+			    }
+			    calculateDistance();	
+		    }
+		
+
+		    private function clearMarkers():void {
+		    	array = new Array();
+		    	map.clearOverlays();
+		    	aux = 0;
+		    	altimetry = new Array();
+		    	AltimetryChart.dataProvider = altimetry;
+		    	distance.text = "";
+		    }
+		    
+		    private function onResult(ev: ResultEvent):void {
+		    	altimetry.push(ev.result.height.meters);
+		    	aux++;
+		    	getAltitudes();
+		    }
+		    
+		    private function onFault(ev: FaultEvent):void {
+		    	trace("fault");
+		    }
+		    
+		    private function getAltitudes():void {
+		    	if (aux!=array.length) {
+		    		altitudeService.url = "http://www.earthtools.org/height/" + (array[aux] as LatLng).lat() + "/" +  (array[aux] as LatLng).lng();
+		        	altitudeService.send();
+		    	} else {
+		    		AltimetryChart.dataProvider = altimetry;
+		    	}
+		    }
+		    
+		    private function searchLocation(str: String):void {
+		    	var geocoder:ClientGeocoder = new ClientGeocoder();
+                geocoder.addEventListener(GeocodingEvent.GEOCODING_SUCCESS, geocoder_geocodingSuccess);
+                geocoder.addEventListener(GeocodingEvent.GEOCODING_FAILURE, geocoder_geocodingFailure);
+                geocoder.geocode(str);
+
+		    }
+		    
+		    private function geocoder_geocodingSuccess(evt:GeocodingEvent):void {
+                var result:Placemark = GeocodingResponse(evt.response).placemarks[0];
+
+                var box:Object = result.ExtendedData.LatLonBox;
+                var pBbox:LatLngBounds = new LatLngBounds(new LatLng(box.north,box.west),new LatLng(box.south,box.east));
+                							                
+                map.setCenter(result.point,map.getBoundsZoomLevel(pBbox));
+            }
+            
+            private function geocoder_geocodingFailure(evt:GeocodingEvent):void {
+                Alert.show("Unable to geocode address: " + evt.name);
+            }
+		    
+			
+			private function calculateDistance():void{
+			    var dist: Number=0;
+			    for (var x:int =0;x<array.length-1;x++){
+			        dist += (array[x]).distanceFrom(array[x+1])/1000;
+			    }
+			    distance.text = formatter.format(dist) + "km";
+			}
+	    ]]>
+	</mx:Script>	
+	
+	<mx:Button label="Limpiar" click="clearMarkers()" left="10" bottom="170"/>
+	<mx:Button label="Deshacer último" left="83" bottom="170" click="undoRoute()"/>
+	<mx:Button label="Crear altimetría" right="10" bottom="170" click="getAltitudes()"/>
+	<mx:AreaChart id="AltimetryChart" left="10" right="10" bottom="10" height="151" >
+		<mx:verticalAxis>
+            <mx:LinearAxis baseAtZero="false" title="Altitud"/>
+        </mx:verticalAxis>
+		<mx:series>
+			<mx:AreaSeries displayName="Series 1" yField="" />
+		</mx:series>
+	</mx:AreaChart>
+	<mx:Legend bottom="109" right="10"/>
+	<mx:HTTPService id="altitudeService" result="onResult(event)" fault="onFault(event)" resultFormat="object"/>
+	
+</mx:Canvas>
