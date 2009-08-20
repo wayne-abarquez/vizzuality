@@ -157,7 +157,7 @@ class RunnitServices {
 	public function createNewRun($name,$event_location,$distance_meters,$distance_text,$event_date,
 	    $category,$awards,$description,$inscription_price,$inscription_location,
 	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon) {
-	       try {
+            try {
 	        $sql="INSERT INTO run(name,event_location,distance_meters,distance_text,event_date,category,awards,".
 	            "description, inscription_price,inscription_location,inscription_email,inscription_website,start_point,end_point".
 	            ") VALUES(:name,:event_location,:distance_meters,:distance_text,:event_date,".
@@ -177,16 +177,24 @@ class RunnitServices {
      	    $stmt->bindParam(':inscription_email', $inscription_email); 
      	    $stmt->bindParam(':inscription_website', $inscription_website);
     	    $stmt->execute();
-	        
+    	    
+	    
 	        //get last ID
     	    $sql = "SELECT currval('run_id_seq') AS last_value";
     	    $resultId = $this->dbHandle->query($sql)->fetch(PDO::FETCH_ASSOC);
     	    
-    	        return (int)$resultId['last_value'];
-    	    } catch(Exception $e) {
-    	        return 0;
-    	    }    	    
-	        
+    	    $newId= (int)$resultId['last_value'];
+    	    
+    	    if (is_int($newId)) {
+    	        return $newId;
+    	    } else {
+    	        return false;
+    	    }
+ 	    
+	        } catch(PDOException $e)
+            {
+                return $stmt->getMessage();
+            }
 	    }
 	    
     	public function updateRun($id,$name,$event_location,$distance_meters,$distance_text,$event_date,
