@@ -23,8 +23,6 @@
 			});
         });
         
-        
-        
 	});
 	
 	String.prototype.linkify = function() {
