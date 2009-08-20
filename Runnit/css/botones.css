@@ -142,8 +142,7 @@ label.roundsearch {
 	float:left;
 	border: none;
 	color: gray;
-	font-style: italic;
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .roundsearch span {
