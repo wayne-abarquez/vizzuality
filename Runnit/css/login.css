@@ -8,11 +8,8 @@
 #simplemodal-container {
 	height:203px; 
 	width:490px; 
-/*
 	background-image: url(../img/repeatLogin.jpg);
 	background-repeat: repeat;
-*/
-	background-color: #b5e6f3;
 	border:6px solid #ffffff;
 }
 #simplemodal-container a.modalCloseImg {
