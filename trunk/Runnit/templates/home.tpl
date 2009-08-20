@@ -6,9 +6,9 @@
 		<div class="column span-16 first vipRace">
 			<div class="raceHome">
 				<div class="contentImportantRace">
-					<div class="span-3 dateImpRace">13/Ago/09</div>
-					<div class="span-15 titleImpRace">XV Cross popular “Ascenso a la pedriza”</div>
-				<div class="span-15 dataImpRace">La pedriza | 1,2km - 10km | 18 usuarios van </div>
+					<div class="span-3 dateImpRace">{$highlightedRun.event_date|substr:8:2}/{getMonth month=$highlightedRun.event_date|substr:5:2}/{$highlightedRun.event_date|substr:2:2}</div>
+					<div class="span-15 titleImpRace">{$highlightedRun.name}</div>
+				<div class="span-15 dataImpRace">{$highlightedRun.event_location} | {$highlightedRun.distance_text} | {$highlightedRun.num_users} usuarios van </div>
 				</div>
 				
 			</div>
@@ -19,46 +19,20 @@
 				<h2 class="newsTitle">Tus próximas carreras</h2>
 			</div>
 			<div class="events">
-				<div class="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
+				{foreach key=id item=race from=$nextRaces}
+			       <div class="raceDetails">
+						<div class="column span-1 first date">
+							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+							<div class="day">{$race.event_date|substr:8:2}</div>
+						</div>
+						<div class="column span-6 last nextRaceComment">
+							<a href="carrera.php" class="nameRace">{$race.name}</a>
+							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
+						</div>
 					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XVII Media Marathon de Madrid</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XXVI Carrera del Rock’n’Roll</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XV Cross popular “Ascenso a l...</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
+			    {foreachelse}
+			        <div class="raceDetails">No hay carreras disponibles.</div>    
+			    {/foreach}
 				<input type="Button" value="Ver tu calendario completo" class="btn right" />
 			</div>
 		</div>
@@ -183,7 +157,32 @@
 		<div> 
 			<h2 class="newsTitle">Últimos valientes</h2>
 		</div>
-		<div class="span-8 races">
+		
+		{foreach key=id item=person from=$runners}
+			<div class="span-8 races">
+				<div class="column first image">
+					<img src="img/user.jpg" alt="userImage"/>	
+				</div>
+				<div class="column span-5 last">
+					<div class="detailsUser">
+						<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
+						<div class="raceUserDetails"> dice que va a ir a </div>
+						<div class="raceUserDetails"> <b>{$person.run_name}</b> </div>
+					</div>
+					<p class="runnersNumber">{$person.num_participants} van, <a href="">apúntate con él</a></p>
+				</div>
+			</div>
+	    {foreachelse}
+	        <div class="span-8 races">No hay valientes.</div>    
+	    {/foreach}
+		
+		
+		
+		
+		
+		
+		<!--
+<div class="span-8 races">
 			<div class="column first image">
 				<img src="img/user.jpg" alt="userImage"/>	
 			</div>
@@ -224,6 +223,7 @@
 				<p class="runnersNumber">2 van, <a href="">apúntate con él</a></p>
 			</div>
 		</div>
+-->
 	</div>
 		
 		
