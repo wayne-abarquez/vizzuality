@@ -793,6 +793,15 @@ div.raceDetailsBottom {
 	line-height: 32px;
 }
 
+.datesmiddle{
+	height: 30px;
+	background-color: #e8e8e8;
+	padding: 0px 0px 0px 10px;
+	margin: -10px 0px 10px 0px;
+	border-bottom: dotted #666666 1px;
+	line-height: 32px;
+}
+
 .searchlabel{
 	color: #336699;
 	display: inline;
