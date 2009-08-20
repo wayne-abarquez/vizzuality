@@ -349,7 +349,7 @@
 		</mx:ViewStack>
 	</mx:Canvas>
 		
-	<mx:RemoteObject id="server" endpoint="http://localhost:8888/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices">
+	<mx:RemoteObject id="server" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices">
 		<mx:method name="getRunsList"/>
 		<mx:method name="removeRun"/>
 		<mx:method name="updateRun"/>
