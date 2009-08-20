@@ -37,12 +37,12 @@
 							<div class="buttonSearch"><input type="Submit" value="Buscar" class="btn btnsearch" /></div>
 						</form>
 					</div>
-					<div class="column pagination countAgo">
-						<div class="column pagination btnMargin">
+					<div class="pagination countAgo countAgo2">
+						<div class="pagination">
 							<div class="column btnJoin"><input type="Button" value="<" class="btn btnsearchBlue"></div>
 							<div class="column"><input type="Button" value=">" class="btn btnsearchBlue"></div>	
 						</div>
-						<div class="column pagination">viendo del <b>1-4</b> de 21</div>			
+						<div class="column pagination">viendo del <b>1 al 4</b> de 21</div>			
 					</div>
 				</div>
 				
@@ -174,13 +174,13 @@
 				</div>
 				<div class="raceSearchLast">
 					<div class="searchPanel">
-						<div class="column pagination countAgo">
-							<div class="column pagination btnMargin">
-								<div class="column btnJoin"><input type="Button" value="<" class="btn btnsearchBlue"></div>
-								<div class="column"><input type="Button" value=">" class="btn btnsearchBlue"></div>	
-							</div>
-							<div class="column pagination">viendo del <b>1-4</b> de 21</div>			
+						<div class="pagination countAgo">
+						<div class="pagination">
+							<div class="column btnJoin"><input type="Button" value="<" class="btn btnsearchBlue"></div>
+							<div class="column"><input type="Button" value=">" class="btn btnsearchBlue"></div>	
 						</div>
+						<div class="column pagination">viendo del <b>1 al 4</b> de 21</div>			
+					</div>
 					</div>
 				</div>
 			</div>	
