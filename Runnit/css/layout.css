@@ -74,12 +74,13 @@ div.headerImage{
 }
 
 div.buttonSearch{
-	float: left;
+	float: right;
+	padding-right: 10px;
 }
 
 div.inputSearch{
 	float: left;
-	margin-right: 10px;
+	padding-right: 10px;
 }
 
 div.inputSearchFirst{
@@ -429,6 +430,10 @@ a.contactFooter {
 .navigationList a.selected{
 	color: gray;
 	font-weight: normal;
+}
+
+.navigationList a.selected b{
+	font-style: italic;
 }
 
 .calendar{
