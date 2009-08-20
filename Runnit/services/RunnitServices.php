@@ -3,7 +3,7 @@
 class RunnitServices {
 	
 	function __construct() {
-	    $this->conn = pg_connect ("host=67.23.44.117 dbname=runnit user=runnit password=runnit555");
+	    $this->conn = pg_connect ("host=localhost dbname=runnit user=postgres password=postgres");
 		
 	}
     
@@ -56,6 +56,7 @@ class RunnitServices {
 	    if(strlen($username)<5) {
 	        throw new Exception('Username with not enough characters',101);
 	    }
+	    
 	    if(strlen($password)<5) {
 	        throw new Exception('Password with not enough characters',102);
 	    }
