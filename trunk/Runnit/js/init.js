@@ -19,7 +19,7 @@
         function(data){
 			$.each(data, function(i, item) {
 				$("img#profile").attr("src", item.user["profile_image_url"]);
-				$("#tweets").append( item.text.linkify() + relative_time(item.created_at) );
+				$("#tweets").append( item.text.linkify() + relative_time(item.created_at));
 			});
         });
         
@@ -47,17 +47,17 @@ function relative_time(time_value) {
 	  if (delta < 60) {
 	    r = '<p> Hace un minuto';
 	  } else if(delta < 120) {
-	    r = '<p> Hace un par de minutos';
+	    r = '<p> Hace un par de minutos.';
 	  } else if(delta < (45*60)) {
-	    r = '<p> Hace ' + (parseInt(delta / 60)).toString() + ' minutos';
+	    r = '<p> Hace ' + (parseInt(delta / 60)).toString() + ' minutos.';
 	  } else if(delta < (90*60)) {
-	    r = '<p> Hace una hora';
+	    r = '<p> Hace una hora.';
 	  } else if(delta < (24*60*60)) {
-	    r = '<p> Hace ' + (parseInt(delta / 3600)).toString() + ' horas';
+	    r = '<p> Hace ' + (parseInt(delta / 3600)).toString() + ' horas.';
 	  } else if(delta < (48*60*60)) {
-	    r = '<p> Hace un día';
+	    r = '<p> Hace un día.';
 	  } else {
-	    r ='<p> Hace ' + (parseInt(delta / 86400)).toString() + ' días';
+	    r ='<p> Hace ' + (parseInt(delta / 86400)).toString() + ' días.';
 	  }
 	  
 	  return r;
@@ -70,9 +70,7 @@ function twitter_callback (){
 
 // PARA ABRIR VENTANAS MODALES
 function showLoginBox() {
-	$('#loginWindow').modal();
-	
-
+	$('#loginWindow').modal();	
 };
 
 
@@ -94,7 +92,6 @@ function showRegisterBox() {
 	$('#simplemodal-container').css("width",'500px');
 	$('#simplemodal-container').css("height",'390px');
 	
-
 };
 
 function showContactBox() {
@@ -115,7 +112,6 @@ function showContactBox() {
 	$('#simplemodal-container').css("width",'500px');
 	$('#simplemodal-container').css("height",'390px');
 	
-
 };
 
 /* FUNCION PARA COMENTAR -- REVISAR -- */
