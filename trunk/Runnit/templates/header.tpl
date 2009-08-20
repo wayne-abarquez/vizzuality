@@ -158,7 +158,7 @@
 						<div class="inputSearchFirst">
 			<label class="roundsearch" for="inputsearch"><span><input type="text" name="inputsearch" id="inputsearch"></span></label>
 						</div>
-						<div class="buttonSearch"><input type="Button" value="Buscar" class="btn btnblue" /></div>
+						<div class="buttonSearch"><input type="Button" value="Buscar" class="btn btnsearch" /></div>
 					</form>
 				</div>
 			</div>
