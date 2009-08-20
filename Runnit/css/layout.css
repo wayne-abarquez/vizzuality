@@ -612,6 +612,10 @@ div.countAgo {
 	float: left;
 }
 
+div.countAgo2 {
+	margin-top: 28px;
+}
+
 div.alertLabel{
 	color: #666666;
 }
@@ -650,7 +654,6 @@ div.changePass {
 
 div.pagination {
 	float: right;
-	text-align: right;
 	line-height: 25px;
 }
 
