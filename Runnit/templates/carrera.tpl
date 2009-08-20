@@ -175,7 +175,7 @@
 							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
-					<input type="Button" value="Ver tu calendario completo" class="btn" />
+					<input type="Button" value="Ver tu calendario completo" class="btn right" />
 				</div>
 			</div>
 		
