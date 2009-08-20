@@ -1,9 +1,12 @@
 /* PRINCIPAL */
 
+html {height:100%;}
+
 body{
 	background: #ffffff;
 	background-image: url(../img/repeat.jpg);
 	background-repeat: repeat-x;
+	height:100%;
 }
 
 div.container {
@@ -499,6 +502,12 @@ a.special {
 .rightColumn{
 	background-color: #f1f1f1;
 	height: 100%;
+	padding-bottom: 100%;
+}
+
+.leftColumn{
+	padding-bottom: 0px;
+	height: auto;
 }
 
 div.racesComment {
