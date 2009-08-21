@@ -1,47 +1,47 @@
 
 //FUNCIONES QUE SE REALIZAN CUANDO EL DOCUMENTO ESTA LISTO
-  $(document).ready( function() {
-  
-  		$('textarea').autoResize({
-		    // On resize:
-		    onResize : function() {
-		        $(this).css({opacity:0.8});
-		    },
-		    // After resize:
-		    animateCallback : function() {
-		        $(this).css({opacity:1});
-		    },
-		    // Quite slow animation:
-		    animateDuration : 300,
-		    // More extra space:
-		    extraSpace : 40
-		});
-  
-		var browserName=navigator.appName; 
-		if (browserName=="Microsoft Internet Explorer"){
-		   $('#category').css("display",'none');
-		   $('#select').css("margin-left",'0px');
-		   $('#select').css("margin-top",'6px');
-		}
-		 
+$(document).ready( function() {
 
-		var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
-		$.getJSON(url,function(data){	
-			$.each(data, function(i, item) {
-				$("img#profile").attr("src", item.user["profile_image_url"]);
-				$("#tweets").append( item.text.linkify() + relative_time(item.created_at));
-			});
-        });
-        
+	$('textarea').autoResize({
+	    // On resize:
+	    onResize : function() {
+	        $(this).css({opacity:0.8});
+	    },
+	    // After resize:
+	    animateCallback : function() {
+	        $(this).css({opacity:1});
+	    },
+	    // Quite slow animation:
+	    animateDuration : 300,
+	    // More extra space:
+	    extraSpace : 40
 	});
-	
-	
-	
-	String.prototype.linkify = function() {
-		return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
-    		return m.link(m);
-  		});
- 	}; 
+
+	var browserName=navigator.appName; 
+	if (browserName=="Microsoft Internet Explorer"){
+	   $('#category').css("display",'none');
+	   $('#select').css("margin-left",'0px');
+	   $('#select').css("margin-top",'6px');
+	}
+	 
+
+	var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
+	$.getJSON(url,function(data){	
+		$.each(data, function(i, item) {
+			$("img#profile").attr("src", item.user["profile_image_url"]);
+			$("#tweets").append( item.text.linkify() + relative_time(item.created_at));
+		});
+    });
+    
+});
+
+
+
+String.prototype.linkify = function() {
+	return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
+		return m.link(m);
+	});
+}; 
  
  
 //FUNCION PARA CALCULAR EL TIEMPO 
@@ -136,7 +136,7 @@ function commentAction() {
 	    	alert('Error, comment area empty');
 	    } else {
 			$("#flash").show();
-			$("#flash").fadeIn(400).html('<img src="/images/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
+			$("#flash").fadeIn(400).html('<img src="/img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
 			$.ajax({
 				type: "POST",
 	 	 		url: "ajaxController.php",
@@ -174,4 +174,51 @@ $(function(){
 //COMBOBOX EN JQUERY
 function updateField(target,selected) {
 	document.getElementById(target).value =$(selected.options[selected.selectedIndex]).html();
+}
+
+
+
+
+//REGISTER SECTION
+
+// When the form is submitted
+function checkUsername(){  
+
+    // Show Gif Spinning Rotator
+    var registerImage = document.getElementById("registerImage");
+    registerImage.setAttribute("src", "../img/ajax-loader.gif");
+    $('#registerImage').show();
+    $('#answer').html('');
+    
+    var name = $("#popup_register1").val();
+
+    var dataObj = ({username : name,method: 'isUsernameFree'});
+        
+    // -- Start AJAX Call --
+    $.ajax({
+    	type: "POST",
+    	url: "ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+            if(result=="valid") {
+                //notify the user that the username is free
+            	registerImage.setAttribute("src", "../img/ok.jpg");
+            	$('#answer').html('Buen nombre');
+            } else {
+        		//notify the user that the username is used.
+        		registerImage.setAttribute("src", "../img/ko.jpg");
+            	$('#answer').html('Ups, está cogido...cachis');
+            }
+        
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                alert('SDR' + xhr.status + "\n" + thrownError);
+        }
+    });
+  
+    // -- End AJAX Call --
+
+    return false;
+
 }
