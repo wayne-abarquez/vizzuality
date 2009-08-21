@@ -181,7 +181,7 @@ class RunnitServices {
 	}
 	
 	public function getProvinces() {
-	    $sql="select * from province";
+	    $sql="select * from province ORDER BY name DESC";
 	    return pg_fetch_all(pg_query($this->conn, $sql));	    
 	}
 	
@@ -267,6 +267,12 @@ class RunnitServices {
     public function getRunsList() {
         $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,province_fk,is_displayed_in_home from run ORDER BY id DESC"; 
 		return pg_fetch_all(pg_query($this->conn, $sql));    
+    }
+    
+    public function getRunDetails($id) {
+        $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.id=$id";
+        $result = pg_query($this->conn, $sql);  
+        return pg_fetch_assoc($result);
     }
 
 
