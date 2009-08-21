@@ -2,7 +2,7 @@
 //FUNCIONES QUE SE REALIZAN CUANDO EL DOCUMENTO ESTA LISTO
   $(document).ready( function() {
   
-  		$('textarea#message').autoResize({
+  		$('textarea').autoResize({
 		    // On resize:
 		    onResize : function() {
 		        $(this).css({opacity:0.8});
@@ -14,7 +14,7 @@
 		    // Quite slow animation:
 		    animateDuration : 300,
 		    // More extra space:
-		    extraSpace : 40
+		    extraSpace : 20
 		});
   
 		var browserName=navigator.appName; 
