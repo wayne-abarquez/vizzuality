@@ -14,7 +14,7 @@
 		    // Quite slow animation:
 		    animateDuration : 300,
 		    // More extra space:
-		    extraSpace : 20
+		    extraSpace : 40
 		});
   
 		var browserName=navigator.appName; 
