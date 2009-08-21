@@ -151,7 +151,7 @@ class RunnitServices {
 	}
 	
 	public function getHighlightedRun() {
-	    $sql="select id,name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users from run as r where r.event_date > now() order by event_date ASC LIMIT 1";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() order by is_displayed_in_home ASC LIMIT 1";
         $result = pg_query($this->conn, $sql);  
         return pg_fetch_assoc($result);
 	}
@@ -162,7 +162,7 @@ class RunnitServices {
             $offset=0;
         }
         
-	    $sql="select id,name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users from run as r where r.event_date > now() AND (name ilike '%$q%' or event_location ilike '%$q%')";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() AND (name ilike '%$q%' or event_location ilike '%$q%')";
 	    if($min>0) {
 	        $sql.=" AND distance_meters >= $min";
 	    }
@@ -176,23 +176,34 @@ class RunnitServices {
 	}
 	
 	public function getNextRuns() {
-	    $sql="select id,name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users from run as r where r.event_date > now() order by event_date ASC limit 4";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() order by event_date ASC limit 4";
 	    return pg_fetch_all(pg_query($this->conn, $sql));     
+	}
+	
+	public function getProvinces() {
+	    $sql="select * from province";
+	    return pg_fetch_all(pg_query($this->conn, $sql));	    
 	}
 	
 	
 	public function createNewRun($name,$event_location,$distance_meters,$distance_text,$event_date,
 	    $category,$awards,$description,$inscription_price,$inscription_location,
-	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon) {
+	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon,$province_id,$is_selected) {
             if (!$_SESSION['logged'] or $_SESSION['user']['is_admin']!='t') {
     	        throw new Exception("user not logged in");
     	    }
     	    
+    	    if($is_selected=='true') {
+    	        $is_selected="true";
+    	    } else {
+    	        $is_selected="false";
+    	    }
+    	    
 	        $sql="INSERT INTO run(name,event_location,distance_meters,distance_text,event_date,category,awards,".
-	            "description, inscription_price,inscription_location,inscription_email,inscription_website,start_point,end_point".
+	            "description, inscription_price,inscription_location,inscription_email,inscription_website,province_fk,is_displayed_in_home,start_point,end_point".
 	            ") VALUES('$name','$event_location',$distance_meters,'$distance_text','$event_date',".
                 "'$category','$awards','$description','$inscription_price','$inscription_location',".
-                "'$inscription_email','$inscription_website'";
+                "'$inscription_email','$inscription_website', $province_id,$is_selected";
                 
                 if($start_point_lat) {
                     $sql.=",GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
@@ -224,12 +235,12 @@ class RunnitServices {
 	    
     	public function updateRun($id,$name,$event_location,$distance_meters,$distance_text,$event_date,
     	    $category,$awards,$description,$inscription_price,$inscription_location,
-    	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon) {
+    	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon, $province_id,$is_selected) {
                 if (!$_SESSION['logged'] or $_SESSION['user']['is_admin']!='t') {
         	        throw new Exception("user not logged in");
         	    }
                 
-        	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website'";
+        	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected";
         	        
         	    if($start_point_lat) {
         	        $sql.=",start_point=GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
