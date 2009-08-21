@@ -75,7 +75,7 @@
 									</div>
 								</div>
 								<div class="inputWhiteButton">
-									<input type="Button" value="Guardar cambios" class="btn">
+									<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Guardar cambios"/>
 								</div>
 							</div>
 							<div class="column last passContainer">
@@ -91,7 +91,7 @@
 									<div class="inputBlue">
 										<label class="roundblue" for="input5"><span><input type="text" name="input5" id="input5"></span></label>
 									</div>
-									<input type="Button" value="Regístrate ahora" class="btn btnblue right">
+									<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Registrate ahora"/>
 								</div>
 							</div>
 						</div>
@@ -116,7 +116,7 @@
 								</div>
 							</div>
 							<div class="column paddingRightContainer last mailAlert">
-								<input type="Button" value="Activar alerta por email" class="btn">
+								<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Activar alerta por email"/>
 							</div>
 						</div>
 					</div>
@@ -174,8 +174,8 @@
 			</div>
 			<div class="column last span-7 pagination countAgo">
 				<div class="column last span-2 pagination btnMargin">
-					<div class="column first span-1 btnJoin"><input type="Button" value="<" class="btn"></div>
-					<div class="column last span-1"><input type="Button" value=">" class="btn"></div>	
+					<div class="column first span-1 btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
+					<div class="column last span-1"><input class="fg-button ui-state-default ui-corner-all" type="submit" value=">"/></div>	
 				</div>
 				<div class="column first span-4 pagination">viendo del 1-4 de 21</div>			
 			</div>
