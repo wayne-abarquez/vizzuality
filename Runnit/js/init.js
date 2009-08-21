@@ -2,21 +2,31 @@
 //FUNCIONES QUE SE REALIZAN CUANDO EL DOCUMENTO ESTA LISTO
   $(document).ready( function() {
   
-  		
-  		
-		
-	    var browserName=navigator.appName; 
-		 if (browserName=="Microsoft Internet Explorer"){
-		  $('#category').css("display",'none');
-		  $('#select').css("margin-left",'0px');
-		  $('#select').css("margin-top",'6px');
-		 }
+  		$('textarea#message').autoResize({
+		    // On resize:
+		    onResize : function() {
+		        $(this).css({opacity:0.8});
+		    },
+		    // After resize:
+		    animateCallback : function() {
+		        $(this).css({opacity:1});
+		    },
+		    // Quite slow animation:
+		    animateDuration : 300,
+		    // More extra space:
+		    extraSpace : 40
+		});
+  
+		var browserName=navigator.appName; 
+		if (browserName=="Microsoft Internet Explorer"){
+		   $('#category').css("display",'none');
+		   $('#select').css("margin-left",'0px');
+		   $('#select').css("margin-top",'6px');
+		}
 		 
-		
-		
+
 		var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
-		$.getJSON(url,
-        function(data){
+		$.getJSON(url,function(data){	
 			$.each(data, function(i, item) {
 				$("img#profile").attr("src", item.user["profile_image_url"]);
 				$("#tweets").append( item.text.linkify() + relative_time(item.created_at));
@@ -25,11 +35,13 @@
         
 	});
 	
+	
+	
 	String.prototype.linkify = function() {
 		return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
-    return m.link(m);
-  });
- }; 
+    		return m.link(m);
+  		});
+ 	}; 
  
  
 //FUNCION PARA CALCULAR EL TIEMPO 
@@ -101,14 +113,14 @@ function showContactBox() {
     
     // obtener posicion central
     var mleft = ( wscr - 500 ) / 2;
-    var mtop = ( hscr - 390 ) / 2;
+    var mtop = ( hscr - 320 ) / 2;
     
     // estableciendo ventana modal en el centro
     $('#simplemodal-container').css("left", mleft+'px');
     $('#simplemodal-container').css("top", mtop+'px');
 	
 	$('#simplemodal-container').css("width",'500px');
-	$('#simplemodal-container').css("height",'390px');
+	$('#simplemodal-container').css("height",'320px');
 	
 };
 

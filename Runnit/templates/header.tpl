@@ -14,9 +14,10 @@
 	<link rel="stylesheet" type="text/css" href="css/contact.css">	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection">
 	
-	<!-- Import jQuery and SimpleModal source files -->
+	<!-- Import JS source files -->
 	<script src='http://code.jquery.com/jquery-latest.pack.js' type='text/javascript'></script>
 	<script src='js/jquery.simplemodal.js' type='text/javascript'></script>
+	<script src='js/autoresize.jquery.min.js' type='text/javascript'></script>	
 	
 	<!-- Contact Form JS and CSS files -->
 	<script src='js/init.js' type='text/javascript'></script>
@@ -126,7 +127,7 @@
 			</div>
 			<div class="margin10 contactArea">
 				<div class="inputTitle">Mensaje</div>
-				<textarea name="textarea1" rows="3" cols="60" class="contactTextArea"></textarea>
+				<textarea name="textarea1" id="message" rows="3" cols="60" class="contactTextArea"></textarea>
 			</div>
 			
 			<div class="margin10 contactArea2">
