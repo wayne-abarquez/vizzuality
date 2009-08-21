@@ -5,8 +5,10 @@
 		<mx:State name="Login">
 			<mx:AddChild position="lastChild">
 				<mx:Canvas x="0" y="0" width="100%" height="100%" backgroundColor="#CCFFFF" backgroundAlpha="0.99">
-					<mx:TextInput id="usernameInput" y="314" horizontalCenter="0" borderStyle="solid" borderThickness="1" cornerRadius="5" textAlign="left" color="#474747" fontStyle="italic" fontWeight="bold" paddingLeft="5"/>
-					<mx:TextInput id="passwordInput" y="370" horizontalCenter="0" displayAsPassword="true" borderStyle="solid" cornerRadius="5" textAlign="left" color="#474747" fontStyle="italic" fontWeight="bold" paddingLeft="5"/>
+					<mx:TextInput id="usernameInput" y="314" horizontalCenter="0" borderStyle="solid" borderThickness="1" cornerRadius="5" textAlign="left" color="#474747" fontStyle="italic" 
+						fontWeight="bold" paddingLeft="5"/>
+					<mx:TextInput id="passwordInput" y="370" horizontalCenter="0" displayAsPassword="true" borderStyle="solid" cornerRadius="5" textAlign="left" color="#474747" 
+						fontStyle="italic" fontWeight="bold" paddingLeft="5" enter="login()"/>
 					<mx:Button y="410" label="Entrar" color="#3B3B3B" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" horizontalCenter="0" click="login()"/>
 					<mx:Label y="353" text="Contraseña" fontWeight="bold" color="#3B3B3B" horizontalCenter="0"/>
 					<mx:Label y="297" text="Usuario" fontWeight="bold" color="#3B3B3B" horizontalCenter="0"/>
@@ -45,12 +47,23 @@
 			private var finishRaceMarker: Marker;
 			[Bindable]private var arrayRaces: Array = new Array();
 			private var markersArray: Array = new Array();
+			[Bindable]private var provincesArray: ArrayCollection;
 			
 			
 			private function init():void {
                 server.addEventListener(ResultEvent.RESULT,onResult);
             	server.addEventListener(FaultEvent.FAULT,onFault);
                 server.getRunsList();
+            }
+            
+            private function getProvinces():void {
+                server.addEventListener(ResultEvent.RESULT,onProvincesResult);
+				server.getProvinces();
+            }
+            
+            private function onProvincesResult(event:ResultEvent):void {
+            	provincesArray = new ArrayCollection(event.result as Array);
+            	server.removeEventListener(ResultEvent.RESULT,onProvincesResult);
             }
             
             private function login():void {
@@ -80,6 +93,7 @@
             	server.removeEventListener(ResultEvent.RESULT,onResult);
             	server.removeEventListener(FaultEvent.FAULT,onFault);
             	arrayRaces = event.result as Array;
+            	getProvinces();
             }
             
             private function onFault (event:FaultEvent):void {
@@ -227,6 +241,14 @@
             	if (arrayRaces[num].inscription_location!=null) inscription_location.text = arrayRaces[num].inscription_location;
             	if (arrayRaces[num].description!=null) description.text = arrayRaces[num].description;
             	if (arrayRaces[num].event_location!=null) race_location.text = arrayRaces[num].event_location; 
+            	if (arrayRaces[num].province_fk!=null)  provincesCombo.selectedIndex = arrayRaces[num].province_fk - 1;
+            	if (arrayRaces[num].is_displayed_in_home!=null) {
+            		if (arrayRaces[num].is_displayed_in_home == 'f') {
+            			selectedRunCheck.selected = false;
+            		} else {
+            			selectedRunCheck.selected = true;
+            		}
+            	}
             	
             	map.clearOverlays();
             	
@@ -265,13 +287,15 @@
             		server.addEventListener(FaultEvent.FAULT, onEditNewRaceFault);
                 	server.createNewRun(race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
                 		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
-                		web.text,(startRaceMarker.getLatLng()).lat(),(startRaceMarker.getLatLng()).lng(),(finishRaceMarker.getLatLng()).lat(),(finishRaceMarker.getLatLng()).lng());
+                		web.text,(startRaceMarker.getLatLng()).lat(),(startRaceMarker.getLatLng()).lng(),(finishRaceMarker.getLatLng()).lat(),
+                		(finishRaceMarker.getLatLng()).lng(), provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f');
             	} else { /*EESTA EDITANDO UNO PREVIO*/
 		        	server.addEventListener(ResultEvent.RESULT,onEditNewRace);
 		        	server.addEventListener(FaultEvent.FAULT,onEditNewRaceFault);
                 	server.updateRun(iden.text,race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
                 		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
-                		web.text,(startRaceMarker.getLatLng()).lat(),(startRaceMarker.getLatLng()).lng(),(finishRaceMarker.getLatLng()).lat(),(finishRaceMarker.getLatLng()).lng());
+                		web.text,(startRaceMarker.getLatLng()).lat(),(startRaceMarker.getLatLng()).lng(),(finishRaceMarker.getLatLng()).lat(),
+                		(finishRaceMarker.getLatLng()).lng(),provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f');
             	}
             }
             
@@ -349,17 +373,18 @@
 				<mx:Label x="10" y="149" text="Premios" width="168" textAlign="right"/>
 				<mx:Label x="10" y="206" text="Precio" width="168" textAlign="right"/>
 				<mx:Label x="10" y="234" text="Lugar inscripción" width="168" textAlign="right"/>
-				<mx:Label x="10" y="262" text="Lugar carrera" width="168" textAlign="right" />
-				<mx:Label x="10" y="290" text="Inicio y final carrera" width="168" textAlign="right"/>
-				<ns1:Map id="map" x="186" y="290" width="666" height="400" mapevent_mapready="onMapReady(event)" 
+				<mx:Label x="10" y="286" text="Ciudad carrera" width="168" textAlign="right" />
+				<mx:Label x="10" y="314" text="Inicio y final carrera" width="168" textAlign="right"/>
+				<ns1:Map id="map" x="186" y="314" width="666" height="400" mapevent_mapready="onMapReady(event)" 
 					key="ABQIAAAAsIunaSEq-72JsQD5i92_2RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSmXGohiWEDHFUoXFZA7xt2aNO4ww"/>
-				<mx:Button x="260" y="301.5" label="Limpiar marcadores" click="cleanOverlay()" alpha="1"/>
-				<mx:Label x="10" y="725" text="Email organización" width="168" textAlign="right"/>
-				<mx:Label x="10" y="755" text="Descripción" width="168" textAlign="right"/>
+				<mx:Button x="260" y="325.5" label="Limpiar marcadores" click="cleanOverlay()" alpha="1"/>
+				<mx:Label x="10" y="749" text="Email organización" width="168" textAlign="right"/>
+				<mx:Label x="10" y="779" text="Descripción" width="168" textAlign="right"/>
 				<mx:HBox top="10" right="40" horizontalAlign="right" height="30">
 					<mx:Button label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)"/>
 				</mx:HBox>
-				<mx:Label x="10" y="698" text="Website organización" width="168" textAlign="right"/>
+				<mx:Label x="10" y="722" text="Website organización" width="168" textAlign="right"/>
+				<mx:CheckBox x="291" y="8" label="¿Carrera destacada?" id="selectedRunCheck"/>
 				<mx:TextInput x="186" y="8" width="78" enabled="false" id="iden"/>
 				<mx:TextInput x="186" y="36" width="255" id="date"/>
 				<mx:TextInput x="186" y="63" width="666" id="race_name"/>
@@ -369,11 +394,13 @@
 				<mx:TextInput x="186" y="147" width="666" height="49" id="awards"/>
 				<mx:TextInput x="186" y="204" width="128" id="price"/>
 				<mx:TextInput x="186" y="232" width="666" id="inscription_location"/>
-				<mx:TextInput id="race_location" x="186" y="260" width="666" enter="searchLocation(race_location.text)"/>
-				<mx:TextInput x="186" y="696" width="255" id="web"/>
-				<mx:TextInput x="186" y="723" width="255" id="inscription_email"/>
-				<mx:TextInput x="186" y="753" width="666" height="157" id="description"/>
-				<mx:Button x="407" y="301.5" label="Deshacer último" alpha="1" click="undo()"/>
+				<mx:Label x="10" y="262" text="Provincia carrera" width="168" textAlign="right" />
+				<mx:TextInput id="race_location" x="186" y="284" width="666" enter="searchLocation(race_location.text)"/>
+				<mx:TextInput x="186" y="720" width="255" id="web"/>
+				<mx:TextInput x="186" y="747" width="255" id="inscription_email"/>
+				<mx:TextInput x="186" y="777" width="666" height="157" id="description"/>
+				<mx:Button x="407" y="325.5" label="Deshacer último" alpha="1" click="undo()"/>
+				<mx:ComboBox x="186" y="260" id="provincesCombo" dataProvider="{provincesArray}" labelField="name"></mx:ComboBox>
             </mx:Canvas>
 
             <mx:Canvas backgroundColor="#D7D7D7">
