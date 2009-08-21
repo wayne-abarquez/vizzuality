@@ -4,7 +4,7 @@
 <html lang="es">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>Runnit</title>
+	<title>Runnity</title>
 	<style type="text/css"></style>
 
 	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
