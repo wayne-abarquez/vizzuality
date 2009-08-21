@@ -187,20 +187,20 @@
 		<div class="column span-8 first">
 			<div class="titleImportant">AL FÍN UN MODO DE VER CON DETALLE LOS RECORRIDOS DE LAS CARRERAS MEDIANTE GOOGLE MAPS</div>
 			<div class="contentImportant">Además podrás comentar las distintas pruebas y conocer las opiniones de los demás.</div>
-			<div class="buttonImportant"><input type="Button" value="Mira la carrera destacada" class="btn btnblue left" /></div>
+			<div class="buttonImportant"><input type="Button" value="Mira la carrera destacada" class="left" ></div>
 		</div>
 		
 		
 		<div class="column span-8">
 			<div class="titleImportant">CREA Y COMPARTE TU PROPIO CALENDARIO DE CARRERAS. ES GRATIS, FÁCIL Y RÁPIDO</div>
 			<div class="contentImportant">Así, podrás saber si van tus compañeros de rodaje, aquel que te pasó en el último sprint o el que siempre lo gana todo.</div>
-			<div class="buttonImportant"><input type="Button" value="Regístrate ahora" class="btn btnblue left" /></div>
+			<div class="buttonImportant"><input type="Button" value="Regístrate ahora" class=" left" onclick="showRegisterBox()"></div>
 		</div>
 		
 		<div class="column span-8 last">
 			<div class="titleImportant">¿CONOCES ALGUNA CARRERA QUE NO ESTÁ EN RUNNY? ENTONCES DINOSLO!</div>
 			<div class="contentImportant">Entre todos conseguiremos crear la mejor red de carreras nacionales y disfrutar aún más del mundo del running.</div>
-			<div class="buttonImportant"><input type="Button" value="Ayudanos con tu carrera" class="btn btnblue left" /></div>
+			<div class="buttonImportant"><input type="Button" value="Ayudanos con tu carrera" class=" left" onclick="showContactBox()"></div>
 		</div>
 	</div>
 

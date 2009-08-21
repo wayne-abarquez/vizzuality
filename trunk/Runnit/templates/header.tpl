@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection">
 	
 	<!-- Import JS source files -->
-	<script src='http://code.jquery.com/jquery-latest.pack.js' type='text/javascript'></script>
+	<script src='js/jquery.js' type='text/javascript'></script>
 	<script src='js/jquery.simplemodal.js' type='text/javascript'></script>
 	<script src='js/autoresize.jquery.min.js' type='text/javascript'></script>	
 	
