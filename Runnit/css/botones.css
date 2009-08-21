@@ -1,3 +1,15 @@
+.fg-button { 
+height: 24px;
+text-decoration:none; 
+cursor:pointer; 
+text-align: center; 
+margin-top: -1px;
+}	
+a.fg-button { float:left; }
+	
+/* remove extra button width in IE */
+button.fg-button { width:auto; overflow:visible; }
+	
 div.rounded_container{
 			/* This background color should have the same background color as your text input */
 		    background-color: #fff;
