@@ -1,5 +1,37 @@
 {include file="header.tpl"} 
-	
+
+<script type="text/javascript" src="js/ajaxupload.3.6.js"></script>
+{literal}
+<script type="text/javascript">
+    $(document).ready(function(){
+        new AjaxUpload('#button2', {
+        	action: 'upload.php',
+        	data : {},
+        	onSubmit : function(file , ext){
+        		//if (ext && new RegExp('^(' + allowed.join('|') + ')$').test(ext)){
+        		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){
+        			/* Setting data */
+        			this.setData({
+        				'user_id': 1
+        			});
+			
+        			$('#example2 .text').text('Uploading ' + file);	
+        		} else {
+			
+        			// extension is not allowed
+        			$('#example2 .text').text('Error: only images are allowed');
+        			// cancel upload
+        			return false;				
+        		}
+
+        	},
+        	onComplete : function(file){
+        		$('#example2 .text').text('Uploaded ' + file);				
+        	}		
+        });
+});/*]]>*/</script>
+{/literal}
+   
 	<div class="span-24 raceContainer" id="race">
 		<div class="column span-16 marginTopBottom">
 			<div class="span-16 navigationList">
@@ -11,6 +43,7 @@
 			<div class="span-16 marginContainer">
 				<div class="column span-3 first">
 					<img src="img/user.jpg"/>
+					<a href="#" id="button2">Subir foto</a>
 				</div>
 				<div class="column span-13 last">
 					<div class="span-13 userCount">
