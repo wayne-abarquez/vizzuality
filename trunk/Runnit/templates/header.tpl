@@ -24,11 +24,51 @@
 	<link type='text/css' href='css/login.css' rel='stylesheet' media='screen'>
 	<link type='text/css' href='css/register.css' rel='stylesheet' media='screen'>
 	
-	<!-- Buttons -->
-	<!--script src='js/btn.js' type='text/javascript'></script -->
+
 	<link type='text/css' href='css/botones.css' rel='stylesheet' media='screen'>
-	
 	<script src="js/corner.js" type="text/javascript"></script>
+	
+	<link type="text/css" href="css/jquery-ui.css" rel="Stylesheet" />	
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/ui_demos.js"></script>
+
+	
+	{literal}
+	<script type="text/javascript">
+	$(function(){
+		//all hover and click logic for buttons
+		$(".fg-button:not(.ui-state-disabled)")
+		.hover(
+			function(){ 
+				$(this).addClass("ui-state-hover"); 
+			},
+			function(){ 
+				$(this).removeClass("ui-state-hover"); 
+			}
+		)
+		.mousedown(function(){
+				$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
+				if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }
+				else { $(this).addClass("ui-state-active"); }	
+		})
+		.mouseup(function(){
+			if(! $(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
+				$(this).removeClass("ui-state-active");
+			}
+		});
+	});
+	</script>
+
+	{/literal}
+	
+	<script type="text/javascript" src="js/DD_roundies.uicornerfix.js"></script>
+	
+	{literal}
+	<script type="text/javascript">
+		$.uicornerfix('6px');
+	</script>
+	{/literal}
+
 
 </head>
 
@@ -54,7 +94,7 @@
 			</div>
 			<div class="forgetFind">
 				<div class="column first forgetPass">¿olvidaste tu contraseña?</div>
-				<input type="Button" value="Entrar" class="btn btnblue right" />			
+				<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Entrar"/>			
 			</div>	
 		</div>
 		
@@ -65,7 +105,7 @@
 		<div class="column span-5 last">
 			<h3 class="registro">¿Aún no estas registrado?</h3>
 			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
-			<input type="Button" value="Mira la carrera destacada" class="btn btnblue right" />
+			<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crea tu cuenta"/>
 		</div>
 	</div>
 	
@@ -98,7 +138,7 @@
 						<label class="roundblue" for="register4"><span><input type="text" name="popup_register4" id="popup_register4"/></span></label>
 					</div>
 				</div>
-				<div><input type="Button" value="Crear mi cuenta" class="btn btnblue right"></div>
+				<div><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crear mi cuenta"/></div>
 			</div>
 			<div class="column last registerRight">
 				<div class="usernameCheck">
@@ -135,7 +175,7 @@
 			</div>
 			
 			<div class="margin10 contactArea2">
-				<input type="Button" value="Crear mi cuenta" class="btn btnblue right">
+				<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crear mi cuenta"/>
 			</div>
 
 		</div>			
@@ -163,7 +203,7 @@
 						<div class="inputSearchFirst">
 			<label class="roundsearch" for="inputsearch"><span><input type="text" id="inputsearch" name="q"></span></label>
 						</div>
-						<div class="buttonSearchFirst"><input type="submit" id="search" value="Buscar"  /></div>
+						<div class="buttonSearchFirst"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
 					</form>
 				</div>
 			</div>
