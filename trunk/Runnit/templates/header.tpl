@@ -25,7 +25,7 @@
 	<link type='text/css' href='css/register.css' rel='stylesheet' media='screen'>
 	
 	<!-- Buttons -->
-	<script src='js/btn.js' type='text/javascript'></script>
+	<!--script src='js/btn.js' type='text/javascript'></script -->
 	<link type='text/css' href='css/botones.css' rel='stylesheet' media='screen'>
 	
 	<script src="js/corner.js" type="text/javascript"></script>
@@ -75,33 +75,37 @@
 		<div>
 			<div class="column first registerLeft">
 				<div class="margin10">
-					<div class="inputTitle">nombre y apellidos</div>
+					<div class="inputTitle">nombre de usuario</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register1"><span><input type="text" name="register1" id="register1"/></span></label>
+						<label class="roundblue" for="register1"><span><input type="text" name="popup_register1" id="popup_register1" onchange="checkUsername()" /></span></label>
 					</div>
 				</div>
 				<div class="margin10">
-					<div class="inputTitle">nombre de usuario</div>
+					<div class="inputTitle">nombre y apellidos</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register2"><span><input type="text" name="register2" id="register2"/></span></label>
+						<label class="roundblue" for="register2"><span><input type="text" name="popup_register2" id="popup_register2" /></span></label>
 					</div>
 				</div>
 				<div class="margin10">
 					<div class="inputTitle">contraseña</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register3"><span><input type="text" name="register3" id="register3"/></span></label>
+						<label class="roundblue" for="register3"><span><input type="password" name="popup_register3" id="popup_register3"/></span></label>
 					</div>
 				</div>
 				<div class="margin10">
 					<div class="inputTitle">email</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register4"><span><input type="text" name="register4" id="register4"/></span></label>
+						<label class="roundblue" for="register4"><span><input type="text" name="popup_register4" id="popup_register4"/></span></label>
 					</div>
 				</div>
 				<div><input type="Button" value="Crear mi cuenta" class="btn btnblue right"></div>
 			</div>
 			<div class="column last registerRight">
-				
+				<div class="usernameCheck">
+					<img style='display:none' id="registerImage" class="column registerImage first">
+					<div id="answer" class="column answerStyle last"></div>
+					<div id="result"></div>
+				</div>		
 			</div>
 		</div>
 		<div class="column conditions phraseGray MarginTopPlus">
@@ -116,13 +120,13 @@
 			<div class="margin10 contactArea">
 				<div class="inputTitle">Nombre y apellidos</div>
 				<div class="inputBlue">
-					<label class="roundblue" for="register1"><span><input type="text" name="register1" id="register1"/></span></label>
+					<label class="roundblue" for="register1"><span><input type="text" name="register1" id="contact1"/></span></label>
 				</div>
 			</div>
 			<div class="margin10 contactArea">
 				<div class="inputTitle">Email</div>
 				<div class="inputBlue">
-					<label class="roundblue" for="register2"><span><input type="text" name="register2" id="register2"/></span></label>
+					<label class="roundblue" for="register2"><span><input type="text" name="register2" id="contact2"/></span></label>
 				</div>
 			</div>
 			<div class="margin10 contactArea">
