@@ -15,7 +15,6 @@
 				</div>
 			</div>
 			
-			
 			<div class="span-16 raceContent1">
 				<h2 class="newsTitle3">Resultados de tu búsqueda (12)</h2>
 				<div class="raceSearchFirst">
@@ -34,13 +33,13 @@
 							<div class="inputSearch">
 			<label class="roundsearch" for="inputsearch3"><span><input type="text" name="inputsearch3" id="inputsearch3"></span></label>
 							</div>
-							<div class="buttonSearch"><input type="Submit" value="Buscar" class="btn btnsearch" /></div>
+							<div class="buttonSearch"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
 						</form>
 					</div>
 					<div class="pagination countAgo countAgo2">
 						<div class="pagination">
-							<div class="column btnJoin"><input type="Button" value="<" class="btn btnsearchBlue"></div>
-							<div class="column"><input type="Button" value=">" class="btn btnsearchBlue"></div>	
+							<div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
+							<div class="column"><input class="fg-button ui-state-default ui-corner-all" type="submit" value=">"/></div>	
 						</div>
 						<div class="column pagination">viendo del <b>1 al 4</b> de 21</div>			
 					</div>
