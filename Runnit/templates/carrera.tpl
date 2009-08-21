@@ -19,13 +19,13 @@
 						<div class="day dayRace">01</div>
 					</div>
 					<div class="span-14 last">
-						<p class="raceTitle">XV Cross popular “Ascenso a la pedriza”</p>
-						<p class="raceDetailsTitle">La pedriza | 1,2km - 10km | <b>18 usuarios van</b>, <a href="" class="special">apúntate</a></p>
+						<p class="raceTitle">{$data.name}</p>
+						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>, <a href="" class="special">apúntate</a></p>
 					</div>
 				</div>
 			</div>
 			
-			<img src="img/race.jpg" class="carrera">
+			<img src="media/run/{$data.id}_big.jpg" class="carrera">
 			
 			<div class="span-16 raceContent">
 			
@@ -34,49 +34,49 @@
 						<h3 class="blue">Datos técnicos</h3>
 						<div class="span-6 databox">
 							<div class="span-2 last distance"><p>Distancia:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>1,2km - 10km,</b> <a href="#map2Container" class="special">ver mapa</a></p></div>
+							<div class="span-4 last distanceInfo"><p><b>{$data.distance_text},</b> <a href="#map2Container" class="special">ver mapa</a></p></div>
 						</div>
 						<div class="span-6 databox">
 							<div class="span-2 last distance"><p>Categorias:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>Todas</b></p></div>
+							<div class="span-4 last distanceInfo"><p><b>{$data.category}</b></p></div>
 						</div>
 						<div class="span-6 databox">
 							<div class="span-2 last distance"><p>Premios:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>Trofeos y premios en metálico para la categoría absoluta</b></p></div>
+							<div class="span-4 last distanceInfo"><p><b>{$data.awards}</b></p></div>
 						</div>
 					</div>
 					<div class="span-6 boxrace last">
 						<h3 class="blue">Inscripciones</h3>
 						<div class="span-6 databox">
 							<div class="span-2 last distance"><p>Precio:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>Gratuita</b></p></div>
+							<div class="span-4 last distanceInfo"><p><b>{$data.inscription_price}</b></p></div>
 						</div>
 						<div class="span-6 databox">
 							<div class="span-2 last distance"><p>Presencial:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>C.C. Xanadú, Tiendas Bikila, Polideportivo municipal “La pedriza”</b></p></div>
+							<div class="span-4 last distanceInfo"><p><b>{$data.inscription_location}</b></p></div>
+						</div>
+						<div class="span-6 databox">
+							<div class="span-2 last distance"><p class="textRace">E-mail:</p></div>
+							<div class="span-4 last distanceInfo"><p><a href="" class="special">{$data.inscription_email}</a></p></div>
 						</div>
 						<div class="span-6 databox noborder">
-							<div class="span-2 last distance"><p class="textRace">E-mail:</p></div>
-							<div class="span-4 last distanceInfo"><p><a href="" class="special">inscripciones@lapedriza.es</a></p></div>
-						</div>
+							<div class="span-2 last distance"><p class="textRace">Web:</p></div>
+							<div class="span-4 last distanceInfo"><p><a href="" class="special">{$data.inscription_web}</a></p></div>
+						</div>						
 					</div>
 				</div>
 
 				<div class="span-10 last">
 					<div class="marginDescription"><h3 class="blue">Descripción</h3></div>
 					<div class="marginDescription">
-						<p class="textRace">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales sed, vehicula sed purus. Nulla ac quam consequat risus interdum aliquam. Duis id elit tellus.</p>
-						<p class="textRace">Suspendisse potenti. Phasellus tempus, velit ut rutrum faucibus, arcu mi feugiat mi, nec mattis leo ipsum vitae sapien. Cras ipsum felis, volutpat ac facilisis at, suscipit sed dui. Vivamus sit amet purus velit, vel cursus ante. Nam nec felis enim. Nulla interdum lorem quis lectus condimentum non vestibulum velit tincidunt. Mauris in tortor augue. Sed odio diam, vehicula non viverra id, dignissim sit amet dolor. Pellentesque eu quam dui. Quisque eu pellentesque sem.</p>
+						<p class="textRace">{$data.description}</p>
 					</div>	
 				</div>	
 					
 				<div id="map2Container" class="span-16 boxraceMap">
 					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
 					<div class="mapStyle marginDescription">
-						<div id="map2"><img src="http://maps.google.com/staticmap?center=40.714728,-73.998672&zoom=14&size=610x250&maptype=mobile\
-&markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc\
-&key=MAPS_API_KEY&sensor=false
-"></div>
+						<div id="map2"><img src="http://maps.google.com/staticmap?size=610x250&maptype=mobile&markers={$data.start_point_lat},{$data.start_point_lon},greens%7C{$data.end_point_lat},{$data.end_point_lon},bluem&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"></div>
 					</div>
 				</div>
 					
@@ -122,10 +122,7 @@
 				<div class="events"> 
 					<div><h2 class="newsTitle">Localización</h2></div>
 					<div id="map" class="mapStyle">
-					<img src="http://maps.google.com/staticmap?center=40.714728,-73.998672&zoom=14&size=270x152&maptype=mobile\
-&markers=40.702147,-74.015794,blues%7C40.711614,-74.012318,greeng%7C40.718217,-73.998284,redc\
-&key=MAPS_API_KEY&sensor=false
-">
+					<img src="http://maps.google.com/staticmap?size=270x152&maptype=mobile&markers={$data.start_point_lat},{$data.start_point_lon},greens%7C{$data.end_point_lat},{$data.end_point_lon},bluem&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA">
 					</div>
 				</div>
 			</div>
