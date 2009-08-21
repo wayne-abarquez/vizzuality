@@ -181,7 +181,7 @@ class RunnitServices {
 	}
 	
 	public function getProvinces() {
-	    $sql="select * from province ORDER BY name DESC";
+	    $sql="select * from province ORDER BY id ASC";
 	    return pg_fetch_all(pg_query($this->conn, $sql));	    
 	}
 	
