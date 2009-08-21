@@ -3,7 +3,7 @@
 class RunnitServices {
 	
 	function __construct() {
-	    $this->conn = pg_connect ("host=localhost dbname=runnit user=postgres password=postgres");
+	    $this->conn = pg_connect ("host=67.23.44.117 dbname=runnit user=postgres password=postgres");
 		
 	}
     
