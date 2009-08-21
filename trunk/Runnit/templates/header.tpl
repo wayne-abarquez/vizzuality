@@ -104,7 +104,7 @@
 				<div class="usernameCheck">
 					<img style='display:none' id="registerImage" class="column registerImage first">
 					<div id="answer" class="column answerStyle last"></div>
-					<div id="result"></div>
+					<div id="result" class="resultRegister"></div>
 				</div>		
 			</div>
 		</div>
