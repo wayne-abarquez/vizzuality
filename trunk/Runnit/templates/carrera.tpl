@@ -108,7 +108,7 @@
 					<div class="marginDescription commentArea">
 						<div class="span-14 titleComents">Anímate y publica tu comentario</div>
 						<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
-						<input type="Button" value="Publicar comentario" class="btn bold">
+						<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Publicar comentario"/>
 					</div>
 				</div>
 				
@@ -175,7 +175,7 @@
 							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
 						</div>
 					</div>
-					<input type="Button" value="Ver tu calendario completo" class="btn right" />
+					<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Ver tu calendario completo"/>
 				</div>
 			</div>
 		
