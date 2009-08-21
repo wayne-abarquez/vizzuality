@@ -4,18 +4,33 @@
 {literal}
 <script type="text/javascript">
     $(document).ready(function(){
-        new AjaxUpload('#button2', {
-        	action: 'upload.php',
+        new AjaxUpload('#buttonUpload', {
+        	action: 'up_avatar.php',
         	data : {},
         	onSubmit : function(file , ext){
-        		//if (ext && new RegExp('^(' + allowed.join('|') + ')$').test(ext)){
         		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){
         			/* Setting data */
         			this.setData({
-        				'user_id': 1
+        				'user_id': 999
         			});
 			
-        			$('#example2 .text').text('Uploading ' + file);	
+        			// change button text, when user selects file			
+        			button.text('Uploading');
+
+        			// If you want to allow uploading only 1 file at time,
+        			// you can disable upload button
+        			this.disable();
+
+        			// Uploding -> Uploading. -> Uploading...
+        			interval = window.setInterval(function(){
+        				var text = button.text();
+        				if (text.length < 13){
+        					button.text(text + '.');					
+        				} else {
+        					button.text('Uploading');				
+        				}
+        			}, 200);
+
         		} else {
 			
         			// extension is not allowed
@@ -26,10 +41,41 @@
 
         	},
         	onComplete : function(file){
-        		$('#example2 .text').text('Uploaded ' + file);				
+        		button.text('Upload');
+
+    			window.clearInterval(interval);
+
+    			// enable upload button
+    			this.enable();
+    						
         	}		
         });
 });/*]]>*/</script>
+
+<style type="text/css">
+.wrapper {
+    	width: 133px;
+    	margin: 0 auto;
+    }
+
+
+div.button {
+	height: 24px;	
+	width: 56px;
+	background: url(img/boton_prueba.png) 0 0;
+	
+	font-size: 14px;
+	color: #C7D92C;
+	text-align: center;
+	padding-top: 4px;
+}
+
+div.button.hover {
+	background: url(img/boton_prueba.png) 0 24px;
+	color: #95A226;	
+}
+
+</style>
 {/literal}
    
 	<div class="span-24 raceContainer" id="race">
@@ -43,7 +89,12 @@
 			<div class="span-16 marginContainer">
 				<div class="column span-3 first">
 					<img src="img/user.jpg"/>
-					<a href="#" id="button2">Subir foto</a>
+					<div class="wrapper">
+            			<div id="buttonUpload" class="button">Upload</div>
+            		</div>
+            		
+					
+                    
 				</div>
 				<div class="column span-13 last">
 					<div class="span-13 userCount">
