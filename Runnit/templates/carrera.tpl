@@ -107,10 +107,8 @@
 				<div class="span-16 boxraceMap">
 					<div class="marginDescription commentArea">
 						<div class="span-14 titleComents">Anímate y publica tu comentario</div>
-						<div>
-							<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
-							<input type="Button" value="Publicar comentario" class="btn bold">
-						</div>
+						<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
+						<input type="Button" value="Publicar comentario" class="btn bold">
 					</div>
 				</div>
 				
