@@ -122,6 +122,18 @@ class RunnitServices {
 	    
 	     
     }
+
+	public function getRunsForBBox($north,$south,$east,$west) {
+		$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and start_point && ST_SetSRID(ST_MakeBox2D(ST_Point($west, $south), ST_Point($east ,$north)),4326)";
+	}
+	
+	public function getAllRuns() {
+		if(!$week) {
+			$week=0;
+		}
+		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now()";
+		return pg_fetch_all(pg_query($this->conn, $sql));  
+	}	
 	
 	public function logout() {
 	    if (!$_SESSION['logged']) {
