@@ -2,39 +2,12 @@
 
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
-		
-		<div class="column span-16 first vipRace">
-			<div class="raceHome">
-				<div class="contentImportantRace">
-					<div class="span-3 dateImpRace">{$highlightedRun.event_date|substr:8:2}/{getMonth month=$highlightedRun.event_date|substr:5:2}/{$highlightedRun.event_date|substr:2:2}</div>
-					<div class="span-15 titleImpRace">{$highlightedRun.name}</div>
-				<div class="span-15 dataImpRace">{$highlightedRun.event_location} | {$highlightedRun.distance_text} | {$highlightedRun.num_users} usuarios van </div>
-				</div>
-				
-			</div>
+		<div class="span-24 title">
+			<p class="titlePage"><b>Runnity</b> es un punto de encuentro entre <b><a href="carrera.php">carreras</a> y atletas.</b></p>
+			<p class="subtitlePage"><b>Utiliza el mapa, <a href="">busca</a>, o <a href="">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
 		</div>
-		
-		<div class="column span-8 last importantRaces">
-			<div class="events"> 
-				<h2 class="newsTitle">Tus próximas carreras</h2>
-			</div>
-			<div class="events">
-				{foreach key=id item=race from=$nextRaces}
-			       <div class="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
-							<div class="day">{$race.event_date|substr:8:2}</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">{$race.name}</a>
-							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
-						</div>
-					</div>
-			    {foreachelse}
-			        <div class="raceDetails">No hay carreras disponibles.</div>    
-			    {/foreach}
-				<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Ver tu calendario completo"/>
-			</div>
+		<div class="span-24 map">
+			<img src="/img/map.jpg">
 		</div>
 	</div>
 		
