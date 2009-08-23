@@ -11,12 +11,15 @@ package {
 	import com.vizzuality.gmaps.RunMarkerCluster;
 	import com.vizzuality.gmaps.RunSingleMarker;
 	
+	import flash.display.LoaderInfo;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 	
 	import rosa.RosaSettings;
 	import rosa.events.RosaEvent;
@@ -31,21 +34,52 @@ package {
 		private var service:ServiceProxy;
 		private var clusterer:Clusterer;
 		private var attachedMarkers:Array;
+		private var paramObj:Object;
+		
+		private var loadingMessage:TextField;
 		
 		public function runnitHomeMap()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP_LEFT;			
+			stage.align = StageAlign.TOP_LEFT;		
+			
+			
+			//Add the loading message
+			loadingMessage = new TextField();
+			var format:TextFormat = loadingMessage.getTextFormat();
+			format.font = 'arial';
+			loadingMessage.defaultTextFormat = format;
+			loadingMessage.text = "Cargando mapa...";
+			loadingMessage.textColor = 0xffffff;
+			//tf.x = -int(tf.textWidth / 2) - 2;
+			//tf.y = -int(tf.textHeight / 2);
+			loadingMessage.x = 400;
+			loadingMessage.y = 150;
+			loadingMessage.mouseEnabled = false;
+			loadingMessage.width = loadingMessage.textWidth + 4;
+			mouseChildren = true;		
+			
+				
 			initMap();
 		}
 		
 		
 		private function initMap():void {
 			map=new Map();
-			map.key="ABQIAAAA2XCui2FzpSGWKrct5KK6RhRcXjnLaBx2ctMiRTh7Mhofu8jzCBQJQ8S8l6RXUyxznpv5HYxfT89CLg";
+			map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
+			
+			paramObj = LoaderInfo(this.root.loaderInfo).parameters;
+			if(paramObj.west!=null) {
+				var bbox:LatLngBounds = new LatLngBounds(
+					new LatLng(paramObj.south,paramObj.west),
+					new LatLng(paramObj.north,paramObj.west));
+				map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));
+			}
+
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(939, 364));
 			addChild(map);
+			addChild(loadingMessage);
 		}
 		
 		private function onMapReady(event:MapEvent):void
@@ -93,7 +127,13 @@ package {
 			attachMarkers();	
 			
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
-			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+			
+			if(paramObj!=null) {
+				map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+			}		
+			
+			
+			removeChild(loadingMessage);	
 			
 		}
 		
