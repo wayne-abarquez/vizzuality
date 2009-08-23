@@ -156,6 +156,12 @@ class RunnitServices {
 	    
 	}
 	
+	public function getAllRunsBBox() {
+		$sql="select xmax(extent(start_point)) as east,ymax(extent(start_point)) as north, xmin(extent(start_point)) as west, ymin(extent(start_point)) as south   from run as r where r.event_date > now()";
+        $result = pg_query($this->conn, $sql);  
+        return pg_fetch_assoc($result);		
+	}
+	
 	
 	public function getLastUsersInscribedToRuns() {
 	    $sql="select u.id as user_id,username, r.name as run_name, r.id as run_id, (select count(id) from users_run where run_fk=r.id) as num_participants from users_run as ur inner join users as u on ur.users_fk=u.id inner join run as r on ur.run_fk=r.id order by ur.id DESC limit 3";
