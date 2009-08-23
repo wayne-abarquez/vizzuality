@@ -1,9 +1,11 @@
 {include file="header.tpl"} 
 
 <script type="text/javascript" src="js/swfobject.js"></script>
+{literal}
 <script type="text/javascript">
 swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9.0.0", "flash/expressInstall.swf");
 </script>
+{/literal}
 
 
 <!-- IMPORTANT RACE AND NEXT RACES -->
