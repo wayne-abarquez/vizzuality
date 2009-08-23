@@ -95,6 +95,36 @@ div.inputSearchFirst{
 
 
 /* FLOAT RACE */
+
+.map{
+	padding-left: 6px;
+}
+
+.title{
+	height: 80px;
+}
+
+.titlePage{
+	font-size: 34px;
+	margin-left: 14px;
+}
+
+.titlePage a{
+	color: #336699;
+	text-decoration: none;
+}
+
+.subtitlePage{
+	font-size: 17px;
+	margin-left: 14px;
+	margin-top: -10px;
+}
+
+.subtitlePage a{
+	color: #336699;
+	text-decoration: none;
+}
+
 div.vipRace {
 	background-color: white;
 	background-image: url(../img/example.jpg);
