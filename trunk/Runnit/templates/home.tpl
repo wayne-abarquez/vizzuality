@@ -1,17 +1,22 @@
 {include file="header.tpl"} 
 
+<script type="text/javascript" src="js/swfobject.js"></script>
+<script type="text/javascript">
+swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9.0.0", "flash/expressInstall.swf");
+</script>
+
+
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
 		<div class="span-24 title">
 			<p class="titlePage"><b>Runnity</b> es un punto de encuentro entre <b><a href="carrera.php">carreras</a> y atletas.</b></p>
 			<p class="subtitlePage"><b>Utiliza el mapa, <a href="">busca</a>, o <a href="">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
 		</div>
-		<div class="span-24 map">
-			<img src="/img/map.jpg">
+		<div class="span-24 map" id="runnityHomeMap">
+			<h1>Necesitas Flash para poder ver el mapa</h1>
+			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
 		</div>
-	</div>
-		
-		
+	</div>	
 	<!-- MORE RACES -->
 	<div class="column first span-16 moreRaces">
 		<div> 
@@ -44,84 +49,27 @@
 				</h2>
 			</div>		
 		</div>
+		{foreach key=id item=race from=$nextRaces}
+			{if $race eq "false"}
+				<div class="span-8 races">No hay proximas carreras.</div> 
+			{else}
+				<div class="column span-8 first races">
+					<div class="column first image">
+						<img src="media/run/{$race.id}_small.jpg" alt="Foto de la carrera {$race.name}"/>	
+					</div>
+					<div class="column span-5 last">
+						<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">{$race.name}</a></div>
+						<div class="raceDateDetails">
+							<div class="raceDetailsStyle"> <b>{$race.event_date}</b> | {$race.province_name} | {$race.event_location}</div>
+							<p class="runnersNumber">{$race.num_users} van</p>
+						</div>
+					</div>
+				</div>		
+			{/if}
+	    {foreachelse}
+	        <div class="span-8 races">No hay proximas carreras.</div> 
+	    {/foreach}			
 		
-		<div class="column span-8 first races">
-			<div class="column first image">
-				<img src="img/raceExample.jpg" alt="exampleImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
-				<div class="raceDateDetails">
-					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
-					<p class="runnersNumber">2 van</p>
-				</div>
-			</div>
-		</div>	
-	
-		<div class="column span-8 last races">
-			<div class="column first image">
-				<img src="img/raceExample.jpg" alt="exampleImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
-				<div class="raceDateDetails">
-					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
-					<p class="runnersNumber">2 van</p>
-				</div>
-			</div>
-		</div>
-		
-		<div class="column span-8 first races">
-			<div class="column first image">
-				<img src="img/raceExample.jpg" alt="exampleImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
-				<div class="raceDateDetails">
-					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
-					<p class="runnersNumber">2 van</p>
-				</div>
-			</div>
-		</div>
-		
-		<div class="column span-8 last races">
-			<div class="column first image">
-				<img src="img/raceExample.jpg" alt="exampleImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
-				<div class="raceDateDetails">
-					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
-					<p class="runnersNumber">2 van</p>
-				</div>
-			</div>
-		</div>
-		
-		<div class="column span-8 first races">
-			<div class="column first image">
-				<img src="img/raceExample.jpg" alt="exampleImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
-				<div class="raceDateDetails">
-					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
-					<p class="runnersNumber">2 van</p>
-				</div>
-			</div>
-		</div>
-		
-		<div class="column span-8 last races">
-			<div class="column first image">
-				<img src="img/raceExample.jpg" alt="exampleImage"/>	
-			</div>
-			<div class="column span-5 last">
-				<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">XVII Carrera solidaria BBVA adsfasdfsadfasdfasdfsd</a></div>
-				<div class="raceDateDetails">
-					<div class="raceDetailsStyle"> <b>21/Ago/09</b> | Madrid | 5km - 10km</div>
-					<p class="runnersNumber">2 van</p>
-				</div>
-			</div>
-		</div>			
 	</div>
 	
 	
