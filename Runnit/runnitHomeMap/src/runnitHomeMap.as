@@ -99,7 +99,7 @@ package {
 		private function downloadData():void {
 			with(RosaSettings) {
 				localTestGatewayURL="http://localhost/amfphp/gateway.php";
-				gatewayURL = "http://localhost/amfphp/gateway.php";
+				gatewayURL = "http://runnity.com/amfphp/gateway.php";
 				
 			}
 			service = new ServiceProxy("RunnitServices");
