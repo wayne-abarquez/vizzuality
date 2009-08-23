@@ -7,7 +7,7 @@ $smarty = new Smarty;
 $services = new RunnitServices;
 
 
-$smarty->assign('highlightedRun',$services->getHighlightedRun());
+//$smarty->assign('highlightedRun',$services->getHighlightedRun());
 $smarty->assign('nextRaces',$services->getNextRuns());
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns());
 
