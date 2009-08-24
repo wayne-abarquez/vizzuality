@@ -108,7 +108,7 @@ class RunnitServices {
 	    $user=array();
 	    $user['id']=$res['last_value'];
 	    $user['username']=$username;
-	    $user['completename']=$projectname;
+	    $user['completename']=$completename;
 	    $user['email']=$email;
 	    return $user;
 	}
