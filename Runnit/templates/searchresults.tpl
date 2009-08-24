@@ -67,7 +67,7 @@
         						<div class="day">{$race.event_date|substr:8:2}</div>
         					</div>
         					<div class="column span-6 last nextRaceComment">
-        						<a href="carrera.php" class="nameRace">{$race.name}</a>
+        						<a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a>
         						<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
         					</div>
         				</div>        			
