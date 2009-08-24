@@ -4,8 +4,7 @@
 <compilerSourcePath/>
 <libraryPath defaultLinkType="1">
 <libraryPathEntry kind="3" linkType="2" path="${PROJECT_FRAMEWORKS}/libs/player/10/playerglobal.swc" useDefaultLinkType="false"/>
-<libraryPathEntry kind="3" linkType="1" path="/Users/jatorre/Desktop/swcs/map_1_16.swc" useDefaultLinkType="false"/>
-<libraryPathEntry kind="3" linkType="1" path="/Users/jatorre/Desktop/swcs/rosa.swc" useDefaultLinkType="false"/>
+<libraryPathEntry kind="1" linkType="1" path="lib"/>
 </libraryPath>
 <sourceAttachmentPath/>
 </compiler>
