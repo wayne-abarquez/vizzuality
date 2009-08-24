@@ -3,7 +3,7 @@
 	
 	<mx:Canvas left="0" right="0" top="0" bottom="200">
 		<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)" width="100%" height="100%"
-    	key="ABQIAAAAsIunaSEq-72JsQD5i92_2RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSmXGohiWEDHFUoXFZA7xt2aNO4ww"/>
+    	key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"/>
 		<mx:TextInput id="searchInput" left="96" top="10" enter="searchLocation(searchInput.text)"/>
 		<mx:Button label="Buscar" left="255" top="10" fillAlphas="[1.0, 1.0, 1.0, 1.0]" click="searchLocation(searchInput.text)"/>
 		<mx:Canvas width="226" height="22" backgroundColor="#FFFFFF" left="328" top="10">
