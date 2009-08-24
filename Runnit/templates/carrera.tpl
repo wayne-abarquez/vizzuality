@@ -61,7 +61,7 @@
 						</div>
 						<div class="span-6 databox noborder">
 							<div class="span-2 last distance"><p class="textRace">Web:</p></div>
-							<div class="span-4 last distanceInfo"><p><a href="" class="special">{$data.inscription_web}</a></p></div>
+							<div class="span-4 last distanceInfo"><p><a href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
 						</div>						
 					</div>
 				</div>
