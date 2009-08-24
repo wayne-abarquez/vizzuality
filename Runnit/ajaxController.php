@@ -67,8 +67,8 @@ if ($_REQUEST['method'] == 'logout') {
 
 
 if ($_REQUEST['method'] == 'register') {
-	/* echo ($services->registerUser('username','name','email','password')); */
-	echo("jamon");
+	$result = $services->registerUser($_REQUEST['username'],$_REQUEST['name'],$_REQUEST['email'],$_REQUEST['password']);
+	echo ($result);
 }
 
 

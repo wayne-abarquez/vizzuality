@@ -268,25 +268,14 @@ function registerUser(){
     	url: "ajaxController.php",
     	data: dataObj,
     	cache: false,
-    	success: function(result){  
+    	success: function(result){ 
+    		$('#registerError').html(''); 
     		var h = 100;
     		$('#registerError').fadeIn(400).html('');  
-    		$('#registerTitle').html('Gracias por registrarte ' + result.username);
+    		$('#registerTitle').html('Gracias por registrarte ' + result[0].username);
     		$('#conditions').hide();
-    		$('#registerForm').html('');
+    		$('#registerForm').html('<div class="margin10"><div class="inputTitle" style="text-align:center;">Gracias por haberte registrado, en breves momentos recibirás un email con tus datos.</div></div>');
 			$('#simplemodal-container').animate({height: h},500);
-			
-			
-
-			/*if(result=="valid") {
-                //notify the user that the username is free
-            	registerImage.setAttribute("src", "../img/ok.jpg");
-            	$('#answer').html('Buen nombre');
-            } else {
-        		//notify the user that the username is used.
-        		registerImage.setAttribute("src", "../img/ko.jpg");
-            	$('#answer').html('Ups, está cogido...cachis');
-            }*/
 
         
     	},
