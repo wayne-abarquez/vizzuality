@@ -168,7 +168,7 @@ div.button.hover {
 									<label class="round" for="input7"><span><input type="text" name="input7" id="input7"></span></label>
 								</div>
 							</div>
-							<div class="column paddingRightContainer last mailAlert">
+							<div class="inputWhite paddingRightContainer">
 								<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Activar alerta por email"/>
 							</div>
 						</div>
