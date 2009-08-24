@@ -59,7 +59,7 @@
 				</div>
         		{foreach key=id item=race from=$results}
         			{if $race eq "false"}
-        				<div class="span-8 races">No hay resultados para la búsqueda.</div> 
+        				<div class="span-9 races"><p class="noResults">No hay resultados para la búsqueda.</p></div> 
         			{else}
         				<div class="raceDetails" id="raceDetails">
         					<div class="column span-1 first date">
@@ -73,7 +73,7 @@
         				</div>        			
         			{/if}
             	    {foreachelse}
-            	        <div class="span-8 races">No hay resultados para la búsqueda.</div> 
+            	        <div class="span-9 races"><p class="noResults">No hay resultados para la búsqueda.</p></div> 
             	    {/foreach}
 				<div class="raceSearchLast">
 					<div class="searchPanel">
