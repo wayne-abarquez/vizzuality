@@ -61,8 +61,14 @@ if ($_REQUEST['method'] == 'login') {
    
 }
 
-if ($_REQUEST['SDRServices.php'] == 'logout') {
+if ($_REQUEST['method'] == 'logout') {
     $services->logout();
+}
+
+
+if ($_REQUEST['method'] == 'register') {
+	/* echo ($services->registerUser('username','name','email','password')); */
+	echo("jamon");
 }
 
 

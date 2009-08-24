@@ -71,21 +71,21 @@ class RunnitServices {
 	    $password=pg_escape_string($password);
 	    
 	    if(strlen($username)<5) {
-	        throw new Exception('Username with not enough characters',101);
+	        throw new Exception('El nombre de usuario debe ser mayor de 5 caracteres.',101);
 	    }
 	    
 	    if(strlen($password)<5) {
-	        throw new Exception('Password with not enough characters',102);
+	        throw new Exception('El password debe ser mayor de 5 caracteres.',102);
 	    }
 	    if(strlen($email)<5) {
-	        throw new Exception('Email with not enough characters',103);
+	        throw new Exception('Tu email es incorrecto.',103);
 	    }	 
 	    
 	    //Check if username or password are in the DB
 	    $sql="SELECT id from users WHERE username='$username'";
 	    $result=pg_query($this->conn, $sql);
 	    if(pg_num_rows($result)>0) {
-	        throw new Exception('Username already registered',104);
+	        throw new Exception('Ese nombre de usuario ya esta registrado.',104);
 	    }	    
 	    	     
 	    
@@ -93,7 +93,7 @@ class RunnitServices {
 	    $sql="SELECT id from users WHERE email='$email'";
 	    $result=pg_query($this->conn, $sql);
 	    if(pg_num_rows($result)>0) {
-	        throw new Exception('Email already registered',105);
+	        throw new Exception('Email ya registrado.',105);
 	    }	     
 	    
 	    $sql="INSERT INTO users(username,pass,completename,email) VALUES('$username','$password','$completename','$email')";

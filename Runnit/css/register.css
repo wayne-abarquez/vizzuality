@@ -64,3 +64,13 @@ div.resultRegister {
 	color: #ffcccc;
 }
 
+.rightButton {
+	padding-right: 12px;
+	padding-top: 10px;
+	float: right;
+}
+
+div.registerError {
+	color: red;
+}
+

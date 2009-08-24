@@ -64,7 +64,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 		</div>
 		{foreach key=id item=race from=$nextRaces}
 			{if $race eq "false"}
-				<div class="span-8 races">No hay proximas carreras.</div> 
+				<div class="span-16">No hay proximas carreras.</div> 
 			{else}
 				{if $smarty.section.race.iteration is not even}
 					<div class="column span-8 first races">
@@ -72,9 +72,9 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 							<img src="media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
-							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">{$race.name}</a></div>
+							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php?id={$race.id}">{$race.name}</a></div>
 							<div class="raceDateDetails">
-								<div class="raceDetailsStyle"> <b>{$race.event_date}</b> | {$race.province_name} | {$race.event_location}</div>
+								<div class="raceDetailsStyle"> <b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}</div>
 								<p class="runnersNumber">{$race.num_users} van</p>
 							</div>
 						</div>
@@ -85,9 +85,9 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 							<img src="media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
-							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">{$race.name}</a></div>
+							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php?id={$race.id}">{$race.name}</a></div>
 							<div class="raceDateDetails">
-								<div class="raceDetailsStyle"> <b>{$race.event_date}</b> | {$race.province_name} | {$race.event_location}</div>
+								<div class="raceDetailsStyle"> <b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}</div>
 								<p class="runnersNumber">{$race.num_users} van</p>
 							</div>
 						</div>

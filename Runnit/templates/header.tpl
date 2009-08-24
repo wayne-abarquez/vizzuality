@@ -108,8 +108,8 @@
 	
 	<!-- REGISTER -->
 	<div id="registerWindow" style='display:none'>
-		<h2 class="registerTitle">Crea tu cuenta en runnit!</h2>
-		<div>
+		<h2 id="registerTitle" class="registerTitle">Crea tu cuenta en runnit!</h2>
+		<div id="registerForm">
 			<div class="column first registerLeft">
 				<div class="margin10">
 					<div class="inputTitle">nombre de usuario</div>
@@ -135,17 +135,20 @@
 						<label class="roundblue" for="register4"><span><input type="text" name="popup_register4" id="popup_register4"/></span></label>
 					</div>
 				</div>
-				<div><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crear mi cuenta"/></div>
+				<div class="rightButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" onclick="javascript: void registerUser()" value="Crear mi cuenta"/></div>
 			</div>
 			<div class="column last registerRight">
 				<div class="usernameCheck">
 					<img style='display:none' id="registerImage" class="column registerImage first">
 					<div id="answer" class="column answerStyle last"></div>
 					<div id="result" class="resultRegister"></div>
-				</div>		
+				</div>	
+				<div class="column last">
+					<div id="registerError" class="registerError"></div>
+				</div>	
 			</div>
 		</div>
-		<div class="column conditions phraseGray MarginTopPlus">
+		<div id="conditions" class="column conditions phraseGray MarginTopPlus">
 			Hacer click en “Crear mi cuenta” implica haber aceptado los términos y condiciones del servicio.	
 		</div>
 	</div>
