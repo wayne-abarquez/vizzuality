@@ -74,3 +74,36 @@ div.registerError {
 	color: red;
 }
 
+div.divalert1{
+	background-image: url(/img/divalert1.jpg);
+	background-repeat: no-repeat;
+	height: 27px;
+	width: 199px;
+	margin-top: 30px;
+	margin-left: 10px;
+}
+
+div.divalert1 p{
+	font-size: 11px;
+	text-align: center;
+	line-height: 25px;
+}
+
+div.divalert2{
+	background-image: url(/img/divalert2.jpg);
+	background-repeat: no-repeat;
+	height: 27px;
+	width: 199px;
+	margin-top: 30px;
+	margin-left: 10px;
+}
+
+div.divalert2 p{
+	font-size: 11px;
+	text-align: center;
+	line-height: 25px;
+}
+
+.inputTitle{
+	width: 199px;
+}
