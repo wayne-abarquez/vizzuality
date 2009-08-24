@@ -219,7 +219,7 @@ class RunnitServices {
             $offset=0;
         }
         
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() AND (name ilike '%$q%' or event_location ilike '%$q%')";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() AND (r.name ilike '%$q%' or event_location ilike '%$q%')";
 	    if($min>0) {
 	        $sql.=" AND distance_meters >= $min";
 	    }
@@ -227,9 +227,23 @@ class RunnitServices {
 	        $sql.=" AND distance_meters <= $max";	        
 	    }
 	    
-	    $sql.=" order by event_date ASC limit 15 offset $offset";
+	    $sqlForCount="SELECT COUNT(id) as num_results FROM ($sql) as s";
+	    
+	    $sql.=" order by event_date ASC limit 20 offset $offset";
         
-        return pg_fetch_all(pg_query($this->conn, $sql));  
+        $results=array();
+        $results['data'] = pg_fetch_all(pg_query($this->conn, $sql));
+        
+        if($results['data']) {
+            $resultCount=pg_query($this->conn, $sqlForCount);
+    	    $resultCount=pg_fetch_assoc($resultCount);
+            $results['count'] =(int)$resultCount['num_results'];            
+        } else {
+            $results['count'] =0;  
+        }
+
+        
+        return $results;  
 	}
 	
 	public function getNextRuns() {

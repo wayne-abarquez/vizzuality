@@ -8,20 +8,20 @@
 			<div class="span-16 column raceTitle">
 				<div class="span-16 navigationList">
 					<ul> 
-						<li><a href="calendario.php">Calendario ></a></li>
-						<li><a href="carrera.php" class="selected">Resultados de tu búsqueda</a></li>
-						<li><a href="#" class="selected">"<b>Carrera popular"</b></a></li>
+						<li><a href="/">Inicio ></a></li>
+						<li><a href="#" class="selected">Resultados de tu búsqueda</a></li>
+						<li><a href="#" class="selected">"<b>{$smarty.request.q}</b>"</a></li>
 					</ul>
 				</div>
 			</div>
 			
 			<div class="span-16 raceContent1">
-				<h2 class="newsTitle3">Resultados de tu búsqueda (12)</h2>
+				<h2 class="newsTitle3">Resultados de tu búsqueda ({$count})</h2>
 				<div class="raceSearchFirst">
 					<div class="searchPanel">
 						<div class="labels">
 							<div class="searchlabel">Localidad, nombre, etc...</div>
-							<div class="searchlabel searchlabel2">Distancia mín / max</div>
+							<div class="searchlabel searchlabel2">Distancia mín / max (metros)</div>
 						</div>
 						<form id="searchForm" method="GET">
 							<div class="inputSearch">
@@ -38,155 +38,57 @@
 					</div>
 					<div class="pagination countAgo countAgo2">
 						<div class="pagination">
-							<div class="column btnJoin">
-							    {if $smarty.request.offset > 0}
-							        <a href="?offset={math equation="max(x-20,0)" x=$smarty.request.offset}">Previous</a>
+							
+							    {if $offset > 0}
+							        <a href="?offset={math equation="max(x-20,0)" x=$offset}">Previous</a>
+							        <div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
 							    {/if}
-							    {if $smarty.request.offset < $count-20}
-							        <a href="?offset={$smarty.request.offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}">Next</a>
+							    {if $offset < $count-20}
+							        <a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}">Next</a>
+							        <div class="column"><input class="fg-button ui-state-default ui-corner-all" type="submit" value=">"/></div>	
                                 {/if}
 							        
-							    <input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
-							<div class="column"><input class="fg-button ui-state-default ui-corner-all" type="submit" value=">"/></div>	
+							    
+							
 						</div>
-						<div class="column pagination">viendo del <b>1 al 4</b> de 21</div>			
+						<div class="column pagination">viendo del <b>{math equation="min(x*20,1)" x=$offset} al {math equation="min((x+1)*20,1)" x=$offset}</b> de {$count}</div>			
 					</div>
 				</div>
-				
 				<div class="dates">
-					<a href="carrera.php" class="nameRace">15- 31 de agosto</a>
+					<a href="carrera.php" class="nameRace">Resultado</a>
 				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="datesmiddle">
-					<a href="carrera.php" class="nameRace">15- 31 de agosto</a>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetails" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
-				<div class="raceDetailsBottom" id="raceDetails">
-					<div class="column span-1 first date">
-						<div class="month">AGO</div>
-						<div class="day">01</div>
-					</div>
-					<div class="column span-6 last nextRaceComment">
-						<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-						<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-					</div>
-				</div>
+        		{foreach key=id item=race from=$results}
+        			{if $race eq "false"}
+        				<div class="span-8 races">No hay resultados para la búsqueda.</div> 
+        			{else}
+        				<div class="raceDetails" id="raceDetails">
+        					<div class="column span-1 first date">
+        						<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+        						<div class="day">{$race.event_date|substr:8:2}</div>
+        					</div>
+        					<div class="column span-6 last nextRaceComment">
+        						<a href="carrera.php" class="nameRace">{$race.name}</a>
+        						<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
+        					</div>
+        				</div>        			
+        			{/if}
+            	    {foreachelse}
+            	        <div class="span-8 races">No hay resultados para la búsqueda.</div> 
+            	    {/foreach}
 				<div class="raceSearchLast">
 					<div class="searchPanel">
 						<div class="pagination countAgo">
 						<div class="pagination">
-							<div class="column btnJoin"><input type="Button" value="<" class="btn btnsearchBlue"></div>
-							<div class="column"><input type="Button" value=">" class="btn btnsearchBlue"></div>	
+						    {if $offset > 0}
+						        <a href="?offset={math equation="max(x-20,0)" x=$offset}">Previous</a>
+						        <div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
+						    {/if}
+						    {if $offset < $count-20}
+						        <a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}">Next</a>
+						        <div class="column"><input class="fg-button ui-state-default ui-corner-all" type="submit" value=">"/></div>	
+                            {/if}
 						</div>
-						<div class="column pagination">viendo del <b>1 al 4</b> de 21</div>			
+							<div class="column pagination">viendo del <b>{math equation="min(x*20,1)" x=$offset} al {math equation="min((x+1)*20,c)" x=$offset c=$count}</b> de {$count}</div>
 					</div>
 					</div>
 				</div>
@@ -209,8 +111,8 @@
             			{else}		    				    
         					<div class="raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
-        							<div class="month">AGO</div>
-        							<div class="day">01</div>
+        							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+        							<div class="day">{$race.event_date|substr:8:2}</div>
         						</div>
         						<div class="column span-6 last nextRaceComment">
         							<a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a>
