@@ -340,6 +340,12 @@ class RunnitServices {
 
     }
     
+    public function getTrackGeometry($id) {
+        $sql="select x((ST_Dump(track_geom)).geom) as lon, y((ST_Dump(track_geom)).geom) as lat  from run where id=$id";
+        return pg_fetch_all(pg_query($this->conn, $sql)); 
+    }
+    
+    
     public function updateRunGeometry($points,$id) {
         $wkt="MULTIPOINT(";
         foreach ($points as &$p) {
