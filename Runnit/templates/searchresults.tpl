@@ -41,15 +41,12 @@
 							
 							    {if $offset > 0}
 							        <a href="?offset={math equation="max(x-20,0)" x=$offset}">Previous</a>
-							        <div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
+							        <div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="button" value="<"/></div>
 							    {/if}
 							    {if $offset < $count-20}
 							        <a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}">Next</a>
-							        <div class="column"><input class="fg-button ui-state-default ui-corner-all" type="submit" value=">"/></div>	
+							        <div class="column"><input class="fg-button ui-state-default ui-corner-all" type="button" value=">"/></div>	
                                 {/if}
-							        
-							    
-							
 						</div>
 						<div class="column pagination">viendo del <b>{math equation="min(x*20,1)" x=$offset} al {math equation="min((x+1)*20,1)" x=$offset}</b> de {$count}</div>			
 					</div>
@@ -121,7 +118,7 @@
         					</div>
             			{/if}
                 	    {foreachelse}
-                	        <div class="span-8 races">No hay proximas carreras.</div> 
+                	        <div class="span-8 races"><p class="noRaces">No hay proximas carreras.</p></div> 
                 	    {/foreach}					
 				</div>				
 			</div>		
