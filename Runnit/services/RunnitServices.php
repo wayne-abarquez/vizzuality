@@ -221,7 +221,7 @@ class RunnitServices {
                 $run['thumbnail'] = $run['id']."_small.jpg";
             } else {
                 //no image for the run, select random
-                $run['thumbnail'] = "generic/".rand(1,5)."_small.jpg";
+                $run['thumbnail'] = "generic/".rand(1,4)."_small.jpg";
             }
         }
 	    
