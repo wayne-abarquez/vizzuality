@@ -11,12 +11,12 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
 		<div class="span-24 title">
-			<p class="titlePage"><b>Runnity</b> es un punto de encuentro entre <b><a href="carrera.php">carreras</a> y atletas.</b></p>
+			<p class="titlePage"><b>Runnity</b> es un punto de encuentro entre <b><a href="carrera.php">carreras</a></b> y <b>atletas.</b></p>
 			<p class="subtitlePage"><b>Utiliza el mapa, <a href="">busca</a>, o <a href="">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
 		</div>
 		<div class="span-24 map" id="runnityHomeMap">
 			<h1>Necesitas Flash para poder ver el mapa</h1>
-			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>			
 		</div>
 	</div>	
 	<!-- MORE RACES -->
@@ -25,8 +25,8 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 			<div>
 				<h2 class="column span-16 first newsTitle">
 					<div class="first span-11">
-						<div class="column first">Más carreras en</div>
-						<div id="containerStates" class="column last">
+						<div class="column first">Más carreras en Madrid, <a href="#" class="seeAll">ver todas.</a></div>
+						<!--<div id="containerStates" class="column last">
 							<form class="form" method="get" action="">
 								<input type="text" disabled="" class="fauxselect s4 state" id="category" value="Madrid" name="category"/>
 								<select id="select" class="s4 hidden" onchange="javascript:updateField('category',this);" name="cat">
@@ -40,7 +40,7 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 									<option value="">Gerona</option>
 								</select>
 							</form>
-						</div>
+						</div>-->
 					</div>
 					<div class=" last span-5 feed">
 						<div class="column fisrt span-4 feedText">suscríbete</div>
@@ -55,6 +55,8 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 			{if $race eq "false"}
 				<div class="span-8 races">No hay proximas carreras.</div> 
 			{else}
+				{if }
+				
 				<div class="column span-8 first races">
 					<div class="column first image">
 						<img src="media/run/{$race.id}_small.jpg" alt="Foto de la carrera {$race.name}"/>	
