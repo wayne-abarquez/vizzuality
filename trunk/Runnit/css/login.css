@@ -53,11 +53,18 @@ div.forgetPass {
 	font-size: 10px;
 	font-weight: bold;
 	color: #336699;
-	vertical-align: middle;
+	float: left;
+	width: 130px;
+	margin-top: 3px;
+}
+
+div.loginButton {
+	float: right;
 }
 
 div.forgetFind {
 	margin-top: 5px;
+	width: 200px;
 }
 
 div.lastColumn {
@@ -83,6 +90,25 @@ div.registerText {
 	line-height: 16px;
 }
 
-div.loginButton {
+div.loginImage{
+	margin-top: 0px;
+	background-image: url(../img/login.jpg);
+	background-repeat: no-repeat;
 	float: right;
+	height: 18px;
+	margin-right: -19px;
+}
+
+div.loginText {
+	text-align: left;
+	padding-left: 30px;
+}
+
+.registroLoginButton{
+	padding-top: 10px;
+	float: right;
+}
+
+.registro{
+	padding-top: 48px;
 }
