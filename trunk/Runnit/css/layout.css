@@ -706,7 +706,18 @@ div.btnJoin {
 
 .inputWhiteButton{
 	margin-top: 2px; 
-	margin-right: -6px;
+	margin-right: -8px;
+	float: right;
+}
+
+.inputBlueButton{
+	margin-top: 2px; 
+	margin-right: -2px;
+	float: right;
+}
+
+.uploadButton{
+	margin-left: 10px;
 }
 
 input.textInputRadio {
