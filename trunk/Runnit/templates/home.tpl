@@ -11,8 +11,8 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
 		<div class="span-24 title">
-			<p class="titlePage"><b>Runnity</b> es un punto de encuentro entre <b><a href="carrera.php">carreras</a></b> y <b>atletas.</b></p>
-			<p class="subtitlePage"><b>Utiliza el mapa, <a href="">busca</a>, o <a href="">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
+			<p class="titlePage"><b>Runnity</b> es un punto de encuentro entre <b><a href="searchresults.php">carreras</a></b> y <b>atletas.</b></p>
+			<p class="subtitlePage"><b>Utiliza el mapa, <a href="searchresults.php">busca</a>, o <a href="javascript: void showRegisterBox()">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
 		</div>
 		<div class="span-24 map" id="runnityHomeMap">
 			<h1>Necesitas Flash para poder ver el mapa</h1>
