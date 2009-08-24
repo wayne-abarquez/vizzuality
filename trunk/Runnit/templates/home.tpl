@@ -92,7 +92,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 			<h2 class="newsTitle">Últimos valientes</h2>
 		</div>
 			{foreach key=id item=person from=$runners}
-				{if $person eq "false"}
+				{if $person eq 'f'}
 					<div class="span-8 races">No hay valientes.</div> 
 				{else}
 					<div class="span-8 races">
