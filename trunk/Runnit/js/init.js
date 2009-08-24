@@ -173,9 +173,9 @@ $(function(){
 
 
 //COMBOBOX EN JQUERY
-function updateField(target,selected) {
+/*function updateField(target,selected) {
 	document.getElementById(target).value =$(selected.options[selected.selectedIndex]).html();
-}
+}*/
 
 
 
@@ -224,8 +224,6 @@ function checkUsername(){
 }
 
 function registerUser(){  
-
-    
     
     //Hacer comprobaciones -> ningun campo blanco - contraseña mayor de 7 - email correcto -> Registro()
     var username = $("#popup_register1").val();
@@ -330,3 +328,4 @@ function echeck(str) {
 
 		 return true					
 }
+

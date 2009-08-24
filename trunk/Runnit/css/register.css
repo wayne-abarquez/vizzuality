@@ -71,6 +71,7 @@ div.resultRegister {
 }
 
 div.registerError {
+	padding-top: 20px;
 	color: red;
 }
 
@@ -79,8 +80,7 @@ div.divalert1{
 	background-repeat: no-repeat;
 	height: 27px;
 	width: 199px;
-	margin-top: 30px;
-	margin-left: 10px;
+	margin-top: 32px;
 }
 
 div.divalert1 p{
@@ -94,8 +94,7 @@ div.divalert2{
 	background-repeat: no-repeat;
 	height: 27px;
 	width: 199px;
-	margin-top: 30px;
-	margin-left: 10px;
+	margin-top: 28px;
 }
 
 div.divalert2 p{
@@ -106,4 +105,18 @@ div.divalert2 p{
 
 .inputTitle{
 	width: 199px;
+}
+
+div.divalert3{
+	background-image: url(/img/divalert1.jpg);
+	background-repeat: no-repeat;
+	height: 27px;
+	width: 199px;
+	margin-top: 28px;
+}
+
+div.divalert3 p{
+	font-size: 11px;
+	text-align: center;
+	line-height: 25px;
 }
