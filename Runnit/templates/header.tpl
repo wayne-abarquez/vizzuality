@@ -90,8 +90,8 @@
 				</div>
 			</div>
 			<div class="forgetFind">
-				<div class="column first forgetPass">¿olvidaste tu contraseña?</div>
-				<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Entrar"/>			
+			<div class="forgetPass">¿olvidaste tu contraseña?</div>
+			<div class="loginButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Entrar"/></div>	
 			</div>	
 		</div>
 		
@@ -100,9 +100,9 @@
 		</div>
 		
 		<div class="column span-5 last">
-			<h3 class="registro">¿Aún no estas registrado?</h3>
-			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
-			<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crea tu cuenta"/>
+		<h3 class="registro">¿Aún no estas registrado?</h3>
+		<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
+		<div class="registroLoginButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crea tu cuenta"/></div>
 		</div>
 	</div>
 	
@@ -174,16 +174,12 @@
 				<textarea name="textarea1" id="message" rows="3" cols="60" class="contactTextArea"></textarea>
 			</div>
 			
-			<div class="margin10 contactArea2">
-				<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crear mi cuenta"/>
+			<div class="margin10 contactArea">
+				<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Enviar mensaje"/>
 			</div>
 
 		</div>			
 	</div>
-	
-	
-	
-	
 	
 	<!-- HEADER -->
 	<div class="span-24 header">
