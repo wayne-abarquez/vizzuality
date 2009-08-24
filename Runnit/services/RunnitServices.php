@@ -296,7 +296,7 @@ class RunnitServices {
                     $sql.=",null";
                 }
                 if($end_point_lat) {
-                    $sql.=", GeomFromText('POINT($end_point_lon $end_point_lat)',4326))";
+                    $sql.=", GeomFromText('POINT($end_point_lon $end_point_lat)',4326)";
                 }else {
                     $sql.=",null";
                 }              

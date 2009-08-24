@@ -13,7 +13,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
 		<div class="span-24 title">
-			<p class="titlePage"><b>Runnity</b> es un punto de encuentro entre <b><a href="searchresults.php">carreras</a></b> y <b>atletas.</b></p>
+			<p class="titlePage">Runnity es un punto de encuentro entre <b><a href="searchresults.php">carreras</a></b> y <b>atletas.</b></p>
 			<p class="subtitlePage"><b>Utiliza el mapa, <a href="searchresults.php">busca</a>, o <a href="javascript: void showRegisterBox()">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
 		</div>
 		<div class="span-24 map" id="runnityHomeMap">
@@ -37,21 +37,6 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 				<h2 class="column span-16 first newsTitle">
 					<div class="first span-11">
 						<div class="column first">Más carreras en Madrid, <a href="#" class="seeAll">ver todas.</a></div>
-						<!--<div id="containerStates" class="column last">
-							<form class="form" method="get" action="">
-								<input type="text" disabled="" class="fauxselect s4 state" id="category" value="Madrid" name="category"/>
-								<select id="select" class="s4 hidden" onchange="javascript:updateField('category',this);" name="cat">
-									<option selected="selected" value="">Madrid</option>
-									<option value="">Murcia</option>
-									<option value="">Ciudad Real</option>
-									<option value="">Valencia</option>
-									<option value="">Barcelona</option>
-									<option value="">Lerida</option>
-									<option value="">Tarragona</option>
-									<option value="">Gerona</option>
-								</select>
-							</form>
-						</div>-->
 					</div>
 					<div class=" last span-5 feed">
 						<div class="column fisrt span-4 feedText">suscríbete</div>

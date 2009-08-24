@@ -203,11 +203,11 @@ function checkUsername(){
     	success: function(result){
             if(result=="valid") {
                 //notify the user that the username is free
-            	registerImage.setAttribute("src", "../img/ok.jpg");
+            	registerImage.setAttribute("src", "../img/ok.png");
             	$('#answer').html('Buen nombre');
             } else {
         		//notify the user that the username is used.
-        		registerImage.setAttribute("src", "../img/ko.jpg");
+        		registerImage.setAttribute("src", "../img/ko.png");
             	$('#answer').html('Ups, está cogido...cachis');
             }
         
