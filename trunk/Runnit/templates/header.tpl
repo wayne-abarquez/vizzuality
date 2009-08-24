@@ -159,7 +159,7 @@
 		<h2 class="registerTitle">Sugerencias, dudas... escríbenos!</h2>
 		<div>
 			<div class="margin10 contactArea">
-				<div class="inputTitle">Nombre y apellidos</div>
+				<div class="inputTitle">Nombre</div>
 				<div class="inputBlue">
 					<label class="roundblue" for="register1"><span><input type="text" name="register1" id="contact1"/></span></label>
 				</div>
