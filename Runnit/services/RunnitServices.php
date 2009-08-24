@@ -195,7 +195,21 @@ class RunnitServices {
 	
 	public function getNextRuns() {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() order by event_date ASC limit 4";
-	    return pg_fetch_all(pg_query($this->conn, $sql));     
+	    
+	    $result = pg_fetch_all(pg_query($this->conn, $sql));
+	    
+	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
+	    foreach ($result as &$run) {
+	        $targetPicture=getcwd()."/../media/run/".$run['id']."_small.jpg";
+            if (file_exists($targetPicture)) {
+                $run['thumbnail'] = $run['id']."_small.jpg";
+            } else {
+                //no image for the run, select random
+                $run['thumbnail'] = "generic/".rand(1,5)."_small.jpg";
+            }
+        }
+	    
+	    return $result;   
 	}
 	
 	public function getProvinces() {

@@ -58,7 +58,7 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 				{if $smarty.section.race.iteration is not even}
 					<div class="column span-8 first races">
 						<div class="column first image">
-							<img src="media/run/{$race.id}_small.jpg" alt="Foto de la carrera {$race.name}"/>	
+							<img src="media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
 							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">{$race.name}</a></div>
@@ -71,7 +71,7 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 				{else}
 					<div class="column span-8 last races">
 						<div class="column first image">
-							<img src="media/run/{$race.id}_small.jpg" alt="Foto de la carrera {$race.name}"/>	
+							<img src="media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
 							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php">{$race.name}</a></div>
