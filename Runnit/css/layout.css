@@ -815,7 +815,7 @@ div.raceDetailsBottom {
 	height: 30px;
 	background-color: #e8e8e8;
 	padding: 0px 0px 0px 10px;
-	margin: 0px 0px 10px 0px;
+	margin: 0px 0px 0px 0px;
 	border-bottom: dotted #666666 1px;
 	line-height: 32px;
 }
@@ -848,4 +848,10 @@ div.raceDetailsBottom {
 	padding-top: 10px;
 	font-size: 20px;
 	color: #336699;
+}
+
+.noRaces{
+	font-size: 18px;
+	color: #336699;
+	margin-top: 20px;
 }
