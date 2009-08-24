@@ -89,9 +89,9 @@ div.button.hover {
 			<div class="span-16 marginContainer">
 				<div class="column span-3 first">
 					<img src="img/user.jpg"/>
-					<div class="wrapper">
-            			<div id="buttonUpload" class="button">Upload</div>
-            		</div>
+					<div class="uploadButton">
+						<input class="fg-button ui-state-default ui-corner-all" type="button" value="Subir foto"/>
+					</div>
             		
 					
                     
@@ -142,7 +142,9 @@ div.button.hover {
 									<div class="inputBlue">
 										<label class="roundblue" for="input5"><span><input type="text" name="input5" id="input5"></span></label>
 									</div>
-									<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Registrate ahora"/>
+									<div class="inputBlueButton">
+										<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Registrate ahora"/>
+									</div>
 								</div>
 							</div>
 						</div>
