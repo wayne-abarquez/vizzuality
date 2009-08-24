@@ -145,7 +145,7 @@
 				</div>	
 				<div id="alert1" class="divalert1"><p>Así te conocerán los demás usuarios</p></div>
 				<div id="alert2" class="divalert2"><p>5 o más caracteres</p></div>
-				<div id="alert3" class="divalert3" style="display:none"><p>Para recibir alertas y notificaciones</p></div>
+				<div id="alert3" class="divalert3"><p>Para recibir alertas y notificaciones</p></div>
 				<div id="registerError" class="registerError"></div>
 			</div>
 		</div>
