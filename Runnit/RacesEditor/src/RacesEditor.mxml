@@ -279,7 +279,7 @@
 				map.setCenter(directionsBounds.getCenter());
 				map.setZoom(map.getBoundsZoomLevel(directionsBounds));
             }
-            
+             
             
             private function saveData (id: String = null): void {
             	if (id==null) /* ESTA CREANDO UNO NUEVO */ {
@@ -376,7 +376,7 @@
 				<mx:Label x="10" y="286" text="Ciudad carrera" width="168" textAlign="right" />
 				<mx:Label x="10" y="314" text="Inicio y final carrera" width="168" textAlign="right"/>
 				<ns1:Map id="map" x="186" y="314" width="666" height="400" mapevent_mapready="onMapReady(event)" 
-					key="ABQIAAAAsIunaSEq-72JsQD5i92_2RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSmXGohiWEDHFUoXFZA7xt2aNO4ww"/>
+					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"/>
 				<mx:Button x="260" y="325.5" label="Limpiar marcadores" click="cleanOverlay()" alpha="1"/>
 				<mx:Label x="10" y="749" text="Email organización" width="168" textAlign="right"/>
 				<mx:Label x="10" y="779" text="Descripción" width="168" textAlign="right"/>
