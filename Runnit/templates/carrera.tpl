@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			
-			<img src="media/run/{$data.id}_big.jpg" class="carrera">
+			<img src="media/run/{$data.big_picture}" class="carrera">
 			
 			<div class="span-16 raceContent">
 			
@@ -180,42 +180,26 @@
 			<div class="span-8 moreRaces">
 				<div class="events"> 
 					<h2 class="newsTitle">Últimos valientes</h2>	
-					<div class="races">
-						<div class="column first image">
-							<img src="img/user.jpg"/>	
-						</div>
-						<div class="column last">
-							<div class="detailsUser">
-								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
-								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
-							</div>
-							<div><p class="runnersNumber">2 van, <a href="">apúntate con él</a></p></div>
-						</div>
-					</div>
-					<div class="races">
-						<div class="column first image">
-							<img src="img/user.jpg"/>	
-						</div>
-						<div class="column last">
-							<div class="detailsUser">
-								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
-								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
-							</div>
-							<div><p class="runnersNumber">2 van, <a href="">apúntate con él</a></p></div>
-						</div>
-					</div>
-					<div class="races">
-						<div class="column first image">
-							<img src="img/user.jpg"/>	
-						</div>
-						<div class="column last">
-							<div class="detailsUser">
-								<div class="nameUser"><a class="nameRace" href="#">JCorrea</a></div>
-								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
-							</div>
-							<div><p class="runnersNumber" >2 van, <a href="">apúntate con él</a></p></div>
-						</div>
-					</div>
+					{foreach key=id item=person from=$runners}
+    				{if $person eq false}
+    					<div class="span-8 races">No hay valientes.</div> 
+    				{else}					
+    					<div class="races">
+    						<div class="column first image">
+    							<img src="media/avatar/{$person.avatar}"/>	
+    						</div>
+    						<div class="column last">
+    							<div class="detailsUser">
+    								<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
+    								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
+    							</div>
+    							<div><p class="runnersNumber"><a href="">apúntate con él</a></p></div>
+    						</div>
+    					</div>
+        			{/if}
+        		    {foreachelse}
+        		        <div class="span-8 races">No hay valientes.</div>    
+        		    {/foreach}					
 				</div>
 			</div>	
 		</div>

@@ -163,26 +163,32 @@ class RunnitServices {
 	}
 	
 	
-	public function getLastUsersInscribedToRuns() {
-	    $sql="select u.id as user_id,username, r.name as run_name, r.id as run_id, (select count(id) from users_run where run_fk=r.id) as num_participants from users_run as ur inner join users as u on ur.users_fk=u.id inner join run as r on ur.run_fk=r.id order by ur.id DESC limit 3";
-	    
+	public function getLastUsersInscribedToRuns($runId=0) {
+	    if($runId==0) {
+    	    $sql="select u.id as user_id,username, r.name as run_name, r.id as run_id, (select count(id) from users_run where run_fk=r.id) as num_participants from users_run as ur inner join users as u on ur.users_fk=u.id inner join run as r on ur.run_fk=r.id order by ur.id DESC limit 3";	        
+	    } else {
+	        $sql="select u.id as user_id,username, r.name as run_name, r.id as run_id, (select count(id) from users_run where run_fk=r.id) as num_participants from users_run as ur inner join users as u on ur.users_fk=u.id inner join run as r on ur.run_fk=r.id where ur.run_fk= $runId order by ur.id DESC limit 3";
+	    }
 	    //Check if the user has avatars or not
 	    $result = pg_fetch_all(pg_query($this->conn, $sql));
 	    
 	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
-	    foreach ($result as &$user) {
-	        $targetPicture=getcwd()."/../media/avatar/".$user['id'].".jpg";
-            if (file_exists($targetPicture)) {
-                $user['avatar'] = $run['id'].".jpg";
-            } else {
-                //no image for the run, select random
-                $user['avatar'] = "0.jpg";
-            }
-        }
+	    if($result) {
+    	    foreach ($result as &$user) {
+    	        $targetPicture=getcwd()."/../media/avatar/".$user['id'].".jpg";
+                if (file_exists($targetPicture)) {
+                    $user['avatar'] = $run['id'].".jpg";
+                } else {
+                    //no image for the run, select random
+                    $user['avatar'] = "0.jpg";
+                }
+            }	        
+	    }
+
 	    
 	    return $result;	    
 	    
-	}
+	}	
 	
 	public function getHighlightedRun() {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() order by is_displayed_in_home ASC LIMIT 1";
@@ -320,7 +326,17 @@ class RunnitServices {
     public function getRunDetails($id) {
         $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.id=$id";
         $result = pg_query($this->conn, $sql);  
-        return pg_fetch_assoc($result);
+        $run = pg_fetch_assoc($result);
+        
+        $targetPicture=getcwd()."/../media/run/".$run['id']."_big.jpg";
+        if (file_exists($targetPicture)) {
+            $run['big_picture'] = $run['id']."_big.jpg";
+        } else {
+            //no image for the run, select random
+            $run['big_picture'] = "generic/".rand(1,4)."_big.jpg";
+        }
+        
+        return $run;
     }
 
 
