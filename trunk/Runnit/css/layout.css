@@ -644,6 +644,10 @@ div.alertLabel{
 	color: #336699;
 }
 
+.inputTitle{
+	float: left;
+}
+
 div.passContainer {
 	background-color: #b5e6f3;
 	height: 175px;
