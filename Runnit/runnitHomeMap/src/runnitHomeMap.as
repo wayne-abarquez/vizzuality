@@ -25,6 +25,7 @@ package {
 	import rosa.events.RosaEvent;
 	import rosa.services.ServiceProxy;
 
+	[SWF(backgroundColor=0xC1E5F1, width=939, height=364)]
 	public class runnitHomeMap extends Sprite
 	{
 		
