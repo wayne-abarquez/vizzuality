@@ -49,7 +49,7 @@
 			private var markersArray: Array = new Array();
 			[Bindable]private var provincesArray: ArrayCollection;
 			
-			
+			 
 			private function init():void {
                 server.addEventListener(ResultEvent.RESULT,onResult);
             	server.addEventListener(FaultEvent.FAULT,onFault);
@@ -74,7 +74,7 @@
             
             private function onLoginOK(ev: ResultEvent):void {
             	server.removeEventListener(ResultEvent.RESULT,onLoginOK);
-            	server.removeEventListener(ResultEvent.RESULT,onLoginKO);
+            	server.removeEventListener(FaultEvent.FAULT,onLoginKO);
             	if(ev.result.is_admin=='t') {
 	            	this.currentState = "";            		
             	} else {
@@ -84,8 +84,8 @@
             
             private function onLoginKO(ev: FaultEvent):void {
             	server.removeEventListener(ResultEvent.RESULT,onLoginOK);
-            	server.removeEventListener(ResultEvent.RESULT,onLoginKO);
-            	Alert.show("El login es incorrecto");
+            	server.removeEventListener(FaultEvent.FAULT,onLoginKO);
+            	Alert.show("El login es incorrecto2");
             	
             }
             
