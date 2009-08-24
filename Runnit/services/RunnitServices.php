@@ -339,6 +339,19 @@ class RunnitServices {
             return null;
 
     }
+    
+    public function updateRunGeometry($points,$id) {
+        $wkt="MULTIPOINT(";
+        foreach ($points as &$p) {
+            $wkt.="(".$p['lon']." ". $p['lat'] ."),";
+        }
+        $wkt=substr($wkt,0,-1);
+        $wkt.=")";
+        $sql="UPDATE run SET track_geom=geomFromText('$wkt',4326) WHERE id=$id";
+        $result= pg_query($this->conn, $sql);
+        return null;        
+        
+    }
     	    
     public function removeRun($id) {
         if (!$_SESSION['logged'] or $_SESSION['user']['is_admin']!='t') {
