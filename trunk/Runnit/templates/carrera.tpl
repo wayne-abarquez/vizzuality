@@ -15,8 +15,8 @@
 				
 				<div class="span-16 first">
 					<div class="span-1 first calendar">
-						<div class="month monthRace">AGO</div>
-						<div class="day dayRace">01</div>
+						<div class="month monthRace">{getMonth month=$data.event_date|substr:5:2}</div>
+						<div class="day dayRace">{$data.event_date|substr:8:2}</div>
 					</div>
 					<div class="span-14 last">
 						<p class="raceTitle">{$data.name}</p>
@@ -140,8 +140,8 @@
             			{else}		    				    
         					<div class="raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
-        							<div class="month">AGO</div>
-        							<div class="day">01</div>
+        							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+        							<div class="day">{$race.event_date|substr:8:2}</div>
         						</div>
         						<div class="column span-6 last nextRaceComment">
         							<a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a>
