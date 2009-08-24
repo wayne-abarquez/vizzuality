@@ -324,6 +324,12 @@ class RunnitServices {
                 if (!$_SESSION['logged'] or $_SESSION['user']['is_admin']!='t') {
         	        throw new Exception("user not logged in");
         	    }
+        	    
+        	    if($is_selected=='f') {
+        	        $is_selected="false"
+        	    } else {
+        	        $is_selected="true";
+        	    }
                 
         	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected";
         	        
