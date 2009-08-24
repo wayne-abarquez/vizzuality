@@ -57,7 +57,7 @@ div.loginText {
 /* HEADER */
 
 div.header{
-	height: 165px;
+	height: 145px;
 }
 
 div.headerImage{
@@ -97,11 +97,13 @@ div.inputSearchFirst{
 /* FLOAT RACE */
 
 .map{
-	padding-left: 6px;
+	margin-left: 6px;
 }
 
 .title{
-	height: 80px;
+	padding-top: 7px;
+	height: 75px;
+	line-height: 34px;
 }
 
 .titlePage{
@@ -176,6 +178,7 @@ div.dataImpRace {
 /* RACE CONTAINER */
 
 div.raceContainer {
+	padding-left: 9px;
 	background-color: #FFFFFF;
 }
 
@@ -185,6 +188,10 @@ h2.newsTitle {
 	color: #336699;
 	font-weight: bold;
 	border-bottom: solid 2px #336699;
+}
+
+.seeAll {
+	font-size: 14px;
 }
 
 h2.newsTitle2 {
