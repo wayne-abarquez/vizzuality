@@ -101,7 +101,7 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 				{else}
 					<div class="span-8 races">
 						<div class="column first image">
-							<img src="img/user.jpg" alt="userImage"/>	
+							<img src="media/avatar/{$person.avatar}" alt="userImage"/>	
 						</div>
 						<div class="column span-5 last">
 							<div class="detailsUser">
