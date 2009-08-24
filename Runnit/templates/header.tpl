@@ -114,25 +114,25 @@
 				<div class="margin10">
 					<div class="inputTitle">nombre de usuario</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register1"><span><input type="text" name="popup_register1" id="popup_register1" onchange="checkUsername()" /></span></label>
+						<label class="roundblue" for="register1"><span><input type="text" name="popup_register1" id="popup_register1"/></span></label>
 					</div>
 				</div>
 				<div class="margin10">
 					<div class="inputTitle">nombre y apellidos</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register2"><span><input type="text" name="popup_register2" id="popup_register2" onchange="$('#alert1').show();" /></span></label>
+						<label class="roundblue" for="register2"><span><input type="text" name="popup_register2" id="popup_register2"  /></span></label>
 					</div>
 				</div>
 				<div class="margin10">
 					<div class="inputTitle">contraseña</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register3"><span><input type="password" name="popup_register3" id="popup_register3" onchange="$('#alert2').show();"/></span></label>
+						<label class="roundblue" for="register3"><span><input type="password" name="popup_register3" id="popup_register3" /></span></label>
 					</div>
 				</div>
 				<div class="margin10">
 					<div class="inputTitle">email</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register4"><span><input type="text" name="popup_register4" id="popup_register4" onchange="$('#alert3').show();"/></span></label>
+						<label class="roundblue" for="register4"><span><input type="text" name="popup_register4" id="popup_register4" /></span></label>
 					</div>
 				</div>
 				<div class="margin10 rightButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" onclick="javascript: void registerUser()" value="Crear mi cuenta"/></div>
@@ -143,8 +143,8 @@
 					<div id="answer" class="column answerStyle last"></div>
 					<div id="result" class="resultRegister"></div>
 				</div>	
-				<div id="alert1" class="divalert1" style="display:none"><p>Así te conocerán los demás usuarios</p></div>
-				<div id="alert2" class="divalert2" style="display:none"><p>5 o más caracteres</p></div>
+				<div id="alert1" class="divalert1"><p>Así te conocerán los demás usuarios</p></div>
+				<div id="alert2" class="divalert2"><p>5 o más caracteres</p></div>
 				<div id="alert3" class="divalert3" style="display:none"><p>Para recibir alertas y notificaciones</p></div>
 				<div id="registerError" class="registerError"></div>
 			</div>

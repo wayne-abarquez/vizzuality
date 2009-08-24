@@ -202,8 +202,11 @@ class RunnitServices {
             }	        
 	    }
 
-	    
-	    return $result;	    
+	    if ($result==false) {
+	    	return "f";
+	    } else {
+	    	return $result;	
+	    }        
 	    
 	}	
 	
