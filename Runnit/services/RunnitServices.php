@@ -30,8 +30,25 @@ class RunnitServices {
 	public function getComments($on_id,$table) {
 	    $table=pg_escape_string($table);
 	    
-	    $sql="SELECT c.id,commenttext,c.created_when,username from comments as c INNER JOIN users as u ON c.user_fk=u.id  WHERE on_id=$on_id AND on_table='$table'";	    
-	    return pg_fetch_all(pg_query($this->conn, $sql)); 
+	    $sql="SELECT c.id,commenttext,c.created_when,username,u.id as user_id from comments as c INNER JOIN users as u ON c.user_fk=u.id  WHERE on_id=$on_id AND on_table='$table'";	    
+
+	    //Check if the user has avatars or not
+	    $result = pg_fetch_all(pg_query($this->conn, $sql));
+	    
+	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
+	    if($result) {
+    	    foreach ($result as &$comment) {
+    	        $targetPicture=getcwd()."/../media/avatar/".$comment['user_id'].".jpg";
+                if (file_exists($targetPicture)) {
+                    $comment['avatar'] = $comment['user_id'].".jpg";
+                } else {
+                    //no image for the run, select random
+                    $comment['avatar'] = "0.jpg";
+                }
+            }	        
+	    }	    
+	    
+	    return $result; 
 	     
 	}
 	
@@ -177,7 +194,7 @@ class RunnitServices {
     	    foreach ($result as &$user) {
     	        $targetPicture=getcwd()."/../media/avatar/".$user['id'].".jpg";
                 if (file_exists($targetPicture)) {
-                    $user['avatar'] = $run['id'].".jpg";
+                    $user['avatar'] = $user['id'].".jpg";
                 } else {
                     //no image for the run, select random
                     $user['avatar'] = "0.jpg";
@@ -337,6 +354,11 @@ class RunnitServices {
         }
         
         return $run;
+    }
+    
+    public function getRunsCloseToAnother($id) {
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id order by event_date ASC limit 4";
+		return pg_fetch_all(pg_query($this->conn, $sql));        
     }
 
 
