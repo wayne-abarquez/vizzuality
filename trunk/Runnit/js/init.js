@@ -17,6 +17,7 @@ $(document).ready( function() {
 	    extraSpace : 40
 	});
 
+	//Hack en internet explorer para dropdownlist
 	var browserName=navigator.appName; 
 	if (browserName=="Microsoft Internet Explorer"){
 	   $('#category').css("display",'none');
@@ -181,7 +182,6 @@ function updateField(target,selected) {
 
 //REGISTER SECTION
 
-// When the form is submitted
 function checkUsername(){  
 
     // Show Gif Spinning Rotator
@@ -213,7 +213,7 @@ function checkUsername(){
         
     	},
         error:function (xhr, ajaxOptions, thrownError){
-                alert('SDR' + xhr.status + "\n" + thrownError);
+                alert('Runnity' + xhr.status + "\n" + thrownError);
         }
     });
   
@@ -221,4 +221,123 @@ function checkUsername(){
 
     return false;
 
+}
+
+function registerUser(){  
+
+    
+    
+    //Hacer comprobaciones -> ningun campo blanco - contraseña mayor de 7 - email correcto -> Registro()
+    var username = $("#popup_register1").val();
+    var name = $("#popup_register2").val();
+    var pass = $("#popup_register3").val();
+    var email = $("#popup_register4").val();
+    var answer = $("#answer").html();
+    
+    if ((username=="") || (name=="") || (pass=="")) {
+    	$('#registerError').html('Hay campos vacíos.');
+    	return false;
+    }
+    
+    
+    if (answer=='Ups, está cogido...cachis') {
+    	$('#registerError').html('Ese nombre de usuario ya esta registrado.');
+    	return false;
+    }
+    
+    if (pass.length<7) {
+    	$('#registerError').html('El password debe ser mayor de 5 caracteres.');
+    	return false;
+    }
+    
+    if (!echeck(email)) {
+    	$('#registerError').html('Tu email es incorrecto.');
+    	return false;
+    }
+    
+    
+    $('#registerError').fadeIn(400).html('<img src="../img/ajax-loader.gif" class="registerImage">');
+    
+    
+ 
+	var dataObj = ({username : username,name: name,password:pass, email:email ,method: 'register'});
+        
+    // -- Start AJAX Call --
+    $.ajax({
+    	type: "POST",
+    	url: "ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){  
+    		var h = 100;
+    		$('#registerError').fadeIn(400).html('');  
+    		$('#registerTitle').html('Gracias por registrarte ' + result.username);
+    		$('#conditions').hide();
+    		$('#registerForm').html('');
+			$('#simplemodal-container').animate({height: h},500);
+			
+			
+
+			/*if(result=="valid") {
+                //notify the user that the username is free
+            	registerImage.setAttribute("src", "../img/ok.jpg");
+            	$('#answer').html('Buen nombre');
+            } else {
+        		//notify the user that the username is used.
+        		registerImage.setAttribute("src", "../img/ko.jpg");
+            	$('#answer').html('Ups, está cogido...cachis');
+            }*/
+
+        
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                
+                alert('Runnit' + xhr.message + "\n" + thrownError);
+        }
+    });
+
+  
+    // -- End AJAX Call --
+    
+
+    return false;
+
+}
+
+function echeck(str) {
+
+	var at="@"
+	var dot="."
+	var lat=str.indexOf(at)
+	var lstr=str.length
+	var ldot=str.indexOf(dot)
+	if (str.indexOf(at)==-1){
+	   return false
+	}
+
+	if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+	   return false
+	}
+
+	if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+	    return false
+	}
+
+	 if (str.indexOf(at,(lat+1))!=-1){
+	    return false
+	 }
+
+	 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+	    return false
+	 }
+
+	 if (str.indexOf(dot,(lat+2))==-1){
+	    return false
+	 }
+	
+	 if (str.indexOf(" ")!=-1){
+	    return false
+	 }
+
+		 return true					
 }
