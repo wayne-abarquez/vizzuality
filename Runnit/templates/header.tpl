@@ -135,7 +135,7 @@
 						<label class="roundblue" for="register4"><span><input type="text" name="popup_register4" id="popup_register4"/></span></label>
 					</div>
 				</div>
-				<div class="rightButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" onclick="javascript: void registerUser()" value="Crear mi cuenta"/></div>
+				<div class="margin10 rightButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" onclick="javascript: void registerUser()" value="Crear mi cuenta"/></div>
 			</div>
 			<div class="column last registerRight">
 				<div class="usernameCheck">
@@ -143,9 +143,11 @@
 					<div id="answer" class="column answerStyle last"></div>
 					<div id="result" class="resultRegister"></div>
 				</div>	
-				<div class="column last">
-					<div id="registerError" class="registerError"></div>
-				</div>	
+				<div id="registerError" class="registerError">
+						<div class="divalert1"><p>Así te conocerán los demás usuarios</p></div>
+						<div class="divalert2"><p>6 o mas caracteres</p></div>
+						<div class="divalert1"><p>Para recibir alertas y notificaciones</p></div>
+				</div>
 			</div>
 		</div>
 		<div id="conditions" class="column conditions phraseGray MarginTopPlus">
