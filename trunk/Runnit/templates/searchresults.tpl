@@ -25,20 +25,28 @@
 						</div>
 						<form id="searchForm" method="GET">
 							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch1"><span><input type="text" name="inputsearch1" id="inputsearch1"></span></label>
+			<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1"></span></label>
 							</div>
 							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch2"><span><input type="text" name="inputsearch2" id="inputsearch2"></span></label>
+			<label class="roundsearch" for="inputsearch2"><span><input type="text" name="distancia_min" id="inputsearch2"></span></label>
 							</div>
 							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch3"><span><input type="text" name="inputsearch3" id="inputsearch3"></span></label>
+			<label class="roundsearch" for="inputsearch3"><span><input type="text" name="distancia_max" id="inputsearch3"></span></label>
 							</div>
 							<div class="buttonSearch"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
 						</form>
 					</div>
 					<div class="pagination countAgo countAgo2">
 						<div class="pagination">
-							<div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
+							<div class="column btnJoin">
+							    {if $smarty.request.offset > 0}
+							        <a href="?offset={math equation="max(x-20,0)" x=$smarty.request.offset}">Previous</a>
+							    {/if}
+							    {if $smarty.request.offset < $count-20}
+							        <a href="?offset={$smarty.request.offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}">Next</a>
+                                {/if}
+							        
+							    <input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
 							<div class="column"><input class="fg-button ui-state-default ui-corner-all" type="submit" value=">"/></div>	
 						</div>
 						<div class="column pagination">viendo del <b>1 al 4</b> de 21</div>			
@@ -193,51 +201,28 @@
 			<div class="span-8 importantRaces">
 				<div class="events"> 
 					<h2 class="newsTitle">Próximas carreras</h2>
-				</div>
+				</div>	
 				<div class="events">
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">XVII Media Marathon de Madrid</a>
-							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">XXVI Carrera del Rock’n’Roll</a>
-							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">XV Cross popular “Ascenso a l...</a>
-							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-						</div>
-					</div>
-				</div>
-			</div>
-		
+            		{foreach key=id item=race from=$nextRaces}
+            			{if $race eq "false"}
+            				<div class="span-8 races">No hay proximas carreras.</div> 
+            			{else}		    				    
+        					<div class="raceDetails" id="raceDetails">
+        						<div class="column span-1 first date">
+        							<div class="month">AGO</div>
+        							<div class="day">01</div>
+        						</div>
+        						<div class="column span-6 last nextRaceComment">
+        							<a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a>
+        							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
+        						</div>
+        					</div>
+            			{/if}
+                	    {foreachelse}
+                	        <div class="span-8 races">No hay proximas carreras.</div> 
+                	    {/foreach}					
+				</div>				
+			</div>		
 		</div>
 	</div>
 </div>

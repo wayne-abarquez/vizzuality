@@ -3,11 +3,13 @@
 <script type="text/javascript" src="js/swfobject.js"></script>
 {literal}
 <script type="text/javascript">
-swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9.0.0", "flash/expressInstall.swf");
+swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 </script>
+
+<style type="text/css">
+    html, body, #container, #race, #runnityHomeMap  {width: 100%;height: 100%;}  
+</style>
 {/literal}
-
-
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
 		<div class="span-24 title">
@@ -15,8 +17,17 @@ swfobject.embedSWF("flash/runnitHomeMap.swf", "runnityHomeMap", "939", "364", "9
 			<p class="subtitlePage"><b>Utiliza el mapa, <a href="searchresults.php">busca</a>, o <a href="javascript: void showRegisterBox()">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
 		</div>
 		<div class="span-24 map" id="runnityHomeMap">
-			<h1>Necesitas Flash para poder ver el mapa</h1>
-			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>			
+            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="939" height="364">
+              <param name="movie" value="flash/runnitHomeMap.swf" />
+              <!--[if !IE]>-->
+              <object type="application/x-shockwave-flash" data="flash/runnitHomeMap.swf" width="939" height="364">
+              <!--<![endif]-->
+                <h1>Necesitas Flash para poder ver el mapa</h1>
+    			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+              <!--[if !IE]>-->
+              </object>
+              <!--<![endif]-->
+            </object>		    		
 		</div>
 	</div>	
 	<!-- MORE RACES -->
