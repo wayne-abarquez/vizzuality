@@ -827,3 +827,10 @@ div.raceDetailsBottom {
 .nameUser{
 	color: gray;
 }
+
+.noResults{
+	padding-left: 10px;
+	padding-top: 10px;
+	font-size: 20px;
+	color: #336699;
+}
