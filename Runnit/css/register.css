@@ -120,3 +120,12 @@ div.divalert3 p{
 	text-align: center;
 	line-height: 25px;
 }
+
+.terms{
+	text-decoration: none;
+	color: #b5e6f3;
+}
+
+.terms:hover{
+	color: #ffffff;
+}
