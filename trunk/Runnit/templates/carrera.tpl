@@ -8,7 +8,7 @@
 			<div class="span-16 column raceTitle">
 				<div class="span-16 navigationList">
 					<ul> 
-						<li><a href="calendario.php">Calendario ></a></li>
+						<li><a href="/">Inicio ></a></li>
 						<li><a href="carrera.php" class="selected">detalle de carrera</a></li>
 					</ul>
 				</div>
