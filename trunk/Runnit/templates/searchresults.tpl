@@ -104,7 +104,7 @@
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
             			{if $race eq "false"}
-            				<div class="span-8 races">No hay proximas carreras.</div> 
+            				<div class="span-8 races">No hay próximas carreras.</div> 
             			{else}		    				    
         					<div class="raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
@@ -118,7 +118,7 @@
         					</div>
             			{/if}
                 	    {foreachelse}
-                	        <div class="span-8 races"><p class="noRaces">No hay proximas carreras.</p></div> 
+                	        <div class="span-8 races"><p class="noRaces">No hay próximas carreras.</p></div> 
                 	    {/foreach}					
 				</div>				
 			</div>		
