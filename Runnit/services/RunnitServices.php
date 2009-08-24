@@ -326,7 +326,7 @@ class RunnitServices {
         	    }
         	    
         	    if($is_selected=='f') {
-        	        $is_selected="false"
+        	        $is_selected="false";
         	    } else {
         	        $is_selected="true";
         	    }
