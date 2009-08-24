@@ -192,9 +192,9 @@ class RunnitServices {
 	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
 	    if($result) {
     	    foreach ($result as &$user) {
-    	        $targetPicture=getcwd()."/../media/avatar/".$user['id'].".jpg";
+    	        $targetPicture=getcwd()."/../media/avatar/".$user['user_id'].".jpg";
                 if (file_exists($targetPicture)) {
-                    $user['avatar'] = $user['id'].".jpg";
+                    $user['avatar'] = $user['user_id'].".jpg";
                 } else {
                     //no image for the run, select random
                     $user['avatar'] = "0.jpg";
