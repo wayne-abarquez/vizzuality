@@ -82,25 +82,27 @@
 					
 				<div class="span-16 marginDescription">
 					<div class="marginDescription"><h3 class="blue">Comentarios[3]</h3><h5>publicar un comentario</h5></div>			
+						
+					{foreach key=id item=comment from=$comments}
+    				{if $comment eq false}
+    					<div class="span-8 races">No hay comentarios.</div> 
+    				{else}
+    										
 						<div class="column span-16 first racesComment">				
 							<div class="column span-3 first image">
-								<img src="img/user.jpg"/>	
+								<img src="media/avatar/{$comment.avatar}"/>	
 							</div>
 							<div class="column span-12 last commentBox">
-								<div class="nameUser"><a class="nameRace" href="#">JCorrea,</a> hace 3 dias</div>
-								<p class="textRace">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper.dolor sit amet!sssssssssssssssssssssssss ssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+								<div class="nameUser"><a class="nameRace" href="#">{$person.username},</a> hace {$person.created_when} dias</div>
+								<p class="textRace">{$person.commenttext}</p>
 							</div>
 						</div>
 						
-						<div class="column span-16 first racesComment">				
-							<div class="column span-3 first image">
-								<img src="img/user.jpg"/>	
-							</div>
-							<div class="column span-12 last commentBox">
-								<div class="nameUser"><a class="nameRace" href="#">JCorrea,</a> hace 3 dias</div>
-								<p class="textRace">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper sodales dolor sit amet, consectetur adipiscing elit. Duis eu fringilla purus. Quisque est tellus, ullamcorper ullamcorper.dolor sit amet!sssssssssssssssssssssssss ssssssssssssssssssssssssssssssssssssssssssssssssss</p>
-							</div>
-						</div>
+              		{/if}
+                	{foreachelse}
+                	    <div class="span-8 races">No hay comentarios.</div>    
+                	{/foreach}						
+						
 				</div>
 				
 				<!-- PARA AÑADIR COMENTARIOS -->
@@ -132,46 +134,24 @@
 					<h2 class="newsTitle">En las mismas fechas</h2>
 				</div>
 				<div class="events">
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">XII Carrera de la mujer</a>
-							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">XVII Media Marathon de Madrid</a>
-							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">XXVI Carrera del Rock’n’Roll</a>
-							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="carrera.php" class="nameRace">XV Cross popular “Ascenso a l...</a>
-							<div class="raceLocation">Madrid | 10km | <b>22 van</b> </div>
-						</div>
-					</div>
+            		{foreach key=id item=race from=$nextRaces}
+            			{if $race eq "false"}
+            				<div class="span-8 races">No hay proximas carreras.</div> 
+            			{else}		    				    
+        					<div class="raceDetails" id="raceDetails">
+        						<div class="column span-1 first date">
+        							<div class="month">AGO</div>
+        							<div class="day">01</div>
+        						</div>
+        						<div class="column span-6 last nextRaceComment">
+        							<a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a>
+        							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
+        						</div>
+        					</div>
+            			{/if}
+                	    {foreachelse}
+                	        <div class="span-8 races">No hay proximas carreras.</div> 
+                	    {/foreach}					
 					<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Ver tu calendario completo"/>
 				</div>
 			</div>
