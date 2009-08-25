@@ -558,7 +558,9 @@ class RunnitServices {
         return null;		
 	}
 	
-	public function 
+	public function sendPasswordToEmail($id) {
+	    
+	}
 	
 	public function sendAlerts() {
 		$sql="select u.email,u.id as user_id,r.id,r.name,event_date,event_location,distance_text, p.name as province_name from ((pending_alerts as pa inner join run as r on pa.run_fk=r.id) inner join users as u on pa.user_fk=u.id) left join province as p on r.province_fk=p.id where r.event_date > now() order by user_id,event_date";
