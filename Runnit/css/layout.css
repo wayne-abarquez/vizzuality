@@ -165,7 +165,7 @@ h2.newsTitle {
 	color: #336699;
 	font-weight: bold;
 	border-bottom: solid 2px #336699;
-	margin-top: 26px;
+	margin-top: 0px;
 	margin-bottom: 10px;
 }
 
@@ -380,7 +380,6 @@ div.buttonImportant {
 
 div.socialLinks {
 	margin-bottom: 15px;
-	margin-top: -30px;
 }
 
 
