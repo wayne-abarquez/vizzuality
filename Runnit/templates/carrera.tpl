@@ -186,6 +186,10 @@
         		    {/foreach}					
 				</div>
 			</div>	
+			<div class="span-8">
+			    <iframe align="center" src="http://www.flickr.com/slideShow/index.gne?" frameBorder="0" width="280" scrolling="no" height="280"></iframe>
+			</div>
+			
 		</div>
 	</div>
 </div>
