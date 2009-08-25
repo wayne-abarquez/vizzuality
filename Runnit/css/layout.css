@@ -86,7 +86,7 @@ div.inputSearchFirst{
 
 .titlePage{
 	font-size: 34px;
-	margin-left: 14px;
+	padding-top: 2px;
 }
 
 .titlePage a{
@@ -96,7 +96,6 @@ div.inputSearchFirst{
 
 .subtitlePage{
 	font-size: 17px;
-	margin-left: 14px;
 	margin-top: -10px;
 }
 
