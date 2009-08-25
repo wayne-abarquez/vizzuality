@@ -156,7 +156,7 @@
                 	    {foreachelse}
                 	        <div class="span-8 races">No hay proximas carreras.</div> 
                 	    {/foreach}					
-					<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Ver tu calendario completo"/>
+					<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Ver calendario completo"/>
 				</div>
 			</div>
 		
