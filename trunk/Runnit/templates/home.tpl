@@ -59,7 +59,9 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 						<div class="column span-5 last">
 							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php?id={$race.id}">{$race.name}</a></div>
 							<div class="raceDateDetails">
-								<div class="raceDetailsStyle"> <b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}</div>
+								<div class="raceDetailsStyle"> 
+									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
+								</div>
 								<p class="runnersNumber">{$race.num_users} van</p>
 							</div>
 						</div>
@@ -72,7 +74,9 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 						<div class="column span-5 last">
 							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php?id={$race.id}">{$race.name}</a></div>
 							<div class="raceDateDetails">
-								<div class="raceDetailsStyle"> <b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}</div>
+								<div class="raceDetailsStyle"> 
+									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
+								</div>
 								<p class="runnersNumber">{$race.num_users} van</p>
 							</div>
 						</div>
@@ -234,7 +238,35 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 		}
 	</script>
 	{/literal}
+	
+	
+	<!-- TRUNCATION STRING -->
+	{literal}
+	<script type="text/javascript">
 
+		var len = 53;
+		var p = document.getElementById('truncateMe');
+		if (p) {
+		
+		  var trunc = p.innerHTML;
+		  if (trunc.length > len) {
+		
+
+		    trunc = trunc.substring(0, len);
+		    trunc = trunc.replace(/\w+$/, '');
+		
+		    /* Add an ellipses to the end and make it a link that expands
+		       the paragraph back to its original size */
+		    trunc += '<a ' +
+		      'onclick="this.parentNode.innerHTML=' +
+		      'unescape(\''+escape(p.innerHTML)+'\');return false;" style="color: #666666;">' +
+		      '...<\/a>';
+		    p.innerHTML = trunc;
+		  }
+		}
+		
+	</script>
+	{/literal}
 
 
 {include file="footer.tpl"} 

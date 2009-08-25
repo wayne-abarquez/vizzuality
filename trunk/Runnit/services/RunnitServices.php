@@ -5,9 +5,9 @@ include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 class RunnitServices {
 	
 	function __construct() {
-	    $this->conn = pg_connect ("host=67.23.44.117 dbname=runnit user=postgres password=postgres");
+	    $this->conn = pg_connect ("host=67.23.44.117 dbname=runnit user=runnit password=runnitrunnit555");
 	
-		$this->emailPassword="password";
+		$this->emailPassword="alertrunnity";
 	}
     
     public function login($email,$pass) {
