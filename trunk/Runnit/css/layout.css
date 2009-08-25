@@ -290,8 +290,8 @@ div.feed {
 }
 
 div.races {
-	height: 78px;
-	border-bottom: dotted #666666 1px;
+	width: 618px;
+/* 	border-bottom: dotted #666666 1px; */
 	margin-top: -5px;
 	margin-bottom: 15px;
 	margin-right: 5px;
@@ -802,9 +802,11 @@ div.raceSearchLast{
 	border-bottom: dotted #666666 1px;
 	margin-bottom: 10px;
 	background-color: #b5e6f3;
-	margin-top: 0px;
+	margin-top: -10px;
 	padding-top: 0px;
 	margin-bottom: 0px;
+	float: left;
+	width: 618px;
 }
 
 h2.newsTitle3 {
