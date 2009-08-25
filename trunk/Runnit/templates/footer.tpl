@@ -1,7 +1,7 @@
 	<!-- FOOTER -->
 	<div class="footerContainer">
 		<div class="container">
-			<div class="column span-12 first">runnity.com | Todos los derechos reservados. 2009 | <a href="http://www.vizzuality.com">Vizzuality</a> | <a href="sitemap.php">Sitemap</a> </div>
+			<div class="column span-12 first">runnity.com | Todos los derechos reservados. 2009 | <a href="http://www.vizzuality.com">Vizzuality</a> | <a href="sitemap.php">Sitemap</a> | <a href="/rss.php">RSS</a></div>
 			<div class="column span-12 last suggestions">Tienes sugerencias / preguntas? <a class="contactFooter" href="javascript: void showContactBox()">Contacta con nosotros</a></div>
 		</div>
 	</div>
