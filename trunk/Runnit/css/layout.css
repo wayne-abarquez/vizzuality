@@ -165,6 +165,8 @@ h2.newsTitle {
 	color: #336699;
 	font-weight: bold;
 	border-bottom: solid 2px #336699;
+	margin-top: 26px;
+	margin-bottom: 10px;
 }
 
 .seeAll {
