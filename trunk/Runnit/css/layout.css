@@ -291,6 +291,7 @@ div.feed {
 }
 
 div.races {
+	height: 78px;
 	border-bottom: dotted #666666 1px;
 	margin-top: -5px;
 	margin-bottom: 15px;
@@ -864,13 +865,15 @@ div.raceDetailsBottom {
 }
 
 .noResults{
-	font-size: 20px;
+	font-size: 16px;
 	color: gray;
 }
 
 .noResultsSub{
 	font-size: 13px;
 	color: gray;
+	line-height: 14px;
+	width: 450px;
 }
 
 .noResultsSub a{
@@ -884,11 +887,17 @@ div.raceDetailsBottom {
 	width: 55px;
 	height: 77px;
 	float: left;
+	margin-left: 35px;
 }
 
 .noResultsText{
+	margin-top: 4px;
 	height: 77px;
 	width: 500px;
 	float: left;
 	margin-left: 0px;
+}
+
+.noResultsContainer{
+	
 }
