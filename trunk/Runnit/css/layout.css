@@ -898,6 +898,7 @@ div.raceDetailsBottom {
 	margin-left: 0px;
 }
 
-.noResultsContainer{
-	
+.noResultsCotainer{
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
