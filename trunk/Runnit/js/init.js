@@ -315,12 +315,12 @@ function login(){
 	}
 
     // Hide 'Submit' Button
+    $('#submitLogin').val('Enviando');
     $('#submitLogin').attr("disabled", "true");
     $('#emailLogin').attr("disabled", "true");
     $('#passwordLogin').attr("disabled", "true");
 
     // Show Gif Spinning Rotator
-    $('#checking').show();
 	$('#error_msg').hide();
 
 
@@ -337,15 +337,14 @@ function login(){
     	success: function(result){
             if(result=='invalid') {
                 //notify the user that the login was wrong
+                $('#submitLogin').val('Enviar');
                 $("#error_msg").show();
                 $("#error_msg").html('E-mail o password incorrectos.');
-            	$('#checking').hide();
                 $('#submitLogin').removeAttr("disabled");
                 $('#emailLogin').removeAttr("disabled");
     			$('#passwordLogin').removeAttr("disabled");
             } else {
                 //login ok. Close the popup and change the login menu in the header
-                $('#checking').hide();                
                 
                 //FALTA PONER LOGIN DE USUARIO EN PAGINA
                 /*$("#logoutRef").click(function(){
