@@ -873,13 +873,14 @@ div.raceDetailsBottom {
 .noResultsSub{
 	font-size: 13px;
 	color: gray;
-	line-height: 14px;
-	width: 450px;
+	line-height: 16px;
+	width: 460px;
 }
 
 .noResultsSub a{
 	text-decoration: none;
 	color: #336699;
+	font-weight: bold;
 }
 
 .carita{
@@ -892,13 +893,14 @@ div.raceDetailsBottom {
 }
 
 .noResultsText{
-	margin-top: 4px;
+	margin-top: 3px;
 	height: 77px;
 	width: 500px;
 	float: left;
 	margin-left: 0px;
 }
 
-.noResultsContainer{
-	
+.noResultsCotainer{
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
