@@ -181,4 +181,60 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 	
 </div>
 
+
+	<!-- SCRIPT TWITTER -->
+	
+	{literal}
+	<script language="javaScript" type="text/javascript">
+		$(document).ready( function() {
+	
+			$('textarea').autoResize({
+			    // On resize:
+			    onResize : function() {
+			        $(this).css({opacity:0.8});
+			    },
+			    // After resize:
+			    animateCallback : function() {
+			        $(this).css({opacity:1});
+			    },
+			    // Quite slow animation:
+			    animateDuration : 300,
+			    // More extra space:
+			    extraSpace : 40
+			});
+			 
+		
+			var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
+			$.getJSON(url,function(data){	
+				$.each(data, function(i, item) {
+					$("img#profile").attr("src", item.user["profile_image_url"]);
+					$("#tweets").append( item.text.linkify() + relative_time(item.created_at));
+				});
+		    });
+		});
+	</script>
+	{/literal}
+	
+	
+	{literal}
+	<script language="javaScript" type="text/javascript">
+		String.prototype.linkify = function() {
+			return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
+				return m.link(m);
+			});
+		}; 
+	</script>
+	{/literal}
+	
+	
+	{literal}
+	<script language="javaScript" type="text/javascript">
+		function twitter_callback (){
+			return true;
+		}
+	</script>
+	{/literal}
+
+
+
 {include file="footer.tpl"} 

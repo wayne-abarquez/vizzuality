@@ -16,33 +16,26 @@ $(document).ready( function() {
 	    // More extra space:
 	    extraSpace : 40
 	});
-
-	//Hack en internet explorer para dropdownlist
-	var browserName=navigator.appName; 
-	if (browserName=="Microsoft Internet Explorer"){
-	   $('#category').css("display",'none');
-	   $('#select').css("margin-left",'0px');
-	   $('#select').css("margin-top",'6px');
-	}
-	 
-
-	var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
-	$.getJSON(url,function(data){	
-		$.each(data, function(i, item) {
-			$("img#profile").attr("src", item.user["profile_image_url"]);
-			$("#tweets").append( item.text.linkify() + relative_time(item.created_at));
-		});
-    });
     
 });
 
 
+//FUNCIONES PARA REDONDEAR INPUTS
+function roundInput(input_id, container_class, border_class){
+	var input = $('#'+input_id+'');
+	var input_width = input.css("width"); //get the width of input
+	var wrap_width = parseInt(input_width) + 10; //add 10 for padding
+	wrapper = input.wrap("<div class='"+container_class+"'></div>").parent();
+	wrapper.wrap("<div class='"+border_class+"' style='width: "+wrap_width+"px;'></div>"); //apply border
+	wrapper.corner("round 8px").parent().css('padding', '2px').corner("round 10px"); //round box and border
+}
 
-String.prototype.linkify = function() {
-	return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
-		return m.link(m);
-	});
-}; 
+
+$(function(){
+	roundInput('rounded_input1','rounded_container','rounded_border');
+	roundInput('rounded_input2','rounded_container','rounded_border');
+});
+
  
  
 //FUNCION PARA CALCULAR EL TIEMPO 
@@ -74,9 +67,6 @@ function relative_time(time_value) {
 	  return r;
 }
 
-function twitter_callback (){
-	return true;
-}
 
 
 // PARA ABRIR VENTANAS MODALES
@@ -125,6 +115,8 @@ function showContactBox() {
 	
 };
 
+
+
 /* FUNCION PARA COMENTAR -- REVISAR -- */
 function commentAction() {
 
@@ -155,27 +147,7 @@ function commentAction() {
 };
 
 
-//FUNCIONES PARA REDONDEAR INPUTS
-function roundInput(input_id, container_class, border_class){
-	var input = $('#'+input_id+'');
-	var input_width = input.css("width"); //get the width of input
-	var wrap_width = parseInt(input_width) + 10; //add 10 for padding
-	wrapper = input.wrap("<div class='"+container_class+"'></div>").parent();
-	wrapper.wrap("<div class='"+border_class+"' style='width: "+wrap_width+"px;'></div>"); //apply border
-	wrapper.corner("round 8px").parent().css('padding', '2px').corner("round 10px"); //round box and border
-}
 
-
-$(function(){
-	roundInput('rounded_input1','rounded_container','rounded_border');
-	roundInput('rounded_input2','rounded_container','rounded_border');
-});
-
-
-//COMBOBOX EN JQUERY
-/*function updateField(target,selected) {
-	document.getElementById(target).value =$(selected.options[selected.selectedIndex]).html();
-}*/
 
 
 
@@ -280,23 +252,15 @@ function registerUser(){
     		$('#conditions').hide();
     		$('#registerForm').html('<div class="margin10"><div class="inputTitle" style="text-align:center;">Gracias por haberte registrado, en breves momentos recibirás un email con tus datos.</div></div>');
 			$('#simplemodal-container').animate({height: h},500);
-
-        
     	},
-        error:function (xhr, ajaxOptions, thrownError){
-                
+        error:function (xhr, ajaxOptions, thrownError){   
                 alert('Runnit' + xhr.message + "\n" + thrownError);
         }
     });
-
-  
-    // -- End AJAX Call --
-    
-
     return false;
-
 }
 
+//CHECK EMAIL JAVASCRIPT
 function echeck(str) {
 
 	var at="@"
@@ -335,3 +299,94 @@ function echeck(str) {
 		 return true					
 }
 
+
+
+/* LOGIN SECTION */
+
+// When the form is submitted
+function login(){  
+
+	var email = $("#emailLogin").val();
+    var password = $("#passwordLogin").val();
+	
+	if ((email=="") || (password=="")) {
+		$('#error_msg').html('Existen campos vacíos.');
+		return false;
+	}
+
+    // Hide 'Submit' Button
+    $('#submitLogin').attr("disabled", "true");
+    $('#emailLogin').attr("disabled", "true");
+    $('#passwordLogin').attr("disabled", "true");
+
+    // Show Gif Spinning Rotator
+    $('#checking').show();
+	$('#error_msg').hide();
+
+
+    var dataObj = ({email : email,
+        method: 'login',
+        password: password
+        });
+    // -- Start AJAX Call --
+    $.ajax({
+    	type: "POST",
+    	url: "ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+            if(result=='invalid') {
+                //notify the user that the login was wrong
+                $("#error_msg").show();
+                $("#error_msg").html('E-mail o password incorrectos.');
+            	$('#checking').hide();
+                $('#submitLogin').removeAttr("disabled");
+                $('#emailLogin').removeAttr("disabled");
+    			$('#passwordLogin').removeAttr("disabled");
+            } else {
+                //login ok. Close the popup and change the login menu in the header
+                $('#checking').hide();                
+                
+                //FALTA PONER LOGIN DE USUARIO EN PAGINA
+                /*$("#logoutRef").click(function(){
+	                $('#logout').modal();
+	            });*/
+	            
+	            $('#loginForm').hide(); 
+	            $('#registerLogin').hide();
+				$('#separatorLogin').hide();
+	            
+	    		var w = 250;
+	    		var h = 120;
+	    		$('#loginTitle').html('Hola ' + result +'.');
+	    		$('#loginForm').html('<div class="inputTitle">Gracias por haberte logueado, en pocos segundos se cerrará esta ventana.</div>');
+	    		$('#loginForm').show();
+				$('#simplemodal-container').animate({width: w,height: h},500);
+
+                timerID = setTimeout("timerHide()", 3000);
+            }
+        
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                alert('SDR' + xhr.status + "\n" + thrownError);
+        }
+    });
+    return false;
+}
+
+
+//PARA QUE SE CIERRE SOLO LA VENTANA DE LOGIN
+function timerHide() {
+     $.modal.close();
+     //document.getElementById("login").style.display = "none";
+     clearTimeout(timerID);
+}
+
+function sendPassword() {
+	$('#error_msg').hide();
+	$('#submitLogin').val('Enviar');
+	$('#passForm').hide();
+	$('#forgetLink').removeAttr("href");
+	$('#forgetLink').html('Introduce tu e-mail.');
+
+}
