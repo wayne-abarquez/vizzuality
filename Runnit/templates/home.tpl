@@ -36,7 +36,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 			<div>
 				<h2 class="column span-16 first newsTitle">
 					<div class="first span-11">
-						<div class="column first">Más carreras en Madrid, <a href="#" class="seeAll">ver todas.</a></div>
+						<div class="column first">Más carreras en {$city}, <a href="/searchresults.php" class="seeAll">ver todas.</a></div>
 					</div>
 					<div class=" last span-5 feed">
 						<div class="column fisrt span-4 feedText">suscríbete</div>

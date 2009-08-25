@@ -249,11 +249,10 @@ class RunnitServices {
         return $results;  
 	}
 	
-	public function getNextRuns($provinceName="") {
-		
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now()";
+	public function getNextRuns($lat=0,$lon=0,$distance_km=150) {	
+	$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now()";
 	
-		if($provinceName!="") {
+/*		if($provinceName!="") {
 			$sqlProv="SELECT id from province WHERE name like '$provinceName'";
 			$resultCount=pg_query($this->conn, $sqlProv);
 			$resultCount=pg_fetch_assoc($resultCount);
@@ -261,6 +260,11 @@ class RunnitServices {
 				$sql.=" and r.province_fk=".$resultCount['id'];
 			}
 			
+		}
+*/
+
+		if($lat!=0 && $lon!=0) {
+			$sql.=" AND distance_sphere(PointFromText('POINT($lon $lat)', 4326),start_point) <($distance_km*1000)";
 		}
 	
 		$sql.=" order by event_date ASC limit 4";
