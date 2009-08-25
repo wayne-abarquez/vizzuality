@@ -55,8 +55,11 @@
 				<div class="searchResultsBox">				
 	        		{foreach key=id item=race from=$results}
 	        			{if $race eq "0"}
-	        				<div class="span-9"><p class="noResults">No hay resultados para la búsqueda.</p></div> 
-	        				<div class="span-15 races"><p class="noResults">No hay resultados para la búsqueda.</p></div> 
+	        				<div class="span-15">
+	        					<p class="noResults"><b>Lo sentimos, no hay resultados</b> que coincidan con tu búsqueda</p>
+	        					<p class="noResultsSub"><b>Pero si quieres puedes <a href="rss.php">subscribirte a nuestro RSS</a> para estar al tanto de las 
+nuevas carreras</p>
+	        				</div> 
 	        			{else}
 	        				<div class=" span-15 column first raceDetailsSearch">
 	    						<div class="column span-1 first date">
