@@ -114,7 +114,7 @@
 				<div class="margin10">
 					<div class="inputTitle">nombre de usuario</div>
 					<div class="inputBlue">
-						<label class="roundblue" for="register1"><span><input type="text" name="popup_register1" id="popup_register1"/></span></label>
+						<label class="roundblue" for="register1"><span><input type="text" name="popup_register1" id="popup_register1" onchange="checkUsername()"/></span></label>
 					</div>
 				</div>
 				<div class="margin10">

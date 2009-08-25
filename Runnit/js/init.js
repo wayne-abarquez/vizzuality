@@ -184,13 +184,19 @@ $(function(){
 
 function checkUsername(){  
 
+	var name = $("#popup_register1").val();
+	
+	if (name=="") {
+		return false;
+	}
+	
     // Show Gif Spinning Rotator
     var registerImage = document.getElementById("registerImage");
     registerImage.setAttribute("src", "../img/ajax-loader.gif");
     $('#registerImage').show();
     $('#answer').html('');
     
-    var name = $("#popup_register1").val();
+    
 
     var dataObj = ({username : name,method: 'isUsernameFree'});
         

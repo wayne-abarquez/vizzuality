@@ -121,7 +121,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 		<div class="column span-8 first">
 			<div class="titleImportant">AL FÍN UN MODO DE VER CON DETALLE LOS RECORRIDOS DE LAS CARRERAS MEDIANTE GOOGLE MAPS</div>
 			<div class="contentImportant">Además podrás comentar las distintas pruebas y conocer las opiniones de los demás.</div>
-			<div class="buttonImportant"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Mira un ejemplo de carrera" onclick="location.href='carrera.php?id=15'"/></div>
+			<div class="buttonImportant"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Mira un ejemplo de carrera" onclick="location.href='carrera.php?id=22'"/></div>
 		</div>
 		
 		

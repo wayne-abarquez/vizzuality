@@ -216,16 +216,20 @@ div.day {
 	margin-top: -5px;
 }
 
-div.nextRaceComment {
+div.calendarRaces {
 	border-left: solid 1px #999999;
-	height: 36px;
+}
+
+div.nextRaceComment {
 	padding-left: 5px;
+	line-height: 15px;
 }
 
 div.raceDetails {
-	height: 45px;
 	border-bottom: dotted #666666 1px;
 	margin-bottom: 10px;
+	width: 280px;
+	padding-bottom: 7px;
 }
 
 a.runnersLink {
@@ -249,7 +253,8 @@ div.raceLocation {
 	font-size: 14px;
 	color: gray;
 	letter-spacing: -1px;
-	margin-top: -4px;
+	padding-left: 5px;
+	
 }
 
 div.dateButton {
@@ -451,7 +456,7 @@ a.contactFooter {
 }
 
 .calendar{
-	padding-left: 16px;
+	padding-left: 10px;
 	border-right: 1px solid gray;
 	padding-right: 10px;
 }
