@@ -27,8 +27,8 @@
 }
 
 div.loginColumn {
-	margin-left: 20px;
-	margin-top: 20px;
+	padding-left: 20px;
+	padding-top: 5px;
 }
 
 h2.loginTitle {
@@ -37,8 +37,15 @@ h2.loginTitle {
 	color: #336699;
 	font-weight: bold;
 	letter-spacing: -1px;
+	padding-bottom: 0px;
+}
+
+div.loginForm {
 	margin-top: -10px;
-	margin-bottom: 0px;
+}
+
+div.registerLogin {
+	padding-top: 50px;
 }
 
 div.inputTitle {
@@ -72,6 +79,7 @@ div.lastColumn {
 }
 
 div.separator {
+	padding-top:5px;
 	padding-left: 15px;
 }
 
@@ -88,6 +96,7 @@ div.registerText {
 	font-size: 12px;
 	color: #336699;
 	line-height: 16px;
+	height: 65px;
 }
 
 div.loginImage{
@@ -110,5 +119,11 @@ div.loginText {
 }
 
 .registro{
-	padding-top: 48px;
+	padding-top: 67px;
+}
+
+.errorMessage {
+	color: red;
+	padding-top: 2px;
+	text-align: center;
 }

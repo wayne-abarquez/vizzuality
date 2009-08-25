@@ -3,6 +3,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Runnity</title>
+	
+	<link rel="shortcut icon" href="../img/favicon.ico"/>
 
 	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
@@ -13,7 +15,7 @@
 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://www.runnity.com/rss.php" />
 	
 	<!-- Import JS source files -->
-	<script src='js/jquery.js' type='text/javascript'></script>
+	<script src='js/jquery-1.3.2.min.js' type='text/javascript'></script>
 	<script src='js/jquery.simplemodal.js' type='text/javascript'></script>
 	<script src='js/autoresize.jquery.min.js' type='text/javascript'></script>	
 	
@@ -77,33 +79,39 @@
 	<!-- LOGIN WINDOW -->
 	<div id="loginWindow" style='display:none'>
 		<div class="column span-5 first loginColumn">
-			<h2 class="loginTitle">Accede a tu cuenta</h2>
-			<div>
-				<div class="inputTitle">e-mail</div>
-				<div class="inputBlue">
-					<label class="roundblue" for="login1"><span><input type="text" name="login1" id="login1"/></span></label>
+			<h2 id="loginTitle" class="loginTitle">Accede a tu cuenta</h2>
+			<div id="loginForm" class="loginForm">
+				<div>
+					<div class="inputTitle">e-mail</div>
+					<div class="inputBlue">
+						<label class="roundblue" for="login1"><span><input type="text" name="login1" id="emailLogin"/></span></label>
+					</div>
+				</div>
+				<div id="passForm">
+					<div class="inputTitle">contraseña</div>
+					<div class="inputBlue">
+						<label class="roundblue" for="login2"><span><input type="password" name="login2" id="passwordLogin"/></span></label>
+					</div>
+				</div>
+				<div class="forgetFind">
+					<div class="forgetPass"><a id="forgetLink" href="javascript: void sendPassword()">¿olvidaste tu contraseña?</a></div>
+					<div class="loginButton"><input id="submitLogin" class="fg-button ui-state-default ui-corner-all" type="submit" value="Entrar" onclick="javascript: void login()"/></div>	
+				</div>	
+				<div class="first">
+					<img id="checking" class="column first registerImage" src="../img/ajax-loader.gif" style="display:none">
+					<div class="column last errorMessage" id="error_msg"></div>
 				</div>
 			</div>
-			<div>
-				<div class="inputTitle">contraseña</div>
-				<div class="inputBlue">
-					<label class="roundblue" for="login2"><span><input type="text" name="login2" id="login2"/></span></label>
-				</div>
-			</div>
-			<div class="forgetFind">
-			<div class="forgetPass">¿olvidaste tu contraseña?</div>
-			<div class="loginButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Entrar"/></div>	
-			</div>	
 		</div>
 		
-		<div class="column span-1 separator">
+		<div id="separatorLogin" class="column span-1 separator">
 			<img src="/img/separator.jpg" alt="separator">
 		</div>
 		
-		<div class="column span-5 last">
-		<h3 class="registro">¿Aún no estas registrado?</h3>
-		<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
-		<div class="registroLoginButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crea tu cuenta"/></div>
+		<div id="registerLogin" class="column span-5 last registerLogin">
+			<h3>¿Aún no estas registrado?</h3>
+			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
+			<div class="registroLoginButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crea tu cuenta" onclick="javascript: void $.modal.close();showRegisterBox()"/></div>
 		</div>
 	</div>
 	
