@@ -217,12 +217,12 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 		    });
 		    
 		    for (i=1;i<=4;i++){
-				var len = 52;
+				var len = 42;
 				var p = document.getElementById("iteracion" + i);
 				if (p) {
 				  var trunc = p.innerHTML;
+				  trunc = trunc.replace(/\t/g, "");
 				  if (trunc.length > len) {
-				
 		
 				    trunc = trunc.substring(0, len);
 				    trunc = trunc.replace(/\w+$/, '');
