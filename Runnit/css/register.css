@@ -47,8 +47,12 @@ div.usernameCheck {
 }
 
 img.registerImage {
-	height: 20px;
 	margin-right: 3px;
+	margin-top: 1px;
+}
+
+img.loadingImage {
+	height: 20px;
 }
 
 div.answerStyle {
