@@ -164,8 +164,7 @@ function checkUsername(){
 	
     // Show Gif Spinning Rotator
     var registerImage = document.getElementById("registerImage");
-    registerImage.setAttribute("src", "../img/ajax-loader.gif");
-    $('#registerImage').show();
+    $('#registerImage').hide();
     $('#answer').html('');
     
     
@@ -181,10 +180,12 @@ function checkUsername(){
     	success: function(result){
             if(result=="valid") {
                 //notify the user that the username is free
+                $('#registerImage').show();
             	registerImage.setAttribute("src", "../img/ok.png");
             	$('#answer').html('Buen nombre');
             } else {
         		//notify the user that the username is used.
+        		$('#registerImage').show();
         		registerImage.setAttribute("src", "../img/ko.png");
             	$('#answer').html('Ups, está cogido...cachis');
             }
