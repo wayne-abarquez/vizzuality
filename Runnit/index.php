@@ -8,10 +8,8 @@ $services = new RunnitServices;
 
 $smarty->assign('section', 'index');
 
-//$smarty->assign('highlightedRun',$services->getHighlightedRun());
 $smarty->assign('nextRaces',$services->getNextRuns());
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns());
-//$smarty->assign('runsBbox',$services->getAllRunsBBox());
 
 $smarty->display('home.tpl');
 
