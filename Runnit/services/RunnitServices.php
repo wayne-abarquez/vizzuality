@@ -5,8 +5,9 @@ include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 class RunnitServices {
 	
 	function __construct() {
-	    $this->conn = pg_connect ("host=67.23.44.117 dbname=runnit user=postgres password=postgres");
-		
+	    $this->conn = pg_connect ("host=localhost dbname=runnit user=postgres password=postgres");
+	
+		$this->emailPassword="password";
 	}
     
     public function login($email,$pass) {
@@ -125,7 +126,7 @@ class RunnitServices {
 		$mail->Host = "smtp.gmail.com";
 		$mail->Port = 465;
 		$mail->Username = "alertas@runnity.com";
-		$mail->Password = "password";		
+		$mail->Password = $this->emailPassword;		
 
 		$mail->From = "alertas@runnity.com";
 		$mail->FromName = "Alertas Runnity";
@@ -372,6 +373,34 @@ class RunnitServices {
     	    $res=pg_fetch_assoc($result);    	    
     	    $newId= (int)$res['last_value'];
     	    
+			//Send alerts to users
+			$sql="SELECT u.email,u.completename from run as r,users as u WHERE r.id=$newId AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
+			$alerts=pg_fetch_all(pg_query($this->conn, $sql)); 
+			if($alerts) {
+				//prepare email
+				$mail = new PHPMailer();
+				$mail->IsSMTP();
+				$mail->SMTPAuth = true;
+				$mail->SMTPSecure = "ssl";
+				$mail->Host = "smtp.gmail.com";
+				$mail->Port = 465;
+				$mail->Username = "alertas@runnity.com";
+				$mail->Password = $this->emailPassword;		
+
+				$mail->From = $email;
+				$mail->FromName = $mensaje;
+				$mail->Subject = "Nueva carrera: $name ($event_location,$event_date)";
+				$mail->MsgHTML("Mensaje enviado desde Runnity.com<br><br>$description");
+				$mail->IsHTML(true);	
+
+				foreach($alerts as $al) {
+					$mail->AddBCC($al['email'], $al['completename']);
+				}	
+				$mail->Send();			
+			}
+
+
+
     	    if (is_int($newId)) {
     	        return $newId;
     	    } else {
@@ -486,6 +515,57 @@ class RunnitServices {
 	
 	public function unInscribeUserToRun($userId,$runId) {
 		$sql="DELETE FROM users_run WHERE users_fk=$userId AND run_fk=$runId";
+        $result= pg_query($this->conn, $sql);
+        return null;		
+	}
+
+	public function sendEmailToAlertas($nombre,$email,$mensaje) {
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = "ssl";
+		$mail->Host = "smtp.gmail.com";
+		$mail->Port = 465;
+		$mail->Username = "alertas@runnity.com";
+		$mail->Password = $this->emailPassword;		
+
+		$mail->From = $email;
+		$mail->FromName = $mensaje;
+		$mail->Subject = "Mensaje desde la web";
+		$mail->MsgHTML("Mensaje enviado desde la web por $nombre ($email)<br><br>$mensaje");
+		$mail->AddAddress("alertas@runnity.com", "Web runnity.com");
+		$mail->IsHTML(true);	
+		
+		if(!$mail->Send()) {
+			throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+		}		
+		return null;
+	}
+	
+	public function setAlert($userId,$lat,$lon,$distance) {
+		$sql="UPDATE users SET location_point=PointFromText('POINT($lon $lat)', 4326), radius_interest=$distance WHERE id=$userId";
+		$result= pg_query($this->conn, $sql);
+		
+		//Estas son las que el hombre no ha sido informado al acabar de apuntarse
+		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE r.created_when <= now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
+        $result= pg_query($this->conn, $sql);
+        return null;
+	}
+	
+	public function prepareAlerts() {
+		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE r.created_when > now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
+        $result= pg_query($this->conn, $sql);
+        return null;		
+	}	
+	
+	public function sendAlerts() {
+		$sql="select u.email,u.id as user_id,r.id,r.name,event_date,event_location,distance_text, p.name as province_name from ((pending_alerts as pa inner join run as r on pa.run_fk=r.id) inner join users as u on pa.user_fk=u.id) left join province as p on r.province_fk=p.id where r.event_date > now() order by user_id,event_date";
+		
+		//Do something
+		
+		
+		//Remove the pending alerts
+		$sql="DELETE FROM pending_alerts";
         $result= pg_query($this->conn, $sql);
         return null;		
 	}
