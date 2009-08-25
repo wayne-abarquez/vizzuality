@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="css/floating.css">	
 	<link rel="stylesheet" type="text/css" href="css/contact.css">	
 	<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection">
+	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://www.runnity.com/rss.php" />
 	
 	<!-- Import JS source files -->
 	<script src='js/jquery.js' type='text/javascript'></script>

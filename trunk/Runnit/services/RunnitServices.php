@@ -448,8 +448,12 @@ class RunnitServices {
         return null;   	
     }	    
     
-    public function getRunsList() {
-        $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,province_fk,is_displayed_in_home from run ORDER BY id DESC"; 
+    public function getRunsList($limit=0) {
+        $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,province_fk,is_displayed_in_home,created_when from run ORDER BY id DESC"; 
+		if($limit!=0) {
+			$sql.=" LIMIT $limit";
+		}
+
 		return pg_fetch_all(pg_query($this->conn, $sql));    
     }
     
