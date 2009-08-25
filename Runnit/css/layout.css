@@ -232,6 +232,7 @@ div.raceDetails {
 	padding-bottom: 7px;
 }
 
+
 a.runnersLink {
 	font-size: 14px;
 	font-family: Arial;
@@ -775,6 +776,17 @@ div.raceContent1{
 	height: auto;
 }
 
+div.searchResultsBox {
+	padding-top:10px;
+}
+
+div.raceDetailsSearch {
+	border-bottom: dotted #666666 1px;
+	margin-bottom: 10px;
+	padding-bottom: 7px;
+	width: 617px;
+}
+
 div.raceSearchFirst{
 	height: 113px;
 	border-bottom: dotted #666666 1px;
@@ -819,7 +831,7 @@ div.raceDetailsBottom {
 .dates{
 	height: 30px;
 	background-color: #e8e8e8;
-	padding: 0px 0px 0px 10px;
+	padding-left: 10px;
 	margin: 0px 0px 0px 0px;
 	border-bottom: dotted #666666 1px;
 	line-height: 32px;
