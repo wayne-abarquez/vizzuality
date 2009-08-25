@@ -1,6 +1,6 @@
 <?php
-include("../libs/class.phpmailer.php");
-include("../libs/class.smtp.php");
+include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.phpmailer.php");
+include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 
 class RunnitServices {
 	
