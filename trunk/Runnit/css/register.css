@@ -80,7 +80,7 @@ div.divalert1{
 	background-repeat: no-repeat;
 	height: 27px;
 	width: 199px;
-	margin-top: 32px;
+	margin-top: 33px;
 }
 
 div.divalert1 p{
@@ -92,9 +92,9 @@ div.divalert1 p{
 div.divalert2{
 	background-image: url(/img/divalert2.jpg);
 	background-repeat: no-repeat;
-	height: 27px;
+	height: 28px;
 	width: 199px;
-	margin-top: 28px;
+	margin-top: 29px;
 }
 
 div.divalert2 p{
@@ -110,7 +110,7 @@ div.divalert2 p{
 div.divalert3{
 	background-image: url(/img/divalert1.jpg);
 	background-repeat: no-repeat;
-	height: 27px;
+	height: 28px;
 	width: 199px;
 	margin-top: 28px;
 }

@@ -59,10 +59,14 @@
 							<div class="span-2 last distance"><p class="textRace">E-mail:</p></div>
 							<div class="span-4 last distanceInfo"><p><a href="" class="special">{$data.inscription_email}</a></p></div>
 						</div>
-						<div class="span-6 databox noborder">
+						<div class="span-6 databox">
 							<div class="span-2 last distance"><p class="textRace">Web:</p></div>
 							<div class="span-4 last distanceInfo"><p><a href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
-						</div>						
+						</div>	
+						<div class="span-6 databox noborder">
+							<div class="span-2 last distance"><p class="textRace">Teléfono:</p></div>
+							<div class="span-4 last distanceInfo"><p><a href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
+						</div>					
 					</div>
 				</div>
 
@@ -76,7 +80,7 @@
 				<div id="map2Container" class="span-16 boxraceMap">
 					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
 					<div class="mapStyle marginDescription">
-						<div id="map2"><img src="http://maps.google.com/staticmap?size=610x250&maptype=mobile&markers={$data.start_point_lat},{$data.start_point_lon},greens%7C{$data.end_point_lat},{$data.end_point_lon},bluem&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"></div>
+						<div id="map2"><img src="http://maps.google.com/staticmap?size=598x250&maptype=mobile&markers={$data.start_point_lat},{$data.start_point_lon},greens%7C{$data.end_point_lat},{$data.end_point_lon},bluem&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"></div>
 					</div>
 				</div>
 					
@@ -138,13 +142,13 @@
             			{if $race eq "false"}
             				<div class="span-8 races">No hay proximas carreras.</div> 
             			{else}		    				    
-        					<div class="raceDetails" id="raceDetails">
+        					<div class="span-8 column first raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
         							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
         							<div class="day">{$race.event_date|substr:8:2}</div>
         						</div>
-        						<div class="column span-6 last nextRaceComment">
-        							<a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a>
+        						<div class="column span-6 last calendarRaces">
+        							<div class="nextRaceComment"><a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a></div>
         							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
         						</div>
         					</div>
@@ -161,7 +165,7 @@
 				<div class="events"> 
 					<h2 class="newsTitle">Últimos valientes</h2>	
 					{foreach key=id item=person from=$runners}
-    				{if $person eq false}
+    				{if $person eq 'f'}
     					<div class="span-8 races">No hay valientes.</div> 
     				{else}					
     					<div class="races">
