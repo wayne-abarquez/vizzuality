@@ -1,31 +1,37 @@
 package {
+	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.Map;
 	import com.google.maps.MapEvent;
 	import com.google.maps.MapMouseEvent;
+	import com.google.maps.MapOptions;
 	import com.google.maps.MapZoomEvent;
+	import com.google.maps.controls.ControlPosition;
 	import com.google.maps.controls.ZoomControl;
+	import com.google.maps.controls.ZoomControlOptions;
 	import com.google.maps.overlays.Marker;
+	import com.google.maps.styles.FillStyle;
 	import com.kelvinluck.gmaps.Clusterer;
 	import com.vizzuality.gmaps.RunMarkerCluster;
 	import com.vizzuality.gmaps.RunSingleMarker;
 	
-	import flash.display.LoaderInfo;
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
+	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
-	import flash.text.TextField;
+	import flash.text.StyleSheet;
 	import flash.text.TextFormat;
 	
 	import rosa.RosaSettings;
 	import rosa.events.RosaEvent;
 	import rosa.services.ServiceProxy;
 
-	[SWF(backgroundColor=0xC1E5F1, width=939, height=364)]
+	[SWF(backgroundColor=0xFFFFFF, width=939, height=364)]
 	public class runnitHomeMap extends Sprite
 	{
 		
@@ -36,28 +42,21 @@ package {
 		private var clusterer:Clusterer;
 		private var attachedMarkers:Array;
 		private var paramObj:Object;
+		private var square:Sprite;
 		
-		private var loadingMessage:TextField;
+		
+		[Embed('assets/cargandomapa1.png')] 
+		private var loadingImg:Class;		
+		private var imgLoading:Bitmap;
 		
 		public function runnitHomeMap()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP_LEFT;		
+			stage.align = StageAlign.TOP_LEFT;					
 			
-			
-			//Add the loading message
-			loadingMessage = new TextField();
-			var format:TextFormat = loadingMessage.getTextFormat();
-			format.font = 'arial';
-			loadingMessage.defaultTextFormat = format;
-			loadingMessage.text = "Cargando mapa...";
-			loadingMessage.textColor = 0xffffff;
-			//tf.x = -int(tf.textWidth / 2) - 2;
-			//tf.y = -int(tf.textHeight / 2);
-			loadingMessage.x = 400;
-			loadingMessage.y = 150;
-			loadingMessage.mouseEnabled = false;
-			loadingMessage.width = loadingMessage.textWidth + 4;
+			imgLoading= new loadingImg() as Bitmap;
+			imgLoading.x = 400;
+			imgLoading.y = 80;
 			mouseChildren = true;		
 			
 				
@@ -67,25 +66,33 @@ package {
 		
 		private function initMap():void {
 			map=new Map();
+			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
-			
-			paramObj = LoaderInfo(this.root.loaderInfo).parameters;
-			if(paramObj.west!=null) {
-				var bbox:LatLngBounds = new LatLngBounds(
-					new LatLng(paramObj.south,paramObj.west),
-					new LatLng(paramObj.north,paramObj.west));
-				map.setCenter(bbox.getCenter(),map.getBoundsZoomLevel(bbox));
-			}
-
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(939, 364));
 			addChild(map);
-			addChild(loadingMessage);
+			square = new Sprite();
+			square.graphics.beginFill(0xFFFFFF);
+			square.graphics.drawRect(0,0,939,364);
+			square.graphics.endFill();
+			square.x = 0;
+			square.y = 0;			
+			addChild(square);
+			addChild(imgLoading);
+		}
+		
+		private function preinit(ev:Event):void {
+				var mo:MapOptions = new MapOptions();
+				mo.backgroundFillStyle = new FillStyle({color:0xFFFFFF});
+				map.setInitOptions(mo);
 		}
 		
 		private function onMapReady(event:MapEvent):void
 		{
-			map.addControl(new ZoomControl());
+			var zco:ZoomControlOptions= new ZoomControlOptions({
+				position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)
+			});
+			map.addControl(new ZoomControl(zco));
 			map.enableScrollWheelZoom();
 			downloadData();
 
@@ -93,6 +100,7 @@ package {
 		
 		private function onMapZoomChanged(event:MapZoomEvent):void
 		{
+			map.closeInfoWindow();
 			clusterer.zoom = map.getZoom();
 			attachMarkers();
 		}			
@@ -117,6 +125,46 @@ package {
 				marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
 					goToRunPage(m.id);
 				});
+				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+								var titleFormat:TextFormat = new TextFormat();
+								titleFormat.bold = true;
+								var titleStyleSheet:StyleSheet = new StyleSheet();
+								var contentFormat:TextFormat = new TextFormat("Arial", 10);
+								var options:InfoWindowOptions = new InfoWindowOptions({
+
+								  strokeStyle: {
+								    color: 0x666666,
+								    thickness:1
+								  },
+								  fillStyle: {
+								    color: 0xFFFFFF,
+								    alpha: 0.9
+								  },
+								  titleFormat: titleFormat,
+								  titleStyleSheet: titleStyleSheet,
+								  contentFormat: contentFormat,
+								  width: 200,
+								  cornerRadius: 3,
+								  padding: 10,
+								  hasCloseButton: false,
+								  hasTail: true,
+								  pointOffset:new Point(0,-10),
+								  tailWidth: 20,
+								  tailHeight: 18,
+								  tailOffset: -22,
+								  tailAlign: InfoWindowOptions.ALIGN_LEFT,
+								  pointOffset: new Point(3, 8),
+								  hasShadow: true,
+								  title:m.name,
+								  content:(m.event_date as String).substr(8,2) + '/' + 
+								  	(m.event_date as String).substr(5,2) + '/' + (m.event_date as String).substr(0,4) + ' | ' +  m.distance_text
+								});
+								map.openInfoWindow(e.latLng,options);
+								
+					});
+					marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
+						map.closeInfoWindow();
+					});						
 				markers.push(marker);
 				dataBbox.extend(p);
 			}
@@ -129,12 +177,12 @@ package {
 			
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			
-			if(paramObj!=null) {
-				map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
-			}		
+			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+				
 			
 			
-			removeChild(loadingMessage);	
+			removeChild(imgLoading);	
+			removeChild(square);	
 			
 		}
 		
@@ -156,6 +204,48 @@ package {
 					marker = cluster[0];
 				} else {
 					marker = new RunMarkerCluster(cluster);
+					marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
+						map.zoomIn(e.latLng,true,false);
+					});
+					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+								var titleFormat:TextFormat = new TextFormat();
+								titleFormat.bold = true;
+								var titleStyleSheet:StyleSheet = new StyleSheet();
+								var contentFormat:TextFormat = new TextFormat("Arial", 10);
+								var options:InfoWindowOptions = new InfoWindowOptions({
+
+								  strokeStyle: {
+								    color: 0x666666,
+								    thickness:1
+								  },
+								  fillStyle: {
+								    color: 0xFFFFFF,
+								    alpha: 0.9
+								  },
+								  titleFormat: titleFormat,
+								  titleStyleSheet: titleStyleSheet,
+								  contentFormat: contentFormat,
+								  width: 200,
+								  cornerRadius: 3,
+								  padding: 2,
+								  hasCloseButton: false,
+								  hasTail: false,
+								  pointOffset:new Point(0,-17),
+								  tailWidth: 20,
+								  tailHeight: 18,
+								  tailOffset: -22,
+								  tailAlign: InfoWindowOptions.ALIGN_LEFT,
+								  pointOffset: new Point(3, 8),
+								  hasShadow: false,
+								  title:"Click para hacer ver más..."
+								});
+								map.openInfoWindow(e.latLng,options);
+					});					
+					marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
+						map.closeInfoWindow();
+					});
+					
+					
 				}
 				map.addOverlay(marker);
 				attachedMarkers.push(marker);
