@@ -55,7 +55,7 @@
 				<div class="searchResultsBox">				
 	        		{foreach key=id item=race from=$results}
 	        			{if $race eq "0"}
-	        				<div class="column span-15 noResultsConatiner">
+	        				<div class="column span-15 noResultsCotainer">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
 	        					<p class="noResults"><b>Lo sentimos, no hay resultados</b> que coincidan con tu búsqueda</p>
