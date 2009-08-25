@@ -55,11 +55,8 @@
 				<div class="searchResultsBox">				
 	        		{foreach key=id item=race from=$results}
 	        			{if $race eq "0"}
-<<<<<<< .mine
 	        				<div class="span-9"><p class="noResults">No hay resultados para la búsqueda.</p></div> 
-=======
 	        				<div class="span-15 races"><p class="noResults">No hay resultados para la búsqueda.</p></div> 
->>>>>>> .r1126
 	        			{else}
 	        				<div class=" span-15 column first raceDetailsSearch">
 	    						<div class="column span-1 first date">
