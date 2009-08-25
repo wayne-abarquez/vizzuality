@@ -71,5 +71,12 @@ if ($_REQUEST['method'] == 'register') {
 	echo ($result);
 }
 
+if ($_REQUEST['method'] == 'inscribeUserToRun') {
+	$result = $services->inscribeUserToRun($_REQUEST['userId'],$_REQUEST['runId']);
+}
+
+if ($_REQUEST['method'] == 'unInscribeUserToRun') {
+	$result = $services->inscribeUserToRun($_REQUEST['userId'],$_REQUEST['runId']);
+}
 
 ?>
