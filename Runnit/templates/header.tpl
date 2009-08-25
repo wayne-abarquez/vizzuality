@@ -216,6 +216,7 @@
 			<div class="span-18 last horizontalcssmenu">
 			<ul id="cssmenu1">
 				<li><a {if $section eq "home"} class="current"{/if} href="index.php">HOME</a> <a class="separator">|</a> </li>
+				<li><a {if $section eq "searchresults"} class="current"{/if} href="searchresults.php">BUSCAR</a> <a class="separator">|</a> </li>
 				<li><a {if $section eq "about"} class="current"{/if} href="about.php">SOBRE NOSOTROS</a> <a class="separator">|</a> </li>
 				<li><a {if $section eq "blog"} class="current"{/if} href="/blog">BLOG</a> <a class="separator">|</a> </li>
 				<li><a {if $section eq "contacto"} class="current"{/if} href="javascript: void showContactBox()">CONTACTO</a> </li>
