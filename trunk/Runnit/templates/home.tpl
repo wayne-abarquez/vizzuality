@@ -107,7 +107,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 							<div class="detailsUser">
 								<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
 								<div class="raceUserDetails"> dice que va a ir a </div>
-								<div class="raceUserDetails"><a href="carrera.php?id={$person.run_id}"><b>{$person.run_name}</b></a></div>
+								<div class="raceUserDetails"><a class="raceUserLink" href="carrera.php?id={$person.run_id}">{$person.run_name}</a></div>
 							</div>
 							<p class="runnersNumber">{$person.num_participants} van, <a href="">apúntate con él</a></p>
 						</div>
