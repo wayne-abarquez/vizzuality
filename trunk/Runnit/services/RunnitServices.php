@@ -297,7 +297,7 @@ class RunnitServices {
 			$sql.=" AND distance_sphere(PointFromText('POINT($lon $lat)', 4326),start_point) <($distance_km*1000)";
 		}
 	
-		$sql.=" order by event_date ASC limit 4";
+		$sql.=" order by event_date ASC limit 6";
 	    
 	    $result = pg_fetch_all(pg_query($this->conn, $sql));
 	    
@@ -556,7 +556,9 @@ class RunnitServices {
 		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE r.created_when > now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
         $result= pg_query($this->conn, $sql);
         return null;		
-	}	
+	}
+	
+	public function 
 	
 	public function sendAlerts() {
 		$sql="select u.email,u.id as user_id,r.id,r.name,event_date,event_location,distance_text, p.name as province_name from ((pending_alerts as pa inner join run as r on pa.run_fk=r.id) inner join users as u on pa.user_fk=u.id) left join province as p on r.province_fk=p.id where r.event_date > now() order by user_id,event_date";
