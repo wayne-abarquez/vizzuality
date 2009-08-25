@@ -249,8 +249,21 @@ class RunnitServices {
         return $results;  
 	}
 	
-	public function getNextRuns() {
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() order by event_date ASC limit 4";
+	public function getNextRuns($provinceName="") {
+		
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now()";
+	
+		if($provinceName!="") {
+			$sqlProv="SELECT id from province WHERE name like '$provinceName'";
+			$resultCount=pg_query($this->conn, $sqlProv);
+			$resultCount=pg_fetch_assoc($resultCount);
+			if($resultCount) {
+				$sql.=" and r.province_fk=".$resultCount['id'];
+			}
+			
+		}
+	
+		$sql.=" order by event_date ASC limit 4";
 	    
 	    $result = pg_fetch_all(pg_query($this->conn, $sql));
 	    
@@ -281,6 +294,19 @@ class RunnitServices {
     	        throw new Exception("user not logged in");
     	    }
     	    
+
+			$name=pg_escape_string($name);
+			$event_location=pg_escape_string($event_location);
+			$distance_text=pg_escape_string($distance_text);
+			$category=pg_escape_string($category);
+			$awards=pg_escape_string($awards);
+			$description=pg_escape_string($description);
+			$inscription_price=pg_escape_string($inscription_price);
+			$inscription_location=pg_escape_string($inscription_location);
+			$inscription_email=pg_escape_string($inscription_email);
+			$inscription_website=pg_escape_string($inscription_website);
+
+
     	    if($is_selected=='true') {
     	        $is_selected="true";
     	    } else {
@@ -292,7 +318,7 @@ class RunnitServices {
 	            ") VALUES('$name','$event_location',$distance_meters,'$distance_text','$event_date',".
                 "'$category','$awards','$description','$inscription_price','$inscription_location',".
                 "'$inscription_email','$inscription_website', $province_id,$is_selected";
-                
+
                 if($start_point_lat) {
                     $sql.=",GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
                 } else {
@@ -327,6 +353,18 @@ class RunnitServices {
                 if (!$_SESSION['logged'] or $_SESSION['user']['is_admin']!='t') {
         	        throw new Exception("user not logged in");
         	    }
+
+				$name=pg_escape_string($name);
+				$event_location=pg_escape_string($event_location);
+				$distance_text=pg_escape_string($distance_text);
+				$category=pg_escape_string($category);
+				$awards=pg_escape_string($awards);
+				$description=pg_escape_string($description);
+				$inscription_price=pg_escape_string($inscription_price);
+				$inscription_location=pg_escape_string($inscription_location);
+				$inscription_email=pg_escape_string($inscription_email);
+				$inscription_website=pg_escape_string($inscription_website);
+
         	    
         	    if($is_selected=='f') {
         	        $is_selected="false";
@@ -403,6 +441,17 @@ class RunnitServices {
 		return pg_fetch_all(pg_query($this->conn, $sql));        
     }
 
+	public function inscribeUserToRun($userId,$runId) {
+		$sql="INSERT INTO users_run(users_fk,run_fk) VALUES ($userId,$runId)";
+        $result= pg_query($this->conn, $sql);
+        return null;		
+	}
+	
+	public function unInscribeUserToRun($userId,$runId) {
+		$sql="DELETE FROM users_run WHERE users_fk=$userId AND run_fk=$runId";
+        $result= pg_query($this->conn, $sql);
+        return null;		
+	}
 
 }
 
