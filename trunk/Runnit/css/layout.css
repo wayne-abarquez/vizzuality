@@ -291,8 +291,7 @@ div.feed {
 }
 
 div.races {
-	width: 618px;
-/* 	border-bottom: dotted #666666 1px; */
+	border-bottom: dotted #666666 1px;
 	margin-top: -5px;
 	margin-bottom: 15px;
 	margin-right: 5px;
@@ -867,11 +866,29 @@ div.raceDetailsBottom {
 .noResults{
 	font-size: 20px;
 	color: gray;
-	
 }
 
-.noRaces{
-	font-size: 18px;
+.noResultsSub{
+	font-size: 13px;
+	color: gray;
+}
+
+.noResultsSub a{
+	text-decoration: none;
 	color: #336699;
-	margin-top: 20px;
+}
+
+.carita{
+	background-image: url(/img/carita.jpg);
+	background-repeat: no-repeat;
+	width: 55px;
+	height: 77px;
+	float: left;
+}
+
+.noResultsText{
+	height: 77px;
+	width: 500px;
+	float: left;
+	margin-left: 0px;
 }
