@@ -1,4 +1,6 @@
 <?php
+include("../libs/class.phpmailer.php");
+include("../libs/class.smtp.php");
 
 class RunnitServices {
 	
@@ -110,6 +112,33 @@ class RunnitServices {
 	    $user['username']=$username;
 	    $user['completename']=$completename;
 	    $user['email']=$email;
+	
+		//mensaje en HTML
+		$htmlMsg="Bievenido a Runnity.com<br><br>Tus datos de acceso son:<br><br>Usuario:$username<br><br>Password:$password<br><br>Si tienes alguna duda mandanos un email.";
+	
+		//Send confirmation email
+
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = "ssl";
+		$mail->Host = "smtp.gmail.com";
+		$mail->Port = 465;
+		$mail->Username = "alertas@runnity.com";
+		$mail->Password = "password";		
+
+		$mail->From = "alertas@runnity.com";
+		$mail->FromName = "Alertas Runnity";
+		$mail->Subject = "Bienvenido a Runnity.com / datos de acceso";
+		$mail->AltBody = str_replace("<br>","\n",$htmlMsg);
+		$mail->MsgHTML($htmlMsg);
+		$mail->AddAddress($email, $completename);
+		$mail->IsHTML(true);	
+		
+		if(!$mail->Send()) {
+			throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+		}			
+	
 	    return $user;
 	}
 	
