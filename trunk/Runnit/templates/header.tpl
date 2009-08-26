@@ -208,11 +208,11 @@
 	<div class="span-24 header">
 		<div class="span-6 loginImage">
 			{if $smarty.session}
-				<div id="loginBox" style="text-align:center;padding-left:0px;">
-					<a href="./usuario.php" class='normalText'>{$smarty.session.user.username}</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a>
+				<div id="loginBox" class="loginRun">
+					<a class="blackLogin" href="./usuario.php">{$smarty.session.user.username}</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()">Salir</a>
 				</div>
 			{else}
-				<div id="loginBox">
+				<div id="loginBox" class="accessLogin">
 					<a href="javascript: void showLoginBox()" class="hrefText">accede a tu cuenta</a>
 					<a class="normalText"> ó </a>
 					<a href="javascript: void showRegisterBox()" class="hrefText">registrate</a>

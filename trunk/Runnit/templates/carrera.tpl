@@ -85,45 +85,41 @@
 				</div>
 					
 				<div class="span-16 marginDescription">
-					<div class="marginDescription"><h3 class="blue">Comentarios[3]</h3><h5>publicar un comentario</h5></div>			
-						
-					{foreach key=id item=comment from=$comments}
-    				{if $comment eq false}
-    					<div class="column span-16 first racesComment">No hay comentarios.</div> 
-    				{else}
-    										
-						<div class="column span-16 first racesComment">				
-							<div class="column span-3 first image">
-								<img src="media/avatar/{$comment.avatar}"/>	
-							</div>
-							<div class="column span-12 last commentBox">
-								<div class="nameUser"><a class="nameRace" href="#">{$person.username},</a> hace {$person.created_when} dias</div>
-								<p class="textRace">{$person.commenttext}</p>
-							</div>
-						</div>
-						
-              		{/if}
-                	{foreachelse}
-                	    <div class="span-8 races">No hay comentarios.</div>    
-                	{/foreach}						
-						
+					<div class="marginDescription"><h3 class="blue">Comentarios[{$comments|@count}]</h3><h5>publicar un comentario</h5></div>			
+					<ol id="update">
+						{foreach key=id item=comment from=$comments}
+	    				{if $comment eq false}
+	    					<div class="column span-16 first racesComment">No hay comentarios.</div> 
+	    				{else}	    										
+							<div class="column span-16 first racesComment">				
+								<div class="column span-3 first image">
+									<img src="media/avatar/{$comment.avatar}"/>	
+								</div>
+								<div class="column span-12 last commentBox">
+									<div class="nameUser"><a class="nameRace" href="#">{$comment.username}, </a>{elapsed_time timestamp=$comment.created_when|substr:0:13}</div>
+									<p class="textRace">{$comment.commenttext}</p>
+								</div>
+							</div>							
+	              		{/if}
+	                	{foreachelse}
+	                	    <div class="span-8 races">No hay comentarios.</div>    
+	                	{/foreach}						
+					</ol>
 				</div>
 				
 				<!-- PARA AÑADIR COMENTARIOS -->
 				<div class="span-16 boxraceMap">
-					<div class="marginDescription commentArea" id="commentBox">					
+					<div class="commentArea" id="commentBox">					
 						{if $smarty.session}
 							<div class="span-14 titleComents">Anímate y publica tu comentario</div>
 							<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
-							<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Publicar comentario"/>
+							<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>
 						{else}
 							<!-- MAQUETAR FERNAN -->
 							Lo siento no puedes comentar sin estar registrado
 						{/if}
-						
 					</div>
-				</div>
-				
+				</div>		
 			</div>				
 		</div>
 		

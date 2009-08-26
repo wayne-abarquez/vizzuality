@@ -32,6 +32,25 @@ a.normalText{
 	text-decoration: none;
 }
 
+a.blackLogin {
+	font-size: 12px;
+	font-family: Arial;
+	color: black;
+	text-decoration: none;
+}
+
+div.loginRun {
+	text-align:right;
+	padding-right:27px;
+}
+
+div.accessLogin {
+	padding-left: 30px;
+	text-align: left;
+}
+
+
+
 /* HEADER */
 
 div.header{
@@ -532,6 +551,7 @@ div.racesComment {
 	padding-bottom: 15px;
 	margin-right: 10px;
 	width: 618px;
+	margin-left: -20px;
 }
 
 p.textRace {
