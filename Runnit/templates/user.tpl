@@ -90,11 +90,8 @@ div.button.hover {
 				<div class="column span-3 first">
 					<img src="img/user.jpg"/>
 					<div class="uploadButton">
-						<input class="fg-button ui-state-default ui-corner-all" type="button" value="Subir foto"/>
+						<input class="fg-button ui-state-default ui-corner-all subirfoto" type="button" value="Subir foto"/>
 					</div>
-            		
-					
-                    
 				</div>
 				<div class="column span-13 last">
 					<div class="span-13 userCount">
