@@ -8,6 +8,7 @@ class RunnitServices {
 	    $this->conn = pg_connect ("host=67.23.44.117 dbname=runnit user=runnit password=runnitrunnit555");
 	
 		$this->emailPassword="alertrunnity";
+		$this->basePath="/Users/jatorre/workspace/runnit/";
 	}
     
     public function login($email,$pass) {
@@ -41,7 +42,7 @@ class RunnitServices {
 	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
 	    if($result) {
     	    foreach ($result as &$comment) {
-    	        $targetPicture=getcwd()."/../media/avatar/".$comment['user_id'].".jpg";
+    	        $targetPicture=$this->basePath."media/avatar/".$comment['user_id'].".jpg";
                 if (file_exists($targetPicture)) {
                     $comment['avatar'] = $comment['user_id'].".jpg";
                 } else {
@@ -222,7 +223,7 @@ class RunnitServices {
 	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
 	    if($result) {
     	    foreach ($result as &$user) {
-    	        $targetPicture=getcwd()."/../media/avatar/".$user['user_id'].".jpg";
+    	        $targetPicture=$this->basePath."media/avatar/".$user['user_id'].".jpg";
                 if (file_exists($targetPicture)) {
                     $user['avatar'] = $user['user_id'].".jpg";
                 } else {
@@ -309,7 +310,7 @@ class RunnitServices {
 	    
 	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
 	    foreach ($result as &$run) {
-	        $targetPicture=getcwd()."/../media/run/".$run['id']."_small.jpg";
+	        $targetPicture=$this->basePath."media/run/".$run['id']."_small.jpg";
             if (file_exists($targetPicture)) {
                 $run['thumbnail'] = $run['id']."_small.jpg";
             } else {
@@ -497,7 +498,7 @@ class RunnitServices {
         $result = pg_query($this->conn, $sql);  
         $run = pg_fetch_assoc($result);
         
-        $targetPicture=getcwd()."/../media/run/".$run['id']."_big.jpg";
+        $targetPicture=$this->basePath."media/run/".$run['id']."_big.jpg";
         if (file_exists($targetPicture)) {
             $run['big_picture'] = $run['id']."_big.jpg";
         } else {
