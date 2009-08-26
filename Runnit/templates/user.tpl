@@ -98,8 +98,8 @@ div.button.hover {
 				</div>
 				<div class="column span-13 last">
 					<div class="span-13 userCount">
-						<div class="wellcome">Bienvenida <a href="#" class="wellcome">{$smarty.session.user.completename}</a></div>
-						<div class="countAgo">usuario desde Febrero, 2009</div>
+						<div class="wellcome">Bienvenido/a <a href="#" class="wellcome">{$smarty.session.user.completename}</a></div>
+						<div class="countAgo">usuario desde {getMonth2 month=$smarty.session.user.created_when|substr:5:2}, {$smarty.session.user.created_when|substr:0:4}</div>
 					</div>
 					<div class="span-13">
 						<div class="paddingRightContainer"> 
@@ -110,19 +110,19 @@ div.button.hover {
 								<div>
 									<div class="countAgo">nombre y apellidos</div>
 									<div class="inputWhite">
-										<label class="round" for="input1"><span><input type="text" name="input1" id="input1"></span></label>
+										<label class="round" for="input1"><span><input type="text" name="input1" id="input1" value="{$smarty.session.user.completename}"></span></label>
 									</div>
 								</div>
 								<div>
 									<div class="countAgo">nombre de usuario</div>
 									<div class="inputWhite">
-										<label class="round" for="input2"><span><input type="text" name="input2" id="input2"></span></label>
+										<label class="round" for="input2"><span><input type="text" name="input2" id="input2" value="{$smarty.session.user.username}"></span></label>
 									</div>
 								</div>
 								<div>
 									<div class="countAgo">email</div>
 									<div class="inputWhite">
-										<label class="round" for="input3"><span><input type="text" name="input3" id="input3"></span></label>
+										<label class="round" for="input3"><span><input type="text" name="input3" id="input3" value="{$smarty.session.user.email}"></span></label>
 									</div>
 								</div>
 								<div class="inputWhiteButton">
