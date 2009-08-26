@@ -180,12 +180,12 @@ div.button.hover {
 		<div class="column last span-8 rightColumnUser">
 			<div class="span-8 importantRaces">
 				<div class="events"> 
-					<h2 class="newsTitle">En las mismas fechas</h2>
+					<h2 class="newsTitle">Tus próximas carreras</h2>
 				</div>
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
             			{if $race eq "f"}
-            				<div class="span-8 races2">No hay proximas carreras.</div> 
+            				<div class="span-8 races2">No te has apuntado a ninguna.</div> 
             			{else}		    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
@@ -199,7 +199,7 @@ div.button.hover {
         					</div>
             			{/if}
                 	    {foreachelse}
-                	        <div class="span-8 races2">No hay proximas carreras.</div> 
+                	        <div class="span-8 races2">No te has apuntado a ninguna.</div> 
                 	    {/foreach}					
 				</div>
 			</div>
