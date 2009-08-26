@@ -13,7 +13,7 @@ require 'services/RunnitServices.php';
 $smarty = new Smarty; 
 $services = new RunnitServices;
 
-
+$smarty->assign('nextRaces',$services->getUserRuns($_SESSION['user']['id']));
 
 $smarty->assign('section', 'usuario');
 $smarty->display('user.tpl');
