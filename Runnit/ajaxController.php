@@ -24,25 +24,24 @@ if ($_REQUEST['method'] == 'addComment') {
 
     $result = $services->addComment($_SESSION['user']['id'],$comment,$_REQUEST['id'],'run');
     
-    if ($result) {
+    if ($result==null) {
         ?>
-    	
-    	<div class="column span-16 first racesComment">				
+
+		<div class="column span-16 first racesComment">				
 			<div class="column span-3 first image">
-				<img src="img/user.jpg"/>	
+				<img src="media/avatar/{$comment.avatar}"/>	
 			</div>
-			<div class="column span-12 last detailsUser">
-				<div class="nameUser"><a class="nameRace" href="#"><?php echo $name;?>,</a> <?php echo $date;?> </div>
+			<div class="column span-12 last commentBox">
+				<div class="nameUser"><a class="nameRace" href="#"><?php echo $name;?>,</a> <?php echo $date;?></div>
 				<p class="textRace"><?php echo $comment; ?></p>
 			</div>
-		</div> 
-
+		</div>
     	  
         <?php
     } else {
         ?>
     	<div class="column span-16 first racesComment">				
-			Sorry, has been an error.
+			Lo siento, ha ocurrido un error.
 		</div>  
     	  
         <?php       

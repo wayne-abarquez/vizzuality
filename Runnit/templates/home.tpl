@@ -210,7 +210,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 			});
 			 
 		
-			var url = "http://twitter.com/status/user_timeline/runn_it.json?count=1&callback=?";
+			var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
 			$.getJSON(url,function(data){	
 				$.each(data, function(i, item) {
 					$("img#profile").attr("src", item.user["profile_image_url"]);
