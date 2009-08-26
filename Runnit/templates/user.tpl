@@ -93,7 +93,7 @@ div.button.hover {
 						<input class="fg-button ui-state-default ui-corner-all subirfoto" type="button" value="Subir foto"/>
 					</div>
 				</div>
-				<div class="column span-13 last">
+				<div class="span-13 last flipando">
 					<div class="span-13 userCount">
 						<div class="wellcome">Bienvenido/a <a href="#" class="wellcome">{$smarty.session.user.completename}</a></div>
 						<div class="countAgo">usuario desde {getMonth2 month=$smarty.session.user.created_when|substr:5:2}, {$smarty.session.user.created_when|substr:0:4}</div>
