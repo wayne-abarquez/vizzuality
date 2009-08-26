@@ -1,5 +1,7 @@
 <?php 
+
 session_start();
+
 if (!$_SESSION['logged']) {
 	echo("No puedes acceder a esta pagina sin haberte logeado");
 	die();

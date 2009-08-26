@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 require 'libs/Smarty.class.php';
 require 'services/RunnitServices.php';
 
