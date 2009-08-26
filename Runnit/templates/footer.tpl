@@ -15,6 +15,25 @@
     var pageTracker = _gat._getTracker("UA-10302560-1");
     pageTracker._trackPageview();
     } catch(err) {}</script>
+
+	<script type="text/javascript">
+	  var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
+	  document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
+	</script>
+	<script type="text/javascript">
+	UserVoice.Tab.show({ 
+	  /* required */
+	  key: 'runnity',
+	  host: 'runnity.uservoice.com', 
+	  forum: '21637', 
+	  /* optional */
+	  alignment: 'left',
+	  background_color:'#f00', 
+	  text_color: 'white',
+	  hover_color: '#06C',
+	  lang: 'es'
+	})
+	</script>
 {/literal}     
 </body>
 </html>

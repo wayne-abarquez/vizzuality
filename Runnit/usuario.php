@@ -12,7 +12,7 @@ require 'services/RunnitServices.php';
 
 $smarty = new Smarty; 
 $services = new RunnitServices;
-
+$smarty->assign('titulo_pagina', 'Pagina de usuario de '.$_SESSION['user']['username'].' - Runnity.com');
 $smarty->assign('nextRaces',$services->getUserRuns($_SESSION['user']['id']));
 
 $smarty->assign('section', 'usuario');

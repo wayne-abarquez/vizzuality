@@ -7,6 +7,7 @@ $smarty = new Smarty;
 $services = new RunnitServices;
 
 $smarty->assign('section', 'index');
+$smarty->assign('titulo_pagina', 'Próximas carreras y atletas - Runnity.com');
 
 
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns());
