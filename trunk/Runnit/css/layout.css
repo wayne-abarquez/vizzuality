@@ -652,13 +652,6 @@ div.countAgo {
 	font-family: Arial;
 	font-size: 12px;
 	color: #666666;
-	margin-bottom: 0px;
-	margin-top: 0px;
-	float: left;
-}
-
-div.countAgo2 {
-	margin-top: 28px;
 }
 
 div.alertLabel{
@@ -702,8 +695,8 @@ div.changePass {
 }
 
 div.pagination {
+	margin-top: 25px;
 	float: right;
-	line-height: 25px;
 }
 
 div.contact {
@@ -713,14 +706,6 @@ div.contact {
 .rightColumnUser {
 	background-color: #f1f1f1;
 	height: 530px;
-}
-
-div.btnMargin {
-	margin-right: 7px;
-}
-
-div.btnJoin {
-	margin-right: 3px;
 }
 
 .inputWhite{
@@ -810,11 +795,7 @@ div.raceDetailsSearch {
 div.raceSearchFirst{
 	height: 113px;
 	border-bottom: dotted #666666 1px;
-	margin-bottom: 10px;
 	background-color: #e5f4f9;
-	margin-top: 0px;
-	padding-top: 0px;
-	margin-bottom: 0px;
 }
 
 div.raceSearchLast{
@@ -848,7 +829,6 @@ div.raceDetailsBottom {
 .searchPanel{
 	padding-top: 11px;
 	padding-left: 10px;
-	padding-right: 0px;
 }
 
 .dates{
@@ -876,7 +856,7 @@ div.raceDetailsBottom {
 }
 
 .searchlabel2{
-	margin-left: 243px;
+	margin-left: 212px;
 }
 
 .noResults{
@@ -923,4 +903,16 @@ div.raceDetailsBottom {
 	color: gray;
 	font-size: 13px;
 	font-weight: bold;
+}
+
+.formSearch{
+	width: 618px;
+}
+
+.numberResults{
+	float: left;
+}
+
+.numberMargin{
+	margin-right: 10px;
 }
