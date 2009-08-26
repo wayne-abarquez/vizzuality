@@ -27,7 +27,7 @@
 	  host: 'runnity.uservoice.com', 
 	  forum: '21637', 
 	  /* optional */
-	  alignment: 'left',
+	  alignment: 'right',
 	  background_color:'#f00', 
 	  text_color: 'white',
 	  hover_color: '#06C',
