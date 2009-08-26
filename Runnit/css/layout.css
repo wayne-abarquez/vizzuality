@@ -628,6 +628,8 @@ h2.userData {
 	color: #336699;
 	font-weight: bold;
 	border-bottom: solid 2px #336699;
+	margin-bottom: 0px;
+	margin-top: -20px;
 }
 
 div.userCount {
