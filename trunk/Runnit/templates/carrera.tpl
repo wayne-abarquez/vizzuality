@@ -163,7 +163,7 @@
 			
 			<div class="span-8 marginTopPlus">
 				<div class="events"> 
-					<h2 class="newsTitle">Últimos valientes</h2>	
+					<h2 class="newsTitle">Valientes apuntados</h2>	
 					{foreach key=id item=person from=$runners}
     				{if $person eq 'f'}
     					<div class="span-8 races2">No hay valientes.</div> 
