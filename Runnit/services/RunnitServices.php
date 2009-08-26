@@ -34,7 +34,7 @@ class RunnitServices {
 	public function getComments($on_id,$table) {
 	    $table=pg_escape_string($table);
 	    
-	    $sql="SELECT c.id,commenttext,c.created_when,username,u.id as user_id from comments as c INNER JOIN users as u ON c.user_fk=u.id  WHERE on_id=$on_id AND on_table='$table'";	    
+	    $sql="SELECT c.id,commenttext,c.created_when,username,u.id as user_id from comments as c INNER JOIN users as u ON c.user_fk=u.id  WHERE on_id=$on_id AND on_table='$table' ORDER BY c.created_when ASC";	    
 
 	    //Check if the user has avatars or not
 	    $result = pg_fetch_all(pg_query($this->conn, $sql));

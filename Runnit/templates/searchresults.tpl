@@ -9,8 +9,7 @@
 				<div class="span-16 navigationList">
 					<ul> 
 						<li><a href="/">Inicio ></a></li>
-						<li><a href="#" class="selected">Resultados de tu búsqueda</a></li>
-						<li><a href="#" class="selected">"<b>{$smarty.request.q}</b>"</a></li>
+						<li><a href="#" class="selected">{$titulo_breadcrumb} <b>{$smarty.request.q}</b></a></li>
 					</ul>
 				</div>
 			</div>
