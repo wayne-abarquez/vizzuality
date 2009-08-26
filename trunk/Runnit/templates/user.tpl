@@ -203,13 +203,6 @@ div.button.hover {
                 	    {/foreach}					
 				</div>
 			</div>
-			<!--div class="column last span-7 pagination countAgo">
-				<div class="column last span-2 pagination btnMargin">
-					<div class="column first span-1 btnJoin"><a href=""><input class="fg-button ui-state-default ui-corner-all" type="button" value="<"/></a></div>
-					<div class="column last span-1 btnJoin"><a href=""><input class="fg-button ui-state-default ui-corner-all" type="button" value=">"/></a></div>	
-				</div>
-				<div class="column first span-4 pagination">viendo del 1-4 de 21</div>			
-			</div -->
 		</div>
 	</div>
 </div>
