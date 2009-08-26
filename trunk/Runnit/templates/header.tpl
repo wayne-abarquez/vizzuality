@@ -191,14 +191,29 @@
 		</div>			
 	</div>
 	
+	<!-- LOGOUT WINDOW -->
+	<div id="logoutWindow" style='display:none'>
+		<h2 class="registerTitle">¿Quieres salir de Runnity?</h2>
+		<div>
+			<div class="column span-4 first logoutButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Si, seguro" onclick="logout()"/></div>
+			<div class="column span-1 last"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="No, voy a seguir" onclick="$.modal.close();"/></div>
+		</div>
+	</div>
+	
 	<!-- HEADER -->
 	<div class="span-24 header">
 		<div class="span-6 loginImage">
-			<div class="loginText" id="loginBox">
-				<a href="javascript: void showLoginBox()" class="hrefText">accede a tu cuenta</a>
-				<a class="normalText"> ó </a>
-				<a href="javascript: void showRegisterBox()" class="hrefText">registrate</a>
-			</div>
+			{if $smarty.session}
+				<div class="loginText" id="loginBox" style="text-align:center;">
+					<a class='normalText'>{$smarty.session.user.username}</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a>
+				</div>
+			{else}
+				<div class="loginText" id="loginBox">
+					<a href="javascript: void showLoginBox()" class="hrefText">accede a tu cuenta</a>
+					<a class="normalText"> ó </a>
+					<a href="javascript: void showRegisterBox()" class="hrefText">registrate</a>
+				</div>
+			{/if}
 		</div>
  
  		<a href="index.php"><div class="span-6 first headerImage"></div></a>

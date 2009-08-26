@@ -249,7 +249,7 @@ function registerUser(){
     		$('#registerError').html(''); 
     		var h = 100;
     		$('#registerError').fadeIn(400).html('');  
-    		$('#registerTitle').html('Gracias por registrarte ' + result[0].username);
+    		$('#registerTitle').html('Gracias por registrarte ' + result);
     		$('#conditions').hide();
     		$('#registerForm').html('<div class="margin10"><div class="inputTitle" style="text-align:center;">Gracias por haberte registrado, en breves momentos recibirás un email con tus datos.</div></div>');
 			$('#simplemodal-container').animate({height: h},500);
@@ -346,12 +346,9 @@ function login(){
     			$('#passwordLogin').removeAttr("disabled");
             } else {
                 //login ok. Close the popup and change the login menu in the header
-                
-                //FALTA PONER LOGIN DE USUARIO EN PAGINA
-                /*$("#logoutRef").click(function(){
-	                $('#logout').modal();
-	            });*/
-	            
+                $("#loginBox").css('text-align','center');
+                $("#loginBox").html("<a class='normalText'>" + result + '</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a> ');
+                $("#commentBox").html("<div class='span-14 titleComents'>Anímate y publica tu comentario</div><textarea name='textarea2' id='commentTextArea' class='span-15 textArea'></textarea><input class='fg-button ui-state-default ui-corner-all' type='submit' value='Publicar comentario'/>");            
 	            $('#loginForm').hide(); 
 	            $('#registerLogin').hide();
 				$('#separatorLogin').hide();
@@ -388,5 +385,48 @@ function sendPassword() {
 	$('#passForm').hide();
 	$('#forgetLink').removeAttr("href");
 	$('#forgetLink').html('Introduce tu e-mail.');
+
+}
+
+function alertLogout() {
+	$('#logoutWindow').modal();
+	
+	
+	var wscr = $(window).width();
+    var hscr = $(window).height();
+    
+    // obtener posicion central
+    var mleft = ( wscr - 330 ) / 2;
+    var mtop = ( hscr - 100 ) / 2;
+    
+    // estableciendo ventana modal en el centro
+    $('#simplemodal-container').css("left", mleft+'px');
+    $('#simplemodal-container').css("top", mtop+'px');
+	
+	$('#simplemodal-container').css("width",'330px');
+	$('#simplemodal-container').css("height",'100px');
+	
+}
+
+
+function logout () {
+
+	var dataObj = ({method: 'logout'});    
+    $.ajax({
+    	type: "POST",
+    	url: "ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+    		$("#loginBox").css('text-align','inherit');
+    		$("#loginBox").html("<div class='loginText' id='loginBox'><a href='javascript: void showLoginBox()' class='hrefText'>accede a tu cuenta</a><a class='normalText'> ó </a><a href='javascript: void showRegisterBox()' class='hrefText'>registrate</a></div>");
+    		$("#commentBox").html("Lo siento no puedes comentar sin estar registrado");
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                alert(xhr.status + "\n" + thrownError);
+        }
+    });
+    $.modal.close();
+
 
 }
