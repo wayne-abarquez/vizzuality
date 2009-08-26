@@ -5,7 +5,7 @@
 	
 		<!-- RACE & IMAGE -->
 		<div class="span-16 first leftColumn">
-			<div class="span-16 column raceTitle">
+			<div class="span-16 column">
 				<div class="span-16 navigationList">
 					<ul> 
 						<li><a href="/">Inicio ></a></li>
@@ -109,7 +109,7 @@
 
 			<div class="span-8 importantRaces">
 				<div class="events"> 
-					<h2 class="newsTitle">Próximas carreras</h2>
+					<h2 class="newsTitle4">Próximas carreras</h2>
 				</div>	
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
