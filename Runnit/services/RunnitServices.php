@@ -571,6 +571,15 @@ class RunnitServices {
 	}
 	
 	public function sendPasswordToEmail($email) {
+		$name=pg_escape_string($email);
+		
+		$sql="select pass from users where email='$email'";
+		$result = pg_query($this->conn, $sql);  
+        $user = pg_fetch_assoc($result);
+		if(!$user) {
+			return false;
+		}
+
 		$mail = new PHPMailer();
 		$mail->IsSMTP();
 		$mail->SMTPAuth = true;
@@ -583,14 +592,14 @@ class RunnitServices {
 		$mail->From = $email;
 		$mail->FromName = $mensaje;
 		$mail->Subject = "Password en Runnity.com";
-		$mail->MsgHTML("Tu password es: lalalala");
+		$mail->MsgHTML("Tu password es: ".$user['pass']);
 		$mail->AddAddress($email, $email);
 		$mail->IsHTML(true);	
 		
 		if(!$mail->Send()) {
 			throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
 		}		
-		return null;		
+		return true;		
 	}
 
 }
