@@ -26,6 +26,7 @@ package {
 	import flash.net.navigateToURL;
 	import flash.text.StyleSheet;
 	import flash.text.TextFormat;
+	import flash.utils.Dictionary;
 	
 	import rosa.RosaSettings;
 	import rosa.events.RosaEvent;
@@ -116,55 +117,63 @@ package {
 			service.getAllRuns();
 		}
 		
+		private function openInfoWindow(e:MapMouseEvent):void {
+			
+			var m:Object = iw[e.target];
+			var titleFormat:TextFormat = new TextFormat();
+			titleFormat.bold = true;
+			var titleStyleSheet:StyleSheet = new StyleSheet();
+			var contentFormat:TextFormat = new TextFormat("Arial", 10);
+			var options:InfoWindowOptions = new InfoWindowOptions({
+
+			  strokeStyle: {
+			    color: 0x666666,
+			    thickness:1
+			  },
+			  fillStyle: {
+			    color: 0xFFFFFF,
+			    alpha: 0.9
+			  },
+			  titleFormat: titleFormat,
+			  titleStyleSheet: titleStyleSheet,
+			  contentFormat: contentFormat,
+			  width: 200,
+			  cornerRadius: 3,
+			  padding: 10,
+			  hasCloseButton: false,
+			  hasTail: true,
+			  pointOffset:new Point(0,-10),
+			  tailWidth: 20,
+			  tailHeight: 18,
+			  tailOffset: -22,
+			  tailAlign: InfoWindowOptions.ALIGN_LEFT,
+			  pointOffset: new Point(3, 8),
+			  hasShadow: true,
+			  title:m.name,
+			  content:(m.event_date as String).substr(8,2) + '/' + 
+			  	(m.event_date as String).substr(5,2) + '/' + (m.event_date as String).substr(0,4) + ' | ' +  m.distance_text
+			});
+			map.openInfoWindow(e.latLng,options);
+			
+		}		
+		
+		private var iw:Dictionary=new Dictionary();
 		private function getAllRunsResult(event:RosaEvent):void {
 			markers = [];	
 			dataBbox=new LatLngBounds();
 			for each(var m:Object in event.result as Array) {
 				var p:LatLng = new LatLng(m.lat,m.lon);
 				var marker:RunSingleMarker=new RunSingleMarker(p,m.name,m.id,m.event_date)
+				iw[marker]=m;
 				marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
 					goToRunPage(m.id);
 				});
 				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
-								var titleFormat:TextFormat = new TextFormat();
-								titleFormat.bold = true;
-								var titleStyleSheet:StyleSheet = new StyleSheet();
-								var contentFormat:TextFormat = new TextFormat("Arial", 10);
-								var options:InfoWindowOptions = new InfoWindowOptions({
-
-								  strokeStyle: {
-								    color: 0x666666,
-								    thickness:1
-								  },
-								  fillStyle: {
-								    color: 0xFFFFFF,
-								    alpha: 0.9
-								  },
-								  titleFormat: titleFormat,
-								  titleStyleSheet: titleStyleSheet,
-								  contentFormat: contentFormat,
-								  width: 200,
-								  cornerRadius: 3,
-								  padding: 10,
-								  hasCloseButton: false,
-								  hasTail: true,
-								  pointOffset:new Point(0,-10),
-								  tailWidth: 20,
-								  tailHeight: 18,
-								  tailOffset: -22,
-								  tailAlign: InfoWindowOptions.ALIGN_LEFT,
-								  pointOffset: new Point(3, 8),
-								  hasShadow: true,
-								  title:m.name,
-								  content:(m.event_date as String).substr(8,2) + '/' + 
-								  	(m.event_date as String).substr(5,2) + '/' + (m.event_date as String).substr(0,4) + ' | ' +  m.distance_text
-								});
-								map.openInfoWindow(e.latLng,options);
-								
-					});
-					marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
-						map.closeInfoWindow();
-					});						
+					openInfoWindow(e);									
+				});
+				marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
+					map.closeInfoWindow();
+				});						
 				markers.push(marker);
 				dataBbox.extend(p);
 			}
