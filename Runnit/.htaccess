@@ -1,7 +1,7 @@
 Options +FollowSymLinks  
 RewriteEngine On  
-  
+
 RewriteCond %{SCRIPT_FILENAME} !-d  
 RewriteCond %{SCRIPT_FILENAME} !-f  
    
-RewriteRule /carrera/([0-9]+) ./carrera.php?id=$1
+RewriteRule /carrera/([0-9]+) /carrera.php?id=$1
