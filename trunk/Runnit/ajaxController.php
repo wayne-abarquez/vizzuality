@@ -85,8 +85,12 @@ if ($_REQUEST['method'] == 'sendEmailToAlertas') {
 
 if ($_REQUEST['method'] == 'sendPasswordToEmail') {
 	$result = $services->sendPasswordToEmail($_REQUEST['email']);
-	//echo("INVALID");
-	echo("OK");
+	if($result) {
+		echo("OK");
+	} else {
+		echo("INVALID");
+	}
+	
 }
 
 if ($_REQUEST['method'] == 'setAlert') {
