@@ -347,6 +347,7 @@ function login(){
             } else {
                 //login ok. Close the popup and change the login menu in the header
                 $("#loginBox").css('text-align','center');
+                $("#loginBox").css('padding-left','0px');
                 $("#loginBox").html("<a class='normalText'>" + result + '</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a> ');
                 $("#commentBox").html("<div class='span-14 titleComents'>Anímate y publica tu comentario</div><textarea name='textarea2' id='commentTextArea' class='span-15 textArea'></textarea><input class='fg-button ui-state-default ui-corner-all' type='submit' value='Publicar comentario'/>");            
 	            $('#loginForm').hide(); 
@@ -360,7 +361,7 @@ function login(){
 	    		$('#loginForm').show();
 				$('#simplemodal-container').animate({width: w,height: h},500);
 
-                timerID = setTimeout("timerHide()", 3000);
+                timerID = setTimeout("timerHide()", 2000);
             }
         
     	},
@@ -418,7 +419,8 @@ function logout () {
     	data: dataObj,
     	cache: false,
     	success: function(result){
-    		$("#loginBox").css('text-align','inherit');
+    		$("#loginBox").css('text-align','left');
+    		$("#loginBox").css('padding-left','0px');
     		$("#loginBox").html("<div class='loginText' id='loginBox'><a href='javascript: void showLoginBox()' class='hrefText'>accede a tu cuenta</a><a class='normalText'> ó </a><a href='javascript: void showRegisterBox()' class='hrefText'>registrate</a></div>");
     		$("#commentBox").html("Lo siento no puedes comentar sin estar registrado");
     	},
