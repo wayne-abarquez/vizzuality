@@ -12,6 +12,7 @@ if(isset($_REQUEST['offset'])) {
 }
 
 $smarty->assign('section', 'searchresults');
+$smarty->assign('titulo_pagina', 'Resultados de carreras en '.$_REQUEST['q'].' - Runnity.com');
 $smarty->assign('nextRaces',$services->getNextRuns());
 
 $results=$services->searchRuns($_REQUEST['q'],$_REQUEST['distancia_min'],$_REQUEST['distancia_max'],$offset);

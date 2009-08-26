@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>Runnity</title>
+	<title>{$titulo_pagina}</title>
 	
 	<link rel="shortcut icon" href="../img/favicon.ico"/>
 
