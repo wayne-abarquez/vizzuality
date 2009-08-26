@@ -184,7 +184,7 @@ div.button.hover {
 				</div>
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
-            			{if $race eq "f"}
+            			{if $race eq 0}
             				<div class="span-8 races2">No te has apuntado a ninguna.</div> 
             			{else}		    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">

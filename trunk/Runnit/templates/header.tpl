@@ -205,7 +205,7 @@
 		<div class="span-6 loginImage">
 			{if $smarty.session}
 				<div id="loginBox" style="text-align:center;padding-left:0px;">
-					<a class='normalText'>{$smarty.session.user.username}</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a>
+					<a href="./usuario.php" class='normalText'>{$smarty.session.user.username}</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a>
 				</div>
 			{else}
 				<div id="loginBox">
