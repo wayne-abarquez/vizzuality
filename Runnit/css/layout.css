@@ -454,7 +454,7 @@ a.contactFooter {
 /* CARRERA */
 
 .navigationList ul{
-	margin-top: 4px;
+	margin-top: 10px;
 	margin-bottom: 0px;
 	margin-left: 10px;
 }
@@ -692,7 +692,7 @@ div.alertLabel{
 div.passContainer {
 	background-color: #b5e6f3;
 	height: 175px;
-	margin-left: 10px;
+	margin-left: 20px;
 	width: 220px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -714,6 +714,7 @@ div.changePass {
 
 .marginTopPlus {
 	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 div.pagination {
@@ -938,6 +939,6 @@ div.raceDetailsBottom {
 	margin-right: 10px;
 }
 
-.flipando{
+.userLeft{
 	margin-left: -12px;
 }
