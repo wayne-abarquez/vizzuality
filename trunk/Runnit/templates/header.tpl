@@ -81,9 +81,9 @@
 		<div class="column span-5 first loginColumn">
 			<h2 id="loginTitle" class="loginTitle">Accede a tu cuenta</h2>
 			<div id="loginForm" class="loginForm">
-			<form id="FormularioLogin" method="GET">
+			<form id="FormularioLogin" method="GET" action="javascript: void login()">
 				<div>
-					<div class="inputTitle">e-mail</div>
+					<div class="inputTitle" id="loginEmailText">e-mail</div>
 					<div class="inputBlue">
 						<label class="roundblue" for="login1"><span><input type="text" name="login1" id="emailLogin"/></span></label>
 					</div>
@@ -121,7 +121,7 @@
 	<div id="registerWindow" style='display:none'>
 		<h2 id="registerTitle" class="registerTitle">Crea tu cuenta en runnit!</h2>
 		<div id="registerForm">
-		<form id="FormularioRegister" method="GET">
+		<form id="FormularioRegister" method="GET" action="javascript: void registerUser()">
 			<div class="column first registerLeft">
 				<div class="margin10">
 					<div class="inputTitle">nombre de usuario</div>
@@ -170,29 +170,31 @@
 	<!-- CONTACT -->
 	<div id="contactWindow" style='display:none'>
 		<h2 class="registerTitle" id="contactTitle">Sugerencias, dudas... escríbenos!</h2>
-		<div id="contactForm">
-			<div class="margin10 contactArea">
-				<div class="inputTitle">Nombre</div>
-				<div class="inputBlue">
-					<label class="roundblue" for="register1"><span><input type="text" name="contact_1" id="contact1"/></span></label>
+		<form id="FormularioRegister" method="GET" action="javascript: void sendMessage()">
+			<div id="contactForm">
+				<div class="margin10 contactArea">
+					<div class="inputTitle">Nombre</div>
+					<div class="inputBlue">
+						<label class="roundblue" for="register1"><span><input type="text" name="contact_1" id="contact1"/></span></label>
+					</div>
 				</div>
-			</div>
-			<div class="margin10 contactArea">
-				<div class="inputTitle">Email</div>
-				<div class="inputBlue">
-					<label class="roundblue" for="register2"><span><input type="text" name="contact_2" id="contact2"/></span></label>
+				<div class="margin10 contactArea">
+					<div class="inputTitle">Email</div>
+					<div class="inputBlue">
+						<label class="roundblue" for="register2"><span><input type="text" name="contact_2" id="contact2"/></span></label>
+					</div>
 				</div>
-			</div>
-			<div class="margin10 contactArea">
-				<div class="inputTitle">Mensaje</div>
-				<textarea name="textarea1" id="message" rows="3" cols="60" class="contactTextArea" id="contact3"></textarea>
-			</div>
-			
-			<div class="span-9 margin10 contactArea2">
-				<div class="span-4 first"><input id="contactButton" class="fg-button ui-state-default ui-corner-all" type="submit" value="Enviar mensaje" onclick="javascript: void sendMessage()"/></div>
-				<div class="span-5 last contactError" id="contactError"></div>
-			</div>
-		</div>	
+				<div class="margin10 contactArea">
+					<div class="inputTitle">Mensaje</div>
+					<textarea name="textarea1" id="message" rows="3" cols="60" class="contactTextArea" id="contact3"></textarea>
+				</div>
+				
+				<div class="span-9 margin10 contactArea2">
+					<div class="span-4 first"><input id="contactButton" class="fg-button ui-state-default ui-corner-all" type="submit" value="Enviar mensaje" onclick="javascript: void sendMessage()"/></div>
+					<div class="span-5 last contactError" id="contactError"></div>
+				</div>
+			</div>	
+		</form>
 	</div>
 	
 	<!-- LOGOUT WINDOW -->
