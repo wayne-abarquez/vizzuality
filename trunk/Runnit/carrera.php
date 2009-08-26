@@ -11,6 +11,7 @@ $services = new RunnitServices;
 $smarty->assign('section', 'carrera');
 
 $data=$services->getRunDetails($_REQUEST['id']);
+
 $data['description'] = nl2br($data['description']);
 $smarty->assign('titulo_pagina', $data['name'] . ' - Runnity.com');
 
