@@ -127,3 +127,7 @@ div.loginText {
 	padding-top: 2px;
 	text-align: center;
 }
+
+div.logoutButton {
+	padding-left: 30px;
+}

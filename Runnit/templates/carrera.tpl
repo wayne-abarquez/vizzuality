@@ -89,7 +89,7 @@
 						
 					{foreach key=id item=comment from=$comments}
     				{if $comment eq false}
-    					<div class="span-8 races">No hay comentarios.</div> 
+    					<div class="column span-16 first racesComment">No hay comentarios.</div> 
     				{else}
     										
 						<div class="column span-16 first racesComment">				
@@ -111,10 +111,16 @@
 				
 				<!-- PARA AÑADIR COMENTARIOS -->
 				<div class="span-16 boxraceMap">
-					<div class="marginDescription commentArea">
-						<div class="span-14 titleComents">Anímate y publica tu comentario</div>
-						<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
-						<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Publicar comentario"/>
+					<div class="marginDescription commentArea" id="commentBox">					
+						{if $smarty.session}
+							<div class="span-14 titleComents">Anímate y publica tu comentario</div>
+							<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
+							<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Publicar comentario"/>
+						{else}
+							<!-- MAQUETAR FERNAN -->
+							Lo siento no puedes comentar sin estar registrado
+						{/if}
+						
 					</div>
 				</div>
 				

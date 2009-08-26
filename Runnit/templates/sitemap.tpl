@@ -7,9 +7,10 @@
 	<div class="column first span-16 moreRaces">
 		<uL>
 		{foreach key=id item=run from=$runs}
-			<li><a href="carrera.php?id={$run.id}">{$run.name} - {$run.event_location} - {$run.distance_text} - {$run.event_date}</a></li>
+			<li type="none"><a href="carrera.php?id={$run.id}">{$run.name} - {$run.event_location} - {$run.distance_text} - {$run.event_date}</a></li>
 		{/foreach}
 		<ul>		
 	</div>		
+</div>
 </div>
 {include file="footer.tpl"} 
