@@ -182,7 +182,7 @@ div.button.hover {
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
             			{if $race eq 0}
-            				<div class="span-8 races2">No te has apuntado a ninguna.</div> 
+            				<div class="span-8 races2"><p class="noApuntado">Aun no te has apuntado a ninguna carrera.</p></div> 
             			{else}		    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
