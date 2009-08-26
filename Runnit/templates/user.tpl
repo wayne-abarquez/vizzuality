@@ -151,7 +151,7 @@ div.button.hover {
 						<div class="paddingRightContainer"> 
 							<h2 class="userData">Alerta geográfica por email <span class="desactivate">(desactivado)</span></h2>
 						</div>
-						<div class="paddingRightContainer phraseGray">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
+						<div class="paddingRightContainer phraseGray2">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
 						<div class="marginTopPlus">
 							<div class="column first">
 								<div class="alertLabel">Localidad y provincia</div>
