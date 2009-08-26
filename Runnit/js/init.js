@@ -345,19 +345,8 @@ function login(){
                 $("#loginBox").css('text-align','right');
                 $("#loginBox").css('padding-right','27px');
                 $("#loginBox").html("<a href='./usuario.php' class='blackLogin'>" + result + '</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Salir</a> ');
-                $("#commentBox").html("<div class='span-14 titleComents'>Anímate y publica tu comentario</div><textarea name='textarea2' id='commentTextArea' class='span-15 textArea'></textarea><input class='fg-button ui-state-default ui-corner-all' type='submit' value='Publicar comentario'/>");            
-	            $('#loginForm').hide(); 
-	            $('#registerLogin').hide();
-				$('#separatorLogin').hide();
-	            
-	    		var w = 250;
-	    		var h = 120;
-	    		$('#loginTitle').html('Hola ' + result +'.');
-	    		$('#loginForm').html('<div class="inputTitle">Gracias por haberte logueado, en pocos segundos se cerrará esta ventana.</div>');
-	    		$('#loginForm').show();
-				$('#simplemodal-container').animate({width: w,height: h},500);
-
-                timerID = setTimeout("timerHide()", 2000);
+                $("#commentBox").html("<div class='span-14 titleComents'>Anímate y publica tu comentario</div><textarea name='textarea2' id='commentTextArea' class='span-15 textArea'></textarea><input class='fg-button ui-state-default ui-corner-all' type='submit' value='Publicar comentario'/>");   
+                $.modal.close();         
             }
         
     	},
@@ -365,6 +354,7 @@ function login(){
                 alert('Runnity' + xhr.status + "\n" + thrownError);
         }
     });
+    
     return false;
 }
 
@@ -379,11 +369,54 @@ function timerHide() {
 function sendPassword() {
 	$('#error_msg').hide();
 	$('#submitLogin').val('Enviar');
+	$('#submitLogin').attr('onclick','javascript: void sendPasswordTo()')
 	$('#passForm').hide();
 	$('#forgetLink').removeAttr("href");
 	$('#forgetLink').html('Introduce tu e-mail.');
-
+	$('#loginEmailText').html('Te enviaremos tu contraseña');
 }
+
+
+function sendPasswordTo() {
+
+	$('#error_msg').html('');
+
+	var email = $("#emailLogin").val();
+	
+	if (email=="") {
+		$('#contactError').html('El email esta vacío.');
+    	return false;
+	} 
+	
+	if (!echeck(email)) {
+    	$('#contactError').html('Tu email es incorrecto.');
+    	return false;
+    }
+	
+	$('#submitLogin').attr('value','Enviando');
+	
+	var dataObj = ({method: 'sendPasswordToEmail', email:email});  
+	  
+    $.ajax({
+    	type: "POST",
+    	url: "ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+    		if(result=='OK') {
+               	$('#error_msg').html('El email existe.');
+            } else {
+            	$('#error_msg').html('El email no existe.');       
+            }
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                alert(xhr.status + "\n" + thrownError);
+        }
+    });
+}
+
+
+
 
 function alertLogout() {
 	$('#logoutWindow').modal();
