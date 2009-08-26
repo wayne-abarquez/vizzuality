@@ -558,10 +558,6 @@ class RunnitServices {
         return null;		
 	}
 	
-	public function sendPasswordToEmail($id) {
-	    
-	}
-	
 	public function sendAlerts() {
 		$sql="select u.email,u.id as user_id,r.id,r.name,event_date,event_location,distance_text, p.name as province_name from ((pending_alerts as pa inner join run as r on pa.run_fk=r.id) inner join users as u on pa.user_fk=u.id) left join province as p on r.province_fk=p.id where r.event_date > now() order by user_id,event_date";
 		
@@ -572,6 +568,29 @@ class RunnitServices {
 		$sql="DELETE FROM pending_alerts";
         $result= pg_query($this->conn, $sql);
         return null;		
+	}
+	
+	public function sendPasswordToEmail($email) {
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = "ssl";
+		$mail->Host = "smtp.gmail.com";
+		$mail->Port = 465;
+		$mail->Username = "alertas@runnity.com";
+		$mail->Password = $this->emailPassword;		
+
+		$mail->From = $email;
+		$mail->FromName = $mensaje;
+		$mail->Subject = "Password en Runnity.com";
+		$mail->MsgHTML("Tu password es: lalalala");
+		$mail->AddAddress($email, $email);
+		$mail->IsHTML(true);	
+		
+		if(!$mail->Send()) {
+			throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+		}		
+		return null;		
 	}
 
 }

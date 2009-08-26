@@ -68,7 +68,7 @@ if ($_REQUEST['method'] == 'logout') {
 
 if ($_REQUEST['method'] == 'register') {
 	$result = $services->registerUser($_REQUEST['username'],$_REQUEST['name'],$_REQUEST['email'],$_REQUEST['password']);
-	echo ($result);
+	echo ($result['username']);
 }
 
 if ($_REQUEST['method'] == 'inscribeUserToRun') {
@@ -82,5 +82,18 @@ if ($_REQUEST['method'] == 'unInscribeUserToRun') {
 if ($_REQUEST['method'] == 'sendEmailToAlertas') {
 	$result = $services->sendEmailToAlertas($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['mensaje']);
 }
+
+if ($_REQUEST['method'] == 'sendPasswordToEmail') {
+	$result = $services->sendPasswordToEmail($_REQUEST['email']);
+	//echo("INVALID");
+	echo("OK");
+}
+
+if ($_REQUEST['method'] == 'setAlert') {
+	$result = $services->setAlert($_REQUEST['id'],$_REQUEST['lat'],$_REQUEST['lon'],$_REQUEST['distance']);
+	//echo("INVALID");
+	echo("OK");
+}
+
 
 ?>

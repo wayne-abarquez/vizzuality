@@ -98,7 +98,7 @@ div.button.hover {
 				</div>
 				<div class="column span-13 last">
 					<div class="span-13 userCount">
-						<div class="wellcome">Bienvenida <a href="#" class="wellcome">Marina_runner</a></div>
+						<div class="wellcome">Bienvenida <a href="#" class="wellcome">{$smarty.session.user.completename}</a></div>
 						<div class="countAgo">usuario desde Febrero, 2009</div>
 					</div>
 					<div class="span-13">
