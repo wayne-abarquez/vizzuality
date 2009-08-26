@@ -64,7 +64,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}"> 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
 								</div>
-								<p class="runnersNumber">{$race.num_users} van</p>
+								<p class="runnersNumber">{$race.distance_text} | {$race.num_users} van</p>
 							</div>
 						</div>
 					</div>			
@@ -79,7 +79,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}" > 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
 								</div>
-								<p class="runnersNumber">{$race.num_users} van</p>
+								<p class="runnersNumber">{$race.distance_text} | {$race.num_users} van</p>
 							</div>
 						</div>
 					</div>	
