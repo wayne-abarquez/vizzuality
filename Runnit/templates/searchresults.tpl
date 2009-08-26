@@ -14,7 +14,7 @@
 				</div>
 			</div>
 			
-			<div class="span-16 raceContent1">
+			<div class="raceContent1">
 				<h2 class="newsTitle3">Resultados de tu búsqueda ({$count})</h2>
 				<div class="raceSearchFirst">
 					<div class="searchPanel">
@@ -22,6 +22,7 @@
 							<div class="searchlabel">Localidad, nombre, etc...</div>
 							<div class="searchlabel searchlabel2">Distancia mín / max (metros)</div>
 						</div>
+						<div class="formSearch">
 						<form id="searchForm" method="GET">
 							<div class="inputSearch">
 			<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1"></span></label>
@@ -34,10 +35,11 @@
 							</div>
 							<div class="buttonSearch"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
 						</form>
+						</div>
 					</div>
-					<div class="pagination countAgo countAgo2">
-						<div class="pagination">
-							
+					<div class="pagination">
+							<!--
+
 							    {if $offset > 0}
 							        <a href="?offset={math equation="max(x-20,0)" x=$offset}">Previous</a>
 							        <div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="button" value="<"/></div>
@@ -46,8 +48,12 @@
 							        <a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}">Next</a>
 							        <div class="column"><input class="fg-button ui-state-default ui-corner-all" type="button" value=">"/></div>	
                                 {/if}
-						</div>
-						<div class="column pagination">viendo del <b>{math equation="min(x*20,1)" x=$offset} al {math equation="min((x+1)*20,1)" x=$offset}</b> de {$count}</div>			
+
+ 								<div class="pagination">viendo del <b>{math equation="min(x*20,1)" x=$offset} al {math equation="min((x+1)*20,1)" x=$offset}</b> de {$count}</div> -->
+ 					<div class="numberResults numberMargin"><p>viendo del 1<b> al 12</b> de 12</p></div>
+					<div class="numberResults"><a href=""><div><input class="fg-button ui-state-default ui-corner-all" type="button" value="<"/></div></a></div>
+					<div class="numberResults numberMargin"><a href=""><div><input class="fg-button ui-state-default ui-corner-all" type="button" value=">"/></div></a></div>
+									
 					</div>
 				</div>
 
