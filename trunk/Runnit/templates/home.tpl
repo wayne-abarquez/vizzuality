@@ -41,9 +41,9 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 						<div class="column first">Carreras cerca de {$city}, <a href="/searchresults.php" class="seeAll">ver todas.</a></div>
 					</div>
 					<div class=" last span-5 feed">
-						<div class="column fisrt span-4 feedText"><a href="/rss.php">RSS</a></div>
+						<div class="column fisrt span-4 feedText"><a href="http://feeds.feedburner.com/runnity">RSS</a></div>
 						<div class="column span-1 imgFeed last">
-							<a href="/rss.php"><img src="/img/feed.jpg" alt="Feed" class="rssImage"/></a>
+							<a href="http://feeds.feedburner.com/runnity"><img src="/img/feed.jpg" alt="Feed" class="rssImage"/></a>
 						</div>
 					</div>
 				</h2>
