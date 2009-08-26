@@ -185,6 +185,15 @@ h2.newsTitle {
 	border-bottom: solid 2px #336699;
 }
 
+h2.newsTitle4 {
+	font-family: Arial;
+	font-size: 22px;
+	color: #336699;
+	font-weight: bold;
+	border-bottom: solid 2px #336699;
+	padding-top: 59px;
+}
+
 .seeAll {
 	font-size: 14px;
 }
