@@ -17,7 +17,7 @@ $smarty->assign('runners',$services->getLastUsersInscribedToRuns());
 
 //Get information about the city
 //Set geolocation cookie
-if(!$_COOKIE["geolocation"]){
+if(!isset($_COOKIE["geolocation"])){
 	$visitor_location = visitorLocation();
 	if($visitor_location['city']) {
 		setcookie("geolocation", $visitor_location['city']);
