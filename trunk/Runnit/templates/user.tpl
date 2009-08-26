@@ -177,7 +177,7 @@ div.button.hover {
 		<div class="column last span-8 rightColumnUser">
 			<div class="span-8 importantRaces">
 				<div class="events"> 
-					<h2 class="newsTitle">Tus próximas carreras</h2>
+					<h2 class="newsTitle4">Tus próximas carreras</h2>
 				</div>
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
