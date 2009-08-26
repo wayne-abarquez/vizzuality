@@ -348,7 +348,7 @@ function login(){
                 //login ok. Close the popup and change the login menu in the header
                 $("#loginBox").css('text-align','center');
                 $("#loginBox").css('padding-left','0px');
-                $("#loginBox").html("<a class='normalText'>" + result + '</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a> ');
+                $("#loginBox").html("<a href='./usuario.php' class='normalText'>" + result + '</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a> ');
                 $("#commentBox").html("<div class='span-14 titleComents'>Anímate y publica tu comentario</div><textarea name='textarea2' id='commentTextArea' class='span-15 textArea'></textarea><input class='fg-button ui-state-default ui-corner-all' type='submit' value='Publicar comentario'/>");            
 	            $('#loginForm').hide(); 
 	            $('#registerLogin').hide();
