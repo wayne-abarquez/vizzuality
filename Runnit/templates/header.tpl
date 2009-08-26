@@ -81,6 +81,7 @@
 		<div class="column span-5 first loginColumn">
 			<h2 id="loginTitle" class="loginTitle">Accede a tu cuenta</h2>
 			<div id="loginForm" class="loginForm">
+			<form id="FormularioLogin" method="GET">
 				<div>
 					<div class="inputTitle">e-mail</div>
 					<div class="inputBlue">
@@ -101,6 +102,7 @@
 					<img id="checking" class="column first registerImage" src="../img/ajax-loader.gif" style="display:none">
 					<div class="column last errorMessage" id="error_msg"></div>
 				</div>
+			</form>
 			</div>
 		</div>
 		
@@ -119,6 +121,7 @@
 	<div id="registerWindow" style='display:none'>
 		<h2 id="registerTitle" class="registerTitle">Crea tu cuenta en runnit!</h2>
 		<div id="registerForm">
+		<form id="FormularioRegister" method="GET">
 			<div class="column first registerLeft">
 				<div class="margin10">
 					<div class="inputTitle">nombre de usuario</div>
@@ -146,6 +149,7 @@
 				</div>
 				<div class="margin10 rightButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" onclick="javascript: void registerUser()" value="Crear mi cuenta"/></div>
 			</div>
+		</form>
 			<div class="column last registerRight">
 				<div class="usernameCheck">
 					<img style='display:none' id="registerImage" class="column registerImage first">
