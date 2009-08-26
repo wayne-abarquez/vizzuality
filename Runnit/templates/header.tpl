@@ -206,10 +206,10 @@
 			<div class="searchCont">
 				<div class="searchC">
 					<form id="searchForm" action="searchresults.php" method="get">
-						<div class="inputSearchFirst">
-			<label class="roundsearch" for="inputsearch"><span><input type="text" id="inputsearch" name="q"></span></label>
+						<div class="buttonSearch">
+							<label class="roundsearch" for="inputsearch"><span><input type="text" id="inputsearch" name="q"></span></label>
 						</div>
-						<div class="buttonSearchFirst"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
+						<div class="buttonSearch"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
 					</form>
 				</div>
 			</div>

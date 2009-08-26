@@ -180,49 +180,27 @@ div.button.hover {
 		<div class="column last span-8 rightColumnUser">
 			<div class="span-8 importantRaces">
 				<div class="events"> 
-					<h2 class="newsTitle">Tus próximas carreras</h2>
+					<h2 class="newsTitle">En las mismas fechas</h2>
 				</div>
 				<div class="events">
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="#" class="nameRace">XII Carrera de la mujer</a>
-							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="#" class="nameRace">XVII Media Marathon de Madrid</a>
-							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="#" class="nameRace">XXVI Carrera del Rock’n’Roll</a>
-							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
-						</div>
-					</div>
-					<div class="raceDetails" id="raceDetails">
-						<div class="column span-1 first date">
-							<div class="month">AGO</div>
-							<div class="day">01</div>
-						</div>
-						<div class="column span-6 last nextRaceComment">
-							<a href="#" class="nameRace">XV Cross popular “Ascenso a l...</a>
-							<div class="raceLocation">Madrid | 10km | <a href="#" class="runnersLink">22 van</a> </div>
-						</div>
-					</div>
+            		{foreach key=id item=race from=$nextRaces}
+            			{if $race eq "f"}
+            				<div class="span-8 races2">No hay proximas carreras.</div> 
+            			{else}		    				    
+        					<div class="span-8 column first raceDetails" id="raceDetails">
+        						<div class="column span-1 first date">
+        							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+        							<div class="day">{$race.event_date|substr:8:2}</div>
+        						</div>
+        						<div class="column span-6 last calendarRaces">
+        							<div class="nextRaceComment"><a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a></div>
+        							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
+        						</div>
+        					</div>
+            			{/if}
+                	    {foreachelse}
+                	        <div class="span-8 races2">No hay proximas carreras.</div> 
+                	    {/foreach}					
 				</div>
 			</div>
 			<div class="column last span-7 pagination countAgo">

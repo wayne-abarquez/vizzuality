@@ -139,7 +139,7 @@
 				</div>
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
-            			{if $race eq "false"}
+            			{if $race eq "f"}
             				<div class="span-8 races">No hay proximas carreras.</div> 
             			{else}		    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
@@ -161,14 +161,14 @@
 			</div>
 		
 			
-			<div class="span-8 moreRaces">
+			<div class="span-8 marginTopPlus">
 				<div class="events"> 
 					<h2 class="newsTitle">Últimos valientes</h2>	
 					{foreach key=id item=person from=$runners}
     				{if $person eq 'f'}
-    					<div class="span-8 races">No hay valientes.</div> 
+    					<div class="span-8 races2">No hay valientes.</div> 
     				{else}					
-    					<div class="races">
+    					<div class="span-8 races2 defaultWidth">
     						<div class="column first image">
     							<img src="media/avatar/{$person.avatar}"/>	
     						</div>
@@ -182,11 +182,11 @@
     					</div>
         			{/if}
         		    {foreachelse}
-        		        <div class="span-8 races">No hay valientes.</div>    
+        		        <div class="span-8 races2">No hay valientes.</div>    
         		    {/foreach}					
 				</div>
 			</div>	
-			<div class="span-8">
+			<div class="flickrFrame">
 			    <iframe align="center" src="http://www.flickr.com/slideShow/index.gne?" frameBorder="0" width="280" scrolling="no" height="280"></iframe>
 			</div>
 			

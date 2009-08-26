@@ -10,17 +10,18 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
     html, body, #container, #race, #runnityHomeMap  {width: 100%;height: 100%;}  
 </style>
 {/literal}
+
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
-		<div class="span-24 title">
+		<div class="span-23 title">
 			<p class="titlePage">Runnity es un punto de encuentro entre <b><a href="searchresults.php">carreras</a></b> y <b>atletas.</b></p>
 			<p class="subtitlePage"><b>Utiliza el mapa, <a href="searchresults.php">busca</a>, o <a href="javascript: void showRegisterBox()">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
 		</div>
-		<div class="span-24 map" id="runnityHomeMap">
-            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="939" height="364">
+		<div class="span-23 map" id="runnityHomeMap">
+            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="930" height="364">
               <param name="movie" value="flash/runnitHomeMap.swf" />
               <!--[if !IE]>-->
-              <object type="application/x-shockwave-flash" data="flash/runnitHomeMap.swf" width="939" height="364">
+              <object type="application/x-shockwave-flash" data="flash/runnitHomeMap.swf" width="930" height="364">
               <!--<![endif]-->
                 <h1>Necesitas Flash para poder ver el mapa</h1>
     			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
@@ -30,6 +31,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
             </object>		    		
 		</div>
 	</div>	
+	
 	<!-- MORE RACES -->
 	<div class="column first span-16 moreRaces">
 		<div> 
@@ -41,7 +43,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 					<div class=" last span-5 feed">
 						<div class="column fisrt span-4 feedText"><a href="/rss.php">subscribete</a></div>
 						<div class="column span-1 imgFeed last">
-							<a href="/rss.php"><img src="/img/feed.jpg" alt="Feed"/></a>
+							<a href="/rss.php"><img src="/img/feed.jpg" alt="Feed" class="rssImage"/></a>
 						</div>
 					</div>
 				</h2>
@@ -216,7 +218,7 @@ swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 				});
 		    });
 		    
-		    for (i=1;i<=4;i++){
+		    for (i=1;i<=6;i++){
 				var len = 42;
 				var p = document.getElementById("iteracion" + i);
 				if (p) {
