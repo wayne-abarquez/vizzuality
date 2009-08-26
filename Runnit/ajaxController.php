@@ -81,6 +81,7 @@ if ($_REQUEST['method'] == 'unInscribeUserToRun') {
 
 if ($_REQUEST['method'] == 'sendEmailToAlertas') {
 	$result = $services->sendEmailToAlertas($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['mensaje']);
+	echo("OK");
 }
 
 if ($_REQUEST['method'] == 'sendPasswordToEmail') {
