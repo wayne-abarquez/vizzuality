@@ -198,7 +198,7 @@ class RunnitServices {
 	    $comment=pg_escape_string($comment);
 	    $table=pg_escape_string($table);
 	    
-	    $sql="INSERT INTO comments(user_fk,commenttext,on_table,on_id) VALUES('$user_fk','$comment','$table','$id')";
+	    $sql="INSERT INTO comments(user_fk,commenttext,on_table,on_id) VALUES($userId,'$comment','$table',$id)";
         $result= pg_query($this->conn, $sql);
         return null;
 	    
