@@ -108,7 +108,7 @@ div.loginImage{
 	margin-right: -19px;
 }
 
-div.loginText {
+#loginBox {
 	text-align: left;
 	padding-left: 30px;
 }
