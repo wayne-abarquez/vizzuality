@@ -169,30 +169,30 @@
 	
 	<!-- CONTACT -->
 	<div id="contactWindow" style='display:none'>
-		<h2 class="registerTitle">Sugerencias, dudas... escríbenos!</h2>
-		<div>
+		<h2 class="registerTitle" id="contactTitle">Sugerencias, dudas... escríbenos!</h2>
+		<div id="contactForm">
 			<div class="margin10 contactArea">
 				<div class="inputTitle">Nombre</div>
 				<div class="inputBlue">
-					<label class="roundblue" for="register1"><span><input type="text" name="register1" id="contact1"/></span></label>
+					<label class="roundblue" for="register1"><span><input type="text" name="contact_1" id="contact1"/></span></label>
 				</div>
 			</div>
 			<div class="margin10 contactArea">
 				<div class="inputTitle">Email</div>
 				<div class="inputBlue">
-					<label class="roundblue" for="register2"><span><input type="text" name="register2" id="contact2"/></span></label>
+					<label class="roundblue" for="register2"><span><input type="text" name="contact_2" id="contact2"/></span></label>
 				</div>
 			</div>
 			<div class="margin10 contactArea">
 				<div class="inputTitle">Mensaje</div>
-				<textarea name="textarea1" id="message" rows="3" cols="60" class="contactTextArea"></textarea>
+				<textarea name="textarea1" id="message" rows="3" cols="60" class="contactTextArea" id="contact3"></textarea>
 			</div>
 			
-			<div class="margin10 contactArea">
-				<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Enviar mensaje"/>
+			<div class="span-9 margin10 contactArea2">
+				<div class="span-4 first"><input id="contactButton" class="fg-button ui-state-default ui-corner-all" type="submit" value="Enviar mensaje" onclick="javascript: void sendMessage()"/></div>
+				<div class="span-5 last contactError" id="contactError"></div>
 			</div>
-
-		</div>			
+		</div>	
 	</div>
 	
 	<!-- LOGOUT WINDOW -->
@@ -200,7 +200,7 @@
 		<h2 class="registerTitle">¿Quieres salir de Runnity?</h2>
 		<div>
 			<div class="column span-4 first logoutButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Si, seguro" onclick="logout()"/></div>
-			<div class="column span-1 last"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="No, voy a seguir" onclick="$.modal.close();"/></div>
+			<div class="column span-6 last"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="No, voy a seguir" onclick="$.modal.close();"/></div>
 		</div>
 	</div>
 	

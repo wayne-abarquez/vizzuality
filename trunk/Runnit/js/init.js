@@ -118,18 +118,18 @@ function showContactBox() {
 
 
 /* FUNCION PARA COMENTAR -- REVISAR -- */
-function commentAction() {
+function commentAction(idRun) {
 
-		var comment = $("#comment").val();
+		var comment = $("#commentTextArea").val();
 	    var dataObj = ({comment : comment,
-	        method: 'addComment'
+	        method: 'addComment',id:idRun
 	        });
 
 		if(comment=='') {
-	    	alert('Error, comment area empty');
+	    	alert('El comentario esta vacío, mejor revísalo.');
 	    } else {
 			$("#flash").show();
-			$("#flash").fadeIn(400).html('<img src="/img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
+			$("#flash").fadeIn(400).html('<img src="../img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
 			$.ajax({
 				type: "POST",
 	 	 		url: "ajaxController.php",
@@ -138,17 +138,13 @@ function commentAction() {
 	  			success: function(html){
 	  				$("ol#update").append(html);
 	  				$("ol#update li:last").fadeIn("slow");
-	    			document.getElementById('comment').value='';
+	    			document.getElementById('commentTextArea').value='';
 	  				$("#flash").hide();
 	  			}
 	 		});
 		}
 		return false;
 };
-
-
-
-
 
 
 
@@ -346,9 +342,9 @@ function login(){
     			$('#passwordLogin').removeAttr("disabled");
             } else {
                 //login ok. Close the popup and change the login menu in the header
-                $("#loginBox").css('text-align','center');
-                $("#loginBox").css('padding-left','0px');
-                $("#loginBox").html("<a href='./usuario.php' class='normalText'>" + result + '</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Sign out</a> ');
+                $("#loginBox").css('text-align','right');
+                $("#loginBox").css('padding-right','27px');
+                $("#loginBox").html("<a href='./usuario.php' class='blackLogin'>" + result + '</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Salir</a> ');
                 $("#commentBox").html("<div class='span-14 titleComents'>Anímate y publica tu comentario</div><textarea name='textarea2' id='commentTextArea' class='span-15 textArea'></textarea><input class='fg-button ui-state-default ui-corner-all' type='submit' value='Publicar comentario'/>");            
 	            $('#loginForm').hide(); 
 	            $('#registerLogin').hide();
@@ -366,7 +362,7 @@ function login(){
         
     	},
         error:function (xhr, ajaxOptions, thrownError){
-                alert('SDR' + xhr.status + "\n" + thrownError);
+                alert('Runnity' + xhr.status + "\n" + thrownError);
         }
     });
     return false;
@@ -420,7 +416,8 @@ function logout () {
     	cache: false,
     	success: function(result){
     		$("#loginBox").css('text-align','left');
-    		$("#loginBox").css('padding-left','0px');
+    		$("#loginBox").css('padding-left','30px');
+    		$("#loginBox").css('padding-right','0px');
     		$("#loginBox").html("<div class='loginText' id='loginBox'><a href='javascript: void showLoginBox()' class='hrefText'>accede a tu cuenta</a><a class='normalText'> ó </a><a href='javascript: void showRegisterBox()' class='hrefText'>registrate</a></div>");
     		$("#commentBox").html("Lo siento no puedes comentar sin estar registrado");
     	},
@@ -429,6 +426,62 @@ function logout () {
         }
     });
     $.modal.close();
+}
 
+
+
+//MANDAR MENSAJE DE CONTACTO
+function sendMessage() {
+
+	$('#contactError').html('');
+
+	var name = $("#contact1").val();
+    var email = $("#contact2").val();
+    var message = $("#contact3").val();
+	
+	if ((name=="") || (email=="") || (message=="")) {
+		$('#contactError').html('Existen campos vacíos.');
+		return false;
+	}
+	
+	if (!echeck(email)) {
+    	$('#contactError').html('Tu email es incorrecto.');
+    	return false;
+    }
+	
+	$('#contactButton').val('Enviando');
+    $("#contact1").attr("disabled", "true");
+    $("#contact2").attr("disabled", "true");
+    $("#contact3").attr("disabled", "true");
+
+
+    var dataObj = ({nombre : name,
+        method: 'sendEmailToAlertas',
+        mensaje: message,
+        email: email
+        });
+    
+
+ 	$.ajax({
+    	type: "POST",
+    	url: "ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){ 
+			$('#contactForm').html(''); 
+    		var h = 100;
+    		/* $('#registerError').fadeIn(400).html(''); */  
+    		$('#contactTitle').html('Gracias por enviar tu sugerencia ');
+    		$('#contactForm').html('<div style="text-align:left;width:400px;color:#336699;padding-left:20px;margin-top:-20px">Gracias por enviar tus comentarios, en breve se cerrará esta ventana.</div>');
+			$('#simplemodal-container').animate({height: h},500);
+			
+			timerID = setTimeout("timerHide()", 2000);
+    	},
+        error:function (xhr, ajaxOptions, thrownError){   
+                alert('Runnit' + xhr.message + "\n" + thrownError);
+        }
+    });
+
+    return false;
 
 }

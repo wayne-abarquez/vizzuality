@@ -15,5 +15,11 @@ textarea.contactTextArea {
 }
 
 .contactArea2 {
+	padding-left: 20px;
 	width: 465px;
+}
+
+.contactError {
+	padding-top: 2px;
+	color: red;
 }
