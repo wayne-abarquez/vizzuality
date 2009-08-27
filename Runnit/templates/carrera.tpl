@@ -121,6 +121,7 @@
 				
 				<!-- PARA AÑADIR COMENTARIOS -->
 				<div class="span-16 boxraceMap">
+					<div class="span-16" id="flash" align="left"></div>
 					<div class="commentArea" id="commentBox">					
 						{if $smarty.session}
 							<div class="span-14 titleComents">Anímate y publica tu comentario</div>
