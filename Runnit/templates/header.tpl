@@ -41,57 +41,6 @@
 		{/literal}
 	{/if}
 	
-	
-	{literal}
-	
-	<style type="text/css">
-
-		.fg-button:hover, .SmallButt:hover {
-		-moz-background-clip:border;
-		-moz-background-inline-policy:continuous;
-		-moz-background-origin:padding;
-		background:#0054BD none repeat scroll 0 0;
-		}
-		.fg-button, .SmallButt {
-		-moz-background-clip:border;
-		-moz-background-inline-policy:continuous;
-		-moz-background-origin:padding;
-		background:#0063DC none repeat scroll 0 0;
-		}
-		.fg-button, .DeleteButt, .CancelButt, .DisabledButt, .SmallButt, .SmallDisabledButt, .SmallDeleteButt, .SmallCancelButt {
-		-moz-background-clip:border;
-		-moz-background-inline-policy:continuous;
-		-moz-background-origin:padding;
-		-moz-border-radius-bottomleft:4px;
-		-moz-border-radius-bottomright:4px;
-		-moz-border-radius-topleft:4px;
-		-moz-border-radius-topright:4px;
-		-webkit-border-bottom-left-radius: 4px 4px;
-		-webkit-border-bottom-right-radius: 4px 4px;
-		-webkit-border-top-left-radius: 4px 4px;
-		-webkit-border-top-right-radius: 4px 4px;		
-		background:#0063DC none repeat scroll 0 0;
-		border:medium none;
-		color:#FFFFFF;
-		cursor:pointer;
-		font-family:inherit;
-		font-size:12px;
-		font-weight:bold;
-		padding:4px 6px;
-		white-space:nowrap;
-		}
-
-		input, textarea, select {
-		color:#222222;
-		font-size:12px;
-		}
-
-	</style>	
-	
-	
-	{/literal}
-
-
 </head>
 
 <body>
