@@ -37,6 +37,16 @@
 		</script>
 		{/literal}
 	{/if}
+	{if $section eq "carrera"}
+		<script type="text/javascript" src="/js/swfobject.js"></script>
+		{literal}
+		<script type="text/javascript">
+			swfobject.registerObject("flashMovie", "10.0.0", "expressInstall.swf");
+		</script>
+		{/literal}
+	{/if}	
+	
+	
 	
 </head>
 
