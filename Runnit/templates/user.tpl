@@ -21,7 +21,7 @@
         			// Uploding -> Uploading. -> Uploading...
         			interval = window.setInterval(function(){
         				var text = $("#buttonUpload").attr("value");
-        				if (text.length < 13){
+        				if (text.length < 17){
 							$("#buttonUpload").attr("value",text + '.');					
         				} else {
         					$("#buttonUpload").attr("value",".");				
