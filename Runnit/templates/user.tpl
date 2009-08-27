@@ -157,7 +157,7 @@
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
             			{if $race eq 0}
-            				<div class="span-8 races2"><p class="noApuntado">Aun no te has apuntado a ninguna carrera.</p></div> 
+            				<div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
             			{else}		    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
@@ -171,7 +171,7 @@
         					</div>
             			{/if}
                 	    {foreachelse}
-                	        <div class="span-8 races2"><p class="noApuntado">Aun no te has apuntado a ninguna carrera.</p></div> 
+                	        <div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
                 	    {/foreach}					
 				</div>
 			</div>
