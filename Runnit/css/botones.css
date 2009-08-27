@@ -155,7 +155,36 @@ label.roundsearch {
 	outline:none;
 }
 
-#inputsearch {width:117px}
+label.roundsearchFirst {
+	float:left;
+	clear:left;
+	background:url(/img/inputsearchFirst.gif) no-repeat 0 0;
+	padding:0 0 0 10px;
+	height: 23px;
+	margin:0 0 0px 0;
+}
+
+.roundsearchFirst input {
+	background:transparent;
+	padding-top: 6px;
+	float:left;
+	border: none;
+	color: gray;
+	font-size: 12px;
+}
+
+.roundsearchFirst span {
+	background:url(/img/inputsearchFirst.gif) no-repeat 100% 0;
+	padding:0 10px 0 0;
+	height:23px;
+	float:left;
+}
+
+.roundsearchFirst input:focus {
+	outline:none;
+}
+
+#inputsearchFirst {width:117px}
 #inputsearch1 {width:320px}
 #inputsearch2 {width:60px}
 #inputsearch3 {width:60px}
