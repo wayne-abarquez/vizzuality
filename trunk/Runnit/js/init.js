@@ -544,3 +544,98 @@ function sendMessage() {
     return false;
 
 }
+
+
+
+/* INSCRIBIRSE / QUITARSE CARRERAS */
+
+function checkInscrito(str) {
+	var valor = $('#inscriptionButton').val();
+	
+	if (str=="ok") {
+		if (valor=="apúntate") {
+		
+			$('#confirmationWindow').modal();
+			
+			var wscr = $(window).width();
+		    var hscr = $(window).height();
+		    
+		    // obtener posicion central
+		    var mleft = ( wscr - 380 ) / 2;
+		    var mtop = ( hscr - 100 ) / 2;
+		    
+		    // estableciendo ventana modal en el centro
+		    $('#simplemodal-container').css("left", mleft+'px');
+		    $('#simplemodal-container').css("top", mtop+'px');
+			
+			$('#simplemodal-container').css("width",'400px');
+			$('#simplemodal-container').css("height",'100px');
+			
+		} else {
+		
+			$('#confirmationWindow').modal();
+			$('#titleConfirmation').html('¿Quieres quitarte de esta carrera?');
+			$('#confirmationButtonRace').attr('onclick','javascript:void quitarseCarrera({$smarty.session.user.username},{$smarty.request.id})');
+			
+			var wscr = $(window).width();
+		    var hscr = $(window).height();
+		    
+		    // obtener posicion central
+		    var mleft = ( wscr - 380 ) / 2;
+		    var mtop = ( hscr - 100 ) / 2;
+		    
+		    // estableciendo ventana modal en el centro
+		    $('#simplemodal-container').css("left", mleft+'px');
+		    $('#simplemodal-container').css("top", mtop+'px');
+			
+			$('#simplemodal-container').css("width",'400px');
+			$('#simplemodal-container').css("height",'100px');
+		}
+	} else {
+		$('#loginWindow').modal();
+	}
+}
+
+
+
+
+
+
+function inscribirseCarrera(userID,raceID) {
+	
+	$('#confirmationButtons').html('<div class="span-8" style="text-align:center;color:#336699;">Inscribiendote a la carrera...</div>');
+	var dataObj = ({runId : raceID,
+        method: 'inscribeUserToRun',
+        userId: userID
+        });
+    
+
+ 	$.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){ 
+					$('#inscriptionButton').val('voy a ir');
+    	},
+        error:function (xhr, ajaxOptions, thrownError){   
+                alert('Runnit' + xhr.message + "\n" + thrownError);
+        }
+    });
+
+    return false;
+}
+
+
+
+function quitarseCarrera(userID,raceID) {
+	var dataObj = ({nombre : name,
+        method: 'sendEmailToAlertas',
+        mensaje: message,
+        email: email
+        });
+    
+
+}
+
+
