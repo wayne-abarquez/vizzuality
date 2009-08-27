@@ -23,15 +23,15 @@
 							<div class="searchlabel searchlabel2">Distancia mín / max (metros)</div>
 						</div>
 						<div class="formSearch">
-						<form id="searchForm" method="GET">
+						<form id="searchForm" method="GET" action="/searchResults.php">
 							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1"></span></label>
+			<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}"></span></label>
 							</div>
 							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch2"><span><input type="text" name="distancia_min" id="inputsearch2"></span></label>
+			<label class="roundsearch" for="inputsearch2"><span><input type="text" name="distancia_min" id="inputsearch2" value="{$smarty.request.distancia_min}"></span></label>
 							</div>
 							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch3"><span><input type="text" name="distancia_max" id="inputsearch3"></span></label>
+			<label class="roundsearch" for="inputsearch3"><span><input type="text" name="distancia_max" id="inputsearch3" value="{$smarty.request.distancia_max}"></span></label>
 							</div>
 							<div class="buttonSearch"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
 						</form>
