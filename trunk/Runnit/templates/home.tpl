@@ -3,8 +3,8 @@
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
 		<div class="span-23 title">
-			<p class="titlePage">Runnity es un punto de encuentro entre <b><a href="searchresults.php">carreras</a></b> y <b>atletas.</b></p>
-			<p class="subtitlePage"><b>Utiliza el mapa, <a href="searchresults.php">busca</a>, o <a href="javascript: void showRegisterBox()">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
+			<p class="titlePage">Runnity es un punto de encuentro entre <b><a href="/buscar">carreras</a></b> y <b>atletas.</b></p>
+			<p class="subtitlePage"><b>Utiliza el mapa, <a href="/buscar">busca</a>, o <a href="javascript: void showRegisterBox()">regístrate</a> </b> para recibir alertas vía e-mail de las próximas carreras cerca de dónde vives</p>
 		</div>
 		<div class="span-23 map" id="runnityHomeMap">
             <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="930" height="364" wmode="opaque">
@@ -27,7 +27,7 @@
 			<div>
 				<h2 class="column span-16 first newsTitle">
 					<div class="first span-11">
-						<div class="column first">Carreras cerca de {$city}, <a href="/searchresults.php" class="seeAll">ver todas.</a></div>
+						<div class="column first">Carreras cerca de {$city}, <a href="/buscar" class="seeAll">ver todas.</a></div>
 					</div>
 					<div class=" last span-5 feed">
 						<div class="column fisrt span-4 feedText"><a href="http://feeds.feedburner.com/runnity">RSS</a></div>
@@ -48,7 +48,7 @@
 							<img src="media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
-							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php?id={$race.id}">{$race.name}</a></div>
+							<div class="nameRaceContainer"><a class="nameRace" href="/run/{$race.id}/{$race.name|escape:"url"}">{$race.name}</a></div>
 							<div class="raceDateDetails">
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}"> 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
@@ -63,7 +63,7 @@
 							<img src="media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
-							<div class="nameRaceContainer"><a class="nameRace" href="carrera.php?id={$race.id}">{$race.name}</a></div>
+							<div class="nameRaceContainer"><a class="nameRace" href="/run/{$race.id}/{$race.name|escape:"url"}">{$race.name}</a></div>
 							<div class="raceDateDetails">
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}" > 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
@@ -98,7 +98,7 @@
 							<div class="detailsUser">
 								<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
 								<div class="raceUserDetails"> dice que va a ir a </div>
-								<div class="raceUserDetails"><a class="raceUserLink" href="carrera.php?id={$person.run_id}">{$person.run_name}</a></div>
+								<div class="raceUserDetails"><a class="raceUserLink" href="/run/{$person.run_id}/{$race.run_name|escape:"url"}">{$person.run_name}</a></div>
 							</div>
 							<p class="runnersNumber">{$person.num_participants} van, <a href="">apúntate con él</a></p>
 						</div>
@@ -116,7 +116,7 @@
 		<div class="column span-8 first">
 			<div class="titleImportant">AL FÍN UN MODO DE VER CON DETALLE LOS RECORRIDOS DE LAS CARRERAS MEDIANTE GOOGLE MAPS</div>
 			<div class="contentImportant">Además podrás comentar las distintas pruebas y conocer las opiniones de los demás.</div>
-			<div class="buttonImportant"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Mira un ejemplo de carrera" onclick="location.href='carrera.php?id=22'"/></div>
+			<div class="buttonImportant"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Mira un ejemplo de carrera" onclick="location.href='/run/22/milla/arganda/del/rey'"/></div>
 		</div>
 		
 		
