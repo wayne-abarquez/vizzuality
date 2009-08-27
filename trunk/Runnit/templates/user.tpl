@@ -98,7 +98,7 @@
 									</div>
 								</div>
 								<div class="inputWhiteButton">
-									<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Guardar cambios"/>
+									<input class="fg-button" type="submit" value="Guardar cambios"/>
 								</div>
 							</div>
 							<div class="column last passContainer">
@@ -115,7 +115,7 @@
 										<label class="roundblue" for="input5"><span><input type="text" name="input5" id="input5"></span></label>
 									</div>
 									<div class="inputBlueButton">
-										<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Registrate ahora"/>
+										<input class="fg-button" type="submit" value="Registrate ahora"/>
 									</div>
 								</div>
 							</div>
@@ -141,7 +141,7 @@
 								</div>
 							</div>
 							<div class="inputWhite paddingRightContainer">
-								<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Activar alerta por email"/>
+								<input class="fg-button" type="submit" value="Activar alerta por email"/>
 							</div>
 						</div>
 					</div>
