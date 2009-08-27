@@ -171,7 +171,7 @@
         					</div>
             			{/if}
                 	    {foreachelse}
-                	        <div class="span-8 races2">No te has apuntado a ninguna.</div> 
+                	        <div class="span-8 races2"><p class="noApuntado">Aun no te has apuntado a ninguna carrera.</p></div> 
                 	    {/foreach}					
 				</div>
 			</div>
