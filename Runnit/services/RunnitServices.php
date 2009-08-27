@@ -259,7 +259,15 @@ class RunnitServices {
             $offset=0;
         }
         
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() AND (r.name ilike '%$q%' or event_location ilike '%$q%')";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+
+        if($_SESSION['logged']) {
+            $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=1) as inscrito";
+        } else {
+            $sql.=",false as inscrito";
+        }   
+	    
+	    $sql.=" from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() AND (r.name ilike '%$q%' or event_location ilike '%$q%')";
 	    if($min>0) {
 	        $sql.=" AND distance_meters >= $min";
 	    }
@@ -287,7 +295,13 @@ class RunnitServices {
 	}
 	
 	public function getNextRuns($lat=0,$lon=0,$distance_km=150) {	
-	$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now()";
+	$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+	
+	if($_SESSION['logged']) {
+	    $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=1) as inscrito";
+	}
+	
+	$sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now()";
 	
 /*		if($provinceName!="") {
 			$sqlProv="SELECT id from province WHERE name like '$provinceName'";
@@ -494,7 +508,15 @@ class RunnitServices {
     }
     
     public function getRunDetails($id) {
-        $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.id=$id";
+        $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+        
+        if($_SESSION['logged']) {
+            $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=1) as inscrito";
+        } else {
+            $sql.=",false as inscrito";
+        }        
+        
+        $sql.=" from run as r left join province as p on r.province_fk=p.id where r.id=$id";
         $result = pg_query($this->conn, $sql);  
         $run = pg_fetch_assoc($result);
         
@@ -510,7 +532,16 @@ class RunnitServices {
     }
     
     public function getRunsCloseToAnother($id) {
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id order by event_date ASC limit 4";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+
+        if($_SESSION['logged']) {
+            $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=1) as inscrito";
+        } else {
+            $sql.=",false as inscrito";
+        }
+        
+        $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id order by event_date ASC limit 4";
+	    
 		return pg_fetch_all(pg_query($this->conn, $sql));        
     }
 
