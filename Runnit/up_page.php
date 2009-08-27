@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	error_log("entrando a up_page.php");
 	
 	if(isset($_FILES['userfile']['tmp_name'])) {
 
