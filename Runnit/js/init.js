@@ -270,7 +270,7 @@ function directLogin(email,pass,user) {
     	success: function(result){
     			window.location="/user/" + user;
             	$('#registerError').html(''); 
-		    	var h = 100;
+		    	var h = 150;
 		    	$('#registerError').fadeIn(400).html('');  
 		    	$('#registerTitle').html('Gracias por registrarte ' + user);
 		    	$('#conditions').hide();
@@ -280,11 +280,7 @@ function directLogin(email,pass,user) {
         error:function (xhr, ajaxOptions, thrownError){
                 alert('Runnity' + xhr.status + "\n" + thrownError);
         }
-    });
-		
-		
-		
-		
+    });	
 }
 
 
