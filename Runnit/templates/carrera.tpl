@@ -20,7 +20,9 @@
 					</div>
 					<div class="span-14 last">
 						<p class="raceTitle">{$data.name}</p>
-						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>, <a href="" class="special">apúntate</a></p>
+						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>,
+						    
+						     <input class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy{/if}" /></p>
 					</div>
 				</div>
 			</div>
