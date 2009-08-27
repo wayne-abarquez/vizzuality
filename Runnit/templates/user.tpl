@@ -10,7 +10,7 @@
         	onSubmit : function(file , ext){
         		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
         			// change button text, when user selects file			
-					$("#buttonUpload").attr("value","Subiendo");
+					$("#buttonUpload").attr("value",".");
 
 
         			// If you want to allow uploading only 1 file at time,
@@ -24,7 +24,7 @@
         				if (text.length < 13){
 							$("#buttonUpload").attr("value",text + '.');					
         				} else {
-        					$("#buttonUpload").attr("value","Subiendo");				
+        					$("#buttonUpload").attr("value",".");				
         				}
         			}, 200);
 
