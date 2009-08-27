@@ -64,7 +64,7 @@
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
 	        					<p class="noResults"><b>Lo sentimos, no hay resultados</b> que coincidan con tu búsqueda</p>
-	        					<p class="noResultsSub">Pero si quieres puedes <a href="rss.php">subscribirte a nuestro RSS</a> para estar al tanto de las nuevas carreras</p>
+	        					<p class="noResultsSub">Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de las nuevas carreras</p>
 								</div>
 	        				</div> 
 	        			{else}
@@ -80,7 +80,13 @@
 	    					</div>       			
 	        			{/if}
 	        	    {foreachelse}
-	        	        <div class="span-9 races"><p class="noResults">No hay resultados para la búsqueda.</p></div> 
+	        	        <div class="column span-15 noResultsContainer">
+	        					<div class="carita"></div>
+	        					<div class="noResultsText">
+	        					<p class="noResults"><b>Lo sentimos, no hay resultados</b> que coincidan con tu búsqueda</p>
+	        					<p class="noResultsSub">Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de las nuevas carreras</p>
+								</div>
+	        				</div> 
 	        	    {/foreach}
         	    </div>
 				<div class="raceSearchLast">
