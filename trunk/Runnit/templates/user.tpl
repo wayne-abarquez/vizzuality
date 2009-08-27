@@ -64,8 +64,8 @@
 			<div class="span-16 marginContainer">
 				<div class="column span-3 first">
 					<img id="userImg" src="{$user_image}"/>
-					<div class="uploadButton">
-						<input id="buttonUpload" class="fg-button" type="button" value="Subir foto"/>
+					<div>
+						<input id="buttonUpload" class="fg-button" type="button" value="Subir foto">
 					</div>
 				</div>
 				<div class="span-13 last userLeft">
