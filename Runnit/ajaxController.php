@@ -29,7 +29,7 @@ if ($_REQUEST['method'] == 'addComment') {
 
 		<div class="column span-16 first racesComment">				
 			<div class="column span-3 first image">
-				<img src="media/avatar/<?php echo "0.jpg"; ?>"/>	
+				<img src="/media/avatar/<?php echo "0.jpg"; ?>"/>	
 			</div>
 			<div class="column span-12 last commentBox">
 				<div class="nameUser"><a class="nameRace" href="#"><?php echo $name;?>,</a> <?php echo $date;?></div>
