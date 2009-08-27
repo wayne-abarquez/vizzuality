@@ -44,7 +44,7 @@ class RunnitServices {
     	    foreach ($result as &$comment) {
     	        $targetPicture=$this->basePath."media/avatar/".$comment['user_id'].".jpg";
                 if (file_exists($targetPicture)) {
-                    $comment['avatar'] = $comment['user_id'].".jpg";
+                    $comment['avatar'] = $comment['user_id'].".jpg?".rand();;
                 } else {
                     //no image for the run, select random
                     $comment['avatar'] = "0.jpg";
@@ -225,7 +225,7 @@ class RunnitServices {
     	    foreach ($result as &$user) {
     	        $targetPicture=$this->basePath."media/avatar/".$user['user_id'].".jpg";
                 if (file_exists($targetPicture)) {
-                    $user['avatar'] = $user['user_id'].".jpg";
+                    $user['avatar'] = $user['user_id'].".jpg?".rand();
                 } else {
                     //no image for the run, select random
                     $user['avatar'] = "0.jpg";
