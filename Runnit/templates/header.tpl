@@ -41,40 +41,54 @@
 		{/literal}
 	{/if}
 	
+	
 	{literal}
-	<script type="text/javascript">
-	$(function(){
-		//all hover and click logic for buttons
-		$(".fg-button:not(.ui-state-disabled)")
-		.hover(
-			function(){ 
-				$(this).addClass("ui-state-hover"); 
-			},
-			function(){ 
-				$(this).removeClass("ui-state-hover"); 
-			}
-		)
-		.mousedown(function(){
-				$(this).parents('.fg-buttonset-single:first').find(".fg-button.ui-state-active").removeClass("ui-state-active");
-				if( $(this).is('.ui-state-active.fg-button-toggleable, .fg-buttonset-multi .ui-state-active') ){ $(this).removeClass("ui-state-active"); }
-				else { $(this).addClass("ui-state-active"); }	
-		})
-		.mouseup(function(){
-			if(! $(this).is('.fg-button-toggleable, .fg-buttonset-single .fg-button,  .fg-buttonset-multi .fg-button') ){
-				$(this).removeClass("ui-state-active");
-			}
-		});
-	});
-	</script>
+	
+	<style type="text/css">
 
-	{/literal}
+		.fg-button:hover, .SmallButt:hover {
+		-moz-background-clip:border;
+		-moz-background-inline-policy:continuous;
+		-moz-background-origin:padding;
+		background:#0054BD none repeat scroll 0 0;
+		}
+		.fg-button, .SmallButt {
+		-moz-background-clip:border;
+		-moz-background-inline-policy:continuous;
+		-moz-background-origin:padding;
+		background:#0063DC none repeat scroll 0 0;
+		}
+		.fg-button, .DeleteButt, .CancelButt, .DisabledButt, .SmallButt, .SmallDisabledButt, .SmallDeleteButt, .SmallCancelButt {
+		-moz-background-clip:border;
+		-moz-background-inline-policy:continuous;
+		-moz-background-origin:padding;
+		-moz-border-radius-bottomleft:4px;
+		-moz-border-radius-bottomright:4px;
+		-moz-border-radius-topleft:4px;
+		-moz-border-radius-topright:4px;
+		-webkit-border-bottom-left-radius: 4px 4px;
+		-webkit-border-bottom-right-radius: 4px 4px;
+		-webkit-border-top-left-radius: 4px 4px;
+		-webkit-border-top-right-radius: 4px 4px;		
+		background:#0063DC none repeat scroll 0 0;
+		border:medium none;
+		color:#FFFFFF;
+		cursor:pointer;
+		font-family:inherit;
+		font-size:12px;
+		font-weight:bold;
+		padding:4px 6px;
+		white-space:nowrap;
+		}
+
+		input, textarea, select {
+		color:#222222;
+		font-size:12px;
+		}
+
+	</style>	
 	
-	<script type="text/javascript" src="js/DD_roundies.uicornerfix.js"></script>
 	
-	{literal}
-	<script type="text/javascript">
-		$.uicornerfix('6px');
-	</script>
 	{/literal}
 
 

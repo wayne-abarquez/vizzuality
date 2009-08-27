@@ -155,7 +155,7 @@
 				</a>
 			</div>
 			<div class="column span-3 last">
-				<a href="#">
+				<a href="http://www.flickr.com/groups/1188628@N20/">
 					<img src="/img/flickr.jpg" alt="socialNetworks"/>
 				</a>
 			</div>
