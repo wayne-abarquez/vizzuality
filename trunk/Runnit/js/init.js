@@ -372,7 +372,8 @@ function timerHide() {
 function sendPassword() {
 	$('#error_msg').hide();
 	$('#submitLogin').val('Enviar');
-	$('#submitLogin').attr('onClick','javascript: void sendPasswordTo()')
+	$('#submitLogin').removeAttr('onclick');
+	$('#submitLogin').attr('onClick','javascript: void sendPasswordTo();');
 	$('#passForm').hide();
 	$('#forgetLink').removeAttr("href");
 	$('#forgetLink').html('Introduce tu e-mail.');
