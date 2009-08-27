@@ -915,6 +915,12 @@ div.raceDetailsBottom {
 	width: 460px;
 }
 
+.noRaceSub{
+	color: gray;
+	margin-top: -5px;
+	margin-left: 10px;
+}
+
 .noResultsSub a{
 	text-decoration: none;
 	color: #336699;
@@ -938,9 +944,16 @@ div.raceDetailsBottom {
 	margin-left: 0px;
 }
 
-.noResultsCotainer{
+.noResultsContainer{
 	padding-top: 50px;
 	padding-bottom: 50px;
+	margin-left: 5px;
+}
+
+.noCommentsContainer{
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin-left: -10px;
 }
 
 .raceUserLink{
@@ -968,8 +981,15 @@ div.raceDetailsBottom {
 .noApuntado{
 	color: #666666;
 	font-weight: bold;
-	text-align: center;
+	margin-top: 16px;
+	margin-left: 10px;
+}
+
+.noApuntadoUser{
+	color: #666666;
+	font-weight: bold;
 	margin-top: 25px;
+	margin-left: 10px;
 }
 
 .noComments{
