@@ -5,77 +5,52 @@
 <script type="text/javascript">
     $(document).ready(function(){
         new AjaxUpload('#buttonUpload', {
-        	action: 'up_avatar.php',
+        	action: 'up_page.php',
         	data : {},
         	onSubmit : function(file , ext){
-        		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){
-        			/* Setting data */
-        			this.setData({
-        				'user_id': 999
-        			});
-			
+        		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
         			// change button text, when user selects file			
-        			button.text('Uploading');
+					$("#buttonUpload").attr("value","Subiendo");
+
 
         			// If you want to allow uploading only 1 file at time,
         			// you can disable upload button
         			this.disable();
 
+
         			// Uploding -> Uploading. -> Uploading...
         			interval = window.setInterval(function(){
-        				var text = button.text();
+        				var text = $("#buttonUpload").attr("value");
         				if (text.length < 13){
-        					button.text(text + '.');					
+							$("#buttonUpload").attr("value",text + '.');					
         				} else {
-        					button.text('Uploading');				
+        					$("#buttonUpload").attr("value","Subiendo");				
         				}
         			}, 200);
 
         		} else {
 			
         			// extension is not allowed
-        			$('#example2 .text').text('Error: only images are allowed');
+        			//$('#example2 .text').text('Error: only images are allowed');
         			// cancel upload
         			return false;				
         		}
 
         	},
         	onComplete : function(file){
-        		button.text('Upload');
+	
+				$("#userImg").attr("src",$("#userImg").attr("src")+"1");
+				$("#buttonUpload").attr("value","Subir foto");
 
     			window.clearInterval(interval);
 
-    			// enable upload button
+    			//enable upload button
     			this.enable();
     						
         	}		
         });
 });/*]]>*/</script>
 
-<style type="text/css">
-.wrapper {
-    	width: 133px;
-    	margin: 0 auto;
-    }
-
-
-div.button {
-	height: 24px;	
-	width: 56px;
-	background: url(img/boton_prueba.png) 0 0;
-	
-	font-size: 14px;
-	color: #C7D92C;
-	text-align: center;
-	padding-top: 4px;
-}
-
-div.button.hover {
-	background: url(img/boton_prueba.png) 0 24px;
-	color: #95A226;	
-}
-
-</style>
 {/literal}
    
 	<div class="span-24 raceContainer" id="race">
@@ -88,9 +63,9 @@ div.button.hover {
 			</div>
 			<div class="span-16 marginContainer">
 				<div class="column span-3 first">
-					<img src="img/user.jpg"/>
+					<img id="userImg" src="{$user_image}"/>
 					<div class="uploadButton">
-						<input class="fg-button ui-state-default ui-corner-all subirfoto" type="button" value="Subir foto"/>
+						<input id="buttonUpload" class="fg-button ui-state-default ui-corner-all subirfoto" type="button" value="Subir foto"/>
 					</div>
 				</div>
 				<div class="span-13 last userLeft">
