@@ -8,7 +8,7 @@ require 'services/RunnitServices.php';
 $smarty = new Smarty; 
 $services = new RunnitServices;
 
-$smarty->assign('section', 'index');
+$smarty->assign('section', 'home');
 $smarty->assign('titulo_pagina', 'Próximas carreras y atletas - Runnity.com');
 
 
