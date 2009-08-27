@@ -12,7 +12,7 @@
 {foreach key=id item=run from=$runs}
 <item>
 <title>{$run.name}, {$run.event_date}, {$run.event_location}</title>
-<link>http://runnity.com/carrera.php?id={$run.id}</link>
+<link>http://runnity.com/run/{$run.id}/{$run.name|replace:' ':'/'}</link>
 <description>{$run.description}</description>
 <author>Runnity.com</author>
 <category>Carreras</category>

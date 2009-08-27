@@ -7,7 +7,7 @@
 	<div class="column first span-16 moreRaces">
 		<uL>
 		{foreach key=id item=run from=$runs}
-			<li type="none"><a href="carrera.php?id={$run.id}">{$run.name} - {$run.event_location} - {$run.distance_text} - {$run.event_date}</a></li>
+			<li type="none"><a href="/run/{$run.id}/{$run.name|replace:' ':'/'}">{$run.name} - {$run.event_location} - {$run.distance_text} - {$run.event_date}</a></li>
 		{/foreach}
 		<ul>		
 	</div>		

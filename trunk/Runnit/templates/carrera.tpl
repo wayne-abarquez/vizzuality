@@ -9,7 +9,7 @@
 				<div class="span-16 navigationList">
 					<ul> 
 						<li><a href="/">Inicio ></a></li>
-						<li><a href="carrera.php" class="selected">detalle de carrera</a></li>
+						<li><a href="#" class="selected">detalle de carrera</a></li>
 					</ul>
 				</div>
 				
@@ -150,7 +150,7 @@
         							<div class="day">{$race.event_date|substr:8:2}</div>
         						</div>
         						<div class="column span-6 last calendarRaces">
-        							<div class="nextRaceComment"><a href="carrera.php?id={$race.id}" class="nameRace">{$race.name}</a></div>
+        							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
         							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
         						</div>
         					</div>
