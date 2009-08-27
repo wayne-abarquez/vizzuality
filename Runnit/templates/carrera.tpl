@@ -115,8 +115,7 @@
 							<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
 							<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>
 						{else}
-							<!-- MAQUETAR FERNAN -->
-							Lo siento no puedes comentar sin estar registrado
+							<p class="noComments">Para realizar comentarios debes <a href="">iniciar tu sesión</a> en runnity. <a href="">¿Aún no estás registrado?</a></p>
 						{/if}
 					</div>
 				</div>		
