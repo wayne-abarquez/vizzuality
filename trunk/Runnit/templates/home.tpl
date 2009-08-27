@@ -1,16 +1,5 @@
 {include file="header.tpl"} 
 
-<script type="text/javascript" src="js/swfobject.js"></script>
-{literal}
-<script type="text/javascript">
-swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
-</script>
-
-<style type="text/css">
-    html, body, #container, #race, #runnityHomeMap  {width: 100%;height: 100%;}  
-</style>
-{/literal}
-
 <!-- IMPORTANT RACE AND NEXT RACES -->
 	<div class="span-24 raceContainer" id="race">
 		<div class="span-23 title">
