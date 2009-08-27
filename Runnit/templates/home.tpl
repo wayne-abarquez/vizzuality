@@ -48,7 +48,7 @@
 							<img src="media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
-							<div class="nameRaceContainer"><a class="nameRace" href="/run/{$race.id}/{$race.name|escape:"url"}">{$race.name}</a></div>
+							<div class="nameRaceContainer"><a class="nameRace" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
 							<div class="raceDateDetails">
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}"> 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
@@ -63,7 +63,7 @@
 							<img src="media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
-							<div class="nameRaceContainer"><a class="nameRace" href="/run/{$race.id}/{$race.name|escape:"url"}">{$race.name}</a></div>
+							<div class="nameRaceContainer"><a class="nameRace" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
 							<div class="raceDateDetails">
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}" > 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
