@@ -10,7 +10,7 @@
             <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="930" height="364" wmode="opaque">
               <param name="movie" value="flash/runnitHomeMap.swf?2" />
               <!--[if !IE]>-->
-              <object type="application/x-shockwave-flash" data="flash/runnitHomeMap.swf" width="930" height="364">
+              <object type="application/x-shockwave-flash" data="flash/runnitHomeMap.swf" width="930" height="364" wmode="opaque">
               <!--<![endif]-->
                 <h1>Necesitas Flash para poder ver el mapa</h1>
     			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
