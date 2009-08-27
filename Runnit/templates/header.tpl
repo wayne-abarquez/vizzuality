@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>{$titulo_pagina}</title>
 	
-	<link rel="shortcut icon" href="../img/favicon.ico"/>
+	<link rel="shortcut icon" href="/img/favicon.ico"/>
 
 	<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
@@ -64,10 +64,10 @@
 				</div>
 				<div class="forgetFind">
 					<div class="forgetPass"><a id="forgetLink" href="javascript: void sendPassword()">¿olvidaste tu contraseña?</a></div>
-					<div class="loginButton"><input id="submitLogin" class="fg-button ui-state-default ui-corner-all" type="submit" value="Entrar" onclick="javascript: void login()"/></div>	
+					<div class="loginButton"><input id="submitLogin" class="fg-button ui-state-default ui-corner-all" type="submit" value="Entrar"/></div>	
 				</div>	
 				<div class="first">
-					<img id="checking" class="column first registerImage" src="../img/ajax-loader.gif" style="display:none">
+					<img id="checking" class="column first registerImage" src="/img/ajax-loader.gif" style="display:none">
 					<div class="column last errorMessage" id="error_msg"></div>
 				</div>
 			</form>
@@ -115,7 +115,7 @@
 						<label class="roundblue" for="register4"><span><input type="text" name="popup_register4" id="popup_register4" /></span></label>
 					</div>
 				</div>
-				<div class="margin10 rightButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" onclick="javascript: void registerUser()" value="Crear mi cuenta"/></div>
+				<div class="margin10 rightButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crear mi cuenta"/></div>
 			</div>
 		</form>
 			<div class="column last registerRight">
@@ -158,7 +158,7 @@
 				</div>
 				
 				<div class="span-9 margin10 contactArea2">
-					<div class="span-4 first"><input id="contactButton" class="fg-button ui-state-default ui-corner-all" type="submit" value="Enviar mensaje" onclick="javascript: void sendMessage()"/></div>
+					<div class="span-4 first"><input id="contactButton" class="fg-button ui-state-default ui-corner-all" type="submit" value="Enviar mensaje" /></div>
 					<div class="span-5 last contactError" id="contactError"></div>
 				</div>
 			</div>	
