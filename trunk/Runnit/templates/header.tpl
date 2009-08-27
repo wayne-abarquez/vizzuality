@@ -168,9 +168,9 @@
 	<!-- LOGOUT WINDOW -->
 	<div id="logoutWindow" style='display:none'>
 		<h2 class="registerTitle">¿Quieres salir de Runnity?</h2>
-		<div>
+		<div class="column span-8 first" id="logoutButtons">
 			<div class="column span-4 first logoutButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Si, seguro" onclick="logout()"/></div>
-			<div class="column span-6 last"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="No, voy a seguir" onclick="$.modal.close();"/></div>
+			<div class="column span-3 last"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="No, voy a seguir" onclick="$.modal.close();"/></div>
 		</div>
 	</div>
 	
