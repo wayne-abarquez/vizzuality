@@ -9,6 +9,7 @@
 		-moz-background-inline-policy:continuous;
 		-moz-background-origin:padding;
 		background:#0063DC none repeat scroll 0 0;
+		padding-top: 0px;
 		}
 		.fg-button, .DeleteButt, .CancelButt, .DisabledButt, .SmallButt, .SmallDisabledButt, .SmallDeleteButt, .SmallCancelButt {
 		-moz-background-clip:border;
@@ -22,7 +23,7 @@
 		-webkit-border-bottom-right-radius: 4px 4px;
 		-webkit-border-top-left-radius: 4px 4px;
 		-webkit-border-top-right-radius: 4px 4px;		
-		background:#0063DC none repeat scroll 0 0;
+		background:#336699 none repeat scroll 0 0;
 		border:medium none;
 		color:#FFFFFF;
 		cursor:pointer;
@@ -31,6 +32,8 @@
 		font-weight:bold;
 		padding:4px 6px;
 		white-space:nowrap;
+		height: 23px;
+		padding-top: 2px;
 		}
 	
 div.rounded_container{
@@ -156,7 +159,3 @@ label.roundsearch {
 #inputsearch1 {width:320px}
 #inputsearch2 {width:60px}
 #inputsearch3 {width:60px}
-
-.subirfoto{
-	width: 96px;
-}
