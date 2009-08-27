@@ -8,7 +8,7 @@ class RunnitServices {
 	    $this->conn = pg_connect ("host=67.23.44.117 dbname=runnit user=runnit password=runnitrunnit555");
 	
 		$this->emailPassword="alertrunnity";
-		$this->basePath="/Users/jatorre/workspace/runnit/";
+		$this->basePath="/Users/jmedina/workspace/Runnity/";
 	}
     
     public function login($email,$pass) {

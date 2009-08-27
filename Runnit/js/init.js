@@ -370,7 +370,6 @@ function login(){
     			$('#passwordLogin').removeAttr("disabled");
             } else {
             	location.reload();
-				$.modal.close();         
             }
         
     	},
@@ -473,6 +472,7 @@ function alertLogout() {
 function logout () {
 
 	var dataObj = ({method: 'logout'});    
+	$('#logoutButtons').html('<div class="span-8" style="text-align:center;color:#336699;">Cerrando sesión...</div>');
     $.ajax({
     	type: "POST",
     	url: "/ajaxController.php",
@@ -480,7 +480,6 @@ function logout () {
     	cache: false,
     	success: function(result){
     		window.location = "/";
-    		$.modal.close();
     	},
         error:function (xhr, ajaxOptions, thrownError){
                 alert(xhr.status + "\n" + thrownError);
