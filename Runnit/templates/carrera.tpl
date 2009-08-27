@@ -3,6 +3,15 @@
 <!-- GLOBAL CONTAINER RACE -->
 	<div class="span-24 raceContainer" id="race">
 	
+		<!-- INSCRIPTION CONFIRMATION WINDOW -->
+		<div id="confirmationWindow" style='display:none'>
+			<h2 id="titleConfirmation" class="registerTitle">¿Quieres inscribirte a esta carrera?</h2>
+			<div class="column span-9 first" id="confirmationButtons">
+				<div class="column span-6 first logoutButton"><input id="confirmationButtonRace" class="fg-button ui-state-default ui-corner-all" type="submit" value="Si, claro" onclick="javascript: void inscribirseCarrera({$smarty.session.user.username},{$smarty.request.id})"/></div>
+				<div class="column span-2 last"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="No, ahora no" onclick="$.modal.close();"/></div>
+			</div>
+		</div>
+	
 		<!-- RACE & IMAGE -->
 		<div class="span-16 first leftColumn">
 			<div class="span-16 column raceTitle">
@@ -23,7 +32,7 @@
 						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>, <a href="" class="special">apúntate</a></p>
 						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>,
 						    
-						     <input class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy a ir{/if}" /></p>
+						     <input id="inscriptionButton" class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy a ir{/if}" onclick="javascript: void checkInscrito({if $smarty.session}'ok'{else}'ko'{/if})"/></p>
 					</div>
 				</div>
 			</div>
