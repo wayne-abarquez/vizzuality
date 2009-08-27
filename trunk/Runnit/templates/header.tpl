@@ -188,7 +188,7 @@
 				<div id="loginBox" class="accessLogin">
 					<a href="javascript: void showLoginBox()" class="hrefText">accede a tu cuenta</a>
 					<a class="normalText"> ó </a>
-					<a href="javascript: void showRegisterBox()" class="hrefText">registrate</a>
+					<a href="javascript: void showRegisterBox()" class="hrefText">regístrate</a>
 				</div>
 			{/if}
 		</div>
