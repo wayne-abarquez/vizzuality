@@ -1,6 +1,6 @@
 {include file="header.tpl"} 
 
-<script type="text/javascript" src="js/ajaxupload.3.6.js"></script>
+<script type="text/javascript" src="/js/ajaxupload.3.6.js"></script>
 {literal}
 <script type="text/javascript">
     $(document).ready(function(){

@@ -33,7 +33,7 @@
 	<script type="text/javascript" src="/js/ui_demos.js"></script -->
 	
 	{if $section eq "index"}
-		<script type="text/javascript" src="js/swfobject.js"></script>
+		<script type="text/javascript" src="/js/swfobject.js"></script>
 		{literal}
 		<script type="text/javascript">
 		swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
