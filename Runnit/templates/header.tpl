@@ -64,7 +64,7 @@
 				</div>
 				<div class="forgetFind">
 					<div class="forgetPass"><a id="forgetLink" href="javascript: void sendPassword()">¿olvidaste tu contraseña?</a></div>
-					<div class="loginButton"><input id="submitLogin" class="fg-button ui-state-default ui-corner-all" type="submit" value="Entrar"/></div>	
+					<div class="loginButton"><input id="submitLogin" class="fg-button" type="submit" value="Entrar"/></div>	
 				</div>	
 				<div class="first">
 					<img id="checking" class="column first registerImage" src="/img/ajax-loader.gif" style="display:none">
@@ -81,7 +81,7 @@
 		<div id="registerLogin" class="column span-5 last registerLogin">
 			<h3>¿Aún no estas registrado?</h3>
 			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
-			<div class="registroLoginButton"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Crea tu cuenta" onclick="javascript: void $.modal.close();showRegisterBox()"/></div>
+			<div class="registroLoginButton"><input class="fg-button" type="submit" value="Crea tu cuenta" onclick="javascript: void $.modal.close();showRegisterBox()"/></div>
 		</div>
 	</div>
 	
@@ -196,9 +196,9 @@
 				<div class="searchC">
 					<form id="searchForm" action="/searchresults.php" method="get">
 						<div class="buttonSearch">
-							<label class="roundsearch" for="inputsearch"><span><input type="text" id="inputsearch" name="q"></span></label>
+							<label class="roundsearchFirst" for="inputsearchFirst"><span><input type="text" id="inputsearchFirst" name="q"></span></label>
 						</div>
-						<div class="buttonSearch"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
+						<div class="buttonSearch"><input class="fg-button" type="submit" value="Buscar"/></div>
 					</form>
 				</div>
 			</div>
