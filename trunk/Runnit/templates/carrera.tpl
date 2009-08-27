@@ -82,7 +82,7 @@
 				<div id="map2Container" class="span-16">
 					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
 					<div class="mapStyle marginDescription">
-						<div id="map2"><img src="http://maps.google.com/staticmap?size=598x250&maptype=map&markers={$data.start_point_lat},{$data.start_point_lon},greens%7C{$data.end_point_lat},{$data.end_point_lon},bluem&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"></div>
+						<div id="map2"><img src="http://maps.google.com/staticmap?size=610x250&maptype=map&markers={$data.start_point_lat},{$data.start_point_lon},greens%7C{$data.end_point_lat},{$data.end_point_lon},bluem&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"></div>
 					</div>
 				</div>
 					
