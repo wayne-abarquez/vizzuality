@@ -89,7 +89,13 @@
 					<ol id="update">
 						{foreach key=id item=comment from=$comments}
 	    				{if $comment eq false}
-	    					<div class="column span-16 first racesComment">No hay comentarios.</div> 
+	    					<div class="column span-15 noResultsContainer">
+	        					<div class="carita"></div>
+	        					<div class="noResultsText">
+	        					<p class="noResults"><b>Aún no hay comentarios sobre esta carrera</b></p>
+	        					<p class="noResultsSub">Pero si quieres puedes <a href="rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
+								</div>
+	        				</div>  
 	    				{else}	    										
 							<div class="column span-16 first racesComment">				
 								<div class="column span-3 first image">
@@ -102,7 +108,13 @@
 							</div>							
 	              		{/if}
 	                	{foreachelse}
-	                	    <div class="span-8 races">No hay comentarios.</div>    
+	                	    <div class="column span-15 noResultsContainer">
+	        					<div class="carita"></div>
+	        					<div class="noResultsText">
+	        					<p class="noResults"><b>Aún no hay comentarios sobre esta carrera</b></p>
+	        					<p class="noResultsSub">Pero si quieres puedes <a href="rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
+								</div>
+	        				</div>    
 	                	{/foreach}						
 					</ol>
 				</div>
