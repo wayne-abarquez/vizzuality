@@ -383,12 +383,6 @@ function login(){
 }
 
 
-//PARA QUE SE CIERRE SOLO LA VENTANA DE LOGIN
-function timerHide() {
-     $.modal.close();
-     //document.getElementById("login").style.display = "none";
-     clearTimeout(timerID);
-}
 
 function sendPassword() {
 	$('#error_msg').html('');
@@ -428,7 +422,12 @@ function sendPasswordTo() {
     	cache: false,
     	success: function(result){
     		if(result=='OK') {
+    			$('#passForm').show();
+    			$('#loginEmailText').html('email');
+    			$("#FormularioLogin").attr("action","javascript: void login();");
+    			$('#submitLogin').attr('value','Enviar');
     			$('#forgetLink').html('Contraseña enviada.');
+    			timerID = setTimeout("changeText()", 2000);
             } else {
             	$('#submitLogin').attr('value','Enviar');
             	$('#error_msg').html('El email no existe.');       
@@ -440,6 +439,13 @@ function sendPasswordTo() {
     });
 }
 
+
+//PARA QUE SE CIERRE SOLO LA VENTANA DE LOGIN
+function changeText() {
+	$('#forgetLink').html('¿olvidaste tu contraseña?');
+	$('#forgetLink').attr("href","javascript: void sendPassword()");
+    clearTimeout(timerID);
+}
 
 
 
