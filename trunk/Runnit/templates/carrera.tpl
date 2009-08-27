@@ -180,7 +180,10 @@
 					<h2 class="newsTitle">Valientes apuntados</h2>	
 					{foreach key=id item=person from=$runners}
     				{if $person eq 'f'}
-    					<div class="span-8 races2"><p class="noApuntado">Aun no hay ningún valiente</p></div> 
+    					<div class="span-8 races2">
+    						<p class="noApuntado">Aun no hay ningún valiente</p>
+							<p class="noRaceSub">¿Quieres ser el primero? <b><a href="/rss.php">Apúntate</a></b></p>
+						</div> 
     				{else}					
     					<div class="span-8 races2 defaultWidth">
     						<div class="column first image">
@@ -196,7 +199,10 @@
     					</div>
         			{/if}
         		    {foreachelse}
-        		        <div class="span-8 races2"><p class="noApuntado">Aun no hay ningún valiente</p></div>    
+        		        <div class="span-8 races2">
+    						<p class="noApuntado">Aun no hay ningún valiente</p>
+							<p class="noRaceSub">¿Quieres ser el primero? <b><a href="/rss.php">Apúntate</a></b></p>
+						</div>     
         		    {/foreach}					
 				</div>
 			</div>	
