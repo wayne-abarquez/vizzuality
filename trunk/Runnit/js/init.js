@@ -245,20 +245,49 @@ function registerUser(){
     	data: dataObj,
     	cache: false,
     	success: function(result){ 
-    		$('#registerError').html(''); 
-    		var h = 100;
-    		$('#registerError').fadeIn(400).html('');  
-    		$('#registerTitle').html('Gracias por registrarte ' + result);
-    		$('#conditions').hide();
-    		$('#registerForm').html('<div class="margin10"><div class="inputTitle" style="text-align:center;">Gracias por haberte registrado, en breves momentos recibirás un email con tus datos.</div></div>');
-			$('#simplemodal-container').animate({height: h},500);
+    			directLogin(email,pass,username);
     	},
         error:function (xhr, ajaxOptions, thrownError){   
-                alert('Runnit' + xhr.message + "\n" + thrownError);
+        		$('#registerError').show();
+                $('#registerError').html('Este email ya está en uso.');
         }
     });
     return false;
 }
+
+
+function directLogin(email,pass,user) {
+	var dataObj = ({email : email,
+    method: 'login',
+    password: pass
+    });
+    // -- Start AJAX Call --
+    $.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+    			window.location="/user/" + user;
+            	$('#registerError').html(''); 
+		    	var h = 100;
+		    	$('#registerError').fadeIn(400).html('');  
+		    	$('#registerTitle').html('Gracias por registrarte ' + user);
+		    	$('#conditions').hide();
+		    	$('#registerForm').html('<div class="margin10"><div class="inputTitle" style="text-align:center;">Gracias por haberte registrado, en breves momentos recibirás un email con tus datos.</div></div>');
+				$('#simplemodal-container').animate({height: h},500);          	     
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                alert('Runnity' + xhr.status + "\n" + thrownError);
+        }
+    });
+		
+		
+		
+		
+}
+
+
 
 //CHECK EMAIL JAVASCRIPT
 function echeck(str) {
@@ -344,12 +373,8 @@ function login(){
                 $('#emailLogin').removeAttr("disabled");
     			$('#passwordLogin').removeAttr("disabled");
             } else {
-                //login ok. Close the popup and change the login menu in the header
-                $("#loginBox").css('text-align','right');
-                $("#loginBox").css('padding-right','27px');
-                $("#loginBox").html("<a href='./usuario.php' class='blackLogin'>" + result + '</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()"> Salir</a> ');
-                $("#commentBox").html("<div class='span-14 titleComents'>Anímate y publica tu comentario</div><textarea name='textarea2' id='commentTextArea' class='span-15 textArea'></textarea><input class='fg-button ui-state-default ui-corner-all' type='submit' value='Publicar comentario'/>");   
-                $.modal.close();         
+            	location.reload();
+				$.modal.close();         
             }
         
     	},
@@ -373,8 +398,6 @@ function sendPassword() {
 	$('#error_msg').html('');
 	$('#submitLogin').val('Enviar');
 	$("#FormularioLogin").attr("action","javascript: void sendPasswordTo();"); 
-
-/* 	$('#submitLogin').attr('onClick','javascript: void sendPasswordTo();'); */
 	$('#passForm').hide();
 	$('#forgetLink').removeAttr("href");
 	$('#forgetLink').html('Introduce tu e-mail.');
@@ -409,8 +432,9 @@ function sendPasswordTo() {
     	cache: false,
     	success: function(result){
     		if(result=='OK') {
-               	$('#error_msg').html('El email existe.');
+    			$('#forgetLink').html('Contraseña enviada.');
             } else {
+            	$('#submitLogin').attr('value','Enviar');
             	$('#error_msg').html('El email no existe.');       
             }
     	},
@@ -453,11 +477,7 @@ function logout () {
     	data: dataObj,
     	cache: false,
     	success: function(result){
-    		$("#loginBox").css('text-align','left');
-    		$("#loginBox").css('padding-left','30px');
-    		$("#loginBox").css('padding-right','0px');
-    		$("#loginBox").html("<div class='loginText' id='loginBox'><a href='javascript: void showLoginBox()' class='hrefText'>accede a tu cuenta</a><a class='normalText'> ó </a><a href='javascript: void showRegisterBox()' class='hrefText'>registrate</a></div>");
-    		$("#commentBox").html("Lo siento no puedes comentar sin estar registrado");
+    		window.location = "/";
     		$.modal.close();
     	},
         error:function (xhr, ajaxOptions, thrownError){
@@ -509,7 +529,6 @@ function sendMessage() {
     	success: function(result){ 
 			$('#contactForm').html(''); 
     		var h = 100;
-    		/* $('#registerError').fadeIn(400).html(''); */  
     		$('#contactTitle').html('Gracias por enviar tu sugerencia ');
     		$('#contactForm').html('<div style="text-align:left;width:400px;color:#336699;padding-left:20px;margin-top:-20px">Gracias por enviar tus comentarios, en breve se cerrará esta ventana.</div>');
 			$('#simplemodal-container').animate({height: h},500);
