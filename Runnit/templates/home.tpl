@@ -8,7 +8,7 @@
 		</div>
 		<div class="span-23 map" id="runnityHomeMap">
             <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="930" height="364" wmode="opaque">
-              <param name="movie" value="flash/runnitHomeMap.swf?1" />
+              <param name="movie" value="flash/runnitHomeMap.swf?2" />
               <!--[if !IE]>-->
               <object type="application/x-shockwave-flash" data="flash/runnitHomeMap.swf" width="930" height="364">
               <!--<![endif]-->
