@@ -28,15 +28,12 @@
 	<link type='text/css' href='/css/botones.css' rel='stylesheet' media='screen'>
 	<script src="/js/corner.js" type="text/javascript"></script>
 	
-	<!--link type="text/css" href="/css/jquery-ui.css" rel="Stylesheet" />	
-	<script type="text/javascript" src="/js/jquery-ui.js"></script>
-	<script type="text/javascript" src="/js/ui_demos.js"></script -->
 	
 	{if $section eq "index"}
 		<script type="text/javascript" src="/js/swfobject.js"></script>
 		{literal}
 		<script type="text/javascript">
-		swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
+			swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
 		</script>
 		{/literal}
 	{/if}
@@ -197,7 +194,7 @@
 		<div class="span-18 last">
 			<div class="searchCont">
 				<div class="searchC">
-					<form id="searchForm" action="searchresults.php" method="get">
+					<form id="searchForm" action="/searchresults.php" method="get">
 						<div class="buttonSearch">
 							<label class="roundsearch" for="inputsearch"><span><input type="text" id="inputsearch" name="q"></span></label>
 						</div>
