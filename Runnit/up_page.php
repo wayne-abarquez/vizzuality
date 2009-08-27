@@ -8,7 +8,7 @@
 		$imgTrans->sourceFile = $_FILES['userfile']['tmp_name'];
 		$imgTrans->targetFile = $services->basePath .'media/avatar/' . $_SESSION['user']['id'].".jpg";
 		$imgTrans->resizeToWidth = 96;
-		//$imgTrans->resizeToHeight = 67;
+		$imgTrans->resizeToHeight = 67;
 	    if (!$imgTrans->resize()) {
 			echo "error";
 	    } else {
