@@ -166,7 +166,7 @@ package {
 				var marker:RunSingleMarker=new RunSingleMarker(p,m.name,m.id,m.event_date)
 				iw[marker]=m;
 				marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
-					goToRunPage(m.id);
+					goToRunPage(m.id,m.name);
 				});
 				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
 					openInfoWindow(e);									
@@ -195,8 +195,8 @@ package {
 			
 		}
 		
-		private function goToRunPage(id:Number):void {
-			navigateToURL(new URLRequest("carrera.php?id="+id),"_self");
+		private function goToRunPage(id:Number,name:String):void {
+			navigateToURL(new URLRequest("run/"+id+"/"+name.split(" ").join("/")),"_self");
 		}
 		
 		private function attachMarkers():void
