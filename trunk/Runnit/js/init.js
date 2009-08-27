@@ -370,10 +370,11 @@ function timerHide() {
 }
 
 function sendPassword() {
-	$('#error_msg').hide();
+	$('#error_msg').html('');
 	$('#submitLogin').val('Enviar');
-	$('#submitLogin').removeAttr('onclick');
-	$('#submitLogin').attr('onClick','javascript: void sendPasswordTo();');
+	$("#FormularioLogin").attr("action","javascript: void sendPasswordTo();"); 
+
+/* 	$('#submitLogin').attr('onClick','javascript: void sendPasswordTo();'); */
 	$('#passForm').hide();
 	$('#forgetLink').removeAttr("href");
 	$('#forgetLink').html('Introduce tu e-mail.');
