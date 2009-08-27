@@ -119,7 +119,7 @@ function showContactBox() {
 
 /* FUNCION PARA COMENTAR -- REVISAR -- */
 function commentAction(idRun) {
-
+		
 		var comment = $("#commentTextArea").val();
 	    var dataObj = ({comment : comment,
 	        method: 'addComment',id:idRun
@@ -129,18 +129,21 @@ function commentAction(idRun) {
 	    	alert('El comentario esta vacío, mejor revísalo.');
 	    } else {
 			$("#flash").show();
-			$("#flash").fadeIn(400).html('<img src="../img/ajax-loader.gif" align="absmiddle">&nbsp;<span class="loading">Loading Comment...</span>');
+			$("#flash").fadeIn(400).html('<img src="/img/ajax-loader.gif" align="absmiddle" style="height:20px;width:20px;padding-top:4px;padding-left:5px;">&nbsp;<span style="margin-top:-15px;">Cargando comentario...</span>');
 			$.ajax({
 				type: "POST",
-	 	 		url: "ajaxController.php",
+	 	 		url: "/ajaxController.php",
 	   			data: dataObj,
 	  			cache: false,
 	  			success: function(html){
 	  				$("ol#update").append(html);
-	  				$("ol#update li:last").fadeIn("slow");
-	    			document.getElementById('commentTextArea').value='';
+	  				$("ol#update li:last").fadeIn(400);
+	    			$('#commentTextArea').html('');
 	  				$("#flash").hide();
-	  			}
+	  			},
+		        error:function (xhr, ajaxOptions, thrownError){
+		                alert('Runnity' + xhr.status + "\n" + thrownError);
+		        }
 	 		});
 		}
 		return false;
@@ -170,19 +173,19 @@ function checkUsername(){
     // -- Start AJAX Call --
     $.ajax({
     	type: "POST",
-    	url: "ajaxController.php",
+    	url: "/ajaxController.php",
     	data: dataObj,
     	cache: false,
     	success: function(result){
             if(result=="valid") {
                 //notify the user that the username is free
                 $('#registerImage').show();
-            	registerImage.setAttribute("src", "../img/ok.png");
+            	registerImage.setAttribute("src", "/img/ok.png");
             	$('#answer').html('Buen nombre');
             } else {
         		//notify the user that the username is used.
         		$('#registerImage').show();
-        		registerImage.setAttribute("src", "../img/ko.png");
+        		registerImage.setAttribute("src", "/img/ko.png");
             	$('#answer').html('Ups, está cogido...cachis');
             }
         
@@ -229,7 +232,7 @@ function registerUser(){
     }
     
     
-    $('#registerError').fadeIn(400).html('<img src="../img/ajax-loader.gif" class="registerImage">');
+     $('#registerError').fadeIn(400).html('<img src="/img/ajax-loader.gif" class="registerImage">');
     
     
  
@@ -238,7 +241,7 @@ function registerUser(){
     // -- Start AJAX Call --
     $.ajax({
     	type: "POST",
-    	url: "ajaxController.php",
+    	url: "/ajaxController.php",
     	data: dataObj,
     	cache: false,
     	success: function(result){ 
@@ -328,7 +331,7 @@ function login(){
     // -- Start AJAX Call --
     $.ajax({
     	type: "POST",
-    	url: "ajaxController.php",
+    	url: "/ajaxController.php",
     	data: dataObj,
     	cache: false,
     	success: function(result){
@@ -369,7 +372,7 @@ function timerHide() {
 function sendPassword() {
 	$('#error_msg').hide();
 	$('#submitLogin').val('Enviar');
-	$('#submitLogin').attr('onclick','javascript: void sendPasswordTo()')
+	$('#submitLogin').attr('onClick','javascript: void sendPasswordTo()')
 	$('#passForm').hide();
 	$('#forgetLink').removeAttr("href");
 	$('#forgetLink').html('Introduce tu e-mail.');
@@ -399,7 +402,7 @@ function sendPasswordTo() {
 	  
     $.ajax({
     	type: "POST",
-    	url: "ajaxController.php",
+    	url: "/ajaxController.php",
     	data: dataObj,
     	cache: false,
     	success: function(result){
@@ -444,7 +447,7 @@ function logout () {
 	var dataObj = ({method: 'logout'});    
     $.ajax({
     	type: "POST",
-    	url: "ajaxController.php",
+    	url: "/ajaxController.php",
     	data: dataObj,
     	cache: false,
     	success: function(result){
@@ -453,12 +456,13 @@ function logout () {
     		$("#loginBox").css('padding-right','0px');
     		$("#loginBox").html("<div class='loginText' id='loginBox'><a href='javascript: void showLoginBox()' class='hrefText'>accede a tu cuenta</a><a class='normalText'> ó </a><a href='javascript: void showRegisterBox()' class='hrefText'>registrate</a></div>");
     		$("#commentBox").html("Lo siento no puedes comentar sin estar registrado");
+    		$.modal.close();
     	},
         error:function (xhr, ajaxOptions, thrownError){
                 alert(xhr.status + "\n" + thrownError);
         }
     });
-    $.modal.close();
+    
 }
 
 
@@ -497,7 +501,7 @@ function sendMessage() {
 
  	$.ajax({
     	type: "POST",
-    	url: "ajaxController.php",
+    	url: "/ajaxController.php",
     	data: dataObj,
     	cache: false,
     	success: function(result){ 
