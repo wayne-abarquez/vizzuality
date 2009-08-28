@@ -161,9 +161,17 @@ class RunnitServices {
 	        $sql.=",pass='$password'";
 	    }
 	    
-	    
-	    $sql.=",locality='$locality'";   
-	    $sql.=",radius_interest=$radio";
+	    if ($locality) {
+			$sql.=",locality='$locality'";  
+		} else {
+			$sql.=",locality=null";  
+		}
+	    if ($radio) {
+			$sql.=",radius_interest=$radio";  
+		} else {
+			$sql.=",radius_interest=null";  
+		}
+	     
 	    $sql.=" WHERE username='$username'";
         $result= pg_query($this->conn, $sql);
         return null;
