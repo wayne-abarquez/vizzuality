@@ -120,6 +120,10 @@ package {
 		private function openInfoWindow(e:MapMouseEvent):void {
 			
 			var m:Object = iw[e.target];
+			
+			if (m.distance_text=="null")
+				m.distance_text="";
+			
 			var titleFormat:TextFormat = new TextFormat();
 			titleFormat.bold = true;
 			var titleStyleSheet:StyleSheet = new StyleSheet();
@@ -151,7 +155,7 @@ package {
 			  hasShadow: true,
 			  title:m.name,
 			  content:(m.event_date as String).substr(8,2) + '/' + 
-			  	(m.event_date as String).substr(5,2) + '/' + (m.event_date as String).substr(0,4) + ' | ' +  m.distance_text
+			  	(m.event_date as String).substr(5,2) + '/' + (m.event_date as String).substr(0,4) + ' | ' + m.distance_text
 			});
 			map.openInfoWindow(e.latLng,options);
 			
@@ -166,7 +170,8 @@ package {
 				var marker:RunSingleMarker=new RunSingleMarker(p,m.name,m.id,m.event_date)
 				iw[marker]=m;
 				marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
-					goToRunPage(m.id,m.name);
+					
+					goToRunPage(e);
 				});
 				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
 					openInfoWindow(e);									
@@ -195,8 +200,9 @@ package {
 			
 		}
 		
-		private function goToRunPage(id:Number,name:String):void {
-			navigateToURL(new URLRequest("run/"+id+"/"+name.split(" ").join("/")),"_self");
+		private function goToRunPage(e:MapMouseEvent):void {
+			var m:Object = iw[e.target];
+			navigateToURL(new URLRequest("run/"+m.id+"/"+m.name.split(" ").join("/")),"_self");
 		}
 		
 		private function attachMarkers():void
