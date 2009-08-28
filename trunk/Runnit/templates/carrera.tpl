@@ -29,10 +29,9 @@
 					</div>
 					<div class="span-14 last">
 						<p class="raceTitle">{$data.name}</p>
-						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>, <a href="" class="special">apúntate</a></p>
 						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>,
 						    
-						     <input id="inscriptionButton" class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy a ir{/if}" onclick="javascript: void checkInscrito({if $smarty.session}'ok'{else}'ko'{/if})"/></p>
+						     <input id="inscriptionButton" class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy a ir{/if}" onclick="javascript: void checkInscrito({if $smarty.session.logged}'ok'{else}'ko'{/if})"/></p>
 					</div>
 				</div>
 			</div>
