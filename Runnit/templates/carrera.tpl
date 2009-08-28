@@ -124,7 +124,7 @@
 									<img src="/media/avatar/{$comment.avatar}"/>	
 								</div>
 								<div class="column span-12 last commentBox">
-									<div class="nameUser"><a class="nameRace" href="#">{$comment.username}, </a>{elapsed_time timestamp=$comment.created_when|substr:0:13}</div>
+									<div class="nameUser"><a class="nameRace" href="#">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
 									<p class="textRace">{$comment.commenttext}</p>
 								</div>
 							</div>							
