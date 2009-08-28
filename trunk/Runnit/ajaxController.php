@@ -77,7 +77,7 @@ if ($_REQUEST['method'] == 'inscribeUserToRun') {
 }
 
 if ($_REQUEST['method'] == 'unInscribeUserToRun') {
-	$result = $services->inscribeUserToRun($_REQUEST['userId'],$_REQUEST['runId']);
+	$result = $services->unInscribeUserToRun($_REQUEST['userId'],$_REQUEST['runId']);
 }
 
 if ($_REQUEST['method'] == 'sendEmailToAlertas') {

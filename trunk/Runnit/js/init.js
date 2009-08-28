@@ -575,7 +575,6 @@ function checkInscrito(str) {
 		
 			$('#confirmationWindow').modal();
 			$('#titleConfirmation').html('¿Quieres quitarte de esta carrera?');
-			$('#confirmationButtonRace').attr('onclick','javascript:void quitarseCarrera({$smarty.session.user.username},{$smarty.request.id})');
 			
 			var wscr = $(window).width();
 		    var hscr = $(window).height();
@@ -602,40 +601,53 @@ function checkInscrito(str) {
 
 
 function inscribirseCarrera(userID,raceID) {
+
+	if ($('#titleConfirmation').html()=="¿Quieres quitarte de esta carrera?") {
 	
-	$('#confirmationButtons').html('<div class="span-8" style="text-align:center;color:#336699;">Inscribiendote a la carrera...</div>');
-	var dataObj = ({runId : raceID,
-        method: 'inscribeUserToRun',
-        userId: userID
-        });
-    
-
- 	$.ajax({
-    	type: "POST",
-    	url: "/ajaxController.php",
-    	data: dataObj,
-    	cache: false,
-    	success: function(result){ 
-					$('#inscriptionButton').val('voy a ir');
-    	},
-        error:function (xhr, ajaxOptions, thrownError){   
-                alert('Runnit' + xhr.message + "\n" + thrownError);
-        }
-    });
-
+		$('#confirmationButtons').html('<div class="span-9" style="text-align:center;color:#336699;padding-left:10px;">Borrándote de la carrera...</div>');
+		var dataObj = ({runId : raceID,
+	        method: 'unInscribeUserToRun',
+	        userId: userID
+	        });
+	        
+	    $.ajax({
+	    	type: "POST",
+	    	url: "/ajaxController.php",
+	    	data: dataObj,
+	    	cache: false,
+	    	success: function(result){    				
+						$('#inscriptionButton').val('apúntate');
+						$.modal.close();
+	    	},
+	        error:function (xhr, ajaxOptions, thrownError){   
+	                alert('Runnit' + xhr.message + "\n" + thrownError);
+	        }
+	    });
+	    
+	} else {
+	
+		$('#confirmationButtons').html('<div class="span-9" style="text-align:center;color:#336699;padding-left:10px;">Inscribiendote a la carrera...</div>');
+		var dataObj = ({runId : raceID,
+	        method: 'inscribeUserToRun',
+	        userId: userID
+	        });
+	    
+	 	$.ajax({
+	    	type: "POST",
+	    	url: "/ajaxController.php",
+	    	data: dataObj,
+	    	cache: false,
+	    	success: function(result){     				
+						$('#inscriptionButton').val('voy a ir');
+						$.modal.close();
+	    	},
+	        error:function (xhr, ajaxOptions, thrownError){   
+	                alert('Runnit' + xhr.message + "\n" + thrownError);
+	        }
+	    });
+	}
     return false;
 }
 
-
-
-function quitarseCarrera(userID,raceID) {
-	var dataObj = ({nombre : name,
-        method: 'sendEmailToAlertas',
-        mensaje: message,
-        email: email
-        });
-    
-
-}
 
 
