@@ -208,7 +208,7 @@
 		    });
 		    
 		    for (i=1;i<=6;i++){
-				var len = 45;
+				var len = 43;
 				var p = document.getElementById("iteracion" + i);
 				
 				if (p) {
@@ -227,14 +227,15 @@
 				  }
 				}
 				
-				var len = 45;
+				var len = 43;
 				var x = document.getElementById("carrera" + i);
 				if (x) {
 				  var trunc = x.innerHTML;
 				  trunc = trunc.replace(/\t/g, "");
+				  trunc = trunc.replace(/\n/g, "");
+				  				  
 				  if (trunc.length > len) {
-		
-				    trunc = trunc.substring(0, len);
+					
 				    trunc = trunc.replace(/\w+$/, '');
 				
 				    /* Add an ellipses to the end and make it a link that expands
