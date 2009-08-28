@@ -599,7 +599,7 @@ function checkInscrito(str) {
 
 
 
-
+//INSCRIBIRSE O QUITARSE LA CARRRERA
 function inscribirseCarrera(userID,raceID) {
 
 	if ($('#titleConfirmation').html()=="¿Quieres quitarte de esta carrera?") {
@@ -650,4 +650,178 @@ function inscribirseCarrera(userID,raceID) {
 }
 
 
+//ALERTAS POR LOCALIDAD
+function activateAlerts() {
+	$('#alertError').html('');
 
+	var lugar = $("#input6").val();
+    var radio = $("#input7").val();
+	
+	if ((lugar=="") || (radio=="")) {
+		$('#alertError').html('Existen campos vacíos.');
+		return false;
+	}
+	
+	$("#alertButton").attr("disabled", "true");
+    $("#input6").attr("disabled", "true");
+    $("#input7").attr("disabled", "true");
+	
+	$('#alertButton').val('Activando...');
+	
+/*
+    var dataObj = ({runId : $se,
+        method: 'inscribeUserToRun',
+        userId: userID
+        });
+    
+ 	$.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){     				
+					$('#inscriptionButton').val('voy a ir');
+					$.modal.close();
+    	},
+        error:function (xhr, ajaxOptions, thrownError){   
+                alert('Runnit' + xhr.message + "\n" + thrownError);
+        }
+    });
+*/
+     
+}
+
+
+function desactivateAlerts() {
+
+}
+
+
+
+
+//CAMBIO DE DATOS EN USUARIO
+
+function changeUserData (pass,mail,longName,userN) {
+	
+	$('#userError').html('');
+
+	var name = $("#input1").val();
+    var user = $("#input2").val();
+    var email = $("#input3").val();
+    	
+	if ((name=="") || (email=="") || (user=="")) {
+		$('#userError').html('Existen campos vacíos.');
+		return false;
+	}
+	
+	if ((name==longName) && (email==mail) && (user==userN)) {
+		$('#userError').html('No has realizado cambios.');
+		return false;
+	}
+	
+	if (!echeck(email)) {
+    	$('#contactError').html('Tu email es incorrecto.');
+    	return false;
+    }
+	
+	
+	$("#input1").attr("disabled", "true");
+    $("#input3").attr("disabled", "true");
+    $('#userSaveData').attr('disabled','true');
+	
+	$('#userSaveData').val('Guardando...');
+	
+	
+	var dataObj = ({name : name,
+        method: 'updateUser',
+        username: user, email:email, password: pass
+        });
+    
+ 	$.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){     				
+					$("#input1").attr("disabled", "false");
+				    $("#input3").attr("disabled", "false");
+				    $('#userSaveData').attr('disabled','false');
+					
+					$('#userSaveData').val('Guardado!');
+					timerID = setTimeout("changeTextUser()", 2000);
+    	},
+        error:function (xhr, ajaxOptions, thrownError){   
+                alert('Runnit' + xhr.message + "\n" + thrownError);
+
+        }
+    });
+	
+}
+
+
+function changeTextUser () {
+	$('#userSaveData').val('Guardar cambios');
+    clearTimeout(timerID);
+}
+
+
+function changePassData (pass,mail,longName,userN) {
+	
+	$('#userError').html('');
+
+	var passOld = $("#input4").val();
+    var passNew = $("#input5").val();
+    	
+	if ((passOld=="") || (passNew=="")) {
+		$('#userError').html('Existen campos vacíos.');
+		return false;
+	}
+	
+	
+	if (passOld==passNew) {
+		$('#userError').html('Son iguales.');
+		return false;
+	}
+
+	
+	
+	$("#input4").attr("disabled", "true");
+    $("#input5").attr("disabled", "true");
+    $('#userSaveData').attr('disabled','true');
+	
+	$('#passSaveData').val('Actualizando...');
+	
+	
+	var dataObj = ({name : longName,
+        method: 'updateUser',
+        username: userN, email:mail, password: passNew
+        });
+    
+ 	$.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){     				
+					$("#input4").removeAttr('disabled');
+				    $("#input5").removeAttr('disabled');
+				    $("#input4").val('');
+				    $("#input5").val('');
+				    $('#userSaveData').removeAttr('disabled');
+					
+					$('#passSaveData').val('Actualizado!');
+					timerID = setTimeout("passTextUser()", 2000);
+    	},
+        error:function (xhr, ajaxOptions, thrownError){   
+                alert('Runnit' + xhr.message + "\n" + thrownError);
+
+        }
+    });
+	
+}
+
+
+function passTextUser () {
+	$('#passSaveData').val('Cambiar contraseña');
+    clearTimeout(timerID);
+}

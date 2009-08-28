@@ -88,7 +88,7 @@
 								<div>
 									<div class="countAgo">nombre de usuario</div>
 									<div class="inputWhite">
-										<label class="round" for="input2"><span><input type="text" name="input2" id="input2" value="{$smarty.session.user.username}"></span></label>
+										<label class="round" for="input2"><span><input type="text" name="input2" id="input2" disabled="true" value="{$smarty.session.user.username}"></span></label>
 									</div>
 								</div>
 								<div>
@@ -98,24 +98,26 @@
 									</div>
 								</div>
 								<div class="inputWhiteButton">
-									<input class="fg-button" type="submit" value="Guardar cambios"/>
+									<input id="userSaveData" class="fg-button" type="submit" value="Guardar cambios" onclick="javascript: void changeUserData('{$smarty.session.user.pass}','{$smarty.session.user.email}','{$smarty.session.user.completename}','{$smarty.session.user.username}')"/>
 								</div>
+								<div id="userError" class="registerError"></div>
 							</div>
 							<div class="column last passContainer">
 								<div class="changePass">Cambiar contraseña</div>
 								<div>
 									<div class="inputTitleBlue">contraseña anterior</div>
 									<div class="inputBlue">
-								<label class="roundblue" for="input4"><span><input type="text" name="input4" id="input4"></span></label>
+								<label class="roundblue" for="input4"><span><input type="password" name="input4" id="input4"></span></label>
 									</div>
 								</div>
 								<div>
 									<div class="inputTitleBlue">nueva contraseña</div>
 									<div class="inputBlue">
-										<label class="roundblue" for="input5"><span><input type="text" name="input5" id="input5"></span></label>
+										<label class="roundblue" for="input5"><span><input type="password" name="input5" id="input5"></span></label>
 									</div>
 									<div class="inputBlueButton">
-										<input class="fg-button" type="submit" value="Registrate ahora"/>
+										<input id="passSaveData" class="fg-button" type="Submit" value="Cambiar contraseña" onclick="javascript: void changePassData('{$smarty.session.user.pass}','{$smarty.session.user.email}','{$smarty.session.user.completename}','{$smarty.session.user.username}')"/>
+										<div id="passError" class="registerError"></div>
 									</div>
 								</div>
 							</div>
@@ -124,25 +126,26 @@
 					<div class="span-13 marginTopPlus phraseGray">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
 					<div class="span-13 marginTopPlus">
 						<div class="paddingRightContainer"> 
-							<h2 class="userData">Alerta geográfica por email <span class="desactivate">(desactivado)</span></h2>
+							<h2 class="userData">Alerta geográfica por email <span class="{if $smarty.session.user.radius_interest eq ''}desactivate{else}activate{/if}">{if $smarty.session.user.radius_interest eq ""}(desactivado){else}(activado){/if}</span></h2>
 						</div>
 						<div class="paddingRightContainer phraseGray2">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
 						<div class="marginTopPlus">
 							<div class="column first">
 								<div class="alertLabel">Localidad y provincia</div>
 								<div class="inputWhite">
-									<label class="round" for="input6"><span><input type="text" name="input6" id="input6"></span></label>
+									<label class="round" for="input6"><span><input type="text" name="input6" id="input6">{$smarty.session.user.locality}</span></label>
 								</div>
 							</div>
 							<div class="column">
 								<div class="alertLabel">Radio</div>
 								<div class="inputWhite">
-									<label class="round" for="input7"><span><input type="text" name="input7" id="input7"></span></label>
+									<label class="round" for="input7"><span><input type="text" name="input7" id="input7">{$smarty.session.user.radius_interest}</span></label>
 								</div>
 							</div>
 							<div class="inputWhite paddingRightContainer">
-								<input class="fg-button" type="submit" value="Activar alerta por email"/>
+								<input id="alertButton" class="fg-button" type="submit" value="{if $smarty.session.user.radius_interest eq ''}Activar alerta por email{else}Desactivar alerta por email{/if}" onclick="{if $smarty.session.user.radius_interest eq ''}javascript: void activateAlerts(){else}javascript: void desactivateAlerts(){/if}"/>
 							</div>
+							<div id="alertError" class="registerError"></div>
 						</div>
 					</div>
 				</div>
