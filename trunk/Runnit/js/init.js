@@ -482,7 +482,7 @@ function logout () {
     		window.location = "/";
     	},
         error:function (xhr, ajaxOptions, thrownError){
-                alert(xhr.status + "\n" + thrownError);
+             window.location = "/";
         }
     });
     
