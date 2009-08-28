@@ -67,15 +67,15 @@
 						</div>
 						<div class="span-6 databox">
 							<div class="span-2 last distance"><p class="textRace">E-mail:</p></div>
-							<div class="span-4 last distanceInfo"><p><a href="" class="special">{$data.inscription_email}</a></p></div>
+							<div class="span-4 last distanceInfo"><p><a id="datos1" href="" class="special">{$data.inscription_email}</a></p></div>
 						</div>
 						<div class="span-6 databox">
 							<div class="span-2 last distance"><p class="textRace">Web:</p></div>
-							<div class="span-4 last distanceInfo"><p><a href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
+							<div class="span-4 last distanceInfo"><p><a id="datos2" href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
 						</div>	
 						<div class="span-6 databox noborder">
 							<div class="span-2 last distance"><p class="textRace">Teléfono:</p></div>
-							<div class="span-4 last distanceInfo"><p><a href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
+							<div class="span-4 last distanceInfo"><p><a id="datos3" href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
 						</div>					
 					</div>
 				</div>
@@ -235,5 +235,33 @@
 		</div>
 	</div>
 </div>
+
+
+{literal}
+<script language="javaScript" type="text/javascript">
+	$(document).ready( function() {
+	    
+	    for (i=1;i<=3;i++){
+			var len = 22;
+			var p = document.getElementById("datos" + i);
+			
+			if (p) {
+			  var trunc = p.innerHTML;
+			  trunc = trunc.replace(/\t/g, "");
+			  if (trunc.length > len) {
+				
+			    trunc = trunc.substring(0, len);
+			
+			    trunc += '<a style="color: #666666;">' +
+			      '...<\/a>';
+			    p.innerHTML = trunc;
+			  }
+			}
+		}
+	    
+	    
+	});
+</script>
+{/literal}
 
 {include file="footer.tpl"}
