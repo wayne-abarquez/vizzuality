@@ -175,6 +175,7 @@ div.dataImpRace {
 
 div.raceContainer {
 	background-color: #FFFFFF;
+	overflow: hidden;
 }
 
 h2.newsTitle {
@@ -560,12 +561,14 @@ a.special {
 
 .rightColumn{
 	background-color: #f1f1f1;
-	height: 100%;
 	padding-top: 26px;
+	padding-bottom: 32768px;
+	margin-bottom: -32768px;
 }
 
 .leftColumn{
-	height: 100%;
+	padding-bottom: 32768px;
+	margin-bottom: -32768px;
 }
 
 div.racesComment {
