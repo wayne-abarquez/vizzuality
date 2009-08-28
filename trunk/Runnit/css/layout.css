@@ -520,6 +520,10 @@ a.contactFooter {
 	margin-top: -10px;
 }
 
+#raceTitle {
+	line-height: 30px;
+}
+
 .carrera{
 	margin-left: 10px;
 }
