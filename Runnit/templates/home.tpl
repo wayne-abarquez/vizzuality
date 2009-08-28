@@ -48,7 +48,7 @@
 							<img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
-							<div class="nameRaceContainer"><a class="nameRace" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+							<div class="nameRaceContainer"><a id="carrera{$smarty.foreach.raceloop.iteration}" class="nameRace" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
 							<div class="raceDateDetails">
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}"> 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
@@ -63,7 +63,7 @@
 							<img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
 						</div>
 						<div class="column span-5 last">
-							<div class="nameRaceContainer"><a class="nameRace" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+							<div class="nameRaceContainer"><a id="carrera{$smarty.foreach.raceloop.iteration}" class="nameRace" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
 							<div class="raceDateDetails">
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}" > 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
@@ -208,8 +208,9 @@
 		    });
 		    
 		    for (i=1;i<=6;i++){
-				var len = 42;
+				var len = 45;
 				var p = document.getElementById("iteracion" + i);
+				
 				if (p) {
 				  var trunc = p.innerHTML;
 				  trunc = trunc.replace(/\t/g, "");
@@ -223,6 +224,24 @@
 				    trunc += '<a style="color: #666666;">' +
 				      '...<\/a>';
 				    p.innerHTML = trunc;
+				  }
+				}
+				
+				var len = 45;
+				var x = document.getElementById("carrera" + i);
+				if (x) {
+				  var trunc = x.innerHTML;
+				  trunc = trunc.replace(/\t/g, "");
+				  if (trunc.length > len) {
+		
+				    trunc = trunc.substring(0, len);
+				    trunc = trunc.replace(/\w+$/, '');
+				
+				    /* Add an ellipses to the end and make it a link that expands
+				       the paragraph back to its original size */
+				    trunc += '<a style="color: #666666;">' +
+				      '...<\/a>';
+				    x.innerHTML = trunc;
 				  }
 				}
 			}

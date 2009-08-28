@@ -32,7 +32,7 @@ if ($_REQUEST['method'] == 'addComment') {
 				<img src="/avatar.php?id=<?php echo $_SESSION['user']['id']; ?>"/>	
 			</div>
 			<div class="column span-12 last commentBox">
-				<div class="nameUser"><a class="nameRace" href="#"><?php echo $name;?>,</a> <?php echo $date;?></div>
+				<div class="nameUser"><a class="nameRace" href="#"><?php echo $name;?>,</a> ahora mismo.</div>
 				<p class="textRace"><?php echo $comment; ?></p>
 			</div>
 		</div>
@@ -99,6 +99,12 @@ if ($_REQUEST['method'] == 'setAlert') {
 	$result = $services->setAlert($_REQUEST['id'],$_REQUEST['lat'],$_REQUEST['lon'],$_REQUEST['distance']);
 	//echo("INVALID");
 	echo("OK");
+}
+
+
+if ($_REQUEST['method'] == 'updateUser') {
+	$result = $services->updateUser($_REQUEST['username'],$_REQUEST['name'],$_REQUEST['email'],$_REQUEST['password'],null,null);
+	echo ('OK');
 }
 
 
