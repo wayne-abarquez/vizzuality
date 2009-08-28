@@ -176,10 +176,7 @@ class RunnitServices {
 	}
 	
 	public function getAllRuns() {
-		if(!$week) {
-			$week=0;
-		}
-		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now()";
+		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and start_point is not null";
 		return pg_fetch_all(pg_query($this->conn, $sql));  
 	}	
 	
