@@ -474,9 +474,13 @@ a.contactFooter {
 /* CARRERA */
 
 .navigationList ul{
-	margin-top: 10px;
+	margin-top: 0px;
 	margin-bottom: 0px;
 	margin-left: 10px;
+}
+
+.navigationList.top ul{
+	margin-top: 14px;
 }
 
 .navigationList li{
@@ -510,7 +514,7 @@ a.contactFooter {
 	color: #336699;
 	font-size: 28px;
 	font-weight: bold;
-	margin-top: -10px;
+	margin-top: -4px;
 }
 
 .raceDetailsTitle{
@@ -518,7 +522,7 @@ a.contactFooter {
 	font-size: 14px;
 	margin-top: -48px;
 	font-weight: normal;
-	margin-top: -10px;
+	margin-top: -6px;
 }
 
 #raceTitle {
