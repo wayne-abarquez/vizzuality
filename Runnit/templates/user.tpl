@@ -55,7 +55,7 @@
    
 	<div class="span-24 raceContainer" id="race">
 		<div class="column span-16">
-			<div class="span-16 navigationList">
+			<div class="span-16 navigationList top">
 				<ul> 
 					<li><a href="">Panel de control ></a></li>
 					<li><a href="" class="selected">Preferencias de usuario</a></li>
