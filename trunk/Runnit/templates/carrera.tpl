@@ -185,7 +185,7 @@
         						</div>
         						<div class="column span-6 last calendarRaces">
         							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
-        							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> <img src="{if $race.inscrito eq "t"}/img/running_ico_yes.png{else}/img/running_ico_no.png{/if}" /> </div>
+        							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
         						</div>
         					</div>
             			{/if}
@@ -208,7 +208,7 @@
 						</div> 
     				{else}					
     					<div class="span-8 races2 defaultWidth">
-    						<div class="column first image">
+    						<div class="column first image2">
     							<img src="/media/avatar/{$person.avatar}"/>	
     						</div>
     						<div class="column last">
