@@ -207,6 +207,33 @@
 					<input class="fg-button VerCalendario" type="button" value="Ver calendario completo"/>
 				</div>
 			</div>
+			
+			<div class="span-8 importantRaces">
+				<div class="events"> 
+					<h2 class="newsTitle">De distancia parecida</h2>
+				</div>
+				<div class="events">
+            		{foreach key=id item=race from=$nextRaces}
+            			{if $race eq "f"}
+            				<div class="span-8 races">No hay proximas carreras.</div> 
+            			{else}		    				    
+        					<div class="span-8 column first raceDetails" id="raceDetails">
+        						<div class="column span-1 first date">
+        							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+        							<div class="day">{$race.event_date|substr:8:2}</div>
+        						</div>
+        						<div class="column span-6 last calendarRaces">
+        							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
+        							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
+        						</div>
+        					</div>
+            			{/if}
+                	    {foreachelse}
+                	        <div class="span-8 races">No hay proximas carreras.</div> 
+                	    {/foreach}					
+					<input class="fg-button VerCalendario" type="button" value="Ver calendario completo"/>
+				</div>
+			</div>
 		
 			
 			<div class="span-8 marginTopPlus">
