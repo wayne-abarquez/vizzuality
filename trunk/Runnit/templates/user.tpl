@@ -124,7 +124,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="span-13 marginTopPlus phraseGray">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
+					<div class="span-13 DarDeBaja phraseGray">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
 					<div class="span-13 marginTopPlus">
 						<div class="paddingRightContainer"> 
 							<h2 class="userData">Alerta geográfica por email <span class="{if $smarty.session.user.radius_interest eq ''}desactivate{else}activate{/if}">{if $smarty.session.user.radius_interest eq ""}(desactivado){else}(activado){/if}</span></h2>
