@@ -745,7 +745,7 @@ div.changePass {
 }
 
 .marginTopPlus {
-	margin-bottom: 40px;
+	margin-top: 30px;
 }
 
 div.pagination {
@@ -1007,4 +1007,8 @@ div.raceDetailsBottom {
 
 .noComments{
 	text-align: center;
+}
+
+.DarDeBaja{
+	padding-top: 20px;
 }
