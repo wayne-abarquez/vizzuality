@@ -753,6 +753,11 @@ div.pagination {
 	float: right;
 }
 
+div.paginationLast {
+	margin-top: 11px;
+	float: right;
+}
+
 div.contact {
 	letter-spacing: 0px;
 }
@@ -858,12 +863,9 @@ div.raceSearchFirst{
 }
 
 div.raceSearchLast{
-	height: 45px;
-	margin-bottom: 10px;
+	height: 45px; 
 	background-color: #e5f4f9;
 	margin-top: -10px;
-	padding-top: 0px;
-	margin-bottom: 0px;
 	float: left;
 	width: 618px;
 }
