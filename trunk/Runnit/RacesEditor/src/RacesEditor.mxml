@@ -18,7 +18,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
-			import flash.sampler.NewObjectSample;
+			import flash.sampler.NewObjectSample;   
 			import com.google.maps.Color;
 			import com.google.maps.styles.StrokeStyle;
 			import com.google.maps.styles.FillStyle;
@@ -43,8 +43,8 @@
 			import com.google.maps.MapAction;
 			import com.google.maps.MapEvent;
 			
-			private var startRaceMarker: Marker;
-			private var finishRaceMarker: Marker;
+			private var startRaceMarker: Marker ;
+			private var finishRaceMarker: Marker ;
 			[Bindable]private var arrayRaces: Array = new Array();
 			private var markersArray: Array = new Array();
 			[Bindable]private var provincesArray: ArrayCollection;
@@ -194,7 +194,7 @@
             	if (raceList.selectedItem) {
             		clearInputs();
             		racesTab.selectedIndex = 1;
-            		fillInputs(raceList.selectedIndex);
+            		fillInputs(raceList.selectedItem);
             	} else {
             		racesTab.selectedIndex = 0;
             		Alert.show ("No tienes ninguna carrera seleccionada!");
@@ -225,25 +225,25 @@
             
             
             
-            private function fillInputs(num: int):void {
+            private function fillInputs(obj: Object):void {
             	markersArray = new Array();
             	
-            	if (arrayRaces[num].distance_text!=null) distance_text.text = arrayRaces[num].distance_text as String;
-            	if (arrayRaces[num].distance_meters!=null) distance_meters.text = arrayRaces[num].distance_meters;
-            	if (arrayRaces[num].id!=null) iden.text = arrayRaces[num].id;
-            	if (arrayRaces[num].name!=null) race_name.text = arrayRaces[num].name;
-            	if (arrayRaces[num].event_date!=null) date.text = arrayRaces[num].event_date;
-            	if (arrayRaces[num].category!=null) category.text = arrayRaces[num].category;
-            	if (arrayRaces[num].awards!=null) awards.text = arrayRaces[num].awards;
-            	if (arrayRaces[num].inscription_price!=null) price.text = arrayRaces[num].inscription_price;
-            	if (arrayRaces[num].inscription_email!=null) inscription_email.text = arrayRaces[num].inscription_email;
-            	if (arrayRaces[num].inscription_website!=null) web.text = arrayRaces[num].inscription_website;
-            	if (arrayRaces[num].inscription_location!=null) inscription_location.text = arrayRaces[num].inscription_location;
-            	if (arrayRaces[num].description!=null) description.text = arrayRaces[num].description;
-            	if (arrayRaces[num].event_location!=null) race_location.text = arrayRaces[num].event_location; 
-            	if (arrayRaces[num].province_fk!=null)  provincesCombo.selectedIndex = arrayRaces[num].province_fk - 1;
-            	if (arrayRaces[num].is_displayed_in_home!=null) {
-            		if (arrayRaces[num].is_displayed_in_home == 'f') {
+            	if (obj.distance_text!=null) distance_text.text = obj.distance_text as String;
+            	if (obj.distance_meters!=null) distance_meters.text = obj.distance_meters;
+            	if (obj.id!=null) iden.text = obj.id;
+            	if (obj.name!=null) race_name.text = obj.name;
+            	if (obj.event_date!=null) date.text = obj.event_date;
+            	if (obj.category!=null) category.text = obj.category;
+            	if (obj.awards!=null) awards.text = obj.awards;
+            	if (obj.inscription_price!=null) price.text = obj.inscription_price;
+            	if (obj.inscription_email!=null) inscription_email.text = obj.inscription_email;
+            	if (obj.inscription_website!=null) web.text = obj.inscription_website;
+            	if (obj.inscription_location!=null) inscription_location.text = obj.inscription_location;
+            	if (obj.description!=null) description.text = obj.description;
+            	if (obj.event_location!=null) race_location.text = obj.event_location; 
+            	if (obj.province_fk!=null)  provincesCombo.selectedIndex = obj.province_fk - 1;
+            	if (obj.is_displayed_in_home!=null) {
+            		if (obj.is_displayed_in_home == 'f') {
             			selectedRunCheck.selected = false;
             		} else {
             			selectedRunCheck.selected = true;
@@ -252,7 +252,7 @@
             	
             	map.clearOverlays();
             	
-            	startRaceMarker = new Marker(new LatLng(arrayRaces[num].start_point_lat,arrayRaces[num].start_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+            	startRaceMarker = new Marker(new LatLng(obj.start_point_lat,obj.start_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: true,
 								         hasShadow: false, 
@@ -263,7 +263,7 @@
 								         
 				map.addOverlay(startRaceMarker);
             	
-            	finishRaceMarker = new Marker(new LatLng(arrayRaces[num].end_point_lat,arrayRaces[num].end_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: Color.RED}), 
+            	finishRaceMarker = new Marker(new LatLng(obj.end_point_lat,obj.end_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: Color.RED}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: true,
 								         hasShadow: false, 
@@ -310,7 +310,7 @@
             	server.removeEventListener(ResultEvent.RESULT,onEditNewRace);
             	server.removeEventListener(FaultEvent.FAULT,onEditNewRaceFault);
 				trace(event.fault);
-				Alert.show("La carrera no ha podido ser editada o añadida, inténtalo más tarde");
+				Alert.show(event.fault.faultString);
 				init();
             }
             
