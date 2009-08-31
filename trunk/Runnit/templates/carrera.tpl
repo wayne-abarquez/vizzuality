@@ -121,7 +121,8 @@
 				</div>
 				{/if}	
 				<div class="span-16 marginDescription">
-					<div class="marginDescription"><h3 class="blue">Comentarios[{$comments|@count}]</h3><h5>publicar un comentario</h5></div>			
+					<div class="marginDescription"><h3 class="blue">Comentarios[{$comments|@count}]</h3><h5><a onclick="document.getElementById('commentTextArea').focus();
+" class="PublicarComentarioEnlace">publicar un comentario</a></h5></div>			
 					<ol id="update">
 						{foreach key=id item=comment from=$comments}
 	    				{if $comment eq false}
@@ -162,7 +163,7 @@
 						{if $smarty.session}
 							<div class="span-14 titleComents">Anímate y publica tu comentario</div>
 							<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
-							<input class="fg-button ui-state-default ui-corner-all" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>
+							<input class="fg-button" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>
 						{else}
 							<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginBox()">iniciar tu sesión</a></b> en runnity. <b><a href="javascript: void showRegisterBox()">¿Aún no estás registrado?</a></b></p>
 						{/if}
