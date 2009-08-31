@@ -500,9 +500,7 @@ class RunnitServices {
         $result['end']['lat']=$res2['end_lat'];
         $result['end']['lon']=$res2['end_lon'];      
         
-        $temp=substr($res2['altimetria'],1,-1);
-        //$result['url'] =  "http://chart.apis.google.com/chart?cht=lc&chxt=x,y,r&chs=600x250&chco=0077CC&chm=B,E6F2FA,0,0,0&chd=t:".$temp;
-        $result['altimetria']=explode(",",$temp);
+        $result['altimetria']=substr($res2['altimetria'],1,-1);
         
         
         return $result;
