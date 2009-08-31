@@ -7,8 +7,8 @@
 		<div id="confirmationWindow" style='display:none'>
 			<h2 id="titleConfirmation" class="registerTitle">¿Quieres inscribirte a esta carrera?</h2>
 			<div class="column span-9 first" id="confirmationButtons">
-				<div class="column span-6 first logoutButton"><input id="confirmationButtonRace" class="fg-button ui-state-default ui-corner-all" type="submit" value="Si, claro" onclick="javascript: void inscribirseCarrera({$smarty.session.user.id},{$smarty.request.id})"/></div>
-				<div class="column span-2 last"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="No, ahora no" onclick="$.modal.close();"/></div>
+				<div class="column span-6 first apuntarteButton"><input id="confirmationButtonRace" class="fg-button" type="submit" value="Si, claro" onclick="javascript: void inscribirseCarrera({$smarty.session.user.id},{$smarty.request.id})"/></div>
+				<div class="column span-2 last apuntarteButton2"><input class="fg-button" type="submit" value="No, ahora no" onclick="$.modal.close();"/></div>
 			</div>
 		</div>
 	
