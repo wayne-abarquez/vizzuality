@@ -484,12 +484,12 @@ class RunnitServices {
     }
     
     public function getTrackGeometry($id) {
-        $sql="select x((ST_Dump(track_geom)).geom) as lon, y((ST_Dump(track_geom)).geom) as lat  from run where id=$id";
+        $sql="select x((ST_Dump(track_geom)).geom) as lon, y((ST_Dump(track_geom)).geom) as la from run where id=$id";
         
         $result=array();
         $result['track']=pg_fetch_all(pg_query($this->conn, $sql));
         
-        $sql="select x(start_point) as start_lon,y(start_point) as start_lat,x(end_point) as end_lon,y(end_point) as end_lat  from run where id=$id";
+        $sql="select x(start_point) as start_lon,y(start_point) as start_lat,x(end_point) as end_lon,y(end_point) as end_lat,altimetria  from run where id=$id";
 	    $res=pg_query($this->conn, $sql);
 	    $res2=pg_fetch_assoc($res);
 	            
@@ -500,18 +500,26 @@ class RunnitServices {
         $result['end']['lat']=$res2['end_lat'];
         $result['end']['lon']=$res2['end_lon'];      
         
+        $temp=substr($res2['altimetria'],1,-1);
+        //$result['url'] =  "http://chart.apis.google.com/chart?cht=lc&chxt=x,y,r&chs=600x250&chco=0077CC&chm=B,E6F2FA,0,0,0&chd=t:".$temp;
+        $result['altimetria']=explode(",",$temp);
+        
+        
         return $result;
     }
     
     
-    public function updateRunGeometry($points,$id) {
+    public function updateRunGeometry($points,$altimetria,$id) {
         $wkt="MULTIPOINT(";
         foreach ($points as &$p) {
             $wkt.="(".$p['lon']." ". $p['lat'] ."),";
         }
         $wkt=substr($wkt,0,-1);
         $wkt.=")";
-        $sql="UPDATE run SET track_geom=geomFromText('$wkt',4326) WHERE id=$id";
+        
+        $altText=implode(",",$altimetria);
+        
+        $sql="UPDATE run SET track_geom=geomFromText('$wkt',4326), altimetria='{".$altText."}' WHERE id=$id";
         $result= pg_query($this->conn, $sql);
         return null;        
         
