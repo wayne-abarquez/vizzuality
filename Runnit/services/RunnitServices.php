@@ -174,6 +174,14 @@ class RunnitServices {
 	     
 	    $sql.=" WHERE username='$username'";
         $result= pg_query($this->conn, $sql);
+        
+        $_SESSION['logged']=true;
+        $_SESSION['user']['username']=$username;
+        $_SESSION['user']['completename']=$completename;
+        $_SESSION['user']['email']=$email;
+        $_SESSION['user']['locality']=$locality;
+        $_SESSION['user']['radius_interest']=$radio;    
+        
         return null;
 	    
 	     
