@@ -30,7 +30,9 @@
 					<div class="span-14 last">
 						<p class="raceTitle" id="raceTitle">{$data.name}</p>
 						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>,
-						<input id="inscriptionButton" class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy a ir{/if}" onclick="javascript: void checkInscrito({if $smarty.session}'ok'{else}'ko'{/if})"/></p>
+						<input id="inscriptionButton" class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy a ir{/if}" onclick="javascript: void checkInscrito({if $smarty.session}'ok'{else}'ko'{/if})"/>					
+						
+						</p>
 					</div>
 				</div>
 			</div>
@@ -76,6 +78,16 @@
 						<div class="span-6 databox noborder">
 							<div class="span-2 last distance"><p class="textRace">Teléfono:</p></div>
 							<div class="span-4 last distanceInfo"><p><a id="datos3" href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
+						</div>	
+						<div class="span-6 boxrace last">
+						    <h3 class="blue">Compartir</h3>
+						    <div class="span-2 last distance">
+                                	<a target=_blank href="http://www.facebook.com/share.php?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_facebook.gif" alt="Facebook"></a>&nbsp;
+                                	<a target=_blank href="http://del.icio.us/post?title=&url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_delicious.gif" alt="delicious"></a>&nbsp;
+                                	<a target=_blank href="http://meneame.net/submit.php?url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_meneame.gif" alt="meneame"></a>
+                                            <a target=_blank href="#?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_enviar.gif" alt="myspace"></a>						        
+						        
+						        </div>	    
 						</div>					
 					</div>
 				</div>
