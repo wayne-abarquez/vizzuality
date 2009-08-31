@@ -98,9 +98,10 @@
 						<p class="textRace">{$data.description}</p>
 					</div>	
 				</div>	
-					
+                {if $data.start_point_lat === null}
+                {else}			
 				<div id="map2Container" class="span-16">
-					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
+					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido {$data.start_point_lat}</h3></div>
 					<div class="mapStyle marginDescription">
 						<div id="trackMap">
                             <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
@@ -116,8 +117,9 @@
                             </object>		    					    
 						</div>
 					</div>	
-				</div>
 					
+				</div>
+				{/if}	
 				<div class="span-16 marginDescription">
 					<div class="marginDescription"><h3 class="blue">Comentarios[{$comments|@count}]</h3><h5>publicar un comentario</h5></div>			
 					<ol id="update">
@@ -176,7 +178,11 @@
 				<div class="events"> 
 					<div><h2 class="newsTitle">Localización</h2></div>
 					<div id="map" class="mapStyle">
-					<img src="http://maps.google.com/staticmap?size=270x152&maptype=map&zoom=10&markers={$data.end_point_lat},{$data.end_point_lon},bluem%7C{$data.start_point_lat},{$data.start_point_lon},greens&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA">
+					    {if $data.start_point_lat === null}
+<img width="270" height="152" src="http://maps.google.com/maps/api/staticmap?size=270x152&maptype=map&zoom=10&center={$data.event_location},spain&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA" />					    
+					    {else}
+					<img src="http://maps.google.com/staticmap?size=270x152&maptype=map&zoom=10&markers={if $data.end_point_lat}{$data.end_point_lat},{$data.end_point_lon},bluem%7C{/if}{$data.start_point_lat},{$data.start_point_lon},greens&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA">
+					    {/if}
 					</div>
 				</div>
 			</div>
