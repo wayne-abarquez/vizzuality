@@ -125,5 +125,10 @@ div.loginImage{
 }
 
 div.logoutButton {
-	padding-left: 30px;
+	padding-left: 60px;
+	margin-right: 0px;
+}
+
+div.logoutButton2 {
+	margin-left: -40px;
 }
