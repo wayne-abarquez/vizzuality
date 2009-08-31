@@ -37,8 +37,11 @@
 				</div>
 			</div>
 			
-			<img src="/media/run/{$data.big_picture}" class="carrera">
-			
+			{if $data.start_point_lat === null}
+			    <img src="/media/run/{$data.big_picture}" class="carrera" />
+			{else}
+			    <img src="/panoramioPic.php?id={$data.id}&lat={$data.start_point_lat}&lon={$data.start_point_lon}" class="carrera" />
+			{/if}
 			<div class="span-16 raceContent">
 			
 				<div class="span-6 first">
