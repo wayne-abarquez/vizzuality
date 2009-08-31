@@ -188,3 +188,11 @@ label.roundsearchFirst {
 #inputsearch1 {width:320px}
 #inputsearch2 {width:60px}
 #inputsearch3 {width:60px}
+
+.Subirfoto{
+	width: 96px;	
+}
+
+.VerCalendario{
+	float: right;
+}
