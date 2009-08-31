@@ -91,10 +91,10 @@
 					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
 					<div class="mapStyle marginDescription">
 						<div id="trackMap">
-                            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="609" height="250" wmode="opaque" flashvars="id={$data.id}">
+                            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
                               <param name="movie" value="/flash/raceMapViewer.swf?2" />
                               <!--[if !IE]>-->
-                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="609" height="250" wmode="opaque" flashvars="id={$data.id}">
+                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
                               <!--<![endif]-->
                                 <h1>Necesitas Flash para poder ver el mapa</h1>
                     			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
