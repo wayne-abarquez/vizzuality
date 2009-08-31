@@ -518,7 +518,7 @@ a.contactFooter {
 	color: #336699;
 	font-size: 28px;
 	font-weight: bold;
-	margin-top: -1px;
+	margin-top: -2px;
 }
 
 .raceDetailsTitle{
@@ -528,7 +528,7 @@ a.contactFooter {
 }
 
 #raceTitle {
-	line-height: 30px;
+	line-height: 23px;
 }
 
 .carrera{
