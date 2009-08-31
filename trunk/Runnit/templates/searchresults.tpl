@@ -33,27 +33,21 @@
 							<div class="inputSearch">
 			<label class="roundsearch" for="inputsearch3"><span><input type="text" name="distancia_max" id="inputsearch3" value="{$smarty.request.distancia_max}"></span></label>
 							</div>
-							<div class="buttonSearch"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Buscar"/></div>
+							<div class="buttonSearch"><input class="fg-button BuscarCarrera" type="submit" value="Buscar"/></div>
 						</form>
 						</div>
 					</div>
 					<div class="pagination">
-							<!--
+					{if $count > 20}
+ 					<div class="numberResults numberMargin"><p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}</p></div>
+ 					{if $offset > 0}
+						<div class="numberResults"><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></div>
+					{/if}
+					{if $offset < $count-20}
+						<div class="numberResults numberMargin"><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></div>
+                    {/if}
+                    {/if}
 
-							    {if $offset > 0}
-							        <a href="?offset={math equation="max(x-20,0)" x=$offset}">Previous</a>
-							        <div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="button" value="<"/></div>
-							    {/if}
-							    {if $offset < $count-20}
-							        <a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}">Next</a>
-							        <div class="column"><input class="fg-button ui-state-default ui-corner-all" type="button" value=">"/></div>	
-                                {/if}
-
- 								<div class="pagination">viendo del <b>{math equation="min(x*20,1)" x=$offset} al {math equation="min((x+1)*20,1)" x=$offset}</b> de {$count}</div> -->
- 					<div class="numberResults numberMargin"><p>viendo del 1<b> al 12</b> de 12</p></div>
-					<div class="numberResults"><a href=""><div><input class="fg-button ui-state-default ui-corner-all" type="button" value="<"/></div></a></div>
-					<div class="numberResults numberMargin"><a href=""><div><input class="fg-button ui-state-default ui-corner-all" type="button" value=">"/></div></a></div>
-									
 					</div>
 				</div>
 
@@ -90,20 +84,18 @@
 	        	    {/foreach}
         	    </div>
 				<div class="raceSearchLast">
-					<div class="searchPanel">
-						<div class="pagination countAgo">
-							<div class="pagination">
-							    {if $offset > 0}
-							        <a href="?offset={math equation="max(x-20,0)" x=$offset}">Previous</a>
-							        <div class="column btnJoin"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="<"/></div>
-							    {/if}
-							    {if $offset < $count-20}
-							        <a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}">Next</a>
-							        <div class="column"><input class="fg-button ui-state-default ui-corner-all" type="submit" value=">"/></div>	
-	                            {/if}
-							</div>
-							<div class="column pagination">viendo del <b>{math equation="min(x*20,1)" x=$offset} al {math equation="min((x+1)*20,c)" x=$offset c=$count}</b> de {$count}</div>
-						</div>
+					<div class="paginationLast">
+					{if $count > 20}
+ 					<div class="numberResults numberMargin"><p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}</p></div>
+ 					{if $offset > 0}
+						<div class="numberResults"><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></div>
+					{/if}
+					{if $offset < $count-20}
+						<div class="numberResults numberMargin"><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></div>
+                    {/if}
+                    {/if}
+
+
 					</div>
 				</div>
 			</div>					
