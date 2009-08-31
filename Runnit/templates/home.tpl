@@ -53,7 +53,7 @@
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}"> 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
 								</div>
-								<p class="runnersNumber">{$race.distance_text} | {$race.num_users} van {if $smarty.session.logged}<img src="{if $race.inscrito eq "t"}/img/running_ico_yes.png{else}/img/running_ico_no.png{/if}" />{/if}</p>
+								<p class="runnersNumber">{$race.distance_text} | {$race.num_users} van</p>
 							</div>
 						</div>
 					</div>			
@@ -68,7 +68,7 @@
 								<div class="raceDetailsStyle" id="iteracion{$smarty.foreach.raceloop.iteration}" > 
 									<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> | {$race.province_name} | {$race.event_location}
 								</div>
-								<p class="runnersNumber">{$race.distance_text} | {$race.num_users} van {if $smarty.session.logged}<img src="{if $race.inscrito eq "t"}/img/running_ico_yes.png{else}/img/running_ico_no.png{/if}" />{/if}</p>
+								<p class="runnersNumber">{$race.distance_text} | {$race.num_users} van</p>
 							</div>
 						</div>
 					</div>	

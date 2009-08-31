@@ -189,7 +189,7 @@
 		<div class="span-6 loginImage">
 			{if $smarty.session}
 				<div id="loginBox" class="loginRun">
-					<a class="blackLogin" href="/user/{$smarty.session.user.username}">{$smarty.session.user.username}</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()">Salir</a>
+					<a class="normalText">bienvenido </a><a class="hrefText" href="/user/{$smarty.session.user.username}">{$smarty.session.user.username}</a> | <a id="logoutRef" class="hrefText" href="javascript: void alertLogout()">Salir</a>
 				</div>
 			{else}
 				<div id="loginBox" class="accessLogin">
@@ -215,11 +215,11 @@
 			<div class="span-18 last horizontalcssmenu">
 			<ul id="cssmenu1">
 			    {if $smarty.session.logged}
-			        <li><a {if $section eq "usuario"} class="current"{/if} href="/user/{$smarty.session.user.username}">TU CUENTA</a> <a class="separator">|</a> </li>
+			       <!-- <li><a {if $section eq "usuario"} class="current"{/if} href="/user/{$smarty.session.user.username}">TU CUENTA</a> <a class="separator">|</a> </li> -->
 			    {/if}
 				<li><a {if $section eq "home"} class="current"{/if} href="/">HOME</a> <a class="separator">|</a> </li>
 				<li><a {if $section eq "searchresults"} class="current"{/if} href="/buscar">BUSCAR</a> <a class="separator">|</a> </li>
-				<li><a {if $section eq "about"} class="current"{/if} href="/sobre_nosotros">SOBRE NOSOTROS</a> <a class="separator">|</a> </li>
+				<!-- <li><a {if $section eq "about"} class="current"{/if} href="/sobre_nosotros">SOBRE NOSOTROS</a> <a class="separator">|</a> </li> -->
 				<li><a {if $section eq "blog"} class="current"{/if} href="/blog">BLOG</a> <a class="separator">|</a> </li>
 				<li><a {if $section eq "contacto"} class="current"{/if} href="javascript: void showContactBox()">CONTACTO</a> </li>
 			</ul>
