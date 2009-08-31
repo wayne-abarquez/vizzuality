@@ -485,7 +485,22 @@ class RunnitServices {
     
     public function getTrackGeometry($id) {
         $sql="select x((ST_Dump(track_geom)).geom) as lon, y((ST_Dump(track_geom)).geom) as lat  from run where id=$id";
-        return pg_fetch_all(pg_query($this->conn, $sql)); 
+        
+        $result=array();
+        $result['track']=pg_fetch_all(pg_query($this->conn, $sql));
+        
+        $sql="select x(start_point) as start_lon,y(start_point) as start_lat,x(end_point) as end_lon,y(end_point) as end_lat  from run where id=$id";
+	    $res=pg_query($this->conn, $sql);
+	    $res2=pg_fetch_assoc($res);
+	            
+        $result['start']=array();
+        $result['start']['lat']=$res2['start_lat'];
+        $result['start']['lon']=$res2['start_lon'];
+        $result['end']=array();
+        $result['end']['lat']=$res2['end_lat'];
+        $result['end']['lon']=$res2['end_lon'];      
+        
+        return $result;
     }
     
     
