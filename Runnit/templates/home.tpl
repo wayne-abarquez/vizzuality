@@ -145,7 +145,7 @@
 				</a>
 			</div>
 			<div class="column span-3">
-				<a href="#">
+				<a href="http://www.facebook.com/home.php?#/group.php?gid=158141673184&ref=ts">
 					<img src="/img/facebook.jpg" alt="socialNetworks"/>
 				</a>
 			</div>
