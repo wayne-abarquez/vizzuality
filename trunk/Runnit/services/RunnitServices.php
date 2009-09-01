@@ -272,7 +272,8 @@ class RunnitServices {
             $offset=0;
         }
         
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,date_trunc('day',event_date) as event_day";
+		$sql.=",CASE WHEN EXTRACT(DOW FROM event_date)=0 THEN 7 ELSE EXTRACT(DOW FROM event_date) END  as day_in_week";
 
         if($_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
