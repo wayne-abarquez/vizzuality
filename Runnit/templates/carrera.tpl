@@ -92,10 +92,10 @@
 							<div class="span-4 last distanceInfo"><p><a id="datos2" href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
 						</div>	
 						{/if}
-						{if $data.inscription_website != null}
+						{if $data.tlf_informacion != null}
 						<div class="span-6 databox noborder">
 							<div class="span-2 last distance"><p class="textRace">Teléfono:</p></div>
-							<div class="span-4 last distanceInfo"><p><a id="datos3" href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
+							<div class="span-4 last distanceInfo"><p><a id="datos3" href="" class="special">{$data.tlf_informacion}</a></p></div>
 						</div>	
 						{/if}
 						<div class="span-6 boxrace last">
