@@ -140,22 +140,22 @@
 				<h2 class="newsTitle">Síguenos en...</h2>
 			</div>
 			<div class="column span-3 first">
-				<a href="http://www.tuenti.com/#m=Photo&func=view_photo&collection_key=1-66022443-567658561-66022443">
+				<a href="http://www.tuenti.com/#m=Photo&func=view_photo&collection_key=1-66022443-567658561-66022443" target="_blank">
 					<img src="/img/tuenti.jpg" alt="socialNetworks"/>
 				</a>
 			</div>
 			<div class="column span-3">
-				<a href="http://www.facebook.com/home.php?#/group.php?gid=158141673184&ref=ts">
+				<a href="http://www.facebook.com/home.php?#/group.php?gid=158141673184&ref=ts" target="_blank">
 					<img src="/img/facebook.jpg" alt="socialNetworks"/>
 				</a>
 			</div>
 			<div class="column span-4 last">
-				<a href="#">
+				<a href="http://twitter.com/runnity" target="_blank">
 					<img src="/img/twitter.jpg" alt="socialNetworks"/>
 				</a>
 			</div>
 			<div class="column span-3 last">
-				<a href="http://www.flickr.com/groups/1188628@N20/">
+				<a href="http://www.flickr.com/groups/1188628@N20/" target="_blank">
 					<img src="/img/flickr.jpg" alt="socialNetworks"/>
 				</a>
 			</div>
