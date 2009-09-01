@@ -51,7 +51,8 @@
 					</div>
 				</div>
 
-				<div class="searchResultsBox">				
+				<div class="searchResultsBox">		
+					{assign var="day_month" value=""}		
 	        		{foreach key=id item=race from=$results}
 	        			{if $race eq "0"}
 	        				<div class="column span-15 noResultsContainer">
@@ -62,16 +63,29 @@
 								</div>
 	        				</div> 
 	        			{else}
+							{if $day_month != $race.event_day}
+		        				<div class=" span-15 column first raceDetailsSearch">
+		    						<div class="column span-1 first date">
+		    							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+		    							<div class="day">{$race.event_date|substr:8:2}</div>
+		    						</div>
+		    						<div class="column span-13 last calendarRaces">
+		    							<div class="nextRaceComment">{getDow day_number=$race.day_in_week} {$race.event_date|substr:8:2} de {getMonth month=$race.event_date|substr:5:2}</div>
+		    						</div>
+		    					</div>								
+							{/if}
+							
 	        				<div class=" span-15 column first raceDetailsSearch">
 	    						<div class="column span-1 first date">
-	    							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
-	    							<div class="day">{$race.event_date|substr:8:2}</div>
+	    							<!--div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+	    							<div class="day">{$race.event_date|substr:8:2}</div -->
 	    						</div>
 	    						<div class="column span-13 last calendarRaces">
 	    							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
 	    							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
 	    						</div>
-	    					</div>       			
+	    					</div>       
+							{assign var="day_month" value=$race.event_day}
 	        			{/if}
 	        	    {foreachelse}
 	        	        <div class="column span-15 noResultsContainer">
