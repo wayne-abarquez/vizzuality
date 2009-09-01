@@ -100,12 +100,12 @@
 						{/if}
 						<div class="span-6 boxrace last">
 						    <h3 class="blue">Compartir</h3>
-						    <div class="span-4 last distance">
+						    <div class="span-4 last compartir">
                                 	<a target=_blank href="http://www.facebook.com/share.php?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_facebook.gif" alt="Facebook"></a>&nbsp;
                                 	<a target=_blank href="http://del.icio.us/post?title=&url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_delicious.gif" alt="delicious"></a>&nbsp;
                                 	<a target=_blank href="http://meneame.net/submit.php?url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_meneame.gif" alt="meneame"></a>
                                     <a target=_blank href="http://twitter.com/home?status=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_twitter.png" alt="twitter"></a>					        
-						        	<a target=_blank href="#?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_enviar.gif" alt="myspace"></a>	
+						        	<!-- <a target=_blank href="#?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_enviar.gif" alt="myspace"></a>	 -->
 						        </div>	    
 						</div>					
 					</div>
@@ -120,7 +120,7 @@
                 {if $data.start_point_lat === null}
                 {else}			
 				<div id="map2Container" class="span-16">
-					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido {$data.start_point_lat}</h3></div>
+					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
 					<div class="mapStyle marginDescription">
 						<div id="trackMap">
                             <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
