@@ -336,8 +336,8 @@ div.races {
 }
 
 div.nameRaceContainer {
-	margin-top: -4px;
-	line-height: 17px;
+	margin-top: 0px;
+	line-height: 14px;
 	height: 48px;
 }
 
@@ -1017,4 +1017,9 @@ div.raceDetailsBottom {
 
 .PublicarComentarioEnlace{
 	cursor: pointer;
+}
+
+.compartir{
+	padding-top: 4px;
+	padding-right: 4px;
 }
