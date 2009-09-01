@@ -15,7 +15,7 @@
 		<!-- RACE & IMAGE -->
 		<div class="span-16 first leftColumn">
 			<div class="span-16 column raceTitle">
-				<div class="span-16 navigationList">
+				<div class="span-16 navigationList top">
 					<ul> 
 						<li><a href="/">Inicio ></a></li>
 						<li><a href="#" class="selected">detalle de carrera</a></li>
