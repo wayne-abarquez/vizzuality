@@ -140,7 +140,7 @@
 				<h2 class="newsTitle">Síguenos en...</h2>
 			</div>
 			<div class="column span-3 first">
-				<a href="#">
+				<a href="http://www.tuenti.com/#m=Photo&func=view_photo&collection_key=1-66022443-567658561-66022443">
 					<img src="/img/tuenti.jpg" alt="socialNetworks"/>
 				</a>
 			</div>
