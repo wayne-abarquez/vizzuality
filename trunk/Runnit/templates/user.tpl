@@ -55,7 +55,7 @@
    
 	<div class="span-24 raceContainer" id="race">
 		<div class="column span-16">
-			<div class="span-16 navigationList top">
+			<div class="span-16 navigationList">
 				<ul> 
 					<li><a href="">Panel de control ></a></li>
 					<li><a href="" class="selected">Preferencias de usuario</a></li>
@@ -153,7 +153,7 @@
 			</div>	
 			
 		</div>
-		<div class="column last span-8 rightColumnUser">
+		<div class="column last span-8 rightColumn">
 			<div class="span-8 importantRaces">
 				<div class="events"> 
 					<h2 class="newsTitle5">Tus próximas carreras</h2>
