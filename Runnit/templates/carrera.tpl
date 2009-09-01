@@ -196,7 +196,7 @@
 		<div class="column span-8 last rightColumn">
 			<div class="span-8 importantRaces">
 				<div class="events"> 
-					<div><h2 class="newsTitle">Localización</h2></div>
+					<div><h2 class="newsTitle">En la zona...</h2></div>
 					<div id="map" class="mapStyle">
 					    {if $data.start_point_lat === null}
 <img width="270" height="152" src="http://maps.google.com/maps/api/staticmap?size=270x152&maptype=map&zoom=10&center={$data.event_location},spain&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA" />					    
