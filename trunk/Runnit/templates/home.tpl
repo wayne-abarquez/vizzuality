@@ -27,7 +27,7 @@
 			<div>
 				<h2 class="column span-16 first newsTitle">
 					<div class="first span-11">
-						<div class="column first">Carreras cerca de {$city}, <a href="/buscar" class="seeAll">ver todas.</a></div>
+						<div class="span-11 first">Carreras cerca de {$city}, <a href="/buscar" class="seeAll">ver todas.</a></div>
 					</div>
 					<div class=" last span-5 feed">
 						<div class="column fisrt span-4 feedText"><a href="http://feeds.feedburner.com/runnity">RSS</a></div>
