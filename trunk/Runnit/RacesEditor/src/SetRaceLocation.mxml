@@ -10,10 +10,12 @@
 			<mx:Label x="10" y="4" text="Distancia de carrera:" id="expText"/>
 			<mx:Label x="129" y="4" width="97" id="distance" textAlign="right"/>
 		</mx:Canvas>
+		<mx:Button label="Guardar" right="10" top="40" click="saveTrack()"/>
 	</mx:Canvas>
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import mx.core.Application;
 	    	import mx.formatters.NumberFormatter;
 	    	import mx.formatters.Formatter;
 	    	import com.google.maps.services.GeocodingResponse;
@@ -52,6 +54,7 @@
 		    private var pol: Polyline;
 		    private var endMarker: Marker;
 		    private var formatter:NumberFormatter = new NumberFormatter();
+		    private var auxPolyLinesPoints:Array =[]
 
 		
 		    private function onMapReady(event:Event):void {
@@ -101,6 +104,8 @@
 					map.addOverlay(markerA);
 					
 		    	} else {
+		    		if (pol!=null)
+		    			map.removeOverlay(pol);
 		    		pol = new Polyline(array);
 	 				if (array.length>1) {
 		 				var directionsBounds:LatLngBounds = pol.getLatLngBounds();
@@ -187,6 +192,7 @@
 		    private function onResult(ev: ResultEvent):void {
 		    	altimetry.push(ev.result.height.meters);
 		    	aux++;
+		    	
 		    	getAltitudes();
 		    }
 		    
@@ -194,9 +200,19 @@
 		    	trace("fault");
 		    }
 		    
+		    private function getAltimetriaFresh():void {
+		    	var maxNodes:Number=80;
+		    	for(var i:Number=0;i<maxNodes;i++) {
+		    		var po:LatLng = getPointAtDistance(pol,i*(calculateDistanceResult()/maxNodes));
+		    		auxPolyLinesPoints.push(po);
+		    	}
+		    	getAltitudes();
+		    }
+		    
 		    private function getAltitudes():void {
-		    	if (aux!=array.length) {
-		    		altitudeService.url = "http://www.earthtools.org/height/" + (array[aux] as LatLng).lat() + "/" +  (array[aux] as LatLng).lng();
+		    	
+		    	if (aux!=auxPolyLinesPoints.length) {
+		    		altitudeService.url = "http://www.earthtools.org/height/" + (auxPolyLinesPoints[aux] as LatLng).lat() + "/" +  (auxPolyLinesPoints[aux] as LatLng).lng();
 		        	altitudeService.send();
 		    	} else {
 		    		AltimetryChart.dataProvider = altimetry;
@@ -232,12 +248,56 @@
 			    }
 			    distance.text = formatter.format(dist) + "km";
 			}
+			
+			private function calculateDistanceResult():Number{
+			    var dist: Number=0;
+			    for (var x:int =0;x<array.length-1;x++){
+			        dist += (array[x]).distanceFrom(array[x+1]);
+			    }
+			    return dist;
+			}			
+			
+			
+			private function saveTrack():void {
+				var tempCoords:Array=[];
+				for each (var po:LatLng in array) {
+					tempCoords.push({lat:po.lat(),lon:po.lng()});
+				}
+				
+				var tempAl:Array=[];
+				for each(var al:Number in altimetry) {
+					tempAl.push(Math.round(al));
+				}
+				Application.application.server.updateRunGeometry(tempCoords,tempAl,Application.application.raceList.selectedItem.id);
+			}
+			
+			
+	        private function getPointAtDistance(track:Polyline,metres:Number):LatLng {
+	
+	            if (metres == 0) return track.getVertex(0);
+	            if (metres < 0) return null;
+	            var dist:Number=0;
+	               var olddist:Number=0;
+	               for (var i:uint=1; (i < track.getVertexCount() && dist < metres); i++) {
+	                       olddist = dist;
+	                       dist += track.getVertex(i).distanceFrom(track.getVertex(i-1));
+	               }
+	               if (dist < metres) {return null;}
+	                       var p1:LatLng= track.getVertex(i-2);
+	                       var p2:LatLng= track.getVertex(i-1);
+	                       var m:Number = (metres-olddist)/(dist-olddist);
+	
+	                // Use linear interpolation on the last bit
+	               return new LatLng(p1.lat() + (p2.lat()-p1.lat())*m,
+	                   p1.lng() + (p2.lng()-p1.lng())*m);
+	         }				
+			
 	    ]]>
 	</mx:Script>	
 	
 	<mx:Button label="Limpiar" click="clearMarkers()" left="10" bottom="170"/>
 	<mx:Button label="Deshacer último" left="83" bottom="170" click="undoRoute()"/>
-	<mx:Button label="Crear altimetría" right="10" bottom="170" click="getAltitudes()"/>
+	<mx:Button label="Crear altimetría" right="10" bottom="170" click="getAltimetriaFresh()"/>
 	<mx:AreaChart id="AltimetryChart" left="10" right="10" bottom="10" height="151" >
 		<mx:verticalAxis>
             <mx:LinearAxis baseAtZero="false" title="Altitud"/>
