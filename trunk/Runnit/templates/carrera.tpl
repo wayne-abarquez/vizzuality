@@ -120,7 +120,7 @@
                 {if $data.start_point_lat === null}
                 {else}			
 				<div id="map2Container" class="span-16">
-					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido</h3></div>
+					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido aproximado</h3></div>
 					<div class="mapStyle marginDescription">
 						<div id="trackMap">
                             <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
