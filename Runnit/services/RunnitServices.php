@@ -566,8 +566,23 @@ class RunnitServices {
         return $run;
     }
     
+    public function getRunsCloseToAnotherForMap($id) {
+	    $sql="select r.id,r.name,event_date,run,type,event_location,distance_text, y(start_point) as lat, x(start_point) as lon";
+
+        if($_SESSION['logged']) {
+            $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
+        } else {
+            $sql.=",false as inscrito";
+        }
+        
+        $sql.=" from run as r where r.event_date > now() and r.id <> $id ";
+		$sql.=" and distance_sphere(r.start_point,(select start_point from run where id=$id)) <(50000)";
+		$sql.=" order by event_date";
+		return pg_fetch_all(pg_query($this->conn, $sql));        
+    }
+
     public function getRunsCloseToAnother($id) {
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,";
 
         if($_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
