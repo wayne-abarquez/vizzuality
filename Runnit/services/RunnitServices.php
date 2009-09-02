@@ -567,7 +567,7 @@ class RunnitServices {
     }
     
     public function getRunsCloseToAnotherForMap($id) {
-	    $sql="select r.id,r.name,event_date,run,type,event_location,distance_text, y(start_point) as lat, x(start_point) as lon";
+	    $sql="select r.id,r.name,event_date,run_type,event_location,distance_text, y(start_point) as lat, x(start_point) as lon";
 
         if($_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
