@@ -356,7 +356,7 @@
 	<mx:Canvas id="editRaces" left="0" right="0" top="300" bottom="0">
 		<mx:HBox y="0" left="0" right="0" height="30" paddingLeft="10" paddingTop="4">
 			<mx:Button label="Editar datos de carrera" click="(raceList.selectedItem)?editRace():racesTab.selectedIndex=1"/>
-			<mx:Button label="Editar recorrido de carrera" click="racesTab.selectedIndex=2" enabled="false"/>
+			<mx:Button label="Editar recorrido de carrera" click="racesTab.selectedIndex=2"/>
 		</mx:HBox>
 		<mx:ViewStack id="racesTab" left="0" right="0" bottom="0" top="30" selectedIndex="0" borderColor="gray" borderStyle="solid" creationPolicy="all">
 			
@@ -398,7 +398,7 @@
 				<mx:TextInput id="race_location" x="186" y="284" width="666" enter="searchLocation(race_location.text)"/>
 				<mx:TextInput x="186" y="720" width="255" id="web"/>
 				<mx:TextInput x="186" y="747" width="255" id="inscription_email"/>
-				<mx:TextInput x="186" y="777" width="666" height="157" id="description"/>
+				<mx:TextArea x="186" y="777" width="666" height="157" id="description"/>
 				<mx:Button x="407" y="325.5" label="Deshacer último" alpha="1" click="undo()"/>
 				<mx:ComboBox x="186" y="260" id="provincesCombo" dataProvider="{provincesArray}" labelField="name"></mx:ComboBox>
             </mx:Canvas>
