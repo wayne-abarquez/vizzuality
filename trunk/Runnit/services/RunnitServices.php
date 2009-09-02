@@ -578,7 +578,15 @@ class RunnitServices {
         $sql.=" from run as r where r.event_date > now() and r.id <> $id ";
 		$sql.=" and distance_sphere(r.start_point,(select start_point from run where id=$id)) <(10000)";
 		$sql.=" order by event_date";
-		return pg_fetch_all(pg_query($this->conn, $sql));        
+		
+		$result=array();
+		$result['around'] = pg_fetch_all(pg_query($this->conn, $sql));
+		
+		
+		$sql="select y(start_point) as lat, x(start_point) as lon from run where id=$id";
+		$result['coords'] = pg_fetch_assoc(pg_query($this->conn, $sql));
+		
+		return $result;
     }
 
     public function getRunsCloseToAnother($id) {
