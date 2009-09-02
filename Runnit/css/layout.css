@@ -234,10 +234,29 @@ div.events {
 div.month {
 	font-family: Arial;
 	color: white;
-	background-color: #cc3300;
 	font-size: 10px;
 	font-weight: bold;
 	text-align: center;
+}
+
+.month1 {
+	background-color: #3b8d50;
+}
+
+.month2 {
+	background-color: #cc3300;
+}
+
+.month3 {
+	background-color: #535353;
+}
+
+.month4 {
+	background-color: #cf854d;
+}
+
+.month5 {
+	background-color: #9f00c6;
 }
 
 div.date {
