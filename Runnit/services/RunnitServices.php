@@ -543,7 +543,7 @@ class RunnitServices {
     }
     
     public function getRunDetails($id) {
-        $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,tlf_informacion,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(id) from users_run,run_type where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+        $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,tlf_informacion,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(users_run.id) from users_run,run_type where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
         
         if($_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
@@ -575,8 +575,9 @@ class RunnitServices {
             $sql.=",false as inscrito";
         }
         
-        $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id order by event_date ASC limit 4";
-	    
+        $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id ";
+		$sql.=" and distance_sphere(r.start_point,(select start_point from run where id=$id)) <(50000)";
+		$sql.=" order by event_date ASC limit 4";
 		return pg_fetch_all(pg_query($this->conn, $sql));        
     }
 

@@ -45,58 +45,64 @@
 			<div class="span-16 raceContent">
 			
 				<div class="span-6 first">
+					{if $data.distance_text != null or $data.category != null or $data.awards != null}
+						<div class="span-6 boxrace last">
+							<h3 class="blue">Datos técnicos</h3>
+							{if $data.distance_text != null}
+							<div class="span-6 databox">
+								<div class="span-2 last distance"><p>Distancia:</p></div>
+								<div class="span-4 last distanceInfo"><p><b>{$data.distance_text},</b> <a href="#map2Container" class="special">ver mapa</a></p></div>
+							</div>
+							{/if}
+							{if $data.category != null}
+							<div class="span-6 databox">
+								<div class="span-2 last distance"><p>Categorias:</p></div>
+								<div class="span-4 last distanceInfo"><p><b>{$data.category}</b></p></div>
+							</div>
+							{/if}
+							{if $data.awards != null}
+							<div class="span-6 databox">
+								<div class="span-2 last distance"><p>Premios:</p></div>
+								<div class="span-4 last distanceInfo"><p><b>{$data.awards}</b></p></div>
+							</div>
+							{/if}
+						</div>
+					{/if}
 					<div class="span-6 boxrace last">
-						<h3 class="blue">Datos técnicos</h3>
-						{if $data.distance_text != null}
-						<div class="span-6 databox">
-							<div class="span-2 last distance"><p>Distancia:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>{$data.distance_text},</b> <a href="#map2Container" class="special">ver mapa</a></p></div>
-						</div>
-						{/if}
-						{if $data.category != null}
-						<div class="span-6 databox">
-							<div class="span-2 last distance"><p>Categorias:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>{$data.category}</b></p></div>
-						</div>
-						{/if}
-						{if $data.awards != null}
-						<div class="span-6 databox">
-							<div class="span-2 last distance"><p>Premios:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>{$data.awards}</b></p></div>
-						</div>
-						{/if}
-					</div>
-					<div class="span-6 boxrace last">
-						<h3 class="blue">Inscripciones</h3>
-						{if $data.inscription_price != null}
-						<div class="span-6 databox">
-							<div class="span-2 last distance"><p>Precio:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>{$data.inscription_price}</b></p></div>
-						</div>
-						{/if}
-						{if $data.inscription_location != null}
-						<div class="span-6 databox">
-							<div class="span-2 last distance"><p>Presencial:</p></div>
-							<div class="span-4 last distanceInfo"><p><b>{$data.inscription_location}</b></p></div>
-						</div>
-						{/if}
-						{if $data.inscription_email != null}
-						<div class="span-6 databox">
-							<div class="span-2 last distance"><p class="textRace">E-mail:</p></div>
-							<div class="span-4 last distanceInfo"><p><a id="datos1" href="" class="special">{$data.inscription_email}</a></p></div>
-						</div>
-						{/if}
-						{if $data.inscription_website != null}
-						<div class="span-6 databox">
-							<div class="span-2 last distance"><p class="textRace">Web:</p></div>
-							<div class="span-4 last distanceInfo"><p><a id="datos2" href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
-						</div>	
-						{/if}
-						{if $data.tlf_informacion != null}
-						<div class="span-6 databox noborder">
-							<div class="span-2 last distance"><p class="textRace">Teléfono:</p></div>
-							<div class="span-4 last distanceInfo"><p><a id="datos3" href="" class="special">{$data.tlf_informacion}</a></p></div>
-						</div>	
+						{if $data.inscription_price != null or $data.inscription_location != null
+							or $data.inscription_email != null or $data.inscription_website != null
+							or $data.tlf_informacion != null}
+							<h3 class="blue">Inscripciones</h3>
+							{if $data.inscription_price != null}
+							<div class="span-6 databox">
+								<div class="span-2 last distance"><p>Precio:</p></div>
+								<div class="span-4 last distanceInfo"><p><b>{$data.inscription_price}</b></p></div>
+							</div>
+							{/if}
+							{if $data.inscription_location != null}
+							<div class="span-6 databox">
+								<div class="span-2 last distance"><p>Presencial:</p></div>
+								<div class="span-4 last distanceInfo"><p><b>{$data.inscription_location}</b></p></div>
+							</div>
+							{/if}
+							{if $data.inscription_email != null}
+							<div class="span-6 databox">
+								<div class="span-2 last distance"><p class="textRace">E-mail:</p></div>
+								<div class="span-4 last distanceInfo"><p><a id="datos1" href="" class="special">{$data.inscription_email}</a></p></div>
+							</div>
+							{/if}
+							{if $data.inscription_website != null}
+							<div class="span-6 databox">
+								<div class="span-2 last distance"><p class="textRace">Web:</p></div>
+								<div class="span-4 last distanceInfo"><p><a id="datos2" href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
+							</div>	
+							{/if}
+							{if $data.tlf_informacion != null}
+							<div class="span-6 databox noborder">
+								<div class="span-2 last distance"><p class="textRace">Teléfono:</p></div>
+								<div class="span-4 last distanceInfo"><p><a id="datos3" href="" class="special">{$data.tlf_informacion}</a></p></div>
+							</div>	
+							{/if}
 						{/if}
 						<div class="span-6 boxrace last">
 						    <h3 class="blue">Compartir</h3>
@@ -114,7 +120,13 @@
 				<div class="span-10 last">
 					<div class="marginDescription"><h3 class="blue">Descripción</h3></div>
 					<div class="marginDescription">
-						<p class="textRace">{$data.description}</p>
+						<p class="textRace">
+							{if $data.description!=null}
+								{$data.description}
+							{else}
+								No hay descripción para esta carrera, te animas a <a href="javascript: void showContactBox()">enviarnos una?</a>
+							{/if}	
+						</p>
 					</div>	
 				</div>	
                 {if $data.start_point_lat === null}
@@ -140,7 +152,7 @@
 				</div>
 				{/if}	
 				<div class="span-16 marginDescription">
-					<div class="marginDescription"><h3 class="blue">Comentarios[{$comments|@count}]</h3><h5><a onclick="document.getElementById('commentTextArea').focus();
+					<div class="marginDescription"><h3 class="blue">Comentarios {if !empty($comments)}[{$comments|@count}]{/if}</h3><h5><a onclick="document.getElementById('commentTextArea').focus();
 " class="PublicarComentarioEnlace">publicar un comentario</a></h5></div>			
 					<ol id="update">
 						{foreach key=id item=comment from=$comments}
