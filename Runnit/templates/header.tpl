@@ -141,7 +141,7 @@
 			</div>
 		</div>
 		<div id="conditions" class="column conditions phraseGray MarginTopPlus">
-			Hacer click en “Crear mi cuenta” implica haber aceptado los <a href="" class="terms">términos y condiciones del servicio.</a>	
+			Hacer click en “Crear mi cuenta” implica haber aceptado los <a href="/legalterms.html" class="terms">términos y condiciones del servicio.</a>	
 		</div>
 	</div>
 	
