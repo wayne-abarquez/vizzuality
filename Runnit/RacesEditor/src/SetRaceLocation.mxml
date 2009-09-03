@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="init()">
 	
 	<mx:Canvas left="0" right="0" top="0" bottom="200">
 		<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)" width="100%" height="100%"
@@ -10,11 +10,13 @@
 			<mx:Label x="10" y="4" text="Distancia de carrera:" id="expText"/>
 			<mx:Label x="129" y="4" width="97" id="distance" textAlign="right"/>
 		</mx:Canvas>
-		<mx:Button label="Guardar" right="10" top="40" click="saveTrack()"/>
+		<mx:Button label="Guardar recorrido" right="10" top="40" click="saveTrack()" fillAlphas="[1.0, 1.0, 1.0, 1.0]"/>
 	</mx:Canvas>
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import mx.events.FlexEvent;
+	    	import mx.messaging.SubscriptionInfo;
 	    	import mx.core.Application;
 	    	import mx.formatters.NumberFormatter;
 	    	import mx.formatters.Formatter;
@@ -55,6 +57,52 @@
 		    private var endMarker: Marker;
 		    private var formatter:NumberFormatter = new NumberFormatter();
 		    private var auxPolyLinesPoints:Array =[]
+		    public var idRace: Object = new Object();
+
+			
+			private function init():void {
+				this.addEventListener(FlexEvent.DATA_CHANGE, geometryData);
+			}
+		
+			private function geometryData(ev:FlexEvent):void {
+				
+				idRace = this.data;
+				if (idRace.track.length != 0) {
+					map.clearOverlays();
+					array = new Array();
+					
+					
+					for (var i:int=0 ; i<idRace.track.length; i++)  { 
+				    	array.push(new LatLng((idRace.track as Array)[i].lat, (idRace.track as Array)[i].lon)); 
+				    }	
+				    
+				    var markerA:Marker = new Marker(array[0],new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+								         labelFormat: {color: 0xFFFFFF, bold: true},
+								         draggeable: false,
+								         hasShadow: false, 
+								         radius: 12, 
+								         label: "S",
+								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+								         }));
+					map.addOverlay(markerA);				
+					
+					endMarker = new Marker(array[i-1],new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+								         labelFormat: {color: 0xFFFFFF, bold: true},
+								         draggeable: false,
+								         hasShadow: false, 
+								         radius: 12, 
+								         label: "Ll",
+								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+								         }));
+					map.addOverlay(endMarker);
+					
+					pol = new Polyline(array);
+		 			var directionsBounds:LatLngBounds = pol.getLatLngBounds();
+					map.addOverlay(pol); 
+					map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds));
+				}
+				
+			}
 
 		
 		    private function onMapReady(event:Event):void {
@@ -65,6 +113,7 @@
 	  			map.addControl(new MapTypeControl());
 		        map.addEventListener(MapMouseEvent.CLICK, onMapClick);			
 			}
+			
 			
 			private function onDirFail(event:DirectionsEvent):void {
 			  // Process failure, perhaps by showing an alert
@@ -82,7 +131,6 @@
 			  
 			    var directionsBounds:LatLngBounds = directionsPolyline.getLatLngBounds();
 				map.setCenter(directionsBounds.getCenter());
-				map.setZoom(map.getBoundsZoomLevel(directionsBounds));
 			}
 		    
 		  
@@ -107,12 +155,8 @@
 		    		if (pol!=null)
 		    			map.removeOverlay(pol);
 		    		pol = new Polyline(array);
-	 				if (array.length>1) {
-		 				var directionsBounds:LatLngBounds = pol.getLatLngBounds();
-						map.setCenter(directionsBounds.getCenter());
-						map.setZoom(map.getBoundsZoomLevel(directionsBounds));
-		      			map.addOverlay(pol); 	         					
-	 				}
+					map.setCenter(event.latLng);
+		      		map.addOverlay(pol); 	         					
 	 				var marker: Marker = new Marker(event.latLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: false,
@@ -201,7 +245,9 @@
 		    }
 		    
 		    private function getAltimetriaFresh():void {
-		    	var maxNodes:Number=80;
+		    	trace((distance.text as String).substr(0,7));
+		    	var maxNodes:Number = Math.round (Number ((distance.text as String).substr(0,7)) / 0.1);
+		    	trace (maxNodes);
 		    	for(var i:Number=0;i<maxNodes;i++) {
 		    		var po:LatLng = getPointAtDistance(pol,i*(calculateDistanceResult()/maxNodes));
 		    		auxPolyLinesPoints.push(po);
@@ -246,7 +292,7 @@
 			    for (var x:int =0;x<array.length-1;x++){
 			        dist += (array[x]).distanceFrom(array[x+1])/1000;
 			    }
-			    distance.text = formatter.format(dist) + "km";
+			    distance.text = (formatter.format(dist)).substr(0,7) + "km";
 			}
 			
 			private function calculateDistanceResult():Number{
@@ -268,9 +314,23 @@
 				for each(var al:Number in altimetry) {
 					tempAl.push(Math.round(al));
 				}
-				Application.application.server.updateRunGeometry(tempCoords,tempAl,Application.application.raceList.selectedItem.id);
+				
+				serverAux.addEventListener(ResultEvent.RESULT,onUpdateGeometryOK);
+				serverAux.addEventListener(FaultEvent.FAULT,onUpdateGeometryKO);
+				serverAux.updateRunGeometry(tempCoords,tempAl,Application.application.raceList.selectedItem.id);
 			}
 			
+			private function onUpdateGeometryOK(ev:ResultEvent):void {
+				serverAux.removeEventListener(ResultEvent.RESULT,onUpdateGeometryOK);
+				serverAux.removeEventListener(FaultEvent.FAULT,onUpdateGeometryKO);
+				Alert.show("Geometría editada o añadida satisfactoriamente");
+			}
+			
+			private function onUpdateGeometryKO(ev:FaultEvent):void {
+				serverAux.removeEventListener(ResultEvent.RESULT,onUpdateGeometryOK);
+				serverAux.removeEventListener(FaultEvent.FAULT,onUpdateGeometryKO);
+				Alert.show(ev.fault.faultString);
+			}
 			
 	        private function getPointAtDistance(track:Polyline,metres:Number):LatLng {
 	
@@ -300,7 +360,7 @@
 	<mx:Button label="Crear altimetría" right="10" bottom="170" click="getAltimetriaFresh()"/>
 	<mx:AreaChart id="AltimetryChart" left="10" right="10" bottom="10" height="151" >
 		<mx:verticalAxis>
-            <mx:LinearAxis baseAtZero="false" title="Altitud"/>
+            <mx:LinearAxis baseAtZero="false" interval="70" maximum="900" minimum="500"  title="Altitud"/>
         </mx:verticalAxis>
 		<mx:series>
 			<mx:AreaSeries displayName="Series 1" yField="" />
@@ -308,5 +368,6 @@
 	</mx:AreaChart>
 	<mx:Legend bottom="109" right="10"/>
 	<mx:HTTPService id="altitudeService" result="onResult(event)" fault="onFault(event)" resultFormat="object"/>
+	<mx:RemoteObject id="serverAux" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
 	
 </mx:Canvas>
