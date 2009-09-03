@@ -197,6 +197,10 @@
             	web.text = "";
             	description.text = "";
             	race_location.text = ""; 
+            	publishedRunCheck.selected = false;
+            	runType.selectedIndex = 1;
+            	inscription_phone.text = "";
+            	big_picture.text = "";
             	markersArray = new Array();
             	map.clearOverlays();          	
             }
@@ -276,6 +280,14 @@
             			selectedRunCheck.selected = true;
             		}
             	}
+            	if (obj.run_type!=null)  runType.selectedIndex = obj.run_type - 1;
+            	if (obj.published == false) {
+        			publishedRunCheck.selected = false;
+        		} else {
+        			publishedRunCheck.selected = true;
+        		}
+        		if (obj.tlf_informacion!=null) inscription_phone.text = obj.tlf_informacion; 
+        		if (obj.flickr_url!=null) big_picture.text = obj.flickr_url; 
             	
             	map.clearOverlays();
             	
@@ -308,21 +320,21 @@
             }
              
             
-            private function saveData (id: String = null): void {
-            	if (id==null) /* ESTA CREANDO UNO NUEVO */ {
+            private function saveData (identification: String = null): void {
+            	if (identification==null) /* ESTA CREANDO UNO NUEVO */ {
             		server.addEventListener(ResultEvent.RESULT, onEditNewRace);
             		server.addEventListener(FaultEvent.FAULT, onEditNewRaceFault);
                 	server.createNewRun(race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
                 		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
                 		web.text,(startRaceMarker.getLatLng()).lat(),(startRaceMarker.getLatLng()).lng(),(finishRaceMarker.getLatLng()).lat(),
-                		(finishRaceMarker.getLatLng()).lng(), provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f');
+                		(finishRaceMarker.getLatLng()).lng(), provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',runType.selectedIndex,publishedRunCheck.selected,inscription_phone.text,big_picture.text);
             	} else { /*EESTA EDITANDO UNO PREVIO*/
 		        	server.addEventListener(ResultEvent.RESULT,onEditNewRace);
 		        	server.addEventListener(FaultEvent.FAULT,onEditNewRaceFault);
                 	server.updateRun(iden.text,race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
                 		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
                 		web.text,(startRaceMarker.getLatLng()).lat(),(startRaceMarker.getLatLng()).lng(),(finishRaceMarker.getLatLng()).lat(),
-                		(finishRaceMarker.getLatLng()).lng(),provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f');
+                		(finishRaceMarker.getLatLng()).lng(),provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',runType.selectedIndex,publishedRunCheck.selected,inscription_phone.text,big_picture.text);
             	}
             }
             
@@ -435,7 +447,7 @@
 					<mx:Button x="407" y="294.5" label="Deshacer último" alpha="1" click="undo()" fillAlphas="[1.0, 1.0, 1.0, 1.0]"/>
 					<mx:ComboBox x="186" y="228" id="provincesCombo" dataProvider="{provincesArray}" labelField="name"></mx:ComboBox>
 					<mx:Label x="641" y="65" text="Tipo" textAlign="left" />
-					<mx:ComboBox x="678" y="61" id="provincesCombo0" labelField="name" textAlign="left" width="170" borderColor="#F90101">
+					<mx:ComboBox x="678" y="61" id="runType" labelField="name" textAlign="left" width="170" borderColor="#F90101">
 						<mx:dataProvider>
                             <mx:String>Mediofondo</mx:String>
                             <mx:String>Fondo</mx:String>
