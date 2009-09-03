@@ -142,3 +142,7 @@ div.apuntarteButton2 {
 	margin-left: -88px;
 }
 
+#forgetLink {
+	cursor: hand;
+}
+
