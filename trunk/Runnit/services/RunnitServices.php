@@ -590,7 +590,7 @@ class RunnitServices {
     }
 
     public function getRunsCloseToAnother($id) {
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
         if($_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
