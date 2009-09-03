@@ -420,14 +420,14 @@
 					<mx:Label x="10" y="718" text="Email organización" width="168" textAlign="right"/>
 					<mx:Label x="10" y="748" text="Teléfono organización" width="168" textAlign="right"/>
 					<mx:Label x="10" y="777" text="URL IMAGEN" width="168" textAlign="right"/>
-					<mx:TextInput x="186" y="773" width="600" id="big_picture" borderColor="#FF0000" borderStyle="solid"/>
+					<mx:TextInput x="186" y="773" width="600" id="big_picture" borderColor="#AAAAAA" borderStyle="solid"/>
 					<mx:Label x="10" y="804" text="Descripción" width="168" textAlign="right"/>
 					<mx:HBox top="10" right="40" horizontalAlign="right" height="30">
 						<mx:Button label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)"/>
 					</mx:HBox>
 					<mx:Label x="10" y="691" text="Website organización" width="168" textAlign="right"/>
 					<mx:CheckBox x="371" y="8" label="¿Carrera destacada?" id="selectedRunCheck"/>
-					<mx:CheckBox x="271" y="8" label="Publicado?" id="publishedRunCheck" borderColor="#BE1E1E"/>
+					<mx:CheckBox x="271" y="8" label="Publicado?" id="publishedRunCheck" borderColor="#727272"/>
 					<mx:TextInput x="186" y="8" width="78" enabled="false" id="iden"/>
 					<mx:TextInput x="186" y="36" width="255" id="date"/>
 					<mx:TextInput x="186" y="63" width="447" id="race_name"/>
@@ -442,12 +442,12 @@
 					<mx:TextInput id="buscador" x="257.75" y="652.3" width="375.33337" enter="searchLocation(buscador.text)" height="22"/>
 					<mx:TextInput x="186" y="689" width="255" id="web"/>
 					<mx:TextInput x="186" y="716" width="255" id="inscription_email"/>
-					<mx:TextInput x="186" y="744" width="255" id="inscription_phone" borderColor="#FD0000" borderStyle="solid"/>
+					<mx:TextInput x="186" y="744" width="255" id="inscription_phone" borderColor="#A7A7A7" borderStyle="solid"/>
 					<mx:TextArea x="186" width="600" height="100" id="description" top="802"/>
 					<mx:Button x="407" y="294.5" label="Deshacer último" alpha="1" click="undo()" fillAlphas="[1.0, 1.0, 1.0, 1.0]"/>
 					<mx:ComboBox x="186" y="228" id="provincesCombo" dataProvider="{provincesArray}" labelField="name"></mx:ComboBox>
 					<mx:Label x="641" y="65" text="Tipo" textAlign="left" />
-					<mx:ComboBox x="678" y="61" id="runType" labelField="name" textAlign="left" width="170" borderColor="#F90101">
+					<mx:ComboBox x="678" y="61" id="runType" labelField="name" textAlign="left" width="170" borderColor="#8C8C8C">
 						<mx:dataProvider>
                             <mx:String>Mediofondo</mx:String>
                             <mx:String>Fondo</mx:String>
