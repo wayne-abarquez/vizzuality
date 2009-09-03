@@ -1,14 +1,12 @@
 <?php
 
 require "libs/imagetransforms.php";
+require_once("libs/phpFlickr.php");
 $basePath = "/Users/jatorre/workspace/runnit/";
 $targetPicture=$basePath."media/run/".$_REQUEST['id'].".jpg";
 $defaultPicture=$basePath."media/run/generic/1_big.jpg";
 
-$minx=$_REQUEST['lon']-0.001;
-$maxx=$_REQUEST['lon']+0.001;
-$miny=$_REQUEST['lat']-0.001;
-$maxy=$_REQUEST['lat']+0.001;
+$photo_id=$_REQUEST['photo_id'];
 $id=$_REQUEST['id'];
 
 if (file_exists($targetPicture)) {
@@ -18,14 +16,14 @@ if (file_exists($targetPicture)) {
     die();
 }
 
-$url="http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=1&minx=$minx&miny=$miny&maxx=$maxx&maxy=$maxy&size=medium";
-
-$res=json_decode(file_get_contents($url));
-
+$f = new phpFlickr("8e4f99b9bb3c602984421a253d71f322");
+$photo = $f->photos_getInfo($photo_id);
 
 
-if(isset($res->photos[0])) {
-    $pic = file_get_contents($res->photos[0]->photo_file_url);
+
+if($photo) {
+    $pic = file_get_contents("http://farm" . $photo['farm'] .".static.flickr.com/" . $photo['server'] ."/" . $photo['id'] ."_" . $photo['secret'] ."_b.jpg");
+
     file_put_contents($targetPicture, $pic);
 
     $imageTransform->crop($targetPicture, 618, 238, $targetPicture);
