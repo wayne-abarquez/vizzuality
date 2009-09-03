@@ -1,6 +1,6 @@
 <?php
 
-require "libs/imagetransforms.php";
+require "libs/imageTransforms.php";
 require_once("libs/phpFlickr.php");
 $basePath = "/Users/jatorre/workspace/runnit/";
 $targetPicture=$basePath."media/run/".$_REQUEST['id'].".jpg";
@@ -29,6 +29,20 @@ if($photo) {
     $imageTransform->crop($targetPicture, 618, 238, $targetPicture);
     header("Content-Type: image/jpeg");
     header('Content-Length: '.filesize($targetPicture));
+
+	$string = "por ". $photo['owner']['username'];                                              
+	$font  = 3;
+	$width  = ImageFontWidth($font)* strlen($string) ;
+	$height = ImageFontHeight($font) ;
+	$im = ImageCreateFromjpeg($targetPicture); 
+	$x=imagesx($im)-$width ;
+	$y=imagesy($im)-$height;
+	$background_color = imagecolorallocate ($im, 255, 255, 255); //white background
+	$text_color = imagecolorallocate ($im, 255, 255,255);//black text
+	imagestring ($im, $font, $x, $y,  $string, $text_color);
+
+	imagejpeg ($im,$targetPicture);
+
     print file_get_contents($targetPicture);    
 } else {
     header("Content-Type: image/jpeg");
