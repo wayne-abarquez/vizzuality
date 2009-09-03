@@ -17,6 +17,7 @@ package com.vizzuality.gmaps
 			options.iconOffset = new Point(-15,-34);
 			options.icon = new RunMarkerClusterIcon(cluster.length);
 			options.hasShadow = false; 		
+			options.tooltip="Click para acercar";
 			
 			super((cluster[0] as Marker).getLatLng(), options);
 		}
@@ -30,7 +31,7 @@ import flash.text.TextFormat;
 internal class RunMarkerClusterIcon extends Sprite
 {
 
-  [Embed('assets/groupMarkerIcon.png')] 
+  [Embed('assets/raceNoActiveEmpty.png')] 
   private var icon:Class;
   
 	public function RunMarkerClusterIcon(numChildren:int)

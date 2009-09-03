@@ -18,11 +18,11 @@ package com.vizzuality.gmaps
 			options.iconOffset = new Point(-10,-10);
 			options.hasShadow = true;
 			options.draggable = false;
-			options.icon = new CustomIconSprite();
+			options.icon = new RaceNoActiveMarker();
 			//options.icon = new RunSingleMarkerIcon();
 			
-			//var html:String="<b>" + name + "</b> \n"+eventDate;
-			//options.tooltip=html;
+			var html:String="<b>" + name + "</b> \n"+eventDate;
+			options.tooltip=name;
 			
 			
 			super(location, options);
