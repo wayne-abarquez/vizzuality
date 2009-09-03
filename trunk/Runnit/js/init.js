@@ -426,6 +426,7 @@ function sendPasswordTo() {
     			$("#FormularioLogin").attr("action","javascript: void login();");
     			$('#submitLogin').attr('value','Enviar');
     			$('#forgetLink').html('Contraseña enviada.');
+    			$('#forgetLink').css('color','red');
     			timerID = setTimeout("changeText()", 2000);
             } else {
             	$('#submitLogin').attr('value','Enviar');
@@ -442,6 +443,7 @@ function sendPasswordTo() {
 //PARA QUE SE CIERRE SOLO LA VENTANA DE LOGIN
 function changeText() {
 	$('#forgetLink').html('¿olvidaste tu contraseña?');
+	$('#forgetLink').css('color','#336699');
 	$('#forgetLink').attr("href","javascript: void sendPassword()");
     clearTimeout(timerID);
 }
