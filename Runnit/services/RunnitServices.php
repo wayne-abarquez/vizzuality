@@ -393,7 +393,7 @@ class RunnitServices {
 	            "description, inscription_price,inscription_location,inscription_email,inscription_website,province_fk,is_displayed_in_home,run_type,published,tlf_informacion,flickr_url,start_point,end_point".
 	            ") VALUES('$name','$event_location',$distance_meters,'$distance_text','$event_date',".
                 "'$category','$awards','$description','$inscription_price','$inscription_location',".
-                "'$inscription_email','$inscription_website', $province_id,$is_selected,$run_type,$published,$tlf_informacion,$flickr_url";
+                "'$inscription_email','$inscription_website', $province_id,$is_selected,$run_type,$published,'$tlf_informacion','$flickr_url'";
 
                 if($start_point_lat) {
                     $sql.=",GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
