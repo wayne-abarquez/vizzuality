@@ -545,6 +545,11 @@ function sendMessage() {
 
 }
 
+function timerHide () {
+	$.modal.close();
+    clearTimeout(timerID);
+}
+
 
 
 /* INSCRIBIRSE / QUITARSE CARRERAS */
