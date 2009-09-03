@@ -4,3 +4,5 @@ RewriteRule en/(.+) searchresults.php?q=$1 [L]
 RewriteRule user/(.+) usuario.php?u=$1 [L]
 RewriteRule buscar searchresults.php [L]
 RewriteRule sobre about.php [L]
+
+ErrorDocument 404 /404page.php
