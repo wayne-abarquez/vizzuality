@@ -24,13 +24,13 @@ function smarty_modifier_timeAgo( $date)
 	
     // for using it with preceding 'vor'            index 
       $timeStrings = array(   'breves momentos.',            // 0       <- now or future posts :-) 
-                        'un segundo.', 'segundos.',    // 1,1 
-                        'un minuto.','minutos.',      // 3,3 
-                        'una hora.', 'horas.',   // 5,5 
-                        'un día.', 'días.',         // 7,7 
-                        'una semana.', 'semanas.',      // 9,9 
-                        'un mes.', 'meses.',      // 11,12 
-                        'un año.','años.');      // 13,14 
+                        'segundo.', 'segundos.',    // 1,1 
+                        'minuto.','minutos.',      // 3,3 
+                        'hora.', 'horas.',   // 5,5 
+                        'día.', 'días.',         // 7,7 
+                        'semana.', 'semanas.',      // 9,9 
+                        'mes.', 'meses.',      // 11,12 
+                        'año.','años.');      // 13,14 
       $debug = false; 
       
       
