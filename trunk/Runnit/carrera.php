@@ -8,9 +8,18 @@ require 'services/RunnitServices.php';
 $smarty = new Smarty;
 $services = new RunnitServices;
 
-$smarty->assign('section', 'carrera');
+
 
 $data=$services->getRunDetails($_REQUEST['id']);
+if(!isset($data['name'])) {
+	header("HTTP/1.0 404 Not Found"); 
+	$smarty->assign('section', '404');
+	$smarty->assign('titulo_pagina', '404 - Pagina no encontrada');
+	$smarty->display('404.tpl');	
+	die();
+}
+
+$smarty->assign('section', 'carrera');
 
 $data['description'] = nl2br($data['description']);
 $smarty->assign('titulo_pagina', $data['name'] . ' - Runnity.com');
