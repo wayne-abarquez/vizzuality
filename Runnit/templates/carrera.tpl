@@ -131,29 +131,32 @@
 						</p>
 					</div>	
 				</div>	
-                {if $data.start_point_lat === null}
-                {else}			
-				<div id="map2Container" class="span-16">
-					<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido aproximado</h3></div>
-					<div class="mapStyle marginDescription">
-						<div id="trackMap">
-                            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
-                              <param name="movie" value="/flash/raceMapViewer.swf?2" />
-                              <!--[if !IE]>-->
-                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
-                              <!--<![endif]-->
-                                <h1>Necesitas Flash para poder ver el mapa</h1>
-                    			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
-                              <!--[if !IE]>-->
-                              </object>
-                              <!--<![endif]-->
-                            </object>		    					    
-						</div>
-					</div>	
-					
-				</div>
+				
+                {if $data.start_point_lat == null}
+                	<div id="map3Container" class="span-16"></div>
+                {else}	
+                <a name="map2Container">		
+					<div class="span-16">
+						<div class="marginDescription margin10"><h3 class="blue">Mapa del recorrido aproximado</h3></div>
+						<div class="mapStyle marginDescription">
+							<div id="trackMap">
+	                            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
+	                              <param name="movie" value="/flash/raceMapViewer.swf?2" />
+	                              <!--[if !IE]>-->
+	                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
+	                              <!--<![endif]-->
+	                                <h1>Necesitas Flash para poder ver el mapa</h1>
+	                    			<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+	                              <!--[if !IE]>-->
+	                              </object>
+	                              <!--<![endif]-->
+	                            </object>		    					    
+							</div>
+						</div>	
+					</div>
+				</a>
 				{/if}	
-				<div class="span-16 marginDescription">
+				<div class="span-16 marginDescription marginTop7">
 					<div class="marginDescription"><h3 class="blue">Comentarios {if !empty($comments)}[{$comments|@count}]{/if}</h3><h5><a onclick="document.getElementById('commentTextArea').focus();
 " class="PublicarComentarioEnlace">publicar un comentario</a></h5></div>			
 					<ol id="update">
@@ -358,7 +361,7 @@
 	$(document).ready( function() {
 	    
 	    for (i=1;i<=3;i++){
-			var len = 22;
+			var len = 20;
 			var p = document.getElementById("datos" + i);
 			
 			if (p) {

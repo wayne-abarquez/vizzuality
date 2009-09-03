@@ -111,7 +111,7 @@
 		
 		
 	<!-- PROMINENT -->
-	<div class="span-24 prominent">
+	<div class="span-24 prominent" id="prominents">
 		
 		<div class="column span-8 first">
 			<div class="titleImportant">AL FÍN UN MODO DE VER CON DETALLE LOS RECORRIDOS DE LAS CARRERAS MEDIANTE GOOGLE MAPS</div>
