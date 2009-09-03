@@ -630,7 +630,7 @@ class RunnitServices {
 		$mail->FromName = $mensaje;
 		$mail->Subject = "Mensaje desde la web";
 		$mail->MsgHTML("Mensaje enviado desde la web por $nombre ($email)<br><br>$mensaje");
-		$mail->AddAddress("alertas@runnity.com", "Web runnity.com");
+		$mail->AddAddress("contacto@runnity.com", "Web runnity.com");
 		$mail->IsHTML(true);	
 		
 		if(!$mail->Send()) {
