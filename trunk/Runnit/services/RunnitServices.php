@@ -358,7 +358,7 @@ class RunnitServices {
 	
 	public function createNewRun($name,$event_location,$distance_meters,$distance_text,$event_date,
 	    $category,$awards,$description,$inscription_price,$inscription_location,
-	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon,$province_id,$is_selected) {
+	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon,$province_id,$is_selected,$run_type,$published,$tlf_informacion,$flickr_url) {
             if (!$_SESSION['logged'] or $_SESSION['user']['is_admin']!='t') {
     	        throw new Exception("user not logged in");
     	    }
@@ -381,12 +381,19 @@ class RunnitServices {
     	    } else {
     	        $is_selected="false";
     	    }
+
+    	    if($published=='true') {
+    	        $published="true";
+    	    } else {
+    	        $published="false";
+    	    }    	    
+    	    
     	    
 	        $sql="INSERT INTO run(name,event_location,distance_meters,distance_text,event_date,category,awards,".
-	            "description, inscription_price,inscription_location,inscription_email,inscription_website,province_fk,is_displayed_in_home,start_point,end_point".
+	            "description, inscription_price,inscription_location,inscription_email,inscription_website,province_fk,is_displayed_in_home,run_type,published,tlf_informacion,flickr_url,start_point,end_point".
 	            ") VALUES('$name','$event_location',$distance_meters,'$distance_text','$event_date',".
                 "'$category','$awards','$description','$inscription_price','$inscription_location',".
-                "'$inscription_email','$inscription_website', $province_id,$is_selected";
+                "'$inscription_email','$inscription_website', $province_id,$is_selected,$run_type,$published,$tlf_informacion,$flickr_url";
 
                 if($start_point_lat) {
                     $sql.=",GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
@@ -446,7 +453,7 @@ class RunnitServices {
 	    
     	public function updateRun($id,$name,$event_location,$distance_meters,$distance_text,$event_date,
     	    $category,$awards,$description,$inscription_price,$inscription_location,
-    	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon, $province_id,$is_selected) {
+    	    $inscription_email,$inscription_website,$start_point_lat,$start_point_lon,$end_point_lat,$end_point_lon, $province_id,$is_selected,$run_type,$published,$tlf_informacion,$flickr_url) {
                 if (!$_SESSION['logged'] or $_SESSION['user']['is_admin']!='t') {
         	        throw new Exception("user not logged in");
         	    }
@@ -461,6 +468,8 @@ class RunnitServices {
 				$inscription_location=pg_escape_string($inscription_location);
 				$inscription_email=pg_escape_string($inscription_email);
 				$inscription_website=pg_escape_string($inscription_website);
+				$inscription_website=pg_escape_string($tlf_informacion);
+				$inscription_website=pg_escape_string($flickr_url);
 
         	    
         	    if($is_selected=='f') {
@@ -468,8 +477,14 @@ class RunnitServices {
         	    } else {
         	        $is_selected="true";
         	    }
+        	    
+        	    if($published=='true') {
+        	        $published="true";
+        	    } else {
+        	        $published="false";
+        	    }        	    
                 
-        	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected";
+        	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected,run_type=$run_type,published=$published,tlf_informacion='$tlf_informacion',flickr_url='$flickr_url'";
         	        
         	    if($start_point_lat) {
         	        $sql.=",start_point=GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
@@ -534,7 +549,7 @@ class RunnitServices {
     }	    
     
     public function getRunsList($limit=0) {
-        $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,province_fk,is_displayed_in_home,created_when from run ORDER BY id DESC"; 
+        $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,province_fk,is_displayed_in_home,created_when,run_type,published,tlf_informacion,flickr_url from run ORDER BY id DESC"; 
 		if($limit!=0) {
 			$sql.=" LIMIT $limit";
 		}
