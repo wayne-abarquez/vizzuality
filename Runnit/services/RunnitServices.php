@@ -576,7 +576,7 @@ class RunnitServices {
         }
         
         $sql.=" from run as r where r.event_date > now() and r.id <> $id ";
-		$sql.=" and distance_sphere(r.start_point,(select start_point from run where id=$id)) <(30000)";
+		$sql.=" and distance_sphere(r.start_point,(select start_point from run where id=$id)) <(40000)";
 		$sql.=" order by event_date";
 		
 		$result=array();
