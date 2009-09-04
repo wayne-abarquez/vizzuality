@@ -54,10 +54,10 @@
 				</div>
 			</div>
 			
-			{if $data.start_point_lat === null}
+			{if $data.flickr_img_id === null}
 			    <img src="/media/run/{$data.big_picture}" class="carrera" />
 			{else}
-			    <img src="/panoramioPic.php?id={$data.id}&photo_id=223126170" class="carrera" />
+			    <img src="/panoramioPic.php?id={$data.id}&photo_id={$data.flickr_img_id}" class="carrera" />
 			{/if}
 			<div class="span-16 raceContent">
 			

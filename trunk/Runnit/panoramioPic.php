@@ -9,26 +9,35 @@ $defaultPicture=$basePath."media/run/generic/1_big.jpg";
 
 $id=$_REQUEST['id'];
 
+/*
 if (file_exists($targetPicture)) {
     header("Content-Type: image/jpeg");
     header('Content-Length: '.filesize($targetPicture));
     print file_get_contents($targetPicture);
     die();
 }
+*/
 if(isset($_REQUEST['photo_id'])) {
     $photo_id=$_REQUEST['photo_id'];
 } else {
-    $photo_id="8e4f99b9bb3c602984421a253d71f322";
+    $photo_id="3228648671";
 }
-$f = new phpFlickr($photo_id);
+$f = new phpFlickr("8e4f99b9bb3c602984421a253d71f322");
 $photo = $f->photos_getInfo($photo_id);
-
 
 
 if($photo) {
     $pic = file_get_contents("http://farm" . $photo['farm'] .".static.flickr.com/" . $photo['server'] ."/" . $photo['id'] ."_" . $photo['secret'] ."_b.jpg");
 
     file_put_contents($targetPicture, $pic);
+
+    if(filesize($targetPicture)==2900) {
+        header("Content-Type: image/jpeg");
+        header('Content-Length: '.filesize($defaultPicture));    
+        print file_get_contents($defaultPicture);
+        unlink($targetPicture);
+        die();        
+    }
 
     $imageTransform->crop($targetPicture, 618, 238, $targetPicture);
     header("Content-Type: image/jpeg");

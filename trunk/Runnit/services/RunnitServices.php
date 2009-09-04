@@ -286,7 +286,7 @@ class RunnitServices {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type,date_trunc('day',event_date) as event_day";
 		$sql.=",CASE WHEN EXTRACT(DOW FROM event_date)=0 THEN 7 ELSE EXTRACT(DOW FROM event_date) END  as day_in_week";
 
-        if($_SESSION['logged']) {
+        if(isset($_SESSION['logged']) and $_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
         } else {
             $sql.=",false as inscrito";
@@ -323,7 +323,7 @@ class RunnitServices {
 	public function getNextRuns($lat=0,$lon=0,$distance_km=150) {	
 	$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type";
 	
-	if($_SESSION['logged']) {
+	if(isset($_SESSION['logged']) and $_SESSION['logged']) {
 	    $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
 	}
 	
@@ -520,10 +520,15 @@ class RunnitServices {
         	        
         	    if($start_point_lat) {
         	        $sql.=",start_point=GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
+        	    } else {
+        	        $sql.=",start_point=null";
         	    }    
         	    if($end_point_lat) {
         	        $sql.=",end_point=GeomFromText('POINT($end_point_lon $end_point_lat)',4326)";
-        	    }        	    
+        	    }  
+        	    else {
+        	        $sql.=",end_point=null";
+        	    }      	    
         	        
         	    $sql.=" WHERE id=$id";
             $result= pg_query($this->conn, $sql);
@@ -593,9 +598,9 @@ class RunnitServices {
     
     //carrera
     public function getRunDetails($id) {
-        $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,tlf_informacion,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(users_run.id) from users_run,run_type where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type";
+        $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,tlf_informacion,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(users_run.id) from users_run,run_type where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type,flickr_img_id,flickr_url";
         
-        if($_SESSION['logged']) {
+        if(isset($_SESSION['logged']) and $_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
         } else {
             $sql.=",false as inscrito";
@@ -605,13 +610,8 @@ class RunnitServices {
         $result = pg_query($this->conn, $sql);  
         $run = pg_fetch_assoc($result);
         
-        $targetPicture=$this->basePath."media/run/".$run['id']."_big.jpg";
-        if (file_exists($targetPicture)) {
-            $run['big_picture'] = $run['id']."_big.jpg";
-        } else {
-            //no image for the run, select random
-            $run['big_picture'] = "generic/".rand(1,4)."_big.jpg";
-        }
+        
+        $run['big_picture'] = "generic/".rand(1,4)."_big.jpg";
         
         return $run;
     }
@@ -620,7 +620,7 @@ class RunnitServices {
     public function getRunsCloseToAnotherForMap($id) {
 	    $sql="select r.id,r.name,event_date,run_type,event_location,distance_text, y(start_point) as lat, x(start_point) as lon";
 
-        if($_SESSION['logged']) {
+        if(isset($_SESSION['logged']) and $_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
         } else {
             $sql.=",false as inscrito";
@@ -644,7 +644,7 @@ class RunnitServices {
     public function getRunsCloseToAnother($id) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
-        if($_SESSION['logged']) {
+        if(isset($_SESSION['logged']) and $_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
         } else {
             $sql.=",false as inscrito";
