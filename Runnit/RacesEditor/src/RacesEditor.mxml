@@ -100,7 +100,6 @@
             	server.removeEventListener(ResultEvent.RESULT,onResult);
             	server.removeEventListener(FaultEvent.FAULT,onFault);
             	arrayRaces = event.result as Array;
-            	/* arrayRaces = arrayRaces.filter(checkDate); */
             	getProvinces();
             }
             
@@ -151,8 +150,7 @@
 					} 
 				}
 				
-				var directionsBounds:LatLngBounds = new LatLngBounds(markersArray[0],markersArray[1]);
-				map.setCenter(directionsBounds.getCenter());
+				map.setCenter(event.latLng);
 			}
 			
 			
@@ -165,20 +163,10 @@
 		    
 		    
 		    private function geocoder_geocodingSuccess(evt:GeocodingEvent):void {
-                var result:Placemark = GeocodingResponse(evt.response).placemarks[0];
-                var box:Object = result.ExtendedData.LatLonBox;
-                var pBbox:LatLngBounds = new LatLngBounds(new LatLng(box.north,box.west),new LatLng(box.south,box.east));   
-                
-                try {
-                	map.removeOverlay(findMarker);
-                	findMarker.setLatLng(result.point);
-                	map.addOverlay(findMarker);
-                } catch (e: Error) {
-                	findMarker = new Marker(result.point);
-                	map.addOverlay(findMarker);
-                } 
-                          							                
-                map.setCenter(result.point,map.getBoundsZoomLevel(pBbox));
+                var result:LatLng = new LatLng(evt.response.Placemark[0].Point.coordinates[1],evt.response.Placemark[0].Point.coordinates[0]);  
+                findMarker = new Marker(result);
+                map.addOverlay(findMarker);                       							                
+                map.setCenter(findMarker.getLatLng(),14);
             }
 
             private function geocoder_geocodingFailure(evt:GeocodingEvent):void {
@@ -260,7 +248,10 @@
             
             private function fillInputs(obj: Object):void {
             	markersArray = new Array();
-            	
+            	trace(obj.start_point_lat as String);
+            	trace(obj.start_point_lon as String);
+            	trace(obj.end_point_lat as String);
+            	trace(obj.end_point_lon as String);
             	
             	if (obj.distance_text!=null) distance_text.text = obj.distance_text as String;
             	if (obj.distance_meters!=null) distance_meters.text = obj.distance_meters;
@@ -294,65 +285,69 @@
             	
             	map.clearOverlays();
             	
-            	startRaceMarker = new Marker(new LatLng(obj.start_point_lat,obj.start_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
-								         labelFormat: {color: 0xFFFFFF, bold: true},
-								         draggeable: true,
-								         hasShadow: false, 
-								         radius: 12, 
-								         label: "S",
-								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
-								         }));
-								         
-				map.addOverlay(startRaceMarker);
-            	
-            	finishRaceMarker = new Marker(new LatLng(obj.end_point_lat,obj.end_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: Color.RED}), 
-								         labelFormat: {color: 0xFFFFFF, bold: true},
-								         draggeable: true,
-								         hasShadow: false, 
-								         radius: 12, 
-								         label: "Ll",
-								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
-								         }));
-            	map.addOverlay(finishRaceMarker);
-            	
-            	markersArray.push(startRaceMarker.getLatLng(), finishRaceMarker.getLatLng());
-            	
- 				var directionsBounds:LatLngBounds = new LatLngBounds(markersArray[0],markersArray[1]);
-				map.setCenter(directionsBounds.getCenter(),14);
+            	if (obj.start_point_lat!=null) {
+	            	startRaceMarker = new Marker(new LatLng(obj.start_point_lat,obj.start_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+									         labelFormat: {color: 0xFFFFFF, bold: true},
+									         draggeable: true,
+									         hasShadow: false, 
+									         radius: 12, 
+									         label: "S",
+									         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+									         }));
+									         
+					map.addOverlay(startRaceMarker);
+	            	
+	            	finishRaceMarker = new Marker(new LatLng(obj.end_point_lat,obj.end_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: Color.RED}), 
+									         labelFormat: {color: 0xFFFFFF, bold: true},
+									         draggeable: true,
+									         hasShadow: false, 
+									         radius: 12, 
+									         label: "Ll",
+									         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
+									         }));
+	            	map.addOverlay(finishRaceMarker);
+	            	
+	            	markersArray.push(startRaceMarker.getLatLng());
+	            	markersArray.push(finishRaceMarker.getLatLng());
+	            	
+	            	var directionsBounds:LatLngBounds = new LatLngBounds();
+	            	trace(directionsBounds);
+	            	directionsBounds.extend(markersArray[0]);
+	            	directionsBounds.extend(markersArray[1]);
+	            	
+					map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds));      		
+            	} 
 				
             }
              
             
             private function saveData (identification: String = null): void {
-            	if (raceList.selectedItem) {
             		
-            		dataRace.enabled = false;
-            		raceList.enabled = false;
-            		createNewRun.enabled = false;
-            		eraseOneRun.enabled = false;
-            		saveChanges.label = "Guardando...";
-            		
-            		
-	            	if (identification==null) /* ESTA CREANDO UNO NUEVO */ {
-	            		server.addEventListener(ResultEvent.RESULT, onEditNewRace);
-	            		server.addEventListener(FaultEvent.FAULT, onEditNewRaceFault);
-	                	server.createNewRun(race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
-	                		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
-	                		web.text,(markersArray.length==0)?null:markersArray[0].getLatLng().lat(),(markersArray.length==0)?null:markersArray[0].getLatLng().lng(),
-	                		(markersArray.length==0)?null:markersArray[1].getLatLng().lat(),(markersArray.length==0)?null:markersArray[1].getLatLng().lng(), 
-	                		provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',runType.selectedIndex+1,publishedRunCheck.selected,inscription_phone.text,flickr.text);
-	            	} else { /* ESTA EDITANDO UNO PREVIO*/
-			        	server.addEventListener(ResultEvent.RESULT,onEditNewRace);
-			        	server.addEventListener(FaultEvent.FAULT,onEditNewRaceFault);
-	                	server.updateRun(iden.text,race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
-	                		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
-	                		web.text,(markersArray.length==0)?null:markersArray[0].getLatLng().lat(),(markersArray.length==0)?null:markersArray[0].getLatLng().lng(),
-	                		(markersArray.length==0)?null:markersArray[1].getLatLng().lat(),(markersArray.length==0)?null:markersArray[1].getLatLng().lng(),provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',
-	                		runType.selectedIndex+1,publishedRunCheck.selected,inscription_phone.text,flickr.text);
-	            	}
-            	} else {
-            		Alert.show("No has seleccionado ninguna carrera");
+        		dataRace.enabled = false;
+        		raceList.enabled = false;
+        		createNewRun.enabled = false;
+        		eraseOneRun.enabled = false;
+        		saveChanges.label = "Guardando...";
+        		
+        		
+            	if (identification==null) /* ESTA CREANDO UNO NUEVO */ {
+            		server.addEventListener(ResultEvent.RESULT, onEditNewRace);
+            		server.addEventListener(FaultEvent.FAULT, onEditNewRaceFault);
+                	server.createNewRun(race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
+                		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
+                		web.text,(markersArray.length==0)?null:markersArray[0].lat(),(markersArray.length==0)?null:markersArray[0].lng(),
+                		(markersArray.length==0)?null:markersArray[1].lat(),(markersArray.length==0)?null:markersArray[1].lng(), 
+                		provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',runType.selectedIndex+1,publishedRunCheck.selected,inscription_phone.text,flickr.text);
+            	} else { /* ESTA EDITANDO UNO PREVIO*/
+		        	server.addEventListener(ResultEvent.RESULT,onEditNewRace);
+		        	server.addEventListener(FaultEvent.FAULT,onEditNewRaceFault);
+                	server.updateRun(iden.text,race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
+                		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
+                		web.text,(markersArray.length==0)?null:markersArray[0].lat(),(markersArray.length==0)?null:markersArray[0].lng(),
+                		(markersArray.length==0)?null:markersArray[1].lat(),(markersArray.length==0)?null:markersArray[1].lng(),provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',
+                		runType.selectedIndex+1,publishedRunCheck.selected,inscription_phone.text,flickr.text);
             	}
+
             }
             
             private function onEditNewRace(event: ResultEvent):void {
