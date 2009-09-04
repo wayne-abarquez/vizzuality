@@ -4,8 +4,17 @@
     <meta name="verify-v1" content="nBehsGXRSiH2qvWfAcnU4AZJzlOQbABqaiw7dzaXSeo=" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	
-	<meta name="keywords" content="nombre de la carrera, tipo de la carrera, running, popular, atletismo, correr, carrera, runner">
-	<meta name="description" content="fecha y Nombre de la carrera">
+	{if $meta_keywords}
+		<meta name="keywords" content="{$meta_keywords}">
+	{else}
+		<meta name="keywords" content="running,popular,atletismo,correr,carrera,runner">	
+	{/if}
+
+	{if $meta_description}
+		<meta name="description" content="{$meta_description}">
+	{else}
+		<meta name="description" content="Runnity es un punto de encuentro entre carreras y atletas.">	
+	{/if}
 	<meta name="author" content="runnity.com">
 	
 	<title>{$titulo_pagina}</title>
