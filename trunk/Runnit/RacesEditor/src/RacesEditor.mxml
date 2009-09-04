@@ -275,7 +275,8 @@
             		}
             	}
             	runType.selectedIndex = obj.run_type-1;
-            	if (obj.published == false) {
+            	
+            	if (obj.published == "f") {
         			publishedRunCheck.selected = false;
         		} else {
         			publishedRunCheck.selected = true;
