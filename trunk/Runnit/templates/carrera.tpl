@@ -286,7 +286,6 @@
                 	    {foreachelse}
                 	        <div class="span-8 races">No hay proximas carreras.</div> 
                 	    {/foreach}					
-					<input class="fg-button VerCalendario" type="button" value="Ver calendario completo"/>
 				</div>
 			</div>
 			
@@ -327,7 +326,7 @@
                 	    {foreachelse}
                 	        <div class="span-8 races">No hay proximas carreras.</div> 
                 	    {/foreach}					
-					<input class="fg-button VerCalendario" type="button" value="Ver carreras"/>
+					<input class="fg-button VerCalendario" type="button" value="Ver calendario completo"/>
 				</div>
 			</div>
 		
