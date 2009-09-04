@@ -153,6 +153,7 @@
 			</div>	
 			
 		</div>
+		
 		<div class="column last span-8 rightColumn">
 			<div class="span-8 importantRaces">
 				<div class="events"> 
@@ -165,9 +166,23 @@
             			{else}		    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
-        							<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
-        							<div class="day">{$race.event_date|substr:8:2}</div>
-        						</div>
+	    						{if $race.run_type eq "1"}
+	    							<div class="month month1">{getMonth month=$race.event_date|substr:5:2}</div>
+	    						{/if}
+	    						{if $race.run_type eq "2"}
+	    							<div class="month month2">{getMonth month=$race.event_date|substr:5:2}</div>
+	    						{/if}
+	    						{if $race.run_type eq "3"}
+	    							<div class="month month3">{getMonth month=$race.event_date|substr:5:2}</div>
+	    						{/if}
+	    						{if $race.run_type eq "4"}
+	    							<div class="month month4">{getMonth month=$race.event_date|substr:5:2}</div>
+	    						{/if}
+	    						{if $race.run_type eq "5"}
+	    							<div class="month month5">{getMonth month=$race.event_date|substr:5:2}</div>
+	    						{/if}
+	    						<div class="day">{$race.event_date|substr:8:2}</div>
+	    						</div>
         						<div class="column span-6 last calendarRaces">
         							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
         							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
