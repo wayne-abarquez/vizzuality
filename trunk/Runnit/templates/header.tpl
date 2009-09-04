@@ -218,7 +218,7 @@
 			       <!-- <li><a {if $section eq "usuario"} class="current"{/if} href="/user/{$smarty.session.user.username}">TU CUENTA</a> <a class="separator">|</a> </li> -->
 			    {/if}
 				<li><a {if $section eq "home"} class="current"{/if} href="/">HOME</a> <a class="separator">|</a> </li>
-				<li><a {if $section eq "searchresults"} class="current"{/if} href="/buscar">BUSCAR</a> <a class="separator">|</a> </li>
+				<li><a {if $section eq "searchresults"} class="current"{/if} href="/buscar">CARRERAS</a> <a class="separator">|</a> </li>
 				<!-- <li><a {if $section eq "about"} class="current"{/if} href="/sobre_nosotros">SOBRE NOSOTROS</a> <a class="separator">|</a> </li> -->
 				<li><a {if $section eq "blog"} class="current"{/if} href="/blog">BLOG</a> <a class="separator">|</a> </li>
 				<li><a {if $section eq "contacto"} class="current"{/if} href="javascript: void showContactBox()">CONTACTO</a> </li>
