@@ -69,6 +69,7 @@
             	provincesArray = new ArrayCollection(event.result as Array);
             	server.removeEventListener(ResultEvent.RESULT,onProvincesResult);
             	listRaces.enabled = true;
+            	if (raceList.selectedItem) editRace();
             }
             
             private function login():void {
@@ -99,9 +100,11 @@
             	server.removeEventListener(ResultEvent.RESULT,onResult);
             	server.removeEventListener(FaultEvent.FAULT,onFault);
             	arrayRaces = event.result as Array;
+            	/* arrayRaces = arrayRaces.filter(checkDate); */
             	getProvinces();
             }
             
+
             private function onFault (event:FaultEvent):void {
             	server.removeEventListener(ResultEvent.RESULT,onResult);
             	server.removeEventListener(FaultEvent.FAULT,onFault);
@@ -200,7 +203,7 @@
             	publishedRunCheck.selected = false;
             	runType.selectedIndex = 1;
             	inscription_phone.text = "";
-            	big_picture.text = "";
+            	flickr.text = "";
             	markersArray = new Array();
             	map.clearOverlays();          	
             }
@@ -212,12 +215,11 @@
             }
             
             private function editRace():void {
-           		clearInputs();
-            	racesTab.selectedIndex = 0;
-            	fillInputs(raceList.selectedItem);
+        		clearInputs();
+        		fillInputs(raceList.selectedItem);
             	server.addEventListener(ResultEvent.RESULT,onGetGeometryDataOK);
             	server.addEventListener(FaultEvent.FAULT,onGetGeometryDataKO);
-                server.getTrackGeometry((raceList.selectedItem).id);
+                server.getTrackGeometry(raceList.selectedItem.id);
             }
             
             private function onGetGeometryDataOK(ev:ResultEvent):void {
@@ -259,6 +261,7 @@
             private function fillInputs(obj: Object):void {
             	markersArray = new Array();
             	
+            	
             	if (obj.distance_text!=null) distance_text.text = obj.distance_text as String;
             	if (obj.distance_meters!=null) distance_meters.text = obj.distance_meters;
             	if (obj.id!=null) iden.text = obj.id;
@@ -280,14 +283,14 @@
             			selectedRunCheck.selected = true;
             		}
             	}
-            	if (obj.run_type!=null)  runType.selectedIndex = obj.run_type - 1;
+            	runType.selectedIndex = obj.run_type-1;
             	if (obj.published == false) {
         			publishedRunCheck.selected = false;
         		} else {
         			publishedRunCheck.selected = true;
         		}
         		if (obj.tlf_informacion!=null) inscription_phone.text = obj.tlf_informacion; 
-        		if (obj.flickr_url!=null) big_picture.text = obj.flickr_url; 
+        		if (obj.flickr_url!=null) flickr.text = obj.flickr_url; 
             	
             	map.clearOverlays();
             	
@@ -315,26 +318,40 @@
             	markersArray.push(startRaceMarker.getLatLng(), finishRaceMarker.getLatLng());
             	
  				var directionsBounds:LatLngBounds = new LatLngBounds(markersArray[0],markersArray[1]);
-				map.setCenter(directionsBounds.getCenter());
-				map.setZoom(map.getBoundsZoomLevel(directionsBounds));
+				map.setCenter(directionsBounds.getCenter(),14);
+				
             }
              
             
             private function saveData (identification: String = null): void {
-            	if (identification==null) /* ESTA CREANDO UNO NUEVO */ {
-            		server.addEventListener(ResultEvent.RESULT, onEditNewRace);
-            		server.addEventListener(FaultEvent.FAULT, onEditNewRaceFault);
-                	server.createNewRun(race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
-                		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
-                		web.text,(startRaceMarker.getLatLng()).lat(),(startRaceMarker.getLatLng()).lng(),(finishRaceMarker.getLatLng()).lat(),
-                		(finishRaceMarker.getLatLng()).lng(), provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',runType.selectedIndex,publishedRunCheck.selected,inscription_phone.text,big_picture.text);
-            	} else { /*EESTA EDITANDO UNO PREVIO*/
-		        	server.addEventListener(ResultEvent.RESULT,onEditNewRace);
-		        	server.addEventListener(FaultEvent.FAULT,onEditNewRaceFault);
-                	server.updateRun(iden.text,race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
-                		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
-                		web.text,(startRaceMarker.getLatLng()).lat(),(startRaceMarker.getLatLng()).lng(),(finishRaceMarker.getLatLng()).lat(),
-                		(finishRaceMarker.getLatLng()).lng(),provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',runType.selectedIndex,publishedRunCheck.selected,inscription_phone.text,big_picture.text);
+            	if (raceList.selectedItem) {
+            		
+            		dataRace.enabled = false;
+            		raceList.enabled = false;
+            		createNewRun.enabled = false;
+            		eraseOneRun.enabled = false;
+            		saveChanges.label = "Guardando...";
+            		
+            		
+	            	if (identification==null) /* ESTA CREANDO UNO NUEVO */ {
+	            		server.addEventListener(ResultEvent.RESULT, onEditNewRace);
+	            		server.addEventListener(FaultEvent.FAULT, onEditNewRaceFault);
+	                	server.createNewRun(race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
+	                		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
+	                		web.text,(markersArray.length==0)?null:markersArray[0].getLatLng().lat(),(markersArray.length==0)?null:markersArray[0].getLatLng().lng(),
+	                		(markersArray.length==0)?null:markersArray[1].getLatLng().lat(),(markersArray.length==0)?null:markersArray[1].getLatLng().lng(), 
+	                		provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',runType.selectedIndex+1,publishedRunCheck.selected,inscription_phone.text,flickr.text);
+	            	} else { /* ESTA EDITANDO UNO PREVIO*/
+			        	server.addEventListener(ResultEvent.RESULT,onEditNewRace);
+			        	server.addEventListener(FaultEvent.FAULT,onEditNewRaceFault);
+	                	server.updateRun(iden.text,race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
+	                		category.text,awards.text,description.text,price.text,inscription_location.text,inscription_email.text,
+	                		web.text,(markersArray.length==0)?null:markersArray[0].getLatLng().lat(),(markersArray.length==0)?null:markersArray[0].getLatLng().lng(),
+	                		(markersArray.length==0)?null:markersArray[1].getLatLng().lat(),(markersArray.length==0)?null:markersArray[1].getLatLng().lng(),provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',
+	                		runType.selectedIndex+1,publishedRunCheck.selected,inscription_phone.text,flickr.text);
+	            	}
+            	} else {
+            		Alert.show("No has seleccionado ninguna carrera");
             	}
             }
             
@@ -343,6 +360,12 @@
             	server.removeEventListener(FaultEvent.FAULT,onEditNewRaceFault);
 				Alert.show("Carrera editada o añadida satisfactoriamente");
 				init();
+				clearInputs();
+				saveChanges.label = "Guardar cambios";
+				dataRace.enabled = true;
+        		raceList.enabled = true;
+        		createNewRun.enabled = true;
+        		eraseOneRun.enabled = true;
             }
             
             private function onEditNewRaceFault(event: FaultEvent):void {
@@ -351,6 +374,11 @@
 				trace(event.fault);
 				Alert.show(event.fault.faultString);
 				init();
+				saveChanges.label = "Guardar cambios";
+				dataRace.enabled = true;
+        		raceList.enabled = true;
+        		createNewRun.enabled = true;
+        		eraseOneRun.enabled = true;
             }
             
             private function cleanOverlay():void {
@@ -380,21 +408,21 @@
 			<mx:DataGrid id="raceList" top="54" left="20" right="20" bottom="40" horizontalScrollPolicy="auto" itemClick="editRace()" dataProvider="{arrayRaces}">
 				<mx:columns>
 	                <mx:DataGridColumn dataField="id" headerText="ID" width="30"/>
-	                <mx:DataGridColumn headerText="Public?" width="50"/>
+	                <mx:DataGridColumn headerText="Public?" dataField="published" width="50"/>
 	                <mx:DataGridColumn dataField="name" headerText="Nombre carrera" width="325"/>
 	                <mx:DataGridColumn dataField="event_date" headerText="Fecha" width="100"/>
 	                <mx:DataGridColumn dataField="event_location" headerText="Lugar"/>
 	                <mx:DataGridColumn dataField="distance_text" headerText="Dist Txt" />
 	                <mx:DataGridColumn dataField="distance_meters" headerText="Dist" width="40" />
-	                <mx:DataGridColumn headerText="Tlf" />
+	                <mx:DataGridColumn dataField="tlf_informacion" headerText="Tlf" />
 	                <mx:DataGridColumn dataField="inscription_website" headerText="www" />
 	                <mx:DataGridColumn dataField="inscription_email" headerText="email" />
 	            </mx:columns>
 			</mx:DataGrid>
 			<mx:Label y="10" text="Editor de carreras" fontSize="20" left="20" right="20"/>
 			<mx:HBox bottom="5" left="20" right="20" horizontalAlign="right" height="23">
-				<mx:Button label="Crear nueva carrera" click="addNewRace()"/>
-				<mx:Button label="Eliminar una carrera" click="eraseRace()"/>
+				<mx:Button label="Crear nueva carrera" click="addNewRace()" id="createNewRun"/>
+				<mx:Button label="Eliminar una carrera" click="eraseRace()" id="eraseOneRun"/>
 			</mx:HBox>
 		</mx:Canvas>
 		
@@ -402,7 +430,7 @@
 			
 			<mx:TabNavigator id="racesTab" left="22" right="18" bottom="10" top="32" selectedIndex="0" borderColor="gray" borderStyle="solid" creationPolicy="all">
 				
-				<mx:Canvas label="Datos" backgroundColor="#eeeeee">
+				<mx:Canvas id="dataRace" label="Datos" backgroundColor="#eeeeee">
 					<mx:Label x="10" y="10" text="ID" width="168" textAlign="right"/>
 					<mx:Label x="10" y="93" text="Distancia texto" width="168" textAlign="right"/>
 					<mx:Label x="449" y="93" text="Distancia (en metros)" width="140" textAlign="right"/>
@@ -420,10 +448,9 @@
 					<mx:Label x="10" y="718" text="Email organización" width="168" textAlign="right"/>
 					<mx:Label x="10" y="748" text="Teléfono organización" width="168" textAlign="right"/>
 					<mx:Label x="10" y="777" text="URL IMAGEN" width="168" textAlign="right"/>
-					<mx:TextInput x="186" y="773" width="600" id="big_picture" borderColor="#AAAAAA" borderStyle="solid"/>
 					<mx:Label x="10" y="804" text="Descripción" width="168" textAlign="right"/>
 					<mx:HBox top="10" right="40" horizontalAlign="right" height="30">
-						<mx:Button label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)"/>
+						<mx:Button id="saveChanges" label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)"/>
 					</mx:HBox>
 					<mx:Label x="10" y="691" text="Website organización" width="168" textAlign="right"/>
 					<mx:CheckBox x="371" y="8" label="¿Carrera destacada?" id="selectedRunCheck"/>
@@ -443,6 +470,7 @@
 					<mx:TextInput x="186" y="689" width="255" id="web"/>
 					<mx:TextInput x="186" y="716" width="255" id="inscription_email"/>
 					<mx:TextInput x="186" y="744" width="255" id="inscription_phone" borderColor="#A7A7A7" borderStyle="solid"/>
+					<mx:TextInput x="186" y="773" width="600" id="flickr" borderColor="#AAAAAA" borderStyle="solid"/>
 					<mx:TextArea x="186" width="600" height="100" id="description" top="802"/>
 					<mx:Button x="407" y="294.5" label="Deshacer último" alpha="1" click="undo()" fillAlphas="[1.0, 1.0, 1.0, 1.0]"/>
 					<mx:ComboBox x="186" y="228" id="provincesCombo" dataProvider="{provincesArray}" labelField="name"></mx:ComboBox>
