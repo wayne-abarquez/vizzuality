@@ -125,11 +125,12 @@ div.divalert3 p{
 	line-height: 25px;
 }
 
-.terms{
+a.terms{
 	text-decoration: none;
 	color: #b5e6f3;
 }
 
-.terms:hover{
+a.terms:hover{
 	color: #ffffff;
+	cursor:hand;
 }
