@@ -2,6 +2,7 @@
 include($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
 include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.phpmailer.php");
 include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
+include($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
 
 class RunnitServices {
 	
@@ -128,7 +129,7 @@ class RunnitServices {
 	    $user['email']=$email;
 	
 		//mensaje en HTML
-		$htmlMsg="Bievenido a Runnity.com<br><br>Tus datos de acceso son:<br><br>Usuario:$username<br><br>Password:$password<br><br>Si tienes alguna duda mandanos un email.";
+		$noHtml="Bievenido a Runnity.com\n\nTus datos de acceso son:\n\nUsuario:$username\n\nPassword:$password\n\nSi tienes alguna duda mandanos un email.";
 	
 		//Send confirmation email
 
@@ -139,13 +140,18 @@ class RunnitServices {
 		$mail->Host = "smtp.gmail.com";
 		$mail->Port = 465;
 		$mail->Username = "alertas@runnity.com";
-		$mail->Password = $this->emailPassword;		
+		$mail->Password = $this->emailPassword;
+
+        $smarty = new Smarty; 
+        $smarty->assign('name', $completename);
+        $smarty->assign('username', $username);
+        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_registro.tpl'));
 
 		$mail->From = "alertas@runnity.com";
 		$mail->FromName = "Alertas Runnity";
-		$mail->Subject = "Bienvenido a Runnity.com / datos de acceso";
-		$mail->AltBody = str_replace("<br>","\n",$htmlMsg);
-		$mail->MsgHTML($htmlMsg);
+		$mail->Subject = "Bienvenido a Runnity.com ".$username;
+		$mail->AltBody = $noHtml;
+		$mail->MsgHTML($email_message);
 		$mail->AddAddress($email, $completename);
 		$mail->IsHTML(true);	
 		
