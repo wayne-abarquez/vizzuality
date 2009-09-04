@@ -57,7 +57,7 @@
 			{if $data.flickr_img_id === null}
 			    <img src="/media/run/{$data.big_picture}" class="carrera" />
 			{else}
-			    <img src="/panoramioPic.php?id={$data.id}&photo_id={$data.flickr_img_id}" class="carrera" />
+			<a href="{$data.flickr_url}" target="_blank"><img src="/panoramioPic.php?id={$data.id}&photo_id={$data.flickr_img_id}" class="carrera" /></a>
 			{/if}
 			<div class="span-16 raceContent">
 			
