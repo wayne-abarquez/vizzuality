@@ -400,12 +400,21 @@ class RunnitServices {
     	        $published="false";
     	    }    	    
     	    
+            if($flickr_url!="") {
+                //http://www.flickr.com/photos/luis_carrasco/3228648671/
+                //extract the id
+                $flic_pieces=explode("/",$flickr_url);
+                if(is_numeric(end($flic_pieces))) {
+                    $idflick=end($flic_pieces);
+                }
+            }    	    
+    	    
     	    
 	        $sql="INSERT INTO run(name,event_location,distance_meters,distance_text,event_date,category,awards,".
-	            "description, inscription_price,inscription_location,inscription_email,inscription_website,province_fk,is_displayed_in_home,run_type,published,tlf_informacion,flickr_url,start_point,end_point".
+	            "description, inscription_price,inscription_location,inscription_email,inscription_website,province_fk,is_displayed_in_home,run_type,published,tlf_informacion,flickr_url,flickr_img_id,start_point,end_point".
 	            ") VALUES('$name','$event_location',$distance_meters,'$distance_text','$event_date',".
                 "'$category','$awards','$description','$inscription_price','$inscription_location',".
-                "'$inscription_email','$inscription_website', $province_id,$is_selected,$run_type,$published,'$tlf_informacion','$flickr_url'";
+                "'$inscription_email','$inscription_website', $province_id,$is_selected,$run_type,$published,'$tlf_informacion','$flickr_url','$idflick'";
 
                 if($start_point_lat) {
                     $sql.=",GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
@@ -483,6 +492,15 @@ class RunnitServices {
 				$tlf_informacion=pg_escape_string($tlf_informacion);
 				$flickr_url=pg_escape_string($flickr_url);
 
+
+                if($flickr_url!="") {
+                    //http://www.flickr.com/photos/luis_carrasco/3228648671/
+                    //extract the id
+                    $flic_pieces=explode("/",$flickr_url);
+                    if(is_numeric(end($flic_pieces))) {
+                        $idflick=end($flic_pieces);
+                    }
+                }
         	    
         	    if($is_selected=='f') {
         	        $is_selected="false";
@@ -496,7 +514,7 @@ class RunnitServices {
         	        $published="false";
         	    }        	    
                 
-        	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected,run_type=$run_type,published=$published,tlf_informacion='$tlf_informacion',flickr_url='$flickr_url'";
+        	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected,run_type=$run_type,published=$published,tlf_informacion='$tlf_informacion',flickr_url='$flickr_url',flickr_img_id='$idflick'";
         	        
         	    if($start_point_lat) {
         	        $sql.=",start_point=GeomFromText('POINT($start_point_lon $start_point_lat)',4326)";
