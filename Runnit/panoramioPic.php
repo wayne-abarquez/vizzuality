@@ -3,20 +3,21 @@ include($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
 require "libs/imageTransforms.php";
 require_once("libs/phpFlickr.php");
 $basePath = ABSPATH;
-$targetPicture=$basePath."media/run/".$_REQUEST['id'].".jpg";
+$targetPicture=$basePath."media/run/".$_REQUEST['id']."_big.jpg";
 $defaultPicture=$basePath."media/run/generic/1_big.jpg";
 
 
 $id=$_REQUEST['id'];
 
-/*
+
 if (file_exists($targetPicture)) {
     header("Content-Type: image/jpeg");
     header('Content-Length: '.filesize($targetPicture));
+    header('Expires: Thu, 15 Apr 2015 20:00:00 GMT');  
     print file_get_contents($targetPicture);
     die();
 }
-*/
+
 if(isset($_REQUEST['photo_id'])) {
     $photo_id=$_REQUEST['photo_id'];
 } else {
@@ -34,6 +35,7 @@ if($photo) {
     if(filesize($targetPicture)==2900) {
         header("Content-Type: image/jpeg");
         header('Content-Length: '.filesize($defaultPicture));    
+        header('Expires: Thu, 15 Apr 2015 20:00:00 GMT');
         print file_get_contents($defaultPicture);
         unlink($targetPicture);
         die();        
@@ -42,6 +44,7 @@ if($photo) {
     $imageTransform->crop($targetPicture, 618, 238, $targetPicture);
     header("Content-Type: image/jpeg");
     header('Content-Length: '.filesize($targetPicture));
+    header('Expires: Thu, 15 Apr 2015 20:00:00 GMT');
 
 /*
 	$string = "por ". $photo['owner']['username'];                                              
@@ -62,6 +65,7 @@ if($photo) {
 } else {
     header("Content-Type: image/jpeg");
     header('Content-Length: '.filesize($defaultPicture));    
+    header('Expires: Thu, 15 Apr 2015 20:00:00 GMT');
     print file_get_contents($defaultPicture);     
 }
 
