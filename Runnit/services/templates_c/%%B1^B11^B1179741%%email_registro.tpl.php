@@ -1,8 +1,11 @@
+<?php /* Smarty version 2.6.26, created on 2009-09-04 17:24:19
+         compiled from /Users/jatorre/workspace/runnit/templates/email_registro.tpl */ ?>
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<title>Aviso</title>
+	<?php echo '
 	<style type="text/css">
 <!--
 body {
@@ -50,14 +53,18 @@ a{
 
 -->
 	</style>
+	'; ?>
+
 </head>
 <body>
 
-<h1>Bienvenido a Runnity {$name}</h1>
+<h1>Bienvenido a Runnity <?php echo $this->_tpl_vars['name']; ?>
+</h1>
 
 <p class="title">Estamos encantados de que formes partes de Runnity</p>
 
-<p>Ya puedes inscribirte a las carreras y activar tu alerta de proximidad por email. Sólo tienes que ir a tu página de usuario <a href="">http://runnity.com/user/{$username}?</a> y rellenar el formulario.</p>
+<p>Ya puedes inscribirte a las carreras y activar tu alerta de proximidad por email. Sólo tienes que ir a tu página de usuario <a href="">http://runnity.com/user/<?php echo $this->_tpl_vars['username']; ?>
+?</a> y rellenar el formulario.</p>
 
 <p>Además, como usuario de runnity.com serás el primero en enterarte de las novedades y las mejoras que vayamos haciendo y podrás compartir tus 
 opiniones o experiencias en las carreras, con los demás usuarios.</p>
