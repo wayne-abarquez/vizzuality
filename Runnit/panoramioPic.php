@@ -43,6 +43,7 @@ if($photo) {
     header("Content-Type: image/jpeg");
     header('Content-Length: '.filesize($targetPicture));
 
+/*
 	$string = "por ". $photo['owner']['username'];                                              
 	$font  = 3;
 	$width  = ImageFontWidth($font)* strlen($string) ;
@@ -55,6 +56,7 @@ if($photo) {
 	imagestring ($im, $font, $x, $y,  $string, $text_color);
 
 	imagejpeg ($im,$targetPicture);
+*/	
 
     print file_get_contents($targetPicture);    
 } else {
