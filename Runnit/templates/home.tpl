@@ -127,7 +127,7 @@
 		</div>
 		
 		<div class="column span-8 last">
-			<div class="titleImportant">¿CONOCES ALGUNA CARRERA QUE NO ESTÁ EN RUNNY? ENTONCES DINOSLO!</div>
+			<div class="titleImportant">¿CONOCES ALGUNA CARRERA QUE NO ESTÁ EN RUNNITY? ENTONCES DINOSLO!</div>
 			<div class="contentImportant">Entre todos conseguiremos crear la mejor red de carreras nacionales y disfrutar aún más del mundo del running.</div>
 			<div class="buttonImportant"><input class="fg-button ui-state-default ui-corner-all" type="submit" value="Ayúdanos con tu carrera" onclick="showContactBox()"/></div>
 		</div>
