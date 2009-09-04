@@ -105,7 +105,7 @@
 							{if $data.inscription_email != null}
 							<div class="span-6 databox">
 								<div class="span-2 last distance"><p class="textRace">E-mail:</p></div>
-								<div class="span-4 last distanceInfo"><p><a id="datos1" href="" class="special">{$data.inscription_email}</a></p></div>
+								<div class="span-4 last distanceInfo"><p><a id="datos1" href="mailto:{$data.inscription_email}" class="special">{$data.inscription_email}</a></p></div>
 							</div>
 							{/if}
 							{if $data.inscription_website != null}
