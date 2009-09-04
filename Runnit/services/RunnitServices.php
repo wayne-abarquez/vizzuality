@@ -11,6 +11,7 @@ class RunnitServices {
 		$this->basePath="/Users/jatorre/workspace/runnit/";
 	}
     
+    //ajaxController,RacedEditor.mxml
     public function login($email,$pass) {
 
         $email=pg_escape_string($email);
@@ -31,6 +32,15 @@ class RunnitServices {
         }
 	}
 	
+	//ajaxController
+	public function logout() {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");
+	    }
+	    session_destroy();
+	}	
+	
+	//carrera.php
 	public function getComments($on_id,$table) {
 	    $table=pg_escape_string($table);
 	    
@@ -56,7 +66,7 @@ class RunnitServices {
 	     
 	}
 	
-	
+	//ajaxController
 	public function isUsernameFree($username) {
 	    $username=pg_escape_string($username);
 	    $sql="SELECT id from users WHERE username='$username'";
@@ -68,6 +78,7 @@ class RunnitServices {
 	    return true;
 	}
 	
+	//ajaxController
 	public function registerUser($username,$completename,$email,$password) {
 	    $username=pg_escape_string($username);
 	    $completename=pg_escape_string($completename);
@@ -144,6 +155,7 @@ class RunnitServices {
 	    return $user;
 	}
 	
+	//ajaxController
 	public function updateUser($username,$completename,$email,$password,$locality,$radio) {
 	    if (!$_SESSION['logged'] or $_SESSION['user']['username']!=$username) {
 	        throw new Exception("user not logged in");
@@ -187,22 +199,17 @@ class RunnitServices {
 	     
     }
 
-	public function getRunsForBBox($north,$south,$east,$west) {
+	/*public function getRunsForBBox($north,$south,$east,$west) {
 		$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and start_point && ST_SetSRID(ST_MakeBox2D(ST_Point($west, $south), ST_Point($east ,$north)),4326)";
-	}
+	} */
 	
+	//runnitHomeMap
 	public function getAllRuns() {
-		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and start_point is not null";
+		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and start_point is not null";
 		return pg_fetch_all(pg_query($this->conn, $sql));  
-	}	
+	}		    
 	
-	public function logout() {
-	    if (!$_SESSION['logged']) {
-	        throw new Exception("user not logged in");
-	    }
-	    session_destroy();
-	}	    
-	
+	//ajaxController
 	public function addComment($userId,$comment,$id,$table) {
 	    if (!$_SESSION['logged'] or $_SESSION['user']['id']!=$userId) {
 	        throw new Exception("user not logged in");
@@ -217,13 +224,14 @@ class RunnitServices {
 	    
 	}
 	
-	public function getAllRunsBBox() {
+	/*public function getAllRunsBBox() {
 		$sql="select xmax(extent(start_point)) as east,ymax(extent(start_point)) as north, xmin(extent(start_point)) as west, ymin(extent(start_point)) as south   from run as r where r.event_date > now()";
         $result = pg_query($this->conn, $sql);  
         return pg_fetch_assoc($result);		
-	}
+	}*/
 	
 	
+	//carrera,index
 	public function getLastUsersInscribedToRuns($runId=0) {
 	    if($runId==0) {
     	    $sql="select u.id as user_id,username, r.name as run_name, r.id as run_id, (select count(id) from users_run where run_fk=r.id) as num_participants from users_run as ur inner join users as u on ur.users_fk=u.id inner join run as r on ur.run_fk=r.id order by ur.id DESC limit 3";	        
@@ -254,18 +262,20 @@ class RunnitServices {
 	    
 	}	
 	
-	public function getHighlightedRun() {
+	/*public function getHighlightedRun() {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() order by is_displayed_in_home ASC LIMIT 1";
         $result = pg_query($this->conn, $sql);  
         return pg_fetch_assoc($result);
-	}
+	}*/
 	
+	//usuario.php
 	public function getUserRuns($id) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type from (run as r inner join users_run as ur on r.id=ur.run_fk) left join province as p on r.province_fk=p.id where ur.users_fk=$id AND r.event_date > now()";
         $result = pg_query($this->conn, $sql);  
         return pg_fetch_all(pg_query($this->conn, $sql));
 	}	
 	
+	//searchresults
 	public function searchRuns($q,$max,$min,$offset) {
         $q=pg_escape_string($q);
         if(!$offset) {
@@ -281,7 +291,7 @@ class RunnitServices {
             $sql.=",false as inscrito";
         }   
 	    
-	    $sql.=" from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() AND (r.name ilike '%$q%' or event_location ilike '%$q%')";
+	    $sql.=" from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() and published=true AND (r.name ilike '%$q%' or event_location ilike '%$q%')";
 	    if($min>0) {
 	        $sql.=" AND distance_meters >= $min";
 	    }
@@ -308,6 +318,7 @@ class RunnitServices {
         return $results;  
 	}
 	
+	//searchResults,index
 	public function getNextRuns($lat=0,$lon=0,$distance_km=150) {	
 	$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type";
 	
@@ -315,7 +326,7 @@ class RunnitServices {
 	    $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
 	}
 	
-	$sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now()";
+	$sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true";
 	
 /*		if($provinceName!="") {
 			$sqlProv="SELECT id from province WHERE name like '$provinceName'";
@@ -548,6 +559,8 @@ class RunnitServices {
         return null;   	
     }	    
     
+    
+    //racesEditor, sitemap
     public function getRunsList($limit=0) {
         $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,province_fk,is_displayed_in_home,created_when,run_type,published,tlf_informacion,flickr_url from run ORDER BY id DESC"; 
 		if($limit!=0) {
@@ -557,6 +570,7 @@ class RunnitServices {
 		return pg_fetch_all(pg_query($this->conn, $sql));    
     }
     
+    //carrera
     public function getRunDetails($id) {
         $sql="select r.id ,r.name,event_location,distance_meters,event_date,category,awards,description,inscription_price,tlf_informacion,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,is_displayed_in_home,(select count(users_run.id) from users_run,run_type where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type";
         
@@ -581,6 +595,7 @@ class RunnitServices {
         return $run;
     }
     
+    //RunAroundMap.as
     public function getRunsCloseToAnotherForMap($id) {
 	    $sql="select r.id,r.name,event_date,run_type,event_location,distance_text, y(start_point) as lat, x(start_point) as lon";
 
@@ -604,6 +619,7 @@ class RunnitServices {
 		return $result;
     }
 
+    //carrera
     public function getRunsCloseToAnother($id) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
@@ -619,18 +635,21 @@ class RunnitServices {
 		return pg_fetch_all(pg_query($this->conn, $sql));        
     }
 
+    //ajaxController
 	public function inscribeUserToRun($userId,$runId) {
 		$sql="INSERT INTO users_run(users_fk,run_fk) VALUES ($userId,$runId)";
         $result= pg_query($this->conn, $sql);
         return null;		
 	}
 	
+	//ajaxController
 	public function unInscribeUserToRun($userId,$runId) {
 		$sql="DELETE FROM users_run WHERE users_fk=$userId AND run_fk=$runId";
         $result= pg_query($this->conn, $sql);
         return null;		
 	}
 
+    //ajaxController
 	public function sendEmailToAlertas($nombre,$email,$mensaje) {
 		$mail = new PHPMailer();
 		$mail->IsSMTP();
@@ -654,6 +673,7 @@ class RunnitServices {
 		return null;
 	}
 	
+	//ajaxController
 	public function setAlert($userId,$lat,$lon,$distance) {
 		$sql="UPDATE users SET location_point=PointFromText('POINT($lon $lat)', 4326), radius_interest=$distance WHERE id=$userId";
 		$result= pg_query($this->conn, $sql);
@@ -663,6 +683,7 @@ class RunnitServices {
         $result= pg_query($this->conn, $sql);
         return null;
 	}
+	
 	
 	public function prepareAlerts() {
 		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE r.created_when > now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
@@ -682,6 +703,7 @@ class RunnitServices {
         return null;		
 	}
 	
+	//ajaxController
 	public function sendPasswordToEmail($email) {
 		$name=pg_escape_string($email);
 		
