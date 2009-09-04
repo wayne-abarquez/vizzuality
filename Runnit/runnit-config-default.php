@@ -15,6 +15,6 @@ define('DB_PASSWORD', 'pass');
 /** PostgreSQL hostname */
 define('DB_HOST', 'localhost');
 
-defined('ABSPATH','/path/to/www/');
-defined('EMAILPASSWORD','emailpass');
+define('ABSPATH','/path/to/www/');
+define('EMAILPASSWORD','emailpass');
 ?>
