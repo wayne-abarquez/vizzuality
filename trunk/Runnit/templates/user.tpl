@@ -165,7 +165,7 @@
             				<div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
             			{else}		    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
-        						<div class="column span-1 first date">
+        						<div class="column span-1 first date race">
 	    						{if $race.run_type eq "1"}
 	    							<div class="month month1">{getMonth month=$race.event_date|substr:5:2}</div>
 	    						{/if}
