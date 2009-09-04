@@ -27,7 +27,8 @@ $smarty->assign('titulo_pagina', $data['name'] . ' - Runnity.com');
 $smarty->assign('data',$data);
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id']));
 $smarty->assign('comments',$services->getComments($_REQUEST['id'],'run'));
-$smarty->assign('nextRaces',$services->getRunsCloseToAnother($_REQUEST['id']));
+$smarty->assign('similarTypeRaces',$services->getRunsSimilarType($_REQUEST['id']));
+$smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id']));
 
 
 $smarty->display('carrera.tpl');

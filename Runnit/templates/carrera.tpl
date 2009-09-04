@@ -249,15 +249,13 @@
 				</div>
 			</div>
 	
+	        {if $runsInSameDates}
 			<div class="span-8 importantRaces">
 				<div class="events"> 
 					<h2 class="newsTitle">En las mismas fechas</h2>
 				</div>
 				<div class="events">
-            		{foreach key=id item=race from=$nextRaces}
-            			{if $race eq "f"}
-            				<div class="span-8 races">No hay proximas carreras.</div> 
-            			{else}		    				    
+            		{foreach key=id item=race from=$runsInSameDates}	    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
 	    						{if $race.run_type eq "1"}
@@ -282,22 +280,17 @@
         							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
         						</div>
         					</div>
-            			{/if}
-                	    {foreachelse}
-                	        <div class="span-8 races">No hay proximas carreras.</div> 
                 	    {/foreach}					
 				</div>
 			</div>
-			
+			{/if}
+			{if $similarTypeRaces}
 			<div class="span-8 importantRaces">
 				<div class="events"> 
 					<h2 class="newsTitle">De distancia parecida</h2>
 				</div>
 				<div class="events">
-            		{foreach key=id item=race from=$nextRaces}
-            			{if $race eq "f"}
-            				<div class="span-8 races">No hay proximas carreras.</div> 
-            			{else}		    				    
+            		{foreach key=id item=race from=$similarTypeRaces}    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
         						<div class="column span-1 first date">
 	    						{if $race.run_type eq "1"}
@@ -322,14 +315,15 @@
         							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
         						</div>
         					</div>
-            			{/if}
-                	    {foreachelse}
-                	        <div class="span-8 races">No hay proximas carreras.</div> 
                 	    {/foreach}					
-					<input class="fg-button VerCalendario" type="button" value="Ver calendario completo" onclick="location='/buscar'"/>
 				</div>
 			</div>
-		
+            {/if}
+            <div class="span-8 marginTopPlus">
+				<div class="events">
+				    	<input class="fg-button VerCalendario" type="button" value="Ver calendario completo" onclick="location='/buscar'"/>
+				</div>    
+			</div>  
 			
 			<div class="span-8 marginTopPlus">
 				<div class="events"> 
