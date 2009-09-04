@@ -468,8 +468,8 @@ class RunnitServices {
 				$inscription_location=pg_escape_string($inscription_location);
 				$inscription_email=pg_escape_string($inscription_email);
 				$inscription_website=pg_escape_string($inscription_website);
-				$inscription_website=pg_escape_string($tlf_informacion);
-				$inscription_website=pg_escape_string($flickr_url);
+				$tlf_informacion=pg_escape_string($tlf_informacion);
+				$flickr_url=pg_escape_string($flickr_url);
 
         	    
         	    if($is_selected=='f') {
