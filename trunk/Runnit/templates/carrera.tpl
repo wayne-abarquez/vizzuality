@@ -71,6 +71,12 @@
 								<div class="span-4 last distanceInfo"><p><b>{$data.distance_text},</b> <a href="#map2Container" class="special">ver mapa</a></p></div>
 							</div>
 							{/if}
+							{if $data.event_date != null}
+							<div class="span-6 databox">
+								<div class="span-2 last distance"><p>Hora:</p></div>
+								<div class="span-4 last distanceInfo"><p><b>{$data.event_date|substr:12:5}</b></p></div>
+							</div>
+							{/if}
 							{if $data.category != null}
 							<div class="span-6 databox">
 								<div class="span-2 last distance"><p>Categorias:</p></div>
