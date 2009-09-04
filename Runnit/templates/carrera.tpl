@@ -74,7 +74,7 @@
 							{if $data.event_date != null}
 							<div class="span-6 databox">
 								<div class="span-2 last distance"><p>Hora:</p></div>
-								<div class="span-4 last distanceInfo"><p><b>{$data.event_date|substr:12:5}</b></p></div>
+								<div class="span-4 last distanceInfo"><p><b>{$data.event_date|substr:11:5}</b></p></div>
 							</div>
 							{/if}
 							{if $data.category != null}
