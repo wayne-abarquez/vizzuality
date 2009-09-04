@@ -98,7 +98,7 @@
 							{/if}
 							{if $data.inscription_location != null}
 							<div class="span-6 databox">
-								<div class="span-2 last distance"><p>Presencial:</p></div>
+								<div class="span-2 last distance"><p>Lugar:</p></div>
 								<div class="span-4 last distanceInfo"><p><b>{$data.inscription_location}</b></p></div>
 							</div>
 							{/if}
