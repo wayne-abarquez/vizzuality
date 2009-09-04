@@ -641,7 +641,7 @@ class RunnitServices {
     }
 
     //carrera
-    public function getRunsCloseToAnother($id) {
+    public function getRunsSimilarType($id) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
         if(isset($_SESSION['logged']) and $_SESSION['logged']) {
@@ -651,10 +651,27 @@ class RunnitServices {
         }
         
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id ";
-		$sql.=" and distance_sphere(r.start_point,(select start_point from run where id=$id)) <(50000)";
+		$sql.=" and run_type = (select run_type from run where id=$id)";
 		$sql.=" order by event_date ASC limit 4";
-		return pg_fetch_all(pg_query($this->conn, $sql));        
+		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
+
+    //carrera
+    public function getRunsInSimilarDates($id) {
+	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
+
+        if(isset($_SESSION['logged']) and $_SESSION['logged']) {
+            $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
+        } else {
+            $sql.=",false as inscrito";
+        }
+        
+        $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id  ";
+		$sql.=" and (event_date > (select (event_date::date-7) from run where id=$id) or event_date < (select (event_date::date+7) from run where id=$id))";
+		$sql.=" order by event_date ASC limit 4";
+		return pg_fetch_all(pg_query($this->conn, $sql));      
+    }
+
 
     //ajaxController
 	public function inscribeUserToRun($userId,$runId) {
