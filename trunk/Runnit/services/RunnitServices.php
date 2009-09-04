@@ -1,14 +1,15 @@
 <?php
+include($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
 include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.phpmailer.php");
 include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 
 class RunnitServices {
 	
 	function __construct() {
-	    $this->conn = pg_connect ("host=67.23.44.117 dbname=runnit user=runnit password=runnitrunnit555");
+	    $this->conn = pg_connect ("host=".DB_HOST." dbname=".DB_NAME." user=".DB_USER." password=".DB_PASSWORD);
 	
-		$this->emailPassword="alertrunnity";
-		$this->basePath="/Users/jatorre/workspace/runnit/";
+		$this->emailPassword=EMAILPASSWORD;
+		$this->basePath=ABSPATH;
 	}
     
     //ajaxController,RacedEditor.mxml

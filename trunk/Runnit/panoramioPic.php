@@ -1,12 +1,12 @@
 <?php
-
+include($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
 require "libs/imageTransforms.php";
 require_once("libs/phpFlickr.php");
-$basePath = "/Users/jatorre/workspace/runnit/";
+$basePath = ABSPATH;
 $targetPicture=$basePath."media/run/".$_REQUEST['id'].".jpg";
 $defaultPicture=$basePath."media/run/generic/1_big.jpg";
 
-$photo_id=$_REQUEST['photo_id'];
+
 $id=$_REQUEST['id'];
 
 if (file_exists($targetPicture)) {
@@ -15,8 +15,12 @@ if (file_exists($targetPicture)) {
     print file_get_contents($targetPicture);
     die();
 }
-
-$f = new phpFlickr("8e4f99b9bb3c602984421a253d71f322");
+if(isset($_REQUEST['photo_id'])) {
+    $photo_id=$_REQUEST['photo_id'];
+} else {
+    $photo_id="8e4f99b9bb3c602984421a253d71f322";
+}
+$f = new phpFlickr($photo_id);
 $photo = $f->photos_getInfo($photo_id);
 
 
