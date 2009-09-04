@@ -1,8 +1,8 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
-include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.phpmailer.php");
-include($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
-include($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.phpmailer.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
 
 class RunnitServices {
 	
