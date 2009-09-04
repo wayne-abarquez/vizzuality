@@ -45,7 +45,11 @@
 				{if $smarty.section.race.iteration is not even}
 					<div class="column span-8 first races">
 						<div class="column first image">
-							<img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
+						    {if $race.flickr_img_id==""}
+							    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
+							{else}
+							    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}"/>	
+							{/if}
 						</div>
 						<div class="column span-5 last">
 							<div class="nameRaceContainer"><a id="carrera{$smarty.foreach.raceloop.iteration}" class="nameRace" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
@@ -60,7 +64,11 @@
 				{else}
 					<div class="column span-8 last races">
 						<div class="column first image">
-							<img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
+						    {if $race.flickr_img_id==""}
+							    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/>	
+							{else}
+							    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}"/>	
+							{/if}
 						</div>
 						<div class="column span-5 last">
 							<div class="nameRaceContainer"><a id="carrera{$smarty.foreach.raceloop.iteration}" class="nameRace" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>

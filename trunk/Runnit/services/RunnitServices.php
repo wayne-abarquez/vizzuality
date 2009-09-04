@@ -321,7 +321,7 @@ class RunnitServices {
 	
 	//searchResults,index
 	public function getNextRuns($lat=0,$lon=0,$distance_km=150) {	
-	$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type";
+	$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type,flickr_img_id";
 	
 	if(isset($_SESSION['logged']) and $_SESSION['logged']) {
 	    $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
