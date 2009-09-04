@@ -25,7 +25,7 @@ $data['description'] = nl2br($data['description']);
 $smarty->assign('titulo_pagina', $data['name'] . ' - Runnity.com');
 
 $smarty->assign('meta_keywords', $data['name'] . ',' . $data['event_location'] . ',' . 'running,popular,carrera popular,carrera, atletismo,correr,runner');
-$smarty->assign('meta_description', $data['event_date'] . ' ' . $data['name']);
+$smarty->assign('meta_description', $data['event_date'] . ' ' . $data['name'] . ',' . $data['event_location']);
 
 $smarty->assign('data',$data);
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id']));
