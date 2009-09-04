@@ -2,6 +2,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	
+	<meta name="keywords" content="nombre de la carrera, tipo de la carrera, running, popular, atletismo, correr, carrera, runner">
+	<meta name="description" content="fecha y Nombre de la carrera">
+	<meta name="author" content="runnity.com">
+	
 	<title>{$titulo_pagina}</title>
 	
 	<link rel="shortcut icon" href="/img/favicon.ico"/>
