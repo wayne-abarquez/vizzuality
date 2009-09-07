@@ -1058,18 +1058,22 @@ div.raceDetailsBottom {
 }
 
 .errorboxContainer{
-	margin-top: 90px;
+	margin-left:15px;
+	margin-top: 75px;
 }
 
 .errorboxTitle{
 	font-size: 22px;
 	font-weight: bold;
 	color: #666666;
-	margin-top: 0px;
 }
 
 .errorboxInfo{
-/* 	color: #666666; */
 	font-size: 12px;
 	padding-top: 6px;
+}
+
+.errorboxInfo2{
+	font-size: 12px;
+	padding-top: 20px;
 }
