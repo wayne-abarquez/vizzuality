@@ -13,6 +13,7 @@ package
 	import com.google.maps.overlays.Polyline;
 	import com.google.maps.overlays.PolylineOptions;
 	import com.google.maps.styles.FillStyle;
+	import com.vizzuality.gmaps.GenericMarkerIcon;
 	
 	import flash.display.Bitmap;
 	import flash.display.Loader;
@@ -24,8 +25,7 @@ package
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
-	import flash.text.TextFormat; 
-	
+	import flash.text.TextFormat;
 	
 	import rosa.RosaSettings;
 	import rosa.events.RosaEvent;
@@ -107,12 +107,12 @@ package
 			markerRunnerOpt.iconOffset = new Point(-13,-30);
 			markerRunnerOpt.hasShadow = false;
 			markerRunnerOpt.draggable = false;		
-			markerRunnerOpt.icon = new CustomMarkerIcon("runner");
+			markerRunnerOpt.icon = new GenericMarkerIcon("runner");
 			
 			
 			
-			var debugText:TextField=new TextField();
-			debugText.text="DEBUG: "+ root.loaderInfo.parameters.id;
+/* 			var debugText:TextField=new TextField();
+			debugText.text="DEBUG: "+ root.loaderInfo.parameters.id; */
 			
 			addChild(square);
 			addChild(imgLoading);
@@ -144,12 +144,10 @@ package
 			service.addEventListener(RosaEvent.FAULT, getTrackGeometryResult);
 			service.getTrackGeometry(root.loaderInfo.parameters.id);
 			
-			removeChild(imgLoading);	
-			removeChild(square);	
 
 		}		
 		
-		private function 	getTrackGeometryFault(event:RosaEvent):void {
+		private function getTrackGeometryFault(event:RosaEvent):void {
 			trace(event.error);
 		}
 		
@@ -208,7 +206,7 @@ package
 				startOpt.iconOffset = new Point(-10,-10);
 				startOpt.hasShadow = true;
 				startOpt.draggable = false;
-				startOpt.icon = new CustomMarkerIcon("start");
+				startOpt.icon = new GenericMarkerIcon("start");
 				var sMarker:Marker= new Marker(points[0],startOpt);
 				map.addOverlay(sMarker);
 				
@@ -216,40 +214,59 @@ package
 				endOpt.iconOffset = new Point(-10,-10);
 				endOpt.hasShadow = true;
 				endOpt.draggable = false;
-				endOpt.icon = new CustomMarkerIcon("end");
+				endOpt.icon = new GenericMarkerIcon("end");
 				var eMarker:Marker= new Marker(points[points.length-1],endOpt);
 				map.addOverlay(eMarker);
 				
 				//find the intermediate markers
 				//dive the length by 10000
 				var numTrams:Number = Math.floor(trackLength/1000)
-				for (var n:Number=1;n<=numTrams;n++) {
+				for (var n:Number=1;n<=numTrams;n++) { 
 					var pos:LatLng = getPointAtDistance(n*1000);
 					var interOpt:MarkerOptions = new MarkerOptions();
 					interOpt.iconOffset = new Point(-10,-10);
 					interOpt.hasShadow = false;
 					interOpt.draggable = false;
 					interOpt.tooltip=altim[Math.round((n*1000*altim.length)/trackLength)]+" m.";
-					interOpt.icon = new CustomMarkerIcon("km",n.toString());
+					interOpt.icon = new GenericMarkerIcon("km",n.toString());
 					var kMarker:Marker= new Marker(pos,interOpt);
 					map.addOverlay(kMarker);
 				}
 				
 
 			} else {
+				
+				var startOpt2:MarkerOptions = new MarkerOptions();
+				startOpt2.iconOffset = new Point(-10,-10);
+				startOpt2.hasShadow = true;
+				startOpt2.draggable = false;
+				startOpt2.icon = new GenericMarkerIcon("start");
+				
+				var endOpt2:MarkerOptions = new MarkerOptions();
+				endOpt2.iconOffset = new Point(-10,-10);
+				endOpt2.hasShadow = true;
+				endOpt2.draggable = false;
+				endOpt2.icon = new GenericMarkerIcon("end");			
+				
 				map.setSize(new Point(600,400));
-				var startMarker:Marker = new Marker(new LatLng(event.result.start.lat,event.result.start.lon));
+				var startMarker:Marker = new Marker(new LatLng(event.result.start.lat,event.result.start.lon),startOpt2);
 				map.addOverlay(startMarker);
 				if(event.result.end.lat !=null) {
-					var endMarker:Marker = new Marker(new LatLng(event.result.end.lat,event.result.end.lon));
+					var endMarker:Marker = new Marker(new LatLng(event.result.end.lat,event.result.end.lon),endOpt2);
 					map.addOverlay(endMarker);
-					var bounds:LatLngBounds = new LatLngBounds(startMarker.getLatLng(),endMarker.getLatLng());
+					var bounds:LatLngBounds= new LatLngBounds();
+					bounds.extend(startMarker.getLatLng());
+					bounds.extend(endMarker.getLatLng());
 					map.setCenter(bounds.getCenter(),map.getBoundsZoomLevel(bounds)-1);
 					
 				} else {
 					map.setCenter(startMarker.getLatLng(),10);
 				}
 			}
+			
+			removeChild(imgLoading);	
+			removeChild(square);				
+			
 		}
 		
 		private var lineAdded:Boolean=false;
@@ -315,59 +332,5 @@ package
 		
 		
 		
-	}
-}
-
-import flash.display.Sprite;
-import flash.text.TextField;
-import flash.text.TextFormat; 
-
-internal class CustomMarkerIcon extends Sprite
-{
-
-  [Embed('assets/end.png')] 
-  private var end:Class;
-  [Embed('assets/km.png')] 
-  private var km:Class;
-  [Embed('assets/start.png')] 
-  private var start:Class;
-  [Embed('assets/runner.png')] 
-  private var runner:Class;
-  
-	public function CustomMarkerIcon(icon:String,texto:String="")
-	{
-		switch(icon) {
-			case "end":
-				addChild(new end());
-				break;
-			case "km":
-				addChild(new km());
-				break;
-			case "start":
-				addChild(new start());
-				break;
-			case "runner":
-				addChild(new runner());
-				break;
-		}
-		if(texto!="") {
-			//graphics.beginFill(0x336699);
-			//graphics.drawCircle(0, 0, 15);
-			var tf:TextField = new TextField();
-			var format:TextFormat = tf.getTextFormat();
-			format.font = 'Arial';
-			format.bold=true;
-			tf.defaultTextFormat = format;
-			tf.text = texto;
-			tf.textColor = 0xffffff;
-			//tf.x = -int(tf.textWidth / 2) - 2;
-			//tf.y = -int(tf.textHeight / 2);
-			tf.x = 4;
-			tf.y = 0;
-			tf.mouseEnabled = false;
-			tf.width = tf.textWidth + 4;
-			mouseChildren = false;
-			addChild(tf);
-		}
 	}
 }

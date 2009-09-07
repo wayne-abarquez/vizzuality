@@ -9,20 +9,19 @@ package com.vizzuality.gmaps
 	/**
 	 * @author kelvinluck
 	 */
-	public class RunSingleMarker extends Marker 
+	public class RunSingleMarkerHome extends Marker 
 	{
 
-		public function RunSingleMarker(location:LatLng,name:String,id:Number,eventDate:String)
+		public function RunSingleMarkerHome(location:LatLng,name:String,id:Number,eventDate:String)
 		{
 			var options:MarkerOptions = new MarkerOptions();
 			options.iconOffset = new Point(-10,-10);
 			options.hasShadow = true;
 			options.draggable = false;
-			options.icon = new GenericMarkerIcon("raceNoActiveMarker");
-			//options.icon = new RunSingleMarkerIcon();
+			options.icon = new GenericMarkerIcon("markerIcon");
 			
-			var html:String="<b>" + name + "</b> \n"+eventDate;
-			options.tooltip=name;
+			//var html:String="<b>" + name + "</b> \n"+eventDate;
+			//options.tooltip=name;
 			
 			
 			super(location, options);

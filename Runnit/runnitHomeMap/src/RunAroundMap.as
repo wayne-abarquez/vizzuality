@@ -15,6 +15,7 @@ package
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.styles.FillStyle;
 	import com.kelvinluck.gmaps.Clusterer;
+	import com.vizzuality.gmaps.GenericMarkerIcon;
 	import com.vizzuality.gmaps.RunMarkerCluster;
 	import com.vizzuality.gmaps.RunSingleMarker;
 	
@@ -55,8 +56,8 @@ package
 			stage.align = StageAlign.TOP_LEFT;					
 			
 			imgLoading= new loadingImg() as Bitmap;
-			imgLoading.x = 100;
-			imgLoading.y = 5;
+			imgLoading.x = 80;
+			imgLoading.y = 20;
 			imgLoading.width=100;
 			imgLoading.height=100;
 			
@@ -82,7 +83,7 @@ package
 			addChild(square);
 			addChild(imgLoading);
 		}		
-		
+		 
 		private function preinit(ev:Event):void {
 				var mo:MapOptions = new MapOptions();
 				mo.backgroundFillStyle = new FillStyle({color:0xFFFFFF});
@@ -114,7 +115,7 @@ package
 		private function getRunsCloseToAnother(event:RosaEvent):void {
 			markers = [];	
 			var dataBbox:LatLngBounds=new LatLngBounds();
-			if(event.result!=null) {
+			if(event.result!=null && event.result.around!=null) {
 				for each(var m:Object in event.result.around as Array) {
 					var p:LatLng = new LatLng(m.lat,m.lon);
 					var marker:RunSingleMarker=new RunSingleMarker(p,m.name,m.id,m.event_date)
@@ -126,19 +127,19 @@ package
 					markers.push(marker);
 					dataBbox.extend(p);
 				}
+				clusterer = new Clusterer(markers, map.getZoom(),30);
+				attachedMarkers = [];
+				attachMarkers();	
+				
+				map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			}
 			
 			
-			clusterer = new Clusterer(markers, map.getZoom(),30);
-			attachedMarkers = [];
-			attachMarkers();	
-			
-			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			
 			var options:MarkerOptions = new MarkerOptions();
 			options.iconOffset = new Point(-10,-10);
-			options.icon = new SelectedRunMarkerIcon();
-			if(event.result!=null) {
+			options.icon = new GenericMarkerIcon("markerIcon");
+			if(event.result!=null && event.result.coords!=null) {
 				var runMaker:Marker = new Marker(new LatLng(event.result.coords.lat,event.result.coords.lon),options);
 				map.addOverlay(runMaker);
 				if (markers.length>2) {
