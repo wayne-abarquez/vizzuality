@@ -742,7 +742,9 @@ class RunnitServices {
 	    } else {
     	    $base_url = "http://maps.google.com/maps/geo?output=xml" . "&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
     	    $request_url = $base_url . "&q=" . urlencode($address.",spain");
-    	    if(!$xml = simplexml_load_file($request_url)) {
+    	    $request_response = utf8_encode(file_get_contents($request_url));
+    	    
+    	    if(!$xml = simplexml_load_string($request_response)) {
     	        return false;
     	    } 
     	    $status = $xml->Response->Status->code;
