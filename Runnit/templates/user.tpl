@@ -150,7 +150,7 @@
 						    </form>
 						</div>					
 					</div>
-                    {if !$smarty.session.user.lat eq ""}                 
+                                     
                     <div class="span-13">
                         <div id="map" style="width:512px; height:200px;">Map...</div>
                     </div>    
@@ -158,8 +158,14 @@
                         <script type="text/javascript">
                         //<![CDATA[
                             var map = new GMap2(document.getElementById("map"));
-                            var start = new GLatLng({/literal}{$smarty.session.user.lat}, {$smarty.session.user.lon}{literal});
-                            map.setCenter(start, 10);
+                            {/literal}{if !$smarty.session.user.lat eq ""}{literal}
+                                var start = new GLatLng({/literal}{$smarty.session.user.lat}, {$smarty.session.user.lon}{literal});
+                                map.setCenter(start, 10);
+                            {/literal}{else}{literal}
+                                var start = new GLatLng(40.111688,-3.69140625);
+                                map.setCenter(start, 4);
+                            {/literal}{/if}{literal}
+                            
                             map.addControl(new GSmallZoomControl());
                             new GKeyboardHandler(map);
                             map.enableContinuousZoom();
@@ -170,6 +176,7 @@
 
                             function drawCircle(center, radius, nodes, liColor, liWidth, liOpa, fillColor, fillOpa)
                             {
+                                map.clearOverlays();
                             // Esa 2006
                             	//calculating km/degree
                             	var latConv = center.distanceFrom(new GLatLng(center.lat()+0.1, center.lng()))/100;
@@ -197,14 +204,20 @@
                                 map.setZoom(map.getBoundsZoomLevel(bounds));
                             }
 
-                            drawCircle(start, {/literal}{$smarty.session.user.radius_interest}{literal}, 40);      
-                            fit();
+                            {/literal}{if !$smarty.session.user.lat eq ""}{literal}
+                                drawCircle(start, {/literal}{$smarty.session.user.radius_interest}{literal}, 40);   
+                                fit();
+                            {/literal}{else}{literal}
+                                $('#map').hide();
+                            {/literal}{/if}{literal}
+                                
+                               
+                            
 
                         //]]>
 
                         </script>
-                        {/literal}
-                    {/if}					
+                        {/literal}				
 				</div>
 			</div>	
 			
