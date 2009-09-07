@@ -68,7 +68,7 @@
 	{/if}	
 	
     {if $section eq "usuario"}
-        <script src="http://maps.google.com/maps?file=api&v=2"type="text/javascript" />	
+        <script src="http://maps.google.com/maps?file=api&v=2" type="text/javascript"></script>	
 	{/if}
 	
 
