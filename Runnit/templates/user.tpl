@@ -126,28 +126,30 @@
 					</div>
 					<div class="span-13 DarDeBaja phraseGray">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
 					<div class="span-13 marginTopPlus">
-						<div class="paddingRightContainer"> 
-							<h2 class="userData">Alerta geográfica por email <span class="{if $smarty.session.user.radius_interest eq ''}desactivate{else}activate{/if}">{if $smarty.session.user.radius_interest eq ""}(desactivado){else}(activado){/if}</span></h2>
+						<div class="paddingRightContainer">
+							<h2 class="userData">Alerta geográfica por email <span id="alertType" class="{if $smarty.session.user.radius_interest eq ''}desactivate{else}activate{/if}">{if $smarty.session.user.radius_interest eq ""}(desactivado){else}(activado){/if}</span></h2>
 						</div>
 						<div class="paddingRightContainer phraseGray2">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
-						<div class="marginTopPlus">
-							<div class="column first">
-								<div class="alertLabel">Localidad y provincia</div>
-								<div class="inputWhite">
-									<label class="round" for="input6"><span><input type="text" name="input6" id="input6" value="{$smarty.session.user.locality}"></span></label>
+						<form id="formAlerts" method="GET"  action="{if $smarty.session.user.radius_interest eq ''}javascript: void activateAlerts(){else}javascript: void desactivateAlerts(){/if}">
+							<div class="marginTopPlus">
+								<div class="column first">
+									<div class="alertLabel">Localidad y provincia</div>
+									<div class="inputWhite">
+										<label class="round" for="input6"><span><input type="text" name="input6" id="input6" value="{$smarty.session.user.locality}"></span></label>
+									</div>
 								</div>
-							</div>
-							<div class="column">
-								<div class="alertLabel">Radio</div>
-								<div class="inputWhite">
-									<label class="round" for="input7"><span><input type="text" name="input7" id="input7" value="{$smarty.session.user.radius_interest}"></span></label>
+								<div class="column">
+									<div class="alertLabel">Radio (km)</div>
+									<div class="inputWhite">
+										<label class="round" for="input7"><span><input type="text" name="input7" id="input7" value="{$smarty.session.user.radius_interest}"></span></label>
+									</div>
 								</div>
+								<div class="inputWhite paddingRightContainer">
+									<input id="alertButton" class="fg-button" type="submit" value="{if $smarty.session.user.radius_interest eq ''}Activar alertas por email{else}Desactivar alertas{/if}"/>
+								</div>
+								<div id="alertError" class="span-10 registerError"></div>
 							</div>
-							<div class="inputWhite paddingRightContainer">
-								<input id="alertButton" class="fg-button" type="submit" value="{if $smarty.session.user.radius_interest eq ''}Activar alerta por email{else}Desactivar alerta por email{/if}" onclick="{if $smarty.session.user.radius_interest eq ''}javascript: void activateAlerts(){else}javascript: void desactivateAlerts(){/if}"/>
-							</div>
-							<div id="alertError" class="registerError"></div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>	

@@ -675,10 +675,10 @@ function activateAlerts() {
 	
 	$('#alertButton').val('Activando...');
 	
-/*
-    var dataObj = ({runId : $se,
-        method: 'inscribeUserToRun',
-        userId: userID
+
+    var dataObj = ({locality : lugar,
+        method: 'setAlert',
+        distance: radio
         });
     
  	$.ajax({
@@ -687,20 +687,94 @@ function activateAlerts() {
     	data: dataObj,
     	cache: false,
     	success: function(result){     				
-					$('#inscriptionButton').val('voy a ir');
-					$.modal.close();
+					if (result == 'INVALID') {
+						$('#alertError').css("red", 'green');
+						$('#alertError').html('Lo siento, pero no encontramos tu localidad.');
+						$("#alertButton").removeAttr("disabled");
+					    $("#input6").removeAttr("disabled");
+					    $("#input7").removeAttr("disabled");
+					    $('#alertButton').val('Activar alertas por mail');
+					    
+					} else {
+						
+						$('#alertError').html('Alerta activada');
+						$("#alertButton").removeAttr("disabled");
+					    $("#input6").removeAttr("disabled");
+					    $("#input7").removeAttr("disabled");
+					    $('#alertButton').val('Desactivar alertas');
+					    $("#alertType").attr("class","activate");
+					    $("#alertType").html("(activado)");
+					    timerID = setTimeout("alertErrorHide()", 2000);
+					    $('#alertError').css("color", 'green');
+					    $("#formAlerts").attr('action','javascript: void desactivateAlerts()'); 
+					}
     	},
         error:function (xhr, ajaxOptions, thrownError){   
                 alert('Runnit' + xhr.message + "\n" + thrownError);
         }
     });
-*/
      
 }
 
 
-function desactivateAlerts() {
+function alertErrorHide () {
+	$('#alertError').html('');
+    clearTimeout(timerID);
+}
 
+
+function desactivateAlerts() {
+	$('#alertError').html('');
+
+	var lugar = $("#input6").val();
+    var radio = $("#input7").val();
+	
+	
+	$("#alertButton").attr("disabled", "true");
+    $("#input6").attr("disabled", "true");
+    $("#input7").attr("disabled", "true");
+	
+	$('#alertButton').val('Desactivando...');
+	
+
+    var dataObj = ({locality : "",
+        method: 'setAlert',
+        distance: ""
+        });
+    
+ 	$.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){     				
+					if (result == 'INVALID') {
+						$('#alertError').css("color", 'red');
+						$('#alertError').html('Lo siento, no podemos desactivar el servicio en estos momentos.');
+						$("#alertButton").removeAttr("disabled");
+					    $("#input6").removeAttr("disabled");
+					    $("#input7").removeAttr("disabled");
+					    $('#alertButton').val('Desactivar alertas');
+					} else {
+						$('#alertError').css("color", 'green');
+						$("#input6").val('');
+    					$("#input7").val('');
+						$('#alertError').html('Alerta desactivada');
+						$("#alertType").attr("class","desactivate");
+						$("#alertType").html("(desactivado)");
+						$("#alertButton").removeAttr("disabled");
+					    $("#input6").removeAttr("disabled");
+					    $("#input7").removeAttr("disabled");
+					    $('#alertButton').val('Activar alertas por email');
+					    timerID = setTimeout("alertErrorHide()", 2000);
+					    //boton href
+					    $("#formAlerts").attr('action','javascript: void activateAlerts()'); 
+					}
+    	},
+        error:function (xhr, ajaxOptions, thrownError){   
+                alert('Runnit' + xhr.message + "\n" + thrownError);
+        }
+    });
 }
 
 
