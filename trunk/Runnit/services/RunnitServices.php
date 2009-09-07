@@ -717,15 +717,54 @@ class RunnitServices {
 		return null;
 	}
 	
+	
+	
+	
 	//ajaxController
-	public function setAlert($userId,$lat,$lon,$distance) {
-		$sql="UPDATE users SET location_point=PointFromText('POINT($lon $lat)', 4326), radius_interest=$distance WHERE id=$userId";
-		$result= pg_query($this->conn, $sql);
-		
-		//Estas son las que el hombre no ha sido informado al acabar de apuntarse
-		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE r.created_when <= now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
-        $result= pg_query($this->conn, $sql);
-        return null;
+	public function setAlert($address,$distance) {
+        if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");
+	    }	    
+	    
+	    $address=pg_escape_string($address);
+	    $userId=$_SESSION['user']['id'];
+	    if($address=="" or !$address) {
+	        //remove the possible alerts
+	        $sql="UPDATE users SET locality=null, location_point=null, radius_interest=null WHERE id=$userId";
+	        $result= pg_query($this->conn, $sql);
+	        $sql="DELETE FROM pending_alerts WHERE user_fk=$userId";
+	        $result= pg_query($this->conn, $sql);
+	        $_SESSION['user']['locality']="";
+	        $_SESSION['user']['radius_interest']="";
+	        return true;
+	    } else {
+    	    $base_url = "http://maps.google.com/maps/geo?output=xml" . "&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
+    	    $request_url = $base_url . "&q=" . urlencode($address.",spain");
+    	    if(!$xml = simplexml_load_file($request_url)) {
+    	        return false;
+    	    } 
+    	    $status = $xml->Response->Status->code;
+    	    if (!(strcmp($status, "200") == 0)) {
+    	        return false;
+            }
+            $coordinates = $xml->Response->Placemark->Point->coordinates;
+            $coordinatesSplit = split(",", $coordinates);
+            // Format: Longitude, Latitude, Altitude
+            $lat = $coordinatesSplit[1];
+            $lon = $coordinatesSplit[0];        
+
+    		$sql="UPDATE users SET locality='$address', location_point=PointFromText('POINT($lon $lat)', 4326), radius_interest=$distance WHERE id=$userId";
+    		$result= pg_query($this->conn, $sql);
+
+	        $_SESSION['user']['locality']=$address;
+	        $_SESSION['user']['radius_interest']=$distance;
+
+
+    		//Estas son las que el hombre no ha sido informado al acabar de apuntarse
+    		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE r.created_when <= now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
+            $result= pg_query($this->conn, $sql);
+            return true;	        
+	    }
 	}
 	
 	
