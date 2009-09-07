@@ -1,6 +1,5 @@
 {include file="header.tpl"} 
 
-<script type="text/javascript" src="/js/ajaxupload.3.6.js"></script>
 {literal}
 <script type="text/javascript">
     $(document).ready(function(){
@@ -130,8 +129,8 @@
 							<h2 class="userData">Alerta geográfica por email <span id="alertType" class="{if $smarty.session.user.radius_interest eq ''}desactivate{else}activate{/if}">{if $smarty.session.user.radius_interest eq ""}(desactivado){else}(activado){/if}</span></h2>
 						</div>
 						<div class="paddingRightContainer phraseGray2">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
-						<form id="formAlerts" method="GET"  action="{if $smarty.session.user.radius_interest eq ''}javascript: void activateAlerts(){else}javascript: void desactivateAlerts(){/if}">
-							<div class="marginTopPlus">
+						<div class="marginTopPlus">
+						    <form id="formAlerts" method="GET"  action="{if $smarty.session.user.radius_interest eq ''}javascript: void activateAlerts(){else}javascript: void desactivateAlerts(){/if}">
 								<div class="column first">
 									<div class="alertLabel">Localidad y provincia</div>
 									<div class="inputWhite">
@@ -148,9 +147,64 @@
 									<input id="alertButton" class="fg-button" type="submit" value="{if $smarty.session.user.radius_interest eq ''}Activar alertas por email{else}Desactivar alertas{/if}"/>
 								</div>
 								<div id="alertError" class="span-10 registerError"></div>
-							</div>
-						</form>
+						    </form>
+						</div>					
 					</div>
+                    {if !$smarty.session.user.lat eq ""}                 
+                    <div class="span-13">
+                        <div id="map" style="width:512px; height:200px;">Map...</div>
+                    </div>    
+                        {literal}
+                        <script type="text/javascript">
+                        //<![CDATA[
+                            var map = new GMap2(document.getElementById("map"));
+                            var start = new GLatLng({/literal}{$smarty.session.user.lat}, {$smarty.session.user.lon}{literal});
+                            map.setCenter(start, 10);
+                            map.addControl(new GSmallZoomControl());
+                            new GKeyboardHandler(map);
+                            map.enableContinuousZoom();
+                            map.enableDoubleClickZoom();    
+                            
+                            var bounds = new GLatLngBounds();
+
+
+                            function drawCircle(center, radius, nodes, liColor, liWidth, liOpa, fillColor, fillOpa)
+                            {
+                            // Esa 2006
+                            	//calculating km/degree
+                            	var latConv = center.distanceFrom(new GLatLng(center.lat()+0.1, center.lng()))/100;
+                            	var lngConv = center.distanceFrom(new GLatLng(center.lat(), center.lng()+0.1))/100;
+
+                            	//Loop 
+                            	var points = [];
+                            	var step = parseInt(360/nodes)||10;
+                            	for(var i=0; i<=360; i+=step)
+                            	{
+                            	var pint = new GLatLng(center.lat() + (radius/latConv * Math.cos(i * Math.PI/180)), center.lng() + 
+                            	(radius/lngConv * Math.sin(i * Math.PI/180)));
+                            	points.push(pint);
+                            	bounds.extend(pint); //this is for fit function
+                            	}
+                            	points.push(points[0]); // Closes the circle, thanks Martin
+                            	fillColor = fillColor||liColor||"#0055ff";
+                            	liWidth = liWidth||2;
+                            	var poly = new GPolygon(points,liColor,liWidth,liOpa,fillColor,fillOpa);
+                            	map.addOverlay(poly);
+                            }  
+
+                            function fit(){
+                                map.panTo(bounds.getCenter()); 
+                                map.setZoom(map.getBoundsZoomLevel(bounds));
+                            }
+
+                            drawCircle(start, {/literal}{$smarty.session.user.radius_interest}{literal}, 40);      
+                            fit();
+
+                        //]]>
+
+                        </script>
+                        {/literal}
+                    {/if}					
 				</div>
 			</div>	
 			

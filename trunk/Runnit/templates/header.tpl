@@ -28,6 +28,12 @@
 	<link rel="stylesheet" type="text/css" href="/css/contact.css">	
 	<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection">
 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity" />
+
+
+    {if $section eq "usuario"}
+        <script type="text/javascript" src="/js/ajaxupload.3.6.js"></script>
+	{/if}
+
 	
 	<!-- Import JS source files -->
 	<script src='/js/jquery-1.3.2.min.js' type='text/javascript'></script>
@@ -61,6 +67,11 @@
 		{/literal}
 	{/if}	
 	
+    {if $section eq "usuario" and !$smarty.session.user.lat eq ""}
+        <script src="http://maps.google.com/maps?file=api&v=2"type="text/javascript" />	
+	{/if}
+	
+
 	
 	
 </head>

@@ -20,7 +20,7 @@ class RunnitServices {
         $pass=pg_escape_string($pass);
         
         // create page view database table
-        $sql = "SELECT * FROM users WHERE (email='$email' AND pass='$pass') OR (username='$email' AND pass='$pass')";        
+        $sql = "SELECT id,completename,username,pass,email,created_when,x(location_point) as lon,y(location_point) as lat,locality,radius_interest,is_admin FROM users WHERE (email='$email' AND pass='$pass') OR (username='$email' AND pass='$pass')";        
         $result = pg_query($this->conn, $sql);
         if(pg_num_rows($result)<1) {
             $_SESSION['logged']=false;
@@ -736,6 +736,8 @@ class RunnitServices {
 	        $result= pg_query($this->conn, $sql);
 	        $_SESSION['user']['locality']="";
 	        $_SESSION['user']['radius_interest']="";
+	        $_SESSION['user']['lat']=null;
+	        $_SESSION['user']['lon']=null;	        
 	        return true;
 	    } else {
     	    $base_url = "http://maps.google.com/maps/geo?output=xml" . "&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
@@ -757,13 +759,23 @@ class RunnitServices {
     		$result= pg_query($this->conn, $sql);
 
 	        $_SESSION['user']['locality']=$address;
+	        $_SESSION['user']['lat']=$lat;
+	        $_SESSION['user']['lon']=$lon;
 	        $_SESSION['user']['radius_interest']=$distance;
 
+	        $sql="DELETE FROM pending_alerts WHERE user_fk=$userId";
+	        $result= pg_query($this->conn, $sql);
 
     		//Estas son las que el hombre no ha sido informado al acabar de apuntarse
-    		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE r.created_when <= now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
+    		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE u.id=$userId AND r.created_when <= now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
             $result= pg_query($this->conn, $sql);
-            return true;	        
+            
+            
+            
+            return true;	   
+            
+            
+                 
 	    }
 	}
 	
