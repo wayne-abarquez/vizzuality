@@ -134,13 +134,13 @@
 							<div class="column first">
 								<div class="alertLabel">Localidad y provincia</div>
 								<div class="inputWhite">
-									<label class="round" for="input6"><span><input type="text" name="input6" id="input6">{$smarty.session.user.locality}</span></label>
+									<label class="round" for="input6"><span><input type="text" name="input6" id="input6" value="{$smarty.session.user.locality}"></span></label>
 								</div>
 							</div>
 							<div class="column">
 								<div class="alertLabel">Radio</div>
 								<div class="inputWhite">
-									<label class="round" for="input7"><span><input type="text" name="input7" id="input7">{$smarty.session.user.radius_interest}</span></label>
+									<label class="round" for="input7"><span><input type="text" name="input7" id="input7" value="{$smarty.session.user.radius_interest}"></span></label>
 								</div>
 							</div>
 							<div class="inputWhite paddingRightContainer">
