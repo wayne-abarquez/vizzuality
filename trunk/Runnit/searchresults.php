@@ -37,7 +37,7 @@ if (isset($_REQUEST['distancia_max'])) {
 	$distancia_max=$_REQUEST['distancia_max'];
 }
 
-$results=$services->searchRuns($q,$distancia_min,$distancia_max,$offset);
+$results=$services->searchRuns($q,$distancia_max,$distancia_min,$offset);
 $smarty->assign('results',$results['data']);
 $smarty->assign('count', $results['count']);
 $smarty->assign('offset', $offset);
