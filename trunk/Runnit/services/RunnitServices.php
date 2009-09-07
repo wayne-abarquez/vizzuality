@@ -302,7 +302,7 @@ class RunnitServices {
 	    
 	    $terms=explode(" ",$q);
 
-	    if(count($terms)>0) {
+	    if(count($terms)>0 and $q!="") {
 	        $sql.=" AND (";
     	    foreach($terms as $term) {
     	        $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
@@ -310,8 +310,6 @@ class RunnitServices {
     	    $sql=substr($sql,0,-3);
     	    $sql.=")";       
 	    } 
-	    
-
 
 	    if($min>0) {
 	        $sql.=" AND distance_meters >= $min";
@@ -319,6 +317,8 @@ class RunnitServices {
 	    if($max>0) {
 	        $sql.=" AND distance_meters <= $max";	        
 	    }
+	    
+	    
 	    
 	    $sqlForCount="SELECT COUNT(id) as num_results FROM ($sql) as s";
 	    
@@ -335,7 +335,6 @@ class RunnitServices {
             $results['count'] =0;  
         }
 
-        
         return $results;  
 	}
 	
