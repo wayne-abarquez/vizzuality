@@ -227,7 +227,7 @@
 			            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="270" height="152" wmode="opaque" flashvars="id={$data.id}">
 			              <param name="movie" value="/flash/RunAroundMap.swf?6" />
 			              <!--[if !IE]>-->
-			              <object type="application/x-shockwave-flash" data="/flash/runnitHomeMap.swf?6" width="270" height="152" wmode="opaque" flashvars="id={$data.id}">
+			              <object type="application/x-shockwave-flash" data="/flash/RunAroundMap.swf?6" width="270" height="152" wmode="opaque" flashvars="id={$data.id}">
 			              <!--<![endif]-->
 							    {if $data.start_point_lat === null}
 		<img width="270" height="152" src="http://maps.google.com/maps/api/staticmap?size=270x152&maptype=map&zoom=10&center={$data.event_location},spain&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA" />					    
