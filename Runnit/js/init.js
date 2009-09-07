@@ -688,7 +688,7 @@ function activateAlerts() {
     	cache: false,
     	success: function(result){     				
 					if (result == 'INVALID') {
-						$('#alertError').css("red", 'green');
+						$('#alertError').css("color", 'red');
 						$('#alertError').html('Lo siento, pero no encontramos tu localidad.');
 						$("#alertButton").removeAttr("disabled");
 					    $("#input6").removeAttr("disabled");
@@ -701,9 +701,10 @@ function activateAlerts() {
 						$("#alertButton").removeAttr("disabled");
 					    $("#input6").removeAttr("disabled");
 					    $("#input7").removeAttr("disabled");
-					    $('#alertButton').val('Desactivar alertas');
+					    $('#alertButton').val('Actualizar alertas');
 					    $("#alertType").attr("class","activate");
-					    $("#alertType").html("(activado)");
+					    $("#alertType").html("(activado) ");
+					    $("#desactiveAlertButton").html("<input id='alertButton' class='fg-button' value='Desactivar' type='submit' onclick='javascript: void desactivateAlerts()'/>");
 					    timerID = setTimeout("alertErrorHide()", 2000);
 					    $('#alertError').css("color", 'green');
 					    var start = GLatLng.fromUrlValue(result);
@@ -711,7 +712,7 @@ function activateAlerts() {
                         drawCircle(start, radio, 40);   
                         fit();					    
 					    $('#map').show('fast');                        
-					    $("#formAlerts").attr('action','javascript: void desactivateAlerts()'); 
+					    $("#formAlerts").attr('action','javascript: void activateAlerts()'); 
 					}
     	},
         error:function (xhr, ajaxOptions, thrownError){   
@@ -770,6 +771,7 @@ function desactivateAlerts() {
 						$("#alertButton").removeAttr("disabled");
 					    $("#input6").removeAttr("disabled");
 					    $("#input7").removeAttr("disabled");
+					    $("#desactiveAlertButton").html("");
 					    $('#alertButton').val('Activar alertas por email');
 					    $("#input7").removeAttr("disabled");
 					    $('#map').hide('fast');
