@@ -126,11 +126,16 @@
 					<div class="span-13 DarDeBaja phraseGray">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
 					<div class="span-13 marginTopPlus">
 						<div class="paddingRightContainer">
-							<h2 class="userData">Alerta geográfica por email <span id="alertType" class="{if $smarty.session.user.radius_interest eq ''}desactivate{else}activate{/if}">{if $smarty.session.user.radius_interest eq ""}(desactivado){else}(activado){/if}</span></h2>
+							<h2 class="userData">Alerta geográfica por email 
+								<span id="alertType" class="{if $smarty.session.user.radius_interest eq ''}desactivate{else}activate{/if}">{if $smarty.session.user.radius_interest eq ""}(desactivado) {else}(activado) {/if}</span>
+								<span id="desactiveAlertButton">
+									{if $smarty.session.user.radius_interest ne ''}<input id="alertButtonPpal" class="fg-button" type="submit" value="Desactivar" onclick="javascript: void desactivateAlerts()"/>{/if}
+								</span>
+							</h2>
 						</div>
 						<div class="paddingRightContainer phraseGray2">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
 						<div class="marginTopPlus">
-						    <form id="formAlerts" method="GET"  action="{if $smarty.session.user.radius_interest eq ''}javascript: void activateAlerts(){else}javascript: void desactivateAlerts(){/if}">
+						    <form id="formAlerts" method="GET"  action="javascript: void activateAlerts()">
 								<div class="column first">
 									<div class="alertLabel">Localidad y provincia</div>
 									<div class="inputWhite">
@@ -144,7 +149,7 @@
 									</div>
 								</div>
 								<div class="inputWhite paddingRightContainer">
-									<input id="alertButton" class="fg-button" type="submit" value="{if $smarty.session.user.radius_interest eq ''}Activar alertas por email{else}Desactivar alertas{/if}"/>
+									<input id="alertButton" class="fg-button" type="submit" value="{if $smarty.session.user.radius_interest eq ''}Activar alertas por email{else}Actualizar alertas{/if}"/>
 								</div>
 								<div id="alertError" class="span-10 registerError"></div>
 						    </form>
