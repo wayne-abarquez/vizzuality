@@ -9,7 +9,9 @@ package
 	import com.google.maps.controls.ZoomControl;
 	import com.google.maps.controls.ZoomControlOptions;
 	import com.google.maps.overlays.Marker;
+	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.Polyline;
+	import com.google.maps.overlays.PolylineOptions;
 	import com.google.maps.styles.FillStyle;
 	
 	import flash.display.Bitmap;
@@ -22,6 +24,8 @@ package
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
+	import flash.text.TextFormat; 
+	
 	
 	import rosa.RosaSettings;
 	import rosa.events.RosaEvent;
@@ -42,6 +46,9 @@ package
 		private var trackLength:Number;
 		private var altim:Array;
 		private var altimetriaMarker:Marker;
+		private var altitudeText:TextField;
+		private var distanceText:TextField;
+		private var markerRunnerOpt:MarkerOptions;
 		
 		public function raceMapViewer()
 		{
@@ -77,6 +84,31 @@ package
 			line.graphics.drawRect(0,0,1,130);
 			line.graphics.endFill();
 			line.y = 250;					
+			
+			
+			altitudeText = new TextField();
+			var format:TextFormat = altitudeText.getTextFormat();
+			//format.font = '_sans';
+			format.bold=true;
+			altitudeText.defaultTextFormat = format;
+			altitudeText.text = " ";
+			altitudeText.textColor = 0x000000;
+			//tf.x = -int(tf.textWidth / 2) - 2;
+			//tf.y = -int(tf.textHeight / 2);
+			altitudeText.x = 550;
+			altitudeText.y = 260;
+			altitudeText.mouseEnabled = false;
+			altitudeText.width = altitudeText.textWidth + 4;		
+			
+			
+			
+			//runner marker opt;
+			markerRunnerOpt = new MarkerOptions();
+			markerRunnerOpt.iconOffset = new Point(-13,-30);
+			markerRunnerOpt.hasShadow = false;
+			markerRunnerOpt.draggable = false;		
+			markerRunnerOpt.icon = new CustomMarkerIcon("runner");
+			
 			
 			
 			var debugText:TextField=new TextField();
@@ -128,8 +160,16 @@ package
 			for each(var p:Object in event.result.track as Array) {
 				points.push(new LatLng(p.lat,p.lon));
 			}
-			if(points.length>2) {
-				track =  new Polyline(points);
+			
+			if(points.length>1) {
+				var polyOpt:PolylineOptions=new PolylineOptions({
+					strokeStyle: {
+						thickness: 3,
+						color: 0xFF2614,
+						alpha: 0.7
+					}
+				});
+				track =  new Polyline(points,polyOpt);
 				map.addOverlay(track);
 				map.setCenter(track.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(track.getLatLngBounds()));
 				
@@ -149,21 +189,52 @@ package
 			
 				//add 10% around
 
- 				var diff:Number = Math.round((maxAltitude-minAltitude)*.1);
+ 				var diff:Number = Math.round((maxAltitude-minAltitude)*.3);
 				url+="&chxr=0,0," + trackLength.toString() +
-					 "|1," + (minAltitude-diff) +","+(maxAltitude+diff) +
-					 "&chds=" + (minAltitude-diff) +","+(maxAltitude+diff);
+					 "|1," + Math.floor(minAltitude*0.9) +","+Math.ceil(maxAltitude*1.1) +
+					 "&chds=" + Math.floor(minAltitude*0.9) +","+Math.ceil(maxAltitude*1.1);
 
 				url+="&chd=t:" + event.result.altimetria;
 				var imgLoader:Loader = new Loader();
 				imgLoader.x=0;
 				imgLoader.y=250;
 				addChild(imgLoader);
+				addChild(altitudeText);
 				imgLoader.load(new URLRequest(url)); 
 				this.addEventListener(MouseEvent.MOUSE_MOVE,onImgLoader);
 				this.addEventListener(MouseEvent.ROLL_OUT,onImageRollOut);
 				
-
+				var startOpt:MarkerOptions = new MarkerOptions();
+				startOpt.iconOffset = new Point(-10,-10);
+				startOpt.hasShadow = true;
+				startOpt.draggable = false;
+				startOpt.icon = new CustomMarkerIcon("start");
+				var sMarker:Marker= new Marker(points[0],startOpt);
+				map.addOverlay(sMarker);
+				
+				var endOpt:MarkerOptions = new MarkerOptions();
+				endOpt.iconOffset = new Point(-10,-10);
+				endOpt.hasShadow = true;
+				endOpt.draggable = false;
+				endOpt.icon = new CustomMarkerIcon("end");
+				var eMarker:Marker= new Marker(points[points.length-1],endOpt);
+				map.addOverlay(eMarker);
+				
+				//find the intermediate markers
+				//dive the length by 10000
+				var numTrams:Number = Math.floor(trackLength/1000)
+				for (var n:Number=1;n<=numTrams;n++) {
+					var pos:LatLng = getPointAtDistance(n*1000);
+					var interOpt:MarkerOptions = new MarkerOptions();
+					interOpt.iconOffset = new Point(-10,-10);
+					interOpt.hasShadow = false;
+					interOpt.draggable = false;
+					interOpt.tooltip=altim[Math.round((n*1000*altim.length)/trackLength)]+" m.";
+					interOpt.icon = new CustomMarkerIcon("km",n.toString());
+					var kMarker:Marker= new Marker(pos,interOpt);
+					map.addOverlay(kMarker);
+				}
+				
 
 			} else {
 				map.setSize(new Point(600,400));
@@ -181,6 +252,7 @@ package
 			}
 		}
 		
+		private var lineAdded:Boolean=false;
 		private function onImgLoader(ev:MouseEvent):void {
 			var posX:Number = ev.localX-30;
 			if(ev.localX-30>=0) {
@@ -189,15 +261,24 @@ package
 						map.removeOverlay(altimetriaMarker);
 							
 					//var altitude:Number = altim[Math.round(((((ev.localX-30)*trackLength)/580)*altim.length)/trackLength)];
-					altimetriaMarker=new Marker(ll);
+					//altitudeText.text=altitude +"m.";
+					if(altimetriaMarker==null) {
+						
+						
+						altimetriaMarker=new Marker(ll,markerRunnerOpt);
+					} else {
+						altimetriaMarker.setLatLng(ll);
+					}
 					map.addOverlay(altimetriaMarker);
 					
 					
 					//add the line
 					line.x=ev.localX;
-					addChild(line);
+					if(!lineAdded) {
+						addChild(line);
+						lineAdded=true;						
+					}
 					
-					//find altitude at point:
 					
 			}
 		}
@@ -205,7 +286,8 @@ package
 		private function onImageRollOut(event:MouseEvent):void {
 			if(altimetriaMarker!=null)
 				map.removeOverlay(altimetriaMarker);
-				
+			
+			lineAdded=false;	
 			removeChild(line);
 		}
 		
@@ -233,5 +315,59 @@ package
 		
 		
 		
+	}
+}
+
+import flash.display.Sprite;
+import flash.text.TextField;
+import flash.text.TextFormat; 
+
+internal class CustomMarkerIcon extends Sprite
+{
+
+  [Embed('assets/end.png')] 
+  private var end:Class;
+  [Embed('assets/km.png')] 
+  private var km:Class;
+  [Embed('assets/start.png')] 
+  private var start:Class;
+  [Embed('assets/runner.png')] 
+  private var runner:Class;
+  
+	public function CustomMarkerIcon(icon:String,texto:String="")
+	{
+		switch(icon) {
+			case "end":
+				addChild(new end());
+				break;
+			case "km":
+				addChild(new km());
+				break;
+			case "start":
+				addChild(new start());
+				break;
+			case "runner":
+				addChild(new runner());
+				break;
+		}
+		if(texto!="") {
+			//graphics.beginFill(0x336699);
+			//graphics.drawCircle(0, 0, 15);
+			var tf:TextField = new TextField();
+			var format:TextFormat = tf.getTextFormat();
+			format.font = 'Arial';
+			format.bold=true;
+			tf.defaultTextFormat = format;
+			tf.text = texto;
+			tf.textColor = 0xffffff;
+			//tf.x = -int(tf.textWidth / 2) - 2;
+			//tf.y = -int(tf.textHeight / 2);
+			tf.x = 4;
+			tf.y = 0;
+			tf.mouseEnabled = false;
+			tf.width = tf.textWidth + 4;
+			mouseChildren = false;
+			addChild(tf);
+		}
 	}
 }
