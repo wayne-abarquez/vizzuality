@@ -100,7 +100,7 @@ if ($_REQUEST['method'] == 'setAlert') {
 	if(!$result) {
 	    echo("INVALID");
 	} else {
-	    echo("OK");
+	    echo($result);
 	}	
 }
 

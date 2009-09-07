@@ -706,6 +706,11 @@ function activateAlerts() {
 					    $("#alertType").html("(activado)");
 					    timerID = setTimeout("alertErrorHide()", 2000);
 					    $('#alertError').css("color", 'green');
+					    var start = GLatLng.fromUrlValue(result);
+					    bounds = new GLatLngBounds();
+                        drawCircle(start, radio, 40);   
+                        fit();					    
+					    $('#map').show('fast');                        
 					    $("#formAlerts").attr('action','javascript: void desactivateAlerts()'); 
 					}
     	},
@@ -766,6 +771,8 @@ function desactivateAlerts() {
 					    $("#input6").removeAttr("disabled");
 					    $("#input7").removeAttr("disabled");
 					    $('#alertButton').val('Activar alertas por email');
+					    $("#input7").removeAttr("disabled");
+					    $('#map').hide('fast');
 					    timerID = setTimeout("alertErrorHide()", 2000);
 					    //boton href
 					    $("#formAlerts").attr('action','javascript: void activateAlerts()'); 

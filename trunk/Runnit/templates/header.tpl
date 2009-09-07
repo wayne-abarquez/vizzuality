@@ -67,7 +67,7 @@
 		{/literal}
 	{/if}	
 	
-    {if $section eq "usuario" and !$smarty.session.user.lat eq ""}
+    {if $section eq "usuario"}
         <script src="http://maps.google.com/maps?file=api&v=2"type="text/javascript" />	
 	{/if}
 	
