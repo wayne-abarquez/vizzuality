@@ -1048,3 +1048,28 @@ div.raceDetailsBottom {
 	padding-top: 4px;
 	padding-right: 4px;
 }
+
+/* error 404 */
+
+.errorbox{
+	margin-top: 50px;
+	margin-left: 10px;
+	margin-bottom: 80px;
+}
+
+.errorboxContainer{
+	margin-top: 90px;
+}
+
+.errorboxTitle{
+	font-size: 22px;
+	font-weight: bold;
+	color: #666666;
+	margin-top: 0px;
+}
+
+.errorboxInfo{
+/* 	color: #666666; */
+	font-size: 12px;
+	padding-top: 6px;
+}
