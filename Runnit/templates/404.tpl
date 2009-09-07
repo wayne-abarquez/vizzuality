@@ -14,14 +14,11 @@
 			
 			<div class="raceContent1">
 				<h2 class="newsTitle3">Página no encontrada</h2>
-				<div class="errorbox span-5 first"><img src="img/errorbox.jpg"></div>
-				<div class="errorboxContainer last">
+				<div class="errorbox span-5 first"><img src="/img/errorbox.jpg"></div>
+				<div class="span-10 errorboxContainer last">
 					<p class="errorboxTitle">uh oh, algo no ha ido bien...</p>
-					<p class="errorboxInfo">La página que estas buscando parece no existir. Te animamos a que 
-eches un vistazoal listado de <b><a href="searchresults.php">carreras</a></b> a ver si encuentras lo que 
-estas buscando.</p>
-					<p class="errorboxInfo">Si no lo encuentras,puedes <b><a href="/rss.php">subscribirte a nuestro RSS</a></b> para estar 
-al tanto de las nuevas carreras</p>
+					<p class="errorboxInfo">La página que estas buscando parece no existir. Te animamos a que eches un vistazo al listado de <b><a href="/buscar">carreras</a></b> a ver si encuentras lo que estas buscando.</p>
+					<p class="errorboxInfo2">Si no lo encuentras,puedes <b><a href="/rss">subscribirte a nuestro RSS</a></b> para estar al tanto de las nuevas carreras</p>
 				</div>	
 			</div>					
 		</div>
