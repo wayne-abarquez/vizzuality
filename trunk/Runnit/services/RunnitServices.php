@@ -298,7 +298,21 @@ class RunnitServices {
             $sql.=",false as inscrito";
         }   
 	    
-	    $sql.=" from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() and published=true AND (r.name ilike '%$q%' or event_location ilike '%$q%')";
+	    $sql.=" from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() and published=true ";
+	    
+	    $terms=explode(" ",$q);
+
+	    if(count($terms)>0) {
+	        $sql.=" AND (";
+    	    foreach($terms as $term) {
+    	        $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') OR";
+    	    }	 
+    	    $sql=substr($sql,0,-2);
+    	    $sql.=")";       
+	    } 
+	    
+
+
 	    if($min>0) {
 	        $sql.=" AND distance_meters >= $min";
 	    }
@@ -437,12 +451,14 @@ class RunnitServices {
             $result= pg_query($this->conn, $sql);
 
 	    
+	        
 	        //get last ID
     	    $sql = "SELECT currval('run_id_seq') AS last_value";
     	    $result=pg_query($this->conn, $sql);
     	    $res=pg_fetch_assoc($result);    	    
     	    $newId= (int)$res['last_value'];
     	    
+    	    /*
 			//Send alerts to users
 			$sql="SELECT u.email,u.completename from run as r,users as u WHERE r.id=$newId AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
 			$alerts=pg_fetch_all(pg_query($this->conn, $sql)); 
@@ -468,8 +484,8 @@ class RunnitServices {
 				}	
 				$mail->Send();			
 			}
-
-
+            */
+            
 
     	    if (is_int($newId)) {
     	        return $newId;
