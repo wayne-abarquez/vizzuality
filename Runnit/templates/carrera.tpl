@@ -26,23 +26,9 @@
 				
 				<div class="span-16 first">
 					<div class="column span-1 first date race calendar">
-	    						{if $data.run_type eq "1"}
-	    							<div class="month month1">{getMonth month=$data.event_date|substr:5:2}</div>
-	    						{/if}
-	    						{if $data.run_type eq "2"}
-	    							<div class="month month2">{getMonth month=$data.event_date|substr:5:2}</div>
-	    						{/if}
-	    						{if $data.run_type eq "3"}
-	    							<div class="month month3">{getMonth month=$data.event_date|substr:5:2}</div>
-	    						{/if}
-	    						{if $data.run_type eq "4"}
-	    							<div class="month month4">{getMonth month=$data.event_date|substr:5:2}</div>
-	    						{/if}
-	    						{if $data.run_type eq "5"}
-	    							<div class="month month5">{getMonth month=$data.event_date|substr:5:2}</div>
-	    						{/if}
-	    						<div class="day">{$data.event_date|substr:8:2}</div>
-	    						</div>
+					        <div class="month month{$data.run_type}">{getMonth month=$data.event_date|substr:5:2}</div>
+	    					<div class="day">{$data.event_date|substr:8:2}</div>
+	    			</div>
 
 					<div class="span-14 last">
 						<p class="raceTitle" id="raceTitle">{$data.name}</p>
