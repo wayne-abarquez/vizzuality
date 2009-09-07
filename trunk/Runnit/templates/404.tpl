@@ -7,17 +7,17 @@
 			<div class="span-16 column">
 				<div class="span-16 navigationList">
 					<ul> 
-						<li><a href="#" class="selected">P‡gina no encontrada</b></a></li>
+						<li><a href="#" class="selected">PÃ¡gina no encontrada</b></a></li>
 					</ul>
 				</div>
 			</div>
 			
 			<div class="raceContent1">
-				<h2 class="newsTitle3">P‡gina no encontrada</h2>
+				<h2 class="newsTitle3">PÃ¡gina no encontrada</h2>
 				<div class="errorbox span-5 first"><img src="img/errorbox.jpg"></div>
 				<div class="errorboxContainer last">
 					<p class="errorboxTitle">uh oh, algo no ha ido bien...</p>
-					<p class="errorboxInfo">La p‡gina que estas buscando parece no existir. Te animamos a que 
+					<p class="errorboxInfo">La pÃ¡gina que estas buscando parece no existir. Te animamos a que 
 eches un vistazoal listado de <b><a href="searchresults.php">carreras</a></b> a ver si encuentras lo que 
 estas buscando.</p>
 					<p class="errorboxInfo">Si no lo encuentras,puedes <b><a href="/rss.php">subscribirte a nuestro RSS</a></b> para estar 
@@ -32,7 +32,7 @@ al tanto de las nuevas carreras</p>
 
 			<div class="span-8 importantRaces">
 				<div class="events"> 
-					<h2 class="newsTitle4">Pr—ximas carreras</h2>
+					<h2 class="newsTitle4">PrÃ³ximas carreras</h2>
 				</div>	
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
