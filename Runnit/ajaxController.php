@@ -96,9 +96,12 @@ if ($_REQUEST['method'] == 'sendPasswordToEmail') {
 }
 
 if ($_REQUEST['method'] == 'setAlert') {
-	$result = $services->setAlert($_REQUEST['id'],$_REQUEST['lat'],$_REQUEST['lon'],$_REQUEST['distance']);
-	//echo("INVALID");
-	echo("OK");
+	$result = $services->setAlert($_REQUEST['locality'],$_REQUEST['distance']);
+	if(!$result) {
+	    echo("INVALID");
+	} else {
+	    echo("OK");
+	}	
 }
 
 
