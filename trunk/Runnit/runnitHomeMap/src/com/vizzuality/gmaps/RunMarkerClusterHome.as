@@ -8,16 +8,16 @@ package com.vizzuality.gmaps
 	/**
 	 * @author kelvinluck
 	 */
-	public class RunMarkerCluster extends Marker 
+	public class RunMarkerClusterHome extends Marker 
 	{
 
-		public function RunMarkerCluster(cluster:Array)
+		public function RunMarkerClusterHome(cluster:Array)
 		{
 			var options:MarkerOptions = new MarkerOptions();
 			options.iconOffset = new Point(-15,-34);
-			options.icon = new GenericMarkerIcon("raceNoActiveEmpty",cluster.length.toString());
+			options.icon = new GenericMarkerIcon("groupMarkerIcon",cluster.length.toString());
 			options.hasShadow = false; 		
-			options.tooltip="Click para acercar";
+			//options.tooltip="Click para acercar";
 			
 			super((cluster[0] as Marker).getLatLng(), options);
 		}

@@ -13,8 +13,9 @@ package {
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.styles.FillStyle;
 	import com.kelvinluck.gmaps.Clusterer;
-	import com.vizzuality.gmaps.RunMarkerCluster;
+	import com.vizzuality.gmaps.RunMarkerClusterHome;
 	import com.vizzuality.gmaps.RunSingleMarker;
+	import com.vizzuality.gmaps.RunSingleMarkerHome;
 	
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
@@ -167,7 +168,7 @@ package {
 			dataBbox=new LatLngBounds();
 			for each(var m:Object in event.result as Array) {
 				var p:LatLng = new LatLng(m.lat,m.lon);
-				var marker:RunSingleMarker=new RunSingleMarker(p,m.name,m.id,m.event_date)
+				var marker:RunSingleMarkerHome=new RunSingleMarkerHome(p,m.name,m.id,m.event_date)
 				iw[marker]=m;
 				marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
 					
@@ -218,7 +219,7 @@ package {
 					// there is only a single marker in this cluster
 					marker = cluster[0];
 				} else {
-					marker = new RunMarkerCluster(cluster);
+					marker = new RunMarkerClusterHome(cluster);
 					marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
 						map.zoomIn(e.latLng,true,false);
 					});
