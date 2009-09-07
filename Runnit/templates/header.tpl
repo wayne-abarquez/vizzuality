@@ -230,7 +230,7 @@
 		<div class="span-18 last">
 			<div class="searchCont">
 				<div class="searchC">
-					<form id="searchForm" action="/searchresults.php" method="get">
+					<form id="searchForm" action="/buscar" method="get">
 						<div class="buttonSearch">
 							<label class="roundsearchFirst" for="inputsearchFirst"><span><input type="text" id="inputsearchFirst" name="q"></span></label>
 						</div>
