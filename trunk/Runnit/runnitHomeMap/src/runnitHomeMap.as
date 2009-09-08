@@ -69,7 +69,15 @@ package {
 		private function initMap():void {
 			map=new Map();
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
-			map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
+			if(loaderInfo.url.indexOf("runnity.net")>=0) {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRS5lFIZ4lX1ZuOUC3gMG9aTZZnVExRO7Xbt-wEBLhd43QE_x_w9pE80BQ";				
+			}
+			if(loaderInfo.url.indexOf("runnity.com")>=0) {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
+			}
+			if(loaderInfo.url.indexOf("runnity.es")>=0) {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA";				
+			}
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(939, 364));
 			addChild(map);
@@ -192,7 +200,7 @@ package {
 			
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			
-			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox)-1);
 				
 			
 			
