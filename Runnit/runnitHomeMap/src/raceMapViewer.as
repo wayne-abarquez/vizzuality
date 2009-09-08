@@ -68,7 +68,15 @@ package
 		private function initMap():void {
 			map=new Map();
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
-			map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
+			if(loaderInfo.url.indexOf("runnity.net")>=0) {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRS5lFIZ4lX1ZuOUC3gMG9aTZZnVExRO7Xbt-wEBLhd43QE_x_w9pE80BQ";				
+			}
+			if(loaderInfo.url.indexOf("runnity.com")>=0) {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
+			}
+			if(loaderInfo.url.indexOf("runnity.es")>=0) {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA";				
+			}
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(610, 250));
 			addChild(map);
@@ -187,7 +195,7 @@ package
 			
 				//add 10% around
 
- 				var diff:Number = Math.round((maxAltitude-minAltitude)*.3);
+ 				//var diff:Number = Math.round((maxAltitude-minAltitude)*.3);
 				url+="&chxr=0,0," + trackLength.toString() +
 					 "|1," + Math.floor(minAltitude*0.9) +","+Math.ceil(maxAltitude*1.1) +
 					 "&chds=" + Math.floor(minAltitude*0.9) +","+Math.ceil(maxAltitude*1.1);
@@ -248,7 +256,7 @@ package
 				endOpt2.draggable = false;
 				endOpt2.icon = new GenericMarkerIcon("end");			
 				
-				map.setSize(new Point(600,400));
+				map.setSize(new Point(610,400));
 				var startMarker:Marker = new Marker(new LatLng(event.result.start.lat,event.result.start.lon),startOpt2);
 				map.addOverlay(startMarker);
 				if(event.result.end.lat !=null) {
