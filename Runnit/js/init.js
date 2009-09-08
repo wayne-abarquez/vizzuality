@@ -704,7 +704,7 @@ function activateAlerts() {
 					    $('#alertButton').val('Actualizar alertas');
 					    $("#alertType").attr("class","activate");
 					    $("#alertType").html("(activado) ");
-					    $("#desactiveAlertButton").html("<input id='alertButton' class='fg-button' value='Desactivar' type='submit' onclick='javascript: void desactivateAlerts()'/>");
+					    $("#desactiveAlertButton").html("<input id='alertButtonPpal' class='fg-button' value='Desactivar' type='submit' onclick='javascript: void desactivateAlerts()'/>");
 					    timerID = setTimeout("alertErrorHide()", 2000);
 					    $('#alertError').css("color", 'green');
 					    var start = GLatLng.fromUrlValue(result);
@@ -767,7 +767,7 @@ function updateAlerts() {
 					    $('#alertButton').val('Actualizar alertas');
 					    $("#alertType").attr("class","activate");
 					    $("#alertType").html("(activado) ");
-					    $("#desactiveAlertButton").html("<input id='alertButton' class='fg-button' value='Desactivar' type='submit' onclick='javascript: void desactivateAlerts()'/>");
+					    $("#desactiveAlertButton").html("<input id='alertButtonPpal' class='fg-button' value='Desactivar' type='submit' onclick='javascript: void desactivateAlerts()'/>");
 					    timerID = setTimeout("alertErrorHide()", 2000);
 					    $('#alertError').css("color", 'green');
 					    var start = GLatLng.fromUrlValue(result);
