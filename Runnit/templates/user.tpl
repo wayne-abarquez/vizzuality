@@ -78,49 +78,57 @@
 							<h2 class="userData">Datos de cuenta</h2>
 						</div>
 						<div class="paddingRightContainer">
-							<div class="column span-6 first marginTopBottom">
-								<div>
-									<div class="countAgo">nombre y apellidos</div>
-									<div class="inputWhite">
-										<label class="round" for="input1"><span><input type="text" name="input1" id="input1" value="{$smarty.session.user.completename}"></span></label>
+							
+							<form id="changeUserDataForm" action="javascript: void changeUserData('{$smarty.session.user.pass}','{$smarty.session.user.email}','{$smarty.session.user.completename}','{$smarty.session.user.username}')"
+								<div class="column span-6 first marginTopBottom">
+									<div>
+										<div class="countAgo">nombre y apellidos</div>
+										<div class="inputWhite">
+											<label class="round" for="input1"><span><input type="text" name="input1" id="input1" value="{$smarty.session.user.completename}"></span></label>
+										</div>
+									</div>
+									<div>
+										<div class="countAgo">nombre de usuario</div>
+										<div class="inputWhite">
+											<label class="round" for="input2"><span><input type="text" name="input2" id="input2" disabled="true" value="{$smarty.session.user.username}"></span></label>
+										</div>
+									</div>
+									<div>
+										<div class="countAgo">email</div>
+										<div class="inputWhite">
+											<label class="round" for="input3"><span><input type="text" name="input3" id="input3" value="{$smarty.session.user.email}"></span></label>
+										</div>
+									</div>
+									<div class="inputWhiteButton">
+										<input id="userSaveData" class="fg-button" type="submit" value="Guardar cambios"/>
+									</div>
+									<div id="userError" class="registerError"></div>
+								</div>
+							</form>
+								
+								
+							<form id="changePassDataForm" action="javascript: void changePassData('{$smarty.session.user.pass}','{$smarty.session.user.email}','{$smarty.session.user.completename}','{$smarty.session.user.username}')">
+								<div class="column last passContainer">
+									<div class="changePass">Cambiar contraseña</div>
+									<div>
+										<div class="inputTitleBlue">contraseña anterior</div>
+										<div class="inputBlue">
+									<label class="roundblue" for="input4"><span><input type="password" name="input4" id="input4"></span></label>
+										</div>
+									</div>
+									<div>
+										<div class="inputTitleBlue">nueva contraseña</div>
+										<div class="inputBlue">
+											<label class="roundblue" for="input5"><span><input type="password" name="input5" id="input5"></span></label>
+										</div>
+										<div class="inputBlueButton">
+											<input id="passSaveData" class="fg-button" type="Submit" value="Cambiar contraseña" />
+											<div id="passError" class="registerError"></div>
+										</div>
 									</div>
 								</div>
-								<div>
-									<div class="countAgo">nombre de usuario</div>
-									<div class="inputWhite">
-										<label class="round" for="input2"><span><input type="text" name="input2" id="input2" disabled="true" value="{$smarty.session.user.username}"></span></label>
-									</div>
-								</div>
-								<div>
-									<div class="countAgo">email</div>
-									<div class="inputWhite">
-										<label class="round" for="input3"><span><input type="text" name="input3" id="input3" value="{$smarty.session.user.email}"></span></label>
-									</div>
-								</div>
-								<div class="inputWhiteButton">
-									<input id="userSaveData" class="fg-button" type="submit" value="Guardar cambios" onclick="javascript: void changeUserData('{$smarty.session.user.pass}','{$smarty.session.user.email}','{$smarty.session.user.completename}','{$smarty.session.user.username}')"/>
-								</div>
-								<div id="userError" class="registerError"></div>
-							</div>
-							<div class="column last passContainer">
-								<div class="changePass">Cambiar contraseña</div>
-								<div>
-									<div class="inputTitleBlue">contraseña anterior</div>
-									<div class="inputBlue">
-								<label class="roundblue" for="input4"><span><input type="password" name="input4" id="input4"></span></label>
-									</div>
-								</div>
-								<div>
-									<div class="inputTitleBlue">nueva contraseña</div>
-									<div class="inputBlue">
-										<label class="roundblue" for="input5"><span><input type="password" name="input5" id="input5"></span></label>
-									</div>
-									<div class="inputBlueButton">
-										<input id="passSaveData" class="fg-button" type="Submit" value="Cambiar contraseña" onclick="javascript: void changePassData('{$smarty.session.user.pass}','{$smarty.session.user.email}','{$smarty.session.user.completename}','{$smarty.session.user.username}')"/>
-										<div id="passError" class="registerError"></div>
-									</div>
-								</div>
-							</div>
+							</form>
+								
 						</div>
 					</div>
 					<div class="span-13 DarDeBaja phraseGray">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>

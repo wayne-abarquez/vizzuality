@@ -935,6 +935,11 @@ function changePassData (pass,mail,longName,userN) {
 		$('#userError').html('Son iguales.');
 		return false;
 	}
+	
+	if (passOld!=pass) {
+		$('#userError').html('Esa no es la contraseña anterior.');
+		return false;
+	}
 
 	
 	
