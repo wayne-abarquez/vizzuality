@@ -712,7 +712,70 @@ function activateAlerts() {
                         drawCircle(start, radio, 40);   
                         fit();					    
 					    $('#map').show('fast');                        
-					    $("#formAlerts").attr('action','javascript: void activateAlerts()'); 
+					    $("#formAlerts").attr('action','javascript: void updateAlerts()'); 
+					}
+    	},
+        error:function (xhr, ajaxOptions, thrownError){   
+                alert('Runnit' + xhr.message + "\n" + thrownError);
+        }
+    });
+     
+}
+
+
+function updateAlerts() {
+	$('#alertError').html('');
+
+	var lugar = $("#input6").val();
+    var radio = $("#input7").val();
+	
+	if ((lugar=="") || (radio=="")) {
+		$('#alertError').html('Existen campos vacíos.');
+		return false;
+	}
+	
+	$("#alertButton").attr("disabled", "true");
+    $("#input6").attr("disabled", "true");
+    $("#input7").attr("disabled", "true");
+	
+	$('#alertButton').val('Actualizando...');
+	
+
+    var dataObj = ({locality : lugar,
+        method: 'setAlert',
+        distance: radio
+        });
+    
+ 	$.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){     				
+					if (result == 'INVALID') {
+						$('#alertError').css("color", 'red');
+						$('#alertError').html('Lo siento, pero no encontramos tu localidad.');
+						$("#alertButton").removeAttr("disabled");
+					    $("#input6").removeAttr("disabled");
+					    $("#input7").removeAttr("disabled");
+					    $('#alertButton').val('Actualizar alertas');					    
+					} else {						
+						$('#alertError').html('Alerta actualizada');
+						$("#alertButton").removeAttr("disabled");
+					    $("#input6").removeAttr("disabled");
+					    $("#input7").removeAttr("disabled");
+					    $('#alertButton').val('Actualizar alertas');
+					    $("#alertType").attr("class","activate");
+					    $("#alertType").html("(activado) ");
+					    $("#desactiveAlertButton").html("<input id='alertButton' class='fg-button' value='Desactivar' type='submit' onclick='javascript: void desactivateAlerts()'/>");
+					    timerID = setTimeout("alertErrorHide()", 2000);
+					    $('#alertError').css("color", 'green');
+					    var start = GLatLng.fromUrlValue(result);
+					    bounds = new GLatLngBounds();
+                        drawCircle(start, radio, 40);   
+                        fit();					    
+					    $('#map').show('fast');                        
+					    $("#formAlerts").attr('action','javascript: void updateAlerts()'); 
 					}
     	},
         error:function (xhr, ajaxOptions, thrownError){   

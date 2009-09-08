@@ -135,7 +135,7 @@
 						</div>
 						<div class="paddingRightContainer phraseGray2">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
 						<div class="marginTopPlus">
-						    <form id="formAlerts" method="GET"  action="javascript: void activateAlerts()">
+						    <form id="formAlerts" method="GET"  action="{if $smarty.session.user.radius_interest eq ''}javascript: void activateAlerts(){else}javascript: void updateAlerts(){/if}">
 								<div class="column first">
 									<div class="alertLabel">Localidad y provincia</div>
 									<div class="inputWhite">
@@ -157,7 +157,7 @@
 					</div>
                                      
                     <div class="span-13">
-                        <div id="map" style="width:512px; height:200px;">Map...</div>
+                        <div id="map" style="width:512px; height:200px;"></div>
                     </div>    
                         {literal}
                         <script type="text/javascript">
