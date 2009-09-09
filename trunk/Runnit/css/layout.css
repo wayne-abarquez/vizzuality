@@ -233,6 +233,11 @@ div.events {
 	padding-right: 15px;
 }
 
+div.events2 {
+	margin-top:-20px;
+	padding-right: 15px;
+}
+
 div.month {
 	font-family: Arial;
 	color: white;
