@@ -667,7 +667,7 @@ class RunnitServices {
     }
 
     //carrera
-    public function getRunsSimilarType($id) {
+    public function getRunsSimilarDistance($id,$distance) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
         if(isset($_SESSION['logged']) and $_SESSION['logged']) {
@@ -677,7 +677,7 @@ class RunnitServices {
         }
         
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id ";
-		$sql.=" and run_type = (select run_type from run where id=$id)";
+		$sql.=" and distance_meters<= $distance+2000 and distance_meters>= $distance-2000";
 		$sql.=" order by event_date ASC limit 4";
 		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
