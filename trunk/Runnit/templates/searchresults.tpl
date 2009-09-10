@@ -88,17 +88,16 @@
         	    </div>
 				<div class="raceSearchLast">
 					<div class="paginationLast">
-					{if $count > 20}
- 					<div class="numberResults numberMargin"><p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}</p></div>
- 					{if $offset > 0}
-						<div class="numberResults"><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></div>
-					{/if}
-					{if $offset < $count-20}
-						<div class="numberResults numberMargin"><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></div>
-                    {/if}
-                    {/if}
-
-
+						{if $count > 20}
+ 							<div class="numberResults">
+ 								<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}</p>                    							</div>
+ 								{if $offset > 0}
+				<div class="searchAdelante"><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></div>
+								{/if}
+								{if $offset < $count-20}
+									<div class="searchAtras"><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></div>
+                    			{/if}
+                    	{/if}
 					</div>
 				</div>
 			</div>					
