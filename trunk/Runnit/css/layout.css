@@ -781,11 +781,27 @@ div.changePass {
 div.pagination {
 	margin-top: 25px;
 	float: right;
+	margin-right: 10px;
+}
+
+div.pagination p {
+	margin-right: 6px;
 }
 
 div.paginationLast {
 	margin-top: 11px;
-	float: right;
+}
+
+.numberResults{
+	float: left;
+}
+
+.searchAdelante{
+	float: left;
+}
+
+.searchAtras{
+	float: left;
 }
 
 div.contact {
@@ -1009,14 +1025,6 @@ div.raceDetailsBottom {
 
 .formSearch{
 	width: 618px;
-}
-
-.numberResults{
-	float: left;
-}
-
-.numberMargin{
-	margin-right: 10px;
 }
 
 .userLeft{
