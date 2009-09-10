@@ -69,23 +69,66 @@
 						<div class="wellcome"><a href="#" class="wellcome">{$smarty.session.user.completename}</a></div>
 						<div class="countAgo">usuario desde {getMonth2 month=$smarty.session.user.created_when|substr:5:2}, {$smarty.session.user.created_when|substr:0:4}</div>
 					</div>
-					<div class="span-13">
-					</div>
-
-					<div class="span-13 marginTopPlus">
-						
-					
-					</div>
-   				
 				</div>
-			</div>	
+			</div>
+				<div class="span-16 marginContainer">
+
+					<div class="marginDescription"><h3 class="blue">Perfil</h3></div>					
+				
+				
+					<div class="marginDescription"><h3 class="blue">Tablón {if !empty($comments)}[{$comments|@count}]{/if}</h3><h5><a onclick="document.getElementById('commentTextArea').focus();
+" class="PublicarComentarioEnlace">Dejar un comentario</a></h5></div>			
+					<ol id="update">
+						{foreach key=id item=comment from=$comments}
+	    				{if $comment eq false}
+	    					<div class="column span-15 noCommentsContainer">
+	        					<div class="carita"></div>
+	        					<div class="noResultsText">
+	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$smarty.session.user.username}</b></p>
+								</div>
+	        				</div>  
+	    				{else}	    										
+							<div class="column span-16 first racesComment">				
+								<div class="column span-3 first image">
+									<img src="/media/avatar/{$comment.avatar}"/>	
+								</div>
+								<div class="column span-12 last commentBox">
+									<div class="nameUser"><a class="nameRace" href="#">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+									<p class="textRace">{$comment.commenttext}</p>
+								</div>
+							</div>							
+	              		{/if}
+	                	{foreachelse}
+	                	    <div class="column span-15 noCommentsContainer">
+	        					<div class="carita"></div>
+	        					<div class="noResultsText">
+	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$smarty.session.user.username}</b></p>
+								</div>
+	        				</div>    
+	                	{/foreach}						
+					</ol>
+				</div>
+			
+						<!-- PARA AÑADIR COMENTARIOS -->
+			<div class="span-16 boxraceMap">
+				<div class="span-16" id="flash" align="left"></div>
+				<div class="commentArea" id="commentBox">					
+					{if $smarty.session}
+						<div class="span-14 titleComents">Anímate y deja un comentario a {$smarty.session.user.username}</div>
+						<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
+						<input class="fg-button" type="submit" value="Escribir comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>
+					{else}
+						<p class="noComments">Para dejar comentarios debes <b><a href="javascript: void showLoginBox()">iniciar tu sesión</a></b> en runnity. <b><a href="javascript: void showRegisterBox()">¿Aún no estás registrado?</a></b></p>
+					{/if}
+				</div>
+			</div>		
 			
 		</div>
 		
 		<div class="column last span-8 rightColumn">
 			<div class="span-8 importantRaces">
 				<div class="events"> 
-					<h2 class="newsTitle5">Tus próximas carreras</h2>
+					<h2 class="newsTitle5">Carreras de {$smarty.session.user.username}</h2>
 				</div>
 				<div class="events">
             		{foreach key=id item=race from=$nextRaces}
