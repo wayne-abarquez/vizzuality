@@ -104,12 +104,12 @@
 					calculateDistance();
 					
 					//PARA MOSTRAR LA ALTIMETRÍA
-					altimetry = (idRace.altimetria as String).split(",");
+					if (altimetry != null) {
+						altimetry = (idRace.altimetria as String).split(",");
+						AltimetryChart.dataProvider = altimetry;
+						updateChartValues();
+					}
 					
-					
-					
-					AltimetryChart.dataProvider = altimetry;
-					updateChartValues();
 				} else {
 					map.clearOverlays();
 					altimetry = new Array();
