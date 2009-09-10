@@ -104,7 +104,7 @@
 					calculateDistance();
 					
 					//PARA MOSTRAR LA ALTIMETRÍA
-					if (altimetry != null) {
+					if (idRace.altimetria != "") {
 						altimetry = (idRace.altimetria as String).split(",");
 						AltimetryChart.dataProvider = altimetry;
 						updateChartValues();
