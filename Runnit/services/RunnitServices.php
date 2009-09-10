@@ -616,6 +616,11 @@ class RunnitServices {
 
 		return pg_fetch_all(pg_query($this->conn, $sql));    
     }
+
+	public function getRunListSmall() {
+		$sql="select id,name,date_part('day',event_date) as dia,date_part('month',event_date) as mes,date_part('year',event_date) as anyo  from run where event_date > now() and published=true";
+		return pg_fetch_all(pg_query($this->conn, $sql)); 
+	}
     
     //carrera
     public function getRunDetails($id) {
