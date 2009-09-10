@@ -404,7 +404,9 @@
 			<mx:DataGrid id="raceList" top="54" left="20" right="20" bottom="40" horizontalScrollPolicy="auto" itemClick="editRace()" dataProvider="{arrayRaces}">
 				<mx:columns>
 	                <mx:DataGridColumn dataField="id" headerText="ID" width="30"/>
-	                <mx:DataGridColumn headerText="Public?" dataField="published" width="50"/>
+	                <mx:DataGridColumn headerText="Public?" dataField="published" width="50">
+	                <mx:itemRenderer> <mx:Component> <mx:Label fontSize="15" textAlign="center" opaqueBackground="{(data.published =='f') ? '0xef5334' : '0x7be525'}" /> </mx:Component> </mx:itemRenderer> 
+	                </mx:DataGridColumn>
 	                <mx:DataGridColumn dataField="name" headerText="Nombre carrera" width="325"/>
 	                <mx:DataGridColumn dataField="event_date" headerText="Fecha" width="100"/>
 	                <mx:DataGridColumn dataField="event_location" headerText="Lugar"/>
@@ -458,7 +460,7 @@
 					<mx:TextInput x="597" y="91" width="255" id="distance_meters"/>
 					<mx:TextInput x="186" y="119" width="255" id="category"/>
 					<mx:TextInput x="186" y="147" width="666" height="20" id="awards"/>
-					<mx:TextInput x="186" y="173" width="128" id="price"/>
+					<mx:TextInput x="186" y="173" width="662" id="price"/>
 					<mx:TextInput x="186" y="201" width="666" id="inscription_location"/>
 					<mx:Label x="10" y="230" text="Provincia carrera" width="168" textAlign="right" />
 					<mx:TextInput id="race_location" x="186" y="254" width="666" enter="searchLocation(race_location.text)"/>
