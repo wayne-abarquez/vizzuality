@@ -790,6 +790,12 @@ div.pagination p {
 
 div.paginationLast {
 	margin-top: 11px;
+	float: right;
+	margin-right: 10px;
+}
+
+div.paginationLast p {
+	margin-right: 6px;
 }
 
 .numberResults{
