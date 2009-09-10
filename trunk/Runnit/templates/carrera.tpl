@@ -153,8 +153,6 @@
 	                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
 	                              <!--<![endif]-->
 
-
-
 	                              <!--[if !IE]>-->
 	                              </object>
 	                              <!--<![endif]-->
