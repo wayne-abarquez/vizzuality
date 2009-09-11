@@ -270,7 +270,7 @@ function directLogin(email,pass,user) {
     	data: dataObj,
     	cache: false,
     	success: function(result){
-    			window.location="/user/" + user;
+    			window.location="/perfil/" + user;
             	$('#registerError').html(''); 
 		    	var h = 150;
 		    	$('#registerError').fadeIn(400).html('');  

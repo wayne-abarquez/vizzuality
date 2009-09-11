@@ -4,8 +4,8 @@
 <script type="text/javascript">
     $(document).ready(function(){
         new AjaxUpload('#buttonUpload', {
-        	action: '/up_page.php',
-        	data : {},
+        	action: '/imageController.php',
+        	data : { method:"uploadAvatar"},
         	onSubmit : function(file , ext){
         		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
         			// change button text, when user selects file			

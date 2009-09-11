@@ -111,4 +111,15 @@ if ($_REQUEST['method'] == 'updateUser') {
 }
 
 
+
+if ($_REQUEST['method'] == 'uploadPicture') {
+	if() {
+	    echo("success");
+	} else {
+	    echo("error");
+	}
+}
+
+
+
 ?>
