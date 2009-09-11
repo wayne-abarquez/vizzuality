@@ -368,7 +368,7 @@
     				{else}					
     					<div class="span-8 races2 defaultWidth">
     						<div class="column first image2">
-    							<img src="/media/avatar/{$person.avatar}"/>	
+    							<img src="/avatar.php?id={$person.user_id}"/>	
     						</div>
     						<div class="column last">
     							<div class="detailsUser">

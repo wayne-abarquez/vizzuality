@@ -1,7 +1,6 @@
 <?php
-require 'services/RunnitServices.php';
+require 'services/MediaServices.php';
 $mediaServices = new MediaServices;
-
 session_start();
 
 if ($_REQUEST['method'] == 'uploadPicture') {

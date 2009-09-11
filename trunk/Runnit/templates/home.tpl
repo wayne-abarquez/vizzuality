@@ -100,7 +100,7 @@
 				{else}
 					<div class="span-8 races">
 						<div class="column first image">
-							<img src="/media/avatar/{$person.avatar}" alt="userImage"/>	
+							<img src="/avatar.php?id={$person.user_id}" alt="userImage"/>	
 						</div>
 						<div class="column span-5 last">
 							<div class="detailsUser">

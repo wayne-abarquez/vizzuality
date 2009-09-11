@@ -5,8 +5,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.imagetransform.php");
 
-session_start();
-
 class MediaServices {
 	
 	function __construct() {
@@ -33,6 +31,7 @@ class MediaServices {
 	    $res=pg_fetch_assoc(pg_query($this->conn, $sql));
 	    $picId = $res['last_value'];
 	    
+	    $res = @mkdir(ABSPATH .'media/'.$onTable.'/' . $onId, 0755);
 	    
 	    $imgTrans = new imageTransform();
 	    $imgTrans->sourceFile = $tempPath;
@@ -47,6 +46,7 @@ class MediaServices {
 	    }
 	    
 	    $bigFilePath=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_b.jpg";
+	    $bigFileUrlPath='/media/'.$onTable.'/' . $onId .'/'. $picId."_b.jpg";
 	    $imgTrans = new imageTransform();
 	    $imgTrans->sourceFile = $tempPath;
 	    $imgTrans->targetFile = $bigFilePath;
@@ -61,8 +61,9 @@ class MediaServices {
 	    $size = getimagesize($bigFilePath);
 	    
 	    //everything went fine. The update the db
-	    $sql="UPDATE picture SET width=".$size[0].",height=".$size[1].",path='$bigFilePath' WHERE id=$picId";
+	    $sql="UPDATE picture SET width=".$size[0].",height=".$size[1].",path='$bigFileUrlPath' WHERE id=$picId";
 	    $result=pg_query($this->conn, $sql);
+	    return true;
 	    
 	}
 	
@@ -79,31 +80,44 @@ class MediaServices {
 	    $onTable="avatar";
 	    $onId =$_SESSION['user']['id'];
 	    //generate the DB record
-	    $sql= "INSERT INTO picture(user_fk,on_table,on_id) VALUES ($onId,$onTable,$onId)";
-		$result=pg_query($this->conn, $sql);       
-	    //get last ID
-	    $sql = "SELECT currval('picture_id_seq') AS last_value";
+	    
+	    $sql="SELECT id from picture WHERE on_table='avatar' AND user_fk=$onId";
 	    $res=pg_fetch_assoc(pg_query($this->conn, $sql));
-	    $picId = $res['last_value'];
+	    if($res) {
+	        $picId = $res['id'];
+	    } else {
+    	    $sql= "INSERT INTO picture(user_fk,on_table,on_id) VALUES ($onId,'$onTable',$onId)";
+    		$result=pg_query($this->conn, $sql);       
+    	    //get last ID
+    	    $sql = "SELECT currval('picture_id_seq') AS last_value";
+    	    $res=pg_fetch_assoc(pg_query($this->conn, $sql));
+    	    $picId = $res['last_value'];	        
+	    }	    
 	    
 	    
 	    $imgTrans = new imageTransform();
 	    $imgTrans->sourceFile = $tempPath;
-	    $imgTrans->targetFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_t.jpg";
+        @$res = mkdir(ABSPATH .'media/'.$onTable.'/' . $onId, 0755);
+        $imgThumb=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";
+        $imgThumbPath='/media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";
+	    $imgTrans->targetFile = $imgThumb;
 		$imgTrans->resizeToWidth = 96;
 		$imgTrans->resizeToHeight = 67;
 		$imgTrans->maintainAspectRatio = false;
 	    
-	    if (!$imgTrans->resize()) {
+	    
+	    $res=$imgTrans->resize(); 
+	    if (!$res) {
 			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
-	        throw new Exception("Error processing the thumbnail");
+	        return false;
 	    }
 	    
-	    $bigFilePath=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_b.jpg";
+	    $bigFilePath=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_b.jpg";
+	    
 	    $imgTrans = new imageTransform();
 	    $imgTrans->sourceFile = $tempPath;
 	    $imgTrans->targetFile = $bigFilePath;
-		$imgTrans->resizeToWidth = 1024;
+		$imgTrans->resizeToWidth = 650;
 		$imgTrans->resizeIfSmaller=false;
 		$imgTrans->maintainAspectRatio = true;        
 	    if (!$imgTrans->resize()) {
@@ -114,10 +128,20 @@ class MediaServices {
 	    $size = getimagesize($bigFilePath);
 	    
 	    //everything went fine. The update the db
-	    $sql="UPDATE picture SET width=".$size[0].",height=".$size[1].",path='$bigFilePath' WHERE id=$picId";
+	    $sql="UPDATE picture SET width=".$size[0].",height=".$size[1].",path='$imgThumbPath' WHERE id=$picId";
 	    $result=pg_query($this->conn, $sql);
-	    
+	    return true;
 	}	
+	
+	function getUserImgPath($userId) {
+	    $sql = "SELECT path FROM picture WHERE on_id=$userId AND on_table='avatar'";
+	    $res=pg_fetch_assoc(pg_query($this->conn, $sql));
+	    if($res) {
+	        return $res['path'];
+	    } else {
+	        return "/media/avatar/0.jpg";
+	    }
+	}
 	
 	
 }

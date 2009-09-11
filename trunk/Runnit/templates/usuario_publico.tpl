@@ -1,5 +1,5 @@
 {include file="header.tpl"} 
-   
+
 	<div class="span-24 raceContainer" id="race">
 		<div class="column span-16">
 			<div class="span-16 navigationList">
@@ -10,11 +10,11 @@
 			</div>
 			<div class="span-16 marginContainer">
 				<div class="column span-3 first">
-					<img id="userImg" src="{$user_image}"/>
+					<img id="userImg" src="/avatar.php?id={$data.datos.id}"/>
 				</div>
 				<div class="span-13 last userLeft">
 					<div class="span-13 userCount">
-						<div class="wellcome"><a href="#" class="wellcome">{$data.datos.completename}</a></div>
+						<div class="wellcome"><a href="#" class="wellcome">{$data.datos.username}</a></div>
 						<div class="countAgo">usuario desde {getMonth2 month=$data.datos.created_when|substr:5:2}, {$data.datos.created_when|substr:0:4}</div>
 					</div>
 				</div>
@@ -29,10 +29,10 @@
 					<ol id="update">
 						{foreach key=id item=comment from=$comments}
 	    				{if $comment eq false}
-	    					<div class="column span-15 noCommentsContainer">
+	    					<div class="column span-15 noCommentsContainer"  id="noCommentsDiv">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$data.datos.username}</b></p>
+	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$smarty.session.user.username}</b></p>
 								</div>
 	        				</div>  
 	    				{else}	    										
@@ -47,10 +47,10 @@
 							</div>							
 	              		{/if}
 	                	{foreachelse}
-	                	    <div class="column span-15 noCommentsContainer">
+	                	    <div class="column span-15 noCommentsContainer" id="noCommentsDiv">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$data.datos.username}</b></p>
+	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$smarty.session.user.username}</b></p>
 								</div>
 	        				</div>    
 	                	{/foreach}						
@@ -62,9 +62,9 @@
 				<div class="span-16" id="flash" align="left"></div>
 				<div class="commentArea" id="commentBox">					
 					{if $smarty.session.logged}
-						<div class="span-14 titleComents">Anímate y deja un comentario a {$data.datos.username}</div>
+						<div class="span-14 titleComents">Anímate y deja un comentario a {$smarty.session.user.username}</div>
 						<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
-						<input class="fg-button" type="submit" value="Escribir comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>
+						<input class="fg-button" type="submit" value="Escribir comentario" onclick="javascript: void commentAction({$data.datos.id},'users')"/>
 					{else}
 						<p class="noComments">Para dejar comentarios debes <b><a href="javascript: void showLoginBox()">iniciar tu sesión</a></b> en runnity. <b><a href="javascript: void showRegisterBox()">¿Aún no estás registrado?</a></b></p>
 					{/if}
@@ -98,69 +98,9 @@
                 	        <div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
                 	    {/foreach}					
 				</div>
-				
-				<!-- AMIGOS -->
-				<div class="events"> 
-					<h2 class="newsTitle">Amigos de {$data.datos.username}</h2>	
-					{foreach key=id item=person from=$friends}
-    				{if $person eq 'f'}
-    					<div class="span-8 races2">
-    						<p class="noApuntado">Aún no ha agregado a nadie</p>
-							<p class="noRaceSub">¿Quieres ser su amigo? <b><a href="/rss.php">Agrégale</a></b></p>
-						</div> 
-    				{else}					
-    					<div class="span-8 races2 defaultWidth">
-    						<div class="column first image2">
-    							<img src="/media/avatar/0.jpg"/>	
-    						</div>
-    						<div class="column last">
-    							<div class="detailsUser">
-    								<div class="nameUser"><a class="nameRace" href="/user/{$person.username}">{$person.username}</a></div>
-    							</div>
-    						</div>
-    					</div>
-        			{/if}
-        		    {foreachelse}
-        		        <div class="span-8 races2">
-    						<p class="noApuntado">Aún no ha agregado a nadie</p>
-							<p class="noRaceSub">¿Quieres ser su amigo? <b><a href="/rss.php">Agrégale</a></b></p>
-						</div>     
-        		    {/foreach}					
-				</div>
-				
-				
-				<!-- GRUPOS -->
-				<div class="events"> 
-					<h2 class="newsTitle">Grupos de {$data.datos.username}</h2>	
-					{foreach key=id item=person from=$runners}
-    				{if $person eq 'f'}
-    					<div class="span-8 races2">
-    						<p class="noApuntado">Aún no pertenece a ningún grupo</p>
-						</div> 
-    				{else}					
-    					<div class="span-8 races2 defaultWidth">
-    						<div class="column first image2">
-    							<img src="/media/avatar/{$person.avatar}"/>	
-    						</div>
-    						<div class="column last">
-    							<div class="detailsUser">
-    								<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
-    								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
-    							</div>
-    							<div><p class="runnersNumber"><a href="">apúntate con él</a></p></div>
-    						</div>
-    					</div>
-        			{/if}
-        		    {foreachelse}
-        		        <div class="span-8 races2">
-    						<p class="noApuntado">Aún no pertenece a ningún grupo</p>
-						</div>     
-        		    {/foreach}					
-				</div>
-				
 			</div>
 		</div>
 	</div>
 </div>
 
-{include file="footer.tpl"} 
+{include file="footer.tpl"}

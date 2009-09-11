@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!$_SESSION['logged']) {
+if (!isset($_SESSION['logged'])) {
 	echo("No puedes acceder a esta pagina sin haberte logeado");
 	die();
 }
@@ -10,17 +10,12 @@ if (!$_SESSION['logged']) {
 // load Smarty library 
 require 'libs/Smarty.class.php';
 require 'services/RunnitServices.php';
+require 'services/MediaServices.php';
 
 
 $smarty = new Smarty; 
 $services = new RunnitServices;
-
-$targetPicture=$services->basePath .'media/avatar/' . $_SESSION['user']['id'] . '.jpg';
-if (file_exists($targetPicture)) {
-	$smarty->assign('user_image', "/media/avatar/". $_SESSION['user']['id'] . ".jpg?".rand()); 
-} else {
-	$smarty->assign('user_image', "/media/avatar/0.jpg"); 
-}
+$mediaServices = new MediaServices;
 
 
 $smarty->assign('titulo_pagina', 'Pagina de usuario de '.$_SESSION['user']['username'].' - Runnity.com');
