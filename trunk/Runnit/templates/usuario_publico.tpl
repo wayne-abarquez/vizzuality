@@ -115,7 +115,7 @@
     						</div>
     						<div class="column last">
     							<div class="detailsUser">
-    								<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
+    								<div class="nameUser"><a class="nameRace" href="/user/{$person.username}">{$person.username}</a></div>
     							</div>
     						</div>
     					</div>
