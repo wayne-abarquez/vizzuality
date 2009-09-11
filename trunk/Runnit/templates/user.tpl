@@ -65,7 +65,6 @@
 					<img id="userImg" src="{$user_image}"/>
 					<div>
 						<input id="buttonUpload" class="fg-button Subirfoto" type="submit" value="Subir foto">
-<!-- 						<input class="fg-button Subirfoto" type="submit" value="Subir foto"> -->
 					</div>
 				</div>
 				<div class="span-13 last userLeft">
