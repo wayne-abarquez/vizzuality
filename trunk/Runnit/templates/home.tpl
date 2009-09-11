@@ -104,7 +104,7 @@
 						</div>
 						<div class="column span-5 last">
 							<div class="detailsUser">
-								<div class="raceUserDetails"><a class="nameRace" href="#">{$person.username}</a>, dice que va a ir a</div>
+								<div class="raceUserDetails"><a class="nameRace" href="/user/{$person.user_id}/">{$person.username}</a>, dice que va a ir a</div>
 								<!-- <div class="raceUserDetails"> dice que va a ir a </div> -->
 								<div class="raceUserDetails"><a class="raceUserLink" href="/run/{$person.run_id}/{$person.run_name|replace:' ':'/'}">{$person.run_name}</a></div>
 							</div>
