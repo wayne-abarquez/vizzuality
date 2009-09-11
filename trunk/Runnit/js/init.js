@@ -985,3 +985,30 @@ function passTextUser () {
 	$('#passSaveData').val('Cambiar contraseña');
     clearTimeout(timerID);
 }
+
+
+function showModalImage(url) {
+
+	$('#showImage').modal({onOpen: function (dialog) {
+	dialog.overlay.fadeIn('fast', function () {
+		dialog.container.slideDown('fast', function () {
+			dialog.data.fadeIn('slow');
+		});
+	});
+}});
+	$('#showImage').html('<img src="'+url+'"/>');
+			
+	var wscr = $(window).width();
+    var hscr = $(window).height();
+    
+    // obtener posicion central
+    var mleft = ( wscr - 500 ) / 2;
+    var mtop = ( hscr - 375 ) / 2;
+    
+    // estableciendo ventana modal en el centro
+    $('#simplemodal-container').css("left", mleft+'px');
+    $('#simplemodal-container').css("top", mtop+'px');
+	
+	$('#simplemodal-container').css("width",'500px');
+	$('#simplemodal-container').css("height",'375px');
+}

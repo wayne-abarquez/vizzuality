@@ -163,10 +163,13 @@
 				</a>
 				{/if}	
 				
+				
+				<!-- IMAGE -->
+				<div id="showImage" style="display:hidden;">
+					
+				</div>
+				
 				<!-- GALLERY -->
-				<!-- required CSS files -->
-
-
 				<div class="gallery span-16">
 					<div class="navi"></div>
 					
@@ -177,8 +180,8 @@
 						<div class="items">
 						
 							<!-- 1-5 -->
-							<img src="http://farm1.static.flickr.com/143/321464099_a7cfcb95cf_t.jpg" />
-							<img src="http://farm4.static.flickr.com/3089/2796719087_c3ee89a730_t.jpg" />
+							<img src="http://farm1.static.flickr.com/143/321464099_a7cfcb95cf_t.jpg" onclick="javascript: void showModalImage('http://farm1.static.flickr.com/143/321464099_a7cfcb95cf.jpg')"/>
+							<img src="http://farm4.static.flickr.com/3089/2796719087_c3ee89a730_t.jpg"/>
 							<img src="http://farm1.static.flickr.com/79/244441862_08ec9b6b49_t.jpg" />
 							<img src="http://farm1.static.flickr.com/28/66523124_b468cf4978_t.jpg" />
 							<img src="http://farm1.static.flickr.com/164/399223606_b875ddf797_t.jpg" />
@@ -224,18 +227,8 @@
 				});
 				</script>
 				{/literal}
-
-
-
-				
 				<!-- END GALLERY -->
-				
-				
-				
-				
-				
-				
-				
+
 				
 				<div class="span-16 marginDescription marginTop7">
 					<div class="marginDescription"><h3 class="blue">Comentarios {if !empty($comments)}[{$comments|@count}]{/if}</h3><h5><a onclick="document.getElementById('commentTextArea').focus();
