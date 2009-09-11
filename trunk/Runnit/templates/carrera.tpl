@@ -54,7 +54,7 @@
 							{if $data.distance_text != null}
 							<div class="span-6 databox">
 								<div class="span-2 last distance"><p>Distancia:</p></div>
-								<div class="span-4 last distanceInfo"><p><b>{$data.distance_text},</b></p></div>
+								<div class="span-4 last distanceInfo"><p><b>{$data.distance_text}</b></p></div>
 							</div>
 							{/if}
 							{if $data.event_date != null}
