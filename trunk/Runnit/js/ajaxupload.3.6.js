@@ -323,7 +323,7 @@ AjaxUpload.prototype = {
 			setTimeout(function(){
 				// we will wait 3 seconds for dialog to open
 				self.justClicked = false;
-			}, 2500);			
+			}, 10000);			
 		});		
 		
 		this._input = input;
