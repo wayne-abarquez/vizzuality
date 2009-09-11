@@ -63,7 +63,13 @@ class MediaServices {
 	    //everything went fine. The update the db
 	    $sql="UPDATE picture SET width=".$size[0].",height=".$size[1].",path='$bigFileUrlPath' WHERE id=$picId";
 	    $result=pg_query($this->conn, $sql);
-	    return true;
+	
+		$data=array();
+		$data['width']=$size[0];
+		$data['height']=$size[1];
+		$data['path']=$bigFileUrlPath;	
+	
+	    return $data;
 	    
 	}
 	
@@ -130,6 +136,7 @@ class MediaServices {
 	    //everything went fine. The update the db
 	    $sql="UPDATE picture SET width=".$size[0].",height=".$size[1].",path='$imgThumbPath' WHERE id=$picId";
 	    $result=pg_query($this->conn, $sql);
+	
 	    return true;
 	}	
 	

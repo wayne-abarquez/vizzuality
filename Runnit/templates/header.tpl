@@ -31,7 +31,7 @@
 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity" />
 
 
-    {if $section eq "usuario"}
+    {if $section eq "usuario" or $section eq "carrera"}
         <script type="text/javascript" src="/js/ajaxupload.3.6.js"></script>
 	{/if}
 
