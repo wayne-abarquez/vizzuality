@@ -118,11 +118,13 @@ function showContactBox() {
 
 
 /* FUNCION PARA COMENTAR -- REVISAR -- */
-function commentAction(idRun) {
+function commentAction(id,on_table) {
 		
 		var comment = $("#commentTextArea").val();
-	    var dataObj = ({comment : comment,
-	        method: 'addComment',id:idRun
+	    var dataObj = ({
+	            comment : comment,
+	            method: 'addComment',
+	            id:id,onTable:on_table
 	        });
 
 		if(comment=='') {
