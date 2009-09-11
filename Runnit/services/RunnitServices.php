@@ -335,7 +335,7 @@ class RunnitServices {
 	    if(count($terms)>0 and $q!="") {
 	        $sql.=" AND (";
     	    foreach($terms as $term) {
-    	        $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
+    	        $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(p.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
     	    }	 
     	    $sql=substr($sql,0,-3);
     	    $sql.=")";       
@@ -353,6 +353,8 @@ class RunnitServices {
 	    $sqlForCount="SELECT COUNT(id) as num_results FROM ($sql) as s";
 	    
 	    $sql.=" order by event_date ASC limit 20 offset $offset";
+        
+        //echo($sql);
         
         $results=array();
         $results['data'] = pg_fetch_all(pg_query($this->conn, $sql));
