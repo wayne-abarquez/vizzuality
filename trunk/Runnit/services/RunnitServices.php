@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/language/phpmailer.lang-es.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.phpmailer.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
