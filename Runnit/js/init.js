@@ -142,11 +142,16 @@ function commentAction(id,on_table) {
 	  				$("ol#update li:last").fadeIn(400);
 	    			$('#commentTextArea').html('');
 	  				$("#flash").hide();
+	  				
+	  				if($("#noCommentsDiv").length > 0) {
+	  				    $("#noCommentsDiv").hide();
+	  				}
 	  			},
 		        error:function (xhr, ajaxOptions, thrownError){
 		                alert('Runnity' + xhr.status + "\n" + thrownError);
 		        }
 	 		});
+	 			
 		}
 		return false;
 };

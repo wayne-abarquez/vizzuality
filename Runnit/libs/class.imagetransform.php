@@ -111,7 +111,6 @@ class imageTransform
      *  Available only for the {@link resize} method and only if the {@link targetFile}'s extension is jpg/jpeg
      *
      *  output quality of image (better quality means bigger file size).
-
      *
      *  range is 0 - 100
      *
@@ -254,7 +253,7 @@ class imageTransform
             
         // if no errors so far
         } else {
-
+            
             // creates an image from file using extension dependant function
             // checks for file extension
             switch ($sourceImageType) {
@@ -306,14 +305,13 @@ class imageTransform
                     
                 // if png
                 case 3:
-                
                     // creates an image from file
-                    $sourceImageIdentifier = @imagecreatefrompng($this->sourceFile);
+                    $sourceImageIdentifier = imagecreatefrompng($this->sourceFile);
 
                     break;
                     
                 default:
-                
+                    
                     // if file has an unsupported extension
                     // note that we call this if the file is not gif, jpg or png even though the getimagesize function
                     // handles more image types
@@ -484,7 +482,6 @@ class imageTransform
      */
     function resize()
     {
-
         // tries to create an image from sourceFile
         $result = $this->create_image_from_source_file();
         

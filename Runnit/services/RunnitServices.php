@@ -316,19 +316,6 @@ class RunnitServices {
 	    }
 	    //Check if the user has avatars or not
 	    $result = pg_fetch_all(pg_query($this->conn, $sql));
-	    
-	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
-	    if($result) {
-    	    foreach ($result as &$user) {
-    	        $targetPicture=$this->basePath."media/avatar/".$user['user_id'].".jpg";
-                if (file_exists($targetPicture)) {
-                    $user['avatar'] = $user['user_id'].".jpg?".rand();
-                } else {
-                    //no image for the run, select random
-                    $user['avatar'] = "0.jpg";
-                }
-            }	        
-	    }
 
 	    if ($result==false) {
 	    	return "f";

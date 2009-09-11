@@ -1,9 +1,9 @@
 <?php
-require 'services/RunnitServices.php';
-$services = new RunnitServices;
-$targetPicture=$services->basePath."media/avatar/".$_REQUEST['id'].".jpg";
+require_once($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
+
+$targetPicture=ABSPATH."media/avatar/".$_REQUEST['id']."/". $_REQUEST['id'] ."_t.jpg";
 if (!file_exists($targetPicture)) {
-    $targetPicture =$services->basePath."media/avatar/0.jpg";
+    $targetPicture =ABSPATH."media/avatar/0.jpg";
 }
 header("Content-Type: image/jpeg");
 header('Content-Length: '.filesize($targetPicture));

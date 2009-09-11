@@ -38,7 +38,7 @@
         	},
         	onComplete : function(file){
 	
-				$("#userImg").attr("src",$("#userImg").attr("src")+"1");
+				$("#userImg").attr("src","/avatar.php?id={/literal}{$smarty.session.user.id}{literal}&"+new Date().valueOf());
 				$("#buttonUpload").attr("value","Subir foto");
 
     			window.clearInterval(interval);
@@ -62,7 +62,7 @@
 			</div>
 			<div class="span-16 marginContainer">
 				<div class="column span-3 first">
-					<img id="userImg" src="{$user_image}"/>
+					<img id="userImg" src="/avatar.php?id={$smarty.session.user.id}"/>
 					<div>
 						<input id="buttonUpload" class="fg-button Subirfoto" type="submit" value="Subir foto">
 					</div>
