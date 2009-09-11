@@ -1,56 +1,4 @@
 {include file="header.tpl"} 
-
-{literal}
-<script type="text/javascript">
-    $(document).ready(function(){
-        new AjaxUpload('#buttonUpload', {
-        	action: '/up_page.php',
-        	data : {},
-        	onSubmit : function(file , ext){
-        		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
-        			// change button text, when user selects file			
-					$("#buttonUpload").attr("value",".");
-
-
-        			// If you want to allow uploading only 1 file at time,
-        			// you can disable upload button
-        			this.disable();
-
-
-        			// Uploding -> Uploading. -> Uploading...
-        			interval = window.setInterval(function(){
-        				var text = $("#buttonUpload").attr("value");
-        				if (text.length < 17){
-							$("#buttonUpload").attr("value",text + '.');					
-        				} else {
-        					$("#buttonUpload").attr("value",".");				
-        				}
-        			}, 200);
-
-        		} else {
-			
-        			// extension is not allowed
-        			//$('#example2 .text').text('Error: only images are allowed');
-        			// cancel upload
-        			return false;				
-        		}
-
-        	},
-        	onComplete : function(file){
-	
-				$("#userImg").attr("src",$("#userImg").attr("src")+"1");
-				$("#buttonUpload").attr("value","Subir foto");
-
-    			window.clearInterval(interval);
-
-    			//enable upload button
-    			this.enable();
-    						
-        	}		
-        });
-});/*]]>*/</script>
-
-{/literal}
    
 	<div class="span-24 raceContainer" id="race">
 		<div class="column span-16">
@@ -66,8 +14,8 @@
 				</div>
 				<div class="span-13 last userLeft">
 					<div class="span-13 userCount">
-						<div class="wellcome"><a href="#" class="wellcome">{$smarty.session.user.completename}</a></div>
-						<div class="countAgo">usuario desde {getMonth2 month=$smarty.session.user.created_when|substr:5:2}, {$smarty.session.user.created_when|substr:0:4}</div>
+						<div class="wellcome"><a href="#" class="wellcome">{$data.datos.completename}</a></div>
+						<div class="countAgo">usuario desde {getMonth2 month=$data.datos.created_when|substr:5:2}, {$data.datos.created_when|substr:0:4}</div>
 					</div>
 				</div>
 			</div>
@@ -84,7 +32,7 @@
 	    					<div class="column span-15 noCommentsContainer">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$smarty.session.user.username}</b></p>
+	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$data.datos.username}</b></p>
 								</div>
 	        				</div>  
 	    				{else}	    										
@@ -102,7 +50,7 @@
 	                	    <div class="column span-15 noCommentsContainer">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$smarty.session.user.username}</b></p>
+	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$data.datos.username}</b></p>
 								</div>
 	        				</div>    
 	                	{/foreach}						
@@ -114,7 +62,7 @@
 				<div class="span-16" id="flash" align="left"></div>
 				<div class="commentArea" id="commentBox">					
 					{if $smarty.session.logged}
-						<div class="span-14 titleComents">Anímate y deja un comentario a {$smarty.session.user.username}</div>
+						<div class="span-14 titleComents">Anímate y deja un comentario a {$data.datos.username}</div>
 						<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
 						<input class="fg-button" type="submit" value="Escribir comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>
 					{else}
@@ -128,10 +76,10 @@
 		<div class="column last span-8 rightColumn">
 			<div class="span-8 importantRaces">
 				<div class="events"> 
-					<h2 class="newsTitle5">Carreras de {$smarty.session.user.username}</h2>
+					<h2 class="newsTitle5">Carreras de {$data.datos.username}</h2>
 				</div>
 				<div class="events">
-            		{foreach key=id item=race from=$nextRaces}
+            		{foreach key=id item=race from=$data.carreras}
             			{if $race eq 0}
             				<div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
             			{else}		    				    
@@ -150,6 +98,66 @@
                 	        <div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
                 	    {/foreach}					
 				</div>
+				
+				<!-- AMIGOS -->
+				<div class="events"> 
+					<h2 class="newsTitle">Amigos de {$data.datos.username}</h2>	
+					{foreach key=id item=person from=$friends}
+    				{if $person eq 'f'}
+    					<div class="span-8 races2">
+    						<p class="noApuntado">Aún no ha agregado a nadie</p>
+							<p class="noRaceSub">¿Quieres ser su amigo? <b><a href="/rss.php">Agrégale</a></b></p>
+						</div> 
+    				{else}					
+    					<div class="span-8 races2 defaultWidth">
+    						<div class="column first image2">
+    							<img src="/media/avatar/0.jpg"/>	
+    						</div>
+    						<div class="column last">
+    							<div class="detailsUser">
+    								<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
+    							</div>
+    						</div>
+    					</div>
+        			{/if}
+        		    {foreachelse}
+        		        <div class="span-8 races2">
+    						<p class="noApuntado">Aún no ha agregado a nadie</p>
+							<p class="noRaceSub">¿Quieres ser su amigo? <b><a href="/rss.php">Agrégale</a></b></p>
+						</div>     
+        		    {/foreach}					
+				</div>
+				
+				
+				<!-- GRUPOS -->
+				<div class="events"> 
+					<h2 class="newsTitle">Grupos de {$data.datos.username}</h2>	
+					{foreach key=id item=person from=$runners}
+    				{if $person eq 'f'}
+    					<div class="span-8 races2">
+    						<p class="noApuntado">Aún no pertenece a ningún grupo</p>
+						</div> 
+    				{else}					
+    					<div class="span-8 races2 defaultWidth">
+    						<div class="column first image2">
+    							<img src="/media/avatar/{$person.avatar}"/>	
+    						</div>
+    						<div class="column last">
+    							<div class="detailsUser">
+    								<div class="nameUser"><a class="nameRace" href="#">{$person.username}</a></div>
+    								<div class="raceUserDetails"> dice que va a ir a esta carrera</div>
+    							</div>
+    							<div><p class="runnersNumber"><a href="">apúntate con él</a></p></div>
+    						</div>
+    					</div>
+        			{/if}
+        		    {foreachelse}
+        		        <div class="span-8 races2">
+    						<p class="noApuntado">Aún no pertenece a ningún grupo</p>
+						</div>     
+        		    {/foreach}					
+				</div>
+				
 			</div>
 		</div>
 	</div>
