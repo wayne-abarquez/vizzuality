@@ -131,7 +131,6 @@
 			
 			
 			private function onDirFail(event:DirectionsEvent):void {
-			  // Process failure, perhaps by showing an alert
 			  trace("error")
 			}
 			
@@ -186,6 +185,16 @@
 		    		
 		    	}
 		    	calculateDistance();
+		    	var tempCoords:Array=[];
+				for each (var po:LatLng in array) {
+					tempCoords.push({lat:po.lat(),lon:po.lng()});
+				}
+				
+				var tempAl:Array=[];
+				for each(var al:Number in altimetry) {
+					tempAl.push(Math.round(al));
+				}
+				Application.application.server2.updateRunGeometry(tempCoords,tempAl,Application.application.raceList.selectedItem.id);
 		    }
 		    
 		    private function undoRoute():void {

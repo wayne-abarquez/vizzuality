@@ -69,6 +69,7 @@
             	provincesArray = new ArrayCollection(event.result as Array);
             	server.removeEventListener(ResultEvent.RESULT,onProvincesResult);
             	listRaces.enabled = true;
+            	provincesCombo.selectedItem = null;
             	if (raceList.selectedItem) editRace();
             }
             
@@ -189,11 +190,13 @@
             	description.text = "";
             	race_location.text = ""; 
             	publishedRunCheck.selected = false;
-            	runType.selectedIndex = 1;
+            	runType.selectedItem = null;
+            	provincesCombo.selectedItem = null;
             	inscription_phone.text = "";
             	flickr.text = "";
             	markersArray = new Array();
-            	map.clearOverlays();          	
+            	map.clearOverlays();   
+            	map.setCenter(new LatLng(40.44694705960048, -3.33984375), 5, MapType.NORMAL_MAP_TYPE);      	
             }
             
             private function addNewRace():void {
@@ -202,7 +205,9 @@
             	raceList.selectedItem = false;
             }
             
+            [Bindable] private var recorridoCanvasHabilitado:Boolean=false;
             private function editRace():void {
+            	recorridoCanvasHabilitado=false;
         		clearInputs();
         		fillInputs(raceList.selectedItem);
             	server.addEventListener(ResultEvent.RESULT,onGetGeometryDataOK);
@@ -214,6 +219,7 @@
             	server.removeEventListener(ResultEvent.RESULT,onGetGeometryDataOK);
             	server.removeEventListener(FaultEvent.FAULT,onGetGeometryDataKO);
             	geometryRace.data = ev.result;
+            	recorridoCanvasHabilitado=true;
             }
             
             private function onGetGeometryDataKO(ev:FaultEvent):void {
@@ -285,7 +291,7 @@
         		if (obj.flickr_url!=null) flickr.text = obj.flickr_url; 
             	
             	map.clearOverlays();
-            	
+
             	if (obj.start_point_lat!=null) {
 	            	startRaceMarker = new Marker(new LatLng(obj.start_point_lat,obj.start_point_lon),new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 									         labelFormat: {color: 0xFFFFFF, bold: true},
@@ -312,11 +318,10 @@
 	            	markersArray.push(finishRaceMarker.getLatLng());
 	            	
 	            	var directionsBounds:LatLngBounds = new LatLngBounds();
-	            	trace(directionsBounds);
 	            	directionsBounds.extend(markersArray[0]);
 	            	directionsBounds.extend(markersArray[1]);
 	            	
-					map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds));      		
+					map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds)-1);      		
             	} 
 				
             }
@@ -486,7 +491,7 @@
 					<mx:Button x="633.3" y="652.3" label="Buscar" click="searchLocation(buscador.text)" fillAlphas="[1.0, 1.0, 1.0, 1.0]"/>
 	            </mx:Canvas>
 	
-	            <mx:Canvas label="Recorrido" backgroundColor="#D7D7D7">
+	            <mx:Canvas id="recorridoCanvas" label="Recorrido" backgroundColor="#D7D7D7" enabled="{(iden.text.length>0 &amp;&amp; recorridoCanvasHabilitado)}">
 	                <local:SetRaceLocation id="geometryRace"/>
 	            </mx:Canvas>
 			</mx:TabNavigator>
@@ -495,15 +500,8 @@
 	</mx:VDividedBox>	
 		
 	
-	
-	
-		
-	<mx:RemoteObject id="server" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices">
-		<mx:method name="getRunsList"/>
-		<mx:method name="removeRun"/>
-		<mx:method name="updateRun"/>
-		<mx:method name="createNewRun"/>
-		<mx:method name="login"/>
-	</mx:RemoteObject>
+	<mx:RemoteObject id="server" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
+	<mx:RemoteObject id="server2" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices" concurrency="last"/>
+
 	
 </mx:Application>
