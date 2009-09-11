@@ -205,7 +205,7 @@
 						{if $smarty.session}
 							<div class="span-14 titleComents">Anímate y publica tu comentario</div>
 							<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
-							<input class="fg-button" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>
+							<input class="fg-button" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
 						{else}
 							<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginBox()">iniciar tu sesión</a></b> en runnity. <b><a href="javascript: void showRegisterBox()">¿Aún no estás registrado?</a></b></p>
 						{/if}

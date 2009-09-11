@@ -210,6 +210,36 @@ class RunnitServices {
 		$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and start_point && ST_SetSRID(ST_MakeBox2D(ST_Point($west, $south), ST_Point($east ,$north)),4326)";
 	} */
 	
+	//usuario_publico.php
+	public function getUserInfo($username) {
+	    
+	    $result=array();
+	    $username=pg_escape_string($username);
+	    $sql="select id,completename,username,email,created_when from users where username='$username'";
+        $result['datos'] = pg_fetch_assoc(pg_query($this->conn, $sql));
+        if(!$result['datos']) {
+            return false;
+        }
+	    
+
+	    $result['carreras']=$this->getUserRuns($result['datos']['id']);
+	    $result['amigos']=$this->getUserFriends($result['datos']['id']);
+	    $result['grupos']=$this->getUserGroups($result['datos']['id']);
+	    
+	    return $result;
+	    
+	}
+	
+	public function getUserFriends($id) {
+	    $sql="select f.id,f.username from users_relations as ur inner join users as f on ur.friend_fk=f.id where ur.users_fk=$id";
+	    return pg_fetch_all(pg_query($this->conn, $sql));
+	}
+	
+	public function getUserGroups($id) {
+	    $sql="select g.id,g.name from users_groups as ug inner join groups as g on ug.group_fk=g.id where ug.users_fk=$id";
+	    return pg_fetch_all(pg_query($this->conn, $sql));
+	}	
+	
 	//runnitHomeMap
 	public function getAllRuns() {
 		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and start_point is not null";
