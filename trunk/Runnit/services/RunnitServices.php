@@ -240,6 +240,11 @@ class RunnitServices {
 	    return pg_fetch_all(pg_query($this->conn, $sql));
 	}	
 	
+	public function getGroupUsers($id) {
+	    $sql="select u.id,u.username from users_groups as ug inner join users as u on ug.users_fk=u.id where ug.group_fk=$id";
+	    return pg_fetch_all(pg_query($this->conn, $sql));
+	}	
+	
 	//runnitHomeMap
 	public function getAllRuns() {
 		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and start_point is not null";
