@@ -4,9 +4,11 @@ session_start();
 
 require 'libs/Smarty.class.php';
 require 'services/RunnitServices.php';
+require 'services/MediaServices.php';
 
 $smarty = new Smarty;
 $services = new RunnitServices;
+$mediaServices = new MediaServices;
 
 
 
@@ -32,6 +34,7 @@ $smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id']
 $smarty->assign('comments',$services->getComments($_REQUEST['id'],'run'));
 $smarty->assign('similarTypeRaces',$services->getRunsSimilarDistance($_REQUEST['id'],$data['distance_meters']));
 $smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id']));
+$smarty->assign('pictures',$mediaServices->getObjectPictures('run',$_REQUEST['id']));
 
 
 $smarty->display('carrera.tpl');

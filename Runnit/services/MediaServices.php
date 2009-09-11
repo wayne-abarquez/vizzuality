@@ -143,6 +143,12 @@ class MediaServices {
 	    }
 	}
 	
+	function getObjectPictures($table,$id) {
+	    $table=pg_escape_string($table);
+	    $sql = "SELECT id,path,width,height FROM picture WHERE on_id=$id AND on_table='$table'";
+	    return pg_fetch_all(pg_query($this->conn, $sql));
+	}
+	
 	
 }
 ?>
