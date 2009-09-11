@@ -113,7 +113,7 @@
 			<div class="span-16 boxraceMap">
 				<div class="span-16" id="flash" align="left"></div>
 				<div class="commentArea" id="commentBox">					
-					{if $smarty.session}
+					{if $smarty.session.logged}
 						<div class="span-14 titleComents">Anímate y deja un comentario a {$smarty.session.user.username}</div>
 						<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
 						<input class="fg-button" type="submit" value="Escribir comentario" onclick="javascript: void commentAction({$smarty.request.id})"/>

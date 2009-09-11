@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/floating.css">	
 	<link rel="stylesheet" type="text/css" href="/css/contact.css">	
 	<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="/css/scrollable.css" type="text/css" media="screen, projection">
 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity" />
 
 
@@ -39,6 +40,7 @@
 	<script src='/js/jquery-1.3.2.min.js' type='text/javascript'></script>
 	<script src='/js/jquery.simplemodal.js' type='text/javascript'></script>
 	<script src='/js/autoresize.jquery.min.js' type='text/javascript'></script>	
+	<script src='/js/jquery.tools.min.js' type='text/javascript'></script>	
 	
 	<!-- Contact Form JS and CSS files -->
 	<script src='/js/init.js' type='text/javascript'></script>
