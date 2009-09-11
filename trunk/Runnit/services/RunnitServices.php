@@ -36,9 +36,6 @@ class RunnitServices {
 	
 	//ajaxController
 	public function logout() {
-	    if (!$_SESSION['logged']) {
-	        throw new Exception("user not logged in");
-	    }
 	    session_destroy();
 	}	
 	
@@ -244,6 +241,43 @@ class RunnitServices {
 	    $sql="select u.id,u.username from users_groups as ug inner join users as u on ug.users_fk=u.id where ug.group_fk=$id";
 	    return pg_fetch_all(pg_query($this->conn, $sql));
 	}	
+	
+	public function setUserToFriend($friendId) {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");
+	    }	    
+	    $sql="INSERT INTO users_relations(users_fk,friend_fk) VALUES(".$_SESSION['user']['id'].",$friendId)";
+	    $result= pg_query($this->conn, $sql);
+	    return null;
+	}
+	
+	public function setUserToGroup($groupId) {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");
+	    }	    
+	    $sql="INSERT INTO users_groups(users_fk,group_fk) VALUES(".$_SESSION['user']['id'].",$groupId)";
+	    $result= pg_query($this->conn, $sql);
+	    return null;
+	}	
+	
+	public function unSetUserToGroup($groupId) {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");
+	    }	    
+	    $sql="DELETE FROM users_groups WHERE users_fk = ".$_SESSION['user']['id']." AND group_fk =$groupId)";
+	    $result= pg_query($this->conn, $sql);
+	    return null;
+	}	
+	
+	public function unSetUserToFriend($friendId) {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");
+	    }	    
+	    $sql="DELETE FROM users_relations WHERE users_fk = ".$_SESSION['user']['id']." AND friend_fk =$friendId)";
+	    $result= pg_query($this->conn, $sql);
+	    return null;
+	}	
+	
 	
 	//runnitHomeMap
 	public function getAllRuns() {
