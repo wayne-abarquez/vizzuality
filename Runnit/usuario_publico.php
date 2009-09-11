@@ -7,7 +7,6 @@ session_start();
 require 'libs/Smarty.class.php';
 require 'services/RunnitServices.php';
 
-
 $smarty = new Smarty; 
 $services = new RunnitServices;
 
@@ -20,6 +19,7 @@ if(isset($_REQUEST['u'])) {
 
 $data=$services->getUserInfo($username);
 $comentarios=$services->getComments($data['datos']['id'],'users');
+$friends=$services->getUserFriends($data['datos']['id']);
 
 $targetPicture=$services->basePath .'media/avatar/' . $data['datos']['id'] . '.jpg';
 if (file_exists($targetPicture)) {
@@ -30,6 +30,9 @@ if (file_exists($targetPicture)) {
 
 
 $smarty->assign('titulo_pagina', 'Pagina de usuario de '.$data['datos']['username'].' - Runnity.com');
+
+$smarty->assign('data',$data);
+$smarty->assign('friends',$friends);
 
 $smarty->assign('section', 'usuario_publico');
 $smarty->display('usuario_publico.tpl');
