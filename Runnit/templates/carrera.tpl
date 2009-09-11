@@ -33,7 +33,7 @@
 					<div class="span-14 last">
 						<p class="raceTitle" id="raceTitle">{$data.name}</p>
 						<p class="raceDetailsTitle">{$data.event_location} | {$data.distance_text} | <b>{$data.num_users} usuarios van</b>,
-						<input id="inscriptionButton" class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy a ir{/if}" onclick="javascript: void checkInscrito({if $smarty.session.logged}'ok'{else}'ko'{/if})"/>					
+						<input id="inscriptionButton" class="fg-button" type="button" value="{if $data.inscrito eq 'f'}apúntate{else}voy a ir{/if}" onclick="javascript: void checkInscrito({if $smarty.session}'ok'{else}'ko'{/if})"/>					
 						
 						</p>
 					</div>
@@ -166,35 +166,46 @@
 				<!-- GALLERY -->
 				<!-- required CSS files -->
 
-				<div class="navi"></div>
-				<div class="span-10">
-	
-					<!-- "previous page" action -->
+
+				<div class="gallery span-16">
+					<div class="navi"></div>
+					
 					<a class="column span-1 first prevPage browse left"></a>
 					
-					<!-- root element for scrollable -->
-					<div class="column span-7 spascrollable" id="browsable">	
+					<div class="column span-14 scrollable" id="browsable">	
 						
 						<div class="items">
 						
+							<!-- 1-5 -->
 							<img src="http://farm1.static.flickr.com/143/321464099_a7cfcb95cf_t.jpg" />
 							<img src="http://farm4.static.flickr.com/3089/2796719087_c3ee89a730_t.jpg" />
 							<img src="http://farm1.static.flickr.com/79/244441862_08ec9b6b49_t.jpg" />
-					
 							<img src="http://farm1.static.flickr.com/28/66523124_b468cf4978_t.jpg" />
 							<img src="http://farm1.static.flickr.com/164/399223606_b875ddf797_t.jpg" />
 							
+							<!-- 5-10 -->
 							<img src="http://farm1.static.flickr.com/163/399223609_db47d35b7c_t.jpg" />
 							<img src="http://farm1.static.flickr.com/135/321464104_c010dbf34c_t.jpg" />
 							<img src="http://farm1.static.flickr.com/40/117346184_9760f3aabc_t.jpg" />
 							<img src="http://farm1.static.flickr.com/153/399232237_6928a527c1_t.jpg" />
 							<img src="http://farm1.static.flickr.com/50/117346182_1fded507fa_t.jpg" />
-												
+							
+							<!-- 10-15 -->
+					
 							<img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_t.jpg" />
 							<img src="http://farm4.static.flickr.com/3023/3323897466_e61624f6de_t.jpg" />
 							<img src="http://farm4.static.flickr.com/3650/3323058611_d35c894fab_t.jpg" />
 							<img src="http://farm4.static.flickr.com/3635/3323893254_3183671257_t.jpg" />
 							<img src="http://farm4.static.flickr.com/3624/3323893148_8318838fbd_t.jpg" />
+							
+							
+							<!-- 15-20 -->
+							<img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_t.jpg" />
+							<img src="http://farm4.static.flickr.com/3023/3323897466_e61624f6de_t.jpg" />
+							<img src="http://farm4.static.flickr.com/3650/3323058611_d35c894fab_t.jpg" />
+							<img src="http://farm4.static.flickr.com/3635/3323893254_3183671257_t.jpg" />
+							<img src="http://farm4.static.flickr.com/3624/3323893148_8318838fbd_t.jpg" />
+							
 						</div>
 						
 					</div>
@@ -203,6 +214,7 @@
 					<a class="column span-1 last nextPage browse right"></a>
 					
 					
+					<br clear="all" />
 				</div>
 				<!-- javascript coding -->
 				{literal}
