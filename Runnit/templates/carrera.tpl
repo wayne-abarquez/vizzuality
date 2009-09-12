@@ -164,7 +164,7 @@ $(document).ready(function() {
 							{if $data.inscription_website != null}
 							<div class="span-6 databox">
 								<div class="span-2 last distance"><p class="textRace">Web:</p></div>
-								<div class="span-4 last distanceInfo"><p><a target="_blank" id="datos2" href="{$data.inscription_website}" class="special">{$data.inscription_website}</a></p></div>
+								<div class="span-4 last distanceInfo"><p><a target="_blank" id="datos2" href="{if $data.inscription_website|substr:0:7 eq "http://"}{$data.inscription_website}{else}http://{$data.inscription_website}{/if}" class="special">{$data.inscription_website}</a></p></div>
 							</div>	
 							{/if}
 							{if $data.tlf_informacion != null}
