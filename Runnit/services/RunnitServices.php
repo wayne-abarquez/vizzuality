@@ -362,7 +362,7 @@ class RunnitServices {
 	    if(count($terms)>0 and $q!="") {
 	        $sql.=" AND (";
     	    foreach($terms as $term) {
-    	        $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(p.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
+    	        $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(p.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or p.cautonoma_noaccents ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
     	    }	 
     	    $sql=substr($sql,0,-3);
     	    $sql.=")";       
