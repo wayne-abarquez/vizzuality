@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="470" height="75" backgroundColor="#000000" alpha="1.0" backgroundAlpha="0.3">
-	<mx:Label x="73" y="4" text="European Starling" fontFamily="Helvetica" fontWeight="bold" fontSize="45" letterSpacing="-2" color="#000000"/>
-	<mx:Label x="74" y="5" text="European Starling" fontFamily="Helvetica" fontWeight="bold" fontSize="45" letterSpacing="-2" color="#FFFFFF"/>
-	<mx:Label x="74" y="47" text="How Shakespeare's birds conquered America" fontFamily="Helvetica" fontWeight="bold" fontSize="20" letterSpacing="-2" color="#000000"/>
-	<mx:Label x="75" y="48" text="How Shakespeare's birds conquered America" fontFamily="Helvetica" fontWeight="bold" fontSize="20" letterSpacing="-2" color="#FFFFFF"/>
-	<mx:Image x="10" y="8" source="@Embed('/assets/Eur_Starling_thumbnail.jpg')"/>
-	
-</mx:Canvas>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="15">
-	<mx:Image x="3" y="2" width="16" height="15" source="{'http://data.gbif.org/images/flags/'+(data.isocode as String).toLowerCase()+'.gif'}"/>
-	<mx:Label x="23" text="{data.name}" verticalCenter="0" fontFamily="DINOT-Medium" fontSize="11" color="#FFFFFF"/>
-	<mx:Label x="154" text="{data.occurrences}" verticalCenter="0" fontFamily="DINOT-Medium" fontSize="11" color="#9DE866"/>
-	<mx:Label x="224" text="{data.providers}" verticalCenter="0" fontFamily="DINOT-Medium" fontSize="11" color="#BE854B"/>
-	<mx:Label x="293" text="{data.resources}" verticalCenter="0" fontFamily="DINOT-Medium" fontSize="11" color="#B4648E"/>
-</mx:Canvas>
