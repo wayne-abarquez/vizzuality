@@ -19,10 +19,10 @@
 					</div>
 				</div>
 			</div>
+				
 				<div class="span-16 marginContainer">
 
 					<div class="marginDescription"><h3 class="blue">Perfil</h3></div>					
-				
 				
 					<div class="marginDescription"><h3 class="blue">Tablón {if !empty($comments)}[{$comments|@count}]{/if}</h3><h5><a onclick="document.getElementById('commentTextArea').focus();
 " class="PublicarComentarioEnlace">Dejar un comentario</a></h5></div>			
@@ -58,7 +58,7 @@
 				</div>
 			
 						<!-- PARA AÑADIR COMENTARIOS -->
-			<div class="span-16 boxraceMap">
+			<div class="span-16 boxraceMap boxraceMap2">
 				<div class="span-16" id="flash" align="left"></div>
 				<div class="commentArea" id="commentBox">					
 					{if $smarty.session.logged}
