@@ -276,7 +276,7 @@ $(document).ready(function() {
 	    				{else}	    										
 							<div class="column span-16 first racesComment">				
 								<div class="column span-3 first image">
-									<img src="/media/avatar/{$comment.avatar}"/>	
+									<img src="/avatar.php?id={$comment.user_id}"/>	
 								</div>
 								<div class="column span-12 last commentBox">
 									<div class="nameUser"><a class="nameRace" href="#">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
@@ -393,7 +393,7 @@ $(document).ready(function() {
     				{if $person eq 'f'}
     					<div class="span-8 races2">
     						<p class="noApuntado">Aun no hay ningún valiente</p>
-							<p class="noRaceSub">¿Quieres ser el primero? <b><a href="/rss.php">Apúntate</a></b></p>
+							<p class="noRaceSub">¿Quieres ser el primero? <b><a href="/rss">Apúntate</a></b></p>
 						</div> 
     				{else}					
     					<div class="span-8 races2 defaultWidth">
