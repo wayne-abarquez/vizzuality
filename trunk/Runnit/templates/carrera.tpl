@@ -225,6 +225,13 @@ $(document).ready(function() {
 				{/if}	
 				
 				
+				
+				<div class="span-16">
+						<div class="marginDescription margin10"><h3 class="blue">Fotos de la carrera</h3></div>
+						<input id="buttonUpload" class="fg-button" type="submit" value="Subir fotos">
+				</div>
+				
+				{if $pictures != false}
 				<!-- IMAGE -->
 				<div id="showImage" style="display:hidden;">
 					
@@ -241,7 +248,7 @@ $(document).ready(function() {
 						<div class="items" id="imgItems">
 						{if $pictures}
 							{foreach key=id item=picture from=$pictures}
-							    <img src="{$picture.path|replace:'_b.jpg':'_t.jpg'}" onclick="javascript: void showModalImage('{$picture.path}')"/>
+							    <img src="{$picture.path}" onclick="javascript: void showModalImage('{$picture.path}')"/>
 							{/foreach}	
 						{/if}	
 						</div>
@@ -250,11 +257,10 @@ $(document).ready(function() {
 					
 					<!-- "next page" action -->
 					<a class="column span-1 last nextPage browse right"></a>
-					
-					
-					<br clear="all" />
-					<input id="buttonUpload" class="fg-button Subirfoto" type="submit" value="Subir foto">
-				</div>
+									
+				</div>	
+				{/if}
+									
 
 				<!-- END GALLERY -->
 				
@@ -279,7 +285,7 @@ $(document).ready(function() {
 									<img src="/avatar.php?id={$comment.user_id}"/>	
 								</div>
 								<div class="column span-12 last commentBox">
-									<div class="nameUser"><a class="nameRace" href="#">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+									<div class="nameUser"><a class="nameRace" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
 									<p class="textRace">{$comment.commenttext}</p>
 								</div>
 							</div>							
