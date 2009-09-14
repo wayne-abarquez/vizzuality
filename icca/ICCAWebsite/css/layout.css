@@ -291,7 +291,9 @@ div.gallery {
 
 /* active item */
 .scrollable .active {
-	z-index:9999;
+	border: 2px #362d26 solid;
+	height: 76px;
+	width: 102px;
 }
 
 /* this makes it possible to add next button beside scrollable */
