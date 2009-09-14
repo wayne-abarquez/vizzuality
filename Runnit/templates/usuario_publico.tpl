@@ -14,7 +14,7 @@
 				</div>
 				<div class="span-13 last userLeft">
 					<div class="span-13 userCount">
-						<div class="wellcome"><a href="#" class="wellcome">{$data.datos.username}</a></div>
+						<div class="wellcome"><a href="#" class="wellcome">{$data.datos.completename}</a></div>
 						<div class="countAgo">usuario desde {getMonth2 month=$data.datos.created_when|substr:5:2}, {$data.datos.created_when|substr:0:4}</div>
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 	    					<div class="column span-15 noCommentsContainer"  id="noCommentsDiv">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$smarty.session.user.username}</b></p>
+	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$data.datos.username}</b></p>
 								</div>
 	        				</div>  
 	    				{else}	    										
@@ -50,7 +50,7 @@
 	                	    <div class="column span-15 noCommentsContainer" id="noCommentsDiv">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$smarty.session.user.username}</b></p>
+	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$data.datos.username}</b></p>
 								</div>
 	        				</div>    
 	                	{/foreach}						
@@ -70,7 +70,6 @@
 					{/if}
 				</div>
 			</div>		
-			
 		</div>
 		
 		<div class="column last span-8 rightColumn">
