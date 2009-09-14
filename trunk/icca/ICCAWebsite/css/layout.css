@@ -258,7 +258,7 @@ div.protectedContinents{
 /*PHOTOS GALLERY*/
 
 div.gallery {
-	padding-left:33px;
+	padding-left:15px;
 }
 
 .scrollable {
@@ -266,8 +266,8 @@ div.gallery {
 	/* required settings */
 	position:relative;
 	overflow:hidden;
-	width: 301px;
-	height:80px;
+	width: 318px;
+	height:86px;
 	/* custom decorations */
 }
 
@@ -284,14 +284,13 @@ div.gallery {
 	margin:0px 0px 0px 0px;
 	background-color:#fff;
 	cursor:pointer;
-	width:100px;
-	height:75px;
+	width:106px;
+	height:80px;
 
 }
 
 /* active item */
 .scrollable .active {
-	border:1px solid #000;
 	z-index:9999;
 }
 
@@ -346,7 +345,7 @@ a.disabled {
 } 
 
 hr.horiRule {
-	width: 301px;
+	width: 319px;
 }
 
 hr.verRule {
