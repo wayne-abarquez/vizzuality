@@ -12,6 +12,20 @@
 	<link rel="stylesheet" href="sifr3/sIFR-print.css" type="text/css" media="print">
 	
 	<script src="sifr3/sifr.js" type="text/javascript"></script>
+	<script src="js/jquery.js"></script>
+	<script src="http://cdn.jquerytools.org/1.1.0/full/jquery.tools.min.js"></script>
+	<script src="js/init.js" type="text/javascript"></script>
+	<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+	<script type='text/javascript' src='js/basic.js'></script>	
+	
+	<!-- Contact Form CSS files -->
+	<link type='text/css' href='css/basic.css' rel='stylesheet' media='screen' />
+
+	<!-- IE 6 "fixes" -->
+	<!--[if lt IE 7]>
+	<link type='text/css' href='css/basic_ie.css' rel='stylesheet' media='screen' />
+	<![endif]-->
+
 	
 	<script type="text/javascript">
 		var lg = {
@@ -83,9 +97,60 @@
 				<p class="newsContent" style="margin-top:16px; margin-right:-15px;"><a href="" class="more">Learn more</a></p>
 			</div>
 			<div class="new">
+												
 				<h2 class="newsColumn flash-h2">Multimedia resources</h2>
-				<div class="multimedia"></div>
+				<div class="gallery">
+					<div class="scrollable" id="infinite">	
+
+						<div class="items">
+
+							<!-- 1-5 -->
+							<img id="photo1" src="http://farm1.static.flickr.com/143/321464099_a7cfcb95cf_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm4.static.flickr.com/3089/2796719087_c3ee89a730_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm1.static.flickr.com/79/244441862_08ec9b6b49_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm1.static.flickr.com/28/66523124_b468cf4978_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm1.static.flickr.com/164/399223606_b875ddf797_t.jpg" onclick="javascript: void showImage()"/>
+
+							<!-- 5-10 -->
+							<img src="http://farm1.static.flickr.com/163/399223609_db47d35b7c_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm1.static.flickr.com/135/321464104_c010dbf34c_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm1.static.flickr.com/40/117346184_9760f3aabc_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm1.static.flickr.com/153/399232237_6928a527c1_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm1.static.flickr.com/50/117346182_1fded507fa_t.jpg" onclick="javascript: void showImage()"/>
+
+							<!-- 10-15 -->
+							<img src="http://farm4.static.flickr.com/3629/3323896446_3b87a8bf75_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm4.static.flickr.com/3023/3323897466_e61624f6de_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm4.static.flickr.com/3650/3323058611_d35c894fab_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm4.static.flickr.com/3635/3323893254_3183671257_t.jpg" onclick="javascript: void showImage()"/>
+							<img src="http://farm4.static.flickr.com/3624/3323893148_8318838fbd_t.jpg" onclick="javascript: void showImage()"/>
+						</div>
+					</div>
+					<div class="rule">
+						<hr class="horiRule"/>
+					</div>
+					<div class="naviButtons">
+						<div class="column">
+							<hr class="verRule"/>
+						</div>
+						<div class="column last">
+							<a class="prevPage browse left"></a>
+						</div>
+						<div class="column">
+							<a class="nextPage browse right"></a>
+						</div>
+						
+					</div>
+						
+				</div>
+				
+
+				<div id="basic-modal-content">
+				</div>
+	
+				<br clear="all" />
 			</div>
+			
 			<div class="new">
 				<h2 class="newsColumn flash-h2">Latest news</h2><span class="rss"></span>
 					<p class="latestNewDate">05/06/2009</p>

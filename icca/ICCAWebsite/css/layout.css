@@ -194,14 +194,9 @@ div.menu{
 	margin-left: 14px;
 }
 
-/*
-.protectedContinents{
-	background-image: url(../img/protectedcontinents.jpg);
-	height: 183px;
-	width: 318px;
-	margin-left: 14px;
+div.protectedContinents{
+	margin-left: 8px;
 }
-*/
 
 .widgetnews{
 	background-image: url(../img/widget4.jpg);
@@ -258,3 +253,109 @@ div.menu{
 .footerInfo{
 	color: gray;
 }
+
+
+/*PHOTOS GALLERY*/
+
+div.gallery {
+	padding-left:33px;
+}
+
+.scrollable {
+
+	/* required settings */
+	position:relative;
+	overflow:hidden;
+	width: 301px;
+	height:80px;
+	/* custom decorations */
+}
+
+.scrollable .items {
+	/* this cannot be too large */
+	width:20000em;
+	position:absolute;
+	clear:both;
+}
+
+/* single scrollable item */
+.scrollable img {
+	float:left;
+	margin:0px 0px 0px 0px;
+	background-color:#fff;
+	cursor:pointer;
+	width:100px;
+	height:75px;
+
+}
+
+/* active item */
+.scrollable .active {
+	border:1px solid #000;
+	z-index:9999;
+}
+
+/* this makes it possible to add next button beside scrollable */
+.scrollable {
+	float:left;	
+}
+
+div.naviButtons {
+	margin-top: -10px;
+	float:right;
+	padding-right: 5px;
+}
+
+/* prev, next, prevPage and nextPage buttons */
+a.browse {
+	width:18px;
+	height:18px;
+	float:right;
+	margin:0px 0px;
+	cursor:pointer;
+	font-size:1px;
+}
+
+
+a.right 		{ 
+	background:url(../img/right.png) no-repeat;
+	background-position: 0 0px; 
+	clear:right; 
+	margin-right: 0px;
+	margin-left: 3px;
+}
+
+a.right:hover 	{ 
+	background-position:0px -18px; 
+}
+a.right:active 	{ background-position:0px 0px; } 
+
+
+a.left				{ 
+	margin-left: 0px;
+	background:url(../img/left.png) no-repeat;
+	background-position: 0 0px;
+}
+ 
+a.left:hover  		{ background-position:0px -18px;  }
+a.left:active  	{ background-position:-0px 0; }
+
+/* disabled navigational button */
+a.disabled {
+	visibility:hidden !important;		
+} 
+
+hr.horiRule {
+	width: 301px;
+}
+
+hr.verRule {
+	width: 1px;
+	height:20px;
+}
+
+
+/*JQUERY MODAL*/
+
+
+
