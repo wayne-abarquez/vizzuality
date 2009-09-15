@@ -194,7 +194,7 @@ $(document).ready(function() {
 							{if $data.description!=null}
 								{$data.description}
 							{else}
-								No hay descripción para esta carrera, te animas a <a href="javascript: void showContactBox()">enviarnos una?</a>
+							No hay descripción para esta carrera, ¿te animas a <a href="javascript: void showContactBox()">enviarnos una?</a>
 							{/if}	
 						</p>
 					</div>	
