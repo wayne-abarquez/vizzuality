@@ -4,8 +4,7 @@
 		<div class="column span-16">
 			<div class="span-16 navigationList">
 				<ul> 
-					<li><a href="">Panel de control ></a></li>
-					<li><a href="" class="selected">Preferencias de usuario</a></li>
+					<li><a href="">Perfil de usuario</a></li>
 				</ul>
 			</div>
 			<div class="span-16 marginContainer">
@@ -80,7 +79,7 @@
 				<div class="events">
             		{foreach key=id item=race from=$data.carreras}
             			{if $race eq 0}
-            				<div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
+            				<div class="span-8 races2"><p class="noApuntadoUser">Aun no se ha apuntado a ninguna carrera.</p></div> 
             			{else}		    				    
         					<div class="span-8 column first raceDetails" id="raceDetails">
         						<div class="column span-1 first date race">
@@ -94,7 +93,7 @@
         					</div>
             			{/if}
                 	    {foreachelse}
-                	        <div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
+            				<div class="span-8 races2"><p class="noApuntadoUser">Aun no se ha apuntado a ninguna carrera.</p></div> 
                 	    {/foreach}					
 				</div>
 			</div>
