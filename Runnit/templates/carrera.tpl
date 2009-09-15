@@ -224,8 +224,6 @@ $(document).ready(function() {
 				</a>
 				{/if}	
 				
-				
-				
 				<div class="span-16">
 						<div class="marginDescription margin10"><h3 class="blue">Fotos de la carrera</h3></div>
 						<input id="buttonUpload" class="fg-button" type="submit" value="Subir fotos">
