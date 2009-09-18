@@ -1,0 +1,86 @@
+/****** HEADER ****/
+
+.header{
+	background-image: url(/img/header.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 61px;
+	width: 910px;
+	padding: 0px 0px 0px 40px;
+}
+
+.header p{
+	float: right;
+	font-family: "Arial";
+/* 	font-weight: bold; */
+	font-size: 11px;
+	color: white;
+	padding-right: 50px;
+}
+
+.subHeader{
+	height: 80px;
+	width: 910px;
+	padding: 0px 0px 0px 30px;
+}
+
+.ticketBlue{
+	background-image: url(/img/ticket_blue.gif);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 26px;
+	margin-top: -76px;
+	position: fixed;
+}
+
+.ticketBlue2{
+	background-image: url(/img/ticket_blue2.gif);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 26px;
+	margin-top: -76px;
+	position: fixed;
+}
+
+.map{
+	background-image: url(/img/mapa.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #eeeeee;
+	height: 365px;
+	width: 910px;
+	margin: -3px 0px -4px 20px;
+}
+
+.avatar2Orange{
+	height: 75px;
+	width: 104px;
+	border: 1px solid #d7d7d7;
+	background-color: white;
+}
+
+.carreraOrange{
+	width: 278px;
+	height: 85px;
+	margin-bottom: 2px;
+}
+
+.avatarOrange{
+	margin-top: 4px;
+	margin-right: 0px;
+}
+
+.nameRaceOrange a{
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: bold;
+	line-height: 17px;
+	padding-top: 4px;
+	text-decoration: none;
+	display: inline;
+	position: fixed;
+}
+
+.Race{
+	width: 130px;
+}
