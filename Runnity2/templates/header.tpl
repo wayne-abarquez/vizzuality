@@ -59,7 +59,10 @@
 	<script src="cufon/Arial_Rounded_MT_Bold_400.font.js" type="text/javascript"></script>
 	{literal}
 	<script type="text/javascript">
-		Cufon.replace('#cssmenu1');
+		Cufon.replace('.horizontalcssmenu');
+		Cufon.replace('.subTitle');
+		Cufon.replace('.subTitleInfo');
+		Cufon.replace('.titularTitle');
 	</script>
 	{/literal}
 	
