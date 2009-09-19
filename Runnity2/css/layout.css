@@ -399,17 +399,15 @@ a.verTodas{
 }
 
 .columnLong{
-	height: 330px;
 	width: 610px;
 }
 
 .columnSort{
-	height: 330px;
 	width: 300px;
 }
 
 .ColumnHome{
-	height: 330px;
+	height: 110px;
 	width: 910px;
 	margin-left: 21px;
 	margin-top: 10px;
@@ -420,7 +418,6 @@ a.verTodas{
 }
 
 .tweet{
-	margin-right: 80px;
 	font-size: 11px;
 	color: #666666;
 }
