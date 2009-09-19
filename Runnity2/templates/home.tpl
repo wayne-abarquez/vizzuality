@@ -43,8 +43,6 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 infoRace"><b>21/Agosto</b> / 5km - 10km</p>
-					<p class="span-4 placeRace">Móstoles</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
@@ -53,8 +51,6 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 infoRace"><b>21/Agosto</b> / 5km - 10km</p>
-					<p class="span-4 placeRace">Móstoles</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
@@ -63,8 +59,6 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 infoRace"><b>21/Agosto</b> / 5km - 10km</p>
-					<p class="span-4 placeRace">Móstoles</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
@@ -92,7 +86,41 @@
 
 <div class="bannerTop"></div>
 <div class="banner">
-	<div class="titular"></div>
+	<div class="titular">
+		<div class="span-1 titularColumn">
+			<p class="titularTitle titularTitleFirst">ENTÉRATE Y PLANEA</p>
+			<p class="titularInfo">Obtén la mejor información de los eventos que están por venir; Recorridos, mapas, altimetrías, fotos, 				comentarios, ediciones pasadas...</p>	
+			<br>
+			<a href="">Mira una carrera de ejemplo</a>
+		</div>
+		<div class="span-1 titularColumn titularColumn2">
+			<p class="titularTitle">DISFRUTA LA CARRERA</p>
+			<p class="titularInfo titularInfo2">Esperamos que con nuestra ayuda no te falte nada para que la carrera salga como esperas.</p>
+			<p class="titularInfo titularInfo2">Disfrútala al máximo y cuéntanos qué tal.</p>
+		</div>
+		<div class="span-1 titularColumn titularColumn2">
+			<p class="titularTitle">VUELVE Y COMÉNTALO</p>
+			<p class="titularInfo titularInfo2">¡Sube tus fotos, tus tiempos, clasificaciones y haz de Runnity un sitio cada vez mejor y más 			completo!</p>
+			<br><br>
+			<a href="">Regístrate y participa</a>
+		</div>
+	</div>
 </div>
+
+<div class="container">
+
+<div class="span-24 column content">
+	<div class="span-1 column ColumnHome">
+		<div class="span-1 last columnLong">
+			<p class="titulo">RUNNITY EN LA WEB</p>
+		</div>
+		<div class="span-1 last columnSort">
+			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
+		</div>
+	</div>
+</div>
+
+</div>
+
 
 {include file="footer.tpl"} 
