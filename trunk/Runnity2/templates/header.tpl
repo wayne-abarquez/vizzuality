@@ -55,6 +55,14 @@
 	<link rel="stylesheet" href="/css/layout_ie.css" type="text/css" media="screen, projection">
 	<![endif]-->
 	
+	<script src="cufon/cufon-yui.js" type="text/javascript"></script>
+	<script src="cufon/Arial_Rounded_MT_Bold_400.font.js" type="text/javascript"></script>
+	{literal}
+	<script type="text/javascript">
+		Cufon.replace('#cssmenu1');
+	</script>
+	{/literal}
+	
 	{if $section eq "index"}
 		<script type="text/javascript" src="/js/swfobject.js"></script>
 		{literal}
