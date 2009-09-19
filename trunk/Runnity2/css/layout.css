@@ -60,6 +60,15 @@ p.subTitleInfo{
 
 /***** FOOTER *****/
 
+.footer{
+	background-image: url(/img/footer.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 910px;
+	height: 81px;
+	margin: 0px 0px 0px 0px;
+}
+
 /***** CONTENT *****/
 
 .map{
@@ -355,7 +364,7 @@ a.verTodas{
 	font-family: "Arial Rounded MT Bold";
 	font-size: 22px;	
 	color: #ffffff;
-	padding-top: 10px;
+	padding-top: 8px;
 	margin-left: 40px;
 }
 
@@ -408,4 +417,28 @@ a.verTodas{
 
 .tituloRight{
 	margin-right: 0px;
+}
+
+.tweet{
+	margin-right: 80px;
+	font-size: 11px;
+	color: #666666;
+}
+
+.footer p{
+	color: #666666;
+	font-size: 12px;
+	float: right;
+	margin-top: 16px;
+	margin-right: 40px;
+}
+
+.footer a{
+	color: #666666;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.footer a:hover{
+	color: #999999;
 }
