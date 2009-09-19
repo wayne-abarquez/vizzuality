@@ -137,9 +137,6 @@
 		<div class="span-1 last columnSort">
 			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
 			<div class="twitterContent">
-				<div class="column span-2 first">
-					<img id="profile">
-				</div>
 				<div class="column span-6 tweet last" id="tweets">					
 				</div>
 			</div>
