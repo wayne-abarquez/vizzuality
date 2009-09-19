@@ -113,14 +113,136 @@
 	<div class="span-1 column ColumnHome">
 		<div class="span-1 last columnLong">
 			<p class="titulo">RUNNITY EN LA WEB</p>
+			<div class="column span-3 first">
+				<a href="http://www.tuenti.com/#m=Photo&func=view_photo&collection_key=1-66022443-567658561-66022443" target="_blank">
+					<img src="/img/tuenti.jpg" alt="socialNetworks"/>
+				</a>
+			</div>
+			<div class="column span-3">
+				<a href="http://www.facebook.com/home.php?#/group.php?gid=158141673184&ref=ts" target="_blank">
+					<img src="/img/facebook.jpg" alt="socialNetworks"/>
+				</a>
+			</div>
+			<div class="column span-4 last">
+				<a href="http://twitter.com/runnity" target="_blank">
+					<img src="/img/twitter.jpg" alt="socialNetworks"/>
+				</a>
+			</div>
+			<div class="column span-3 last">
+				<a href="http://www.flickr.com/groups/1188628@N20/" target="_blank">
+					<img src="/img/flickr.jpg" alt="socialNetworks"/>
+				</a>
+			</div>
 		</div>
 		<div class="span-1 last columnSort">
 			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
+			<div class="twitterContent">
+				<div class="column span-2 first">
+					<img id="profile">
+				</div>
+				<div class="column span-6 tweet last" id="tweets">					
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
 </div>
 
+	<!-- SCRIPT TWITTER -->
+	
+	{literal}
+	<script language="javaScript" type="text/javascript">
+		$(document).ready( function() {
+	
+			$('textarea').autoResize({
+			    // On resize:
+			    onResize : function() {
+			        $(this).css({opacity:0.8});
+			    },
+			    // After resize:
+			    animateCallback : function() {
+			        $(this).css({opacity:1});
+			    },
+			    // Quite slow animation:
+			    animateDuration : 300,
+			    // More extra space:
+			    extraSpace : 40
+			});
+			 
+		
+			var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
+			$.getJSON(url,function(data){	
+				$.each(data, function(i, item) {
+					$("img#profile").attr("src", item.user["profile_image_url"]);
+					$("#tweets").append( item.text.linkify() + relative_time(item.created_at));
+				});
+		    });
+		    
+		    for (i=1;i<=6;i++){
+				var len = 40;
+				var p = document.getElementById("iteracion" + i);
+				
+				if (p) {
+				  var trunc = p.innerHTML;
+				  trunc = trunc.replace(/\t/g, "");
+				  if (trunc.length > len) {
+		
+				    trunc = trunc.substring(0, len);
+				    /* trunc = trunc.replace(/\w+$/, ''); */
+				
+				    /* Add an ellipses to the end and make it a link that expands
+				       the paragraph back to its original size */
+				    trunc += '<a style="color: #666666;">' +
+				      '...<\/a>';
+				    p.innerHTML = trunc;
+				  }
+				}
+				
+				var len = 43;
+				var x = document.getElementById("carrera" + i);
+				if (x) {
+				  var trunc = x.innerHTML;
+				  trunc = trunc.replace(/\t/g, "");
+				  trunc = trunc.replace(/\n/g, "");
+				  				  
+				  if (trunc.length > len) {
+					
+					trunc = trunc.substring(0, len);
+				    trunc = trunc.replace(/\w+$/, '');
+				
+				    /* Add an ellipses to the end and make it a link that expands
+				       the paragraph back to its original size */
+				    trunc += '<a style="color: #666666;">' +
+				      '...<\/a>';
+				    x.innerHTML = trunc;
+				  }
+				}
+			}
+		    
+		    
+		});
+	</script>
+	{/literal}
+	
+	
+	{literal}
+	<script language="javaScript" type="text/javascript">
+		String.prototype.linkify = function() {
+			return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
+				return m.link(m);
+			});
+		}; 
+	</script>
+	{/literal}
+	
+	
+	{literal}
+	<script language="javaScript" type="text/javascript">
+		function twitter_callback (){
+			return true;
+		}
+	</script>
+	{/literal}
 
 {include file="footer.tpl"} 
