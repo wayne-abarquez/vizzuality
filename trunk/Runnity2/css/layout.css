@@ -345,3 +345,67 @@ a.verTodas{
 	margin-left: 12px;
 	position: absolute;
 }
+
+.titularColumn{
+	height: 244px;
+	width: 306px;
+}
+
+.titularTitle{
+	font-family: "Arial Rounded MT Bold";
+	font-size: 22px;	
+	color: #ffffff;
+	padding-top: 10px;
+	margin-left: 40px;
+}
+
+.titularTitleFirst{
+	margin-left: 20px;
+}
+
+.titularInfo{
+	font-size: 18px;	
+	color: #ffffff;
+	margin-left: 20px;
+	line-height: 20px;
+}
+
+.titularInfo2{
+	margin-left: 40px;
+}
+
+.titularColumn a{
+	font-size: 14px;
+	text-decoration: none;
+	color: #ffffff;
+	margin-left: 20px;
+}
+
+.titularColumn2 a{
+	margin-left: 40px;
+}
+
+.titularColumn a:hover{
+	color: #999999;
+}
+
+.columnLong{
+	height: 330px;
+	width: 610px;
+}
+
+.columnSort{
+	height: 330px;
+	width: 300px;
+}
+
+.ColumnHome{
+	height: 330px;
+	width: 910px;
+	margin-left: 21px;
+	margin-top: 10px;
+}
+
+.tituloRight{
+	margin-right: 0px;
+}
