@@ -84,3 +84,10 @@
 .Race{
 	width: 130px;
 }
+
+.ticketOrangeVoy{
+	background-color: #ff6600;
+	height: 30px;
+	width: 280px;
+	margin-top: 20px;
+}
