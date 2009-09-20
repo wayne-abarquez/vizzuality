@@ -69,12 +69,43 @@ p.subTitleInfo{
 	margin: 0px 0px 0px 0px;
 }
 
+.footer p{
+	color: #666666;
+	font-size: 12px;
+	float: right;
+	margin-top: 16px;
+	margin-right: 40px;
+}
+
+.footer a{
+	color: #666666;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.footer a:hover{
+	color: #999999;
+}
+
 /***** CONTENT *****/
 
+/*
 .map{
 	background-image: url(/img/mapa.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
+	background-color: #eeeeee;
+	height: 365px;
+	width: 910px;
+	margin: 0px 0px 0px 20px;
+}
+*/
+
+#runnityHomeMap{
+	margin-left: 8px;
+}
+
+.map{
 	background-color: #eeeeee;
 	height: 365px;
 	width: 910px;
@@ -329,6 +360,8 @@ a.verTodas{
 	border-bottom: solid 2px #ffffff;
 }
 
+/* banner info */
+
 .bannerTop{
 	background-image: url(/img/bannerTop.gif);
 	background-repeat: no-repeat;
@@ -422,20 +455,3 @@ a.verTodas{
 	color: #666666;
 }
 
-.footer p{
-	color: #666666;
-	font-size: 12px;
-	float: right;
-	margin-top: 16px;
-	margin-right: 40px;
-}
-
-.footer a{
-	color: #666666;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-.footer a:hover{
-	color: #999999;
-}
