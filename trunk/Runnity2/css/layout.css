@@ -131,8 +131,8 @@ p.subTitleInfo{
 }
 
 .content{
-	height: 355px;
 	width: 910px;
+	overflow: hidden;
 }
 
 /* Left Column */
@@ -142,6 +142,35 @@ p.subTitleInfo{
 	width: 610px;
 	margin-left: 21px;
 	margin-top: 10px;
+}
+
+.leftColumn{
+	padding-bottom: 32768px;
+	margin-bottom: -32768px;
+	width: 610px;
+	margin-left: 20px;
+}
+.rightColumn{
+	background-image: url(/img/background-right.jpg);
+	background-position: right;
+	background-repeat: repeat-y;
+	width: 300px;
+	padding-bottom: 32768px;
+	margin-bottom: -32768px;
+}
+
+.ticketOrangeVoy{
+	background-color: #ff6600;
+	height: 30px;
+	width: 287px;
+	margin-top: 20px;
+}
+
+.ticketOrange{
+	background-image: url(/img/ticket_orange.gif);
+	background-repeat: no-repeat;
+	height: 7px;
+	width: 11px;
 }
 
 .column1{
@@ -453,5 +482,70 @@ a.verTodas{
 .tweet{
 	font-size: 11px;
 	color: #666666;
+}
+
+/* calendario */
+
+.calendar{
+	border-right: 1px solid gray;
+	padding-right: 10px;
+}
+
+div.day {
+	font-family: Arial;
+	font-size: 22px;
+	color: #666666;
+	font-weight: bold;
+	text-align: center;
+	margin-top: -5px;
+}
+
+div.month {
+	font-family: Arial;
+	color: white;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.month1 {
+	background-color: #3b8d50;
+}
+
+.month2 {
+	background-color: #cc3300;
+}
+
+.month3 {
+	background-color: #535353;
+}
+
+.month4 {
+	background-color: #cf854d;
+}
+
+.month5 {
+	background-color: #9f00c6;
+}
+
+.raceTitle{
+	font-family: "Arial Rounded MT Bold";
+	font-size: 28px;
+	color: #336699;
+	margin-left: 20px;
+	line-height: 20px;
+}
+
+.raceDetailsTitle{
+	color: gray;
+	font-size: 14px;
+	font-weight: normal;
+	margin-left: 52px;
+	margin-top: -38px;
+}
+
+.imageCarrera{
+	width: 608px;
+	height: 238px;
 }
 
