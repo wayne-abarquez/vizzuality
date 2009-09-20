@@ -17,6 +17,9 @@
 			{else}
 			<a href="{$data.flickr_url}" target="_blank"><img class="imageCarrera" src="/panoramioPic.php?												id={$data.id}&photo_id={$data.flickr_img_id}"/></a>
 			{/if}
+			
+			
+			
 		</div>
 	</div>
 	
