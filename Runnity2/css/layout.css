@@ -32,17 +32,41 @@
 	height: 61px;
 }
 
-#header #searchForm {
-	float: right;
-}
-
 #header div.search {
 	width: 725px;
+	margin-top: -10px;
 }
 
 #header #searchForm {
 	width: 200px;
+	float: right;
+	margin-right: 10px;
 }
+
+label.roundsearchFirst {
+	float:left;
+	clear:left;
+	background:url(/img/search.jpg) no-repeat 0 0;
+	padding: 0px 0px 0px 0px;
+	height: 28px;
+	margin:0px 0px 0px 0px;
+}
+
+.roundsearchFirst input {
+	background:transparent;
+	padding-top: 8px;
+	padding-left: 6px;
+	float:left;
+	border: none;
+	color: gray;
+	font-size: 12px;
+}
+
+.roundsearchFirst input:focus {
+	outline:none;
+}
+
+#inputsearchFirst {width:204px}
 
 .subHeader{
 	height: 80px;
@@ -293,7 +317,7 @@ p.subTitleInfo{
 	font-size: 11px;
 	color: #666666;
 	margin-top: -20px;
-	font-weight: bold;
+/* 	font-weight: bold; */
 	margin-bottom: 0px;
 }
 
@@ -566,7 +590,7 @@ div.month {
 }
 
 .raceTitle{
-	font-family: "Arial Rounded MT Bold";
+/* 	font-family: "Arial Rounded MT Bold"; */
 	font-size: 28px;
 	color: #336699;
 	margin-left: 20px;
@@ -620,16 +644,14 @@ div.month {
 }
 
 div.mapStyle {
-	border: solid gray 1px;
+	border: 1px solid #cccccc;
 	vertical-align: middle;
 	width: 600px;
 	height: 400px;
-/*
 	padding-left: 4px;
-	padding-top: 5px;
-	padding-bottom: 0px;
+	padding-top: 4px;
+	padding-bottom: 4px;
 	padding-right: 4px;
-*/
 	background-color: white;
 }
 
