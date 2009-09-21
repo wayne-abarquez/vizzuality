@@ -38,16 +38,19 @@
 								<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
 								href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></p>
 								<p class="span-4 infoRace" id="iteracion{$smarty.foreach.raceloop.iteration}">
-								<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/
-								{$race.event_date|substr:2:2}</b> / {$race.distance_text}</p>
+								<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> / {$race.distance_text}</p>
 								<p class="span-4 placeRace">{$race.province_name} - {$race.event_location}</p>
 							</div>
-							<div class="ticketBlue"><p>{$race.num_users}</p></div>
+							{if $race.num_users > 0}
+								<div class="ticketBlue"><p>{$race.num_users}</p></div>
+							{/if}
 						</div>
-						<div class="separator"></div>
+						{if $smarty.foreach.raceloop.iteration < 3}
+							<div class="separator"></div>
+						{/if}
 					{/if}
 				{foreachelse}
-					<div class="carrera">No hay proximas carreras.</div> 
+					<div class="carrera">No hay próximas carreras.</div> 
 	    		{/foreach}	
 			<a class="verTodas" href="#"><b>Ver todas las carreras en Madrid</b></a>
 		</div>
@@ -58,6 +61,7 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.jpg"/> Recorrido añadido</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
@@ -66,7 +70,9 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.jpg"/> Recorrido añadido</p>
 				</div>
+				
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
 			<div class="separator"></div>
@@ -74,6 +80,7 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.jpg"/> Recorrido añadido</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
@@ -87,10 +94,26 @@
 			<div class="span-1 avatar2Orange"><img src="/img/avatar2.jpg" class="avatarOrange"></div>
 			<div class="span-1 Race">
 				<p class="nameRaceOrange"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-<!--
 				<p class="span-4 infoRaceOrange"><b>21/Agosto</b> / 5km - 10km</p>
 				<p class="span-4 placeRaceOrange">Móstoles</p>
--->
+			</div>
+		</div>
+		<div class="separator2"></div>
+		<div class="carreraOrange">
+			<div class="span-1 avatar2Orange"><img src="/img/avatar2.jpg" class="avatarOrange"></div>
+			<div class="span-1 Race">
+				<p class="nameRaceOrange"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
+				<p class="span-4 infoRaceOrange"><b>21/Agosto</b> / 5km - 10km</p>
+				<p class="span-4 placeRaceOrange">Móstoles</p>
+			</div>
+		</div>
+		<div class="separator2"></div>
+		<div class="carreraOrange">
+			<div class="span-1 avatar2Orange"><img src="/img/avatar2.jpg" class="avatarOrange"></div>
+			<div class="span-1 Race">
+				<p class="nameRaceOrange"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
+				<p class="span-4 infoRaceOrange"><b>21/Agosto</b> / 5km - 10km</p>
+				<p class="span-4 placeRaceOrange">Móstoles</p>
 			</div>
 		</div>
 	</div>
@@ -104,7 +127,7 @@
 	<div class="titular">
 		<div class="span-1 titularColumn">
 			<p class="titularTitle titularTitleFirst">ENTÉRATE Y PLANEA</p>
-			<p class="titularInfo">Obtén la mejor información de los eventos que están por venir; Recorridos, mapas, altimetrías, fotos, 				comentarios, ediciones pasadas...</p>	
+			<p class="titularInfo">Obtén la mejor información de los eventos que están por venir; Recorridos, mapas, altimetrías, fotos, comentarios, ediciones pasadas...</p>	
 			<br>
 			<a href="">Mira una carrera de ejemplo</a>
 		</div>
@@ -115,7 +138,7 @@
 		</div>
 		<div class="span-1 titularColumn titularColumn2">
 			<p class="titularTitle">VUELVE Y COMÉNTALO</p>
-			<p class="titularInfo titularInfo2">¡Sube tus fotos, tus tiempos, clasificaciones y haz de Runnity un sitio cada vez mejor y más 			completo!</p>
+			<p class="titularInfo titularInfo2">¡Sube tus fotos, tus tiempos, clasificaciones y haz de Runnity un sitio cada vez mejor y más completo!</p>
 			<br><br>
 			<a href="">Regístrate y participa</a>
 		</div>
@@ -189,7 +212,8 @@
 				});
 		    });
 		    
-		    for (i=1;i<=6;i++){
+		    
+		    for (i=1;i<=3;i++){
 				var len = 40;
 				var p = document.getElementById("iteracion" + i);
 				
@@ -207,27 +231,7 @@
 				      '...<\/a>';
 				    p.innerHTML = trunc;
 				  }
-				}
-				
-				var len = 43;
-				var x = document.getElementById("carrera" + i);
-				if (x) {
-				  var trunc = x.innerHTML;
-				  trunc = trunc.replace(/\t/g, "");
-				  trunc = trunc.replace(/\n/g, "");
-				  				  
-				  if (trunc.length > len) {
-					
-					trunc = trunc.substring(0, len);
-				    trunc = trunc.replace(/\w+$/, '');
-				
-				    /* Add an ellipses to the end and make it a link that expands
-				       the paragraph back to its original size */
-				    trunc += '<a style="color: #666666;">' +
-				      '...<\/a>';
-				    x.innerHTML = trunc;
-				  }
-				}
+				}	
 			}
 		    
 		    
