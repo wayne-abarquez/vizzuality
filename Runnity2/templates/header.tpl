@@ -24,7 +24,6 @@
 	<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
 	<link rel="stylesheet" type="text/css" href="/css/menu.css">	
-<!-- 	<link rel="stylesheet" type="text/css" href="/css/floating.css">	 -->
 <!-- 	<link rel="stylesheet" type="text/css" href="/css/contact.css">	 -->
 	<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection">
 <!-- 	<link rel="stylesheet" href="/css/scrollable.css" type="text/css" media="screen, projection"> -->
@@ -97,32 +96,27 @@
 <div class="container">
 	
 	<!-- HEADER -->
-	<div class="span-24 column header">
+	<div id="header" class="span-24 column header">
 	
 		<a href="/"><div class="span-5 first logo"></div></a>
 		
 		<div class="span-19 last access"><p><a href="#">accede a tu cuenta</a> / <a href="#">regístrate</a></p></div>
-		<div class="span-19 last search">
-		
-		<div class="searchCont">
-			<div class="searchC">
-				<form id="searchForm" action="/buscar" method="get">
-					<div class="buttonSearch">
-						<label class="roundsearchFirst" for="inputsearchFirst">
-							<span><input type="text" id="inputsearchFirst" name="q"></span>
-						</label>
-					</div>
-					<div class="buttonSearch"><input class="fg-button" type="submit" value="Buscar"/></div>
-				</form>
+		<div class="span-18 search">
+			<form id="searchForm" class="span-6" action="/buscar" method="get">
+				<div class="buttonSearch">
+					<label class="roundsearchFirst" for="inputsearchFirst">
+						<span><input type="text" id="inputsearchFirst" name="q"></span>
+					</label>
 				</div>
-			</div>
+				<div><input class="fg-button" type="submit" value="Buscar"/></div>
+			</form>
 		</div>
 	</div>
 		
 	<div class="span-24 subHeader">
 		<div class="span-11 first subInfo">
 			<p class="subTitle">Carreras, fotos, comentarios...</p>
-			<p class="subTitleInfo">Todo sobre mas de <a href="#">140 carreras</a> en toda españa</p>
+			<p class="subTitleInfo">Todo sobre mas de <a href="#">140 carreras</a> en toda España</p>
 		</div>
 		<div class="menu">
 			<div class="span-13 last horizontalcssmenu">
