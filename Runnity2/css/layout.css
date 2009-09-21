@@ -176,6 +176,14 @@ p.subTitleInfo{
 	margin-top: 20px;
 }
 
+.ticketOrangeVoy p{
+	font-size: 13px;
+	font-weight: bold;
+	color: #ffffff;
+	margin-top: 5px;
+	margin-left: 8px;
+}
+
 .ticketOrange{
 	background-image: url(/img/ticket_orange.gif);
 	background-repeat: no-repeat;
@@ -609,5 +617,15 @@ div.month {
 .data{
 	margin-left: 10px;
 	width: 140px;
+}
+
+div.mapStyle {
+	border: solid gray 1px;
+	vertical-align: middle;
+	padding-left: 4px;
+	padding-top: 5px;
+	padding-bottom: 0px;
+	padding-right: 4px;
+	background-color: white;
 }
 
