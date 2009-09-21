@@ -19,11 +19,45 @@
 			{/if}
 			
 			<div class="span-1 last raceData">
-				<p class="titulo tituloLeft">DATOS TÉCNICOS</p>
+				{if $data.distance_text != null or $data.category != null or $data.awards != null}
+					<p class="titulo tituloLeft">DATOS TÉCNICOS</p>
+					{if $data.distance_text != null}
+					<div class="span-6 databox">
+						<div class="span-2 last distance"><p>Distancia:</p></div>
+						<div class="span-4 last distanceInfo"><p><b>{$data.distance_text}</b></p></div>
+					</div>
+					{/if}
+					{if $data.event_date != null}
+					<div class="span-6 databox">
+						<div class="span-2 last distance"><p>Hora:</p></div>
+						<div class="span-4 last distanceInfo"><p><b>{$data.event_date|substr:11:5}</b></p></div>
+					</div>
+					{/if}
+					{if $data.category != null}
+					<div class="span-6 databox">
+						<div class="span-2 last distance"><p>Categorias:</p></div>
+						<div class="span-4 last distanceInfo"><p><b>{$data.category}</b></p></div>
+					</div>
+					{/if}
+					{if $data.awards != null}
+					<div class="span-6 databox">
+						<div class="span-2 last distance"><p>Premios:</p></div>
+						<div class="span-4 last distanceInfo"><p><b>{$data.awards}</b></p></div>
+					</div>
+					{/if}
+				{/if}
 			</div>
 			
 			<div class="span-1 last raceDescription">
 				<p class="titulo tituloLeft tituloRight">DESCRIPCIÓN Y DATOS ADICIONALES</p>
+				
+				<p class="textRace">
+					{if $data.description!=null}
+						{$data.description}
+					{else}
+					No hay descripción para esta carrera, ¿te animas a <a href="javascript: void showContactBox()">enviarnos una?</a>
+					{/if}	
+				</p>
 			</div>
 			
 		</div>
