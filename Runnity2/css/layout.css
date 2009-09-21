@@ -622,10 +622,14 @@ div.month {
 div.mapStyle {
 	border: solid gray 1px;
 	vertical-align: middle;
+	width: 600px;
+	height: 400px;
+/*
 	padding-left: 4px;
 	padding-top: 5px;
 	padding-bottom: 0px;
 	padding-right: 4px;
+*/
 	background-color: white;
 }
 
