@@ -59,7 +59,7 @@
 	<script src="cufon/Arial_Rounded_MT_Bold_400.font.js" type="text/javascript"></script>
 	{literal}
 	<script type="text/javascript">
-		Cufon.replace('.horizontalcssmenu');
+		Cufon.replace('.horizontalcssmenu',{hover: true});
 		Cufon.replace('.subTitle');
 		Cufon.replace('.subTitleInfo');
 		Cufon.replace('.titularTitle');
@@ -127,9 +127,9 @@
 		<div class="menu">
 			<div class="span-13 last horizontalcssmenu">
 			<ul id="cssmenu1">
-				<li><a {if $section eq "home"} class="current"{/if} href="/">HOME</a> <a class="separator">|</a></li>
-				<li><a {if $section eq "carrera"} class="current"{/if} href="/buscar">CARRERAS</a> <a class="separator">|</a></li>
-				<li><a {if $section eq "blog"} class="current"{/if} href="/blog">BLOG</a> <a class="separator"></a></li>
+				<li><div><a {if $section eq "blog"} class="current"{/if} href="/blog">BLOG</a></div></li>			
+				<li><div class="border"><a {if $section eq "carrera"} class="current"{/if} href="/buscar">CARRERAS</a></div></li>
+				<li><div class="border"><a {if $section eq "home"} class="current"{/if} href="/">HOME</a></div></li>				
 			</ul>
 			</div>
 		</div>
