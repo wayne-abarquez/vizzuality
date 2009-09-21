@@ -117,10 +117,10 @@
 					<div>
 						<div class="mapStyle">
 							<div id="trackMap">
-	                            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
+	                            <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400" wmode="opaque" flashvars="id={$data.id}">
 	                              <param name="movie" value="/flash/raceMapViewer.swf?2" />
 	                              <!--[if !IE]>-->
-	                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="609" height="400" wmode="opaque" flashvars="id={$data.id}">
+	                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="600" height="400" wmode="opaque" flashvars="id={$data.id}">
 	                              <!--<![endif]-->
 
 	                              <!--[if !IE]>-->
