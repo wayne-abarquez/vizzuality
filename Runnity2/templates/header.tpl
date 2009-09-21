@@ -42,26 +42,29 @@
 	<script src='/js/jquery.tools.min.js' type='text/javascript'></script>	
 	
 	<!-- Contact Form JS and CSS files -->
-	<script src='/js/init.js' type='text/javascript'></script>
+<!-- 	<script src='/js/init.js' type='text/javascript'></script> -->
+<!--
 	<link type='text/css' href='/css/login.css' rel='stylesheet' media='screen'>
 	<link type='text/css' href='/css/register.css' rel='stylesheet' media='screen'>
+-->
 	
 
-	<link type='text/css' href='/css/botones.css' rel='stylesheet' media='screen'>
-	<script src="/js/corner.js" type="text/javascript"></script>
+<!-- 	<link type='text/css' href='/css/botones.css' rel='stylesheet' media='screen'> -->
+<!-- 	<script src="/js/corner.js" type="text/javascript"></script> -->
 	
 	<!--[if IE 6]>
 	<link rel="stylesheet" href="/css/layout_ie.css" type="text/css" media="screen, projection">
 	<![endif]-->
 	
-	<script src="cufon/cufon-yui.js" type="text/javascript"></script>
-	<script src="cufon/Arial_Rounded_MT_Bold_400.font.js" type="text/javascript"></script>
+	<script src="/cufon/cufon-yui.js" type="text/javascript"></script>
+	<script src="/cufon/Arial_Rounded_MT_Bold_400.font.js" type="text/javascript"></script>
 	{literal}
 	<script type="text/javascript">
 		Cufon.replace('.horizontalcssmenu',{hover: true});
 		Cufon.replace('.subTitle');
 		Cufon.replace('.subTitleInfo');
 		Cufon.replace('.titularTitle');
+		Cufon.replace('.raceTitle');
 	</script>
 	{/literal}
 	
@@ -85,10 +88,6 @@
     {if $section eq "usuario"}
         <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA&amp;sensor=false" type="text/javascript"></script>	
 	{/if}
-	
-
-	
-	
 </head>
 
 <body>
@@ -103,12 +102,10 @@
 		<div class="span-19 last access"><p><a href="#">accede a tu cuenta</a> / <a href="#">regístrate</a></p></div>
 		<div class="span-18 search">
 			<form id="searchForm" class="span-6" action="/buscar" method="get">
-				<div class="buttonSearch">
 					<label class="roundsearchFirst" for="inputsearchFirst">
-						<span><input type="text" id="inputsearchFirst" name="q"></span>
+						<input type="text" id="inputsearchFirst" name="q">
 					</label>
-				</div>
-				<div><input class="fg-button" type="submit" value="Buscar"/></div>
+<!-- 				<div><input class="fg-button" type="submit" value="Buscar"/></div> -->
 			</form>
 		</div>
 	</div>
