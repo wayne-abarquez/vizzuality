@@ -38,7 +38,6 @@
 }
 
 p.subTitle{
-	font-family: "Arial Rounded MT Bold";
 	font-size: 24px;
 	color: #666666;
 	padding-top: 15px;
@@ -46,7 +45,6 @@ p.subTitle{
 }
 
 p.subTitleInfo{
-	font-family: "Arial Rounded MT Bold";
 	font-size: 14px;
 	color: #666666;
 	padding-left: 40px;
@@ -203,7 +201,7 @@ p.subTitleInfo{
 .separator{
 	margin: 0px 0px 0px 0px;
 	height: 1px;
-	width: 276px;
+	width: 100px;
 	margin-left: 0px;
 	border-top: dotted 1px #b2b2b2;
 }
@@ -578,5 +576,26 @@ div.month {
 
 .tituloLeft{
 	padding-left: 0px;
+}
+
+.dataContainer{
+	width: 216px;
+	height: auto;
+	border-bottom: 1px dotted gray;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.dataContainer p, .textRace{
+	color: #666666;
+}
+
+.dataTitle{
+	width: 60px;
+}
+
+.data{
+	margin-left: 10px;
+	width: 140px;
 }
 
