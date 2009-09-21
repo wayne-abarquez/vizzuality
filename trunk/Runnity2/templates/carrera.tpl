@@ -18,7 +18,13 @@
 			<a href="{$data.flickr_url}" target="_blank"><img class="imageCarrera" src="/panoramioPic.php?												id={$data.id}&photo_id={$data.flickr_img_id}"/></a>
 			{/if}
 			
+			<div class="span-1 last raceData">
+				<p class="titulo tituloLeft">DATOS TÉCNICOS</p>
+			</div>
 			
+			<div class="span-1 last raceDescription">
+				<p class="titulo tituloLeft tituloRight">DESCRIPCIÓN Y DATOS ADICIONALES</p>
+			</div>
 			
 		</div>
 	</div>
