@@ -1,31 +1,35 @@
 .horizontalcssmenu ul{
  	list-style-type: none;
  	float: right;
- 	height: 80px;
- 	padding-top: 34px;
- 	padding-right: 20px;
+	height: 80px;
+	padding-right: 10px;	
+}
+
+.horizontalcssmenu ul div{
+ 	float: right;
+ 	padding-right: 15px;
+ 	padding-left: 15px;
+ 	padding-top: 20px;
+ 	padding-bottom: 20px;
+ 	margin-top: 10px;
+}
+
+.horizontalcssmenu ul div.border{
+ 	border-right: solid 1px #dddddd;
 }
 
 /*Top level list items*/
 .horizontalcssmenu ul li{
 	display: inline;
- 	height: 80px;
 }
 
 /*Top level menu link items style*/
 .horizontalcssmenu ul li a{
 	text-decoration: none;
 	color: #999999;
-	font: bold 13px Arial;
-}
-
-
-.separator{
-	text-decoration: none;
-	color: #6699cc;
-	font: bold 13px Arial;
-	margin-left: 5px;
-	margin-right: 5px;
+	font-size: 13px;
+	font-family: Arial;
+	height: 80px;
 }
 
 .horizontalcssmenu ul li a:hover{
