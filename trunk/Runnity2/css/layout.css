@@ -32,6 +32,18 @@
 	height: 61px;
 }
 
+#header #searchForm {
+	float: right;
+}
+
+#header div.search {
+	width: 725px;
+}
+
+#header #searchForm {
+	width: 200px;
+}
+
 .subHeader{
 	height: 80px;
 	width: 910px;
