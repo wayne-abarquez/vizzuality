@@ -91,3 +91,21 @@
 	width: 280px;
 	margin-top: 20px;
 }
+
+.columnPhotos{
+	background-image: url(/img/background_photos.jpg);
+	background-repeat: repeat-x;
+	width: 601px;
+	height: 203px;
+	margin: 20px 0px 20px 0px;	
+}
+
+.comentarios a{
+	color: #336699;
+	font-size: 12px;
+	font-weight: bold;
+	float: right;
+	text-decoration: none;
+	cursor: pointer;
+	margin-top: -20px;
+}
