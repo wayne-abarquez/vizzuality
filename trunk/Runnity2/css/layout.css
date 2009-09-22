@@ -681,6 +681,54 @@ div.mapStyle {
 	font-weight: bold;
 }
 
+.comment{
+	width: 610px;
+	border-bottom: 1px solid #cccccc;
+	margin-bottom: 10px;
+}
+
+.comment a{
+	color: #666666;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+	float: none;
+	margin: 0px 0px 0px -30px;
+}
+
+.commentBox{
+	margin-left: 10px;
+	width: 500px;
+	height: 76px;
+	margin-bottom: 10px;
+}
+
+.avatarBox{
+	border: 1px solid #cccccc;
+	width: 67px;
+	height: 66px;
+	padding: 4px 4px 4px 4px;
+}
+
+.nameUser{
+	margin-left: 30px;
+	color: #666666;
+}
+
+.commentUser{
+	float: left;
+	margin-left: 30px;
+	width: 300px;
+	height: 30px;
+}
+
+.noComments{
+	width: 200px;
+	background-color: lime;
+	height: 30px;
+}
+
+
 /* SEARCH RESULTS */
 
 #results {margin:30px; width: 910px;}
