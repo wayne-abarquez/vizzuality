@@ -131,9 +131,55 @@
 						</div>	
 					</div>
 				{/if}
-				
 			</div>
+			
+			<div class="span-1 last columnPhotos">
+			</div>
+			
+			<div class="span-1 last columnLong comentarios">
+				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
+				<a onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a></p>
+				
+				<ol id="update">
+					{foreach key=id item=comment from=$comments}
+    				{if $comment eq false}
+    					<div class="span-1">
 
+        				</div>  
+    				{else}	    										
+    					<div class="span-1">
+							<div class="span-3">
+								<img src="/avatar.php?id={$comment.user_id}"/>	
+							</div>
+							<div class="column span-1 last commentBox">
+								<div><a href="/user/{$comment.username}">{$comment.username}, 
+								</a>hace {$comment.created_when|timeAgo}</div>
+								<p>{$comment.commenttext}</p>
+							</div>
+						</div>							
+              		{/if}
+                	{foreachelse}
+    					<div class="span-1">
+
+        				</div>    
+                	{/foreach}						
+				</ol>
+			</div>
+			
+			<!-- PARA AÑADIR COMENTARIOS -->
+    		<!--
+<div class="span-1 id="flash" align="left"">
+				<div>					
+					{if $smarty.session.logged}
+						<div class="span-1 titleComents">Anímate y publica tu comentario</div>
+						<textarea name="textarea2" id="commentTextArea" class="span-1 textArea"></textarea>
+						<input class="fg-button" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
+					{else}
+						<p>Para realizar comentarios debes <b><a href="javascript: void showLoginBox()">iniciar tu sesión</a></b> en runnity. 							<b><a href="javascript: void showRegisterBox()">¿Aún no estás registrado?</a></b></p>
+					{/if}
+				</div>
+			</div>
+-->
 			
 		</div>
 	</div>
