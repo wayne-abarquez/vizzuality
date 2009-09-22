@@ -50,13 +50,13 @@
 				<div id="results" class="span-24 column first">			
 	        		{foreach key=id item=race from=$results}
 	        			{if $race eq "0"}
-	        				<!--<div class="column span-15 noResultsContainer">
+	        				<div class="column span-15 noResultsContainer">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
 	        					<p class="noResults"><b>Lo sentimos, no hay resultados</b> que coincidan con tu búsqueda</p>
 	        					<p class="noResultsSub">Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de las nuevas carreras</p>
 								</div>
-	        				</div> -->
+	        				</div>
 	        			{else}
 	        				<div class="column first {cycle values="raceResult one,raceResult two"}">
 	    						<div class="column first firstDetails">
@@ -77,13 +77,9 @@
 	    							</div>
 	    						</div>
 	    						{if $race.num_users>0}
-	    							<div class="blueTag"><a><span class="start">{$race.num_users} VAN</span></a></div>
+	    							<div class="blueTag"><a><span class="start">{$race.num_users}{if $race.num_users eq 1} VA{else} VAN{/if}</span></a></div> 							
 	    						{/if}
-	    					</div>   
-	    					
-	    					
-	    					
-	    					    
+	    					</div>     
 	        			{/if}
 	        	    {foreachelse}
 	        	        <div class="column span-15 noResultsContainer">
@@ -97,19 +93,22 @@
         	    </div>
         	    
         	    
-				<div class="raceSearchLast">
-					<div class="paginationLast">
+        	    <div id="belowPaginator" class="span-24">
+        	    	<div class="column first noResults"><p>{$count}{if $count eq 1} resultado{else} resultados{/if}</p></div>
+        	   		<div class="column last bottomPaginator">
 						{if $count > 20}
- 							<div class="numberResults">
- 								<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}</p>                    							</div>
+ 							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}
  								{if $offset > 0}
-				<div class="searchAdelante"><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></div>
+									<span><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="< ANTERIORES"/></a></span>
 								{/if}
 								{if $offset < $count-20}
-									<div class="searchAtras"><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></div>
+									<span><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value="SIGUIENTES >"/></a></span>
                     			{/if}
+ 								
+ 							</p>	
                     	{/if}
 					</div>
+					
 				</div>
 				
 				
