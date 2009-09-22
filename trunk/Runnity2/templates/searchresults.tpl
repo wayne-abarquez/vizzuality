@@ -76,7 +76,9 @@
 	    								<div class="column socialBox last"><img src="img/comment.jpg"/> <a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">12 COMENTARIOS</a></div>
 	    							</div>
 	    						</div>
-	    						{* {$race.num_users} *}
+	    						{if $race.num_users>0}
+	    							<div class="blueTag"><a><span class="start">{$race.num_users}12 VAN</span></a></div>
+	    						{/if}
 	    					</div>   
 	    					
 	    					
