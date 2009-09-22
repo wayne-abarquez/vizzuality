@@ -567,26 +567,7 @@ div.month {
 	font-size: 10px;
 	font-weight: bold;
 	text-align: center;
-}
-
-.month1 {
-	background-color: #3b8d50;
-}
-
-.month2 {
 	background-color: #cc3300;
-}
-
-.month3 {
-	background-color: #535353;
-}
-
-.month4 {
-	background-color: #cf854d;
-}
-
-.month5 {
-	background-color: #9f00c6;
 }
 
 .raceTitle{
@@ -654,4 +635,24 @@ div.mapStyle {
 	padding-right: 4px;
 	background-color: white;
 }
+
+
+
+
+
+/* SEARCH RESULTS */
+
+#results {margin:30px; width: 910px;}
+#results .two { background-color: #f7f7f7;}
+#results .one {background-color: #efefef;}
+#results div.raceResult { border-bottom: dotted 1px #999999; height: 100px; padding-top: 10px; padding-left: 10px;margin-bottom: 1px;}
+#results div.raceResult div.firstDetails { height: 75px; width: 134px; padding: 5px 5px; border: 1px solid #d7d7d7; background-color: white; }
+#results div.raceResult div.firstDetails div.raceResultDate { width: 30px; margin-right: 3px;}
+#results div.raceResult div.firstDetails img { height:75px; width: 100px;}
+#results div.raceResult div.raceDetailText {width: 820px;}
+#results div.raceResult p.raceLocationText {font-size: 14px; color: #666666; margin-bottom: 0px; width: 720px; line-height: 18px;}
+#results div.raceResult a.raceTitleText {font-size: 20px; font-weight: bold; color: #336699; width: 720px; text-decoration: none; line-height: 18px;}
+#results div.raceResult div.raceDetailText div.socialBox {background-color: #FFFFFF;height: 20px;}
+
+
 

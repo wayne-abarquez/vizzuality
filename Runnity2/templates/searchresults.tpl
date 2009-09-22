@@ -6,15 +6,7 @@
 	<div class="span-24 raceContainer" id="race">
 	
 		<!-- RACE & IMAGE -->
-		<div class="span-16 first leftColumn">
-			<div class="span-16 column">
-				<div class="span-16 navigationList">
-					<ul> 
-						<li><a href="/">Inicio ></a></li>
-						<li><a href="#" class="selected">{$titulo_breadcrumb} <b>{$smarty.request.q}</b></a></li>
-					</ul>
-				</div>
-			</div>
+		<div class="span-24">
 			
 			<div class="raceContent1">
 				<h2 class="newsTitle3">Resultados de tu búsqueda ({$count})</h2>
@@ -53,28 +45,43 @@
 					</div>
 				</div>
 
-				<div class="searchResultsBox">			
+
+
+				<div id="results" class="span-24 column first">			
 	        		{foreach key=id item=race from=$results}
 	        			{if $race eq "0"}
-	        				<div class="column span-15 noResultsContainer">
+	        				<!--<div class="column span-15 noResultsContainer">
 	        					<div class="carita"></div>
 	        					<div class="noResultsText">
 	        					<p class="noResults"><b>Lo sentimos, no hay resultados</b> que coincidan con tu búsqueda</p>
 	        					<p class="noResultsSub">Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de las nuevas carreras</p>
 								</div>
-	        				</div> 
+	        				</div> -->
 	        			{else}
-	        				<div class=" span-15 column first raceDetailsSearch">
-	    						<div class="column span-1 first date">
-	    							<div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
-	    							<div class="day">{$race.event_date|substr:8:2}</div>
+	        				<div class="column first {cycle values="raceResult one,raceResult two"}">
+	    						<div class="column first firstDetails">
+	    							<div class="column first raceResultDate">
+	    								<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+	    								<div class="day">{$race.event_date|substr:8:2}</div>
+	    							</div>
+	    							<div class="column last">
+	    								<div ><img src="/img/avatar2.jpg"></div>
+	    							</div>
 	    						</div>
-	    						
-	    						<div class="column span-13 last calendarRaces">
-	    							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
-	    							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
+	    						<div class="column last">
+	    							<p class=" raceLocationText"><b>{$race.distance_text}</b> / {$race.event_location}, {$race.province_name}</p>   							
+	    							<p><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="raceTitleText">{$race.name}</a></p>
+	    							<div id="socialDetails">
+	    								<div class="column socialBox first"><img src="/img/photo.jpg"/><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">12 FOTOS</a></div>
+	    								<div class="column socialBox last"><img src="img/comment.jpg"/> <a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">12 COMENTARIOS</a></div>
+	    							</div>
 	    						</div>
-	    					</div>       
+	    						{* {$race.num_users} *}
+	    					</div>   
+	    					
+	    					
+	    					
+	    					    
 	        			{/if}
 	        	    {foreachelse}
 	        	        <div class="column span-15 noResultsContainer">
@@ -86,6 +93,8 @@
 	        				</div> 
 	        	    {/foreach}
         	    </div>
+        	    
+        	    
 				<div class="raceSearchLast">
 					<div class="paginationLast">
 						{if $count > 20}
@@ -100,38 +109,9 @@
                     	{/if}
 					</div>
 				</div>
+				
+				
 			</div>					
-		</div>
-		
-		
-		<!-- RIGHT COLUMN -->
-		<div class="column span-8 last rightColumn">
-
-			<div class="span-8 importantRaces">
-				<div class="events"> 
-					<h2 class="newsTitle4">Próximas carreras</h2>
-				</div>	
-				<div class="events">
-            		{foreach key=id item=race from=$nextRaces}
-            			{if $race eq 'f'}
-            				<div class="span-8 races">No hay proximas carreras.</div> 
-            			{else}		    				    
-        					<div class="span-8 column first raceDetails" id="raceDetails">
-        						<div class="column span-1 first date">
-	    							<div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
-	    							<div class="day">{$race.event_date|substr:8:2}</div>
-	    						</div>
-        						<div class="column span-6 last calendarRaces">
-        							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
-        							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b></div>
-        						</div>
-        					</div>
-            			{/if}
-            	    {foreachelse}
-            	        <div class="span-8 races">No hay proximas carreras.</div> 
-            	    {/foreach}					
-				</div>				
-			</div>		
 		</div>
 	</div>
 </div>
