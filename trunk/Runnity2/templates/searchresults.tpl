@@ -77,7 +77,7 @@
 	    							</div>
 	    						</div>
 	    						{if $race.num_users>0}
-	    							<div class="blueTag"><a><span class="start">{$race.num_users}12 VAN</span></a></div>
+	    							<div class="blueTag"><a><span class="start">{$race.num_users} VAN</span></a></div>
 	    						{/if}
 	    					</div>   
 	    					
