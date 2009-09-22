@@ -139,7 +139,7 @@
 			
 			<div class="span-1 last columnLong">
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
-<!-- 				<a onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a> -->
+				<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
 				</p>
 				
 					{foreach key=id item=comment from=$comments}
