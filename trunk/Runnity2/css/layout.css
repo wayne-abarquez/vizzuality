@@ -530,7 +530,7 @@ div.carreraOrange{
 	background-repeat: repeat-x;
 	width: 641px;
 	height: 203px;
-	margin: 20px 0px 20px -20px;	
+	margin: 0px 0px 20px -20px;	
 }
 
 .columnSort{
@@ -703,6 +703,12 @@ div.mapStyle {
 	margin-bottom: 10px;
 }
 
+.publica{
+	color: #336699;
+	text-decoration: none;
+	float: right;
+}
+
 .avatarBox{
 	border: 1px solid #cccccc;
 	width: 67px;
@@ -726,6 +732,15 @@ div.mapStyle {
 	width: 200px;
 	background-color: lime;
 	height: 30px;
+}
+
+.bannerTopPhotos{
+	background-image: url(/img/banner_photos.gif);
+	background-repeat: no-repeat;
+	width: 300px;
+	height: 11px;
+	float: left;
+	margin: 10px 0px 0px -20px;
 }
 
 
