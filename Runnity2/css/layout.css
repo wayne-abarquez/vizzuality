@@ -525,6 +525,14 @@ div.carreraOrange{
 	width: 610px;
 }
 
+.columnPhotos{
+	background-image: url(/img/background_photos.jpg);
+	background-repeat: repeat-x;
+	width: 641px;
+	height: 203px;
+	margin: 20px 0px 20px -20px;	
+}
+
 .columnSort{
 	width: 300px;
 }
@@ -636,9 +644,42 @@ div.mapStyle {
 	background-color: white;
 }
 
+.comentarios a{
+	color: #336699;
+	font-size: 12px;
+	font-weight: bold;
+	float: right;
+	text-decoration: none;
+	cursor: pointer;
+}
 
+.comentarios a:hover{
+	color: #666666;
+}
 
+.noResults{
+	font-size: 16px;
+	color: gray;
+}
 
+.noResultsSub{
+	font-size: 13px;
+	color: gray;
+	line-height: 16px;
+	width: 460px;
+}
+
+.noRaceSub{
+	color: gray;
+	margin-top: -5px;
+	margin-left: 10px;
+}
+
+.noResultsSub a{
+	text-decoration: none;
+	color: #336699;
+	font-weight: bold;
+}
 
 /* SEARCH RESULTS */
 
