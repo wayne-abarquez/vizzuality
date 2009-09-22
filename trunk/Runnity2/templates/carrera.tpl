@@ -133,6 +133,7 @@
 				{/if}
 			</div>
 			
+			<div class="span-1 last bannerTopPhotos"></div>
 			<div class="span-1 last columnPhotos">
 			</div>
 			
@@ -152,9 +153,9 @@
 								<img src="/img/avatar.jpg"/>	
 							</div>
 							<div class="span-1 commentBox">
-<div class="nameUser"><a class="nameRace" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
-<!-- 									<p class="textRace">{$comment.commenttext}</p> -->
-								</div>
+								<div class="nameUser"><a class="nameRace" href="/user/{$comment.username}">{$comment.username}, </a>hace 									{$comment.created_when|timeAgo}</div>
+							<p class="textRace">{$comment.commenttext}</p>
+							</div>
 							
 						</div>							
               		{/if}
