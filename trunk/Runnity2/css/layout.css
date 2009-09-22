@@ -696,28 +696,15 @@ div.mapStyle {
 #results div.raceResult #socialDetails div.socialBox {background-color: #FFFFFF;height: 20px;padding-left:3px; padding-right:3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
 #results div.raceResult #socialDetails div.socialBox img {margin-right: 2px;}
 #results div.raceResult #socialDetails div.socialBox a {text-decoration:none; font-size: 10px; color:#666666; font-weight: bold;}
-
 #results div.blueTag {position: absolute;display:inline;padding:0;text-align:right; float:right; color:white;width: 80px;margin-left: -75px;}
-#results div.blueTag a {
-	float:right;
-  	font-size: 12px;
-  	font-weight: bold;
-  	color: #FFFFFF;
-  	background:url("../img/arrowGo.gif") no-repeat right top;
-  	text-decoration:none;
-  	color: white;
-  	text-align: right;
-}
+#results div.blueTag a {float:right;font-size: 12px;font-weight: bold;color: #FFFFFF;background:url("../img/arrowGo.gif") no-repeat right top;text-decoration:none;color: white;text-align: right;}
+#results div.blueTag span {float: left;display:block;background:url("../img/runnersGo.jpg") repeat-x;padding-bottom:5px;padding-left: 10px;padding-right: 10px;padding-top: 1px;text-align: right;}
 
-#results div.blueTag  span {
-	float: left;
-  	display:block;
-  	background:url("../img/runnersGo.jpg") repeat-x;
-	padding-bottom:5px;
-  	padding-left: 10px;
-  	padding-right: 10px;
-  	padding-top: 1px;
-  	text-align: right;
-	text-shadow: 0px -1px 0px #374683;
-}
+
+#belowPaginator {margin:20px; background-color:#e1e9f2; -moz-border-radius: 3px;-webkit-border-radius: 3px; width: 910px; height: 40px;}
+#belowPaginator div.noResults {padding:10px 10px 10px 10px;float:left;}
+#belowPaginator div.noResults p {color: #4e4e4e; font-size: 13px; font-weight: bold; margin-bottom: 0px;}
+#belowPaginator div.bottomPaginator {color: #4e4e4e; font-size: 13px;float: right; padding-right: 10px; padding-top: 10px;margin-bottom: 0px; height: 30px;}
+
+
 
