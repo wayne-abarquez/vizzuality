@@ -100,12 +100,7 @@
 	margin: 20px 0px 20px 0px;	
 }
 
-.comentarios a{
-	color: #336699;
-	font-size: 12px;
-	font-weight: bold;
-	float: right;
-	text-decoration: none;
-	cursor: pointer;
-	margin-top: -20px;
+.avatarBox{
+	position: fixed;
 }
+
