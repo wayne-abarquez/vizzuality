@@ -136,34 +136,33 @@
 			<div class="span-1 last columnPhotos">
 			</div>
 			
-			<div class="span-1 last columnLong comentarios">
+			<div class="span-1 last columnLong">
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
-				<a onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a></p>
+<!-- 				<a onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a> -->
+				</p>
 				
-				<ol id="update">
 					{foreach key=id item=comment from=$comments}
     				{if $comment eq false}
-    					<div class="span-1">
+    					<div class="span-1 last noComments">
 
         				</div>  
     				{else}	    										
-    					<div class="span-1">
-							<div class="span-3">
-								<img src="/avatar.php?id={$comment.user_id}"/>	
+    					<div class="span-1 last comment">
+							<div class="span-1 last avatarBox">
+								<img src="/img/avatar.jpg"/>	
 							</div>
-							<div class="column span-1 last commentBox">
-								<div><a href="/user/{$comment.username}">{$comment.username}, 
-								</a>hace {$comment.created_when|timeAgo}</div>
-								<p>{$comment.commenttext}</p>
-							</div>
+							<div class="span-1 commentBox">
+<div class="nameUser"><a class="nameRace" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+<!-- 									<p class="textRace">{$comment.commenttext}</p> -->
+								</div>
+							
 						</div>							
               		{/if}
                 	{foreachelse}
-    					<div class="span-1">
+    					<div class="span-1 noComments">
 
         				</div>    
                 	{/foreach}						
-				</ol>
 			</div>
 			
 			<!-- PARA AÑADIR COMENTARIOS -->
