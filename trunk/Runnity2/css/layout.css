@@ -580,28 +580,27 @@ div.month {
 	background-color: #cc3300;
 }
 
-.month1 {
+div.month1 {
 	background-color: #3b8d50;
 }
 
-.month2 {
+div.month2 {
 	background-color: #cc3300;
 }
 
-.month3 {
+div.month3 {
 	background-color: #535353;
 }
 
-.month4 {
+div.month4 {
 	background-color: #cf854d;
 }
 
-.month5 {
+div.month5 {
 	background-color: #9f00c6;
 }
 
 .raceTitle{
-/* 	font-family: "Arial Rounded MT Bold"; */
 	font-size: 28px;
 	color: #336699;
 	margin-left: 20px;
@@ -760,22 +759,23 @@ div.titleComents {
 
 /* races right */
 
-/*
 div.events {
 	width: 262px;
 	height: 80px;
 	margin-left: 24px;
+	margin-top: -6px;
 }
 
 div.raceRight{
-	height: 50px;
+	height: 65px;
 	width: 262px;
 	margin-bottom: 4px;
+	margin-top: 0px;
 	background-color: #e0e0e0;
 }
 
 div.raceRight2{
-	height: 50px;
+	height: 65px;
 	width: 262px;
 	margin-bottom: 4px;
 	background-color: #e7e7e7;
@@ -785,7 +785,6 @@ div.raceRight2{
 	margin-left: 10px;
 	margin-top: 10px;
 }
-*/
 
 /* SEARCH RESULTS */
 
