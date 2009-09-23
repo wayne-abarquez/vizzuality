@@ -784,11 +784,28 @@ div.raceRight2{
 .dateRight{
 	margin-left: 10px;
 	margin-top: 10px;
+	background-color: #ffffff;
+}
+
+<<<<<<< .mine
+.dataRaceRight{
+	width: 200px;
+	margin-top: 10px;
+}
+
+.dataRaceRight a{
+	color: #336699;
+	font-size: 14px;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 
+=======
 
 
+
+>>>>>>> .r1662
 /* SEARCH RESULTS */
 
 #searchBox {margin:20px; width: 910px; margin-bottom: 0px;}
