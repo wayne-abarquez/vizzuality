@@ -788,7 +788,41 @@ div.raceRight2{
 
 /* SEARCH RESULTS */
 
-#results {margin:30px; width: 910px;}
+
+#searchBox {margin:20px; width: 910px; margin-bottom: 0px;}
+#searchBox p {margin-bottom: 0px; color:#666666; font-size:10px; font-weight: bold; }
+
+#searchBox div.searchForm {height: 73px;background-color:#eeeeee;-moz-border-radius-topleft: 3px; -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px; -webkit-border-top-left-radius: 3px;}
+#searchBox div.searchForm div.regionInput {padding-top: 20px;padding-left: 15px;}
+#searchBox div.searchForm div.dateInput {padding-top: 20px;padding-left: 15px;}
+#searchBox div.searchForm div.buttonSearch {float:right;padding-top: 45px;padding-right: 10px;}
+
+#searchBox div.searchForm #widget {position: relative;}
+#searchBox div.searchForm #widgetField {width: 190px;height: 26px;background: url(../img/field.png);overflow: hidden;position: relative;}
+#searchBox div.searchForm #widgetField a {display: block;position: absolute;width: 26px;height: 26px;top: 0;right: 0;text-decoration: none;text-indent: -3000px;}
+#searchBox div.searchForm #widgetField span	{font-size: 12px;color: #999999;position: absolute;top: 0;height: 26px;line-height: 26px;left: 5px;width: 150px;text-align: center;}
+#searchBox div.searchForm #widgetCalendar {position: absolute;top: 26px;right: 0;height: 0px;overflow: hidden;width: 470px;background: #FFFFFF;border-right: 1px solid #999999}
+#searchBox div.searchForm #widgetCalendar .datepicker {position: absolute;bottom: 0;top: auto;}
+#searchBox div.searchForm #widgetCalendar .datepickerContainer {background: transparent !important;}
+#searchBox div.searchForm #widgetCalendar .datepicker a:hover{color: #999999;}
+
+#searchBox div.racesTab {margin:0px; margin-top: -10px;float:left; font-size:12px; line-height:normal; color: #999999;font-weight: bold;}
+#searchBox div.racesTab ul {margin:7px; padding:10px 0px 0 0px; list-style:none;}
+#searchBox div.racesTab li {display:inline; margin:0; padding:0; text-align: center;}
+#searchBox div.racesTab a {float:left; background:url("../img/tabLeft.gif") no-repeat left top;margin:0;padding:0 2px 0 2px;text-decoration:none;color: white; width: 120px; height: 30px;}
+#searchBox div.racesTab a span {float:left; display:block; background:url("../img/tabRight.gif") no-repeat right top;padding-right:2px; padding-top: 4px; padding-bottom: 5px; margin-left: 1px; height: 30px; color: #999999}
+#searchBox div.racesTab a span {float:none;}
+#searchBox div.racesTab a:hover span {}
+#searchBox div.racesTab a:hover {background-position:0% -31px;}
+#searchBox div.racesTab a:hover span {background-position:100% -32px;color:#000000;}
+#searchBox div.racesTab #current a {background-position:0% -31px;}
+#searchBox div.racesTab #current a span {background-position:100% -32px;color: black}
+#searchBox div.topPaginator {height: 37px; background-color: #e1e9f2;-moz-border-radius-bottomleft: 3px; -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px; -webkit-border-bottom-left-radius: 3px; border-top: solid 1px #89a5c3;}
+#searchBox div.topPaginator div.upPaginator {float: right; padding-right: 10px; padding-top: 7px;margin-bottom: 0px; height: 30px;}
+#searchBox div.topPaginator div.upPaginator p{color: #4e4e4e; font-size: 13px;font-weight: normal;}
+
+
+#results {margin:30px; width: 910px; margin-bottom: 0px;margin-top:10px;}
 #results .two { background-color: #f7f7f7;}
 #results .one {background-color: #efefef;}
 #results div.raceResult { border-bottom: dotted 1px #999999; height: 100px; padding-top: 10px; padding-left: 10px;margin-bottom: 1px;}
@@ -806,7 +840,7 @@ div.raceRight2{
 #results div.blueTag span {float: left;display:block;background:url("../img/runnersGo.jpg") repeat-x;padding-bottom:5px;padding-left: 10px;padding-right: 10px;padding-top: 1px;text-align: right;}
 
 
-#belowPaginator {margin:20px; background-color:#e1e9f2; -moz-border-radius: 3px;-webkit-border-radius: 3px; width: 910px; height: 40px;}
+#belowPaginator {margin:20px; margin-top: 10px; background-color:#e1e9f2; -moz-border-radius: 3px;-webkit-border-radius: 3px; width: 910px; height: 40px;}
 #belowPaginator div.noResults {padding:10px 10px 10px 10px;float:left;}
 #belowPaginator div.noResults p {color: #4e4e4e; font-size: 13px; font-weight: bold; margin-bottom: 0px;}
 #belowPaginator div.bottomPaginator {color: #4e4e4e; font-size: 13px;float: right; padding-right: 10px; padding-top: 10px;margin-bottom: 0px; height: 30px;}
