@@ -167,19 +167,13 @@
 			</div>
 			
 			<!-- PARA AÑADIR COMENTARIOS -->
-    		<!--
-<div class="span-1 id="flash" align="left"">
-				<div>					
-					{if $smarty.session.logged}
-						<div class="span-1 titleComents">Anímate y publica tu comentario</div>
-						<textarea name="textarea2" id="commentTextArea" class="span-1 textArea"></textarea>
-						<input class="fg-button" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
-					{else}
-						<p>Para realizar comentarios debes <b><a href="javascript: void showLoginBox()">iniciar tu sesión</a></b> en runnity. 							<b><a href="javascript: void showRegisterBox()">¿Aún no estás registrado?</a></b></p>
-					{/if}
+			<div class="span-1 last boxraceMap">
+				<div class="commentArea" id="commentBox">					
+					<div class="titleComents">Anímate y publica tu comentario</div>
+					<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
+					<input class="fg-button" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
 				</div>
 			</div>
--->
 			
 		</div>
 	</div>
@@ -187,6 +181,9 @@
 	<div class="span-1 last rightColumn">
 		<div class="span-1 ticketOrangeVoy"><p><input type="checkbox"> Voy a ir a esta carrera</p></div>
 		<div class="span-1 ticketOrange"></div>
+		<p class="titulo tituloColumnRight">LOCALIZACIÓN</p>
+		<p class="titulo tituloColumnRight">EN LAS MISMAS FECHAS</p>
+	
 	</div>
 
 </div> <!-- content -->
