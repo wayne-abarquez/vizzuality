@@ -108,3 +108,16 @@
 	position: fixed;
 }
 
+.textArea {
+	height: 40px;
+	width: 558px;
+}
+
+/* races right */
+
+div.raceRight{
+	height: 20px;
+	width: 250px;
+	border-bottom: 1px dotted black;
+	margin-bottom: 4px;
+}
