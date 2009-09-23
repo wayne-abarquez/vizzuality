@@ -8,42 +8,58 @@
 		<!-- RACE & IMAGE -->
 		<div class="span-24">
 			
-			<div class="raceContent1">
-				<h2 class="newsTitle3">Resultados de tu búsqueda ({$count})</h2>
-				<div class="raceSearchFirst">
-					<div class="searchPanel">
-						<div class="labels">
-							<div class="searchlabel">Localidad, nombre, etc...</div>
-							<div class="searchlabel searchlabel2">Distancia mín / max (metros)</div>
-						</div>
-						<div class="formSearch">
+			<div id="searchBox">
+				<div class="searchForm">
+					<div class="column first regionInput">
 						<form id="searchForm" method="GET" action="/buscar">
+							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}"></span></label>
+								<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}" style="width:500px;"></span></label>
 							</div>
-							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch2"><span><input type="text" name="distancia_min" id="inputsearch2" value="{$smarty.request.distancia_min}"></span></label>
-							</div>
-							<div class="inputSearch">
-			<label class="roundsearch" for="inputsearch3"><span><input type="text" name="distancia_max" id="inputsearch3" value="{$smarty.request.distancia_max}"></span></label>
-							</div>
-							<div class="buttonSearch"><input class="fg-button BuscarCarrera" type="submit" value="Buscar"/></div>
 						</form>
+					</div>
+					
+					<div class="column dateInput">
+						<div class="searchlabel"><p>RANGO DE FECHAS</p></div>
+						<div class="inputSearch">
+							<div id="widget">
+								<div id="widgetField">
+									<span>23/09/2009 - 31/09/2009</span>
+									<a href="#">Selecciona un rango</a>
+								</div>
+								<div id="widgetCalendar">
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="pagination">
+					
+					<div class="column last buttonSearch">
+						<span><a href="#"><input class="fg-button" type="button" value="Buscar"/></a></span>
+					</div>
+					
+				</div>
+				<div class="topPaginator" class="span-24">
+					<div class="column first racesTab">
+					 	<ul>
+					    	<li id="current"><a href="#" title="Link 1"><span>Carreras por llegar</span></a></li>
+					    	<li><a href="#" title="Link 2"><span>Carreras pasadas</span></a></li>
+					  	</ul>
+					</div>
+					<div class="column last upPaginator">
 						{if $count > 20}
- 							<div class="numberResults">
- 								<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}</p>                    							</div>
- 								{if $offset > 0}
-				<div class="searchAdelante"><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></div>
+							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}
+								{if $offset > 0}
+									<span><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></span>
 								{/if}
 								{if $offset < $count-20}
-									<div class="searchAtras"><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></div>
-                    			{/if}
-                    	{/if}
-					</div>
+									<span><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></span>
+	                			{/if}	
+							</p>	
+	                    {/if}
+					</div>	
 				</div>
+			</div>
+
 
 
 
