@@ -188,16 +188,15 @@
 			<div class="events">
         		{foreach key=id item=race from=$runsInSameDates}	    				    
     					<div class="span-1 {cycle values="raceRight,raceRight2"}">
-    						<div class="span-1 dateRight">
+    						<div class="span-1 first dateRight">
     					        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
     							<div class="day">{$race.event_date|substr:8:2}</div>
     						</div>
-    						<!--
-<div class="column span-6 last calendarRaces">
-    							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
-    							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
+
+    						<div class="span-1 dataRaceRight">
+    							<div class=""><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
+    							<div class="">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
     						</div>
--->
     					</div>
             	    {/foreach}					
 			</div>
