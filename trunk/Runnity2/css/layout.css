@@ -816,7 +816,6 @@ div.raceRight2{
 #searchBox div.searchForm #widgetCalendar {position: absolute;top: 26px;right: 0;height: 0px;overflow: hidden;width: 470px;background: #FFFFFF;border-right: 1px solid #999999}
 #searchBox div.searchForm #widgetCalendar .datepicker {position: absolute;bottom: 0;top: auto;}
 #searchBox div.searchForm #widgetCalendar .datepickerContainer {background: transparent !important;}
-#searchBox div.searchForm #widgetCalendar .datepicker a:hover{color: #999999;}
 
 #searchBox div.racesTab {margin:0px; margin-top: -10px;float:left; font-size:12px; line-height:normal; color: #999999;font-weight: bold;}
 #searchBox div.racesTab ul {margin:7px; padding:10px 0px 0 0px; list-style:none;}
