@@ -644,19 +644,6 @@ div.mapStyle {
 	background-color: white;
 }
 
-.comentarios a{
-	color: #336699;
-	font-size: 12px;
-	font-weight: bold;
-	float: right;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.comentarios a:hover{
-	color: #666666;
-}
-
 .noResults{
 	font-size: 16px;
 	color: gray;
@@ -681,26 +668,17 @@ div.mapStyle {
 	font-weight: bold;
 }
 
-.comment{
-	width: 610px;
-	border-bottom: 1px solid #cccccc;
-	margin-bottom: 10px;
-}
+#comment {width: 610px; border-bottom: 1px dotted #cccccc; margin-bottom: 10px;}
+#comment a.name {color: #666666; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
+#comment div.commentBox {margin-left: 10px; width: 500px; height: 76px; margin-bottom: 10px;}
+#comment div.commentBox p {margin-right: 30px;}
+#comment div.commentBox p.commentUser {float: left; margin-right: 30px; color: #666666;}
+#comment div.commentBox div.nameUser {margin-left: 30px; color: #666666;}
 
-.comment a{
-	color: #666666;
-	font-size: 16px;
-	font-weight: bold;
-	text-decoration: none;
-	float: none;
-	margin: 0px 0px 0px -30px;
-}
-
-.commentBox{
-	margin-left: 10px;
-	width: 500px;
-	height: 76px;
-	margin-bottom: 10px;
+.noComments{
+	width: 200px;
+	background-color: lime;
+	height: 30px;
 }
 
 .publica{
@@ -714,24 +692,6 @@ div.mapStyle {
 	width: 67px;
 	height: 66px;
 	padding: 4px 4px 4px 4px;
-}
-
-.nameUser{
-	margin-left: 30px;
-	color: #666666;
-}
-
-.commentUser{
-	float: left;
-	margin-left: 30px;
-	width: 300px;
-	height: 30px;
-}
-
-.noComments{
-	width: 200px;
-	background-color: lime;
-	height: 30px;
 }
 
 .bannerTopPhotos{
