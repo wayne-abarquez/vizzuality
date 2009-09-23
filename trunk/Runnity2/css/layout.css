@@ -250,6 +250,7 @@ p.subTitleInfo{
 	border-top: dotted 1px #b2b2b2;
 }
 
+/*
 .separator2{
 	margin: 0px 0px 0px 0px;
 	height: 1px;
@@ -258,6 +259,7 @@ p.subTitleInfo{
 	border-top: dotted 1px #FFFFFF;
 	margin-bottom: 5px;
 }
+*/
 
 .ticketBlue{
 	background-image: url(/img/ticket_blue.gif);
@@ -578,6 +580,26 @@ div.month {
 	background-color: #cc3300;
 }
 
+.month1 {
+	background-color: #3b8d50;
+}
+
+.month2 {
+	background-color: #cc3300;
+}
+
+.month3 {
+	background-color: #535353;
+}
+
+.month4 {
+	background-color: #cf854d;
+}
+
+.month5 {
+	background-color: #9f00c6;
+}
+
 .raceTitle{
 /* 	font-family: "Arial Rounded MT Bold"; */
 	font-size: 28px;
@@ -685,6 +707,7 @@ div.mapStyle {
 	color: #336699;
 	text-decoration: none;
 	float: right;
+	cursor: pointer;
 }
 
 .avatarBox{
@@ -703,6 +726,66 @@ div.mapStyle {
 	margin: 10px 0px 0px -20px;
 }
 
+div.boxraceMap {
+	width: 610px;
+	height: 140px;
+	background-color: #f1f4f8;
+	margin-bottom: 10px;
+	margin-top: -10px;
+}
+
+div.commentArea {
+	padding-top: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+div.titleComents {
+	font-family: Arial;
+	font-size: 16px;
+	color: #336699;
+	font-weight: bold;
+	height: auto;
+}
+
+.textArea {
+	height: 40px;
+	width: 560px;
+}
+
+.tituloColumnRight{
+	margin-left: 24px;
+	margin-right: 14px;	
+}
+
+/* races right */
+
+/*
+div.events {
+	width: 262px;
+	height: 80px;
+	margin-left: 24px;
+}
+
+div.raceRight{
+	height: 50px;
+	width: 262px;
+	margin-bottom: 4px;
+	background-color: #e0e0e0;
+}
+
+div.raceRight2{
+	height: 50px;
+	width: 262px;
+	margin-bottom: 4px;
+	background-color: #e7e7e7;
+}
+
+.dateRight{
+	margin-left: 10px;
+	margin-top: 10px;
+}
+*/
 
 /* SEARCH RESULTS */
 
