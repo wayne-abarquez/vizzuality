@@ -148,13 +148,13 @@
 
         				</div>  
     				{else}	    										
-    					<div class="span-1 last comment">
+    					<div id="comment" class="span-1 last">
 							<div class="span-1 last avatarBox">
 								<img src="/img/avatar.jpg"/>	
 							</div>
 							<div class="span-1 commentBox">
-								<div class="nameUser"><a class="nameRace" href="/user/{$comment.username}">{$comment.username}, </a>hace 									{$comment.created_when|timeAgo}</div>
-							<p class="textRace">{$comment.commenttext}</p>
+								<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace 									{$comment.created_when|timeAgo}</div>
+							<p class="commentUser">{$comment.commenttext}</p>
 							</div>
 							
 						</div>							
