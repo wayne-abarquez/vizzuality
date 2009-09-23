@@ -55,6 +55,11 @@ div.datepicker tbody a {
 	height: 16px;
 	padding-right: 2px;
 }
+
+.datepickerDays a:hover {
+	color: #333333;
+}
+
 .datepickerYears a,
 .datepickerMonths a{
 	width: 44px;
@@ -63,8 +68,11 @@ div.datepicker tbody a {
 	text-align: center;
 }
 td.datepickerNotInMonth a {
-	color: #dddddd;
+	color: #FFFFFF;
 	font-weight: normal;
+}
+td.datepickerNotInMonth a:hover {
+	color: #FFFFFF;
 }
 tbody.datepickerDays td.datepickerSelected{
 	background: #99b2cc;
@@ -76,23 +84,20 @@ tbody.datepickerDays td.datepickerSelected a{
 }
 
 tbody.datepickerDays td.datepickerSelected a:hover{
-	color: #cccccc;
+	color: black;
+	font-weight: bold;
 }
 
+
 tbody.datepickerDays td.datepickerNotInMonth.datepickerSelected {
-	background: #17384d;
+	background: #FFFFFF;
+	color: #FFFFFF
 }
 tbody.datepickerYears td.datepickerSelected,
 tbody.datepickerMonths td.datepickerSelected{
 	background: #17384d;
 }
-div.datepicker a:hover,
-div.datepicker a:hover {
-	color: #000000;
-}
-div.datepicker td.datepickerNotInMonth a:hover {
-	color: #cccccc;
-}
+
 div.datepicker tbody th {
 	text-align: left;
 	color: white;
@@ -138,6 +143,14 @@ table.datepickerViewMonths tbody.datepickerYears,
 table.datepickerViewMonths tr.datepickerDoW {
 	display: none;
 }
+
+tbody.datepickerMonths a{
+	color: #999999;
+}
+
+tbody.datepickerYears a {
+	color: #999999;
+}
 table.datepickerViewYears tbody.datepickerDays,
 table.datepickerViewYears tbody.datepickerMonths,
 table.datepickerViewYears tr.datepickerDoW {
@@ -145,7 +158,7 @@ table.datepickerViewYears tr.datepickerDoW {
 }
 td.datepickerDisabled a,
 td.datepickerDisabled.datepickerNotInMonth a{
-	color: #333;
+	color: #FFFFFF;
 }
 td.datepickerDisabled a:hover {
 	color: #333;
