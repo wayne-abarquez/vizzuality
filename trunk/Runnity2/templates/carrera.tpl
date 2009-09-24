@@ -254,7 +254,7 @@
 	$(document).ready( function() {
 	    
 	    for (i=1;i<=3;i++){
-			var len = 20;
+			var len = 18;
 			var p = document.getElementById("datos" + i);
 			
 			if (p) {
