@@ -72,6 +72,7 @@
 		Cufon.replace('.subTitleInfo');
 		Cufon.replace('.titularTitle');
 		Cufon.replace('.raceTitle');
+		Cufon.replace('.buttonmenuContainer a');
 	</script>
 	{/literal}
 	
@@ -112,15 +113,33 @@
 					<label class="roundsearchFirst" for="inputsearchFirst">
 						<input type="text" id="inputsearchFirst" name="q">
 					</label>
-<!-- 				<div><input class="fg-button" type="submit" value="Buscar"/></div> -->
+				<div><input type="submit" value="Buscar"/></div>
 			</form>
 		</div>
 	</div>
 		
 	<div class="span-24 subHeader">
 		<div class="span-11 first subInfo">
+		{if $section eq "home"} 
 			<p class="subTitle">Carreras, fotos, comentarios...</p>
-			<p class="subTitleInfo">Todo sobre mas de <a href="#">140 carreras</a> en toda España</p>
+			<p class="subTitleInfo">Todo sobre mas de <a href="#">140 carreras</a> en toda España</p>				
+		{/if}
+		{if $section eq "carrera"} 
+			<div class="buttonmenuContainer">
+				<a href="#"><div class="menu_button"><p>Publica tu carrera en runnity</p></div></a>
+			</div>			
+		{/if}
+		{if $section eq "searchresults"} 
+			<div class="buttonmenuContainer">
+				<a href="#"><div class="menu_button"><p>Publica tu carrera en runnity</p></div></a>
+			</div>			
+		{/if}
+		{if $section eq "usuario"} 
+			<div class="buttonmenuContainer">
+				<a href="#"><div class="menu_button"><p>Invita a tus amigos a runnity</p></div></a>
+			</div>			
+		{/if}
+			
 		</div>
 		<div class="menu">
 			<div class="span-13 last horizontalcssmenu">
