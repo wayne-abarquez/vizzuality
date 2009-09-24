@@ -1,93 +1,47 @@
 {include file="header.tpl"} 
 {literal}
-<script type="text/javascript">
-  	var _officeItemListCombobox = null;
-  	var _cssStyleSelectJQ = null;
-  	var _animationTypeSelectJQ = null;
-  	var _animationType = "slide";
+<script type="text/javascript"> 
+$(document).ready(function(){
 
-		$(
-			function()
-			{
-				var comboboxSettings = {animationSpeed: 100};
-				
-				// Create the example combobox
-				setupCombobox();
-				
-				// Create the different styles combobox
-				_cssStyleSelectJQ = $("#cssStyleSelect").combobox({}, comboboxSettings);
-				// Combobox has its own onChange event, but the onChange of the Select element can be used as well.
-				// changeAnimation works in this manner.
-				_cssStyleSelectJQ.combobox.onChange = 
-					function()
-					{	
-						changeStyle();
-					};
-				
-				// Create the Animation types combobox
-				// Note: There is no need to configure the onChange event as the event is defined in the html
-				//	<select id="animationTypeSelect" onchange="changeAnimation()">
-				_animationTypeSelectJQ = $("#animationTypeSelect").combobox({}, comboboxSettings);
-			});
-			
-			// create a jquery combobx and set the Css class styles
-			function setupCombobox()
-			{
-				_officeItemListCombobox = $('#raceType').combobox(
-					{
-						comboboxContainerClass: "comboboxContainer",
-						comboboxValueContentContainerClass: "comboboxValueContainer",
-						comboboxValueContentClass: "comboboxValueContent",
-						comboboxDropDownClass: "comboboxDropDownContainer",
-						comboboxDropDownButtonClass: "comboboxDropDownButton",
-						comboboxDropDownItemClass: "comboboxItem",
-						comboboxDropDownItemHoverClass: "comboboxItemHover",
-						comboboxDropDownGroupItemHeaderClass: "comboboxGroupItemHeader",
-						comboboxDropDownGroupItemContainerClass: "comboboxGroupItemContainer"
-					},
-					{
-						animationType: _animationType,
-						width: 130
-					});
-			}
-			
-			function changeStyle()
-			{
-			
-				var cssStyleSelectJQ = $("#cssStyleSelect");
-				var selectedStyle = cssStyleSelectJQ.val();
-				selectedStyle = "style/screen/" + selectedStyle + ".css";
-				
-				_officeItemListCombobox.combobox.remove()
-				
-				$("link[title='combobox']").attr("href", selectedStyle);
-				
-				// Time delay required for the new css stylesheet to be processed by the Browser,
-				// otherwise, jquery.combobox cannot calculate the correct layout for the new styles
-				setTimeout(setupCombobox, 1);
-			}
-			
-			function changeAnimation()
-			{
-				var animationTypeSelectJQ = $("#animationTypeSelect");
-				_animationType = animationTypeSelectJQ.val();
-				
-				_officeItemListCombobox.combobox.remove();
-				setupCombobox();
-			}
-			
-			// Example to show the dynamic insertion of data directly into the original Select element
-			// and then calling the jQuery combobox to synchronise by calling update().
-			function updateCombobox()
-			{
-				var officeItemListSelectJQ = $("#raceType");
-				var currentDate = Date();
-				officeItemListSelectJQ.append("<option value='" + currentDate + "'>" + currentDate + "</option>");
+	$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled - Adds empty span tag after ul.subnav
+	
+	$('#ppalField').click(function() {
+		$(this).parent().find("ul.subnav").slideDown('fast').show();
+	});
+	
+	$("ul.topnav li span").click(function() { //When trigger is clicked...
+		$(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click
+		
+		$(this).parent().hover(function() {
+        }, function(){
+        
+        	/*
+if ($(this).parent().attr('id') == 'Navigator'){return false;} else { $(this).parent().find("ul.subnav").slideUp('slow'); //Ocultamos el submenu cuando el raton sale fuera del submenu
+        	}
+*/
+           
+        });
 
-				_officeItemListCombobox.combobox.update();
-			}
-	</script>
+		}).click(function() { 
+			$(this).addClass("subhover"); //On hover over, add class "subhover"
+		}, function(){	//On Hover Out
+			$(this).removeClass("subhover"); //On hover out, remove class "subhover"
+	});
+	
+	 
+	
+	$("ul.topnav li ul.subnav li a").click(function() { //When trigger is clicked...
+		valor = $(this).html();
+		$('#ppalField').html(valor);
+		$('#ppalField').css("color",$(this).css("color"));
+		$("ul.subnav").slideUp('fast'); //When the mouse hovers out of the subnav, move it back up */
+	});
+
+});
+</script>
 {/literal}
+
+
 
 <!-- GLOBAL CONTAINER RACE -->
 	<div class="span-24 raceContainer" id="race">
@@ -102,18 +56,21 @@
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first">
-									<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}" style="width:400px;"></span></label>			
+									<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}" style="width:500px;"></span></label>			
 								</div>
-								<div class="column last">
-									<select id="raceType">
-										<option value="1" selected="selected">Todas</option>
-										<option value="2">Mediofondo</option>
-										<option value="3">Fondo</option>
-										<option value="4">Marathon/Ultrafondo</option>
-										<option value="5">Cross/Campo</option>
-										<option value="6">Combinadas</option>
-									</select>
-								</div>
+									<ul id="Navigator" class="topnav">
+							            <li id="liField">
+							                <a id="ppalField" href="#">Todas</a>
+							                <ul class="subnav">
+							                    <li><a href="#">Todas</a></li>
+							                    <li><a href="#" id="a1">Mediofondo</a></li>
+							                    <li><a href="#" id="a2">Fondo</a></li>
+							                    <li><a href="#" id="a3">Marathon/Ultrafondo</a></li>
+							                    <li><a href="#" id="a4">Cross/Campo</a></li>
+												<li><a href="#" id="a5">Combinadas</a></li>
+							                </ul>
+							            </li>
+							        </ul>								
 							</div>
 						</form>
 					</div>
@@ -231,7 +188,5 @@
 		</div>
 	</div>
 </div>
-
-
 
 {include file="footer.tpl"} 
