@@ -3,7 +3,7 @@
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
-		<p><a href="#">Carreras en Madrid</a></p>
+		<p class="navigation"><a href="#">Carreras en Madrid ></a></p>
 		<div class="carrera_principal">
 			<div class="column span-1 first calendar">
 				<div class="month month{$data.run_type}">{getMonth month=$data.event_date|substr:5:2}</div>
@@ -15,7 +15,7 @@
 		    {if $data.flickr_img_id === null}
 			    <img src="/media/run/{$data.big_picture}" class="imageCarrera"/>
 			{else}
-			<a href="{$data.flickr_url}" target="_blank"><img class="imageCarrera" src="/panoramioPic.php?												id={$data.id}&photo_id={$data.flickr_img_id}"/></a>
+			<a href="{$data.flickr_url}" target="_blank"><img class="imageCarrera" src="/panoramioPic.php?id={$data.id}&photo_id={$data.flickr_img_id}"/></a>
 			{/if}
 			
 			<div class="span-1 last raceData">
@@ -75,13 +75,13 @@
 						{if $data.inscription_website != null}
 						<div class="span-1 last dataContainer">
 							<div class="span-1 last dataTitle"><p class="textRace">Web:</p></div>
-							<div class="span-1 last data"><p><a target="_blank" id="datos2" href="{if $data.inscription_website|substr:0:7 eq "http://"}{$data.inscription_website}{else}http://								{$data.inscription_website}{/if}" class="special">{$data.inscription_website}</a></p></div>
+							<div class="span-1 last data"><p><a target="_blank" id="datos2" href="{if $data.inscription_website|substr:0:7 eq "http://"}{$data.inscription_website}{else}http://{$data.inscription_website}{/if}" class="special">{$data.inscription_website}</a></p></div>
 						</div>	
 						{/if}
 						{if $data.tlf_informacion != null}
-						<div class="span-6 databox noborder">
+						<div class="span-6 dataContainer noborder">
 							<div class="span-1 last dataTitle"><p class="textRace">Teléfono:</p></div>
-							<div class="span-1 last data"><p><a id="datos3" href="" class="special">{$data.tlf_informacion}</a></p></div>
+							<div class="span-1 last data"><p><b>{$data.tlf_informacion}</b></p></div>
 						</div>	
 						{/if}
 					</div>
@@ -181,27 +181,68 @@
 	<div class="span-1 last rightColumn">
 		<div class="span-1 ticketOrangeVoy"><p><input type="checkbox"> Voy a ir a esta carrera</p></div>
 		<div class="span-1 ticketOrange"></div>
-		<p class="titulo tituloColumnRight">LOCALIZACIÓN</p>
-		<p class="titulo tituloColumnRight">EN LAS MISMAS FECHAS</p>
 		
-		 {if $runsInSameDates}
-			<div class="events">
-        		{foreach key=id item=race from=$runsInSameDates}	    				    
-    					<div class="span-1 {cycle values="raceRight,raceRight2"}">
-    						<div class="span-1 first dateRight">
-    					        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
-    							<div class="day">{$race.event_date|substr:8:2}</div>
-    						</div>
-
-    						<div class="span-1 dataRaceRight">
-    							<div class=""><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
-    							<div class="">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
-    						</div>
-    					</div>
-            	    {/foreach}					
+		<div class="mapRight">
+			<p class="titulo tituloColumnRight">LOCALIZACIÓN</p>
+		</div>
+		
+		{if $runsInSameDates}
+		<p class="titulo tituloColumnRight">EN LAS MISMAS FECHAS</p>
+		<div class="events">
+			{foreach key=id item=race from=$runsInSameDates}	    				    
+				<div class="span-1 {cycle values="raceRight,raceRight2"}">
+					<div class="span-1 first dateRight calendar">
+				        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
+						<div class="day">{$race.event_date|substr:8:2}</div>
+					</div>
+		
+					<div class="span-1 last dataRaceRight">
+						<div class="nameRaceRight"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
+					</div>
+				</div>
+		    {/foreach}					
+		</div>
+		{/if}
+		
+		{if $runsInSameDates}
+		<p class="titulo tituloColumnRight">DE DISTANCIA PARECIDA</p>
+		<div class="events">
+			{foreach key=id item=race from=$runsInSameDates}	    				    
+				<div class="span-1 {cycle values="raceRight,raceRight2"}">
+					<div class="span-1 first dateRight calendar">
+				        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
+						<div class="day">{$race.event_date|substr:8:2}</div>
+					</div>
+		
+					<div class="span-1 last dataRaceRight">
+						<div class="nameRaceRight"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
+					</div>
+				</div>
+		    {/foreach}					
+		</div>
+		{/if}
+		
+		<p class="titulo tituloColumnRight">USUARIOS APUNTADOS</p>
+			<div class="avatarContainer">
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>	
+				<img class="avatarRight" src="/img/avatar.jpg"/>		
 			</div>
-			{/if}
-	
 	</div>
 
 </div> <!-- content -->
