@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
 	<link rel="stylesheet" type="text/css" href="/css/menu.css">	
 	<link rel="stylesheet" type="text/css" href="/css/datepicker.css">
+	<link rel="stylesheet" type="text/css" href="/css/combobox.css">
 <!-- 	<link rel="stylesheet" type="text/css" href="/css/contact.css">	 -->
 	<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection">
 <!-- 	<link rel="stylesheet" href="/css/scrollable.css" type="text/css" media="screen, projection"> -->
@@ -37,16 +38,21 @@
 
 	
 	<!-- Import JS source files -->
-	<script src='/js/jquery-1.3.2.min.js' type='text/javascript'></script>
+	<script src='/js/jquery-1.3.2.js' type='text/javascript'></script>
 	<script src='/js/jquery.simplemodal.js' type='text/javascript'></script>
 	<script src='/js/autoresize.jquery.min.js' type='text/javascript'></script>	
 	<script src='/js/jquery.tools.min.js' type='text/javascript'></script>
 	
 	<script type="text/javascript" src="/js/jquery.js"></script>
+	<!-- /* <script type="text/javascript" src="/js/jquery.dimensions.js"></script> */ -->
+ 	<script type="text/javascript" src="/js/jquery.combobox.js"></script>	
+	
 	<script type="text/javascript" src="/js/datepicker.js"></script>
     <script type="text/javascript" src="/js/eye.js"></script>
     <script type="text/javascript" src="/js/utils.js"></script>
     <script type="text/javascript" src="/js/layout.js?ver=1.0.2"></script>
+    
+
 	
 	<!-- Contact Form JS and CSS files -->
 <!-- 	<script src='/js/init.js' type='text/javascript'></script> -->
