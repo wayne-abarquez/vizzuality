@@ -110,12 +110,12 @@
 		<div class="span-19 last access"><p><a href="#">accede a tu cuenta</a> / <a href="#">regístrate</a></p></div>
 		<div class="span-18 search">
 			<form id="searchForm" class="span-14" action="/buscar" method="get">
-					<label class="roundsearchFirst last" for="inputsearchFirst">
-						<input type="text" id="inputsearchFirst" name="q">
-					</label>
-					<label class="searchButtonFirst last">
-						<input type="submit" value="Buscar" class="buttonSearchFirst"/>
-					</label>
+				<label class="roundsearchFirst last" for="inputsearchFirst">
+					<input type="text" id="inputsearchFirst" name="q">
+				</label>
+				<label class="searchButtonFirst last">
+					<input type="submit" value="Buscar" class="buttonSearchFirst"/>
+				</label>
 			</form>
 		</div>
 	</div>
