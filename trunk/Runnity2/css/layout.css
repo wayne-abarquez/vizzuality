@@ -37,9 +37,9 @@
 }
 
 #header #searchForm {
-	width: 200px;
+	width: 280px;
 	float: right;
-	margin-right: 10px;
+	margin-right: 4px;
 }
 
 label.roundsearchFirst {
@@ -713,6 +713,23 @@ div.mapStyle {
 .buttonmenuContainer{
 	margin-left: 20px;
 	margin-top: 24px;
+}
+
+.buttonSearchFirst{
+	background-image: url(/img/search_button.jpg);
+	background-repeat: no-repeat;
+	height: 28px;
+	width: 76px;
+	border: none;
+	margin-left: -7px;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.buttonSearchFirst:hover{
+	color: yellow;
 }
 
 #comment {width: 610px; border-bottom: 1px dotted #cccccc; margin-bottom: 10px;}
