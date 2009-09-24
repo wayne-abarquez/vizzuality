@@ -1,31 +1,9 @@
 /****** HEADER ****/
 
-.header{
-	background-image: url(/img/header.jpg);
-	background-repeat: no-repeat;
-	background-position: center;
-	height: 61px;
-	width: 910px;
-	margin: 0px 0px 0px 0px;
-}
-
-.header p{
-	float: right;
-	font-family: "Arial";
-	font-size: 11px;
-	color: white;
-	padding-right: 30px;
-}
-
-.header a{
-	text-decoration: none;
-	color: white;
-	cursor: pointer;
-}
-
-.header a:hover{
-	color: #999999;
-}
+.header{background-image: url(/img/header.jpg); background-repeat: no-repeat; background-position: center; height: 61px; width: 910px; margin: 0px 0px 0px 0px;}
+.header p{float: right; font-family: "Arial"; font-size: 11px; color: white; padding-right: 30px;}
+.header a{text-decoration: none; color: white; cursor: pointer;}
+.header a:hover{color: #999999;}
 
 .logo{
 	height: 61px;
@@ -570,34 +548,12 @@ div.day {
 	margin-top: -5px;
 }
 
-div.month {
-	font-family: Arial;
-	color: white;
-	font-size: 10px;
-	font-weight: bold;
-	text-align: center;
-	background-color: #cc3300;
-}
-
-div.month1 {
-	background-color: #3b8d50;
-}
-
-div.month2 {
-	background-color: #cc3300;
-}
-
-div.month3 {
-	background-color: #535353;
-}
-
-div.month4 {
-	background-color: #cf854d;
-}
-
-div.month5 {
-	background-color: #9f00c6;
-}
+div.month {font-family: Arial;color: white;font-size: 10px;font-weight: bold;text-align: center;background-color: #cc3300;}
+div.month1 {background-color: #3b8d50;}
+div.month2 {background-color: #cc3300;}
+div.month3 {background-color: #535353;}
+div.month4 {background-color: #cf854d;}
+div.month5 {background-color: #9f00c6;}
 
 .raceTitle{
 	font-size: 28px;
@@ -620,15 +576,8 @@ div.month5 {
 	height: 238px;
 }
 
-.raceData{
-	width: 229px;
-}
-
-.raceData a{
-	color: #336699;
-	text-decoration: none;
-	font-weight: bold;
-}
+.raceData{width: 229px;}
+.raceData a{color: #336699; text-decoration: none; font-weight: bold;}
 
 .raceDescription{
 	width: 381px;
@@ -646,7 +595,13 @@ div.month5 {
 	padding: 0px 0px 0px 0px;
 }
 
-.dataContainer p, .textRace{
+.dataContainer p{
+	color: #666666;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.textRace{
 	color: #666666;
 }
 
