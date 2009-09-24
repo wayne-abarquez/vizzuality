@@ -1,6 +1,93 @@
 {include file="header.tpl"} 
+{literal}
+<script type="text/javascript">
+  	var _officeItemListCombobox = null;
+  	var _cssStyleSelectJQ = null;
+  	var _animationTypeSelectJQ = null;
+  	var _animationType = "slide";
 
+		$(
+			function()
+			{
+				var comboboxSettings = {animationSpeed: 100};
+				
+				// Create the example combobox
+				setupCombobox();
+				
+				// Create the different styles combobox
+				_cssStyleSelectJQ = $("#cssStyleSelect").combobox({}, comboboxSettings);
+				// Combobox has its own onChange event, but the onChange of the Select element can be used as well.
+				// changeAnimation works in this manner.
+				_cssStyleSelectJQ.combobox.onChange = 
+					function()
+					{	
+						changeStyle();
+					};
+				
+				// Create the Animation types combobox
+				// Note: There is no need to configure the onChange event as the event is defined in the html
+				//	<select id="animationTypeSelect" onchange="changeAnimation()">
+				_animationTypeSelectJQ = $("#animationTypeSelect").combobox({}, comboboxSettings);
+			});
+			
+			// create a jquery combobx and set the Css class styles
+			function setupCombobox()
+			{
+				_officeItemListCombobox = $('#raceType').combobox(
+					{
+						comboboxContainerClass: "comboboxContainer",
+						comboboxValueContentContainerClass: "comboboxValueContainer",
+						comboboxValueContentClass: "comboboxValueContent",
+						comboboxDropDownClass: "comboboxDropDownContainer",
+						comboboxDropDownButtonClass: "comboboxDropDownButton",
+						comboboxDropDownItemClass: "comboboxItem",
+						comboboxDropDownItemHoverClass: "comboboxItemHover",
+						comboboxDropDownGroupItemHeaderClass: "comboboxGroupItemHeader",
+						comboboxDropDownGroupItemContainerClass: "comboboxGroupItemContainer"
+					},
+					{
+						animationType: _animationType,
+						width: 130
+					});
+			}
+			
+			function changeStyle()
+			{
+			
+				var cssStyleSelectJQ = $("#cssStyleSelect");
+				var selectedStyle = cssStyleSelectJQ.val();
+				selectedStyle = "style/screen/" + selectedStyle + ".css";
+				
+				_officeItemListCombobox.combobox.remove()
+				
+				$("link[title='combobox']").attr("href", selectedStyle);
+				
+				// Time delay required for the new css stylesheet to be processed by the Browser,
+				// otherwise, jquery.combobox cannot calculate the correct layout for the new styles
+				setTimeout(setupCombobox, 1);
+			}
+			
+			function changeAnimation()
+			{
+				var animationTypeSelectJQ = $("#animationTypeSelect");
+				_animationType = animationTypeSelectJQ.val();
+				
+				_officeItemListCombobox.combobox.remove();
+				setupCombobox();
+			}
+			
+			// Example to show the dynamic insertion of data directly into the original Select element
+			// and then calling the jQuery combobox to synchronise by calling update().
+			function updateCombobox()
+			{
+				var officeItemListSelectJQ = $("#raceType");
+				var currentDate = Date();
+				officeItemListSelectJQ.append("<option value='" + currentDate + "'>" + currentDate + "</option>");
 
+				_officeItemListCombobox.combobox.update();
+			}
+	</script>
+{/literal}
 
 <!-- GLOBAL CONTAINER RACE -->
 	<div class="span-24 raceContainer" id="race">
@@ -14,7 +101,19 @@
 						<form id="searchForm" method="GET" action="/buscar">
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
-								<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}" style="width:500px;"></span></label>
+								<div class="column first">
+									<label class="roundsearch" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}" style="width:400px;"></span></label>			
+								</div>
+								<div class="column last">
+									<select id="raceType">
+										<option value="1" selected="selected">Todas</option>
+										<option value="2">Mediofondo</option>
+										<option value="3">Fondo</option>
+										<option value="4">Marathon/Ultrafondo</option>
+										<option value="5">Cross/Campo</option>
+										<option value="6">Combinadas</option>
+									</select>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -132,5 +231,7 @@
 		</div>
 	</div>
 </div>
+
+
 
 {include file="footer.tpl"} 
