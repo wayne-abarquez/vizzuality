@@ -147,8 +147,8 @@
 				<a href="#"><div class="menu_button"><p>Invita a tus amigos a runnity</p></div></a>
 			</div>			
 		{/if}
-			
 		</div>
+		
 		<div class="menu">
 			<div class="span-13 last horizontalcssmenu">
 			<ul id="cssmenu1">
