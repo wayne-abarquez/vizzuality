@@ -729,7 +729,7 @@ div.mapStyle {
 }
 
 .buttonSearchFirst:hover{
-	color: yellow;
+	background-image: url(/img/search_button_hover.jpg);
 }
 
 #comment {width: 610px; border-bottom: 1px dotted #cccccc; margin-bottom: 10px;}
