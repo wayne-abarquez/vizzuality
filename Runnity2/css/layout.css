@@ -702,35 +702,11 @@ div.mapStyle {
 	width: 255px;
 }
 
-.buttonmenuContainer a{
-	color: #666666;
-	font-size: 16px;
-	text-decoration: none;
-	text-align: center;
-	line-height: 34px;
-}
+.buttonmenuContainer a{color: #666666;font-size: 16px;text-decoration: none;text-align: center;line-height: 34px;}
+.buttonmenuContainer{margin-left: 20px;	margin-top: 24px;}
 
-.buttonmenuContainer{
-	margin-left: 20px;
-	margin-top: 24px;
-}
-
-.buttonSearchFirst{
-	background-image: url(/img/search_button.jpg);
-	background-repeat: no-repeat;
-	height: 28px;
-	width: 76px;
-	border: none;
-	margin-left: -7px;
-	color: #ffffff;
-	font-size: 14px;
-	font-weight: bold;
-	cursor: pointer;
-}
-
-.buttonSearchFirst:hover{
-	background-image: url(/img/search_button_hover.jpg);
-}
+.buttonSearchFirst{background-color: #336699; background-image: url(/img/search_button.jpg); background-repeat: no-repeat; height: 28px; width: 76px; border: none; margin-left: -7px; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer;}
+.buttonSearchFirst:hover{background-image: url(/img/search_button_hover.jpg);}
 
 #comment {width: 610px; border-bottom: 1px dotted #cccccc; margin-bottom: 10px;}
 #comment a.name {color: #666666; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
