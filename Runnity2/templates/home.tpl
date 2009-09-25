@@ -90,14 +90,14 @@
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumnHome">
 		<p class="titulo titulOrange">CARRERAS DESTACADAS</p>
-		<!--<div class="carreraOrange">
+		<div class="carreraOrange">
 			<div class="span-1 avatar2Orange"><img src="/img/avatar2.jpg" class="avatarOrange"></div>
 			<div class="span-1 Race">
 				<p class="nameRaceOrange"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
 				<p class="span-4 infoRaceOrange"><b>21/Agosto</b> / 5km - 10km</p>
 				<p class="span-4 placeRaceOrange">Móstoles</p>
 			</div>
-		</div>-->
+		</div>
 	</div>
 	
 </div> <!-- content -->
