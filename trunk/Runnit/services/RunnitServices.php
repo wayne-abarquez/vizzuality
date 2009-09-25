@@ -574,6 +574,13 @@ class RunnitServices {
 				$flickr_url=pg_escape_string($flickr_url);
 
 
+
+            
+
+
+
+
+
         	    $idflick="null";
         	    if($flickr_url!="") {
                     //http://www.flickr.com/photos/luis_carrasco/3228648671/
@@ -594,7 +601,22 @@ class RunnitServices {
         	        $published="true";
         	    } else {
         	        $published="false";
-        	    }        	    
+        	    }      
+        	    
+                //Update the activity table
+                
+                //1)Look if the run was already published
+                $sql="SELECT published from run WHERE id=$id";
+                if(res=="t") {
+                    $activity_description="Datos actualizados";
+                } else {
+                    if ($published=='true') {
+                        $activity_description="Alta de carrera";
+                    }
+                }
+                $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
+                
+        	      	    
                 
         	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected,run_type=$run_type,published=$published,tlf_informacion='$tlf_informacion',flickr_url='$flickr_url',flickr_img_id=$idflick";
         	        
@@ -612,6 +634,8 @@ class RunnitServices {
         	        
         	    $sql.=" WHERE id=$id";
             $result= pg_query($this->conn, $sql);
+            
+            
             return null;
 
     }
