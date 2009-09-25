@@ -71,11 +71,13 @@ label.roundsearch1 {
 #inputsearch1 {width:443px}
 
 .inputLeft{
-	margin: 0px 0px 0px 0px;
+	margin: 0px 0px 0px -5px;
+	padding: 0px 0px 0px 0px;
 }
 
 .inputRight{
-	margin: 1px 0px 0px -7px;
+	margin: 0px 0px 0px -23px;
+	padding: 0px 0px 0px 0px;
 }
 
 .subHeader{
@@ -630,7 +632,7 @@ div.mapStyle {
 }
 
 .buttonmenuContainer a{color: #666666;font-size: 16px;text-decoration: none;text-align: center;line-height: 34px;}
-.buttonmenuContainer{margin-left: 20px;	margin-top: 24px;}
+.buttonmenuContainer{margin-left: 20px;	margin-top: 22px;}
 
 .buttonSearchFirst{background-color: #336699; background-image: url(/img/search_button.jpg); background-repeat: no-repeat; height: 28px; width: 76px; border: none; margin-left: -7px; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer;}
 .buttonSearchFirst:hover{background-image: url(/img/search_button_hover.jpg);}
@@ -776,15 +778,32 @@ div.raceRight2{
 	padding-top: 10px;
 }
 
+.buttonsearchbig{
+	background-color: #336699; 
+	background-image: url(/img/buttonsearchbig.gif); 
+	background-repeat: no-repeat;
+	height: 27px; 
+	width: 95px; 
+	border: none;
+	color: #ffffff; 
+	font-size: 14px;	
+	font-weight: bold; 
+	cursor: pointer;
+}
+
+.buttonsearchbig:hover{
+	background-image: url(/img/buttonsearchbig_hover.gif); 
+}
+
 /* SEARCH RESULTS */
 
-#searchBox {margin:20px; width: 910px; margin-bottom: 0px;}
+#searchBox {margin:20px; width: 910px; margin-bottom: 0px; margin-top: 0px;}
 #searchBox p {margin-bottom: 0px; color:#666666; font-size:10px; font-weight: bold; }
 
 #searchBox div.searchForm {height: 73px;background-color:#eeeeee;-moz-border-radius-topleft: 3px; -moz-border-radius-topright: 3px; -webkit-border-top-right-radius: 3px; -webkit-border-top-left-radius: 3px;}
 #searchBox div.searchForm div.regionInput {padding-top: 20px;padding-left: 15px;}
 #searchBox div.searchForm div.dateInput {margin-left: 112px; padding-top: 20px;padding-left: 15px;}
-#searchBox div.searchForm div.buttonSearch {float:right;padding-top: 45px;padding-right: 10px;}
+#searchBox div.searchForm div.buttonSearchBig {float:right;padding-top: 34px;padding-right: 14px;}
 
 
 
@@ -794,9 +813,6 @@ ul.topnav {
 	width: 130px;
 	background: #FFFFFF;
 	color: black;
-	background-color: white;
-	margin-left: 0px;
-	margin-top: -1px;
 	font-family: Arial;
 	font-size: 11px;
 	padding-left: 5px;
@@ -813,7 +829,6 @@ ul.topnav {
 }
 ul.topnav li {
 	float: left;
-
 	margin: 0;	
 	position: relative; /*--Declare X and Y axis base--*/
 }
@@ -865,9 +880,6 @@ ul.topnav li ul.subnav li{
 
 html ul.topnav li ul.subnav li a:focus {
 	outline: none;
-}
-
-html ul.topnav li ul.subnav li a:hover {
 }
 
 #header img {
