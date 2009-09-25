@@ -51,14 +51,14 @@ if ($(this).parent().attr('id') == 'Navigator'){return false;} else { $(this).pa
 			
 			<div id="searchBox">
 				<div class="searchForm">
-					<div class="column first regionInput">
+					<div class="column regionInput">
 						<form id="searchForm" method="GET" action="/buscar">
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
 									<label class="roundsearch1" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}"></span></label>			
 								</div>
-								<div class="column last inputRight">
+								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
 							            <li id="liField">
 							                <a id="ppalField" href="#">Todas</a>
@@ -91,8 +91,8 @@ if ($(this).parent().attr('id') == 'Navigator'){return false;} else { $(this).pa
 						</div>
 					</div>
 					
-					<div class="column last buttonSearch">
-						<span><a href="#"><input class="fg-button" type="button" value="Buscar"/></a></span>
+					<div class="column last buttonSearchBig">
+						<span><a href="#"><input class="buttonsearchbig" type="button" value="Buscar"/></a></span>
 					</div>
 					
 				</div>
