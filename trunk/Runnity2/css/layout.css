@@ -197,23 +197,20 @@ p.subTitleInfo{
 	width: 291px;
 	height: 85px;
 	background-color: #eeeeee;
-	margin-bottom: 2px;
-	margin-top: -4px;
 }
 
 .carrera2{
 	width: 291px;
 	height: 85px;
 	background-color: #f7f7f7;
-	margin-bottom: 2px;
-	margin-top: -4px;
 }
 
-.separator{
-	margin: 0px 0px 0px 0px;
+div.separator{
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 1px;
 	height: 1px;
-	width: 276px;
-	margin-left: 0px;
+	width: 289px;
 	border-top: dotted 1px #b2b2b2;
 }
 
@@ -395,7 +392,7 @@ div.carreraOrange{
 	padding-bottom: 6px;
 	padding-left: 10px;
 	margin-right: 10px;
-	margin-bottom: 0px;
+	margin-bottom: 6px;
 }
 
 .titulOrange{
@@ -762,7 +759,7 @@ div.raceRight2{
 }
 
 .avatarRight{
-	margin: 0px 0px -5px -4px;
+	margin: 0px 0px -6px -4px;
 }
 
 .avatarContainer{
