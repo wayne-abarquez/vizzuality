@@ -264,6 +264,7 @@ p.subTitleInfo{
 	color: #999999;
 	margin-top: -20px;
 	margin-bottom: 0px;
+	width: 160px;
 }
 
 .recentActivity{
@@ -284,6 +285,7 @@ p.subTitleInfo{
 	color: #999999;
 	margin-bottom: 0px;
 	margin-top: -4px;
+	width: 160px;
 }
 
 a.verTodas{
