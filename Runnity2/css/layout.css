@@ -503,6 +503,9 @@ div.carreraOrange{
 .tweet{
 	font-size: 11px;
 	color: #666666;
+	height: 50px;
+	width: 290px;
+	background-color: yellow;
 }
 
 /* calendario */
@@ -597,6 +600,19 @@ div.mapStyle {
 	padding-bottom: 4px;
 	padding-right: 4px;
 	background-color: white;
+}
+
+div.mapStyleRight {
+	border: 1px solid #cccccc;
+	vertical-align: middle;
+	width: 254px;
+	height: 192px;
+	padding-left: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-right: 4px;
+	background-color: white;
+	margin-left: 23px;
 }
 
 .noResults{
