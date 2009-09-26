@@ -29,7 +29,7 @@
 <!-- 	<link rel="stylesheet" type="text/css" href="/css/contact.css">	 -->
 	<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection">
 <!-- 	<link rel="stylesheet" href="/css/scrollable.css" type="text/css" media="screen, projection"> -->
-<!-- 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity" /> -->
+	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity" />
 
 
     {if $section eq "usuario" or $section eq "carrera"}
@@ -55,7 +55,7 @@
 
 	
 	<!-- Contact Form JS and CSS files -->
-<!-- 	<script src='/js/init.js' type='text/javascript'></script> -->
+	<script src='/js/init.js' type='text/javascript'></script>
 <!--
 	<link type='text/css' href='/css/login.css' rel='stylesheet' media='screen'>
 	<link type='text/css' href='/css/register.css' rel='stylesheet' media='screen'>
