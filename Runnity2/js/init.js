@@ -1,25 +1,4 @@
-
-//FUNCIONES QUE SE REALIZAN CUANDO EL DOCUMENTO ESTA LISTO
-$(document).ready( function() {
-
-	$('textarea').autoResize({
-	    // On resize:
-	    onResize : function() {
-	        $(this).css({opacity:0.8});
-	    },
-	    // After resize:
-	    animateCallback : function() {
-	        $(this).css({opacity:1});
-	    },
-	    // Quite slow animation:
-	    animateDuration : 300,
-	    // More extra space:
-	    extraSpace : 40
-	});
-    
-});
-
-
+/*
 //FUNCIONES PARA REDONDEAR INPUTS
 function roundInput(input_id, container_class, border_class){
 	var input = $('#'+input_id+'');
@@ -35,6 +14,7 @@ $(function(){
 	roundInput('rounded_input1','rounded_container','rounded_border');
 	roundInput('rounded_input2','rounded_container','rounded_border');
 });
+*/
 
  
  
