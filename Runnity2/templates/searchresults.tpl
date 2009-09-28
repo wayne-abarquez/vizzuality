@@ -107,10 +107,10 @@ if ($(this).parent().attr('id') == 'Navigator'){return false;} else { $(this).pa
 						{if $count > 20}
 							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}
 								{if $offset > 0}
-									<span><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></span>
+									<span><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input type="button" value="<"/></a></span>
 								{/if}
 								{if $offset < $count-20}
-									<span><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></span>
+									<span><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input type="button" value=">"/></a></span>
 	                			{/if}	
 							</p>	
 	                    {/if}
@@ -173,10 +173,10 @@ if ($(this).parent().attr('id') == 'Navigator'){return false;} else { $(this).pa
 						{if $count > 20}
  							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +20,c)" x2=$offset c=$count}</b> de {$count}
  								{if $offset > 0}
-									<span><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input class="fg-button" type="button" value="< ANTERIORES"/></a></span>
+									<span><a href="?offset={math equation="max(x-20,0)" x=$offset}"><input type="button" value="< ANTERIORES"/></a></span>
 								{/if}
 								{if $offset < $count-20}
-									<span><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value="SIGUIENTES >"/></a></span>
+									<span><a href="?offset={$offset+20}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input type="button" value="SIGUIENTES >"/></a></span>
                     			{/if}
  								
  							</p>	
