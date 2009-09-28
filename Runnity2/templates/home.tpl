@@ -2,7 +2,6 @@
 
 <div class="span-24">
 <div class="span-1 column mapTop"></div>
-<!-- <div class="span-1 column map"></div> -->
 <div class="span-1 column map">
 	<div id="runnityHomeMap">
 	<object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="894" height="364" wmode="opaque">
