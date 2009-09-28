@@ -1,23 +1,3 @@
-/*
-//FUNCIONES PARA REDONDEAR INPUTS
-function roundInput(input_id, container_class, border_class){
-	var input = $('#'+input_id+'');
-	var input_width = input.css("width"); //get the width of input
-	var wrap_width = parseInt(input_width) + 10; //add 10 for padding
-	wrapper = input.wrap("<div class='"+container_class+"'></div>").parent();
-	wrapper.wrap("<div class='"+border_class+"' style='width: "+wrap_width+"px;'></div>"); //apply border
-	wrapper.corner("round 8px").parent().css('padding', '2px').corner("round 10px"); //round box and border
-}
-
-
-$(function(){
-	roundInput('rounded_input1','rounded_container','rounded_border');
-	roundInput('rounded_input2','rounded_container','rounded_border');
-});
-*/
-
- 
- 
 //FUNCION PARA CALCULAR EL TIEMPO 
 function relative_time(time_value) {
 	  var values = time_value.split(" ");
@@ -46,8 +26,6 @@ function relative_time(time_value) {
 	  
 	  return r;
 }
-
-
 
 // PARA ABRIR VENTANAS MODALES
 function showLoginBox() {
@@ -94,8 +72,6 @@ function showContactBox() {
 	$('#simplemodal-container').css("height",'320px');
 	
 };
-
-
 
 /* FUNCION PARA COMENTAR -- REVISAR -- */
 function commentAction(id,on_table) {
