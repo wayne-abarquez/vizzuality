@@ -60,7 +60,7 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.jpg"/> Recorrido añadido</p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
@@ -69,7 +69,7 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.jpg"/> Recorrido añadido</p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
 				</div>
 				
 				<div class="ticketBlue"><p>3</p></div>
@@ -79,7 +79,7 @@
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.jpg"/> Recorrido añadido</p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>

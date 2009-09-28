@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2009-09-10 18:44:54
+<?php /* Smarty version 2.6.26, created on 2009-09-21 02:05:48
          compiled from 404.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'getMonth', '404.tpl', 41, false),array('modifier', 'substr', '404.tpl', 41, false),array('modifier', 'replace', '404.tpl', 45, false),)), $this); ?>
