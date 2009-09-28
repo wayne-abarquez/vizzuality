@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2009-09-17 17:22:40
+<?php /* Smarty version 2.6.26, created on 2009-09-28 19:01:31
          compiled from home.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'home.tpl', 20, false),array('function', 'getMonth', 'home.tpl', 26, false),array('modifier', 'replace', 'home.tpl', 24, false),array('modifier', 'substr', 'home.tpl', 26, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'cycle', 'home.tpl', 34, false),array('function', 'getMonth', 'home.tpl', 40, false),array('modifier', 'replace', 'home.tpl', 38, false),array('modifier', 'substr', 'home.tpl', 40, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -10,7 +10,21 @@ unset($_smarty_tpl_vars);
 
 <div class="span-24">
 <div class="span-1 column mapTop"></div>
-<div class="span-1 column map"></div>
+<div class="span-1 column map">
+	<div id="runnityHomeMap">
+	<object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="894" height="364" wmode="opaque">
+		<param name="movie" value="/flash/runnitHomeMap.swf?6" />
+		<!--[if !IE]>-->
+		<object type="application/x-shockwave-flash" data="/flash/runnitHomeMap.swf?6" width="894" height="364" wmode="opaque">
+		<!--<![endif]-->
+		<h1>Necesitas Flash para poder ver el mapa</h1>
+		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+		<!--[if !IE]>-->
+		</object>
+		<!--<![endif]-->
+    </object>
+</div>
+</div>
 <div class="span-1 column mapBottom"></div>
 </div>
 
@@ -20,45 +34,48 @@ unset($_smarty_tpl_vars);
 	<div class="span-1 last leftColumnHome">
 	
 		<div class="span-1 last column1">
-			<p class="titulo">PRÓXIMAS CARRERAS CERCA DE TI</p>
-				<?php $_from = $this->_tpl_vars['nextRaces']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['raceloop'] = array('total' => count($_from), 'iteration' => 0);
+		<p class="titulo">PRÓXIMAS CARRERAS CERCA DE TI</p>
+			<?php $_from = $this->_tpl_vars['nextRaces']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['raceloop'] = array('total' => count($_from), 'iteration' => 0);
 if ($this->_foreach['raceloop']['total'] > 0):
     foreach ($_from as $this->_tpl_vars['id'] => $this->_tpl_vars['race']):
         $this->_foreach['raceloop']['iteration']++;
 ?>
-					<?php if ($this->_tpl_vars['race'] == 'false'): ?>
-						<div class="carrera">No hay proximas carreras.</div> 
-					<?php else: ?>
-						<div class="<?php echo smarty_function_cycle(array('values' => "carrera,carrera2"), $this);?>
+				<?php if ($this->_tpl_vars['race'] == 'false'): ?>
+<!-- 						<div class="carrera">No hay próximas carreras.</div>  -->
+				<?php else: ?>
+					<div class="span-1 <?php echo smarty_function_cycle(array('values' => "carrera,carrera2"), $this);?>
 ">
-							<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
-							<div class="span-1 Race">
-								<p class="span-4 nameRace"><a id="carrera<?php echo $this->_foreach['raceloop']['iteration']; ?>
+						<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
+						<div class="span-1 Race">
+							<p class="span-4 nameRace"><a id="carrera<?php echo $this->_foreach['raceloop']['iteration']; ?>
 " 
-								href="/run/<?php echo $this->_tpl_vars['race']['id']; ?>
+							href="/run/<?php echo $this->_tpl_vars['race']['id']; ?>
 /<?php echo ((is_array($_tmp=$this->_tpl_vars['race']['name'])) ? $this->_run_mod_handler('replace', true, $_tmp, ' ', '/') : smarty_modifier_replace($_tmp, ' ', '/')); ?>
 "><?php echo $this->_tpl_vars['race']['name']; ?>
 </a></p>
-								<p class="span-4 infoRace" id="iteracion<?php echo $this->_foreach['raceloop']['iteration']; ?>
+							<p class="span-4 infoRace" id="iteracion<?php echo $this->_foreach['raceloop']['iteration']; ?>
 ">
-								<b><?php echo ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 8, 2) : substr($_tmp, 8, 2)); ?>
+							<b><?php echo ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 8, 2) : substr($_tmp, 8, 2)); ?>
 /<?php echo smarty_function_getMonth(array('month' => ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 5, 2) : substr($_tmp, 5, 2))), $this);?>
-/
-								<?php echo ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 2, 2) : substr($_tmp, 2, 2)); ?>
-</b> / <?php echo $this->_tpl_vars['race']['distance_text']; ?>
+/<?php echo ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 2, 2) : substr($_tmp, 2, 2)); ?>
+</b> / 													<?php echo $this->_tpl_vars['race']['distance_text']; ?>
 </p>
-								<p class="span-4 placeRace"><?php echo $this->_tpl_vars['race']['province_name']; ?>
+							<p class="span-4 placeRace"><?php echo $this->_tpl_vars['race']['province_name']; ?>
  - <?php echo $this->_tpl_vars['race']['event_location']; ?>
 </p>
-							</div>
+						</div>
+						<?php if ($this->_tpl_vars['race']['num_users'] > 0): ?>
 							<div class="ticketBlue"><p><?php echo $this->_tpl_vars['race']['num_users']; ?>
 </p></div>
-						</div>
-						<div class="separator"></div>
+						<?php endif; ?>
+					</div>
+					<?php if ($this->_foreach['raceloop']['iteration'] < 3): ?>
+						<div class="span-1 last separator"></div>
 					<?php endif; ?>
-				<?php endforeach; else: ?>
-					<div class="carrera">No hay proximas carreras.</div> 
-	    		<?php endif; unset($_from); ?>	
+				<?php endif; ?>
+			<?php endforeach; else: ?>
+<!-- 					<div class="carrera">No hay próximas carreras.</div>  -->
+    		<?php endif; unset($_from); ?>	
 			<a class="verTodas" href="#"><b>Ver todas las carreras en Madrid</b></a>
 		</div>
 		
@@ -68,8 +85,7 @@ if ($this->_foreach['raceloop']['total'] > 0):
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 infoRace"><b>21/Agosto</b> / 5km - 10km</p>
-					<p class="span-4 placeRace">Móstoles</p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
@@ -78,9 +94,9 @@ if ($this->_foreach['raceloop']['total'] > 0):
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 infoRace"><b>21/Agosto</b> / 5km - 10km</p>
-					<p class="span-4 placeRace">Móstoles</p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
 				</div>
+				
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
 			<div class="separator"></div>
@@ -88,8 +104,7 @@ if ($this->_foreach['raceloop']['total'] > 0):
 				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 infoRace"><b>21/Agosto</b> / 5km - 10km</p>
-					<p class="span-4 placeRace">Móstoles</p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
 				</div>
 				<div class="ticketBlue"><p>3</p></div>
 			</div>
@@ -103,10 +118,8 @@ if ($this->_foreach['raceloop']['total'] > 0):
 			<div class="span-1 avatar2Orange"><img src="/img/avatar2.jpg" class="avatarOrange"></div>
 			<div class="span-1 Race">
 				<p class="nameRaceOrange"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-<!--
 				<p class="span-4 infoRaceOrange"><b>21/Agosto</b> / 5km - 10km</p>
 				<p class="span-4 placeRaceOrange">Móstoles</p>
--->
 			</div>
 		</div>
 	</div>
@@ -117,8 +130,163 @@ if ($this->_foreach['raceloop']['total'] > 0):
 
 <div class="bannerTop"></div>
 <div class="banner">
-	<div class="titular"></div>
+	<div class="titular">
+		<div class="span-1 titularColumn">
+			<p class="titularTitle titularTitleFirst">ENTÉRATE Y PLANEA</p>
+			<p class="titularInfo">Obtén la mejor información de los eventos que están por venir; Recorridos, mapas, altimetrías, fotos, comentarios, ediciones pasadas...</p>	
+			<br>
+			<a href="">Mira una carrera de ejemplo</a>
+		</div>
+		<div class="span-1 titularColumn titularColumn2">
+			<p class="titularTitle">DISFRUTA LA CARRERA</p>
+			<p class="titularInfo titularInfo2">Esperamos que con nuestra ayuda no te falte nada para que la carrera salga como esperas.</p>
+			<p class="titularInfo titularInfo2">Disfrútala al máximo y cuéntanos qué tal.</p>
+		</div>
+		<div class="span-1 titularColumn titularColumn2">
+			<p class="titularTitle">VUELVE Y COMÉNTALO</p>
+			<p class="titularInfo titularInfo2">¡Sube tus fotos, tus tiempos, clasificaciones y haz de Runnity un sitio cada vez mejor y más completo!</p>
+			<br><br>
+			<a href="">Regístrate y participa</a>
+		</div>
+	</div>
 </div>
+
+<div class="container">
+	<div class="span-1 column ColumnHome">
+		<div class="span-1 last columnLong">
+			<p class="titulo">RUNNITY EN LA WEB</p>
+			<div class="column span-3 first">
+				<a href="http://www.tuenti.com/#m=Photo&func=view_photo&collection_key=1-66022443-567658561-66022443" target="_blank">
+					<img src="/img/tuenti.jpg" alt="socialNetworks"/>
+				</a>
+			</div>
+			<div class="column span-3">
+				<a href="http://www.facebook.com/home.php?#/group.php?gid=158141673184&ref=ts" target="_blank">
+					<img src="/img/facebook.jpg" alt="socialNetworks"/>
+				</a>
+			</div>
+			<div class="column span-4 last">
+				<a href="http://twitter.com/runnity" target="_blank">
+					<img src="/img/twitter.jpg" alt="socialNetworks"/>
+				</a>
+			</div>
+			<div class="column span-3 last">
+				<a href="http://www.flickr.com/groups/1188628@N20/" target="_blank">
+					<img src="/img/flickr.jpg" alt="socialNetworks"/>
+				</a>
+			</div>
+		</div>
+		<div class="span-1 last columnSort">
+			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
+				<div class="span-3 tweet last">
+				<b><p id="tweets"></p></b>
+				<p id="tweetsTime"></p>
+				</div>
+		</div>
+	</div>
+
+</div>
+	
+	<!-- SCRIPT TWITTER -->
+	
+	<?php echo '
+	<script language="javaScript" type="text/javascript">
+		$(document).ready( function() {
+	
+			/*$(\'textarea\').autoResize({
+			    // On resize:
+			    onResize : function() {
+			        $(this).css({opacity:0.8});
+			    },
+			    // After resize:
+			    animateCallback : function() {
+			        $(this).css({opacity:1});
+			    },
+			    // Quite slow animation:
+			    animateDuration : 300,
+			    // More extra space:
+			    extraSpace : 40
+			});
+*/
+			 
+		
+			var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
+			$.getJSON(url,function(data){	
+				$.each(data, function(i, item) {
+					$("#tweets").append( item.text.linkify());
+					$("#tweetsTime").append(relative_time(item.created_at));
+				});
+		    });
+		    
+		    for (i=1;i<=6;i++){
+				var len = 40;
+				var p = document.getElementById("iteracion" + i);
+				
+				if (p) {
+				  var trunc = p.innerHTML;
+				  trunc = trunc.replace(/\\t/g, "");
+				  if (trunc.length > len) {
+		
+				    trunc = trunc.substring(0, len);
+				    /* trunc = trunc.replace(/\\w+$/, \'\'); */
+				
+				    /* Add an ellipses to the end and make it a link that expands
+				       the paragraph back to its original size */
+				    trunc += \'<a style="color: #666666;">\' +
+				      \'...<\\/a>\';
+				    p.innerHTML = trunc;
+				  }
+				}
+				
+				var len = 43;
+				var x = document.getElementById("carrera" + i);
+				if (x) {
+				  var trunc = x.innerHTML;
+				  trunc = trunc.replace(/\\t/g, "");
+				  trunc = trunc.replace(/\\n/g, "");
+				  				  
+				  if (trunc.length > len) {
+					
+					trunc = trunc.substring(0, len);
+				    trunc = trunc.replace(/\\w+$/, \'\');
+				
+				    /* Add an ellipses to the end and make it a link that expands
+				       the paragraph back to its original size */
+				    trunc += \'<a style="color: #666666;">\' +
+				      \'...<\\/a>\';
+				    x.innerHTML = trunc;
+				  }
+				}
+			}
+		    
+		    
+		});
+	</script>
+	'; ?>
+
+	
+	
+	<?php echo '
+	<script language="javaScript" type="text/javascript">
+		String.prototype.linkify = function() {
+			return this.replace(/[A-Za-z]+:\\/\\/[A-Za-z0-9-_]+\\.[A-Za-z0-9-_:%&\\?\\/.=]+/, function(m) {
+				return m.link(m);
+			});
+		}; 
+	</script>
+	'; ?>
+
+	
+	
+	
+	<?php echo '
+	<script language="javaScript" type="text/javascript">
+		function twitter_callback (){
+			return true;
+		}
+	</script>
+	'; ?>
+
 
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));

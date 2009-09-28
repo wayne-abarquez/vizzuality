@@ -379,7 +379,7 @@ class RunnitServices {
 	    
 	    $sqlForCount="SELECT COUNT(id) as num_results FROM ($sql) as s";
 	    
-	    $sql.=" order by event_date ASC limit 20 offset $offset";
+	    $sql.=" order by event_date ASC limit 10 offset $offset";
         
         //echo($sql);
         

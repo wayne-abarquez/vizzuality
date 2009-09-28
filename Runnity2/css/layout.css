@@ -206,8 +206,8 @@ p.subTitleInfo{
 }
 
 div.separator{
-	margin-top: 2px;
-	margin-bottom: 2px;
+	margin-top: 1px;
+	margin-bottom: 1px;
 	margin-left: 1px;
 	height: 1px;
 	width: 289px;
@@ -263,7 +263,7 @@ div.separatorRight{
 
 .nameRace{line-height: 14px; padding-top: 4px; height: 50px;}
 .nameRace a{font-size: 14px;color: #336699; font-weight: bold; line-height: 14px; padding-top: 4px; margin-left: -2px; text-decoration: none;}
-.nameRace a:hover{color: #999999;}
+.nameRace a:hover{color: #333333;}
 
 .infoRace{
 	font-size: 11px;
@@ -300,6 +300,12 @@ a.verTodas{
 	font-size: 12px;
 	color: #336699;
 	text-decoration: none;
+	margin-top: 8px;
+	margin-bottom: 5px;	
+}
+
+a.verTodas:hover{
+	color: #333333;
 }
 
 /* Right Column */
@@ -339,7 +345,7 @@ div.carreraOrange{
 }
 
 .nameRaceOrange a:hover{
-	color: #999999;
+	color: #333333;
 }
 
 .infoRaceOrange{
@@ -380,7 +386,7 @@ div.carreraOrange{
 .avatar2Orange{
 	height: 75px;
 	width: 104px;
-	border: 1px solid #d7d7d7;
+	border: 1px solid #cc3300;
 	background-color: white;
 	margin-left: 10px;
 	margin-top: 4px;
@@ -399,9 +405,9 @@ div.carreraOrange{
 	border-bottom: solid 2px #336699;
 	padding-top: 10px;
 	padding-bottom: 6px;
-	padding-left: 10px;
+	padding-left: 5px;
 	margin-right: 10px;
-	margin-bottom: 6px;
+	margin-bottom: 4px;
 }
 
 .titulOrange{
@@ -409,6 +415,7 @@ div.carreraOrange{
 	padding-left: 0px;
 	color: #ffffff;
 	border-bottom: solid 2px #ffffff;
+	margin-bottom: 8px;
 }
 
 /* banner info */
@@ -472,10 +479,12 @@ div.carreraOrange{
 	text-decoration: none;
 	color: #ffffff;
 	margin-left: 20px;
+	font-weight: bold;	
 }
 
 .titularColumn2 a{
 	margin-left: 40px;
+	font-weight: bold;
 }
 
 .titularColumn a:hover{
@@ -484,6 +493,11 @@ div.carreraOrange{
 
 .columnLong{
 	width: 610px;
+}
+
+.columnLong img{
+	margin-left: 5px;
+	margin-top: 5px;
 }
 
 .columnPhotos{
@@ -512,6 +526,7 @@ div.carreraOrange{
 .tweet{
 	height: 50px;
 	width: 290px;
+	padding-left: 5px;
 }
 
 #tweets{
@@ -990,7 +1005,8 @@ html ul.topnav li ul.subnav li a:focus {
 #results div.raceResult div.raceDetailText {width: 820px;}
 #results div.raceResult p.raceLocationText {font-size: 14px; color: #666666; margin-bottom: 0px; width: 720px; line-height: 18px;}
 #results div.raceResult a.raceTitleText {font-size: 20px; font-weight: bold; color: #336699; width: 720px; text-decoration: none; line-height: 18px;}
-#results div.raceResult #socialDetails div.socialBox {background-color: #FFFFFF;height: 20px;padding-left:3px; padding-right:3px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
+#results div.raceResult a.raceTitleText:hover {color: #333333;}
+#results div.raceResult #socialDetails div.socialBox {background-color: #FFFFFF;height: 18px;padding-left:6px; padding-right:6px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
 #results div.raceResult #socialDetails div.socialBox img {margin-right: 2px;}
 #results div.raceResult #socialDetails div.socialBox a {text-decoration:none; font-size: 10px; color:#666666; font-weight: bold;}
 #results div.blueTag {position: absolute;display:inline;padding:0;text-align:right; float:right; color:white;width: 80px;margin-left: -75px;}
