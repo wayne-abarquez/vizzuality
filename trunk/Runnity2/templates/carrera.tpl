@@ -145,7 +145,8 @@
 					{foreach key=id item=comment from=$comments}
     				{if $comment eq false}
     					<div class="span-1 last noComments">
-
+							<p>Aún no hay comentarios sobre esta carrera</p>
+	        				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
         				</div>  
     				{else}	    										
     					<div id="comment" class="span-1 last">
@@ -161,7 +162,8 @@
               		{/if}
                 	{foreachelse}
     					<div class="span-1 noComments">
-
+							<p>Aún no hay comentarios sobre esta carrera</p>
+	        				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
         				</div>    
                 	{/foreach}						
 			</div>
@@ -171,12 +173,14 @@
 				<div class="commentArea" id="commentBox">					
 					<div class="titleComents">Anímate y publica tu comentario</div>
 					<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
-					<input class="fg-button" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
+					<input type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
 				</div>
 			</div>
 			
 		</div>
 	</div>
+	
+	
 	
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn">
