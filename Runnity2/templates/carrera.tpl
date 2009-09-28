@@ -180,8 +180,7 @@
 		</div>
 	</div>
 	
-	
-	
+
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn">
 		<div class="span-1 ticketOrangeVoy"><p><input type="checkbox"> Voy a ir a esta carrera</p></div>
