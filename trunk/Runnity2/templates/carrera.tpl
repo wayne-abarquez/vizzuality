@@ -183,27 +183,27 @@
 		<div class="span-1 ticketOrangeVoy"><p><input type="checkbox"> Voy a ir a esta carrera</p></div>
 		<div class="span-1 ticketOrange"></div>
 		
-		<div class="mapRight">
+		<div class="span-1 functionalContainer">
 			<p class="titulo tituloColumnRight">LOCALIZACIÓN</p>
 			<div id="map" class="mapStyleRight">
-			            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" wmode="opaque" flashvars="id={$data.id}">
-			              <param name="movie" value="/flash/RunAroundMap.swf?6" />
-			              <!--[if !IE]>-->
-			              <object type="application/x-shockwave-flash" data="/flash/RunAroundMap.swf?6" width="254" height="192" wmode="opaque" flashvars="id={$data.id}">
-			              <!--<![endif]-->
-							    {if $data.start_point_lat === null}
-		<img width="254" height="192" src="http://maps.google.com/maps/api/staticmap?size=254x192&maptype=map&zoom=10&center={$data.event_location},spain&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA" />					    
-							    {else}
-							<img src="http://maps.google.com/staticmap?size=254x192&maptype=map&zoom=10&markers={if $data.end_point_lat}{$data.end_point_lat},{$data.end_point_lon},bluem%7C{/if}{$data.start_point_lat},{$data.start_point_lon},greens&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA">
-							    {/if}
-			              <!--[if !IE]>-->
-			              </object>
-			              <!--<![endif]-->
-			            </object>						
-					</div>
-
+	            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" wmode="opaque" flashvars="id={$data.id}">
+	              <param name="movie" value="/flash/RunAroundMap.swf?6" />
+	              <!--[if !IE]>-->
+	              <object type="application/x-shockwave-flash" data="/flash/RunAroundMap.swf?6" width="254" height="192" wmode="opaque" flashvars="id={$data.id}">
+	              <!--<![endif]-->
+					    {if $data.start_point_lat === null}
+<img width="254" height="192" src="http://maps.google.com/maps/api/staticmap?size=254x192&maptype=map&zoom=10&center={$data.event_location},spain&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA" />					    
+					    {else}
+					<img src="http://maps.google.com/staticmap?size=254x192&maptype=map&zoom=10&markers={if $data.end_point_lat}{$data.end_point_lat},{$data.end_point_lon},bluem%7C{/if}{$data.start_point_lat},{$data.start_point_lon},greens&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA">
+					    {/if}
+	              <!--[if !IE]>-->
+	              </object>
+	              <!--<![endif]-->
+	            </object>						
+			</div>
 		</div>
 		
+		<div class="span-1 functionalContainer">
 		{if $runsInSameDates}
 		<p class="titulo tituloColumnRight">EN LAS MISMAS FECHAS</p>
 		<div class="events">
@@ -217,12 +217,15 @@
 					<div class="span-1 last dataRaceRight">
 						<div class="nameRaceRight"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
 						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
-					</div>
+					</div>				
 				</div>
+				<div class="span-1 last separatorRight"></div>
 		    {/foreach}					
 		</div>
 		{/if}
-		
+		</div>
+
+		<div class="span-1 functionalContainer">		
 		{if $runsInSameDates}
 		<p class="titulo tituloColumnRight">DE DISTANCIA PARECIDA</p>
 		<div class="events">
@@ -241,7 +244,9 @@
 		    {/foreach}					
 		</div>
 		{/if}
+		</div>
 		
+		<div class="span-1 functionalContainer">		
 		<p class="titulo tituloColumnRight">USUARIOS APUNTADOS</p>
 		{foreach key=id item=person from=$runners}
 <!-- 				<img class="avatarRight" src="/img/avatar.jpg"/>	 -->
@@ -268,6 +273,7 @@
     		    {/foreach}
 		
 			</div>
+		</div>
 	</div>
 
 </div> <!-- content -->
