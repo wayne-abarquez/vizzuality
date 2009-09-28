@@ -26,31 +26,31 @@
 	<div class="span-1 last leftColumnHome">
 	
 		<div class="span-1 last column1">
-			<p class="titulo">PRÓXIMAS CARRERAS CERCA DE TI</p>
-				{foreach key=id item=race from=$nextRaces name=raceloop}
-					{if $race eq "false"}
-						<div class="carrera">No hay proximas carreras.</div> 
-					{else}
-						<div class="span-1 {cycle values="carrera,carrera2"}">
-							<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
-							<div class="span-1 Race">
-								<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-								href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></p>
-								<p class="span-4 infoRace" id="iteracion{$smarty.foreach.raceloop.iteration}">
-								<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> / 													{$race.distance_text}</p>
-								<p class="span-4 placeRace">{$race.province_name} - {$race.event_location}</p>
-							</div>
-							{if $race.num_users > 0}
-								<div class="ticketBlue"><p>{$race.num_users}</p></div>
-							{/if}
+		<p class="titulo">PRÓXIMAS CARRERAS CERCA DE TI</p>
+			{foreach key=id item=race from=$nextRaces name=raceloop}
+				{if $race eq "false"}
+<!-- 						<div class="carrera">No hay próximas carreras.</div>  -->
+				{else}
+					<div class="span-1 {cycle values="carrera,carrera2"}">
+						<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
+						<div class="span-1 Race">
+							<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
+							href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></p>
+							<p class="span-4 infoRace" id="iteracion{$smarty.foreach.raceloop.iteration}">
+							<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> / 													{$race.distance_text}</p>
+							<p class="span-4 placeRace">{$race.province_name} - {$race.event_location}</p>
 						</div>
-						{if $smarty.foreach.raceloop.iteration < 3}
-							<div class="span-1 last separator"></div>
+						{if $race.num_users > 0}
+							<div class="ticketBlue"><p>{$race.num_users}</p></div>
 						{/if}
+					</div>
+					{if $smarty.foreach.raceloop.iteration < 3}
+						<div class="span-1 last separator"></div>
 					{/if}
-				{foreachelse}
-					<div class="carrera">No hay próximas carreras.</div> 
-	    		{/foreach}	
+				{/if}
+			{foreachelse}
+<!-- 					<div class="carrera">No hay próximas carreras.</div>  -->
+    		{/foreach}	
 			<a class="verTodas" href="#"><b>Ver todas las carreras en Madrid</b></a>
 		</div>
 		
