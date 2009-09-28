@@ -214,6 +214,15 @@ div.separator{
 	border-top: dotted 1px #b2b2b2;
 }
 
+div.separatorRight{
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 1px;
+	height: 1px;
+	width: 260px;
+	border-top: dotted 1px #b2b2b2;
+}
+
 /*
 .separator2{
 	margin: 0px 0px 0px 0px;
@@ -501,11 +510,20 @@ div.carreraOrange{
 }
 
 .tweet{
-	font-size: 11px;
-	color: #666666;
 	height: 50px;
 	width: 290px;
-	background-color: yellow;
+}
+
+#tweets{
+	color: #666666;
+	font-size: 13px;
+	line-height: 14px;
+}
+
+#tweetsTime{
+	color: #666666;
+	font-size: 11px;
+	margin-top: -14px;
 }
 
 /* calendario */
@@ -717,7 +735,6 @@ div.titleComents {
 
 .tituloColumnRight{
 	margin-left: 24px;
-	margin-right: 14px;	
 }
 
 /* races right */
@@ -732,7 +749,7 @@ div.events {
 div.raceRight{
 	height: 65px;
 	width: 262px;
-	margin-bottom: 4px;
+	margin-bottom: 0px;
 	margin-top: 0px;
 	background-color: #e0e0e0;
 }
@@ -740,7 +757,7 @@ div.raceRight{
 div.raceRight2{
 	height: 65px;
 	width: 262px;
-	margin-bottom: 4px;
+	margin-bottom: 0px;
 	background-color: #e7e7e7;
 }
 
@@ -788,11 +805,6 @@ div.raceRight2{
 	font-size: 12px;
 }
 
-.mapRight{
-	margin-top: 10px;
-	padding-top: 10px;
-}
-
 .buttonsearchbig{
 	background-color: #336699; 
 	background-image: url(/img/buttonsearchbig.gif); 
@@ -808,6 +820,12 @@ div.raceRight2{
 
 .buttonsearchbig:hover{
 	background-image: url(/img/buttonsearchbig_hover.gif); 
+}
+
+.functionalContainer{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: auto;
 }
 
 /* SEARCH RESULTS */
