@@ -763,6 +763,7 @@ div.titleComents {
 
 .tituloColumnRight{
 	margin-left: 24px;
+	margin-right: 0px;
 }
 
 /* races right */
@@ -772,6 +773,11 @@ div.events {
 	height: 80px;
 	margin-left: 24px;
 	margin-top: -6px;
+}
+
+div.eventsUsers {
+	width: 262px;
+	margin-left: 24px;
 }
 
 div.raceRight{
@@ -795,12 +801,9 @@ div.raceRight2{
 }
 
 .dataRaceRight{
-	width: 200px;
+	width: 180px;
 	margin-top: 10px;
 }
-
-.dataRaceRight a{
-	}
 
 .dataRaceRight p{
 	color: #666666;
@@ -816,15 +819,11 @@ div.raceRight2{
 }
 
 .nameRaceRight{
-	line-height: 10px;
+	line-height: 12px;
 }
 
 .avatarRight{
 	margin: 0px 0px -6px -4px;
-}
-
-.avatarContainer{
-	margin-left: 27px;
 }
 
 .navigation a{
@@ -851,6 +850,7 @@ div.raceRight2{
 }
 
 .functionalContainer{
+	margin-top: -10px;
 	margin-bottom: 10px;
 	width: auto;
 }
@@ -864,8 +864,6 @@ div.raceRight2{
 #searchBox div.searchForm div.regionInput {padding-top: 20px;padding-left: 15px;}
 #searchBox div.searchForm div.dateInput {margin-left: 112px; padding-top: 20px;padding-left: 15px;}
 #searchBox div.searchForm div.buttonSearchBig {float:right;padding-top: 34px;padding-right: 14px;}
-
-
 
 ul.topnav {
 	list-style: none;
