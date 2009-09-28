@@ -4,6 +4,7 @@
 
 	<div class="span-1 last leftColumn">
 		<p class="navigation"><a href="#">Carreras en Madrid ></a></p>
+		
 		<div class="carrera_principal">
 			<div class="column span-1 first calendar">
 				<div class="month month{$data.run_type}">{getMonth month=$data.event_date|substr:5:2}</div>
@@ -18,9 +19,10 @@
 			<a href="{$data.flickr_url}" target="_blank"><img class="imageCarrera" src="/panoramioPic.php?id={$data.id}&photo_id={$data.flickr_img_id}"/></a>
 			{/if}
 			
+			
 			<div class="span-1 last raceData">
 				{if $data.distance_text != null or $data.category != null or $data.awards != null}
-				<div>
+				<div class="span-1 functionalContainer">		
 					<p class="titulo tituloLeft">DATOS TÉCNICOS</p>
 					{if $data.distance_text != null}
 						<div class="span-1 last dataContainer">
@@ -52,7 +54,7 @@
 				{if $data.inscription_price != null or $data.inscription_location != null
 					or $data.inscription_email != null or $data.inscription_website != null
 					or $data.tlf_informacion != null}
-					<div>
+					<div class="span-1 functionalContainer">		
 						<p class="titulo tituloLeft">INSCRIPCIONES</p>
 						{if $data.inscription_price != null}
 						<div class="span-1 last dataContainer">
@@ -87,14 +89,17 @@
 					</div>
 				{/if}
 				
-				<div class="span-1 last raceData">
-				<p class="titulo tituloLeft">COMPARTIR</p>
+				<div class="span-1 functionalContainer">
+				<div class="span-1 last dataContainer">
+		
+				<p class="titulo tituloLeft tituloRight">COMPARTIR</p>
 <a target=_blank href="http://www.facebook.com/share.php?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_facebook.gif" alt="Facebook"></a>&nbsp;
 <a target=_blank href="http://del.icio.us/post?title=&url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_delicious.gif" alt="delicious"></a>&nbsp;
 <a target=_blank href="http://meneame.net/submit.php?url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_meneame.gif" alt="meneame"></a>
 <a target=_blank href="http://twitter.com/home?status=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_twitter.png" alt="twitter"></a>	
-<a target=_blank href="http://digg.com/submit?phase=2&url={$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_digg.png" alt="Facebook"></a>&nbsp;				        
-				</div>	   
+<a target=_blank href="http://digg.com/submit?phase=2&url={$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_digg.png" alt="Facebook"></a>	   
+				</div>
+			</div>
 
 			</div>
 			
@@ -187,7 +192,7 @@
 		<div class="span-1 ticketOrange"></div>
 		
 		<div class="span-1 functionalContainer">
-			<p class="titulo tituloColumnRight">LOCALIZACIÓN</p>
+			<p class="titulo tituloLeft tituloColumnRight">LOCALIZACIÓN</p>
 			<div id="map" class="mapStyleRight">
 	            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" wmode="opaque" flashvars="id={$data.id}">
 	              <param name="movie" value="/flash/RunAroundMap.swf?6" />
@@ -208,7 +213,7 @@
 		
 		<div class="span-1 functionalContainer">
 		{if $runsInSameDates}
-		<p class="titulo tituloColumnRight">EN LAS MISMAS FECHAS</p>
+		<p class="titulo tituloLeft tituloColumnRight">EN LAS MISMAS FECHAS</p>
 		<div class="events">
 			{foreach key=id item=race from=$runsInSameDates}	    				    
 				<div class="span-1 {cycle values="raceRight,raceRight2"}">
@@ -227,33 +232,12 @@
 		</div>
 		{/if}
 		</div>
+		
+		<div class="span-1 functionalContainer">		
+		<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
+		<div class="eventsUsers">
 
-		<div class="span-1 functionalContainer">		
-		{if $runsInSameDates}
-		<p class="titulo tituloColumnRight">DE DISTANCIA PARECIDA</p>
-		<div class="events">
-			{foreach key=id item=race from=$runsInSameDates}	    				    
-				<div class="span-1 {cycle values="raceRight,raceRight2"}">
-					<div class="span-1 first dateRight calendar">
-				        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
-						<div class="day">{$race.event_date|substr:8:2}</div>
-					</div>
-		
-					<div class="span-1 last dataRaceRight">
-						<div class="nameRaceRight"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
-						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
-					</div>
-				</div>
-		    {/foreach}					
-		</div>
-		{/if}
-		</div>
-		
-		<div class="span-1 functionalContainer">		
-		<p class="titulo tituloColumnRight">USUARIOS APUNTADOS</p>
 		{foreach key=id item=person from=$runners}
-<!-- 				<img class="avatarRight" src="/img/avatar.jpg"/>	 -->
-
 				{if $person eq 'f'}
 					<!--
 <div class="span-8 races2">
@@ -274,8 +258,8 @@
 					</div>  
 -->   
     		    {/foreach}
-		
 			</div>
+		</div>
 		</div>
 	</div>
 
