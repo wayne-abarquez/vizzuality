@@ -154,7 +154,10 @@
 		</div>
 		<div class="span-1 last columnSort">
 			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
-				<div class="span-3 tweet last" id="tweets"></div>
+				<div class="span-3 tweet last">
+				<b><p id="tweets"></p></b>
+				<p id="tweetsTime"></p>
+				</div>
 		</div>
 	</div>
 
@@ -166,7 +169,7 @@
 	<script language="javaScript" type="text/javascript">
 		$(document).ready( function() {
 	
-			$('textarea').autoResize({
+			/*$('textarea').autoResize({
 			    // On resize:
 			    onResize : function() {
 			        $(this).css({opacity:0.8});
@@ -180,12 +183,14 @@
 			    // More extra space:
 			    extraSpace : 40
 			});
+*/
 			 
 		
 			var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
 			$.getJSON(url,function(data){	
 				$.each(data, function(i, item) {
-					$("#tweets").append( item.text.linkify() + relative_time(item.created_at));
+					$("#tweets").append( item.text.linkify());
+					$("#tweetsTime").append(relative_time(item.created_at));
 				});
 		    });
 		    
