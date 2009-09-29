@@ -210,7 +210,7 @@ p.subTitleInfo{
 }
 
 div.separator{
-	margin-top: 1px;
+	margin-top: 2px;
 	margin-bottom: 1px;
 	margin-left: 1px;
 	height: 1px;
@@ -221,10 +221,10 @@ div.separator{
 div.separatorRight{
 	margin-top: 2px;
 	margin-bottom: 2px;
-	margin-left: 1px;
+	margin-left: 10px;
 	height: 1px;
-	width: 260px;
-	border-top: dotted 1px #b2b2b2;
+	width: 268px;
+	border-top: dotted 1px #ffffff;
 }
 
 /*
@@ -267,7 +267,7 @@ div.separatorRight{
 
 .nameRace{line-height: 14px; padding-top: 4px; height: 50px;}
 .nameRace a{font-size: 14px;color: #336699; font-weight: bold; line-height: 14px; padding-top: 4px; margin-left: -2px; text-decoration: none;}
-.nameRace a:hover{color: #333333;}
+.nameRace a:hover{color: #fc6602;}
 
 .infoRace{
 	font-size: 11px;
@@ -309,7 +309,7 @@ a.verTodas{
 }
 
 a.verTodas:hover{
-	color: #333333;
+	color: #fc6602;
 }
 
 /* Right Column */
@@ -323,18 +323,17 @@ a.verTodas:hover{
 	margin-top: 10px;
 }
 
-div.carreraOrange{
+.carreraOrange{
 	width: 291px;
 	height: 85px;
-	margin-bottom: 2px;
-	margin-top: -4px;
-	border-bottom: solid dotted 1px #FFFFFF;
+	margin-top: -2px;
 }
 
 .nameRaceOrange{
 	line-height: 14px;
 	padding-top: 0px;
 	height: 40px;
+	padding-top: 4px;
 }
 
 .nameRaceOrange a{
@@ -342,7 +341,6 @@ div.carreraOrange{
 	color: #ffffff;
 	font-weight: bold;
 	line-height: 14px;
-	padding-top: 4px;
 	margin-left: -2px;
 	text-decoration: none;
 	width: 154px;
@@ -369,8 +367,7 @@ div.carreraOrange{
 	font-size: 11px;
 	color: #ffffff;
 	margin-bottom: 0px;
-	margin-top: -10px;
-	line-height: 30px;
+	margin-top: -4px;
 }
 
 
@@ -494,7 +491,7 @@ div.carreraOrange{
 }
 
 .titularColumn a:hover{
-	color: #999999;
+	color: #fc6602;
 }
 
 .columnLong{
@@ -544,7 +541,7 @@ div.carreraOrange{
 }
 
 #tweets:hover{
-	color: #999999;
+	color: #fc6602;
 }
 
 #tweetsTime{
