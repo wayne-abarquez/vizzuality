@@ -440,6 +440,49 @@ class RunnitServices {
 	    return $result;   
 	}
 	
+	//index
+	public function getNextImportantRuns($lat=0,$lon=0,$distance_km=150) {	
+	$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type,flickr_img_id";
+	
+	if(isset($_SESSION['logged']) and $_SESSION['logged']) {
+	    $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
+	}
+	
+	$sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and track_geom is not null";
+	
+/*		if($provinceName!="") {
+			$sqlProv="SELECT id from province WHERE name like '$provinceName'";
+			$resultCount=pg_query($this->conn, $sqlProv);
+			$resultCount=pg_fetch_assoc($resultCount);
+			if($resultCount) {
+				$sql.=" and r.province_fk=".$resultCount['id'];
+			}
+			
+		}
+*/
+
+		if($lat!=0 && $lon!=0) {
+			$sql.=" AND distance_sphere(PointFromText('POINT($lon $lat)', 4326),start_point) <($distance_km*1000)";
+		}
+	
+		$sql.=" order by event_date ASC limit 3";
+	    
+	    $result = pg_fetch_all(pg_query($this->conn, $sql));
+	    
+	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
+	    foreach ($result as &$run) {
+	        $targetPicture=$this->basePath."media/run/".$run['id']."_small.jpg";
+            if (file_exists($targetPicture)) {
+                $run['thumbnail'] = $run['id']."_small.jpg";
+            } else {
+                //no image for the run, select random
+                $run['thumbnail'] = "generic/".rand(1,4)."_small.jpg";
+            }
+        }
+	    
+	    return $result;   
+	}
+	
 	public function getProvinces() {
 	    $sql="select * from province ORDER BY id ASC";
 	    return pg_fetch_all(pg_query($this->conn, $sql));	    
