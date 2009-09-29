@@ -3,7 +3,7 @@
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
-		<p class="navigation"><a href="/buscar?q={$data.province_name}">Carreras en {$data.province_name} ></a></p>
+		<p class="navigation"><a href="/buscar?q={$data.event_location}">Carreras en {$data.event_location} ></a></p>
 		
 		<div class="carrera_principal">
 			<div class="column span-1 first calendar">
