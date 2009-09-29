@@ -12,7 +12,7 @@ $smarty->assign('section', 'home');
 $smarty->assign('titulo_pagina', 'Próximas carreras y atletas - Runnity.com');
 
 
-$smarty->assign('runners',$services->getLastUsersInscribedToRuns());
+/* $smarty->assign('runners',$services->getLastUsersInscribedToRuns()); */
 
 
 //Get information about the city
@@ -34,9 +34,11 @@ if(!isset($_COOKIE["geolocation"])){
 if ($visitor_location['city']!='') {
 	$smarty->assign('city', $visitor_location['city']);
 	$smarty->assign('nextRaces',$services->getNextRuns($visitor_location['lat'],$visitor_location['lon'],150));
+	$smarty->assign('nextImportantRaces',$services->getNextImportantRuns($visitor_location['lat'],$visitor_location['lon'],150));
 } else {
 	$smarty->assign('city', 'España');
 	$smarty->assign('nextRaces',$services->getNextRuns());
+	$smarty->assign('nextImportantRaces',$services->getNextImportantRuns());
 }
 
 //Try to get runs for the province
