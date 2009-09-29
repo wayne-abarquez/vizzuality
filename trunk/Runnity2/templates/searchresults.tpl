@@ -135,7 +135,7 @@ if ($(this).parent().attr('id') == 'Navigator'){return false;} else { $(this).pa
 	        				<div class="column first {cycle values="raceResult one,raceResult two"}">
 	    						<div class="column first firstDetails">
 	    							<div class="column first raceResultDate">
-	    								<div class="month">{getMonth month=$race.event_date|substr:5:2}</div>
+	    								<div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
 	    								<div class="day">{$race.event_date|substr:8:2}</div>
 	    							</div>
 	    							<div class="column last">
