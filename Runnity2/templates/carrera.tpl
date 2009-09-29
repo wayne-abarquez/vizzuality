@@ -22,6 +22,7 @@
 			
 			<div class="span-1 last raceData">
 				{if $data.distance_text != null or $data.category != null or $data.awards != null}
+				<div class="span-1 last functionalContainer">
 					<p class="titulo tituloLeft">DATOS TÉCNICOS</p>
 					{if $data.distance_text != null}
 						<div class="span-1 last dataContainer">
@@ -47,6 +48,7 @@
 							<div class="span-1 last data"><p><b>{$data.awards}</b></p></div>
 						</div>
 					{/if}
+					</div>
 				{/if}
 				
 				{if $data.inscription_price != null or $data.inscription_location != null
@@ -86,7 +88,6 @@
 				{/if}
 				
 				<div class="span-1 last raceData">
-		
 				<p class="titulo tituloLeft">COMPARTIR</p>
 <a target=_blank href="http://www.facebook.com/share.php?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_facebook.gif" alt="Facebook"></a>
 <a target=_blank href="http://del.icio.us/post?title=&url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_delicious.gif" alt="delicious"></a>
@@ -98,15 +99,18 @@
 			</div>
 			
 			<div class="span-1 last raceDescription">
-				<p class="titulo tituloLeft tituloRight">DESCRIPCIÓN Y DATOS ADICIONALES</p>
-				<p class="textRace">
-					{if $data.description!=null}
-						{$data.description}
-					{else}
-						No hay descripción para esta carrera, ¿te animas a <a href="javascript: void showContactBox()">enviarnos una?</a>
-					{/if}	
-				</p>
+				<div class="span-1 last functionalContainer">
+					<p class="titulo tituloLeft tituloRight">DESCRIPCIÓN Y DATOS ADICIONALES</p>
+					<p class="textRace">
+						{if $data.description!=null}
+							{$data.description}
+						{else}
+							No hay descripción para esta carrera, ¿te animas a <a href="javascript: void showContactBox()">enviarnos una?</a>
+						{/if}	
+					</p>
+				</div>			
 			</div>
+
 			
 			<div class="span-1 last columnLong">
 				<p class="titulo tituloLeft tituloRight">MAPA DE LA CARRERA Y ALTIMETRÍA APROXIMADA</p>
@@ -140,31 +144,30 @@
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
 				<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
 				</p>
-				
-					{foreach key=id item=comment from=$comments}
-    				{if $comment eq false}
-    					<div class="span-1 last noComments">
-							<p>Aún no hay comentarios sobre esta carrera</p>
-	        				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
-        				</div>  
-    				{else}	    										
-    					<div id="comment" class="span-1 last">
-							<div class="span-1 last avatarBox">
-								<img src="/img/avatar.jpg"/>	
-							</div>
-							<div class="span-1 commentBox">
-								<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace 									{$comment.created_when|timeAgo}</div>
-							<p class="commentUser">{$comment.commenttext}</p>
-							</div>
-							
-						</div>							
-              		{/if}
-                	{foreachelse}
-    					<div class="span-1 noComments">
-							<p>Aún no hay comentarios sobre esta carrera</p>
-	        				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
-        				</div>    
-                	{/foreach}						
+				{foreach key=id item=comment from=$comments}
+				{if $comment eq false}
+					<div class="span-1 last noComments">
+						<p>Aún no hay comentarios sobre esta carrera</p>
+        				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
+    				</div>  
+				{else}	    										
+					<div id="comment" class="span-1 last">
+						<div class="span-1 last avatarBox">
+							<img src="/img/avatar.jpg"/>	
+						</div>
+						<div class="span-1 commentBox">
+						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+						<p class="commentUser">{$comment.commenttext}</p>
+						</div>
+						
+					</div>							
+          		{/if}
+            	{foreachelse}
+					<div class="span-1 noComments">
+						<p>Aún no hay comentarios sobre esta carrera</p>
+        				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
+    				</div>    
+            	{/foreach}						
 			</div>
 			
 			<!-- PARA AÑADIR COMENTARIOS -->
@@ -227,7 +230,7 @@
 		{/if}
 		</div>
 		
-				<div class="span-1 functionalContainer">
+		<div class="span-1 functionalContainer">
 		{if $runsInSameDates}
 		<p class="titulo tituloLeft tituloColumnRight">DE DISTANCIA PARECIDA</p>
 		<div class="events">
