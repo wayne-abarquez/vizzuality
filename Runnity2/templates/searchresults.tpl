@@ -56,7 +56,7 @@ if ($(this).parent().attr('id') == 'Navigator'){return false;} else { $(this).pa
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
-									<label class="roundsearch1" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" value="{$smarty.request.q}"></span></label>			
+									<label class="roundsearch1" for="inputsearch1"><span><input type="text" value="Busca por nombre, localidad, provincia" name="q" id="inputsearch1" value="{$smarty.request.q}"  ></span></label>			
 								</div>
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
