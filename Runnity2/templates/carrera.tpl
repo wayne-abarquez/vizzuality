@@ -22,7 +22,6 @@
 			
 			<div class="span-1 last raceData">
 				{if $data.distance_text != null or $data.category != null or $data.awards != null}
-				<div class="span-1 functionalContainer">		
 					<p class="titulo tituloLeft">DATOS TÉCNICOS</p>
 					{if $data.distance_text != null}
 						<div class="span-1 last dataContainer">
@@ -48,13 +47,11 @@
 							<div class="span-1 last data"><p><b>{$data.awards}</b></p></div>
 						</div>
 					{/if}
-				</div>
 				{/if}
 				
 				{if $data.inscription_price != null or $data.inscription_location != null
 					or $data.inscription_email != null or $data.inscription_website != null
 					or $data.tlf_informacion != null}
-					<div class="span-1 functionalContainer">		
 						<p class="titulo tituloLeft">INSCRIPCIONES</p>
 						{if $data.inscription_price != null}
 						<div class="span-1 last dataContainer">
@@ -86,20 +83,17 @@
 							<div class="span-1 last data"><p><b>{$data.tlf_informacion}</b></p></div>
 						</div>	
 						{/if}
-					</div>
 				{/if}
 				
-				<div class="span-1 functionalContainer">
-				<div class="span-1 last dataContainer">
+				<div class="span-1 last raceData">
 		
-				<p class="titulo tituloLeft tituloRight">COMPARTIR</p>
-<a target=_blank href="http://www.facebook.com/share.php?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_facebook.gif" alt="Facebook"></a>&nbsp;
-<a target=_blank href="http://del.icio.us/post?title=&url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_delicious.gif" alt="delicious"></a>&nbsp;
+				<p class="titulo tituloLeft">COMPARTIR</p>
+<a target=_blank href="http://www.facebook.com/share.php?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_facebook.gif" alt="Facebook"></a>
+<a target=_blank href="http://del.icio.us/post?title=&url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_delicious.gif" alt="delicious"></a>
 <a target=_blank href="http://meneame.net/submit.php?url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_meneame.gif" alt="meneame"></a>
 <a target=_blank href="http://twitter.com/home?status=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_twitter.png" alt="twitter"></a>	
-<a target=_blank href="http://digg.com/submit?phase=2&url={$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_digg.png" alt="Facebook"></a>	   
+<a target=_blank href="http://digg.com/submit?phase=2&url={$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_digg.png" alt="Facebook"></a> 
 				</div>
-			</div>
 
 			</div>
 			
