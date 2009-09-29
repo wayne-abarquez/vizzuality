@@ -3,7 +3,7 @@
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
-		<p class="navigation"><a href="#">Carreras en Madrid ></a></p>
+		<p class="navigation"><a href="/buscar?q={$data.province_name}">Carreras en {$data.province_name} ></a></p>
 		
 		<div class="carrera_principal">
 			<div class="column span-1 first calendar">
@@ -54,6 +54,7 @@
 				{if $data.inscription_price != null or $data.inscription_location != null
 					or $data.inscription_email != null or $data.inscription_website != null
 					or $data.tlf_informacion != null}
+					<div class="span-1 last functionalContainer">
 						<p class="titulo tituloLeft">INSCRIPCIONES</p>
 						{if $data.inscription_price != null}
 						<div class="span-1 last dataContainer">
@@ -85,6 +86,7 @@
 							<div class="span-1 last data"><p><b>{$data.tlf_informacion}</b></p></div>
 						</div>	
 						{/if}
+					</div>	
 				{/if}
 				
 				<div class="span-1 last raceData">
