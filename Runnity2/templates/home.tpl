@@ -51,7 +51,7 @@
 			{foreachelse}
 <!-- 					<div class="carrera">No hay próximas carreras.</div>  -->
     		{/foreach}	
-			<a class="verTodas" href="#"><b>Ver todas las carreras en Madrid</b></a>
+			<a class="verTodas" href="/buscar"><b>Ver todas las carreras en {$city}</b></a>
 		</div>
 		
 		<div class="span-1 last column2">
@@ -88,15 +88,21 @@
 	
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumnHome">
+<!-- 	<div class="carrera">No hay próximas carreras destacadas.</div>  -->
 		<p class="titulo titulOrange">CARRERAS DESTACADAS</p>
+		{foreach key=id item=VipRace from=$nextImportantRaces name=raceloop}
 		<div class="carreraOrange">
 			<div class="span-1 avatar2Orange"><img src="/img/avatar2.jpg" class="avatarOrange"></div>
 			<div class="span-1 Race">
-				<p class="nameRaceOrange"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-				<p class="span-4 infoRaceOrange"><b>21/Agosto</b> / 5km - 10km</p>
-				<p class="span-4 placeRaceOrange">Móstoles</p>
+				<p class="nameRaceOrange"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
+							href="/run/{$VipRace.id}/{$VipRace.name|replace:' ':'/'}">{$VipRace.name}</a></p>
+				<p class="span-4 infoRaceOrange" id="iteracion{$smarty.foreach.raceloop.iteration}"><b>{$VipRace.event_date|substr:8:2}/{getMonth month=$VipRace.event_date|substr:5:2}/{$VipRace.event_date|substr:2:2}</b> / {$race.distance_text}</p>
+				<p class="span-4 placeRaceOrange">{$VipRace.event_location}</p>
 			</div>
 		</div>
+		{foreachelse}
+<!-- 	<div class="carrera">No hay próximas carreras destacadas.</div>  -->
+    	{/foreach}
 	</div>
 	
 </div> <!-- content -->
@@ -154,7 +160,7 @@
 		<div class="span-1 last columnSort">
 			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
 				<div class="span-3 tweet last">
-				<b><p id="tweets"></p></b>
+				<a id="tweets" href="http://twitter.com/runnity" target="_blank"></a>
 				<p id="tweetsTime"></p>
 				</div>
 		</div>
