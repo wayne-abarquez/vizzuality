@@ -29,7 +29,7 @@
 		<p class="titulo">PRÓXIMAS CARRERAS CERCA DE TI</p>
 			{foreach key=id item=race from=$nextRaces name=raceloop}
 				{if $race eq "false"}
-<!-- 						<div class="carrera">No hay próximas carreras.</div>  -->
+				<!-- 	<div class="carrera">No hay próximas carreras.</div>  -->
 				{else}
 					<div class="span-1 {cycle values="carrera,carrera2"}">
 						<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
@@ -49,9 +49,9 @@
 					{/if}
 				{/if}
 			{foreachelse}
-<!-- 					<div class="carrera">No hay próximas carreras.</div>  -->
+			<!-- 	<div class="carrera">No hay próximas carreras.</div>  -->
     		{/foreach}	
-			<a class="verTodas" href="/buscar"><b>Ver todas las carreras en {$city}</b></a>
+			<a class="verTodas" {if $city eq "España"} href="/buscar?q=" {else} href="/buscar?q={$city}" {/if}><b>Ver todas las carreras en {$city}</b></a>
 		</div>
 		
 		<div class="span-1 last column2">
