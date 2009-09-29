@@ -97,7 +97,7 @@ $(document).ready(function(){
 					<div class="column first racesTab">
 					 	<ul>
 					    	<li id="current"><a href="#" title="Link 1"><span>Carreras por llegar</span></a></li>
-					    	<li><a href="#" title="Link 2"><span>Carreras pasadas</span></a></li>
+					    	<li><a href="#" title="Link 2"><span>Todas las carreras</span></a></li>
 					  	</ul>
 					</div>
 					<div class="column last upPaginator">
