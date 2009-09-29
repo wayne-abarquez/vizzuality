@@ -218,13 +218,22 @@ div.separator{
 	border-top: dotted 1px #b2b2b2;
 }
 
-div.separatorRight{
+div.separatorRightOrange{
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 10px;
 	height: 1px;
 	width: 268px;
 	border-top: dotted 1px #ffffff;
+}
+
+div.separatorRight{
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 0px;
+	height: 1px;
+	width: 262px;
+	border-top: dotted 1px #aaaaaa;
 }
 
 /*
