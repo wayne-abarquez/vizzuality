@@ -227,10 +227,31 @@
 		{/if}
 		</div>
 		
+				<div class="span-1 functionalContainer">
+		{if $runsInSameDates}
+		<p class="titulo tituloLeft tituloColumnRight">DE DISTANCIA PARECIDA</p>
+		<div class="events">
+			{foreach key=id item=race from=$runsInSameDates}	    				    
+				<div class="span-1 {cycle values="raceRight,raceRight2"}">
+					<div class="span-1 first dateRight calendar">
+				        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
+						<div class="day">{$race.event_date|substr:8:2}</div>
+					</div>
+		
+					<div class="span-1 last dataRaceRight">
+						<div class="nameRaceRight"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
+					</div>				
+				</div>
+				<div class="span-1 last separatorRight"></div>
+		    {/foreach}					
+		</div>
+		{/if}
+		</div>
+		
 		<div class="span-1 functionalContainer">		
 		<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
 		<div class="eventsUsers">
-
 		{foreach key=id item=person from=$runners}
 				{if $person eq 'f'}
 					<!--
