@@ -367,7 +367,7 @@ a.verTodas:hover{
 	font-size: 11px;
 	color: #ffffff;
 	margin-bottom: 0px;
-	margin-top: -4px;
+	margin-top: -6px;
 }
 
 
@@ -393,6 +393,7 @@ a.verTodas:hover{
 	background-color: white;
 	margin-left: 10px;
 	margin-top: 4px;
+	margin-bottom: 3px;
 }
 
 .avatarOrange{
