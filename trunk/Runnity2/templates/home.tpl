@@ -99,6 +99,9 @@
 				<p class="span-4 infoRaceOrange" id="iteracion{$smarty.foreach.raceloop.iteration}"><b>{$VipRace.event_date|substr:8:2}/{getMonth month=$VipRace.event_date|substr:5:2}/{$VipRace.event_date|substr:2:2}</b> / {$race.distance_text}</p>
 				<p class="span-4 placeRaceOrange">{$VipRace.event_location}</p>
 			</div>
+		{if $smarty.foreach.raceloop.iteration < 3}
+			<div class="span-1 last separatorRight"></div>
+		{/if}
 		</div>
 		{foreachelse}
 <!-- 	<div class="carrera">No hay próximas carreras destacadas.</div>  -->
