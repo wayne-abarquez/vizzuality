@@ -100,7 +100,7 @@
 				<p class="span-4 placeRaceOrange">{$VipRace.event_location}</p>
 			</div>
 		{if $smarty.foreach.raceloop.iteration < 3}
-			<div class="span-1 last separatorRight"></div>
+			<div class="span-1 last separatorRightOrange"></div>
 		{/if}
 		</div>
 		{foreachelse}
