@@ -63,6 +63,26 @@
 	</script>
 	{/literal}
 	
+	{literal}
+<script type="text/javascript"> 
+      $(document).ready(function(){
+      var match = 'input.default[@type=text]';
+      $(match).focus(function(){
+      this.valuedefault = this.valuedefault || this.value;
+      if (this.value == this.valuedefault)
+      this.value = '';
+      $(this).css('color','#666666');
+      });
+      $(match).blur(function(){
+      if (this.value.length == 0 || this.value == this.valuedefault)
+      $(this).css('color','#999999');
+      if (this.valuedefault && this.value.length==0)
+      this.value = this.valuedefault;
+      });
+      });
+</script>
+{/literal}
+	
 	{if $section eq "index"}
 		<script type="text/javascript" src="/js/swfobject.js"></script>
 		{literal}
@@ -104,7 +124,7 @@
 		<div class="span-18 search">
 			<form id="searchForm" class="span-14" action="/buscar" method="get">
 				<label class="roundsearchFirst last" for="inputsearchFirst">
-					<input type="text" id="inputsearchFirst" name="q">
+					<input type="text" id="inputsearchFirst" name="q" value="Busca carreras" class="default">
 				</label>
 				<label class="searchButtonFirst last">
 					<input type="submit" value="Buscar" class="buttonSearchFirst"/>
