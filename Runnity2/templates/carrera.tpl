@@ -220,6 +220,10 @@
 				        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
 						<div class="day">{$race.event_date|substr:8:2}</div>
 					</div>
+											{if $race.num_users > 0}
+							<div class="ticketBlue"><p>{$race.num_users}</p></div>
+							<div class="ticketBlueCorner"></div>
+						{/if}
 		
 					<div class="span-1 last dataRaceRight">
 						<div class="nameRaceRight"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
