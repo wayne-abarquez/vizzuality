@@ -252,26 +252,25 @@ div.separatorRight{
 */
 
 .ticketBlue{
-	background-image: url(/img/ticket_blue.gif);
-	background-repeat: no-repeat;
-	height: 24px;
+	background: #1a4879;
+	height: 20px;
 	width: 26px;
 	float: right;
 	margin-top: 4px;
 	margin-right: -4px;
 }
 
-.ticketBlue2{
-	background-image: url(/img/ticket_blue2.gif);
+.ticketBlueCorner{
+	background-image: url(/img/ticketBlueCorner.gif);
 	background-repeat: no-repeat;
-	height: 24px;
-	width: 26px;
+	height: 5px;
+	width: 5px;
 	float: right;
-	margin-top: 4px;
-	margin-right: -4px;
+	margin-top: 24px;
+	margin-right: -26px;
 }
 
-.ticketBlue p, .ticketBlue2 p{
+.ticketBlue p{
 	color: #ffffff;
 	margin-left: 10px;
 	margin-top: 1px;
@@ -568,6 +567,13 @@ a.verTodas:hover{
 .calendar{
 	border-right: 1px solid gray;
 	padding-right: 10px;
+	height: 46px;
+}
+
+.calendarRight{
+	border-right: 1px solid gray;
+	padding-right: 10px;
+	height: 46px;
 }
 
 div.day {
@@ -825,14 +831,14 @@ div.raceRight2{
 }
 
 .dataRaceRight{
-	width: 180px;
+	width: 174px;
 	margin-top: 10px;
 }
 
 .dataRaceRight p{
 	color: #666666;
 	font-size: 10px;
-	margin-top: -4px;
+	margin-top: -6px;
 }
 
 .nameRaceRight a{
@@ -844,6 +850,7 @@ div.raceRight2{
 
 .nameRaceRight{
 	line-height: 12px;
+	height: 30px;
 }
 
 .avatarRight{
@@ -1088,3 +1095,9 @@ html ul.topnav li ul.subnav li a:focus {
 		height: 23px;
 		padding-top: 4px;
 		}
+
+.buttonComment{
+	float: right;
+	margin-right: -2px;
+	background:#336699 none repeat scroll 0 0;
+}
