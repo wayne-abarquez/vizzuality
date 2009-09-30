@@ -1,3 +1,14 @@
+.imgFeed {
+	margin-top: -34px;
+	width: 278px;
+}
+
+img.rssImage{
+	float: right;
+	height: 18px;
+	width: 18px;
+}
+
 /****** HEADER ****/
 
 .header{background-image: url(/img/header.jpg); background-repeat: no-repeat; background-position: center; height: 61px; width: 910px; margin: 0px 0px 0px 0px;}
