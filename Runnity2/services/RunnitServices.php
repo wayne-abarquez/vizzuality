@@ -780,7 +780,7 @@ class RunnitServices {
         
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id ";
 		$sql.=" and distance_meters<= $distance+2000 and distance_meters>= $distance-2000 and published=true";
-		$sql.=" order by event_date ASC limit 4";
+		$sql.=" order by event_date ASC limit 3";
 		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
 
@@ -796,7 +796,7 @@ class RunnitServices {
         
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and r.id <> $id  ";
 		$sql.=" and (event_date > (select (event_date::date-7) from run where id=$id) or event_date < (select (event_date::date+7) from run where id=$id))";
-		$sql.=" order by event_date ASC limit 4";
+		$sql.=" order by event_date ASC limit 3";
 		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
 
