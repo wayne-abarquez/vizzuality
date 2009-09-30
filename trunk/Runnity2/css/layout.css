@@ -270,6 +270,10 @@ div.separatorRight{
 	margin-right: -26px;
 }
 
+.ticketBlueCornerRight{
+	background-image: url(/img/ticketBlueCornerRight.gif);
+}
+
 .ticketBlue p{
 	color: #ffffff;
 	margin-left: 10px;
@@ -1100,4 +1104,8 @@ html ul.topnav li ul.subnav li a:focus {
 	float: right;
 	margin-right: -2px;
 	background:#336699 none repeat scroll 0 0;
+}
+
+.buttonComment:hover{
+	background:#fc6602 none repeat scroll 0 0;
 }
