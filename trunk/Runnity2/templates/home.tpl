@@ -42,6 +42,7 @@
 						</div>
 						{if $race.num_users > 0}
 							<div class="ticketBlue"><p>{$race.num_users}</p></div>
+							<div class="ticketBlueCorner"></div>
 						{/if}
 					</div>
 					{if $smarty.foreach.raceloop.iteration < 3}
