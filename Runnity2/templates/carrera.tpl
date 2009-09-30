@@ -229,7 +229,7 @@
 					</div>
 					{if $race.num_users > 0}
 						<div class="ticketBlue"><p>{$race.num_users}</p></div>
-						<div class="ticketBlueCorner"></div>
+						<div class="ticketBlueCorner ticketBlueCornerRight"></div>
 					{/if}		
 					<div class="span-1 last dataRaceRight">
 						<div class="nameRaceRight"><a id="nameRunRight1{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
@@ -254,7 +254,7 @@
 					</div>
 					{if $race.num_users > 0}
 						<div class="ticketBlue"><p>{$race.num_users}</p></div>
-						<div class="ticketBlueCorner"></div>
+						<div class="ticketBlueCorner ticketBlueCornerRight"></div>
 					{/if}		
 					<div class="span-1 last dataRaceRight">
 						<div class="nameRaceRight"><a id="nameRunRight2{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
