@@ -3,7 +3,7 @@
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
-		<p class="navigation"><a href="/buscar?q={$data.event_location}">Carreras en {$data.event_location} ></a></p>
+		<p class="navigation"><a href="/buscar?q={$data.province_name}">Carreras en {$data.province_name} ></a></p>
 		
 		<div class="carrera_principal">
 			<div class="column span-1 first calendar">
@@ -177,7 +177,7 @@
 				<div class="commentArea" id="commentBox">					
 					<div class="titleComents">Anímate y publica tu comentario</div>
 					<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
-					<input type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
+					<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
 				</div>
 			</div>
 			
@@ -214,7 +214,7 @@
 		{if $runsInSameDates}
 		<p class="titulo tituloLeft tituloColumnRight">EN LAS MISMAS FECHAS</p>
 		<div class="events">
-			{foreach key=id item=race from=$runsInSameDates}	    				    
+			{foreach key=id item=race from=$runsInSameDates name=raceloop}	    				    
 				<div class="span-1 {cycle values="raceRight,raceRight2"}">
 					<div class="span-1 first dateRight calendarRight">
 				        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
@@ -225,10 +225,9 @@
 						<div class="ticketBlueCorner"></div>
 					{/if}		
 					<div class="span-1 last dataRaceRight">
-						<div class="nameRaceRight"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+						<div class="nameRaceRight"><a id="nameRunRight1{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
 						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
 					</div>	
-			
 				</div>
 				<div class="span-1 last separatorRight"></div>
 		    {/foreach}					
@@ -236,7 +235,31 @@
 		{/if}
 		</div>
 		
-		
+		<div class="span-1 functionalContainer">
+		{if $runsInSameDates}
+		<p class="titulo tituloLeft tituloColumnRight">DE DISTANCIA PARECIDA</p>
+		<div class="events">
+			{foreach key=id item=race from=$similarTypeRaces name=raceloop}	    				    
+				<div class="span-1 {cycle values="raceRight,raceRight2"}">
+					<div class="span-1 first dateRight calendarRight">
+				        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
+						<div class="day">{$race.event_date|substr:8:2}</div>
+					</div>
+					{if $race.num_users > 0}
+						<div class="ticketBlue"><p>{$race.num_users}</p></div>
+						<div class="ticketBlueCorner"></div>
+					{/if}		
+					<div class="span-1 last dataRaceRight">
+						<div class="nameRaceRight"><a id="nameRunRight2{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
+					</div>	
+				</div>
+				<div class="span-1 last separatorRight"></div>
+		    {/foreach}					
+		</div>
+		{/if}
+		</div>
+
 				
 		<div class="span-1 functionalContainer">		
 		<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
@@ -292,8 +315,56 @@
 			  }
 			}
 		}
+	});
+</script>
+{/literal}
+
+{literal}
+<script language="javaScript" type="text/javascript">
+	$(document).ready( function() {
 	    
+	    for (i=1;i<=4;i++){
+			var len = 40;
+			var p = document.getElementById("nameRunRight1" + i);
+			
+			if (p) {
+			  var trunc = p.innerHTML;
+			  trunc = trunc.replace(/\t/g, "");
+			  if (trunc.length > len) {
+				
+			    trunc = trunc.substring(0, len);
+			
+			    trunc += '<a style="color: #336699;">' +
+			      '...<\/a>';
+			    p.innerHTML = trunc;
+			  }
+			}
+		}
+	});
+</script>
+{/literal}
+
+{literal}
+<script language="javaScript" type="text/javascript">
+	$(document).ready( function() {
 	    
+	    for (i=1;i<=4;i++){
+			var len = 40;
+			var p = document.getElementById("nameRunRight2" + i);
+			
+			if (p) {
+			  var trunc = p.innerHTML;
+			  trunc = trunc.replace(/\t/g, "");
+			  if (trunc.length > len) {
+				
+			    trunc = trunc.substring(0, len);
+			
+			    trunc += '<a style="color: #336699;">' +
+			      '...<\/a>';
+			    p.innerHTML = trunc;
+			  }
+			}
+		}
 	});
 </script>
 {/literal}
