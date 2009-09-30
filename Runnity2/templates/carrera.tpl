@@ -138,9 +138,16 @@
 				{/if}
 			</div>
 			
+			{if $pictures}
 			<div class="span-1 last bannerTopPhotos"></div>
 			<div class="span-1 last columnPhotos">
+<!--
+				{foreach key=id item=picture from=$pictures}
+					<img src="{$picture.path}"/>
+				{/foreach}
+-->	
 			</div>
+			{/if}	
 			
 			<div class="span-1 last columnLong">
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
