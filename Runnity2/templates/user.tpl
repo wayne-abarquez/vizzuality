@@ -6,16 +6,26 @@
 		
 		<div class="carrera_principal">
 		    <p class="nameUser" id="nameUser">Fernando Morales Roselló</p>
-									
+			
+			<div class="span-1 last raceData">
+				<div class="avatarPerfil">
+					<img class="imgAvatarPerfil" src="/img/AvatarPerfil.jpg">
+				</div>
+				<div class="span-1 last functionalContainer">
+					<p class="titulo tituloLeft">ESTADÍSTICAS</p>
+				</div>
+			</div>
+			<div class="span-1 last raceDescription">
+				<div class="span-1 last functionalContainer">
+					<p class="titulo tituloLeft tituloRight">TUS FOTOS</p>
+				</div>
+			</div>
 		</div>
 	</div>
 	
 
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn">
-		<div class="span-1 ticketOrangeVoy"><p><input type="checkbox"> Voy a ir a esta carrera</p></div>
-		<div class="span-1 ticketOrange"></div>
-		
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">LOCALIZACIÓN</p>
 			<div id="map" class="mapStyleRight">
