@@ -1042,7 +1042,7 @@ html ul.topnav li ul.subnav li a:focus {
 #searchBox div.racesTab #current a {background-position:0% -31px;}
 #searchBox div.racesTab #current a span {background-position:100% -32px;color: black}
 #searchBox div.topPaginator {height: 37px; background-color: #e1e9f2;-moz-border-radius-bottomleft: 3px; -moz-border-radius-bottomright: 3px; -webkit-border-bottom-right-radius: 3px; -webkit-border-bottom-left-radius: 3px; border-top: solid 1px #89a5c3;}
-#searchBox div.topPaginator div.upPaginator {float: right; padding-right: 12px; padding-top: 7px;margin-bottom: 0px; height: 30px;}
+#searchBox div.topPaginator div.upPaginator {float: right; padding-right: 12px; padding-top: 8px;margin-bottom: 0px; height: 30px;}
 #searchBox div.topPaginator div.upPaginator p{color: #4e4e4e; font-size: 13px;font-weight: normal;}
 
 
@@ -1119,4 +1119,36 @@ html ul.topnav li ul.subnav li a:focus {
 
 .buttonComment:hover{
 	background:#fc6602 none repeat scroll 0 0;
+}
+
+.but1{
+	background-image: url(/img/paginatorLeft.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 20px;
+	height: 20px;
+}
+
+.but2{
+	background-image: url(/img/paginatorRight.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 20px;
+	height: 20px;
+}
+
+.but1:hover{
+	background-image: url(/img/paginatorLeftOver.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 20px;
+	height: 20px;
+}
+
+.but2:hover{
+	background-image: url(/img/paginatorRightOver.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 20px;
+	height: 20px;
 }
