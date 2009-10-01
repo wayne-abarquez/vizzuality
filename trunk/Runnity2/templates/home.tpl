@@ -27,11 +27,6 @@
 	
 		<div class="span-1 last column1">
 		<p class="titulo">PRÓXIMAS CARRERAS CERCA DE TI</p>
-<!--
-			<div class="span-1 imgFeed">
-				<a href="http://feeds.feedburner.com/runnity"><img src="/img/feed-icon.gif" alt="Feed" class="rssImage"/></a>
-			</div>
--->
 			{foreach key=id item=race from=$nextRaces name=raceloop}
 				{if $race eq "false"}
 				<!-- 	<div class="carrera">No hay próximas carreras.</div>  -->
