@@ -1121,7 +1121,7 @@ html ul.topnav li ul.subnav li a:focus {
 	background:#fc6602 none repeat scroll 0 0;
 }
 
-.but1{
+.buttonLeftArrow{
 	background-image: url(/img/paginatorLeft.gif);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -1129,7 +1129,7 @@ html ul.topnav li ul.subnav li a:focus {
 	height: 20px;
 }
 
-.but2{
+.buttonRightArrow{
 	background-image: url(/img/paginatorRight.gif);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -1137,7 +1137,7 @@ html ul.topnav li ul.subnav li a:focus {
 	height: 20px;
 }
 
-.but1:hover{
+.buttonLeftArrow:hover{
 	background-image: url(/img/paginatorLeftOver.gif);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -1145,10 +1145,47 @@ html ul.topnav li ul.subnav li a:focus {
 	height: 20px;
 }
 
-.but2:hover{
+.buttonRightArrow:hover{
 	background-image: url(/img/paginatorRightOver.gif);
 	background-repeat: no-repeat;
 	background-position: center;
 	width: 20px;
 	height: 20px;
+}
+
+
+.buttonLeftArrowDown{
+	background-image: url(/img/paginatorLeft.gif);
+	background-repeat: no-repeat;
+	background-position: left;
+	height: 20px;
+	width: 90px;
+	text-align: right;
+}
+
+.buttonRightArrowDown{
+	background-image: url(/img/paginatorRight.gif);
+	background-repeat: no-repeat;
+	background-position: right;
+	height: 20px;
+	width: 90px;
+	text-align: left;
+}
+
+.buttonLeftArrowDown:hover{
+	background-image: url(/img/paginatorLeftOver.gif);
+	background-repeat: no-repeat;
+	background-position: left;
+	height: 20px;
+	width: 90px;
+	text-align: right;
+}
+
+.buttonRightArrowDown:hover{
+	background-image: url(/img/paginatorRightOver.gif);
+	background-repeat: no-repeat;
+	background-position: right;
+	height: 20px;
+	width: 90px;
+	text-align: left;
 }
