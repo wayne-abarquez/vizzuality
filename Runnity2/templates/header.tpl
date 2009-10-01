@@ -59,6 +59,7 @@
 		Cufon.replace('.subTitleInfo');
 		Cufon.replace('.titularTitle');
 		Cufon.replace('.raceTitle');
+		Cufon.replace('.nameUser');
 		Cufon.replace('.buttonmenuContainer a');
 	</script>
 	{/literal}
