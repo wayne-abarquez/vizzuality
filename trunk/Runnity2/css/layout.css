@@ -1,3 +1,26 @@
+/* USUARIO */
+.nameUser{
+	font-size: 22px;
+	color: #336699;
+	margin: 0px 0px 0px 0px;
+}
+
+.idUser{
+	
+}
+
+.avatarPerfil{
+	margin: 18px 0px 0px 0px;
+	border: 1px solid #d7d7d7;
+	width: 202px;
+	height: 202px;
+	
+}
+
+.imgAvatarPerfil{
+	margin: 4px 4px 4px 4px;
+}
+
 .imgFeed {
 	margin-top: -34px;
 	width: 278px;
