@@ -97,10 +97,10 @@ $(document).ready(function(){
 						{if $count > 10}
 							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$count}</b> de {$count}
 								{if $offset > 0}
-									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}"><input class="fg-button" type="button" value="<"/></a></span>
+									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}"><input class="fg-button but1" type="button"/></a></span>
 								{/if}
 								{if $offset < $count-10}
-									<span><a href="?offset={$offset+10}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button" type="button" value=">"/></a></span>
+									<span><a href="?offset={$offset+10}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button but2" type="button"/></a></span>
 	                			{/if}	
 							</p>	
 	                    {/if}
