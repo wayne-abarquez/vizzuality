@@ -37,7 +37,14 @@
 				<!-- 	<div class="carrera">No hay próximas carreras.</div>  -->
 				{else}
 					<div class="span-1 {cycle values="carrera,carrera2"}">
-						<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
+						<div class="span-1 avatar2">
+							<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
+							{if $race.flickr_img_id==""}
+							    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+							{else}
+							    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+							{/if}
+						</div>
 						<div class="span-1 Race">
 							<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
 							href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></p>
@@ -101,7 +108,14 @@
 			</div>
 		{foreach key=id item=VipRace from=$nextImportantRaces name=raceloop}
 		<div class="carreraOrange">
-			<div class="span-1 avatar2Orange"><img src="/img/avatar2.jpg" class="avatarOrange"></div>
+			<div class="span-1 avatar2Orange">
+				<!-- <img src="/img/avatar2.jpg" class="avatarOrange"> -->
+				{if $race.flickr_img_id==""}
+				    <img src="/media/run/{$VipRace.thumbnail}" alt="Foto de la carrera {$VipRace.name}" class="avatar"/>	
+				{else}
+				    <img src="/runThumbImage.php?id={$VipRace.id}&photo_id={$VipRace.flickr_img_id}" alt="Foto de la carrera {$VipRace.name}" class="avatar"/>	
+				{/if}
+			</div>
 			<div class="span-1 Race">
 				<p class="nameRaceOrange"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
 							href="/run/{$VipRace.id}/{$VipRace.name|replace:' ':'/'}">{$VipRace.name}</a></p>
