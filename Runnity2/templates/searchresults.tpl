@@ -99,7 +99,6 @@ $(document).ready(function(){
 							        </ul>	
 							    </div>							
 							</div>
-						</form>
 					</div>
 					
 					<div class="column dateInput">
@@ -117,8 +116,10 @@ $(document).ready(function(){
 					</div>
 					
 					<div class="column last buttonSearchBig">
-						<span><a href="#"><input class="buttonsearchbig" type="button" value="Buscar"/></a></span>
+						<span><a href="#"><input class="buttonsearchbig" type="submit" value="Buscar"/></a></span>
 					</div>
+											</form>
+
 					
 				</div>
 				<div class="topPaginator" class="span-24">
