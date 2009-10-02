@@ -75,7 +75,8 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="#">{$race.run1_name}</a></p>
+					<p class="span-4 nameRace"><a <a id="carrera{$smarty.foreach.raceloop.iteration}" 
+							href="/run/{$race.run1_id}/{$race.run1_name|replace:' ':'/'}">{$race.run1_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run1_description}</p>
 				</div>
 				{if $race.run1_num_users > 0}
@@ -94,7 +95,8 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="#">{$race.run2_name}</a></p>
+					<p class="span-4 nameRace"><a <a id="carrera{$smarty.foreach.raceloop.iteration}" 
+							href="/run/{$race.run2_id}/{$race.run2_name|replace:' ':'/'}">{$race.run2_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run2_description}</p>
 				</div>
 				{if $race.run2_num_users > 0}
@@ -113,7 +115,8 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="#">{$race.run3_name}</a></p>
+					<p class="span-4 nameRace"><a <a id="carrera{$smarty.foreach.raceloop.iteration}" 
+							href="/run/{$race.run3_id}/{$race.run3_name|replace:' ':'/'}">{$race.run3_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run3_description}</p>
 				</div>
 				{if $race.run3_num_users > 0}
