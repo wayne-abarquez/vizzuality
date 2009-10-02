@@ -14,7 +14,6 @@ $smarty->assign('titulo_pagina', 'Próximas carreras y atletas - Runnity.com');
 
 /* $smarty->assign('runners',$services->getLastUsersInscribedToRuns()); */
 
-
 //Get information about the city
 //Set geolocation cookie
 if(!isset($_COOKIE["geolocation"])){
@@ -41,11 +40,12 @@ if ($visitor_location['city']!='') {
 	$smarty->assign('nextImportantRaces',$services->getNextImportantRuns());
 }
 
+//Recent activity
+$smarty->assign('activity',$services->getLastActivity());
+
 //Try to get runs for the province
 
 $smarty->display('home.tpl');
-
-
 
 function visitorLocation(){
 	$ip = $_SERVER['REMOTE_ADDR'];
