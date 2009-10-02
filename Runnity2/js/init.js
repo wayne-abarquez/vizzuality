@@ -54,3 +54,7 @@ function relative_time(time_value) {
 	  
 	  return r;
 }
+
+function showLoginWindow() {
+	$('#login_modal').modal();
+}
