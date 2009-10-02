@@ -27,7 +27,11 @@ $smarty->assign('nextRaces',$services->getNextRuns());
 $q="";
 if (isset($_REQUEST['q'])) {
 	$q=$_REQUEST['q'];
+	if ($q="Busca carreras" or $q="Busca por nombre, localidad, provincia"){
+		$q="";
+	}
 }
+
 $distancia_min="";
 if (isset($_REQUEST['distancia_min'])) {
 	$distancia_min=$_REQUEST['distancia_min'];
