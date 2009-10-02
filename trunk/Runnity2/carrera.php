@@ -30,7 +30,7 @@ $smarty->assign('meta_keywords', $data['name'] . ',' . $data['event_location'] .
 $smarty->assign('meta_description', $data['event_date'] . ' ' . $data['name'] . ',' . $data['event_location']);
 
 $smarty->assign('data',$data);
-/* $smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id'])); */
+$smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id']));
 $smarty->assign('comments',$services->getComments($_REQUEST['id'],'run'));
 $smarty->assign('similarTypeRaces',$services->getRunsSimilarDistance($_REQUEST['id'],$data['distance_meters']));
 $smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id']));
