@@ -118,7 +118,7 @@ $(document).ready(function(){
 					<div class="column last buttonSearchBig">
 						<span><a href="#"><input class="buttonsearchbig" type="submit" value="Buscar"/></a></span>
 					</div>
-											</form>
+				</form>
 
 					
 				</div>
