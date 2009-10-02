@@ -3,48 +3,65 @@
 <script type="text/javascript"> 
 $(document).ready(function(){
 
-	$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled (Adds empty span tag after ul.subnav*)  
+	var state = false;
+		
+	$('#widgetField>a').click(function(){
+		$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
+		state = !state;
+		return false;	
+	});
+	
+	$("ul.subnav").parent().append("<span></span>");
+  
+	$("#widgetField>a").click(function() {
+		   
+        $('#widget').hover(function() {  
+        }, function(){
+        	$('#widgetCalendar').stop().animate({height: 0 }, 500);
+        	state = false;        	
+        });    
+      
+    }); 
+    
   
     
-    $("#ppalField").click(function() { //When trigger is clicked...  
+	$("#ppalField").click(function() { 
   
-        //Following events are applied to the subnav itself (moving subnav up and down)  
-        $(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click  
+        $(this).parent().find("ul.subnav").slideDown('fast').show();   
   
         $('#Navigator').hover(function() {  
         }, function(){  
-            $("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up  
-        });  
+            $("ul.subnav").slideUp('slow'); 
+        }) 
   
-        //Following events are applied to the trigger (Hover events for the trigger)  
         }).hover(function() {  
-            $(this).addClass("subhover"); //On hover over, add class "subhover"  
+            $(this).addClass("subhover"); 
         }, function(){  //On Hover Out  
-            $(this).removeClass("subhover"); //On hover out, remove class "subhover"  
+            $(this).removeClass("subhover");   
     });
     
-    $("ul.topnav li span").click(function() { //When trigger is clicked...  
+
+	$("ul.topnav li span").click(function() { 
   
-        //Following events are applied to the subnav itself (moving subnav up and down)  
-        $(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click  
+ 
+        $(this).parent().find("ul.subnav").slideDown('fast').show(); 
   
         $('#Navigator').hover(function() {  
         }, function(){  
-            $("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up  
-        });  
+            $("ul.subnav").slideUp('slow'); 
+        }) 
   
-        //Following events are applied to the trigger (Hover events for the trigger)  
         }).hover(function() {  
-            $(this).addClass("subhover"); //On hover over, add class "subhover"  
+            $(this).addClass("subhover");
         }, function(){  //On Hover Out  
-            $(this).removeClass("subhover"); //On hover out, remove class "subhover"  
+            $(this).removeClass("subhover");  
     });
 	
-	$("ul.topnav li ul.subnav li a").click(function() { //When trigger is clicked...
+	$("ul.topnav li ul.subnav li a").click(function() { 
 		valor = $(this).html();
 		$('#ppalField').html(valor);
 		$('#ppalField').css("color",$(this).css("color"));
-		$("ul.subnav").slideUp('fast'); //When the mouse hovers out of the subnav, move it back up */
+		$("ul.subnav").slideUp('fast');
 	});
 
 });
