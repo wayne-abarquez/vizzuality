@@ -279,6 +279,21 @@ class RunnitServices {
 	    return null;
 	}	
 	
+	//Home
+	public function getLastActivity() {
+		$sql="SELECT r1.id as run1_id,r1.name as run1_name,a.run1_description, 
+			  r2.id as run2_id,r2.name as run2_name,a.run2_description,
+			  r3.id as run3_id,r3.name as run3_name,a.run3_description,
+			  (select count(id) from users_run where run_fk=r1.id) as run1_num_users,
+			  (select count(id) from users_run where run_fk=r2.id) as run2_num_users,
+			  (select count(id) from users_run where run_fk=r3.id) as run3_num_users,
+			  r1.flickr_img_id,r2.flickr_img_id,r3.flickr_img_id
+			  FROM activity as a 
+ 			  INNER JOIN run as r1 ON a.run1_fk=r1.id 
+ 			  INNER JOIN run as r2 ON a.run2_fk=r2.id
+   			  INNER JOIN run as r3 ON a.run3_fk=r3.id";
+		return pg_fetch_all(pg_query($this->conn, $sql));  
+	}		
 	
 	//runnitHomeMap
 	public function getAllRuns() {
@@ -297,6 +312,15 @@ class RunnitServices {
 	    
 	    $sql="INSERT INTO comments(user_fk,commenttext,on_table,on_id) VALUES($userId,'$comment','$table',$id)";
         $result= pg_query($this->conn, $sql);
+        
+
+        $activity_description="Nuevo comentario";
+
+        $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
+        $result= pg_query($this->conn, $sql);
+         
+                            
+        
         return null;
 	    
 	}
@@ -518,9 +542,20 @@ class RunnitServices {
 
     	    if($published=='true') {
     	        $published="true";
+    	        
+
+            	$activity_description="Alta de carrera";
+
+                $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
+                $result= pg_query($this->conn, $sql);
+
+                            
+    	        
     	    } else {
     	        $published="false";
-    	    }    	    
+    	    }    
+    	    
+    	    	    
     	    
     	    $idflick="null";
     	    if($flickr_url!="") {
@@ -558,6 +593,15 @@ class RunnitServices {
     	    $result=pg_query($this->conn, $sql);
     	    $res=pg_fetch_assoc($result);    	    
     	    $newId= (int)$res['last_value'];
+    	    
+    	    if($published=='true') {
+            	$activity_description="Alta de carrera";
+
+                $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$newId, run1_description='".$activity_description."'";
+                $result= pg_query($this->conn, $sql);                  
+    	        
+    	    }     	    
+    	    
     	    
     	    /*
 			//Send alerts to users
@@ -637,7 +681,24 @@ class RunnitServices {
         	        $published="true";
         	    } else {
         	        $published="false";
-        	    }        	    
+        	    }    
+        	    
+        	    //Update the activity table
+                
+                //1)Look if the run was already published
+                $sql="SELECT published from run WHERE id=$id";
+                if(res=="t") {
+                    $activity_description="Datos actualizados";
+                } else {
+                    if ($published=='true') {
+                        $activity_description="Alta de carrera";
+                    }
+                }
+                $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
+                $result= pg_query($this->conn, $sql);
+
+                            
+        	        	    
                 
         	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected,run_type=$run_type,published=$published,tlf_informacion='$tlf_informacion',flickr_url='$flickr_url',flickr_img_id=$idflick";
         	        
