@@ -34,6 +34,14 @@ img.rssImage{
 
 
 /*LOGIN WINDOW*/
+
+#login_modal{
+	display:none; 
+	height:50px; 
+	width: 200px; 
+	background: #FFFFFF;
+}
+
 /* Overlay */
 #simplemodal-overlay {background-color:#000;}
 
