@@ -114,7 +114,7 @@
 			</div>
 		</div>
 		
-		<div id="separatorLogin" class="column span-1 separator">
+		<div id="separatorLogin" class="column span-1 separatorlog">
 			<img src="/img/separator.jpg" alt="separator">
 		</div>
 		
