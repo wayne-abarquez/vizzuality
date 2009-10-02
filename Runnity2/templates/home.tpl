@@ -64,33 +64,64 @@
 		
 		<div class="span-1 last column2">
 			<p class="titulo">ACTIVIDAD RECIENTE</p>
+			{foreach key=id item=race from=$activity name=raceloop}
 			<div class="carrera">
-				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
-				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
+				<div class="span-1 avatar2">
+					<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
+					{if $race.flickr_img_id==""}
+					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					{else}
+					    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					{/if}
 				</div>
-				<div class="ticketBlue"><p>3</p></div>
+				<div class="span-1 Race">
+					<p class="span-4 nameRace"><a href="#">{$race.run1_name}</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run1_description}</p>
+				</div>
+				{if $race.run1_num_users > 0}
+					<div class="ticketBlue"><p>{$race.run1_num_users}</p></div>
+					<div class="ticketBlueCorner"></div>
+				{/if}
 			</div>
 			<div class="separator"></div>
 			<div class="carrera2">
-				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
-				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
+				<div class="span-1 avatar2">
+					<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
+					{if $race.flickr_img_id==""}
+					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					{else}
+					    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					{/if}
 				</div>
-				
-				<div class="ticketBlue"><p>3</p></div>
+				<div class="span-1 Race">
+					<p class="span-4 nameRace"><a href="#">{$race.run2_name}</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run2_description}</p>
+				</div>
+				{if $race.run2_num_users > 0}
+					<div class="ticketBlue"><p>{$race.run2_num_users}</p></div>
+					<div class="ticketBlueCorner"></div>
+				{/if}
 			</div>
 			<div class="separator"></div>
 			<div class="carrera">
-				<div class="span-1 avatar2"><img src="/img/avatar2.jpg" class="avatar"></div>
-				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="#">XVIII Carrera popular “La Melonera”</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.gif"/> Recorrido añadido</p>
+				<div class="span-1 avatar2">
+					<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
+					{if $race.flickr_img_id==""}
+					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					{else}
+					    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					{/if}
 				</div>
-				<div class="ticketBlue"><p>3</p></div>
+				<div class="span-1 Race">
+					<p class="span-4 nameRace"><a href="#">{$race.run3_name}</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run3_description}</p>
+				</div>
+				{if $race.run3_num_users > 0}
+					<div class="ticketBlue"><p>{$race.run3_num_users}</p></div>
+					<div class="ticketBlueCorner"></div>
+				{/if}
 			</div>
+    		{/foreach}	
 		</div>
 	</div>
 	
