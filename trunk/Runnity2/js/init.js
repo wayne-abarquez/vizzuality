@@ -55,6 +55,71 @@ function relative_time(time_value) {
 	  return r;
 }
 
+/* LOGIN */
+
 function showLoginWindow() {
 	$('#login_modal').modal();
+}
+
+// When the form is submitted
+function login(){  
+
+	var email = $("#emailLogin").val();
+    var password = $("#passwordLogin").val();
+	
+	if ((email=="") || (password=="")) {
+		$('#error_msg').html('Existen campos vacíos.');
+		return false;
+	}
+
+    // Hide 'Submit' Button
+    $('#submitLogin').val('Enviando');
+    $('#submitLogin').attr("disabled", "true");
+    $('#emailLogin').attr("disabled", "true");
+    $('#passwordLogin').attr("disabled", "true");
+
+    // Show Gif Spinning Rotator
+	$('#error_msg').hide();
+
+
+    var dataObj = ({email : email,
+        method: 'login',
+        password: password
+        });
+    // -- Start AJAX Call --
+    $.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+            if(result=='invalid') {
+                //notify the user that the login was wrong
+                $('#submitLogin').val('Enviar');
+                $("#error_msg").show();
+                $("#error_msg").html('E-mail o password incorrectos.');
+                $('#submitLogin').removeAttr("disabled");
+                $('#emailLogin').removeAttr("disabled");
+    			$('#passwordLogin').removeAttr("disabled");
+            } else {
+            	location.reload();
+            }
+        
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                alert('Runnity' + xhr.status + "\n" + thrownError);
+        }
+    });
+    
+    return false;
+}
+
+function sendPassword() {
+	$('#error_msg').html('');
+	$('#submitLogin').val('Enviar');
+	$("#FormularioLogin").attr("action","javascript: void sendPasswordTo();"); 
+	$('#passForm').hide();
+	$('#forgetLink').removeAttr("href");
+	$('#forgetLink').html('Introduce tu e-mail.');
+	$('#loginEmailText').html('Te enviaremos tu contraseña');
 }
