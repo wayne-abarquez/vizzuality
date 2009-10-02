@@ -52,37 +52,7 @@
 	
 	<script src="/cufon/cufon-yui.js" type="text/javascript"></script>
 	<script src="/cufon/Arial_Rounded_MT_Bold_400.font.js" type="text/javascript"></script>
-	{literal}
-	<script type="text/javascript">
-		Cufon.replace('.horizontalcssmenu',{hover: true});
-		Cufon.replace('.subTitle');
-		Cufon.replace('.subTitleInfo');
-		Cufon.replace('.titularTitle');
-		Cufon.replace('.raceTitle');
-		Cufon.replace('.nameUser');
-		Cufon.replace('.buttonmenuContainer a');
-	</script>
-	{/literal}
-	
-	{literal}
-<script type="text/javascript"> 
-      $(document).ready(function(){
-      var match = 'input.default[@type=text]';
-      $(match).focus(function(){
-      this.valuedefault = this.valuedefault || this.value;
-      if (this.value == this.valuedefault)
-      this.value = '';
-      $(this).css('color','#666666');
-      });
-      $(match).blur(function(){
-      if (this.value.length == 0 || this.value == this.valuedefault)
-      $(this).css('color','#999999');
-      if (this.valuedefault && this.value.length==0)
-      this.value = this.valuedefault;
-      });
-      });
-</script>
-{/literal}
+
 	
 	{if $section eq "index"}
 		<script type="text/javascript" src="/js/swfobject.js"></script>
@@ -104,6 +74,7 @@
     {if $section eq "usuario"}
         <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA&amp;sensor=false" type="text/javascript"></script>	
 	{/if}
+	
 </head>
 
 <body>
