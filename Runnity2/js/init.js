@@ -1,3 +1,31 @@
+$(document).ready(function(){
+
+	  Cufon.replace('.horizontalcssmenu',{hover: true});
+	  Cufon.replace('.subTitle');
+	  Cufon.replace('.subTitleInfo');
+	  Cufon.replace('.titularTitle');
+	  Cufon.replace('.raceTitle');
+	  Cufon.replace('.nameUser');
+	  Cufon.replace('.buttonmenuContainer a');
+
+
+      var match = 'input.default[@type=text]';
+      $(match).focus(function(){
+      	this.valuedefault = this.valuedefault || this.value;
+      	if (this.value == this.valuedefault)
+      		this.value = '';
+      	$(this).css('color','#666666');
+      });
+      $(match).blur(function(){
+      	if (this.value.length == 0 || this.value == this.valuedefault)
+      		$(this).css('color','#999999');
+      	if (this.valuedefault && this.value.length==0)
+      	this.value = this.valuedefault;
+      });
+});
+
+
+
 //FUNCION PARA CALCULAR EL TIEMPO 
 function relative_time(time_value) {
 	  var values = time_value.split(" ");
