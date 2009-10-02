@@ -43,6 +43,8 @@
     <script type="text/javascript" src="/js/eye.js"></script>
     <script type="text/javascript" src="/js/utils.js"></script>
     <script type="text/javascript" src="/js/layout.js?ver=1.0.2"></script>
+    <script src="/js/jquery.simplemodal-1.3.js" type="text/javascript"></script>
+    <script src="/js/basic.js" type="text/javascript"></script>
 	
 	<script type='text/javascript' src='/js/init.js'></script>
 	
@@ -81,14 +83,17 @@
 
 <div class="container">
 
+
+	<div id="login_modal" style="display:none; height:50px; width: 200px; background: #FFFFFF;">
+		
+	</div>
+
 	<!-- HEADER -->
 	<div id="header" class="span-24 column header">
-	
 		<a href="/"><div class="span-5 first logo"></div></a>
-		
 		<div class="span-19 last access">
 			<p>
-				<a>accede a tu cuenta</a>
+				<a href="javascript: void showLoginWindow()">accede a tu cuenta</a>
 				 / 
 				<a>regístrate</a>
 			</p>
