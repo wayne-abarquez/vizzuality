@@ -36,8 +36,8 @@ class MediaServices {
 	    $imgTrans = new imageTransform();
 	    $imgTrans->sourceFile = $tempPath;
 	    $imgTrans->targetFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_t.jpg";
-		$imgTrans->resizeToWidth = 100;
-		$imgTrans->resizeToHeight = 75;
+		$imgTrans->resizeToWidth = 66;
+		$imgTrans->resizeToHeight = 67;
 		$imgTrans->maintainAspectRatio = false;
 	    
 	    if (!$imgTrans->resize()) {
@@ -107,7 +107,7 @@ class MediaServices {
         $imgThumb=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";
         $imgThumbPath='/media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";
 	    $imgTrans->targetFile = $imgThumb;
-		$imgTrans->resizeToWidth = 96;
+		$imgTrans->resizeToWidth = 66;
 		$imgTrans->resizeToHeight = 67;
 		$imgTrans->maintainAspectRatio = false;
 	    
