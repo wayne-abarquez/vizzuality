@@ -83,8 +83,46 @@
 
 <div class="container">
 
-
-	<div id="login_modal" style="display:none; height:50px; width: 200px; background: #FFFFFF;">
+	<!-- LOGIN -->
+	<div id="login_modal">
+		
+		<div class="column span-5 first loginColumn">
+			<h2 id="loginTitle" class="loginTitle">Accede a tu cuenta</h2>
+			<div id="loginForm" class="loginForm">
+			<form id="FormularioLogin" method="GET" action="javascript: void login()">
+				<div>
+					<div class="inputTitle" id="loginEmailText">e-mail</div>
+					<div class="inputBlue">
+						<label class="roundblue" for="login1"><span><input type="text" name="login1" id="emailLogin"/></span></label>
+					</div>
+				</div>
+				<div id="passForm">
+					<div class="inputTitle">contraseña</div>
+					<div class="inputBlue">
+						<label class="roundblue" for="login2"><span><input type="password" name="login2" id="passwordLogin"/></span></label>
+					</div>
+				</div>
+				<div class="forgetFind">
+					<div class="forgetPass"><a id="forgetLink" href="javascript: void sendPassword()">¿olvidaste tu contraseña?</a></div>
+					<div class="loginButton"><input id="submitLogin" class="fg-button" type="submit" value="Entrar"/></div>	
+				</div>	
+				<div class="first">
+					<img id="checking" class="column first registerImage" src="/img/ajax-loader.gif" style="display:none">
+					<div class="column last errorMessage" id="error_msg"></div>
+				</div>
+			</form>
+			</div>
+		</div>
+		
+		<div id="separatorLogin" class="column span-1 separator">
+			<img src="/img/separator.jpg" alt="separator">
+		</div>
+		
+		<div id="registerLogin" class="column span-5 last registerLogin">
+			<h3>¿Aún no estas registrado?</h3>
+			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
+			<div class="registroLoginButton"><input class="fg-button" type="submit" value="Crea tu cuenta" onclick="javascript: void $.modal.close();showRegisterBox()"/></div>
+		</div>
 		
 	</div>
 
