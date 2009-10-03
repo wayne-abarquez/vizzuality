@@ -7,6 +7,7 @@ $(document).ready(function(){
 	  Cufon.replace('.raceTitle');
 	  Cufon.replace('.nameUser');
 	  Cufon.replace('.buttonmenuContainer a');
+	  Cufon.replace('#login_modal .title');
 
 
       var match = 'input.default[@type=text]';
@@ -123,3 +124,140 @@ function sendPassword() {
 	$('#forgetLink').html('Introduce tu e-mail.');
 	$('#loginEmailText').html('Te enviaremos tu contraseña');
 }
+
+function alertLogout() {
+	$('#logoutWindow').modal();
+	
+	
+	var wscr = $(window).width();
+    var hscr = $(window).height();
+    
+    // obtener posicion central
+    var mleft = ( wscr - 330 ) / 2;
+    var mtop = ( hscr - 100 ) / 2;
+    
+    // estableciendo ventana modal en el centro
+    $('#simplemodal-container').css("left", mleft+'px');
+    $('#simplemodal-container').css("top", mtop+'px');
+	
+	$('#simplemodal-container').css("width",'330px');
+	$('#simplemodal-container').css("height",'100px');
+	
+}
+
+function logout () {
+
+	var dataObj = ({method: 'logout'});    
+    $.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+    		window.location = "/";
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+             window.location = "/";
+        }
+    });
+    
+}
+
+function sendPasswordTo() {
+
+	$('#error_msg').html('');
+
+	var email = $("#emailLogin").val();
+	
+	if (email=="") {
+		$('#contactError').html('El email esta vacío.');
+    	return false;
+	} 
+	
+	if (!echeck(email)) {
+    	$('#contactError').html('Tu email es incorrecto.');
+    	return false;
+    }
+	
+	$('#submitLogin').attr('value','Enviando');
+	
+	var dataObj = ({method: 'sendPasswordToEmail', email:email});  
+	  
+    $.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+    		if(result=='OK') {
+    			$('#passForm').show();
+    			$('#loginEmailText').html('email');
+    			$("#FormularioLogin").attr("action","javascript: void login();");
+    			$('#submitLogin').attr('value','Enviar');
+    			$('#forgetLink').html('Contraseña enviada.');
+    			$('#forgetLink').css('color','red');
+    			timerID = setTimeout("changeText()", 2000);
+            } else {
+            	$('#submitLogin').attr('value','Enviar');
+            	$('#error_msg').html('El email no existe.');       
+            }
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                alert(xhr.status + "\n" + thrownError);
+        }
+    });
+}
+
+
+//PARA QUE SE CIERRE SOLO LA VENTANA DE LOGIN
+function changeText() {
+	$('#forgetLink').html('¿olvidaste tu contraseña?');
+	$('#forgetLink').css('color','#336699');
+	$('#forgetLink').attr("href","javascript: void sendPassword()");
+    clearTimeout(timerID);
+}
+
+
+
+
+
+
+/* FUNCION PARA COMENTAR -- REVISAR -- */
+function commentAction(id,on_table) {
+		
+		var comment = $("#commentTextArea").val();
+	    var dataObj = ({
+	            comment : comment,
+	            method: 'addComment',
+	            id:id,onTable:on_table
+	        });
+
+		if(comment=='') {
+	    	alert('El comentario esta vacío, mejor revísalo.');
+	    } else {
+			$("#flash").show();
+			$("#flash").fadeIn(400).html('<img src="/img/ajax-loader.gif" align="absmiddle" style="height:20px;width:20px;padding-top:4px;padding-left:5px;">&nbsp;<span style="margin-top:-15px;">Cargando comentario...</span>');
+			$.ajax({
+				type: "POST",
+	 	 		url: "/ajaxController.php",
+	   			data: dataObj,
+	  			cache: false,
+	  			success: function(html){
+	  				$("ol#update").append(html);
+	  				$("ol#update li:last").fadeIn(400);
+	    			$('#commentTextArea').html('');
+	  				$("#flash").hide();
+	  				
+	  				if($("#noCommentsDiv").length > 0) {
+	  				    $("#noCommentsDiv").hide();
+	  				}
+	  			},
+		        error:function (xhr, ajaxOptions, thrownError){
+		                alert('Runnity' + xhr.status + "\n" + thrownError);
+		        }
+	 		});
+	 			
+		}
+		return false;
+};
+
