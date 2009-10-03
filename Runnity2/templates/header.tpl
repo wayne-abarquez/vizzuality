@@ -85,22 +85,20 @@
 
 	<!-- LOGIN -->
 	<div id="login_modal">
-		
-		<div class="column span-5 first loginColumn">
-			<h2 id="loginTitle" class="loginTitle">Accede a tu cuenta</h2>
+			<p class="title">Accede a tu cuenta</p>
 			<div id="loginForm" class="loginForm">
 			<form id="FormularioLogin" method="GET" action="javascript: void login()">
 				<div>
 					<div class="inputTitle" id="loginEmailText">e-mail</div>
-					<div class="inputBlue">
-						<label class="roundblue" for="login1"><span><input type="text" name="login1" id="emailLogin"/></span></label>
-					</div>
+					<label class="inputLogin" for="login1">
+						<input type="text" name="login1" id="emailLogin" class="inputLogin">
+					</label>
 				</div>
 				<div id="passForm">
 					<div class="inputTitle">contraseña</div>
-					<div class="inputBlue">
-						<label class="roundblue" for="login2"><span><input type="password" name="login2" id="passwordLogin"/></span></label>
-					</div>
+					<label class="inputLogin" for="login2">
+						<input type="password" name="login2" id="passwordLogin" class="inputLogin">
+					</label>
 				</div>
 				<div class="forgetFind">
 					<div class="forgetPass"><a id="forgetLink" href="javascript: void sendPassword()">¿olvidaste tu contraseña?</a></div>
@@ -112,18 +110,6 @@
 				</div>
 			</form>
 			</div>
-		</div>
-		
-		<div id="separatorLogin" class="column span-1 separatorlog">
-			<img src="/img/separator.jpg" alt="separator">
-		</div>
-		
-		<div id="registerLogin" class="column span-5 last registerLogin">
-			<h3>¿Aún no estas registrado?</h3>
-			<div class="registerText">Regístrate ahora y disfruta de todas las ventajas de runnit! Es grátis y tardarás un par de minutos.</div>
-			<div class="registroLoginButton"><input class="fg-button" type="submit" value="Crea tu cuenta" onclick="javascript: void $.modal.close();showRegisterBox()"/></div>
-		</div>
-		
 	</div>
 
 	<!-- HEADER -->
@@ -131,9 +117,15 @@
 		<a href="/"><div class="span-5 first logo"></div></a>
 		<div class="span-19 last access">
 			<p>
+				{if $smarty.session.logged}
+				<a href="/perfil/{$smarty.session.user.username}">bienvenido {$smarty.session.user.username}</a>
+				/ 
+				<a onclick="logout()">salir</a>
+				{else}
 				<a href="javascript: void showLoginWindow()">accede a tu cuenta</a>
-				 / 
-				<a>regístrate</a>
+				/ 
+				<a>registrarse</a>
+				{/if}
 			</p>
 		</div>
 		<div class="span-18 search">
