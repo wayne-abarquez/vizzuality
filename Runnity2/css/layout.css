@@ -1,3 +1,7 @@
+body{
+	outline: none;
+}
+
 /* USUARIO */
 /*
 .nameUser{
@@ -413,6 +417,7 @@ a.verTodas{
 	text-decoration: none;
 	margin-top: 8px;
 	margin-bottom: 5px;	
+	font-weight: bold;
 }
 
 a.verTodas:hover{
@@ -1144,20 +1149,13 @@ html ul.topnav li ul.subnav li a:focus {
 
 /* BOTONES */
 
-		.fg-button:hover, .SmallButt:hover {
+		.fg-button:hover{
 		-moz-background-clip:border;
 		-moz-background-inline-policy:continuous;
 		-moz-background-origin:padding;
 		background:#999999 none repeat scroll 0 0;
 		}
-		.fg-button, .SmallButt {
-		-moz-background-clip:border;
-		-moz-background-inline-policy:continuous;
-		-moz-background-origin:padding;
-		background:#000000 none repeat scroll 0 0;
-		padding-top: 0px;
-		}
-		.fg-button, .DeleteButt, .CancelButt, .DisabledButt, .SmallButt, .SmallDisabledButt, .SmallDeleteButt, .SmallCancelButt {
+		.fg-button{
 		-moz-background-clip:border;
 		-moz-background-inline-policy:continuous;
 		-moz-background-origin:padding;
@@ -1173,13 +1171,10 @@ html ul.topnav li ul.subnav li a:focus {
 		border:medium none;
 		color:#FFFFFF;
 		cursor:pointer;
-		font-family:inherit;
 		font-size:11px;
 		font-weight:bold;
 		padding:4px 6px;
-		white-space:nowrap;
 		height: 23px;
-		padding-top: 4px;
 		}
 
 .buttonComment{
