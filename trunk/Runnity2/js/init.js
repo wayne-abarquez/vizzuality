@@ -217,11 +217,6 @@ function changeText() {
     clearTimeout(timerID);
 }
 
-
-
-
-
-
 /* FUNCION PARA COMENTAR -- REVISAR -- */
 function commentAction(id,on_table) {
 		
