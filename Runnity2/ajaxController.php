@@ -26,21 +26,21 @@ if ($_REQUEST['method'] == 'addComment') {
     
     if ($result==null) {
         ?>
-
-		<div class="column span-16 first racesComment">				
-			<div class="column span-3 first image">
-				<img src="/avatar.php?id=<?php echo $_SESSION['user']['id']; ?>"/>	
-			</div>
-			<div class="column span-12 last commentBox">
-				<div class="nameUser"><a class="nameRace" href="#"><?php echo $name;?>,</a> ahora mismo.</div>
-				<p class="textRace"><?php echo $comment; ?></p>
-			</div>
+		
+	<div id="comment" class="span-1 last">
+		<div class="span-1 last avatarBox">
+			<img src="/img/avatar.jpg"/>	
 		</div>
+		<div class="span-1 commentBox">
+			<div class="nameUser"><a class="name" href="#"><?php echo $name;?>, </a>ahora mismo.</div>
+			<p class="commentUser"><?php echo $comment; ?></p>
+		</div>				
+	</div>
     	  
         <?php
     } else {
         ?>
-    	<div class="column span-16 first racesComment">				
+		<div id="comment" class="span-1 last">
 			Lo siento, ha ocurrido un error.
 		</div>  
     	  
