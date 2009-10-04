@@ -153,6 +153,7 @@
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
 				<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
 				</p>
+				<ol id="update">
 				{foreach key=id item=comment from=$comments}
 				{if $comment eq false}
 					<div class="span-1 last noComments">
@@ -176,15 +177,22 @@
 						<p>Aún no hay comentarios sobre esta carrera</p>
         				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
     				</div>    
-            	{/foreach}						
+            	{/foreach}	
+            </ol>						
 			</div>
 			
 			<!-- PARA AÑADIR COMENTARIOS -->
 			<div class="span-1 last boxraceMap">
-				<div class="commentArea" id="commentBox">					
+					<div class="span-16" id="flash" align="left"></div>
+				<div class="commentArea" id="commentBox">	
+				{if $smarty.session.logged}				
 					<div class="titleComents">Anímate y publica tu comentario</div>
 					<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
 					<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
+				{else}
+<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="#">¿Aún no estás registrado?</a></b></p>
+				 {/if}
+
 				</div>
 			</div>
 			
