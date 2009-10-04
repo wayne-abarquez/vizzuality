@@ -847,7 +847,8 @@ div.mapStyleRight {
 	border: 1px solid #cccccc;
 	width: 67px;
 	height: 66px;
-	padding: 4px 4px 4px 4px;
+	padding-bottom: 10px;
+	padding-right: 10px;
 }
 
 .bannerTopPhotos{
