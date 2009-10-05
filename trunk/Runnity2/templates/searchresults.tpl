@@ -90,7 +90,7 @@ $(document).ready(function(){
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
 							            <li id="liField">
-							                <a id="ppalField" href="#" class="{switch $hola}{case 'Mediofondo'}a1{case 'Fondo'}a2{case 'Marathon/Ultrafondo'}a3{case 'Cross/Campo'}a4{case 'Combinadas'}a5{/switch}">{$smarty.request.inputTipoCarrera}</a>
+							                <a id="ppalField" href="#" class="{if ($hola=="Mediofondo")}a1{elseif ($hola=="Fondo")}a2{elseif ($hola=="Marathon/Ultrafondo")}a3{elseif ($hola=="Cross/Campo")}a4{elseif ($hola=="Combinadas")}a5{/if}">{$smarty.request.inputTipoCarrera}</a>
 							                <ul class="subnav">
 							                    <li><a href="#">Todas</a></li>
 							                    <li><a href="#" class="a1">Mediofondo</a></li>
