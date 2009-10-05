@@ -85,17 +85,17 @@
 
 	<!-- LOGIN -->
 	<div id="login_modal">
+		<div id="loginForm" class="span-1 first loginForm">
 			<p class="title">Accede a tu cuenta</p>
-			<div id="loginForm" class="loginForm">
 			<form id="FormularioLogin" method="GET" action="javascript: void login()">
-				<div>
-					<div class="inputTitle" id="loginEmailText">e-mail</div>
+				<p>e-mail</p>
+				<div class="span-1">
 					<label class="inputLogin" for="login1">
 						<input type="text" name="login1" id="emailLogin" class="inputLogin">
 					</label>
 				</div>
-				<div id="passForm">
-					<div class="inputTitle">contraseña</div>
+				<p>contraseña</p>
+				<div class="span-1">
 					<label class="inputLogin" for="login2">
 						<input type="password" name="login2" id="passwordLogin" class="inputLogin">
 					</label>
@@ -109,7 +109,9 @@
 					<div class="column last errorMessage" id="error_msg"></div>
 				</div>
 			</form>
-			</div>
+		</div>
+		
+		<div class="span-1 last separatorLogin"></div>
 	</div>
 
 	<!-- HEADER -->
