@@ -32,16 +32,14 @@ if (isset($_REQUEST['q'])) {
 	}
 }
 
-$distancia_min="";
-if (isset($_REQUEST['distancia_min'])) {
-	$distancia_min=$_REQUEST['distancia_min'];
+$tipoCarrera="";
+if (isset($_REQUEST['inputTipoCarrera'])) {
+	$tipoCarrera=$_REQUEST['inputTipoCarrera'];
 }
-$distancia_max="";
-if (isset($_REQUEST['distancia_max'])) {
-	$distancia_max=$_REQUEST['distancia_max'];
-}
+$smarty->assign('hola', $tipoCarrera);
 
-$results=$services->searchRuns($q,$distancia_max,$distancia_min,$offset);
+
+$results=$services->searchRuns($q,$tipoCarrera,$offset);
 $smarty->assign('results',$results['data']);
 $smarty->assign('count', $results['count']);
 $smarty->assign('offset', $offset);
