@@ -61,7 +61,9 @@ $(document).ready(function(){
 		valor = $(this).html();
 		$('#ppalField').html(valor);
 		$('#ppalField').css("color",$(this).css("color"));
+		$('#ppalField').html(valor);
 		$("ul.subnav").slideUp('fast');
+		document.getElementById("inputTipoCarrera").value = valor;
 	});
 
 });
@@ -78,6 +80,8 @@ $(document).ready(function(){
 				<div class="searchForm">
 					<div class="column regionInput">
 						<form id="searchForm" method="GET" action="/buscar">
+							<!-- input oculto para obtener tipo de carrera -->
+							<input type="hidden" id="inputTipoCarrera" name="inputTipoCarrera" value="{$smarty.request.inputTipoCarrera}">
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
@@ -86,14 +90,14 @@ $(document).ready(function(){
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
 							            <li id="liField">
-							                <a id="ppalField" href="#">Todas</a>
+							                <a id="ppalField" href="#" class="{switch $hola}{case 'Mediofondo'}a1{case 'Fondo'}a2{case 'Marathon/Ultrafondo'}a3{case 'Cross/Campo'}a4{case 'Combinadas'}a5{/switch}">{$smarty.request.inputTipoCarrera}</a>
 							                <ul class="subnav">
 							                    <li><a href="#">Todas</a></li>
-							                    <li><a href="#" id="a1">Mediofondo</a></li>
-							                    <li><a href="#" id="a2">Fondo</a></li>
-							                    <li><a href="#" id="a3">Marathon/Ultrafondo</a></li>
-							                    <li><a href="#" id="a4">Cross/Campo</a></li>
-												<li><a href="#" id="a5">Combinadas</a></li>
+							                    <li><a href="#" class="a1">Mediofondo</a></li>
+							                    <li><a href="#" class="a2">Fondo</a></li>
+							                    <li><a href="#" class="a3">Marathon/Ultrafondo</a></li>
+							                    <li><a href="#" class="a4">Cross/Campo</a></li>
+												<li><a href="#" class="a5">Combinadas</a></li>
 							                </ul>
 							            </li>
 							        </ul>	
@@ -136,16 +140,13 @@ $(document).ready(function(){
 									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
 								{/if}
 								{if $offset < $count-10}
-									<span><a href="?offset={$offset+10}&q={$smarty.request.q}&distancia_min={$smarty.request.distancia_max}&distancia_max={$smarty.request.distancia_max}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
+									<span><a href="?offset={$offset+10}&q={$smarty.request.q}&inputTipoCarrera={$smarty.request.inputTipoCarrera}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
 	                			{/if}	
 							</p>	
 	                    {/if}
 					</div>	
 				</div>
 			</div>
-
-
-
 
 				<div id="results" class="span-24 column first">			
 	        		{foreach key=id item=race from=$results}
@@ -169,8 +170,8 @@ $(document).ready(function(){
 	    							</div>
 	    						</div>
 	    						<div class="column last">
-	    							<p class=" raceLocationText"><b>{$race.distance_text}</b> / {$race.event_location}, {$race.province_name}</p>   							
-	    							<p><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="raceTitleText">{$race.name}</a></p>
+	    							<p class="span-1 raceLocationText"><b>{$race.distance_text}</b> / {$race.event_location}, {$race.province_name}</p>   							
+	    							<p class="span-18"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="raceTitleText">{$race.name}</a></p>
 	    							<div id="socialDetails">
 	    								<div class="column socialBox first"><img src="/img/photo.jpg"/><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">12 FOTOS</a></div>
 	    								<div class="column socialBox last"><img src="img/comment.jpg"/> <a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">12 COMENTARIOS</a></div>
