@@ -364,14 +364,14 @@ class RunnitServices {
 	}	
 	
 	//searchresults
-	public function searchRuns($q,$max,$min,$offset) {
-        $q=pg_escape_string($q);
+	public function searchRuns($q,$tipoCarrera,$tipoBusqueda,$fechaInicio,$fechaFin,$offset=0) { 
+	    $q=pg_escape_string($q);
         if(!$offset) {
             $offset=0;
         }
         
 	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type,date_trunc('day',event_date) as event_day";
-		$sql.=",CASE WHEN EXTRACT(DOW FROM event_date)=0 THEN 7 ELSE EXTRACT(DOW FROM event_date) END  as day_in_week";
+		$sql.=",CASE WHEN EXTRACT(DOW FROM event_date)=0 THEN 7 ELSE EXTRACT(DOW FROM event_date) END as day_in_week";
 
         if(isset($_SESSION['logged']) and $_SESSION['logged']) {
             $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
@@ -379,8 +379,21 @@ class RunnitServices {
             $sql.=",false as inscrito";
         }   
 	    
-	    $sql.=" from run as r  left join province as p on r.province_fk=p.id where r.event_date > now() and published=true ";
+	    $sql.=" from run as r left join province as p on r.province_fk=p.id where published=true ";
 	    
+	    if($tipoBusqueda=="Proximas") {
+	   		$sql.=" and r.event_date > now()";	    
+	    }	
+	    
+	    if($fechaInicio!="") {
+	   		$sql.=" and r.event_date >= '$fechaInicio'";	    
+	    }		        
+
+	    if($fechaFin!="") {
+	   		$sql.=" and r.event_date <= '$fechaFin'";	    
+	    }		        
+
+
 	    $terms=explode(" ",$q);
 
 	    if(count($terms)>0 and $q!="") {
@@ -391,15 +404,33 @@ class RunnitServices {
     	    $sql=substr($sql,0,-3);
     	    $sql.=")";       
 	    } 
-
-	    if($min>0) {
-	        $sql.=" AND distance_meters >= $min";
-	    }
-	    if($max>0) {
-	        $sql.=" AND distance_meters <= $max";	        
-	    }
 	    
-	    
+	    $RunTypeSearch="";
+	    //tipo de carrera
+	    switch ($tipoCarrera) {
+		    case 'Todas': 
+	    		$RunTypeSearch=0;
+	    		break;
+	    	case 'Mediofondo': 
+	    		$RunTypeSearch=1;
+	    		break;
+	    	case 'Fondo': 
+	    		$RunTypeSearch=2;
+	    		break;
+	    	case 'Marathon/Ultrafondo': 
+	    		$RunTypeSearch=3;
+	    		break;
+	    	case 'Cross/Campo': 
+	    		$RunTypeSearch=4;
+	    		break;
+	    	case 'Combinadas': 
+	    		$RunTypeSearch=5;
+	    		break;
+		}
+		
+		if ($RunTypeSearch!=0){
+			$sql.=" AND run_type = $RunTypeSearch";
+		}
 	    
 	    $sqlForCount="SELECT COUNT(id) as num_results FROM ($sql) as s";
 	    
