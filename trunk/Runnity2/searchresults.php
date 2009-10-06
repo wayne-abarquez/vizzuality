@@ -36,7 +36,7 @@ $tipoCarrera="";
 if (isset($_REQUEST['inputTipoCarrera'])) {
 	$tipoCarrera=$_REQUEST['inputTipoCarrera'];
 }
-$smarty->assign('hola', $tipoCarrera);
+$smarty->assign('comboTipo', $tipoCarrera);
 
 
 $results=$services->searchRuns($q,$tipoCarrera,$offset);
