@@ -78,6 +78,9 @@
 			starts: 1,
 			onChange: function(formated) {
 				$('#widgetField span').get(0).innerHTML = formated.join(' - ');
+				var fecha=$('#widgetField span').html();
+				$("#fechaInicio").attr("value", fecha.substr(0,10));
+				$("#fechaFin").attr("value", fecha.substr(13,20));
 			}
 		});
 
