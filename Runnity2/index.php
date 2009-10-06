@@ -11,9 +11,6 @@ $services = new RunnitServices;
 $smarty->assign('section', 'home');
 $smarty->assign('titulo_pagina', 'Próximas carreras y atletas - Runnity.com');
 
-
-/* $smarty->assign('runners',$services->getLastUsersInscribedToRuns()); */
-
 //Get information about the city
 //Set geolocation cookie
 if(!isset($_COOKIE["geolocation"])){
