@@ -364,7 +364,8 @@ class RunnitServices {
 	}	
 	
 	//searchresults
-	public function searchRuns($q,$tipoCarrera,$tipoBusqueda,$fechaInicio,$fechaFin,$offset=0) { 
+/* 		public function searchRuns($q,$tipoCarrera,$tipoBusqueda,$fechaInicio,$fechaFin,$offset) {  */
+	public function searchRuns($q,$tipoBusqueda,$tipoCarrera,$offset) { 
 	    $q=pg_escape_string($q);
         if(!$offset) {
             $offset=0;
@@ -385,13 +386,15 @@ class RunnitServices {
 	   		$sql.=" and r.event_date > now()";	    
 	    }	
 	    
+/*
 	    if($fechaInicio!="") {
 	   		$sql.=" and r.event_date >= '$fechaInicio'";	    
 	    }		        
 
 	    if($fechaFin!="") {
 	   		$sql.=" and r.event_date <= '$fechaFin'";	    
-	    }		        
+	    }
+*/		        
 
 
 	    $terms=explode(" ",$q);
