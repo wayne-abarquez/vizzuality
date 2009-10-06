@@ -76,7 +76,7 @@ package {
 			stage.addEventListener(Event.RESIZE, stageResizeHandler);
 			//this.height = 364;	
 
-			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","http://174.129.214.28:8080"];
+			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080"];
 			for each(var dom:String in externalDomains) {
 			    Security.allowDomain(dom);
 			    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
@@ -156,7 +156,7 @@ package {
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			var paId:Number=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=1;
+				paId=970;
 			} else {
 				paId=root.loaderInfo.parameters.id;
 			}
@@ -213,11 +213,6 @@ package {
 			map.addOverlay(pol);
 			map.setCenter(pol.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(pol.getLatLngBounds())-1);		
 			map.panBy(new Point(-310,0),false);
-			
-			var tl:GeoserverTileLayer = new GeoserverTileLayer();
-			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
-			tlo.foreground.alpha=1;
-			map.addOverlay(tlo);	
 			
 			getPanoramioPics();		
 				
@@ -289,6 +284,11 @@ package {
 				dataAnalyzed=true;
 				loadData();	
 			}
+			
+			var tl:GeoserverTileLayer = new GeoserverTileLayer();
+			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
+			//tlo.foreground.alpha=1;
+			map.addOverlay(tlo);				
 
 		}		
 		
