@@ -90,7 +90,7 @@ $(document).ready(function(){
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
 							            <li id="liField">
-							                <a id="ppalField" href="#" class="{if ($hola=="Mediofondo")}a1{elseif ($hola=="Fondo")}a2{elseif ($hola=="Marathon/Ultrafondo")}a3{elseif ($hola=="Cross/Campo")}a4{elseif ($hola=="Combinadas")}a5{/if}">{$smarty.request.inputTipoCarrera}</a>
+							                <a id="ppalField" href="#" class="{if ($comboTipo=="Mediofondo")}a1{elseif ($comboTipo=="Fondo")}a2{elseif ($comboTipo=="Marathon/Ultrafondo")}a3{elseif ($comboTipo=="Cross/Campo")}a4{elseif ($comboTipo=="Combinadas")}a5{elseif ($comboTipo=="Todas")}a0{/if}">{$smarty.request.inputTipoCarrera}</a>							                
 							                <ul class="subnav">
 							                    <li><a href="#">Todas</a></li>
 							                    <li><a href="#" class="a1">Mediofondo</a></li>
