@@ -89,18 +89,19 @@
 			<p class="title">Accede a tu cuenta</p>
 			<form id="FormularioLogin" method="GET" action="javascript: void login()">
 				<p>e-mail</p>
-				<div class="span-1">
+				<div class="span-1 inputContainer">
 					<label class="inputLogin" for="login1">
 						<input type="text" name="login1" id="emailLogin" class="inputLogin">
 					</label>
 				</div>
-				<p>contraseña</p>
-				<div class="span-1">
+				<p>contraseña</p>			
+				<div class="span-1 inputContainer">
 					<label class="inputLogin" for="login2">
 						<input type="password" name="login2" id="passwordLogin" class="inputLogin">
 					</label>
 				</div>
-				<div class="forgetFind">
+				<!--
+<div class="forgetFind">
 					<div class="forgetPass"><a id="forgetLink" href="javascript: void sendPassword()">¿olvidaste tu contraseña?</a></div>
 					<div class="loginButton"><input id="submitLogin" class="fg-button" type="submit" value="Entrar"/></div>	
 				</div>	
@@ -108,6 +109,7 @@
 					<img id="checking" class="column first registerImage" src="/img/ajax-loader.gif" style="display:none">
 					<div class="column last errorMessage" id="error_msg"></div>
 				</div>
+-->
 			</form>
 		</div>
 		
