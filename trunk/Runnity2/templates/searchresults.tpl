@@ -63,9 +63,15 @@ $(document).ready(function(){
 		$('#ppalField').css("color",$(this).css("color"));
 		$('#ppalField').html(valor);
 		$("ul.subnav").slideUp('fast');
-		document.getElementById("inputTipoCarrera").value = valor;
+		document.getElementById("tipoCarrera").value = valor;
 	});
-
+	
+/*
+	$("#racesTab").click(function() { 
+		document.getElementById("tipoBusqueda").value = getElementById("#current").getAttribute("id='current'"));
+	});
+	
+*/
 });
 </script>
 {/literal}
@@ -80,8 +86,12 @@ $(document).ready(function(){
 				<div class="searchForm">
 					<div class="column regionInput">
 						<form id="searchForm" method="GET" action="/buscar">
-							<!-- input oculto para obtener tipo de carrera -->
-							<input type="hidden" id="inputTipoCarrera" name="inputTipoCarrera" value="{$smarty.request.inputTipoCarrera}">
+							<!-- inputs ocultos para obtener tipo de carrera y rango de fechas -->
+							<input type="hidden" id="tipoBusqueda" name="tipoBusqueda" value="{$tipoBusqueda}">
+							<input type="hidden" id="tipoCarrera" name="tipoCarrera" value="{$tipoCarrera}">
+							<input type="hidden" id="fechaInicio" name="fechaInicio">
+							<input type="hidden" id="fechaFin" name="fechaFin">
+							
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
@@ -90,7 +100,7 @@ $(document).ready(function(){
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
 							            <li id="liField">
-							                <a id="ppalField" href="#" class="{if ($comboTipo=="Mediofondo")}a1{elseif ($comboTipo=="Fondo")}a2{elseif ($comboTipo=="Marathon/Ultrafondo")}a3{elseif ($comboTipo=="Cross/Campo")}a4{elseif ($comboTipo=="Combinadas")}a5{elseif ($comboTipo=="Todas")}a0{/if}">{$smarty.request.inputTipoCarrera}</a>							                
+							                <a id="ppalField" href="#" class="{if ($tipoCarrera=="Mediofondo")}a1{elseif ($tipoCarrera=="Fondo")}a2{elseif ($tipoCarrera=="Marathon/Ultrafondo")}a3{elseif ($tipoCarrera=="Cross/Campo")}a4{elseif ($tipoCarrera=="Combinadas")}a5{elseif ($tipoCarrera=="Todas")}a0{/if}">{$tipoCarrera}</a>							                
 							                <ul class="subnav">
 							                    <li><a href="#">Todas</a></li>
 							                    <li><a href="#" class="a1">Mediofondo</a></li>
@@ -110,7 +120,7 @@ $(document).ready(function(){
 						<div class="inputSearch">
 							<div id="widget">
 								<div id="widgetField">
-									<span>23/09/2009 - 31/09/2009</span>
+									<span>{* {$fechaInicio} - {$fechaFin} *}</span>
 									<a href="#">Selecciona un rango</a>
 								</div>
 								<div id="widgetCalendar">
@@ -127,10 +137,10 @@ $(document).ready(function(){
 					
 				</div>
 				<div class="topPaginator" class="span-24">
-					<div class="column first racesTab">
+					<div id="racesTab" class="column first racesTab">
 					 	<ul>
-					    	<li id="current"><a href="#" title="Link 1"><span>Carreras por llegar</span></a></li>
-					    	<li><a href="#" title="Link 2"><span>Todas las carreras</span></a></li>
+					    	<li {if ($tipoBusqueda=="Todas")}id="current"{/if}><a href="#" title="Link 1"><span>Todas las carreras</span></a></li>
+					    	<li {if ($tipoBusqueda=="Proximas")}id="current"{/if}><a href="#" title="Link 2"><span>Carreras por llegar</span></a></li>
 					  	</ul>
 					</div>
 					<div class="column last upPaginator">
