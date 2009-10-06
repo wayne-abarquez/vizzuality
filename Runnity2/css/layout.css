@@ -62,7 +62,14 @@ img.rssImage{
 #login_modal .title{
 	color: #336699;
 	font-size: 22px;
-	margin: 0px 0px 0px 0px;
+	margin: 10px 0px 0px 20px;
+	padding: 0px 0px 0px 0px;
+}
+
+#login_modal p{
+	color: #336699;
+	margin: 10px 0px 0px 20px;
+	padding: 0px 0px 0px 0px;
 }
 
 label.inputLogin {
@@ -71,7 +78,6 @@ label.inputLogin {
 	background:url(/img/inputLogin.gif) no-repeat 0 0;
 	padding: 0px 0px 0px 0px;
 	height: 25px;
-	margin:0px 0px 0px 0px;
 }
 
 .inputLogin input {
