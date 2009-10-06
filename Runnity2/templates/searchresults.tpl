@@ -66,12 +66,16 @@ $(document).ready(function(){
 		document.getElementById("tipoCarrera").value = valor;
 	});
 	
-/*
-	$("#racesTab").click(function() { 
-		document.getElementById("tipoBusqueda").value = getElementById("#current").getAttribute("id='current'"));
+	$(document.getElementById("racesTab")).click(function() { 
+	    var tipoBusqueda = $("#current a").attr("title");
+		if (tipoBusqueda=="Todas"){
+			document.getElementById("tipoBusqueda").value = "Proximas";
+		}
+		if (tipoBusqueda=="Proximas"){
+			document.getElementById("tipoBusqueda").value = "Todas";
+		}
+		document.getElementById("inputSearchGeneral").click();
 	});
-	
-*/
 });
 </script>
 {/literal}
@@ -87,20 +91,20 @@ $(document).ready(function(){
 					<div class="column regionInput">
 						<form id="searchForm" method="GET" action="/buscar">
 							<!-- inputs ocultos para obtener tipo de carrera y rango de fechas -->
-							<input type="hidden" id="tipoBusqueda" name="tipoBusqueda" value="{$tipoBusqueda}">
+							<input type="hidden" id="tipoBusqueda" name="tipoBusqueda" value="{$smarty.request.tipoBusqueda}">
 							<input type="hidden" id="tipoCarrera" name="tipoCarrera" value="{$tipoCarrera}">
-							<input type="hidden" id="fechaInicio" name="fechaInicio">
-							<input type="hidden" id="fechaFin" name="fechaFin">
+							<input type="hidden" id="fechaInicio">
+							<input type="hidden" id="fechaFin">
 							
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
-									<label class="roundsearch1" for="inputsearch1"><span><input type="text" name="q" id="inputsearch1" class="default" value="Busca por nombre, localidad, provincia"></span></label>			
+									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" class="default" value="Busca por nombre, localidad, provincia"></span></label>			
 								</div>
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
 							            <li id="liField">
-							                <a id="ppalField" href="#" class="{if ($tipoCarrera=="Mediofondo")}a1{elseif ($tipoCarrera=="Fondo")}a2{elseif ($tipoCarrera=="Marathon/Ultrafondo")}a3{elseif ($tipoCarrera=="Cross/Campo")}a4{elseif ($tipoCarrera=="Combinadas")}a5{elseif ($tipoCarrera=="Todas")}a0{/if}">{$tipoCarrera}</a>							                
+							                <a id="ppalField" href="#" class="{if ($tipoCarrera=="Mediofondo")}a1{elseif ($tipoCarrera=="Fondo")}a2{elseif ($tipoCarrera=="Marathon/Ultrafondo")}a3{elseif ($tipoCarrera=="Cross/Campo")}a4{elseif ($tipoCarrera=="Combinadas")}a5{/if}">{if ($tipoCarrera=="")}Todas{else}{$tipoCarrera}{/if}</a>							                
 							                <ul class="subnav">
 							                    <li><a href="#">Todas</a></li>
 							                    <li><a href="#" class="a1">Mediofondo</a></li>
@@ -130,7 +134,7 @@ $(document).ready(function(){
 					</div>
 					
 					<div class="column last buttonSearchBig">
-						<span><a href="#"><input class="buttonsearchbig" type="submit" value="Buscar"/></a></span>
+						<span><a href="#"><input id="inputSearchGeneral" class="buttonsearchbig" type="submit" value="Buscar"/></a></span>
 					</div>
 				</form>
 
@@ -139,8 +143,8 @@ $(document).ready(function(){
 				<div class="topPaginator" class="span-24">
 					<div id="racesTab" class="column first racesTab">
 					 	<ul>
-					    	<li {if ($tipoBusqueda=="Todas")}id="current"{/if}><a href="#" title="Link 1"><span>Todas las carreras</span></a></li>
-					    	<li {if ($tipoBusqueda=="Proximas")}id="current"{/if}><a href="#" title="Link 2"><span>Carreras por llegar</span></a></li>
+					    	<li {if ($tipoBusqueda=="Todas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Todas"><span>Todas las carreras</span></a></li>
+					    	<li {if ($tipoBusqueda=="Proximas")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
 					  	</ul>
 					</div>
 					<div class="column last upPaginator">
@@ -150,7 +154,7 @@ $(document).ready(function(){
 									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
 								{/if}
 								{if $offset < $count-10}
-									<span><a href="?offset={$offset+10}&q={$smarty.request.q}&inputTipoCarrera={$smarty.request.inputTipoCarrera}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
+									<span><a href="?offset={$offset+10}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
 	                			{/if}	
 							</p>	
 	                    {/if}
