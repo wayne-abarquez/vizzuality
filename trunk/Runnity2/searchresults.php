@@ -22,8 +22,6 @@ if(isset($_REQUEST['q'])) {
 	$smarty->assign('titulo_breadcrumb','Todas las carreras');
 }
 
-$smarty->assign('nextRaces',$services->getNextRuns());
-
 $q="";
 if (isset($_REQUEST['q'])) {
 	$q=$_REQUEST['q'];
@@ -32,14 +30,36 @@ if (isset($_REQUEST['q'])) {
 	}
 }
 
-$tipoCarrera="";
-if (isset($_REQUEST['inputTipoCarrera'])) {
-	$tipoCarrera=$_REQUEST['inputTipoCarrera'];
+$tipoCarrera="Todas";
+if (isset($_REQUEST['tipoCarrera'])) {
+	$tipoCarrera=$_REQUEST['tipoCarrera'];
 }
-$smarty->assign('comboTipo', $tipoCarrera);
 
+$smarty->assign('tipoCarrera', $tipoCarrera);
 
-$results=$services->searchRuns($q,$tipoCarrera,$offset);
+$fechaInicio="";
+if (isset($_REQUEST['fechaInicio'])) {
+	$fechaInicio=$_REQUEST['fechaInicio'];
+	$dia=substr($fechaInicio,0,2);
+	$mes=substr($fechaInicio,3,2);
+	$anio=substr($fechaInicio,6,4);
+	$fechaInicio = $anio."-".$mes."-".$dia;
+}
+$smarty->assign('fechaInicio', $fechaInicio);
+
+$fechaFin="";
+if (isset($_REQUEST['fechaFin'])) {
+	$fechaFin=$_REQUEST['fechaFin'];
+	$dia=substr($fechaFin,0,2);
+	$mes=substr($fechaFin,3,2);
+	$anio=substr($fechaFin,6,4);
+	$fechaFin = $anio."-".$mes."-".$dia;
+}
+$smarty->assign('fechaFin', $fechaFin);
+
+$tipoBusqueda="Todas";
+$smarty->assign('tipoBusqueda', $tipoBusqueda);
+$results=$services->searchRuns($q,$tipoCarrera,$tipoBusqueda,$fechaInicio,$fechaFin,$offset);
 $smarty->assign('results',$results['data']);
 $smarty->assign('count', $results['count']);
 $smarty->assign('offset', $offset);
