@@ -25,18 +25,15 @@ if(isset($_REQUEST['q'])) {
 $q="";
 if (isset($_REQUEST['q'])) {
 	$q=$_REQUEST['q'];
-	if ($q="Busca carreras" or $q="Busca por nombre, localidad, provincia"){
-		$q="";
-	}
 }
 
-$tipoCarrera="Todas";
+$tipoCarrera="";
 if (isset($_REQUEST['tipoCarrera'])) {
 	$tipoCarrera=$_REQUEST['tipoCarrera'];
 }
-
 $smarty->assign('tipoCarrera', $tipoCarrera);
 
+/*
 $fechaInicio="";
 if (isset($_REQUEST['fechaInicio'])) {
 	$fechaInicio=$_REQUEST['fechaInicio'];
@@ -56,10 +53,16 @@ if (isset($_REQUEST['fechaFin'])) {
 	$fechaFin = $anio."-".$mes."-".$dia;
 }
 $smarty->assign('fechaFin', $fechaFin);
+*/
 
-$tipoBusqueda="Todas";
+$tipoBusqueda="";
+if (isset($_REQUEST['tipoBusqueda'])) {
+	$tipoBusqueda=$_REQUEST['tipoBusqueda'];
+}
 $smarty->assign('tipoBusqueda', $tipoBusqueda);
-$results=$services->searchRuns($q,$tipoCarrera,$tipoBusqueda,$fechaInicio,$fechaFin,$offset);
+
+/* $results=$services->searchRuns($q,$tipoCarrera,$tipoBusqueda,$fechaInicio,$fechaFin,$offset); */
+$results=$services->searchRuns($q,$tipoBusqueda,$tipoCarrera,$offset);
 $smarty->assign('results',$results['data']);
 $smarty->assign('count', $results['count']);
 $smarty->assign('offset', $offset);
