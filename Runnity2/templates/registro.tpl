@@ -21,6 +21,11 @@
 				
 				<p class="">Nombre y apellidos*</p>
 				<label class="inputRegister" for="inputRegister"><span><input type="text"></span></label>
+				
+				<p class="">Sexo*</p>
+				
+				<p class="">Fecha de nacimiento*</p>
+				
 			</div>
 			
 			
@@ -29,7 +34,14 @@
 		</div>
 		<div class="span-1 last rightColumnRegister">
 		
-		<p class="titleRegisterRight">Crea tu cuenta en un par de minutos y así podrás...</p>
+			<p class="titleRegisterRight">Crea tu cuenta en un par de minutos y así podrás...</p>
+			<ul>
+				<li>· Recibir alertas de carreras en tu ciudad</li>
+				<li>· Subir fotos y videos de carreras</li>
+				<li>· Compartir tus experiencias en carreras</li>
+				<li>· Conocer otros/as runners</li>
+				<li>· Comparar tus resultados con los demás</li>s
+			</ul>
 		
 		</div>
 	</div>
