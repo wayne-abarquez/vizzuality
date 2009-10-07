@@ -74,9 +74,6 @@ $(document).ready(function(){
 		if (tipoBusqueda=="Proximas"){
 			document.getElementById("tipoBusqueda").value = "Todas";
 		}
-		if (tipoBusqueda==""){
-			document.getElementById("tipoBusqueda").value = "";
-		}
 		document.getElementById("inputSearchGeneral").click();
 	});
 });
@@ -102,7 +99,7 @@ $(document).ready(function(){
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
-									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" name="q" class="default" value="Busca por nombre, localidad, provincia"></span></label>			
+									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" class="default" value="Busca por nombre, localidad, provincia"></span></label>			
 								</div>
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
@@ -146,9 +143,8 @@ $(document).ready(function(){
 				<div class="topPaginator" class="span-24">
 					<div id="racesTab" class="column first racesTab">
 					 	<ul>
-				<li {if ($tipoBusqueda=="Proximas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
-				<li {if ($tipoBusqueda=="Todas")}id="current"{/if}><a href="#" title="Todas"><span>Todas las carreras</span></a></li>
-
+					    	<li {if ($tipoBusqueda=="Todas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Todas"><span>Todas las carreras</span></a></li>
+					    	<li {if ($tipoBusqueda=="Proximas")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
 					  	</ul>
 					</div>
 					<div class="column last upPaginator">
@@ -217,13 +213,14 @@ $(document).ready(function(){
         	   		<div class="column last bottomPaginator">
 						{if $count > 10}
  							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$count}</b> de {$count}
-								{if $offset > 0}
-									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&tipoBusqueda={$smarty.request.tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.Inicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
+ 								{if $offset > 0}
+									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&tipoBusqueda={$smarty.request.tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.Inicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonLeftArrowDown" type="button" value="ANTERIORES"/></a></span>
 								{/if}
 								{if $offset < $count-10}
-									<span><a href="?offset={$offset+10}&tipoBusqueda={$smarty.request.tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.Inicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
-	                			{/if}	
-							</p>	
+									<span><a href="?offset={$offset+10}&tipoBusqueda={$smarty.request.tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.Inicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonRightArrowDown" type="button" value="SIGUIENTES"/></a></span>
+                    			{/if}
+ 								
+ 							</p>	
                     	{/if}
 					</div>
 					
