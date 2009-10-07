@@ -146,11 +146,10 @@ package {
 				ti.defaultTextFormat = tf;
 				this.addChild(ti);
 				
-				
-				var zoomPlus:vizzButton = new vizzButton(this,1061,12,124,30,"Search",18,32,5);
+				var zoomPlus:vizzButton = new vizzButton(this,(this.width/2)+339,12,124,30,"Search",18,32,5);
 				var separateBar:Sprite = new Sprite();
-				separateBar.graphics.beginFill(0xcccccc);
-		   		separateBar.graphics.drawRect(1061,13,1,29);
+				separateBar.graphics.beginFill(0xcccccc,1);
+		   		separateBar.graphics.drawRect((this.width/2)+339,13,1,29);
 		   		separateBar.graphics.endFill();
 		   		this.addChild(separateBar);
 				      
@@ -169,7 +168,7 @@ package {
 	            countryText.height = 30;
 	            countryText.x = 0;
 	            countryText.y = 0;
-	            exampleSprite.x = 255;
+	            exampleSprite.x = (this.width/2)-465;
 	            exampleSprite.y = 44;
 	            exampleSprite.addChild(countryText);
 	            exampleSprite.width = 150;
