@@ -93,8 +93,8 @@ $(document).ready(function(){
 							<!-- inputs ocultos para obtener tipo de carrera y rango de fechas -->
 							<input type="hidden" id="tipoBusqueda" name="tipoBusqueda" value="{$smarty.request.tipoBusqueda}">
 							<input type="hidden" id="tipoCarrera" name="tipoCarrera" value="{$tipoCarrera}">
-							<input type="hidden" id="fechaInicio">
-							<input type="hidden" id="fechaFin">
+							<input type="hidden" id="fechaInicio" name="fechaInicio" value="{$smarty.request.fechaInicio}">
+							<input type="hidden" id="fechaFin" name="fechaFin" value="{$smarty.request.fechaFin}">
 							
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
@@ -124,7 +124,7 @@ $(document).ready(function(){
 						<div class="inputSearch">
 							<div id="widget">
 								<div id="widgetField">
-									<span>{* {$fechaInicio} - {$fechaFin} *}</span>
+									<span>{if ($fechaInicioOld!="")}{$fechaInicioOld} - {$fechaFinOld} {/if}</span>
 									<a href="#">Selecciona un rango</a>
 								</div>
 								<div id="widgetCalendar">
