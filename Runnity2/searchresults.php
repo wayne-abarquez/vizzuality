@@ -8,11 +8,6 @@ require 'services/RunnitServices.php';
 $smarty = new Smarty;
 $services = new RunnitServices;
 
-$offset=0;
-if(isset($_REQUEST['offset'])) {
-    $offset=$_REQUEST['offset'];
-}
-
 $smarty->assign('section', 'searchresults');
 if(isset($_REQUEST['q'])) {
 	$smarty->assign('titulo_pagina', 'Resultados de carreras en '.$_REQUEST['q'].' - Runnity.com');
@@ -20,6 +15,11 @@ if(isset($_REQUEST['q'])) {
 } else {
 	$smarty->assign('titulo_pagina', 'Todas las carreras - Runnity.com');
 	$smarty->assign('titulo_breadcrumb','Todas las carreras');
+}
+
+$offset=0;
+if(isset($_REQUEST['offset'])) {
+    $offset=$_REQUEST['offset'];
 }
 
 $q="";
@@ -66,7 +66,7 @@ if (isset($_REQUEST['fechaFin'])) {
 $smarty->assign('fechaFin', $fechaFin);
 $smarty->assign('fechaFinOld', $fechaFinOld);
 
-$tipoBusqueda="";
+$tipoBusqueda="Proximas";
 if (isset($_REQUEST['tipoBusqueda'])) {
 	$tipoBusqueda=$_REQUEST['tipoBusqueda'];
 }
