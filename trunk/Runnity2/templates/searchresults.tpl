@@ -99,7 +99,7 @@ $(document).ready(function(){
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
-									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" class="default" value="Busca por nombre, localidad, provincia"></span></label>			
+									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" name="q" class="default" value="Busca por nombre, localidad, provincia"></span></label>			
 								</div>
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
@@ -143,8 +143,9 @@ $(document).ready(function(){
 				<div class="topPaginator" class="span-24">
 					<div id="racesTab" class="column first racesTab">
 					 	<ul>
-					    	<li {if ($tipoBusqueda=="Todas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Todas"><span>Todas las carreras</span></a></li>
-					    	<li {if ($tipoBusqueda=="Proximas")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
+				<li {if ($tipoBusqueda=="Proximas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
+				<li {if ($tipoBusqueda=="Todas")}id="current"{/if}><a href="#" title="Todas"><span>Todas las carreras</span></a></li>
+
 					  	</ul>
 					</div>
 					<div class="column last upPaginator">
