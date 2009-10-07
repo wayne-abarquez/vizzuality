@@ -7,6 +7,10 @@
 	margin-bottom: -32768px;
 }
 
+.rightColumnRegister ul li{
+	list-style: none;
+}
+
 .titleBoxRegister{
 	height: 54px;
 	background-color: #eeeeee;
@@ -39,7 +43,7 @@
 .leftRegister{
 	width: 264px;
 	margin: 0px 0px 0px 0px;
-	height: 300px;
+	height: 400px;
 }
 
 .leftRegister p{
@@ -87,6 +91,8 @@ label.inputRegister {
 	margin-left: 20px;
 	line-height: 16px;
 }
+
+
 
 /* body */
 body{
