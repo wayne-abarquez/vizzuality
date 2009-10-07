@@ -77,7 +77,7 @@
 						{if $data.inscription_website != null}
 						<div class="span-1 last dataContainer">
 							<div class="span-1 last dataTitle"><p class="textRace">Web:</p></div>
-							<div class="span-1 last data"><p><a target="_blank" id="datos2" href="{if $data.inscription_website|substr:0:7 eq "http://"}{$data.inscription_website}{else}http://{$data.inscription_website}{/if}" class="special">{$data.inscription_website}</a></p></div>
+							<div class="span-1 last data"><p><a target="_blank" id="datos2" href="{if $data.inscription_website|substr:0:7 eq "http://"}{$data.inscription_website}{else}http://{$data.inscription_website}{/if}" class="special">{$data.inscription_website|substr:7}</a></p></div>
 						</div>	
 						{/if}
 						{if $data.tlf_informacion != null}
@@ -156,8 +156,8 @@
 				<ol id="update">
 				{foreach key=id item=comment from=$comments}
 				{if $comment eq false}
-<!--
-					<div class="span-1 last noComments">
+					<!--
+<div class="span-1 last noComments">
 						<p>Aún no hay comentarios sobre esta carrera</p>
         				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
     				</div>  
@@ -321,7 +321,7 @@
 	$(document).ready( function() {
 	    
 	    for (i=1;i<=3;i++){
-			var len = 18;
+			var len = 19;
 			var p = document.getElementById("datos" + i);
 			
 			if (p) {
