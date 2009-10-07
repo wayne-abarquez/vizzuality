@@ -1,35 +1,41 @@
 package com.vizzuality.markers
 {
-	import flash.display.Sprite;
+	import com.vizzuality.VizzualityShape;
 	
-	public class SearchInfowindow
+	import flash.display.Sprite;
+	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	
+	public class SearchInfowindow extends Sprite
 	{
 
-		public function SearchInfowindow() extends Sprite {
           
             public function SearchInfowindow(ob:Object) {
  
             		var labelBackground2:Sprite = new Sprite();
 		            labelBackground2.graphics.beginFill(0x000000,0.6);
- 		            labelBackground2.graphics.drawRoundRect(0,0,200,60+ob.sites*18,7,7);
+ 		            labelBackground2.graphics.drawRoundRect(0,0,200,60+1*18,7,7);
 		            labelBackground2.graphics.endFill();
 		            labelBackground2.mouseChildren=false;
 		            addChild(labelBackground2);  
 		            
 		            var labelBackground:Sprite = new Sprite();
 		            labelBackground.graphics.beginFill(0xFFFFFF,0.4);
-		            labelBackground.graphics.drawCircle(10+2*ob.sites+15,15+2*ob.sites+8,17+2*ob.sites);
+		            labelBackground.graphics.drawCircle(10+2*ob.sites+15,15+2*1+8,17+2*1);
 		            labelBackground.graphics.endFill();
 		            labelBackground.mouseChildren=false;
 		            addChild(labelBackground);		 
 		            
 		            var labelBackground3:Sprite = new Sprite();
 		            labelBackground3.graphics.beginFill(0xFFFFFF,0.8);
-		            labelBackground3.graphics.drawCircle(10+2*ob.sites+15,12+2*ob.sites+11,12+2*ob.sites);
+		            labelBackground3.graphics.drawCircle(10+2*1+15,12+2*1+11,12+2*1);
 		            labelBackground3.graphics.endFill();
 		            labelBackground3.mouseChildren=false;
 		            addChild(labelBackground3);		                       
-            	
+   /*          	
 		            var tf:TextField = new TextField();
                     var format:TextFormat = tf.getTextFormat();
                     format.align = "center";
@@ -42,8 +48,8 @@ package com.vizzuality.markers
                     tf.mouseEnabled = true;
                     tf.width = 30;
                     tf.height=18;
-                    tf.x=10+2*ob.sites;
-                    tf.y=15+2*ob.sites;
+                    tf.x=10+2*1;
+                    tf.y=15+2*1;
                     addChild(tf);            	
 
 					var shape1: VizzualityShape = new VizzualityShape(ob.url);
@@ -59,7 +65,7 @@ package com.vizzuality.markers
                     tf2.textColor = 0xffffff;
                     tf2.width = 130;
                     tf2.height=22;
-                    tf2.x=((10+2*ob.sites+15)*2);
+                    tf2.x=((10+2*1+15)*2);
                     tf2.y=13;
                     tf2.multiline = true;
                     shape1.addChild(tf2);
@@ -79,10 +85,10 @@ package com.vizzuality.markers
                     format3.size = 11;
                     format3.bold=true;
                     tf3.defaultTextFormat = format3;
-                    if (ob.sites>1) {
-                    	tf3.text = ob.sites + " ICCA SITES";
+                    if (1>1) {
+                    	tf3.text = 1 + " ICCA SITES";
                     } else {
-                    	tf3.text = ob.sites + " ICCA SITE";
+                    	tf3.text = 1 + " ICCA SITE";
                     }
                     tf3.textColor = 0x99cc33;
                     tf3.mouseEnabled = false;
@@ -92,7 +98,7 @@ package com.vizzuality.markers
                     tf3.y=0;
                     shape2.mouseChildren=false;
                     shape2.addChild(tf3);
-                    shape2.x=((10+2*ob.sites+15)*2);
+                    shape2.x=((10+2*1+15)*2);
                     shape2.y=34;
                     shape2.width=tf3.width;
                     shape2.height=tf3.height;
@@ -109,11 +115,11 @@ package com.vizzuality.markers
 	                    format4.size = 12;
 	                    format4.bold=true;
 	                    tf4.defaultTextFormat = format4;
-						tf4.text = "- " + (ob.textSites as Array)[i].name;
+						tf4.text = "- " + ([] as Array)[i].name;
 	                    tf4.textColor = 0xFFFFFF;
 	                    tf4.width = 130;
 	                    tf4.height=20;
-	                    tf4.x=((10+2*ob.sites+15)*2);
+	                    tf4.x=((10+2*1+15)*2);
 	                    tf4.y=55+i*15;
 	                    shape3.addChild(tf4);
 	                    shape3.mouseChildren=false;
@@ -121,7 +127,7 @@ package com.vizzuality.markers
                     	shape3.useHandCursor=true;
 	                    addChild(shape3);
 	                    shape3.addEventListener(MouseEvent.CLICK,clicked);
-                    } 
+                    }  */
             }
             
           	private function clicked(event:MouseEvent):void {
