@@ -1506,3 +1506,21 @@ div.inputRight .a5 {
 .buttonRegister:hover{
 	background-color:#fc6602;
 }
+
+.content404{
+	height: 300px;
+	text-align: center;
+	color: #666666;
+	font-size: 15px;
+	padding-top: 80px;
+}
+
+.content404 p a{
+	font-weight: bold;	
+	color: #336699;
+	text-decoration: none;
+}
+
+.content404 p a:hover{
+	color: #333333;
+}
