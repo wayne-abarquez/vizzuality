@@ -1,3 +1,32 @@
+/* REGISTRO */
+.titleBoxRegister{
+	height: 54px;
+	background-color: #eeeeee;
+	width: 910px;
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.titleBoxRegister p{
+	font-size: 22px;
+	color: #336699;
+	margin-top: 8px;
+	margin-left: 14px;
+}
+
+.registerInfoTicket{
+	background-image: url(/img/registerTicket.gif);
+	background-repeat: no-repeat;
+	height: 41px;
+	width: 609px; 
+}
+
+.registerInfoTicket p{
+	font-size: 15px;
+	color: #ffffff; 
+	margin-top: 5px;
+text-align: center;}
+
 body{
 	outline: none;
 }
