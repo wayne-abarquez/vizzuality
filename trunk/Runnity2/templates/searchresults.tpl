@@ -91,7 +91,7 @@ $(document).ready(function(){
 					<div class="column regionInput">
 						<form id="searchForm" method="GET" action="/buscar">
 							<!-- inputs ocultos para obtener tipo de carrera y rango de fechas -->
-							<input type="hidden" id="tipoBusqueda" name="tipoBusqueda" value="{$smarty.request.tipoBusqueda}">
+							<input type="hidden" id="tipoBusqueda" name="tipoBusqueda" value="Proximas">
 							<input type="hidden" id="tipoCarrera" name="tipoCarrera" value="{$tipoCarrera}">
 							<input type="hidden" id="fechaInicio" name="fechaInicio" value="{$smarty.request.fechaInicio}">
 							<input type="hidden" id="fechaFin" name="fechaFin" value="{$smarty.request.fechaFin}">
@@ -151,10 +151,10 @@ $(document).ready(function(){
 						{if $count > 10}
 							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$count}</b> de {$count}
 								{if $offset > 0}
-									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&tipoBusqueda={$smarty.request.tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.Inicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
+									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&tipoBusqueda={$tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.fechaInicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
 								{/if}
 								{if $offset < $count-10}
-									<span><a href="?offset={$offset+10}&tipoBusqueda={$smarty.request.tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.Inicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
+									<span><a href="?offset={$offset+10}&tipoBusqueda={$tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.fechaInicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
 	                			{/if}	
 							</p>	
 	                    {/if}
