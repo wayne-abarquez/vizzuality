@@ -155,8 +155,12 @@ package {
 	                        openInfoWindow(e);     
                         }
                         rollingOver=true;                                                                
-                });			
-                iw[m]=area.data;	
+                });	
+                
+                var markerData: Object = new Object();	
+                markerData.coordenates = area.getLatLngBounds().getCenter();
+                markerData.area = area.data.name;	
+                iw[m]=markerData;	
                 
 				map.addOverlay(m);                
                 
@@ -179,12 +183,12 @@ package {
               customContent: infoWindowToOpen,
               padding: 10,
               hasCloseButton: false,
-              pointOffset:new Point(-10-2*m.sites,-15-2*m.sites),
+              pointOffset:new Point(-25,-20),
               hasShadow: false
             });
             
             infoWindowToOpen.alpha=0;
-            map.openInfoWindow(new LatLng(m.lat,m.lng),options);
+            map.openInfoWindow(new LatLng(m.coordenates.lat(),m.coordenates.lng()),options);
             TweenLite.to(infoWindowToOpen,0.5,{alpha:1});
                 
         }	 
