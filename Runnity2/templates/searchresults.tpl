@@ -143,8 +143,8 @@ $(document).ready(function(){
 				<div class="topPaginator" class="span-24">
 					<div id="racesTab" class="column first racesTab">
 					 	<ul>
-					    	<li {if ($tipoBusqueda=="Todas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Todas"><span>Todas las carreras</span></a></li>
-					    	<li {if ($tipoBusqueda=="Proximas")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
+					 		<li {if ($tipoBusqueda=="Proximas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
+					    	<li {if ($tipoBusqueda=="Todas")}id="current"{/if}><a href="#" title="Todas"><span>Todas las carreras</span></a></li>
 					  	</ul>
 					</div>
 					<div class="column last upPaginator">
@@ -188,7 +188,7 @@ $(document).ready(function(){
 	    							<p class="span-18"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="raceTitleText">{$race.name}</a></p>
 	    							<div id="socialDetails">
 	    								<div class="column socialBox first"><img src="/img/photo.jpg"/><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">12 FOTOS</a></div>
-	    								<div class="column socialBox last"><img src="img/comment.jpg"/> <a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">12 COMENTARIOS</a></div>
+	    								<div class="column socialBox last"><img src="img/comment.jpg"/> <a href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.num_comments} comentarios</a></div>
 	    							</div>
 	    						</div>
 	    						{if $race.num_users>0}
