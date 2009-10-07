@@ -1,6 +1,22 @@
 
 /* REGISTRO */
 
+.LoginEnRegistro{
+	width: 610px;
+	margin-right: 10px;
+}
+
+.LoginEnRegistro p{
+	float: right;
+	color: #666666;
+}
+
+.LoginEnRegistro a{
+	color: #336699;
+	text-decoration: none;
+	font-weight: bold;
+}
+
 .buttonLocalizacion{background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: no-repeat; height: 26px; width: 61px; border: none; margin-left: -7px; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer;}
 .buttonLocalizacion:hover{background-image: url(/img/buttonLocalizacion_hover.gif);color: #ffffff;}
 
@@ -33,7 +49,7 @@ label.roundLocalizacion {
 	color: #666666;
 	font-size: 13px;
 	font-weight: bold;
-	margin: 58px 0px 0px 0px;
+	margin: 78px 0px 0px 0px;
 }
 
 .alertsMap{
@@ -48,7 +64,7 @@ label.roundLocalizacion {
 }
 
 .pageUser{
-	margin-top: 143px;
+	margin-top: 123px;
 	color: #666666;
 }
 
@@ -157,7 +173,7 @@ label.roundLocalizacion {
 .leftRegister{
 	width: 264px;
 	margin: 0px 0px 0px 0px;
-	height: 500px;
+	height: 440px;
 }
 
 .leftRegister p{
