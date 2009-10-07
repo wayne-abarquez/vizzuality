@@ -25,7 +25,6 @@
 	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
 	<link rel="stylesheet" href="/css/menu.css" type="text/css">	
 	<link rel="stylesheet" href="/css/datepicker.css" type="text/css">
-	<link rel="stylesheet" href="/css/combobox.css" type="text/css">
 	<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection">
 	
 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity" />
@@ -37,8 +36,7 @@
 	<!-- Import JS source files -->
 	
 	<script type="text/javascript" src="/js/jquery.js"></script>
-	
- 	<script type="text/javascript" src="/js/jquery.combobox.js"></script>	
+		
 	<script type="text/javascript" src="/js/datepicker.js"></script>
     <script type="text/javascript" src="/js/eye.js"></script>
     <script type="text/javascript" src="/js/utils.js"></script>

@@ -156,10 +156,12 @@
 				<ol id="update">
 				{foreach key=id item=comment from=$comments}
 				{if $comment eq false}
+<!--
 					<div class="span-1 last noComments">
 						<p>Aún no hay comentarios sobre esta carrera</p>
         				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
     				</div>  
+-->
 				{else}	    										
 					<div id="comment" class="span-1 last">
 						<div class="span-1 last avatarBox">
@@ -190,7 +192,12 @@
 					<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
 					<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
 				{else}
-<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="#">¿Aún no estás registrado?</a></b></p>
+				<div class="span-1 iconPhrase">
+					<img src="/img/slash.gif"/>
+				</div>
+				<div>
+					<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="#">¿Aún no estás registrado?</a></b></p>
+				</div>
 				 {/if}
 
 				</div>
