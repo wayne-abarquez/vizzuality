@@ -68,8 +68,12 @@
 				<div class="span-12 first"><p >Al hacer click en “Registrarse” aceptas los <a href="#">Términos y condiciones</a> de runnity.com</p></div>
 				<input class="fg-button buttonRegister" type="submit" value="Registrarse"/>
 			</div>
+			
+			<div class="span-1 LoginEnRegistro"><p>¿Ya tienes una cuenta en runnity? <a href="javascript: void showLoginWindow()">Haz login</a></p></div>
 
+		
 		</div>
+		
 		<div class="span-1 last rightColumnRegister">
 			<p class="titleRegisterRight">Crea tu cuenta en un par de minutos y así podrás...</p>
 			<ul>
@@ -81,8 +85,8 @@
 				<li>· <b>Comparar tus resultados</b> con los demás</li>
 			</ul>
 		</div>
-		
 	</div>
+	
 	</div>
 
 {include file="footer.tpl"} 
