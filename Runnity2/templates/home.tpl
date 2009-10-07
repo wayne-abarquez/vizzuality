@@ -171,7 +171,7 @@
 			<p class="titularTitle titularTitleFirst">ENTÉRATE Y PLANEA</p>
 			<p class="titularInfo">Obtén la mejor información de los eventos que están por venir; Recorridos, mapas, altimetrías, fotos, comentarios, ediciones pasadas...</p>	
 			<br>
-			<a href="">Mira una carrera de ejemplo</a>
+			<a href="/run/234/Carrera/Popular/La/Melonera">Mira una carrera de ejemplo</a>
 		</div>
 		<div class="span-1 titularColumn titularColumn2">
 			<p class="titularTitle">DISFRUTA LA CARRERA</p>
@@ -182,7 +182,7 @@
 			<p class="titularTitle">VUELVE Y COMÉNTALO</p>
 			<p class="titularInfo titularInfo2">¡Sube tus fotos, tus tiempos, clasificaciones y haz de Runnity un sitio cada vez mejor y más completo!</p>
 			<br><br>
-			<a href="">Regístrate y participa</a>
+			<a href="/registro.php">Regístrate y participa</a>
 		</div>
 	</div>
 </div>
