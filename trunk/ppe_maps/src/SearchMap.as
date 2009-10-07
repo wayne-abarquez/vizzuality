@@ -6,6 +6,7 @@ package {
 	import com.google.maps.MapType;
 	import com.google.maps.styles.FillStyle;
 	import com.greensock.plugins.*;
+	import com.vizzuality.*;
 	
 	import flash.display.GradientType;
 	import flash.display.SpreadMethod;
@@ -13,10 +14,12 @@ package {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.system.Security;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
@@ -121,12 +124,15 @@ package {
 				searchContainer.graphics.drawRoundRect((this.width/2)-475, 0, 950, 68, 5);
 				searchContainer.graphics.endFill();
 	
-				addChild(searchContainer);
+				this.addChild(searchContainer);
 				
 				var tf:TextFormat = new TextFormat();
-				tf.size = 20;
+				tf.size = 14;
 				tf.color = 0x666666;
 				tf.italic = true;
+				tf.font = "Arial";
+				tf.leftMargin = 5;
+				tf.rightMargin = 5;
 				var ti:TextField = new TextField();
 				ti.type = TextFieldType.INPUT;
 				ti.backgroundColor = 0xffffff;
@@ -138,25 +144,45 @@ package {
 				ti.width = 806;
 				ti.height = 30;
 				ti.defaultTextFormat = tf;
-				addChild(ti);
-				
-
-				var tf2:TextFormat = new TextFormat();
-				tf2.size = 13;
-				tf2.bold = true;
-				tf2.color = 0xFFFFFF;
-				var ti2:TextField = new TextField();
-				ti2.x = 255;
-				ti2.y = 44;
-				ti2.width = 150;
-				ti2.height = 30;
-				ti2.text = "E.x: Yosemite Narual park";
-				ti2.defaultTextFormat = tf2;
-				
-				addChild(ti2);
+				this.addChild(ti);
 				
 				
-		}			
-				
+				var zoomPlus:vizzButton = new vizzButton(this,1061,12,124,30,"Search",18,32,5);
+				var separateBar:Sprite = new Sprite();
+				separateBar.graphics.beginFill(0xcccccc);
+		   		separateBar.graphics.drawRect(1061,13,1,29);
+		   		separateBar.graphics.endFill();
+		   		this.addChild(separateBar);
+				      
+	            var exampleSprite: VizzualityShape = new VizzualityShape("http://localhost:3000/");
+	            var countryText: TextField = new TextField();
+	            countryText.text =  "E.x: Yosemite Natural park";
+	            var newFormat:TextFormat = new TextFormat(); 
+       			newFormat.size = 10; 
+       			newFormat.color = 0xFFFFFF;
+       			newFormat.bold = true;
+       			newFormat.letterSpacing = 0;
+				newFormat.font = "Arial";
+        		countryText.setTextFormat(newFormat); 
+	            countryText.wordWrap = true;
+	            countryText.width = 150;
+	            countryText.height = 30;
+	            countryText.x = 0;
+	            countryText.y = 0;
+	            exampleSprite.x = 255;
+	            exampleSprite.y = 44;
+	            exampleSprite.addChild(countryText);
+	            exampleSprite.width = 150;
+	            exampleSprite.height = 30; 
+	            exampleSprite.mouseChildren=false;
+                exampleSprite.buttonMode=true;
+                exampleSprite.useHandCursor=true;
+	            addChild(exampleSprite);
+	            exampleSprite.addEventListener(MouseEvent.CLICK,clicked);					
+		}	
+		
+		private function clicked(event:MouseEvent):void {
+			    navigateToURL(new URLRequest(event.target.url));
+		}					
 	}
 }
