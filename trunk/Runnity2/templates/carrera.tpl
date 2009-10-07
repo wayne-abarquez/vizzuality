@@ -197,7 +197,7 @@
 					<img src="/img/slash.gif"/>
 				</div>
 				<div>
-					<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="#">¿Aún no estás registrado?</a></b></p>
+					<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="/registro.php">¿Aún no estás registrado?</a></b></p>
 				</div>
 				 {/if}
 
