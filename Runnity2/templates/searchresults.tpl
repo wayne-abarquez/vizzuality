@@ -99,7 +99,7 @@ $(document).ready(function(){
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
-									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" class="default" value="Busca por nombre, localidad, provincia"></span></label>			
+									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" class="default" value="Busca por nombre, localidad, provincia" name="q"></span></label>			
 								</div>
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
