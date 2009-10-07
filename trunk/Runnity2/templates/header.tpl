@@ -128,7 +128,7 @@
 				{else}
 				<a href="javascript: void showLoginWindow()">accede a tu cuenta</a>
 				/ 
-				<a>registrarse</a>
+				<a href="/registro.php">registrarse</a>
 				{/if}
 			</p>
 		</div>
