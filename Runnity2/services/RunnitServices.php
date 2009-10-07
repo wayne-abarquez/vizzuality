@@ -450,6 +450,17 @@ class RunnitServices {
         } else {
             $results['count'] =0;  
         }
+        
+        //Iterate over the array to check if the runs have images on the server or not and provide a random one
+	    foreach ($results['data'] as &$run) {
+	        $targetPicture=$this->basePath."media/run/".$run['id']."_small.jpg";
+            if (file_exists($targetPicture)) {
+                $run['thumbnail'] = $run['id']."_small.jpg";
+            } else {
+                //no image for the run, select random
+                $run['thumbnail'] = "generic/".rand(1,4)."_small.jpg";
+            }
+        }
 
         return $results;  
 	}
