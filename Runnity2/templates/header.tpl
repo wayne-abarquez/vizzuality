@@ -160,7 +160,7 @@
 				<a href="#"><div class="menu_button"><p>Publica tu carrera en runnity</p></div></a>
 			</div>			
 		{/if}
-		{if $section eq "usuario" or $section eq "registro"} 
+		{if $section eq "usuario" or $section eq "registro" or $section eq "404"} 
 			<div class="buttonmenuContainer">
 				<a href="#"><div class="menu_button"><p>Invita a tus amigos a runnity</p></div></a>
 			</div>			
