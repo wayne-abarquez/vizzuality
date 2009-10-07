@@ -180,7 +180,7 @@ $(document).ready(function(){
 	    								<div class="day">{$race.event_date|substr:8:2}</div>
 	    							</div>
 	    							<div class="column last">
-	    								<div ><img src="/img/avatar2.jpg"></div>
+	    								<div><img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/></div>
 	    							</div>
 	    						</div>
 	    						<div class="column last">
