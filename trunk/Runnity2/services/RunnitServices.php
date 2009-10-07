@@ -364,8 +364,7 @@ class RunnitServices {
 	}	
 	
 	//searchresults
-/* 		public function searchRuns($q,$tipoCarrera,$tipoBusqueda,$fechaInicio,$fechaFin,$offset) {  */
-	public function searchRuns($q,$tipoBusqueda,$tipoCarrera,$offset) { 
+		public function searchRuns($q,$tipoCarrera,$tipoBusqueda,$fechaInicio,$fechaFin,$offset) { 
 	    $q=pg_escape_string($q);
         if(!$offset) {
             $offset=0;
@@ -382,11 +381,6 @@ class RunnitServices {
 	    
 	    $sql.=" from run as r left join province as p on r.province_fk=p.id where published=true ";
 	    
-	    if($tipoBusqueda=="Proximas") {
-	   		$sql.=" and r.event_date > now()";	    
-	    }	
-	    
-/*
 	    if($fechaInicio!="") {
 	   		$sql.=" and r.event_date >= '$fechaInicio'";	    
 	    }		        
@@ -394,7 +388,12 @@ class RunnitServices {
 	    if($fechaFin!="") {
 	   		$sql.=" and r.event_date <= '$fechaFin'";	    
 	    }
-*/		        
+	    
+	    if($tipoBusqueda=="Proximas") {
+	   		$sql.=" and r.event_date > now()";	    
+	    }	
+	    
+		        
 
 
 	    $terms=explode(" ",$q);
