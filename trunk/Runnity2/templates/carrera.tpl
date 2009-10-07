@@ -105,11 +105,14 @@
 					<p class="titulo tituloLeft tituloRight columnLonga">DESCRIPCIÓN Y DATOS ADICIONALES</p>
 					<p class="textRace">
 						{if $data.description!=null}
-							{$data.description}
+							<p class="textRace">{$data.description}</p>
 						{else}
-							No hay descripción para esta carrera, ¿te animas a <a href="javascript: void showContactBox()">enviarnos una?</a>
+							<div class="nodesc">
+								<img src="/img/nodesc.gif" />
+								<p>Aún no tenemos descripción para esta carrera,<br /> 
+								<a href="javascript: void showContactBox()">¿te animas a enviarnos una?</a></p>
+							</div>
 						{/if}	
-					</p>
 				</div>			
 			</div>
 

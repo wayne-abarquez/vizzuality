@@ -1523,6 +1523,17 @@ div.inputRight .a5 {
 	background-color:#fc6602;
 }
 
+.nodesc{
+	text-align: center;
+	color: #666666;
+}
+
+.nodesc a{
+	color: #336699;
+	font-weight: bold;
+	text-decoration: none;
+}
+
 .content404{
 	height: 300px;
 	text-align: center;
