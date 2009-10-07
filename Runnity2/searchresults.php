@@ -25,9 +25,6 @@ if(isset($_REQUEST['q'])) {
 $q="";
 if (isset($_REQUEST['q'])) {
 	$q=$_REQUEST['q'];
-	if($q=="Busca carreras" or $q=="Busca por nombre, localidad, provincia"){
-		$q="";
-	}
 }
 
 $tipoCarrera="";
@@ -66,7 +63,7 @@ if (isset($_REQUEST['fechaFin'])) {
 $smarty->assign('fechaFin', $fechaFin);
 $smarty->assign('fechaFinOld', $fechaFinOld);
 
-$tipoBusqueda="Proximas";
+$tipoBusqueda="";
 if (isset($_REQUEST['tipoBusqueda'])) {
 	$tipoBusqueda=$_REQUEST['tipoBusqueda'];
 }
