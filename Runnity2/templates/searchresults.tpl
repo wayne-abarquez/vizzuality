@@ -91,7 +91,7 @@ $(document).ready(function(){
 					<div class="column regionInput">
 						<form id="searchForm" method="GET" action="/buscar">
 							<!-- inputs ocultos para obtener tipo de carrera y rango de fechas -->
-							<input type="hidden" id="tipoBusqueda" name="tipoBusqueda" value="Proximas">
+							<input type="hidden" id="tipoBusqueda" name="tipoBusqueda" {if $smarty.request.q!=""}value="{$smarty.request.tipoBusqueda}"{else}value="Proximas"{/if}>
 							<input type="hidden" id="tipoCarrera" name="tipoCarrera" value="{$tipoCarrera}">
 							<input type="hidden" id="fechaInicio" name="fechaInicio" value="{$smarty.request.fechaInicio}">
 							<input type="hidden" id="fechaFin" name="fechaFin" value="{$smarty.request.fechaFin}">
