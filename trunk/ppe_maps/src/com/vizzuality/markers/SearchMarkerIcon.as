@@ -1,8 +1,11 @@
 package com.vizzuality.markers
 {
-	public class SearchMarkerIcon
-	{
-		public function SearchMarkerIcon()extends Sprite {
+	import flash.display.Shape;
+	import flash.display.Sprite;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	
+	public class SearchMarkerIcon extends Sprite {	
 
             public function SearchMarkerIcon(imageUrl:String,sites:int) {
      
@@ -25,7 +28,7 @@ package com.vizzuality.markers
                     format.size = 12;
                     format.bold=true;
                     tf.defaultTextFormat = format;
-                    tf.text = texto;
+                    tf.text = 'asdasd';
                     tf.textColor = 0xffffff;
                     tf.mouseEnabled = false;
                     tf.width = 30;

@@ -21,6 +21,7 @@ package {
 	import com.greensock.plugins.*;
 	import com.vizzuality.ImageContainer;
 	import com.vizzuality.data.ImageData;
+	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
 	import flash.display.Bitmap;
@@ -156,7 +157,7 @@ package {
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			var paId:Number=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=970;
+				paId=1;
 			} else {
 				paId=root.loaderInfo.parameters.id;
 			}
@@ -190,12 +191,9 @@ package {
 				
 		}
 		
+		
 		private function loadData():void {
-			//Add the polygon
-			var polCords:Array=[];
-			for each(var coords:Array in data.coordinates[0][0]) {
-				polCords.push(new LatLng(coords[1],coords[0]));
-			}
+			
 			
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
@@ -209,12 +207,19 @@ package {
 				  }	
 			});
 			
-			pol = new Polygon(polCords,polOpt);
-			map.addOverlay(pol);
-			map.setCenter(pol.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(pol.getLatLngBounds())-1);		
+			var mp:Multipolygon= new Multipolygon();
+			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);						
+			mp.addToMap(map);
+			
+			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);		
 			map.panBy(new Point(-310,0),false);
 			
-			getPanoramioPics();		
+
+			map.panBy(new Point(-310,0),false);
+			
+			
+			
+			//getPanoramioPics();		
 				
 		}
 		
