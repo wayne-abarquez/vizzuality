@@ -48,7 +48,6 @@
     			</div>
 			</div>
 			
-			
 			<div class="span-1 last rightRegister"></div>
 		
 		</div>
