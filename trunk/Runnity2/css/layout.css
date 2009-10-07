@@ -861,7 +861,8 @@ div.month5 {background-color: #9f00c6;}
 }
 
 .dataTitle{
-	width: 60px;
+	font-size: 11px;
+	width: 50px;
 }
 
 .data{
