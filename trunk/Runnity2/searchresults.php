@@ -25,6 +25,9 @@ if(isset($_REQUEST['q'])) {
 $q="";
 if (isset($_REQUEST['q'])) {
 	$q=$_REQUEST['q'];
+	if($q=="Busca carreras" or $q=="Busca por nombre, localidad, provincia"){
+		$q="";
+	}
 }
 
 $tipoCarrera="";
