@@ -1,3 +1,4 @@
+
 /* REGISTRO */
 .rightColumnRegister{
 	border-left: 1px dotted #c3c3c3;
@@ -599,7 +600,7 @@ a.verTodas:hover{
 /* cosas */
 .avatar2{
 	height: 75px;
-	width: 104px;
+	width: 103px;
 	border: 1px solid #d7d7d7;
 	background-color: white;
 	margin-left: 4px;
@@ -613,11 +614,11 @@ a.verTodas:hover{
 
 .avatar2Orange{
 	height: 75px;
-	width: 104px;
+	width: 103px;
 	border: 1px solid #cc3300;
 	background-color: white;
 	margin-left: 10px;
-	margin-top: 4px;
+	margin-top: 2px;
 	margin-bottom: 3px;
 }
 
@@ -826,6 +827,8 @@ div.month5 {background-color: #9f00c6;}
 .imageCarrera{
 	width: 608px;
 	height: 238px;
+	margin-top: -12px;
+	margin-bottom: 3px;
 }
 
 .raceData{width: 229px;}
@@ -928,23 +931,24 @@ div.mapStyleRight {
 .buttonSearchFirst{background-color: #336699; background-image: url(/img/search_button.jpg); background-repeat: no-repeat; height: 28px; width: 76px; border: none; margin-left: -7px; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer;}
 .buttonSearchFirst:hover{background-image: url(/img/search_button_hover.jpg);color: #ffffff;}
 
-#comment {width: 610px; border-bottom: 1px dotted #cccccc; margin-bottom: 10px;}
+#comment {width: 610px; border-bottom: 1px dotted #cccccc; margin-left: -17px; margin-top: 8px;}
 #comment a.name {color: #666666; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
 #comment div.commentBox {margin-left: 10px; width: 500px; height: 76px; margin-bottom: 10px;}
 #comment div.commentBox p {margin-right: 30px;}
 #comment div.commentBox p.commentUser {float: left; margin-right: 30px; color: #666666;}
+#comment div.commentBox p.commentUser a {color: #336699; font-weight: bold; text-decoration: none;}
+#comment div.commentBox p.commentUser a:hover {color: #333333;}
 #comment div.commentBox div.nameUser {margin-left: 30px; color: #666666;}
 
 .noComments{
-	width: 610px;
-	height: 70px;
-	margin-top: 20px;
+	margin-top: 3px;
+	width: 590px;
 }
 
 .noComments p{
 	color: #666666;
 	margin-top: 0px;
-	margin-bottom: 0px;
+	margin-bottom: 15px;
 	text-align: center;
 }
 
@@ -952,6 +956,11 @@ div.mapStyleRight {
 	color: #336699;
 	text-decoration: none;
 	font-weight: bold;
+}
+
+.iconPhrase{
+	width: 16px;
+	margin-top: 3px;	
 }
 
 .publica{
@@ -963,10 +972,13 @@ div.mapStyleRight {
 
 .avatarBox{
 	border: 1px solid #cccccc;
-	width: 67px;
-	height: 66px;
-	padding-bottom: 10px;
-	padding-right: 10px;
+	width: 73px;
+	height: 72px;
+}
+
+.avatarBox img{
+	margin-left: 3px;
+	margin-top: 3px;
 }
 
 .bannerTopPhotos{
@@ -980,10 +992,9 @@ div.mapStyleRight {
 
 div.boxraceMap {
 	width: 610px;
-	height: 140px;
 	background-color: #f1f4f8;
 	margin-bottom: 10px;
-	margin-top: -10px;
+	margin-left: 1px;
 }
 
 div.commentArea {
