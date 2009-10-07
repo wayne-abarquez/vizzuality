@@ -135,7 +135,7 @@
 		<div class="span-18 search">
 			<form id="searchForm" class="span-14" action="/buscar" method="get">
 				<label class="roundsearchFirst last" for="inputsearchFirst">
-					<input type="text" id="inputsearchFirst" value="Busca carreras" class="default">
+					<input type="text" id="inputsearchFirst" value="Busca carreras" class="default" name="q">
 				</label>
 				<label class="searchButtonFirst last">
 					<input type="submit" value="Buscar" class="buttonSearchFirst"/>
