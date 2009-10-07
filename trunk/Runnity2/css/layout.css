@@ -151,24 +151,17 @@ img.rssImage{
 	width: 484px; 
 	background: #eaeaea;
 	border:6px solid #ffffff;
+	padding-bottom: 20px;
 }
 
-#login_modal .loginForm{
-	width: 233px;
-}
+#login_modal .loginForm{ width: 203px; padding-left: 20px; padding-top: 10px; letter-spacing: -1px;}
+#login_modal .title{ color: #336699; font-size: 22px; margin: 10px 0px 0px 0px; padding: 0px 0px 0px 0px; }
+#login_modal p{ color: #999999; font-weight: bold; margin: 10px 0px 0px 0px; padding: 0px 0px 0px 0px; }
+#login_modal div.forgetFind{ float: left; margin-top: 12px;}
+#login_modal div.forgetPass{ text-align: left; float: left; margin-right: 28px; padding-top: 3px;}
+#login_modal div.forgetPass a{ color:#336699;}
+#login_modal div.loginButton{ float: right; }
 
-#login_modal .title{
-	color: #336699;
-	font-size: 22px;
-	margin: 10px 0px 0px 20px;
-	padding: 0px 0px 0px 0px;
-}
-
-#login_modal p{
-	color: #336699;
-	margin: 10px 0px 0px 20px;
-	padding: 0px 0px 0px 0px;
-}
 
 label.inputLogin {
 	float:left;
@@ -176,6 +169,7 @@ label.inputLogin {
 	background:url(/img/inputLogin.gif) no-repeat 0 0;
 	padding: 0px 0px 0px 0px;
 	height: 25px;
+	width: 192px;
 }
 
 .inputLogin input {
@@ -753,6 +747,10 @@ a.verTodas:hover{
 	margin-right: 0px;
 }
 
+.columnLonga{
+	width: 380px;
+}
+
 .tweet{
 	height: 50px;
 	width: 290px;
@@ -942,7 +940,7 @@ div.mapStyleRight {
 #comment div.commentBox div.nameUser {margin-left: 30px; color: #666666;}
 
 .noComments{
-	margin-top: 3px;
+	margin-top: 20px;
 	width: 590px;
 }
 
@@ -961,7 +959,7 @@ div.mapStyleRight {
 
 .iconPhrase{
 	width: 16px;
-	margin-top: 3px;	
+	margin-top: 20px;	
 }
 
 .publica{
@@ -994,6 +992,7 @@ div.mapStyleRight {
 div.boxraceMap {
 	width: 610px;
 	background-color: #f1f4f8;
+	padding-bottom: 20px;
 	margin-bottom: 10px;
 	margin-left: 1px;
 }

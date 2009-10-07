@@ -102,7 +102,7 @@
 			
 			<div class="span-1 last raceDescription">
 				<div class="span-1 last functionalContainer">
-					<p class="titulo tituloLeft tituloRight">DESCRIPCIÓN Y DATOS ADICIONALES</p>
+					<p class="titulo tituloLeft tituloRight columnLonga">DESCRIPCIÓN Y DATOS ADICIONALES</p>
 					<p class="textRace">
 						{if $data.description!=null}
 							{$data.description}
@@ -115,10 +115,11 @@
 
 			
 			<div class="span-1 last columnLong">
-				<p class="titulo tituloLeft tituloRight">MAPA DE LA CARRERA Y ALTIMETRÍA APROXIMADA</p>
 				{if $data.start_point_lat == null}
-                	<div id="map3Container" class="span-16"></div>
-                {else}	
+				
+                {else}
+					<p class="titulo tituloLeft tituloRight">MAPA DE LA CARRERA Y ALTIMETRÍA APROXIMADA</p>
+                	<div id="map3Container" class="span-16"></div>                
 					<div>
 						<div class="mapStyle">
 							<div id="trackMap">
