@@ -260,7 +260,7 @@ function commentAction(id,on_table) {
 //INSCRIBIRSE O QUITARSE LA CARRRERA
 function inscribirseCarrera(userID,raceID) {
 	
-		$('#ticketOrangeVoy').html('<a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Incribiéndote a esta carrera...</p>');
+		$('#ticketOrangeVoy').html('<b><a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Incribiéndote a esta carrera...</p></b>');
 		var dataObj = ({runId : raceID,
 	        method: 'inscribeUserToRun',
 	        userId: userID
@@ -272,7 +272,7 @@ function inscribirseCarrera(userID,raceID) {
 	    	data: dataObj,
 	    	cache: false,
 	    	success: function(result){     				
-				$('#ticketOrangeVoy').html('<a><div class="checkboxChecked"></div></a><p id="textoInscribirse">Estoy apuntado a esta carrera</p>');	    	
+				$('#ticketOrangeVoy').html('<b><a><div class="checkboxChecked"></div></a><p id="textoInscribirse">Estoy apuntado a esta carrera</p></b>');	    	
 				},
 	        error:function (xhr, ajaxOptions, thrownError){   
 	                alert('Runnit' + xhr.message + "\n" + thrownError);
