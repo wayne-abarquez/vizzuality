@@ -213,12 +213,12 @@ $(document).ready(function(){
         	   		<div class="column last bottomPaginator">
 						{if $count > 10}
  							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$count}</b> de {$count}
- 								{if $offset > 0}
-									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&tipoBusqueda={$smarty.request.tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.Inicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonLeftArrowDown" type="button" value="ANTERIORES"/></a></span>
+								{if $offset > 0}
+									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&tipoBusqueda={$tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.fechaInicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
 								{/if}
 								{if $offset < $count-10}
-									<span><a href="?offset={$offset+10}&tipoBusqueda={$smarty.request.tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.Inicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonRightArrowDown" type="button" value="SIGUIENTES"/></a></span>
-                    			{/if}
+									<span><a href="?offset={$offset+10}&tipoBusqueda={$tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.fechaInicio}&fechaFin={$smarty.request.fechaFin}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
+	                			{/if}
  								
  							</p>	
                     	{/if}
