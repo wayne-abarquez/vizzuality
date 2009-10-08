@@ -23,6 +23,7 @@ $(document).ready(function(){
       	if (this.valuedefault && this.value.length==0)
       	this.value = this.valuedefault;
       });
+
 });
 
 
@@ -255,4 +256,29 @@ function commentAction(id,on_table) {
 		}
 		return false;
 };
+
+//INSCRIBIRSE O QUITARSE LA CARRRERA
+function inscribirseCarrera(userID,raceID) {
+	
+		$('#ticketOrangeVoy').html('<a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Incribiéndote a esta carrera...</p>');
+		var dataObj = ({runId : raceID,
+	        method: 'inscribeUserToRun',
+	        userId: userID
+	        });
+	    
+	 	$.ajax({
+	    	type: "POST",
+	    	url: "/ajaxController.php",
+	    	data: dataObj,
+	    	cache: false,
+	    	success: function(result){     				
+				$('#ticketOrangeVoy').html('<a><div class="checkboxChecked"></div></a><p id="textoInscribirse">Estoy apuntado a esta carrera</p>');	    	
+				},
+	        error:function (xhr, ajaxOptions, thrownError){   
+	                alert('Runnit' + xhr.message + "\n" + thrownError);
+	        }
+	    });
+    return false;
+}
+
 
