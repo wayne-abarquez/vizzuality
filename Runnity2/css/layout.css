@@ -1,3 +1,21 @@
+.checkboxChecked{
+	background-image:url(/img/checkChecked.gif);
+	background-repeat: no-repeat;
+	height: 12px;
+	width: 12px;
+	margin-top: 9px;
+	margin-left: 10px;
+}
+
+.checkboxUnchecked{
+	background-image:url(/img/checkUnchecked.gif);
+	background-repeat: no-repeat;
+	height: 12px;
+	width: 12px;
+	margin-top: 9px;
+	margin-left: 10px;
+}
+
 
 /* REGISTRO */
 
@@ -228,7 +246,7 @@ label.inputRegister {
 }
 
 /* body */
-body{
+body a{
 	outline: none;
 }
 
@@ -516,7 +534,9 @@ p.subTitleInfo{
 }
 
 .ticketOrangeVoy{background-color: #ff6600;	height: 30px; width: 287px; margin-top: 20px;}
-.ticketOrangeVoy p{font-size: 13px; font-weight: bold; color: #ffffff; margin-top: 5px; margin-left: 8px;}
+.ticketOrangeVoy p{font-size: 13px; font-weight: bold; color: #ffffff; margin-top: -16px; margin-left: 25px;}
+.ticketOrangeVoy a{font-size: 13px; font-weight: bold; color: #336699; text-decoration: none;}
+.ticketOrangeVoy a:hover{color: white;}
 
 .ticketOrange{
 	background-image: url(/img/ticket_orange.gif);
