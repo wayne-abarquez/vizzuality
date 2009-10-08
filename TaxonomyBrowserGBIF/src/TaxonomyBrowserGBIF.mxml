@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:controls="com.ninem.controls.*" creationComplete="onCreationComplete()" backgroundColor="#fafbfb" xmlns:components="com.vizzuality.components.*">
+
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.rpc.events.FaultEvent;
+			import mx.controls.Alert;
+			import com.adobe.serialization.json.JSON;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.AsyncToken;
+			import mx.rpc.http.HTTPService;
+			import mx.collections.ArrayCollection;
+			import com.vizzuality.components.GradientCanvas;
+			
+			public var resolvedImages:Dictionary = new Dictionary();
+			[Bindable] public var comboDefault: int = 1;
+			
+			[Bindable]
+			public var gbifTaxonomy : ArrayCollection = new ArrayCollection();
+			
+			private function onCreationComplete():void {
+				var httpsrv:HTTPService = new HTTPService();
+				httpsrv.resultFormat = "text";
+				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
+				httpsrv.url = "http://ecat-ws.gbif.org/ws/nav?image=thumb";
+				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
+				httpsrv.send();			
+			}
+			
+			private function onResultGbif(ev: ResultEvent):void {
+				var resultObj:Object = JSON.decode(String(ev.result));				
+				var resultAc:ArrayCollection = new ArrayCollection();
+				var resultAc2: ArrayCollection = new ArrayCollection();
+				var auxDP:ArrayCollection = new ArrayCollection()
+				
+				for each(var co:Object in resultObj) {
+					if (co.id != this.id) {
+						var clasOb:Object= new Object();
+						clasOb.id = co.taxonID;
+						clasOb.type = co.rank;
+						clasOb.description ="";
+						if (co.imageURL!=null) {
+							clasOb.imageURL =co.imageURL;
+						} else {
+							clasOb.imageURL ="";
+							
+						}
+						clasOb.labelField = co.scientificName;
+						clasOb.children=(co.numChildren>0);						
+						resultAc.addItem(clasOb);
+					}
+				}
+				auxDP.addItem(resultAc);
+				treeB.dataProvider = auxDP;
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Style source="com/vizzuality/skin/fonts.css"/>
+	
+	<controls:TreeBrowser id="treeB" columnWidth="250" detailRenderer="com.vizzuality.components.ItemDetailRenderer" top="45" bottom="0" left="0" right="0"/>	
+	<components:GradientCanvas height="45" top="0" left="0" right="0" firstColor="0x009933" secondColor="0x006633">
+
+	</components:GradientCanvas>	
+</mx:Application>
