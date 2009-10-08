@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" xmlns:components = "com.vizzuality.components.*"
+	 verticalScrollPolicy="off" horizontalScrollPolicy="off" dataChange="doEffect()" alpha=".4" click="handleClick()"  height="65" backgroundImage="{normalItem}" backgroundSize="100%">
+
+	<mx:Script>
+		<![CDATA[
+			import com.ninem.controls.treebrowserclasses.TreeBrowserList;
+			import com.ninem.controls.TreeBrowser;
+			import gs.TweenLite;
+			import mx.binding.utils.BindingUtils;
+			import mx.collections.ArrayCollection;
+			import mx.core.Application;
+			import com.vizzuality.components.FlickrImage;
+			
+			[Bindable]private var taxon:String;
+            [Bindable]private var bool:Boolean;
+			[Bindable]private var commonName:ArrayCollection;
+			
+			[Bindable] public var treeBrowserParent:TreeBrowser;
+			
+			[Embed(source="com/vizzuality/assets/click.jpg")]
+   			[Bindable]
+   			public var backgroundItem:Class;
+			
+			[Embed(source="com/vizzuality/assets/normal.jpg")]
+   			[Bindable]
+   			public var normalItem:Class;
+
+			[Embed(source="com/vizzuality/assets/itemCanvasRepeat.png")]
+   			[Bindable]
+   			public var itemCanvas:Class;
+			
+			private var object: Object;
+		
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			     super.updateDisplayList(unscaledWidth, unscaledHeight);
+					 
+			 	 //figure out if this itemRenderer is selected
+			 	 if(TreeBrowserList(owner).isItemSelected(data)) {
+		             specieLabel.setStyle('color', 0xFFFFFF);
+					 this.setStyle("backgroundImage",itemCanvas);
+				 }
+				 //otherwise, return the label to its regular state
+				 else {
+				 	 mamufas.alpha = 0;
+				 	 this.setStyle("backgroundImage",normalItem);
+				 	 loading.visible = false;
+					 specieLabel.setStyle('color', 0x666666);
+				 }
+			}  
+
+
+           	public override function set data(value:Object):void{
+                super.data = value;
+                if(value == null){
+                	taxon="";
+                	flickrImg.source=null;
+                	bool=false;
+                    return;
+                }
+                if(value.labelField != taxon) {
+	                taxon = value.labelField;
+//                	flickrImg.query=taxon;
+                	flickrImg.query=value.imageURL;
+	                bool = value.has_children;
+                }
+                this.alpha=0;
+            }
+                
+            private function doEffect():void{
+            	TweenLite.to(this,.5,{alpha:1});	 
+            }
+            private function changeCombo(ev: Event):void {
+            	Application.application.comboDefault = ev.target.selectedIndex;
+            }
+            
+            private function handleClick():void{
+            	mamufas.alpha = 0;
+            	var ev: Event = new Event("loadingFinish",true);
+				dispatchEvent(ev);
+				parent.parent.parent.addEventListener("loadingFinish",onLoadingEnds);
+				loading.visible = true;
+            }
+            
+            private function onLoadingEnds(ev: Event):void {
+            	parent.parent.parent.removeEventListener("loadingFinish",onLoadingEnds);
+            	loading.visible = false;
+            	mamufas.alpha = 1;
+            }
+		]]>
+	</mx:Script>
+	
+	<mx:Canvas id="mamufas" alpha="0" height="100%" width="100%" backgroundImage="{backgroundItem}" backgroundSize="100%"/>
+	<mx:Canvas backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52">
+	 	<components:FlickrImage id="flickrImg" left="3" horizontalAlign="center" verticalAlign="middle" top="3" width="46" height="46"/>
+	</mx:Canvas>
+    <mx:Label id="specieLabel" text="{taxon}" textAlign="left" verticalCenter="-9" left="65" fontSize="14" width="135" height="23" fontFamily="DINOT-Medium" color="#666666"/>
+<!--    <mx:Image id="arrow" source="@Embed('/com/vizzuality/assets/arrow.png')"  width="22" height="22" right="7" top="20"/>
+-->    <mx:SWFLoader id="loading" right="15" verticalCenter="2" source="@Embed('/com/vizzuality/assets/tinyLoading.swf')" width="15" height="15" visible="false"/>
+   
+</mx:Canvas>
