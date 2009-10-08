@@ -210,10 +210,10 @@
 		</div>
 	</div>
 	
-
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn">
-		<div class="span-1 ticketOrangeVoy"><p><input type="checkbox"> Voy a ir a esta carrera</p></div>
+		<div class="span-1 ticketOrangeVoy" id="ticketOrangeVoy">{if $smarty.session}<a href="javascript: void inscribirseCarrera('{$smarty.session.user.id}','{$smarty.request.id}')">{if $data.inscrito eq 'f'}<div class="checkboxUnchecked"></div><p id="textoInscribirse">Apúntate a esta carrera</p>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Estoy apuntado a esta carrera</p>{/if}</a>{else}<div class="checkboxUnchecked"></div><p>Para apuntarte debes <a href="javascript: void showLoginWindow()">loguearte</a></p>{/if}</div>
+		
 		<div class="span-1 ticketOrange"></div>
 		
 		<div class="span-1 functionalContainer">
