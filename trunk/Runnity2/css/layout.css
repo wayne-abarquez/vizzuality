@@ -541,7 +541,7 @@ p.subTitleInfo{
 }
 
 .ticketOrangeVoy{background-color: #ff6600;	height: 30px; width: 287px; margin-top: 20px;}
-.ticketOrangeVoy p{font-size: 13px; font-weight: bold; color: #ffffff; margin-top: -16px; margin-left: 25px;}
+.ticketOrangeVoy p{font-size: 13px; color: #ffffff; margin-top: -16px; margin-left: 25px;}
 .ticketOrangeVoy a{font-size: 13px; font-weight: bold; color: #ffffff; text-decoration: none;}
 .ticketOrangeVoy a:hover{color: #333333;}
 
