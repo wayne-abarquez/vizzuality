@@ -7,6 +7,13 @@
 	margin-left: 10px;
 }
 
+.checkbox{
+	height: 12px;
+	width: 12px;
+	margin-top: 9px;
+	margin-left: 10px;
+}
+
 .checkboxUnchecked{
 	background-image:url(/img/checkUnchecked.gif);
 	background-repeat: no-repeat;
@@ -535,8 +542,8 @@ p.subTitleInfo{
 
 .ticketOrangeVoy{background-color: #ff6600;	height: 30px; width: 287px; margin-top: 20px;}
 .ticketOrangeVoy p{font-size: 13px; font-weight: bold; color: #ffffff; margin-top: -16px; margin-left: 25px;}
-.ticketOrangeVoy a{font-size: 13px; font-weight: bold; color: #336699; text-decoration: none;}
-.ticketOrangeVoy a:hover{color: white;}
+.ticketOrangeVoy a{font-size: 13px; font-weight: bold; color: #ffffff; text-decoration: none;}
+.ticketOrangeVoy a:hover{color: #333333;}
 
 .ticketOrange{
 	background-image: url(/img/ticket_orange.gif);
