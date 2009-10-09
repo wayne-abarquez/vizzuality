@@ -5,7 +5,7 @@
 	<div class="span-1 last leftColumn">
 		<p class="navigation"><a href="/buscar?q={$data.province_name}">Carreras en {$data.province_name} ></a></p>
 		
-		<div class="carrera_principal">
+		<div class="carreraPrincipal">
 			<div class="column span-1 first calendar">
 				<div class="month month{$data.run_type}">{getMonth month=$data.event_date|substr:5:2}</div>
 		    	<div class="day">{$data.event_date|substr:8:2}</div>
