@@ -8,6 +8,8 @@ $(document).ready(function(){
 	  Cufon.replace('.buttonmenuContainer a');
 	  Cufon.replace('.titleBoxRegister p');
 	  Cufon.replace('#login_modal .title');
+	  Cufon.replace('.nameUserProfile');
+	  Cufon.replace('.nameUserProfileNick');
 
 
       var match = 'input.default[@type=text]';

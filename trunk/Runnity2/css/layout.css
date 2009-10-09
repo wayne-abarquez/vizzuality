@@ -258,30 +258,111 @@ body a{
 }
 
 /* USUARIO */
-/*
-.nameUser{
+
+.dataTitleUser{
+	font-size: 11px;
+	width: 100px;
+}
+
+.dataUser{
+	margin-left: 10px;
+	width: 50px;
+}
+
+.dataContainerUser{
+	width: 205px;
+	height: auto;
+	border-bottom: 1px dotted gray;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.dataContainerUser p{
+	color: #666666;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.commentsUser{
+	height: 300px;
+	width: 392px;
+	
+}
+
+.imagesUserContainer{
+	height: 130px;
+	width: 392px;
+}
+
+.imagesUser{
+	border: 1px solid #cccccc;
+	width: 73px;
+	height: 72px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.imagesUser img{
+	margin-left: 3px;
+	margin-top: 3px;
+}
+
+.userAlerts{
+	margin-top: 10px;
+	width: 392px;
+}
+
+.userAlerts p{
+	color: #666666;
+	margin-top: 3px;
+	margin-left: 7px;
+}
+
+.alertUser{
+	height: 24px;
+	width: 390px;
+	background-color: #fff1e8;
+	border: 1px solid #ffd1b2;
+	margin: 0px;
+	margin-bottom: 3px;
+}
+
+.columnNameUser{
+	width: 610px;
+	height: 30px;
+}
+
+.userData{
+	width: 216px;
+	margin-top: 10px;
+}
+
+p.nameUserProfile{
 	font-size: 22px;
 	color: #336699;
 	margin: 0px 0px 0px 0px;
 }
 
-.idUser{
-	
+p.nameUserProfileNick{
+	font-size: 14px;
+	color: #336699;
+	margin: -20px 0px 0px 284px;
 }
 
 .avatarPerfil{
-	margin: 18px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
 	border: 1px solid #d7d7d7;
 	width: 202px;
 	height: 202px;
-	
 }
 
 .imgAvatarPerfil{
 	margin: 4px 4px 4px 4px;
 }
-*/
 
+
+
+/* rss */
 .imgFeed {
 	margin-top: -34px;
 	width: 278px;
@@ -1544,7 +1625,7 @@ div.inputRight .a5 {
 	width: 100px;
 	font-size: 12px;
 	height: 29px;
-	margin-left: -12px;
+	margin-left: -10px;
 }
 
 .buttonRegister:hover{
