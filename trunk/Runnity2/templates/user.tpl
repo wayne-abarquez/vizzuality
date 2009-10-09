@@ -4,7 +4,7 @@
 
 	<div class="span-1 last leftColumn">
 		
-<div class="span-1 columnNameUser"><p class="nameUserProfile">Fernando Morales Roselló</p><p class="nameUserProfileNick">(Pumares)</p></div>
+<div class="span-1 columnNameUser"><p class="nameUserProfile">{$smarty.session.user.completename}</p><p class="nameUserProfileNick">({$smarty.session.user.username})</p></div>
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil">
