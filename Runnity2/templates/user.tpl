@@ -38,6 +38,7 @@
 						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
 						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
 					</div>
+					<a class="editUserLink">editar tus marcas <img src="/img/pencil.gif"></a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
@@ -53,6 +54,7 @@
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
 					</div>
+					<a class="editUserLink">editar tus datos <img src="/img/pencil.gif"></a>
 				</div>
 			</div>
 			
@@ -132,7 +134,15 @@
 				<div class="span-1 last separatorRight"></div>
 		    {/foreach}					
 		</div>
-		</div>		
+		</div>
+		
+		<div class="span-1 functionalContainer">
+		<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
+		<div class="mapaApuntadas">
+			<img src="/img/mapaApuntadas.jpg">
+		</div>
+		</div>
+				
 	</div>
 
 </div> <!-- content -->
