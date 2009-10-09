@@ -66,33 +66,19 @@ class IndexHandler(webapp.RequestHandler):
 		except:
 			return  None
 
-class ContactHandler(webapp.RequestHandler):
+class CompanyHandler(webapp.RequestHandler):
 
 	def get(self):
 		# Write out contact file.
-		path = os.path.join(os.path.dirname(__file__), 'templates/contactus.html')
+		path = os.path.join(os.path.dirname(__file__), 'templates/company.html')
 		self.response.out.write(template.render(path, {'section':'contact'}, debug=True))	
 		
-class VisualizationHandler(webapp.RequestHandler):
+class WorksHandler(webapp.RequestHandler):
 
 	def get(self):
 		# Write out contact file.
-		path = os.path.join(os.path.dirname(__file__), 'templates/datavizz.html')
-		self.response.out.write(template.render(path, {'section':'visualization'}, debug=True))
-
-class GisHandler(webapp.RequestHandler):
-
-	def get(self):
-		# Write out contact file.
-		path = os.path.join(os.path.dirname(__file__), 'templates/gis.html')
-		self.response.out.write(template.render(path, {'section':'gis'}, debug=True))
-		
-class AnalysisHandler(webapp.RequestHandler):
-
-	def get(self):
-		# Write out contact file.
-		path = os.path.join(os.path.dirname(__file__), 'templates/dataanalysis.html')
-		self.response.out.write(template.render(path, {'section':'analysis'}, debug=True))		
+		path = os.path.join(os.path.dirname(__file__), 'templates/works.html')
+		self.response.out.write(template.render(path, {'section':'visualization'}, debug=True))		
 
 class PyAMFBrowser(webapp.RequestHandler):
 	def get(self):
@@ -113,10 +99,8 @@ class NotFoundHandler(webapp.RequestHandler):
 def main():
 	application = webapp.WSGIApplication([
 		('/', IndexHandler),
-		('/contact', ContactHandler),
-		('/visualization', VisualizationHandler),
-		('/gis', GisHandler),
-		('/analysis', AnalysisHandler),
+		('/company', CompanyHandler),
+		('/works', WorksHandler),
 		('/amf/*', PyAMFBrowser),
 		('/.*', NotFoundHandler)
 	], debug=True)
