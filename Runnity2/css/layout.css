@@ -273,6 +273,12 @@ body a{
 	width: 390px:
 }
 
+.mapaApuntadas{
+	width: 255px;
+	height: 192px;
+	margin-left: 20px;
+}
+
 #commentUser {width: 390px; border-bottom: 1px dotted #cccccc; margin-left: -17px; margin-top: 5px; margin-bottom: 5px;}
 #commentUser a.name {color: #666666; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
 #commentUser div.commentBoxUser {margin-left: 10px; width: 290px; height: 76px; margin-bottom: 10px;}
@@ -281,6 +287,20 @@ body a{
 #commentUser div.commentBoxUser p.commentUserProfile a {color: #336699; font-weight: bold; text-decoration: none;}
 #commentUser div.commentBoxUser p.commentUserProfile a:hover {color: #333333;}
 #commentUser div.commentBoxUser div.nameUser {margin-left: 30px; color: #666666;}
+
+.editUserLink{
+	float: right;
+	color: #336699;
+	text-decoration: none;
+	font-size: 11px;
+	font-weight: bold;
+	margin-top: 2px;
+	margin-right: 14px;	
+}
+
+.editUserLink img{
+	margin: 0px;
+}
 
 .rankingBox{
 	background-image: url(/img/rankingBox.gif);
