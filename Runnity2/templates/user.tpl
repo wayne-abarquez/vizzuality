@@ -36,23 +36,21 @@
 						<div class="span-1 last dataUser"><p><b>23</b></p></div>
 					</div>
 				</div>
-				<!--
-<div class="span-1 last functionalContainer">
+				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
 					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUser"><p>Email</p></div>
-						<div class="span-1 last dataUser"><p><b>a.rodriguez@gmail.com</b></p></div>
+						<div class="span-1 last dataTitleUserProfile"><p>Email</p></div>
+						<div class="span-1 last dataUserProfile"><p><b>a.rodriguez@gmail.com</b></p></div>
 					</div>
 					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUser"><p>Club</p></div>
-						<div class="span-1 last dataUser"><p><b>S.S. de los Reyes - Clínicas Menorca</b></p></div>
+						<div class="span-1 last dataTitleUserProfile"><p>Club</p></div>
+						<div class="span-1 last dataUserProfile"><p><b>S.S. de los Reyes - Clínicas Menorca</b></p></div>
 					</div>
 					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUser"><p>Categoría</p></div>
-						<div class="span-1 last dataUser"><p><b>Senior Masculino</b></p></div>
+						<div class="span-1 last dataTitleUserProfile"><p>Categoría</p></div>
+						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
 					</div>
 				</div>
--->
 			</div>
 			
 			<div class="span-1 last userAlerts">
@@ -101,6 +99,8 @@
             	{/foreach}	
             	</ol>
 				</div>
+				<div class="span-1 last commentsPaginator">Paginador de comments</div>
+
 			</div>
 		</div>
 	</div>
