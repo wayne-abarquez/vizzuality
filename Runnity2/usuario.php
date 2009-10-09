@@ -1,13 +1,11 @@
 <?php 
 
-/*
 session_start();
 
 if (!isset($_SESSION['logged'])) {
 	echo("No puedes acceder a esta pagina sin haberte logeado");
 	die();
 }
-*/
 
 // load Smarty library 
 require 'libs/Smarty.class.php';
