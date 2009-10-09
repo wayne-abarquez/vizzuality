@@ -24,16 +24,19 @@
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">TU RANKING RUNNITY</p>
 					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUser"><p>Visitas a tu perfil</p></div>
-						<div class="span-1 last dataUser"><p><b>1142</b></p></div>
+						<div class="span-1 last dataTitleUserRanking"><p>800m</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
 					</div>
 					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUser"><p>Carreras corridas</p></div>
-						<div class="span-1 last dataUser"><p><b>23</b></p></div>
+						<div class="span-1 last dataTitleUserRanking"><p>1500m</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
 					</div>
 					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUser"><p>Carreras corridas</p></div>
-						<div class="span-1 last dataUser"><p><b>23</b></p></div>
+						<div class="span-1 last dataTitleUserRanking"><p>10000m</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
 					</div>
 				</div>
 				<div class="span-1 last functionalContainer">
