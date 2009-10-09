@@ -36,7 +36,8 @@
 						<div class="span-1 last dataUser"><p><b>23</b></p></div>
 					</div>
 				</div>
-				<div class="span-1 last functionalContainer">
+				<!--
+<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUser"><p>Email</p></div>
@@ -51,6 +52,7 @@
 						<div class="span-1 last dataUser"><p><b>Senior Masculino</b></p></div>
 					</div>
 				</div>
+-->
 			</div>
 			
 			<div class="span-1 last userAlerts">
@@ -72,9 +74,34 @@
 			</div>
 			
 			<div class="span-1 last commentsUser">
-				<p class="titulo tituloLeft tituloRight">MENSAJES PARA TI [13]</p>
-			</div>
+				<p class="titulo tituloLeft tituloRight">MENSAJES PARA TI {if !empty($comments)}[{$comments|@count}]{/if}</p>
+				
+				<div class="span-1 last columnComments">
 
+				<ol id="update">
+				{foreach key=id item=comment from=$comments}
+				{if $comment eq false}
+
+				{else}	    										
+					<div id="commentUser" class="span-1 last">
+						<div class="span-1 last avatarBox">
+							<img src="/img/avatar.jpg"/>	
+						</div>
+						<div class="span-1 commentBoxUser">
+						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+						<p class="commentUserProfile">{$comment.commenttext}</p>
+						</div>
+						
+					</div>							
+          		{/if}
+            	{foreachelse}
+					<div class="span-1 noComments">
+
+    				</div>    
+            	{/foreach}	
+            	</ol>
+				</div>
+			</div>
 		</div>
 	</div>
 	
