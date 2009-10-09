@@ -259,10 +259,14 @@ body a{
 
 /* USUARIO */
 
-.containerComments{
-	width: 190px:
+.commentsPaginator div.bottomPaginator {color: #4e4e4e; font-size: 13px;float: right; padding-right: 10px; padding-top: 10px;margin-bottom: 0px; height: 30px;}
+
+.commentsPaginator{
+	width: 392px;
 	height: 36px;
 	background-color: #f1f4f8;	
+	margin: 0px;
+	margin-top: -5px;
 }
 
 .columnComments{
@@ -277,6 +281,46 @@ body a{
 #commentUser div.commentBoxUser p.commentUserProfile a {color: #336699; font-weight: bold; text-decoration: none;}
 #commentUser div.commentBoxUser p.commentUserProfile a:hover {color: #333333;}
 #commentUser div.commentBoxUser div.nameUser {margin-left: 30px; color: #666666;}
+
+.rankingBox{
+	background-image: url(/img/rankingBox.gif);
+	background-repeat: no-repeat;
+	height: 17px;
+	width: 41px;
+	margin-top: 5px;
+}
+
+.rankingBox p{
+	color: #666666;
+	font-weight: bold;
+	margin-left: 20px;
+	padding-top: 1px;
+}
+
+.dataUserPosition{
+	font-size: 11px;
+	width: 20px;
+}
+
+.dataTitleUserRanking{
+	font-size: 11px;
+	width: 50px;
+}
+
+.dataUserRanking{
+	margin-left: 10px;
+	width: 100px;
+}
+
+.dataTitleUserProfile{
+	font-size: 11px;
+	width: 50px;
+}
+
+.dataUserProfile{
+	margin-left: 10px;
+	width: 140px;
+}
 
 .dataTitleUser{
 	font-size: 11px;
