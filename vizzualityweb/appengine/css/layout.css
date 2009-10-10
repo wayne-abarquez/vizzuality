@@ -66,5 +66,5 @@ div#footer p{float:right; padding:0 74px 0 0; line-height:15px}
 div#footer p strong{ display:block; font-size:14px; line-height:38px;}
 div#footer p a{ float:left; color:#F30; text-decoration:none; font-weight:bold}
 div#footer p a:hover{ text-decoration:underline}
-
+div#footer p strong a{float:none; color:#F30; text-decoration:none;}
 
