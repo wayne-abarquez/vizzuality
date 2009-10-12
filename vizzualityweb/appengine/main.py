@@ -100,6 +100,7 @@ def main():
 	application = webapp.WSGIApplication([
 		('/', IndexHandler),
 		('/company', CompanyHandler),
+		('/contact', CompanyHandler),
 		('/works', WorksHandler),
 		('/amf/*', PyAMFBrowser),
 		('/.*', NotFoundHandler)
