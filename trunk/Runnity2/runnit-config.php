@@ -16,7 +16,7 @@ define('DB_PASSWORD', 'runnitdb555');
 define('DB_HOST', 'runnity.com');
 
 
-define('ABSPATH','/Users/jmedina/workspace/Runnity/'); 
+define('ABSPATH','/Users/pumu/workspace/Runnity2/'); 
 define('EMAILPASSWORD','emailpass');
 
 ?>
