@@ -228,23 +228,6 @@
 	{literal}
 	<script language="javaScript" type="text/javascript">
 		$(document).ready( function() {
-	
-			/*$('textarea').autoResize({
-			    // On resize:
-			    onResize : function() {
-			        $(this).css({opacity:0.8});
-			    },
-			    // After resize:
-			    animateCallback : function() {
-			        $(this).css({opacity:1});
-			    },
-			    // Quite slow animation:
-			    animateDuration : 300,
-			    // More extra space:
-			    extraSpace : 40
-			});
-*/
-			 
 		
 			var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
 			$.getJSON(url,function(data){	
@@ -254,47 +237,9 @@
 				});
 		    });
 		    
-		    for (i=1;i<=6;i++){
-				var len = 40;
-				var p = document.getElementById("iteracion" + i);
-				
-				if (p) {
-				  var trunc = p.innerHTML;
-				  trunc = trunc.replace(/\t/g, "");
-				  if (trunc.length > len) {
-		
-				    trunc = trunc.substring(0, len);
-				    /* trunc = trunc.replace(/\w+$/, ''); */
-				
-				    /* Add an ellipses to the end and make it a link that expands
-				       the paragraph back to its original size */
-				    trunc += '<a style="color: #666666;">' +
-				      '...<\/a>';
-				    p.innerHTML = trunc;
-				  }
-				}
-				
-				var len = 43;
-				var x = document.getElementById("carrera" + i);
-				if (x) {
-				  var trunc = x.innerHTML;
-				  trunc = trunc.replace(/\t/g, "");
-				  trunc = trunc.replace(/\n/g, "");
-				  				  
-				  if (trunc.length > len) {
-					
-					trunc = trunc.substring(0, len);
-				    trunc = trunc.replace(/\w+$/, '');
-				
-				    /* Add an ellipses to the end and make it a link that expands
-				       the paragraph back to its original size */
-				    trunc += '<a style="color: #666666;">' +
-				      '...<\/a>';
-				    x.innerHTML = trunc;
-				  }
-				}
-			}
-		    
+			$(".nameRace").truncate( 55 );
+			$(".nameRaceOrange").truncate( 55 );			
+			$(".placeRace").truncate( 30 );			
 		    
 		});
 	</script>

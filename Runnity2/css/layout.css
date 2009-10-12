@@ -807,14 +807,14 @@ div.separatorRight{
 	font-weight: bold;
 }
 
-.nameRace{line-height: 14px; padding-top: 4px; height: 50px;}
-.nameRace a{font-size: 14px;color: #336699; font-weight: bold; line-height: 14px; padding-top: 4px; margin-left: -2px; text-decoration: none;}
+.nameRace{line-height: 14px; height: 50px; padding-top: 7px; display: block;}
+.nameRace a{font-size: 14px;color: #336699; font-weight: bold; line-height: 14px;  text-decoration: none;}
 .nameRace a:hover{color: #fc6602;}
 
 .infoRace{
 	font-size: 11px;
 	color: #999999;
-	margin-top: -20px;
+	margin-top: -23px;
 	margin-bottom: 0px;
 	width: 160px;
 }
@@ -1102,13 +1102,13 @@ a.verTodas:hover{
 .calendar{
 	border-right: 1px solid gray;
 	padding-right: 10px;
-	height: 46px;
+	height: 100%;
 }
 
 .calendarRight{
 	border-right: 1px solid gray;
 	padding-right: 10px;
-	height: 46px;
+	height: 100%;	
 }
 
 div.day {
@@ -1359,7 +1359,6 @@ div.eventsUsers {
 }
 
 div.raceRight{
-	height: 65px;
 	width: 262px;
 	margin-bottom: 0px;
 	margin-top: 0px;
@@ -1367,7 +1366,6 @@ div.raceRight{
 }
 
 div.raceRight2{
-	height: 65px;
 	width: 262px;
 	margin-bottom: 0px;
 	background-color: #e7e7e7;
@@ -1381,6 +1379,7 @@ div.raceRight2{
 .dataRaceRight{
 	width: 174px;
 	margin-top: 10px;
+	margin-bottom: -3px;
 }
 
 .dataRaceRight p{
@@ -1398,7 +1397,6 @@ div.raceRight2{
 
 .nameRaceRight{
 	line-height: 12px;
-	height: 30px;
 }
 
 .avatarRight{
