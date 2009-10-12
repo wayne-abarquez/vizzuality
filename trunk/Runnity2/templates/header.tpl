@@ -95,7 +95,7 @@
 						</label>
 					</div>
 				</div>
-				<div style="margin-top: 30px;">
+				<div id="passForm" style="margin-top: 30px;">
 					<p>contraseña</p>			
 					<div class="span-1 inputContainer">
 						<label class="inputLogin" for="login2">
@@ -108,13 +108,51 @@
 					<div class="loginButton"><input id="submitLogin" class="fg-button" type="submit" value="Entrar"/></div>	
 				</div>	
 				<div class="first">
-					<img id="checking" class="column first registerImage" src="/img/ajax-loader.gif" style="display:none">
 					<div class="column last errorMessage" id="error_msg"></div>
 				</div>
 			</form>
 		</div>
 		
-		<div class="span-1 last separatorLogin"></div>
+		<div class="span-1 separatorLogin"></div>
+		
+		<div class="span-5 last register_text">
+			<h3>¿No estas registrado?</h3>
+			<p>Regístrate ahora y disfruta de todas las ventajas de Runnity! Es grátis y tardarás un par de minutos.</p>
+			<input id="submitLogin" class="fg-button" value="Crea tu cuenta" onclick="location.href = '/registro.php'"/>
+		</div>
+	</div>
+	
+	<!-- CONTACT -->
+	<div id="contact_modal">
+		<div class="contact_container">
+			<h2>Sugerencias, dudas... escríbenos!</h2>
+			<form id="FormularioRegister" method="GET" action="javascript: void sendMessage()">
+				<div>
+					<label>nombre</label>
+					<div class="span-12 inputContainer">
+						<label class="inputLogin">
+							<input type="text" class="inputLogin" id="contact1">
+						</label>
+					</div>
+				</div>
+				<div>
+					<label>e-mail</label>
+					<div class="span-12 inputContainer">
+						<label class="inputLogin" >
+							<input type="text" class="inputLogin" id="contact2">
+						</label>
+					</div>
+				</div>
+				<div>
+					<label>mensaje</label>
+					<div class="span-12 inputContainer">
+						<textarea id="contact3"></textarea>
+					</div>
+				</div>
+				<input id="submitLogin" class="fg-button" value="Enviar" type="submit"/>
+				<div id="contactError" class="errorMessage"></div>
+			</form>
+		</div>
 	</div>
 
 	<!-- HEADER -->
