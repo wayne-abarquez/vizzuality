@@ -66,9 +66,16 @@
 				}
 			}
 		});
-		var now3 = new Date();
-		now3.addDays(-4);
-		var now4 = new Date()
+		
+		
+		
+		var fechaInicio = $.url.param('fechaInicio');
+		var fechaFin = $.url.param('fechaFin');
+
+		var now3 = new Date(fechaInicio.substr(3,2)+'/'+fechaInicio.substr(0,2) +'/'+fechaInicio.substr(6,4));
+		var now4 = new Date(fechaFin.substr(3,2)+'/'+fechaFin.substr(0,2) +'/'+fechaFin.substr(6,4));
+
+		
 		$('#widgetCalendar').DatePicker({
 			flat: true,
 			format: 'd/m/Y',

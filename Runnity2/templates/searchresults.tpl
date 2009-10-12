@@ -4,6 +4,16 @@
 $(document).ready(function(){
 
 	var state = false;
+	
+	$('#widgetField span a').click(function(){
+		if ($('#widgetField span').html()!='Selecciona una fecha') {
+			$('#widgetField span').html('Selecciona una fecha<a class="delete"></a>');
+			$('#fechaInicio').attr('value','');
+			$('#fechaFin').attr('value','');
+		}
+
+		return false;	
+	});
 		
 	$('#widgetField>a').click(function(){
 		$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
@@ -22,8 +32,7 @@ $(document).ready(function(){
         });    
       
     }); 
-    
-  
+
     
 	$("#ppalField").click(function() { 
   
@@ -99,7 +108,7 @@ $(document).ready(function(){
 							<div class="searchlabel"><p>TEXTO LIBRE</p></div>
 							<div class="inputSearch">
 								<div class="column first inputLeft">
-									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" class="default" value="Busca por nombre, localidad, provincia" name="q"></span></label>			
+									<label class="roundsearch1" for="inputsearch1"><span><input type="text" id="inputsearch1" class="default" {if $smarty.get.q==null}value="Busca por nombre, localidad, provincia"{else} value="{$smarty.get.q}"{/if}name="q"></span></label>			
 								</div>
 								<div class="column inputRight">
 									<ul id="Navigator" class="topnav">
@@ -124,8 +133,8 @@ $(document).ready(function(){
 						<div class="inputSearch">
 							<div id="widget">
 								<div id="widgetField">
-									<span>{if ($fechaInicioOld!="")}{$fechaInicioOld} - {$fechaFinOld} {/if}</span>
-									<a href="#">Selecciona un rango</a>
+									<span>{if ($fechaInicioOld!="")}{$fechaInicioOld} - {$fechaFinOld} {else}Selecciona una fecha{/if}<a class="delete"></a></span>
+									<a href="#"></a>
 								</div>
 								<div id="widgetCalendar">
 								</div>

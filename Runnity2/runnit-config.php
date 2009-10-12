@@ -15,7 +15,7 @@ define('DB_PASSWORD', 'runnitdb555');
 /** PostgreSQL hostname */
 define('DB_HOST', 'runnity.com');
 
-define('ABSPATH','/Users/pumu/workspace/Runnit/'); 
+define('ABSPATH','/Users/jmedina/workspace/Runnity/'); 
 define('EMAILPASSWORD','emailpass');
 
 ?>
