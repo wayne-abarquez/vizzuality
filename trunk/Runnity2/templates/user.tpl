@@ -94,7 +94,7 @@
 				{foreach key=id item=comment from=$comments}
 					{if $comment eq false}
 	
-					   										
+					{else}   										
 						<div id="commentUser" class="span-1 last">
 							<div class="span-1 last avatarBox">
 								<img src="/img/avatar.jpg"/>	
