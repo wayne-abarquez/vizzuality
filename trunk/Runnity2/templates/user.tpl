@@ -153,6 +153,15 @@
 	    		<img src="/img/mapaApuntadas.jpg">					
 			</div>
 		</div>
+		
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">DE TU MISMO CLUB</p>
+			<div class="eventsUsers">									
+				<div class="avatarContainer">
+					<a href="/user/{$smarty.session.user.username}"><img title="{$smarty.session.user.username}" class="avatarRight" src="/avatar.php?id={$smarty.session.user.user_id}"/></a>	
+				</div>
+			</div>
+		</div>
 				
 	</div>
 
