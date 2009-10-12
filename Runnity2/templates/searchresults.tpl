@@ -175,10 +175,11 @@ $(document).ready(function(){
 	        		{foreach key=id item=race from=$results}
 	        			{if $race eq "0"}
 	        				<div class="column span-15 noResultsContainer">
-	        					<div class="carita"></div>
 	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Lo sentimos, no hay resultados</b> que coincidan con tu búsqueda</p>
-	        					<p class="noResultsSub">Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de las nuevas carreras</p>
+		        					<p class="noResults">Ouch! No hay resultados</p>
+		        					<p class="noResultsSub"><b>No hemos podido encontrar ninguna carrera que coincidiera con tu búsqueda</b>
+		        					<br />Comprueba que el tipo, la ortografía y las fechas son correctas.<br /><br /> 
+		        					Si sigues sin encontrar nada por aquí, puedes intentarlo en el<a href="/"> mapa de carreras</a> de la home<br />o <a href="/rss.php">suscribirte a nuestro RSS</a> para estar al tanto de las últimas actualizaciones</p>
 								</div>
 	        				</div>
 	        			{else}
@@ -206,19 +207,20 @@ $(document).ready(function(){
 	    					</div>     
 	        			{/if}
 	        	    {foreachelse}
-	        	        <div class="column span-15 noResultsContainer">
-	        					<div class="carita"></div>
-	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Lo sentimos, no hay resultados</b> que coincidan con tu búsqueda</p>
-	        					<p class="noResultsSub">Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de las nuevas carreras</p>
-								</div>
-	        				</div> 
+        				<div class="column span-15 noResultsContainer">
+        					<div class="noResultsText">
+	        					<p class="noResults">Ouch! No hay resultados</p>
+	        					<p class="noResultsSub"><b>No hemos podido encontrar ninguna carrera que coincidiera con tu búsqueda</b>
+	        					<br />Comprueba que el tipo, la ortografía y las fechas son correctas.<br /><br /> 
+	        					Si sigues sin encontrar nada por aquí, puedes intentarlo en el<a href="/"> mapa de carreras</a> de la home<br />o <a href="/rss.php">suscribirte a nuestro RSS</a> para estar al tanto de las últimas actualizaciones</p>
+							</div>
+        				</div>
 	        	    {/foreach}
         	    </div>
         	    
         	    
         	    <div id="belowPaginator" class="span-24">
-        	    	<div class="column first noResults"><p>{$count}{if $count eq 1} resultado{else} resultados{/if}</p></div>
+        	    	<div class="column first belowPaginatorTotal"><p>{$count}{if $count eq 1} resultado{else} resultados{/if}</p></div>
         	   		<div class="column last bottomPaginator">
 						{if $count > 10}
  							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$count}</b> de {$count}

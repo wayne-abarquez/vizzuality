@@ -1245,15 +1245,29 @@ div.mapStyleRight {
 }
 
 .noResults{
-	font-size: 16px;
-	color: gray;
+	font-size: 22px;
+	color: #336699;
+	width: 850px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 0px;
+	margin-top: 50px;
+}
+
+.belowPaginatorTotal{
+	font-size: 12px;
+	font-weight: bold;
+	color: #666666;
+	margin-top: 10px;
+	margin-left: 10px;
 }
 
 .noResultsSub{
 	font-size: 13px;
-	color: gray;
-	line-height: 16px;
-	width: 460px;
+	color: #666666;
+	width: 850px;
+	text-align: center;	
+	margin-bottom: 50px;	
 }
 
 .noRaceSub{
