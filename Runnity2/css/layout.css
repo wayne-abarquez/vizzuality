@@ -1608,7 +1608,7 @@ div.inputRight .a5 {
 #searchBox div.searchForm #widgetField {width: 190px;height: 26px;background: url(../img/field.png);overflow: hidden;position: relative;}
 #searchBox div.searchForm #widgetField a {display: block;position: absolute;width: 26px;height: 26px;top: 0;right: 0;text-decoration: none;text-indent: -3000px;}
 #searchBox div.searchForm #widgetField span	{font-size: 12px;color: #999999;position: absolute;top: 0;height: 23px;line-height: 26px;left: 5px;width: 153px;text-align: left;}
-
+#searchBox div.searchForm #widgetField span:hover {cursor: default}
 #searchBox div.searchForm #widgetField span a.delete {float:right; background: url(/img/deleteDateIcon.jpg) 0 50px  no-repeat; width: 12px; height: 18px;}
 #searchBox div.searchForm #widgetField span a.delete:hover{ cursor: pointer; background: url(/img/deleteDateIcon.jpg) 0 7px no-repeat; }
 

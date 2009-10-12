@@ -149,7 +149,7 @@
 						<textarea id="contact3"></textarea>
 					</div>
 				</div>
-				<input id="submitLogin" class="fg-button" value="Enviar" type="submit"/>
+				<input id="contactSubmit" class="fg-button" value="Enviar" type="submit"/>
 				<div id="contactError" class="errorMessage"></div>
 			</form>
 		</div>
