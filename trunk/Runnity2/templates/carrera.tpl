@@ -288,8 +288,6 @@
 
 				
 		<div class="span-1 functionalContainer">		
-		<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
-		<div class="eventsUsers">
 		{foreach key=id item=person from=$runners}
 				{if $person eq 'f'}
 					<!--
@@ -298,7 +296,9 @@
 						<p class="noRaceSub">¿Quieres ser el primero? <b><a href="/rss">Apúntate</a></b></p>
 					</div> 
 -->
-				{else}					
+				{else}
+					<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
+					<div class="eventsUsers">									
 					<div class="avatarContainer">
 						<a href="/user/{$person.username}"><img title="{$person.username}" class="avatarRight" src="/avatar.php?id={$person.user_id}"/></a>	
 					</div>
@@ -319,80 +319,5 @@
 </div> <!-- content -->
 
 </div> <!-- container -->
-
-{literal}
-<script language="javaScript" type="text/javascript">
-	$(document).ready( function() {
-	    
-	    for (i=1;i<=3;i++){
-			var len = 19;
-			var p = document.getElementById("datos" + i);
-			
-			if (p) {
-			  var trunc = p.innerHTML;
-			  trunc = trunc.replace(/\t/g, "");
-			  if (trunc.length > len) {
-				
-			    trunc = trunc.substring(0, len);
-			
-			    trunc += '<a style="color: #666666;">' +
-			      '...<\/a>';
-			    p.innerHTML = trunc;
-			  }
-			}
-		}
-	});
-</script>
-{/literal}
-
-{literal}
-<script language="javaScript" type="text/javascript">
-	$(document).ready( function() {
-	    
-	    for (i=1;i<=4;i++){
-			var len = 40;
-			var p = document.getElementById("nameRunRight1" + i);
-			
-			if (p) {
-			  var trunc = p.innerHTML;
-			  trunc = trunc.replace(/\t/g, "");
-			  if (trunc.length > len) {
-				
-			    trunc = trunc.substring(0, len);
-			
-			    trunc += '<a style="color: #336699;">' +
-			      '...<\/a>';
-			    p.innerHTML = trunc;
-			  }
-			}
-		}
-	});
-</script>
-{/literal}
-
-{literal}
-<script language="javaScript" type="text/javascript">
-	$(document).ready( function() {
-	    
-	    for (i=1;i<=4;i++){
-			var len = 40;
-			var p = document.getElementById("nameRunRight2" + i);
-			
-			if (p) {
-			  var trunc = p.innerHTML;
-			  trunc = trunc.replace(/\t/g, "");
-			  if (trunc.length > len) {
-				
-			    trunc = trunc.substring(0, len);
-			
-			    trunc += '<a style="color: #336699;">' +
-			      '...<\/a>';
-			    p.innerHTML = trunc;
-			  }
-			}
-		}
-	});
-</script>
-{/literal}
 
 {include file="footer.tpl"} 
