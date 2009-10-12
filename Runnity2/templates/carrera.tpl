@@ -288,6 +288,10 @@
 
 				
 		<div class="span-1 functionalContainer">		
+		{if $data.num_users > 0}
+			<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
+			<div class="eventsUsers">				
+		{/if}
 		{foreach key=id item=person from=$runners}
 				{if $person eq 'f'}
 					<!--
@@ -296,9 +300,7 @@
 						<p class="noRaceSub">¿Quieres ser el primero? <b><a href="/rss">Apúntate</a></b></p>
 					</div> 
 -->
-				{else}
-					<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
-					<div class="eventsUsers">									
+				{else}							
 					<div class="avatarContainer">
 						<a href="/user/{$person.username}"><img title="{$person.username}" class="avatarRight" src="/avatar.php?id={$person.user_id}"/></a>	
 					</div>
