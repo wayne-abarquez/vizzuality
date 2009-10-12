@@ -54,7 +54,7 @@
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
 					</div>
-					<a class="editUserLink">editar tus datos <img src="/img/pencil.gif"></a>
+					<a class="editUserLink" href="/userprofile.php">editar tus datos <img src="/img/pencil.gif"></a>
 				</div>
 			</div>
 			
