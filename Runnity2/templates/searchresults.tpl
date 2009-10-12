@@ -5,15 +5,6 @@ $(document).ready(function(){
 
 	var state = false;
 	
-	$('#widgetField span a').click(function(){
-		if ($('#widgetField span').html()!='Selecciona una fecha') {
-			$('#widgetField span').html('Selecciona una fecha<a class="delete"></a>');
-			$('#fechaInicio').attr('value','');
-			$('#fechaFin').attr('value','');
-		}
-
-		return false;	
-	});
 		
 	$('#widgetField>a').click(function(){
 		$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
@@ -133,7 +124,7 @@ $(document).ready(function(){
 						<div class="inputSearch">
 							<div id="widget">
 								<div id="widgetField">
-									<span>{if ($fechaInicioOld!="")}{$fechaInicioOld} - {$fechaFinOld} {else}Selecciona una fecha{/if}<a class="delete"></a></span>
+									<span>{if ($fechaInicioOld!="")}{$fechaInicioOld} - {$fechaFinOld} {else}Selecciona una fecha{/if}<a class="delete" href="javascript: void cleanDate()"></a></span>
 									<a href="#"></a>
 								</div>
 								<div id="widgetCalendar">
