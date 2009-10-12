@@ -308,15 +308,7 @@ function inscribirseCarrera(userID,raceID) {
 }
 
 
-function cleanDate() {
-	if ($('#widgetField span').html()!='Selecciona una fecha<a class="delete"></a>') {
-			
-			$('#widgetField span').html('Selecciona una fecha<a class="delete"></a>');
-			$("#fechaInicio").attr("value", null);
-			$("#fechaFin").attr("value", null);
-		}
 
-}
 
 
 //MANDAR MENSAJE DE CONTACTO
@@ -364,7 +356,7 @@ function sendMessage() {
                 $('#contactForm').html('<div style="text-align:left;width:400px;color:#336699;padding-left:20px;margin-top:-20px">Gracias por enviar tus comentarios, en breve se cerrará esta ventana.</div>');
                 $('#simplemodal-container').animate({height: h},500);
 
-                timerID = setTimeout("timerHide()", 2000);
+               /*  timerID = setTimeout("timerHide()", 2000); */
         },
         error:function (xhr, ajaxOptions, thrownError){
                 alert('Runnit' + xhr.message + "\n" + thrownError);
@@ -376,7 +368,15 @@ function sendMessage() {
 }
 
 
+function cleanDate() {
+	if ($('#widgetField span').html()!='Selecciona una fecha<a class="delete"></a>') {
+			
+			$('#widgetField span').html('Selecciona una fecha<a class="delete"></a>');
+			$("#fechaInicio").attr("value", null);
+			$("#fechaFin").attr("value", null);
+		}
 
+}
 
 
 //CHECK EMAIL JAVASCRIPT

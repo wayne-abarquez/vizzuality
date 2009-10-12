@@ -5,6 +5,17 @@ $(document).ready(function(){
 
 	var state = false;
 	
+	$('#widgetField span').hover(
+		function(){
+			$('#widgetField span a.delete').css('background','url(/img/deleteDateIcon.jpg) 0 7px no-repeat');
+		},
+		function(){
+			$('#widgetField span a.delete').css('background','url(/img/deleteDateIcon.jpg) 0 57px no-repeat');
+		}
+	
+	);
+	
+	
 		
 	$('#widgetField>a').click(function(){
 		$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
