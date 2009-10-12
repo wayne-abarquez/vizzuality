@@ -27,14 +27,22 @@
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
 				<div class="editdata">
-					<div class="span-6 first">
+					<div class="span-6 first marginTopData">
+						<p class="data">NOMBRE Y APELLIDOS</p>
 						<label class="roundInputName last" for="roundInputName">
 							<input type="text" id="roundInputName">
 						</label>
 					</div>
-					<div class="span-2 last">
+					<div class="span-4 last marginTopData">
+						<p class="data">AÑO NACIMIENTO</p>
 						<label class="roundInputDataSmall last" for="roundInputDataSmall">
 							<input type="text" id="roundInputDataSmall">
+						</label>
+					</div>
+					<div class="span-10 last marginTopData">
+						<p class="data">LOCALIZACIÓN</p>
+						<label class="roundInputDataLong last" for="roundInputDataLong">
+							<input type="text" id="roundInputDataLong">
 						</label>
 					</div>
 				</div>
@@ -43,7 +51,28 @@
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">TUS MARCAS</p>
-				<div class="editdatos"></div>
+				<div class="editmarcas">
+					<div class="span-4 last marginTopData">
+						<label class="roundInputDataSmall last" for="roundInputDataSmall">
+							<input type="text" id="roundInputDataSmall">
+						</label>
+					</div>
+					<div class="span-4 last marginTopData">
+						<label class="roundInputDataSmall last" for="roundInputDataSmall">
+							<input type="text" id="roundInputDataSmall">
+						</label>
+					</div>
+					<div class="span-4 last marginTopData">
+						<label class="roundInputDataSmall last" for="roundInputDataSmall">
+							<input type="text" id="roundInputDataSmall">
+						</label>
+					</div>
+					<div class="span-4 last marginTopData">
+						<label class="roundInputDataSmall last" for="roundInputDataSmall">
+							<input type="text" id="roundInputDataSmall">
+						</label>
+					</div>
+				</div>
 				
 				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
 				<div class="editAcount"></div>
