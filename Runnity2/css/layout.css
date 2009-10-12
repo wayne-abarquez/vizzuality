@@ -1,5 +1,9 @@
 /* usuario edit */
 
+.globalContainerUser{
+	padding-bottom: 10px;
+}
+
 .marginTopData{
 	margin-top: 10px;
 }
@@ -89,6 +93,8 @@ label.roundInputName {
 .dataUserEdit{
 	height: 600px;
 	width: 392px;
+	padding-bottom: 32768px;
+	margin-bottom: -32768px;
 }
 
 .dataUserEdit p.data{
