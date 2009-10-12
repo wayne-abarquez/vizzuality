@@ -492,13 +492,15 @@ img.rssImage{
 	padding-bottom: 20px;
 }
 
-#login_modal .loginForm{ width: 203px; padding-left: 20px; padding-top: 10px; letter-spacing: -1px;}
+#login_modal .loginForm{ width: 213px; padding-left: 20px; padding-top: 10px; letter-spacing: -1px;}
 #login_modal .title{ color: #336699; font-size: 22px; margin: 10px 0px 0px 0px; padding: 0px 0px 0px 0px; }
 #login_modal p{ color: #999999; font-weight: bold; margin: 10px 0px 0px 0px; padding: 0px 0px 0px 0px; }
-#login_modal div.forgetFind{ float: left; margin-top: 12px;}
-#login_modal div.forgetPass{ text-align: left; float: left; margin-right: 28px; padding-top: 3px;}
+#login_modal div.forgetFind{ float: left; margin-top: 12px; width: 195px;}
+#login_modal div.forgetFind input {padding: 3px 4px; margin: 5px 0 0 0}
+#login_modal div.forgetPass{ text-align: left; float: left; padding-top: 3px;}
 #login_modal div.forgetPass a{ color:#336699;}
 #login_modal div.loginButton{ float: right; }
+.errorMessage {color: #c24949;}
 
 
 label.inputLogin {
@@ -512,8 +514,8 @@ label.inputLogin {
 
 .inputLogin input {
 	background:transparent;
-	padding-top: 8px;
-	padding-left: 6px;
+	padding-top: 6px;
+	padding-left: 5px;
 	float:left;
 	border: none;
 	color: gray;
@@ -532,8 +534,23 @@ label.inputLogin {
 
 /* Container */
 
-#simplemodal-container a.modalCloseImg {background:url(/img/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
+#simplemodal-container a.modalCloseImg {background:url(/img/x.gif) no-repeat; width:25px; height:29px; display:inline; z-index:1; position:absolute; top:5px; right:-10px;}
 #simplemodal-container #basic-modal-content {padding:8px;}
+
+#login_modal div.register_text {float: right; padding: 0 5px; width: 200px;}
+#login_modal div.register_text h3 { color:#336699; padding: 60px 0 0 0; }
+#login_modal div.register_text input {float:right; margin: 2px 5px 0 0; padding: 3px 4px; width: 87px;}
+
+
+/* CONTACT */
+#contact_modal{ display:none; height:500px; width: 500px; background: #eaeaea;border:6px solid #ffffff;}
+#contact_modal div.contact_container {float: left; width: 500px; padding: 20px 0px 0px 20px}
+#contact_modal div.contact_container h2 {color:#336699;}
+
+
+
+
+
 
 /****** HEADER ****/
 
