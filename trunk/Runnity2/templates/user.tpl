@@ -4,7 +4,7 @@
 
 	<div class="span-1 last leftColumn">
 		
-<div class="span-1 columnNameUser"><p class="nameUserProfile">{$smarty.session.user.completename}, <span class="nameUserProfileNick">({$smarty.session.user.username})</span></div>
+<div class="span-1 columnNameUser"><p class="nameUserProfile">{$smarty.session.user.completename} <span class="nameUserProfileNick">({$smarty.session.user.username})</span></div>
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil">
@@ -92,28 +92,38 @@
 
 				<ol id="update">
 				{foreach key=id item=comment from=$comments}
-				{if $comment eq false}
-
-				{else}	    										
-					<div id="commentUser" class="span-1 last">
-						<div class="span-1 last avatarBox">
-							<img src="/img/avatar.jpg"/>	
-						</div>
-						<div class="span-1 commentBoxUser">
-						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
-						<p class="commentUserProfile">{$comment.commenttext}</p>
-						</div>
-						
-					</div>							
-          		{/if}
+					{if $comment eq false}
+	
+					   										
+						<div id="commentUser" class="span-1 last">
+							<div class="span-1 last avatarBox">
+								<img src="/img/avatar.jpg"/>	
+							</div>
+							<div class="span-1 commentBoxUser">
+							<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+							<p class="commentUserProfile">{$comment.commenttext}</p>
+							</div>
+							
+						</div>							
+	          		{/if}
             	{foreachelse}
 					<div class="span-1 noComments">
 
     				</div>    
-            	{/foreach}	
+            	{/foreach}
             	</ol>
 				</div>
-				<div class="span-1 last commentsPaginator">Paginador de comments</div>
+				
+				
+				<!-- Crear servicio para los comentarios sobre usuario -->
+				<div class="span-9 commentsPaginator">
+        	   		<div class="userComments">
+						<p>viendo del <b>1 al 5</b> de 60
+							<span><a><input class="fg-button buttonLeftArrow" type="button"/></a></span>
+							<span><a><input class="fg-button buttonRightArrow" type="button"/></a></span>
+						</p>	
+					</div>
+				</div>
 
 			</div>
 		</div>

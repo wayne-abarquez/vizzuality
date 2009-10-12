@@ -266,11 +266,16 @@ body a{
 	height: 36px;
 	background-color: #f1f4f8;	
 	margin: 0px;
-	margin-top: -5px;
 }
+
+div.commentsPaginator p {padding: 7px;}
 
 .columnComments{
 	width: 390px:
+}
+
+div.userComments {
+	float: right;
 }
 
 .mapaApuntadas{
@@ -1433,6 +1438,7 @@ div.raceRight2{
 .dateRight{
 	margin-left: 10px;
 	margin-top: 10px;
+	margin-bottom:10px;
 }
 
 .dataRaceRight{
