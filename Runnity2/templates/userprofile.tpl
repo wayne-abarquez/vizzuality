@@ -26,7 +26,18 @@
 						
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
-				<div class="editdata"></div>
+				<div class="editdata">
+					<div class="span-6 first">
+						<label class="roundInputName last" for="roundInputName">
+							<input type="text" id="roundInputName">
+						</label>
+					</div>
+					<div class="span-2 last">
+						<label class="roundInputDataSmall last" for="roundInputDataSmall">
+							<input type="text" id="roundInputDataSmall">
+						</label>
+					</div>
+				</div>
 				<div class="dataUserButtons">
 					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
 				</div>
