@@ -21,111 +21,27 @@
 						<div class="span-1 last dataUser"><p><b>23</b></p></div>
 					</div>
 				</div>
-				<div class="span-1 last functionalContainer">
-				<p class="titulo tituloLeft">TU RANKING RUNNITY</p>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserRanking"><p>800m:</p></div>
-						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
-						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
-					</div>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserRanking"><p>1.500m:</p></div>
-						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
-						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
-					</div>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserRanking"><p>10.000m:</p></div>
-						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
-						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
-					</div>
-					<a class="editUserLink">editar tus marcas <img src="/img/pencil.gif"></a>
-				</div>
-				<div class="span-1 last functionalContainer">
-				<p class="titulo tituloLeft">DATOS PERSONALES</p>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserProfile"><p>Email:</p></div>
-						<div class="span-1 last dataUserProfile"><p><b>a.rodriguez@gmail.com</b></p></div>
-					</div>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserProfile"><p>Club:</p></div>
-						<div class="span-1 last dataUserProfile"><p><b>S.S. de los Reyes - Clínicas Menorca</b></p></div>
-					</div>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
-						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
-					</div>
-					<a class="editUserLink">editar tus datos <img src="/img/pencil.gif"></a>
-				</div>
-			</div>
-			
-			<div class="span-1 last userAlerts">
-				<div class="alertUser"><p>Aún no nos has dicho si <b>perteneces a algún club</b></p></div>
-				<div class="alertUser"><p>Tienes <b>2 mensajes nuevos</b></p></div>
-			</div>
-			
-			<div class="span-1 last imagesUserContainer">
-				<p class="titulo tituloLeft tituloRight">TUS FOTOS [42], <a>ver todas</a></p>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div>
-					<a class="editUserLink">subir fotos <img src="/img/pencil.gif"></a>
-				</div>
-			</div>
-			
-			<div class="span-1 last commentsUser">
-				<p class="titulo tituloLeft tituloRight">MENSAJES PARA TI {if !empty($comments)}[{$comments|@count}]{/if}</p>
 				
-				<div class="span-1 last columnComments">
-
-				<ol id="update">
-				{foreach key=id item=comment from=$comments}
-					{if $comment eq false}
-	
-					   										
-						<div id="commentUser" class="span-1 last">
-							<div class="span-1 last avatarBox">
-								<img src="/img/avatar.jpg"/>	
-							</div>
-							<div class="span-1 commentBoxUser">
-							<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
-							<p class="commentUserProfile">{$comment.commenttext}</p>
-							</div>
-							
-						</div>							
-	          		{/if}
-            	{foreachelse}
-					<div class="span-1 noComments">
-
-    				</div>    
-            	{/foreach}
-            	</ol>
+			</div>
+						
+			<div class="span-1 last dataUserEdit">
+				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
+				<div class="editdata"></div>
+				<div class="dataUserButtons">
+					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
 				</div>
 				
+				<p class="titulo tituloLeft tituloRight">TUS MARCAS</p>
+				<div class="editdatos"></div>
 				
-				<!-- Crear servicio para los comentarios sobre usuario -->
-				<div class="span-9 commentsPaginator">
-        	   		<div class="userComments">
-						<p>viendo del <b>1 al 5</b> de 60
-							<span><a><input class="fg-button buttonLeftArrow" type="button"/></a></span>
-							<span><a><input class="fg-button buttonRightArrow" type="button"/></a></span>
-						</p>	
-					</div>
+				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
+				<div class="editAcount"></div>
+				<div class="dataUserButtons">
+					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
 				</div>
 
 			</div>
+			
 		</div>
 	</div>
 	
