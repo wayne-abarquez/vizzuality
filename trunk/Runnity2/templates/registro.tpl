@@ -65,7 +65,7 @@
 			</div>
 				
 			<div class="span-1 last TerminosCondicionesBox">
-				<div class="span-12 first"><p>Al hacer click en “Registrarse” aceptas los <a href="/legalterms.html">Términos y condiciones</a> de runnity.com</p></div>
+				<div class="span-12 first"><p>Al hacer click en “Registrarse” aceptas los <a href="/legalterms.html" target="_blank">Términos y condiciones</a> de runnity.com</p></div>
 				<input class="fg-button buttonRegister" type="submit" value="Registrarse"/>
 			</div>
 			
