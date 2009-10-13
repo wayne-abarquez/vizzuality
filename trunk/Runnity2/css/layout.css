@@ -906,6 +906,11 @@ p.subTitleInfo{
 .ticketOrangeVoy a{font-size: 13px; font-weight: bold; color: #ffffff; text-decoration: none;}
 .ticketOrangeVoy a:hover{color: #333333;}
 
+.ticketOrangeVoy2{background-color: #ff6600;	height: 30px; width: 287px; margin-top: 3px;}
+.ticketOrangeVoy2 p{font-size: 13px; color: #ffffff; margin-top: -16px; margin-left: 25px;}
+.ticketOrangeVoy2 a{font-size: 13px; font-weight: bold; color: #ffffff; text-decoration: none;}
+.ticketOrangeVoy2 a:hover{color: #333333;}
+
 .ticketOrange{
 	background-image: url(/img/ticket_orange.gif);
 	background-repeat: no-repeat;
