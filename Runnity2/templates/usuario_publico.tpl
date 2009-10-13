@@ -1,104 +1,160 @@
-{include file="header.tpl"} 
+{include file="header.tpl"}
 
-	<div class="span-24 raceContainer" id="race">
-		<div class="column span-16">
-			<div class="span-16 navigationList">
-				<ul> 
-					<li><a href="">Perfil de usuario</a></li>
-				</ul>
-			</div>
-			<div class="span-16 marginContainer">
-				<div class="column span-3 first">
-					<img id="userImg" src="/avatar.php?id={$data.datos.id}"/>
+<div class="span-24 column content">
+
+	<div class="span-1 last leftColumn">
+		
+<div class="span-1 columnNameUser"><p class="nameUserProfile">{$data.datos.completename}<span class="nameUserProfileNick">, ({$data.datos.username})</span></div>
+		<div class="globalContainerUser">	
+			<div class="span-1 last userData">
+				<div class="span-1 avatarPerfil">
+					<img class="imgAvatarPerfil" src="/img/AvatarPerfil.jpg">
 				</div>
-				<div class="span-13 last userLeft">
-					<div class="span-13 userCount">
-						<div class="wellcome"><a href="#" class="wellcome">{$data.datos.completename}</a></div>
-						<div class="countAgo">usuario desde {getMonth2 month=$data.datos.created_when|substr:5:2}, {$data.datos.created_when|substr:0:4}</div>
+				<div class="span-1 last functionalContainer">
+				<p class="titulo tituloLeft">RANKING RUNNITY</p>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserRanking"><p>800m:</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
+					</div>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserRanking"><p>1.500m:</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
+					</div>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserRanking"><p>10.000m:</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
+					</div>
+				</div>
+				<div class="span-1 last functionalContainer">
+				<p class="titulo tituloLeft">DATOS PERSONALES</p>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserProfile"><p>Club:</p></div>
+						<div class="span-1 last dataUserProfile"><p><b>S.S. de los Reyes - Clínicas Menorca</b></p></div>
+					</div>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
+						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
 					</div>
 				</div>
 			</div>
-				
-				<div class="span-16 marginContainer">
-
-					<div class="marginDescription"><h3 class="blue">Perfil</h3></div>					
-				
-					<div class="marginDescription"><h3 class="blue">Tablón {if !empty($comments)}[{$comments|@count}]{/if}</h3><h5><a onclick="document.getElementById('commentTextArea').focus();
-" class="PublicarComentarioEnlace">Dejar un comentario</a></h5></div>			
-					<ol id="update">
-						{foreach key=id item=comment from=$comments}
-	    				{if $comment eq false}
-	    					<div class="column span-15 noCommentsContainer"  id="noCommentsDiv">
-	        					<div class="carita"></div>
-	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$data.datos.username}</b></p>
-								</div>
-	        				</div>  
-	    				{else}	    										
-							<div class="column span-16 first racesComment">				
-								<div class="column span-3 first image">
-									<img src="/avatar.php?id={$comment.user_id}"/>	
-								</div>
-								<div class="column span-12 last commentBox">
-									<div class="nameUser"><a class="nameRace" href="#">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
-									<p class="textRace">{$comment.commenttext}</p>
-								</div>
-							</div>							
-	              		{/if}
-	                	{foreachelse}
-	                	    <div class="column span-15 noCommentsContainer" id="noCommentsDiv">
-	        					<div class="carita"></div>
-	        					<div class="noResultsText">
-	        					<p class="noResults"><b>Aún no hay comentarios en el tablón de {$data.datos.username}</b></p>
-								</div>
-	        				</div>    
-	                	{/foreach}						
-					</ol>
-				</div>
 			
-						<!-- PARA AÑADIR COMENTARIOS -->
-			<div class="span-16 boxraceMap boxraceMap2">
-				<div class="span-16" id="flash" align="left"></div>
-				<div class="commentArea" id="commentBox">					
-					{if $smarty.session.logged}
-						<div class="span-14 titleComents">Anímate y deja un comentario a {$smarty.session.user.username}</div>
-						<textarea name="textarea2" id="commentTextArea" class="span-15 textArea"></textarea>
-						<input class="fg-button" type="submit" value="Escribir comentario" onclick="javascript: void commentAction({$data.datos.id},'users')"/>
-					{else}
-						<p class="noComments">Para dejar comentarios debes <b><a href="javascript: void showLoginBox()">iniciar tu sesión</a></b> en runnity. <b><a href="javascript: void showRegisterBox()">¿Aún no estás registrado?</a></b></p>
-					{/if}
+			<div class="span-1 last imagesUserContainer">
+				<p class="titulo tituloLeft tituloRight">FOTOS DE {$data.datos.username|upper} [42], <a>ver todas</a></p>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
 				</div>
-			</div>		
-		</div>
-		
-		<div class="column last span-8 rightColumn">
-			<div class="span-8 importantRaces">
-				<div class="events"> 
-					<h2 class="newsTitle5">Carreras de {$data.datos.username}</h2>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
 				</div>
-				<div class="events">
-            		{foreach key=id item=race from=$data.carreras}
-            			{if $race eq 0}
-            				<div class="span-8 races2"><p class="noApuntadoUser">Aun no se ha apuntado a ninguna carrera.</p></div> 
-            			{else}		    				    
-        					<div class="span-8 column first raceDetails" id="raceDetails">
-        						<div class="column span-1 first date race">
-	    							<div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
-	    							<div class="day">{$race.event_date|substr:8:2}</div>
-	    						</div>
-        						<div class="column span-6 last calendarRaces">
-        							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
-        							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b> </div>
-        						</div>
-        					</div>
-            			{/if}
-                	    {foreachelse}
-            				<div class="span-8 races2"><p class="noApuntadoUser">Aun no se ha apuntado a ninguna carrera.</p></div> 
-                	    {/foreach}					
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
 				</div>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
+				</div>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
+				</div>
+			</div>
+			
+			<div class="span-1 last commentsUser">
+				<p class="titulo tituloLeft tituloRight">MENSAJES PARA {$data.datos.username|upper} {if !empty($comments)}[{$comments|@count}]{/if}</p>
+				
+				<div class="span-1 last columnComments">
+
+				<ol id="update">
+				{foreach key=id item=comment from=$comments}
+					{if $comment eq false}
+	
+					{else}   										
+						<div id="commentUser" class="span-1 last">
+							<div class="span-1 last avatarBox">
+								<img src="/img/avatar.jpg"/>	
+							</div>
+							<div class="span-1 commentBoxUser">
+							<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+							<p class="commentUserProfile">{$comment.commenttext}</p>
+							</div>
+							
+						</div>							
+	          		{/if}
+            	{foreachelse}
+					<div class="span-1 noComments">
+
+    				</div>    
+            	{/foreach}
+            	</ol>
+				</div>
+				
+				
+				<!-- Crear servicio para los comentarios sobre usuario -->
+				<!--
+<div class="span-9 commentsPaginator">
+        	   		<div class="userComments">
+						<p>viendo del <b>1 al 5</b> de 60
+							<span><a><input class="fg-button buttonLeftArrow" type="button"/></a></span>
+							<span><a><input class="fg-button buttonRightArrow" type="button"/></a></span>
+						</p>	
+					</div>
+				</div>
+-->
+
 			</div>
 		</div>
 	</div>
-</div>
+	
 
-{include file="footer.tpl"}
+	<!-- RIGHT COLUMN -->
+	<div class="span-1 last rightColumn userRightColumn">
+		{if $nextRaces}
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">SUS PRÓXIMAS CARRERAS</p>
+			<div class="events">
+				{foreach key=id item=race from=$nextRaces name=raceloop}	    				    
+					<div class="span-1 {cycle values="raceRight,raceRight2"}">
+						<div class="span-1 first dateRight calendarRight">
+					        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
+							<div class="day">{$race.event_date|substr:8:2}</div>
+						</div>
+						{if $race.num_users > 0}
+							<div class="ticketBlue"><p>{$race.num_users}</p></div>
+							<div class="ticketBlueCorner ticketBlueCornerRight"></div>
+						{/if}		
+						<div class="span-1 last dataRaceRight">
+							<div class="nameRaceRight"><a id="nameRunRight1{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+							<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
+						</div>	
+					</div>
+					<div class="span-1 last separatorRight"></div>
+			    {/foreach}
+			</div>
+		</div>
+		{/if}
+		
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
+			<div id="map" class="mapStyleRight">
+	    		<img src="/img/mapaApuntadas.jpg">					
+			</div>
+		</div>
+		
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">DE SU MISMO CLUB</p>
+			<div class="eventsUsers">									
+				<div class="avatarContainer">
+					<!-- TODO -->
+					<a href="/user/{$smarty.session.user.username}"><img title="{$smarty.session.user.username}" class="avatarRight" src="/avatar.php?id={$smarty.session.user.user_id}"/></a>	
+				</div>
+			</div>
+		</div>
+				
+	</div>
+
+</div> <!-- content -->
+
+</div> <!-- container -->
+
+{include file="footer.tpl"} 
