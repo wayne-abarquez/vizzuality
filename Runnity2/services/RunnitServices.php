@@ -223,8 +223,41 @@ class RunnitServices {
 	    $result['carreras']=$this->getUserRuns($result['datos']['id']);
 	    $result['amigos']=$this->getUserFriends($result['datos']['id']);
 	    $result['grupos']=$this->getUserGroups($result['datos']['id']);
+	     $result['records']=$this->getUserRecords($result['datos']['id']);
+	    
+	    //update visits stats
+	    $sql="UPDATE users SET visits_profile=visits_profile+1 WHERE username='$username'";
+	    pg_query($this->conn, $sql);
 	    
 	    return $result;
+	    
+	}
+	
+	public function getUserPrivateData($username) {
+	    $result=array();
+	    $username=pg_escape_string($username);
+	    $sql="select id,completename,username,email,created_when,visits_profile from users where username='select u.id,completename,username,email,created_when,visits_profile,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date > now()) as num_races_runned from users as u where username='$username'";
+        $result['datos'] = pg_fetch_assoc(pg_query($this->conn, $sql));
+        if(!$result['datos']) {
+            return false;
+        }
+	    
+
+	    $result['carreras']=$this->getUserRuns($result['datos']['id']);
+	    $result['records']=$this->getUserRecords($result['datos']['id']);
+	    $result['amigos']=$this->getUserFriends($result['datos']['id']);
+	    $result['grupos']=$this->getUserGroups($result['datos']['id']);	    
+	}
+	
+	public function getUserRecords($id) {
+	    $sql="select distance_name,time_taken, 1 as ranking from users_records as ur inner join record_distance as rd on ur.record_distance_fk=rd.id WHERE ur.user_fk=$id";
+	    return pg_fetch_all(pg_query($this->conn, $sql));
+	    
+	}
+	
+	public function getAllRecordsForUser($id) {
+	    $sql="select rd.id, distance_name,time_taken from record_distance as rd left join users_records as ur on rd.id=ur.record_distance_fk and ur.user_fk=$id order by distance ASC";
+	    return pg_fetch_all(pg_query($this->conn, $sql));
 	    
 	}
 	
@@ -278,6 +311,19 @@ class RunnitServices {
 	    $result= pg_query($this->conn, $sql);
 	    return null;
 	}	
+	
+	public function createGroup($name,$userId) {
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");
+	    }
+	    $name=pg_escape_string($name);
+	    $sql="select id from groups where name ilike '%$name%'";
+	    if(pg_num_rows($result)>0) {
+	        return false;
+	    }
+	    
+	    	    
+	}
 	
 	//Home
 	public function getLastActivity() {
@@ -886,6 +932,7 @@ class RunnitServices {
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id ";
 		$sql.=" and distance_meters<= $distance+2000 and distance_meters>= $distance-2000 and published=true";
 		$sql.=" order by event_date ASC limit 3";
+		error_log($sql);		
 		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
 
@@ -900,8 +947,9 @@ class RunnitServices {
         }
         
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and r.id <> $id  ";
-		$sql.=" and (event_date > (select (event_date::date-7) from run where id=$id) or event_date < (select (event_date::date+7) from run where id=$id))";
+		$sql.=" and (event_date > (select (event_date::date-3) from run where id=$id) and event_date < (select (event_date::date+3) from run where id=$id))";
 		$sql.=" order by event_date ASC limit 3";
+
 		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
 
