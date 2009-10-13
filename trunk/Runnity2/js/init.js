@@ -307,13 +307,13 @@ function inscribirseCarrera(userID,raceID) {
 
 
 //INSCRIBIRSE O QUITARSE LA CARRRERA
-function seguirUsuario(userID,userToID) {
+function followUser(friendId) {
 	
-		/*
+		
 $('#ticketOrangeVoy').html('<b><a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Procesando...</p></b>');
-		var dataObj = ({runId : raceID,
-	        method: 'inscribeUserToRun',
-	        userId: userID
+		var dataObj = ({
+			method: 'setUserToFriend',
+	        friendId: friendId
 	        });
 	    
 	 	$.ajax({
@@ -328,7 +328,7 @@ $('#ticketOrangeVoy').html('<b><a><div class="checkboxUnchecked"></div></a><p id
 	                alert('Runnit' + xhr.message + "\n" + thrownError);
 	        }
 	    });
-*/
+
     return false;
 }
 

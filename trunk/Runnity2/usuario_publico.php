@@ -20,6 +20,8 @@ if(isset($_REQUEST['u'])) {
 
 $data=$services->getUserInfo($username);
 $smarty->assign('data', $data);
+$smarty->assign('isAlreadyFriend', $services->isUserAlreadyFriend($data['datos']['id']));
+
 $comentarios=$services->getComments($data['datos']['id'],'user');
 $smarty->assign('comments', $comentarios);
 $smarty->assign('nextRaces',$services->getUserRuns($data['datos']['id']));
