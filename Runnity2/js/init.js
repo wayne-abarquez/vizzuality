@@ -307,6 +307,32 @@ function inscribirseCarrera(userID,raceID) {
 }
 
 
+//INSCRIBIRSE O QUITARSE LA CARRRERA
+function seguirUsuario(userID,userToID) {
+	
+		/*
+$('#ticketOrangeVoy').html('<b><a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Procesando...</p></b>');
+		var dataObj = ({runId : raceID,
+	        method: 'inscribeUserToRun',
+	        userId: userID
+	        });
+	    
+	 	$.ajax({
+	    	type: "POST",
+	    	url: "/ajaxController.php",
+	    	data: dataObj,
+	    	cache: false,
+	    	success: function(result){     				
+				$('#ticketOrangeVoy').html('<b><a><div class="checkboxChecked"></div></a><p id="textoInscribirse">Ya sigues a este usuario</p></b>');	    	
+				},
+	        error:function (xhr, ajaxOptions, thrownError){   
+	                alert('Runnit' + xhr.message + "\n" + thrownError);
+	        }
+	    });
+*/
+    return false;
+}
+
 
 
 
