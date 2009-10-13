@@ -66,32 +66,31 @@
 	<div class="span-24 column content">
 		<div class="span-1 last leftColumn">
 			<div class="span-1 registerInfoTicket"><p>Para registrarte en Runnity sólo tienes que rellenar los siguientes campos... <b>¡es grátis!</b></p></div>
-			<form id="register_form" action="javascript: void registerUser()">
+			<!--form id="register_form" action="javascript: void registerUser()"-->
+			<form id="register_form" action="/registro" method="get">
 				<div class="span-1 last leftRegister">
-					<p>Email*</p>
+					<p>Email</p>
 					<label class="inputRegister" for="inputRegister"><span><input id="inputRegister1" name="email_register" type="text"></span></label>
 				
-					<p>Contraseña*</p>
+					<p>Contraseña</p>
 					<label class="inputRegister" for="inputRegister"><span><input id="inputRegister2" name="password_register" type="password"></span></label>
 					
-					<p>Nombre de usuario*</p>
+					<p>Nombre de usuario</p>
 					<label class="inputRegister" for="inputRegister"><span><input id="inputRegister3" name="username_register" type="text"></span></label>
 					
 					<div class="nombreRegistro">
-						<p >Nombre y apellidos*</p>
+						<p >Nombre y apellidos</p>
 						<label class="inputRegister" for="inputRegister"><span><input id="inputRegister4" name="name_register" type="text"></span></label>
 						
-						<p>Sexo*</p>
+						<p>Sexo</p>
 						<select name="sexo" class="comboSexo" id="combo_sex">
-		        			<option value="1">Hombre</option>
-		        			<option value="2">Mujer</option>
+		        			<option value="true">Hombre</option>
+		        			<option value="false">Mujer</option>
 		    			</select>
 						
-						<p>Año de nacimiento*</p>
-						<select name="dia" class="comboAnio comboFechaFirst" id="combo_anio">
-		        			<option value="1">2009</option>
-		        			<option value="2">2008</option>
-		    			</select>
+						<p>Fecha de nacimiento</p>
+                        {html_select_date prefix='birthday' start_year='-55' month_format='%m' field_order='DMY' class='comboAnio comboFechaFirst'
+                           end_year='-8' reverse_years=true}						
 		    			
 		    			<div class="span-1 checkAlertas">
 		    				<div class="span-1 last checkBoxAlerts"><input type="checkbox" id="quiero"></div>
@@ -103,7 +102,7 @@
 				<div class="span-1 last rightRegister">
 					<div class="pageUser"><p>Tu página será: <a>http://www.runnity.com/users/...</a> </p></div>
 					<div>
-							<p class="titleMapAlert">Localidad,provincia*</p>
+							<p class="titleMapAlert">Localidad,provincia</p>
 							<label class="roundLocalizacion last" for="roundLocalizacion">
 								<input type="text" id="roundLocalizacion" name="localidad">
 							</label>
@@ -116,7 +115,7 @@
 				<div class="error_register" id="error_register"></div>
 				<div class="span-1 last TerminosCondicionesBox">
 					<div class="span-12 first"><p>Al hacer click en “Registrarse” aceptas los <a href="/legalterms.html" target="_blank">Términos y condiciones</a> de runnity.com</p></div>
-					<input class="fg-button buttonRegister" id="register_input" type="submit" value="Registrarse"/>
+					<input class="fg-button buttonRegister" id="register_input" type="submit" name="action" value="register"/>
 				</div>
 				<div class="span-1 LoginEnRegistro"><p>¿Ya tienes una cuenta en runnity? <a href="javascript: void showLoginWindow()">Haz login</a></p></div>
 			

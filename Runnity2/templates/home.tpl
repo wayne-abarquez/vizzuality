@@ -182,7 +182,7 @@
 			<p class="titularTitle">VUELVE Y COMÉNTALO</p>
 			<p class="titularInfo titularInfo2">¡Sube tus fotos, tus tiempos, clasificaciones y haz de Runnity un sitio cada vez mejor y más completo!</p>
 			<br><br>
-			<a href="/registro.php">Regístrate y participa</a>
+			<a href="/registro">Regístrate y participa</a>
 		</div>
 	</div>
 </div>

@@ -119,7 +119,7 @@
 		<div class="span-5 last register_text">
 			<h3>¿No estas registrado?</h3>
 			<p>Regístrate ahora y disfruta de todas las ventajas de Runnity! Es grátis y tardarás un par de minutos.</p>
-			<input id="submitLogin" class="fg-button" value="Crea tu cuenta" onclick="location.href = '/registro.php'"/>
+			<input id="submitLogin" class="fg-button" value="Crea tu cuenta" onclick="location.href = '/registro'"/>
 		</div>
 	</div>
 	
@@ -168,7 +168,7 @@
 				{else}
 				<a href="javascript: void showLoginWindow()">accede a tu cuenta</a>
 				/ 
-				<a href="/registro.php">registrarse</a>
+				<a href="/registro">registrarse</a>
 				{/if}
 			</p>
 		</div>
