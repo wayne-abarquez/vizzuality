@@ -1,11 +1,81 @@
 /* usuario edit */
 
-.globalContainerUser{
-	padding-bottom: 10px;
+.recordsContainer{
+	margin: 0px;
+	margin-left: 20px;
+	margin-top: 10px;
+	width: 160px;
 }
 
-.marginTopData{
+.distanceName{
+	margin: 0px;
+	margin-top: 14px;
+	margin-left: 10px;
+	width: 100px;
+}
+
+.distanceName p{
+	color: #999999;
+	margin: 0px;
+	margin-bottom: 6px;
+}
+
+label.roundInputRecords{
+	float:left;
+	clear:left;
+	background:url(/img/inputRecords.gif) no-repeat 0 0;
+	padding: 0px 0px 0px 0px;
+	height: 26px;
+	margin:0px 0px 0px 0px;
+}
+
+.roundInputRecords input {
+	background:transparent;
+	padding-top: 8px;
+	padding-left: 6px;
+	float:left;
+	border: none;
+	color: gray;
+	font-size: 12px;
+}
+
+.roundInputRecords input:focus {
+	outline:none;
+}
+
+#roundInputRecords {width:26px;}
+
+.mapaAlerts{
+	border: 1px solid #cccccc;
+	padding: 4px;
+	width: 225px;
+	height: 111px;
+	background-color: #ffffff;
+	margin-left: 10px;
+}
+
+.nameEdit{
+	width: 233px;
+	height: 50px;
+	margin-left: 10px;
 	margin-top: 10px;
+}
+
+.anioEdit{
+	width: 134px;
+	height: 50px;
+	margin-left: -5px;
+	margin-top: 10px;
+}
+
+.localizacionEdit{	
+	width:372px;
+	height: 50px;
+	margin-left: 10px;
+}
+
+.globalContainerUser{
+	padding-bottom: 10px;
 }
 
 label.roundInputDataLong{
@@ -99,6 +169,8 @@ label.roundInputName {
 
 .dataUserEdit p.data{
 	color: #999999;
+	font-size: 11px;
+	font-weight: bold;
 	margin: 0px;
 }
 
@@ -120,7 +192,7 @@ label.roundInputName {
 
 .editmarcas{
 	background-color: #f1f4f8;
-	height: 80px;
+	height: 250px;
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
@@ -1609,6 +1681,11 @@ div.titleComents {
 
 /* races right */
 
+.avatarContainer{
+	width: 262px;
+	height: 300px;
+}
+
 div.events {
 	width: 262px;
 	height: 80px;
@@ -1665,7 +1742,8 @@ div.raceRight2{
 }
 
 .avatarRight{
-	margin: 0px 0px -6px -4px;
+	margin: 0px;
+	float: left;
 }
 
 .navigation a{
