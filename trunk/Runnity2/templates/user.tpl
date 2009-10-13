@@ -116,6 +116,7 @@
 				
 				
 				<!-- Crear servicio para los comentarios sobre usuario -->
+<!--
 				<div class="span-9 commentsPaginator">
         	   		<div class="userComments">
 						<p>viendo del <b>1 al 5</b> de 60
@@ -124,6 +125,7 @@
 						</p>	
 					</div>
 				</div>
+-->
 
 			</div>
 		</div>
