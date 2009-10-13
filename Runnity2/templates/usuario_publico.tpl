@@ -122,7 +122,7 @@
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn userRightColumn">
 
-		<div class="span-1 ticketOrangeVoy2" id="ticketOrangeVoy">{if $smarty.session}<a href="javascript: void inscribirseCarrera('{$smarty.session.user.id}','{$smarty.request.id}')">{if $data.inscrito eq 'f'}<div class="checkboxUnchecked"></div><p id="textoInscribirse">Sigue a {$data.datos.username}</p>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Ya sigues a {$data.datos.username}</p>{/if}</a>{else}<div class="checkbox"></div><p><a href="javascript: void showLoginWindow()">Haz login</a> para seguir a {$data.datos.username}</p>{/if}</div>
+		<div class="span-1 ticketOrangeVoy2" id="ticketOrangeVoy">{if $smarty.session}<a href="javascript: void followUser('{$smarty.session.user.id}','{$data.datos.id}')">{if $isAlreadyFriend neq true}<div class="checkboxUnchecked"></div><p id="textoInscribirse">Sigue a {$data.datos.username}</p>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Ya sigues a {$data.datos.username}</p>{/if}</a>{else}<div class="checkbox"></div><p><a href="javascript: void showLoginWindow()">Haz login</a> para seguir a {$data.datos.username}</p>{/if}</div>
 		
 		<div class="span-1 ticketOrange"></div>	
 	

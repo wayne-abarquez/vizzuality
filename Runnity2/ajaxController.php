@@ -110,6 +110,10 @@ if ($_REQUEST['method'] == 'updateUser') {
 	echo ('OK');
 }
 
+if ($_REQUEST['method'] == 'setUserToFriend') {
+	$result = $services->setUserToFriend($_REQUEST['friendId']);
+	echo('OK');
+}
 
 
 

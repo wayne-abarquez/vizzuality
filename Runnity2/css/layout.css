@@ -2019,3 +2019,7 @@ div.inputRight .a5 {
 .content404 p a:hover{
 	color: #333333;
 }
+
+.fakeWhiteBox{
+	height: 30px;
+}
