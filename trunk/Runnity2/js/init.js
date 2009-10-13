@@ -244,9 +244,8 @@ function logout () {
 
 
 
-function commentAction(id,on_table) {
+function commentAction(id,on_table,comment) {
 		
-		var comment = $("#commentTextArea").val();
 	    var dataObj = ({
 	            comment : comment,
 	            method: 'addComment',

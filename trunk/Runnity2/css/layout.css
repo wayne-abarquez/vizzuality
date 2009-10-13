@@ -153,6 +153,43 @@ label.roundInputName {
 }
 
 
+/* USUARIO PUBLICO */
+
+div.comment_wall {
+	width: 390px;
+	background-color: #f1f4f8;
+	padding-bottom: 20px;
+	margin:0;
+}
+
+div.comment_wall textarea {
+	width: 350px;
+	max-width: 350px;
+	height: 70px;
+}
+
+
+
+p.noComments_wall{
+	background: url(/img/slash.gif) no-repeat 0 0;
+	width: 290px;
+	text-align: center;
+	margin: 20px 0 0 25px;
+	padding: 0 0 0 15px;
+}
+
+p.noComments_wall p{
+	color: #666666;
+	text-align: center;
+}
+
+p.noComments_wall a{
+	color: #336699;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+
 /* REGISTRO */
 
 .LoginEnRegistro{
@@ -530,7 +567,6 @@ div.userComments {
 }
 
 .commentsUser{
-	height: 300px;
 	width: 390px;
 	
 }

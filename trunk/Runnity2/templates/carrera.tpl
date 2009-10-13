@@ -188,19 +188,19 @@
 			</div>
 			
 			<!-- PARA AÑADIR COMENTARIOS -->
+			<div class="span-8" id="flash" align="left"></div>
 			<div class="span-1 last boxraceMap">
-					<div class="span-16" id="flash" align="left"></div>
 				<div class="commentArea" id="commentBox">	
 				{if $smarty.session.logged}				
 					<div class="titleComents">Anímate y publica tu comentario</div>
 					<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
-					<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run')"/>
+					<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$smarty.request.id},'run',$('#commentTextArea').val())"/>
 				{else}
 				<div class="span-1 iconPhrase">
 					<img src="/img/slash.gif"/>
 				</div>
 				<div>
-					<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="/registro.php">¿Aún no estás registrado?</a></b></p>
+					<p class="noComments">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
 				</div>
 				 {/if}
 
