@@ -22,6 +22,7 @@ $mediaServices = new MediaServices;
 
 $smarty->assign('titulo_pagina', 'Pagina de usuario de '.$_SESSION['user']['username'].' - Runnity.com');
 $smarty->assign('nextRaces',$services->getUserRuns($_SESSION['user']['id']));
+$smarty->assign('friends',$services->getUserFriends($_SESSION['user']['id']));
 $smarty->assign('comments',$services->getComments($_SESSION['user']['id'],'user'));
 $smarty->assign('records',$services->getAllRecordsForUser($_SESSION['user']['id']));
 
