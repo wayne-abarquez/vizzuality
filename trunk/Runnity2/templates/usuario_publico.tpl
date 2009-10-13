@@ -122,7 +122,7 @@
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn userRightColumn">
 
-		<div class="span-1 ticketOrangeVoy2" id="ticketOrangeVoy">{if $smarty.session}<a href="javascript: void followUser('{$smarty.session.user.id}','{$data.datos.id}')">{if $isAlreadyFriend neq true}<div class="checkboxUnchecked"></div><p id="textoInscribirse">Sigue a {$data.datos.username}</p>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Ya sigues a {$data.datos.username}</p>{/if}</a>{else}<div class="checkbox"></div><p><a href="javascript: void showLoginWindow()">Haz login</a> para seguir a {$data.datos.username}</p>{/if}</div>
+		<div class="span-1 ticketOrangeVoy2" id="ticketOrangeVoy">{if $smarty.session}<a href="javascript: void followUser('{$data.datos.id}')">{if $isAlreadyFriend neq true}<div class="checkboxUnchecked"></div><p id="textoInscribirse">Sigue a {$data.datos.username}</p></a>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Ya sigues a {$data.datos.username}</p>{/if}{else}<div class="checkbox"></div><p><a href="javascript: void showLoginWindow()">Haz login</a> para seguir a {$data.datos.username}</p>{/if}</div>
 		
 		<div class="span-1 ticketOrange"></div>	
 	
@@ -158,15 +158,17 @@
 			</div>
 		</div>
 		
+		{if $friends}
 		<div class="span-1 functionalContainer">
-			<p class="titulo tituloLeft tituloColumnRight">DE SU MISMO CLUB</p>
-			<div class="eventsUsers">									
+			<p class="titulo tituloLeft tituloColumnRight">USUARIOS A LOS QUE SIGUES</p>
+			<div class="eventsUsers">
+				<!--TODO-->									
 				<div class="avatarContainer">
-					<!-- TODO -->
 					<a href="/user/{$smarty.session.user.username}"><img title="{$smarty.session.user.username}" class="avatarRight" src="/avatar.php?id={$smarty.session.user.user_id}"/></a>	
 				</div>
 			</div>
-		</div>
+		</div>		
+		{/if}
 				
 	</div>
 
