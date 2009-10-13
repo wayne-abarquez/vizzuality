@@ -87,20 +87,32 @@
     				</div>    
             	{/foreach}
             	</ol>
+            	<div class="span-8" id="flash" align="left"></div>
+            	<div class="span-1 comment_wall">
+					<div class="commentArea" id="commentBox">	
+					{if $smarty.session.logged}				
+						<div class="titleComents">Deja tu comentario</div>
+						<textarea id="comment_textarea"></textarea>
+						<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$data.datos.id},'user',$('#comment_textarea').val())"/>
+					{else}
+					<div>
+						<p class="noComments_wall">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en Runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
+					</div>
+					 {/if}
+	
+					</div>
 				</div>
-				
+				</div>				
 				
 				<!-- Crear servicio para los comentarios sobre usuario -->
-				<!--
-<div class="span-9 commentsPaginator">
+				<!--<div class="span-9 commentsPaginator">
         	   		<div class="userComments">
 						<p>viendo del <b>1 al 5</b> de 60
 							<span><a><input class="fg-button buttonLeftArrow" type="button"/></a></span>
 							<span><a><input class="fg-button buttonRightArrow" type="button"/></a></span>
 						</p>	
 					</div>
-				</div>
--->
+				</div>-->
 
 			</div>
 		</div>
