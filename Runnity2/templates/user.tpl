@@ -166,14 +166,18 @@
 			</div>
 		</div>
 		
+		{if $friends}
 		<div class="span-1 functionalContainer">
-			<p class="titulo tituloLeft tituloColumnRight">DE TU MISMO CLUB</p>
-			<div class="eventsUsers">									
+			<p class="titulo tituloLeft tituloColumnRight">USUARIOS A LOS QUE SIGUES</p>
+			<div class="eventsUsers">
+				<!--TODO-->									
 				<div class="avatarContainer">
 					<a href="/user/{$smarty.session.user.username}"><img title="{$smarty.session.user.username}" class="avatarRight" src="/avatar.php?id={$smarty.session.user.user_id}"/></a>	
 				</div>
 			</div>
-		</div>
+		</div>		
+		{/if}
+		
 				
 	</div>
 
