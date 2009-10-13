@@ -67,7 +67,10 @@
 		<div class="span-1 last leftColumn">
 			<div class="span-1 registerInfoTicket"><p>Para registrarte en Runnity sólo tienes que rellenar los siguientes campos... <b>¡es grátis!</b></p></div>
 			<!--form id="register_form" action="javascript: void registerUser()"-->
+			{$php_errors}
 			<form id="register_form" action="/registro" method="get">
+			    <input type="hidden" name="lat" value="0">
+			    <input type="hidden" name="lon" value="0">
 				<div class="span-1 last leftRegister">
 					<p>Email</p>
 					<label class="inputRegister" for="inputRegister"><span><input id="inputRegister1" name="email_register" type="text"></span></label>
@@ -93,7 +96,7 @@
                            end_year='-8' reverse_years=true}						
 		    			
 		    			<div class="span-1 checkAlertas">
-		    				<div class="span-1 last checkBoxAlerts"><input type="checkbox" id="quiero"></div>
+		    				<div class="span-1 last checkBoxAlerts"><input type="checkbox" id="quiero" name="quiero" value="true"></div>
 		    				<div class="span-1 last checkTitle"><p class="checkTitle">Quiero recibir alertas con las próximas carreras cerca de mi</p></div>
 		    			</div>
 	    			</div>
@@ -115,7 +118,7 @@
 				<div class="error_register" id="error_register"></div>
 				<div class="span-1 last TerminosCondicionesBox">
 					<div class="span-12 first"><p>Al hacer click en “Registrarse” aceptas los <a href="/legalterms.html" target="_blank">Términos y condiciones</a> de runnity.com</p></div>
-					<input class="fg-button buttonRegister" id="register_input" type="submit" name="action" value="register"/>
+					<input class="fg-button buttonRegister" id="register_input" type="submit" name="action" value="Registrarse"/>
 				</div>
 				<div class="span-1 LoginEnRegistro"><p>¿Ya tienes una cuenta en runnity? <a href="javascript: void showLoginWindow()">Haz login</a></p></div>
 			
