@@ -20,12 +20,13 @@ if(isset($_REQUEST['u'])) {
 
 $data=$services->getUserInfo($username);
 $smarty->assign('data', $data);
-$comentarios=$services->getComments($data['datos']['id'],'users');
+$comentarios=$services->getComments($data['datos']['id'],'user');
 $smarty->assign('comments', $comentarios);
+$smarty->assign('nextRaces',$services->getUserRuns($data['datos']['id']));
 
 $smarty->assign('titulo_pagina', 'Pagina de usuario de '.$data['datos']['username'].' - Runnity.com');
 
-$smarty->assign('section', 'usuario_publico');
+$smarty->assign('section', 'usuario');
 $smarty->display('usuario_publico.tpl');
 
 ?>
