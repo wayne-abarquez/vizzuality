@@ -21,30 +21,34 @@
 						<div class="span-1 last dataUser"><p><b>23</b></p></div>
 					</div>
 				</div>
-				
 			</div>
 						
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
 				<div class="editdata">
-					<div class="span-6 first marginTopData">
+					<div class="span-1 nameEdit first">
 						<p class="data">NOMBRE Y APELLIDOS</p>
 						<label class="roundInputName last" for="roundInputName">
 							<input type="text" id="roundInputName">
 						</label>
 					</div>
-					<div class="span-4 last marginTopData">
+					<div class="span-1 anioEdit last">
 						<p class="data">AÑO NACIMIENTO</p>
 						<label class="roundInputDataSmall last" for="roundInputDataSmall">
 							<input type="text" id="roundInputDataSmall">
 						</label>
 					</div>
-					<div class="span-10 last marginTopData">
+					<div class="span-10 localizacionEdit last">
 						<p class="data">LOCALIZACIÓN</p>
 						<label class="roundInputDataLong last" for="roundInputDataLong">
 							<input type="text" id="roundInputDataLong">
 						</label>
 					</div>
+					<input type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS </span>
+					<div class="mapaAlerts">
+						<img src="/img/mapaAlerts.jpg">
+					</div>
+
 				</div>
 				<div class="dataUserButtons">
 					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
@@ -52,30 +56,52 @@
 				
 				<p class="titulo tituloLeft tituloRight">TUS MARCAS</p>
 				<div class="editmarcas">
-					<div class="span-4 last marginTopData">
-						<label class="roundInputDataSmall last" for="roundInputDataSmall">
-							<input type="text" id="roundInputDataSmall">
+					<div class="span-1 first distanceName">
+						{foreach key=id item=record from=$records}
+							<p>{$record.distance_name}</p>
+						{/foreach}
+					</div>
+					<div class="span-1 last recordsContainer">
+						{foreach key=id item=record from=$records}
+						<div class="span-1">
+							<label class="roundInputRecords last" for="roundInputRecords">
+								<input type="text" id="roundInputRecords">
+							</label>
+						</div>
+						<div class="span-1">
+							<label class="roundInputRecords last" for="roundInputRecords">
+								<input type="text" id="roundInputRecords">
+							</label>
+						</div>
+						<div class="span-1">
+							<label class="roundInputRecords last" for="roundInputRecords">
+								<input type="text" id="roundInputRecords">
+							</label>
+						</div>
+						<div class="span-1">
+							<label class="roundInputRecords last" for="roundInputRecords">
+								<input type="text" id="roundInputRecords">
+							</label>
+						</div>					
+						{/foreach}
+					</div>
+				</div>
+				
+				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
+				<div class="editAcount">
+					<div class="span-1 nameEdit first">
+						<p class="data">EMAIL</p>
+						<label class="roundInputName last" for="roundInputName">
+							<input type="text" id="roundInputName">
 						</label>
 					</div>
-					<div class="span-4 last marginTopData">
-						<label class="roundInputDataSmall last" for="roundInputDataSmall">
-							<input type="text" id="roundInputDataSmall">
-						</label>
-					</div>
-					<div class="span-4 last marginTopData">
-						<label class="roundInputDataSmall last" for="roundInputDataSmall">
-							<input type="text" id="roundInputDataSmall">
-						</label>
-					</div>
-					<div class="span-4 last marginTopData">
+					<div class="span-1 anioEdit last">
+						<p class="data">PASSWORD</p>
 						<label class="roundInputDataSmall last" for="roundInputDataSmall">
 							<input type="text" id="roundInputDataSmall">
 						</label>
 					</div>
 				</div>
-				
-				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
-				<div class="editAcount"></div>
 				<div class="dataUserButtons">
 					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
 				</div>
