@@ -44,7 +44,7 @@ class RunnitServices {
 	public function getComments($on_id,$table) {
 	    $table=pg_escape_string($table);
 	    
-	    $sql="SELECT c.id,commenttext,c.created_when,username,u.id as user_id from comments as c INNER JOIN users as u ON c.user_fk=u.id  WHERE on_id=$on_id AND on_table='$table' ORDER BY c.created_when ASC";	    
+	    $sql="SELECT c.id,commenttext,c.created_when,username,u.id as user_id from comments as c INNER JOIN users as u ON c.user_fk=u.id  WHERE on_id=$on_id AND on_table='$table' ORDER BY c.created_when DESC";	    
 
 	    //Check if the user has avatars or not
 	    $result = pg_fetch_all(pg_query($this->conn, $sql));
@@ -264,6 +264,16 @@ class RunnitServices {
 	public function getUserFriends($id) {
 	    $sql="select f.id,f.username from users_relations as ur inner join users as f on ur.friend_fk=f.id where ur.users_fk=$id";
 	    return pg_fetch_all(pg_query($this->conn, $sql));
+	}
+	
+	public function isUserAlreadyFriend($id) {
+	    $sql="select id from users_relations where users_fk=".$_SESSION['user']['id']." AND friend_fk=$id";
+	    $result=pg_query($this->conn, $sql);
+	    if(pg_num_rows($result)>0) {
+	        return false;
+	    }
+	       
+	    return true;	    
 	}
 	
 	public function getUserGroups($id) {
