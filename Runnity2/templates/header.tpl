@@ -44,6 +44,7 @@
     <script src="/js/jquery.truncate-2.3-pack.js" type="text/javascript"></script>    
     <script src="/js/basic.js" type="text/javascript"></script>
     <script src="/js/jquery.url.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.validate.js" type="text/javascript"></script>
 	
 	<script type='text/javascript' src='/js/init.js'></script>
 	

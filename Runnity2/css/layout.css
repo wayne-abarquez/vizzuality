@@ -227,11 +227,11 @@ label.roundLocalizacion {
 	color: #336699;
 }
 
-.TerminosCondicionesBox{
+div.TerminosCondicionesBox{
 	background-color: #f1f4f8;
 	height: 56px;
 	width: 610px;
-	margin-bottom: 10px;
+	margin: 10px 0;
 }
 
 .TerminosCondicionesBox p{
@@ -245,6 +245,17 @@ label.roundLocalizacion {
 	color: #336699;
 	text-decoration: none;
 	font-weight: bold;
+}
+
+.TerminosCondicionesBox input{
+	float: right;
+	margin: 13px 10px 0 0;
+}
+
+div.error_register {
+	color: #c24949;
+	width: 150px;
+	padding: 20px 0 0 14px;
 }
 
 .checkBoxAlerts{
@@ -334,8 +345,7 @@ label.roundLocalizacion {
 
 .leftRegister{
 	width: 264px;
-	margin: 0px 0px 0px 0px;
-	height: 440px;
+	margin: 0px 0px 10px 0px;
 }
 
 .leftRegister p{
@@ -364,7 +374,7 @@ label.inputRegister {
 
 .inputRegister input {
 	background:transparent;
-	padding-top: 8px;
+	padding-top: 7px;
 	padding-left: 6px;
 	float:left;
 	border: none;
@@ -375,6 +385,16 @@ label.inputRegister {
 .inputRegister input:focus {
 	outline:none;
 }
+
+#register_form label.error {
+	margin-left: 10px;
+	color: red;
+	background: none;
+	border: none;
+	height: 20px;
+	width: 200px;
+}
+
 
 #inputRegister1 {width:234px; margin-bottom: 10px;}
 #inputRegister2 {width:234px; margin-bottom: 10px;}

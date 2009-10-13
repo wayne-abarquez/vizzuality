@@ -244,7 +244,6 @@ function logout () {
 
 
 
-/* FUNCION PARA COMENTAR -- REVISAR -- */
 function commentAction(id,on_table) {
 		
 		var comment = $("#commentTextArea").val();
@@ -366,6 +365,84 @@ function sendMessage() {
     return false;
 
 }
+
+
+function registerUser() {
+
+	$('#error_register').html('');
+
+	var email = $("#inputRegister1").val();
+	var contraseña = $("#inputRegister2").val();
+	var user = $("#inputRegister3").val();
+	var nombre = $("#inputRegister4").val();
+	var check = $('#quiero').attr('checked');
+	var localidad = $("#roundLocalization").val();
+		
+	if ($('#quiero').attr('checked')) {
+		if (localidad =="") {
+			$('#error_register').html('Existen campos vacíos');
+			return false;
+		}
+	}
+	
+	if ((email=="") || (contraseña=="") || (user=="") || (nombre =="")) {
+		$('#error_register').html('Existen campos vacíos');
+		return false;
+	}
+	
+	
+	if ((email.length<5) || (contraseña.length<5) || (user.length<5) || (nombre.length<5)) {
+		$('#error_register').html('Existen campos con pocos caracteres');
+		return false;
+	}
+	
+	if (!echeck(email)) {
+    	$('#error_register').html('Tu email es incorrecto');
+    	return false;
+    }
+	
+	$("#inputRegister1").attr("disabled", "true");
+	$("#inputRegister2").attr("disabled", "true");
+	$("#inputRegister3").attr("disabled", "true");
+	$("#inputRegister4").attr("disabled", "true");
+	$('#quiero').attr("disabled", "true");
+	$("#roundLocalization").attr("disabled", "true");
+	$("#combo_anio").attr("disabled", "true");
+	$("#combo_sex").attr("disabled", "true");
+	
+	
+	$('#register_input').attr('value','Enviando');
+	
+	$("#register_input").attr("disabled", "true");
+	
+	var dataObj = ({method: 'sendPasswordToEmail', email:email});  
+	  
+    /*$.ajax({
+    	type: "POST",
+    	url: "/ajaxController.php",
+    	data: dataObj,
+    	cache: false,
+    	success: function(result){
+    		if(result=='') {
+    			$('#passForm').show();
+    			$('#loginEmailText').html('email');
+    			$("#FormularioLogin").attr("action","javascript: void login();");
+    			$('#submitLogin').attr('value','Enviar');
+    			$('#forgetLink').html('Contraseña enviada.');
+    			$('#forgetLink').css('color','#c24949');
+    			timerID = setTimeout("changeText()", 2000);
+            } else {
+            	$('#submitLogin').attr('value','Enviar');
+            	$('#error_msg').html('El email no existe.');       
+            }
+    	},
+        error:function (xhr, ajaxOptions, thrownError){
+                alert(xhr.status + "\n" + thrownError);
+        }
+    });*/
+}
+
+
 
 
 function cleanDate() {
