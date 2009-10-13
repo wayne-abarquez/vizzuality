@@ -79,11 +79,12 @@ class RunnitServices {
 	}
 	
 	//ajaxController
-	public function registerUser($username,$completename,$email,$password) {
+	public function registerUser($username,$completename,$email,$password,$birthdayDay,$birthdayMonth,$birthdayYear,$localidad) {
 	    $username=pg_escape_string($username);
 	    $completename=pg_escape_string($completename);
 	    $email=pg_escape_string($email);
 	    $password=pg_escape_string($password);
+	    $localidad=pg_escape_string($localidad);
 	    
 	    if(strlen($username)<5) {
 	        throw new Exception('El nombre de usuario debe ser mayor de 5 caracteres.',101);
@@ -371,10 +372,10 @@ class RunnitServices {
 
         $activity_description=" Un nuevo comentario";
 
-        $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
-        $result= pg_query($this->conn, $sql);
-         
-                            
+        if($table=="run") {
+            $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
+            $result= pg_query($this->conn, $sql);            
+        }
         
         return null;
 	    
