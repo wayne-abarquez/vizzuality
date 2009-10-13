@@ -61,7 +61,7 @@
 			</div>
 			
 			<div class="span-1 last commentsUser">
-				<p class="titulo tituloLeft tituloRight">MENSAJES PARA {$data.datos.username|upper} {if !empty($comments)}[{$comments|@count}]{/if}</p>
+				<p class="user_title">MENSAJES PARA {$data.datos.username|upper} {if !empty($comments)}[{$comments|@count}]{/if}</p>
 				
 				<div class="span-1 last columnComments">
 
