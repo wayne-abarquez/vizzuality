@@ -270,10 +270,10 @@ class RunnitServices {
 	    $sql="select id from users_relations where users_fk=".$_SESSION['user']['id']." AND friend_fk=$id";
 	    $result=pg_query($this->conn, $sql);
 	    if(pg_num_rows($result)>0) {
-	        return false;
+	        return true;
 	    }
 	       
-	    return true;	    
+	    return false;	    
 	}
 	
 	public function getUserGroups($id) {
