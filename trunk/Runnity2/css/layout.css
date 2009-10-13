@@ -272,8 +272,16 @@ label.roundLocalizacion {
 	margin-left: 14px;
 }
 
-.comboFecha{
+.comboDia{
 	width: 50px;
+}
+
+.comboMes{
+	width: 100px;
+}
+
+.comboAnio{
+	width: 70px;
 }
 
 .rightColumnRegister{
@@ -629,7 +637,7 @@ img.rssImage{
 #login_modal .loginForm{ width: 213px; padding-left: 20px; padding-top: 10px; letter-spacing: -1px;}
 #login_modal .title{ color: #336699; font-size: 22px; margin: 10px 0px 0px 0px; padding: 0px 0px 0px 0px; }
 #login_modal p{ color: #999999; font-weight: bold; margin: 10px 0px 0px 0px; padding: 0px 0px 0px 0px; }
-#login_modal div.forgetFind{ float: left; margin-top: 12px; width: 195px;}
+#login_modal div.forgetFind{ float: left; margin-top: 12px; width: 192px;}
 #login_modal div.forgetFind input {padding: 3px 4px; margin: 5px 0 0 0}
 #login_modal div.forgetPass{ text-align: left; float: left; padding-top: 3px;}
 #login_modal div.forgetPass a{ color:#336699;}
@@ -673,6 +681,7 @@ label.inputLogin {
 
 #login_modal div.register_text {float: right; padding: 0 5px; width: 200px;}
 #login_modal div.register_text h3 { color:#336699; padding: 60px 0 0 0; }
+#login_modal div.register_text p { height: 73px; }
 #login_modal div.register_text input {float:right; margin: 2px 5px 0 0; padding: 3px 4px; width: 87px;}
 
 
