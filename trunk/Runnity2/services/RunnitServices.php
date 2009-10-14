@@ -235,9 +235,15 @@ class RunnitServices {
 	}
 	
 	public function getUserPrivateData($username) {
+/*
+	    if (!$_SESSION['logged']) {
+	        throw new Exception("user not logged in");
+	    }	
+*/	
+	
 	    $result=array();
 	    $username=pg_escape_string($username);
-	    $sql="select id,completename,username,email,created_when,visits_profile from users where username='select u.id,completename,username,email,created_when,visits_profile,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date > now()) as num_races_runned from users as u where username='$username'";
+	    $sql="select u.id,completename,username,email,created_when,visits_profile,birthday,pass,locality,is_men,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date > now()) as num_races_runned from users as u where username='$username'";
         $result['datos'] = pg_fetch_assoc(pg_query($this->conn, $sql));
         if(!$result['datos']) {
             return false;
@@ -248,6 +254,9 @@ class RunnitServices {
 	    $result['records']=$this->getUserRecords($result['datos']['id']);
 	    $result['amigos']=$this->getUserFriends($result['datos']['id']);
 	    $result['grupos']=$this->getUserGroups($result['datos']['id']);	    
+	    
+	    return $result;
+	    
 	}
 	
 	public function getUserRecords($id) {
