@@ -1,5 +1,7 @@
 {include file="header.tpl"}
 
+$('$this').val("");
+
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
@@ -104,7 +106,7 @@
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
 								<input type="text" id="roundInputRecordsDD{$record.id}" value="{$record.time_taken|substr:9:2}">
-							</label><span class="separatorInput"><input type="button" class="fg-button eraseRecordButton" value="x"></span>
+							</label><span class="separatorInput"><input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrar(roundInputRecordsHH{$record.id},roundInputRecordsMM{$record.id},roundInputRecordsSS{$record.id},roundInputRecordsDD{$record.id})"></span>
 						</div>					
 						{/foreach}
 					</div>
