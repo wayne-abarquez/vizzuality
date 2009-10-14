@@ -46,9 +46,11 @@
 			     
 			 	 if(TreeBrowserList(owner).isItemSelected(data)) {
 			 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
-						setStyle("backgroundImage",lastItem);
-				     	specieLabel.setStyle('color', 0xFFFFFF);
-			            specieGroup.setStyle('color', 0xFFFFFF);
+						if (taxon != "Load more...") {
+							setStyle("backgroundImage",lastItem);
+				     		specieLabel.setStyle('color', 0xFFFFFF);
+			            	specieGroup.setStyle('color', 0xFFFFFF);
+						}
 				     } else {
 					 	if (parseInt(children_number)==0) {
 					 		setStyle("backgroundImage",lastItem);
@@ -82,13 +84,31 @@
                 	bool=false;
                     return;
                 }
-                if(value.labelField != taxon) {
-	                taxon = value.labelField;
+                
+                /* if(value.labelField == "Load more...") {
+                	taxon = value.labelField;
 	                children_number = value.number_children;
-					//flickrImg.query=taxon;
                 	flickrImg.query=value.imageURL;
 	                bool = value.has_children;
-                }
+                	loading.visible = bool;
+                	mamufas.visible = false;
+                	flickrImg.visible = false;
+                	specieLabel.setStyle('left','30');
+                	specieLabel.setStyle('verticalCenter','-4');
+                	specieLabel.setStyle('fontSize','20');
+                	specieGroup.visible = false;
+               	} else { */
+               		if(value.labelField != taxon) {   	
+		                taxon = value.labelField;
+		                children_number = value.number_children;
+						//flickrImg.query=taxon;
+	                	flickrImg.query=value.imageURL;
+		                bool = value.has_children;
+	                }
+               	/* } */
+                
+                
+                	
             }
                 
             private function doEffect():void{
@@ -112,7 +132,7 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Canvas backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52">
+	<mx:Canvas id="mamufas" backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52">
 	 	<components:FlickrImage id="flickrImg" left="3" horizontalAlign="center" verticalAlign="middle" top="3" width="46" height="46"/>
 	</mx:Canvas>
     <mx:Label id="specieLabel" text="{taxon}" textAlign="left" verticalCenter="-9" left="65" fontSize="14" width="135" height="23" fontFamily="DINOT-Medium" color="#666666"/>
