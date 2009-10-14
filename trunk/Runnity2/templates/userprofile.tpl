@@ -104,7 +104,7 @@
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
 								<input type="text" id="roundInputRecordsDD{$record.id}" value="{$record.time_taken|substr:9:2}">
-							</label>
+							</label><span class="separatorInput"><input type="button" class="fg-button eraseRecordButton" value="x"></span>
 						</div>					
 						{/foreach}
 					</div>
