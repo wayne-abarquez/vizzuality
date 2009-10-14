@@ -1,7 +1,5 @@
 {include file="header.tpl"}
 
-$('$this').val("");
-
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
@@ -49,7 +47,7 @@ $('$this').val("");
 						</div>
 						<div class="span-1 last fechaEdit">
 							<p class="data">FECHA NACIMIENTO</p>
-							{html_select_date time='$privateData.datos.birthday' start_year='-55' month_format='%m' field_order='DMY' end_year='-8' reverse_years=true}
+							{html_select_date time=$privateData.datos.birthday start_year='-55' month_format='%m' field_order='DMY' end_year='-8' reverse_years=true}
 						</div>
 					</div>
 					<div class="localizacionEdit">
