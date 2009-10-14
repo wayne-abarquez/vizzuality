@@ -11,15 +11,19 @@ package com.ninem.controls
 	import flash.events.MouseEvent;
 	import flash.xml.XMLNode;
 	
+	import gs.TweenLite;
+	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ICollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.containers.HBox;
+	import mx.controls.Button;
 	import mx.controls.List;
 	import mx.controls.Tree;
 	import mx.controls.listClasses.IListItemRenderer;
 	import mx.controls.treeClasses.DefaultDataDescriptor;
 	import mx.controls.treeClasses.ITreeDataDescriptor;
+	import mx.core.Application;
 	import mx.core.ClassFactory;
 	import mx.core.IFactory;
 	import mx.core.ScrollPolicy;
@@ -95,6 +99,7 @@ package com.ninem.controls
 		private var i: int;
 		private var dataLength: int;
 		public var auxArrayCollec : ArrayCollection;
+		public var buttonsArray : Array = new Array();
 		
 		/**
 		 * @private
@@ -375,13 +380,54 @@ package com.ninem.controls
  		}
 		
 		private function updateDataProvider(ev:ListEvent):void {
+			
+			
 			//choose the column
 			column = ev.currentTarget as TreeBrowserList;
 			//catch column number
 			index = getChildIndex(column);
-			//select the item in column
-			/* clearColumns(index+1); */
+			/* if (index + 2 < numChildren) {
+				clearColumns(index + 1,true);
+				trace('jam');
+			} */
+			if(index < numChildren - 2) {
+				clearColumns(index + 1, true);	
+				/* trace('clearColumn') */			
+			}
+			else if(index == numChildren - 2) {
+				scrollToEnd();
+			} 
+				
 			_selectedItem = column.selectedItem;
+			
+			//upper Canvas buttons
+			var button: Button = new Button();
+			button.y = 0;
+			if (index == 0) {
+				buttonsArray = new Array();
+				Application.application.click_canvas.removeAllChildren();
+				button.x = 20;
+				button.y = 10;
+				button.label = 	_selectedItem.labelField;			
+				Application.application.click_canvas.addChildAt(button,0);
+				buttonsArray.push(button);
+			} else {
+				for (var i: int=buttonsArray.length - 1; i>index-1; i--) {
+					TweenLite.to(buttonsArray[i], 1, {x:10, y:10});
+					Application.application.click_canvas.removeChild(buttonsArray[i]);
+					buttonsArray.pop();
+				}
+				var lastChild: UIComponent = Application.application.click_canvas.getChildAt(0);				
+				button.x = lastChild.x + lastChild.width - 100;
+				button.y = 10;
+				button.alpha = 0;
+				button.label = 	_selectedItem.labelField;
+				TweenLite.to(button, 0.4, {x:lastChild.x + lastChild.width - 10, y:10, alpha:1});
+				Application.application.click_canvas.addChildAt(button,0);
+				
+				buttonsArray.push(button);
+			}
+			
 			
 			var httpsrv:HTTPService = new HTTPService();
 			httpsrv.resultFormat = "text";
@@ -409,7 +455,8 @@ package com.ninem.controls
 						
 					}
 					clasOb.labelField = co.scientificName;
-					clasOb.children=(co.numChildren>0);		
+					clasOb.children=(co.numChildren>0);
+					clasOb.number_children = co.numChildren;
 					resultAc.addItem(clasOb);
 			}			
 			(_rootModel as ArrayCollection).addItemAt(resultAc,index+1);
@@ -442,10 +489,10 @@ package com.ninem.controls
 							}
 						}
 						// reset the columns after the next one, if there are any
-						if(index < numChildren - 2)
+						/* if(index < numChildren - 2)
 							clearColumns(index + 2, true);
 						else if(index == numChildren - 2) 
-							scrollToEnd();
+							scrollToEnd(); */
 					}else{
 						// item clicked is in the last column, new column needs to be added
 						if(children.length == 0) 
@@ -470,12 +517,12 @@ package com.ninem.controls
 						IListItemRenderer(nextColumn).data = column.selectedItem;
 				}else{
 					// item clicked has no children, clear all columns after this one
-					if(index < numChildren - 1)
-						clearColumns(index + 1, true);
+					/* if(index < numChildren - 1)
+						clearColumns(index + 1, true); */
 				}
 			}else{
 				// selectedItem is null, item must have been deselected by control-clicking
-				clearColumns(index + 1, true);
+				/* clearColumns(index + 1, true); */
 				if(index > 0){
 					_selectedItem = TreeBrowserList(getChildAt(index - 1)).selectedItem;
 					//children = _dataDescriptor.getChildren(_selectedItem, _rootModel);
@@ -504,7 +551,7 @@ package com.ninem.controls
 		private function createDetailRenderer():UIComponent{
 			var renderer:UIComponent = detailRenderer.newInstance() as UIComponent;
 			//for change width details window!!!!
-			renderer.width = 300;
+			renderer.width = 250;
 			renderer.percentHeight = 100;
 			return renderer;
 		}
@@ -524,7 +571,7 @@ package com.ninem.controls
 			tween.addEventListener(EffectEvent.EFFECT_END, onScrollToEndFinished);
 			tween.property = "horizontalScrollPosition";
 			tween.toValue = maxHorizontalScrollPosition;
-			/* tween.duration = scrollTweenRate * (maxHorizontalScrollPosition - horizontalScrollPosition); */
+			tween.duration = scrollTweenRate * (maxHorizontalScrollPosition - horizontalScrollPosition);
 			tween.duration = 400;
 			tween.play([this]);
 		}
@@ -545,8 +592,6 @@ package com.ninem.controls
 			var column:UIComponent;
 			var removeCount:int = 0;
 			for(var i:int=startIndex; i<numChildren; i++){
-				trace("limpia columna: " + i);
-				trace("numero de columnas: " + numChildren);
 				column = getChildAt(i) as UIComponent;
 				if(column is TreeBrowserList){		
 					TreeBrowserList(column).dataProvider = null;
@@ -571,7 +616,7 @@ package com.ninem.controls
 				// calculate scrollposition of column that will now be last
 				var toValue:Number = Math.max((numChildren - removeCount) * (columnWidth - 2) - width, 0);
 				tween.toValue = toValue;
-				/* tween.duration = scrollTweenRate * (horizontalScrollPosition - toValue); */
+				tween.duration = scrollTweenRate * (horizontalScrollPosition - toValue);
 				tween.duration = 400;
 				tween.play([this]);
 			}
@@ -579,7 +624,9 @@ package com.ninem.controls
 		
 		private function onRemoveTweenFinished(event:EffectEvent):void{
 			tween.removeEventListener(EffectEvent.EFFECT_END, onRemoveTweenFinished);
-			clearColumns(storedValue);
+			clearColumns(storedValue+1);
+			/* if (index>numChildren-2)
+				scrollToEnd(); */
 			checkScrollBar(); 
 		}
 		
@@ -596,7 +643,7 @@ package com.ninem.controls
 	    	if(!(column is TreeBrowserList) || (TreeBrowserList(column).dataProvider && TreeBrowserList(column).dataProvider.length > 0))
 	    		horizontalScrollPolicy = ScrollPolicy.AUTO;
 	    	else
-	    		horizontalScrollPolicy = ScrollPolicy.AUTO;
+	    		horizontalScrollPolicy = ScrollPolicy.ON;
 		}
 		
 	    /**

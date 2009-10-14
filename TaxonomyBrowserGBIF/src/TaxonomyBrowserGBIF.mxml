@@ -47,7 +47,8 @@
 							
 						}
 						clasOb.labelField = co.scientificName;
-						clasOb.children=(co.numChildren>0);						
+						clasOb.children=(co.numChildren>0);
+						clasOb.number_children = co.numChildren;
 						resultAc.addItem(clasOb);
 					}
 				}
@@ -61,7 +62,7 @@
 	<mx:Style source="com/vizzuality/skin/fonts.css"/>
 	
 	<controls:TreeBrowser id="treeB" columnWidth="250" detailRenderer="com.vizzuality.components.ItemDetailRenderer" top="45" bottom="0" left="0" right="0"/>	
-	<components:GradientCanvas height="45" top="0" left="0" right="0" firstColor="0x009933" secondColor="0x006633">
-
+	<components:GradientCanvas id="click_canvas" height="45" top="0" left="0" right="0" firstColor="0x009933" secondColor="0x006633">
+	
 	</components:GradientCanvas>	
 </mx:Application>

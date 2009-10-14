@@ -11,6 +11,48 @@
     font-weight: normal;
 }
 
-Canvas.itemClick {
-	background-image: url("../assets/click.jpg");	
+HScrollBar {
+   cornerRadius: 0;
+   highlightAlphas: 0, 0;
+   fillAlphas: 0.82, 0.88, 0.87, 0.86;
+   fillColors: #000000, #000000, #333333, #333333;
+   trackColors: #f2f2f2, #ffffff;
+   themeColor: #000000;
+   borderColor: #cccccc;
+   iconColor: #ffffff;
+   thumbOffset: 0;
+}
+
+VScrollBar {
+   cornerRadius: 0;
+   highlightAlphas: 0, 0;
+   fillAlphas: 0.82, 0.88, 0.87, 0.86;
+   fillColors: #000000, #000000, #333333, #333333;
+   trackColors: #f2f2f2, #ffffff;
+   themeColor: #000000;
+   borderColor: #cccccc;
+   iconColor: #ffffff;
+   thumbOffset: 0;
+}
+
+ToolTip {
+   backgroundColor: #ffffff;
+   color: #666666;
+   fontFamily: DINOT-Medium;
+   fontSize: 12;
+}
+
+Button {
+   paddingTop: 0;
+   letterSpacing: 0;
+   highlightAlphas: 0.29, 0;
+   fillAlphas: 1, 1, 1, 1;
+   fillColors: #009732, #006321, #006321, #009732;
+   color: #ffffff;
+   textRollOverColor: #ffffff;
+   textSelectedColor: #ffffff;
+   borderColor: #3c5b46;
+   themeColor: #006600;
+   fontFamily: DINOT-Medium;
+   fontSize: 14;
 }

@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:components = "com.vizzuality.components.*" horizontalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="100%" xmlns:components = "com.vizzuality.components.*" horizontalScrollPolicy="off" backgroundColor="#dedede">
 	<mx:Script>
 		<![CDATA[
 			import mx.core.Application;
 			
-			private function changeSizeImage(str:String):String {
-				var source: String;
-				source = Application.application.resolvedImages[str];
-				return source.replace("_s","");
-			}
+			[Embed(source="com/vizzuality/assets/detail.jpg")]
+   			[Bindable]
+   			public var detail:Class;
+			
 		]]>
 	</mx:Script>
-	<mx:Label text="{data.labelField}" fontSize="14" width="310.5" textAlign="center" height="29" fontStyle="normal" fontWeight="bold" color="#030505" fontFamily="Verdana" horizontalCenter="0"/>
-	<mx:Canvas y="36" width="310.19998" height="341.6" horizontalScrollPolicy="off" verticalScrollPolicy="off" horizontalCenter="0">
-		<components:FlickrImage width="100%" height="100%" source="{changeSizeImage(data.name)}" verticalAlign="middle" horizontalAlign="center" horizontalCenter="0"/>
+	<mx:Label id="specie" text="{data.labelField}" fontSize="17" width="210" textAlign="left" minHeight="35" maxHeight="70" color="#666666" fontFamily="DINOT-Medium" left="10" top="10"/>
+	<mx:Label text="{data.children_number} occurrences" fontSize="12" width="210" textAlign="left" color="#999999" fontFamily="DINOT-Medium" left="10" top="{(specie.height>35)?75:35}"/>
+	<mx:Canvas y="70" width="230" height="230" horizontalScrollPolicy="off" verticalScrollPolicy="off" horizontalCenter="0" backgroundImage="{detail}">
+		<mx:Image source="{data.imageURL}" verticalAlign="middle" horizontalAlign="center" left="6" right="6" top="6" bottom="6"/>
 	</mx:Canvas>
-	<mx:Label y="400" text="Description:" width="139.45" height="18" textAlign="right" fontSize="12" horizontalCenter="-93"/>
-	<mx:Label y="400" width="168.70001" height="18" text="{data.labelField}" fontSize="12" horizontalCenter="70"/>
-	<mx:Label y="420.7" text="ID:" width="57.449997" height="18" textAlign="right" fontSize="12" horizontalCenter="-53"/>
-	<mx:Label y="420.7" width="86.5" height="18" text="--------" fontSize="12" horizontalCenter="35"/>
-	<mx:Button y="476.2" label="More information" width="114.100006" height="16.560001" color="#0A0A0A" fontWeight="normal" cornerRadius="10" 
-		click="{navigateToURL (new URLRequest ('http://data.gbif.org/search/' + escape(data.labelField)), '_blank')}" fontSize="9" fontFamily="Verdana" horizontalCenter="0"/>
+	<mx:Button y="350" label="view distribution" width="135" height="25" color="#FFFFFF" fontWeight="normal"
+		click="{navigateToURL (new URLRequest ('http://data.gbif.org/search/' + escape(data.labelField)), '_blank')}" fontSize="14" fontFamily="DINOT-Medium" horizontalCenter="0"/>
+	<mx:Label text="{data.children_number} sources" fontSize="12" width="100%" textAlign="center" color="#999999" fontFamily="DINOT-Medium" horizontalCenter="0" top="383"/>
 </mx:Canvas>
