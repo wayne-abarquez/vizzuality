@@ -56,11 +56,20 @@
 							<input type="text" id="roundInputDataLong" value="{$privateData.datos.locality}">
 						</label>
 					</div>
-					<div class="checkAlerts"><input type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS </span></div>
-					<div class="mapaAlerts">
-						<img src="/img/mapaAlerts.jpg">
+					<div class="checkAlerts"><input type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
+					<div>
+						<div class="span-1 first mapaAlerts">
+							<img src="/img/mapaAlerts.jpg">
+						</div>
+						<div class="span-1 last editRadio">
+							<p class="data">RADIO DE BÚSQUEDA</p>
+							<label class="roundInputDataRadio" for="roundInputDataRadio">
+								<input type="text" id="roundInputDataRadio"><span>(Km)</span>
+							</label>
+							<p class="data">Las alertas se enviarán semanalmente a tu dirección de email</p>
+						
+						</div>
 					</div>
-
 				</div>
 				<div class="dataUserButtons">
 					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
@@ -69,11 +78,13 @@
 				<p class="titulo tituloLeft tituloRight">TUS MARCAS</p>
 				<div class="editmarcas">
 					<div class="span-1 first distanceName">
+						<p class="data">DISTANCIA</p>
 						{foreach key=id item=record from=$records}
 							<p>{$record.distance_name}</p>
 						{/foreach}
 					</div>
 					<div class="span-1 last recordsContainer">
+						<p class="data">HH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CENTS</p>
 						{foreach key=id item=record from=$records}
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
@@ -98,16 +109,19 @@
 						{/foreach}
 					</div>
 				</div>
+				<div class="dataUserButtons">
+					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
+				</div>
 				
 				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
 				<div class="editAcount">
-					<div class="span-1 nameEdit first">
+					<div class="span-1 editEmail first">
 						<p class="data">EMAIL</p>
 						<label class="roundInputName last" for="roundInputName">
 							<input type="text" id="roundInputName" value="{$privateData.datos.email}">
 						</label>
 					</div>
-					<div class="span-1 anioEdit last">
+					<div class="span-1 editPass last">
 						<p class="data">PASSWORD</p>
 						<label class="roundInputDataSmall last" for="roundInputDataSmall">
 							<input type="password" id="roundInputDataSmall" value="{$privateData.datos.pass}">
@@ -118,8 +132,7 @@
 					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
 				</div>
 
-			</div>
-			
+			</div>			
 		</div>
 	</div>
 	
