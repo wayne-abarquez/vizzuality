@@ -1,5 +1,20 @@
 /* usuario edit */
 
+.dashboardLink{
+	float: right;
+	color: #336699;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	margin: 0px;
+	margin-top: -15px;
+}
+
+.dashboardLink img{
+	margin: 0px;
+}
+
 label.roundInputDataRadio{
 	float:left;
 	clear:left;
