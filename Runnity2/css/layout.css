@@ -1,8 +1,23 @@
 /* usuario edit */
 
+.sexoFecha{
+	height: 50px;
+	width: 372px;
+}
+
+.checkAlerts{
+	margin-left: 7px;
+	width: 250px;
+}
+
+.checkAlerts span{
+	color: #999999;
+	font-size: 11px;
+	font-weight: bold;
+}
+
 .recordsContainer{
 	margin: 0px;
-	margin-left: 20px;
 	margin-top: 10px;
 	width: 160px;
 }
@@ -11,13 +26,13 @@
 	margin: 0px;
 	margin-top: 14px;
 	margin-left: 10px;
-	width: 100px;
+	width: 90px;
 }
 
 .distanceName p{
 	color: #999999;
 	margin: 0px;
-	margin-bottom: 6px;
+	margin-bottom: 10px;
 }
 
 label.roundInputRecords{
@@ -26,7 +41,7 @@ label.roundInputRecords{
 	background:url(/img/inputRecords.gif) no-repeat 0 0;
 	padding: 0px 0px 0px 0px;
 	height: 26px;
-	margin:0px 0px 0px 0px;
+	margin:0px;margin-bottom: 2px;
 }
 
 .roundInputRecords input {
@@ -41,9 +56,7 @@ label.roundInputRecords{
 
 .roundInputRecords input:focus {
 	outline:none;
-}
-
-#roundInputRecords {width:26px;}
+} 
 
 .mapaAlerts{
 	border: 1px solid #cccccc;
@@ -55,17 +68,24 @@ label.roundInputRecords{
 }
 
 .nameEdit{
-	width: 233px;
+	width:372px;
 	height: 50px;
 	margin-left: 10px;
-	margin-top: 10px;
+	padding-top: 10px;
 }
 
-.anioEdit{
-	width: 134px;
+.fechaEdit{
 	height: 50px;
-	margin-left: -5px;
-	margin-top: 10px;
+	margin-left: 10px;
+	margin-top: 4px;
+	width: 180px;
+}
+
+.sexoEdit{
+	height: 50px;
+	margin-left: 10px;
+	margin-top: 4px;
+	width: 70px;
 }
 
 .localizacionEdit{	
@@ -184,7 +204,7 @@ label.roundInputName {
 
 .editdata{
 	background-color: #f1f4f8;
-	height: 280px;
+	height: 400px;
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
@@ -192,7 +212,7 @@ label.roundInputName {
 
 .editmarcas{
 	background-color: #f1f4f8;
-	height: 250px;
+	height: 300px;
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
@@ -713,6 +733,7 @@ div.userComments {
 .columnNameUser{
 	width: 610px;
 	height: 30px;
+	margin-left: 20px;
 }
 
 .userData{
