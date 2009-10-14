@@ -100,6 +100,7 @@ package com.ninem.controls
 		private var dataLength: int;
 		public var auxArrayCollec : ArrayCollection;
 		public var buttonsArray : Array = new Array();
+		private var dataProviderLenght: int;
 		
 		/**
 		 * @private
@@ -125,7 +126,7 @@ package com.ninem.controls
 		public function TreeBrowser()
 		{
 			super();
-			setStyle("horizontalGap", "5");
+			setStyle("horizontalGap", "3");
 			addEventListener(ResizeEvent.RESIZE, onResize);
 		}
 		
@@ -386,57 +387,84 @@ package com.ninem.controls
 			column = ev.currentTarget as TreeBrowserList;
 			//catch column number
 			index = getChildIndex(column);
-			/* if (index + 2 < numChildren) {
-				clearColumns(index + 1,true);
-				trace('jam');
-			} */
-			if(index < numChildren - 2) {
-				clearColumns(index + 1, true);	
-				/* trace('clearColumn') */			
-			}
-			else if(index == numChildren - 2) {
-				scrollToEnd();
-			} 
-				
 			_selectedItem = column.selectedItem;
 			
-			//upper Canvas buttons
-			var button: Button = new Button();
-			button.y = 0;
-			if (index == 0) {
-				buttonsArray = new Array();
-				Application.application.click_canvas.removeAllChildren();
-				button.x = 20;
-				button.y = 10;
-				button.label = 	_selectedItem.labelField;			
-				Application.application.click_canvas.addChildAt(button,0);
-				buttonsArray.push(button);
+			if (_selectedItem.labelField == "Load more...") {
+				growList();
 			} else {
-				for (var i: int=buttonsArray.length - 1; i>index-1; i--) {
-					TweenLite.to(buttonsArray[i], 1, {x:10, y:10});
-					Application.application.click_canvas.removeChild(buttonsArray[i]);
-					buttonsArray.pop();
+				if(index < numChildren - 2) {
+					clearColumns(index + 1, true);	
 				}
-				var lastChild: UIComponent = Application.application.click_canvas.getChildAt(0);				
-				button.x = lastChild.x + lastChild.width - 100;
-				button.y = 10;
-				button.alpha = 0;
-				button.label = 	_selectedItem.labelField;
-				TweenLite.to(button, 0.4, {x:lastChild.x + lastChild.width - 10, y:10, alpha:1});
-				Application.application.click_canvas.addChildAt(button,0);
+				else if(index == numChildren - 2) {
+					scrollToEnd();
+				} 
+
+				//upper Canvas buttons
+				var button: Button = new Button();
+				button.y = 0;
+				if (index == 0) {
+					buttonsArray = new Array();
+					Application.application.click_canvas.removeAllChildren();
+					button.x = 20;
+					button.y = 10;
+					button.label = 	_selectedItem.labelField;			
+					Application.application.click_canvas.addChildAt(button,0);
+					buttonsArray.push(button);
+				} else {
+					for (var i: int=buttonsArray.length - 1; i>index-1; i--) {
+						TweenLite.to(buttonsArray[i], 1, {x:10, y:10});
+						Application.application.click_canvas.removeChild(buttonsArray[i]);
+						buttonsArray.pop();
+					}
+					var lastChild: UIComponent = Application.application.click_canvas.getChildAt(0);				
+					button.x = lastChild.x + lastChild.width - 100;
+					button.y = 10;
+					button.alpha = 0;
+					button.label = 	_selectedItem.labelField;
+					TweenLite.to(button, 0.4, {x:lastChild.x + lastChild.width - 10, y:10, alpha:1});
+					Application.application.click_canvas.addChildAt(button,0);
+					
+					buttonsArray.push(button);
+				}
 				
-				buttonsArray.push(button);
+				
+				var httpsrv:HTTPService = new HTTPService();
+				httpsrv.resultFormat = "text";
+				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
+				httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?image=thumb&id="+(_selectedItem.id).toString();
+				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
+				httpsrv.send();
 			}
 			
 			
-			var httpsrv:HTTPService = new HTTPService();
-			httpsrv.resultFormat = "text";
-			//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
-			httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?image=thumb&id="+(_selectedItem.id).toString();
-			httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
-			httpsrv.send();
 
 		}
+		
+		private function growList():void {
+			var ev: Event = new Event("loadingFinish",true);
+			dispatchEvent(ev);
+			addEventListener(Event.ENTER_FRAME, addComponentLoadMore);
+			((column.dataProvider) as ArrayCollection).removeItemAt(((column.dataProvider) as ArrayCollection).length - 1);
+			((column.dataProvider) as ArrayCollection).addItem((_rootModel[index] as ArrayCollection)[((column.dataProvider) as ArrayCollection).length - 1]);
+			i = ((column.dataProvider) as ArrayCollection).length - 1;
+			dataProviderLenght = ((column.dataProvider) as ArrayCollection).length - 1;
+		}
+		
+		private function addComponentLoadMore(ev:Event):void {
+			if ((i+1) == dataProviderLenght+50 || (i+1)==(_rootModel[index] as ArrayCollection).length)
+				removeEventListener(Event.ENTER_FRAME,addComponentLoadMore);
+			((column.dataProvider) as ArrayCollection).addItem((_rootModel[index] as ArrayCollection)[i]);	
+			if ((i+1) == dataProviderLenght+50 ) {
+				var obj: Object = new Object();
+				obj.labelField = "Load more...";
+				((column.dataProvider) as ArrayCollection).addItem(obj);
+			}
+			i++;
+		}
+		
+		
+		
+		
 			
 			
 		private function onResultGbif(ev: ResultEvent):void {
@@ -533,9 +561,16 @@ package com.ninem.controls
 		}
 		
 		private function addComponent(ev:Event):void{
-			if ((i+1) == dataLength)
+			
+			if ((i+1) == 50 || (i+1) == dataLength)
 				removeEventListener(Event.ENTER_FRAME,addComponent);
-			auxArrayCollec.addItem(dataChild[i]);
+			auxArrayCollec.addItem(dataChild[i]);	
+			
+			if ((i+1) == 50 ) {
+				var obj: Object = new Object();
+				obj.labelField = "Load more...";
+				auxArrayCollec.addItem(obj);
+			}	
 			i++;
 		}
 		
