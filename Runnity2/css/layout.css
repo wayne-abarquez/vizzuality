@@ -1,5 +1,10 @@
 /* usuario edit */
 
+.eraseRecordButton{
+	margin-top: -1px;
+	margin-left: 4px;
+}
+
 .separatorInput{
 	position: absolute;
 	margin: 0;
@@ -80,7 +85,7 @@ label.roundInputDataRadio{
 .distanceName{
 	margin: 0px;
 	margin-top: 14px;
-	margin-left: 10px;
+	margin-left: 60px;
 	width: 90px;
 }
 
@@ -103,7 +108,7 @@ label.roundInputRecords{
 .roundInputRecords input {
 	background:transparent;
 	padding-top: 8px;
-	padding-left: 6px;
+	padding-left: 2px;
 	float:left;
 	border: none;
 	color: gray;
@@ -278,7 +283,7 @@ label.roundInputName {
 
 .editmarcas{
 	background-color: #f1f4f8;
-	height: 300px;
+	height: 298px;
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
