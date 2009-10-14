@@ -4,7 +4,7 @@
 
 	<div class="span-1 last leftColumn">
 		
-<div class="span-1 columnNameUser"><p class="nameUserProfile">{$smarty.session.user.completename} <span class="nameUserProfileNick">({$smarty.session.user.username})</span></div>
+<div class="span-1 columnNameUser"><p class="nameUserProfile">{$privateData.datos.completename} <span class="nameUserProfileNick">({$privateData.datos.username})</span></div>
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil">
@@ -14,11 +14,11 @@
 				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUser"><p>Visitas a tu perfil:</p></div>
-						<div class="span-1 last dataUser"><p><b>1142</b></p></div>
+						<div class="span-1 last dataUser"><p><b>{$privateData.datos.visits_profile}</b></p></div>
 					</div>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUser"><p>Carreras corridas:</p></div>
-						<div class="span-1 last dataUser"><p><b>23</b></p></div>
+						<div class="span-1 last dataUser"><p><b>{$privateData.datos.num_races_runned}</b></p></div>
 					</div>
 				</div>
 				<div class="span-1 last functionalContainer">
@@ -44,7 +44,7 @@
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Email:</p></div>
-						<div class="span-1 last dataUserProfile"><p><b>a.rodriguez@gmail.com</b></p></div>
+						<div class="span-1 last dataUserProfile"><p><b>{$privateData.datos.email}</b></p></div>
 					</div>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Club:</p></div>
