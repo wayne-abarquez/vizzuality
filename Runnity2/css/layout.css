@@ -1,5 +1,14 @@
 /* usuario edit */
 
+.separatorInput{
+	position: absolute;
+	margin: 0;
+	color: #999999;
+	width: 3px;
+	margin-left: -133px;
+	margin-top: 4px;
+}
+
 .dashboardLink{
 	float: right;
 	color: #336699;
