@@ -58,13 +58,74 @@
 					</div>
 					<div class="checkAlerts"><input type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
 					<div>
-						<div class="span-1 first mapaAlerts">
-							<img src="/img/mapaAlerts.jpg">
+						<div class="span-1 first mapaAlerts" id="map">
+<!-- 							<img src="/img/mapaAlerts.jpg"> -->
+{literal}
+                        <script type="text/javascript">
+                        //<![CDATA[
+                            var map = new GMap2(document.getElementById("map"));
+                            {/literal}{if !$smarty.session.user.lat eq ""}{literal}
+                                var start = new GLatLng({/literal}{$smarty.session.user.lat}, {$smarty.session.user.lon}{literal});
+                                map.setCenter(start, 10);
+                            {/literal}{else}{literal}
+                                var start = new GLatLng(40.111688,-3.69140625);
+                                map.setCenter(start, 4);
+                            {/literal}{/if}{literal}
+                            
+                            map.addControl(new GSmallZoomControl());
+                            new GKeyboardHandler(map);
+                            map.enableContinuousZoom();
+                            map.enableDoubleClickZoom();    
+                            
+                            var bounds = new GLatLngBounds();
+
+
+                            function drawCircle(center, radius, nodes, liColor, liWidth, liOpa, fillColor, fillOpa)
+                            {
+                                map.clearOverlays();
+                            // Esa 2006
+                            	//calculating km/degree
+                            	var latConv = center.distanceFrom(new GLatLng(center.lat()+0.1, center.lng()))/100;
+                            	var lngConv = center.distanceFrom(new GLatLng(center.lat(), center.lng()+0.1))/100;
+
+                            	//Loop 
+                            	var points = [];
+                            	var step = parseInt(360/nodes)||10;
+                            	for(var i=0; i<=360; i+=step)
+                            	{
+                            	var pint = new GLatLng(center.lat() + (radius/latConv * Math.cos(i * Math.PI/180)), center.lng() + 
+                            	(radius/lngConv * Math.sin(i * Math.PI/180)));
+                            	points.push(pint);
+                            	bounds.extend(pint); //this is for fit function
+                            	}
+                            	points.push(points[0]); // Closes the circle, thanks Martin
+                            	fillColor = fillColor||liColor||"#0055ff";
+                            	liWidth = liWidth||2;
+                            	var poly = new GPolygon(points,liColor,liWidth,liOpa,fillColor,fillOpa);
+                            	map.addOverlay(poly);
+                            }  
+
+                            function fit(){
+                                map.panTo(bounds.getCenter()); 
+                                map.setZoom(map.getBoundsZoomLevel(bounds));
+                            }
+
+                            {/literal}{if !$smarty.session.user.lat eq ""}{literal}
+                                drawCircle(start, {/literal}{$smarty.session.user.radius_interest}{literal}, 40);   
+                                fit();
+                            {/literal}{else}{literal}
+                                $('#map').hide();
+                            {/literal}{/if}{literal}
+
+                        //]]>
+
+                        </script>
+                        {/literal}		
 						</div>
 						<div class="span-1 last editRadio">
 							<p class="data">RADIO DE BÚSQUEDA</p>
 							<label class="roundInputDataRadio" for="roundInputDataRadio">
-								<input type="text" id="roundInputDataRadio"><span>(Km)</span>
+								<input type="text" id="roundInputDataRadio" value="{$smarty.session.user.radius_interest}"><span>(Km)</span>
 							</label>
 							<p class="data">Las alertas se enviarán semanalmente a tu dirección de email</p>
 						
