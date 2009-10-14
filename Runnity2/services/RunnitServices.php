@@ -235,11 +235,9 @@ class RunnitServices {
 	}
 	
 	public function getUserPrivateData($username) {
-/*
 	    if (!$_SESSION['logged']) {
 	        throw new Exception("user not logged in");
-	    }	
-*/	
+	    }		
 	
 	    $result=array();
 	    $username=pg_escape_string($username);
