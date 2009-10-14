@@ -3,8 +3,8 @@
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
-		
-<div class="span-1 columnNameUser"><p class="nameUserProfile">{$smarty.session.user.completename} <span class="nameUserProfileNick">({$smarty.session.user.username})</span></div>
+<div class="span-1 columnNameUser"><p class="nameUserProfile">{$privateData.datos.completename} <span class="nameUserProfileNick">({$privateData.datos.username})</span></div>
+
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil">
@@ -13,12 +13,12 @@
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
 					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUser"><p>Visitas a tu perfil:</p></div>
-						<div class="span-1 last dataUser"><p><b>1142</b></p></div>
+						<div class="span-1 last dataTitleUser"><p>Visitas a tu perfil: </p></div>
+						<div class="span-1 last dataUser"><p><b>{$privateData.datos.visits_profile}</b></p></div>
 					</div>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUser"><p>Carreras corridas:</p></div>
-						<div class="span-1 last dataUser"><p><b>23</b></p></div>
+						<div class="span-1 last dataUser"><p><b>{$privateData.datos.num_races_runned}</b></p></div>
 					</div>
 				</div>
 			</div>
@@ -26,25 +26,37 @@
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
 				<div class="editdata">
-					<div class="span-1 nameEdit first">
+					<div class="nameEdit">
 						<p class="data">NOMBRE Y APELLIDOS</p>
 						<label class="roundInputName last" for="roundInputName">
-							<input type="text" id="roundInputName">
+							<input type="text" id="roundInputName" value="{$privateData.datos.completename}">
 						</label>
 					</div>
-					<div class="span-1 anioEdit last">
-						<p class="data">AÑO NACIMIENTO</p>
-						<label class="roundInputDataSmall last" for="roundInputDataSmall">
-							<input type="text" id="roundInputDataSmall">
-						</label>
+					<div class="sexoFecha">
+						<div class="span-1 first sexoEdit">
+							<p class="data">SEXO</p>
+							<select name="sexo" id="combo_sex">
+								{if $privateData.datos.is_men eq TRUE}
+								<option selected value="true">Hombre</option>
+			        			<option value="false">Mujer</option>
+			        			{else}
+			        			<option selected value="false">Mujer</option>
+			        			<option value="true">Hombre</option>
+			        			{/if}
+			    			</select>
+						</div>
+						<div class="span-1 last fechaEdit">
+							<p class="data">FECHA NACIMIENTO</p>
+							{html_select_date time='$privateData.datos.birthday' start_year='-55' month_format='%m' field_order='DMY' end_year='-8' reverse_years=true}
+						</div>
 					</div>
-					<div class="span-10 localizacionEdit last">
+					<div class="localizacionEdit">
 						<p class="data">LOCALIZACIÓN</p>
 						<label class="roundInputDataLong last" for="roundInputDataLong">
-							<input type="text" id="roundInputDataLong">
+							<input type="text" id="roundInputDataLong" value="{$privateData.datos.locality}">
 						</label>
 					</div>
-					<input type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS </span>
+					<div class="checkAlerts"><input type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS </span></div>
 					<div class="mapaAlerts">
 						<img src="/img/mapaAlerts.jpg">
 					</div>
@@ -65,22 +77,22 @@
 						{foreach key=id item=record from=$records}
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-								<input type="text" id="roundInputRecords">
+								<input type="text" id="roundInputRecordsHH{$record.id}" value="{$record.time_taken|substr:0:2}">
 							</label>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-								<input type="text" id="roundInputRecords">
+								<input type="text" id="roundInputRecordsMM{$record.id}" value="{$record.time_taken|substr:3:2}">
 							</label>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-								<input type="text" id="roundInputRecords">
+								<input type="text" id="roundInputRecordsSS{$record.id}" value="{$record.time_taken|substr:6:2}">
 							</label>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-								<input type="text" id="roundInputRecords">
+								<input type="text" id="roundInputRecordsDD{$record.id}" value="{$record.time_taken|substr:9:2}">
 							</label>
 						</div>					
 						{/foreach}
@@ -92,13 +104,13 @@
 					<div class="span-1 nameEdit first">
 						<p class="data">EMAIL</p>
 						<label class="roundInputName last" for="roundInputName">
-							<input type="text" id="roundInputName">
+							<input type="text" id="roundInputName" value="{$privateData.datos.email}">
 						</label>
 					</div>
 					<div class="span-1 anioEdit last">
 						<p class="data">PASSWORD</p>
 						<label class="roundInputDataSmall last" for="roundInputDataSmall">
-							<input type="text" id="roundInputDataSmall">
+							<input type="password" id="roundInputDataSmall" value="{$privateData.datos.pass}">
 						</label>
 					</div>
 				</div>
@@ -154,7 +166,7 @@
 				</div>
 			</div>
 		</div>
-				
+						
 	</div>
 
 </div> <!-- content -->
