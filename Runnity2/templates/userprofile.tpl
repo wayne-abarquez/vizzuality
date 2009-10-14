@@ -89,17 +89,17 @@
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
 								<input type="text" id="roundInputRecordsHH{$record.id}" value="{$record.time_taken|substr:0:2}">
-							</label>
+							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
 								<input type="text" id="roundInputRecordsMM{$record.id}" value="{$record.time_taken|substr:3:2}">
-							</label>
+							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
 								<input type="text" id="roundInputRecordsSS{$record.id}" value="{$record.time_taken|substr:6:2}">
-							</label>
+							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
