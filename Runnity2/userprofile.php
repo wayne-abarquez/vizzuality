@@ -23,6 +23,8 @@ $smarty->assign('nextRaces',$services->getUserRuns($_SESSION['user']['id']));
 $smarty->assign('comments',$services->getComments($_SESSION['user']['id'],'user'));
 $smarty->assign('records',$services->getAllRecordsForUser($_SESSION['user']['id']));
 
+$smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['username']));
+
 $smarty->assign('section', 'usuario');
 $smarty->display('userprofile.tpl');
 
