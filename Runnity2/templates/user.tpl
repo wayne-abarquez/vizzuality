@@ -48,7 +48,7 @@
 					</div>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Club:</p></div>
-						<div class="span-1 last dataUserProfile"><p><b>S.S. de los Reyes - Clínicas Menorca</b></p></div>
+						<div class="span-1 last dataUserProfile">{foreach key=id item=grupo from=$privateData.grupos}<p><b>{$grupo.name}</b></p>{/foreach}</div>
 					</div>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
@@ -59,7 +59,9 @@
 			</div>
 			
 			<div class="span-1 last userAlerts">
-				<div class="alertUser"><p>Aún no nos has dicho si <b>perteneces a algún club</b></p></div>
+				{foreach key=id item=grupo from=$privateData.grupos}
+				{if $grupo.name eq ""}<div class="alertUser"><p>Aún no nos has dicho si <b>perteneces a algún club</b></p></div>{/if}
+				{/foreach}
 				<div class="alertUser"><p>Tienes <b>2 mensajes nuevos</b></p></div>
 			</div>
 			
