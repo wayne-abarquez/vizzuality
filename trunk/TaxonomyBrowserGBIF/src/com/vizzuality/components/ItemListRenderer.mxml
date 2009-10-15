@@ -16,6 +16,7 @@
 			[Bindable]private var children_number: String;
             [Bindable]private var bool:Boolean;
 			[Bindable]private var commonName:ArrayCollection;
+			[Bindable]private var type: String;
 			
 			[Bindable] public var treeBrowserParent:TreeBrowser;
 			
@@ -46,13 +47,11 @@
 			     
 			 	 if(TreeBrowserList(owner).isItemSelected(data)) {
 			 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
-						if (taxon != "Load more...") {
-							setStyle("backgroundImage",lastItem);
-				     		specieLabel.setStyle('color', 0xFFFFFF);
-			            	specieGroup.setStyle('color', 0xFFFFFF);
-						}
+						setStyle("backgroundImage",lastItem);
+			     		specieLabel.setStyle('color', 0xFFFFFF);
+		            	specieGroup.setStyle('color', 0xFFFFFF);
 				     } else {
-					 	if (parseInt(children_number)==0) {
+					 	if (parseInt(children_number)==0 || type=="species") {
 					 		setStyle("backgroundImage",lastItem);
 					 	} else {
 						 	setStyle("backgroundImage",itemCanvas);
@@ -82,22 +81,18 @@
                 	children_number = '';
                 	flickrImg.source=null;
                 	bool=false;
+                	type='';
                     return;
                 }
                 
-                if(value.labelField == "Load more...") {
-                	taxon = value.labelField;
+
+           		if(value.labelField != taxon) {   	
+	                taxon = value.labelField;
 	                children_number = value.number_children;
-                	flickrImg.query="";
+					//flickrImg.query=taxon;
+                	flickrImg.query=value.imageURL;
 	                bool = value.has_children;
-               	} else {
-               		if(value.labelField != taxon) {   	
-		                taxon = value.labelField;
-		                children_number = value.number_children;
-						//flickrImg.query=taxon;
-	                	flickrImg.query=value.imageURL;
-		                bool = value.has_children;
-	                }
+	                type = value.type;
                	}
                 
                 
@@ -129,7 +124,7 @@
 	 	<components:FlickrImage id="flickrImg" left="3" horizontalAlign="center" verticalAlign="middle" top="3" width="46" height="46"/>
 	</mx:Canvas>
     <mx:Label id="specieLabel" text="{taxon}" textAlign="left" verticalCenter="{(taxon == 'Load more...')? -4 : -9}" left="{(taxon == 'Load more...')? 30 : 65}" fontSize="{(taxon == 'Load more...')? 20 : 14}" width="135" height="23" fontFamily="DINOT-Medium" color="#666666"/>
-    <mx:Label id="specieGroup" text="{(parseInt(children_number)>0)?children_number+' groups': ''}" textAlign="left" verticalCenter="10" left="65" fontSize="12" width="135" 
+    <mx:Label id="specieGroup" text="{(parseInt(children_number)>0)?Application.application.nf.format(parseInt(children_number))+' groups': ''}" textAlign="left" verticalCenter="10" left="65" fontSize="12" width="135" 
     	height="23" fontFamily="DINOT-Medium" color="#666666" visible="{(taxon == 'Load more...')? false : true}"/>
 	<mx:SWFLoader id="loading" right="15" verticalCenter="2" source="@Embed('/com/vizzuality/assets/loadAnimation2.swf')" width="15" height="15" visible="false"/>
    

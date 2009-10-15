@@ -44,7 +44,6 @@
 							clasOb.imageURL =co.imageURL;
 						} else {
 							clasOb.imageURL ="";
-							
 						}
 						clasOb.labelField = co.scientificName;
 						clasOb.children=(co.numChildren>0);
@@ -66,4 +65,5 @@
 	<components:GradientCanvas id="click_canvas" height="45" top="0" left="0" right="0" firstColor="0x009933" secondColor="0x006633">
 	
 	</components:GradientCanvas>	
+	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />
 </mx:Application>
