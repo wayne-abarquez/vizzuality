@@ -1,5 +1,25 @@
 {include file="header.tpl"}
 
+{literal}
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+	var state = false;
+	
+	$(document.getElementById('avatarPerfil')).hover(
+		function(){
+			$(document.getElementById('changeAvatar')).css('display','block');
+		},
+		function(){
+			$(document.getElementById('changeAvatar')).css('display','none');
+		}
+	);
+
+});
+</script>
+{/literal}
+
+
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
@@ -7,8 +27,9 @@
 
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
-				<div class="span-1 avatarPerfil">
+				<div class="span-1 avatarPerfil" id="avatarPerfil">
 					<img class="imgAvatarPerfil" src="/img/AvatarPerfil.jpg">
+					<a class="changeAvatarLink"><div class="changeAvatar" id="changeAvatar">Pincha para subir avatar</div></a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
@@ -58,7 +79,7 @@
 					</div>
 					<div class="checkAlerts"><input type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
 					<div>
-						<div class="span-1 first mapaAlerts" id="map">
+						<div class="span-1 mapaAlerts" id="map">
 <!-- 							<img src="/img/mapaAlerts.jpg"> -->
 {literal}
                         <script type="text/javascript">
@@ -121,14 +142,18 @@
 
                         </script>
                         {/literal}		
-						</div>
-						<div class="span-1 last editRadio">
-							<p class="data">RADIO DE BÚSQUEDA</p>
-							<label class="roundInputDataRadio" for="roundInputDataRadio">
-								<input type="text" id="roundInputDataRadio" value="{$smarty.session.user.radius_interest}"><span>(Km)</span>
-							</label>
-							<p class="data">Las alertas se enviarán semanalmente a tu dirección de email</p>
+					</div>
 						
+						<div class="span-1 editRadio">
+							<div class="span-1 first radioBusqueda">
+								<p class="data">RADIO DE BÚSQUEDA</p><p class="km">(Km)</p>
+								<label class="roundInputDataSmall" for="roundInputDataSmall">
+									<input type="text" id="roundInputDataSmall" value="{$smarty.session.user.radius_interest}">
+								</label>
+							</div>
+							<div class="span-1 last radioInfo">
+								<p class="data">Las alertas se enviarán semanalmente a tu dirección de email</p>
+							</div>						
 						</div>
 					</div>
 				</div>

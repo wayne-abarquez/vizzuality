@@ -1,5 +1,24 @@
 {include file="header.tpl"}
 
+{literal}
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+	var state = false;
+	
+	$(document.getElementById('avatarPerfil')).hover(
+		function(){
+			$(document.getElementById('changeAvatar')).css('display','block');
+		},
+		function(){
+			$(document.getElementById('changeAvatar')).css('display','none');
+		}
+	);
+
+});
+</script>
+{/literal}
+
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
@@ -7,8 +26,9 @@
 <div class="span-1 columnNameUser"><p class="nameUserProfile">{$privateData.datos.completename} <span class="nameUserProfileNick">({$privateData.datos.username})</span></div>
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
-				<div class="span-1 avatarPerfil">
+				<div class="span-1 avatarPerfil" id="avatarPerfil">
 					<img class="imgAvatarPerfil" src="/img/AvatarPerfil.jpg">
+					<a class="changeAvatarLink"><div class="changeAvatar" id="changeAvatar">Pincha para subir avatar</div></a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
