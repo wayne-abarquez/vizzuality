@@ -85,19 +85,12 @@
                     return;
                 }
                 
-                /* if(value.labelField == "Load more...") {
+                if(value.labelField == "Load more...") {
                 	taxon = value.labelField;
 	                children_number = value.number_children;
-                	flickrImg.query=value.imageURL;
+                	flickrImg.query="";
 	                bool = value.has_children;
-                	loading.visible = bool;
-                	mamufas.visible = false;
-                	flickrImg.visible = false;
-                	specieLabel.setStyle('left','30');
-                	specieLabel.setStyle('verticalCenter','-4');
-                	specieLabel.setStyle('fontSize','20');
-                	specieGroup.visible = false;
-               	} else { */
+               	} else {
                		if(value.labelField != taxon) {   	
 		                taxon = value.labelField;
 		                children_number = value.number_children;
@@ -105,7 +98,7 @@
 	                	flickrImg.query=value.imageURL;
 		                bool = value.has_children;
 	                }
-               	/* } */
+               	}
                 
                 
                 	
@@ -132,12 +125,12 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Canvas id="mamufas" backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52">
+	<mx:Canvas id="mamufas" backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52" visible="{(taxon == 'Load more...')? false : true}">
 	 	<components:FlickrImage id="flickrImg" left="3" horizontalAlign="center" verticalAlign="middle" top="3" width="46" height="46"/>
 	</mx:Canvas>
-    <mx:Label id="specieLabel" text="{taxon}" textAlign="left" verticalCenter="-9" left="65" fontSize="14" width="135" height="23" fontFamily="DINOT-Medium" color="#666666"/>
-    <mx:Label id="specieGroup" text="{(parseInt(children_number)>0)?children_number+' groups': ''}" textAlign="left" verticalCenter="10" left="65" fontSize="12" width="135" height="23" fontFamily="DINOT-Medium" color="#666666"/>
-	<!--<mx:Image id="arrow" source="@Embed('/com/vizzuality/assets/arrow.png')"  width="22" height="22" right="7" top="20"/>-->    
-	<mx:SWFLoader id="loading" right="15" verticalCenter="2" source="@Embed('/com/vizzuality/assets/tinyLoading.swf')" width="15" height="15" visible="false"/>
+    <mx:Label id="specieLabel" text="{taxon}" textAlign="left" verticalCenter="{(taxon == 'Load more...')? -4 : -9}" left="{(taxon == 'Load more...')? 30 : 65}" fontSize="{(taxon == 'Load more...')? 20 : 14}" width="135" height="23" fontFamily="DINOT-Medium" color="#666666"/>
+    <mx:Label id="specieGroup" text="{(parseInt(children_number)>0)?children_number+' groups': ''}" textAlign="left" verticalCenter="10" left="65" fontSize="12" width="135" 
+    	height="23" fontFamily="DINOT-Medium" color="#666666" visible="{(taxon == 'Load more...')? false : true}"/>
+	<mx:SWFLoader id="loading" right="15" verticalCenter="2" source="@Embed('/com/vizzuality/assets/loadAnimation2.swf')" width="15" height="15" visible="false"/>
    
 </mx:Canvas>

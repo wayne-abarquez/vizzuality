@@ -49,6 +49,7 @@
 						clasOb.labelField = co.scientificName;
 						clasOb.children=(co.numChildren>0);
 						clasOb.number_children = co.numChildren;
+						clasOb.parent = co.higherTaxonID;
 						resultAc.addItem(clasOb);
 					}
 				}
