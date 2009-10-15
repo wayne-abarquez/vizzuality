@@ -95,6 +95,7 @@ package com.ninem.controls
 		private var tree:Tree;
 		private var index: int;
 		private var column: TreeBrowserList;
+		private var columnActive: TreeBrowserList;
 		private var lengthLabel: int;
 		
 		private var dataChild: ArrayCollection;
@@ -131,7 +132,7 @@ package com.ninem.controls
 		public function TreeBrowser()
 		{
 			super();
-			setStyle("horizontalGap", "3");
+			setStyle("horizontalGap", "-1");
 			addEventListener(ResizeEvent.RESIZE, onResize);
 		}
 		
@@ -384,36 +385,34 @@ package com.ninem.controls
  		}
  		
  		private function listScrollEvent(event: ScrollEvent):void {
- 			column = event.currentTarget as TreeBrowserList;
-			index = getChildIndex(column);
+ 			columnActive = event.currentTarget as TreeBrowserList;
+			index = getChildIndex(columnActive);
  			if(event.direction == ScrollEventDirection.VERTICAL && event.delta > 0) {
- 				/* - event.position < 3 */
-				if(column.maxVerticalScrollPosition - event.position < 1 ) {
-					callNewItems();
+				if(columnActive.maxVerticalScrollPosition - event.position < 1 ) {
+					if (index != 0) {
+						callNewItems();
+					}
 				}
 			}
  		}
  		
  		private function callNewItems():void {
  			var page:int;
-			if (((column.dataProvider as ArrayCollection).length % 25) > 0) {
-				page = Number((column.dataProvider as ArrayCollection).length % 25) + 1;
+			if (((columnActive.dataProvider as ArrayCollection).length % 25) > 0) {
+				page = Number((columnActive.dataProvider as ArrayCollection).length / 25) + 2;
 			} else {
-				page = (column.dataProvider as ArrayCollection).length % 25 + 1;
+				page = (columnActive.dataProvider as ArrayCollection).length % 25 + 2;
 			}
-			
-			if ((column.dataProvider as ArrayCollection)[(column.dataProvider as ArrayCollection).length - 1].labelField == "Load more...") {
-				(column.dataProvider as ArrayCollection)[(column.dataProvider as ArrayCollection).length - 1].labelField == "Loading..."
-			}
-
 			httpsrv2 = new HTTPService();
 			httpsrv2.resultFormat = "text";
-			httpsrv2.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&page=" + page.toString() + "&image=thumb&id="+((column.dataProvider as ArrayCollection)[0].parent).toString();
+			httpsrv2.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&page=" + page.toString() + "&image=thumb&id="+((columnActive.dataProvider as ArrayCollection)[0].parent).toString();
 			httpsrv2.addEventListener(ResultEvent.RESULT,checkMoreItems);
 			httpsrv2.send();
  		}
  		
  		private function checkMoreItems(ev: ResultEvent):void {
+ 			var event: Event = new Event("loadingFinish",true);
+			dispatchEvent(event);
  			httpsrv2.removeEventListener(ResultEvent.RESULT,checkMoreItems);
  			var resultObj:Object = JSON.decode(String(ev.result));				
 			var resultAc:ArrayCollection = new ArrayCollection();
@@ -426,8 +425,7 @@ package com.ninem.controls
 					if (co.imageURL!=null) {
 						clasOb.imageURL =co.imageURL;
 					} else {
-						clasOb.imageURL ="";
-						
+						clasOb.imageURL ="";	
 					}
 					clasOb.labelField = co.scientificName;
 					clasOb.children=(co.numChildren>0);
@@ -438,11 +436,11 @@ package com.ninem.controls
 			dataChild = new ArrayCollection();
 			dataChild = resultAc;
 			if (resultAc.length != 0) {
-				column.removeEventListener(ScrollEvent.SCROLL, listScrollEvent);
+				columnActive.removeEventListener(ScrollEvent.SCROLL, listScrollEvent);
 				addEventListener(Event.ENTER_FRAME, addComponentLoadMore);
 				i = 1;
-				dataProviderLenght = ((column.dataProvider) as ArrayCollection).length - 1;
-				((column.dataProvider) as ArrayCollection).addItem(dataChild[0]);
+				dataProviderLenght = ((columnActive.dataProvider) as ArrayCollection).length - 1;
+				((columnActive.dataProvider) as ArrayCollection).addItem(dataChild[0]);
 				((_rootModel as ArrayCollection)[index] as ArrayCollection).addItem(resultAc[0]);
 			}
  		}
@@ -452,77 +450,90 @@ package com.ninem.controls
 		private function addComponentLoadMore(ev:Event):void {
 			if ((i+1)==(dataChild as ArrayCollection).length) {
 				removeEventListener(Event.ENTER_FRAME,addComponentLoadMore);
-				((column.dataProvider) as ArrayCollection).removeItemAt(dataProviderLenght);
-				column.addEventListener(ScrollEvent.SCROLL,	listScrollEvent);			
+				columnActive.addEventListener(ScrollEvent.SCROLL,listScrollEvent);			
 			}
-			((column.dataProvider) as ArrayCollection).addItem(dataChild[i]);
+			((columnActive.dataProvider) as ArrayCollection).addItem(dataChild[i]);
 			((_rootModel as ArrayCollection)[index] as ArrayCollection).addItem(dataChild[i]);	
-			if ((i+1) == 25 ) {
-				var obj: Object = new Object();
-				obj.labelField = "Load more...";
-				((column.dataProvider) as ArrayCollection).addItem(obj);
-			}
 			i++;
 		}
 		
 		
+		private function onClickTopButton(ev: MouseEvent):void {
+			index = ev.target.data;
+			column = getChildAt(index) as TreeBrowserList;
+			for (var cont: int = 0; cont<(column.dataProvider as ArrayCollection).length; cont++) {
+				if ((column.dataProvider as ArrayCollection)[cont].labelField == ev.target.label) {
+					column.selectedIndex=cont;
+					break;
+				}
+			}
+            column.dispatchEvent(new ListEvent(ListEvent.ITEM_CLICK,true,true,0,0,null,ItemListRenderer as IListItemRenderer));
+		}
+		
 		
 		private function updateDataProvider(ev:ListEvent):void {
-			
-			removeEventListener(Event.ENTER_FRAME,addComponentLoadMore);
-			
+						
 			//choose the column
 			column = ev.currentTarget as TreeBrowserList;
 			//catch column number
 			index = getChildIndex(column);
 			_selectedItem = column.selectedItem;
-			if (_selectedItem.labelField == "Load more...") {
-				callNewItems();
-			} else {
-				_selectedItem = column.selectedItem;
-				if(index < numChildren - 2) {
-					clearColumns(index + 1, true);	
-				}
-				else if(index == numChildren - 2) {
-					scrollToEnd();
-				} 
-
-				//upper Canvas buttons
-				var button: Button = new Button();
-				button.y = 0;
-				if (index == 0) {
-					buttonsArray = new Array();
-					Application.application.click_canvas.removeAllChildren();
-					button.x = 20;
-					button.y = 10;
-					button.label = 	_selectedItem.labelField;			
-					Application.application.click_canvas.addChildAt(button,0);
-					buttonsArray.push(button);
-				} else {
-					for (var i: int=buttonsArray.length - 1; i>index-1; i--) {
-						TweenLite.to(buttonsArray[i], 1, {x:10, y:10});
-						Application.application.click_canvas.removeChild(buttonsArray[i]);
-						buttonsArray.pop();
+			
+			if (hasEventListener(Event.ENTER_FRAME)) {
+				removeEventListener(Event.ENTER_FRAME,addComponentLoadMore);
+				if (columnActive != null) {
+					if (!columnActive.hasEventListener(ScrollEvent.SCROLL)) {
+						columnActive.addEventListener(ScrollEvent.SCROLL,listScrollEvent);
 					}
-					var lastChild: UIComponent = Application.application.click_canvas.getChildAt(0);				
-					button.x = lastChild.x + lastChild.width - 100;
-					button.y = 10;
-					button.alpha = 0;
-					button.label = 	_selectedItem.labelField;
-					TweenLite.to(button, 0.4, {x:lastChild.x + lastChild.width - 10, y:10, alpha:1});
-					Application.application.click_canvas.addChildAt(button,0);
-					
-					buttonsArray.push(button);
-				}
-				
-				
-				var httpsrv:HTTPService = new HTTPService();
-				httpsrv.resultFormat = "text";
-				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
-				httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&page=1&image=thumb&id="+(_selectedItem.id).toString();
-				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
-				httpsrv.send();
+				}		
 			}
+			
+			_selectedItem = column.selectedItem;
+			if(index < numChildren - 2) {
+				clearColumns(index + 1, true);	
+			}
+			else if(index == numChildren - 2) {
+				scrollToEnd();
+			} 
+
+			//upper Canvas buttons
+			var button: Button = new Button();
+			button.data = index;
+			button.addEventListener(MouseEvent.CLICK, onClickTopButton);
+			button.y = 0;
+			if (index == 0) {
+				buttonsArray = new Array();
+				Application.application.click_canvas.removeAllChildren();
+				button.x = 20;
+				button.y = 10;
+				button.label = 	_selectedItem.labelField;			
+				Application.application.click_canvas.addChildAt(button,0);
+				buttonsArray.push(button);
+			} else {
+				for (var i: int=buttonsArray.length - 1; i>index-1; i--) {
+					TweenLite.to(buttonsArray[i], 1, {x:10, y:10});
+					Application.application.click_canvas.removeChild(buttonsArray[i]);
+					buttonsArray.pop();
+				}
+				var lastChild: UIComponent = Application.application.click_canvas.getChildAt(0);				
+				button.x = lastChild.x + lastChild.width - 100;
+				button.y = 10;
+				button.alpha = 0;
+				button.label = 	_selectedItem.labelField;
+				TweenLite.to(button, 0.4, {x:lastChild.x + lastChild.width - 10, y:10, alpha:1});
+				Application.application.click_canvas.addChildAt(button,0);
+				
+				buttonsArray.push(button);
+			}
+			
+			
+			var httpsrv:HTTPService = new HTTPService();
+			httpsrv.resultFormat = "text";
+			//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
+			httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&page=1&image=thumb&id="+(_selectedItem.id).toString();
+			httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
+			httpsrv.send();
+			
 		}
 		
 
@@ -564,7 +575,7 @@ package com.ninem.controls
 						// if item clicked is not in the last column
 						nextColumn = getChildAt(index + 1) as UIComponent;
 						//TreeBrowserList(nextColumn).dataProvider=null;
-						if (children.length == 0){
+						if (children.length == 0 || _selectedItem.type=="species"){
 							if(nextColumn is TreeBrowserList){
 								nextColumn = createDetailRenderer();
 								removeChildAt(index + 1);
@@ -584,10 +595,11 @@ package com.ninem.controls
 							scrollToEnd(); */
 					}else{
 						// item clicked is in the last column, new column needs to be added
-						if(children.length == 0) 
+						if(children.length == 0 || _selectedItem.type=="species"){
 							nextColumn = createDetailRenderer();	
-						else
+						}else{
 							nextColumn = createColumn();
+						}
 						addChild(nextColumn);
 						// need to wait until display has updated to scroll
 						addEventListener(FlexEvent.UPDATE_COMPLETE, onUpdateComplete);
@@ -622,18 +634,10 @@ package com.ninem.controls
 		}
 		
 		private function addComponent(ev:Event):void{
-			
 			if ((i+1) == 25 || (i+1) == dataLength) {
 				removeEventListener(Event.ENTER_FRAME,addComponent);				
-			}
-			
-			auxArrayCollec.addItem(dataChild[i]);	
-			
-			if ((i+1) == 25 ) {
-				var obj: Object = new Object();
-				obj.labelField = "Load more...";
-				auxArrayCollec.addItem(obj);
 			}	
+			auxArrayCollec.addItem(dataChild[i]);		
 			i++;
 		}
 		
