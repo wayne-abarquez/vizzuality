@@ -48,6 +48,43 @@ if ($_REQUEST['method'] == 'addComment') {
     }    
 }
 
+if ($_REQUEST['method'] == 'addCommentUser') {
+    
+	$name=$_SESSION['user']['username'];
+	$email=$_SESSION['user']['email'];
+	$comment=$_REQUEST['comment'];
+	$date = date("d/m/Y h:i");
+
+	$lowercase = strtolower($email);
+	$image = md5( $lowercase );
+
+    $result = $services->addComment($_SESSION['user']['id'],$comment,$_REQUEST['id'],$_REQUEST['onTable']);
+    
+    if ($result==null) {
+        ?>
+		
+		<div id="commentUser" class="span-1 last">
+			<div class="span-1 last avatarBox">
+				<img src="/img/avatar.jpg"/>	
+			</div>
+			<div class="span-1 commentBoxUser">
+				<div class="nameUser"><a class="name" href="#"><?php echo $name;?>, </a>ahora mismo.</div>
+				<p class="commentUserProfile"><?php echo $comment; ?></p>
+			</div>
+		</div>
+    	  
+        <?php
+    } else {
+        ?>
+		<div id="comment" class="span-1 last">
+			Lo siento, ha ocurrido un error.
+		</div>  
+    	  
+        <?php       
+    }    
+}
+
+
 if ($_REQUEST['method'] == 'login') {
     
     try {
