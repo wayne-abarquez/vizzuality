@@ -1,5 +1,38 @@
 /* usuario edit */
 
+.radioBusqueda{
+	height: 50px;
+	width: 150px;
+}
+
+.radioInfo{
+	height: 50px;
+	width: 150px;
+}
+
+.changeAvatar{
+	margin: 0px 0px 0px 0px;
+	width: 194px;
+	height: 31px;
+	background-color: #ff6600;
+	position: absolute;
+	margin-top: -40px;
+	filter: alpha(opacity=60);
+	opacity: .60;
+	text-align: center;
+	line-height: 30px;
+	font-size: 14px;
+	color: #ffffff;
+	margin-left: 4px;
+	font-weight: bold;
+	display: none;
+}
+
+a.changeAvatarLink{
+	text-decoration: none;
+	cursor: pointer;
+}
+
 .eraseRecordButton{
 	margin-top: -1px;
 	margin-left: 4px;
@@ -121,21 +154,24 @@ label.roundInputRecords{
 } 
 
 .editRadio{
-	width: 126px;
-	height: 120px;
+	width: 350px;
+	height: 50px;
 	margin-top: 14px;
+	margin-left: 11px;
 }
 
-.editRadio span{
+.editRadio p.km{
 	color: #999999;
 	margin: 0px;
-	font-size: 8px;
+	font-size: 8px; float: right;
+	margin-right: 10px;
+	margin-top: -14px;
 }
 
 .mapaAlerts{
 	border: 1px solid #cccccc;
 	padding: 4px;
-	width: 225px;
+	width: 361px;
 	height: 111px;
 	background-color: #ffffff;
 	margin-left: 10px;
@@ -276,7 +312,7 @@ label.roundInputName {
 
 .editdata{
 	background-color: #f1f4f8;
-	height: 320px;
+	height: 376px;
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
@@ -1122,10 +1158,10 @@ p.subTitleInfo{
 .ticketOrangeVoy a{font-size: 13px; font-weight: bold; color: #ffffff; text-decoration: none;}
 .ticketOrangeVoy a:hover{color: #333333;}
 
-.ticketOrangeVoy2{background-color: #ff6600;	height: 30px; width: 287px; margin-top: 3px;}
-.ticketOrangeVoy2 p{font-size: 13px; color: #ffffff; margin-top: -16px; margin-left: 25px;}
-.ticketOrangeVoy2 a{font-size: 13px; font-weight: bold; color: #ffffff; text-decoration: none;}
-.ticketOrangeVoy2 a:hover{color: #333333;}
+.{background-color: #ff6600;	height: 30px; width: 287px; margin-top: 3px;}
+. p{font-size: 13px; color: #ffffff; margin-top: -16px; margin-left: 25px;}
+. a{font-size: 13px; font-weight: bold; color: #ffffff; text-decoration: none;}
+. a:hover{color: #333333;}
 
 .ticketOrange{
 	background-image: url(/img/ticket_orange.gif);
