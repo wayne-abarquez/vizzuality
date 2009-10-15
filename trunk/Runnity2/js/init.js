@@ -240,39 +240,74 @@ function logout () {
 
 
 
-function commentAction(id,on_table,comment) {
+function commentAction(tipo,id,on_table,comment) {
 		
-	    var dataObj = ({
+		if(tipo=='User') {
+		    var dataObj = ({
+		            comment : comment,
+		            method: 'addCommentUser',
+		            id:id,onTable:on_table
+		        });
+	
+			if(comment=='') {
+		    	alert('El comentario esta vacío, mejor revísalo.');
+		    } else {
+				$("#flash").show();
+				$("#flash").fadeIn(400).html('<img src="/img/ajax-loader.gif" align="absmiddle" style="height:20px;width:20px;padding-top:4px;padding-left:5px;">&nbsp;<span style="margin-top:-15px;">Cargando comentario...</span>');
+				$.ajax({
+					type: "POST",
+		 	 		url: "/ajaxController.php",
+		   			data: dataObj,
+		  			cache: false,
+		  			success: function(html){
+		  				$("ol#update").append(html);
+		  				$("ol#update li:last").fadeIn(400);
+		    			$('#commentTextArea').html('');
+		  				$("#flash").hide();
+		  				
+		  				if($("#noCommentsDiv").length > 0) {
+		  				    $("#noCommentsDiv").hide();
+		  				}
+		  			},
+			        error:function (xhr, ajaxOptions, thrownError){
+			                alert('Runnity' + xhr.status + "\n" + thrownError);
+			        }
+		 		});
+		 			
+			}
+		}else if(tipo=='Run') {
+			var dataObj = ({
 	            comment : comment,
 	            method: 'addComment',
 	            id:id,onTable:on_table
 	        });
-
-		if(comment=='') {
-	    	alert('El comentario esta vacío, mejor revísalo.');
-	    } else {
-			$("#flash").show();
-			$("#flash").fadeIn(400).html('<img src="/img/ajax-loader.gif" align="absmiddle" style="height:20px;width:20px;padding-top:4px;padding-left:5px;">&nbsp;<span style="margin-top:-15px;">Cargando comentario...</span>');
-			$.ajax({
-				type: "POST",
-	 	 		url: "/ajaxController.php",
-	   			data: dataObj,
-	  			cache: false,
-	  			success: function(html){
-	  				$("ol#update").append(html);
-	  				$("ol#update li:last").fadeIn(400);
-	    			$('#commentTextArea').html('');
-	  				$("#flash").hide();
-	  				
-	  				if($("#noCommentsDiv").length > 0) {
-	  				    $("#noCommentsDiv").hide();
-	  				}
-	  			},
-		        error:function (xhr, ajaxOptions, thrownError){
-		                alert('Runnity' + xhr.status + "\n" + thrownError);
-		        }
-	 		});
-	 			
+	
+			if(comment=='') {
+		    	alert('El comentario esta vacío, mejor revísalo.');
+		    } else {
+				$("#flash").show();
+				$("#flash").fadeIn(400).html('<img src="/img/ajax-loader.gif" align="absmiddle" style="height:20px;width:20px;padding-top:4px;padding-left:5px;">&nbsp;<span style="margin-top:-15px;">Cargando comentario...</span>');
+				$.ajax({
+					type: "POST",
+		 	 		url: "/ajaxController.php",
+		   			data: dataObj,
+		  			cache: false,
+		  			success: function(html){
+		  				$("ol#update").append(html);
+		  				$("ol#update li:last").fadeIn(400);
+		    			$('#commentTextArea').html('');
+		  				$("#flash").hide();
+		  				
+		  				if($("#noCommentsDiv").length > 0) {
+		  				    $("#noCommentsDiv").hide();
+		  				}
+		  			},
+			        error:function (xhr, ajaxOptions, thrownError){
+			                alert('Runnity' + xhr.status + "\n" + thrownError);
+			        }
+		 		});
+		 			
+			}
 		}
 		return false;
 };

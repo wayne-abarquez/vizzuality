@@ -93,7 +93,7 @@
 					{if $smarty.session.logged}				
 						<div class="titleComents">Deja tu comentario</div>
 						<textarea id="comment_textarea"></textarea>
-						<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction({$data.datos.id},'user',$('#comment_textarea').val())"/>
+						<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('User',{$data.datos.id},'user',$('#comment_textarea').val())"/>
 					{else}
 					<div>
 						<p class="noComments_wall">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en Runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
@@ -122,7 +122,7 @@
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn userRightColumn">
 
-		<div class="span-1 ticketOrangeVoy2" id="ticketOrangeVoy">{if $smarty.session}<a href="javascript: void followUser('{$data.datos.id}')">{if $isAlreadyFriend neq true}<div class="checkboxUnchecked"></div><p id="textoInscribirse">Sigue a {$data.datos.username}</p></a>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Ya sigues a {$data.datos.username}</p>{/if}{else}<div class="checkbox"></div><p><a href="javascript: void showLoginWindow()">Haz login</a> para seguir a {$data.datos.username}</p>{/if}</div>
+		<div class="span-1 ticketOrangeVoy2" id="ticketOrangeVoy">{if $smarty.session}{if $isAlreadyFriend neq true}<a href="javascript: void followUser('{$data.datos.id}')"><div class="checkboxUnchecked"></div><p id="textoInscribirse">Sigue a {$data.datos.username}</p></a>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Ya sigues a {$data.datos.username}</p>{/if}{else}<div class="checkbox"></div><p><a href="javascript: void showLoginWindow()">Haz login</a> para seguir a {$data.datos.username}</p>{/if}</div>
 		
 		<div class="span-1 ticketOrange"></div>	
 	
