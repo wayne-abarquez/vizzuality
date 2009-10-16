@@ -20,6 +20,17 @@
 			public var gbifTaxonomy : ArrayCollection = new ArrayCollection();
 			
 			private function onCreationComplete():void {
+				
+	        var externalDomains:Array=["farm1.static.flickr.com","farm2.static.flickr.com","farm3.static.flickr.com","farm4.static.flickr.com"];
+	        for each(var dom:String in externalDomains) {
+	            Security.allowDomain(dom);
+	            Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
+	            var request:URLRequest = new URLRequest("http://"+dom+"/crossdomain.xml");
+	            var loader:URLLoader = new URLLoader();
+	            loader.load(request);                               
+	        }                                       
+  
+				
 				var httpsrv:HTTPService = new HTTPService();
 				httpsrv.resultFormat = "text";
 				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
