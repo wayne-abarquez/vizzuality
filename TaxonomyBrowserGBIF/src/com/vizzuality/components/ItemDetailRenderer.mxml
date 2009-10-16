@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="100%" xmlns:components = "com.vizzuality.components.*" horizontalScrollPolicy="off" backgroundColor="#dedede">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="300" height="100%" 
+	xmlns:components = "com.vizzuality.components.*"
+	backgroundColor="#dedede" 
+	verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
 			import mx.core.Application;
 			
-			[Embed(source="com/vizzuality/assets/detail.jpg")]
-   			[Bindable]
-   			public var detail:Class;
 			
 		]]>
 	</mx:Script>
 	<mx:Label id="specie" text="{data.labelField}" fontSize="17" width="210" textAlign="left" minHeight="35" maxHeight="70" color="#666666" fontFamily="DINOT-Medium" left="10" top="10"/>
 	<mx:Label text="{data.children_number} occurrences" fontSize="12" width="210" textAlign="left" color="#999999" fontFamily="DINOT-Medium" left="10" top="{(specie.height>35)?75:35}"/>
-	<mx:VBox horizontalCenter="0" width="230" horizontalAlign="center" top="70" bottom="246">
-		<mx:Canvas height="220" width="220" horizontalScrollPolicy="off" verticalScrollPolicy="off" backgroundImage="{detail}"  backgroundSize="100%">
-			<mx:Image verticalCenter="0" horizontalCenter="0" scaleContent="true" maintainAspectRatio="true" height="200" width="200" source="{(data.imageURL as String).replace('_s','_m')}" verticalAlign="middle" horizontalAlign="center"/>
-		</mx:Canvas>
-		<mx:Button label="view distribution" width="135" height="25" color="#FFFFFF" fontWeight="normal"
-			click="{navigateToURL (new URLRequest ('http://data.gbif.org/search/' + escape(data.labelField)), '_blank')}" fontSize="14" fontFamily="DINOT-Medium" horizontalCenter="0"/>
+	<mx:VBox horizontalCenter="0" horizontalAlign="center" top="70">
+		<mx:Box width="247" horizontalCenter="0" verticalScrollPolicy="off" horizontalScrollPolicy="off"
+			styleName="bkgImg" backgroundSize="100%" paddingBottom="20" paddingLeft="27" paddingTop="16">
+			<mx:Image scaleContent="true" maintainAspectRatio="true" width="191" 
+				source="{(data.imageURL as String).replace('_s','_m')}" 
+				verticalAlign="top" horizontalAlign="center"/>
+		</mx:Box>
+		<mx:Button label="view distribution" width="135" height="30" fontWeight="normal"
+			click="{navigateToURL (new URLRequest ('http://data.gbif.org/search/' + escape(data.labelField)), '_blank')}" 
+			horizontalCenter="0" styleName="btnGreen"
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 		<mx:Label text="{data.children_number} sources" fontSize="12" width="100%" textAlign="center" color="#999999" fontFamily="DINOT-Medium" horizontalCenter="0" top="383"/>
 	</mx:VBox>
 </mx:Canvas>
