@@ -16,10 +16,15 @@
 			
 			public override function set data(value:Object):void{
 				newData = value;
-				loader=new Loader();
-				request=new URLRequest((newData.imageURL as String).replace('_s','_m'));
-				loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadComplete);
-				loader.load(request);
+				if (newData.imageURL != '' && newData.imageURL != null ) {
+					loader=new Loader();
+					request=new URLRequest((newData.imageURL as String).replace('_s','_m'));
+					loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadComplete);
+					loader.load(request);	
+				} else {
+					mamufas.height = 350;
+				}
+				
 			} 
 			
 			private function onLoadComplete(ev: Event):void {

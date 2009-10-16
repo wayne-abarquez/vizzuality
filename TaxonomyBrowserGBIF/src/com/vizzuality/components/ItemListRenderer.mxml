@@ -19,26 +19,7 @@
 			[Bindable]private var type: String;
 			
 			[Bindable] public var treeBrowserParent:TreeBrowser;
-			
-			[Embed(source="com/vizzuality/assets/click.jpg")]
-   			[Bindable]
-   			public var backgroundItem:Class;
-   			
-   			[Embed(source="com/vizzuality/assets/clickLast.jpg")]
-   			[Bindable]
-   			public var lastItem:Class;
-			
-			[Embed(source="com/vizzuality/assets/normal.jpg")]
-   			[Bindable]
-   			public var normalItem:Class;
-   			
-   			[Embed(source="com/vizzuality/assets/hover.jpg")]
-   			[Bindable]
-   			public var hoverItem:Class;
 
-			[Embed(source="com/vizzuality/assets/itemCanvasRepeat.png")]
-   			[Bindable]
-   			public var itemCanvas:Class;
 			
 			[Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowGreen")]
 			[Bindable]
