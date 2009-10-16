@@ -14,6 +14,20 @@ Button.btnBreadcrumb{
 	padding-right: 22;
 }
 
+Button.btnGreen{
+	up-skin: Embed(source="general.swf", symbol="greenButton");	
+	over-skin: Embed(source="general.swf", symbol="greenButton_over");	
+	down-skin: Embed(source="general.swf", symbol="greenButton_over");
+	font-family: DINOT-Medium;
+	font-weight: normal;
+	color:#FFFFFF;
+	text-roll-over-color:#FFFFFF;
+	font-size:14;
+}
+
+.bkgImg{
+	background-image: Embed(source="general.swf", symbol="bkgImg");
+}
 
 .bkgRowGreen{
 	background-image: Embed(source="general.swf", symbol="bkgRowGreen");	

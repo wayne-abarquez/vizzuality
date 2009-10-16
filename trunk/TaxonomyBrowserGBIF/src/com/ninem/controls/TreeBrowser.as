@@ -501,6 +501,9 @@ package com.ninem.controls
 			button.data = index;
 			button.addEventListener(MouseEvent.CLICK, onClickTopButton);
 			button.y = 0;
+			button.useHandCursor = true;
+			button.mouseChildren = false;
+			button.buttonMode = true;
 			if (index == 0) {
 				buttonsArray = new Array();
 				Application.application.click_canvas.removeAllChildren();
