@@ -60,6 +60,7 @@
 	</mx:Script>
 	
 	<mx:Style source="com/vizzuality/skin/fonts.css"/>
+	<mx:Style source="com/vizzuality/skin/general.css"/>
 	
 	<controls:TreeBrowser id="treeB" columnWidth="250" detailRenderer="com.vizzuality.components.ItemDetailRenderer" top="45" bottom="0" left="0" right="0"/>	
 	<components:GradientCanvas id="click_canvas" height="45" top="0" left="0" right="0" firstColor="0x009933" secondColor="0x006633">

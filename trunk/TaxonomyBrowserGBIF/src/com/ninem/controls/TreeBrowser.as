@@ -504,23 +504,29 @@ package com.ninem.controls
 			if (index == 0) {
 				buttonsArray = new Array();
 				Application.application.click_canvas.removeAllChildren();
-				button.x = 20;
-				button.y = 10;
-				button.label = 	_selectedItem.labelField;			
+				button.x = 10;
+				button.y = 7;
+				button.height = 31;
+				button.label = 	_selectedItem.labelField;
+				button.styleName = "btnBreadcrumb";
+				button.setStyle("paddingLeft",12);
 				Application.application.click_canvas.addChildAt(button,0);
 				buttonsArray.push(button);
 			} else {
 				for (var i: int=buttonsArray.length - 1; i>index-1; i--) {
-					TweenLite.to(buttonsArray[i], 1, {x:10, y:10});
+					TweenLite.to(buttonsArray[i], 1, {x:10});
 					Application.application.click_canvas.removeChild(buttonsArray[i]);
 					buttonsArray.pop();
 				}
 				var lastChild: UIComponent = Application.application.click_canvas.getChildAt(0);				
 				button.x = lastChild.x + lastChild.width - 100;
-				button.y = 10;
+				button.y = 7;
+				button.height = 31;
+				button.setStyle("paddingLeft",22);				
 				button.alpha = 0;
 				button.label = 	_selectedItem.labelField;
-				TweenLite.to(button, 0.4, {x:lastChild.x + lastChild.width - 10, y:10, alpha:1});
+				button.styleName = "btnBreadcrumb";
+				TweenLite.to(button, 0.4, {x:lastChild.x + lastChild.width - 20, alpha:1});
 				Application.application.click_canvas.addChildAt(button,0);
 				
 				buttonsArray.push(button);
