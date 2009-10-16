@@ -11,7 +11,7 @@
     font-weight: normal;
 }
 
-HScrollBar {
+/* HScrollBar {
    cornerRadius: 0;
    highlightAlphas: 0, 0;
    fillAlphas: 1, 1, 1, 1;
@@ -33,7 +33,7 @@ VScrollBar {
    borderColor: #cccccc;
    iconColor: #ffffff;
    thumbOffset: 0;
-}
+} */
 
 ToolTip {
    backgroundColor: #ffffff;
@@ -42,7 +42,7 @@ ToolTip {
    fontSize: 12;
 }
 
-Button {
+/* Button {
    paddingTop: 0;
    letterSpacing: 0;
    highlightAlphas: 0.29, 0;
@@ -55,4 +55,4 @@ Button {
    themeColor: #006600;
    fontFamily: DINOT-Medium;
    fontSize: 14;
-}
+} */

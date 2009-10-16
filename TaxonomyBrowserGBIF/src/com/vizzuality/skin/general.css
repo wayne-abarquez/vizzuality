@@ -1,0 +1,38 @@
+/* CSS file */
+
+
+Button.btnBreadcrumb{
+	up-skin: Embed(source="general.swf", symbol="btnBreadcrumb_up");	
+	over-skin: Embed(source="general.swf", symbol="btnBreadcrumb_over");	
+	down-skin: Embed(source="general.swf", symbol="btnBreadcrumb_over");
+	font-family: DINOT-Medium;
+	font-weight: normal;
+	color:#FFFFFF;
+	text-roll-over-color:#FFFFFF;
+	font-size:14;
+	text-align:left;
+	padding-right: 22;
+}
+
+
+.bkgRowGreen{
+	background-image: Embed(source="general.swf", symbol="bkgRowGreen");	
+}
+
+ScrollBar{
+
+	downArrowDisabledSkin: Embed(source="general.swf", symbol="ScrollArrowDown_disabledSkin");
+	downArrowDownSkin: Embed(source="general.swf", symbol="ScrollArrowDown_downSkin");
+	downArrowOverSkin: Embed(source="general.swf", symbol="ScrollArrowDown_overSkin");
+	downArrowUpSkin: Embed(source="general.swf", symbol="ScrollArrowDown_upSkin");
+	thumbDownSkin: Embed(source="general.swf", symbol="ScrollThumb_downSkin");
+	thumbIcon: Embed(source="general.swf", symbol="ScrollBar_thumbIcon");
+	thumbOverSkin: Embed(source="general.swf", symbol="ScrollThumb_overSkin");
+	thumbUpSkin: Embed(source="general.swf", symbol="ScrollThumb_upSkin");
+	trackSkin: Embed(source="general.swf", symbol="ScrollTrack_Skin");
+	upArrowDisabledSkin: Embed(source="general.swf", symbol="ScrollArrowUp_disabledSkin");
+	upArrowDownSkin: Embed(source="general.swf", symbol="ScrollArrowUp_downSkin");
+	upArrowOverSkin: Embed(source="general.swf", symbol="ScrollArrowUp_overSkin");
+	upArrowUpSkin: Embed(source="general.swf", symbol="ScrollArrowUp_upSkin");
+
+}
