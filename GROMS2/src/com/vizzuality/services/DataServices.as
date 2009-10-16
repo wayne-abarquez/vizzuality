@@ -108,7 +108,8 @@ package com.vizzuality.services
 		public function createRemoteObject():RemoteObject {     
 		    var ro:RemoteObject = new RemoteObject("GROMSServices");   
 		    ro.source="GROMSServices";
-		    ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/groms/amfphp/gateway.php";   
+		    //ro.endpoint="http://ec2-67-202-26-58.compute-1.amazonaws.com/groms/amfphp/gateway.php";   
+		    ro.endpoint=Application.application.parameters.data_server_endpoint;
 		    //ro.endpoint="http://localhost/amfphp/gateway.php";   
 		    return ro;   
 		}   		
