@@ -2,6 +2,7 @@
 <mx:Label xmlns:mx="http://www.adobe.com/2006/mxml" text="{numOccurrences}">
 	<mx:Script>
 		<![CDATA[
+			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 			import mx.rpc.http.mxml.HTTPService;
 			
@@ -9,7 +10,10 @@
 			public function set gbifTaxonId(value:Number):void{
 				var httpSrv:HTTPService=new HTTPService();
 				httpSrv.resultFormat="text";
-				httpSrv.url = "http://es.mirror.gbif.org/ws/rest/occurrence/count?taxonConceptKey="+value;
+				httpSrv.url = "http://de.mirror.gbif.org/ws/rest/occurrence/count?taxonConceptKey="+value;
+				httpSrv.addEventListener(FaultEvent.FAULT,function(event:FaultEvent):void {
+					trace(event.message);
+				});
 				httpSrv.addEventListener(ResultEvent.RESULT,function(event:ResultEvent):void {
 					try {
 						var start:Number = String(event.result).indexOf("totalMatched=\"") + (("totalMatched=\"").length);
