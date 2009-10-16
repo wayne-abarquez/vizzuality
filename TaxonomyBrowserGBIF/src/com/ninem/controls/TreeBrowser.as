@@ -528,7 +528,11 @@ package com.ninem.controls
 				button.setStyle("paddingLeft",22);				
 				button.alpha = 0;
 				button.label = 	_selectedItem.labelField;
-				button.styleName = "btnBreadcrumb";
+				if (!_selectedItem.children) {
+					button.styleName = "btnBreadcrumbLast";
+				} else {
+					button.styleName = "btnBreadcrumb";
+				}
 				TweenLite.to(button, 0.4, {x:lastChild.x + lastChild.width - 20, alpha:1});
 				Application.application.click_canvas.addChildAt(button,0);
 				

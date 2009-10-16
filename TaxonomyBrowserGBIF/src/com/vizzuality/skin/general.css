@@ -14,6 +14,19 @@ Button.btnBreadcrumb{
 	padding-right: 22;
 }
 
+Button.btnBreadcrumbLast{
+	up-skin: Embed(source="general.swf", symbol="btnBreadcrumb_over");	
+	over-skin: Embed(source="general.swf", symbol="btnBreadcrumb_over");	
+	down-skin: Embed(source="general.swf", symbol="btnBreadcrumb_over");
+	font-family: DINOT-Medium;
+	font-weight: normal;
+	color:#FFFFFF;
+	text-roll-over-color:#FFFFFF;
+	font-size:14;
+	text-align:left;
+	padding-right: 22;
+}
+
 Button.btnGreen{
 	up-skin: Embed(source="general.swf", symbol="greenButton");	
 	over-skin: Embed(source="general.swf", symbol="greenButton_over");	
@@ -49,4 +62,11 @@ ScrollBar{
 	upArrowOverSkin: Embed(source="general.swf", symbol="ScrollArrowUp_overSkin");
 	upArrowUpSkin: Embed(source="general.swf", symbol="ScrollArrowUp_upSkin");
 
+}
+
+ToolTip {
+   backgroundColor: #ffffff;
+   color: #666666;
+   fontFamily: DINOT-Medium;
+   fontSize: 12;
 }
