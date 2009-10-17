@@ -14,7 +14,9 @@
 	float: left;
 	position: relative;
 	line-height: 30px;
-	visibility: hidden;
+	visibility: visible;
+	filter: alpha(opacity=60);
+	opacity: .60;
 }
 
 .radioBusqueda{

@@ -2,17 +2,7 @@
 
 {literal}
 <script type="text/javascript"> 
-$(document).ready(function(){	
-	
-	$('#avatarPerfil').hover(		
-		function(){
-			$('#buttonUpload').css('visibility','visible');
-		},
-		function(){		
-			$('#buttonUpload').css('visibility','hidden');
-		}		
-	);
-		
+$(document).ready(function(){
     new AjaxUpload('#avatarPerfil', {
     	action: '/imageController.php',
     	data : { method:"uploadAvatar"},
