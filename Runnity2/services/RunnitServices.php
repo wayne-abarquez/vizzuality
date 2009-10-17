@@ -178,6 +178,7 @@ class RunnitServices {
 		
 		
         $_SESSION['logged']=true;
+        $_SESSION['user']['id']=$user['id'];
         $_SESSION['user']['username']=$username;
         $_SESSION['user']['completename']=$completename;
         $_SESSION['user']['email']=$email;
@@ -203,8 +204,26 @@ class RunnitServices {
 	    $locality=pg_escape_string($locality);
 	    
 	    $birthday="$birthdayYear-$birthdayMonth-$birthdayDay";	    
+	    
+	    
+        $sql = "SELECT id FROM users WHERE username='$username'";        
+        $result = pg_query($this->conn, $sql);
+        if(pg_num_rows($result)<1) {
+            throw new Exception("username does not exist");
+        } else {
+            $res=pg_fetch_assoc($result);
+            $userId=$res['id'];      
+        }	 
+        
+        
+        $sql = "SELECT id,email FROM users WHERE username<>'$username' AND email='$email'";        
+        $result = pg_query($this->conn, $sql);
+        if(pg_num_rows($result)>0) {
+            throw new Exception("tried to change email to an already registered email");
+        } 
+	    
 
-	    $sql="UPDATE users SET completename='$completename', email='$email', birthday='$birthday', location_point = GeomFromText('POINT($lat $lon)',4326),$radius_interest)";
+	    $sql="UPDATE users SET completename='$completename', email='$email', birthday='$birthday', location_point = GeomFromText('POINT($lat $lon)',4326)";
 	    if(strlen($password)>4) {
 	        $sql.=",pass='$password'";
 	    }
@@ -226,6 +245,7 @@ class RunnitServices {
         $result= pg_query($this->conn, $sql);
         
         $_SESSION['logged']=true;
+        $_SESSION['user']['id']=$userId;
         $_SESSION['user']['username']=$username;
         $_SESSION['user']['completename']=$completename;
         $_SESSION['user']['email']=$email;
@@ -1169,6 +1189,29 @@ class RunnitServices {
 			throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
 		}		
 		return true;		
+	}
+	
+	
+	public function geolocateAddress($address) {
+	    define("MAPS_HOST", "maps.google.com");
+        define("KEY", "ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA");
+	    $base_url = "http://" . MAPS_HOST . "/maps/geo?output=xml" . "&key=" . KEY;
+	    $request_url = $base_url . "&q=" . urlencode($address);
+	    $xml = utf8_decode(simplexml_load_file($request_url));
+	    if (!$xml) {
+	        throw new Exception('Problema al geolocalizar la direccion',220);
+	    }
+	    $status = $xml->Response->Status->code;
+	    if (strcmp($status, "200") == 0) {
+            $coordinates = $xml->Response->Placemark->Point->coordinates;
+            $coordinatesSplit = split(",", $coordinates);
+            $lat = $coordinatesSplit[1];
+            $lng = $coordinatesSplit[0];
+        } else {
+            throw new Exception('Problema al geolocalizar la direccion',220);
+        }
+	    
+	    return array($lat,$lng);
 	}
 
 }
