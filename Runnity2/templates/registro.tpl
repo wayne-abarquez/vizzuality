@@ -42,9 +42,7 @@
 		});
 		
     	$("#buttonLocalizacion").click(function() {
-        	    var localidad=$("#roundLocalizacion").val();
-        	    var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&markers=size:mid|color:red|"+localidad+",Spain&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
-        	    $("#map").attr("src",url);	        
+            geolocateAddress();
     	});		
 		
 		
@@ -70,8 +68,8 @@
 			<div class="span-17 registerInfoTicket"><p>Para registrarte en Runnity sólo tienes que rellenar los siguientes campos... <b>¡es grátis!</b></p></div>
 			{$php_errors}
 			<form id="register_form" action="/registro" method="get">
-			    <input type="hidden" name="lat" value="0">
-			    <input type="hidden" name="lon" value="0">
+			    <input type="hidden" id="latHidden" name="lat" value="0">
+			    <input type="hidden" id="lonHidden" name="lon" value="0">
 			    
 				<div class="span-17 last leftRegister">
 					<div class="data_register_container">
@@ -129,7 +127,7 @@
 							<label class="searchButtonFirst last">
 								<input type="button" value="Situar" id="buttonLocalizacion" class="buttonLocalizacion"/>
 							</label>
-						<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"></div>
+						<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w"></div>
 					</div>
 				</div>
 				<div class="error_register" id="error_register"></div>

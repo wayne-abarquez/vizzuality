@@ -132,6 +132,16 @@ if ($_REQUEST['method'] == 'sendPasswordToEmail') {
 	
 }
 
+if ($_REQUEST['method'] == 'geolocateAddress') {
+	$result = $services->geolocateAddress($_REQUEST['address']);
+	if($result) {
+		echo($result[0].",".$result[1]);
+	} else {
+		echo("INVALID");
+	}
+	
+}
+
 if ($_REQUEST['method'] == 'setAlert') {
 	$result = $services->setAlert($_REQUEST['locality'],$_REQUEST['distance']);
 	if(!$result) {
