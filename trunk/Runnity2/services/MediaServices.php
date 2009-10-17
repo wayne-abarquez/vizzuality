@@ -68,6 +68,13 @@ class MediaServices {
 		$data['width']=$size[0];
 		$data['height']=$size[1];
 		$data['path']=$bigFileUrlPath;	
+		
+		$activity_description="Nuevas fotos";
+
+        if($onTable=="run") {
+            $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$onId, run1_description='".$activity_description."'";
+            $result= pg_query($this->conn, $sql);            
+        }
 	
 	    return $data;
 	    

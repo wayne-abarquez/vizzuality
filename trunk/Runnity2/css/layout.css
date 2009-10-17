@@ -1789,6 +1789,13 @@ div.mapStyleRight {
 	margin: 10px 0px 0px -20px;
 }
 
+.nofotos{
+	width: 641px;
+	height: 203px;
+	margin: 0px 0px 20px -20px;	
+	background-color: yellow;
+}
+
 div.boxraceMap {
 	width: 610px;
 	background-color: #f1f4f8;
