@@ -1,24 +1,5 @@
 {include file="header.tpl"}
 
-{literal}
-<script type="text/javascript"> 
-$(document).ready(function(){
-
-	var state = false;
-	
-	$(document.getElementById('avatarPerfil')).hover(
-		function(){
-			$(document.getElementById('changeAvatar')).css('display','block');
-		},
-		function(){
-			$(document.getElementById('changeAvatar')).css('display','none');
-		}
-	);
-
-});
-</script>
-{/literal}
-
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
@@ -27,8 +8,8 @@ $(document).ready(function(){
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil" id="avatarPerfil">
-					<img class="imgAvatarPerfil" src="/img/AvatarPerfil.jpg">
-					<a class="changeAvatarLink"><div class="changeAvatar" id="changeAvatar">Pincha para subir avatar</div></a>
+					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$smarty.session.user.id}&type=t">
+					<a class="changeAvatar" id="buttonUpload">Pincha para subir avatar</a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
