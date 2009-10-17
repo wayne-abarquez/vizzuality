@@ -6,6 +6,7 @@ RewriteRule ^user/(.+) usuario_publico.php?u=$1 [L]
 RewriteRule ^perfil/(.+) usuario.php?u=$1 [L]
 RewriteRule ^buscar searchresults.php [L]
 RewriteRule ^sobre about.php [L]
+RewriteRule ^registro_success registro_success.php [L]
 RewriteRule ^registro registro.php [L]
 RewriteRule ^sitemap.xml sitemap_xml.php [L]
 
