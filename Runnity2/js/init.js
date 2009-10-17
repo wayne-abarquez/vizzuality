@@ -46,7 +46,6 @@ function logout () {
     
 }
 
-//FUNCION PARA CALCULAR EL TIEMPO 
 function borrarRecords(id1,id2,id3,id4) {
 	$(id1).val(""); 
 	$(id2).val(""); 	  
