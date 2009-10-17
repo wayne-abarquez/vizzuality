@@ -13,6 +13,18 @@ class RunnitServices {
 		$this->emailPassword=EMAILPASSWORD;
 		$this->basePath=ABSPATH;
 	}
+	
+	private function getMailService() {
+	    $mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = "ssl";
+		$mail->Host = "smtp.gmail.com";
+		$mail->Port = 465;
+		$mail->Username = "alertas@runnity.com";
+		$mail->Password = $this->emailPassword;
+		return $mail;
+	}
     
     //ajaxController,RacedEditor.mxml
     public function login($email,$pass) {
@@ -162,14 +174,7 @@ class RunnitServices {
 	
 		//Send confirmation email
 
-		$mail = new PHPMailer();
-		$mail->IsSMTP();
-		$mail->SMTPAuth = true;
-		$mail->SMTPSecure = "ssl";
-		$mail->Host = "smtp.gmail.com";
-		$mail->Port = 465;
-		$mail->Username = "alertas@runnity.com";
-		$mail->Password = $this->emailPassword;
+        $mail = $this->getMailService();
 
         $smarty = new Smarty; 
         $smarty->assign('name', $completename);
@@ -647,16 +652,6 @@ class RunnitServices {
 	
 	$sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and track_geom is not null";
 	
-/*		if($provinceName!="") {
-			$sqlProv="SELECT id from province WHERE name like '$provinceName'";
-			$resultCount=pg_query($this->conn, $sqlProv);
-			$resultCount=pg_fetch_assoc($resultCount);
-			if($resultCount) {
-				$sql.=" and r.province_fk=".$resultCount['id'];
-			}
-			
-		}
-*/
 
 		if($lat!=0 && $lon!=0) {
 			$sql.=" AND distance_sphere(PointFromText('POINT($lon $lat)', 4326),start_point) <($distance_km*1000)";
@@ -774,35 +769,6 @@ class RunnitServices {
                 $result= pg_query($this->conn, $sql);                  
     	        
     	    }     	    
-    	    
-    	    
-    	    /*
-			//Send alerts to users
-			$sql="SELECT u.email,u.completename from run as r,users as u WHERE r.id=$newId AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
-			$alerts=pg_fetch_all(pg_query($this->conn, $sql)); 
-			if($alerts) {
-				//prepare email
-				$mail = new PHPMailer();
-				$mail->IsSMTP();
-				$mail->SMTPAuth = true;
-				$mail->SMTPSecure = "ssl";
-				$mail->Host = "smtp.gmail.com";
-				$mail->Port = 465;
-				$mail->Username = "alertas@runnity.com";
-				$mail->Password = $this->emailPassword;		
-
-				$mail->From = $email;
-				$mail->FromName = $mensaje;
-				$mail->Subject = "Nueva carrera: $name ($event_location,$event_date)";
-				$mail->MsgHTML("Mensaje enviado desde Runnity.com<br><br>$description");
-				$mail->IsHTML(true);	
-
-				foreach($alerts as $al) {
-					$mail->AddBCC($al['email'], $al['completename']);
-				}	
-				$mail->Send();			
-			}
-            */
             
 
     	    if (is_int($newId)) {
@@ -945,7 +911,7 @@ class RunnitServices {
     
     //racesEditor, sitemap
     public function getRunsList($limit=0) {
-        $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,province_fk,is_displayed_in_home,created_when,run_type,published,tlf_informacion,flickr_url from run ORDER BY id DESC"; 
+        $sql="select id ,name,event_location,distance_meters,event_date,category,awards,description,inscription_price,inscription_location,inscription_email,inscription_website,distance_text,y(start_point) as start_point_lat, x(start_point) as start_point_lon, y(end_point) as end_point_lat, x(end_point) as end_point_lon,province_fk,is_displayed_in_home,created_when,run_type,published,tlf_informacion,flickr_url from run where event_date > now()::date ORDER BY id DESC"; 
 		if($limit!=0) {
 			$sql.=" LIMIT $limit";
 		}
@@ -1053,14 +1019,7 @@ class RunnitServices {
 
     //ajaxController
 	public function sendEmailToAlertas($nombre,$email,$mensaje) {
-		$mail = new PHPMailer();
-		$mail->IsSMTP();
-		$mail->SMTPAuth = true;
-		$mail->SMTPSecure = "ssl";
-		$mail->Host = "smtp.gmail.com";
-		$mail->Port = 465;
-		$mail->Username = "alertas@runnity.com";
-		$mail->Password = $this->emailPassword;		
+        $mail = $this->getMailService();	
 
 		$mail->From = $email;
 		$mail->FromName = $mensaje;
@@ -1075,10 +1034,87 @@ class RunnitServices {
 		return null;
 	}
 	
+	public function sendAlerts() {
+        $sql=<<<SQL
+            SELECT r.id as run_id,u.id as user_id,u.username,u.completename,u.email, event_location,r.name as run_name,event_date,distance_text,p.name as province_name,run_type, rt.name as run_type_name,
+            CASE EXTRACT(DOW FROM event_date) 
+            WHEN 0 THEN 'Domingo'
+            WHEN 1 THEN 'Lunes'
+            WHEN 2 THEN 'Martes'
+            WHEN 3 THEN 'Miercoles'
+            WHEN 4 THEN 'Jueves'
+            WHEN 5 THEN 'Viernes'
+            WHEN 6 THEN 'Sábado'
+            ELSE 'otro' END as day_in_week
+
+            from run as r left join province as p on r.province_fk=p.id left join run_type as rt on r.run_type=rt.id,users as u 
+            WHERE r.event_date > now()::date AND r.event_date < now()::date+14 AND published=true AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)
+            order by u.id,r.event_date ASC          
+SQL;
+        $result= pg_query($this->conn, $sql);
+        
+        $mail = $this->getMailService();
+        $smarty = new Smarty; 
+
+        $userRunsBlock=array();
+        $currentUserId=0;
+        $currentUserEmail="";
+        $currentUserName="";
+        $currentCompleteName="";
+        $timeRange="19/09/2009 al 19/7/2009";
+        while ($row = pg_fetch_assoc($result)) {        
+            if($currentUserId!=$row['user_id']) {
+                if($currentUserId!=0) {
+                    //Send email here using $userRunsBlock
+                    
+                    
+            		$mail->From = "alertas@runnity.com";
+            		$mail->FromName = "Alertas Runnity";
+            		$mail->Subject = "Runnity: Carreras en la próximas 2 semanas (".count($userRunsBlock).")";	
+
+
+                    
+                    $smarty->assign('name', $currentCompleteName);
+                    $smarty->assign('user_id', $currentUserId);
+                    $smarty->assign('user_name', $currentUserName);
+                    $smarty->assign('carreras', $userRunsBlock);
+                    $smarty->assign('timeRange', $timeRange);
+                    
+    
+                    $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_alertas.tpl'));
+                    $noHtml="";
+
+            		$mail->MsgHTML($email_message);
+            		$mail->AddAddress($currentUserEmail, $currentUserName);
+            		$mail->IsHTML(true);		
+            		$mail->AltBody = "";
+
+
+            		if(!$mail->Send()) {
+            		    error_log("ALERTAS: Email to $email no pudo enviarse");
+            		}
+            		                    
+                }
+                
+                $userRunsBlock=array();
+                $currentUserId = $row['user_id'];
+                $currentUserEmail=$row['email'];
+                $currentUserName=$row['username'];
+                $currentCompleteName=$row['completename'];                
+            }    
+            $userRunsBlock[]=$row;
+        }
+   
+	}
+	
+	private function prepareAlertEmail($ds) {
+	    
+	}
 	
 	
 	
 	//ajaxController
+	/*
 	public function setAlert($address,$distance) {
         if (!$_SESSION['logged']) {
 	        throw new Exception("user not logged in");
@@ -1138,25 +1174,8 @@ class RunnitServices {
                  
 	    }
 	}
+	*/
 	
-	
-	public function prepareAlerts() {
-		$sql="INSERT INTO pending_alerts(run_fk,user_fk) SELECT r.id as run_id,u.id as user_id from run as r,users as u WHERE r.created_when > now()::date-1 AND r.event_date < now()::date+30 AND u.radius_interest is not null AND distance_sphere(u.location_point,r.start_point) <(radius_interest*1000)";
-        $result= pg_query($this->conn, $sql);
-        return null;		
-	}
-	
-	public function sendAlerts() {
-		$sql="select u.email,u.id as user_id,r.id,r.name,event_date,event_location,distance_text, p.name as province_name from ((pending_alerts as pa inner join run as r on pa.run_fk=r.id) inner join users as u on pa.user_fk=u.id) left join province as p on r.province_fk=p.id where r.event_date > now() order by user_id,event_date";
-		
-		//Do something
-		
-		
-		//Remove the pending alerts
-		$sql="DELETE FROM pending_alerts";
-        $result= pg_query($this->conn, $sql);
-        return null;		
-	}
 	
 	//ajaxController
 	public function sendPasswordToEmail($email) {
@@ -1177,16 +1196,7 @@ class RunnitServices {
         $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_password.tpl'));
         $noHtml="Tu password es Runnity es: ".$user['pass'];
 
-
-		$mail = new PHPMailer();
-		$mail->IsSMTP();
-		$mail->SMTPAuth = true;
-		$mail->SMTPSecure = "ssl";
-		$mail->Host = "smtp.gmail.com";
-		$mail->Port = 465;
-		$mail->Username = "alertas@runnity.com";
-		$mail->Password = $this->emailPassword;		
-
+        $mail = $this->getMailService();
 		$mail->From = $email;
 		$mail->FromName = $mensaje;
 		$mail->Subject = "Tu password en Runnity.com";	

@@ -63,7 +63,7 @@ a{
 
 <p>Además, como usuario de <a href="http://runnity.com">runnity.com</a> serás el primero en enterarte de las novedades y las mejoras que vayamos haciendo y podrás compartir tus opiniones y experiencias corriendo.</p>
 
-<p class="contacta">Si tienes alguna duda o sugerencia, <a href="mailo:contacto@runnity.com">contacta con nosotros</a></p>
+<p class="contacta">Si tienes alguna duda o sugerencia, <a href="mailto:contacto@runnity.com">contacta con nosotros</a></p>
 
 <p class="title">¡Suerte en tus próximas carreras!</p>
 
