@@ -1,5 +1,16 @@
 {include file="header.tpl"}
 
+{*
+	{literal}
+	<script language="javaScript" type="text/javascript">
+		$(document).ready( function() {
+			$('.special').truncate( 10 );
+		});
+	</script>
+	{/literal}
+*}
+
+
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
@@ -71,13 +82,13 @@
 						{if $data.inscription_email != null}
 						<div class="span-1 last dataContainer">
 							<div class="span-1 last dataTitle"><p class="textRace">E-mail:</p></div>
-							<div class="span-1 last data"><p><a id="datos1" href="mailto:{$data.inscription_email}" class="special">{$data.inscription_email}</a></p></div>
+							<div class="span-1 last data"><p class="special"><a id="datos1" href="mailto:{$data.inscription_email}">{$data.inscription_email}</a></p></div>
 						</div>
 						{/if}
 						{if $data.inscription_website != null}
 						<div class="span-1 last dataContainer">
 							<div class="span-1 last dataTitle"><p class="textRace">Web:</p></div>
-							<div class="span-1 last data"><p><a target="_blank" id="datos2" href="{if $data.inscription_website|substr:0:7 eq "http://"}{$data.inscription_website}{else}http://{$data.inscription_website}{/if}" class="special">{$data.inscription_website|substr:7}</a></p></div>
+							<div class="span-1 last data"><p class="special"><a target="_blank" id="datos2" href="{if $data.inscription_website|substr:0:7 eq "http://"}{$data.inscription_website}{else}http://{$data.inscription_website}{/if}">{$data.inscription_website|substr:7}</a></p></div>
 						</div>	
 						{/if}
 						{if $data.tlf_informacion != null}
