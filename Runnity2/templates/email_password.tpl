@@ -59,7 +59,7 @@ a{
 
 <p class="title">El password para {$email} / {$username} es <b>{$password}</b></p>
 
-<p class="contacta">Si tienes alguna duda o sugerencia, no dudes en <a href="mailo:contacto@runnity.com">contactar con nosotros</a></p>
+<p class="contacta">Si tienes alguna duda o sugerencia, no dudes en <a href="mailto:contacto@runnity.com">contactar con nosotros</a></p>
 
 </body>
 </html>
