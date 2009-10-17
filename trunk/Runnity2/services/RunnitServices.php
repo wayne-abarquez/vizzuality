@@ -79,6 +79,18 @@ class RunnitServices {
 	}
 	
 	//ajaxController
+	public function isEmailFree($email) {
+	    $username=pg_escape_string($username);
+	    $sql="SELECT id from users WHERE email='$email'";
+	    $result=pg_query($this->conn, $sql);
+	    if(pg_num_rows($result)>0) {
+	        return false;
+	    }
+	       
+	    return true;
+	}	
+	
+	//ajaxController
 	public function registerUser($username,$completename,$email,$password,$birthdayDay,$birthdayMonth,$birthdayYear,$localidad,$lat,$lon,$radio) {
 	    $username=pg_escape_string($username);
 	    $completename=pg_escape_string($completename);

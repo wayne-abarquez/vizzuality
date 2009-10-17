@@ -25,6 +25,7 @@ if(isset($_REQUEST['action'])) {
     $lat                =$_REQUEST['lat'];
     $lon                =$_REQUEST['lon'];
     
+    $error_msg="";
     if($email_register=="") {
         $error_msg.="El email introducido es invalido<br>";
     }
@@ -68,7 +69,8 @@ if(isset($_REQUEST['action'])) {
             
             
         //it is a success
-        header( 'Location: /registro_success.php' ) ;    
+        header( 'Location: /registro_success' ) ;   
+        exit(); 
         
     }
     

@@ -12,6 +12,15 @@ if ($_REQUEST['method'] == 'isUsernameFree') {
     die();
 }
 
+if ($_REQUEST['method'] == 'isEmailFree') {
+    if($services->isEmailFree($_REQUEST['email'])) {
+    	echo("valid");
+    } else {
+    	echo("notvalid");
+    }
+    die();
+}
+
 if ($_REQUEST['method'] == 'addComment') {
     
 	$name=$_SESSION['user']['username'];
