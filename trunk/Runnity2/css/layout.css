@@ -1823,8 +1823,9 @@ div.titleComents {
 /* races right */
 
 .avatarContainer{
-	width: 262px;
+	width: 268px;
 	height: 300px;
+	margin-left: -3px;
 }
 
 div.events {
@@ -1883,8 +1884,9 @@ div.raceRight2{
 }
 
 .avatarRight{
-	margin: 0px;
+	margin: 0;
 	float: left;
+/* 	margin-left: -1px; */
 }
 
 .navigation a{
