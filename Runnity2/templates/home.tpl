@@ -211,10 +211,14 @@
 		</div>
 		<div class="span-1 last columnSort">
 			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
-				<div class="span-3 tweet last">
-				<a id="tweets" href="http://twitter.com/runnity" target="_blank"></a>
-				<p id="tweetsTime"></p>
-				</div>
+			<div class="twitterContent">
+                <div class="column">
+                    <img id="twitterImage">
+                </div>
+                <div class="column tweetComment last">
+                	<a id="tweets" href="http://twitter.com/runnity" target="_blank"></a>
+                </div>
+            </div>
 		</div>
 	</div>
 
@@ -229,8 +233,11 @@
 			var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
 			$.getJSON(url,function(data){	
 				$.each(data, function(i, item) {
+					$("#twitterImage").attr("src", item.user["profile_image_url"]);
 					$("#tweets").append(item.text.linkify());
+					$("div.tweetComment").append(relative_time(item.created_at));
 				});
+				
 		    });
 		    
 			$(".nameRace").truncate( 55 );

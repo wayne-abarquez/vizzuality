@@ -1530,7 +1530,6 @@ a.verTodas:hover{
 #tweets{
 	color: #666666;
 	font-size: 13px;
-	line-height: 0px;
 	font-weight: bold;
 	text-decoration: none;
 }
@@ -1543,6 +1542,10 @@ a.verTodas:hover{
 	color: #666666;
 	font-size: 11px;
 }
+
+.twitterContent { width: 300px;} 
+
+div.tweetComment { color: #666666;}
 
 /* calendario */
 
