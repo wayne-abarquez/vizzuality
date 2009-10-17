@@ -209,16 +209,16 @@
 				<p class="span-8 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<img src="/picture.php?id={$data.id}"/>
+					<img class="avatarPhoto" src="/picture.php?id={$data.id}&picId={$picture.id}&type=t"/>
 				{/foreach}	
 				</div>
-				<div class="SubirFotosLink"><a href="#" id="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
+				<div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
 			</div>
 			{else}
 			<div class="span-1 last nophotos">
 				<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
-				<p class="center">¿Tienes fotos del evento? ¡Anímate y subelas!</p>
-<!-- 				<p class="down"><a><img src="/img/photoIcon.gif">Subir fotos</a></p> -->
+				<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
+				<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIcon.gif">Subir fotos</a></p>
 			</div>			
 			{/if}	
 			
@@ -244,7 +244,6 @@
 						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
 						<p class="commentUser">{$comment.commenttext}</p>
 						</div>
-						
 					</div>							
           		{/if} 
             	{/foreach}	
