@@ -28,7 +28,7 @@ $(document).ready(function(){
     			}, 200);
 
     		} else {
-		
+
     			// extension is not allowed
     			//$('#example2 .text').text('Error: only images are allowed');
     			// cancel upload
