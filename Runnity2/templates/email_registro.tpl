@@ -59,12 +59,11 @@ a{
 
 <p class="title">Estamos encantados de que formes partes de Runnity</p>
 
-<p>Ya puedes inscribirte a las carreras y activar tu alerta de proximidad por email. Sólo tienes que ir a tu página de usuario <a href="http://runnity.com/perfil/{$username}">http://runnity.com/perfil/{$username}</a> y rellenar el formulario.</p>
+<p>Ya puedes inscribirte a las carreras y activar tu alerta de proximidad por email. Sólo tienes que ir a tu página de usuario <a href="http://localhost/user/{$username}">http://localhost/user/{$username}</a>,hacer login y rellenar el formulario.</p>
 
-<p>Además, como usuario de <a href="http://runnity.com">runnity.com</a> serás el primero en enterarte de las novedades y las mejoras que vayamos haciendo y podrás compartir tus 
-opiniones o experiencias en las carreras, con los demás usuarios.</p>
+<p>Además, como usuario de <a href="http://runnity.com">runnity.com</a> serás el primero en enterarte de las novedades y las mejoras que vayamos haciendo y podrás compartir tus opiniones y experiencias corriendo.</p>
 
-<p class="contacta">Si tienes alguna duda o sugerencia, no dudes en <a href="mailo:contacto@runnity.com">contactar con nosotros</a></p>
+<p class="contacta">Si tienes alguna duda o sugerencia, <a href="mailo:contacto@runnity.com">contacta con nosotros</a></p>
 
 <p class="title">¡Suerte en tus próximas carreras!</p>
 
