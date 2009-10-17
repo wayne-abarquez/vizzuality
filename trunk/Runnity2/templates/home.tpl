@@ -229,8 +229,7 @@
 			var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
 			$.getJSON(url,function(data){	
 				$.each(data, function(i, item) {
-					$("#tweets").append( item.text.linkify());
-					$("#tweetsTime").append(relative_time(item.created_at));
+					$("#tweets").append(item.text.linkify());
 				});
 		    });
 		    
