@@ -119,7 +119,7 @@ $(document).ready(function(){
 					{else}   										
 						<div id="commentUser" class="span-1 last">
 							<div class="span-1 last avatarBox">
-								<img src="/img/avatar.jpg"/>	
+								<img src="/avatar.php?id={$comment.user_id}&type=s"/>	
 							</div>
 							<div class="span-1 commentBoxUser">
 							<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>

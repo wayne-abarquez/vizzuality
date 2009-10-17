@@ -286,36 +286,18 @@
 		{/if}
 		</div>
 
-				
-		<div class="span-1 functionalContainer">		
 		{if $data.num_users > 0}
+		<div class="span-1 functionalContainer">		
 			<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
 			<div class="eventsUsers">				
-		{/if}
-		{foreach key=id item=person from=$runners}
-				{if $person eq 'f'}
-					<!--
-<div class="span-8 races2">
-						<p class="noApuntado">Aun no hay ningún valiente</p>
-						<p class="noRaceSub">¿Quieres ser el primero? <b><a href="/rss">Apúntate</a></b></p>
-					</div> 
--->
-				{else}							
-					<div class="avatarContainer">
-						<a href="/user/{$person.username}"><img title="{$person.username}" class="avatarRight" src="/avatar.php?id={$person.user_id}"/></a>	
-					</div>
-    			{/if}
-    		    {foreachelse}
-    		       <!--
- <div class="span-8 races2">
-						<p class="noApuntado">Aun no hay ningún valiente</p>
-						<p class="noRaceSub">¿Quieres ser el primero? <b><a href="/rss.php">Apúntate</a></b></p>
-					</div>  
--->   
-    		    {/foreach}
+				<div class="avatarContainer">
+				{foreach key=id item=person from=$runners}
+				<img title="{$person.username}" class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/>
+			    {/foreach}
+				</div>
 			</div>
 		</div>
-		</div>
+		{/if}
 	</div>
 
 </div> <!-- content -->
