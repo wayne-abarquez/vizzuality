@@ -36,7 +36,6 @@ $smarty->assign('similarTypeRaces',$services->getRunsSimilarDistance($_REQUEST['
 $smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id']));
 $smarty->assign('pictures',$mediaServices->getObjectPictures('run',$_REQUEST['id']));
 
-
 $smarty->display('carrera.tpl');
 
 ?>
