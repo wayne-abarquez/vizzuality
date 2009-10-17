@@ -33,7 +33,6 @@
 				{else}
 					<div class="span-1 {cycle values="carrera,carrera2"}">
 						<div class="span-1 avatar2">
-							<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
 							{if $race.flickr_img_id==""}
 							    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
 							{else}
@@ -67,7 +66,6 @@
 			{foreach key=id item=race from=$activity name=raceloop}
 			<div class="carrera">
 				<div class="span-1 avatar2">
-					<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
 					{if $race.flickr_img_id==""}
 					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
 					{else}
@@ -75,7 +73,7 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a <a id="carrera{$smarty.foreach.raceloop.iteration}" 
+					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
 							href="/run/{$race.run1_id}/{$race.run1_name|replace:' ':'/'}">{$race.run1_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run1_description}</p>
 				</div>
@@ -87,7 +85,6 @@
 			<div class="separator"></div>
 			<div class="carrera2">
 				<div class="span-1 avatar2">
-					<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
 					{if $race.flickr_img_id==""}
 					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
 					{else}
@@ -95,7 +92,7 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a <a id="carrera{$smarty.foreach.raceloop.iteration}" 
+					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
 							href="/run/{$race.run2_id}/{$race.run2_name|replace:' ':'/'}">{$race.run2_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run2_description}</p>
 				</div>
@@ -115,7 +112,7 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a <a id="carrera{$smarty.foreach.raceloop.iteration}" 
+					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
 							href="/run/{$race.run3_id}/{$race.run3_name|replace:' ':'/'}">{$race.run3_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run3_description}</p>
 				</div>
