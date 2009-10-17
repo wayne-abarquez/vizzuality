@@ -420,9 +420,9 @@ p.user_title{
 	font-weight: bold;
 }
 
-.buttonLocalizacion{background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: no-repeat; height: 26px; width: 61px; border: none; margin-left: -7px; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer;}
-.buttonLocalizacion:hover{background-image: url(/img/buttonLocalizacion_hover.gif);color: #ffffff;}
 
+
+/*
 label.roundLocalizacion {
 	float:left;
 	clear:left;
@@ -445,6 +445,7 @@ label.roundLocalizacion {
 .roundLocalizacion input:focus {
 	outline:none;
 }
+*/
 
 #roundLocalizacion {width:225px}
 
@@ -462,9 +463,6 @@ label.roundLocalizacion {
 	margin: 10px 0px 0px 0px;
 }
 
-.nombreRegistro{
-	margin-top: 100px;
-}
 
 .pageUser{
 	margin-top: 123px;
@@ -479,7 +477,7 @@ label.roundLocalizacion {
 div.TerminosCondicionesBox{
 	background-color: #f1f4f8;
 	height: 56px;
-	width: 610px;
+	width: 617px;
 	margin: 10px 0;
 }
 
@@ -519,18 +517,13 @@ div.error_register {
 }
 
 .checkAlertas{
-	margin-left: 14px;
 	width: 264px;
 }
 
 .comboSexo{
-	margin-left: 14px;
 	width: 156px;
 }
 
-.comboFechaFirst{
-	margin-left: 14px;
-}
 
 .comboDia{
 	width: 50px;
@@ -550,11 +543,28 @@ div.rightColumnRegister ul li{  border-bottom: 1px dotted #a5a5a5; font-size: 13
 div.titleBoxRegister{height: 54px; background-color: #eeeeee; width: 910px; margin:0 0 10px 20px;}
 div.titleBoxRegister p{font-size: 22px; color: #336699; margin-top: 8px; margin-left: 14px;}
 div.registerInfoTicket{ background: url(/img/registerTicket.gif) no-repeat; height: 41px; width: 609px; }
-div.data_register_container {width: 500px;}
-div.data_register_container label {width: 550px;}
-#register_form label.error {display:inline; background: none; border: none; width: auto; line-height: 24px}
+div.data_register_container {width: 500px; margin: 10px 0 0 0; padding: 0 0 0 20px;}
+div.data_register_container p{color: #666666;font-size: 13px;font-weight: bold; margin:0;}
+#register_form input.inputRegister {width: 223px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
+#register_form label.error {color:#c24949; background: none; border: none; width: auto; line-height: 14px; margin: 0; padding: 0;}
+#register_form input.error {width: 223px; border: 1px solid #c24949; background: none; margin: 0 20px 0 0; padding: 7px 10px;}
 #checkUserBox #registerImage {margin:0 0 0 7px; height: 16px; width: 16px; vertical-align: middle;}
+#emailImage {margin:0 0 0 7px; height: 16px; width: 16px; vertical-align: middle;}
 #answer {line-height: 28px; font-weight: normal; display: inline; padding: 0; margin: 0;}
+#result {line-height: 28px; font-weight: normal; display: inline; padding: 0; margin: 0;}
+
+div.nombreRegistro{ margin-top: 79px; width: 251px; padding: 0 0 0 20px;}
+#inputRegister {margin: 0 0 0 0; width: 150px;}
+div.register_name_column{margin:0 0 10px 0;}
+div.register_name_column p{color: #666666;font-size: 13px;font-weight: bold; margin:0;}
+div.register_name_column input{width: 223px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
+div.register_name_column div.checkAlertas input {width: 12px;}
+div.rightRegister {position: relative;}
+div.rightRegister #roundLocalizacion {width: 270px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
+div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24949; margin: 0 20px 0 0; padding: 7px 10px;}
+
+.buttonLocalizacion{ position: absolute; right:10px; top: 99px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 30px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
+.buttonLocalizacion:hover{background: url(/img/buttonLocalizacion_hover.gif) repeat-y;color: #ffffff;}
 
 .rightColumnRegister{
 	border-left: 1px dotted #c3c3c3;
@@ -583,7 +593,6 @@ div.data_register_container label {width: 550px;}
 	margin-bottom: 10px;
 }
 
-#register_form label.error {background: none; border: none; width: auto; line-height: 24px; padding:0; margin: 0;}
 .titleBoxRegister p{
 	font-size: 22px;
 	color: #336699;
@@ -610,12 +619,6 @@ div.data_register_container label {width: 550px;}
 	margin: 0px 0px 10px 0px;
 }
 
-.leftRegister p{
-	color: #666666;
-	font-size: 13px;
-	font-weight: bold;
-	margin: 10px 0px 0px 14px;
-}
 
 .rightRegister{
 	width: 346px;
@@ -623,8 +626,8 @@ div.data_register_container label {width: 550px;}
 }
 
 label.inputRegister {
-	float:left;
-	clear:left;
+	
+	
 	background:url(/img/inputRegister.gif) no-repeat 0 0;
 	padding: 0px 0px 0px 0px;
 	height: 26px;
@@ -645,20 +648,6 @@ label.inputRegister {
 	outline:none;
 }
 
-#register_form label.error {
-	margin-left: 10px;
-	color: red;
-	background: none;
-	border: none;
-	height: 20px;
-	width: 200px;
-}
-
-
-#inputRegister1 {width:234px; margin-bottom: 10px;}
-#inputRegister2 {width:234px; margin-bottom: 10px;}
-#inputRegister3 {width:234px; margin-bottom: 10px;}
-#inputRegister4 {width:234px; margin-bottom: 10px;}
 
 .titleRegisterRight{
 	font-size: 15px;
@@ -667,6 +656,11 @@ label.inputRegister {
 	margin-left: 20px;
 	line-height: 16px;
 }
+
+/* REGISTER SUCCESS */
+div.register_success_content p {text-align: center; width: 100%;}
+
+
 
 /* body */
 body a{

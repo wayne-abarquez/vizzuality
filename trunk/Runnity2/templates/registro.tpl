@@ -20,9 +20,21 @@
 					required: true,
 					minlength: 5
 				},
+				confirm_password: {
+					required: true,
+					minlength: 5,
+					equalTo: "#inputRegister2"
+				},
 				email_register: {
 					required: true,
 					email: true
+				},
+				name_register: {
+					required: true,
+					minlength: 5
+				},
+				localidad: {
+					required: true,
 				}
 			},
 			messages: {
@@ -34,9 +46,21 @@
 					required: "Introduce una contraseña",
 					minlength: "Al menos 5 caracteres"
 				},
+				confirm_password: {
+					required: "Introduce la misma contraseña",
+					minlength: "Al menos 5 caracteres",
+					equalTo: "Debe ser igual a la contraseña"
+				},
 				email_register: {
 					required: "Introduce una dirección de correo",
 					email: "No es una dirección válida"
+				},
+				name_register: {
+					required: "Introduce tu nombre",
+					minlength: "Al menos 5 caracteres"
+				},
+				localidad: {
+					required: "Introduce una localidad",
 				}
 			}
 		});
@@ -47,9 +71,6 @@
 		
 		
 	});
-	
-
-	
 </script>
 {/literal}
 
@@ -74,62 +95,74 @@
 				<div class="span-17 last leftRegister">
 					<div class="data_register_container">
 						<p>Email</p>
-						<label class="inputRegister" for="inputRegister"><span><input id="inputRegister1" name="email_register" type="text"></span></label>
+						<input id="inputRegister1" class="inputRegister" name="email_register" type="text" onchange="checkEmail()"/>
+						<span class="emailCheck" id="checkEmailBox">
+                            <img style='display:none' id="emailImage">
+                            <p id="result"></p>
+                    	</span>
 					</div>
 					
 					<div class="data_register_container">
 						<p>Contraseña</p>
-						<label class="inputRegister" for="inputRegister"><span><input id="inputRegister2" name="password_register" type="password"></span></label>
+						<input id="inputRegister2" class="inputRegister" name="password_register" type="password"/>
+					</div>
+					
+					<div class="data_register_container">
+						<p>Confirmar contraseña</p>
+						<input id="inputRegister5" class="inputRegister" name="confirm_password" type="password"/>
 					</div>
 					
 					<div class="data_register_container">
 						<p>Nombre de usuario</p>
-						<label class="inputRegister" for="inputRegister"><span><input id="inputRegister3" name="username_register" type="text" onchange="checkUsername()"></span>
-							<span class="usernameCheck" id="checkUserBox">
-	                            <img style='display:none' id="registerImage">
-	                            <p id="answer"></p>
-	                    	</span>
-						</label>
+						<input id="inputRegister3" class="inputRegister" name="username_register" type="text" onchange="checkUsername()"/>
+						<span class="usernameCheck" id="checkUserBox">
+                            <img style='display:none' id="registerImage">
+                            <p id="answer"></p>
+                    	</span>
 					</div>
+				</div>						
 					
-					<div class="pageUser"><p>Tu página será: <a>http://www.runnity.com/users/...</a> </p></div>
-					
-					
-					<div class="nombreRegistro">
-						<p >Nombre y apellidos</p>
-						<label class="inputRegister" for="inputRegister"><span><input id="inputRegister4" name="name_register" type="text"></span></label>
+				<div class="span-16">
+					<div class="span-6 first column nombreRegistro">
+						<div class="register_name_column">
+							<p>Nombre y apellidos</p>
+							<input id="inputRegister4" name="name_register" type="text"/>
+						</div>
+						<div class="register_name_column">
+							<p>Sexo</p>
+							<select name="sexo" class="comboSexo" id="combo_sex">
+		        				<option value="true">Hombre</option>
+		        				<option value="false">Mujer</option>
+		    				</select>
+						</div>
 						
-						<p>Sexo</p>
-						<select name="sexo" class="comboSexo" id="combo_sex">
-		        			<option value="true">Hombre</option>
-		        			<option value="false">Mujer</option>
-		    			</select>
-						
-						<p>Fecha de nacimiento</p>
-                        {html_select_date prefix='birthday' start_year='-55' month_format='%m' field_order='DMY' class='comboAnio comboFechaFirst'
-                           end_year='-8' reverse_years=true}						
-		    			
-		    			<div class="span-1 checkAlertas">
-		    				<div class="span-1 last checkBoxAlerts"><input type="checkbox" id="quiero" name="quiero" value="true"></div>
-		    				<div class="span-1 last checkTitle"><p class="checkTitle">Quiero recibir alertas con las próximas carreras cerca de mi</p></div>
+						<div class="register_name_column">
+							<p>Fecha de nacimiento</p>
+		                    {html_select_date prefix='birthday' start_year='-55' month_format='%m' field_order='DMY' class='comboAnio'
+		                       end_year='-8' reverse_years=true}					
+			    			
+			    			<div class="span-1 checkAlertas">
+			    				<div class="span-1 checkBoxAlerts"><input type="checkbox" id="quiero" name="quiero" value="true"/></div>
+			    				<div class="span-1 last checkTitle"><p class="checkTitle">Quiero recibir alertas con las próximas carreras cerca de mi</p></div>
+			    			</div>
 		    			</div>
-	    			</div>
-				</div>
-				
-				
-				
-				<div class="span-1 last rightRegister">
-					<div>
+		    		</div>
+	    			<div class="span-1 column last rightRegister">
+						<div>
 							<p class="titleMapAlert">Localidad,provincia</p>
-							<label class="roundLocalizacion last" for="roundLocalizacion">
-								<input type="text" id="roundLocalizacion" name="localidad">
-							</label>
+							<input type="text" id="roundLocalizacion" name="localidad"/>
 							<label class="searchButtonFirst last">
 								<input type="button" value="Situar" id="buttonLocalizacion" class="buttonLocalizacion"/>
 							</label>
-						<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w"></div>
+							<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w"></div>
+						</div>
 					</div>
 				</div>
+				
+				
+				
+				
+				
 				<div class="error_register" id="error_register"></div>
 				<div class="span-1 last TerminosCondicionesBox">
 					<div class="span-12 first"><p>Al hacer click en “Registrarse” aceptas los <a href="/legalterms.html" target="_blank">Términos y condiciones</a> de runnity.com</p></div>

@@ -7,7 +7,7 @@
 
 	<div class="span-24 column content">
 		<div class="content404">
-			<p><b>Lo sentimos, pero la carrera que buscas no existe, o ha sido renombrada</b>.<br />De todos modos, si quieres puedes<a href="http://dev.runnity:8888/buscar"> ver todas las carreras</a>, ó ir a la <a href="http://www.runnity.com">home</a></p>
+			<p><b>Lo sentimos, pero la carrera que buscas no existe, o ha sido renombrada</b>.<br />De todos modos, si quieres puedes<a href="/buscar"> ver todas las carreras</a>, ó ir a la <a href="/">home</a></p>
 		</div>
 	</div>
 </div>
