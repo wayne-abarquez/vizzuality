@@ -1,320 +1,218 @@
-<?php /* Smarty version 2.6.26, created on 2009-09-14 11:36:36
+<?php /* Smarty version 2.6.26, created on 2009-10-13 12:36:18
          compiled from user.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'getMonth2', 'user.tpl', 73, false),array('function', 'getMonth', 'user.tpl', 250, false),array('modifier', 'substr', 'user.tpl', 73, false),array('modifier', 'replace', 'user.tpl', 254, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'count', 'user.tpl', 89, false),array('modifier', 'timeAgo', 'user.tpl', 103, false),array('modifier', 'substr', 'user.tpl', 142, false),array('modifier', 'replace', 'user.tpl', 150, false),array('function', 'cycle', 'user.tpl', 140, false),array('function', 'getMonth', 'user.tpl', 142, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
- ?> 
+ ?>
 
-<?php echo '
-<script type="text/javascript">
-    $(document).ready(function(){
-        new AjaxUpload(\'#buttonUpload\', {
-        	action: \'/imageController.php\',
-        	data : { method:"uploadAvatar"},
-        	onSubmit : function(file , ext){
-        		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
-        			// change button text, when user selects file			
-					$("#buttonUpload").attr("value",".");
+<div class="span-24 column content">
 
-
-        			// If you want to allow uploading only 1 file at time,
-        			// you can disable upload button
-        			this.disable();
-
-
-        			// Uploding -> Uploading. -> Uploading...
-        			interval = window.setInterval(function(){
-        				var text = $("#buttonUpload").attr("value");
-        				if (text.length < 17){
-							$("#buttonUpload").attr("value",text + \'.\');					
-        				} else {
-        					$("#buttonUpload").attr("value",".");				
-        				}
-        			}, 200);
-
-        		} else {
-			
-        			// extension is not allowed
-        			//$(\'#example2 .text\').text(\'Error: only images are allowed\');
-        			// cancel upload
-        			return false;				
-        		}
-
-        	},
-        	onComplete : function(file){
-	
-				$("#userImg").attr("src","/avatar.php?id='; ?>
-<?php echo $_SESSION['user']['id']; ?>
-<?php echo '&"+new Date().valueOf());
-				$("#buttonUpload").attr("value","Subir foto");
-
-    			window.clearInterval(interval);
-
-    			//enable upload button
-    			this.enable();
-    						
-        	}		
-        });
-});/*]]>*/</script>
-
-'; ?>
-
-   
-	<div class="span-24 raceContainer" id="race">
-		<div class="column span-16">
-			<div class="span-16 navigationList">
-				<ul> 
-					<li><a href="">Panel de control ></a></li>
-					<li><a href="" class="selected">Preferencias de usuario</a></li>
-				</ul>
-			</div>
-			<div class="span-16 marginContainer">
-				<div class="column span-3 first">
-					<img id="userImg" src="/avatar.php?id=<?php echo $_SESSION['user']['id']; ?>
-"/>
-					<div>
-						<input id="buttonUpload" class="fg-button Subirfoto" type="submit" value="Subir foto">
-					</div>
-				</div>
-				<div class="span-13 last userLeft">
-					<div class="span-13 userCount">
-						<div class="wellcome">Bienvenido/a <a href="#" class="wellcome"><?php echo $_SESSION['user']['completename']; ?>
-</a></div>
-						<div class="countAgo">usuario desde <?php echo smarty_function_getMonth2(array('month' => ((is_array($_tmp=$_SESSION['user']['created_when'])) ? $this->_run_mod_handler('substr', true, $_tmp, 5, 2) : substr($_tmp, 5, 2))), $this);?>
-, <?php echo ((is_array($_tmp=$_SESSION['user']['created_when'])) ? $this->_run_mod_handler('substr', true, $_tmp, 0, 4) : substr($_tmp, 0, 4)); ?>
-</div>
-					</div>
-					<div class="span-13">
-						<div class="paddingRightContainer"> 
-							<h2 class="userData">Datos de cuenta</h2>
-						</div>
-						<div class="paddingRightContainer">
-							
-							<form id="changeUserDataForm" action="javascript: void changeUserData('<?php echo $_SESSION['user']['pass']; ?>
-','<?php echo $_SESSION['user']['email']; ?>
-','<?php echo $_SESSION['user']['completename']; ?>
-','<?php echo $_SESSION['user']['username']; ?>
-')"
-								<div class="column span-6 first marginTopBottom">
-									<div>
-										<div class="countAgo">nombre y apellidos</div>
-										<div class="inputWhite">
-											<label class="round" for="input1"><span><input type="text" name="input1" id="input1" value="<?php echo $_SESSION['user']['completename']; ?>
-"></span></label>
-										</div>
-									</div>
-									<div>
-										<div class="countAgo">nombre de usuario</div>
-										<div class="inputWhite">
-											<label class="round" for="input2"><span><input type="text" name="input2" id="input2" disabled="true" value="<?php echo $_SESSION['user']['username']; ?>
-"></span></label>
-										</div>
-									</div>
-									<div>
-										<div class="countAgo">email</div>
-										<div class="inputWhite">
-											<label class="round" for="input3"><span><input type="text" name="input3" id="input3" value="<?php echo $_SESSION['user']['email']; ?>
-"></span></label>
-										</div>
-									</div>
-									<div class="inputWhiteButton">
-										<input id="userSaveData" class="fg-button" type="submit" value="Guardar cambios"/>
-									</div>
-									<div id="userError" class="registerError"></div>
-								</div>
-							</form>
-								
-								
-							<form id="changePassDataForm" action="javascript: void changePassData('<?php echo $_SESSION['user']['pass']; ?>
-','<?php echo $_SESSION['user']['email']; ?>
-','<?php echo $_SESSION['user']['completename']; ?>
-','<?php echo $_SESSION['user']['username']; ?>
-')">
-								<div class="column last passContainer">
-									<div class="changePass">Cambiar contraseña</div>
-									<div>
-										<div class="inputTitleBlue">contraseña anterior</div>
-										<div class="inputBlue">
-									<label class="roundblue" for="input4"><span><input type="password" name="input4" id="input4"></span></label>
-										</div>
-									</div>
-									<div>
-										<div class="inputTitleBlue">nueva contraseña</div>
-										<div class="inputBlue">
-											<label class="roundblue" for="input5"><span><input type="password" name="input5" id="input5"></span></label>
-										</div>
-										<div class="inputBlueButton">
-											<input id="passSaveData" class="fg-button" type="Submit" value="Cambiar contraseña" />
-											<div id="passError" class="registerError"></div>
-										</div>
-									</div>
-								</div>
-							</form>
-								
-						</div>
-					</div>
-					<div class="span-13 DarDeBaja phraseGray">Si quieres dar de baja tu cuenta, por favor, <a href="#" class="hrefText">contacta con nosotros</a>.</div>
-					<div class="span-13 marginTopPlus">
-						<div class="paddingRightContainer">
-							<h2 class="userData">Alerta geográfica por email 
-								<span id="alertType" class="<?php if ($_SESSION['user']['radius_interest'] == ''): ?>desactivate<?php else: ?>activate<?php endif; ?>"><?php if ($_SESSION['user']['radius_interest'] == ""): ?>(desactivado) <?php else: ?>(activado) <?php endif; ?></span>
-								<span id="desactiveAlertButton">
-									<?php if ($_SESSION['user']['radius_interest'] != ''): ?><input id="alertButtonPpal" class="fg-button" type="submit" value="Desactivar" onclick="javascript: void desactivateAlerts()"/><?php endif; ?>
-								</span>
-							</h2>
-						</div>
-						<div class="paddingRightContainer phraseGray2">Introduce tu localidad y especifica cuanta distancia estás dispuesto a moverte. Nosotros te informaremos de todos los eventos que estén dentro de tu radio de búsqueda.</div>
-						<div class="marginTopPlus">
-						    <form id="formAlerts" method="GET"  action="<?php if ($_SESSION['user']['radius_interest'] == ''): ?>javascript: void activateAlerts()<?php else: ?>javascript: void updateAlerts()<?php endif; ?>">
-								<div class="column first">
-									<div class="alertLabel">Localidad y provincia</div>
-									<div class="inputWhite">
-										<label class="round" for="input6"><span><input type="text" name="input6" id="input6" value="<?php echo $_SESSION['user']['locality']; ?>
-"></span></label>
-									</div>
-								</div>
-								<div class="column">
-									<div class="alertLabel">Radio (km)</div>
-									<div class="inputWhite">
-										<label class="round" for="input7"><span><input type="text" name="input7" id="input7" value="<?php echo $_SESSION['user']['radius_interest']; ?>
-"></span></label>
-									</div>
-								</div>
-								<div class="inputWhite paddingRightContainer">
-									<input id="alertButton" class="fg-button" type="submit" value="<?php if ($_SESSION['user']['radius_interest'] == ''): ?>Activar alertas por email<?php else: ?>Actualizar alertas<?php endif; ?>"/>
-								</div>
-								<div id="alertError" class="span-10 registerError"></div>
-						    </form>
-						</div>					
-					</div>
-                                     
-                    <div class="span-13">
-                        <div id="map" style="width:512px; height:200px;"></div>
-                    </div>    
-                        <?php echo '
-                        <script type="text/javascript">
-                        //<![CDATA[
-                            var map = new GMap2(document.getElementById("map"));
-                            '; ?>
-<?php if (! $_SESSION['user']['lat'] == ""): ?><?php echo '
-                                var start = new GLatLng('; ?>
-<?php echo $_SESSION['user']['lat']; ?>
-, <?php echo $_SESSION['user']['lon']; ?>
-<?php echo ');
-                                map.setCenter(start, 10);
-                            '; ?>
-<?php else: ?><?php echo '
-                                var start = new GLatLng(40.111688,-3.69140625);
-                                map.setCenter(start, 4);
-                            '; ?>
-<?php endif; ?><?php echo '
-                            
-                            map.addControl(new GSmallZoomControl());
-                            new GKeyboardHandler(map);
-                            map.enableContinuousZoom();
-                            map.enableDoubleClickZoom();    
-                            
-                            var bounds = new GLatLngBounds();
-
-
-                            function drawCircle(center, radius, nodes, liColor, liWidth, liOpa, fillColor, fillOpa)
-                            {
-                                map.clearOverlays();
-                            // Esa 2006
-                            	//calculating km/degree
-                            	var latConv = center.distanceFrom(new GLatLng(center.lat()+0.1, center.lng()))/100;
-                            	var lngConv = center.distanceFrom(new GLatLng(center.lat(), center.lng()+0.1))/100;
-
-                            	//Loop 
-                            	var points = [];
-                            	var step = parseInt(360/nodes)||10;
-                            	for(var i=0; i<=360; i+=step)
-                            	{
-                            	var pint = new GLatLng(center.lat() + (radius/latConv * Math.cos(i * Math.PI/180)), center.lng() + 
-                            	(radius/lngConv * Math.sin(i * Math.PI/180)));
-                            	points.push(pint);
-                            	bounds.extend(pint); //this is for fit function
-                            	}
-                            	points.push(points[0]); // Closes the circle, thanks Martin
-                            	fillColor = fillColor||liColor||"#0055ff";
-                            	liWidth = liWidth||2;
-                            	var poly = new GPolygon(points,liColor,liWidth,liOpa,fillColor,fillOpa);
-                            	map.addOverlay(poly);
-                            }  
-
-                            function fit(){
-                                map.panTo(bounds.getCenter()); 
-                                map.setZoom(map.getBoundsZoomLevel(bounds));
-                            }
-
-                            '; ?>
-<?php if (! $_SESSION['user']['lat'] == ""): ?><?php echo '
-                                drawCircle(start, '; ?>
-<?php echo $_SESSION['user']['radius_interest']; ?>
-<?php echo ', 40);   
-                                fit();
-                            '; ?>
-<?php else: ?><?php echo '
-                                $(\'#map\').hide();
-                            '; ?>
-<?php endif; ?><?php echo '
-                                
-                               
-                            
-
-                        //]]>
-
-                        </script>
-                        '; ?>
-				
-				</div>
-			</div>	
-			
-		</div>
+	<div class="span-1 last leftColumn">
 		
-		<div class="column last span-8 rightColumn">
-			<div class="span-8 importantRaces">
-				<div class="events"> 
-					<h2 class="newsTitle5">Tus próximas carreras</h2>
+<div class="span-1 columnNameUser"><p class="nameUserProfile"><?php echo $_SESSION['user']['completename']; ?>
+ <span class="nameUserProfileNick">(<?php echo $_SESSION['user']['username']; ?>
+)</span></div>
+		<div class="globalContainerUser">	
+			<div class="span-1 last userData">
+				<div class="span-1 avatarPerfil">
+					<img class="imgAvatarPerfil" src="/img/AvatarPerfil.jpg">
 				</div>
-				<div class="events">
-            		<?php $_from = $this->_tpl_vars['nextRaces']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
-    foreach ($_from as $this->_tpl_vars['id'] => $this->_tpl_vars['race']):
+				<div class="span-1 last functionalContainer">
+				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUser"><p>Visitas a tu perfil:</p></div>
+						<div class="span-1 last dataUser"><p><b>1142</b></p></div>
+					</div>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUser"><p>Carreras corridas:</p></div>
+						<div class="span-1 last dataUser"><p><b>23</b></p></div>
+					</div>
+				</div>
+				<div class="span-1 last functionalContainer">
+				<p class="titulo tituloLeft">TU RANKING RUNNITY</p>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserRanking"><p>800m:</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
+					</div>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserRanking"><p>1.500m:</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
+					</div>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserRanking"><p>10.000m:</p></div>
+						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
+						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
+					</div>
+					<a class="editUserLink">editar tus marcas <img src="/img/pencil.gif"></a>
+				</div>
+				<div class="span-1 last functionalContainer">
+				<p class="titulo tituloLeft">DATOS PERSONALES</p>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserProfile"><p>Email:</p></div>
+						<div class="span-1 last dataUserProfile"><p><b>a.rodriguez@gmail.com</b></p></div>
+					</div>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserProfile"><p>Club:</p></div>
+						<div class="span-1 last dataUserProfile"><p><b>S.S. de los Reyes - Clínicas Menorca</b></p></div>
+					</div>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
+						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
+					</div>
+					<a class="editUserLink" href="/userprofile.php">editar tus datos <img src="/img/pencil.gif"></a>
+				</div>
+			</div>
+			
+			<div class="span-1 last userAlerts">
+				<div class="alertUser"><p>Aún no nos has dicho si <b>perteneces a algún club</b></p></div>
+				<div class="alertUser"><p>Tienes <b>2 mensajes nuevos</b></p></div>
+			</div>
+			
+			<div class="span-1 last imagesUserContainer">
+				<p class="titulo tituloLeft tituloRight">TUS FOTOS [42], <a>ver todas</a></p>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
+				</div>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
+				</div>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
+				</div>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
+				</div>
+				<div class="imagesUser">
+					<img src="/img/avatar.jpg"/>	
+				</div>
+				<div>
+					<a class="editUserLink">subir fotos <img src="/img/pencil.gif"></a>
+				</div>
+			</div>
+			
+			<div class="span-1 last commentsUser">
+				<p class="titulo tituloLeft tituloRight">MENSAJES PARA TI <?php if (! empty ( $this->_tpl_vars['comments'] )): ?>[<?php echo count($this->_tpl_vars['comments']); ?>
+]<?php endif; ?></p>
+				
+				<div class="span-1 last columnComments">
+
+				<ol id="update">
+				<?php $_from = $this->_tpl_vars['comments']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['id'] => $this->_tpl_vars['comment']):
 ?>
-            			<?php if ($this->_tpl_vars['race'] == 0): ?>
-            				<div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
-            			<?php else: ?>		    				    
-        					<div class="span-8 column first raceDetails" id="raceDetails">
-        						<div class="column span-1 first date race">
-	    							<div class="month month<?php echo $this->_tpl_vars['race']['run_type']; ?>
-"><?php echo smarty_function_getMonth(array('month' => ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 5, 2) : substr($_tmp, 5, 2))), $this);?>
+					<?php if ($this->_tpl_vars['comment'] == false): ?>
+	
+					<?php else: ?>   										
+						<div id="commentUser" class="span-1 last">
+							<div class="span-1 last avatarBox">
+								<img src="/img/avatar.jpg"/>	
+							</div>
+							<div class="span-1 commentBoxUser">
+							<div class="nameUser"><a class="name" href="/user/<?php echo $this->_tpl_vars['comment']['username']; ?>
+"><?php echo $this->_tpl_vars['comment']['username']; ?>
+, </a>hace <?php echo ((is_array($_tmp=$this->_tpl_vars['comment']['created_when'])) ? $this->_run_mod_handler('timeAgo', true, $_tmp) : smarty_modifier_timeAgo($_tmp)); ?>
 </div>
-	    							<div class="day"><?php echo ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 8, 2) : substr($_tmp, 8, 2)); ?>
-</div>
-	    						</div>
-        						<div class="column span-6 last calendarRaces">
-        							<div class="nextRaceComment"><a href="/run/<?php echo $this->_tpl_vars['race']['id']; ?>
-/<?php echo ((is_array($_tmp=$this->_tpl_vars['race']['name'])) ? $this->_run_mod_handler('replace', true, $_tmp, ' ', '/') : smarty_modifier_replace($_tmp, ' ', '/')); ?>
-" class="nameRace"><?php echo $this->_tpl_vars['race']['name']; ?>
-</a></div>
-        							<div class="raceLocation"><?php echo $this->_tpl_vars['race']['event_location']; ?>
- | <?php echo $this->_tpl_vars['race']['distance_text']; ?>
- | <b><?php echo $this->_tpl_vars['race']['num_users']; ?>
- van</b> </div>
-        						</div>
-        					</div>
-            			<?php endif; ?>
-                	    <?php endforeach; else: ?>
-                	        <div class="span-8 races2"><p class="noApuntadoUser">Aun no te has apuntado a ninguna carrera.</p></div> 
-                	    <?php endif; unset($_from); ?>					
+							<p class="commentUserProfile"><?php echo $this->_tpl_vars['comment']['commenttext']; ?>
+</p>
+							</div>
+							
+						</div>							
+	          		<?php endif; ?>
+            	<?php endforeach; else: ?>
+					<div class="span-1 noComments">
+
+    				</div>    
+            	<?php endif; unset($_from); ?>
+            	</ol>
 				</div>
+				
+				
+				<!-- Crear servicio para los comentarios sobre usuario -->
+				<div class="span-9 commentsPaginator">
+        	   		<div class="userComments">
+						<p>viendo del <b>1 al 5</b> de 60
+							<span><a><input class="fg-button buttonLeftArrow" type="button"/></a></span>
+							<span><a><input class="fg-button buttonRightArrow" type="button"/></a></span>
+						</p>	
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
+	
+
+	<!-- RIGHT COLUMN -->
+	<div class="span-1 last rightColumn userRightColumn">
+		<?php if ($this->_tpl_vars['nextRaces']): ?>
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">TUS PRÓXIMAS CARRERAS</p>
+			<div class="events">
+				<?php $_from = $this->_tpl_vars['nextRaces']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['raceloop'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['raceloop']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['id'] => $this->_tpl_vars['race']):
+        $this->_foreach['raceloop']['iteration']++;
+?>	    				    
+					<div class="span-1 <?php echo smarty_function_cycle(array('values' => "raceRight,raceRight2"), $this);?>
+">
+						<div class="span-1 first dateRight calendarRight">
+					        <div class="month month<?php echo $this->_tpl_vars['race']['run_type']; ?>
+"><?php echo smarty_function_getMonth(array('month' => ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 5, 2) : substr($_tmp, 5, 2))), $this);?>
 </div>
+							<div class="day"><?php echo ((is_array($_tmp=$this->_tpl_vars['race']['event_date'])) ? $this->_run_mod_handler('substr', true, $_tmp, 8, 2) : substr($_tmp, 8, 2)); ?>
+</div>
+						</div>
+						<?php if ($this->_tpl_vars['race']['num_users'] > 0): ?>
+							<div class="ticketBlue"><p><?php echo $this->_tpl_vars['race']['num_users']; ?>
+</p></div>
+							<div class="ticketBlueCorner ticketBlueCornerRight"></div>
+						<?php endif; ?>		
+						<div class="span-1 last dataRaceRight">
+							<div class="nameRaceRight"><a id="nameRunRight1<?php echo $this->_foreach['raceloop']['iteration']; ?>
+" href="/run/<?php echo $this->_tpl_vars['race']['id']; ?>
+/<?php echo ((is_array($_tmp=$this->_tpl_vars['race']['name'])) ? $this->_run_mod_handler('replace', true, $_tmp, ' ', '/') : smarty_modifier_replace($_tmp, ' ', '/')); ?>
+"><?php echo $this->_tpl_vars['race']['name']; ?>
+</a></div>
+							<div class="dataRaceRight"><p><?php echo $this->_tpl_vars['race']['event_location']; ?>
+ | <?php echo $this->_tpl_vars['race']['distance_text']; ?>
+</p></div>
+						</div>	
+					</div>
+					<div class="span-1 last separatorRight"></div>
+			    <?php endforeach; endif; unset($_from); ?>					
+			</div>
+		</div>
+		<?php endif; ?>
+		
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
+			<div id="map" class="mapStyleRight">
+	    		<img src="/img/mapaApuntadas.jpg">					
+			</div>
+		</div>
+		
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">DE TU MISMO CLUB</p>
+			<div class="eventsUsers">									
+				<div class="avatarContainer">
+					<a href="/user/<?php echo $_SESSION['user']['username']; ?>
+"><img title="<?php echo $_SESSION['user']['username']; ?>
+" class="avatarRight" src="/avatar.php?id=<?php echo $_SESSION['user']['user_id']; ?>
+"/></a>	
+				</div>
+			</div>
+		</div>
+				
+	</div>
+
+</div> <!-- content -->
+
+</div> <!-- container -->
 
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "footer.tpl", 'smarty_include_vars' => array()));
