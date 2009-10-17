@@ -3,8 +3,8 @@
 <script type="text/javascript">
     $(document).ready(function(){
     
-    	$('#datos2').truncate({max_length: 26});
-    	$('#datos1').truncate({max_length: 26});
+    	$('#datos2').truncate({max_length: 23});
+    	$('#datos1').truncate({max_length: 23});
     	
         /*new AjaxUpload('#buttonUploadPicture', {
         	action: '/imageController.php',
@@ -54,11 +54,8 @@
     			this.enable();
     						
         	}		
-        });*/
-        
-        	
-        				
-});
+        });*/        				
+	});
 
 </script>
 {/literal}
