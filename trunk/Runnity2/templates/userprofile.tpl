@@ -2,19 +2,64 @@
 
 {literal}
 <script type="text/javascript"> 
-$(document).ready(function(){
-
-	var state = false;
+$(document).ready(function(){	
 	
-	$(document.getElementById('avatarPerfil')).hover(
+	$('#avatarPerfil').hover(		
 		function(){
-			$(document.getElementById('changeAvatar')).css('display','block');
+			$('#buttonUpload').css('visibility','visible');
 		},
-		function(){
-			$(document.getElementById('changeAvatar')).css('display','none');
-		}
+		function(){		
+			$('#buttonUpload').css('visibility','hidden');
+		}		
 	);
+		
+    new AjaxUpload('#avatarPerfil', {
+    	action: '/imageController.php',
+    	data : { method:"uploadAvatar"},
+    	onSubmit : function(file , ext){
+    		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
+    			// change button text, when user selects file			
+				$("#buttonUpload").html(".");
 
+
+    			// If you want to allow uploading only 1 file at time,
+    			// you can disable upload button
+    			this.disable();
+
+
+    			// Uploding -> Uploading. -> Uploading...
+    			interval = window.setInterval(function(){
+    				var text = $("#buttonUpload").html();
+    				if (text.length < 17){
+						$("#buttonUpload").html(text + '.');					
+    				} else {
+    					$("#buttonUpload").html(".");				
+    				}
+    			}, 200);
+
+    		} else {
+		
+    			// extension is not allowed
+    			//$('#example2 .text').text('Error: only images are allowed');
+    			// cancel upload
+    			return false;				
+    		}
+
+    	},
+    	onComplete : function(file){
+
+			$("#userImg").attr("src","/avatar.php?id={/literal}{$smarty.session.user.id}{literal}&type=t&"+new Date().valueOf());
+			$("#buttonUpload").html("Subir foto");
+
+			window.clearInterval(interval);
+
+			//enable upload button
+			this.enable();
+						
+    	}		
+    });
+	
+	
 });
 </script>
 {/literal}
@@ -28,8 +73,8 @@ $(document).ready(function(){
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil" id="avatarPerfil">
-					<img class="imgAvatarPerfil" src="/img/AvatarPerfil.jpg">
-					<a class="changeAvatarLink"><div class="changeAvatar" id="changeAvatar">Pincha para subir avatar</div></a>
+					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$smarty.session.user.id}&type=t">
+					<a class="changeAvatar" id="buttonUpload">Pincha para subir avatar</a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
@@ -261,7 +306,9 @@ $(document).ready(function(){
 			<p class="titulo tituloLeft tituloColumnRight">DE TU MISMO CLUB</p>
 			<div class="eventsUsers">									
 				<div class="avatarContainer">
-					<a href="/user/{$smarty.session.user.username}"><img title="{$smarty.session.user.username}" class="avatarRight" src="/avatar.php?id={$smarty.session.user.user_id}"/></a>	
+					{foreach key=id item=person from=$runners}
+					<img title="" class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/>	
+					{/foreach}
 				</div>
 			</div>
 		</div>

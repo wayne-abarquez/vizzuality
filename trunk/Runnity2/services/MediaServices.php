@@ -98,7 +98,24 @@ class MediaServices {
     	    $sql = "SELECT currval('picture_id_seq') AS last_value";
     	    $res=pg_fetch_assoc(pg_query($this->conn, $sql));
     	    $picId = $res['last_value'];	        
-	    }	    
+	    }	
+	    
+	   	$imgTrans = new imageTransform();
+	    $imgTrans->sourceFile = $tempPath;
+        @$res = mkdir(ABSPATH .'media/'.$onTable.'/' . $onId, 0755);
+        $imgThumb=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_s.jpg";
+        $imgThumbPath='/media/'.$onTable.'/' . $onId .'/'. $onId."_s.jpg";
+	    $imgTrans->targetFile = $imgThumb;
+		$imgTrans->resizeToWidth = 67;
+		$imgTrans->resizeToHeight = 66;
+		$imgTrans->maintainAspectRatio = false;
+	    
+	    
+	    $res=$imgTrans->resize(); 
+	    if (!$res) {
+			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
+	        return false;
+	    }    
 	    
 	    
 	    $imgTrans = new imageTransform();
@@ -107,8 +124,8 @@ class MediaServices {
         $imgThumb=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";
         $imgThumbPath='/media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";
 	    $imgTrans->targetFile = $imgThumb;
-		$imgTrans->resizeToWidth = 66;
-		$imgTrans->resizeToHeight = 67;
+		$imgTrans->resizeToWidth = 194;
+		$imgTrans->resizeToHeight = 194;
 		$imgTrans->maintainAspectRatio = false;
 	    
 	    
@@ -146,7 +163,7 @@ class MediaServices {
 	    if($res) {
 	        return $res['path'];
 	    } else {
-	        return "/media/avatar/0.jpg";
+	        return "/media/avatar/2.jpg";
 	    }
 	}
 	
