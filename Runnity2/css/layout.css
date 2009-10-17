@@ -1600,10 +1600,11 @@ div.month5 {background-color: #9f00c6;}
 	font-weight: bold;
 	color: #ffffff;
 	padding-top: 10px;
-/* 	padding-bottom: 6px; */
 	margin-left: 20px;
-/* 	margin-right: 10px; */
-/* 	margin-bottom: 4px; */
+}
+
+#imgItems{
+	margin-left: 20px;
 }
 
 .raceData{width: 229px;}
