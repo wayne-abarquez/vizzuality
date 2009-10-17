@@ -57,12 +57,18 @@ if(isset($_REQUEST['action'])) {
         
         
         if(isset($_REQUEST['quiero']) && $_REQUEST['quiero']=="true") {
-            //Desea recibirse 
+            //Desea recibir alertas 
+            $radio="200";            
+        } else {
+            $radio=null;
         }
         $user = $services->registerUser($username_register,$name_register,$email_register,
-            $password_register,$birthdayDay,$birthdayMonth,$birthdayYear,$localidad,$lat,$lon);
-        
-        
+            $password_register,$birthdayDay,$birthdayMonth,$birthdayYear,$localidad,$lat,$lon,$radio);
+            
+            
+            
+        //it is a success
+        header( 'Location: /registro_success.php' ) ;    
         
     }
     

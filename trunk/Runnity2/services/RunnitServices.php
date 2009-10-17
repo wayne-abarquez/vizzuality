@@ -79,7 +79,7 @@ class RunnitServices {
 	}
 	
 	//ajaxController
-	public function registerUser($username,$completename,$email,$password,$birthdayDay,$birthdayMonth,$birthdayYear,$localidad) {
+	public function registerUser($username,$completename,$email,$password,$birthdayDay,$birthdayMonth,$birthdayYear,$localidad,$lat,$lon,$radio) {
 	    $username=pg_escape_string($username);
 	    $completename=pg_escape_string($completename);
 	    $email=pg_escape_string($email);
@@ -101,6 +101,11 @@ class RunnitServices {
 	        throw new Exception('Fecha de nacimiento incorrecta.',106);
 	    }
 	    
+	    if(!is_numeric($lat) || !is_numeric($lon)) {
+	        throw new Exception('Coordenadas incorrectas.',106);
+	    }	    
+	    
+	    
 	    //Check if username or password are in the DB
 	    $sql="SELECT id from users WHERE username='$username'";
 	    $result=pg_query($this->conn, $sql);
@@ -118,8 +123,14 @@ class RunnitServices {
 	    
 	    $birthday="$birthdayYear-$birthdayMonth-$birthdayDay";
 	    
+	    if($radio!=null and is_numeric($radio)) {
+	        $radius_interest=$radio;
+	    } else {
+	        $radius_interest='null';
+	    }
 	    
-	    $sql="INSERT INTO users(username,pass,completename,email,birthday,locality) VALUES('$username','$password','$completename','$email','$birthday','$localidad')";
+	    
+	    $sql="INSERT INTO users(username,pass,completename,email,birthday,locality,location_point,radius_interest) VALUES('$username','$password','$completename','$email','$birthday','$localidad',GeomFromText('POINT($lat $lon)',4326),$radius_interest)";
 		$result=pg_query($this->conn, $sql);   
 	    
 	    //get last ID
@@ -164,12 +175,23 @@ class RunnitServices {
 		if(!$mail->Send()) {
 			throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
 		}			
+		
+		
+        $_SESSION['logged']=true;
+        $_SESSION['user']['username']=$username;
+        $_SESSION['user']['completename']=$completename;
+        $_SESSION['user']['email']=$email;
+        $_SESSION['user']['locality']=$localidad;
+        $_SESSION['user']['birthdayDay']=$birthdayDay;    
+        $_SESSION['user']['birthdayMonth']=$birthdayMonth;    
+        $_SESSION['user']['birthdayYear']=$birthdayYear;		
+		
 	
 	    return $user;
 	}
 	
 	//ajaxController
-	public function updateUser($username,$completename,$email,$password,$locality,$radio) {
+	public function updateUser($username,$completename,$email,$password,$birthdayDay,$birthdayMonth,$birthdayYear,$locality,$lat,$lon,$radio) {
 	    if (!$_SESSION['logged'] or $_SESSION['user']['username']!=$username) {
 	        throw new Exception("user not logged in");
 	    }
@@ -180,11 +202,14 @@ class RunnitServices {
 	    $password=pg_escape_string($password);
 	    $locality=pg_escape_string($locality);
 	    
+	    $birthday="$birthdayYear-$birthdayMonth-$birthdayDay";	    
 
-	    $sql="UPDATE users SET completename='$completename', email='$email'";
+	    $sql="UPDATE users SET completename='$completename', email='$email', birthday='$birthday', location_point = GeomFromText('POINT($lat $lon)',4326),$radius_interest)";
 	    if(strlen($password)>4) {
 	        $sql.=",pass='$password'";
 	    }
+	    
+
 	    
 	    if ($locality) {
 			$sql.=",locality='$locality'";  
@@ -206,7 +231,9 @@ class RunnitServices {
         $_SESSION['user']['email']=$email;
         $_SESSION['user']['locality']=$locality;
         $_SESSION['user']['radius_interest']=$radio;    
-        
+        $_SESSION['user']['birthdayDay']=$birthdayDay;    
+        $_SESSION['user']['birthdayMonth']=$birthdayMonth;    
+        $_SESSION['user']['birthdayYear']=$birthdayYear;    
         return null;
 	    
 	     
