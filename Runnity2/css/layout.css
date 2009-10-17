@@ -15,8 +15,8 @@
 	position: relative;
 	line-height: 30px;
 	visibility: visible;
-	filter: alpha(opacity=60);
-	opacity: .60;
+	filter: alpha(opacity=75);
+	opacity: .75;
 }
 
 .radioBusqueda{
@@ -571,6 +571,7 @@ div.error_register {
 	margin-bottom: 10px;
 }
 
+#register_form label.error {background: none; border: none; width: auto; line-height: 24px; padding:0; margin: 0;}
 .titleBoxRegister p{
 	font-size: 22px;
 	color: #336699;
@@ -632,14 +633,7 @@ label.inputRegister {
 	outline:none;
 }
 
-#register_form label.error {
-	margin-left: 10px;
-	color: red;
-	background: none;
-	border: none;
-	height: 20px;
-	width: 200px;
-}
+
 
 
 #inputRegister1 {width:234px; margin-bottom: 10px;}
