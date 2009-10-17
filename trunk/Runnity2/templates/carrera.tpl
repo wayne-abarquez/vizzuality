@@ -1,15 +1,62 @@
 {include file="header.tpl"}
 
-{*
-	{literal}
-	<script language="javaScript" type="text/javascript">
-		$(document).ready( function() {
-			$('.special').truncate( 10 );
-		});
-	</script>
-	{/literal}
-*}
+{literal}
+<script type="text/javascript">
+    $(document).ready(function(){
+        new AjaxUpload('#buttonUploadPicture', {
+        	action: '/imageController.php',
+        	data : { 
+					method:"uploadPicture",
+					onTable:"run",
+					onId:{/literal}{$data.id}{literal}
+					},
+        	onSubmit : function(file , ext){
+        		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
+        			// change button text, when user selects file			
+					$("#buttonUploadPicture").attr("value",".");
 
+
+        			// If you want to allow uploading only 1 file at time,
+        			// you can disable upload button
+        			this.disable();
+
+
+        			// Uploding -> Uploading. -> Uploading...
+        			interval = window.setInterval(function(){
+        				var text = $("#buttonUploadPicture").attr("value");
+        				if (text.length < 17){
+							$("#buttonUploadPicture").attr("value",text + '.');					
+        				} else {
+        					$("#buttonUploadPicture").attr("value",".");				
+        				}
+        			}, 200);
+
+        		} else {
+			
+        			// extension is not allowed
+        			//$('#example2 .text').text('Error: only images are allowed');
+        			// cancel upload
+        			return false;				
+        		}
+
+        	},
+        	onComplete : function(file,response){	
+				$("#imgItems").prepend(response);
+				
+				$("#buttonUploadPicture").attr("value","Subir foto");
+
+    			window.clearInterval(interval);
+
+    			//enable upload button
+    			this.enable();
+    						
+        	}		
+        });
+});
+
+/*]]>*/</script>
+
+{/literal}
 
 <div class="span-24 column content">
 
@@ -156,12 +203,12 @@
 			{if $pictures}
 			<div class="span-1 last bannerTopPhotos"></div>
 			<div class="span-1 last columnPhotos">
-				<p class="span-4 tituloPhotos">FOTOS DEL EVENTO</p>
-<!--
+				<p class="span-4 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if} <input id="buttonUploadPicture" class="fg-button" type="submit" value="Subir fotos"></p>
+				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<img src="{$picture.path}"/>
-				{/foreach}
--->	
+					<img src="{$picture.path}">
+				{/foreach}	
+				</div>
 			</div>
 			{/if}	
 			
