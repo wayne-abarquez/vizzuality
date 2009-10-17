@@ -90,6 +90,11 @@ function login(){
 		$('#error_msg').html('Existen campos vacíos.');
 		return false;
 	}
+	
+	/*if (!echeck(email)) {
+		$('#error_msg').html('Email incorrecto.');
+		return false;
+	}*/
 
     // Hide 'Submit' Button
     $('#submitLogin').val('Enviando');
@@ -495,6 +500,60 @@ function registerUser() {
                 alert(xhr.status + "\n" + thrownError);
         }
     });*/
+}
+
+
+function checkUsername(){
+
+	var name = $("#inputRegister3").val();
+    
+    if ((name=='') || (name.length<5)) {
+    	$('#checkUserBox').hide();
+ 		return false;
+ 	}
+    $('#answer').html('');
+    $('#registerImage').attr("src", "/img/ajax-loader.gif");   
+    $('#checkUserBox').show();
+    $('#registerImage').show();
+    
+   
+
+    var dataObj = ({username : name,method: 'isUsernameFree'});
+    
+       
+    // -- Start AJAX Call --
+    $.ajax({
+        type: "POST",
+        url: "/ajaxController.php",
+        data: dataObj,
+        cache: false,
+        success: function(result){
+            if(result=="valid") {
+                //notify the user that the username is free
+                $('#registerImage').show();
+                $('#registerImage').attr("src", "/img/ok.png");
+                 $('#answer').css('color','green');
+                $('#answer').html('Buen nombre');
+                
+            } else {
+                //notify the user that the username is used.
+                $('#registerImage').show();
+                $('#registerImage').attr("src", "/img/ko.png");
+                $('#answer').css('color','#c24949');
+                $('#answer').html('Ups, está cogido...cachis');
+            }
+       
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+                alert('Runnity' + xhr.status + "\n" + thrownError);
+        }
+    });
+ 
+    // -- End AJAX Call --
+
+
+    return false;
+
 }
 
 
