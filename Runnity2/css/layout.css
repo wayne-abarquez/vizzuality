@@ -404,6 +404,9 @@ p.user_title{
 
 /* REGISTRO */
 
+
+
+
 .LoginEnRegistro{
 	width: 610px;
 	margin-right: 10px;
@@ -467,8 +470,8 @@ label.roundLocalizacion {
 }
 
 .pageUser{
-	margin-top: 123px;
 	color: #666666;
+	width: 400px;
 }
 
 .pageUser a{
@@ -544,46 +547,23 @@ div.error_register {
 	width: 70px;
 }
 
-.rightColumnRegister{
-	border-left: 1px dotted #c3c3c3;
-	margin-left: 24px;
-	width: 275px;
-	padding-bottom: 32768px;
-	margin-bottom: -32768px;
-}
+div.rightColumnRegister{ border-left: 1px dotted #c3c3c3; margin-left: 24px; width: 275px; padding-bottom: 32768px; margin-bottom: -32768px;}
+div.rightColumnRegister ul {list-style: none;}
+div.rightColumnRegister ul li{  border-bottom: 1px dotted #a5a5a5; font-size: 13px; color: #666666; width: 254px; padding-top: 2px; padding-bottom: 2px; margin-left: 2px;}
 
-.rightColumnRegister ul li{
-	list-style: none;
-	border-bottom: 1px dotted #a5a5a5;
-	font-size: 13px;
-	color: #666666;
-	width: 254px;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	margin-left: 2px;
-}
 
-.titleBoxRegister{
-	height: 54px;
-	background-color: #eeeeee;
-	width: 910px;
-	margin-left: 20px;
-	margin-bottom: 10px;
-}
+div.titleBoxRegister{height: 54px; background-color: #eeeeee; width: 910px; margin:0 0 10px 20px;}
+div.titleBoxRegister p{font-size: 22px; color: #336699; margin-top: 8px; margin-left: 14px;}
+div.registerInfoTicket{ background: url(/img/registerTicket.gif) no-repeat; height: 41px; width: 609px; }
+div.data_register_container {width: 500px;}
+div.data_register_container label {width: 550px;} 
 
-.titleBoxRegister p{
-	font-size: 22px;
-	color: #336699;
-	margin-top: 8px;
-	margin-left: 14px;
-}
+#register_form label.error {display:inline; background: none; border: none; width: auto; line-height: 24px}
 
-.registerInfoTicket{
-	background-image: url(/img/registerTicket.gif);
-	background-repeat: no-repeat;
-	height: 41px;
-	width: 609px; 
-}
+#checkUserBox #registerImage {margin:0 0 0 7px; height: 16px; width: 16px; vertical-align: middle;}
+#answer {line-height: 28px; font-weight: normal; display: inline; padding: 0; margin: 0;}
+
+
 
 .registerInfoTicket p{
 	font-size: 15px;
@@ -607,7 +587,7 @@ div.error_register {
 .rightRegister{
 	width: 346px;
 	height: 100px;
-	margin: 0px 0px 0px 0px;
+	margin: 187px 0px 0px 0px;
 	height: 400px;
 
 }
