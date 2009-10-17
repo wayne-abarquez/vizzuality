@@ -1,10 +1,12 @@
 {include file="header.tpl"} 
 
-{*
+
 {literal}
 	<script type="text/javascript">
 	$.validator.setDefaults({
-		submitHandler: function() { alert("pues vale muchacho!!"); }
+		submitHandler: function() { 
+			Alert('Esto va a registrarse!')
+		 }
 	});
 	
 	$().ready(function() {
@@ -12,7 +14,7 @@
 			rules: {
 				username_register: {
 					required: true,
-					minlength: 2
+					minlength: 5
 				},
 				password_register: {
 					required: true,
@@ -21,15 +23,7 @@
 				email_register: {
 					required: true,
 					email: true
-				},
-				name_register: {
-					required: true,
-					minlength: 5
-				},
-				localidad: {
-					required: "#quiero:checked"
-				},
-				quiero: "required"
+				}
 			},
 			messages: {
 				username_register: {
@@ -43,43 +37,54 @@
 				email_register: {
 					required: "Introduce una dirección de correo",
 					email: "No es una dirección válida"
-				},
-				name_register: {
-					required: "Introduce tu nombre",
-					minlength: "Al menos 5 caracteres"
-				},
-				quiero: "Acepta nuestra política"
+				}
 			}
 		});
 	});
 </script>
 {/literal}
-*}
+
 
 
 
 <!-- GLOBAL CONTAINER RACE -->
-	<div class="span-1 titleBoxRegister">
+	<div class="span-23 titleBoxRegister">
 		<p>Regístrate en Runnity</p>
 	</div>
 
 	<div class="span-24 column content">
-		<div class="span-1 last leftColumn">
-			<div class="span-1 registerInfoTicket"><p>Para registrarte en Runnity sólo tienes que rellenar los siguientes campos... <b>¡es grátis!</b></p></div>
-			<!--form id="register_form" action="javascript: void registerUser()"-->
+		<div class="span-17 last leftColumn">
+		
+			<!-- COLUMNA IZQ -->
+			<div class="span-17 registerInfoTicket"><p>Para registrarte en Runnity sólo tienes que rellenar los siguientes campos... <b>¡es grátis!</b></p></div>
 			{$php_errors}
 			<form id="register_form" action="/registro" method="get">
 			    <input type="hidden" name="lat" value="0">
 			    <input type="hidden" name="lon" value="0">
-				<div class="span-1 last leftRegister">
-					<p>Email</p>
-					<label class="inputRegister" for="inputRegister"><span><input id="inputRegister1" name="email_register" type="text"></span></label>
-				
-					<p>Contraseña</p>
-					<label class="inputRegister" for="inputRegister"><span><input id="inputRegister2" name="password_register" type="password"></span></label>
+			    
+				<div class="span-17 last leftRegister">
+					<div class="data_register_container">
+						<p>Email</p>
+						<label class="inputRegister" for="inputRegister"><span><input id="inputRegister1" name="email_register" type="text"></span></label>
+					</div>
 					
-					<p>Nombre de usuario</p>
-					<label class="inputRegister" for="inputRegister"><span><input id="inputRegister3" name="username_register" type="text"></span></label>
+					<div class="data_register_container">
+						<p>Contraseña</p>
+						<label class="inputRegister" for="inputRegister"><span><input id="inputRegister2" name="password_register" type="password"></span></label>
+					</div>
+					
+					<div class="data_register_container">
+						<p>Nombre de usuario</p>
+						<label class="inputRegister" for="inputRegister"><span><input id="inputRegister3" name="username_register" type="text" onchange="checkUsername()"></span>
+							<span class="usernameCheck" id="checkUserBox">
+	                            <img style='display:none' id="registerImage">
+	                            <p id="answer"></p>
+	                    	</span>
+						</label>
+					</div>
+					
+					<div class="pageUser"><p>Tu página será: <a>http://www.runnity.com/users/...</a> </p></div>
+					
 					
 					<div class="nombreRegistro">
 						<p >Nombre y apellidos</p>
@@ -102,8 +107,9 @@
 	    			</div>
 				</div>
 				
+				
+				
 				<div class="span-1 last rightRegister">
-					<div class="pageUser"><p>Tu página será: <a>http://www.runnity.com/users/...</a> </p></div>
 					<div>
 							<p class="titleMapAlert">Localidad,provincia</p>
 							<label class="roundLocalizacion last" for="roundLocalizacion">
@@ -126,7 +132,9 @@
 		
 		</div>
 		
-		<div class="span-1 last rightColumnRegister">
+		<!-- COLUMNA DERECHA -->
+		
+		<div class="span-6 last rightColumnRegister">
 			<p class="titleRegisterRight">Crea tu cuenta en un par de minutos y así podrás...</p>
 			<ul>
 				<li></li>
@@ -137,6 +145,8 @@
 				<li>· <b>Comparar tus resultados</b> con los demás</li>
 			</ul>
 		</div>
+		
+		
 	</div>
 	
 	</div>
