@@ -38,11 +38,9 @@ h1{
 
 p{
 	margin-left: 20px;
-	margin-bottom: 0px;
 	font-family: "Arial";
 	font-size: 12px;
 	color: #666666;
-	line-height: 15px;
 }
 
 a{
@@ -59,7 +57,8 @@ p.header {
 }
 
 p.titulo_1 {
-    margin-bottom: 0px;  
+    margin-bottom: 0px; 
+    margin-top: 0px;
 }
 
 p.titulo_1 a {
@@ -70,10 +69,13 @@ p.titulo_1 a {
 
 p.titulo_2 {
     font-weight: bold;
-    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;  
+    margin-top:0px;
 }
 
 p.titulo_3 {
+    margin-top: 0px;
     margin-bottom: 20px;
 }
 
