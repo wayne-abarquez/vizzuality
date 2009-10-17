@@ -6,7 +6,7 @@
     	$('#datos2').truncate({max_length: 23});
     	$('#datos1').truncate({max_length: 23});
     	
-        /*new AjaxUpload('#buttonUploadPicture', {
+        new AjaxUpload('#buttonUploadPicture', {
         	action: '/imageController.php',
         	data : { 
 					method:"uploadPicture",
@@ -16,7 +16,7 @@
         	onSubmit : function(file , ext){
         		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
         			// change button text, when user selects file			
-					$("#buttonUploadPicture").attr("value",".");
+					$("#buttonUploadPicture").html(".");
 
 
         			// If you want to allow uploading only 1 file at time,
@@ -26,11 +26,11 @@
 
         			// Uploding -> Uploading. -> Uploading...
         			interval = window.setInterval(function(){
-        				var text = $("#buttonUploadPicture").attr("value");
+        				var text = $("#buttonUploadPicture").html();
         				if (text.length < 17){
-							$("#buttonUploadPicture").attr("value",text + '.');					
+							$("#buttonUploadPicture").html(text + '.');					
         				} else {
-        					$("#buttonUploadPicture").attr("value",".");				
+        					$("#buttonUploadPicture").html(".");				
         				}
         			}, 200);
 
@@ -44,9 +44,10 @@
 
         	},
         	onComplete : function(file,response){	
-				$("#imgItems").prepend(response);
+        		        		
+				$("#imgItems").append(response);
 				
-				$("#buttonUploadPicture").attr("value","Subir foto");
+				$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas!");
 
     			window.clearInterval(interval);
 
@@ -54,7 +55,7 @@
     			this.enable();
     						
         	}		
-        });*/        				
+        });        				
 	});
 
 </script>
@@ -168,7 +169,7 @@
 							<p class="textRace">{$data.description}</p>
 						{else}
 							<div class="nodesc">
-								<img src="/img/nodesc.gif" />
+								<img src="/img/nodesc.gif"/>
 								<p>Aún no tenemos descripción para esta carrera,<br /> 
 								<a href="javascript: void showContactBox()">¿te animas a enviarnos una?</a></p>
 							</div>
@@ -202,20 +203,24 @@
 				{/if}
 			</div>
 			
-			<div class="nofotos"></div>
-			{*
-{if $pictures}
+			{if $pictures}
 			<div class="span-1 last bannerTopPhotos"></div>
 			<div class="span-1 last columnPhotos">
-				<p class="span-4 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if} <input id="buttonUploadPicture" class="fg-button" type="submit" value="Subir fotos"></p>
+				<p class="span-8 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
 					<img src="/picture.php?id={$data.id}"/>
 				{/foreach}	
 				</div>
+				<div class="SubirFotosLink"><a href="#" id="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
 			</div>
+			{else}
+			<div class="span-1 last nophotos">
+				<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
+				<p class="center">¿Tienes fotos del evento? ¡Anímate y subelas!</p>
+<!-- 				<p class="down"><a><img src="/img/photoIcon.gif">Subir fotos</a></p> -->
+			</div>			
 			{/if}	
-*}
 			
 			<div class="span-1 last columnLong">
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}

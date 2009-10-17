@@ -53,7 +53,6 @@ $(document).ready(function(){
 </script>
 {/literal}
 
-
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
