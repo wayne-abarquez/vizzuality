@@ -7,8 +7,8 @@
 <div class="span-1 columnNameUser"><p class="nameUserProfile">{$data.datos.completename}<span class="nameUserProfileNick">, ({$data.datos.username})</span></div>
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
-				<div class="span-1 avatarPerfil">
-					<img class="imgAvatarPerfil" src="/img/AvatarPerfil.jpg">
+				<div class="span-1 avatarPerfil" id="avatarPerfil">
+					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$data.datos.id}&type=t">
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">RANKING RUNNITY</p>
@@ -72,7 +72,7 @@
 					{else}   										
 						<div id="commentUser" class="span-1 last">
 							<div class="span-1 last avatarBox">
-								<img src="/img/avatar.jpg"/>	
+								<img src="/avatar.php?id={$comment.user_id}&type=s"/>	
 							</div>
 							<div class="span-1 commentBoxUser">
 							<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
