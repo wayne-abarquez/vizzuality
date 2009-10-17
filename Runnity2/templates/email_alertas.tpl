@@ -38,15 +38,47 @@ h1{
 
 p{
 	margin-left: 20px;
+	margin-bottom: 0px;
 	font-family: "Arial";
 	font-size: 12px;
 	color: #666666;
-	line-height: 0px;
+	line-height: 15px;
 }
 
 a{
 	color: #336699;
 	font-weight: bold;
+	text-decoration:none;
+}
+
+p.header {
+    font-weight: bold;
+    font-size:16px;
+    color: #FF6600;
+    margin-bottom: 20px;
+}
+
+p.titulo_1 {
+    margin-bottom: 0px;  
+}
+
+p.titulo_1 a {
+    font-weight: bold;
+    text-decoration:none;
+    font-size:15px;
+}
+
+p.titulo_2 {
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+p.titulo_3 {
+    margin-bottom: 20px;
+}
+
+p.footerText {
+    font-size:15px;
 }
 
 -->
@@ -57,9 +89,9 @@ a{
 
 <h1>Hola {$name}!</h1>
 
-<p class="title">Aquí tienes un listado de con las próximas carreras que tendrán lugar en las próximas semanas cerca de donde vives. Por defecto te mandamos las carreras a menos de 200Km de tu localidad, si quieres puedes cambiar esta distancia en tus <a href="http://www.runnity.com/perfil/{$user_name}">preferencias de usuario</a></b></p>
+<p class="title">Aquí tienes un listado de con las próximas carreras que tendrán lugar en las próximas semanas cerca de donde vives. No te las pierdas!<br> Por defecto te mandamos las carreras a menos de 200Km de tu localidad, si quieres puedes cambiar esta distancia en tus <a href="http://www.runnity.com/perfil/{$user_name}">preferencias de usuario</a></b></p>
 
-<p> Listado de carreras del ({$timeRange})</p>
+<p class="header"> LISTA DE CARRERAS DEL {$timeRange}</p>
 
 {foreach key=id item=race from=$carreras}
 <p class="titulo_1"><a href="http://www.runnity.com/run/{$race.run_id}/{$race.run_name}">{$race.run_name}</a></p>
@@ -67,11 +99,11 @@ a{
 <p class="titulo_3">{$race.event_location}, {$race.province_name}</p>
 {/foreach}
 
-<p>Esperamos que corras alguna, y que se te dé lo mejor posible! Recuerda que podrás subir tus fotos / comentarios del evento en la página de la carrera.
+<p class="footerText">Esperamos que corras alguna, y que se te dé lo mejor posible! Recuerda que podrás subir tus fotos / comentarios del evento en la página de la carrera.
 
-<p class="contacta">Si tienes alguna duda o sugerencia, no dudes en <a href="mailo:contacto@runnity.com">contactar con nosotros</a></p>
+<p class="footerText">Si tienes alguna duda o sugerencia, no dudes en <a href="mailto:contacto@runnity.com">contactar con nosotros</a></p>
 
-<p>Te esperamos en <a href="http://www.runnity.com">runnity.com</a></p>
+<p class="footerText">Te esperamos en <a href="http://www.runnity.com">runnity.com</a></p>
 
 <p>Si en algún momento quieres dejar de recibir este mensaje, puedes desactivarlo en tu <a href="http://www.runnity.com/perfil/{$user_name}">página de usuario</a></p>
 
