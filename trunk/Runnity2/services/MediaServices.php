@@ -51,7 +51,7 @@ class MediaServices {
 	    $imgTrans->sourceFile = $tempPath;
 	    $imgTrans->targetFile = $bigFilePath;
 	    $imgTrans->resizeIfSmaller=false;
-		$imgTrans->resizeToWidth = 1024;
+		$imgTrans->resizeToWidth = 599;
 		$imgTrans->maintainAspectRatio = true;        
 	    if (!$imgTrans->resize()) {
 			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
