@@ -1514,6 +1514,10 @@ a.verTodas:hover{
 	width: 610px;
 }
 
+.columnLong2{
+	width: 599px;
+}
+
 .columnLong img{
 	margin-left: 5px;
 	margin-top: 5px;
@@ -2279,4 +2283,43 @@ div.inputRight .a5 {
 
 .fakeWhiteBox{
 	height: 30px;
+}
+
+
+/*IMAGEN*/
+.containerImg{
+	margin: 0px 0px 0px 0px;
+	border: 1px solid #d7d7d7;
+	width: auto;
+	color: #666666;
+}
+
+.targetImg{
+	margin: 4px 4px 4px 4px;
+}
+
+.containerImg p{
+	margin-bottom: 10px;
+}
+
+.containerImg a{
+	color: #336699;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.containerImg a:hover{
+	color: #333333;
+}
+
+.imgData{
+	margin-top: 16px;
+	text-align: center;
+}
+
+.imagePaginator{
+	width: 599px;
+	text-align: right;
+	margin-bottom: -10px;
+	margin-top: -5px;
 }
