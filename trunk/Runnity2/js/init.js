@@ -69,14 +69,14 @@ function show_contact() {
     
     // obtener posicion central
     var mleft = ( wscr - 500 ) / 2;
-    var mtop = ( hscr - 500 ) / 2;
+    var mtop = ( hscr - 480 ) / 2;
     
     // estableciendo ventana modal en el centro
     $('#simplemodal-container').css("left", mleft+'px');
     $('#simplemodal-container').css("top", mtop+'px');
 	
 	$('#simplemodal-container').css("width",'500px');
-	$('#simplemodal-container').css("height",'500px');
+	$('#simplemodal-container').css("height",'480px');
 	
 }
 
@@ -409,21 +409,27 @@ function sendMessage() {
         data: dataObj,
         cache: false,
         success: function(result){
-                $('#contact_modal').html('');
                 var h = 100;
-                $('#contactTitle').html('Gracias por enviar tu sugerencia ');
-                $('#contactForm').html('<div style="text-align:left;width:400px;color:#336699;padding-left:20px;margin-top:-20px">Gracias por enviar tus comentarios, en breve se cerrará esta ventana.</div>');
-                $('#simplemodal-container').animate({height: h},500);
+                $('#contact_container').html('');
+                $('#contact_container').append('<h2 style="width:450px; text-align: center;">Gracias por enviar tu sugerencia</h2>');
+                $('#contact_container').append('<div style="text-align:center;width:450px;color:#336699;margin-top:-20px">Gracias por enviar tus comentarios, en breve se cerrará esta ventana.</div>');
+                $('div.simplemodal-data').animate({height:100},500);
 
-               /*  timerID = setTimeout("timerHide()", 2000); */
+               	timerID = setTimeout("timerHide()", 2000);
         },
         error:function (xhr, ajaxOptions, thrownError){
-                alert('Runnit' + xhr.message + "\n" + thrownError);
+                alert('Runnity' + xhr.message + "\n" + thrownError);
         }
     });
 
     return false;
 
+}
+
+
+function timerHide () {
+    $.modal.close();
+    clearTimeout(timerID);
 }
 
 
@@ -540,7 +546,7 @@ function checkUsername(){
                 $('#registerImage').show();
                 $('#registerImage').attr("src", "/img/ko.png");
                 $('#answer').css('color','#c24949');
-                $('#answer').html('Ups, está cogido...cachis');
+                $('#answer').html('Ups, está cogido');
             }
        
         },
@@ -548,10 +554,7 @@ function checkUsername(){
                 alert('Runnity' + xhr.status + "\n" + thrownError);
         }
     });
- 
-    // -- End AJAX Call --
-
-
+    
     return false;
 
 }
