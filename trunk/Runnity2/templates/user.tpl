@@ -1,5 +1,58 @@
 {include file="header.tpl"}
 
+{literal}
+<script type="text/javascript"> 
+$(document).ready(function(){
+    new AjaxUpload('#avatarPerfil', {
+    	action: '/imageController.php',
+    	data : { method:"uploadAvatar"},
+    	onSubmit : function(file , ext){
+    		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
+    			// change button text, when user selects file			
+				$("#buttonUpload").html(".");
+
+
+    			// If you want to allow uploading only 1 file at time,
+    			// you can disable upload button
+    			this.disable();
+
+
+    			// Uploding -> Uploading. -> Uploading...
+    			interval = window.setInterval(function(){
+    				var text = $("#buttonUpload").html();
+    				if (text.length < 17){
+						$("#buttonUpload").html(text + '.');					
+    				} else {
+    					$("#buttonUpload").html(".");				
+    				}
+    			}, 200);
+
+    		} else {
+		
+    			// extension is not allowed
+    			//$('#example2 .text').text('Error: only images are allowed');
+    			// cancel upload
+    			return false;				
+    		}
+
+    	},
+    	onComplete : function(file){
+
+			$("#userImg").attr("src","/avatar.php?id={/literal}{$smarty.session.user.id}{literal}&type=t&"+new Date().valueOf());
+			$("#buttonUpload").html("Subir foto");
+
+			window.clearInterval(interval);
+
+			//enable upload button
+			this.enable();
+						
+    	}		
+    });
+	
+});
+</script>
+{/literal}
+
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
