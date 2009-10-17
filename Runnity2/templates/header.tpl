@@ -125,9 +125,9 @@
 	
 	<!-- CONTACT -->
 	<div id="contact_modal">
-		<div class="contact_container">
-			<h2>Sugerencias, dudas... escríbenos!</h2>
-			<form id="FormularioRegister" method="GET" action="javascript: void sendMessage()">
+		<div class="contact_container" id="contact_container">
+			<h2 id="contactTitle">Sugerencias, dudas... escríbenos!</h2>
+			<form id="contactForm" method="GET" action="javascript: void sendMessage()">
 				<div>
 					<label>nombre</label>
 					<div class="span-12 inputContainer">
@@ -150,8 +150,8 @@
 						<textarea id="contact3"></textarea>
 					</div>
 				</div>
+				<span id="contactError" class="errorMessage"></span>
 				<input id="contactSubmit" class="fg-button" value="Enviar" type="submit"/>
-				<div id="contactError" class="errorMessage"></div>
 			</form>
 		</div>
 	</div>
