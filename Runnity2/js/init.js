@@ -580,6 +580,55 @@ function geolocateAddress() {
     
 }
 
+function checkEmail(){
+
+	var email = $("#inputRegister1").val();
+    
+    if ((email=='') || (email.length<5) || !(echeck(email))) {
+    	$('#checkEmailBox').hide();
+ 		return false;
+ 	}
+    $('#result').html('');
+    $('#emailImage').attr("src", "/img/ajax-loader.gif");   
+    $('#checkEmailBox').show();
+    $('#emailImage').show();
+    
+   
+
+    var dataObj = ({email : email,method: 'isEmailFree'});
+    
+       
+    // -- Start AJAX Call --
+    $.ajax({
+        type: "POST",
+        url: "/ajaxController.php",
+        data: dataObj,
+        cache: false,
+        success: function(result){
+            if(result=="valid") {
+                //notify the user that the username is free
+                $('#emailImage').show();
+                $('#emailImage').attr("src", "/img/ok.png");
+                
+            } else {
+                //notify the user that the username is used.
+                $('#emailImage').show();
+                $('#emailImage').attr("src", "/img/ko.png");
+                $('#result').css('color','#c24949');
+                $('#result').html('Ups, el email ya está registrado');
+            }
+       
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+                alert('Runnity' + xhr.status + "\n" + thrownError);
+        }
+    });
+    
+    return false;
+
+}
+
+
 
 function checkUsername(){
 
