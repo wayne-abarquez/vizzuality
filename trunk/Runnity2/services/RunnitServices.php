@@ -97,6 +97,10 @@ class RunnitServices {
 	        throw new Exception('Tu email es incorrecto.',103);
 	    }	 
 	    
+	    if(!is_numeric($birthdayDay) || !is_numeric($birthdayMonth) || !is_numeric($birthdayYear)) {
+	        throw new Exception('Fecha de nacimiento incorrecta.',106);
+	    }
+	    
 	    //Check if username or password are in the DB
 	    $sql="SELECT id from users WHERE username='$username'";
 	    $result=pg_query($this->conn, $sql);
@@ -112,7 +116,10 @@ class RunnitServices {
 	        throw new Exception('Email ya registrado.',105);
 	    }	     
 	    
-	    $sql="INSERT INTO users(username,pass,completename,email) VALUES('$username','$password','$completename','$email')";
+	    $birthday="$birthdayYear-$birthdayMonth-$birthdayDay";
+	    
+	    
+	    $sql="INSERT INTO users(username,pass,completename,email,birthday,locality) VALUES('$username','$password','$completename','$email','$birthday','$localidad')";
 		$result=pg_query($this->conn, $sql);   
 	    
 	    //get last ID
@@ -147,7 +154,7 @@ class RunnitServices {
         $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_registro.tpl'));
 
 		$mail->From = "alertas@runnity.com";
-		$mail->FromName = "Alertas Runnity";
+		$mail->FromName = "Registro Runnity";
 		$mail->Subject = "Bienvenido a Runnity.com ".$username;
 		$mail->AltBody = $noHtml;
 		$mail->MsgHTML($email_message);
@@ -949,7 +956,7 @@ class RunnitServices {
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id ";
 		$sql.=" and distance_meters<= $distance+2000 and distance_meters>= $distance-2000 and published=true";
 		$sql.=" order by event_date ASC limit 3";
-		error_log($sql);		
+		//error_log($sql);		
 		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
 
