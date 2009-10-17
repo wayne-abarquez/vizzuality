@@ -7,11 +7,11 @@
 
 	<div class="span-24 column content">
 		<div class="register_success_content">
-			<p>Tu cuenta en Runnity ha sido creada con éxito.</p>
-			<p>Recibiras un mail con los datos de tu cuenta en tu buzón de correo.</p>
-			<p>(No olvides revisar la carpeta de correo no deseado)</p>
-			<p>Ahora te sugerimos que completes tu perfíl de usuario o busques tus próximas carreras</p>
-			<p>Nos vemos! ;P</p>
+			<p class="first">Tu cuenta en Runnity ha sido creada con éxito.</p>
+			<p class="second">Recibiras un mail con los datos de tu cuenta en tu buzón de correo.</p>
+			<p class="third">(No olvides revisar la carpeta de correo no deseado)</p>
+			<p class="fourth">Ahora te sugerimos que <a href="/perfil/{$smarty.session.user.username}">completes tu perfíl de usuario</a> o <a href="/buscar">busques tus próximas carreras</a></p>
+			<p class="fiveth">Nos vemos! ;P</p>
 		</div>
 	</div>
 </div>
