@@ -224,49 +224,37 @@
 
 </div>
 	
-	<!-- SCRIPT TWITTER -->
 	
-	{literal}
-	<script language="javaScript" type="text/javascript">
-		$(document).ready( function() {
+{literal}
+<script language="javaScript" type="text/javascript">
+	$(document).ready( function() {
+	
+		var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
+		$.getJSON(url,function(data){	
+			$.each(data, function(i, item) {
+				$("#twitterImage").attr("src", item.user["profile_image_url"]);
+				$("#tweets").append(item.text.linkify());
+				$("div.tweetComment").append(relative_time(item.created_at));
+			});
+			
+	    });
+	    
+		$(".nameRace").truncate( {max_length: 55} );
+		$(".nameRaceOrange").truncate( {max_length: 55} );			
+		$(".placeRace").truncate( {max_length:30} );		
 		
-			var url = "http://twitter.com/status/user_timeline/runnity.json?count=1&callback=?";
-			$.getJSON(url,function(data){	
-				$.each(data, function(i, item) {
-					$("#twitterImage").attr("src", item.user["profile_image_url"]);
-					$("#tweets").append(item.text.linkify());
-					$("div.tweetComment").append(relative_time(item.created_at));
-				});
-				
-		    });
-		    
-			$(".nameRace").truncate( 55 );
-			$(".nameRaceOrange").truncate( 55 );			
-			$(".placeRace").truncate( 30 );			
-		    
-		});
-	</script>
-	{/literal}
-	
-	
-	{literal}
-	<script language="javaScript" type="text/javascript">
+		function twitter_callback (){
+			return true;
+		}
+		
 		String.prototype.linkify = function() {
 			return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
 				return m.link(m);
 			});
-		}; 
-	</script>
-	{/literal}
-	
-	
-	
-	{literal}
-	<script language="javaScript" type="text/javascript">
-		function twitter_callback (){
-			return true;
-		}
-	</script>
-	{/literal}
+		}; 	
+	    
+	});
+</script>
+{/literal}
 
 {include file="footer.tpl"} 

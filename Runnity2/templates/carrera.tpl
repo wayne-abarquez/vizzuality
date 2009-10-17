@@ -1,9 +1,12 @@
 {include file="header.tpl"}
-
 {literal}
 <script type="text/javascript">
     $(document).ready(function(){
-        new AjaxUpload('#buttonUploadPicture', {
+    
+    	$('#datos2').truncate({max_length: 26});
+    	$('#datos1').truncate({max_length: 26});
+    	
+        /*new AjaxUpload('#buttonUploadPicture', {
         	action: '/imageController.php',
         	data : { 
 					method:"uploadPicture",
@@ -41,7 +44,7 @@
 
         	},
         	onComplete : function(file,response){	
-				$("#imgItems").append(response);
+				$("#imgItems").prepend(response);
 				
 				$("#buttonUploadPicture").attr("value","Subir foto");
 
@@ -51,11 +54,13 @@
     			this.enable();
     						
         	}		
-        });
+        });*/
+        
+        	
+        				
 });
 
-/*]]>*/</script>
-
+</script>
 {/literal}
 
 <div class="span-24 column content">
@@ -365,5 +370,6 @@
 </div> <!-- content -->
 
 </div> <!-- container -->
+
 
 {include file="footer.tpl"} 

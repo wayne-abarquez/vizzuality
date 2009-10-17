@@ -41,7 +41,8 @@
     <script type="text/javascript" src="/js/utils.js"></script>
     <script type="text/javascript" src="/js/layout.js?ver=1.0.2"></script>
     <script src="/js/jquery.simplemodal-1.3.js" type="text/javascript"></script>
-    <script src="/js/jquery.truncate-2.3-pack.js" type="text/javascript"></script>    
+<!--     <script src="/js/jquery.truncate-2.3-pack.js" type="text/javascript"></script>  -->
+    <script language="javascript" type="text/javascript" src="/js/jquery.truncator.js"></script>
     <script src="/js/basic.js" type="text/javascript"></script>
     <script src="/js/jquery.url.min.js" type="text/javascript"></script>
     <script src="/js/jquery.validate.js" type="text/javascript"></script>
