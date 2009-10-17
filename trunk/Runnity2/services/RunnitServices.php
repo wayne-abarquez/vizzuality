@@ -1196,8 +1196,10 @@ class RunnitServices {
 	    define("MAPS_HOST", "maps.google.com");
         define("KEY", "ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA");
 	    $base_url = "http://" . MAPS_HOST . "/maps/geo?output=xml" . "&key=" . KEY;
-	    $request_url = $base_url . "&q=" . urlencode($address);
-	    $xml = utf8_decode(simplexml_load_file($request_url));
+	    $request_url = $base_url . "&q=" . urlencode($address) .",Spain";
+	    $rsp = utf8_encode(file_get_contents($request_url));
+	    $xml = simplexml_load_string($rsp);
+	    //return $xml;
 	    if (!$xml) {
 	        throw new Exception('Problema al geolocalizar la direccion',220);
 	    }
@@ -1205,8 +1207,8 @@ class RunnitServices {
 	    if (strcmp($status, "200") == 0) {
             $coordinates = $xml->Response->Placemark->Point->coordinates;
             $coordinatesSplit = split(",", $coordinates);
-            $lat = $coordinatesSplit[1];
-            $lng = $coordinatesSplit[0];
+            $lat = (float)$coordinatesSplit[1];
+            $lng = (float)$coordinatesSplit[0];
         } else {
             throw new Exception('Problema al geolocalizar la direccion',220);
         }

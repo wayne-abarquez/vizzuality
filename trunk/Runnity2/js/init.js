@@ -540,6 +540,46 @@ function registerUser() {
     });*/
 }
 
+function geolocateAddress() {
+    var addressval = $("#roundLocalizacion").val();
+    var dataObj = ({address : addressval,method: 'geolocateAddress'});
+    
+    if(addressval="") {
+        alert("Esta vacio el campo. Haz algo Jamon"); 
+    }
+    // -- Start AJAX Call --
+    $.ajax({
+        type: "POST",
+        url: "/ajaxController.php",
+        data: dataObj,
+        cache: false,
+        success: function(result){
+            if(result=="INVALID") {
+                //notify the user that the username is free
+                alert("La direccion no se ha encontrado. Haz algo Jamon");                
+            } else {
+                //notify the user that the username is used.
+                var lat = result.split(",")[0];
+                var lon = result.split(",")[1];
+                $('#latHidden').attr("value", lat);
+                $('#lonHidden').attr("value", lon);
+
+                var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center="+lat+","+lon+"&zoom=8&markers=size:mid|color:red|"+lat+","+lon+"&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
+         	    $("#map").attr("src",url);                
+                
+            }
+       
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+                alert('Runnity' + xhr.status + "\n" + thrownError);
+        }
+    });
+    
+    return false;
+    
+    
+}
+
 
 function checkUsername(){
 
