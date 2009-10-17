@@ -8,7 +8,7 @@
 		$imgTrans = new imageTransform();
 		$imgTrans->sourceFile = $_FILES['userfile']['tmp_name'];
 		$imgTrans->targetFile = ABSPATH .'media/avatar/' . $_SESSION['user']['id'].".jpg";
-		$imgTrans->resizeToWidth = 96;
+		$imgTrans->resizeToWidth = 66;
 		$imgTrans->resizeToHeight = 67;
 		$imgTrans->maintainAspectRatio = false;
 	    if (!$imgTrans->resize()) {

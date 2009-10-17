@@ -1614,6 +1614,18 @@ div.month5 {background-color: #9f00c6;}
 	margin-bottom: 3px;
 }
 
+.tituloPhotos{
+	font-family: "Arial"
+	font-size: 28px;
+	font-weight: bold;
+	color: #ffffff;
+	padding-top: 10px;
+/* 	padding-bottom: 6px; */
+	margin-left: 20px;
+/* 	margin-right: 10px; */
+/* 	margin-bottom: 4px; */
+}
+
 .raceData{width: 229px;}
 .raceData a{color: #336699; text-decoration: none; font-weight: bold;}
 
@@ -1823,9 +1835,9 @@ div.titleComents {
 /* races right */
 
 .avatarContainer{
-	width: 268px;
+	width: 264px;
 	height: 300px;
-	margin-left: -3px;
+	margin-left: 0px;
 }
 
 div.events {
@@ -1886,7 +1898,7 @@ div.raceRight2{
 .avatarRight{
 	margin: 0;
 	float: left;
-/* 	margin-left: -1px; */
+	margin-left: -1px;
 }
 
 .navigation a{
