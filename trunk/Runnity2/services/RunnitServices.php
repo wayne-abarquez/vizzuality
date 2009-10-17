@@ -1053,7 +1053,6 @@ class RunnitServices {
 SQL;
         $result= pg_query($this->conn, $sql);
         
-        $mail = $this->getMailService();
         $smarty = new Smarty; 
 
         $userRunsBlock=array();
@@ -1061,16 +1060,23 @@ SQL;
         $currentUserEmail="";
         $currentUserName="";
         $currentCompleteName="";
-        $timeRange="19/09/2009 al 19/7/2009";
+        
+        $today = getdate();
+        
+        $today = getdate(time());
+        $in14days = getdate(time() + (14 * 24 * 60 * 60));
+        
+        $timeRange=$today['mday']."/".$today['mon']."/".$today['year']." AL ".$in14days['mday']."/".$in14days['mon']."/".$in14days['year']."";
         while ($row = pg_fetch_assoc($result)) {        
             if($currentUserId!=$row['user_id']) {
                 if($currentUserId!=0) {
                     //Send email here using $userRunsBlock
                     
                     
+                    $mail = $this->getMailService();
             		$mail->From = "alertas@runnity.com";
             		$mail->FromName = "Alertas Runnity";
-            		$mail->Subject = "Runnity: Carreras en la próximas 2 semanas (".count($userRunsBlock).")";	
+            		$mail->Subject = "Runnity: Carreras en los siguientes 14 dias (".count($userRunsBlock).")";	
 
 
                     
@@ -1104,11 +1110,35 @@ SQL;
             }    
             $userRunsBlock[]=$row;
         }
+        
+        $mail = $this->getMailService();
+		$mail->From = "alertas@runnity.com";
+		$mail->FromName = "Alertas Runnity";
+		$mail->Subject = "Runnity: Carreras en los siguientes 14 dias (".count($userRunsBlock).")";	
+
+
+        
+        $smarty->assign('name', $currentCompleteName);
+        $smarty->assign('user_id', $currentUserId);
+        $smarty->assign('user_name', $currentUserName);
+        $smarty->assign('carreras', $userRunsBlock);
+        $smarty->assign('timeRange', $timeRange);
+        
+
+        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_alertas.tpl'));
+        $noHtml="";
+
+		$mail->MsgHTML($email_message);
+		$mail->AddAddress($currentUserEmail, $currentUserName);
+		$mail->IsHTML(true);		
+		$mail->AltBody = "";
+
+
+		if(!$mail->Send()) {
+		    error_log("ALERTAS: Email to $email no pudo enviarse");
+		}        
+        
    
-	}
-	
-	private function prepareAlertEmail($ds) {
-	    
 	}
 	
 	
