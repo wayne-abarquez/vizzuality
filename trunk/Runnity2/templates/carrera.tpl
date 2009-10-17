@@ -41,7 +41,7 @@
 
         	},
         	onComplete : function(file,response){	
-				$("#imgItems").prepend(response);
+				$("#imgItems").append(response);
 				
 				$("#buttonUploadPicture").attr("value","Subir foto");
 
@@ -200,17 +200,20 @@
 				{/if}
 			</div>
 			
-			{if $pictures}
+			<div class="nofotos"></div>
+			{*
+{if $pictures}
 			<div class="span-1 last bannerTopPhotos"></div>
 			<div class="span-1 last columnPhotos">
 				<p class="span-4 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if} <input id="buttonUploadPicture" class="fg-button" type="submit" value="Subir fotos"></p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<img src="{$picture.path}">
+					<img src="/picture.php?id={$data.id}"/>
 				{/foreach}	
 				</div>
 			</div>
 			{/if}	
+*}
 			
 			<div class="span-1 last columnLong">
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
