@@ -156,6 +156,7 @@
 			{if $pictures}
 			<div class="span-1 last bannerTopPhotos"></div>
 			<div class="span-1 last columnPhotos">
+				<p class="span-4 tituloPhotos">FOTOS DEL EVENTO</p>
 <!--
 				{foreach key=id item=picture from=$pictures}
 					<img src="{$picture.path}"/>
@@ -303,7 +304,7 @@
 			<div class="eventsUsers">				
 				<div class="avatarContainer">
 				{foreach key=id item=person from=$runners}
-				<img title="{$person.username}" class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/>
+					<img title="{$person.username}" class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/>
 			    {/foreach}
 				</div>
 			</div>
