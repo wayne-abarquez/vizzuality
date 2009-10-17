@@ -40,7 +40,18 @@
 				}
 			}
 		});
+		
+    	$("#buttonLocalizacion").click(function() {
+        	    var localidad=$("#roundLocalizacion").val();
+        	    var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&markers=size:mid|color:red|"+localidad+",Spain&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
+        	    $("#map").attr("src",url);	        
+    	});		
+		
+		
 	});
+	
+
+	
 </script>
 {/literal}
 
@@ -116,9 +127,9 @@
 								<input type="text" id="roundLocalizacion" name="localidad">
 							</label>
 							<label class="searchButtonFirst last">
-								<input type="submit" value="Situar" class="buttonLocalizacion"/>
+								<input type="button" value="Situar" id="buttonLocalizacion" class="buttonLocalizacion"/>
 							</label>
-						<div class="alertsMap"><img src="/img/alertsMap.jpg"></div>
+						<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"></div>
 					</div>
 				</div>
 				<div class="error_register" id="error_register"></div>
