@@ -6,7 +6,7 @@
 	<div class="span-1 last leftColumn">
 		
 		<div class="span-1 columnNameUser">
-			<p class="nameUserProfile">Fotos subidas por {$privateData.datos.username}</p>
+			<p class="nameUserProfile">Fotos subidas por {$pictures[1].user_name}</p>
 		</div>
 		<a class="dashboardLink" href="#">volver a su perfil <img src="/img/arrowDash.gif"></a>
 		<div class="globalContainerUser">	
@@ -72,7 +72,7 @@
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn userRightColumn">
 		<div class="span-1 functionalContainer">
-			<p class="titulo tituloLeft tituloColumnRight">MAS FOTOS DE {$privateData.datos.username}</p>
+			<p class="titulo tituloLeft tituloColumnRight">MAS FOTOS DE {$pictures[1].user_name}</p>
 			<div class="eventsUsers">
 			{if $pictures}
 				<div class="avatarContainer">
