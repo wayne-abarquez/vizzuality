@@ -39,11 +39,11 @@ class RunnitServices {
             $_SESSION['logged']=false;
             throw new Exception("user not logged in");
         } else {
- 			$sql="UPDATE users SET last_login=now() WHERE id=".$res['id'];
-			pg_query($this->conn, $sql);
             $_SESSION['logged']=true;
             $res=pg_fetch_assoc($result);
             $_SESSION['user']=$res;
+ 			$sql="UPDATE users SET last_login=now() WHERE id=".$res['id'];
+			pg_query($this->conn, $sql);
     	    return $res;           
         }
 	}
