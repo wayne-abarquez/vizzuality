@@ -546,10 +546,10 @@ div.registerInfoTicket{ background: url(/img/registerTicket.gif) no-repeat; heig
 div.data_register_container {width: 500px; margin: 10px 0 0 0; padding: 0 0 0 20px;}
 div.data_register_container p{color: #666666;font-size: 13px;font-weight: bold; margin:0;}
 #register_form input.inputRegister {width: 223px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
-#register_form label.error {color:#c24949; background: none; border: none; width: auto; line-height: 14px; margin: 0; padding: 0;}
+#register_form label.error {color:#c24949; background: none; border: none; width: auto; line-height: 14px; margin: 0; padding: 0; font-weight: normal;}
 #register_form input.error {width: 223px; border: 1px solid #c24949; background: none; margin: 0 20px 0 0; padding: 7px 10px;}
-#checkUserBox #registerImage {margin:0 0 0 7px; height: 16px; width: 16px; vertical-align: middle;}
-#emailImage {margin:0 0 0 7px; height: 16px; width: 16px; vertical-align: middle;}
+#checkUserBox #registerImage {margin:0; height: 16px; width: 16px; vertical-align: middle;}
+#emailImage {margin:0; height: 16px; width: 16px; vertical-align: middle;}
 #answer {line-height: 28px; font-weight: normal; display: inline; padding: 0; margin: 0;}
 #result {line-height: 28px; font-weight: normal; display: inline; padding: 0; margin: 0;}
 
@@ -562,6 +562,7 @@ div.register_name_column div.checkAlertas input {width: 12px;}
 div.rightRegister {position: relative;}
 div.rightRegister #roundLocalizacion {width: 270px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
 div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24949; margin: 0 20px 0 0; padding: 7px 10px;}
+#error_geo {color:#c24949;}
 
 .buttonLocalizacion{ position: absolute; right:10px; top: 99px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 30px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
 .buttonLocalizacion:hover{background: url(/img/buttonLocalizacion_hover.gif) repeat-y;color: #ffffff;}
