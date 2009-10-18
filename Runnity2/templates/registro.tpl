@@ -5,7 +5,12 @@
 	<script type="text/javascript">
 	$.validator.setDefaults({
 		submitHandler: function() { 
-			Alert('Esto va a registrarse!')
+			if (($('#answer').html()!='Buen nombre') || ($('#result').html()!='') || ($('#latHidden').val()==0) || ($('#lonHidden').val()==0) || ($('#error_geo').html()!='')) {
+				return false;
+			} else {
+				$("#register_form").attr("action","/registro"); 
+				$("#register_form").submit();
+			}
 		 }
 	});
 	
@@ -88,7 +93,7 @@
 			<!-- COLUMNA IZQ -->
 			<div class="span-17 registerInfoTicket"><p>Para registrarte en Runnity sólo tienes que rellenar los siguientes campos... <b>¡es grátis!</b></p></div>
 			{$php_errors}
-			<form id="register_form" action="/registro" method="get">
+			<form id="register_form"  method="get"> <!-- action="/registro" -->
 			    <input type="hidden" id="latHidden" name="lat" value="0">
 			    <input type="hidden" id="lonHidden" name="lon" value="0">
 			    
@@ -154,6 +159,7 @@
 							<label class="searchButtonFirst last">
 								<input type="button" value="Situar" id="buttonLocalizacion" class="buttonLocalizacion"/>
 							</label>
+							<div id="error_geo"></div>
 							<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w"></div>
 						</div>
 					</div>
