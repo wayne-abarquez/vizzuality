@@ -76,7 +76,7 @@ if(isset($_REQUEST['action'])) {
     
     
 }
-
+$error_msg="";
 
 
 

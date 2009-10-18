@@ -62,7 +62,7 @@ $(document).ready(function(){
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil" id="avatarPerfil">
 					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$smarty.session.user.id}&type=t">
-					<a class="changeAvatar" id="buttonUpload">Pincha para subir avatar</a>
+					<a class="changeAvatar" id="buttonUpload">Click para subir avatar</a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
@@ -92,7 +92,7 @@ $(document).ready(function(){
 						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
 						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
 					</div>
-					<a class="editUserLink">editar tus marcas <img src="/img/pencil.gif"></a>
+					<a class="editUserLink" href="/userprofile.php">editar tus marcas <img src="/img/pencil.gif"></a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
@@ -116,7 +116,9 @@ $(document).ready(function(){
 				{foreach key=id item=grupo from=$privateData.grupos}
 				{if $grupo.name eq ""}<div class="alertUser"><p>Aún no nos has dicho si <b>perteneces a algún club</b></p></div>{/if}
 				{/foreach}
-				<div class="alertUser"><p>Tienes <b>2 mensajes nuevos</b></p></div>
+				{if $privateData.datos.num_messages > 0}
+					<div class="alertUser"><p>Tienes <b>{$privateData.datos.num_messages} mensaje(s) nuevo(s)</b></p></div>
+				{/if}
 			</div>
 			
 			<div class="span-1 last imagesUserContainer">
