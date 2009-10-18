@@ -19,8 +19,8 @@
 				</div>	
 				<div class="span-1 containerImg ">
 					<!--TODO: AL HACER CLick EN LA FOTO HAY QUE PASAR A LA SIGUIENTE-->
-					<img class="targetImg" id="userImg" src="/img/fakeRaceImg.jpg">
-					<p>ver mas carreras de <a href="#">XVII Carrera Popular La Melonera</a></p>
+					<img class="targetImg" id="userImg" src="{$targetPicture}">
+					<p>ver más fotos de <a href="/run/{$data.id}/{$data.name|replace:' ':'/'}">{$data.name}</a></p>
 				</div>
 			</div>
 		</div>
@@ -71,14 +71,16 @@
 
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn userRightColumn">
-
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">MAS FOTOS DE {$privateData.datos.username}</p>
 			<div class="eventsUsers">
-				<!--TODO-->									
+			{if $pictures}
 				<div class="avatarContainer">
-					<a href="/user/{$smarty.session.user.username}"><img title="{$smarty.session.user.username}" class="avatarRight" src="/avatar.php?id={$smarty.session.user.user_id}"/></a>
+				{foreach key=id item=picture from=$pictures}
+					<a href="/image.php?id={$data.id}&picId={$picture.id}&type=b"><img class="avatarPhoto" src="/picture.php?id={$data.id}&picId={$picture.id}&type=t"/></a>
+				{/foreach}	
 				</div>
+			{/if}
 			</div>
 		</div>
 	</div>
