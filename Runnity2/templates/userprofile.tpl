@@ -3,6 +3,29 @@
 {literal}
 <script type="text/javascript"> 
 $(document).ready(function(){
+
+    if ($("#alertsCheckBox").is(":checked"))
+      {
+          $("#mapBox").show();
+      }
+      else
+      {     
+          $("#mapBox").hide();
+      }
+
+	
+	$("#alertsCheckBox").click(function(){
+	    if ($("#alertsCheckBox").is(":checked"))
+	      {
+	          $("#mapBox").show("fast");
+	      }
+	      else
+	      {     
+	          $("#mapBox").hide();
+	      }	
+	});
+	
+	
     new AjaxUpload('#avatarPerfil', {
     	action: '/imageController.php',
     	data : { method:"uploadAvatar"},
@@ -39,7 +62,7 @@ $(document).ready(function(){
     	onComplete : function(file){
 
 			$("#userImg").attr("src","/avatar.php?id={/literal}{$smarty.session.user.id}{literal}&type=t&"+new Date().valueOf());
-			$("#buttonUpload").html("Subir foto");
+			$("#buttonUpload").html("Click para subir avatar");
 
 			window.clearInterval(interval);
 
@@ -62,7 +85,7 @@ $(document).ready(function(){
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil" id="avatarPerfil">
 					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$smarty.session.user.id}&type=t">
-					<a class="changeAvatar" id="buttonUpload">Pincha para subir avatar</a>
+					<a class="changeAvatar" id="buttonUpload">Click para subir avatar</a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">ESTADÍSTICAS</p>
@@ -76,20 +99,21 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
-						
+			
+			<form action="userprofile.php" method="POST">			
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
 				<div class="editdata">
 					<div class="nameEdit">
 						<p class="data">NOMBRE Y APELLIDOS</p>
 						<label class="roundInputName last" for="roundInputName">
-							<input type="text" id="roundInputName" value="{$privateData.datos.completename}">
+							<input type="text" name="completename" id="roundInputName" value="{$privateData.datos.completename}">
 						</label>
 					</div>
 					<div class="sexoFecha">
 						<div class="span-1 first sexoEdit">
 							<p class="data">SEXO</p>
-							<select name="sexo" id="combo_sex">
+							<select name="is_men" id="combo_sex">
 								{if $privateData.datos.is_men eq TRUE}
 								<option selected value="true">Hombre</option>
 			        			<option value="false">Mujer</option>
@@ -101,17 +125,17 @@ $(document).ready(function(){
 						</div>
 						<div class="span-1 last fechaEdit">
 							<p class="data">FECHA NACIMIENTO</p>
-							{html_select_date time=$privateData.datos.birthday start_year='-55' month_format='%m' field_order='DMY' end_year='-8' reverse_years=true}
+							{html_select_date  prefix='birthday' time=$privateData.datos.birthday start_year='-55' month_format='%m' field_order='DMY' end_year='-8' reverse_years=true}
 						</div>
 					</div>
 					<div class="localizacionEdit">
 						<p class="data">LOCALIZACIÓN</p>
 						<label class="roundInputDataLong last" for="roundInputDataLong">
-							<input type="text" id="roundInputDataLong" value="{$privateData.datos.locality}">
+							<input type="text" name="locality" id="roundInputDataLong" value="{$privateData.datos.locality}">
 						</label>
 					</div>
-					<div class="checkAlerts"><input type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
-					<div>
+					<div class="checkAlerts"><input id="alertsCheckBox" name="alertsCheckBox" type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
+					<div id="mapBox">
 						<div class="span-1 mapaAlerts" id="map">
 <!-- 							<img src="/img/mapaAlerts.jpg"> -->
 {literal}
@@ -181,7 +205,7 @@ $(document).ready(function(){
 							<div class="span-1 first radioBusqueda">
 								<p class="data">RADIO DE BÚSQUEDA</p><p class="km">(Km)</p>
 								<label class="roundInputDataSmall" for="roundInputDataSmall">
-									<input type="text" id="roundInputDataSmall" value="{$smarty.session.user.radius_interest}">
+									<input type="text" name="radius_interest" id="roundInputDataSmall" value="{$smarty.session.user.radius_interest}">
 								</label>
 							</div>
 							<div class="span-1 last radioInfo">
@@ -191,7 +215,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class="dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
+					<span><input class="fg-button saveChangesButton" type="submit" value="Guardar cambios"/></span>
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">TUS MARCAS</p>
@@ -229,7 +253,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class="dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
+					<span><input class="fg-button saveChangesButton" type="submit" value="Guardar cambios"/></span>
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
@@ -237,24 +261,24 @@ $(document).ready(function(){
 					<div class="span-1 editEmail first">
 						<p class="data">EMAIL</p>
 						<label class="roundInputName last" for="roundInputName">
-							<input type="text" id="roundInputName" value="{$privateData.datos.email}">
+							<input type="text" name="email" id="roundInputName" value="{$privateData.datos.email}">
 						</label>
 					</div>
 					<div class="span-1 editPass last">
 						<p class="data">PASSWORD</p>
 						<label class="roundInputDataSmall last" for="roundInputDataSmall">
-							<input type="password" id="roundInputDataSmall" value="{$privateData.datos.pass}">
+							<input type="password" name="pass" id="roundInputDataSmall" value="{$privateData.datos.pass}">
 						</label>
 					</div>
 				</div>
 				<div class="dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="button" value="Guardar cambios"/></span>
+					<span><input class="fg-button saveChangesButton" type="submit" value="Guardar cambios"/></span>
 				</div>
 
 			</div>			
 		</div>
 	</div>
-	
+	</form>
 
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn userRightColumn">

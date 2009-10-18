@@ -39,7 +39,8 @@ class RunnitServices {
             $_SESSION['logged']=false;
             throw new Exception("user not logged in");
         } else {
- 
+ 			$sql="UPDATE users SET last_login=now() WHERE id=".$res['id'];
+			pg_query($this->conn, $sql);
             $_SESSION['logged']=true;
             $res=pg_fetch_assoc($result);
             $_SESSION['user']=$res;
@@ -280,6 +281,7 @@ class RunnitServices {
 		$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and start_point && ST_SetSRID(ST_MakeBox2D(ST_Point($west, $south), ST_Point($east ,$north)),4326)";
 	} */
 	
+	
 	//usuario_publico.php
 	public function getUserInfo($username) {
 	    
@@ -305,6 +307,7 @@ class RunnitServices {
 	    
 	}
 	
+	//usuario.php
 	public function getUserPrivateData($username) {
 	    if (!$_SESSION['logged']) {
 	        throw new Exception("user not logged in");
@@ -312,7 +315,7 @@ class RunnitServices {
 	
 	    $result=array();
 	    $username=pg_escape_string($username);
-	    $sql="select u.id,completename,username,email,created_when,visits_profile,birthday,pass,locality,is_men,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date < now()) as num_races_runned from users as u where username='$username'";
+	    $sql="select u.id,completename,username,email,created_when,visits_profile,birthday,pass,locality,is_men,(select count(com.id) from users as usr inner join comments as com on com.on_id=usr.id and on_table='user' where usr.id=u.id and com.created_when > usr.last_login) as num_messages,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date < now()) as num_races_runned from users as u where username='$username'";
         $result['datos'] = pg_fetch_assoc(pg_query($this->conn, $sql));
         if(!$result['datos']) {
             return false;
