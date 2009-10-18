@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['logged'])) {
-	echo("No puedes acceder a esta pagina sin haberte logeado");
+    header( 'Location: /login.php?url='.urlencode($_SERVER["REQUEST_URI"]) ) ;   
 	die();
 }
 
@@ -30,5 +30,6 @@ $smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['u
 
 $smarty->assign('section', 'usuario');
 $smarty->display('user.tpl');
+
 
 ?>

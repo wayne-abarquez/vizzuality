@@ -2,8 +2,10 @@
 
 session_start();
 
-if (!isset($_SESSION['logged'])) {
-	echo("No puedes acceder a esta pagina sin haberte logeado");
+
+
+if (!isset($_SESSION['logged']) or $_SESSION['user']['username'] !=$_REQUEST['u']) {
+    header( 'Location: /login.php?url='.urlencode($_SERVER["REQUEST_URI"]) ) ;   
 	die();
 }
 
@@ -62,7 +64,7 @@ if(isset($_REQUEST['action'])) {
             
             
         //it is a success
-        header( 'Location: /registro_success' ) ;   
+        //header( 'Location: /registro_success' ) ;   
         exit(); 
         
     }
@@ -93,5 +95,8 @@ $smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['u
 
 $smarty->assign('section', 'usuario');
 $smarty->display('userprofile.tpl');
+
+
+
 
 ?>

@@ -20,7 +20,11 @@ if(isset($_REQUEST['u'])) {
 
 $data=$services->getUserInfo($username);
 $smarty->assign('data', $data);
-$smarty->assign('isAlreadyFriend', $services->isUserAlreadyFriend($data['datos']['id']));
+
+if (isset($_SESSION['logged']) and $_SESSION['logged']) {
+    $smarty->assign('isAlreadyFriend', $services->isUserAlreadyFriend($data['datos']['id']));
+}
+
 $smarty->assign('friends',$services->getUserFriends($data['datos']['id']));
 
 $comentarios=$services->getComments($data['datos']['id'],'user');
