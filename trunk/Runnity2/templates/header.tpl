@@ -37,15 +37,14 @@
 	
 	<script type="text/javascript" src="/js/jquery.js"></script>
 	<script type="text/javascript" src="/js/datepicker.js"></script>
-    <script type="text/javascript" src="/js/eye.js"></script>
-    <script type="text/javascript" src="/js/utils.js"></script>
-    <script type="text/javascript" src="/js/layout.js?ver=1.0.2"></script>
-    <script src="/js/jquery.simplemodal-1.3.js" type="text/javascript"></script>
-<!--     <script src="/js/jquery.truncate-2.3-pack.js" type="text/javascript"></script>  -->
-    <script language="javascript" type="text/javascript" src="/js/jquery.truncator.js"></script>
-    <script src="/js/basic.js" type="text/javascript"></script>
-    <script src="/js/jquery.url.min.js" type="text/javascript"></script>
-    <script src="/js/jquery.validate.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/js/eye.js"></script>
+  <script type="text/javascript" src="/js/utils.js"></script>
+  <script type="text/javascript" src="/js/layout.js?ver=1.0.2"></script>
+  <script src="/js/jquery.simplemodal-1.3.js" type="text/javascript"></script>
+  <script language="javascript" type="text/javascript" src="/js/jquery.truncator.js"></script>
+  <script src="/js/basic.js" type="text/javascript"></script>
+  <script src="/js/jquery.url.min.js" type="text/javascript"></script>
+  <script src="/js/jquery.validate.js" type="text/javascript"></script>
 	
 	<script type='text/javascript' src='/js/init.js'></script>
 	
@@ -156,6 +155,41 @@
 			</form>
 		</div>
 	</div>
+	
+	
+<!-- PUBLISH RUN -->
+	<!--<div id="publish_modal">
+		<div class="contact_container">
+			<h2>Publica tu carrera</h2>
+			<form id="contactForm" method="GET" action="">
+				<div>
+					<label>Nombre de la carrera</label>
+					<div class="span-12 inputContainer">
+						<label class="inputLogin">
+							<input type="text" class="inputLogin" >
+						</label>
+					</div>
+				</div>
+				<div>
+					<label>e-mail</label>
+					<div class="span-12 inputContainer">
+						<label class="inputLogin" >
+							<input type="text" class="inputLogin">
+						</label>
+					</div>
+				</div>
+				<div>
+					<label>Info de la carrera</label>
+					<div class="span-12 inputContainer">
+						<textarea id="publish2"></textarea>
+					</div>
+				</div>
+				<span  class="errorMessage"></span>
+				<input class="fg-button" value="Enviar" type="submit"/>
+			</form>
+		</div>
+	</div>
+-->
 
 	<!-- HEADER -->
 	<div id="header" class="span-24 column header">
@@ -193,12 +227,12 @@
 		{/if}
 		{if $section eq "carrera"} 
 			<div class="buttonmenuContainer">
-				<a href="#"><div class="menu_button"><p>Publica tu carrera en Runnity</p></div></a>
+				<a href="javascript: void show_publish()"><div class="menu_button"><p>Publica tu carrera en Runnity</p></div></a>
 			</div>			
 		{/if}
 		{if $section eq "searchresults"} 
 			<div class="buttonmenuContainer">
-				<a href="#"><div class="menu_button"><p>Publica tu carrera en Runnity</p></div></a>
+				<a href="javascript: void show_publish()"><div class="menu_button"><p>Publica tu carrera en Runnity</p></div></a>
 			</div>			
 		{/if}
 		{if $section eq "usuario" or $section eq "registro" or $section eq "404"} 

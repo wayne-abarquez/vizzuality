@@ -970,11 +970,19 @@ label.inputLogin {
 
 
 /* CONTACT */
-#contact_modal{ display:none; height:500px; width: 500px; background: #eaeaea;border:6px solid #ffffff;}
-#contact_modal div.contact_container {float: left; width: 500px; padding: 20px 0px 0px 20px}
-#contact_modal div.contact_container h2 {color:#336699;}
+	#contact_modal{ display:none; height:480px; width: 500px; background: #eaeaea;border:6px solid #ffffff;}
+	#contact_modal div.contact_container {float: left; width: 480px; padding: 20px 0px 0px 20px}
+	#contact_modal div.contact_container h2 {color:#336699;}
+	#contact3 { border:none; -moz-border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; -webkit-border-radius: 4px; background: #FFFFFF; max-width: 450px; width: 450px; height: 240px;max-height: 240px; margin: 0;color: #666666; font-size: 13px; font-family: Arial;}
+	#contact3:focus {outline: none;}
+	#contactForm span.contact_error {float:left; text-align: right; width: 300px;}
+	#contactForm #contactSubmit {float:right; padding: 3px; display:inline; margin: 10px 20px 0 0;}
+	#contactForm label {width: 100%; color: #666666;padding: 0 0 3px 0;}
 
 
+#publish_modal{ display:none; height:500px; width: 500px; background: #eaeaea;border:6px solid #ffffff;}
+#publish_modal div.contact_container {float: left; width: 500px; padding: 20px 0px 0px 20px}
+#publish_modal div.contact_container h2 {color:#336699;}
 
 
 
