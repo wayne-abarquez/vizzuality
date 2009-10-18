@@ -86,7 +86,6 @@ function borrarRecords(id1,id2,id3,id4) {
 	return false;
 }
 
-/* LOGIN */
 
 function showLoginWindow() {
 	$('#login_modal').modal();
@@ -111,6 +110,31 @@ function show_contact() {
 	$('#simplemodal-container').css("height",'480px');
 	
 }
+
+function show_publish() {
+	$('#publish_modal').modal();
+	
+	
+	var wscr = $(window).width();
+    var hscr = $(window).height();
+    
+    // obtener posicion central
+    var mleft = ( wscr - 500 ) / 2;
+    var mtop = ( hscr - 480 ) / 2;
+    
+    // estableciendo ventana modal en el centro
+    $('#simplemodal-container').css("left", mleft+'px');
+    $('#simplemodal-container').css("top", mtop+'px');
+	
+	$('#simplemodal-container').css("width",'500px');
+	$('#simplemodal-container').css("height",'480px');
+	
+}
+
+
+
+
+
 
 // When the form is submitted
 function login(){  
