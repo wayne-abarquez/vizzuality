@@ -176,7 +176,7 @@ class MediaServices {
 	
 	function getObjectPictures($table,$id) {
 	    $table=pg_escape_string($table);
-	    $sql = "SELECT id,path,width,height FROM picture WHERE on_id=$id AND on_table='$table'";
+	    $sql = "SELECT id,path,width,height,(select username from users as u where p.user_fk=u.id) as user_name FROM picture as p WHERE on_id=$id AND on_table='$table'";
 	    return pg_fetch_all(pg_query($this->conn, $sql));
 	}
 	
