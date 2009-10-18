@@ -26,7 +26,8 @@ $url = $_REQUEST['url'];
 
 
 if (isset($_SESSION['user'])) {
-	//Aqui seria posible poder enviarle directamente
+	//Aqui podemos tener un loop.... si el usuario intenta hackear la entrada y ya esta logado...
+	header( 'Location: '.$_REQUEST['url'] ) ;
 }
 
 

@@ -17,4 +17,7 @@ define('DB_HOST', 'localhost');
 
 define('ABSPATH','/path/to/www/');
 define('EMAILPASSWORD','emailpass');
+
+define('TWITTER_USER','runnity');
+define('TWITTER_PASS','vizzualejo');
 ?>

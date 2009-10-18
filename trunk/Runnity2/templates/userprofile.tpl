@@ -114,7 +114,7 @@ $(document).ready(function(){
 						<div class="span-1 first sexoEdit">
 							<p class="data">SEXO</p>
 							<select name="is_men" id="combo_sex">
-								{if $privateData.datos.is_men eq TRUE}
+								{if $privateData.datos.is_men eq 't'}
 								<option selected value="true">Hombre</option>
 			        			<option value="false">Mujer</option>
 			        			{else}
@@ -134,7 +134,7 @@ $(document).ready(function(){
 							<input type="text" name="locality" id="roundInputDataLong" value="{$privateData.datos.locality}">
 						</label>
 					</div>
-					<div class="checkAlerts"><input id="alertsCheckBox" name="alertsCheckBox" type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
+					<div class="checkAlerts"><input id="alertsCheckBox" name="alertsCheckBox" {if $privateData.datos.radius_interest gt 0}checked="checked"{/if} type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
 					<div id="mapBox">
 						<div class="span-1 mapaAlerts" id="map">
 <!-- 							<img src="/img/mapaAlerts.jpg"> -->
@@ -142,13 +142,8 @@ $(document).ready(function(){
                         <script type="text/javascript">
                         //<![CDATA[
                             var map = new GMap2(document.getElementById("map"));
-                            {/literal}{if !$smarty.session.user.lat eq ""}{literal}
-                                var start = new GLatLng({/literal}{$smarty.session.user.lat}, {$smarty.session.user.lon}{literal});
-                                map.setCenter(start, 10);
-                            {/literal}{else}{literal}
-                                var start = new GLatLng(40.111688,-3.69140625);
-                                map.setCenter(start, 4);
-                            {/literal}{/if}{literal}
+                            var start = new GLatLng({/literal}{$privateData.datos.lat}, {$privateData.datos.lon}{literal});
+                            map.setCenter(start, 10);
                             
                             map.addControl(new GSmallZoomControl());
                             new GKeyboardHandler(map);
@@ -185,11 +180,11 @@ $(document).ready(function(){
 
                             function fit(){
                                 map.panTo(bounds.getCenter()); 
-                                map.setZoom(map.getBoundsZoomLevel(bounds));
+                                map.setZoom(map.getBoundsZoomLevel(bounds)-1);
                             }
 
-                            {/literal}{if !$smarty.session.user.lat eq ""}{literal}
-                                drawCircle(start, {/literal}{$smarty.session.user.radius_interest}{literal}, 40);   
+                            {/literal}{if !$privateData.datos.lat eq ""}{literal}
+                                drawCircle(start, {/literal}{$privateData.datos.radius_interest}{literal}, 40);   
                                 fit();
                             {/literal}{else}{literal}
                                 $('#map').hide();
@@ -205,7 +200,9 @@ $(document).ready(function(){
 							<div class="span-1 first radioBusqueda">
 								<p class="data">RADIO DE BÚSQUEDA</p><p class="km">(Km)</p>
 								<label class="roundInputDataSmall" for="roundInputDataSmall">
-									<input type="text" name="radius_interest" id="roundInputDataSmall" value="{$smarty.session.user.radius_interest}">
+									<input type="text" name="radius_interest" id="roundInputDataSmall" value="{$privateData.datos.radius_interest}">
+									<input type="hidden" id="latHidden" name="lat" value="{$privateData.datos.lat}">
+								    <input type="hidden" id="lonHidden" name="lon" value="{$privateData.datos.lon}">
 								</label>
 							</div>
 							<div class="span-1 last radioInfo">
@@ -215,7 +212,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class="dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="submit" value="Guardar cambios"/></span>
+					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">TUS MARCAS</p>
@@ -253,26 +250,26 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class="dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="submit" value="Guardar cambios"/></span>
+					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
 				<div class="editAcount">
 					<div class="span-1 editEmail first">
 						<p class="data">EMAIL</p>
-						<label class="roundInputName last" for="roundInputName">
-							<input type="text" name="email" id="roundInputName" value="{$privateData.datos.email}">
+						<label class="roundInputName last" for="roundInputEmail">
+							<input type="text" name="email" id="roundInputEmail" value="{$privateData.datos.email}">
 						</label>
 					</div>
 					<div class="span-1 editPass last">
 						<p class="data">PASSWORD</p>
-						<label class="roundInputDataSmall last" for="roundInputDataSmall">
-							<input type="password" name="pass" id="roundInputDataSmall" value="{$privateData.datos.pass}">
+						<label class="roundInputDataSmall last" for="roundInputPassword">
+							<input type="password" name="pass" id="roundInputPassword" value="{$privateData.datos.pass}">
 						</label>
 					</div>
 				</div>
 				<div class="dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="submit" value="Guardar cambios"/></span>
+					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
 
 			</div>			

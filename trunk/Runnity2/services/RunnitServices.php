@@ -4,6 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/language/phpmailer.lang-es.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.phpmailer.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Twitter.class.php");
 
 class RunnitServices {
 	
@@ -210,7 +211,7 @@ class RunnitServices {
 	}
 	
 	//ajaxController
-	public function updateUser($username,$completename,$email,$password,$birthdayDay,$birthdayMonth,$birthdayYear,$locality,$lat,$lon,$radio) {
+	public function updateUser($username,$completename,$email,$password,$birthdayDay,$birthdayMonth,$birthdayYear,$locality,$lat,$lon,$radio,$is_men) {
 	    if (!$_SESSION['logged'] or $_SESSION['user']['username']!=$username) {
 	        throw new Exception("user not logged in");
 	    }
@@ -258,6 +259,12 @@ class RunnitServices {
 		} else {
 			$sql.=",radius_interest=null";  
 		}
+		
+		if($is_men) {
+			$sql.=",is_men=true"; 
+		} else {
+			$sql.=",is_men=false"; 
+		}
 	     
 	    $sql.=" WHERE username='$username'";
         $result= pg_query($this->conn, $sql);
@@ -271,7 +278,9 @@ class RunnitServices {
         $_SESSION['user']['radius_interest']=$radio;    
         $_SESSION['user']['birthdayDay']=$birthdayDay;    
         $_SESSION['user']['birthdayMonth']=$birthdayMonth;    
-        $_SESSION['user']['birthdayYear']=$birthdayYear;    
+        $_SESSION['user']['birthdayYear']=$birthdayYear;  
+		$_SESSION['user']['lat']=$lat;   
+		$_SESSION['user']['lon']=$lon;     
         return null;
 	    
 	     
@@ -315,7 +324,7 @@ class RunnitServices {
 	
 	    $result=array();
 	    $username=pg_escape_string($username);
-	    $sql="select u.id,completename,username,email,created_when,visits_profile,birthday,pass,locality,is_men,(select count(com.id) from users as usr inner join comments as com on com.on_id=usr.id and on_table='user' where usr.id=u.id and com.created_when > usr.last_login) as num_messages,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date < now()) as num_races_runned from users as u where username='$username'";
+	    $sql="select u.id,completename,username,email,created_when,visits_profile,birthday,pass,locality,radius_interest,is_men,y(location_point) as lon, x(location_point) as lat,(select count(com.id) from users as usr inner join comments as com on com.on_id=usr.id and on_table='user' where usr.id=u.id and com.created_when > usr.last_login) as num_messages,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date < now()) as num_races_runned from users as u where username='$username'";
         $result['datos'] = pg_fetch_assoc(pg_query($this->conn, $sql));
         if(!$result['datos']) {
             return false;
@@ -589,8 +598,9 @@ class RunnitServices {
             $results['count'] =(int)$resultCount['num_results'];            
         } else {
             $results['count'] =0;  
+			return $results;
         }
-        
+
         //Iterate over the array to check if the runs have images on the server or not and provide a random one
 	    foreach ($results['data'] as &$run) {
 	        $targetPicture=$this->basePath."media/run/".$run['id']."_small.jpg";
@@ -772,8 +782,15 @@ class RunnitServices {
             	$activity_description="Alta de carrera";
 
                 $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$newId, run1_description='".$activity_description."'";
-                $result= pg_query($this->conn, $sql);                  
-    	        
+                $result= pg_query($this->conn, $sql);       
+
+           		//Tweet!!!
+				$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
+				$tweetMessage=substr("$event_date:$event_location-> $name",0,140);
+    	        $success = $tweet->update($tweetMessage);
+				if (!$success) {
+					error_log("TWITTER PROBLEM: ".$tweet->error);
+				}
     	    }     	    
             
 
