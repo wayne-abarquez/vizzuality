@@ -623,7 +623,10 @@ div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24
 
 .rightRegister{
 	width: 346px;
+	height: 100px;
 	margin: 0px 0px 0px 0px;
+	height: 400px;
+
 }
 
 label.inputRegister {
@@ -1540,8 +1543,11 @@ a.verTodas:hover{
 	background-image: url(/img/background_photos.jpg);
 	background-repeat: repeat-x;
 	width: 641px;
-	height: 203px;
+	min-height: 203px;
 	margin: 0px 0px 20px -20px;	
+	background-color: #143c64;
+	max-height: auto;
+	padding-bottom: 10px;
 }
 
 .columnSort{
@@ -1647,11 +1653,21 @@ div.month5 {background-color: #9f00c6;}
 	font-weight: bold;
 	color: #ffffff;
 	padding-top: 10px;
-	margin-left: 20px;
+	margin-left: 30px;
 }
 
 #imgItems{
-	margin-left: 20px;
+	margin-left: 30px;
+	width: 600px;
+	min-height: 150px;
+	max-height: auto;
+	margin-top: -10px;
+	padding: 0;
+}
+
+.avatarPhoto{
+	margin: 0;
+	float: left;
 }
 
 .nophotos{
@@ -1662,9 +1678,50 @@ div.month5 {background-color: #9f00c6;}
 	margin-top: 20px;
 }
 
-.nophotos p{
+.nophotos p.up{
 	color: #666666;
 	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	margin: 0;
+	margin-top: 20px;
+}
+
+.nophotos p.center{
+	color: #666666;
+	text-align: center;
+	font-size: 14px;
+	margin: 0;
+	margin-top: 6px;
+}
+
+.nophotos p.down{
+	color: #336699; 
+	text-align: center;
+	font-size: 14px;
+	margin: 0;
+	margin-top: 20px;
+	text-decoration: none;
+}
+
+.nophotos p.down a{
+	color: #336699;
+	text-decoration: none;
+	font-weight: bold;
+}	
+
+.SubirFotosLink{
+	width: 610px;
+	height: 20px;
+	margin-left: 20px;
+}
+
+.SubirFotosLink a{
+	color: #ffffff;
+	font-weight: 14px;
+	font-weight: bold;
+	text-decoration: none;
+	float: right;
 }
 
 .raceData{width: 229px;}
