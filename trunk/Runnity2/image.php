@@ -16,6 +16,10 @@ $mediaServices = new MediaServices;
 
 
 $data=$mediaServices->getPictureDetails($_REQUEST['id']);
+if(!$data) {
+    header( 'Location: /404page.php' ) ; 
+}
+
 $smarty->assign('pictureDetails',$data);
 
 if ($_REQUEST['source']=="run") {
