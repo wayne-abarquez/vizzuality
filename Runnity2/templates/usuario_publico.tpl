@@ -42,21 +42,23 @@
 			</div>
 			
 			<div class="span-1 last imagesUserContainer">
-				<p class="titulo tituloLeft tituloRight">FOTOS DE {$data.datos.username|upper} [42], <a>ver todas</a></p>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
+				<p class="titulo tituloLeft tituloRight">FOTOS DE {$data.datos.username|upper} {if !empty($pictures)}[{$pictures|@count}]{/if}, <a>ver todas</a></p>
+				<div class="pictureUserContainer">
+				{if $pictures}
+				{foreach key=id item=picture from=$pictures name=pictureloop}
+					{if $smarty.foreach.pictureloop.iteration<6}
+						{if $smarty.foreach.pictureloop.iteration==5}
+						<div class="imagesUserLast" id="imagesUser">
+							<img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/>
+						</div>
+						{else}
+						<div class="imagesUser" id="imagesUser">
+							<img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/>
+						</div>
+						{/if}
+					{/if}
+				{/foreach}
+				{/if}
 				</div>
 			</div>
 			

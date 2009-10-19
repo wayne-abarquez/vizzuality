@@ -6,10 +6,13 @@ session_start();
 // load Smarty library 
 require 'libs/Smarty.class.php';
 require 'services/RunnitServices.php';
+require 'services/MediaServices.php';
 
 
 $smarty = new Smarty; 
 $services = new RunnitServices;
+$mediaServices = new MediaServices;
+
 
 if(isset($_REQUEST['u'])) {
     $username=$_REQUEST['u'];
@@ -24,6 +27,9 @@ $smarty->assign('data', $data);
 if (isset($_SESSION['logged']) and $_SESSION['logged']) {
     $smarty->assign('isAlreadyFriend', $services->isUserAlreadyFriend($data['datos']['id']));
 }
+
+$fotosSet=$mediaServices->getUserPictures($data['datos']['id']);
+$smarty->assign('pictures',$fotosSet);
 
 $smarty->assign('friends',$services->getUserFriends($data['datos']['id']));
 
