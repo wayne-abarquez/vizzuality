@@ -4,13 +4,12 @@
 <script type="text/javascript"> 
 $(document).ready(function(){
 
-	/*
-new AjaxUpload('#buttonUploadPicture', {
+	new AjaxUpload('#buttonUploadPicture', {
     	action: '/imageController.php',
     	data : { 
 				method:"uploadPicture",
-				onTable:"user",
-				onId:{/literal}{$data.id}{literal}
+				onTable:"users",
+				onId:{/literal}{$user_id}{literal}
 				},
     	onSubmit : function(file , ext){
     		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
@@ -44,9 +43,9 @@ new AjaxUpload('#buttonUploadPicture', {
     	},
     	onComplete : function(file,response){	
     		        		
-			$("#imgItems").append(response);
+			$("#pictureUserContainer").append(response);
 			
-			$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas!");
+			$("#buttonUploadPicture").html("Subir fotos");
 
 			window.clearInterval(interval);
 
@@ -55,7 +54,6 @@ new AjaxUpload('#buttonUploadPicture', {
 						
     	}		
     });  
-*/
 
     new AjaxUpload('#avatarPerfil', {
     	action: '/imageController.php',
@@ -176,29 +174,18 @@ new AjaxUpload('#buttonUploadPicture', {
 			</div>
 			
 			<div class="span-1 last imagesUserContainer">
-				<p class="titulo tituloLeft tituloRight">TUS FOTOS [42], <a>ver todas</a></p>
-				{foreach key=id item=picture from=$pictures}
-					<a href="/image.php?id={$picture.on_id}&picId={$picture.id}&type=b"><img src="/picture.php?id={$picture.on_id}&picId={$picture.id}&type=t"/></a>
+				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}, <a>ver todas</a></p>
+				<div class="pictureUserContainer">
+				{foreach key=id item=picture from=$pictures name=pictureloop}
+					{if $smarty.foreach.pictureloop.iteration<6}
+					<div class="imagesUser">
+						<img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/>
+					</div>
+					{/if}
 				{/foreach}
-				<!--
-<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
 				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
-				<div class="imagesUser">
-					<img src="/img/avatar.jpg"/>	
-				</div>
--->
 				<div>
-					<a class="editUserLink">subir fotos <img src="/img/pencil.gif"></a>
+					<a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a>
 				</div>
 			</div>
 			
@@ -206,7 +193,6 @@ new AjaxUpload('#buttonUploadPicture', {
 				<p class="titulo tituloLeft tituloRight">MENSAJES PARA TI {if !empty($comments)}[{$comments|@count}]{/if}</p>
 				
 				<div class="span-1 last columnComments">
-
 				<ol id="update">
 				{foreach key=id item=comment from=$comments}
 					{if $comment eq false}
