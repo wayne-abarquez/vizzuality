@@ -430,7 +430,7 @@ function inscribirseCarrera(userID,raceID) {
 }
 
 
-//INSCRIBIRSE O QUITARSE LA CARRRERA
+//SEGUIR A UN USUARIO
 function followUser(friendId) {
 	
 		
