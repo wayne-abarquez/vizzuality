@@ -238,7 +238,7 @@
 				{else}	    										
 					<div id="comment" class="span-1 last">
 						<div class="span-1 last avatarBox">
-							<img src="/avatar.php?id={$comment.user_id}&type=s"/>	
+							<img width="67" height="66" src="/avatar.php?id={$comment.user_id}&type=s"/>	
 						</div>
 						<div class="span-1 commentBox">
 						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
