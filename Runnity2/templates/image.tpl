@@ -6,20 +6,32 @@
 	<div class="span-1 last leftColumn">
 		
 		<div class="span-1 columnNameUser">
-			<p class="nameUserProfile">Fotos subidas por {$pictures[1].user_name}</p>
+		{if $source eq "run"}
+			<p class="nameUserProfile">Foto de {$pictureDetails.belongs_to_name}</p>
+		{else}
+			<p class="nameUserProfile">Fotos subidas por {$pictureDetails.username}</p>
+		{/if}	
 		</div>
-		<a class="dashboardLink" href="#">volver a su perfil <img src="/img/arrowDash.gif"></a>
+		{if $source eq "run"}
+			<a class="dashboardLink" href="/run/{$pictureDetails.belongs_to_fk}/">volver a la carrera <img src="/img/arrowDash.gif"></a>
+		{else}
+			<a class="dashboardLink" href="/user/{$pictureDetails.username}">volver a su perfil <img src="/img/arrowDash.gif"></a>
+		{/if}	
 		<div class="globalContainerUser">	
 			<div class="span-1 last imgData">
 				<div class="span-1 last upPaginator imagePaginator">
-					<p>1 de 57</b>
-					<span><a href="#"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
-					<span><a href="#"><input class="fg-button buttonRightArrow" type="button"/></a></span>
+					<p>{$fotoPosition} de {$totalFotos}</b>
+					{if $previousFotoId}
+						<span><a href="/image.php?id={$previousFotoId}&source={$smarty.get.source}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
+					{/if}	
+					{if $nextFotoId}
+						<span><a href="/image.php?id={$nextFotoId}&source={$smarty.get.source}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
+					{/if}
 					</p>	
 				</div>	
 				<div class="span-1 containerImg ">
 					<!--TODO: AL HACER CLick EN LA FOTO HAY QUE PASAR A LA SIGUIENTE-->
-					<img class="targetImg" id="userImg" src="{$targetPicture}">
+					<img class="targetImg" id="userImg" src="{$pictureDetails.path}">
 					<p>ver más fotos de <a href="/run/{$data.id}/{$data.name|replace:' ':'/'}">{$data.name}</a></p>
 				</div>
 			</div>
@@ -54,7 +66,7 @@
 				<div class="titleComents">Anímate y publica tu comentario</div>
 				<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
 				<!-- CUIDADO!!! QUE HE COPIPASTEADO DE LA DE CARRERA! -->				
-				<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('picture',{$smarty.request.id},'run',$('#commentTextArea').val())"/>
+				<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('Run',{$smarty.request.id},'run',$('#commentTextArea').val())"/>
 			{else}
 			<div class="span-1 iconPhrase">
 				<img src="/img/slash.gif"/>
@@ -72,12 +84,17 @@
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn userRightColumn">
 		<div class="span-1 functionalContainer">
-			<p class="titulo tituloLeft tituloColumnRight">MAS FOTOS DE {$pictures[1].user_name}</p>
+			{if $source eq "run"}
+				<p class="titulo tituloLeft tituloColumnRight">MAS FOTOS DE ESTA CARRERA</p>
+			{else}
+				<p class="titulo tituloLeft tituloColumnRight">MAS FOTOS DE {$pictureDetails.username}</p>
+			{/if}	
+			
 			<div class="eventsUsers">
 			{if $pictures}
 				<div class="avatarContainer">
 				{foreach key=id item=picture from=$pictures}
-					<a href="/image.php?id={$data.id}&picId={$picture.id}&type=b"><img class="avatarPhoto" src="/picture.php?id={$data.id}&picId={$picture.id}&type=t"/></a>
+					<a href="/image.php?id={$picture.id}&source={$smarty.get.source}"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 				{/foreach}	
 				</div>
 			{/if}

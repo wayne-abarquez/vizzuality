@@ -176,8 +176,26 @@ class MediaServices {
 	
 	function getObjectPictures($table,$id) {
 	    $table=pg_escape_string($table);
-	    $sql = "SELECT id,path,width,height,(select username from users as u where p.user_fk=u.id) as user_name FROM picture as p WHERE on_id=$id AND on_table='$table'";
+	    $sql="SELECT p.id,path,width,height,on_id,u.username FROM picture as p inner join users as u on p.user_fk=u.id WHERE on_id=$id AND on_table='$table'";
 	    return pg_fetch_all(pg_query($this->conn, $sql));
+	}
+	
+	function getUserPictures($userId) {
+	    $sql="SELECT p.id,path,width,height,on_id,u.username, u.id as user_id FROM picture as p inner join users as u on p.user_fk=u.id WHERE user_fk=$userId";
+	    return pg_fetch_all(pg_query($this->conn, $sql));
+	}	
+	
+	function getPictureDetails($id) {
+		$sql="
+		   SELECT p.id,path,width,height,on_id as belongs_to_fk,on_table as belongs_to_table,u.username,u.id as user_fk, 
+			CASE WHEN on_table='run' THEN
+				(SELECT name from run as ru WHERE ru.id=on_id)
+			ELSE '' END	as belongs_to_name
+			FROM picture as p inner join users as u on p.user_fk=u.id WHERE p.id=$id";
+						
+		$res=pg_fetch_assoc(pg_query($this->conn, $sql));
+		return $res;
+		
 	}
 	
 	
