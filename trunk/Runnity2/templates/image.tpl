@@ -21,10 +21,10 @@
 			<div class="span-1 last imgData">
 				<div class="span-1 last upPaginator imagePaginator">
 					<p>{$fotoPosition} de {$totalFotos}</b>
-					{if $previousFotoId}
+					{if $previousFotoId gt 0}
 						<span><a href="/image.php?id={$previousFotoId}&source={$smarty.get.source}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
 					{/if}	
-					{if $nextFotoId}
+					{if $nextFotoId gt 0}
 						<span><a href="/image.php?id={$nextFotoId}&source={$smarty.get.source}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
 					{/if}
 					</p>	
@@ -32,7 +32,14 @@
 				<div class="span-1 containerImg ">
 					<!--TODO: AL HACER CLick EN LA FOTO HAY QUE PASAR A LA SIGUIENTE-->
 					<img class="targetImg" id="userImg" src="{$pictureDetails.path}">
-					<p>ver más fotos de <a href="/run/{$data.id}/{$data.name|replace:' ':'/'}">{$data.name}</a></p>
+					
+            		{if $source eq "run"}
+            		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|replace:' ':'/'}">{$pictureDetails.belongs_to_name}</a></p>
+            		{else}
+            		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>            		
+            		{/if}					
+					
+					
 				</div>
 			</div>
 		</div>
@@ -66,7 +73,7 @@
 				<div class="titleComents">Anímate y publica tu comentario</div>
 				<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
 				<!-- CUIDADO!!! QUE HE COPIPASTEADO DE LA DE CARRERA! -->				
-				<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('Run',{$smarty.request.id},'run',$('#commentTextArea').val())"/>
+				<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('Picture',{$smarty.request.id},'picture',$('#commentTextArea').val())"/>
 			{else}
 			<div class="span-1 iconPhrase">
 				<img src="/img/slash.gif"/>
