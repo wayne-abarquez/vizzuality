@@ -176,6 +176,7 @@ $(document).ready(function(){
 			<div class="span-1 last imagesUserContainer">
 				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}, <a>ver todas</a></p>
 				<div class="pictureUserContainer">
+				{if $pictures}
 				{foreach key=id item=picture from=$pictures name=pictureloop}
 					{if $smarty.foreach.pictureloop.iteration<6}
 					<div class="imagesUser" id="imagesUser">
@@ -183,6 +184,7 @@ $(document).ready(function(){
 					</div>
 					{/if}
 				{/foreach}
+				{/if}
 				</div>
 				<div>
 					<a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a>

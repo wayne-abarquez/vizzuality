@@ -30,9 +30,14 @@
 					</p>	
 				</div>	
 				<div class="span-1 containerImg ">
-					<!--TODO: AL HACER CLick EN LA FOTO HAY QUE PASAR A LA SIGUIENTE-->
+					<!--HACER CLick EN LA FOTO PARA PASAR A LA SIGUIENTE-->
+					{if $nextFotoId gt 0}
+					<a href="/image.php?id={$nextFotoId}&source={$smarty.get.source}">
+					{/if}
 					<img class="targetImg" id="userImg" src="{$pictureDetails.path}">
-					
+					{if $nextFotoId gt 0}
+					</a>
+					{/if}
             		{if $source eq "run"}
             		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|replace:' ':'/'}">{$pictureDetails.belongs_to_name}</a></p>
             		{else}
