@@ -13,7 +13,7 @@
 		{/if}	
 		</div>
 		{if $source eq "run"}
-			<a class="dashboardLink" href="/run/{$pictureDetails.belongs_to_fk}/">volver a la carrera <img src="/img/arrowDash.gif"></a>
+			<a class="dashboardLink" href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|replace:' ':'/'}">volver a la carrera <img src="/img/arrowDash.gif"></a>
 		{else}
 			<a class="dashboardLink" href="/user/{$pictureDetails.username}">volver a su perfil <img src="/img/arrowDash.gif"></a>
 		{/if}	
