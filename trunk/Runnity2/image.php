@@ -8,21 +8,64 @@ require 'services/RunnitServices.php';
 require 'services/MediaServices.php';
 
 
+//http://localhost:8888/image.php?id=152&source=carrera
+
 $smarty = new Smarty; 
 $services = new RunnitServices;
 $mediaServices = new MediaServices;
 
 
+$data=$mediaServices->getPictureDetails($_REQUEST['id']);
+$smarty->assign('pictureDetails',$data);
+
+if ($_REQUEST['source']=="run") {
+	$smarty->assign('source', "run");
+	//voger mas imagenes de la misma carrera
+	$fotosSet=$mediaServices->getObjectPictures('run',$data['belongs_to_fk']);
+	$smarty->assign('pictures',$fotosSet);
+	
+} else {
+	
+	$smarty->assign('source', "user");
+	//coger images del usaurio
+	$fotosSet=$mediaServices->getUserPictures($data['user_fk']);
+	$smarty->assign('pictures',$fotosSet);
+}
+
+$nextFotoId=0;
+$previousFotoId=0;
+$fotoPosition=1;
+$total=count($fotosSet);
+
+foreach ($fotosSet as $img) {
+	if ($img['id']==$_REQUEST['id']) {
+		if (($fotoPosition+1) > $total) {
+			$nextFotoId=false;
+		} else {
+			$nextFotoId=$fotosSet[$fotoPosition+1]['id'];
+		}	
+		
+		if (($fotoPosition-1) < 0) {
+			$previousFotoId=false;
+		} else {
+			$previousFotoId=$fotosSet[$fotoPosition-1]['id'];
+		}
+		
+		break;
+		
+	}	
+	$fotoPosition++;
+}
+
+
+$smarty->assign('previousFotoId', $previousFotoId);
+$smarty->assign('nextFotoId', $nextFotoId);
+$smarty->assign('totalFotos', $total);
+$smarty->assign('fotoPosition', $fotoPosition);
+
 $smarty->assign('titulo_pagina', 'Detalle de imagen - Runnity.com');
-$smarty->assign('comments',$services->getComments($_SESSION['user']['id'],'run'));
+$smarty->assign('comments',$services->getComments($_REQUEST['id'],'picture'));
 
-$data=$services->getRunDetails($_REQUEST['id']);
-
-$smarty->assign('data',$data);
-
-$targetPicture="/media/run/".$_REQUEST['id']."/".$_REQUEST['picId']."_".$_REQUEST['type'].".jpg";
-$smarty->assign('targetPicture', $targetPicture);
-$smarty->assign('pictures',$mediaServices->getObjectPictures('run',$_REQUEST['id']));
 
 $smarty->assign('section', 'usuario');
 $smarty->display('image.tpl');

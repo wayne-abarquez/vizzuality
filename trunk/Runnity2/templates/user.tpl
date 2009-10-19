@@ -3,6 +3,60 @@
 {literal}
 <script type="text/javascript"> 
 $(document).ready(function(){
+
+	/*
+new AjaxUpload('#buttonUploadPicture', {
+    	action: '/imageController.php',
+    	data : { 
+				method:"uploadPicture",
+				onTable:"picture",
+				onId:{/literal}{$data.id}{literal}
+				},
+    	onSubmit : function(file , ext){
+    		if (ext && /^(jpg|png|jpeg|gif)$/.test(ext)){			
+    			// change button text, when user selects file			
+				$("#buttonUploadPicture").html(".");
+
+
+    			// If you want to allow uploading only 1 file at time,
+    			// you can disable upload button
+    			this.disable();
+
+
+    			// Uploding -> Uploading. -> Uploading...
+    			interval = window.setInterval(function(){
+    				var text = $("#buttonUploadPicture").html();
+    				if (text.length < 17){
+						$("#buttonUploadPicture").html(text + '.');					
+    				} else {
+    					$("#buttonUploadPicture").html(".");				
+    				}
+    			}, 200);
+
+    		} else {
+		
+    			// extension is not allowed
+    			//$('#example2 .text').text('Error: only images are allowed');
+    			// cancel upload
+    			return false;				
+    		}
+
+    	},
+    	onComplete : function(file,response){	
+    		        		
+			$("#imgItems").append(response);
+			
+			$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas!");
+
+			window.clearInterval(interval);
+
+			//enable upload button
+			this.enable();
+						
+    	}		
+    });  
+*/
+
     new AjaxUpload('#avatarPerfil', {
     	action: '/imageController.php',
     	data : { method:"uploadAvatar"},
@@ -123,7 +177,11 @@ $(document).ready(function(){
 			
 			<div class="span-1 last imagesUserContainer">
 				<p class="titulo tituloLeft tituloRight">TUS FOTOS [42], <a>ver todas</a></p>
-				<div class="imagesUser">
+				{foreach key=id item=picture from=$pictures}
+					<a href="/image.php?id={$picture.on_id}&picId={$picture.id}&type=b"><img src="/picture.php?id={$picture.on_id}&picId={$picture.id}&type=t"/></a>
+				{/foreach}
+				<!--
+<div class="imagesUser">
 					<img src="/img/avatar.jpg"/>	
 				</div>
 				<div class="imagesUser">
@@ -138,6 +196,7 @@ $(document).ready(function(){
 				<div class="imagesUser">
 					<img src="/img/avatar.jpg"/>	
 				</div>
+-->
 				<div>
 					<a class="editUserLink">subir fotos <img src="/img/pencil.gif"></a>
 				</div>
