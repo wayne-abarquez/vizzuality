@@ -30,10 +30,10 @@
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
-					<div class="span-1 last dataContainerUser">
+					<!--div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Club:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>S.S. de los Reyes - Clínicas Menorca</b></p></div>
-					</div>
+					</div -->
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
