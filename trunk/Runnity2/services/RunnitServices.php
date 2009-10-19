@@ -463,7 +463,7 @@ class RunnitServices {
         $result= pg_query($this->conn, $sql);
         
 
-        $activity_description=" Un nuevo comentario";
+        $activity_description="Un nuevo comentario";
 
         if($table=="run") {
             $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";

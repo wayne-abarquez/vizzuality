@@ -54,7 +54,7 @@
 				<div class="titleComents">Anímate y publica tu comentario</div>
 				<textarea name="textarea2" id="commentTextArea" class="textArea"></textarea>
 				<!-- CUIDADO!!! QUE HE COPIPASTEADO DE LA DE CARRERA! -->				
-				<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('Run',{$smarty.request.id},'run',$('#commentTextArea').val())"/>
+				<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('picture',{$smarty.request.id},'run',$('#commentTextArea').val())"/>
 			{else}
 			<div class="span-1 iconPhrase">
 				<img src="/img/slash.gif"/>
