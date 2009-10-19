@@ -38,7 +38,7 @@ if ($_REQUEST['method'] == 'addComment') {
 		
 	<div id="comment" class="span-1 last">
 		<div class="span-1 last avatarBox">
-			<img src="/img/avatar.jpg"/>	
+			<img src="/avatar.php?id=<?php echo $_SESSION['user']['id']; ?>&type=s"/>	
 		</div>
 		<div class="span-1 commentBox">
 			<div class="nameUser"><a class="name" href="#"><?php echo $name;?>, </a>ahora mismo.</div>
@@ -74,7 +74,7 @@ if ($_REQUEST['method'] == 'addCommentUser') {
 		
 		<div id="commentUser" class="span-1 last">
 			<div class="span-1 last avatarBox">
-				<img src="/img/avatar.jpg"/>	
+				<img src="/avatar.php?id=<?php echo $_SESSION['user']['id']; ?>&type=s"/>	
 			</div>
 			<div class="span-1 commentBoxUser">
 				<div class="nameUser"><a class="name" href="#"><?php echo $name;?>, </a>ahora mismo.</div>
