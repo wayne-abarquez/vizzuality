@@ -9,7 +9,7 @@ new AjaxUpload('#buttonUploadPicture', {
     	action: '/imageController.php',
     	data : { 
 				method:"uploadPicture",
-				onTable:"picture",
+				onTable:"user",
 				onId:{/literal}{$data.id}{literal}
 				},
     	onSubmit : function(file , ext){
