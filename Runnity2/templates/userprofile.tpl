@@ -228,22 +228,22 @@ $(document).ready(function(){
 						{foreach key=id item=record from=$records}
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsHH{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2">
+							<input type="text" id="roundInputRecordsHH{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2">
 							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsMM{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2">
+							<input type="text" id="roundInputRecordsMM{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2">
 							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsSS{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2">
+							<input type="text" id="roundInputRecordsSS{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2">
 							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsDD{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2">
+							<input type="text" id="roundInputRecordsDD{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2">
 							</label><span class="separatorInput"><input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(roundInputRecordsHH{$record.id},roundInputRecordsMM{$record.id},roundInputRecordsSS{$record.id},roundInputRecordsDD{$record.id})"></span>
 						</div>					
 						{/foreach}
