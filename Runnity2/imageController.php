@@ -8,7 +8,7 @@ if ($_REQUEST['method'] == 'uploadPicture') {
 	
 	if($data) {
 
-		echo("<img src=\"".str_replace("_b.jpg","_t.jpg",$data['path'])."\" onclick=\"javascript: void showModalImage('".$data['path']."')\" />");	
+		echo("<img src=\"".str_replace("_b.jpg","_t.jpg",$data['path'])."\" />");	
 	} else {
 	    echo("error");
 	}
