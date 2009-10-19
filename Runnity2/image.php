@@ -44,15 +44,15 @@ $total=count($fotosSet);
 foreach ($fotosSet as $img) {
 	if ($img['id']==$_REQUEST['id']) {
 		if (($fotoPosition+1) > $total) {
-			$nextFotoId=false;
+			$nextFotoId=0;
 		} else {
-			$nextFotoId=$fotosSet[$fotoPosition+1]['id'];
+			$nextFotoId=$fotosSet[$fotoPosition]['id'];
 		}	
 		
-		if (($fotoPosition-1) < 0) {
-			$previousFotoId=false;
+		if (($fotoPosition-1) < 1) {
+			$previousFotoId=0;
 		} else {
-			$previousFotoId=$fotosSet[$fotoPosition-1]['id'];
+			$previousFotoId=$fotosSet[$fotoPosition-2]['id'];
 		}
 		
 		break;
@@ -60,6 +60,8 @@ foreach ($fotosSet as $img) {
 	}	
 	$fotoPosition++;
 }
+
+
 
 
 $smarty->assign('previousFotoId', $previousFotoId);
