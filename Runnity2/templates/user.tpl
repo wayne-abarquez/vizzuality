@@ -43,7 +43,7 @@ $(document).ready(function(){
     	},
     	onComplete : function(file,response){	
     		        		
-			$("#pictureUserContainer").append(response);
+			$("#imagesUser").append(response);
 			
 			$("#buttonUploadPicture").html("Subir fotos");
 
@@ -178,7 +178,7 @@ $(document).ready(function(){
 				<div class="pictureUserContainer">
 				{foreach key=id item=picture from=$pictures name=pictureloop}
 					{if $smarty.foreach.pictureloop.iteration<6}
-					<div class="imagesUser">
+					<div class="imagesUser" id="imagesUser">
 						<img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/>
 					</div>
 					{/if}

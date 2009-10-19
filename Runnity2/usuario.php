@@ -20,7 +20,6 @@ $services = new RunnitServices;
 $mediaServices = new MediaServices;
 
 $fotosSet=$mediaServices->getUserPictures($_SESSION['user']['id']);
-error_log($_SESSION['user']['id']);
 $smarty->assign('pictures',$fotosSet);
 $smarty->assign('user_id',$_SESSION['user']['id']);
 
