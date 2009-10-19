@@ -803,7 +803,7 @@ div.userComments {
 
 .imagesUserContainer{
 	height: 130px;
-	width: 394px;	
+	width: 391px;	
 }
 
 .imagesUser{
@@ -811,11 +811,24 @@ div.userComments {
 	width: 73px;
 	height: 72px;
 	margin-top: 2px;
-	margin-right: 3px;
+	margin-right: 4px;
+	float: left;
+}
+
+.imagesUserLast{
+	border: 1px solid #cccccc;
+	width: 73px;
+	height: 72px;
+	margin-top: 2px;
 	float: left;
 }
 
 .imagesUser img{
+	margin-left: 3px;
+	margin-top: 3px;
+}
+
+.imagesUserLast img{
 	margin-left: 3px;
 	margin-top: 3px;
 }
