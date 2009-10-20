@@ -181,11 +181,11 @@ $(document).ready(function(){
 					{if $smarty.foreach.pictureloop.iteration<6}
 						{if $smarty.foreach.pictureloop.iteration==5}
 						<div class="imagesUserLast" id="imagesUser">
-							<img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/>
+							<a href="/image.php?id={$picture.id}&source=user"></a><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 						</div>
 						{else}
 						<div class="imagesUser" id="imagesUser">
-							<img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/>
+							<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 						</div>
 						{/if}
 					{/if}
