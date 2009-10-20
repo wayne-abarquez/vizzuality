@@ -292,7 +292,7 @@ $(document).ready(function(){
 		
 		{if $groupUsers}
 		<div class="span-1 functionalContainer">
-			<p class="titulo tituloLeft tituloColumnRight">DE TU GRUPO</p>
+			<p class="titulo tituloLeft tituloColumnRight">USUARIOS DE TU GRUPO</p>
 			<div class="eventsUsers">
 				<div class="avatarContainer">
 				{foreach key=id item=users from=$groupUsers}					
