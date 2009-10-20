@@ -324,7 +324,8 @@ $(document).ready(function(){
 		</div>		
 		{/if}
 		
-		{if $groupUsers}
+		{*
+{if $groupUsers}
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">USUARIOS DE TU GRUPO</p>
 			<div class="eventsUsers">
@@ -336,6 +337,7 @@ $(document).ready(function(){
 			</div>
 		</div>		
 		{/if}
+*}
 						
 	</div>
 

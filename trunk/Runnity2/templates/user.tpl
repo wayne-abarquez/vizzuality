@@ -174,14 +174,14 @@ $(document).ready(function(){
 			</div>
 			
 			<div class="span-1 last imagesUserContainer">
-				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}, <a>ver todas</a></p>
+				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
 				<div class="pictureUserContainer">
 				{if $pictures}
 				{foreach key=id item=picture from=$pictures name=pictureloop}
 					{if $smarty.foreach.pictureloop.iteration<6}
 						{if $smarty.foreach.pictureloop.iteration==5}
 						<div class="imagesUserLast" id="imagesUser">
-							<a href="/image.php?id={$picture.id}&source=user"></a><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+							<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 						</div>
 						{else}
 						<div class="imagesUser" id="imagesUser">
@@ -290,7 +290,8 @@ $(document).ready(function(){
 		</div>		
 		{/if}
 		
-		{if $groupUsers}
+		{*
+{if $groupUsers}
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">USUARIOS DE TU GRUPO</p>
 			<div class="eventsUsers">
@@ -302,6 +303,7 @@ $(document).ready(function(){
 			</div>
 		</div>		
 		{/if}
+*}
 				
 	</div>
 
