@@ -281,10 +281,24 @@ $(document).ready(function(){
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">USUARIOS A LOS QUE SIGUES</p>
 			<div class="eventsUsers">
-				<!--TODO-->									
 				<div class="avatarContainer">
-					<a href="/user/{$smarty.session.user.username}"><img title="{$smarty.session.user.username}" class="avatarRight" src="/avatar.php?id={$smarty.session.user.user_id}"/></a>	
-				</div>
+				{foreach key=id item=friend from=$friends}
+					<a href="/user/{$friend.username}"><img title="{$friend.username}" class="avatarRight" src="/avatar.php?id={$friend.id}&type=s"/></a>
+			    {/foreach}
+			    </div>
+			</div>
+		</div>		
+		{/if}
+		
+		{if $groupUsers}
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">DE TU GRUPO</p>
+			<div class="eventsUsers">
+				<div class="avatarContainer">
+				{foreach key=id item=users from=$groupUsers}					
+				<a href="/user/{$users.username}"><img title="{$users.username}" class="avatarRight" src="/avatar.php?id={$users.id}&type=s"/></a>
+			    {/foreach}
+			    </div>
 			</div>
 		</div>		
 		{/if}
