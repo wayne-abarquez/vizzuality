@@ -174,21 +174,23 @@ $(document).ready(function(){
 			</div>
 			
 			<div class="span-1 last imagesUserContainer">
+			{if $pictures}
 				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if} <a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a></p>
 				<div class="pictureUserContainer" id="pictureUserContainer">
 				{if $pictures}
-				{foreach key=id item=picture from=$pictures name=pictureloop}
-					{if $smarty.foreach.pictureloop.iteration<6}
-						<div class="imagesUser" id="imagesUser">
-							<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
-						</div>
-					{/if}
-				{/foreach}
+					{foreach key=id item=picture from=$pictures name=pictureloop}
+						{if $smarty.foreach.pictureloop.iteration<6}
+							<div class="imagesUser" id="imagesUser">
+								<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+							</div>
+						{/if}
+					{/foreach}
 				{/if}
 				</div>
 				<div>
-					
+				<!-- enlace subir fotos -->	
 				</div>
+			{/if}
 			</div>
 			
 			<div class="span-1 last commentsUser">
