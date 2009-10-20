@@ -223,7 +223,7 @@
 		<div class="span-11 first subInfo">
 		{if $section eq "home"} 
 			<p class="subTitle">Carreras, fotos, comentarios...</p>
-			<p class="subTitleInfo">Todo sobre mas de <a href="/buscar">140 carreras</a> en toda España</p>				
+			<p class="subTitleInfo">Todo sobre más de <a href="/buscar">140 carreras</a> en toda España</p>				
 		{/if}
 		{if $section eq "carrera" or $section eq "usuario" or $section eq "registro" or $section eq "404"} 
 			<div class="buttonmenuContainer">
