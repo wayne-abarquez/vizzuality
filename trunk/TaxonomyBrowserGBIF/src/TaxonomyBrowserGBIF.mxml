@@ -34,7 +34,7 @@
 				var httpsrv:HTTPService = new HTTPService();
 				httpsrv.resultFormat = "text";
 				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
-				httpsrv.url = "http://ecat-ws.gbif.org/ws/nav?image=thumb";
+				httpsrv.url = "http://ecat-ws.gbif.org/ws/nav?image=true&ranks=k&ranks=kpcofg";
 				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
 				httpsrv.send();			
 			}
@@ -56,9 +56,13 @@
 						} else {
 							clasOb.imageURL ="";
 						}
+						
+						clasOb.numInmediateChild=co.numP;
+						clasOb.inmediateChildRank="phylums";
+						
 						clasOb.labelField = co.scientificName;
-						clasOb.children=(co.numChildren>0);
-						clasOb.number_children = co.numChildren;
+						clasOb.children=(co.numP>0);
+						clasOb.number_children = co.numP;
 						clasOb.parent = co.higherTaxonID;
 						resultAc.addItem(clasOb);
 					}

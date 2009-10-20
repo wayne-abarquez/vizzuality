@@ -405,7 +405,7 @@ package com.ninem.controls
 			}
 			httpsrv2 = new HTTPService();
 			httpsrv2.resultFormat = "text";
-			httpsrv2.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&page=" + page.toString() + "&image=thumb&id="+((columnActive.dataProvider as ArrayCollection)[0].parent).toString();
+			httpsrv2.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&page=" + page.toString() + "&ranks=kpcofg&image=true&id="+((columnActive.dataProvider as ArrayCollection)[0].parent).toString();
 			httpsrv2.addEventListener(ResultEvent.RESULT,checkMoreItems);
 			httpsrv2.send();
  		}
@@ -543,7 +543,7 @@ package com.ninem.controls
 			var httpsrv:HTTPService = new HTTPService();
 			httpsrv.resultFormat = "text";
 			//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
-			httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&page=1&image=thumb&id="+(_selectedItem.id).toString();
+			httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&ranks=kpcofg&page=1&image=true&id="+(_selectedItem.id).toString();
 			httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
 			httpsrv.send();
 			
@@ -569,6 +569,47 @@ package com.ninem.controls
 					clasOb.labelField = co.scientificName;
 					clasOb.children=(co.numChildren>0);
 					clasOb.number_children = co.numChildren;
+					
+					var numInmediateChild:Number=co.numChildren;
+					var inmediateChildRank:String="groups";
+					switch (co.rank) {
+						case "kingdom":
+							numInmediateChild=co.numP;
+							inmediateChildRank="phylums";
+							break;
+						case "phylum":
+							numInmediateChild=co.numC;
+							inmediateChildRank="classes";
+							break;
+						case "class":
+							numInmediateChild=co.numO;
+							inmediateChildRank="orders";
+							break;
+						case "order":
+							numInmediateChild=co.numF;
+							inmediateChildRank="families";
+							break;
+						case "family":
+							numInmediateChild=co.numG;
+							inmediateChildRank="genus";
+							break;
+						case "genus":
+							numInmediateChild=co.numSG;
+							inmediateChildRank="subgenus";
+							break;
+						case "subgenus":
+							numInmediateChild=co.numS;
+							inmediateChildRank="species";
+							break;
+						case "species":
+							numInmediateChild=co.numS;
+							inmediateChildRank="infraspecies";
+							break;
+							
+					}
+					clasOb.numInmediateChild=numInmediateChild;
+					clasOb.inmediateChildRank=inmediateChildRank;
+					clasOb.children_rank = co.phylum;
 					clasOb.parent = co.higherTaxonID;
 					resultAc.addItem(clasOb);
 			}			
