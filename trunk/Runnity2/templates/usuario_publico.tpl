@@ -42,7 +42,7 @@
 			</div>
 			
 			<div class="span-1 last imagesUserContainer">
-				<p class="titulo tituloLeft tituloRight">FOTOS DE {$data.datos.username|upper} {if !empty($pictures)}[{$pictures|@count}]{/if}, <a>ver todas</a></p>
+				<p class="titulo tituloLeft tituloRight">FOTOS DE {$data.datos.username|upper} {if !empty($pictures)}[{$pictures|@count}]{/if}, <a href="#anclafotos">ver todas</a></p>
 				<div class="pictureUserContainer">
 				{if $pictures}
 				{foreach key=id item=picture from=$pictures name=pictureloop}
@@ -124,7 +124,7 @@
 				<p class="span-8 tituloPhotos">FOTOS DE {$data.datos.username|upper}</p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<a href="/image.php?id={$picture.id}&source=run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+					<a name="anclafotos" href="/image.php?id={$picture.id}&source=run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 				{/foreach}	
 				</div>
 			</div>
