@@ -158,7 +158,7 @@ $(document).ready(function(){
 					</div>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
-						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
+						<div class="span-1 last dataUserProfile"><p><b>{$categoria}</b></p></div>
 					</div>
 					<a class="editUserLink" href="/userprofile.php">editar tus datos <img src="/img/pencil.gif"></a>
 				</div>
