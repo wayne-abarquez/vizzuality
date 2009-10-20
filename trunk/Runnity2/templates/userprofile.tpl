@@ -311,16 +311,31 @@ $(document).ready(function(){
 			</div>
 		</div>
 		
+		{if $friends}
 		<div class="span-1 functionalContainer">
-			<p class="titulo tituloLeft tituloColumnRight">DE TU MISMO CLUB</p>
-			<div class="eventsUsers">									
+			<p class="titulo tituloLeft tituloColumnRight">USUARIOS A LOS QUE SIGUES</p>
+			<div class="eventsUsers">
 				<div class="avatarContainer">
-					{foreach key=id item=person from=$runners}
-					<img title="" class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/>	
-					{/foreach}
-				</div>
+				{foreach key=id item=friend from=$friends}
+					<a href="/user/{$friend.username}"><img title="{$friend.username}" class="avatarRight" src="/avatar.php?id={$friend.id}&type=s"/></a>
+			    {/foreach}
+			    </div>
 			</div>
-		</div>
+		</div>		
+		{/if}
+		
+		{if $groupUsers}
+		<div class="span-1 functionalContainer">
+			<p class="titulo tituloLeft tituloColumnRight">USUARIOS DE TU GRUPO</p>
+			<div class="eventsUsers">
+				<div class="avatarContainer">
+				{foreach key=id item=users from=$groupUsers}					
+				<a href="/user/{$users.username}"><img title="{$users.username}" class="avatarRight" src="/avatar.php?id={$users.id}&type=s"/></a>
+			    {/foreach}
+			    </div>
+			</div>
+		</div>		
+		{/if}
 						
 	</div>
 
