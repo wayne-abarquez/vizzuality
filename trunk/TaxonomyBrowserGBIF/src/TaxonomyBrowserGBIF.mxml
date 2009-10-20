@@ -46,7 +46,7 @@
 				var auxDP:ArrayCollection = new ArrayCollection()
 				
 				for each(var co:Object in resultObj) {
-					if (co.id != this.id) {
+					if (co.taxonID != this.id) {
 						var clasOb:Object= new Object();
 						clasOb.id = co.taxonID;
 						clasOb.type = co.rank;

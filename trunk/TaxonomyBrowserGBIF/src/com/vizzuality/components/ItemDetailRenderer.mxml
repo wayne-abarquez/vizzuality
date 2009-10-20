@@ -47,7 +47,7 @@
 				verticalAlign="top" horizontalAlign="center"/>
 		</mx:Box>
 		<mx:Button label="view distribution" width="135" height="30" fontWeight="normal"
-			click="{navigateToURL (new URLRequest ('http://data.gbif.org/search/' + escape(newData.labelField)), '_blank')}" 
+			click="{navigateToURL (new URLRequest ('/speciesPage.php?id='+newData.id),'_self')}" 
 			horizontalCenter="0" styleName="btnGreen"
 			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 		<mx:Label text="{newData.children_number} sources" fontSize="12" width="100%" textAlign="center" color="#999999" fontFamily="DINOT-Medium" horizontalCenter="0" top="383"/>
