@@ -30,7 +30,7 @@ $smarty->assign('comments',$services->getComments($_SESSION['user']['id'],'user'
 $smarty->assign('records',$services->getAllRecordsForUser($_SESSION['user']['id']));
 $smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['username']));
 
-$smarty->assign('groupUsers',$services->getGroupUsers(1));
+/* $smarty->assign('groupUsers',$services->getGroupUsers(1)); */
 
 $smarty->assign('section', 'usuario');
 $smarty->display('user.tpl');

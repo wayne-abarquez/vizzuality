@@ -1729,12 +1729,16 @@ div.month5 {background-color: #9f00c6;}
 	margin-left: 20px;
 }
 
-.SubirFotosLink a{
+.buttonUploadPicture{
 	color: #ffffff;
 	font-weight: 14px;
 	font-weight: bold;
 	text-decoration: none;
 	float: right;
+}
+
+.buttonUploadPicture:hover{
+	cursor: pointer;
 }
 
 .raceData{width: 229px;}

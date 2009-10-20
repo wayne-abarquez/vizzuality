@@ -209,10 +209,10 @@
 				<p class="span-8 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<a href="/image.php?id={$picture.id}&source=run"><img class="avatarPhoto" src="/picture.php?id={$data.id}&picId={$picture.id}&type=t"/></a>
+					<a href="/image.php?id={$picture.id}&source=run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 				{/foreach}	
 				</div>
-				<div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
+				<div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
 			</div>
 			{else}
 			<div class="span-1 last nophotos">
