@@ -97,9 +97,9 @@
 	<div class="span-1 last rightColumn userRightColumn">
 		<div class="span-1 functionalContainer">
 			{if $source eq "run"}
-				<p class="titulo tituloLeft tituloColumnRight">MAS FOTOS DE ESTA CARRERA</p>
+				<p class="titulo tituloLeft tituloColumnRight">MÁS FOTOS DE ESTA CARRERA</p>
 			{else}
-				<p class="titulo tituloLeft tituloColumnRight">MAS FOTOS DE {$pictureDetails.username}</p>
+				<p class="titulo tituloLeft tituloColumnRight">MÁS FOTOS DE {$pictureDetails.username|upper}</p>
 			{/if}	
 			
 			<div class="eventsUsers">
