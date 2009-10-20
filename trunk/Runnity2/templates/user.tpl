@@ -41,7 +41,8 @@ $(document).ready(function(){
     		}
 
     	},
-    	onComplete : function(file,response){	
+    	onComplete : function(file,response){
+    		
 			$("#imagesUser").remove();
 			$("#pictureUserContainer").append('<div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div>');
 			
@@ -164,20 +165,22 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
+			{if $privateData.datos.num_messages > 0}
 			<div class="span-1 last userAlerts">
+<!--
 				{foreach key=id item=grupo from=$privateData.grupos}
 				{if $grupo.name eq ""}<div class="alertUser"><p>Aún no nos has dicho si <b>perteneces a algún club</b></p></div>{/if}
 				{/foreach}
-				{if $privateData.datos.num_messages > 0}
+-->
 					<div class="alertUser"><p>Tienes <b>{$privateData.datos.num_messages} mensaje(s) nuevo(s)</b></p></div>
-				{/if}
 			</div>
+			{/if}
 			
 			<div class="span-1 last imagesUserContainer">
-			{if $pictures}
-				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if} <a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a></p>
-				<div class="pictureUserContainer" id="pictureUserContainer">
+				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}					<a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a>				
+</p>
 				{if $pictures}
+				<div class="pictureUserContainer" id="pictureUserContainer">
 					{foreach key=id item=picture from=$pictures name=pictureloop}
 						{if $smarty.foreach.pictureloop.iteration<6}
 							<div class="imagesUser" id="imagesUser">
@@ -185,12 +188,10 @@ $(document).ready(function(){
 							</div>
 						{/if}
 					{/foreach}
+				</div>
 				{/if}
-				</div>
 				<div>
-				<!-- enlace subir fotos -->	
 				</div>
-			{/if}
 			</div>
 			
 			<div class="span-1 last commentsUser">

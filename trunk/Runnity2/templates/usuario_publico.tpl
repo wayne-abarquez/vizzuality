@@ -43,23 +43,17 @@
 			
 			<div class="span-1 last imagesUserContainer">
 				<p class="titulo tituloLeft tituloRight">FOTOS DE {$data.datos.username|upper} {if !empty($pictures)}[{$pictures|@count}]{/if}, <a href="#anclafotos">ver todas</a></p>
-				<div class="pictureUserContainer">
 				{if $pictures}
-				{foreach key=id item=picture from=$pictures name=pictureloop}
-					{if $smarty.foreach.pictureloop.iteration<6}
-						{if $smarty.foreach.pictureloop.iteration==5}
-						<div class="imagesUserLast" id="imagesUser">
-							<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
-						</div>
-						{else}
-						<div class="imagesUser" id="imagesUser">
-							<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
-						</div>
+				<div class="pictureUserContainer" id="pictureUserContainer">
+					{foreach key=id item=picture from=$pictures name=pictureloop}
+						{if $smarty.foreach.pictureloop.iteration<6}
+							<div class="imagesUser" id="imagesUser">
+								<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+							</div>
 						{/if}
-					{/if}
-				{/foreach}
-				{/if}
+					{/foreach}
 				</div>
+				{/if}
 			</div>
 			
 			<div class="span-1 last commentsUser">
