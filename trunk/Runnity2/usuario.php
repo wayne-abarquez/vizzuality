@@ -36,6 +36,7 @@ $smarty->assign('privateData',$privateData);
 $variable=$privateData;
 $anio=substr($variable['datos']['birthday'],0,4);
 
+//categoría
 switch ($anio){
 	case ($anio>="1987" && $anio<="1989"):
 		$categoria="Promesa";
@@ -68,7 +69,6 @@ switch ($anio){
 		$categoria="Pre-Benjamín";
 	break;
 }
-
 $smarty->assign('categoria',$categoria);
 
 /* $smarty->assign('groupUsers',$services->getGroupUsers(1)); */

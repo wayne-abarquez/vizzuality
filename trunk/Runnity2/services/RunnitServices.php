@@ -296,7 +296,7 @@ class RunnitServices {
 	    
 	    $result=array();
 	    $username=pg_escape_string($username);
-	    $sql="select id,completename,username,email,created_when from users where username='$username'";
+	    $sql="select id,completename,username,email,created_when,birthday from users where username='$username'";
         $result['datos'] = pg_fetch_assoc(pg_query($this->conn, $sql));
         if(!$result['datos']) {
             return false;

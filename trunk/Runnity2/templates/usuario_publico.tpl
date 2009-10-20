@@ -36,7 +36,7 @@
 					</div -->
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
-						<div class="span-1 last dataUserProfile"><p><b>Senior Masculino</b></p></div>
+						<div class="span-1 last dataUserProfile"><p><b>{$categoria}</b></p></div>
 					</div>
 				</div>
 			</div>
