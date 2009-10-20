@@ -42,8 +42,8 @@ $(document).ready(function(){
 
     	},
     	onComplete : function(file,response){	
-    		        		
-			$("#imagesUser").append(response);
+			$("#imagesUser").remove();
+			$("#pictureUserContainer").append('<div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div>');
 			
 			$("#buttonUploadPicture").html("Subir fotos");
 
@@ -174,26 +174,20 @@ $(document).ready(function(){
 			</div>
 			
 			<div class="span-1 last imagesUserContainer">
-				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
-				<div class="pictureUserContainer">
+				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if} <a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a></p>
+				<div class="pictureUserContainer" id="pictureUserContainer">
 				{if $pictures}
 				{foreach key=id item=picture from=$pictures name=pictureloop}
 					{if $smarty.foreach.pictureloop.iteration<6}
-						{if $smarty.foreach.pictureloop.iteration==5}
-						<div class="imagesUserLast" id="imagesUser">
-							<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
-						</div>
-						{else}
 						<div class="imagesUser" id="imagesUser">
 							<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 						</div>
-						{/if}
 					{/if}
 				{/foreach}
 				{/if}
 				</div>
 				<div>
-					<a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a>
+					
 				</div>
 			</div>
 			
