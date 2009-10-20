@@ -82,10 +82,7 @@ if(isset($_REQUEST['action'])) {
 			$result= pg_query($services->conn, $sql);			
 		}
 
-	}
-
-    
-    
+	}    
 }
 
 
