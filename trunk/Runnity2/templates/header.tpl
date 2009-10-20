@@ -225,7 +225,7 @@
 			<p class="subTitle">Carreras, fotos, comentarios...</p>
 			<p class="subTitleInfo">Todo sobre mas de <a href="/buscar">140 carreras</a> en toda España</p>				
 		{/if}
-		{if $section eq "carrera"} 
+		{if $section eq "carrera" or $section eq "usuario" or $section eq "registro" or $section eq "404"} 
 			<div class="buttonmenuContainer">
 				<a href="javascript: void show_publish()"><div class="menu_button"><p>Publica tu carrera en Runnity</p></div></a>
 			</div>			
@@ -235,11 +235,13 @@
 				<a href="javascript: void show_publish()"><div class="menu_button"><p>Publica tu carrera en Runnity</p></div></a>
 			</div>			
 		{/if}
-		{if $section eq "usuario" or $section eq "registro" or $section eq "404"} 
+		{*
+{if $section eq "usuario" or $section eq "registro" or $section eq "404"} 
 			<div class="buttonmenuContainer">
 				<a href="#"><div class="menu_button"><p>Invita a tus amigos a Runnity</p></div></a>
 			</div>			
 		{/if}
+*}
 		</div>
 		
 		<div class="menu">
