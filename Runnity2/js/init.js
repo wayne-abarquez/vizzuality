@@ -324,10 +324,6 @@ function commentAction(tipo,id,on_table,comment) {
 		  				$("ol#update li:last").fadeIn(400);
 		    			$('#commentTextArea').html('');
 		  				$("#flash").hide();
-		  				
-		  				if($("#noCommentsDiv").length > 0) {
-		  				    $("#noCommentsDiv").hide();
-		  				}
 		  			},
 			        error:function (xhr, ajaxOptions, thrownError){
 			                alert('Runnity' + xhr.status + "\n" + thrownError);
@@ -357,10 +353,6 @@ function commentAction(tipo,id,on_table,comment) {
 		  				$("ol#update li:last").fadeIn(400);
 		    			$('#commentTextArea').html('');
 		  				$("#flash").hide();
-		  				
-		  				if($("#noCommentsDiv").length > 0) {
-		  				    $("#noCommentsDiv").hide();
-		  				}
 		  			},
 			        error:function (xhr, ajaxOptions, thrownError){
 			                alert('Runnity' + xhr.status + "\n" + thrownError);
@@ -390,10 +382,7 @@ function commentAction(tipo,id,on_table,comment) {
 		  				$("ol#update li:last").fadeIn(400);
 		    			$('#commentTextArea').html('');
 		  				$("#flash").hide();
-		  				
-		  				if($("#noCommentsDiv").length > 0) {
-		  				    $("#noCommentsDiv").hide();
-		  				}
+
 		  			},
 			        error:function (xhr, ajaxOptions, thrownError){
 			                alert('Runnity' + xhr.status + "\n" + thrownError);

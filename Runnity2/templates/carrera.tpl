@@ -239,14 +239,7 @@
 				</p>
 				<ol id="update">
 				{foreach key=id item=comment from=$comments}
-				{if $comment eq false}
-					<!--
-<div class="span-1 last noComments">
-						<p>Aún no hay comentarios sobre esta carrera</p>
-        				<p>Pero si quieres puedes <a href="/rss.php">subscribirte a nuestro RSS</a> para estar al tanto de todo lo ocurrido en runnity</p>
-    				</div>  
--->
-				{else}	    										
+				{if $comment}	    										
 					<div id="comment" class="span-1 last">
 						<div class="span-1 last avatarBox">
 							<img width="67" height="66" src="/avatar.php?id={$comment.user_id}&type=s"/>	

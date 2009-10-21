@@ -786,6 +786,12 @@ div.userComments {
 	width: 50px;
 }
 
+.dataContainerUserHack{
+	width: 205px;
+	height: 1px;
+	margin: 0px 0px 0px 0px;
+}
+
 .dataContainerUser{
 	width: 205px;
 	height: auto;
