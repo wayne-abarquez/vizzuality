@@ -163,12 +163,6 @@ $(document).ready(function(){
 						<div class="span-1 last dataTitleUserProfile"><p>Email:</p></div>
 						<div class="span-1 last dataUserProfile"><p id="datos1"><b>{$privateData.datos.email}</b></p></div>
 					</div>
-					<!--
-<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserProfile"><p>Club:</p></div>
-						<div class="span-1 last dataUserProfile">{foreach key=id item=grupo from=$privateData.grupos}<p><b>{$grupo.name}</b></p>{/foreach}</div>
-					</div>
--->
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>{$categoria}</b></p></div>
@@ -179,11 +173,6 @@ $(document).ready(function(){
 			
 			{if $privateData.datos.num_messages > 0}
 			<div class="span-1 last userAlerts">
-<!--
-				{foreach key=id item=grupo from=$privateData.grupos}
-				{if $grupo.name eq ""}<div class="alertUser"><p>Aún no nos has dicho si <b>perteneces a algún club</b></p></div>{/if}
-				{/foreach}
--->
 					<div class="alertUser"><p>Tienes <b>{$privateData.datos.num_messages} mensaje(s) nuevo(s)</b></p></div>
 			</div>
 			{/if}

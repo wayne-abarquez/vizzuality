@@ -356,7 +356,7 @@ label.roundInputName {
 /* USUARIO PUBLICO */
 
 div.comment_wall {
-	width: 385px;
+	width: 390px;
 	background-color: #f1f4f8;
 	padding-bottom: 20px;
 	margin:0;
@@ -699,7 +699,7 @@ body a{
 div.commentsPaginator p {padding: 7px;}
 
 .columnComments{
-	width: 390px:
+	width: 390px;
 }
 
 div.userComments {
@@ -712,7 +712,7 @@ div.userComments {
 	margin-left: 20px;
 }
 
-#commentUser {width: 385px; border-bottom: 1px dotted #cccccc; margin-left: -17px; margin-top: 5px; margin-bottom: 5px;}
+#commentUser {width: 390px; border-bottom: 1px dotted #cccccc; margin-left: -17px; margin-top: 5px; margin-bottom: 5px;}
 #commentUser a.name {color: #666666; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
 #commentUser div.commentBoxUser {margin-left: 10px; width: 290px; height: 76px; margin-bottom: 10px;}
 #commentUser div.commentBoxUser p {margin-right: 30px;}
