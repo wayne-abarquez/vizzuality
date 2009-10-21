@@ -4,6 +4,8 @@
 <script type="text/javascript"> 
 $(document).ready(function(){
 
+	$('#datos1').truncate({max_length: 32});
+
 	new AjaxUpload('#buttonUploadPicture', {
     	action: '/imageController.php',
     	data : { 
@@ -42,17 +44,25 @@ $(document).ready(function(){
 
     	},
     	onComplete : function(file,response){
-    		
-			$("#imagesUser").remove();
-			$("#pictureUserContainer").append('<div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div>');
+    	
+    		var tipoCont = $("#pictureUserContainerNoPhotos").attr("title");
+		
+        	if(tipoCont=="first"){
+        		$("#pictureUserContainerNoPhotos").remove();
+        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></div>');
+        		} else {
+        			
+        		$("#imagesUser").remove();
+				$("#pictureUserContainer").append('<div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div>');
 			
-			$("#buttonUploadPicture").html("Subir fotos");
+				$("#buttonUploadPicture").html("Subir fotos");
 
-			window.clearInterval(interval);
+				window.clearInterval(interval);
 
-			//enable upload button
-			this.enable();
-						
+				//enable upload button
+				this.enable();        	
+			}
+    								
     	}		
     });  
 
@@ -151,7 +161,7 @@ $(document).ready(function(){
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Email:</p></div>
-						<div class="span-1 last dataUserProfile"><p><b>{$privateData.datos.email}</b></p></div>
+						<div class="span-1 last dataUserProfile"><p id="datos1"><b>{$privateData.datos.email}</b></p></div>
 					</div>
 					<!--
 <div class="span-1 last dataContainerUser">
@@ -181,6 +191,7 @@ $(document).ready(function(){
 			<div class="span-1 last imagesUserContainer">
 				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}					<a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a>				
 </p>
+				<div id="newphotos">
 				{if $pictures}
 				<div class="pictureUserContainer" id="pictureUserContainer">
 					{foreach key=id item=picture from=$pictures name=pictureloop}
@@ -191,38 +202,37 @@ $(document).ready(function(){
 						{/if}
 					{/foreach}
 				</div>
+				{else}
+					<div class="pictureUserContainerNoPhotos" id="pictureUserContainerNoPhotos" title="first">
+						<p class="up">No has subido fotos...</p>
+					</div>				
 				{/if}
-				<div>
 				</div>
 			</div>
 			
 			<div class="span-1 last commentsUser">
 				<p class="titulo tituloLeft tituloRight">MENSAJES PARA TI {if !empty($comments)}[{$comments|@count}]{/if}</p>
-				
+				{if $comments}
 				<div class="span-1 last columnComments">
 				<ol id="update">
-				{foreach key=id item=comment from=$comments}
-					{if $comment eq false}
-	
-					{else}   										
-						<div id="commentUser" class="span-1 last">
-							<div class="span-1 last avatarBox">
-								<img src="/avatar.php?id={$comment.user_id}&type=s"/>	
-							</div>
-							<div class="span-1 commentBoxUser">
-							<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
-							<p class="commentUserProfile">{$comment.commenttext}</p>
-							</div>
-							
-						</div>							
-	          		{/if}
-            	{foreachelse}
-					<div class="span-1 noComments">
-
-    				</div>    
+				{foreach key=id item=comment from=$comments}					
+					<div id="commentUser" class="span-1 last">
+						<div class="span-1 last avatarBox">
+							<img src="/avatar.php?id={$comment.user_id}&type=s"/>	
+						</div>
+						<div class="span-1 commentBoxUser">
+						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+						<p class="commentUserProfile">{$comment.commenttext}</p>
+						</div>
+					</div>
             	{/foreach}
             	</ol>
 				</div>
+				{else}
+					<div class="pictureUserContainerNoPhotos">
+						<p class="up">No tienes ningún mensaje...</p>
+					</div> 
+				{/if}
 				
 				
 				<!-- Crear servicio para los comentarios sobre usuario -->
