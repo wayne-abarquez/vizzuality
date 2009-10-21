@@ -264,24 +264,27 @@
             	{/foreach}
             	</ol>
 				</div> 
-			</div>
 			
-			<div class="span-8" id="flash" align="left"></div>
-        	<div class="span-1 comment_wall">
-				{if $smarty.session.logged}				
-					<div class="commentArea" id="commentBox">	
-						<div class="titleComents">Deja tu comentario</div>
-						<textarea id="comment_textarea"></textarea>
-						<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('User',{$data.datos.id},'user',$('#comment_textarea').val())"/>
-					</div>
-				{else}
-					<div>
-						<p class="noComments_wall">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en Runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
-					</div>
-				 {/if}
-			</div>
+				<div class="span-8" id="flash" align="left"></div>
+	        	<div class="span-1 comment_wall">
+					{if $smarty.session.logged}				
+						<div class="commentArea" id="commentBox">	
+							<div class="titleComents">Deja tu comentario</div>
+							<textarea id="comment_textarea"></textarea>
+							<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('User',{$data.datos.id},'user',$('#comment_textarea').val())"/>
+						</div>
+					{else}
+						<div>
+							<p class="noComments_wall">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en Runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
+						</div>
+					 {/if}
+				</div>
+			
+			</div> <!-- commentsUser -->
 			
 		</div>
+		
+		<div class="span-1 separatorBannerPhotosUser"></div>
 		
 		{if $pictures}
 			<div class="span-1 last bannerTopPhotos"></div>
@@ -289,12 +292,11 @@
 				<p class="span-8 tituloPhotos">FOTOS DE {$data.datos.username|upper}</p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<a href="/image.php?id={$picture.id}&source=user"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+					<a name="anclafotos" href="/image.php?id={$picture.id}&source=run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 				{/foreach}	
 				</div>
 			</div>
 		{/if}
-
 		
 	</div>
 	
