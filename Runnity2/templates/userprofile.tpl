@@ -206,7 +206,7 @@ $(document).ready(function(){
 								</label>
 							</div>
 							<div class="span-1 last radioInfo">
-								<p class="data">Las alertas se enviarán semanalmente a tu dirección de email</p>
+								<p class="dataRadio">Las alertas se enviarán semanalmente a tu dirección de email</p>
 							</div>						
 						</div>
 					</div>
@@ -224,7 +224,7 @@ $(document).ready(function(){
 						{/foreach}
 					</div>
 					<div class="span-1 last recordsContainer">
-						<p class="data">HH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CENTS</p>
+						<p class="data">HH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CTS</p>
 						{foreach key=id item=record from=$records}
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
@@ -323,21 +323,6 @@ $(document).ready(function(){
 			</div>
 		</div>		
 		{/if}
-		
-		{*
-{if $groupUsers}
-		<div class="span-1 functionalContainer">
-			<p class="titulo tituloLeft tituloColumnRight">USUARIOS DE TU GRUPO</p>
-			<div class="eventsUsers">
-				<div class="avatarContainer">
-				{foreach key=id item=users from=$groupUsers}					
-				<a href="/user/{$users.username}"><img title="{$users.username}" class="avatarRight" src="/avatar.php?id={$users.id}&type=s"/></a>
-			    {/foreach}
-			    </div>
-			</div>
-		</div>		
-		{/if}
-*}
 						
 	</div>
 
