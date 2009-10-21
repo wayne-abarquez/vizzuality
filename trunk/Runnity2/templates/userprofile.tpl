@@ -103,7 +103,7 @@ $(document).ready(function(){
 			<form action="userprofile.php" method="POST">			
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
-				<div class="editdata">
+				<div class="span-1 editdata">
 					<div class="nameEdit">
 						<p class="data">NOMBRE Y APELLIDOS</p>
 						<label class="roundInputName last" for="roundInputName">
@@ -211,7 +211,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>
-				<div class="dataUserButtons">
+				<div class="span-1 dataUserButtons">
 					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
 				
