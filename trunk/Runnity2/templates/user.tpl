@@ -153,10 +153,12 @@ $(document).ready(function(){
 						<div class="span-1 last dataTitleUserProfile"><p>Email:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>{$privateData.datos.email}</b></p></div>
 					</div>
-					<div class="span-1 last dataContainerUser">
+					<!--
+<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Club:</p></div>
 						<div class="span-1 last dataUserProfile">{foreach key=id item=grupo from=$privateData.grupos}<p><b>{$grupo.name}</b></p>{/foreach}</div>
 					</div>
+-->
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>{$categoria}</b></p></div>

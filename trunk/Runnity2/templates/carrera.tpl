@@ -44,15 +44,23 @@
 
         	},
         	onComplete : function(file,response){	
+        		
+        		var tipoCont = $("#nophotos").attr("title");
+		
+        		if(tipoCont=="first"){
+        			$("#nophotos").remove();
+        			$("#newphotos").append('<div class="span-1 last bannerTopPhotos"></div><div class="span-1 last columnPhotos"><p class="span-8 tituloPhotos">FOTOS DEL EVENTO</p><div id="imgItems"><a href="/image.php?id=138&source=run">'+response+'</a></div><div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div></div>');
+        		} else {
+        			$("#imgItems").append(response);
+					$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas!");
+    				
+    				window.clearInterval(interval);
+
+    				//enable upload button
+    				this.enable();
+        		}
         		        		
-				$("#imgItems").append(response);
-				
-				$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas!");
 
-    			window.clearInterval(interval);
-
-    			//enable upload button
-    			this.enable();
     						
         	}		
         });        				
@@ -203,6 +211,7 @@
 				{/if}
 			</div>
 			
+			<div id="newphotos">
 			{if $pictures}
 			<div class="span-1 last bannerTopPhotos"></div>
 			<div class="span-1 last columnPhotos">
@@ -215,12 +224,13 @@
 				<div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
 			</div>
 			{else}
-			<div class="span-1 last nophotos">
+			<div class="span-1 last nophotos" id="nophotos" title="first">
 				<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
 				<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
 				<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIcon.gif">Subir fotos</a></p>
 			</div>			
-			{/if}	
+			{/if}
+			</div>	
 			
 			<div class="span-1 last columnLong">
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
