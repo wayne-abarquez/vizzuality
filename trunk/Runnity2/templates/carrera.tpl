@@ -49,6 +49,7 @@
 		
         		if(tipoCont=="first"){
         			$("#nophotos").remove();
+/*         			esta puesto a pelo el id de la foto */
         			$("#newphotos").append('<div class="span-1 last bannerTopPhotos"></div><div class="span-1 last columnPhotos"><p class="span-8 tituloPhotos">FOTOS DEL EVENTO</p><div id="imgItems"><a href="/image.php?id=138&source=run">'+response+'</a></div><div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div></div>');
         		} else {
         			$("#imgItems").append(response);
