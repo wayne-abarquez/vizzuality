@@ -178,8 +178,7 @@ $(document).ready(function(){
 			{/if}
 			
 			<div class="span-1 last imagesUserContainer">
-				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}					<a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a>				
-</p>
+				<p class="titulo tituloLeft tituloRight">TUS FOTOS {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
 				<div id="newphotos">
 				{if $pictures}
 				<div class="pictureUserContainer" id="pictureUserContainer">
@@ -197,6 +196,7 @@ $(document).ready(function(){
 					</div>				
 				{/if}
 				</div>
+				<div class="span-1 editUserLinkDiv"><a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a></div>
 			</div>
 			
 			<div class="span-1 last commentsUser">

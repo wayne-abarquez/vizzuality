@@ -721,6 +721,11 @@ div.userComments {
 #commentUser div.commentBoxUser p.commentUserProfile a:hover {color: #333333;}
 #commentUser div.commentBoxUser div.nameUser {margin-left: 30px; color: #666666;}
 
+.editUserLinkDiv{
+	height: 20px;
+	width: 390px;
+}
+
 .editUserLink{
 	float: right;
 	color: #336699;
