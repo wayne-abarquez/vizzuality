@@ -1925,6 +1925,11 @@ div.mapStyleRight {
 	margin-top: 3px;
 }
 
+.separatorBannerPhotosUser{
+	width: 500px;
+	height: 10px;
+}
+
 .bannerTopPhotos{
 	background-image: url(/img/banner_photos.gif);
 	background-repeat: no-repeat;
