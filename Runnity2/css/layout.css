@@ -1,3 +1,7 @@
+#datos1 a{
+	text-decoration: none;
+	color: #666666;
+}
 /* usuario edit */
 
 #buttonUpload{
@@ -802,6 +806,22 @@ div.userComments {
 }
 
 .pictureUserContainer{margin-left: 4px;}
+
+.pictureUserContainerNoPhotos{
+	height: 75px;
+	width: 389px;
+	border: 1px solid #cdd7e1;
+	background-color: #f3f6f9;
+}
+
+.pictureUserContainerNoPhotos p.up{
+	color: #666666;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	margin: 0;
+	margin-top: 25px;
+}
 
 .imagesUserContainer{
 	height: 130px;
