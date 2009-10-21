@@ -321,7 +321,8 @@ label.roundInputName {
 
 .editdata{
 	background-color: #f1f4f8;
-	height: 376px;
+	height: auto;
+	min-height: 190px;
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
