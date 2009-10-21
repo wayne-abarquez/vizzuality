@@ -405,7 +405,7 @@ package com.ninem.controls
 			}
 			httpsrv2 = new HTTPService();
 			httpsrv2.resultFormat = "text";
-			httpsrv2.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&page=" + page.toString() + "&ranks=kpcofg&image=true&id="+((columnActive.dataProvider as ArrayCollection)[0].parent).toString();
+			httpsrv2.url = Application.application.ecatServices+"nav/?pagesize=25&page=" + page.toString() + "&ranks=kpcofg&image=true&id="+((columnActive.dataProvider as ArrayCollection)[0].parent).toString();
 			httpsrv2.addEventListener(ResultEvent.RESULT,checkMoreItems);
 			httpsrv2.send();
  		}
