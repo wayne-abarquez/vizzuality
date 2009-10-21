@@ -19,7 +19,12 @@
 			[Bindable]
 			public var gbifTaxonomy : ArrayCollection = new ArrayCollection();
 			
+			public var ecatServices:String ="http://ecat-ws.gbif.org/ws/";
+			
 			private function onCreationComplete():void {
+				if(parameters.ecatServices!=null) {
+					ecatServices=parameters.ecatServices;
+				}
 				
 	        var externalDomains:Array=["farm1.static.flickr.com","farm2.static.flickr.com","farm3.static.flickr.com","farm4.static.flickr.com"];
 	        for each(var dom:String in externalDomains) {
@@ -34,7 +39,7 @@
 				var httpsrv:HTTPService = new HTTPService();
 				httpsrv.resultFormat = "text";
 				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
-				httpsrv.url = "http://ecat-ws.gbif.org/ws/nav?image=true&ranks=k&ranks=kpcofg";
+				httpsrv.url = ecatServices+"nav?image=true&ranks=k&ranks=kpcofg";
 				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
 				httpsrv.send();			
 			}
