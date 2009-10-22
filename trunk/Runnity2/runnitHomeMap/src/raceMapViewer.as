@@ -77,6 +77,9 @@ package
 			if(loaderInfo.url.indexOf("runnity.es")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA";				
 			}
+			if(loaderInfo.url.indexOf("67.23.47.172")>=0) {
+				map.key="ABQIAAAAXucQwXp28TiGqramtQ-1nhTGDsp2z8MalcroimtHohqExHETcBT5ufo4NMa7ge3ZWP3vXPrzs4p00Q";				
+			}
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(610, 250));
 			addChild(map);
