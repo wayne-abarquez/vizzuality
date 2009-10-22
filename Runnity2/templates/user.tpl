@@ -49,21 +49,30 @@ $(document).ready(function(){
 		
         	if(tipoCont=="first"){
         		$("#pictureUserContainerNoPhotos").remove();
-        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></div>');
+        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></li><ul id="loc"></div>');
+        	} else {
+        	    var i=$('ul#loc li').size()+1;
+        		if(i<6){
+	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
+	            	$("#buttonUploadPicture").html("Subir fotos");
+					window.clearInterval(interval);
+
+					//enable upload button
+					this.enable();
         		} else {
-        			
-        		$("#imagesUser").remove();
-				$("#pictureUserContainer").append('<div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div>');
-			
-				$("#buttonUploadPicture").html("Subir fotos");
+        			$('ul#loc li:last').remove();
+	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
+					$("#buttonUploadPicture").html("Subir fotos");
+					window.clearInterval(interval);
 
-				window.clearInterval(interval);
-
-				//enable upload button
-				this.enable();        	
+					//enable upload button
+					this.enable();      
+        		}
+        		  	
 			}
     								
-    	}		
+    	}	
+    		
     });  
 
     new AjaxUpload('#avatarPerfil', {
@@ -182,13 +191,17 @@ $(document).ready(function(){
 				<div id="newphotos">
 				{if $pictures}
 				<div class="pictureUserContainer" id="pictureUserContainer">
+					<ul id="loc">
 					{foreach key=id item=picture from=$pictures name=pictureloop}
 						{if $smarty.foreach.pictureloop.iteration<6}
-							<div class="imagesUser" id="imagesUser">
-								<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
-							</div>
+							<li>
+								<div class="imagesUser" id="imagesUser">
+									<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+								</div>
+							</li>
 						{/if}
 					{/foreach}
+					</ul>
 				</div>
 				{else}
 					<div class="pictureUserContainerNoPhotos" id="pictureUserContainerNoPhotos" title="first">

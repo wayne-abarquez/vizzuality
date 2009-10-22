@@ -1,3 +1,9 @@
+#loc{
+	list-style: none;
+	display: inline;
+	margin: 0;
+}
+
 #datos1 a{
 	text-decoration: none;
 	color: #666666;
@@ -1774,6 +1780,11 @@ div.month5 {background-color: #9f00c6;}
 .avatarPhoto{
 	margin: 0;
 	float: left;
+}
+
+.noPhotosLogin{
+	margin-left: 120px;
+	margin-top: 50px;
 }
 
 .nophotos{

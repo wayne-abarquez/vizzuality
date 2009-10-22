@@ -213,23 +213,31 @@
 			</div>
 			
 			<div id="newphotos">
-			{if $pictures}
-			<div class="span-1 last bannerTopPhotos"></div>
-			<div class="span-1 last columnPhotos">
-				<p class="span-8 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
-				<div id="imgItems">
-				{foreach key=id item=picture from=$pictures}
-					<a href="/image.php?id={$picture.id}&source=run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
-				{/foreach}	
+			{if $smarty.session.logged}				
+				{if $pictures}
+				<div class="span-1 last bannerTopPhotos"></div>
+				<div class="span-1 last columnPhotos">
+					<p class="span-8 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
+					<div id="imgItems">
+					{foreach key=id item=picture from=$pictures}
+						<a href="/image.php?id={$picture.id}&source=run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+					{/foreach}	
+					</div>
+					<div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
 				</div>
-				<div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
-			</div>
+				{else}
+				<div class="span-1 last nophotos" id="nophotos" title="first">
+					<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
+					<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
+					<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIcon.gif">Subir fotos</a></p>
+				</div>			
+				{/if}
 			{else}
-			<div class="span-1 last nophotos" id="nophotos" title="first">
-				<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
-				<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
-				<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIcon.gif">Subir fotos</a></p>
-			</div>			
+				<div class="span-1 last nophotos" id="nophotos" title="first">
+				<div class="noPhotosLogin">
+					<p class="noComments_wall">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en Runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
+				</div>
+				</div>			
 			{/if}
 			</div>	
 			
