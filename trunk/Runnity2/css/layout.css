@@ -1,5 +1,5 @@
 #editDataForm input.inputName,#editDataForm input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 362px;padding: 4px 4px 4px 4px; color: #999999;}
-#editDataForm input.inputRadio {border: 1px solid #dddddd; margin: 0 0 0 0; width: 80px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.inputRadio {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputMail {border: 1px solid #dddddd; margin: 0 0 0 0; width: 280px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputPassword,#editDataForm input.inputPassword2 {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
 
@@ -267,6 +267,7 @@ label.roundInputRecords{
 	height: 50px;
 	margin-left: 10px;
 	padding-top: 10px;
+	padding-bottom: 2px;
 }
 
 .fechaEdit{
@@ -287,6 +288,7 @@ label.roundInputRecords{
 	width:372px;
 	height: 50px;
 	margin-left: 10px;
+	padding-bottom: 4px;
 }
 
 .globalContainerUser{
@@ -328,6 +330,7 @@ label.roundInputRecords{
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
+	padding-bottom: 10px;
 }
 
 .editMail{
