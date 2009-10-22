@@ -11,9 +11,9 @@
    </script>
 {/literal}
 
+{*
 {literal}
 	<script type="text/javascript">
-/*
 	$.validator.setDefaults({
 		submitHandler: function() { 
 			if (($('#answer').html()!='Buen nombre') || ($('#result').html()!='') || ($('#latHidden').val()==0) || ($('#lonHidden').val()==0) || ($('#error_geo').html()!='')) {
@@ -24,23 +24,19 @@
 			}
 		 }
 	});
-*/
 	
 	$().ready(function() {
 		$("#editData").validate({
 			rules: {
-				/*
-username_register: {
+				username_register: {
 					required: true,
 					minlength: 5
 				},
-*/
 				password_register: {
 					required: true,
 					minlength: 5
-				} //falta coma
-				/*
-confirm_password: {
+				},
+				confirm_password: {
 					required: true,
 					minlength: 5,
 					equalTo: "#inputRegister2"
@@ -56,14 +52,12 @@ confirm_password: {
 				localidad: {
 					required: true,
 				}
-*/
 			},
 			messages: {
 				password_register: {
 					required: "Introduce una contraseña",
 					minlength: "Al menos 5 caracteres"
-				} //falta coma
-/*
+				},
 				confirm_password: {
 					required: "Introduce la misma contraseña",
 					minlength: "Al menos 5 caracteres",
@@ -80,20 +74,18 @@ confirm_password: {
 				localidad: {
 					required: "Introduce una localidad",
 				}
-*/
 			}
 		});
 		
-/*
     	$("#buttonLocalizacion").click(function() {
             geolocateAddress();
-    	});
-*/		
+    	});		
 		
 		
 	});
 </script>
 {/literal}
+*}
 
 {literal}
 <script type="text/javascript"> 
@@ -338,26 +330,26 @@ $(document).ready(function(){
 						{/foreach}
 					</div>
 				</div>
-				<div class="dataUserButtons">
+				<div class="span-1 dataUserButtons">
 					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
-				<div class="editAcount">
+				<div class="span-1 editAcount" id="editAcount">
 					<div class="span-1 editMail">
 						<p class="data">EMAIL</p>
-						<input type="text" name="email" id="roundInputMail" value="{$privateData.datos.email}">
+						<input type="text" name="email" id="inputMail" class="inputMail" value="{$privateData.datos.email}">
 					</div>
 					<div class="span-1 editPass">
 						<p class="data">PASSWORD</p>
-						<input type="password" name="pass" id="roundInputPassword" value="{$privateData.datos.pass}">
+						<input type="password" name="pass" id="inputPassword" class="inputPassword" value="{$privateData.datos.pass}">
 					</div>
 					<div class="span-1 editPass2">
 						<p class="data">REPITE PASSWORD</p>
-						<input type="password" name="password_register" id="" value="{$privateData.datos.pass}">
+						<input type="password" name="password_register" id="inputPassword2" class="password_register" value="{$privateData.datos.pass}">
 					</div>
 				</div>
-				<div class="dataUserButtons">
+				<div class="span-1 dataUserButtons">
 					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
 

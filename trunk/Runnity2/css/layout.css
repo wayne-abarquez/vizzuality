@@ -1,5 +1,7 @@
 #editData input.inputName,#editData input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 290px;padding: 4px 4px 4px 4px; color: #999999;}
 #editData input.inputRadio {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
+#editAcount input.inputMail {border: 1px solid #dddddd; margin: 0 0 0 0; width: 280px;padding: 4px 4px 4px 4px; color: #999999;}
+#editAcount input.inputPassword,#editAcount input.password_register {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
 
 #loc{
 	list-style: none;
@@ -324,22 +326,22 @@ label.roundInputRecords{
 }
 
 .editMail{
-	margin-left: 10px;
+	margin-left: 50px;
 	width: 372px;
 	height: 50px;
 }
 
 .editPass{
-	margin-left: 10px;
-	width: 100px;
+	margin-left: 50px;
+	width: 130px;
 	height: 50px;
 }
 
 .editPass2{
-	margin-left: 10px;
-	width: 100px;
+	margin-left: 0px;
+	width: 130px;
 	height: 50px;
-	margin-left: 40px;
+	margin-left: 10px;
 }
 
 .editmarcas{
