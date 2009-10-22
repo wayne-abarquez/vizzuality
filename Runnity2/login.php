@@ -17,11 +17,13 @@ if(isset($_REQUEST['action'])) {
     }	
 } 
 
+/*
 if (!isset($_REQUEST['url'])) {
 	error_log("intento de login sin URL");
 	header( 'Location: /' ) ;   
     exit();
 }
+*/
 $url = $_REQUEST['url'];
 
 
