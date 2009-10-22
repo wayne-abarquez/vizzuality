@@ -7,7 +7,7 @@ $(document).ready(function(){
 	  Cufon.replace('.raceTitle');
 	  Cufon.replace('.buttonmenuContainer a');
 	  Cufon.replace('.titleBoxRegister p');
-	  Cufon.replace('#login_modal .title');
+/* 	  Cufon.replace('#login_modal .title'); */
 	  Cufon.replace('.nameUserProfile');
 	  Cufon.replace('.nameUserProfileNick');
 
