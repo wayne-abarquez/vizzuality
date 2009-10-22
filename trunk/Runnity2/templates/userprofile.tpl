@@ -223,7 +223,7 @@ $(document).ready(function(){
 					</div>
 					<div class="localizacionEdit">
 						<p class="data">LOCALIZACIÓN</p>
-						<input type="text" name="locality" id="roundInputDataLong" value="{$privateData.datos.locality}">
+						<input type="text" name="locality" id="inputLocalizacion" class="inputLocalizacion" value="{$privateData.datos.locality}">
 					</div>
 					<div class="checkAlerts"><input id="alertsCheckBox" name="alertsCheckBox" {if $privateData.datos.radius_interest gt 0}checked="checked"{/if} type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
 					<div id="mapBox">
@@ -290,7 +290,7 @@ $(document).ready(function(){
 						<div class="span-1 editRadio">
 							<div class="span-1 first radioBusqueda">
 								<p class="data">RADIO DE BÚSQUEDA</p><p class="km">(Km)</p>
-								<input type="text" name="radius_interest" id="roundInputDataSmall" value="{$privateData.datos.radius_interest}">
+								<input type="text" name="radius_interest" id="inputRadio" class="inputRadio" value="{$privateData.datos.radius_interest}">
 								<input type="hidden" id="latHidden" name="lat" value="{$privateData.datos.lat}">
 								<input type="hidden" id="lonHidden" name="lon" value="{$privateData.datos.lon}">
 							</div>
