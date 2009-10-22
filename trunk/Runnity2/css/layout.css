@@ -1,3 +1,6 @@
+#register input.inputName {width: 223px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
+#inputName {margin: 0 0 0 0; width: 150px;}
+
 #loc{
 	list-style: none;
 	display: inline;
@@ -283,112 +286,6 @@ label.roundInputRecords{
 .globalContainerUser{
 	padding-bottom: 10px;
 }
-
-/*
-label.roundInputDataLong{
-	float:left;
-	clear:left;
-	background:url(/img/inputDataLong.gif) no-repeat 0 0;
-	padding: 0px 0px 0px 0px;
-	height: 26px;
-	margin:0px 0px 0px 0px;
-}
-
-.roundInputDataLong input {
-	background:transparent;
-	padding-top: 8px;
-	padding-left: 6px;
-	float:left;
-	border: none;
-	color: gray;
-	font-size: 12px;
-}
-
-.roundInputDataLong input:focus {
-	outline:none;
-}
-
-#roundInputDataLong {width:372px;}
-*/
-
-/*
-label.roundInputDataSmall {
-	float:left;
-	clear:left;
-	background:url(/img/inputDataSmall.gif) no-repeat 0 0;
-	padding: 0px 0px 0px 0px;
-	height: 26px;
-	margin:0px 0px 0px 0px;
-}
-
-.roundInputDataSmall input {
-	background:transparent;
-	padding-top: 8px;
-	padding-left: 6px;
-	float:left;
-	border: none;
-	color: gray;
-	font-size: 12px;
-}
-
-.roundInputDataSmall input:focus {
-	outline:none;
-}
-
-#roundInputDataSmall {width:134px;}
-*/
-
-/*
-label.roundInputName {
-	float:left;
-	clear:left;
-	background:url(/img/nameInput.gif) no-repeat 0 0;
-	padding: 0px 0px 0px 0px;
-	height: 26px;
-	margin:0px 0px 0px 0px;
-}
-
-.roundInputName input {
-	background:transparent;
-	padding-top: 8px;
-	padding-left: 6px;
-	float:left;
-	border: none;
-	color: gray;
-	font-size: 12px;
-}
-
-.roundInputName input:focus {
-	outline:none;
-}
-
-#roundInputName {width:233px;}
-*/
-
-label.roundInputMail {
-	float:left;
-	clear:left;
-	background:url(/img/nameInput.gif) no-repeat 0 0;
-	padding: 0px 0px 0px 0px;
-	height: 26px;
-	margin:0px 0px 0px 0px;
-}
-
-.roundInputMail input {
-	background:transparent;
-	padding-top: 8px;
-	padding-left: 6px;
-	float:left;
-	border: none;
-	color: gray;
-	font-size: 12px;
-}
-
-.roundInputMail input:focus {
-	outline:none;
-}
-
-#roundInputMail {width:372px;}
 
 .dataUserButtons{
 	height: 33px;
@@ -761,8 +658,6 @@ div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24
 }
 
 label.inputRegister {
-	
-	
 	background:url(/img/inputRegister.gif) no-repeat 0 0;
 	padding: 0px 0px 0px 0px;
 	height: 26px;
@@ -782,7 +677,6 @@ label.inputRegister {
 .inputRegister input:focus {
 	outline:none;
 }
-
 
 .titleRegisterRight{
 	font-size: 15px;
