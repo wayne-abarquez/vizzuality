@@ -78,7 +78,15 @@ class WorksHandler(webapp.RequestHandler):
 	def get(self):
 		# Write out contact file.
 		path = os.path.join(os.path.dirname(__file__), 'templates/works.html')
-		self.response.out.write(template.render(path, {'section':'visualization'}, debug=True))		
+		self.response.out.write(template.render(path, {'section':'works'}, debug=True))		
+
+
+class DetailHandler(webapp.RequestHandler):
+
+	def get(self):
+		# Write out contact file.
+		path = os.path.join(os.path.dirname(__file__), 'templates/detail.html')
+		self.response.out.write(template.render(path, {'section':'detail'}, debug=True))
 
 class PyAMFBrowser(webapp.RequestHandler):
 	def get(self):
@@ -102,6 +110,7 @@ def main():
 		('/company', CompanyHandler),
 		('/contact', CompanyHandler),
 		('/works', WorksHandler),
+		('/detail', DetailHandler),
 		('/amf/*', PyAMFBrowser),
 		('/.*', NotFoundHandler)
 	], debug=True)
