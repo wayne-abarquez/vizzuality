@@ -35,7 +35,7 @@ package
 	import rosa.events.RosaEvent;
 	import rosa.services.ServiceProxy;
 
-	[SWF(backgroundColor=0xFFFFFF, width=270, height=152)]
+	[SWF(backgroundColor=0xFFFFFF, width=270, height=191)]
 	public class RunAroundMap extends Sprite
 	{
 		
@@ -79,12 +79,16 @@ package
 			if(loaderInfo.url.indexOf("runnity.es")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA";				
 			}
+			if(loaderInfo.url.indexOf("67.23.47.172")>=0) {
+				map.key="ABQIAAAAXucQwXp28TiGqramtQ-1nhTGDsp2z8MalcroimtHohqExHETcBT5ufo4NMa7ge3ZWP3vXPrzs4p00Q";				
+			}			
+			
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
-			map.setSize(new Point(270, 152));
+			map.setSize(new Point(270, 191));
 			addChild(map);
 			square = new Sprite();
 			square.graphics.beginFill(0xFFFFFF);
-			square.graphics.drawRect(0,0,270,152);
+			square.graphics.drawRect(0,0,270,191);
 			square.graphics.endFill();
 			square.x = 0;
 			square.y = 0;			
