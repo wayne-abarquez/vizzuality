@@ -305,7 +305,7 @@ $(document).ready(function(){
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">TUS MARCAS</p>
-				<div class="editmarcas">
+				<div class="span-1 editmarcas">
 					<div class="span-1 first distanceName">
 						<p class="data">DISTANCIA</p>
 						{foreach key=id item=record from=$records}
