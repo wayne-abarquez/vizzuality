@@ -11,45 +11,39 @@
    </script>
 {/literal}
 
-{*
 {literal}
 	<script type="text/javascript">
 	$.validator.setDefaults({
 		submitHandler: function() { 
-			if (($('#answer').html()!='Buen nombre') || ($('#result').html()!='') || ($('#latHidden').val()==0) || ($('#lonHidden').val()==0) || ($('#error_geo').html()!='')) {
-				return false;
-			} else {
-				$("#register_form").attr("action","/registro"); 
-				$("#register_form").submit();
-			}
+				$("#editDataForm").attr("action","/userprofile.php");  */
+ 				$("#editDataForm").submit();
 		 }
 	});
 	
 	$().ready(function() {
-		$("#editData").validate({
+		$("#editDataForm").validate({
 			rules: {
-				username_register: {
+				inputPassword: {
 					required: true,
 					minlength: 5
 				},
-				password_register: {
-					required: true,
-					minlength: 5
-				},
-				confirm_password: {
+				inputPassword2: {
 					required: true,
 					minlength: 5,
-					equalTo: "#inputRegister2"
+					equalTo: "#inputPassword"
 				},
-				email_register: {
+				inputMail: {
 					required: true,
 					email: true
 				},
-				name_register: {
+				inputName: {
 					required: true,
 					minlength: 5
 				},
-				localidad: {
+				inputLocalizacion: {
+					required: true,
+				},
+				inputRadio: {
 					required: true,
 				}
 			},
@@ -63,29 +57,34 @@
 					minlength: "Al menos 5 caracteres",
 					equalTo: "Debe ser igual a la contraseña"
 				},
-				email_register: {
+				inputMail: {
 					required: "Introduce una dirección de correo",
 					email: "No es una dirección válida"
 				},
-				name_register: {
+				inputName: {
 					required: "Introduce tu nombre",
 					minlength: "Al menos 5 caracteres"
 				},
-				localidad: {
-					required: "Introduce una localidad",
+				inputLocalizacion: {
+					required: "Introduce localización",
+					minlength: "Al menos 5 caracteres"
+				},
+				inputRadio: {
+					required: "Introduce radio",
 				}
 			}
 		});
 		
+/*
     	$("#buttonLocalizacion").click(function() {
             geolocateAddress();
-    	});		
+    	});	
+*/	
 		
 		
 	});
 </script>
 {/literal}
-*}
 
 {literal}
 <script type="text/javascript"> 
@@ -187,13 +186,13 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
-			<form action="userprofile.php" method="POST" id="editData">			
+			<form action="userprofile.php" method="POST" id="editDataForm">			
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
 				<div class="span-1 editdata">
 					<div class="nameEdit">
 						<p class="data">NOMBRE Y APELLIDOS</p>
-						<input type="text" name="completename" id="inputName" class="inputName" value="{$privateData.datos.completename}">
+						<input type="text" name="inputName" id="inputName" class="inputName" value="{$privateData.datos.completename}">
 					</div>
 					<div class="sexoFecha">
 						<div class="span-1 first sexoEdit">
@@ -215,7 +214,7 @@ $(document).ready(function(){
 					</div>
 					<div class="localizacionEdit">
 						<p class="data">LOCALIZACIÓN</p>
-						<input type="text" name="locality" id="inputLocalizacion" class="inputLocalizacion" value="{$privateData.datos.locality}">
+						<input type="text" name="inputLocalizacion" id="inputLocalizacion" class="inputLocalizacion" value="{$privateData.datos.locality}">
 					</div>
 					<div class="checkAlerts"><input id="alertsCheckBox" name="alertsCheckBox" {if $privateData.datos.radius_interest gt 0}checked="checked"{/if} type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
 					<div id="mapBox">
@@ -282,7 +281,7 @@ $(document).ready(function(){
 						<div class="span-1 editRadio">
 							<div class="span-1 first radioBusqueda">
 								<p class="data">RADIO DE BÚSQUEDA</p><p class="km">(Km)</p>
-								<input type="text" name="radius_interest" id="inputRadio" class="inputRadio" value="{$privateData.datos.radius_interest}">
+								<input type="text" name="inputRadio" id="inputRadio" class="inputRadio" value="{$privateData.datos.radius_interest}">
 								<input type="hidden" id="latHidden" name="lat" value="{$privateData.datos.lat}">
 								<input type="hidden" id="lonHidden" name="lon" value="{$privateData.datos.lon}">
 							</div>
@@ -338,15 +337,19 @@ $(document).ready(function(){
 				<div class="span-1 editAcount" id="editAcount">
 					<div class="span-1 editMail">
 						<p class="data">EMAIL</p>
-						<input type="text" name="email" id="inputMail" class="inputMail" value="{$privateData.datos.email}">
+						<input type="text" name="inputMail" id="inputMail" class="inputMail" value="{$privateData.datos.email}" onchange="checkEmail()">
+						<span class="emailCheck" id="checkEmailBox">
+                            <img style='display:none' id="emailImage">
+                            <p id="result"></p>
+                    	</span>
 					</div>
 					<div class="span-1 editPass">
 						<p class="data">PASSWORD</p>
-						<input type="password" name="pass" id="inputPassword" class="inputPassword" value="{$privateData.datos.pass}">
+						<input type="password" name="inputPassword" id="inputPassword" class="inputPassword" value="{$privateData.datos.pass}">
 					</div>
 					<div class="span-1 editPass2">
 						<p class="data">REPITE PASSWORD</p>
-						<input type="password" name="password_register" id="inputPassword2" class="password_register" value="{$privateData.datos.pass}">
+						<input type="password" name="inputPassword2" id="inputPassword2" class="inputPassword2" value="{$privateData.datos.pass}">
 					</div>
 				</div>
 				<div class="span-1 dataUserButtons">

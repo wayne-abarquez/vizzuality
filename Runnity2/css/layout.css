@@ -1,7 +1,11 @@
-#editData input.inputName,#editData input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 290px;padding: 4px 4px 4px 4px; color: #999999;}
-#editData input.inputRadio {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
-#editAcount input.inputMail {border: 1px solid #dddddd; margin: 0 0 0 0; width: 280px;padding: 4px 4px 4px 4px; color: #999999;}
-#editAcount input.inputPassword,#editAcount input.password_register {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.inputName,#editDataForm input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 362px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.inputRadio {border: 1px solid #dddddd; margin: 0 0 0 0; width: 80px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.inputMail {border: 1px solid #dddddd; margin: 0 0 0 0; width: 280px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.inputPassword,#editDataForm input.inputPassword2 {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
+
+#editDataForm label.error {color:#c24949; background: none; border: none; width: auto;margin: 0; padding: 0; font-weight: normal;}
+
+#editDataForm input.error {border: 1px solid #c24949; background: none; margin: 0;background: #ffffff;}
 
 #loc{
 	list-style: none;
@@ -294,6 +298,7 @@ label.roundInputRecords{
 	width: 392px;
 	background-color: #e1e8f0;
 	margin-top: 1px;
+	margin-bottom: 10px;
 }
 
 .dataUserEdit{
