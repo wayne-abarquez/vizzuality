@@ -106,9 +106,7 @@ $(document).ready(function(){
 				<div class="span-1 editdata">
 					<div class="nameEdit">
 						<p class="data">NOMBRE Y APELLIDOS</p>
-						<label class="roundInputName last" for="roundInputName">
-							<input type="text" name="completename" id="roundInputName" value="{$privateData.datos.completename}">
-						</label>
+						<input type="text" name="completename" id="roundInputName" value="{$privateData.datos.completename}">
 					</div>
 					<div class="sexoFecha">
 						<div class="span-1 first sexoEdit">
@@ -130,9 +128,7 @@ $(document).ready(function(){
 					</div>
 					<div class="localizacionEdit">
 						<p class="data">LOCALIZACIÓN</p>
-						<label class="roundInputDataLong last" for="roundInputDataLong">
-							<input type="text" name="locality" id="roundInputDataLong" value="{$privateData.datos.locality}">
-						</label>
+						<input type="text" name="locality" id="roundInputDataLong" value="{$privateData.datos.locality}">
 					</div>
 					<div class="checkAlerts"><input id="alertsCheckBox" name="alertsCheckBox" {if $privateData.datos.radius_interest gt 0}checked="checked"{/if} type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
 					<div id="mapBox">
@@ -199,11 +195,9 @@ $(document).ready(function(){
 						<div class="span-1 editRadio">
 							<div class="span-1 first radioBusqueda">
 								<p class="data">RADIO DE BÚSQUEDA</p><p class="km">(Km)</p>
-								<label class="roundInputDataSmall" for="roundInputDataSmall">
-									<input type="text" name="radius_interest" id="roundInputDataSmall" value="{$privateData.datos.radius_interest}">
-									<input type="hidden" id="latHidden" name="lat" value="{$privateData.datos.lat}">
-								    <input type="hidden" id="lonHidden" name="lon" value="{$privateData.datos.lon}">
-								</label>
+								<input type="text" name="radius_interest" id="roundInputDataSmall" value="{$privateData.datos.radius_interest}">
+								<input type="hidden" id="latHidden" name="lat" value="{$privateData.datos.lat}">
+								<input type="hidden" id="lonHidden" name="lon" value="{$privateData.datos.lon}">
 							</div>
 							<div class="span-1 last radioInfo">
 								<p class="dataRadio">Las alertas se enviarán semanalmente a tu dirección de email</p>
@@ -257,21 +251,15 @@ $(document).ready(function(){
 				<div class="editAcount">
 					<div class="span-1 editMail">
 						<p class="data">EMAIL</p>
-						<label class="roundInputDataLong last" for="roundInputDataLong">
-							<input type="text" name="email" id="roundInputMail" value="{$privateData.datos.email}">
-						</label>
+						<input type="text" name="email" id="roundInputMail" value="{$privateData.datos.email}">
 					</div>
 					<div class="span-1 editPass">
 						<p class="data">PASSWORD</p>
-						<label class="roundInputDataSmall last" for="roundInputPassword">
-							<input type="password" name="pass" id="roundInputPassword" value="{$privateData.datos.pass}">
-						</label>
+						<input type="password" name="pass" id="roundInputPassword" value="{$privateData.datos.pass}">
 					</div>
 					<div class="span-1 editPass2">
 						<p class="data">REPITE PASSWORD</p>
-						<label class="roundInputDataSmall last" for="roundInputPassword">
-							<input type="password" name="pass2" id="roundInputPassword2" value="{$privateData.datos.pass}">
-						</label>
+						<input type="password" name="pass2" id="roundInputPassword2" value="{$privateData.datos.pass}">
 					</div>
 				</div>
 				<div class="dataUserButtons">
