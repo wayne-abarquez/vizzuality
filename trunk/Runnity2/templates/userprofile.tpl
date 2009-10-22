@@ -201,7 +201,7 @@ $(document).ready(function(){
 				<div class="span-1 editdata">
 					<div class="nameEdit">
 						<p class="data">NOMBRE Y APELLIDOS</p>
-						<input type="text" name="completename" id="inputName" value="{$privateData.datos.completename}">
+						<input type="text" name="completename" id="inputName" class="inputName" value="{$privateData.datos.completename}">
 					</div>
 					<div class="sexoFecha">
 						<div class="span-1 first sexoEdit">
