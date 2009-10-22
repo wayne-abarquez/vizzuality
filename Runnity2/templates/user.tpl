@@ -49,12 +49,17 @@ $(document).ready(function(){
 		
         	if(tipoCont=="first"){
         		$("#pictureUserContainerNoPhotos").remove();
-        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></li><ul id="loc"></div>');
+        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></li></ul></div>');
+        		$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
+					window.clearInterval(interval);
+
+					//enable upload button
+					this.enable();
         	} else {
         	    var i=$('ul#loc li').size()+1;
         		if(i<6){
 	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
-	            	$("#buttonUploadPicture").html("Subir fotos");
+	            	$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
 					window.clearInterval(interval);
 
 					//enable upload button
@@ -62,7 +67,7 @@ $(document).ready(function(){
         		} else {
         			$('ul#loc li:last').remove();
 	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
-					$("#buttonUploadPicture").html("Subir fotos");
+					$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
 					window.clearInterval(interval);
 
 					//enable upload button
