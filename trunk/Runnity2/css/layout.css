@@ -162,10 +162,12 @@ label.roundInputDataRadio{
 
 #roundInputDataRadio {width:99px;}
 
+/*
 .editEmail{
 	margin-left: 10px;
 	width: 230px;
 }
+*/
 
 .sexoFecha{
 	height: 50px;
@@ -356,6 +358,8 @@ label.roundInputName {
 }
 
 #roundInputName {width:233px;}
+#roundInputMail {width:233px;}
+
 
 .dataUserButtons{
 	height: 33px;
@@ -377,7 +381,7 @@ label.roundInputName {
 
 .editAcount{
 	background-color: #f1f4f8;
-	height: 80px;
+	height: 180px;
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
