@@ -1,5 +1,4 @@
-#register input.inputName {width: 223px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
-#inputName {margin: 0 0 0 0; width: 150px;}
+#editData input.inputName {border: 1px solid #dddddd; margin: 0 0 0 0; width: 150px;}
 
 #loc{
 	list-style: none;
@@ -1648,6 +1647,10 @@ a.verTodas:hover{
 #tweetsTime{
 	color: #666666;
 	font-size: 11px;
+}
+
+.tweetComment{
+	width: 240px;
 }
 
 /* calendario */
