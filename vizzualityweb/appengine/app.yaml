@@ -26,6 +26,10 @@ handlers:
   static_dir: images    
   
 # Static: image files
+- url: /projects
+  static_dir: projects  
+  
+# Static: image files
 - url: /robots.txt
   static_files: robots.txt
   upload: robots.txt
