@@ -255,19 +255,19 @@ $(document).ready(function(){
 				
 				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
 				<div class="editAcount">
-					<div>
+					<div class="span-1 editMail">
 						<p class="data">EMAIL</p>
-						<label class="roundInputName last" for="roundInputName">
-							<input type="text" name="email" id="roundInputEmail" value="{$privateData.datos.email}">
+						<label class="roundInputDataLong last" for="roundInputDataLong">
+							<input type="text" name="email" id="roundInputMail" value="{$privateData.datos.email}">
 						</label>
 					</div>
-					<div>
+					<div class="span-1 editPass">
 						<p class="data">PASSWORD</p>
 						<label class="roundInputDataSmall last" for="roundInputPassword">
 							<input type="password" name="pass" id="roundInputPassword" value="{$privateData.datos.pass}">
 						</label>
 					</div>
-					<div>
+					<div class="span-1 editPass2">
 						<p class="data">REPITE PASSWORD</p>
 						<label class="roundInputDataSmall last" for="roundInputPassword">
 							<input type="password" name="pass2" id="roundInputPassword2" value="{$privateData.datos.pass}">
