@@ -1,5 +1,100 @@
 {include file="header.tpl"}
 
+<!-- inputs numéricos -->
+{literal}
+<script type="text/javascript">
+      function onlyNumbersDano(evt)
+      {
+        var keyPressed = (evt.which) ? evt.which : event.keyCode
+        return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
+      }
+   </script>
+{/literal}
+
+{literal}
+	<script type="text/javascript">
+/*
+	$.validator.setDefaults({
+		submitHandler: function() { 
+			if (($('#answer').html()!='Buen nombre') || ($('#result').html()!='') || ($('#latHidden').val()==0) || ($('#lonHidden').val()==0) || ($('#error_geo').html()!='')) {
+				return false;
+			} else {
+				$("#register_form").attr("action","/registro"); 
+				$("#register_form").submit();
+			}
+		 }
+	});
+*/
+	
+	$().ready(function() {
+		$("#editData").validate({
+			rules: {
+				/*
+username_register: {
+					required: true,
+					minlength: 5
+				},
+*/
+				password_register: {
+					required: true,
+					minlength: 5
+				} //falta coma
+				/*
+confirm_password: {
+					required: true,
+					minlength: 5,
+					equalTo: "#inputRegister2"
+				},
+				email_register: {
+					required: true,
+					email: true
+				},
+				name_register: {
+					required: true,
+					minlength: 5
+				},
+				localidad: {
+					required: true,
+				}
+*/
+			},
+			messages: {
+				password_register: {
+					required: "Introduce una contraseña",
+					minlength: "Al menos 5 caracteres"
+				} //falta coma
+/*
+				confirm_password: {
+					required: "Introduce la misma contraseña",
+					minlength: "Al menos 5 caracteres",
+					equalTo: "Debe ser igual a la contraseña"
+				},
+				email_register: {
+					required: "Introduce una dirección de correo",
+					email: "No es una dirección válida"
+				},
+				name_register: {
+					required: "Introduce tu nombre",
+					minlength: "Al menos 5 caracteres"
+				},
+				localidad: {
+					required: "Introduce una localidad",
+				}
+*/
+			}
+		});
+		
+/*
+    	$("#buttonLocalizacion").click(function() {
+            geolocateAddress();
+    	});
+*/		
+		
+		
+	});
+</script>
+{/literal}
+
 {literal}
 <script type="text/javascript"> 
 $(document).ready(function(){
@@ -100,13 +195,13 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
-			<form action="userprofile.php" method="POST">			
+			<form action="userprofile.php" method="POST" id="editData">			
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
 				<div class="span-1 editdata">
 					<div class="nameEdit">
 						<p class="data">NOMBRE Y APELLIDOS</p>
-						<input type="text" name="completename" id="roundInputName" value="{$privateData.datos.completename}">
+						<input type="text" name="completename" id="inputName" value="{$privateData.datos.completename}">
 					</div>
 					<div class="sexoFecha">
 						<div class="span-1 first sexoEdit">
@@ -222,22 +317,22 @@ $(document).ready(function(){
 						{foreach key=id item=record from=$records}
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsHH{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2">
+							<input type="text" id="roundInputRecordsHH{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" onkeypress="return onlyNumbersDano(event)">
 							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsMM{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2">
+							<input type="text" id="roundInputRecordsMM{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" onkeypress="return onlyNumbersDano(event)">
 							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsSS{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2">
+							<input type="text" id="roundInputRecordsSS{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbersDano(event)">
 							</label><span class="separatorInput">:</span>
 						</div>
 						<div class="span-1">
 							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsDD{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2">
+							<input type="text" id="roundInputRecordsDD{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbersDano(event)">
 							</label><span class="separatorInput"><input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(roundInputRecordsHH{$record.id},roundInputRecordsMM{$record.id},roundInputRecordsSS{$record.id},roundInputRecordsDD{$record.id})"></span>
 						</div>					
 						{/foreach}
@@ -259,7 +354,7 @@ $(document).ready(function(){
 					</div>
 					<div class="span-1 editPass2">
 						<p class="data">REPITE PASSWORD</p>
-						<input type="password" name="pass2" id="roundInputPassword2" value="{$privateData.datos.pass}">
+						<input type="password" name="password_register" id="" value="{$privateData.datos.pass}">
 					</div>
 				</div>
 				<div class="dataUserButtons">
