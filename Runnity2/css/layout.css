@@ -284,6 +284,7 @@ label.roundInputRecords{
 	padding-bottom: 10px;
 }
 
+/*
 label.roundInputDataLong{
 	float:left;
 	clear:left;
@@ -308,7 +309,9 @@ label.roundInputDataLong{
 }
 
 #roundInputDataLong {width:372px;}
+*/
 
+/*
 label.roundInputDataSmall {
 	float:left;
 	clear:left;
@@ -333,7 +336,9 @@ label.roundInputDataSmall {
 }
 
 #roundInputDataSmall {width:134px;}
+*/
 
+/*
 label.roundInputName {
 	float:left;
 	clear:left;
@@ -358,6 +363,7 @@ label.roundInputName {
 }
 
 #roundInputName {width:233px;}
+*/
 
 label.roundInputMail {
 	float:left;
