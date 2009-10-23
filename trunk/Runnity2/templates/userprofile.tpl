@@ -45,6 +45,87 @@
 				},
 				inputRadio: {
 					required: true,
+				},
+				rec_hh_1: {
+					max: 23
+				},
+				rec_hh_2: {
+					max: 23
+				},
+				rec_hh_3: {
+					max: 23
+				},
+				rec_hh_4: {
+					max: 23
+				},
+				rec_hh_5: {
+					max: 23
+				},
+				rec_hh_6: {
+					max: 23
+				},
+				rec_hh_7: {
+					max: 23
+				},
+				rec_hh_8: {
+					max: 23
+				},
+				rec_hh_9: {
+					max: 23
+				},
+				rec_mm_1: {
+					max: 59
+				},
+				rec_mm_2: {
+					max: 59
+				},
+				rec_mm_3: {
+					max: 59
+				},
+				rec_mm_4: {
+					max: 59
+				},
+				rec_mm_5: {
+					max: 59
+				},
+				rec_mm_6: {
+					max: 59
+				},
+				rec_mm_7: {
+					max: 59
+				},
+				rec_mm_8: {
+					max: 59
+				},
+				rec_mm_9: {
+					max: 59
+				},
+				rec_ss_1: {
+					max: 59
+				},
+				rec_ss_2: {
+					max: 59
+				},
+				rec_ss_3: {
+					max: 59
+				},
+				rec_ss_4: {
+					max: 59
+				},
+				rec_ss_5: {
+					max: 59
+				},
+				rec_ss_6: {
+					max: 59
+				},
+				rec_ss_7: {
+					max: 59
+				},
+				rec_ss_8: {
+					max: 59
+				},
+				rec_ss_9: {
+					max: 59
 				}
 			},
 			messages: {
@@ -71,7 +152,88 @@
 				},
 				inputRadio: {
 					required: "Introduce radio",
-				}
+				},
+				rec_hh_1: {
+					max: ""
+				},
+				rec_hh_2: {
+					max: ""
+				},
+				rec_hh_3: {
+					max: ""
+				},
+				rec_hh_4: {
+					max: ""
+				},
+				rec_hh_5: {
+					max: ""
+				},
+				rec_hh_6: {
+					max: ""
+				},
+				rec_hh_7: {
+					max: ""
+				},
+				rec_hh_8: {
+					max: ""
+				},
+				rec_hh_9: {
+					max: ""
+				},
+				rec_mm_1: {
+					max: ""
+				},
+				rec_mm_2: {
+					max: ""
+				},
+				rec_mm_3: {
+					max: ""
+				},
+				rec_mm_4: {
+					max: ""
+				},
+				rec_mm_5: {
+					max: ""
+				},
+				rec_mm_6: {
+					max: ""
+				},
+				rec_mm_7: {
+					max: ""
+				},
+				rec_mm_8: {
+					max: ""
+				},
+				rec_mm_9: {
+					max: ""
+				},
+				rec_ss_1: {
+					max: ""
+				},
+				rec_ss_2: {
+					max: ""
+				},
+				rec_ss_3: {
+					max: ""
+				},
+				rec_ss_4: {
+					max: ""
+				},
+				rec_ss_5: {
+					max: ""
+				},
+				rec_ss_6: {
+					max: ""
+				},
+				rec_ss_7: {
+					max: ""
+				},
+				rec_ss_8: {
+					max: ""
+				},
+				rec_ss_9: {
+					max: ""
+				}			
 			}
 		});
 		
