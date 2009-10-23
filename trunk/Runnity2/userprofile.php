@@ -20,15 +20,15 @@ if (!isset($_SESSION['logged'])) {
 $error_msg="";
 
 if(isset($_REQUEST['action'])) {
-    $email     			=$_REQUEST['email'];
-    $pass  				=$_REQUEST['pass'];
-    $completename      	=$_REQUEST['completename'];
+    $email     			=$_REQUEST['inputMail'];
+    $pass  				=$_REQUEST['inputPassword'];
+    $completename      	=$_REQUEST['inputName'];
     $birthdayDay        =$_REQUEST['birthdayDay'];
     $birthdayMonth      =$_REQUEST['birthdayMonth'];
     $birthdayYear       =$_REQUEST['birthdayYear'];
-    $locality          	=$_REQUEST['locality'];
-    $lat                =$_REQUEST['lat'];
-    $lon                =$_REQUEST['lon'];
+    $locality          	=$_REQUEST['inputLocalizacion'];
+    $lon                =$_REQUEST['lat'];
+    $lat                =$_REQUEST['lon'];
 
 	if ($_REQUEST['is_men']=="false") {
 		$is_men=false;
@@ -64,14 +64,12 @@ if(isset($_REQUEST['action'])) {
         
         if(isset($_REQUEST['alertsCheckBox']) && $_REQUEST['alertsCheckBox']=="on") {
             //Desea recibir alertas 
-            $radio=$_REQUEST['radius_interest'];            
+            $radio=$_REQUEST['inputRadio'];            
         } else {
             $radio=0;
         }
         $user = $services->updateUser($_SESSION['user']['username'],$completename,$email,
-            $pass,$birthdayDay,$birthdayMonth,$birthdayYear,$locality,$lat,$lon,$radio,$is_men);
-            
-        
+            $pass,$birthdayDay,$birthdayMonth,$birthdayYear,$locality,$lat,$lon,$radio,$is_men);        
     }
 
 	//update records

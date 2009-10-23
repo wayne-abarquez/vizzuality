@@ -389,7 +389,7 @@ $(document).ready(function(){
                         <script type="text/javascript">
                         //<![CDATA[
                             var map = new GMap2(document.getElementById("map"));
-                            var start = new GLatLng({/literal}{$privateData.datos.lat}, {$privateData.datos.lon}{literal});
+                            var start = new GLatLng({/literal}{$privateData.datos.lon}, {$privateData.datos.lat}{literal});
                             map.setCenter(start, 10);
                             
                             map.addControl(new GSmallZoomControl());
