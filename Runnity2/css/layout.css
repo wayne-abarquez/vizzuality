@@ -1,4 +1,5 @@
-#editDataForm input.inputName,#editDataForm input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 362px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.inputName {border: 1px solid #dddddd; margin: 0 0 0 0; width: 362px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 306px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputRadio {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputMail {border: 1px solid #dddddd; margin: 0 0 0 0; width: 280px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputPassword,#editDataForm input.inputPassword2 {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
@@ -609,6 +610,15 @@ div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24
 
 .buttonLocalizacion{ position: absolute; right:13px; top: 62px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 26px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
 .buttonLocalizacion:hover{background: url(/img/buttonLocalizacion_hover.gif) repeat-y;color: #ffffff;}
+
+.ButtonLocalizationUpdate{
+	height: 24px;
+	margin-left: 4px;
+}
+
+.localizatorInputContainer{
+	width: 306px;
+}
 
 .rightColumnRegister{
 	border-left: 1px dotted #c3c3c3;
