@@ -2,7 +2,19 @@
 {literal}
 <script type="text/javascript">
     $(document).ready(function(){
-    
+    	
+			$('div.avatarContainer a img').hover(
+				function () {
+					$(this).css('z-index','9999');
+					$(this).parent().find('div.hidden').show();
+				}, 
+				function () {
+					$(this).css('z-index','1');
+				  $(this).parent().find('div.hidden').hide();
+				}
+			)
+			
+
     	$('#datos2').truncate({max_length: 23});
     	$('#datos1').truncate({max_length: 23});
     	
@@ -367,7 +379,9 @@
 			<div class="eventsUsers">				
 				<div class="avatarContainer">
 				{foreach key=id item=person from=$runners}
-					<a href="/user/{$person.username}"><img title="{$person.username}" class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/></a>
+					<a href="/user/{$person.username}"><img class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/>
+						<div class="hidden">{$person.username}</div>
+					</a>
 			    {/foreach}
 				</div>
 			</div>
