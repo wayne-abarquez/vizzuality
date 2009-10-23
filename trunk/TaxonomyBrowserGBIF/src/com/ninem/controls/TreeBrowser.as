@@ -8,6 +8,7 @@ package com.ninem.controls
 	import com.vizzuality.components.*;
 	
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.xml.XMLNode;
 	
@@ -36,7 +37,7 @@ package com.ninem.controls
 	import mx.events.ScrollEvent;
 	import mx.events.ScrollEventDirection;
 	import mx.rpc.events.ResultEvent;
-	import mx.rpc.http.HTTPService;
+	import mx.rpc.http.mxml.HTTPService;
 	import mx.styles.CSSStyleDeclaration;
 	import mx.styles.StyleManager;
 
@@ -377,9 +378,11 @@ package com.ninem.controls
 			list.percentWidth = 100;
 			list.width = list.minWidth = columnWidth - 2; 
 			list.doubleClickEnabled = doubleClickEnabled;			
-			list.addEventListener(ListEvent.ITEM_CLICK, updateDataProvider);
+			//list.addEventListener(ListEvent.ITEM_CLICK, updateDataProvider);
 			list.addEventListener(ScrollEvent.SCROLL, listScrollEvent);
 			list.itemRenderer = new ClassFactory(ItemListRenderer);
+			list.addEventListener(ListEvent.CHANGE, updateDataProvider);
+			list.addEventListener(KeyboardEvent.KEY_DOWN,onKeyPress);
 			
 			return list;
  		}
@@ -404,6 +407,7 @@ package com.ninem.controls
 				page = (columnActive.dataProvider as ArrayCollection).length % 25 + 2;
 			}
 			httpsrv2 = new HTTPService();
+			httpsrv2.concurrency="last";
 			httpsrv2.resultFormat = "text";
 			httpsrv2.url = Application.application.ecatServices+"nav/?pagesize=25&page=" + page.toString() + "&ranks=kpcofg&image=true&id="+((columnActive.dataProvider as ArrayCollection)[0].parent).toString();
 			httpsrv2.addEventListener(ResultEvent.RESULT,checkMoreItems);
@@ -470,6 +474,34 @@ package com.ninem.controls
             column.dispatchEvent(new ListEvent(ListEvent.ITEM_CLICK,true,true,0,0,null,ItemListRenderer as IListItemRenderer));
 		}
 		
+		private function onKeyPress(event:KeyboardEvent):void {
+			//trace(event.keyCode);
+			//it has been pressed on the right
+			if(event.keyCode==39) {
+				try {
+					var nextCol:TreeBrowserList = this.getChildAt(this.getChildIndex(column) +1) as TreeBrowserList;
+					nextCol.selectedIndex=0;
+					focusManager.setFocus(nextCol);
+					nextCol.dispatchEvent(new ListEvent(ListEvent.CHANGE));
+				} catch (error:Error) {
+					focusManager.setFocus(column);					
+				}
+			}
+			if(event.keyCode==37) {
+				try {
+					
+					trace("prev: "+(this.getChildIndex(column) -1) + " current:"+this.getChildIndex(column));
+					var prevCol:TreeBrowserList = this.getChildAt(this.getChildIndex(column) -1) as TreeBrowserList;
+					prevCol.selectedIndex=prevCol.selectedIndex;
+					column.selectedIndex=-1;
+					focusManager.setFocus(prevCol);		
+					clearColumns(getChildIndex(column)+1, true);		
+					column = prevCol;
+				} catch (error:Error) {
+					//trace("error");
+				}
+			}			
+		}
 		
 		private function updateDataProvider(ev:ListEvent):void {
 						
@@ -527,8 +559,9 @@ package com.ninem.controls
 				button.height = 31;
 				button.setStyle("paddingLeft",22);				
 				button.alpha = 0;
-				button.label = 	_selectedItem.labelField;
-				if (!_selectedItem.children) {
+				if(_selectedItem!=null)
+					button.label = 	_selectedItem.labelField;
+				if (_selectedItem==null) {
 					button.styleName = "btnBreadcrumbLast";
 				} else {
 					button.styleName = "btnBreadcrumb";
@@ -539,14 +572,14 @@ package com.ninem.controls
 				buttonsArray.push(button);
 			}
 			
-			
-			var httpsrv:HTTPService = new HTTPService();
-			httpsrv.resultFormat = "text";
-			//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
-			httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&ranks=kpcofg&page=1&image=true&id="+(_selectedItem.id).toString();
-			httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
-			httpsrv.send();
-			
+			if(_selectedItem!=null) {
+				var httpsrv:HTTPService = new HTTPService();
+				httpsrv.resultFormat = "text";
+				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
+				httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&ranks=kpcofg&page=1&image=true&id="+(_selectedItem.id).toString();
+				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
+				httpsrv.send();
+			}
 		}
 		
 
