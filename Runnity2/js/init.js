@@ -312,6 +312,7 @@ function logout () {
 
 function commentAction(tipo,id,on_table,comment) {
 		
+		//comment = comment.replace('\"','"');
 		if(tipo=='User') {
 		    var dataObj = ({
 		            comment : comment,
@@ -332,7 +333,7 @@ function commentAction(tipo,id,on_table,comment) {
 		  			success: function(html){
 		  				$("ol#update").append(html);
 		  				$("ol#update li:last").fadeIn(400);
-		    			$('#commentTextArea').html('');
+						$('#commentTextArea').val('');
 		  				$("#flash").hide();
 		  			},
 			        error:function (xhr, ajaxOptions, thrownError){
@@ -361,7 +362,7 @@ function commentAction(tipo,id,on_table,comment) {
 		  			success: function(html){
 		  				$("ol#update").append(html);
 		  				$("ol#update li:last").fadeIn(400);
-		    			$('#commentTextArea').html('');
+						$('#commentTextArea').val('');		
 		  				$("#flash").hide();
 		  			},
 			        error:function (xhr, ajaxOptions, thrownError){
@@ -390,7 +391,7 @@ function commentAction(tipo,id,on_table,comment) {
 		  			success: function(html){
 		  				$("ol#update").append(html);
 		  				$("ol#update li:last").fadeIn(400);
-		    			$('#commentTextArea').html('');
+						$('#commentTextArea').val('');		
 		  				$("#flash").hide();
 
 		  			},
@@ -598,7 +599,7 @@ function registerUser() {
 
 function geolocateAddress() {
 	
-	$('#error_geo').html(''); 
+		$('#error_geo').html(''); 
 		
 		
     var addressval = $("#roundLocalizacion").val();
