@@ -26,6 +26,17 @@ $(document).ready(function(){
       	this.value = this.valuedefault;
       });
 
+	  $('div.avatarContainer a img').hover(
+		function () {
+			$(this).css('z-index','9999');
+			$(this).parent().find('div.hidden').show();
+		}, 
+		function () {
+			$(this).css('z-index','1');
+		  $(this).parent().find('div.hidden').hide();
+		}
+	)
+
 });
 
 function logout () {

@@ -3,18 +3,6 @@
 <script type="text/javascript">
     $(document).ready(function(){
     	
-			$('div.avatarContainer a img').hover(
-				function () {
-					$(this).css('z-index','9999');
-					$(this).parent().find('div.hidden').show();
-				}, 
-				function () {
-					$(this).css('z-index','1');
-				  $(this).parent().find('div.hidden').hide();
-				}
-			)
-			
-
     	$('#datos2').truncate({max_length: 23});
     	$('#datos1').truncate({max_length: 23});
     	
