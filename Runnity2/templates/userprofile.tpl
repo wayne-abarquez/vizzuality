@@ -3,7 +3,7 @@
 <!-- inputs numéricos -->
 {literal}
 <script type="text/javascript">
-      function onlyNumbersDano(evt)
+      function onlyNumbers(evt)
       {
         var keyPressed = (evt.which) ? evt.which : event.keyCode
         return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
@@ -15,8 +15,8 @@
 	<script type="text/javascript">
 	$.validator.setDefaults({
 		submitHandler: function() { 
-				$("#editDataForm").attr("action","/userprofile.php");  */
- 				$("#editDataForm").submit();
+			$("#editDataForm").attr("action","/userprofile.php");  */
+ 			$("#editDataForm").submit();
 		 }
 	});
 	
@@ -309,26 +309,22 @@ $(document).ready(function(){
 					<div class="span-1 last recordsContainer">
 						<p class="data">HH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CTS</p>
 						{foreach key=id item=record from=$records}
+						<div class="recordContainer"> 
 						<div class="span-1">
-							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsHH{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" onkeypress="return onlyNumbersDano(event)">
-							</label><span class="separatorInput">:</span>
+							<input type="text" id="roundInputRecordsHH{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
 						</div>
 						<div class="span-1">
-							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsMM{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" onkeypress="return onlyNumbersDano(event)">
-							</label><span class="separatorInput">:</span>
+							<input type="text" id="roundInputRecordsMM{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
 						</div>
 						<div class="span-1">
-							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsSS{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbersDano(event)">
-							</label><span class="separatorInput">:</span>
+							<input type="text" id="roundInputRecordsSS{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
 						</div>
-						<div class="span-1">
-							<label class="roundInputRecords last" for="roundInputRecords">
-							<input type="text" id="roundInputRecordsDD{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbersDano(event)">
-							</label><span class="separatorInput"><input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(roundInputRecordsHH{$record.id},roundInputRecordsMM{$record.id},roundInputRecordsSS{$record.id},roundInputRecordsDD{$record.id})"></span>
-						</div>					
+						<div class="span-1 lastRecordContainer"><div>
+							<span><input type="text" id="roundInputRecordsDD{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
+							<input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(roundInputRecordsHH{$record.id},roundInputRecordsMM{$record.id},roundInputRecordsSS{$record.id},roundInputRecordsDD{$record.id})"></span>
+							</div>
+						</div>	
+						</div>				
 						{/foreach}
 					</div>
 				</div>

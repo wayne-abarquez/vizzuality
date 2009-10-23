@@ -324,7 +324,7 @@ class RunnitServices {
 	
 	    $result=array();
 	    $username=pg_escape_string($username);
-	    $sql="select u.id,completename,username,email,created_when,visits_profile,birthday,pass,locality,radius_interest,is_men,y(location_point) as lon, x(location_point) as lat,(select count(com.id) from users as usr inner join comments as com on com.on_id=usr.id and on_table='user' where usr.id=u.id and com.created_when > usr.last_login) as num_messages,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date < now()) as num_races_runned from users as u where username='$username'";
+	    $sql="select u.id,completename,username,email,created_when,visits_profile,birthday,pass,locality,radius_interest,is_men,x(location_point) as lon, y(location_point) as lat,(select count(com.id) from users as usr inner join comments as com on com.on_id=usr.id and on_table='user' where usr.id=u.id and com.created_when > usr.last_login) as num_messages,(select count(ur.id) from users_run as ur inner join run as r on ur.run_fk=r.id WHERE users_fk=u.id and r.event_date < now()) as num_races_runned from users as u where username='$username'";
         $result['datos'] = pg_fetch_assoc(pg_query($this->conn, $sql));
         if(!$result['datos']) {
             return false;
