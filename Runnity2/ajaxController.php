@@ -30,7 +30,7 @@ if ($_REQUEST['method'] == 'addComment') {
 
 	$lowercase = strtolower($email);
 	$image = md5( $lowercase );
-
+	
     $result = $services->addComment($_SESSION['user']['id'],$comment,$_REQUEST['id'],$_REQUEST['onTable']);
     
     if ($result==null) {
