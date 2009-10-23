@@ -632,7 +632,7 @@ function geolocateAddress() {
                 $('#buttonLocalizacion').val('Situar');
 				$('#buttonLocalizacion').removeAttr("disabled"); 
 
-                var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center="+lat+","+lon+"&zoom=8&markers=size:mid|color:red|"+lat+","+lon+"&mobile=true&sensor=false&key=ABQIAAAAsIunaSEq-72JsQD5i92_2RQcE-niXCtf2R8U_y21TKp3UL9P-BTU1IwePWTQcOr-LHQ3SAO7bX6p3Q";
+                var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center="+lat+","+lon+"&zoom=8&markers=size:mid|color:red|"+lat+","+lon+"&mobile=true&sensor=false&key=ABQIAAAAsIunaSEq-72JsQD5i92_2RTGDsp2z8MalcroimtHohqExHETcBRBLendueerJCN4IaRKtfN27AEs1w";
          	    $("#map").attr("src",url);                
                 
             }
