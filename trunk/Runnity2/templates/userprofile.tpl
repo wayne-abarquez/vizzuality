@@ -382,7 +382,6 @@ $(document).ready(function(){
 					</div>
 					<div id="mapBox">
 						<div class="span-1 mapaAlerts" id="map">
-<!-- 							<img src="/img/mapaAlerts.jpg"> -->
 {literal}
                         <script type="text/javascript">
                         //<![CDATA[
@@ -550,7 +549,7 @@ $(document).ready(function(){
 		
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
-			<div id="map" class="mapStyleRight">
+			<div id="map2" class="mapStyleRight">
 	    		<img src="/img/mapaApuntadas.jpg">					
 			</div>
 		</div>
