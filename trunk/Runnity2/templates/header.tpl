@@ -158,7 +158,7 @@
 	
 	
 <!-- PUBLISH RUN -->
-	<!--<div id="publish_modal">
+	<div id="publish_modal">
 		<div class="contact_container">
 			<h2>Publica tu carrera</h2>
 			<form id="contactForm" method="GET" action="">
@@ -189,7 +189,6 @@
 			</form>
 		</div>
 	</div>
--->
 
 	<!-- HEADER -->
 	<div id="header" class="span-24 column header">
