@@ -165,7 +165,10 @@ $(document).ready(function(){
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
-<div class="span-1 columnNameUser"><p class="nameUserProfile">{$privateData.datos.completename} <span class="nameUserProfileNick">({$privateData.datos.username})</span></div><a class="dashboardLink" href="/perfil/{$smarty.session.user.username}">volver a tu dashboard <img src="/img/arrowDash.gif"></a>
+	<div class="span-1 columnNameUser">
+		<a href="/perfil/{$smarty.session.user.username}"><p class="nameUserProfile">{$privateData.datos.completename} 
+		<span class="nameUserProfileNick">({$privateData.datos.username})</span></p>
+	</div><a class="dashboardLink" href="/perfil/{$smarty.session.user.username}">volver a tu dashboard <img src="/img/arrowDash.gif"></a>
 
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
