@@ -5,6 +5,14 @@ $(document).ready(function(){
 
 	var state = false;
 	
+	$('body').click(function() {
+	 if ($('#widgetCalendar').height()==$('#widgetCalendar div.datepicker').get(0).offsetHeight) {
+		  $('#widgetCalendar').stop().animate({height: 0 }, 500);
+    	state = false;
+		}
+	});
+	
+	
 	$('#widgetField span').hover(
 		function(){
 			$('#widgetField span a.delete').css('background','url(/img/deleteDateIcon.jpg) 0 7px no-repeat');
@@ -25,15 +33,15 @@ $(document).ready(function(){
 	
 	$("ul.subnav").parent().append("<span></span>");
   
-	$("#widgetField>a").click(function() {
-		   
-        $('#widget').hover(function() {  
-        }, function(){
-        	$('#widgetCalendar').stop().animate({height: 0 }, 500);
-        	state = false;        	
-        });    
-      
-    }); 
+	/*$("#widgetField>a").click(function() {
+				   
+		        $('#widget').hover(function() {  
+		        }, function(){
+		        	$('#widgetCalendar').stop().animate({height: 0 }, 500);
+		        	state = false;        	
+		        });    
+		      
+		    }); */
 
     
 	$("#ppalField").click(function() { 
