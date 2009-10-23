@@ -490,13 +490,13 @@ label.roundLocalizacion {
 }
 */
 
-#roundLocalizacion {width:225px}
+#roundLocalizacion {width:255px}
 
 .titleMapAlert{
 	color: #666666;
 	font-size: 13px;
 	font-weight: bold;
-	margin: 79px 0px 0px 0px;
+	margin: 40px 0px 0px 0px;
 }
 
 .alertsMap{
@@ -596,18 +596,18 @@ div.data_register_container p{color: #666666;font-size: 13px;font-weight: bold; 
 #answer {line-height: 28px; font-weight: normal; display: inline; padding: 0; margin: 0;}
 #result {line-height: 28px; font-weight: normal; display: inline; padding: 0; margin: 0;}
 
-div.nombreRegistro{ margin-top: 79px; width: 251px; padding: 0 0 0 20px;}
+div.nombreRegistro{ margin-top: 40px; width: 251px; padding: 0 0 0 20px;}
 #inputRegister {margin: 0 0 0 0; width: 150px;}
 div.register_name_column{margin:0 0 10px 0;}
 div.register_name_column p{color: #666666;font-size: 13px;font-weight: bold; margin:0;}
 div.register_name_column input{width: 223px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
 div.register_name_column div.checkAlertas input {width: 12px;}
 div.rightRegister {position: relative;}
-div.rightRegister #roundLocalizacion {width: 270px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
+div.rightRegister #roundLocalizacion {width: 313px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
 div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24949; margin: 0 20px 0 0; padding: 7px 10px;}
 #error_geo {color:#c24949;}
 
-.buttonLocalizacion{ position: absolute; right:10px; top: 99px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 30px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
+.buttonLocalizacion{ position: absolute; right:13px; top: 62px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 26px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
 .buttonLocalizacion:hover{background: url(/img/buttonLocalizacion_hover.gif) repeat-y;color: #ffffff;}
 
 .rightColumnRegister{
@@ -668,9 +668,8 @@ padding-bottom: 32768px;
 
 .rightRegister{
 	width: 346px;
-	height: 100px;
 	margin: 0px 0px 0px 0px;
-	height: 300px;
+	height: 260px;
 }
 
 label.inputRegister {
