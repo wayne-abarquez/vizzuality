@@ -50,11 +50,11 @@ $(document).ready(function(){
         	if(tipoCont=="first"){
         		$("#pictureUserContainerNoPhotos").remove();
         		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id={$picture.id}&source=user">' +response+ '</a></div></li></ul></div>');
-        		$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
-					window.clearInterval(interval);
+				window.clearInterval(interval);
+				$("#pictureUserContainer").append("<div class='span-1 editUserLinkDiv'><a class='editUserLink' id='buttonUploadPicture'>Subir fotos <img src='/img/pencil.gif'></a></div>");
 
-					//enable upload button
-					this.enable();
+				//enable upload button
+				$("#buttonUploadPicture").enable();      
         	} else {
         	    var i=$('ul#loc li').size()+1;
         		if(i<6){
@@ -208,13 +208,14 @@ $(document).ready(function(){
 					{/foreach}
 					</ul>
 				</div>
+				<div class="span-1 editUserLinkDiv"><a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a></div>
 				{else}
 					<div class="pictureUserContainerNoPhotos" id="pictureUserContainerNoPhotos" title="first">
-						<p class="up">No has subido fotos...</p>
+						<p class="upPhotos">No has subido fotos...</p>
+						<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIcon.gif">Subir fotos</a></p>
 					</div>				
 				{/if}
 				</div>
-				<div class="span-1 editUserLinkDiv"><a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a></div>
 			</div>
 			
 			<div class="span-1 last commentsUser">
