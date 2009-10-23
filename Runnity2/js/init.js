@@ -7,7 +7,6 @@ $(document).ready(function(){
 	  Cufon.replace('.raceTitle');
 	  Cufon.replace('.buttonmenuContainer a');
 	  Cufon.replace('.titleBoxRegister p');
-/* 	  Cufon.replace('#login_modal .title'); */
 	  Cufon.replace('.nameUserProfile');
 	  Cufon.replace('.nameUserProfileNick');
 
@@ -599,7 +598,7 @@ function registerUser() {
 
 function geolocateAddress() {
 	
-		$('#error_geo').html(''); 
+	$('#error_geo').html(''); 
 		
 		
     var addressval = $("#roundLocalizacion").val();
@@ -633,7 +632,7 @@ function geolocateAddress() {
                 $('#buttonLocalizacion').val('Situar');
 				$('#buttonLocalizacion').removeAttr("disabled"); 
 
-                var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center="+lat+","+lon+"&zoom=8&markers=size:mid|color:red|"+lat+","+lon+"&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
+                var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center="+lat+","+lon+"&zoom=8&markers=size:mid|color:red|"+lat+","+lon+"&mobile=true&sensor=false&key=ABQIAAAAsIunaSEq-72JsQD5i92_2RQcE-niXCtf2R8U_y21TKp3UL9P-BTU1IwePWTQcOr-LHQ3SAO7bX6p3Q";
          	    $("#map").attr("src",url);                
                 
             }
