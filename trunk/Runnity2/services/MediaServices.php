@@ -33,17 +33,62 @@ class MediaServices {
 	    
 	    $res = @mkdir(ABSPATH .'media/'.$onTable.'/' . $onId, 0755);
 	    
+	    
+	    $imgSize=getimagesize($tempPath);
+	    
+	    
+	    //RESIZE
 	    $imgTrans = new imageTransform();
 	    $imgTrans->sourceFile = $tempPath;
-	    $imgTrans->targetFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_t.jpg";
-		$imgTrans->resizeToWidth = 66;
-		$imgTrans->resizeToHeight = 67;
-		$imgTrans->maintainAspectRatio = false;
+	    $imgTrans->targetFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_t.jpg";	    
 	    
+	    
+	    
+	    //mas ancha que alta
+	    if($imgSize[0]>$imgSize[1]) {
+	    	$imgTrans->resizeToHeight = 67;
+	    		    	
+	    }
+	    //mas alta que ancha
+	    if($imgSize[0]<$imgSize[1]) {
+	    	$imgTrans->resizeToWidth = 66;
+	    }	  
+	    
+	    //==
+	    if($imgSize[0]==$imgSize[1]) {
+	    	$imgTrans->resizeToWidth = 66;
+	    	$imgTrans->resizeToHeight = 67;
+	    }	
 	    if (!$imgTrans->resize()) {
 			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
 	        throw new Exception("Error processing the thumbnail");
+	    }	    
+	    
+	    //CROP
+	    $imgTrans2 = new imageTransform();
+	    $imgTrans2->sourceFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_t.jpg";	  
+	    $imgTrans2->targetFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_t.jpg";	    
+	    $res=true;
+	    $imgSize2=getimagesize(ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_t.jpg");
+	    error_log($imgSize2[0]."-".$imgSize2[1]);
+	    
+	    //mas ancha que alta
+	    if($imgSize[0]>$imgSize[1]) {	    		    	
+	    	$t= floor(($imgSize2[0] - 66)/2);
+	    	$res = $imgTrans2->crop($t,0,(66+$t),67);
+	    		    	
 	    }
+	    //mas alta que ancha
+	    if($imgSize[0]<$imgSize[1]) {   	
+	    	$t= floor(($imgSize2[1] - 67)/2);
+	    	$res = $imgTrans2->crop(0,$t,66,(67+$t));
+	    }	  
+	   		
+	    if (!$res) {
+			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
+	        throw new Exception("Error processing the thumbnail");
+	    }
+	   	    
 	    
 	    $bigFilePath=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $picId."_b.jpg";
 	    $bigFileUrlPath='/media/'.$onTable.'/' . $onId .'/'. $picId."_b.jpg";

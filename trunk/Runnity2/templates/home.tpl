@@ -239,7 +239,7 @@
 			
 	    });
 	    
-		$(".nameRace").truncate( {max_length: 55} );
+		$(".nameRace").truncate( {max_length: 50} );
 		$(".nameRaceOrange").truncate( {max_length: 55} );			
 		$(".placeRace").truncate( {max_length:30} );		
 		

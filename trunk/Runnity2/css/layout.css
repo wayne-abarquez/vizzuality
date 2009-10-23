@@ -3,9 +3,18 @@
 #editDataForm input.inputMail {border: 1px solid #dddddd; margin: 0 0 0 0; width: 280px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputPassword,#editDataForm input.inputPassword2 {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
 
+#editDataForm input.roundInputRecords {border: 1px solid #dddddd; margin: 0; width: 20px;padding: 4px 1px 4px 4px; color: #999999;margin-bottom: 4px;}
+
 #editDataForm label.error {color:#c24949; background: none; border: none; width: auto;margin: 0; padding: 0; font-weight: normal;}
 
 #editDataForm input.error {border: 1px solid #c24949; background: none; margin: 0;background: #ffffff;}
+
+.lastRecordContainer{
+	width: 70px;
+}
+
+.recordContainer{
+}
 
 #loc{
 	list-style: none;
@@ -118,11 +127,10 @@ a.loginRegisterLink:hover{
 
 .eraseRecordButton{
 	margin-top: -1px;
-	margin-left: 4px;
+	margin-left: 6px;
 }
 
 .separatorInput{
-	position: absolute;
 	margin: 0;
 	color: #999999;
 	width: 3px;
@@ -171,13 +179,6 @@ label.roundInputDataRadio{
 
 #roundInputDataRadio {width:99px;}
 
-/*
-.editEmail{
-	margin-left: 10px;
-	width: 230px;
-}
-*/
-
 .sexoFecha{
 	height: 50px;
 	width: 372px;
@@ -198,7 +199,8 @@ label.roundInputDataRadio{
 .recordsContainer{
 	margin: 0px;
 	margin-top: 14px;
-	width: 160px;
+	margin-left: -4px;
+	width: 200px;
 }
 
 .distanceName{
@@ -215,6 +217,7 @@ label.roundInputDataRadio{
 	margin-top: 3px;
 }
 
+/*
 label.roundInputRecords{
 	float:left;
 	clear:left;
@@ -237,6 +240,7 @@ label.roundInputRecords{
 .roundInputRecords input:focus {
 	outline:none;
 } 
+*/
 
 .editRadio{
 	width: 370px;
@@ -576,7 +580,7 @@ div.error_register {
 	width: 70px;
 }
 
-div.rightColumnRegister{ border-left: 1px dotted #c3c3c3; margin-left: 24px; width: 275px; padding-bottom: 32768px; margin-bottom: -32768px;}
+div.rightColumnRegister{ border-left: 1px dotted #c3c3c3; margin-left: 24px; width: 275px; /* padding-bottom: 32768px; margin-bottom: -32768px; */}
 div.rightColumnRegister ul {list-style: none;}
 div.rightColumnRegister ul li{  border-bottom: 1px dotted #a5a5a5; font-size: 13px; color: #666666; width: 254px; padding-top: 2px; padding-bottom: 2px; margin-left: 2px;}
 div.titleBoxRegister{height: 54px; background-color: #eeeeee; width: 910px; margin:0 0 10px 20px;}
@@ -610,8 +614,10 @@ div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24
 	border-left: 1px dotted #c3c3c3;
 	margin-left: 24px;
 	width: 275px;
-	padding-bottom: 32768px;
+	/*
+padding-bottom: 32768px;
 	margin-bottom: -32768px;
+*/
 }
 
 .rightColumnRegister ul li{
@@ -1237,7 +1243,7 @@ p.subTitleInfo{
 
 .content{
 	width: 910px;
-	overflow: hidden;
+/* 	overflow: hidden; */
 }
 
 /* Left Column */
@@ -1250,8 +1256,10 @@ p.subTitleInfo{
 }
 
 .leftColumn{
-	padding-bottom: 32768px;
+	/*
+padding-bottom: 32768px;
 	margin-bottom: -32768px;
+*/
 	width: 610px;
 	margin-left: 20px;
 }
@@ -1261,8 +1269,10 @@ p.subTitleInfo{
 	background-position: right;
 	background-repeat: repeat-y;
 	width: 300px;
+/*
 	padding-bottom: 32768px;
 	margin-bottom: -32768px;
+*/
 }
 
 .container{
