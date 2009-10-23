@@ -237,11 +237,9 @@
 			}
 		});
 		
-/*
     	$("#buttonLocalizacion").click(function() {
             geolocateAddress();
-    	});	
-*/	
+    	});		
 		
 		
 	});
@@ -254,22 +252,22 @@ $(document).ready(function(){
 
     if ($("#alertsCheckBox").is(":checked"))
       {
-          $("#mapBox").show();
+          $("#editRadio").show();
       }
       else
       {     
-          $("#mapBox").hide();
+          $("#editRadio").hide();
       }
 
 	
 	$("#alertsCheckBox").click(function(){
 	    if ($("#alertsCheckBox").is(":checked"))
 	      {
-	          $("#mapBox").show("fast");
+	          $("#editRadio").show("fast");
 	      }
 	      else
 	      {     
-	          $("#mapBox").hide();
+	          $("#editRadio").hide();
 	      }	
 	});
 	
@@ -379,9 +377,9 @@ $(document).ready(function(){
 					</div>
 					<div class="localizacionEdit">
 						<p class="data">LOCALIZACIÓN</p>
-						<input type="text" name="inputLocalizacion" id="inputLocalizacion" class="inputLocalizacion" value="{$privateData.datos.locality}">
+						<div class="span-1 first localizatorInputContainer"><input type="text" name="inputLocalizacion" id="inputLocalizacion" class="inputLocalizacion" value="{$privateData.datos.locality}"></div>
+						<div class="span-1 last localizatorInputButton"><input id="buttonLocalizacion" type="button" value="Situar" class="fg-button ButtonLocalizationUpdate"/></div>
 					</div>
-					<div class="checkAlerts"><input id="alertsCheckBox" name="alertsCheckBox" {if $privateData.datos.radius_interest gt 0}checked="checked"{/if} type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
 					<div id="mapBox">
 						<div class="span-1 mapaAlerts" id="map">
 <!-- 							<img src="/img/mapaAlerts.jpg"> -->
@@ -442,8 +440,9 @@ $(document).ready(function(){
                         </script>
                         {/literal}		
 					</div>
+					<div class="checkAlerts"><input id="alertsCheckBox" name="alertsCheckBox" {if $privateData.datos.radius_interest gt 0}checked="checked"{/if} type="checkbox"><span>RECIBIR ALERTAS | ZONAS INTERÉS</span></div>
 						
-						<div class="span-1 editRadio">
+						<div class="span-1 editRadio" id="editRadio">
 							<div class="span-1 first radioBusqueda">
 								<p class="data">RADIO DE BÚSQUEDA</p><p class="km">(Km)</p>
 								<input type="text" name="inputRadio" id="inputRadio" class="inputRadio" value="{$privateData.datos.radius_interest}">

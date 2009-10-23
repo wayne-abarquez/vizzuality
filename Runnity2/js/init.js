@@ -612,7 +612,7 @@ function geolocateAddress() {
                 //notify the user that the username is free
                 $('#error_geo').html("La dirección no se ha encontrado");
                 $('#buttonLocalizacion').val('Situar');
-								$('#buttonLocalizacion').removeAttr("disabled");                
+				$('#buttonLocalizacion').removeAttr("disabled");                
             } else {
                 //notify the user that the username is used.
                 var lat = result.split(",")[0];
@@ -620,7 +620,7 @@ function geolocateAddress() {
                 $('#latHidden').attr("value", lat);
                 $('#lonHidden').attr("value", lon);
                 $('#buttonLocalizacion').val('Situar');
-								$('#buttonLocalizacion').removeAttr("disabled"); 
+				$('#buttonLocalizacion').removeAttr("disabled"); 
 
                 var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center="+lat+","+lon+"&zoom=8&markers=size:mid|color:red|"+lat+","+lon+"&mobile=true&sensor=false&key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
          	    $("#map").attr("src",url);                
@@ -629,9 +629,9 @@ function geolocateAddress() {
        
         },
         error:function (xhr, ajaxOptions, thrownError){
-        				$('#buttonLocalizacion').val('Situar');
-								$('#buttonLocalizacion').removeAttr("disabled"); 
-                $('#error_geo').html("La dirección no se ha encontrado");
+        	$('#buttonLocalizacion').val('Situar');
+			$('#buttonLocalizacion').removeAttr("disabled"); 
+            $('#error_geo').html("La dirección no se ha encontrado");
         }
     });
     
