@@ -75,7 +75,7 @@ if(isset($_REQUEST['action'])) {
 	//update records
 	for ($i = 1; $i <= 9; $i++) {
 		if($_REQUEST['rec_hh_'.$i]!="" and $_REQUEST['rec_mm_'.$i]!="" and $_REQUEST['rec_ss_'.$i]!="" and $_REQUEST['rec_dd_'.$i]!="") {
-			$time_taken = $_REQUEST['rec_hh_'.$i] .":".$_REQUEST['rec_mm_'.$i] .":".$_REQUEST['rec_ss_'.$i].".".$_REQUEST['rec_dd_'.$i];
+			$time_taken = $_REQUEST['rec_hh_'.$i] .":".$_REQUEST['rec_mm_'.$i] .":".$_REQUEST['rec_ss_'.$i] .".".$_REQUEST['rec_dd_'.$i];
 		    $sql="select update_user_record(".$_SESSION['user']['id'].",$i,'$time_taken')";			
 			$result= pg_query($services->conn, $sql);			
 		}
