@@ -238,7 +238,100 @@
 		});
 		
     	$("#buttonLocalizacion").click(function() {
-            geolocateAddress();
+            
+	        var addressval = $("#inputLocalizacion").val();
+	    	var dataObj = ({address : addressval,method: 'geolocateAddress'});
+	    
+	    	if(addressval="") {
+	    		return false; 
+	    	}
+	    
+	    	$('#buttonLocalizacion').val('...');
+			$('#buttonLocalizacion').attr("disabled", "true"); 
+			
+		    // -- Start AJAX Call --
+		    $.ajax({
+		        type: "POST",
+		        url: "/ajaxController.php",
+		        data: dataObj,
+		        cache: false,
+		        success: function(result){
+		            if(result=="INVALID") {
+		                //notify the user that the username is free
+		                $('#buttonLocalizacion').val('Situar');
+						$('#buttonLocalizacion').removeAttr("disabled");                
+		            } else {
+		                //notify the user that the username is used.
+/* 		                $('#map').remove(); */
+		                var lat = result.split(",")[0];
+		                var lon = result.split(",")[1];
+		                $('#latHidden').attr("value", lat);
+		                $('#lonHidden').attr("value", lon);
+		                $('#buttonLocalizacion').val('Situar');
+						$('#buttonLocalizacion').removeAttr("disabled"); 
+/* 						$('#mapBox').append('<div class="span-1 mapaAlerts" id="map"><div>'); */
+                        
+                        var map = new GMap2(document.getElementById("map"));
+                        var start = new GLatLng(lat, lon);
+                        map.setCenter(start, 10);
+                        
+                        map.addControl(new GSmallZoomControl());
+                        new GKeyboardHandler(map);
+                        map.enableContinuousZoom();
+                        map.enableDoubleClickZoom();    
+                        
+                        var bounds = new GLatLngBounds();
+
+
+                        function drawCircle(center, radius, nodes, liColor, liWidth, liOpa, fillColor, fillOpa)
+                        {
+                            map.clearOverlays();
+                        // Esa 2006
+                        	//calculating km/degree
+                        	var latConv = center.distanceFrom(new GLatLng(center.lat()+0.1, center.lng()))/100;
+                        	var lngConv = center.distanceFrom(new GLatLng(center.lat(), center.lng()+0.1))/100;
+
+                        	//Loop 
+                        	var points = [];
+                        	var step = parseInt(360/nodes)||10;
+                        	for(var i=0; i<=360; i+=step)
+                        	{
+                        	var pint = new GLatLng(center.lat() + (radius/latConv * Math.cos(i * Math.PI/180)), center.lng() + 
+                        	(radius/lngConv * Math.sin(i * Math.PI/180)));
+                        	points.push(pint);
+                        	bounds.extend(pint); //this is for fit function
+                        	}
+                        	points.push(points[0]); // Closes the circle, thanks Martin
+                        	fillColor = fillColor||liColor||"#0055ff";
+                        	liWidth = liWidth||2;
+                        	var poly = new GPolygon(points,liColor,liWidth,liOpa,fillColor,fillOpa);
+                        	map.addOverlay(poly);
+                        }  
+
+                        function fit(){
+                            map.panTo(bounds.getCenter()); 
+                            map.setZoom(map.getBoundsZoomLevel(bounds)-1);
+                        }
+
+                        {/literal}{if !lat eq ""}{literal}
+                            drawCircle(start, {/literal}{$privateData.datos.radius_interest}{literal}, 40);   
+                            fit();
+                        {/literal}{else}{literal}
+                            $('#map').hide();
+                        {/literal}{/if}{literal}
+		
+		            }
+		       
+		        },
+		        error:function (xhr, ajaxOptions, thrownError){
+		        	$('#buttonLocalizacion').val('Situar');
+					$('#buttonLocalizacion').removeAttr("disabled"); 
+		        }
+		    });
+		    
+		    return false;
+
+            
     	});		
 		
 		
@@ -349,7 +442,9 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
-			<form action="userprofile.php" method="POST" id="editDataForm">			
+			<form action="userprofile.php" method="POST" id="editDataForm">	
+				<input type="hidden" id="latHidden" name="lat">
+				<input type="hidden" id="lonHidden" name="lon">		
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
 				<div class="span-1 editdata">
@@ -386,7 +481,7 @@ $(document).ready(function(){
                         <script type="text/javascript">
                         //<![CDATA[
                             var map = new GMap2(document.getElementById("map"));
-                            var start = new GLatLng({/literal}{$privateData.datos.lon}, {$privateData.datos.lat}{literal});
+                            var start = new GLatLng({/literal}{$privateData.datos.lat}, {$privateData.datos.lon}{literal});
                             map.setCenter(start, 10);
                             
                             map.addControl(new GSmallZoomControl());
@@ -445,8 +540,6 @@ $(document).ready(function(){
 							<div class="span-1 first radioBusqueda">
 								<p class="data">RADIO DE BÚSQUEDA</p><p class="km">(Km)</p>
 								<input type="text" name="inputRadio" id="inputRadio" class="inputRadio" value="{$privateData.datos.radius_interest}">
-								<input type="hidden" id="latHidden" name="lat" value="{$privateData.datos.lat}">
-								<input type="hidden" id="lonHidden" name="lon" value="{$privateData.datos.lon}">
 							</div>
 							<div class="span-1 last radioInfo">
 								<p class="dataRadio">Las alertas se enviarán semanalmente a tu dirección de email</p>
@@ -514,7 +607,6 @@ $(document).ready(function(){
 				<div class="span-1 dataUserButtons">
 					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
-
 			</div>			
 		</div>
 	</div>
