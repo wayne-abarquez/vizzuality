@@ -10,7 +10,7 @@ from models.models import Feed
 from urlparse import urlparse
 
 import logging
-import os
+import os, glob
 
 class IndexHandler(webapp.RequestHandler):
 
@@ -83,10 +83,15 @@ class WorksHandler(webapp.RequestHandler):
 
 class DetailHandler(webapp.RequestHandler):
 
-	def get(self):
-		# Write out contact file.
-		path = os.path.join(os.path.dirname(__file__), 'templates/detail.html')
-		self.response.out.write(template.render(path, {'section':'detail'}, debug=True))
+	def get(self,p):
+		path = os.path.join(os.path.dirname(__file__), 'templates/'+p+'.html')
+#		logging.error("value of my p is %s", str(path))		
+		if not os.path.exists(path):
+			self.error(404)
+			path = os.path.join(os.path.dirname(__file__), 'templates/404.html')
+			self.response.out.write(template.render(path, {'title': 'Error 404: Page not found'}, debug=True))
+
+		self.response.out.write(template.render(path, {'section':'works'},debug=True))   
 
 class PyAMFBrowser(webapp.RequestHandler):
 	def get(self):
@@ -110,7 +115,7 @@ def main():
 		('/company', CompanyHandler),
 		('/contact', CompanyHandler),
 		('/works', WorksHandler),
-		('/detail', DetailHandler),
+		(r'/project/(.*)', DetailHandler),
 		('/amf/*', PyAMFBrowser),
 		('/.*', NotFoundHandler)
 	], debug=True)

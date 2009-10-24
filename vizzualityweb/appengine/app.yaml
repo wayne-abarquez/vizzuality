@@ -26,8 +26,8 @@ handlers:
   static_dir: images    
   
 # Static: image files
-- url: /projects
-  static_dir: projects  
+- url: /projects_media
+  static_dir: projects_media  
   
 # Static: image files
 - url: /robots.txt

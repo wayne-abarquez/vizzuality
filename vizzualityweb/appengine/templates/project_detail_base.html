@@ -18,11 +18,11 @@
   <div id="header"> <a href="/"><img src="/images/logo.gif" alt="" border="0" class="left" /></a>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="#" class="current">Our Work</a></li>
+      <li><a href="/works">Our Work</a></li>
       <li><a href="/company">About us</a></li>
       <li class="last"><a href="http://biodivertido.blogspot.com/" target="_blank">Blog</a></li>
     </ul>
-    <h1>We are passionate about what we do. We had a lot of fun working on these projects. We hope you enjoy them too</h1>
+    <h1>{% block big_title %}Big title{% endblock %}</h1>
   </div>
   <div id="body_container">
     <div class="content">
@@ -30,15 +30,11 @@
         <li class="detail">
           <div class="col">
             <div class="white_box">
-              <p class="titleWork">WDPA-Marine</p>
-              <p class="clientName">UNEP-WCMC</p>
- 				{{ description }}
+				{% block description %}Description of the project{% endblock %}
 			</div>
           </div>
          <div class="longcol" id="01Thumbs"> 
-			{% for picture in pictures %}
-         		<img src="{{picture}}" />
-			{% endfor %}
+				{% block pictures %}pictures of the project{% endblock %}
 		 </div>
         </li>    
       </ul>
