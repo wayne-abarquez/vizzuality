@@ -262,14 +262,12 @@
 						$('#buttonLocalizacion').removeAttr("disabled");                
 		            } else {
 		                //notify the user that the username is used.
-/* 		                $('#map').remove(); */
 		                var lat = result.split(",")[0];
 		                var lon = result.split(",")[1];
 		                $('#latHidden').attr("value", lat);
 		                $('#lonHidden').attr("value", lon);
 		                $('#buttonLocalizacion').val('Situar');
 						$('#buttonLocalizacion').removeAttr("disabled"); 
-/* 						$('#mapBox').append('<div class="span-1 mapaAlerts" id="map"><div>'); */
                         
                         var map = new GMap2(document.getElementById("map"));
                         var start = new GLatLng(lat, lon);
@@ -314,7 +312,7 @@
                         }
 
                         {/literal}{if !lat eq ""}{literal}
-                            drawCircle(start, {/literal}{$privateData.datos.radius_interest}{literal}, 40);   
+                            drawCircle(start,$('#inputRadio').val(), 40);   
                             fit();
                         {/literal}{else}{literal}
                             $('#map').hide();
