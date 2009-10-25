@@ -20,7 +20,7 @@ div#header ul li a:hover{ color:#fff}
 div#header ul li a.current{ color:#fff; cursor:text}
 div#header ul li.last{ background:none; padding-right:0}
 div#header h1{float:left; width:885px; font:bold 39px "Helvetica",Arial, Helvetica, sans-serif; color:#fff; padding-top:38px; letter-spacing:-2px; 
-word-spacing:-5px, text-shadow: #333 0 0 0; line-height: 38px; }
+word-spacing:-5px, text-shadow: #333 0 0 0; line-height: 40px; }
 
 div#body_container{float:left; width:845px; background:#fff; padding:50px 20px 10px 20px}
 
