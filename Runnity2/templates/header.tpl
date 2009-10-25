@@ -159,33 +159,30 @@
 	
 <!-- PUBLISH RUN -->
 	<div id="publish_modal">
-		<div class="contact_container">
+		<div class="publish_container">
 			<h2>Publica tu carrera</h2>
 			<form id="contactForm" method="GET" action="">
-				<div>
+				<div class="name">
 					<label>Nombre de la carrera</label>
-					<div class="span-12 inputContainer">
-						<label class="inputLogin">
-							<input type="text" class="inputLogin" >
-						</label>
-					</div>
+					<input type="text" class="text">
 				</div>
-				<div>
-					<label>e-mail</label>
-					<div class="span-12 inputContainer">
-						<label class="inputLogin" >
-							<input type="text" class="inputLogin">
-						</label>
-					</div>
+				<div class="date">
+					<label>Fecha</label>
+					<input type="text" class="text">
 				</div>
-				<div>
+				<div class="data">
 					<label>Info de la carrera</label>
-					<div class="span-12 inputContainer">
-						<textarea id="publish2"></textarea>
-					</div>
+					<textarea></textarea>
 				</div>
-				<span  class="errorMessage"></span>
-				<input class="fg-button" value="Enviar" type="submit"/>
+				<div class="mail">
+					<label>e-mail de contacto</label>
+					<input type="text" class="text">
+				</div>
+				<span  class="errorMessage">Aquí van los errores...</span>
+				<div class="bottom">
+					<p>Una vez mandada la información, nuestro equipo contactará contigo para completarla.</p>
+					<input class="fg-button" value="Enviar" type="submit"/>
+				</div>
 			</form>
 		</div>
 	</div>
