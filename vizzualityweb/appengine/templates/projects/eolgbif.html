@@ -1,0 +1,32 @@
+{% extends "../project_detail_base.html" %}
+
+{% block page_title %}ccurrence data from GBIF network in Encyclopedia Of Life{% endblock %}
+{% block big_title %}Occurrence data from GBIF network in Encyclopedia Of Life{% endblock %}
+
+{% block description %}
+<p class="titleWork">GBIF Species Maps  for EOL</p>
+<p class="clientName">GBIF-EOL</p>
+<p class="description"><span class="title">Challengue</span>
+
+The Encyclopedia Of Life makes use of GBIF primary data to display species location. The previous map provided by GBIF was a static map with no interaction. Additionally the user did not get information on the providers providing the data for the map.
+
+We wanted to provide an engaging visualization that could let the user navigate freely on the map. From viewing the data worldwide to view the data in your backyard. At the same time the user has to be able to get quickly the information about the data providers of the map.
+
+</p>
+ <p class="description"><span class="title">Solution</span>
+	
+Using a new processing algorithm, the data from GBIF was processed into small tiles that match the ones from GBIF. The tiles can be generated dynamically with PHP or stored in a CDN like CloudFront for better distribution. Providing 23 levels of data plus in a Google Maps for Flash widget completed the project with fantastic results.
+
+</p>
+ <p class="description"><span class="title">Highlights &amp; technologies</span>
+
+The solution had to be as lightweight and fast as possible to better fit on the EOL website. The solution currently running works dynamically on PHP with a very tuned SQL database. We are working in the future to generate the tiles using Hadoop and storing them directly on Cloud Front.
+</p>
+<p class="projectLink"><a href="http://www.eol.org" target= "blank_">View online &raquo;</a></p>
+{% endblock %}
+
+{% block pictures %}
+<img src="/projects_media/eolgbif/1.jpg" />
+<img src="/projects_media/eolgbif/2.jpg" />
+<img src="/projects_media/eolgbif/3.jpg" />
+{% endblock %}

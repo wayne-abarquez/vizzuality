@@ -84,7 +84,7 @@ class WorksHandler(webapp.RequestHandler):
 class DetailHandler(webapp.RequestHandler):
 
 	def get(self,p):
-		path = os.path.join(os.path.dirname(__file__), 'templates/'+p+'.html')
+		path = os.path.join(os.path.dirname(__file__), 'templates/projects/'+p+'.html')
 #		logging.error("value of my p is %s", str(path))		
 		if not os.path.exists(path):
 			self.error(404)
