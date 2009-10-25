@@ -21,6 +21,11 @@
 	});
 	
 	$().ready(function() {
+		
+		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
+			$('div.rightColumn').height($('div.leftColumn').height());	
+		}
+		
 		$("#editDataForm").validate({
 			rules: {
 				inputPassword: {

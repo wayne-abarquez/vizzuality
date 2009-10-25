@@ -1,4 +1,15 @@
 {include file="header.tpl"}
+{literal}
+<script type="text/javascript"> 
+$(document).ready(function(){
+	
+	if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
+		$('div.rightColumn').height($('div.leftColumn').height());	
+	}
+});
+</script>
+{/literal}
+
 
 <div class="span-24 column content">
 

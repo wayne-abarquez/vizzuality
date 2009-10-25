@@ -3,7 +3,11 @@
 {literal}
 <script type="text/javascript"> 
 $(document).ready(function(){
-
+	
+	if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
+		$('div.rightColumn').height($('div.leftColumn').height());	
+	}
+	
 	$('#datos1').truncate({max_length: 32});
 
 	new AjaxUpload('#buttonUploadPicture', {
