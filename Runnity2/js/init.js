@@ -599,7 +599,7 @@ function registerUser() {
 
 function geolocateAddress(keymapvalue) {
 	
-		$('#error_geo').html(''); 
+	$('#error_geo').html(''); 
 		
 		
     var addressval = $("#roundLocalizacion").val();
