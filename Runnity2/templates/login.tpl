@@ -12,13 +12,9 @@
 					<div class="loginContainerData">
 						<div class="span-1 loginSpaceFirst">
 						<p>Nombre de usuario / email</p>
-						<label class="roundInputName last" for="roundInputName">
-							<input type="text" name="username" id="roundInputName">
-						</label>
+						<input type="text" name="username" class="inputLoginPage">
 						<p>Contraseña</p>
-						<label class="roundInputName last" for="roundInputName">
-							<input type="text" name="password" id="roundInputName">
-						</label>
+						<input type="password" name="password" class="inputLoginPage">
 						<input type="hidden" name="url" value="{$url}" />
 						<input class="fg-button buttonLoginPage" type="submit" name="action" value="Entrar" />
 						</div>
