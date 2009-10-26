@@ -250,8 +250,11 @@
 				<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
 				</p>
 				<ol id="update">
-				{foreach key=id item=comment from=$comments}
-				{if $comment}	    										
+				{foreach key=id item=comment from=$comments name=commentloop}
+				{if $comment}	    
+				{if $smarty.foreach.commentloop.iteration==1}		
+					<div class="span-1 separatorFirstComment"></div>
+				{/if}								
 					<div id="comment" class="span-1 last">
 						<div class="span-1 last avatarBox">
 							<img width="67" height="66" src="/avatar.php?id={$comment.user_id}&type=s"/>	
@@ -260,7 +263,9 @@
 						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
 						<p class="commentUser">{$comment.commenttext}</p>
 						</div>
-					</div>							
+					</div>	
+				{else}
+					<div class="span-1 separatorFirstComment"></div>
           		{/if} 
             	{/foreach}	
             </ol>						
