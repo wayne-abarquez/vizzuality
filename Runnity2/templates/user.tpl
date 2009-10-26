@@ -50,10 +50,14 @@ $(document).ready(function(){
     	onComplete : function(file,response){
     	
     		var tipoCont = $("#pictureUserContainerNoPhotos").attr("title");
+    		var iniciocadena = response.lastIndexOf("/");
+    		var finalcadena = response.lastIndexOf("_");
+    		var numcaracteres = finalcadena-iniciocadena;
+    		var cadena = response.substr(iniciocadena+1,numcaracteres-1);
 		
         	if(tipoCont=="first"){
         		$("#pictureUserContainerNoPhotos").remove();
-        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/picture/{/literal}{$picture.id}{literal}/user">' +response+ '</a></div></li></ul></div>');
+        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&source=user">' +response+ '</a></div></li></ul></div>');
 				window.clearInterval(interval);
 				$("#pictureUserContainer").append("<div class='span-1 editUserLinkDiv'><a class='editUserLink' id='buttonUploadPicture'>Subir fotos <img src='/img/pencil.gif'></a></div>");
 
@@ -62,7 +66,7 @@ $(document).ready(function(){
         	} else {
         	    var i=$('ul#loc li').size()+1;
         		if(i<6){
-	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/picture/{/literal}{$picture.id}{literal}/user">' +response+ '</a></div></li>').prependTo('ul#loc');
+	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
 	            	$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
 					window.clearInterval(interval);
 
@@ -70,7 +74,7 @@ $(document).ready(function(){
 					this.enable();
         		} else {
         			$('ul#loc li:last').remove();
-	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/picture/{/literal}{$picture.id}{literal}/user">' +response+ '</a></div></li>').prependTo('ul#loc');
+	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
 					$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
 					window.clearInterval(interval);
 
@@ -205,7 +209,7 @@ $(document).ready(function(){
 						{if $smarty.foreach.pictureloop.iteration<6}
 							<li>
 								<div class="imagesUser" id="imagesUser">
-									<a href="/picture/{$picture.id}/user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+									<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 								</div>
 							</li>
 						{/if}
