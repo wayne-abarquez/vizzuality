@@ -47,9 +47,11 @@
 						<a href="javascript: void confirmationWindow()">borrar foto</a>
 					{/if}
 					<div id="confirmationWindow" style='display:none'>
-						<p>¿Estás seguro de querer borrar esta foto?</p>
-						<input class="fg-button" type="submit" value="Si" onclick="location.href='/image.php?id={$smarty.request.id}&action=delete'"/>
+						<p>¿Estás seguro de que quieres borrar esta foto?</p>
+						<div class="erasePhoto">
+						<input class="fg-button" type="submit" value="Si, quiero borrarla" onclick="location.href='/image.php?id={$smarty.request.id}&action=delete'"/>
 						<input class="fg-button" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
+						</div>
 					</div>
 				</div>
 			</div>
