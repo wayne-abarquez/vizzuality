@@ -240,6 +240,7 @@
 	    });
 	    
 		$(".nameRace").truncate( {max_length: 50} );
+		$(".infoRace").truncate( {max_length: 30} );
 		$(".nameRaceOrange").truncate( {max_length: 55} );			
 		$(".placeRace").truncate( {max_length:30} );		
 		
