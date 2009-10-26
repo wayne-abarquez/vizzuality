@@ -74,7 +74,7 @@
 	{/if}	
 	
     {if $section eq "usuario"}
-        <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA&amp;sensor=false" type="text/javascript"></script>	
+        <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={$smarty.const.GMAPS_KEY}&amp;sensor=false" type="text/javascript"></script>	
 	{/if}
 	
 </head>

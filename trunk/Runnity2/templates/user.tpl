@@ -297,7 +297,7 @@ $(document).ready(function(){
 		
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
-			<div id="map" class="mapStyleRight">
+			<div class="mapStyleRight">
 	    		<img src="/img/mapaApuntadas.jpg">					
 			</div>
 		</div>
