@@ -404,7 +404,7 @@ package com.ninem.controls
 			if (((columnActive.dataProvider as ArrayCollection).length % 25) > 0) {
 				page = Number((columnActive.dataProvider as ArrayCollection).length / 25) + 2;
 			} else {
-				page = (columnActive.dataProvider as ArrayCollection).length % 25 + 2;
+				page = ((columnActive.dataProvider as ArrayCollection).length / 25) + 1;
 			}
 			httpsrv2 = new HTTPService();
 			httpsrv2.concurrency="last";
@@ -576,7 +576,7 @@ package com.ninem.controls
 				var httpsrv:HTTPService = new HTTPService();
 				httpsrv.resultFormat = "text";
 				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
-				httpsrv.url = "http://ecat-ws.gbif.org/ws/nav/?pagesize=25&ranks=kpcofg&page=1&image=true&id="+(_selectedItem.id).toString();
+				httpsrv.url = Application.application.ecatServices +"nav/?pagesize=25&ranks=kpcofg&page=1&image=true&id="+(_selectedItem.id).toString();
 				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
 				httpsrv.send();
 			}
@@ -608,7 +608,7 @@ package com.ninem.controls
 					switch (co.rank) {
 						case "kingdom":
 							numInmediateChild=co.numP;
-							inmediateChildRank="phylums";
+							inmediateChildRank="phyla";
 							break;
 						case "phylum":
 							numInmediateChild=co.numC;
@@ -624,7 +624,7 @@ package com.ninem.controls
 							break;
 						case "family":
 							numInmediateChild=co.numG;
-							inmediateChildRank="genus";
+							inmediateChildRank="genera";
 							break;
 						case "genus":
 							numInmediateChild=co.numSG;

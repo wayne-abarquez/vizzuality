@@ -21,7 +21,7 @@
 			[Bindable]
 			public var gbifTaxonomy : ArrayCollection = new ArrayCollection();
 			
-			public var ecatServices:String ="http://ecat-ws.gbif.org/ws/";
+			public var ecatServices:String ="http://ecat-dev.gbif.org/ws/";
 			
 			private function onCreationComplete():void {
 				ExternalInterface.call("s = function() {document.getElementById('"+this.id+"').focus(); }");
@@ -69,7 +69,7 @@
 						}
 						
 						clasOb.numInmediateChild=co.numP;
-						clasOb.inmediateChildRank="phylums";
+						clasOb.inmediateChildRank="phyla";
 						
 						clasOb.labelField = co.scientificName;
 						clasOb.children=(co.numP>0);
