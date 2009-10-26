@@ -96,9 +96,12 @@ function borrarRecords(id1,id2,id3,id4) {
 	return false;
 }
 
-
 function showLoginWindow() {
 	$('#login_modal').modal();
+}
+
+function confirmationWindow() {
+	$('#confirmationWindow').modal();
 }
 
 function show_contact() {

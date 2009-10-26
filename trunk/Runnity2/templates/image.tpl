@@ -44,8 +44,13 @@
             		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>            		
             		{/if}	
 					{if $canEdit}				
-						<a href="/image.php?id={$smarty.request.id}&action=delete">borrar foto</a>
+						<a href="javascript: void confirmationWindow()">borrar foto</a>
 					{/if}
+					<div id="confirmationWindow" style='display:none'>
+						<p>¿Estás seguro de querer borrar esta foto?</p>
+						<input class="fg-button" type="submit" value="Si" onclick="location.href='/image.php?id={$smarty.request.id}&action=delete'"/>
+						<input class="fg-button" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
+					</div>
 				</div>
 			</div>
 		</div>
