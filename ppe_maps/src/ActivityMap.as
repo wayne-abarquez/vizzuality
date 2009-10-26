@@ -21,7 +21,6 @@ package {
 	import com.greensock.plugins.*;
 	import com.vizzuality.ImageContainer;
 	import com.vizzuality.data.ImageData;
-	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
 	import flash.display.Bitmap;
@@ -40,7 +39,7 @@ package {
 	import flash.utils.Dictionary;
 
 	[SWF(backgroundColor=0xEEEEEE, widthPercent=100, heightPercent=100)]
-	public class PaMap extends Sprite
+	public class ActivityMap extends Sprite
 	{
 		private var map:Map;
 		private var square:Sprite;	
@@ -70,7 +69,7 @@ package {
 		[Embed('assets/bottom_buttons.png')] 
 		private var butButtons:Class;							
 						
-		public function PaMap()
+		public function ActivityMap()
 		{ 
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;	
@@ -157,7 +156,7 @@ package {
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			var paId:Number=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=1;
+				paId=970;
 			} else {
 				paId=root.loaderInfo.parameters.id;
 			}
@@ -191,9 +190,12 @@ package {
 				
 		}
 		
-		
 		private function loadData():void {
-			
+			//Add the polygon
+			var polCords:Array=[];
+			for each(var coords:Array in data.coordinates[0][0]) {
+				polCords.push(new LatLng(coords[1],coords[0]));
+			}
 			
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
@@ -207,19 +209,12 @@ package {
 				  }	
 			});
 			
-			var mp:Multipolygon= new Multipolygon();
-			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);						
-			mp.addToMap(map);
-			
-			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);		
+			pol = new Polygon(polCords,polOpt);
+			map.addOverlay(pol);
+			map.setCenter(pol.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(pol.getLatLngBounds())-1);		
 			map.panBy(new Point(-310,0),false);
 			
-
-			map.panBy(new Point(-310,0),false);
-			
-			
-			
-			//getPanoramioPics();		
+			getPanoramioPics();		
 				
 		}
 		
