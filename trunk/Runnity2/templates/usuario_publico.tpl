@@ -56,7 +56,7 @@ $(document).ready(function(){
 					{foreach key=id item=picture from=$pictures name=pictureloop}
 						{if $smarty.foreach.pictureloop.iteration<6}
 							<div class="imagesUser" id="imagesUser">
-								<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+								<a href="/picture/{$picture.id}/user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 							</div>
 						{/if}
 					{/foreach}
@@ -120,7 +120,7 @@ $(document).ready(function(){
 				<p class="span-8 tituloPhotos">FOTOS DE {$data.datos.username|upper}</p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<a name="anclafotos" href="/image.php?id={$picture.id}&source=run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+					<a name="anclafotos" href="/picture/{$picture.id}/run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 				{/foreach}	
 				</div>
 			</div>

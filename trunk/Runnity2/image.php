@@ -20,6 +20,15 @@ if(!$data) {
     header( 'Location: /404page.php' ) ; 
 }
 
+if(($_SESSION['user']['id']==$data['user_fk']) and (isset($_REQUEST['action'])) and ($_REQUEST['action'] == "delete")) {
+    //delete picture
+    $mediaServices->removePicture($_REQUEST['id']);
+    header( 'Location: /perfil/'.$_SESSION['user']['username'] ) ; 
+    die();
+}
+
+
+
 $smarty->assign('pictureDetails',$data);
 
 if ($_REQUEST['source']=="run") {
@@ -61,7 +70,11 @@ foreach ($fotosSet as $img) {
 	$fotoPosition++;
 }
 
-
+if($_SESSION['user']['id']==$data['user_fk']) {
+    $smarty->assign('canEdit', true);
+} else {
+    $smarty->assign('canEdit', false);
+}
 
 
 $smarty->assign('previousFotoId', $previousFotoId);

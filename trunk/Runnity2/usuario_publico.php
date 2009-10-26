@@ -2,6 +2,15 @@
 
 session_start();
 
+if (isset($_SESSION['logged']) and $_SESSION['user']['username']==$_REQUEST['u']) {
+    header( 'Location: /perfil/'.$_SESSION['user']['username'] ) ;    
+	die();
+}
+
+if (!isset($_SESSION['logged'])) {
+    header( 'Location: /login.php?url='.urlencode($_SERVER["REQUEST_URI"]) ) ;   
+	die();
+}
 
 // load Smarty library 
 require 'libs/Smarty.class.php';

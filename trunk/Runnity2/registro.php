@@ -5,6 +5,11 @@ require 'services/RunnitServices.php';
 
 session_start();
 
+if (isset($_SESSION['logged'])) {
+    header( 'Location: /perfil/'.$_SESSION['user']['username'] ) ;   
+	die();
+}
+
 $smarty = new Smarty;
 $services = new RunnitServices;
 

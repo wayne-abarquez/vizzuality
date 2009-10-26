@@ -243,6 +243,10 @@ class MediaServices {
 		
 	}
 	
+	function removePicture($id) {
+	    $sql="DELETE FROM picture WHERE id=$id";
+	    $result=pg_query($this->conn, $sql);
+	}
 	
 }
 ?>

@@ -22,17 +22,17 @@
 				<div class="span-1 last upPaginator imagePaginator">
 					<p>{$fotoPosition} de {$totalFotos}</b>
 					{if $previousFotoId gt 0}
-						<span><a href="/image.php?id={$previousFotoId}&source={$smarty.get.source}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
+						<span><a href="/picture/{$previousFotoId}/{$smarty.get.source}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
 					{/if}	
 					{if $nextFotoId gt 0}
-						<span><a href="/image.php?id={$nextFotoId}&source={$smarty.get.source}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
+						<span><a href="/picture/{$nextFotoId}/{$smarty.get.source}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
 					{/if}
 					</p>	
 				</div>	
 				<div class="span-1 containerImg ">
 					<!--HACER CLick EN LA FOTO PARA PASAR A LA SIGUIENTE-->
 					{if $nextFotoId gt 0}
-					<a href="/image.php?id={$nextFotoId}&source={$smarty.get.source}">
+					<a href="/picture/{$nextFotoId}/{$smarty.get.source}">
 					{/if}
 					<img class="targetImg" id="userImg" src="{$pictureDetails.path}">
 					{if $nextFotoId gt 0}
@@ -42,9 +42,10 @@
             		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|replace:' ':'/'}">{$pictureDetails.belongs_to_name}</a></p>
             		{else}
             		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>            		
-            		{/if}					
-					
-					
+            		{/if}	
+					{if $canEdit}				
+						<a href="/image.php?id={$smarty.request.id}&action=delete">borrar foto</a>
+					{/if}
 				</div>
 			</div>
 		</div>
@@ -111,7 +112,7 @@
 			{if $pictures}
 				<div class="avatarContainer">
 				{foreach key=id item=picture from=$pictures}
-					<a href="/image.php?id={$picture.id}&source={$smarty.get.source}"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+					<a href="/picture/{$picture.id}/{$smarty.get.source}"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 				{/foreach}	
 				</div>
 			{/if}

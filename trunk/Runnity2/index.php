@@ -16,9 +16,20 @@ $smarty->assign('titulo_pagina', 'Próximas carreras y atletas - Runnity.com');
 if(!isset($_COOKIE["geolocation"])){
 	$visitor_location = visitorLocation();
 	if($visitor_location['city']) {
-		setcookie("geolocation", $visitor_location['city']);
-		setcookie("lat", $visitor_location['lat']);
-		setcookie("lon", $visitor_location['lon']);		
+	    
+	    if($visitor_location['country'] == "Spain") {
+    		setcookie("geolocation", $visitor_location['city']);
+    		setcookie("lat", $visitor_location['lat']);
+    		setcookie("lon", $visitor_location['lon']);	        
+	    } else {
+	        //Default to Madrid
+	        $location['lat'] = "40.4";
+        	$location['lon'] = "-3.6833";
+        	$location['city'] = "Madrid";
+        	$location['country'] = "Spain";
+	        
+	    }
+	
 	}
 }else{
 	$visitor_location = array();
@@ -63,6 +74,7 @@ function visitorLocation(){
 	$location['lat'] = $answer->Latitude;
 	$location['lon'] = $answer->Longitude;
 	$location['city'] = $answer->City;
+	$location['country'] = $answer->CountryCode;
 	return $location;
 }
 
