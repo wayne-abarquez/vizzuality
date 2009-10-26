@@ -23,6 +23,8 @@ package com.vizzuality.markers
 			
 			private var imageLoader:Loader = new Loader();
 			private var imageMask:Sprite = new Sprite();
+			
+			public var targetUrl:String;
           
             public function SearchInfowindow(ob:Object) {
  					
@@ -116,7 +118,7 @@ package com.vizzuality.markers
 	                }
                     
                    
-                    var mainNameSprite: VizzualityShape = new VizzualityShape("http://localhost:3000/");
+                    var mainNameSprite: VizzualityShape = new VizzualityShape("/protected_areas/4");
 		            var nameText: TextField = new TextField();
 		            nameText.text =  ob.area;
 		            var newFormat:TextFormat = new TextFormat(); 
@@ -142,7 +144,7 @@ package com.vizzuality.markers
 		            addChild(mainNameSprite);
 		            mainNameSprite.addEventListener(MouseEvent.CLICK,clicked); 
 		            
-		            var exampleSprite2: VizzualityShape = new VizzualityShape("http://localhost:3000/");
+		            var exampleSprite2: VizzualityShape = new VizzualityShape("/protected_areas/4");
 		            var countryText2: TextField = new TextField();
 		            countryText2.text =  "Local area PPE";
 		            var newFormat2:TextFormat = new TextFormat(); 
@@ -166,12 +168,12 @@ package com.vizzuality.markers
 		            exampleSprite2.buttonMode=true;
 		            exampleSprite2.useHandCursor=true;
 		            addChild(exampleSprite2);
-		            exampleSprite2.addEventListener(MouseEvent.CLICK,clicked); 
+		            this.addEventListener(MouseEvent.CLICK,clicked); 
 
             }
             
           	private function clicked(event:MouseEvent):void {
-			    navigateToURL(new URLRequest(event.target.url));
+			    navigateToURL(new URLRequest(this.targetUrl),"_self");
 			}
 			
 			private function displayImg(e:Event):void{

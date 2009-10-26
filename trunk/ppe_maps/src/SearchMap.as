@@ -140,7 +140,7 @@ package {
                 //TODO: CONNECT THIS WITH THE JSON SERVICE
                 markerData.sites = 7;
                 markerData.isNeeded = true;	
-                markerData.imgURL = "http://localhost:8888/fakeResources/fakeAreaThumbnail.jpg";
+                markerData.imgURL = "/images/thumbnails/thumb01.jpg";
                 				
 				var m:SearchMarker = new SearchMarker(area.getLatLngBounds().getCenter(),markerData.imgURL,markerData.sites,markerData.isNeeded);
 				m.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
@@ -163,6 +163,7 @@ package {
  			var m:Object = iw[e.target];
  			
  			infoWindowToOpen = new SearchInfowindow(m);
+ 			infoWindowToOpen.targetUrl="/protected_areas/4";
  			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
             var options:InfoWindowOptions = new InfoWindowOptions({
               customContent: infoWindowToOpen,
