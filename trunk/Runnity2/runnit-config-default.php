@@ -18,6 +18,28 @@ define('DB_HOST', 'localhost');
 define('ABSPATH','/path/to/www/');
 define('EMAILPASSWORD','emailpass');
 
+define('HOST','localhost');
+
 define('TWITTER_USER','runnity');
 define('TWITTER_PASS','vizzualejo');
+
+define('HOST','localhost');
+switch (HOST){
+	case (HOST=="localhost"):
+		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w');    //localhost
+		break;
+	case (HOST=="runnity.com"):
+		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA');   //runnity.com
+		break;
+	case (HOST=="runnity.es"):
+		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA');   //runnity.es
+		break;
+	case (HOST=="runnity.net"):
+		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRS5lFIZ4lX1ZuOUC3gMG9aTZZnVExRO7Xbt-wEBLhd43QE_x_w9pE80BQ');	//runnity.net
+		break;
+	case (HOST=="67.23.47.172"):
+		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTGDsp2z8MalcroimtHohqExHETcBS4NC7BdwWef8UXYbVt7VWSNZ9bOQ');   //server
+		break;
+}
+
 ?>

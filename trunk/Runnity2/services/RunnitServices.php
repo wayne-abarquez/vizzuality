@@ -674,7 +674,7 @@ class RunnitServices {
 	    $sql.=",(select case when count(id)>0 then true else false end from users_run as ur where ur.run_fk=r.id and ur.users_fk=".$_SESSION['user']['id'].") as inscrito";
 	}
 	
-	$sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and track_geom is not null";
+	$sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and (track_geom is not null or is_displayed_in_home=true)";
 	
 
 		if($lat!=0 && $lon!=0) {
@@ -1277,8 +1277,7 @@ SQL;
 	
 	public function geolocateAddress($address) {
 	    define("MAPS_HOST", "maps.google.com");
-        define("KEY", "ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA");
-	    $base_url = "http://" . MAPS_HOST . "/maps/geo?output=xml" . "&key=" . KEY;
+	    $base_url = "http://" . MAPS_HOST . "/maps/geo?output=xml" . "&key=" . GMAPS_KEY;
 	    $request_url = $base_url . "&q=" . urlencode($address) .",Spain";
 	    $rsp = utf8_encode(file_get_contents($request_url));
 	    $xml = simplexml_load_string($rsp);
