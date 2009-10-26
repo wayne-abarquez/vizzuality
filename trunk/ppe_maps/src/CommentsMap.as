@@ -92,62 +92,15 @@ package {
 			addChildAt(square,0);
 			
 			
-			picturesSquare = new Sprite();
-			picturesSquare.graphics.beginFill(0xEEEEEE);
-			picturesSquare.graphics.drawRoundRect(0,0,630, 250,4,4);
-			picturesSquare.graphics.endFill();	
+
 			
-			imgArrays.push(new ImageContainer("http://localhost:3000/images/fakePanoramio1.jpg")); 
-			imgArrays.push(new ImageContainer("http://localhost:3000/images/fakePanoramio2.jpg")); 
-			imgArrays.push(new ImageContainer("http://localhost:3000/images/fakePanoramio3.jpg")); 
-			imgArrays.push(new ImageContainer("http://localhost:3000/images/fakePanoramio4.jpg")); 
-			imgArrays.push(new ImageContainer("http://localhost:3000/images/fakePanoramio5.jpg")); 	
-			
-			imgContainer= new Sprite();	
-			
-			var i:Number=0;
-			for each(var img:ImageContainer in imgArrays) {
-				imgContainer.addChild(img);
-				img.x = i*310;
-				i++;
-			}
-			
-			//Create mask
-			maskSprite = new Sprite();
-			maskSprite.graphics.beginFill(0xE9E9E9);
-			maskSprite.graphics.drawRect(0,0,612, 254);
-			maskSprite.graphics.endFill();	
-						
-			
-			leftArrowBitmap= new leftArrow() as Bitmap;
-			leftArrowBitmap.width=38;
-			leftArrowBitmap.height=34;
-			sp1 = new Sprite();
-			sp1.addChild(leftArrowBitmap);
-			sp1.addEventListener(MouseEvent.CLICK,handleClickImage);
-			
-			rightArrowBitmap= new rightArrow() as Bitmap;
-			rightArrowBitmap.width=38;
-			rightArrowBitmap.height=34;
-			sp2 = new Sprite();
-			sp2.addChild(rightArrowBitmap);
-			sp2.addEventListener(MouseEvent.CLICK,handleClickImage);			
 
 						
-			butButtonsBitmap= new butButtons() as Bitmap;
-			butButtonsBitmap.width=313;
-			butButtonsBitmap.height=31;
-			positionElements();
-								
-								
-			addChild(picturesSquare);
-			addChild(imgContainer);								
-			addChild(maskSprite);								
-			addChild(sp1);
-			addChild(sp2);
-			addChild(butButtonsBitmap);								
-								
-			imgContainer.mask= maskSprite;		
+			
+		
+
+						
+
 								
 								
 			initMap();			
