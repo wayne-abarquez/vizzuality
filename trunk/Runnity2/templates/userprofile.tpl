@@ -261,16 +261,9 @@
 		        data: dataObj,
 		        cache: false,
 		        success: function(result){
-		            if(result=="INVALID") {
-		                //notify the user that the username is free
-		                $('#buttonLocalizacion').val('Situar');
-						$('#buttonLocalizacion').removeAttr("disabled");                
-		            } else {
 		                //notify the user that the username is used.
 		                var lat = result.split(",")[0];
 		                var lon = result.split(",")[1];
-		                $('#latHidden').attr("value", lat);
-		                $('#lonHidden').attr("value", lon);
 		                $('#buttonLocalizacion').val('Situar');
 						$('#buttonLocalizacion').removeAttr("disabled"); 
                         
@@ -322,9 +315,7 @@
                         {/literal}{else}{literal}
                             $('#map').hide();
                         {/literal}{/if}{literal}
-		
-		            }
-		       
+				       
 		        },
 		        error:function (xhr, ajaxOptions, thrownError){
 		        	$('#buttonLocalizacion').val('Situar');
@@ -446,8 +437,7 @@ $(document).ready(function(){
 			</div>
 			
 			<form action="userprofile.php" method="POST" id="editDataForm">	
-				<input type="hidden" id="latHidden" name="lat">
-				<input type="hidden" id="lonHidden" name="lon">		
+		
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
 				<div class="span-1 editdata">

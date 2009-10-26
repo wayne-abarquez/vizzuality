@@ -95,7 +95,4 @@ $smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['u
 $smarty->assign('section', 'usuario');
 $smarty->display('userprofile.tpl');
 
-
-
-
 ?>
