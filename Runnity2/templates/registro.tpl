@@ -71,7 +71,7 @@
 		});
 		
     	$("#buttonLocalizacion").click(function() {
-            geolocateAddress();
+            geolocateAddress("{/literal}{$smarty.const.GMAPS_KEY}{literal}");
     	});		
 		
 		
@@ -160,7 +160,7 @@
 								<input type="button" value="Situar" id="buttonLocalizacion" class="buttonLocalizacion"/>
 							</label>
 							<div id="error_geo"></div>
-							<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key=ABQIAAAAsIunaSEq-72JsQD5i92_2RTGDsp2z8MalcroimtHohqExHETcBRBLendueerJCN4IaRKtfN27AEs1w"></div>
+							<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key={$smarty.const.GMAPS_KEY}"></div>
 						</div>
 					</div>
 				</div>

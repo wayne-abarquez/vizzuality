@@ -597,7 +597,7 @@ function registerUser() {
     });*/
 }
 
-function geolocateAddress() {
+function geolocateAddress(keymapvalue) {
 	
 		$('#error_geo').html(''); 
 		
@@ -632,8 +632,8 @@ function geolocateAddress() {
                 $('#lonHidden').attr("value", lon);
                 $('#buttonLocalizacion').val('Situar');
 				$('#buttonLocalizacion').removeAttr("disabled"); 
-
-                var url="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center="+lat+","+lon+"&zoom=8&markers=size:mid|color:red|"+lat+","+lon+"&mobile=true&sensor=false&key=ABQIAAAAsIunaSEq-72JsQD5i92_2RTGDsp2z8MalcroimtHohqExHETcBRBLendueerJCN4IaRKtfN27AEs1w";
+				
+                var url='http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center='+lat+','+lon+'&zoom=8&markers=size:mid|color:red|'+lat+','+lon+'&mobile=true&sensor=false&key='+keymapvalue+'';
          	    $("#map").attr("src",url);                
                 
             }
