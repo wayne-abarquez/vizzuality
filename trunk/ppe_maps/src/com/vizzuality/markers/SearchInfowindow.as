@@ -4,37 +4,47 @@ package com.vizzuality.markers
 	
 	import flash.display.Bitmap;
 	import flash.display.GradientType;
-	import flash.display.Shape;
+	import flash.display.Loader;
+	import flash.display.SpreadMethod;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 	
-	public class SearchInfowindow extends Sprite
-	{
+	public class SearchInfowindow extends Sprite{
+		
 			[Embed(source="/assets/arrow.gif")]
 			public var imgcls:Class;
+			
+			private var imageLoader:Loader = new Loader();
+			private var imageMask:Sprite = new Sprite();
           
             public function SearchInfowindow(ob:Object) {
  					
- 					var linGrad:String = GradientType.LINEAR;  /* 0x316ea7 */
+					this.buttonMode = true;
+					this.useHandCursor = true;
+					this.mouseChildren = false; 					
+ 					
+					imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, displayImg);
+				
+					var fileRequest:URLRequest = new URLRequest(ob.imgURL);
+					imageLoader.load(fileRequest);
+ 					
+ 					var linGrad:String = GradientType.LINEAR;  
 				   	var linMatrix:Matrix = new Matrix();
-				    linMatrix.createGradientBox(width,height,30);
-				    var linColors:Array = [0x4f92cf, 0x316ea7];
+				    linMatrix.createGradientBox(250,40,90,0,0);
+				    var linColors:Array = [0x4f92cf, 0x155a9a];
 				    var linAlphas:Array = [1, 1];
-				    var linRatios:Array = [0, 255];
+				    var linRatios:Array = [1, 255];
 			        var lin:Sprite = new Sprite();
-			   		lin.graphics.beginGradientFill(linGrad, linColors, linAlphas, linRatios,linMatrix);
-			   		lin.graphics.drawRoundRect(0,7,225,41,5);
+			   		lin.graphics.beginGradientFill(linGrad, linColors, linAlphas, linRatios,linMatrix, SpreadMethod.PAD);
+			   		lin.graphics.drawRoundRect(0,7,250,41,5);
 			        addChild(lin);
-			        
-			        var imgcls: Bitmap = new imgcls();
-			        imgcls.y = 22;
-			        imgcls.x = 5;
-			        addChild(imgcls);;
  					
  					var background:Sprite = new Sprite();
  					background.graphics.beginGradientFill(linGrad, linColors, linAlphas, linRatios,linMatrix);
@@ -42,38 +52,39 @@ package com.vizzuality.markers
 		            background.graphics.endFill();
 		            addChild(background);
 		            
-		            var image:Shape = new Shape();
-		            image.graphics.beginFill(0xcccccc,1);
-		            image.graphics.drawCircle(40,28,25);
-		            image.graphics.endFill();
-		            addChild(image);
-		            
 		            var count:Sprite = new Sprite();
 		            count.graphics.beginFill(0xff3300,1);
 		            count.graphics.drawCircle(40,28,7);
 		            count.graphics.endFill();
 		            count.x=20;
 		            count.y=-20;
-		            addChild(count);
+
                     
-                    var tf:TextField = new TextField();
-                    var format:TextFormat = tf.getTextFormat();
-                    format.font = "Arial";
-                    format.size = 8;
-                    format.bold=true;
-                    tf.defaultTextFormat = format;
-                    tf.text = "10";
-                    tf.textColor = 0xffffff;
-                    tf.mouseEnabled = false;
-					tf.autoSize = "center";
-                    tf.width = 15;
-                    tf.height = 15;
-                    tf.background = false;
-                    tf.backgroundColor = 0xFFFFFF;
-                    tf.x = 53;
-                    tf.y = 2;
-                    mouseChildren = false;
-                    addChild(tf);
+					var imgcls: Bitmap = new imgcls();
+			        imgcls.y = 22;
+			        imgcls.x = 5;
+			        addChild(imgcls);                    
+                    
+					if(ob.sites >0){
+						addChild(count);
+	                    var tf:TextField = new TextField();
+	                    var format:TextFormat = tf.getTextFormat();
+	                    format.font = "Arial";
+	                    format.size = 8;
+	                    format.bold=true;
+						format.align = TextFormatAlign.CENTER;	                    
+	                    tf.defaultTextFormat = format;
+	                    tf.text = ob.sites.toString();
+	                    tf.textColor = 0xffffff;
+	                    tf.mouseEnabled = false;
+						tf.autoSize = "none";
+	                    tf.width = 14;
+	                    tf.height = 15;
+	                    tf.x = 53;
+	                    tf.y = 2;
+	                    mouseChildren = false;
+	                    addChild(tf);
+	    			}
                     
                     var percent:Sprite = new Sprite();
 		            percent.graphics.beginFill(0xff6600,1);
@@ -81,48 +92,55 @@ package com.vizzuality.markers
 		            percent.graphics.endFill();
 		            percent.x=-20;
 		            percent.y=20;
-                    addChild(percent);
+
                     
-                    var tf1:TextField = new TextField();
-                    tf1.defaultTextFormat = format;
-                    tf1.text = "10";
-                    tf1.textColor = 0xffffff;
-                    tf1.mouseEnabled = false;
-					tf1.autoSize = "center";
-                    tf1.width = 15;
-                    tf1.height = 15;
-                    tf1.background = false;
-                    tf1.backgroundColor = 0xFFFFFF;
-                    tf1.x = 13;
-                    tf1.y = 43;
-                    addChild(tf1);
+                    if(ob.isNeeded){
+			            var tf1:TextField = new TextField();
+						var format2:TextFormat = tf1.getTextFormat();
+	                    format2.font = "Arial";
+	                    format2.size = 10;
+	                    format2.bold=true;
+	                    tf1.defaultTextFormat = format2;
+	                    tf1.text = "!";
+	                    tf1.textColor = 0xffffff;
+	                    tf1.mouseEnabled = false;
+						tf1.autoSize = "center";
+	                    tf1.width = 15;
+	                    tf1.height = 15;
+	                    tf1.background = false;
+	                    tf1.backgroundColor = 0xFFFFFF;
+	                    tf1.x = 36;
+	                    tf1.y = 21;
+	                    percent.addChild(tf1);
+	                    addChild(percent);
+	                }
                     
-                    
-                    var exampleSprite: VizzualityShape = new VizzualityShape("http://localhost:3000/");
-		            var countryText: TextField = new TextField();
-		            countryText.text =  ob.area;
+                   
+                    var mainNameSprite: VizzualityShape = new VizzualityShape("http://localhost:3000/");
+		            var nameText: TextField = new TextField();
+		            nameText.text =  ob.area;
 		            var newFormat:TextFormat = new TextFormat(); 
 		   			newFormat.size = 12; 
 		   			newFormat.color = 0xFFFFFF;
 		   			newFormat.bold = true;
 		   			newFormat.letterSpacing = 0;
 					newFormat.font = "Helvetica";
-		    		countryText.setTextFormat(newFormat); 
-		            countryText.wordWrap = true;
-		            countryText.width = 150;
-		            countryText.height = 30;
-		            countryText.x = 0;
-		            countryText.y = 0;
-		            exampleSprite.x = 73;
-		            exampleSprite.y = 14;
-		            exampleSprite.addChild(countryText);
-		            exampleSprite.width = 150;
-		            exampleSprite.height = 30; 
-		            exampleSprite.mouseChildren=false;
-		            exampleSprite.buttonMode=true;
-		            exampleSprite.useHandCursor=true;
-		            addChild(exampleSprite);
-		            exampleSprite.addEventListener(MouseEvent.CLICK,clicked); 
+		    		nameText.setTextFormat(newFormat); 
+		            nameText.wordWrap = true;
+		            nameText.width = 150;
+		            nameText.height = 30;
+		            nameText.x = 0;
+		            nameText.y = 0;
+		            mainNameSprite.x = 73;
+		            mainNameSprite.y = 16;
+		            mainNameSprite.addChild(nameText);
+		            mainNameSprite.width = 150;
+		            mainNameSprite.height = 30;
+		            mainNameSprite.mouseChildren=false;
+		            mainNameSprite.buttonMode=true;
+		            mainNameSprite.useHandCursor=true;
+		            addChild(mainNameSprite);
+		            mainNameSprite.addEventListener(MouseEvent.CLICK,clicked); 
 		            
 		            var exampleSprite2: VizzualityShape = new VizzualityShape("http://localhost:3000/");
 		            var countryText2: TextField = new TextField();
@@ -140,7 +158,7 @@ package com.vizzuality.markers
 		            countryText2.x = 0;
 		            countryText2.y = 0;
 		            exampleSprite2.x = 73;
-		            exampleSprite2.y = 26;
+		            exampleSprite2.y = 29;
 		            exampleSprite2.addChild(countryText2);
 		            exampleSprite2.width = 150;
 		            exampleSprite2.height = 30; 
@@ -149,12 +167,24 @@ package com.vizzuality.markers
 		            exampleSprite2.useHandCursor=true;
 		            addChild(exampleSprite2);
 		            exampleSprite2.addEventListener(MouseEvent.CLICK,clicked); 
- 					
 
             }
             
           	private function clicked(event:MouseEvent):void {
 			    navigateToURL(new URLRequest(event.target.url));
 			}
+			
+			private function displayImg(e:Event):void{
+  			
+	  			imageMask.graphics.beginFill(0x330000,1);
+	  			imageMask.graphics.drawCircle(40,28,25);
+	  			imageMask.graphics.endFill();
+	  			
+	  			addChild(imageMask);
+	  			imageLoader.mask = imageMask;
+	  			imageLoader.x = 15;
+	  			imageLoader.y = 4; 
+	  			addChildAt(imageLoader,2);
+  			}
       }
 }
