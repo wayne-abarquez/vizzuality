@@ -1999,7 +1999,12 @@ div.mapStyleRight {
 #comment div.commentBox div.nameUser {margin-left: 30px; color: #666666;}
 
 .noComments{
-	margin-top: 20px;
+	margin-top: 24px;
+	width: 590px;
+}
+
+.noLoggedPhotos{
+	margin-top: 24px;
 	width: 590px;
 }
 
@@ -2016,9 +2021,16 @@ div.mapStyleRight {
 	font-weight: bold;
 }
 
+.iconPhrasePhotos{
+	width: 16px;
+	margin-top: 24px;
+	margin-left: 70px;	
+}
+
 .iconPhrase{
 	width: 16px;
-	margin-top: 20px;	
+	margin-top: 24px;
+	margin-left: 30px;	
 }
 
 .publica{

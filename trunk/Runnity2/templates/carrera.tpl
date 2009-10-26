@@ -217,7 +217,6 @@
 			</div>
 			
 			<div id="newphotos">
-			{if $smarty.session.logged}				
 				{if $pictures}
 				<div class="span-1 last bannerTopPhotos"></div>
 				<div class="span-1 last columnPhotos">
@@ -231,18 +230,20 @@
 				</div>
 				{else}
 				<div class="span-1 last nophotos" id="nophotos" title="first">
+					{if $smarty.session.logged}
 					<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
 					<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
 					<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIcon.gif">Subir fotos</a></p>
+					{else}
+						<div class="span-1 iconPhrasePhotos">
+							<img src="/img/slash.gif"/>
+						</div>
+						<div>
+							<p class="noComments">Para subir fotos debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
+						</div>					
+					{/if}
 				</div>			
-				{/if}
-			{else}
-				<div class="span-1 last nophotos" id="nophotos" title="first">
-				<div class="noPhotosLogin">
-					<p class="noComments_wall">Para realizar comentarios debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en Runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
-				</div>
-				</div>			
-			{/if}
+				{/if}		
 			</div>	
 			
 			<div class="span-1 last columnLong">
