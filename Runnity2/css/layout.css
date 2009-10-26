@@ -1461,16 +1461,23 @@ a.verTodas:hover{
 
 #confirmationWindow{
 	height: 75px;
-	width: 600px;
+	width: 420px;
 	background: #eaeaea;
 	border:6px solid #ffffff;
 }
+
+#confirmationWindow div.erasePhoto{
+	text-align: center;
+	margin-top: -20px;
+}
+
 
 #confirmationWindow p {
 	color: #336699;
 	font-size: 16px;
 	font-weight: bold;
 	text-align: center;
+	margin-top: 10px;
 }
 
 /* Right Column */
