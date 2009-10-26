@@ -62,7 +62,14 @@ class RunnitServices {
 
 	    //Check if the user has avatars or not
 	    $result = pg_fetch_all(pg_query($this->conn, $sql));
-	    
+
+	    if($result) {
+    	    foreach ($result as &$comment) {
+                $comment['commenttext'] = ereg_replace("[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]", "<a href=\"\\0\">\\0</a>", $comment['commenttext']);  
+                $comment['commenttext'] = preg_replace("/(http:\/\/|(www\.))(([^\s<]{4,68})[^\s<]*)/", '<a href="http://$2$3" rel="nofollow">$2$4</a>', $comment['commenttext']);
+            }	        
+    	}	    
+	    /*
 	    //Iterate over the array to check if the runs have images on the server or not and provide a random one
 	    if($result) {
     	    foreach ($result as &$comment) {
@@ -74,7 +81,8 @@ class RunnitServices {
                     $comment['avatar'] = "0.jpg";
                 }
             }	        
-	    }	    
+	    }	 
+	    */
 	    
 	    return $result; 
 	     
