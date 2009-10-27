@@ -568,7 +568,7 @@ class RunnitServices {
 	    if(count($terms)>0 and $q!="") {
 	        $sql.=" AND (";
     	    foreach($terms as $term) {
-    	        if (in_array($term, $termsToAvoid)) {
+    	        if (!in_array($term, $termsToAvoid)) {
     	            $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(p.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or p.cautonoma_noaccents ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
     	        }
     	    }	 
