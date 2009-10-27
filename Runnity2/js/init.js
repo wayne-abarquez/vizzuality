@@ -623,9 +623,7 @@ function geolocateAddress(keymapvalue) {
                 $('#lonHidden').attr("value", lon);
                 $('#buttonLocalizacion').val('Situar');
 				$('#buttonLocalizacion').removeAttr("disabled"); 
-				
-				alert(keymapvalue);
-				
+								
                 var url='http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center='+lat+','+lon+'&zoom=8&markers=size:mid|color:red|'+lat+','+lon+'&mobile=true&sensor=false&key='+keymapvalue+'';
          	    $("#map").attr("src",url);                
                 

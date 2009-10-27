@@ -15,8 +15,8 @@
 					</div>
 					<div class="span-1 last NoUserInfo">
 						<p class="nameUserProfile">{$data.datos.completename}<span class="nameUserProfileNick">, ({$data.datos.username})</span></p>
-						<p>Para poder ver mas sobre Andrés David, dejarle un mensaje o ver sus fotos y próximas carreras, tienes que estar registrado en runnity.</p>
-						<p>Si ya lo estás, <a href="#">haz login</a>, si no, <a href="#">registrate aquí.</a></p>
+						<p>Para poder ver mas sobre <b>{$data.datos.username}</b>, dejarle un mensaje o ver sus fotos y próximas carreras, tienes que estar registrado en runnity.</p>
+						<p>Si ya lo estás, <a href="javascript: void showLoginWindow()">haz login</a>, si no, <a href="/registro">registrate aquí.</a></p>
 					</div>
 				</div>
 			</div>
