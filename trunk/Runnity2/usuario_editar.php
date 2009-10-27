@@ -93,6 +93,6 @@ $smarty->assign('friends',$services->getUserFriends($_SESSION['user']['id']));
 $smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['username']));
 
 $smarty->assign('section', 'usuario');
-$smarty->display('userprofile.tpl');
+$smarty->display('usuario_editar.tpl');
 
 ?>

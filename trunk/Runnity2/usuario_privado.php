@@ -74,7 +74,7 @@ $smarty->assign('categoria',$categoria);
 /* $smarty->assign('groupUsers',$services->getGroupUsers(1)); */
 
 $smarty->assign('section', 'usuario');
-$smarty->display('user.tpl');
+$smarty->display('usuario_privado.tpl');
 
 
 ?>

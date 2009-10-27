@@ -7,10 +7,6 @@ if (isset($_SESSION['logged']) and $_SESSION['user']['username']==$_REQUEST['u']
 	die();
 }
 
-if (!isset($_SESSION['logged'])) {
-    header( 'Location: /login.php?url='.urlencode($_SERVER["REQUEST_URI"]) ) ;   
-	die();
-}
 
 // load Smarty library 
 require 'libs/Smarty.class.php';
@@ -86,6 +82,13 @@ switch ($anio){
 $smarty->assign('categoria',$categoria);
 
 $smarty->assign('section', 'usuario');
-$smarty->display('usuario_publico.tpl');
+
+if($_SESSION['logged']) {
+    $smarty->display('usuario_publico.tpl');
+} else {
+    $smarty->display('usuario_publico_no_login.tpl');
+}
+
+
 
 ?>

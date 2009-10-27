@@ -177,7 +177,7 @@ $(document).ready(function(){
 						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
 						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
 					</div>
-					<a class="editUserLink" href="/userprofile.php">editar tus marcas <img src="/img/pencil.gif"></a>
+					<a class="editUserLink" href="/usuario_editar.php">editar tus marcas <img src="/img/pencil.gif"></a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
@@ -189,7 +189,7 @@ $(document).ready(function(){
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>{$categoria}</b></p></div>
 					</div>
-					<a class="editUserLink" href="/userprofile.php">editar tus datos <img src="/img/pencil.gif"></a>
+					<a class="editUserLink" href="/usuario_editar.php">editar tus datos <img src="/img/pencil.gif"></a>
 				</div>
 			</div>
 			
