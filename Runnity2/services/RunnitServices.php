@@ -1043,12 +1043,13 @@ class RunnitServices {
             $sql.=",false as inscrito";
         }
         
-        $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and r.id <> $id  ";
+        $sql.=" from run as r left join province as p on r.province_fk=p.id where published=true and r.id <> $id  ";
 		$sql.=" and (event_date > (select (event_date::date-3) from run where id=$id) and event_date < (select (event_date::date+3) from run where id=$id))";
 		if($lat!=0 && $lon!=0) {
 			$sql.=" AND distance_sphere(PointFromText('POINT($lon $lat)', 4326),start_point) <($distance_km*1000)";
 		}
 		$sql.=" order by event_date ASC limit 3";
+		
 
 		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
