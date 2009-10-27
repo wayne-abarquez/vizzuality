@@ -478,6 +478,15 @@ class RunnitServices {
             $result= pg_query($this->conn, $sql);            
         }
         
+        //Notify the user if a comment has been sent to him
+        if($table=="user") {
+            $user_from = $_SESSION['user']['username'];
+            $msg="Hola!,\n\n  $user_from te ha dejado un comentario en tu perfil en Runnity.com:\n\n$comment\n\nPuedes contestar a este mensaje en http://www.runnity.com/perfil/$user_from\n\nSi deseas no seguir recibiendo estos mesajes puedes activar y desactivar las alertas en http://www.runnity.com/perfil/$user_from";
+            
+            
+            
+        }
+        
         return null;
 	    
 	}
@@ -555,10 +564,13 @@ class RunnitServices {
 
 	    $terms=explode(" ",$q);
 
+        $termsToAvoid=array("el","la","los","las","en","de","y","o","i");
 	    if(count($terms)>0 and $q!="") {
 	        $sql.=" AND (";
     	    foreach($terms as $term) {
-    	        $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(p.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or p.cautonoma_noaccents ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
+    	        if (in_array($term, $termsToAvoid)) {
+    	            $sql.=" to_ascii(convert_to(r.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(event_location, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(p.name, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or p.cautonoma_noaccents ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
+    	        }
     	    }	 
     	    $sql=substr($sql,0,-3);
     	    $sql.=")";       
