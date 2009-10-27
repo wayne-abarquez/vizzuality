@@ -11,14 +11,14 @@ $(document).ready(function(){
 	  Cufon.replace('.nameUserProfileNick');
 
 
-      $('#inputsearchFirst').emptyonclick();
+      $('#inputsearchFirst').emptyonclick(); 
 
 	  $('div.avatarContainer a img').hover(
 		function () {
 			$(this).css('z-index','9999');
 			$(this).parent().find('div.hidden').show();
 		}, 
-		function () {
+		function () { 
 			$(this).css('z-index','1');
 		  $(this).parent().find('div.hidden').hide();
 		}
