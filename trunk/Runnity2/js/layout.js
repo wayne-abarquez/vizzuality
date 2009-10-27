@@ -1,13 +1,6 @@
 (function($){
 	var initLayout = function() {
-		var hash = window.location.hash.replace('#', '');
-		var currentTab = $('ul.navigationTabs a')
-							.bind('click', showTab)
-							.filter('a[rel=' + hash + ']');
-		if (currentTab.size() == 0) {
-			currentTab = $('ul.navigationTabs a:first');
-		}
-		showTab.apply(currentTab.get(0));
+
 		$('#date').DatePicker({
 			flat: true,
 			date: '2008-07-31',

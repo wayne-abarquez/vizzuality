@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
 <html>
 <head>
-    <meta name="verify-v1" content="nBehsGXRSiH2qvWfAcnU4AZJzlOQbABqaiw7dzaXSeo=" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	
 	{if $meta_keywords}
@@ -20,45 +19,21 @@
 	<title>{$titulo_pagina}</title>
 	
 	<link rel="shortcut icon" href="/img/favicon.ico"/>
-
-	<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
-	<link rel="stylesheet" href="/css/menu.css" type="text/css">	
-	<link rel="stylesheet" href="/css/datepicker.css" type="text/css">
-	<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection">
+    
+    <link rel="stylesheet" href="/css/site_{$smarty.const.CSS_VERSION}.css" type="text/css">
 	
 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity" />
-
-    {if $section eq "usuario" or $section eq "carrera"}
-        <script type="text/javascript" src="/js/ajaxupload.3.6.js"></script>
-	{/if}
 	
 	<!-- Import JS source files -->
-	
-	<script type="text/javascript" src="/js/jquery.js"></script>
-	<script type="text/javascript" src="/js/datepicker.js"></script>
-  <script type="text/javascript" src="/js/eye.js"></script>
-  <script type="text/javascript" src="/js/utils.js"></script>
-  <script type="text/javascript" src="/js/jquery.emptyonclick.js"></script>
-  <script type="text/javascript" src="/js/layout.js?ver=1.0.2"></script>
-  <script src="/js/jquery.simplemodal-1.3.js" type="text/javascript"></script>
-  <script language="javascript" type="text/javascript" src="/js/jquery.truncator.js"></script>
-  <script src="/js/basic.js" type="text/javascript"></script>
-  <script src="/js/jquery.url.min.js" type="text/javascript"></script>
-  <script src="/js/jquery.validate.js" type="text/javascript"></script>
-	
-	<script type='text/javascript' src='/js/init.js'></script>
+    <script type="text/javascript" src="/js/site_{$smarty.const.JS_VERSION}.js"></script>	
 	
 	<!--[if IE 6]>
 	<link rel="stylesheet" href="/css/layout_ie.css" type="text/css" media="screen, projection">
 	<![endif]-->
 	
-	<script src="/cufon/cufon-yui.js" type="text/javascript"></script>
-	<script src="/cufon/Arial_Rounded_MT_Bold_400.font.js" type="text/javascript"></script>
 
 	
 	{if $section eq "index"}
-		<script type="text/javascript" src="/js/swfobject.js"></script>
 		{literal}
 		<script type="text/javascript">
 			swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
@@ -66,7 +41,6 @@
 		{/literal}
 	{/if}
 	{if $section eq "carrera"}
-		<script type="text/javascript" src="/js/swfobject.js"></script>
 		{literal}
 		<script type="text/javascript">
 			swfobject.registerObject("flashMovie", "10.0.0", "expressInstall.swf");
