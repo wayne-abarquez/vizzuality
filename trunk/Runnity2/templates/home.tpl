@@ -41,7 +41,7 @@
 						</div>
 						<div class="span-1 Race">
 							<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></p>
+							href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></p>
 							<p class="span-4 infoRace" id="iteracion{$smarty.foreach.raceloop.iteration}">
 							<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> /{$race.distance_text}</p>
 							<p class="span-4 placeRace">{$race.province_name} - {$race.event_location}</p>
@@ -74,7 +74,7 @@
 				</div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$race.run1_id}/{$race.run1_name|replace:' ':'/'}">{$race.run1_name}</a></p>
+							href="/run/{$race.run1_id}/{$race.run1_name|seourl}">{$race.run1_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run1_description}</p>
 				</div>
 				{if $race.run1_num_users > 0}
@@ -93,7 +93,7 @@
 				</div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$race.run2_id}/{$race.run2_name|replace:' ':'/'}">{$race.run2_name}</a></p>
+							href="/run/{$race.run2_id}/{$race.run2_name|seourl}">{$race.run2_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run2_description}</p>
 				</div>
 				{if $race.run2_num_users > 0}
@@ -113,7 +113,7 @@
 				</div>
 				<div class="span-1 Race">
 					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$race.run3_id}/{$race.run3_name|replace:' ':'/'}">{$race.run3_name}</a></p>
+							href="/run/{$race.run3_id}/{$race.run3_name|seourl}">{$race.run3_name}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run3_description}</p>
 				</div>
 				{if $race.run3_num_users > 0}
@@ -144,7 +144,7 @@
 			</div>
 			<div class="span-1 Race">
 				<p class="nameRaceOrange"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$VipRace.id}/{$VipRace.name|replace:' ':'/'}">{$VipRace.name}</a></p>
+							href="/run/{$VipRace.id}/{$VipRace.name|seourl}">{$VipRace.name}</a></p>
 				<p class="span-4 infoRaceOrange" id="iteracion{$smarty.foreach.raceloop.iteration}"><b>{$VipRace.event_date|substr:8:2}/{getMonth month=$VipRace.event_date|substr:5:2}/{$VipRace.event_date|substr:2:2}</b> / {$VipRace.distance_text}</p>
 				<p class="span-4 placeRaceOrange">{$VipRace.event_location}</p>
 			</div>

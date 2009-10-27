@@ -173,11 +173,11 @@
 				
 				<div class="span-1 last raceData">
 				<p class="titulo tituloLeft">COMPARTIR</p>
-<a target=_blank href="http://www.facebook.com/share.php?u=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_facebook.gif" alt="Facebook"></a>
-<a target=_blank href="http://del.icio.us/post?title=&url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_delicious.gif" alt="delicious"></a>
-<a target=_blank href="http://meneame.net/submit.php?url=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_meneame.gif" alt="meneame"></a>
-<a target=_blank href="http://twitter.com/home?status=http://www.runnity.com/run/{$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_twitter.png" alt="twitter"></a>	
-<a target=_blank href="http://digg.com/submit?phase=2&url={$data.id}/{$data.name|replace:' ':'/'}"><img src="/img/ico_digg.png" alt="Facebook"></a> 
+<a target=_blank href="http://www.facebook.com/share.php?u=http://www.runnity.com/run/{$data.id}/{$data.name|seourl}"><img src="/img/ico_facebook.gif" alt="Facebook"></a>
+<a target=_blank href="http://del.icio.us/post?title=&url=http://www.runnity.com/run/{$data.id}/{$data.name|seourl}"><img src="/img/ico_delicious.gif" alt="delicious"></a>
+<a target=_blank href="http://meneame.net/submit.php?url=http://www.runnity.com/run/{$data.id}/{$data.name|seourl}"><img src="/img/ico_meneame.gif" alt="meneame"></a>
+<a target=_blank href="http://twitter.com/home?status=http://www.runnity.com/run/{$data.id}/{$data.name|seourl}"><img src="/img/ico_twitter.png" alt="twitter"></a>	
+<a target=_blank href="http://digg.com/submit?phase=2&url={$data.id}/{$data.name|seourl}"><img src="/img/ico_digg.png" alt="Facebook"></a> 
 				</div>
 
 			</div>
@@ -228,6 +228,7 @@
 				{if $pictures}
 				<div class="span-1 last bannerTopPhotos"></div>
 				<div class="span-1 last columnPhotos">
+				    <a NAME="fotos"></a>
 					<p class="span-8 tituloPhotos">FOTOS DEL EVENTO {if !empty($pictures)}[{$pictures|@count}]{/if}</p>
 					<div id="imgItems">
 					{foreach key=id item=picture from=$pictures}
@@ -255,6 +256,7 @@
 			</div>	
 			
 			<div class="span-1 last columnLong">
+			    <a NAME="comentarios"></a>
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
 				<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
 				</p>
@@ -344,7 +346,7 @@
 						<div class="ticketBlueCorner ticketBlueCornerRight"></div>
 					{/if}		
 					<div class="span-1 last dataRaceRight">
-						<div class="nameRaceRight"><a id="nameRunRight1{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+						<div class="nameRaceRight"><a id="nameRunRight1{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></div>
 						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
 					</div>	
 				</div>
@@ -369,7 +371,7 @@
 						<div class="ticketBlueCorner ticketBlueCornerRight"></div>
 					{/if}		
 					<div class="span-1 last dataRaceRight">
-						<div class="nameRaceRight"><a id="nameRunRight2{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+						<div class="nameRaceRight"><a id="nameRunRight2{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></div>
 						<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
 					</div>	
 				</div>
