@@ -1000,7 +1000,7 @@ class RunnitServices {
     }
 
     //carrera
-    public function getRunsSimilarDistance($id,$distance) {
+    public function getRunsSimilarDistance($id,$distance,$lat=0,$lon=0,$distance_km=150) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
         if(isset($_SESSION['logged']) and $_SESSION['logged']) {
@@ -1011,13 +1011,18 @@ class RunnitServices {
         
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and r.id <> $id ";
 		$sql.=" and distance_meters<= $distance+2000 and distance_meters>= $distance-2000 and published=true";
+		
+		if($lat!=0 && $lon!=0) {
+			$sql.=" AND distance_sphere(PointFromText('POINT($lon $lat)', 4326),start_point) <($distance_km*1000)";
+		}
+		
 		$sql.=" order by event_date ASC limit 3";
 		//error_log($sql);		
 		return pg_fetch_all(pg_query($this->conn, $sql));      
     }
 
     //carrera
-    public function getRunsInSimilarDates($id) {
+    public function getRunsInSimilarDates($id,$lat=0,$lon=0,$distance_km=150) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
         if(isset($_SESSION['logged']) and $_SESSION['logged']) {
@@ -1028,6 +1033,9 @@ class RunnitServices {
         
         $sql.=" from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and published=true and r.id <> $id  ";
 		$sql.=" and (event_date > (select (event_date::date-3) from run where id=$id) and event_date < (select (event_date::date+3) from run where id=$id))";
+		if($lat!=0 && $lon!=0) {
+			$sql.=" AND distance_sphere(PointFromText('POINT($lon $lat)', 4326),start_point) <($distance_km*1000)";
+		}
 		$sql.=" order by event_date ASC limit 3";
 
 		return pg_fetch_all(pg_query($this->conn, $sql));      
