@@ -1,4 +1,8 @@
 <?php
+
+require('combinejs.php');
+require('combinecss.php');
+
 /** 
  * The base configurations of Runnit.
 **/
@@ -18,12 +22,11 @@ define('DB_HOST', 'localhost');
 define('ABSPATH','/path/to/www/');
 define('EMAILPASSWORD','emailpass');
 
-define('HOST','localhost');
-
 define('TWITTER_USER','runnity');
 define('TWITTER_PASS','vizzualejo');
 
 define('HOST','localhost');
+
 switch (HOST){
 	case (HOST=="localhost"):
 		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w');    //localhost
