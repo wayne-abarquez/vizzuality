@@ -10,31 +10,7 @@ $smarty = new Smarty;
 $services = new RunnitServices;
 $mediaServices = new MediaServices;
 
-//Get information about the city
-//Set geolocation cookie
-if(!isset($_COOKIE["geolocation"])){
-	$visitor_location = visitorLocation();
-	if($visitor_location['city']) {
-		setcookie("geolocation", $visitor_location['city']);
-		setcookie("lat", $visitor_location['lat']);
-		setcookie("lon", $visitor_location['lon']);		
-	}
-}else{
-	$visitor_location = array();
-	$visitor_location['lat'] = $_COOKIE["lat"];
-	$visitor_location['lon'] = $_COOKIE["lon"];
-	$visitor_location['city'] = $_COOKIE["geolocation"];
-}
 
-if ($visitor_location['city']!='') {
-	$smarty->assign('city', $visitor_location['city']);
-	$smarty->assign('nextRaces',$services->getNextRuns($visitor_location['lat'],$visitor_location['lon'],150));
-	$smarty->assign('nextImportantRaces',$services->getNextImportantRuns($visitor_location['lat'],$visitor_location['lon'],150));
-} else {
-	$smarty->assign('city', 'España');
-	$smarty->assign('nextRaces',$services->getNextRuns());
-	$smarty->assign('nextImportantRaces',$services->getNextImportantRuns());
-}
 
 function visitorLocation(){
 	$ip = $_SERVER['REMOTE_ADDR'];
@@ -78,8 +54,21 @@ $smarty->assign('meta_description', $data['event_date'] . ' ' . $data['name'] . 
 $smarty->assign('data',$data);
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id']));
 $smarty->assign('comments',$services->getComments($_REQUEST['id'],'run'));
+
+if ($location['city']!='') {
+	$smarty->assign('city', $location['city']);
+	$smarty->assign('similarTypeRaces',$services->getRunsSimilarDistance($_REQUEST['id'],$data['distance_meters'],$location['lat'],$location['lon'],150));
+	$smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id'],$location['lat'],$location['lon'],150));
+
+} else {
+	$smarty->assign('city', 'España');
+	$smarty->assign('similarTypeRaces',$services->getRunsSimilarDistance($_REQUEST['id'],$data['distance_meters']));
+	$smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id']));
+}
+/*
 $smarty->assign('similarTypeRaces',$services->getRunsSimilarDistance($_REQUEST['id'],$data['distance_meters']));
 $smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id']));
+*/
 $smarty->assign('pictures',$mediaServices->getObjectPictures('run',$_REQUEST['id']));
 
 $smarty->display('carrera.tpl');

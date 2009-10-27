@@ -60,7 +60,6 @@
         			$("#nophotos").remove();
 /*         			esta puesto a pelo el id de la foto */
         			$("#newphotos").append('<div class="span-1 last bannerTopPhotos"></div><div class="span-1 last columnPhotos"><p class="span-8 tituloPhotos">FOTOS DEL EVENTO</p><div id="imgItems"><a href="/image.php?id='+cadena+'&source=run">'+response+'</a></div><div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div></div>');
-        			$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas! <img src='/img/photoIcon.gif'>");
     				
     				window.clearInterval(interval);
 
@@ -75,8 +74,6 @@
     				//enable upload button
     				this.enable();
         		}
-        		        		
-
     						
         	}		
         });        				
@@ -358,7 +355,7 @@
 		</div>
 		
 		<div class="span-1 functionalContainer">
-		{if $runsInSameDates}
+		{if $similarTypeRaces}
 		<p class="titulo tituloLeft tituloColumnRight">DE DISTANCIA PARECIDA</p>
 		<div class="events">
 			{foreach key=id item=race from=$similarTypeRaces name=raceloop}	    				    
