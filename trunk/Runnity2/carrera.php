@@ -10,8 +10,6 @@ $smarty = new Smarty;
 $services = new RunnitServices;
 $mediaServices = new MediaServices;
 
-
-
 function visitorLocation(){
 	$ip = $_SERVER['REMOTE_ADDR'];
 	//$ip="87.222.21.38";	
