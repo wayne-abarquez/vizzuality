@@ -55,10 +55,37 @@ $smarty->assign('data',$data);
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id']));
 $smarty->assign('comments',$services->getComments($_REQUEST['id'],'run'));
 
-if ($location['city']!='') {
-	$smarty->assign('city', $location['city']);
-	$smarty->assign('similarTypeRaces',$services->getRunsSimilarDistance($_REQUEST['id'],$data['distance_meters'],$location['lat'],$location['lon'],150));
-	$smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id'],$location['lat'],$location['lon'],150));
+//Get information about the city
+//Set geolocation cookie
+if(!isset($_COOKIE["geolocation"])){
+	$visitor_location = visitorLocation();
+	if($visitor_location['city']) {
+	    
+	    if($visitor_location['country'] == "Spain") {
+    		setcookie("geolocation", $visitor_location['city']);
+    		setcookie("lat", $visitor_location['lat']);
+    		setcookie("lon", $visitor_location['lon']);	        
+	    } else {
+	        //Default to Madrid
+	        $location['lat'] = "40.4";
+        	$location['lon'] = "-3.6833";
+        	$location['city'] = "Madrid";
+        	$location['country'] = "Spain";
+	        
+	    }
+	
+	}
+}else{
+	$visitor_location = array();
+	$visitor_location['lat'] = $_COOKIE["lat"];
+	$visitor_location['lon'] = $_COOKIE["lon"];
+	$visitor_location['city'] = $_COOKIE["geolocation"];
+}
+
+if ($visitor_location['city']!='') {
+	$smarty->assign('city', $visitor_location['city']);
+	$smarty->assign('similarTypeRaces',$services->getRunsSimilarDistance($_REQUEST['id'],$data['distance_meters'],$visitor_location['lat'],$visitor_location['lon'],150));
+	$smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id'],$visitor_location['lat'],$visitor_location['lon'],150));
 
 } else {
 	$smarty->assign('city', 'España');
