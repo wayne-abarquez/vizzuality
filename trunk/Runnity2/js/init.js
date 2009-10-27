@@ -11,19 +11,7 @@ $(document).ready(function(){
 	  Cufon.replace('.nameUserProfileNick');
 
 
-      var match = 'input.default[@type=text]';
-      $(match).focus(function(){
-      	this.valuedefault = this.valuedefault || this.value;
-      	if (this.value == this.valuedefault)
-      		this.value = '';
-      	$(this).css('color','#666666');
-      });
-      $(match).blur(function(){
-      	if (this.value.length == 0 || this.value == this.valuedefault)
-      		$(this).css('color','#999999');
-      	if (this.valuedefault && this.value.length==0)
-      	this.value = this.valuedefault;
-      });
+      $('#inputsearchFirst').emptyonclick();
 
 	  $('div.avatarContainer a img').hover(
 		function () {
