@@ -13,7 +13,7 @@
 		{/if}	
 		</div>
 		{if $source eq "run"}
-			<a class="dashboardLink" href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|replace:' ':'/'}">volver a la carrera <img src="/img/arrowDash.gif"></a>
+			<a class="dashboardLink" href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|seourl}">volver a la carrera <img src="/img/arrowDash.gif"></a>
 		{else}
 			<a class="dashboardLink" href="/user/{$pictureDetails.username}">volver a su perfil <img src="/img/arrowDash.gif"></a>
 		{/if}	
@@ -39,7 +39,7 @@
 					</a>
 					{/if}
             		{if $source eq "run"}
-            		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|replace:' ':'/'}">{$pictureDetails.belongs_to_name}</a></p>
+            		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|seourl}">{$pictureDetails.belongs_to_name}</a></p>
             		{else}
             		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>            		
             		{/if}	

@@ -20,7 +20,7 @@ $(document).ready(function() {
 		events: [
 			{/literal}
 			{foreach key=id item=race from=$races}
-			{literal}{{/literal}title: "{$race.name}",start: new Date({$race.anyo}, {$race.mes}-1, {$race.dia}),url: "/run/{$race.id}/{$race.name|replace:' ':'/'}"{literal}}{/literal},
+			{literal}{{/literal}title: "{$race.name}",start: new Date({$race.anyo}, {$race.mes}-1, {$race.dia}),url: "/run/{$race.id}/{$race.name|seourl}"{literal}}{/literal},
 			{/foreach}
 			{literal}
 			{}
@@ -74,7 +74,7 @@ $(document).ready(function() {
 	    							<div class="day">{$race.event_date|substr:8:2}</div>
 	    						</div>
         						<div class="column span-6 last calendarRaces">
-        							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|replace:' ':'/'}" class="nameRace">{$race.name}</a></div>
+        							<div class="nextRaceComment"><a href="/run/{$race.id}/{$race.name|seourl}" class="nameRace">{$race.name}</a></div>
         							<div class="raceLocation">{$race.event_location} | {$race.distance_text} | <b>{$race.num_users} van</b></div>
         						</div>
         					</div>

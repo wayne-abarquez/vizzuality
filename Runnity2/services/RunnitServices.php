@@ -941,6 +941,16 @@ class RunnitServices {
         return null;        
         
     }
+    
+    public function getUserPositions($id) {
+        
+        $sql="select rd.distance_name,rd.id,time_taken,
+            (select count(ur2.id) +1 as position from users_records as ur2 where time_taken< ur.time_taken AND record_distance_fk=rd.id) as position
+            from users_records as ur inner join record_distance as rd on ur.record_distance_fk=rd.id where user_fk=$id
+            order by rd.id";
+            
+        return pg_fetch_all(pg_query($this->conn, $sql));  
+    }
     	    
     public function removeRun($id) {
         if (!$_SESSION['logged'] or $_SESSION['user']['is_admin']!='t') {
@@ -961,6 +971,21 @@ class RunnitServices {
 
 		return pg_fetch_all(pg_query($this->conn, $sql));    
     }
+    
+    public function getAllRunsSitemap() {
+        $sql="select id,name from run WHERE published=true";
+        return pg_fetch_all(pg_query($this->conn, $sql));
+    }    
+    
+    public function getAllUsersSitemap() {
+        $sql="select id,username from users";
+        return pg_fetch_all(pg_query($this->conn, $sql));
+    } 
+    
+    public function getAllImagesSitemap() {
+        $sql="select id from picture WHERE on_table='run'";
+        return pg_fetch_all(pg_query($this->conn, $sql));
+    }       
 
 	public function getRunListSmall() {
 		$sql="select id,name,date_part('day',event_date) as dia,date_part('month',event_date) as mes,date_part('year',event_date) as anyo  from run where event_date > now() and published=true";

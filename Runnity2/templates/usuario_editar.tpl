@@ -622,7 +622,7 @@ $(document).ready(function(){
 							<div class="ticketBlueCorner ticketBlueCornerRight"></div>
 						{/if}		
 						<div class="span-1 last dataRaceRight">
-							<div class="nameRaceRight"><a id="nameRunRight1{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|replace:' ':'/'}">{$race.name}</a></div>
+							<div class="nameRaceRight"><a id="nameRunRight1{$smarty.foreach.raceloop.iteration}" href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></div>
 							<div class="dataRaceRight"><p>{$race.event_location} | {$race.distance_text}</p></div>
 						</div>	
 					</div>
