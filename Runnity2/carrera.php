@@ -69,9 +69,7 @@ if(!isset($_COOKIE["geolocation"])){
         	$location['lon'] = "-3.6833";
         	$location['city'] = "Madrid";
         	$location['country'] = "Spain";
-	        
 	    }
-	
 	}
 }else{
 	$visitor_location = array();
