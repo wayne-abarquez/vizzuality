@@ -15,7 +15,7 @@
 	<script type="text/javascript">
 	$.validator.setDefaults({
 		submitHandler: function() { 
-			$("#editDataForm").attr("action","/userprofile.php");  */
+			$("#editDataForm").attr("action","/usuario_editar.php");  */
  			$("#editDataForm").submit();
 		 }
 	});
@@ -436,7 +436,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
-			<form action="userprofile.php" method="POST" id="editDataForm">	
+			<form action="usuario_editar.php" method="POST" id="editDataForm">	
 		
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>

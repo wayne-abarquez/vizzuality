@@ -91,7 +91,7 @@ p.footerText {
 
 <h1>Hola {$name}!</h1>
 
-<p class="title">Aquí tienes un listado de con las próximas carreras que tendrán lugar en las próximas semanas cerca de donde vives. No te las pierdas!<br> Por defecto te mandamos las carreras a menos de 200Km de tu localidad, si quieres puedes cambiar esta distancia en tus <a href="http://www.runnity.com/userprofile.php">preferencias de usuario</a></b></p>
+<p class="title">Aquí tienes un listado de con las próximas carreras que tendrán lugar en las próximas semanas cerca de donde vives. No te las pierdas!<br> Por defecto te mandamos las carreras a menos de 200Km de tu localidad, si quieres puedes cambiar esta distancia en tus <a href="http://www.runnity.com/usuario_editar.php">preferencias de usuario</a></b></p>
 
 <p class="header"> LISTA DE CARRERAS DEL {$timeRange}</p>
 
@@ -107,7 +107,7 @@ p.footerText {
 
 <p class="footerText">Te esperamos en <a href="http://www.runnity.com">runnity.com</a></p>
 
-<p>Si en algún momento quieres dejar de recibir este mensaje, puedes desactivarlo en tu <a href="http://www.runnity.com/userprofile.php">página de usuario</a></p>
+<p>Si en algún momento quieres dejar de recibir este mensaje, puedes desactivarlo en tu <a href="http://www.runnity.com/usuario_editar.php">página de usuario</a></p>
 
 </body>
 </html>
