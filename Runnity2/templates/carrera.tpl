@@ -50,14 +50,25 @@
         	onComplete : function(file,response){	
         		
         		var tipoCont = $("#nophotos").attr("title");
+        		
+        		var iniciocadena = response.lastIndexOf("/");
+    			var finalcadena = response.lastIndexOf("_");
+    			var numcaracteres = finalcadena-iniciocadena;
+    			var cadena = response.substr(iniciocadena+1,numcaracteres-1);
 		
         		if(tipoCont=="first"){
         			$("#nophotos").remove();
 /*         			esta puesto a pelo el id de la foto */
-        			$("#newphotos").append('<div class="span-1 last bannerTopPhotos"></div><div class="span-1 last columnPhotos"><p class="span-8 tituloPhotos">FOTOS DEL EVENTO</p><div id="imgItems"><a href="/image.php?id=138&source=run">'+response+'</a></div><div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div></div>');
+        			$("#newphotos").append('<div class="span-1 last bannerTopPhotos"></div><div class="span-1 last columnPhotos"><p class="span-8 tituloPhotos">FOTOS DEL EVENTO</p><div id="imgItems"><a href="/image.php?id='+cadena+'&source=run">'+response+'</a></div><div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div></div>');
+        			$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas! <img src='/img/photoIcon.gif'>");
+    				
+    				window.clearInterval(interval);
+
+    				//enable upload button
+    				this.enable();
         		} else {
-        			$("#imgItems").append(response);
-					$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas!");
+        			$("#imgItems").append('<a href="/picture/'+cadena+'/run">'+response+'</a>');
+					$("#buttonUploadPicture").html("¿Tienes fotos de esta carrera? ¡Súbelas! <img src='/img/photoIcon.gif'>");
     				
     				window.clearInterval(interval);
 
@@ -233,7 +244,7 @@
 					{if $smarty.session.logged}
 					<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
 					<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
-					<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIcon.gif">Subir fotos</a></p>
+					<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIconLight.gif">Subir fotos</a></p>
 					{else}
 						<div class="span-1 iconPhrasePhotos">
 							<img src="/img/slash.gif"/>
