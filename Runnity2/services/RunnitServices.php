@@ -1000,7 +1000,7 @@ class RunnitServices {
     }
 
     //carrera
-    public function getRunsSimilarDistance($id,$distance,$lat=0,$lon=0,$distance_km=150) {
+    public function getRunsSimilarDistance($id,$distance,$lat,$lon,$distance_km=150) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
         if(isset($_SESSION['logged']) and $_SESSION['logged']) {
@@ -1022,7 +1022,7 @@ class RunnitServices {
     }
 
     //carrera
-    public function getRunsInSimilarDates($id,$lat=0,$lon=0,$distance_km=150) {
+    public function getRunsInSimilarDates($id,$lat,$lon,$distance_km=150) {
 	    $sql="select r.id,r.name,event_date,event_location,distance_text,run_type, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id";
 
         if(isset($_SESSION['logged']) and $_SESSION['logged']) {
