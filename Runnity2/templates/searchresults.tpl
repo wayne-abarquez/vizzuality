@@ -3,6 +3,8 @@
 <script type="text/javascript"> 
 $(document).ready(function(){
 
+    $('#inputsearch1').emptyonclick();
+
 	var state = false;
 	
 	$('body').click(function() {

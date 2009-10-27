@@ -39,6 +39,7 @@
 	<script type="text/javascript" src="/js/datepicker.js"></script>
   <script type="text/javascript" src="/js/eye.js"></script>
   <script type="text/javascript" src="/js/utils.js"></script>
+  <script type="text/javascript" src="/js/jquery.emptyonclick.js"></script>
   <script type="text/javascript" src="/js/layout.js?ver=1.0.2"></script>
   <script src="/js/jquery.simplemodal-1.3.js" type="text/javascript"></script>
   <script language="javascript" type="text/javascript" src="/js/jquery.truncator.js"></script>
