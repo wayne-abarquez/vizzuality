@@ -15,7 +15,7 @@ package com.vizzuality.gmaps
 		public function RunSingleMarkerHome(location:LatLng,name:String,id:Number,eventDate:String)
 		{
 			var options:MarkerOptions = new MarkerOptions();
-			options.iconOffset = new Point(-10,-10);
+			options.iconOffset = new Point(-15,-34);
 			options.hasShadow = true;
 			options.draggable = false;
 			options.icon = new GenericMarkerIcon("markerIcon");
