@@ -132,7 +132,7 @@ if ($_REQUEST['method'] == 'sendEmailToAlertas') {
 }
 
 if ($_REQUEST['method'] == 'sendEmailPublish') {
-	$result = $services->sendEmailToPublish($_REQUEST['namePublish'],$_REQUEST['emailPublish'],$_REQUEST['dataPublish'],$_REQUEST['datePublish']);
+	$result = $services->sendEmailToPublish($_REQUEST['nombre'],$_REQUEST['email'],$_REQUEST['data'],$_REQUEST['date']);
 	echo("OK");
 }
 
