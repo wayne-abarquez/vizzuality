@@ -35,8 +35,8 @@ package
 	import rosa.events.RosaEvent;
 	import rosa.services.ServiceProxy;
 
-	[SWF(backgroundColor=0xFFFFFF, width=270, height=194)]
-	public class RunAroundMap extends Sprite
+	[SWF(backgroundColor=0xFFFFFF, width=257, height=194)]
+	public class UserRacesMap extends Sprite
 	{
 		
 		private var map:Map;
@@ -50,7 +50,7 @@ package
 		private var attachedMarkers:Array;
 		private var paramObj:Object;
 						
-		public function RunAroundMap()
+		public function UserRacesMap()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;					
@@ -82,11 +82,11 @@ package
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
 			}
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
-			map.setSize(new Point(270, 194));
+			map.setSize(new Point(257, 194));
 			addChild(map);
 			square = new Sprite();
 			square.graphics.beginFill(0xFFFFFF);
-			square.graphics.drawRect(0,0,270,152);
+			square.graphics.drawRect(0,0,257,152);
 			square.graphics.endFill();
 			square.x = 0;
 			square.y = 0;			
@@ -112,22 +112,23 @@ package
 		
 		private function downloadData():void {
 			with(RosaSettings) {
-				localTestGatewayURL="http://localhost/amfphp/gateway.php";
-				gatewayURL = "http://runnity.com/amfphp/gateway.php";
+				localTestGatewayURL="/amfphp/gateway.php";
+				gatewayURL = "/amfphp/gateway.php";
 				
 			}
 			service = new ServiceProxy("RunnitServices");
-			service.addEventListener(RosaEvent.RESPONSE, getRunsCloseToAnother);
-			service.getRunsCloseToAnotherForMap(this.root.loaderInfo.parameters.id);
+			service.addEventListener(RosaEvent.RESPONSE, getUserRaces);
+			service.getUserRaces(this.root.loaderInfo.parameters.id);
+			//service.getUserRaces(25);
 		}		
 		
 		private var iw:Dictionary=new Dictionary();
-		private function getRunsCloseToAnother(event:RosaEvent):void {
+		private function getUserRaces(event:RosaEvent):void {
 			markers = [];	
-			var dataBbox:LatLngBounds=new LatLngBounds();
-			if(event.result!=null && event.result.around!=null) {
-				for each(var m:Object in event.result.around as Array) {
-					var p:LatLng = new LatLng(m.lat,m.lon);
+			var dataBbox:LatLngBounds=new LatLngBounds(); 
+			if(event.result!=null) {
+				for each(var m:Object in event.result as Array) {
+					var p:LatLng = new LatLng(m.lat,m.lng);
 					var marker:RunSingleMarker=new RunSingleMarker(p,m.name,m.id,m.event_date)
 					iw[marker]=m;
 					marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
@@ -149,13 +150,11 @@ package
 			var options:MarkerOptions = new MarkerOptions();
 			options.iconOffset = new Point(-10,-10);
 			options.icon = new GenericMarkerIcon("markerIcon");
-			if(event.result!=null && event.result.coords!=null) {
-				var runMaker:Marker = new Marker(new LatLng(event.result.coords.lat,event.result.coords.lon),options);
-				map.addOverlay(runMaker);
-				if (markers.length>2) {
-					map.setCenter(runMaker.getLatLng(),map.getBoundsZoomLevel(dataBbox));
-				} else {
-					map.setCenter(runMaker.getLatLng(),9);
+			if(event.result!=null) {
+				if (markers.length>1) {
+					map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+				} else if(markers.length==1) {
+					map.setCenter((markers[0] as Marker).getLatLng(),9);
 				}
 			}
 			
@@ -164,50 +163,6 @@ package
 			removeChild(square);	
 			
 		}	
-
-		private function openInfoWindow(e:MapMouseEvent):void {
-			
-			var m:Object = iw[e.target];
-			
-			if (m.distance_text=="null")
-				m.distance_text="";
-			
-			var titleFormat:TextFormat = new TextFormat();
-			titleFormat.bold = true;
-			var titleStyleSheet:StyleSheet = new StyleSheet();
-			var contentFormat:TextFormat = new TextFormat("Arial", 10);
-			var options:InfoWindowOptions = new InfoWindowOptions({
-
-			  strokeStyle: {
-			    color: 0x666666,
-			    thickness:1
-			  },
-			  fillStyle: {
-			    color: 0xFFFFFF,
-			    alpha: 0.9
-			  },
-			  titleFormat: titleFormat,
-			  titleStyleSheet: titleStyleSheet,
-			  contentFormat: contentFormat,
-			  width: 200,
-			  cornerRadius: 3,
-			  padding: 10,
-			  hasCloseButton: false,
-			  hasTail: true,
-			  pointOffset:new Point(0,-10),
-			  tailWidth: 20,
-			  tailHeight: 18,
-			  tailOffset: -22,
-			  tailAlign: InfoWindowOptions.ALIGN_LEFT,
-			  pointOffset: new Point(3, 8),
-			  hasShadow: true,
-			  title:m.name,
-			  content:(m.event_date as String).substr(8,2) + '/' + 
-			  	(m.event_date as String).substr(5,2) + '/' + (m.event_date as String).substr(0,4) + ' | ' + m.distance_text
-			});
-			map.openInfoWindow(e.latLng,options);
-			
-		}
 
 		
 		private function goToRunPage(e:MapMouseEvent):void {
@@ -240,44 +195,6 @@ package
 					marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
 						map.zoomIn(e.latLng,true,false);
 					});
-/* 					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
-								var titleFormat:TextFormat = new TextFormat();
-								titleFormat.bold = true;
-								var titleStyleSheet:StyleSheet = new StyleSheet();
-								var contentFormat:TextFormat = new TextFormat("Arial", 10);
-								var options:InfoWindowOptions = new InfoWindowOptions({
-
-								  strokeStyle: {
-								    color: 0x666666,
-								    thickness:1
-								  },
-								  fillStyle: {
-								    color: 0xFFFFFF,
-								    alpha: 0.9
-								  },
-								  titleFormat: titleFormat,
-								  titleStyleSheet: titleStyleSheet,
-								  contentFormat: contentFormat,
-								  width: 200,
-								  cornerRadius: 3,
-								  padding: 2,
-								  hasCloseButton: false,
-								  hasTail: false,
-								  pointOffset:new Point(0,-17),
-								  tailWidth: 20,
-								  tailHeight: 18,
-								  tailOffset: -22,
-								  tailAlign: InfoWindowOptions.ALIGN_LEFT,
-								  pointOffset: new Point(3, 8),
-								  hasShadow: false,
-								  title:"Click para hacer ver más..."
-								});
-								map.openInfoWindow(e.latLng,options);
-					});					
-					marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
-						map.closeInfoWindow();
-					});
- */					
 					
 				}
 				map.addOverlay(marker);

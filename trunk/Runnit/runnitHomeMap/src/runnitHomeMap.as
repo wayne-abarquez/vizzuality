@@ -68,16 +68,18 @@ package {
 		
 		private function initMap():void {
 			map=new Map();
-			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			if(loaderInfo.url.indexOf("runnity.net")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRS5lFIZ4lX1ZuOUC3gMG9aTZZnVExRO7Xbt-wEBLhd43QE_x_w9pE80BQ";				
-			}
+			} else
 			if(loaderInfo.url.indexOf("runnity.com")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
-			}
+			} else
 			if(loaderInfo.url.indexOf("runnity.es")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA";				
+			} else {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
 			}
+			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(939, 364));
 			addChild(map);
@@ -117,8 +119,8 @@ package {
 		
 		private function downloadData():void {
 			with(RosaSettings) {
-				localTestGatewayURL="http://localhost/amfphp/gateway.php";
-				gatewayURL = "http://runnity.com/amfphp/gateway.php";
+				localTestGatewayURL="/amfphp/gateway.php";
+				gatewayURL = "/amfphp/gateway.php";
 				
 			}
 			service = new ServiceProxy("RunnitServices");
