@@ -136,27 +136,27 @@
 	<div id="publish_modal">
 		<div class="publish_container">
 			<h2>Publica tu carrera</h2>
-			<form id="contactForm" method="GET" action="">
+			<form id="publishForm" method="GET" action="javascript: void publishRun()">
 				<div class="name">
 					<label>Nombre de la carrera</label>
-					<input type="text" class="text">
+					<input type="text" class="text" id="publishName" name="publishName">
 				</div>
 				<div class="date">
 					<label>Fecha</label>
-					<input type="text" class="text">
+					<input type="text" class="text" id="publishDate" name="publishDate">
 				</div>
 				<div class="data">
 					<label>Info de la carrera</label>
-					<textarea></textarea>
+					<textarea id="publishData" name="publishData"></textarea>
 				</div>
 				<div class="mail">
 					<label>e-mail de contacto</label>
-					<input type="text" class="text">
+					<input type="text" class="text" id="publishEmail" name="publishEmail">
 				</div>
 				<span  class="errorMessage">Aquí van los errores...</span>
 				<div class="bottom">
 					<p>Una vez mandada la información, nuestro equipo contactará contigo para completarla.</p>
-					<input class="fg-button" value="Enviar" type="submit"/>
+					<input id="contactPublish" class="fg-button" value="Enviar" type="submit"/>
 				</div>
 			</form>
 		</div>

@@ -131,6 +131,11 @@ if ($_REQUEST['method'] == 'sendEmailToAlertas') {
 	echo("OK");
 }
 
+if ($_REQUEST['method'] == 'sendEmailPublish') {
+	$result = $services->sendEmailToPublish($_REQUEST['namePublish'],$_REQUEST['emailPublish'],$_REQUEST['dataPublish'],$_REQUEST['datePublish']);
+	echo("OK");
+}
+
 if ($_REQUEST['method'] == 'sendPasswordToEmail') {
 	$result = $services->sendPasswordToEmail($_REQUEST['email']);
 	if($result) {

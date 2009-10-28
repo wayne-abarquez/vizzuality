@@ -8,11 +8,9 @@ input.inputLoginPage {border: 1px solid #dddddd; margin: 0; width: 200px;padding
 
 #editDataForm label.error {color:#c24949; background: none; border: none; width: auto;margin: 0; padding: 0; font-weight: normal;}
 
-#editDataForm input.error {border: 1px solid #c24949; background: none; margin: 0;background: #ffffff;}
-
 #editDataForm input.roundInputName {border: 1px solid #dddddd; margin: 0 0 0 0; width: 362px;padding: 4px 4px 4px 4px; color: #999999;}
 
-#editDataForm input.roundInputRecords {border: 1px solid #dddddd; margin: 0 0 0 0; width: 16px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.roundInputRecords {border: 1px solid #dddddd; margin: 0;margin-bottom: 4px; width: 16px;padding: 4px 4px 4px 4px; color: #999999;}
 
 .lastRecordContainer{
 	width: 70px;
