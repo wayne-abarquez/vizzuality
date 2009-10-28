@@ -171,6 +171,11 @@ if ($_REQUEST['method'] == 'setUserToFriend') {
 	echo('OK');
 }
 
+if ($_REQUEST['method'] == 'sendEmailWithPublishRace') {
+	$result = $services->publishRace();
+	echo('OK');
+}
+
 
 
 ?>
