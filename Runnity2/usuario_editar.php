@@ -27,8 +27,8 @@ if(isset($_REQUEST['action'])) {
     $birthdayMonth      =$_REQUEST['birthdayMonth'];
     $birthdayYear       =$_REQUEST['birthdayYear'];
     $locality          	=$_REQUEST['inputLocalizacion'];
-    $lon                =$_REQUEST['lat'];
-    $lat                =$_REQUEST['lon'];
+    $lon                =$_REQUEST['lonHidden'];
+    $lat                =$_REQUEST['latHidden'];
 
 	if ($_REQUEST['is_men']=="false") {
 		$is_men=false;

@@ -58,6 +58,7 @@ $smarty->display('home.tpl');
 function visitorLocation(){
 	$ip = $_SERVER['REMOTE_ADDR'];
 	//$ip="87.222.21.38";	
+	//$ip="83.60.101.26"; ip de barcelona	
 	
 	$d = file_get_contents("http://www.ipinfodb.com/ip_query.php?ip=$ip&output=xml");
  

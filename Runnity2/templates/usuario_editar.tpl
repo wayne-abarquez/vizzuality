@@ -264,9 +264,12 @@
 		                //notify the user that the username is used.
 		                var lat = result.split(",")[0];
 		                var lon = result.split(",")[1];
+		                
 		                $('#buttonLocalizacion').val('Situar');
 						$('#buttonLocalizacion').removeAttr("disabled"); 
-                        
+		                $('#latHidden').val(lon);
+		              	$('#lonHidden').val(lat);
+
                         var map = new GMap2(document.getElementById("map"));
                         var start = new GLatLng(lat, lon);
                         map.setCenter(start, 10);
@@ -436,7 +439,9 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
-			<form action="usuario_editar.php" method="POST" id="editDataForm">	
+			<form action="usuario_editar.php" method="POST" id="editDataForm">
+				<input type="hidden" id="latHidden" name="latHidden" value="{$privateData.datos.lat}">
+			    <input type="hidden" id="lonHidden" name="lonHidden" value="{$privateData.datos.lon}">	
 		
 			<div class="span-1 last dataUserEdit">
 				<p class="titulo tituloLeft tituloRight">DATOS PERSONALES</p>
