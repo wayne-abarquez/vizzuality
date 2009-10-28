@@ -153,7 +153,7 @@
 					<label>e-mail de contacto</label>
 					<input type="text" class="text" id="publishEmail" name="publishEmail">
 				</div>
-				<span  class="errorMessage">Aquí van los errores...</span>
+				<span id="contactError" class="errorMessage"></span>
 				<div class="bottom">
 					<p>Una vez mandada la información, nuestro equipo contactará contigo para completarla.</p>
 					<input id="contactPublish" class="fg-button" value="Enviar" type="submit"/>
