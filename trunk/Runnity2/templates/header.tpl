@@ -126,7 +126,7 @@
 					</div>
 				</div>
 				<span id="contactError" class="errorMessage"></span>
-				<input id="contactSubmit" class="fg-button" value="Enviar" type="submit"/>
+				<div class="contactButtonContainer"><input id="contactSubmit" class="fg-button" value="Enviar" type="submit"/></div>
 			</form>
 		</div>
 	</div>

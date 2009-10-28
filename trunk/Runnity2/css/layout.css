@@ -1104,6 +1104,10 @@ label.inputLogin {
 #contactForm span.contact_error {float:left; text-align: right; width: 300px;}
 #contactForm #contactSubmit {float:right; padding: 3px; display:inline; margin: 10px 20px 0 0;}
 #contactForm label {width: 100%; color: #666666;padding: 0 0 3px 0;}
+.contactButtonContainer{
+	float: right;
+	margin-right: 10px;
+}
 
 /* PUBLISH */
 #publish_modal{ display:none; height:500px; width: 500px; background: #eaeaea;border:6px solid #ffffff;}
