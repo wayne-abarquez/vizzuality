@@ -3,16 +3,6 @@
 
 {literal}
 	<script type="text/javascript">
-	$.validator.setDefaults({
-		submitHandler: function() { 
-			if (($('#answer').html()!='Buen nombre') || ($('#result').html()!='') || ($('#latHidden').val()==0) || ($('#lonHidden').val()==0) || ($('#error_geo').html()!='')) {
-				return false;
-			} else {
-				$("#register_form").attr("action","/registro"); 
-				$("#register_form").submit();
-			}
-		 }
-	});
 	
 	$().ready(function() {
 		$("#register_form").validate({
@@ -70,6 +60,16 @@
 			}
 		});
 		
+    	$.validator.setDefaults({
+    		submitHandler: function(form) { 
+    			if (($('#answer').html()!='Buen nombre') || ($('#result').html()!='') || ($('#latHidden').val()==0) || ($('#lonHidden').val()==0) || ($('#error_geo').html()!='')) {
+    				return false;
+    			} else {
+    				form.submit();
+    			}
+    		 }
+    	});		
+		
     	$("#buttonLocalizacion").click(function() {
             geolocateAddress("{/literal}{$smarty.const.GMAPS_KEY}{literal}");
     	});		
@@ -93,7 +93,7 @@
 			<!-- COLUMNA IZQ -->
 			<div class="span-17 registerInfoTicket"><p>Para registrarte en Runnity sólo tienes que rellenar los siguientes campos... <b>¡es grátis!</b></p></div>
 			{$php_errors}
-			<form id="register_form"  method="get"> <!-- action="/registro" -->
+			<form id="register_form"  method="post" action="/registro">
 			    <input type="hidden" id="latHidden" name="lat" value="0">
 			    <input type="hidden" id="lonHidden" name="lon" value="0">
 			    

@@ -19,6 +19,12 @@ if (!isset($_SESSION['logged'])) {
 
 $error_msg="";
 
+if(isset($_REQUEST['del_usuario'])) {
+    $user = $services->removeUser($_SESSION['user']['id']);
+    header('Location: /') ;   
+	die();    
+}
+
 if(isset($_REQUEST['action'])) {
     $email     			=$_REQUEST['inputMail'];
     $pass  				=$_REQUEST['inputPassword'];
