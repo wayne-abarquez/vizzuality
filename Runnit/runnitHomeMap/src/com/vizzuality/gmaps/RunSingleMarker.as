@@ -18,7 +18,7 @@ package com.vizzuality.gmaps
 			options.iconOffset = new Point(-10,-10);
 			options.hasShadow = true;
 			options.draggable = false;
-			options.icon = new GenericMarkerIcon("raceNoActiveMarker");
+			options.icon = new GenericMarkerIcon("raceNoActive");
 			//options.icon = new RunSingleMarkerIcon();
 			
 			var html:String="<b>" + name + "</b> \n"+eventDate;

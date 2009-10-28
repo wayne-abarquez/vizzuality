@@ -74,13 +74,18 @@ package com.vizzuality.gmaps
 						tf.x = 9;
 					}					
 				} else {
+					if (texto.length>1) {
+						tf.x = 0;
+					} else {
+						tf.x = 4;
+					}						
 					tf.y = 0;
-					tf.x = 4;
 					
 				}
 				
 				tf.mouseEnabled = false;
 				tf.width = tf.textWidth + 4;
+				tf.height=20;
 				mouseChildren = false;
 				addChild(tf);
 			}

@@ -70,12 +70,14 @@ package
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			if(loaderInfo.url.indexOf("runnity.net")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRS5lFIZ4lX1ZuOUC3gMG9aTZZnVExRO7Xbt-wEBLhd43QE_x_w9pE80BQ";				
-			}
+			} else
 			if(loaderInfo.url.indexOf("runnity.com")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
-			}
+			} else
 			if(loaderInfo.url.indexOf("runnity.es")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA";				
+			} else {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
 			}
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(610, 250));
@@ -197,8 +199,8 @@ package
 
  				//var diff:Number = Math.round((maxAltitude-minAltitude)*.3);
 				url+="&chxr=0,0," + trackLength.toString() +
-					 "|1," + Math.floor(minAltitude*0.9) +","+Math.ceil(maxAltitude*1.1) +
-					 "&chds=" + Math.floor(minAltitude*0.9) +","+Math.ceil(maxAltitude*1.1);
+					 "|1," + Math.floor(minAltitude*0.7) +","+Math.ceil(maxAltitude*1.3) +
+					 "&chds=" + Math.floor(minAltitude*0.7) +","+Math.ceil(maxAltitude*1.3);
 
 				url+="&chd=t:" + event.result.altimetria;
 				var imgLoader:Loader = new Loader();
@@ -228,15 +230,23 @@ package
 				
 				//find the intermediate markers
 				//dive the length by 10000
-				var numTrams:Number = Math.floor(trackLength/1000)
-				for (var n:Number=1;n<=numTrams;n++) { 
-					var pos:LatLng = getPointAtDistance(n*1000);
+				
+				var kmBetweenMarkers:Number;
+				if(trackLength<10000) {
+					kmBetweenMarkers=1000;
+				} else if(trackLength<20000) {
+					kmBetweenMarkers=2000;			
+				} else {
+					kmBetweenMarkers=5000;								
+				}
+				for (var n:Number=1;n<=Math.floor(trackLength/kmBetweenMarkers);n++) { 
+					var pos:LatLng = getPointAtDistance(n*kmBetweenMarkers);
 					var interOpt:MarkerOptions = new MarkerOptions();
 					interOpt.iconOffset = new Point(-10,-10);
 					interOpt.hasShadow = false;
 					interOpt.draggable = false;
-					interOpt.tooltip=altim[Math.round((n*1000*altim.length)/trackLength)]+" m.";
-					interOpt.icon = new GenericMarkerIcon("km",n.toString());
+					interOpt.tooltip=(n*kmBetweenMarkers/1000).toString() + 'Km.: '+altim[Math.round((n*kmBetweenMarkers*altim.length)/trackLength)]+" m.";
+					interOpt.icon = new GenericMarkerIcon("km",(n*kmBetweenMarkers/1000).toString());
 					var kMarker:Marker= new Marker(pos,interOpt);
 					map.addOverlay(kMarker);
 				}
