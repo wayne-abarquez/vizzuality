@@ -171,7 +171,9 @@ $(document).ready(function(){
 						</div>
 						{/foreach}
 					{else}
-						No hay records, animate y edita tus marcas.
+						<div class="span-1 last dataContainerUser">
+							<p>No hay records, anímate y edita tus marcas</p>
+						</div>					
 					{/if}
 					<a class="editUserLink" href="/usuario_editar.php">editar tus marcas <img src="/img/pencil.gif"></a>
 				</div>

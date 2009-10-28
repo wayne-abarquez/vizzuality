@@ -13,13 +13,6 @@
 
 {literal}
 	<script type="text/javascript">
-	$.validator.setDefaults({
-		submitHandler: function() { 
-			$("#editDataForm").attr("action","/usuario_editar.php");  */
- 			$("#editDataForm").submit();
-		 }
-	});
-	
 	$().ready(function() {
 		
 		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
