@@ -22,22 +22,18 @@ $(document).ready(function(){
 					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$data.datos.id}&type=t">
 				</div>
 				<div class="span-1 last functionalContainer">
-				<p class="titulo tituloLeft">RANKING RUNNITY</p>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserRanking"><p>800m:</p></div>
-						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
-						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
-					</div>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserRanking"><p>1.500m:</p></div>
-						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
-						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
-					</div>
-					<div class="span-1 last dataContainerUser">
-						<div class="span-1 last dataTitleUserRanking"><p>10.000m:</p></div>
-						<div class="span-1 last dataUserRanking"><p><b>2:02:00 (2006)</b></p></div>
-						<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>17º</p></div></div>
-					</div>
+				<p class="titulo tituloLeft">RANKING RUNNITY</p>				
+					{if $records}
+						{foreach key=id item=record from=$records name=record}
+						<div class="span-1 last dataContainerUser">
+							<div class="span-1 last dataTitleUserRanking"><p>{$record.distance_name}:</p></div>
+							<div class="span-1 last dataUserRanking"><p><b>{$record.time_taken}</b></p></div>
+							<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>{$record.position}º</p></div></div>
+						</div>
+						{/foreach}
+					{else}
+						No hay records, animate y edita tus marcas.
+					{/if}				
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>

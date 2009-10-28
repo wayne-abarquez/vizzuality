@@ -41,6 +41,7 @@ $smarty->assign('friends',$services->getUserFriends($data['datos']['id']));
 $comentarios=$services->getComments($data['datos']['id'],'user');
 $smarty->assign('comments', $comentarios);
 $smarty->assign('nextRaces',$services->getUserRuns($data['datos']['id']));
+$smarty->assign('records',$services->getUserPositions($data['datos']['id']));
 
 $smarty->assign('titulo_pagina', 'Pagina de usuario de '.$data['datos']['username'].' - Runnity.com');
 
