@@ -260,8 +260,8 @@
 		                
 		                $('#buttonLocalizacion').val('Situar');
 						$('#buttonLocalizacion').removeAttr("disabled"); 
-		                $('#latHidden').val(lon);
-		              	$('#lonHidden').val(lat);
+		                $('#latHidden').val(lat);
+		              	$('#lonHidden').val(lon);
 
                         var map = new GMap2(document.getElementById("map"));
                         var start = new GLatLng(lat, lon);
@@ -555,18 +555,17 @@ $(document).ready(function(){
 						{foreach key=id item=record from=$records}
 						<div class="recordContainer"> 
 						<div class="span-1">
-							<input type="text" id="roundInputRecordsHH{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
+							<input type="text" id="rec_hh_{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
 						</div>
 						<div class="span-1">
-							<input type="text" id="roundInputRecordsMM{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
+							<input type="text" id="rec_mm_{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
 						</div>
 						<div class="span-1">
-							<input type="text" id="roundInputRecordsSS{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
+							<input type="text" id="rec_ss_{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
 						</div>
-						<div class="span-1 lastRecordContainer"><div>
-							<span><input type="text" id="roundInputRecordsDD{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
-							<input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(roundInputRecordsHH{$record.id},roundInputRecordsMM{$record.id},roundInputRecordsSS{$record.id},roundInputRecordsDD{$record.id})"></span>
-							</div>
+						<div class="span-1 lastRecordContainer">
+							<span><input type="text" id="rec_dd_{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
+							<input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(rec_hh_{$record.id},rec_mm_{$record.id},rec_ss_{$record.id},rec_dd_{$record.id})"></span>
 						</div>	
 						</div>				
 						{/foreach}

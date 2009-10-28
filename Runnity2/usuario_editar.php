@@ -78,6 +78,9 @@ if(isset($_REQUEST['action'])) {
 			$time_taken = $_REQUEST['rec_hh_'.$i] .":".$_REQUEST['rec_mm_'.$i] .":".$_REQUEST['rec_ss_'.$i] .".".$_REQUEST['rec_dd_'.$i];
 		    $sql="select update_user_record(".$_SESSION['user']['id'].",$i,'$time_taken')";			
 			$result= pg_query($services->conn, $sql);			
+		} else if ($_REQUEST['rec_hh_'.$i]=="" and $_REQUEST['rec_mm_'.$i]=="" and $_REQUEST['rec_ss_'.$i]=="" and $_REQUEST['rec_dd_'.$i]=="") {
+			$sql="DELETE FROM users_records WHERE user_fk=".$_SESSION['user']['id']." AND record_distance_fk=$i";
+			$result= pg_query($services->conn, $sql);
 		}
 
 	}    

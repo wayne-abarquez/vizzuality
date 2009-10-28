@@ -250,7 +250,7 @@ class RunnitServices {
         } 
 	    
 
-	    $sql="UPDATE users SET completename='$completename', email='$email', birthday='$birthday', location_point = GeomFromText('POINT($lat $lon)',4326)";
+	    $sql="UPDATE users SET completename='$completename', email='$email', birthday='$birthday', location_point = GeomFromText('POINT($lon $lat)',4326)";
 	    if(strlen($password)>4) {
 	        $sql.=",pass='$password'";
 	    }
@@ -1109,6 +1109,23 @@ class RunnitServices {
 		$mail->FromName = $mensaje;
 		$mail->Subject = "Mensaje desde la web";
 		$mail->MsgHTML("Mensaje enviado desde la web por $nombre ($email)<br><br>$mensaje");
+		$mail->AddAddress("contacto@runnity.com", "Web runnity.com");
+		$mail->IsHTML(true);	
+		
+		if(!$mail->Send()) {
+			throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+		}		
+		return null;
+	}
+	
+	    //ajaxController
+	public function sendEmailToPublish($nombre,$email,$data,$date) {
+        $mail = $this->getMailService();	
+
+		$mail->From = $email;
+		$mail->FromName = $mensaje;
+		$mail->Subject = "Mensaje desde la web";
+		$mail->MsgHTML("Carrera enviada desde la web con nombre $nombre por ($email)<br><br>$data con fecha $date");
 		$mail->AddAddress("contacto@runnity.com", "Web runnity.com");
 		$mail->IsHTML(true);	
 		

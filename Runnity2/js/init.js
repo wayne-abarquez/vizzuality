@@ -81,7 +81,6 @@ function borrarRecords(id1,id2,id3,id4) {
 	$(id2).val(""); 	  
 	$(id3).val(""); 	  
 	$(id4).val(""); 	  
-	return false;
 }
 
 function showLoginWindow() {
@@ -793,4 +792,65 @@ function echeck(str) {
          }
 
                  return true
+}
+
+
+//MANDAR MENSAJE DE PUBLICAR CARRERA
+function publishRun() {
+
+    $('#contactError').html('');
+
+    var publishName = $("#publishName").val();
+    var publishDate = $("#publishDate").val();
+    var publishData = $("#publishData").val();
+    var publishEmail = $("#publishEmail").val();
+
+    if ((publishName=="") || (publishDate=="") || (publishData=="") || (publishEmail=="")) {
+        $('#contactError').html('Existen campos vacíos.');
+        return false;
+    }
+
+    if (!echeck(publishEmail)) {
+        $('#contactError').html('Tu email es incorrecto.');
+        return false;
+    }
+
+    $('#contactPublish').val('Enviando');
+    $('#contactPublish').attr("disabled", "true");
+    $("#publishName").attr("disabled", "true");
+    $("#publishDate").attr("disabled", "true");
+    $("#publishData").attr("disabled", "true");
+    $("#publishEmail").attr("disabled", "true");
+
+
+
+    var dataObj = ({nombre : publishName,
+        method: 'sendEmailPublish',
+        data: publishData,
+        date: publishDate,
+        email: publishEmail
+    });
+
+
+        $.ajax({
+        type: "POST",
+        url: "/ajaxController.php",
+        data: dataObj,
+        cache: false,
+        success: function(result){
+                var h = 100;
+                $('#publish_container').html('');
+                $('#publish_container').append('<h2 style="width:450px; text-align: center;">Gracias por enviar tu sugerencia</h2>');
+                $('#publish_container').append('<div style="text-align:center;width:450px;color:#336699;margin-top:-20px">Gracias por enviar la carrera, en breve se cerrará esta ventana.</div>');
+                $('div.simplemodal-data').animate({height:100},500);
+
+               	timerID = setTimeout("timerHide()", 2000);
+        },
+        error:function (xhr, ajaxOptions, thrownError){
+                alert('Runnity' + xhr.message + "\n" + thrownError);
+        }
+    });
+
+    return false;
+
 }
