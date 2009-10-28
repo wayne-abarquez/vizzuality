@@ -102,7 +102,7 @@ class RunnitServices {
 	
 	//ajaxController
 	public function isEmailFree($email) {
-	    $username=pg_escape_string($username);
+	    $email=pg_escape_string($email);
 	    $sql="SELECT id from users WHERE email='$email'";
 	    $result=pg_query($this->conn, $sql);
 	    if(pg_num_rows($result)>0) {
@@ -298,6 +298,26 @@ class RunnitServices {
 		$sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where r.event_date > now() and start_point && ST_SetSRID(ST_MakeBox2D(ST_Point($west, $south), ST_Point($east ,$north)),4326)";
 	} */
 	
+	
+	public function removeUser($id) {
+	    $sql="DELETE FROM users WHERE id=$id";
+	    $result= pg_query($this->conn, $sql);
+	    $sql="DELETE FROM users_groups WHERE users_fk=$id";
+	    $result= pg_query($this->conn, $sql);
+	    $sql="DELETE FROM users_records WHERE user_fk=$id";
+	    $result= pg_query($this->conn, $sql);
+	    $sql="DELETE FROM users_relations WHERE users_fk=$id";
+	    $result= pg_query($this->conn, $sql);
+	    $sql="DELETE FROM users_run WHERE users_fk=$id";
+	    $result= pg_query($this->conn, $sql);
+	    $sql="DELETE FROM picture WHERE user_fk=$id";
+	    $result= pg_query($this->conn, $sql);
+	    $sql="DELETE FROM comments WHERE user_fk=$id";
+	    $result= pg_query($this->conn, $sql);
+	    
+	    $this->logout();
+	    return true;
+	}
 	
 	//usuario_publico.php
 	public function getUserInfo($username) {

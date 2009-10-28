@@ -430,6 +430,13 @@ $(document).ready(function(){
 						<div class="span-1 last dataUser"><p><b>{$privateData.datos.num_races_runned}</b></p></div>
 					</div>
 				</div>
+				<div class="span-1 last functionalContainer">
+				<p class="titulo tituloLeft">DARSE DE BAJA</p>
+					<div class="span-1 last dataContainerUser">
+						<div class="span-1 last dataTitleUser"><p>Quieres darte de baja?</p></div>
+						<div class="span-1 last dataUser"><p><b><a href="/usuario_editar.php?del_usuario=true">BAJA</a></b></p></div>
+					</div>
+				</div>				
 			</div>
 			
 			<form action="usuario_editar.php" method="POST" id="editDataForm">
