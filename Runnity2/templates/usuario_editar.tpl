@@ -634,8 +634,16 @@ $(document).ready(function(){
 		
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
-			<div id="map2" class="mapStyleRight">
-	    		<img src="/img/mapaApuntadas.jpg">					
+			<div id="map" class="mapStyleRight">
+	            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" wmode="opaque" flashvars="id={$smarty.session.user.id}">
+	              <param name="movie" value="/flash/UserRacesMap.swf?7" />
+	              <!--[if !IE]>-->
+	              <object type="application/x-shockwave-flash" data="/flash/UserRacesMap.swf?7" width="254" height="192" wmode="opaque" flashvars="id={$smarty.session.user.id}">
+	              <!--<![endif]-->
+	              <!--[if !IE]>-->
+	              </object>
+	              <!--<![endif]-->
+	            </object>						
 			</div>
 		</div>
 		

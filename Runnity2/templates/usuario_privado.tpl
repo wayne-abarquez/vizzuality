@@ -205,8 +205,8 @@ $(document).ready(function(){
 				{if $pictures}
 				<div class="pictureUserContainer" id="pictureUserContainer">
 					<ul id="loc">
-					{foreach key=id item=picture from=$pictures name=pictureloop}
-						{if $smarty.foreach.pictureloop.iteration<6}
+					{foreach key=id item=picture from=$pictures name=pic}
+						{if $smarty.foreach.pic.iteration<6}
 							<li>
 								<div class="imagesUser" id="imagesUser">
 									<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
@@ -297,9 +297,17 @@ $(document).ready(function(){
 		
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
-			<div class="mapStyleRight">
-	    		<img src="/img/mapaApuntadas.jpg">					
-			</div>
+				<div id="map" class="mapStyleRight">
+		            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" wmode="opaque" flashvars="id={$smarty.session.user.id}">
+		              <param name="movie" value="/flash/UserRacesMap.swf?7" />
+		              <!--[if !IE]>-->
+		              <object type="application/x-shockwave-flash" data="/flash/UserRacesMap.swf?7" width="254" height="192" wmode="opaque" flashvars="id={$smarty.session.user.id}">
+		              <!--<![endif]-->
+		              <!--[if !IE]>-->
+		              </object>
+		              <!--<![endif]-->
+		            </object>						
+				</div>
 		</div>
 		
 		{if $friends}

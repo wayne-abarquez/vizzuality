@@ -348,6 +348,13 @@ class RunnitServices {
 	    
 	}
 	
+	public function getUserRaces($id) {
+	    $sql="select r.id,r.name,x(start_point) as lng,y(start_point) as lat,r.event_date 
+	        from users_run as ur inner join users as u on ur.users_fk=u.id inner join run as r on ur.run_fk=r.id 
+	        where u.id=$id";
+	    return pg_fetch_all(pg_query($this->conn, $sql));
+	}
+	
 	public function getUserRecords($id) {
 	    $sql="select distance_name,time_taken, 1 as ranking from users_records as ur inner join record_distance as rd on ur.record_distance_fk=rd.id WHERE ur.user_fk=$id";
 	    return pg_fetch_all(pg_query($this->conn, $sql));
