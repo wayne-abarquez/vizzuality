@@ -192,7 +192,7 @@
 							<div class="nodesc">
 								<img src="/img/nodesc.gif"/>
 								<p>Aún no tenemos descripción para esta carrera,<br /> 
-								<a href="javascript: void showContactBox()">¿te animas a enviarnos una?</a></p>
+								<a href="javascript: void show_contact()">¿te animas a enviarnos una?</a></p>
 							</div>
 						{/if}	
 				</div>			
