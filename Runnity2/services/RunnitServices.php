@@ -571,7 +571,7 @@ class RunnitServices {
 
 	    $terms=explode(" ",$q);
 
-        $termsToAvoid=array("el","la","los","las","en","de","y","o","i");
+        $termsToAvoid=array("El","el","LA","La","la","Los","los","Las","las","En","en","De","de","y","o","i");
 	    if(count($terms)>0 and $q!="") {
 	        $sql.=" AND (";
     	    foreach($terms as $term) {
