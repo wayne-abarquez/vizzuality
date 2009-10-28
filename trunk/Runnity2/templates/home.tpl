@@ -5,9 +5,9 @@
 <div class="span-1 column map">
 	<div id="runnityHomeMap">
 	<object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="894" height="364" wmode="opaque">
-		<param name="movie" value="/flash/runnitHomeMap.swf?6" />
+		<param name="movie" value="/flash/runnitHomeMap.swf?7" />
 		<!--[if !IE]>-->
-		<object type="application/x-shockwave-flash" data="/flash/runnitHomeMap.swf?6" width="894" height="364" wmode="opaque">
+		<object type="application/x-shockwave-flash" data="/flash/runnitHomeMap.swf?7" width="894" height="364" wmode="opaque">
 		<!--<![endif]-->
 		<h1>Necesitas Flash para poder ver el mapa</h1>
 		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
