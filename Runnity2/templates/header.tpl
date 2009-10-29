@@ -132,7 +132,7 @@
 	</div>
 	
 	
-<!-- PUBLISH RUN -->
+	<!-- PUBLISH RUN -->
 	<div id="publish_modal">
 		<div class="publish_container">
 			<h2>Publica tu carrera</h2>
@@ -153,7 +153,7 @@
 					<label>e-mail de contacto</label>
 					<input type="text" class="text" id="publishEmail" name="publishEmail">
 				</div>
-				<span id="contactError" class="errorMessage"></span>
+				<span id="contactError2" class="errorMessage"></span>
 				<div class="bottom">
 					<p>Una vez mandada la información, nuestro equipo contactará contigo para completarla.</p>
 					<input id="contactPublish" class="fg-button" value="Enviar" type="submit"/>

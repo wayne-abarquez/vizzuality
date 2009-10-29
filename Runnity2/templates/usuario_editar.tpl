@@ -440,12 +440,12 @@ $(document).ready(function(){
 				</div>
 -->	
 				<div id="confirmationWindowUser" style='display:none'>
-						<p>¿Estás seguro de que quieres borrar tu cuenta?</p>
-						<div class="erasePhoto">
-						<input class="fg-button" type="submit" value="Si, quiero borrar mi cuenta" onclick="location.href='/usuario_editar.php?del_usuario=true'"/>
-						<input class="fg-button" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
-						</div>
-					</div>			
+					<p>¿Estás seguro de que quieres borrar tu cuenta?</p>
+					<div class="erasePhoto">
+					<input class="fg-button" type="submit" value="Si, quiero borrar mi cuenta" onclick="location.href='/usuario_editar.php?del_usuario=true'"/>
+					<input class="fg-button" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
+					</div>
+				</div>			
 			</div>
 			
 			<form action="usuario_editar.php" method="POST" id="editDataForm">
