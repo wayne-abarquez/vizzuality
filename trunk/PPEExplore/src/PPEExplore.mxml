@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.vizzuality.visualcomponents.*" creationComplete="onCreationComplete()">
+<mx:Script>
+	<![CDATA[
+		import com.google.maps.MapEvent;
+		import com.google.maps.LatLng;
+		import com.google.maps.MapType;
+		import com.google.maps.MapAction;
+		import com.google.maps.Color;
+		import com.google.maps.Alpha;
+		import com.google.maps.MapOptions;
+		import com.google.maps.overlays.TileLayerOverlay;
+		import com.vizzuality.tileoverlays.GeoserverTileLayer;
+		
+		
+		private function onCreationComplete():void {
+			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080"];
+			for each(var dom:String in externalDomains) {
+			    Security.allowDomain(dom);
+			    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
+			    var request:URLRequest = new URLRequest("http://"+dom+"/crossdomain.xml");
+			    var loader:URLLoader = new URLLoader();
+			    loader.addEventListener(IOErrorEvent.IO_ERROR,function(event:IOErrorEvent):void {
+			    	trace("error");
+			    });
+			    loader.load(request);				
+			}
+		}
+		
+		private function onMapPreinit():void {
+			var options:MapOptions = new MapOptions({
+			  backgroundFillStyle: {
+			    alpha: Alpha.OPAQUE,
+			    color: Color.WHITE
+			  },
+			  controlByKeyboard: false,
+			  overlayRaising: true,
+			  doubleClickMode: MapAction.ACTION_PAN_ZOOM_IN,
+			  dragging: true,
+			  continuousZoom: false,
+			  mapType: MapType.PHYSICAL_MAP_TYPE,
+			  center: new LatLng(30, 0),
+			  zoom: 2,
+			  mouseClickRange: 2
+			});		
+			
+			map.setInitOptions(options);
+				
+		}
+		
+		private function onMapReady():void {
+			var tl:GeoserverTileLayer = new GeoserverTileLayer();
+			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
+			//tlo.foreground.alpha=1;
+			tlo.foreground.alpha=0.9;
+			tl.addEventListener("GEOSERVER_TILE_LAYER_LOADED",function(ev:Event):void {
+				discretLoading.visible=false;
+				trace("GEOSERVER_TILE_LAYER_LOADED");
+			});
+			tl.addEventListener("GEOSERVER_TILE_LAYER_LOADING",function(ev:Event):void {
+				discretLoading.visible=true;
+				trace("GEOSERVER_TILE_LAYER_LOADING");
+			});
+			map.addOverlay(tlo);	
+		}
+	]]>
+</mx:Script>	
+	
+	<maps:Map id="map" key="noKey" width="100%" height="100%" mapevent_mapready="onMapReady()" mapevent_mappreinitialize="onMapPreinit()" />
+	<ns1:DiscretLoading id="discretLoading" left="10" top="10" />
+	
+	<mx:Style source="/skin/ui.css"/>
+	<mx:Style source="/skin/fonts.css"/>
+</mx:Application>
