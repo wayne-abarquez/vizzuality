@@ -326,12 +326,7 @@ div.baja{
 	margin-left: 10px;
 }
 
-div.bajalink{
-	margin-top: 6px;
-	margin-left: -15px;
-}
-
-div.bajalink a{
+div.baja a{
 	text-decoration: none;
 	color: #336699;
 }
