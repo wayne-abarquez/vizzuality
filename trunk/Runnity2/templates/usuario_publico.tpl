@@ -21,9 +21,9 @@ $(document).ready(function(){
 				<div class="span-1 avatarPerfil" id="avatarPerfil">
 					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$data.datos.id}&type=t">
 				</div>
-				<div class="span-1 last functionalContainer">
-				<p class="titulo tituloLeft">RANKING RUNNITY</p>				
-					{if $records}
+				{if $records}
+					<div class="span-1 last functionalContainer">
+					<p class="titulo tituloLeft">RANKING RUNNITY</p>				
 						{foreach key=id item=record from=$records name=record}
 						<div class="span-1 last dataContainerUser">
 							<div class="span-1 last dataTitleUserRanking"><p>{$record.distance_name}:</p></div>
@@ -31,10 +31,8 @@ $(document).ready(function(){
 							<div class="span-1 last dataUserPosition"><div class="rankingBox"><p>{$record.position}º</p></div></div>
 						</div>
 						{/foreach}
-					{else}
-						No hay records, animate y edita tus marcas.
-					{/if}				
-				</div>
+					</div>
+				{/if}				
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
 					<div class="span-1 last dataContainerUser">

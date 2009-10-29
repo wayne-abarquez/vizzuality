@@ -802,7 +802,7 @@ function echeck(str) {
 //MANDAR MENSAJE DE PUBLICAR CARRERA
 function publishRun() {
 
-    $('#contactError').html('');
+    $('#contactError2').html('');
 
     var publishName = $("#publishName").val();
     var publishDate = $("#publishDate").val();
@@ -810,12 +810,12 @@ function publishRun() {
     var publishEmail = $("#publishEmail").val();
 
     if ((publishName=="") || (publishDate=="") || (publishData=="") || (publishEmail=="")) {
-        $('#contactError').html('Existen campos vacíos.');
+        $('#contactError2').html('Existen campos vacíos.');
         return false;
     }
 
     if (!echeck(publishEmail)) {
-        $('#contactError').html('Tu email es incorrecto.');
+        $('#contactError2').html('Tu email es incorrecto.');
         return false;
     }
 
