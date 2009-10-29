@@ -157,7 +157,7 @@ class MediaServices {
 	   	$imgSize=getimagesize($tempPath);
 	    
 	    
-	    //RESIZE
+	    //RESIZE para avatar pequeño
 	    $imgTrans = new imageTransform();
 	    $imgTrans->sourceFile = $tempPath;
 	    $imgTrans->targetFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_s.jpg";	    
@@ -211,28 +211,7 @@ class MediaServices {
 	    $imgThumbPath='/media/'.$onTable.'/' . $onId .'/'. $onId."_s.jpg";
 
 	    
-	    
-	    
 /*
-	   	$imgTrans = new imageTransform();
-	    $imgTrans->sourceFile = $tempPath;
-        @$res = mkdir(ABSPATH .'media/'.$onTable.'/' . $onId, 0755);
-        $imgThumb=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_s.jpg";
-        $imgThumbPath='/media/'.$onTable.'/' . $onId .'/'. $onId."_s.jpg";
-	    $imgTrans->targetFile = $imgThumb;
-		$imgTrans->resizeToWidth = 67;
-		$imgTrans->resizeToHeight = 66;
-		$imgTrans->maintainAspectRatio = false;
-	    
-	    
-	    $res=$imgTrans->resize(); 
-	    if (!$res) {
-			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
-	        return false;
-	    } 
-*/   
-	    
-	    
 	    $imgTrans = new imageTransform();
 	    $imgTrans->sourceFile = $tempPath;
         @$res = mkdir(ABSPATH .'media/'.$onTable.'/' . $onId, 0755);
@@ -249,6 +228,63 @@ class MediaServices {
 			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
 	        return false;
 	    }
+*/
+
+		$imgSize=getimagesize($tempPath);
+	    
+	    
+	    //RESIZE para avatar pequeño
+	    $imgTrans = new imageTransform();
+	    $imgTrans->sourceFile = $tempPath;
+	    $imgTrans->targetFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";	    
+	    
+	    
+	    
+	    //mas ancha que alta
+	    if($imgSize[0]>$imgSize[1]) {
+	    	$imgTrans->resizeToHeight = 194;
+	    		    	
+	    }
+	    //mas alta que ancha
+	    if($imgSize[0]<$imgSize[1]) {
+	    	$imgTrans->resizeToWidth = 194;
+	    }	  
+	    
+	    //==
+	    if($imgSize[0]==$imgSize[1]) {
+	    	$imgTrans->resizeToWidth = 194;
+	    	$imgTrans->resizeToHeight = 194;
+	    }	
+	    if (!$imgTrans->resize()) {
+			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
+	        throw new Exception("Error processing the thumbnail");
+	    }	    
+	    
+	    //CROP
+	    $imgTrans2 = new imageTransform();
+	    $imgTrans2->sourceFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";	  
+	    $imgTrans2->targetFile = ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";	    
+	    $res=true;
+	    $imgSize2=getimagesize(ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg");
+	    
+	    //mas ancha que alta
+	    if($imgSize[0]>$imgSize[1]) {	    		    	
+	    	$t= floor(($imgSize2[0] - 194)/2);
+	    	$res = $imgTrans2->crop($t,0,(194+$t),194);
+	    		    	
+	    }
+	    //mas alta que ancha
+	    if($imgSize[0]<$imgSize[1]) {   	
+	    	$t= floor(($imgSize2[1] - 194)/2);
+	    	$res = $imgTrans2->crop(0,$t,194,(194+$t));
+	    }	  
+	   		
+	    if (!$res) {
+			$result=pg_query($this->conn, "DELETE FROM picture WHERE id=$picId");
+	        throw new Exception("Error processing the thumbnail");
+	    }
+	            
+	    $imgThumbPath='/media/'.$onTable.'/' . $onId .'/'. $onId."_t.jpg";
 	    
 	    $bigFilePath=ABSPATH .'media/'.$onTable.'/' . $onId .'/'. $onId."_b.jpg";
 	    
