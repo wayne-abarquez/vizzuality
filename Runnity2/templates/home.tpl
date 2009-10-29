@@ -58,7 +58,7 @@
 			{foreachelse}
 			<!-- 	<div class="carrera">No hay próximas carreras.</div>  -->
     		{/foreach}	
-			<a class="verTodas" {if $city eq "España"} href="/buscar?q=&tipoBusqueda=Proximas" {else} href="/buscar?q={$city}" {/if}><b>Ver todas las carreras en {$city}</b></a>
+			<a class="verTodas" {if $city eq "España"} href="/buscar?q=&tipoBusqueda=Proximas" {else} href="/buscar?q={$city}&tipoBusqueda=Proximas" {/if}><b>Ver todas las carreras en {$city}</b></a>
 		</div>
 		
 		<div class="span-1 last column2">
