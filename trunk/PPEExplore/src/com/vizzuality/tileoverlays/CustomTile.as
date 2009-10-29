@@ -1,55 +1,75 @@
 package com.vizzuality.tileoverlays
 {
 	
-	import com.google.maps.Color;
+	import com.google.maps.MapMouseEvent;
 	
 	import flash.display.Bitmap;
-	import flash.display.BitmapData;
 	import flash.display.Loader;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
-	import flash.geom.Rectangle;
+	import flash.net.URLRequest;
 
 	public class CustomTile extends Sprite
 	{
 		public var loader:Loader;
-        private var bm:Bitmap;
-        private var bmd:BitmapData;
+		private var geoserverTileLayer:GeoserverTileLayer;
+		private var mapIsDragging:Boolean=false;
 		
 		
-		public function CustomTile()
+		public function CustomTile(_geoserverTileLayer:GeoserverTileLayer,url:String)
 		{
+			geoserverTileLayer=_geoserverTileLayer;
 			loader = new Loader();
 			loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loaded,false,0,true);		
-			
-			this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver);	
+			loader.load(new URLRequest(url));
+			geoserverTileLayer.numRunningRequest++;
 		}
 		
 		
 		private function ioErrorHandler(event:IOErrorEvent):void {
 			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
+			geoserverTileLayer.numRunningRequest--;
+            geoserverTileLayer.possiblyFireEvent();
 
 		}
 		
+		private function onDragging(event:MapMouseEvent):void {
+			mapIsDragging=true;	
+		}
+		private function onEndDragging(event:MapMouseEvent):void {
+			mapIsDragging=false;	
+		}
+		
 		private function onMouseOver(evt:MouseEvent):void {
-			bm = this.loader.content as Bitmap;
-			bmd = new BitmapData(256, 256);
-			bmd.draw(bm.bitmapData);
-			var color:int = bmd.getPixel(evt.localX, evt.localY);
-			if (color != 0xFFFFFF) {
-				this.buttonMode=true;
-				
-			} else {
-				this.buttonMode=false;					
+			if(!mapIsDragging) {
+				var color:int = (this.loader.content as Bitmap).bitmapData.getPixel(evt.localX, evt.localY);
+				if (color != 0) {
+					this.buttonMode=true;
+					geoserverTileLayer.isOverFeature=true;
+				} else {
+					this.buttonMode=false;					
+					geoserverTileLayer.isOverFeature=false;
+				}
 			}
 		}
 		
 		
 		private function loaded(event:Event):void {
 			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
+			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			
+			
+			//this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver,false,0,true);	
+			//geoserverTileLayer.map.addEventListener(MapMouseEvent.DRAG_START,onDragging,false,0,true);
+			//geoserverTileLayer.map.addEventListener(MapMouseEvent.DRAG_END,onEndDragging,false,0,true);			
+			
+			geoserverTileLayer.numRunningRequest--;
+            geoserverTileLayer.possiblyFireEvent();
+			
 			addChild(loader);
 			
 			

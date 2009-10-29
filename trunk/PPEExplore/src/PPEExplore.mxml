@@ -2,6 +2,17 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.vizzuality.visualcomponents.*" creationComplete="onCreationComplete()">
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.overlays.Marker;
+		import com.google.maps.LatLngBounds;
+		import com.google.maps.controls.ZoomControl;
+		import com.google.maps.interfaces.IPane;
+		import com.google.maps.overlays.PolygonOptions;
+		import com.vizzuality.mapsutils.Multipolygon;
+		import com.adobe.serialization.json.JSON;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.http.mxml.HTTPService;
+		import com.google.maps.MapMouseEvent;
 		import com.google.maps.MapEvent;
 		import com.google.maps.LatLng;
 		import com.google.maps.MapType;
@@ -12,8 +23,22 @@
 		import com.google.maps.overlays.TileLayerOverlay;
 		import com.vizzuality.tileoverlays.GeoserverTileLayer;
 		
+		private var jsonService:HTTPService;
+		private var tilesPane:IPane;
+		private var polygonsPane:IPane;
+		private	var tl:GeoserverTileLayer;
+		private	var tlo:TileLayerOverlay;	
+		
 		
 		private function onCreationComplete():void {
+			
+			jsonService = new HTTPService();
+			jsonService.method="get";
+			jsonService.concurrency="last";
+			jsonService.resultFormat="text";
+			jsonService.addEventListener(ResultEvent.RESULT,onDataLoaded);
+			jsonService.addEventListener(FaultEvent.FAULT,function(ev:FaultEvent):void{trace(ev.fault)});
+			
 			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080"];
 			for each(var dom:String in externalDomains) {
 			    Security.allowDomain(dom);
@@ -49,19 +74,92 @@
 		}
 		
 		private function onMapReady():void {
-			var tl:GeoserverTileLayer = new GeoserverTileLayer();
-			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
-			//tlo.foreground.alpha=1;
-			tlo.foreground.alpha=0.9;
+			//initialize controls
+			map.addControl(new ZoomControl());
+			
+			polygonsPane = map.getPaneManager().createPane();
+			tilesPane = map.getPaneManager().createPane();
+			tl = new GeoserverTileLayer(map);
+			tlo = new TileLayerOverlay(tl);
+
 			tl.addEventListener("GEOSERVER_TILE_LAYER_LOADED",function(ev:Event):void {
 				discretLoading.visible=false;
-				trace("GEOSERVER_TILE_LAYER_LOADED");
 			});
 			tl.addEventListener("GEOSERVER_TILE_LAYER_LOADING",function(ev:Event):void {
 				discretLoading.visible=true;
-				trace("GEOSERVER_TILE_LAYER_LOADING");
 			});
-			map.addOverlay(tlo);	
+			tilesPane.addOverlay(tlo);	
+			tlo.foreground.alpha=1;
+			
+			
+			
+			//trace clicks
+			map.addEventListener(MapMouseEvent.CLICK,onMapClick);
+			
+			
+		}
+				
+		private function onMapClick(ev:MapMouseEvent):void {				
+			//if (tl.isOverFeature) {
+				jsonService.url="http://localhost/json.php/PPEServices.getAreasByLatLng/"+ev.latLng.lat()+"/"+ev.latLng.lng();
+				jsonService.send();
+				polygonsPane.clear();
+			//}	
+		}
+		
+		private function onDataLoaded(ev:ResultEvent):void{
+
+			
+			var data:Object = data = JSON.decode(ev.result as String);
+			if(!data) {
+				return;
+			}
+			
+			var extend:LatLngBounds;
+			for each(var o:Object in data as Array) {
+				
+				var col:Number=Math.random() * 0xFFFFFF;
+				var polOpt:PolygonOptions=new PolygonOptions({
+				  strokeStyle: {
+				    thickness: 2,
+				    color: col,
+				    alpha: 1
+				  },
+				  fillStyle: {
+				    color: col,
+				    alpha: 0.4
+				  }	
+				});				
+				
+				
+				
+				o.geom = JSON.decode(o.geojson as String);
+				var mp:Multipolygon= new Multipolygon();
+				mp.fromGeojsonMultiPolygon(o.geom.coordinates,polOpt);				
+				mp.addToPane(polygonsPane);
+				
+				
+				//add markers
+				var m:Marker= new Marker(new LatLng(o.center_lat,o.center_lng));
+				polygonsPane.addOverlay(m);
+				
+				
+				//calculate bounds
+				var bounds:LatLngBounds=new LatLngBounds(new LatLng(o.ymax,o.xmin),new LatLng(o.ymin,o.xmax));
+				if (extend==null) {
+					extend=bounds;
+				} else {
+					extend.union(bounds);
+				}
+				
+			}
+/* 			var extendZoom:Number = map.getBoundsZoomLevel(extend);
+			if (extendZoom <= (map.getZoom()+1)) {
+				map.setCenter(extend.getCenter(),extendZoom);				
+			} else {
+				map.setCenter(extend.getCenter(),map.getZoom()+1);
+			} */
+			
 		}
 	]]>
 </mx:Script>	
