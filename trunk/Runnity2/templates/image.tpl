@@ -44,9 +44,9 @@
             		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>            		
             		{/if}	
 					{if $canEdit}				
-						<a href="javascript: void confirmationWindow()">borrar foto</a>
+						<a href="javascript: void confirmationWindowPhoto()">borrar foto</a>
 					{/if}
-					<div id="confirmationWindow" style='display:none'>
+					<div id="confirmationWindowPhoto" style='display:none'>
 						<p>¿Estás seguro de que quieres borrar esta foto?</p>
 						<div class="erasePhoto">
 						<input class="fg-button" type="submit" value="Si, quiero borrarla" onclick="location.href='/image.php?id={$smarty.request.id}&action=delete'"/>

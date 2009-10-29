@@ -430,13 +430,22 @@ $(document).ready(function(){
 						<div class="span-1 last dataUser"><p><b>{$privateData.datos.num_races_runned}</b></p></div>
 					</div>
 				</div>
+<!--
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DARSE DE BAJA</p>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUser"><p>Quieres darte de baja?</p></div>
-						<div class="span-1 last dataUser"><p><b><a href="/usuario_editar.php?del_usuario=true">BAJA</a></b></p></div>
+						<div class="span-1 last dataUser"><p><b><a href="javascript: void confirmationWindowUser()">BAJA</a></b></p></div>
 					</div>
-				</div>				
+				</div>
+-->	
+				<div id="confirmationWindowUser" style='display:none'>
+						<p>¿Estás seguro de que quieres borrar tu cuenta?</p>
+						<div class="erasePhoto">
+						<input class="fg-button" type="submit" value="Si, quiero borrar mi cuenta" onclick="location.href='/usuario_editar.php?del_usuario=true'"/>
+						<input class="fg-button" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
+						</div>
+					</div>			
 			</div>
 			
 			<form action="usuario_editar.php" method="POST" id="editDataForm">
@@ -602,7 +611,11 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class="span-1 dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
+					<span>
+					<div class="span-1 baja">¿Quieres darte de baja?</div>				
+					<div class="span-1 bajalink"><a href="javascript: void confirmationWindowUser()" >BAJA</a></div>
+					<input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/>
+					</span>
 				</div>
 			</div>			
 		</div>

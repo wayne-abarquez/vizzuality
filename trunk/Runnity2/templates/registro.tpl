@@ -131,7 +131,7 @@
 					<div class="span-6 first column nombreRegistro">
 						<div class="register_name_column">
 							<p>Nombre y apellidos</p>
-							<input id="inputRegister4" name="name_register" type="text"/>
+							<input id="inputRegister4" name="name_register" type="text" class="inputRegister"/>
 						</div>
 						<div class="register_name_column">
 							<p>Sexo</p>
@@ -155,7 +155,7 @@
 	    			<div class="span-1 column last rightRegister">
 						<div>
 							<p class="titleMapAlert">Localidad,provincia</p>
-							<input type="text" id="roundLocalizacion" name="localidad"/>
+							<input type="text" id="roundLocalizacion" name="localidad" class="inputRegister"/>
 							<label class="searchButtonFirst last">
 								<input type="button" value="Situar" id="buttonLocalizacion" class="buttonLocalizacion"/>
 							</label>

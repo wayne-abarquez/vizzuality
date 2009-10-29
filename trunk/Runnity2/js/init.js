@@ -87,8 +87,12 @@ function showLoginWindow() {
 	$('#login_modal').modal();
 }
 
-function confirmationWindow() {
-	$('#confirmationWindow').modal();
+function confirmationWindowPhoto() {
+	$('#confirmationWindowPhoto').modal();
+}
+
+function confirmationWindowUser() {
+	$('#confirmationWindowUser').modal();
 }
 
 function show_contact() {
