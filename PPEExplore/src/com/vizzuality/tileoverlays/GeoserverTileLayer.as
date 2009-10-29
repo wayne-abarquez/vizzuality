@@ -5,11 +5,11 @@ package com.vizzuality.tileoverlays
     import com.google.maps.LatLng;
     import com.google.maps.LatLngBounds;
     import com.google.maps.TileLayerBase;
+    import com.google.maps.interfaces.IMap;
     
     import flash.display.DisplayObject;
     import flash.events.Event;
     import flash.events.EventDispatcher;
-    import flash.events.IOErrorEvent;
     import flash.events.TimerEvent;
     import flash.geom.Point;
     import flash.net.URLRequest;
@@ -18,15 +18,18 @@ package com.vizzuality.tileoverlays
     public class GeoserverTileLayer extends TileLayerBase
     {  
         private var srvNum:Number=0;   
-        private var customTile:CustomTile;	
-        private var numRunningRequest:Number=0;		
+        public var numRunningRequest:Number=0;		
 		private var previousNum:Number;     
 		
 		private var _ed:EventDispatcher;
 		private var discardTimer:Timer;
+		public var isOverFeature:Boolean=false;
+		public var map:IMap;
 		
-        public function GeoserverTileLayer()
+        public function GeoserverTileLayer(_map:IMap)
         {
+        	
+        	map=_map;
             
             var copyrightCollection:CopyrightCollection = new CopyrightCollection();
             copyrightCollection.addCopyright(new Copyright("ennefox", new LatLngBounds(new LatLng(-180, 90), new LatLng(180, -90)), 21,"ennefox"));            
@@ -41,11 +44,7 @@ package com.vizzuality.tileoverlays
         
         public override function loadTile(tile:Point,zoom:Number):DisplayObject {
             
-            if (!isNaN(tile.x) && !isNaN(tile.y) && zoom >= 0) {
-                customTile = new CustomTile();
-                customTile.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
-                customTile.loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadedHandler,false,0,true);
-                
+            if (!isNaN(tile.x) && !isNaN(tile.y) && zoom >= 0) {               
                 if(zoom>8) {
 	                var tileUrl:String = "http://174.129.214.28:8080/geowebcache/service/gmaps?layers=ppe:ppeblue&zoom=|Z|&x=|X|&y=|Y|";                    
                     srvNum++;
@@ -66,27 +65,14 @@ package com.vizzuality.tileoverlays
     			if(numRunningRequest<1) {
     				dispatchEvent(new Event("GEOSERVER_TILE_LAYER_LOADING"));
     			}
-    			numRunningRequest++;
-                customTile.loader.load(new URLRequest(tileUrl));
+                var customTile:CustomTile = new CustomTile(this,tileUrl);
                 return customTile;    
             }
             return null;
         }
         
         
-        private function ioErrorHandler(event:IOErrorEvent):void {
-        	numRunningRequest--;
-            event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-            possiblyFireEvent();
-        }
-        
-        private function loadedHandler(event:Event):void {
-            numRunningRequest--;
-            event.currentTarget.removeEventListener(Event.COMPLETE, loadedHandler);
-            possiblyFireEvent();
-        }     
-        
-        private function possiblyFireEvent():void {
+        public function possiblyFireEvent():void {
              if(numRunningRequest<1) {
             	dispatchEvent(new Event("GEOSERVER_TILE_LAYER_LOADED"));
             	discardTimer.stop();
