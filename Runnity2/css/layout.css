@@ -319,6 +319,23 @@ label.roundInputRecords{
 	margin-bottom: 10px;
 }
 
+div.baja{
+	color: #999999;
+	width: 140px;
+	margin-top: 6px;
+	margin-left: 10px;
+}
+
+div.bajalink{
+	margin-top: 6px;
+	margin-left: -15px;
+}
+
+div.bajalink a{
+	text-decoration: none;
+	color: #336699;
+}
+
 .dataUserEdit{
 	width: 392px;
 }
@@ -597,7 +614,7 @@ div.titleBoxRegister p{font-size: 22px; color: #336699; margin-top: 8px; margin-
 div.registerInfoTicket{ background: url(/img/registerTicket.gif) no-repeat; height: 41px; width: 609px; }
 div.data_register_container {width: 500px; margin: 10px 0 0 0; padding: 0 0 0 20px;}
 div.data_register_container p{color: #666666;font-size: 13px;font-weight: bold; margin:0;}
-#register_form input.inputRegister {width: 223px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px;}
+#register_form input.inputRegister {width: 223px; border: 1px solid #dddddd; margin: 0 20px 0 0; padding: 7px 10px; color: #999999; font-size:14px;}
 #register_form label.error {color:#c24949; background: none; border: none; width: auto; line-height: 14px; margin: 0; padding: 0; font-weight: normal;}
 #register_form input.error {width: 223px; border: 1px solid #c24949; background: none; margin: 0 20px 0 0; padding: 7px 10px;}
 #checkUserBox #registerImage {margin:0; height: 16px; width: 16px; vertical-align: middle;}
@@ -1474,20 +1491,20 @@ a.verTodas:hover{
 	color: #fc6602;
 }
 
-#confirmationWindow{
+#confirmationWindowPhoto, #confirmationWindowUser{
 	height: 75px;
 	width: 420px;
 	background: #eaeaea;
 	border:6px solid #ffffff;
 }
 
-#confirmationWindow div.erasePhoto{
+#confirmationWindowPhoto div.erasePhoto , #confirmationWindowUser div.erasePhoto{
 	text-align: center;
 	margin-top: -15px;
 }
 
 
-#confirmationWindow p {
+#confirmationWindowPhoto p, #confirmationWindowUser p{
 	color: #336699;
 	font-size: 16px;
 	font-weight: bold;
