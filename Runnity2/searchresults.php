@@ -66,10 +66,13 @@ if (isset($_REQUEST['fechaFin'])) {
 $smarty->assign('fechaFin', $fechaFin);
 $smarty->assign('fechaFinOld', $fechaFinOld);
 
-$tipoBusqueda="Todas";
+$tipoBusqueda="";
 if ($q==""){
 	$tipoBusqueda="Proximas";
+} else {
+	$tipoBusqueda="Todas";
 }
+
 if (isset($_REQUEST['tipoBusqueda'])) {
 	$tipoBusqueda=$_REQUEST['tipoBusqueda'];
 }
