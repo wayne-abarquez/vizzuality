@@ -4,13 +4,14 @@
 <div class="span-1 column mapTop"></div>
 <div class="span-1 column map">
 	<div id="runnityHomeMap">
-	<object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="894" height="364" wmode="opaque">
-		<param name="movie" value="/flash/runnitHomeMap.swf?7" />
+	<object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="894" height="364">
+		<param name="wmode" value="opaque">
+		<param name="movie" value="/flash/runnitHomeMap.swf?7">
 		<!--[if !IE]>-->
-		<object type="application/x-shockwave-flash" data="/flash/runnitHomeMap.swf?7" width="894" height="364" wmode="opaque">
+		<object type="application/x-shockwave-flash" data="/flash/runnitHomeMap.swf?7" width="894" height="364">
 		<!--<![endif]-->
 		<h1>Necesitas Flash para poder ver el mapa</h1>
-		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
+		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"></a></p>
 		<!--[if !IE]>-->
 		</object>
 		<!--<![endif]-->
@@ -34,14 +35,13 @@
 					<div class="span-1 {cycle values="carrera,carrera2"}">
 						<div class="span-1 avatar2">
 							{if $race.flickr_img_id==""}
-							    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+							    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar">	
 							{else}
-							    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+							    <img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar">	
 							{/if}
 						</div>
 						<div class="span-1 Race">
-							<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></p>
+							<p class="span-4 nameRace"><a href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></p>
 							<p class="span-4 infoRace" id="iteracion{$smarty.foreach.raceloop.iteration}">
 							<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> /{$race.distance_text}</p>
 							<p class="span-4 placeRace">{$race.province_name} - {$race.event_location}</p>
@@ -58,7 +58,7 @@
 			{foreachelse}
 			<!-- 	<div class="carrera">No hay próximas carreras.</div>  -->
     		{/foreach}	
-			<a class="verTodas" {if $city eq "España"} href="/buscar?q=&tipoBusqueda=Proximas" {else} href="/buscar?q={$city}&tipoBusqueda=Proximas" {/if}><b>Ver todas las carreras en {$city}</b></a>
+			<a class="verTodas" {if $city eq "España"} href="/buscar?q=&amp;tipoBusqueda=Proximas" {else} href="/buscar?q={$city}&amp;tipoBusqueda=Proximas" {/if}><b>Ver todas las carreras en {$city}</b></a>
 		</div>
 		
 		<div class="span-1 last column2">
@@ -67,15 +67,14 @@
 			<div class="carrera">
 				<div class="span-1 avatar2">
 					{if $race.flickr_img_id==""}
-					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{else}
-					    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					    <img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$race.run1_id}/{$race.run1_name|seourl}">{$race.run1_name}</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run1_description}</p>
+					<p class="span-4 nameRace"><a href="/run/{$race.run1_id}/{$race.run1_name|seourl}">{$race.run1_name}</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif" alt="">{$race.run1_description}</p>
 				</div>
 				{if $race.run1_num_users > 0}
 					<div class="ticketBlue"><p>{$race.run1_num_users}</p></div>
@@ -86,15 +85,14 @@
 			<div class="carrera2">
 				<div class="span-1 avatar2">
 					{if $race.flickr_img_id==""}
-					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{else}
-					    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					    <img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$race.run2_id}/{$race.run2_name|seourl}">{$race.run2_name}</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run2_description}</p>
+					<p class="span-4 nameRace"><a href="/run/{$race.run2_id}/{$race.run2_name|seourl}">{$race.run2_name}</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif" alt="">{$race.run2_description}</p>
 				</div>
 				{if $race.run2_num_users > 0}
 					<div class="ticketBlue"><p>{$race.run2_num_users}</p></div>
@@ -106,15 +104,14 @@
 				<div class="span-1 avatar2">
 					<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
 					{if $race.flickr_img_id==""}
-					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{else}
-					    <img src="/runThumbImage.php?id={$race.id}&photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar"/>	
+					    <img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$race.run3_id}/{$race.run3_name|seourl}">{$race.run3_name}</a></p>
-					<p class="span-4 recentActivity"><img src="/img/note.gif"/>{$race.run3_description}</p>
+					<p class="span-4 nameRace"><a href="/run/{$race.run3_id}/{$race.run3_name|seourl}">{$race.run3_name}</a></p>
+					<p class="span-4 recentActivity"><img src="/img/note.gif" alt="">{$race.run3_description}</p>
 				</div>
 				{if $race.run3_num_users > 0}
 					<div class="ticketBlue"><p>{$race.run3_num_users}</p></div>
@@ -130,22 +127,21 @@
 <!-- 	<div class="carrera">No hay próximas carreras destacadas.</div>  -->
 		<p class="titulo titulOrange">CARRERAS DESTACADAS</p>
 					<div class="span-1 imgFeed">
-				<a href="http://feeds.feedburner.com/runnity"><img src="/img/feed-icon.gif" alt="Feed" class="rssImage"/></a>
+				<a href="http://feeds.feedburner.com/runnity"><img src="/img/feed-icon.gif" alt="Feed" class="rssImage"></a>
 			</div>
 		{foreach key=id item=VipRace from=$nextImportantRaces name=raceloop}
 		<div class="carreraOrange">
 			<div class="span-1 avatar2Orange">
 				<!-- <img src="/img/avatar2.jpg" class="avatarOrange"> -->
 				{if $race.flickr_img_id==""}
-				    <img src="/media/run/{$VipRace.thumbnail}" alt="Foto de la carrera {$VipRace.name}" class="avatar"/>	
+				    <img src="/media/run/{$VipRace.thumbnail}" alt="Foto de la carrera {$VipRace.name}" class="avatar">	
 				{else}
-				    <img src="/runThumbImage.php?id={$VipRace.id}&photo_id={$VipRace.flickr_img_id}" alt="Foto de la carrera {$VipRace.name}" class="avatar"/>	
+				    <img src="/runThumbImage.php?id={$VipRace.id}&amp;photo_id={$VipRace.flickr_img_id}" alt="Foto de la carrera {$VipRace.name}" class="avatar">	
 				{/if}
 			</div>
 			<div class="span-1 Race">
-				<p class="nameRaceOrange"><a id="carrera{$smarty.foreach.raceloop.iteration}" 
-							href="/run/{$VipRace.id}/{$VipRace.name|seourl}">{$VipRace.name}</a></p>
-				<p class="span-4 infoRaceOrange" id="iteracion{$smarty.foreach.raceloop.iteration}"><b>{$VipRace.event_date|substr:8:2}/{getMonth month=$VipRace.event_date|substr:5:2}/{$VipRace.event_date|substr:2:2}</b> / {$VipRace.distance_text}</p>
+				<p class="nameRaceOrange"><a href="/run/{$VipRace.id}/{$VipRace.name|seourl}">{$VipRace.name}</a></p>
+				<p class="span-4 infoRaceOrange"><b>{$VipRace.event_date|substr:8:2}/{getMonth month=$VipRace.event_date|substr:5:2}/{$VipRace.event_date|substr:2:2}</b> / {$VipRace.distance_text}</p>
 				<p class="span-4 placeRaceOrange">{$VipRace.event_location}</p>
 			</div>
 		{if $smarty.foreach.raceloop.iteration < 3}
@@ -160,6 +156,7 @@
 </div> <!-- content -->
 
 </div> <!-- container -->
+
 
 <div class="bannerTop"></div>
 <div class="banner">
@@ -189,23 +186,23 @@
 		<div class="span-1 last columnLong">
 			<p class="titulo">RUNNITY EN LA WEB</p>
 			<div class="column span-3 first">
-				<a href="http://www.tuenti.com/#m=Photo&func=view_photo&collection_key=1-66022443-567658561-66022443" target="_blank">
-					<img src="/img/tuenti.jpg" alt="socialNetworks"/>
+				<a href="http://www.tuenti.com/#m=Photo&amp;func=view_photo&amp;collection_key=1-66022443-567658561-66022443" target="_blank">
+					<img src="/img/tuenti.jpg" alt="socialNetworks">
 				</a>
 			</div>
 			<div class="column span-3">
-				<a href="http://www.facebook.com/home.php?#/group.php?gid=158141673184&ref=ts" target="_blank">
-					<img src="/img/facebook.jpg" alt="socialNetworks"/>
+				<a href="http://www.facebook.com/home.php?#/group.php?gid=158141673184&amp;ref=ts" target="_blank">
+					<img src="/img/facebook.jpg" alt="socialNetworks">
 				</a>
 			</div>
 			<div class="column span-4 last">
 				<a href="http://twitter.com/runnity" target="_blank">
-					<img src="/img/twitter.jpg" alt="socialNetworks"/>
+					<img src="/img/twitter.jpg" alt="socialNetworks">
 				</a>
 			</div>
 			<div class="column span-3 last">
 				<a href="http://www.flickr.com/groups/1188628@N20/" target="_blank">
-					<img src="/img/flickr.jpg" alt="socialNetworks"/>
+					<img src="/img/flickr.jpg" alt="socialNetworks">
 				</a>
 			</div>
 		</div>
@@ -213,7 +210,7 @@
 			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
 			<div class="twitterContent">
                 <div class="column">
-                    <img id="twitterImage">
+                    <img id="twitterImage" alt="twitterImage" src="">
                 </div>
                 <div class="column tweetComment last">
                 	<a id="tweets" href="http://twitter.com/runnity" target="_blank"></a>

@@ -18,11 +18,11 @@
 	
 	<title>{$titulo_pagina}</title>
 	
-	<link rel="shortcut icon" href="/img/favicon.ico"/>
+	<link rel="shortcut icon" href="/img/favicon.ico">
     
     <link rel="stylesheet" href="/css/site_{$smarty.const.CSS_VERSION}.css" type="text/css">
 	
-	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity" />
+	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity">
 	
 	<!-- Import JS source files -->
     <script type="text/javascript" src="/js/site_{$smarty.const.JS_VERSION}.js"></script>	
@@ -66,7 +66,7 @@
 				<div>
 					<p>e-mail / nombre de usuario</p>
 					<div class="span-1 inputContainer">
-						<label class="inputLogin" for="login1">
+						<label class="inputLogin">
 							<input type="text" name="login1" id="emailLogin" class="inputLogin">
 						</label>
 					</div>
@@ -74,14 +74,14 @@
 				<div id="passForm" style="margin-top: 30px;">
 					<p>contraseña</p>			
 					<div class="span-1 inputContainer">
-						<label class="inputLogin" for="login2">
+						<label class="inputLogin">
 							<input type="password" name="login2" id="passwordLogin" class="inputLogin">
 						</label>
 					</div>
 				</div>
 				<div class="forgetFind">
 					<div class="forgetPass"><a id="forgetLink" href="javascript: void sendPassword()">¿olvidaste tu contraseña?</a></div>
-					<div class="loginButton"><input id="submitLogin" class="fg-button" type="submit" value="Entrar"/></div>	
+					<div class="loginButton"><input id="submitLogin" class="fg-button" type="submit" value="Entrar"></div>	
 				</div>	
 				<div class="first">
 					<div class="column last errorMessage" id="error_msg"></div>
@@ -94,7 +94,7 @@
 		<div class="span-5 last register_text">
 			<h3>¿No estas registrado?</h3>
 			<p>Regístrate ahora y disfruta de todas las ventajas de Runnity! Es grátis y tardarás un par de minutos.</p>
-			<input id="submitLogin" class="fg-button" value="Crea tu cuenta" onclick="location.href = '/registro'"/>
+			<input class="fg-button" value="Crea tu cuenta" onclick="location.href = '/registro'">
 		</div>
 	</div>
 	
@@ -122,11 +122,11 @@
 				<div>
 					<label>mensaje</label>
 					<div class="span-12 inputContainer">
-						<textarea id="contact3"></textarea>
+						<textarea id="contact3" rows="0" cols="0"></textarea>
 					</div>
 				</div>
-				<span id="contactError" class="errorMessage"></span>
-				<div class="contactButtonContainer"><input id="contactSubmit" class="fg-button" value="Enviar" type="submit"/></div>
+				<div><span id="contactError" class="errorMessage"></span></div>
+				<div class="contactButtonContainer"><input id="contactSubmit" class="fg-button" value="Enviar" type="submit"></div>
 			</form>
 		</div>
 	</div>
@@ -147,16 +147,16 @@
 				</div>
 				<div class="data">
 					<label>Info de la carrera</label>
-					<textarea id="publishData" name="publishData"></textarea>
+					<textarea id="publishData" name="publishData" rows="0" cols="0"></textarea>
 				</div>
 				<div class="mail">
 					<label>e-mail de contacto</label>
 					<input type="text" class="text" id="publishEmail" name="publishEmail">
 				</div>
-				<span id="contactError2" class="errorMessage"></span>
+				<div><span id="contactError2" class="errorMessage"></span></div>
 				<div class="bottom">
 					<p>Una vez mandada la información, nuestro equipo contactará contigo para completarla.</p>
-					<input id="contactPublish" class="fg-button" value="Enviar" type="submit"/>
+					<input id="contactPublish" class="fg-button" value="Enviar" type="submit">
 				</div>
 			</form>
 		</div>
@@ -180,12 +180,12 @@
 		</div>
 		<div class="span-18 search">
 			<form id="searchForm" class="span-14" action="/buscar" method="get">
-				<label class="roundsearchFirst last" for="inputsearchFirst">
+				<div><label class="roundsearchFirst last" for="inputsearchFirst">
 					<input type="text" id="inputsearchFirst" value="Busca carreras" class="default" name="q">
-				</label>
-				<label class="searchButtonFirst last">
-					<input type="submit" value="Buscar" class="buttonSearchFirst"/>
-				</label>
+				</label></div>
+				<div><label class="searchButtonFirst last">
+					<input type="submit" value="Buscar" class="buttonSearchFirst">
+				</label></div>
 			</form>
 		</div>
 	</div>
