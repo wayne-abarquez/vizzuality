@@ -1001,6 +1001,8 @@ div.userComments {
 p.nameUserProfile{
 	font-size: 22px;
 	color: #336699;
+	line-height:14px;
+	width: 465px;
 }
 
 .nameUserProfileNick{
