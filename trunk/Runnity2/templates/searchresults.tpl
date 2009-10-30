@@ -202,7 +202,7 @@ $(document).ready(function(){
 	    								<div class="day">{$race.event_date|substr:8:2}</div>
 	    							</div>
 	    							<div class="column last">
-	    								<div><img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}"/></div>
+	    								<div><img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}"/></div>
 	    							</div>
 	    						</div>
 	    						<div class="column last">
