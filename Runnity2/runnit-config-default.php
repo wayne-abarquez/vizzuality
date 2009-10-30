@@ -27,7 +27,7 @@ define('TWITTER_PASS','vizzualejo');
 
 define('HOST','localhost');
 
-switch (HOST){
+switch ($_SERVER["SERVER_NAME"]){
 	case (HOST=="localhost"):
 		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w');    //localhost
 		break;
