@@ -29,7 +29,7 @@
 					minlength: 5
 				},
 				localidad: {
-					required: true,
+					required: true
 				}
 			},
 			messages: {
@@ -55,7 +55,7 @@
 					minlength: "Al menos 5 caracteres"
 				},
 				localidad: {
-					required: "Introduce una localidad",
+					required: "Introduce una localidad"
 				}
 			}
 		});
