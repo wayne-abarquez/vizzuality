@@ -63,13 +63,13 @@
 		
 		<div class="span-1 last column2">
 			<p class="titulo">ACTIVIDAD RECIENTE</p>
-			{foreach key=id item=race from=$activity name=raceloop}
+            {foreach key=id item=race from=$activity name=raceloop}
 			<div class="carrera">
 				<div class="span-1 avatar2">
-					{if $race.flickr_img_id==""}
+					{if $race.flickr_img_id_1==""}
 					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{else}
-					    <img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar">	
+					    <img src="/runThumbImage.php?id={$race.run1_id}&amp;photo_id={$race.flickr_img_id_1}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{/if}
 				</div>
 				<div class="span-1 Race">
@@ -84,10 +84,10 @@
 			<div class="separator"></div>
 			<div class="carrera2">
 				<div class="span-1 avatar2">
-					{if $race.flickr_img_id==""}
+					{if $race.flickr_img_id_2==""}
 					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{else}
-					    <img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar">	
+					    <img src="/runThumbImage.php?id={$race.run2_id}&amp;photo_id={$race.flickr_img_id_2}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{/if}
 				</div>
 				<div class="span-1 Race">
@@ -103,10 +103,10 @@
 			<div class="carrera">
 				<div class="span-1 avatar2">
 					<!-- <img src="/img/avatar2.jpg" class="avatar"> -->
-					{if $race.flickr_img_id==""}
+					{if $race.flickr_img_id_3==""}
 					    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{else}
-					    <img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}" class="avatar">	
+					    <img src="/runThumbImage.php?id={$race.run3_id}&amp;photo_id={$race.flickr_img_id_3}" alt="Foto de la carrera {$race.name}" class="avatar">	
 					{/if}
 				</div>
 				<div class="span-1 Race">

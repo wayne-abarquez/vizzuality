@@ -471,7 +471,7 @@ class RunnitServices {
 			  (select count(id) from users_run where run_fk=r1.id) as run1_num_users,
 			  (select count(id) from users_run where run_fk=r2.id) as run2_num_users,
 			  (select count(id) from users_run where run_fk=r3.id) as run3_num_users,
-			  r1.flickr_img_id,r2.flickr_img_id,r3.flickr_img_id
+			  r1.flickr_img_id as flickr_img_id_1,r2.flickr_img_id as flickr_img_id_2,r3.flickr_img_id as flickr_img_id_3
 			  FROM activity as a 
  			  INNER JOIN run as r1 ON a.run1_fk=r1.id 
  			  INNER JOIN run as r2 ON a.run2_fk=r2.id
