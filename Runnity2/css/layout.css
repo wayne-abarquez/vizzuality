@@ -1811,6 +1811,7 @@ div.month5 {background-color: #9f00c6;}
 	margin-left: 20px;
 	line-height: 20px;
 	margin-top: -8px;
+	margin-right: 20px;
 }
 
 .raceDetailsTitle{
@@ -2454,6 +2455,10 @@ div.inputRight .a5 {
 #belowPaginator div.noResults p {color: #4e4e4e; font-size: 13px; font-weight: bold; margin-bottom: 0px;}
 #belowPaginator div.bottomPaginator {color: #4e4e4e; font-size: 13px;float: right; padding-right: 10px; padding-top: 10px;margin-bottom: 0px; height: 30px;}
 
+/*
+.buttonLogin{float:right; width:59px; background:url(/img/buttonLogin.gif) no-repeat 0 0; height:23px; color:#ffffff; text-decoration:none; padding:0; margin: 7px 15px 0 0;border: none;}
+}
+*/
 
 /* BOTONES */
 
