@@ -923,6 +923,7 @@ div.userComments {
 	color: #336699;
 	text-decoration: none;
 	font-weight: bold;
+	margin-left: 4px;
 }
 
 .imagesUserContainer{
@@ -1901,6 +1902,7 @@ div.month5 {background-color: #9f00c6;}
 	color: #336699;
 	text-decoration: none;
 	font-weight: bold;
+	margin-left: 4px;
 }	
 
 .SubirFotosLink{
