@@ -3,7 +3,10 @@
 <script type="text/javascript"> 
 $(document).ready(function(){
 
-  $('#inputsearch1').emptyonclick();
+    if(gup('q').length<1) {
+        $('#inputsearch1').emptyonclick();
+    }
+
 
 	var state = false;
 	
