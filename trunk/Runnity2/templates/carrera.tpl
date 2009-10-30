@@ -1,16 +1,9 @@
 {include file="header.tpl"}
+
 {literal}
 <script type="text/javascript">
-    $(document).ready(function(){
-		
-		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
-			$('div.rightColumn').height($('div.leftColumn').height());	
-		}
-    	
-    	$('#datos2').truncate({max_length: 23});
-    	$('#datos1').truncate({max_length: 23});
-    	
-        new AjaxUpload('#buttonUploadPicture', {
+function SubirFotos(){
+	new AjaxUpload('#buttonUploadPicture', {
         	action: '/imageController.php',
         	data : { 
 					method:"uploadPicture",
@@ -74,9 +67,27 @@
     				//enable upload button
     				this.enable();
         		}
+        		SubirFotos();
     						
         	}		
-        });        				
+        });
+	}
+</script>
+{/literal}
+
+{literal}
+<script type="text/javascript">
+    $(document).ready(function(){
+    	SubirFotos();
+		
+		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
+			$('div.rightColumn').height($('div.leftColumn').height());	
+		}
+    	
+    	$('#datos2').truncate({max_length: 23});
+    	$('#datos1').truncate({max_length: 23});
+    	
+                				
 	});
 
 </script>
