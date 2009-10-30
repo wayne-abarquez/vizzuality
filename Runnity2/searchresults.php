@@ -22,11 +22,15 @@ if(isset($_REQUEST['offset'])) {
     $offset=$_REQUEST['offset'];
 }
 
+$hayQ=false;
 $q="";
 if (isset($_REQUEST['q'])) {
 	$q=$_REQUEST['q'];
 	if ($q=="Busca carreras" or $q=="Busca por nombre, localidad, provincia"){
 		$q="";
+	}
+	if(strlen($q)>0) {
+	    $hayQ=true;
 	}
 }
 
@@ -66,13 +70,14 @@ if (isset($_REQUEST['fechaFin'])) {
 $smarty->assign('fechaFin', $fechaFin);
 $smarty->assign('fechaFinOld', $fechaFinOld);
 
-$tipoBusqueda="Todas";
-if ($q==""){
-	$tipoBusqueda="Proximas";
-}
 
 if (isset($_REQUEST['tipoBusqueda'])) {
 	$tipoBusqueda=$_REQUEST['tipoBusqueda'];
+}
+
+$tipoBusqueda="Todas";
+if ($q==""){
+	$tipoBusqueda="Proximas";
 }
 
 $smarty->assign('tipoBusqueda', $tipoBusqueda);
