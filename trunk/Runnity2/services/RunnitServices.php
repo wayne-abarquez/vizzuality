@@ -164,7 +164,7 @@ class RunnitServices {
 	    }
 	    
 	    
-	    $sql="INSERT INTO users(username,pass,completename,email,birthday,locality,location_point,radius_interest) VALUES('$username','$password','$completename','$email','$birthday','$localidad',GeomFromText('POINT($lat $lon)',4326),$radius_interest)";
+	    $sql="INSERT INTO users(username,pass,completename,email,birthday,locality,location_point,radius_interest) VALUES('$username','$password','$completename','$email','$birthday','$localidad',GeomFromText('POINT($lon $lat)',4326),$radius_interest)";
 		$result=pg_query($this->conn, $sql);   
 	    
 	    //get last ID
