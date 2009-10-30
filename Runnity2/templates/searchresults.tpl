@@ -3,7 +3,7 @@
 <script type="text/javascript"> 
 $(document).ready(function(){
 
-    $('#inputsearch1').emptyonclick();
+  $('#inputsearch1').emptyonclick();
 
 	var state = false;
 	
@@ -26,24 +26,25 @@ $(document).ready(function(){
 	);
 	
 	
+	
 		
-	$('#widgetField>a').click(function(){
+	$('#widgetField>a, #widgetField>span').click(function(){
+		$('#widgetField span a.delete').click(function(ev){
+			if ($('#widgetField span').html()!='Selecciona una fecha<a class="delete"></a>') {			
+					$('#widgetField span').html('Selecciona una fecha<a class="delete"></a>');
+					$("#fechaInicio").attr("value", null);
+					$("#fechaFin").attr("value", null);
+				}	
+			ev.stopPropagation();
+			ev.preventDefault();
+		});
 		$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
 		state = !state;
 		return false;	
 	});
 	
 	$("ul.subnav").parent().append("<span></span>");
-  
-	/*$("#widgetField>a").click(function() {
-				   
-		        $('#widget').hover(function() {  
-		        }, function(){
-		        	$('#widgetCalendar').stop().animate({height: 0 }, 500);
-		        	state = false;        	
-		        });    
-		      
-		    }); */
+
 
     
 	$("#ppalField").click(function() { 
@@ -145,7 +146,7 @@ $(document).ready(function(){
 						<div class="inputSearch">
 							<div id="widget">
 								<div id="widgetField">
-									<span>{if ($fechaInicioOld!="")}{$fechaInicioOld} - {$fechaFinOld} {else}Selecciona una fecha{/if}<a class="delete" href="javascript: void cleanDate()"></a></span>
+									<span>{if ($fechaInicioOld!="")}{$fechaInicioOld} - {$fechaFinOld} {else}Selecciona una fecha{/if}<a class="delete" href="#"></a></span>
 									<a href="#"></a>
 								</div>
 								<div id="widgetCalendar">
