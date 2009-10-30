@@ -239,27 +239,31 @@
 					<div class="span-1 SubirFotosLink"><a href="#" id="buttonUploadPicture" class="buttonUploadPicture">¿Tienes fotos de esta carrera? ¡Súbelas! <img src="/img/photoIcon.gif"></a></div>
 				</div>
 				{else}
-				<div class="span-1 last nophotos" id="nophotos" title="first">
 					{if $smarty.session.logged}
-					<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
-					<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
-					<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIconLight.gif">Subir fotos</a></p>
+					<div class="span-1 last nophotos" id="nophotos" title="first">
+						<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
+						<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
+						<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIconLight.gif">Subir fotos</a></p>
+					</div>			
 					{else}
+					<div class="span-1 last nophotos2" id="nophotos" title="first">
 						<div class="span-1 iconPhrasePhotos">
 							<img src="/img/slash.gif"/>
 						</div>
 						<div>
 							<p class="noComments">Para subir fotos debes <b><a href="javascript: void showLoginWindow()">iniciar tu sesión</a></b> en runnity. <b><a href="/registro">¿Aún no estás registrado?</a></b></p>
-						</div>					
+						</div>	
+					</div>					
 					{/if}
-				</div>			
 				{/if}		
 			</div>	
 			
 			<div class="span-1 last columnLong">
 			    <a NAME="comentarios"></a>
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
-				<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
+				{if $smarty.session.logged}
+					<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
+				{/if}
 				</p>
 				<ol id="update">
 				{foreach key=id item=comment from=$comments name=commentloop}

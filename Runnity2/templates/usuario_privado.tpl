@@ -193,7 +193,7 @@ $(document).ready(function(){
 			
 			{if $privateData.datos.num_messages > 0}
 			<div class="span-1 last userAlerts">
-					<div class="alertUser"><p>Tienes <b>{$privateData.datos.num_messages} mensaje(s) nuevo(s)</b></p></div>
+				<div class="alertUser"><p>Tienes <b>{$privateData.datos.num_messages} mensaje(s) nuevo(s)</b></p></div>
 			</div>
 			{/if}
 			
@@ -229,7 +229,10 @@ $(document).ready(function(){
 				{if $comments}
 				<div class="span-1 last columnComments">
 				<ol id="update">
-				{foreach key=id item=comment from=$comments}					
+				{foreach key=id item=comment from=$comments name=commentloop}
+				{if $smarty.foreach.commentloop.iteration==1}		
+					<div class="span-1 separatorFirstCommentUser"></div>
+				{/if}
 					<div id="commentUser" class="span-1 last">
 						<div class="span-1 last avatarBox">
 							<img src="/avatar.php?id={$comment.user_id}&type=s"/>	
