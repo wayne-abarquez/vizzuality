@@ -74,7 +74,7 @@ function visitorLocation(){
 	$location = array();
 	$location['lat'] = $answer->Latitude;
 	$location['lon'] = $answer->Longitude;
-	$location['city'] = $answer->City;
+	$location['city'] = $answer->RegionName;
 	$location['country'] = $answer->CountryCode;
 	return $location;
 }
