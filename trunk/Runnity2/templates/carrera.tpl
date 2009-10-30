@@ -219,11 +219,11 @@ function SubirFotos(){
 					<div>
 						<div class="mapStyle">
 							<div id="trackMap">
-	       						  <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400" flashvars="id={$data.id}">
+	       						  <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
 	                              <param name="wmode" value="opaque">
 	                              <param name="movie" value="/flash/raceMapViewer.swf?2" />
 	                              <!--[if !IE]>-->
-	                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="600" height="400" flashvars="id={$data.id}">
+	                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="600" height="400" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
 	                              <!--<![endif]-->
 
 	                              <!--[if !IE]>-->
@@ -330,11 +330,11 @@ function SubirFotos(){
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">LOCALIZACIÓN</p>
 			<div id="map" class="mapStyleRight">
-	            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" flashvars="id={$data.id}">
+	            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
 	              <param name="wmode" value="opaque">
 	              <param name="movie" value="/flash/RunAroundMap.swf?7" />
 	              <!--[if !IE]>-->
-	              <object type="application/x-shockwave-flash" data="/flash/RunAroundMap.swf?7" width="254" height="192" flashvars="id={$data.id}">
+	              <object type="application/x-shockwave-flash" data="/flash/RunAroundMap.swf?7" width="254" height="192" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
 	              <!--<![endif]-->
 					    {if $data.start_point_lat === null}
 <img width="254" height="192" src="http://maps.google.com/maps/api/staticmap?size=254x192&maptype=map&zoom=10&center={$data.event_location},spain&sensor=false&key={$smarty.const.GMAPS_KEY}" />					    
