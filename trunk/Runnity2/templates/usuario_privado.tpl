@@ -62,7 +62,7 @@ $(document).ready(function(){
 				$("#pictureUserContainer").append("<div class='span-1 editUserLinkDiv'><a class='editUserLink' id='buttonUploadPicture'>Subir fotos <img src='/img/pencil.gif'></a></div>");
 
 				//enable upload button
-/* 				$("#buttonUploadPicture").enable();       */
+				$("#buttonUploadPicture").enable();      
         	} else {
         	    var i=$('ul#loc li').size()+1;
         		if(i<6){
