@@ -2,13 +2,7 @@
 
 {literal}
 <script type="text/javascript"> 
-$(document).ready(function(){
-	
-	if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
-		$('div.rightColumn').height($('div.leftColumn').height());	
-	}
-	
-	$('#datos1').truncate({max_length: 32});
+function SubirFotoUser () {
 
 	new AjaxUpload('#buttonUploadPicture', {
     	action: '/imageController.php',
@@ -57,12 +51,12 @@ $(document).ready(function(){
 		
         	if(tipoCont=="first"){
         		$("#pictureUserContainerNoPhotos").remove();
-        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&source=user">' +response+ '</a></div></li></ul></div>');
+        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&source=user">' +response+ '</a></div></li></ul></div><div class="span-1 editUserLinkDiv"><a class="editUserLink" id="buttonUploadPicture" onclick="javascript: SubirFotoUser();">Subir fotos <img src="/img/pencil.gif"></a></div>');
+        		$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
 				window.clearInterval(interval);
-				$("#pictureUserContainer").append("<div class='span-1 editUserLinkDiv'><a class='editUserLink' id='buttonUploadPicture'>Subir fotos <img src='/img/pencil.gif'></a></div>");
 
 				//enable upload button
-				$("#buttonUploadPicture").enable();      
+				this.enable();
         	} else {
         	    var i=$('ul#loc li').size()+1;
         		if(i<6){
@@ -83,10 +77,27 @@ $(document).ready(function(){
         		}
         		  	
 			}
+			SubirFotoUser();
     								
     	}	
     		
     });  
+    
+    }
+    
+</script>
+{/literal}
+
+{literal}
+<script type="text/javascript"> 
+$(document).ready(function(){
+ 	SubirFotoUser();
+	
+	if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
+		$('div.rightColumn').height($('div.leftColumn').height());	
+	}
+	
+	$('#datos1').truncate({max_length: 32});
 
     new AjaxUpload('#avatarPerfil', {
     	action: '/imageController.php',
@@ -218,7 +229,7 @@ $(document).ready(function(){
 				{else}
 					<div class="pictureUserContainerNoPhotos" id="pictureUserContainerNoPhotos" title="first">
 						<p class="upPhotos">No has subido fotos...</p>
-						<p class="down"><img src="/img/photoIconLight.gif"><a href="#" id="buttonUploadPicture">Subir fotos</a></p>
+						<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIconLight.gif">Subir fotos</a></p>
 					</div>				
 				{/if}
 				</div>
