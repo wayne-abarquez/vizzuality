@@ -2,8 +2,7 @@
 
 {literal}
 <script type="text/javascript">
-    $(document).ready(function(){
-    	SubirFotos();
+  $(document).ready(function(){
 		
 		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
 			$('div.rightColumn').height($('div.leftColumn').height());	
