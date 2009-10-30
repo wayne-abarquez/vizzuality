@@ -62,7 +62,7 @@ $(document).ready(function(){
 				$("#pictureUserContainer").append("<div class='span-1 editUserLinkDiv'><a class='editUserLink' id='buttonUploadPicture'>Subir fotos <img src='/img/pencil.gif'></a></div>");
 
 				//enable upload button
-				$("#buttonUploadPicture").enable();      
+/* 				$("#buttonUploadPicture").enable();       */
         	} else {
         	    var i=$('ul#loc li').size()+1;
         		if(i<6){
@@ -218,7 +218,7 @@ $(document).ready(function(){
 				{else}
 					<div class="pictureUserContainerNoPhotos" id="pictureUserContainerNoPhotos" title="first">
 						<p class="upPhotos">No has subido fotos...</p>
-						<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIconLight.gif">Subir fotos</a></p>
+						<p class="down"><img src="/img/photoIconLight.gif"><a href="#" id="buttonUploadPicture">Subir fotos</a></p>
 					</div>				
 				{/if}
 				</div>

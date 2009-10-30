@@ -243,7 +243,7 @@
 					<div class="span-1 last nophotos" id="nophotos" title="first">
 						<p class="up">Aún nadie ha subido fotos de esta carrera...</p>
 						<p class="center">¿Tienes fotos del evento? ¡Anímate y súbelas!</p>
-						<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIconLight.gif">Subir fotos</a></p>
+						<p class="down"><img src="/img/photoIconLight.gif"><a href="#" id="buttonUploadPicture">Subir fotos</a></p>
 					</div>			
 					{else}
 					<div class="span-1 last nophotos2" id="nophotos" title="first">
