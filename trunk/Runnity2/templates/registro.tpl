@@ -3,7 +3,7 @@
 
 {literal}
 	<script type="text/javascript">
-	
+
 	$().ready(function() {
 		$("#register_form").validate({
 			rules: {
@@ -73,6 +73,24 @@
     	$("#buttonLocalizacion").click(function() {
             geolocateAddress("{/literal}{$smarty.const.GMAPS_KEY}{literal}");
     	});		
+			
+			$('#inputRegister1').bind("change keyup", function() {
+				var valor = $('#result').html().length;
+				var email = $("#inputRegister1").val();
+				if ((email=='') || (email.length<5) || !(echeck(email))) {
+					$('#emailImage').hide();
+					$('#result').html('');
+		 		}	
+			});
+			
+			$('#inputRegister3').bind("change keyup", function() {
+				var valor = $('#answer').html().length;
+				var user = $("#inputRegister3").val();
+				if ((user=='') || (user.length<5) ) {
+					$('#registerImage').hide();
+					$('#answer').html('');
+		 		}	
+			});
 		
 		
 	});
