@@ -779,7 +779,8 @@ div.userComments {
 }
 
 #commentUser {width: 390px; border-bottom: 1px dotted #cccccc; margin-left: -17px; margin-top: -10px; margin-bottom: 22px;}
-#commentUser a.name {color: #666666; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
+#commentUser a.name {color: #336699; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
+#commentUser a.name:hover {color: #ff6600;}
 #commentUser div.commentBoxUser {margin-left: 10px; width: 290px; height: 76px; margin-bottom: 10px;}
 #commentUser div.commentBoxUser p {margin-right: 30px;}
 #commentUser div.commentBoxUser p.commentUserProfile {float: left; margin-right: 30px; color: #666666;}
@@ -1862,6 +1863,14 @@ div.month5 {background-color: #9f00c6;}
 	margin-top: 20px;
 }
 
+.nophotos2{
+	width: 608px;
+	height: 65px;
+	border: 1px solid #cdd7e1;
+	background-color: #f3f6f9;
+	margin-top: 20px;
+}
+
 .nophotos p.up{
 	color: #666666;
 	text-align: center;
@@ -2034,11 +2043,17 @@ div.mapStyleRight {
 
 .separatorFirstCommentUser{
 	width: 390px;
+	height: 14px;
+}
+
+.separatorFirstCommentUser{
+	width: 390px;
 	height: 18px;
 }
 
 #comment {width: 610px; border-bottom: 1px dotted #cccccc; margin-left: -17px; margin-top: -6px; margin-bottom: 18px;}
-#comment a.name {color: #666666; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
+#comment a.name {color: #336699; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
+#comment a.name:hover {color: #ff6600;}
 #comment div.commentBox {margin-left: 10px; width: 500px; height: 76px; margin-bottom: 10px;}
 #comment div.commentBox p {margin-right: 30px;}
 #comment div.commentBox p.commentUser {float: left; margin-right: 30px; color: #666666;}

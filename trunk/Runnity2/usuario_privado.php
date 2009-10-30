@@ -29,10 +29,7 @@ $smarty->assign('friends',$services->getUserFriends($_SESSION['user']['id']));
 $smarty->assign('comments',$services->getComments($_SESSION['user']['id'],'user'));
 $smarty->assign('records',$services->getUserPositions($_SESSION['user']['id']));
 
-/* $smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['username'])); */
-
-$privateData=$services->getUserPrivateData($_SESSION['user']['username']);
-$smarty->assign('privateData',$privateData);
+$smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['username']));
 
 $variable=$privateData;
 $anio=substr($variable['datos']['birthday'],0,4);
@@ -71,8 +68,6 @@ switch ($anio){
 	break;
 }
 $smarty->assign('categoria',$categoria);
-
-/* $smarty->assign('groupUsers',$services->getGroupUsers(1)); */
 
 $smarty->assign('section', 'usuario');
 $smarty->display('usuario_privado.tpl');
