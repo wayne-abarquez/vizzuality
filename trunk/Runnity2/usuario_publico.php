@@ -84,7 +84,7 @@ $smarty->assign('categoria',$categoria);
 
 $smarty->assign('section', 'usuario');
 
-if($_SESSION['logged']) {
+if(isset($_SESSION['logged']) && $_SESSION['logged']) {
     $smarty->display('usuario_publico.tpl');
 } else {
     $smarty->display('usuario_publico_no_login.tpl');
