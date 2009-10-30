@@ -29,7 +29,9 @@ $smarty->assign('friends',$services->getUserFriends($_SESSION['user']['id']));
 $smarty->assign('comments',$services->getComments($_SESSION['user']['id'],'user'));
 $smarty->assign('records',$services->getUserPositions($_SESSION['user']['id']));
 
-$smarty->assign('privateData',$services->getUserPrivateData($_SESSION['user']['username']));
+
+$privateData = $services->getUserPrivateData($_SESSION['user']['username']);
+$smarty->assign('privateData',$privateData);
 
 $variable=$privateData;
 $anio=substr($variable['datos']['birthday'],0,4);
