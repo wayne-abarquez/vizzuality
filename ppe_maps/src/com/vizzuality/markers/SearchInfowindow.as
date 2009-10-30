@@ -5,6 +5,7 @@ package com.vizzuality.markers
 	import flash.display.Bitmap;
 	import flash.display.GradientType;
 	import flash.display.Loader;
+	import flash.display.Shape;
 	import flash.display.SpreadMethod;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -118,7 +119,7 @@ package com.vizzuality.markers
 	                }
                     
                    
-                    var mainNameSprite: VizzualityShape = new VizzualityShape("/protected_areas/4");
+                    var mainNameSprite: Sprite = new Sprite();
 		            var nameText: TextField = new TextField();
 		            nameText.text =  ob.area;
 		            var newFormat:TextFormat = new TextFormat(); 
@@ -144,7 +145,7 @@ package com.vizzuality.markers
 		            addChild(mainNameSprite);
 		            mainNameSprite.addEventListener(MouseEvent.CLICK,clicked); 
 		            
-		            var exampleSprite2: VizzualityShape = new VizzualityShape("/protected_areas/4");
+		            var exampleSprite2: Sprite = new Sprite();
 		            var countryText2: TextField = new TextField();
 		            countryText2.text =  "Local area PPE";
 		            var newFormat2:TextFormat = new TextFormat(); 
@@ -154,16 +155,15 @@ package com.vizzuality.markers
 		   			newFormat2.letterSpacing = 0;
 					newFormat2.font = "Helvetica";
 		    		countryText2.setTextFormat(newFormat2); 
-		            countryText2.wordWrap = true;
 		            countryText2.width = 150;
-		            countryText2.height = 30;
+		            countryText2.height = 15;
 		            countryText2.x = 0;
 		            countryText2.y = 0;
 		            exampleSprite2.x = 73;
 		            exampleSprite2.y = 29;
 		            exampleSprite2.addChild(countryText2);
 		            exampleSprite2.width = 150;
-		            exampleSprite2.height = 30; 
+		            exampleSprite2.height = 15; 
 		            exampleSprite2.mouseChildren=false;
 		            exampleSprite2.buttonMode=true;
 		            exampleSprite2.useHandCursor=true;

@@ -19,7 +19,6 @@ package {
 	import com.google.maps.styles.FillStyle;
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.*;
-	import com.vizzuality.ImageContainer;
 	import com.vizzuality.data.ImageData;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
@@ -91,18 +90,7 @@ package {
 			square.graphics.endFill();
 			addChildAt(square,0);
 			
-			
-
-			
-
-						
-			
-		
-
-						
-
-								
-								
+				
 			initMap();			
 
 			var dsLoader:URLLoader = new URLLoader();
@@ -113,7 +101,7 @@ package {
 			} else {
 				paId=root.loaderInfo.parameters.id;
 			}
-			dsLoader.load(new URLRequest("http://localhost:3000/protected_areas/"+paId+"/json"));
+			//dsLoader.load(new URLRequest("http://localhost:3000/protected_areas/"+paId+"/json"));
 			
 		}
 		
@@ -175,8 +163,6 @@ package {
 			square.x = (stage.stageWidth/2) - (960/2);
 			square.y = 0;	
 			square.height=stage.stageHeight-40;
-			picturesSquare.x = square.x ;
-			picturesSquare.y = stage.stageHeight-picturesSquare.height-20;	
 			imgContainer.x = picturesSquare.x+10;
 			imgContainer.y = picturesSquare.y+10;	
 			maskSprite.x = picturesSquare.x+9;
@@ -186,10 +172,6 @@ package {
 			imgLoading2.x = picturesSquare.x+320;
 			imgLoading2.y = picturesSquare.y+10;	 */
 			
-			sp1.x=picturesSquare.x - 10;									
-			sp1.y=picturesSquare.y + 40;								
-			sp2.x=(picturesSquare.x+picturesSquare.width)-28;									
-			sp2.y=picturesSquare.y+178;	
 			butButtonsBitmap.x=picturesSquare.width	+picturesSquare.x +9;
 			butButtonsBitmap.y=	square.y+square.height+4;				
 		}
@@ -210,11 +192,11 @@ package {
 				map.key=mapKey;
 			}			
 				
-			map.y=2;
+			map.y=3;
 			
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
-			map.setSize(new Point(stage.stageWidth, stage.stageHeight-45));
+			map.setSize(new Point(stage.stageWidth, stage.stageHeight-6));
 			addChildAt(map,1); 				
 			
 			

@@ -96,7 +96,7 @@ package {
 			picturesSquare = new Sprite();
 			picturesSquare.graphics.beginFill(0xEEEEEE);
 			picturesSquare.graphics.drawRoundRect(0,0,630, 250,4,4);
-			picturesSquare.graphics.endFill();	
+			picturesSquare.graphics.endFill();
 			
 			imgArrays.push(new ImageContainer("http://localhost:3000/images/fakePanoramio1.jpg")); 
 			imgArrays.push(new ImageContainer("http://localhost:3000/images/fakePanoramio2.jpg")); 
@@ -242,7 +242,7 @@ package {
 			sp1.y=picturesSquare.y + 40;								
 			sp2.x=(picturesSquare.x+picturesSquare.width)-28;									
 			sp2.y=picturesSquare.y+178;	
-			butButtonsBitmap.x=picturesSquare.width	+picturesSquare.x +9;
+			butButtonsBitmap.x=picturesSquare.width	+picturesSquare.x +16;
 			butButtonsBitmap.y=	square.y+square.height+4;				
 		}
 		
@@ -262,11 +262,11 @@ package {
 				map.key=mapKey;
 			}			
 				
-			map.y=2;
+			map.y=3;
 			
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
-			map.setSize(new Point(stage.stageWidth, stage.stageHeight-45));
+			map.setSize(new Point(stage.stageWidth, stage.stageHeight-46));
 			addChildAt(map,1); 				
 			
 			
