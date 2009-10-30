@@ -10,7 +10,6 @@
     	font-family: Verdana, Arial, Helvetica, sans-serif;
     	font-size: 10px;
     	color: #333333;
-    	line-height: 40px;
     }
 
     h1{
@@ -42,7 +41,7 @@
     	font-family: "Arial";
     	font-size: 12px;
     	color: #666666;
-    	line-height: 40px;
+    	line-height: 30px;
     }
 
     a{
