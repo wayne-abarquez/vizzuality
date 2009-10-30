@@ -1,5 +1,36 @@
 {include file="header.tpl"}
 
+{literal}
+<script type="text/javascript">
+function va(id){
+	valhrs = $('#rec_hh_'+id).val();
+	valmin = $('#rec_mm_'+id).val();
+	valsec = $('#rec_ss_'+id).val();
+	valdec = $('#rec_dd_'+id).val();
+	if (valhrs!=""){
+		$('#rec_mm_'+id).attr("value", "00"); 
+		$('#rec_ss_'+id).attr("value", "00"); 
+		$('#rec_dd_'+id).attr("value", "00"); 
+	}
+	if (valmin!=""){
+		$('#rec_hh_'+id).attr("value", "00"); 
+		$('#rec_ss_'+id).attr("value", "00"); 
+		$('#rec_dd_'+id).attr("value", "00"); 
+	}
+	if (valsec!=""){
+		$('#rec_hh_'+id).attr("value", "00"); 
+		$('#rec_mm_'+id).attr("value", "00"); 
+		$('#rec_dd_'+id).attr("value", "00"); 
+	}
+	if (valdec!=""){
+		$('#rec_hh_'+id).attr("value", "00"); 
+		$('#rec_mm_'+id).attr("value", "00"); 
+		$('#rec_ss_'+id).attr("value", "00"); 
+	}
+}
+</script>
+{/literal}
+
 <!-- inputs numéricos -->
 {literal}
 <script type="text/javascript">
@@ -571,17 +602,17 @@ $(document).ready(function(){
 						{foreach key=id item=record from=$records}
 						<div class="recordContainer"> 
 						<div class="span-1">
-							<input type="text" id="rec_hh_{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
+							<input type="text" id="rec_hh_{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
 						</div>
 						<div class="span-1">
-							<input type="text" id="rec_mm_{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
+							<input type="text" id="rec_mm_{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
 						</div>
 						<div class="span-1">
-							<input type="text" id="rec_ss_{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
+							<input type="text" id="rec_ss_{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
 						</div>
 						<div class="span-1 lastRecordContainer">
 							<span><input type="text" id="rec_dd_{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords">
-							<input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(rec_hh_{$record.id},rec_mm_{$record.id},rec_ss_{$record.id},rec_dd_{$record.id})"></span>
+							<input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(rec_hh_{$record.id},rec_mm_{$record.id},rec_ss_{$record.id},rec_dd_{$record.id})" onblur="va({$record.id});"></span>
 						</div>	
 						</div>				
 						{/foreach}
