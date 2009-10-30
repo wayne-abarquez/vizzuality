@@ -87,10 +87,10 @@ function va(id){
 					minlength: 5
 				},
 				inputLocalizacion: {
-					required: true,
+					required: true
 				},
 				inputRadio: {
-					required: true,
+					required: true
 				},
 				rec_hh_1: {
 					max: 23
@@ -182,7 +182,7 @@ function va(id){
 				confirm_password: {
 					required: "Introduce la misma contraseña",
 					minlength: "Al menos 5 caracteres",
-					equalTo: "Debe ser igual a la contraseña"
+					equalTo: "Debe ser igual a la contraseña",
 				},
 				inputMail: {
 					required: "Introduce una dirección de correo",
