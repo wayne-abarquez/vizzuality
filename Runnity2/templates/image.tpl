@@ -1,5 +1,19 @@
 {include file="header.tpl"}
 
+{literal}
+<script type="text/javascript">
+    $(document).ready(function(){
+    	SubirFotos();
+		
+		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
+			$('div.rightColumn').height($('div.leftColumn').height());	
+		}
+            				
+	});
+
+</script>
+{/literal}
+
 
 <div class="span-24 column content">
 
@@ -39,9 +53,9 @@
 					</a>
 					{/if}
             		{if $source eq "run"}
-            		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|seourl}">{$pictureDetails.belongs_to_name}</a></p>
+            		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>
             		{else}
-            		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>            		
+            		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|seourl}">{$pictureDetails.belongs_to_name}</a></p>            		
             		{/if}	
 					{if $canEdit}				
 						<a href="javascript: void confirmationWindowPhoto()">borrar foto</a>
