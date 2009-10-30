@@ -74,6 +74,9 @@ package
 			if(loaderInfo.url.indexOf("runnity.com")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
 			} else
+			if(loaderInfo.url.indexOf("67.23.47.172")>=0) {
+				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTGDsp2z8MalcroimtHohqExHETcBS4NC7BdwWef8UXYbVt7VWSNZ9bOQ";
+			} else
 			if(loaderInfo.url.indexOf("runnity.es")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA";				
 			} else {
