@@ -41,7 +41,7 @@
     	font-family: "Arial";
     	font-size: 12px;
     	color: #666666;
-    	line-height: 30px;
+    	line-height: 20px;
     }
 
     a{

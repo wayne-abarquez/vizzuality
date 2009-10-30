@@ -81,7 +81,7 @@
 				</div>
 				<div class="forgetFind">
 					<div class="forgetPass"><a id="forgetLink" href="javascript: void sendPassword()">¿olvidaste tu contraseña?</a></div>
-					<div class="loginButton"><input id="submitLogin" class="fg-button" type="submit" value="Entrar"></div>	
+					<div class="loginButton"><input id="submitLogin" class="buttonLogin" type="submit" value="Entrar"></div>	
 				</div>	
 				<div class="first">
 					<div class="column last errorMessage" id="error_msg"></div>
