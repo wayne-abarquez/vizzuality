@@ -78,14 +78,17 @@ function SubirFotos(){
 {literal}
 <script type="text/javascript">
     $(document).ready(function(){
-    	SubirFotos();
+    {/literal}{if $smarty.session.logged}
+		SubirFotos();
+	{/if}
+	{literal}	
 		
-		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
-			$('div.rightColumn').height($('div.leftColumn').height());	
-		}
-    	
-    	$('#datos2').truncate({max_length: 23});
-    	$('#datos1').truncate({max_length: 23});
+	if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
+		$('div.rightColumn').height($('div.leftColumn').height());	
+	}
+	
+	$('#datos2').truncate({max_length: 23});
+	$('#datos1').truncate({max_length: 23});
     	
                 				
 	});
