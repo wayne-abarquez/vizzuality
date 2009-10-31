@@ -2469,6 +2469,17 @@ div.inputRight .a5 {
 
 .registerLoginButton{float: right; width: 200px; height: 23px;}
 
+.leftPaginator{
+width:20px; background:url(/img/leftPaginator.gif) no-repeat 0 0; height:20px; font-size: 12px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;
+}
+
+.leftPaginator:hover{background:url(/img/leftPaginator.gif) no-repeat 0 -20px;}
+
+.rightPaginator{
+width:20px; background:url(/img/rightPaginator.gif) no-repeat 0 0; height:20px; font-size: 12px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;
+}
+
+.rightPaginator:hover{background:url(/img/rightPaginator.gif) no-repeat 0 -20px;}
 
 /* botones old (todavia valen)*/
 		.fg-button:hover{
@@ -2506,6 +2517,7 @@ div.inputRight .a5 {
 	background:#fc6602 none repeat scroll 0 0;
 }
 
+/*
 .buttonLeftArrow{
 	background-image: url(/img/paginatorLeft.gif);
 	background-repeat: no-repeat;
@@ -2574,6 +2586,7 @@ div.inputRight .a5 {
 	width: 90px;
 	text-align: left;
 }
+*/
 
 .buttonRegister{
 	margin-top: 14px;

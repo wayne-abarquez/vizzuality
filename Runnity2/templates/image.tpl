@@ -35,10 +35,10 @@
 				<div class="span-1 last upPaginator imagePaginator">
 					<p>{$fotoPosition} de {$totalFotos}</b>
 					{if $previousFotoId gt 0}
-						<span><a href="/picture/{$previousFotoId}/{$smarty.get.source}"><input class="fg-button buttonLeftArrow" type="button"/></a></span>
+						<span><a href="/picture/{$previousFotoId}/{$smarty.get.source}"><input class="leftPaginator" type="button"/></a></span>
 					{/if}	
 					{if $nextFotoId gt 0}
-						<span><a href="/picture/{$nextFotoId}/{$smarty.get.source}"><input class="fg-button buttonRightArrow" type="button"/></a></span>
+						<span><a href="/picture/{$nextFotoId}/{$smarty.get.source}"><input class="rightPaginator" type="button"/></a></span>
 					{/if}
 					</p>	
 				</div>	
