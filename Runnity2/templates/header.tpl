@@ -25,7 +25,12 @@
 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity">
 	
 	<!-- Import JS source files -->
-    <script type="text/javascript" src="/js/site_{$smarty.const.JS_VERSION}.js"></script>	
+    <!-- script type="text/javascript" src="/js/site_{$smarty.const.JS_VERSION}.js"></script -->
+	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/1256935337.js"></script>	
+	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/cufon-yui.js"></script>	
+	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/Arial_Rounded_MT_Bold_400.font.js"></script>	
+	<script type="text/javascript" src="/js/init.js"></script>	
+	
 	
 	<!--[if IE 6]>
 	<link rel="stylesheet" href="/css/layout_ie.css" type="text/css" media="screen, projection">

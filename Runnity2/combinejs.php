@@ -20,10 +20,7 @@
       'js/jquery.url.min.js',      
       'js/jquery.validate.js',                            
       'js/swfobject.js',
-      'js/ajaxupload.3.6.js',
-      'cufon/cufon-yui.js',
-      'cufon/Arial_Rounded_MT_Bold_400.font.js',
-      'js/init.js'      
+      'js/ajaxupload.3.6.js'
    );
    /****************** end of config ********************/
    
