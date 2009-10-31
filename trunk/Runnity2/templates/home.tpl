@@ -124,7 +124,6 @@
 	
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumnHome">
-<!-- 	<div class="carrera">No hay próximas carreras destacadas.</div>  -->
 		<p class="titulo titulOrange">CARRERAS DESTACADAS</p>
 					<div class="span-1 imgFeed">
 				<a href="http://feeds.feedburner.com/runnity"><img src="/img/feed-icon.gif" alt="Feed" class="rssImage"></a>
@@ -132,7 +131,6 @@
 		{foreach key=id item=VipRace from=$nextImportantRaces name=raceloop}
 		<div class="carreraOrange">
 			<div class="span-1 avatar2Orange">
-				<!-- <img src="/img/avatar2.jpg" class="avatarOrange"> -->
 				{if $race.flickr_img_id==""}
 				    <img src="/media/run/{$VipRace.thumbnail}" alt="Foto de la carrera {$VipRace.name}" class="avatar">	
 				{else}
@@ -148,8 +146,6 @@
 			<div class="span-1 last separatorRightOrange"></div>
 		{/if}
 		</div>
-		{foreachelse}
-<!-- 	<div class="carrera">No hay próximas carreras destacadas.</div>  -->
     	{/foreach}
 	</div>
 	
