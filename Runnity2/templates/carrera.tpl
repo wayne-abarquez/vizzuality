@@ -222,7 +222,8 @@ function SubirFotos(){
 					<div>
 						<div class="mapStyle">
 							<div id="trackMap">
-	       						  <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
+	       						  <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400">
+								  <param name="flashvars" value="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
 	                              <param name="wmode" value="opaque">
 	                              <param name="movie" value="/flash/raceMapViewer.swf?2" />
 	                              <!--[if !IE]>-->
