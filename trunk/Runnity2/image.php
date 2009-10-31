@@ -86,7 +86,7 @@ $smarty->assign('titulo_pagina', 'Detalle de imagen - Runnity.com');
 $smarty->assign('comments',$services->getComments($_REQUEST['id'],'picture'));
 
 
-//$smarty->assign('section', 'usuario');
+$smarty->assign('section', 'imagen');
 $smarty->display('image.tpl');
 
 ?>
