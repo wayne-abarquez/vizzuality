@@ -1051,7 +1051,7 @@ img.rssImage{
 #login_modal{
 	display:none; 
 	height:203px; 
-	width: 484px; 
+	width: 504px; 
 	background: #eaeaea;
 	border:6px solid #ffffff;
 	padding-bottom: 20px;
@@ -1102,10 +1102,9 @@ label.inputLogin {
 #simplemodal-container a.modalCloseImg {background:url(/img/x.gif) no-repeat; width:25px; height:29px; display:inline; z-index:1; position:absolute; top:5px; right:-10px;}
 #simplemodal-container #basic-modal-content {padding:8px;}
 
-#login_modal div.register_text {float: right; padding: 0 5px; width: 200px;}
+#login_modal div.register_text {padding: 0 5px; width: 210px;height: 200px;}
 #login_modal div.register_text h3 { color:#336699; padding: 60px 0 0 0; }
 #login_modal div.register_text p { height: 73px; }
-#login_modal div.register_text input {float:right; margin: 2px 5px 0 0; padding: 3px 4px; width: 87px;}
 
 
 /* CONTACT */
@@ -2457,13 +2456,21 @@ div.inputRight .a5 {
 #belowPaginator div.noResults p {color: #4e4e4e; font-size: 13px; font-weight: bold; margin-bottom: 0px;}
 #belowPaginator div.bottomPaginator {color: #4e4e4e; font-size: 13px;float: right; padding-right: 10px; padding-top: 10px;margin-bottom: 0px; height: 30px;}
 
-/*
-.buttonLogin{float:right; width:59px; background:url(/img/buttonLogin.gif) no-repeat 0 0; height:23px; color:#ffffff; text-decoration:none; padding:0; margin: 7px 15px 0 0;border: none;}
-}
-*/
 
 /* BOTONES */
 
+.buttonLogin{float:right; width:59px; background:url(/img/buttonLogin.gif) no-repeat 0 0; height:23px; font-size: 12px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 7px 15px 0 0;border: none;}
+
+.buttonLogin:hover{background:url(/img/buttonLogin.gif) no-repeat 0 -23px;}
+
+.buttonRegisterLogin{float:right; width:105px; background:url(/img/buttonRegisterLogin.gif) no-repeat 0 0; height:23px;  font-size: 12px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0;border: none; margin-top: 2px;}
+
+.buttonRegisterLogin:hover{background:url(/img/buttonRegisterLogin.gif) no-repeat 0 -23px;}
+
+.registerLoginButton{float: right; width: 200px; height: 23px;}
+
+
+/* botones old (todavia valen)*/
 		.fg-button:hover{
 		-moz-background-clip:border;
 		-moz-background-inline-policy:continuous;
