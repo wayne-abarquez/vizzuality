@@ -261,21 +261,22 @@ $(document).ready(function(){
 						<p class="up">No tienes ningún mensaje...</p>
 					</div> 
 				{/if}
-				
-				
-				<!-- Crear servicio para los comentarios sobre usuario -->
-<!--
-				<div class="span-9 commentsPaginator">
-        	   		<div class="userComments">
-						<p>viendo del <b>1 al 5</b> de 60
-							<span><a><input class="fg-button buttonLeftArrow" type="button"/></a></span>
-							<span><a><input class="fg-button buttonRightArrow" type="button"/></a></span>
-						</p>	
-					</div>
-				</div>
--->
-
 			</div>
+			
+			<div class="span-1 separatorBannerPhotosUser"></div>
+		
+		{if $pictures}
+			<div class="span-1 last bannerTopPhotos"></div>
+			<div class="span-1 last columnPhotos">
+				<p class="span-8 tituloPhotos">TODAS TUS FOTOS</p>
+				<div id="imgItems">
+				{foreach key=id item=picture from=$pictures}
+					<a name="anclafotos" href="/picture/{$picture.id}/run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+				{/foreach}	
+				</div>
+			</div>
+		{/if}
+			
 		</div>
 	</div>
 	
