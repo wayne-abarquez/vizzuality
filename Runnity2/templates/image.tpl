@@ -2,14 +2,13 @@
 
 {literal}
 <script type="text/javascript">
-  $(document).ready(function(){
-		
-		if ($('.rightColumn').height()<$('.leftColumn').height()) {
-			$('.rightColumn').height($('.leftColumn').height());	
-		}
-            				
+  $(document).ready(function(){	
+		var left = $('.leftColumn').height();
+		var right = $('.rightColumn').height();
+		if ( right < left ) {
+			$('.rightColumn').height(left - 22);
+		}            				
 	});
-
 </script>
 {/literal}
 
