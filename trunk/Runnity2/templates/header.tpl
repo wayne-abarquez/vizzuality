@@ -91,10 +91,10 @@
 		
 		<div class="span-1 separatorLogin"></div>
 		
-		<div class="span-5 last register_text">
-			<h3>¿No estas registrado?</h3>
-			<p>Regístrate ahora y disfruta de todas las ventajas de Runnity! Es grátis y tardarás un par de minutos.</p>
-			<input class="fg-button" value="Crea tu cuenta" onclick="location.href = '/registro'">
+		<div class="span-1 last register_text">
+			<h3>¿No estás registrado?</h3>
+			<div><p>¡Regístrate ahora y disfruta de todas las ventajas de Runnity! Es grátis y tardarás un par de minutos.</p></div>
+			<div class="registerLoginButton"><input class="buttonRegisterLogin" value="Crea tu cuenta" type="button" onclick="location.href = '/registro'"></div>
 		</div>
 	</div>
 	
