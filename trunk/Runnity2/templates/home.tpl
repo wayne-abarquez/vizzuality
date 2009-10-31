@@ -132,11 +132,7 @@
 		{foreach key=id item=VipRace from=$nextImportantRaces name=raceloop}
 		<div class="carreraOrange">
 			<div class="span-1 avatar2Orange">
-				{if $race.flickr_img_id==""}
-				    <img src="/media/run/{$VipRace.thumbnail}" alt="Foto de la carrera {$VipRace.name}" class="avatar">	
-				{else}
 				    <img src="/runThumbImage.php?id={$VipRace.id}&amp;photo_id={$VipRace.flickr_img_id}" alt="Foto de la carrera {$VipRace.name}" class="avatar">	
-				{/if}
 			</div>
 			<div class="span-1 Race">
 				<p class="nameRaceOrange"><a href="/run/{$VipRace.id}/{$VipRace.name|seourl}">{$VipRace.name}</a></p>
