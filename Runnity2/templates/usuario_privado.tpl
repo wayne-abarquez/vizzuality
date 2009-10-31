@@ -331,7 +331,7 @@ $(document).ready(function(){
 			<div class="eventsUsers">
 				<div class="avatarContainer">
 				{foreach key=id item=friend from=$friends}
-					<a href="/user/{$friend.username}"><img title="{$friend.username}" class="avatarRight" src="/avatar.php?id={$friend.id}&type=s"/>
+					<a href="/user/{$friend.username}"><img class="avatarRight" src="/avatar.php?id={$friend.id}&type=s"/>
 						<div class="hidden">{$friend.username}</div>
 					</a>
 			    {/foreach}
