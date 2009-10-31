@@ -4,8 +4,8 @@
 <script type="text/javascript">
   $(document).ready(function(){
 		
-		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
-			$('div.rightColumn').height($('div.leftColumn').height());	
+		if ($('.rightColumn').height()<$('.leftColumn').height()) {
+			$('.rightColumn').height($('.leftColumn').height());	
 		}
             				
 	});
