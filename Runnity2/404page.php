@@ -1,14 +1,12 @@
 <?php
 
-require 'libs/Smarty.class.php';
-require 'services/RunnitServices.php';
+require_once($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
 
 $smarty = new Smarty;
-$services = new RunnitServices;
 
-$smarty->assign('nextRaces',$services->getNextRuns());
 $smarty->assign('section', '404');
-$smarty->assign('titulo_pagina', '404 - Pagina no encontrada');
+$smarty->assign('titulo_pagina', '404 - Página no encontrada');
 $smarty->display('404.tpl');
 
 
