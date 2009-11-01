@@ -9,7 +9,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Twitter.class.php");
 class RunnitServices {
 	
 	function __construct() {
-	    $this->conn = pg_connect ("host=".DB_HOST." dbname=".DB_NAME." user=".DB_USER." password=".DB_PASSWORD);
+	    $this->conn = pg_pconnect ("host=".DB_HOST." dbname=".DB_NAME." user=".DB_USER." password=".DB_PASSWORD);
 	
 		$this->emailPassword=EMAILPASSWORD;
 		$this->basePath=ABSPATH;
