@@ -2481,6 +2481,12 @@ width:20px; background:url(/img/rightPaginator.gif) no-repeat 0 0; height:20px; 
 
 .rightPaginator:hover{background:url(/img/rightPaginator.gif) no-repeat 0 -20px;}
 
+.buttonComment{
+float: right; width:132px; background:url(/img/buttonComment.gif) no-repeat 0 0; height:23px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;
+}
+
+.buttonComment:hover{background:url(/img/buttonComment.gif) no-repeat 0 -23px;}
+
 /* botones old (todavia valen)*/
 		.fg-button:hover{
 		-moz-background-clip:border;
@@ -2507,6 +2513,7 @@ width:20px; background:url(/img/rightPaginator.gif) no-repeat 0 0; height:20px; 
 		font-weight:bold;
 		}
 
+/*
 .buttonComment{
 	float: right;
 	margin-right: -2px;
@@ -2516,6 +2523,7 @@ width:20px; background:url(/img/rightPaginator.gif) no-repeat 0 0; height:20px; 
 .buttonComment:hover{
 	background:#fc6602 none repeat scroll 0 0;
 }
+*/
 
 /*
 .buttonLeftArrow{
