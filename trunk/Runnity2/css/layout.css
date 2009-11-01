@@ -628,8 +628,10 @@ div.rightRegister #roundLocalizacion {width: 313px; border: 1px solid #dddddd; m
 div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24949; margin: 0 20px 0 0; padding: 7px 10px;}
 #error_geo {color:#c24949;}
 
+/*
 .buttonLocalizacion{ position: absolute; right:13px; top: 62px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 26px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
 .buttonLocalizacion:hover{background: url(/img/buttonLocalizacion_hover.gif) repeat-y;color: #ffffff;}
+*/
 
 .ButtonLocalizationUpdate{
 	height: 24px;
@@ -2495,6 +2497,17 @@ float: right; width:111px; background:url(/img/registerUserButton.gif) no-repeat
 	margin-top: 2px;
 	margin-right: 5px;
 }
+
+.buttonLocalizacion{
+float: right; width:61px; background:url(/img/buttonLocation.gif) no-repeat 0 0; height:26px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;margin-top: -29px; position: absolute; margin-left: 270px;}
+
+.buttonLocalizacion:hover{background:url(/img/buttonLocation.gif) no-repeat 0 -26px;}
+
+/*
+.buttonLocalizacion{ position: absolute; right:13px; top: 62px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 26px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
+.buttonLocalizacion:hover{background: url(/img/buttonLocalizacion_hover.gif) repeat-y;color: #ffffff;}
+*/
+
 
 /* botones old (todavia valen)*/
 		.fg-button:hover{
