@@ -190,7 +190,7 @@
 				<div class="error_register" id="error_register"></div>
 				<div class="span-1 last TerminosCondicionesBox">
 					<div class="span-12 first"><p>Al hacer click en “Registrarse” aceptas los <a href="/legalterms.html" target="_blank">Términos y condiciones</a> de runnity.com</p></div>
-					<input class="fg-button buttonRegister" id="register_input" type="submit" name="action" value="Registrarse"/>
+					<div class="registerButtonContainer"><input class="registerUserButton" id="register_input" type="submit" name="action" value="Registrarse"/></div>
 				</div>
 				<div class="span-1 LoginEnRegistro"><p>¿Ya tienes una cuenta en runnity? <a href="javascript: void showLoginWindow()">Haz login</a></p></div>
 			
