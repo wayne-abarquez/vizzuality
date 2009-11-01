@@ -131,7 +131,7 @@
 					</div>
 				</div>
 				<div><span id="contactError" class="errorMessage"></span></div>
-				<div class="contactButtonContainer"><input id="contactSubmit" class="fg-button" value="Enviar" type="submit"></div>
+				<div class="contactButtonContainer"><input id="contactSubmit" class="buttonLogin" value="Enviar" type="submit"></div>
 			</form>
 		</div>
 	</div>
@@ -161,7 +161,7 @@
 				<div><span id="contactError2" class="errorMessage"></span></div>
 				<div class="bottom">
 					<p>Una vez mandada la información, nuestro equipo contactará contigo para completarla.</p>
-					<input id="contactPublish" class="fg-button" value="Enviar" type="submit">
+					<input id="contactPublish" class="buttonLogin" value="Enviar" type="submit">
 				</div>
 			</form>
 		</div>
