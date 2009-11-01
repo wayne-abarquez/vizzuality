@@ -173,10 +173,12 @@
 	    			<div class="span-1 column last rightRegister">
 						<div>
 							<p class="titleMapAlert">Localidad,provincia</p>
-							<input type="text" id="roundLocalizacion" name="localidad" class="inputRegister"/>
-							<label class="searchButtonFirst last">
+							<div>
+								<input type="text" id="roundLocalizacion" name="localidad" class="inputRegister"/>
+							</div>
+							<div class="searchButtonFirst last">
 								<input type="button" value="Situar" id="buttonLocalizacion" class="buttonLocalizacion"/>
-							</label>
+							</div>
 							<div id="error_geo"></div>
 							<div class="alertsMap"><img id="map" src="http://maps.google.com/maps/api/staticmap?size=334x141&maptype=roadmap&center=Spain&mobile=true&sensor=false&key={$smarty.const.GMAPS_KEY}"></div>
 						</div>

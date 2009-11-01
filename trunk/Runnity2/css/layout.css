@@ -23,6 +23,11 @@ input.inputLoginPage {border: 1px solid #dddddd; margin: 0; width: 200px;padding
 	list-style: none;
 	display: inline;
 	margin: 0;
+	padding: 0;
+}
+
+#loc li{
+	display: inline;
 }
 
 #datos1 a{
@@ -935,21 +940,17 @@ div.userComments {
 
 .imagesUser{
 	border: 1px solid #cccccc;
-	width: 73px;
-	height: 72px;
+	width: 72px;
+	height: 73px;
 	margin-top: 2px;
 	margin-right: 2px;
 	float: left;
 }
 
-
-
 .imagesUser img{
 	margin-left: 3px;
 	margin-top: 3px;
 }
-
-
 
 .imagesUserCounter a{
 	color: #336699;
@@ -2223,6 +2224,10 @@ div.raceRight2{
 	font-size: 14px;
 	text-decoration: none;
 	font-weight: bold;
+}
+
+.nameRaceRight a:hover{
+	color: #fc6602;
 }
 
 .nameRaceRight{
