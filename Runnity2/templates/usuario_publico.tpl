@@ -93,7 +93,7 @@ $(document).ready(function(){
 						<div class="commentArea" id="commentBox">	
 							<div class="titleComents">Deja tu comentario</div>
 							<textarea id="comment_textarea"></textarea>
-							<input class="fg-button buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('User',{$data.datos.id},'user',$('#comment_textarea').val())"/>
+							<input class="buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('User',{$data.datos.id},'user',$('#comment_textarea').val())"/>
 						</div>
 					{else}
 						<div>
