@@ -2482,10 +2482,19 @@ width:20px; background:url(/img/rightPaginator.gif) no-repeat 0 0; height:20px; 
 .rightPaginator:hover{background:url(/img/rightPaginator.gif) no-repeat 0 -20px;}
 
 .buttonComment{
-float: right; width:132px; background:url(/img/buttonComment.gif) no-repeat 0 0; height:23px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;
-}
+float: right; width:132px; background:url(/img/buttonComment.gif) no-repeat 0 0; height:23px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;}
 
 .buttonComment:hover{background:url(/img/buttonComment.gif) no-repeat 0 -23px;}
+
+.registerUserButton{
+float: right; width:111px; background:url(/img/registerUserButton.gif) no-repeat 0 0; height:26px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;}
+
+.registerUserButton:hover{background:url(/img/registerUserButton.gif) no-repeat 0 -26px;}
+
+.registerButtonContainer{
+	margin-top: 2px;
+	margin-right: 5px;
+}
 
 /* botones old (todavia valen)*/
 		.fg-button:hover{
@@ -2596,6 +2605,7 @@ float: right; width:132px; background:url(/img/buttonComment.gif) no-repeat 0 0;
 }
 */
 
+/*
 .buttonRegister{
 	margin-top: 14px;
 	background-color:#336699;
@@ -2605,6 +2615,7 @@ float: right; width:132px; background:url(/img/buttonComment.gif) no-repeat 0 0;
 	height: 29px;
 	margin-left: -10px;
 }
+*/
 
 .saveChangesButton{
 	background-color:#336699;
@@ -2614,9 +2625,11 @@ float: right; width:132px; background:url(/img/buttonComment.gif) no-repeat 0 0;
 	margin-top: 4px;
 }
 
+/*
 .buttonRegister:hover{
 	background-color:#fc6602;
 }
+*/
 
 .nodesc{
 	text-align: center;
