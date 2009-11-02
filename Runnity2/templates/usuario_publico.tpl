@@ -92,8 +92,8 @@ $(document).ready(function(){
 					{if $smarty.session.logged}				
 						<div class="commentArea" id="commentBox">	
 							<div class="titleComents">Deja tu comentario</div>
-							<textarea id="comment_textarea"></textarea>
-							<input class="buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('User',{$data.datos.id},'user',$('#comment_textarea').val())"/>
+							<textarea id="commentTextArea"></textarea>
+							<input class="buttonComment" type="submit" value="Publicar comentario" onclick="javascript: void commentAction('User',{$data.datos.id},'user',$('#commentTextArea').val())"/>
 						</div>
 					{else}
 						<div>

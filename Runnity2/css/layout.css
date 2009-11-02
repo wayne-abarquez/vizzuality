@@ -787,6 +787,10 @@ div.userComments {
 	cursor: pointer;
 }
 
+.editUserLinkMargin{
+	margin-right: 10px;	
+}
+
 .editUserLink img{
 	margin: 0px;
 }
@@ -1740,6 +1744,8 @@ a.verTodas:hover{
 	text-decoration: none;
 }
 
+#tweets a{color: #336699; text-decoration: none;}
+
 #tweets:hover{
 	color: #999999;
 }
@@ -1751,6 +1757,7 @@ a.verTodas:hover{
 
 .tweetComment{
 	width: 240px;
+	color: #666666;
 }
 
 /* calendario */
@@ -2520,7 +2527,7 @@ float: right; width:71px; background:url(/img/buttonNoLogin.gif) no-repeat 0 0; 
 	width: 306px;
 }
 
-.deleteButton{float: right; width:20px; background:url(/img/deleteButton.gif) no-repeat 0 0; height:20px; font-size: 12px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none; padding-bottom: 2px; padding-left: 1px; margin-left: 4px;}
+.deleteButton{float: right; width:20px; background:url(/img/deleteButton.gif) no-repeat 0 0; height:20px; font-size: 12px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none; padding-bottom: 2px; padding-left: 1px; margin-right: 10px;}
 
 .deleteButton:hover{background:url(/img/deleteButton.gif) no-repeat 0 -20px;}
 
