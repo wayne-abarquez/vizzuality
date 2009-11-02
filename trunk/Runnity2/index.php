@@ -75,6 +75,7 @@ function visitorLocation(){
     }
     
 	$ip = $_SERVER['REMOTE_ADDR'];
+    $ip="74.125.45.100";
     
     $sql="SELECT region_name,country_name,latitude,longitude 
         FROM ip_group_city where ip_start <= INET_ATON('$ip') order by ip_start desc limit";
