@@ -186,7 +186,7 @@ $(document).ready(function(){
 							<p>No hay records, anímate y edita tus marcas</p>
 						</div>					
 					{/if}
-					<a class="editUserLink" href="/usuario_editar.php">editar tus marcas <img src="/img/pencil.gif"></a>
+					<a class="editUserLink editUserLinkMargin" href="/usuario_editar.php">editar tus marcas <img src="/img/pencil.gif"></a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
@@ -198,7 +198,7 @@ $(document).ready(function(){
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>{$categoria}</b></p></div>
 					</div>
-					<a class="editUserLink" href="/usuario_editar.php">editar tus datos <img src="/img/pencil.gif"></a>
+					<a class="editUserLink editUserLinkMargin" href="/usuario_editar.php">editar tus datos <img src="/img/pencil.gif"></a>
 				</div>
 			</div>
 			
