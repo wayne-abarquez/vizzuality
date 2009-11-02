@@ -65,14 +65,14 @@ function visitorLocation(){
 	$location['city'] = "Madrid";
 	$location['country'] = "Spain";
 	    
-    @$link = mysql_connect('localhost:/tmp/mysql.sock', 'root', 'runnit');
+    $link = mysql_connect('localhost', 'root', 'runnit');
     if (!$link) {
     	return $location;
     }
 
 
 
-    @$db_selected = mysql_select_db("ipcity");
+    $db_selected = mysql_select_db("ipcity");
     if (!$db_selected) {
         return $location;
     }
@@ -83,12 +83,12 @@ function visitorLocation(){
     $sql="SELECT region_name,country_name,latitude,longitude 
         FROM ip_group_city where ip_start <= INET_ATON('$ip') order by ip_start desc limit";
 
-    @$query=mysql_query($sql);
+    $query=mysql_query($sql);
     if (!$query) {
         return $location;
     }
     
-    @$result = mysql_fetch_assoc($query);
+    $result = mysql_fetch_assoc($query);
     if($result){
         $location['lat'] = $result['latitude'];
     	$location['lon'] =  $result['longitude'];
