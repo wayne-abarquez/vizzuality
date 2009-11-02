@@ -1,6 +1,7 @@
 package {
 	import com.adobe.serialization.json.JSON;
 	import com.google.maps.Alpha;
+	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.Map;
@@ -8,23 +9,21 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
-	import com.google.maps.controls.ControlPosition;
-	import com.google.maps.controls.ZoomControl;
-	import com.google.maps.controls.ZoomControlOptions;
+	import com.google.maps.MapZoomEvent;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.Polygon;
 	import com.google.maps.overlays.PolygonOptions;
-	import com.google.maps.overlays.TileLayerOverlay;
 	import com.google.maps.styles.FillStyle;
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.*;
-	import com.vizzuality.data.ImageData;
-	import com.vizzuality.tileoverlays.GeoserverTileLayer;
+	import com.vizzuality.gmaps.Clusterer;
+	import com.vizzuality.maps.Multipolygon;
+	import com.vizzuality.markers.ClusterMarker;
+	import com.vizzuality.markers.PAGeneralInfowindow;
+	import com.vizzuality.markers.PAMarker;
+	import com.vizzuality.markers.SingleMarker;
 	
-	import flash.display.Bitmap;
-	import flash.display.Loader;
-	import flash.display.LoaderInfo;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -33,8 +32,9 @@ package {
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	import flash.net.navigateToURL;
 	import flash.system.Security;
+	import flash.text.StyleSheet;
+	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 
 	[SWF(backgroundColor=0xEEEEEE, widthPercent=100, heightPercent=100)]
@@ -43,31 +43,16 @@ package {
 		private var map:Map;
 		private var square:Sprite;	
 		private var picturesSquare:Sprite;	
-		private var leftArrowBitmap:Bitmap;
-		private var rightArrowBitmap:Bitmap;
-		private var sp1:Sprite;
-		private var sp2:Sprite;
-		private var butButtonsBitmap:Bitmap;
-		private var dataLoaded:Boolean=false;
-		private var dataAnalyzed:Boolean=false;
-		private var data:Object;
-		private var panoramioMarkers:Dictionary;
-		private var panoramioDict:Dictionary = new Dictionary(true);
-		public var picturesInfoWindows:Dictionary = new Dictionary(true);	
 		private var pol:Polygon;
-		private var imgArrays:Array = [];
-		private var imgContainer:Sprite;
-		private var maskSprite:Sprite;
+		private var dataBbox:LatLngBounds;
+		private var markers:Array;
+		private var clusterer:Clusterer;
+		private var attachedMarkers:Array;
 		private var mapKey:String = "nokey";
+		private var iw:Dictionary=new Dictionary();	
 		
-				
-		[Embed('assets/leftArrow.png')] 
-		private var leftArrow:Class;				
-		[Embed('assets/rightArrow.png')] 
-		private var rightArrow:Class;				
-		[Embed('assets/bottom_buttons.png')] 
-		private var butButtons:Class;							
-						
+		
+					
 		public function CommentsMap()
 		{ 
 			stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -90,96 +75,19 @@ package {
 			square.graphics.endFill();
 			addChildAt(square,0);
 			
-				
-			initMap();			
-
-			var dsLoader:URLLoader = new URLLoader();
-			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
-			var paId:Number=root.loaderInfo.parameters.id;
-			if(isNaN(paId)) {
-				paId=970;
-			} else {
-				paId=root.loaderInfo.parameters.id;
-			}
-			//dsLoader.load(new URLRequest("http://localhost:3000/protected_areas/"+paId+"/json"));
-			
-		}
-		
-		private var fl:Boolean = true;
-		private var position:Number = 0;
-		private function handleClickImage(e:MouseEvent):void{
-			TweenLite.killTweensOf(imgContainer,true);
-			if(fl){
-				if (e.currentTarget == sp1 && position > 0){
-					TweenLite.to(imgContainer,0.7,{x:imgContainer.x + 310});
-					position--;
-				}else if(e.currentTarget == sp2 && position < 3){
-					TweenLite.to(imgContainer,0.7,{x:imgContainer.x - 310});
-					position++;				
-				}
-			}
-		}
-		
-		private function onDataLoaded(event:Event):void {
-			dataLoaded=true;
-			data = JSON.decode(event.currentTarget.data as String);
-			
-			if(map.isLoaded() && !dataAnalyzed) {
-				dataAnalyzed=true;
-				loadData();				
-			}
-				
-		}
-		
-		private function loadData():void {
-			//Add the polygon
-			var polCords:Array=[];
-			for each(var coords:Array in data.coordinates[0][0]) {
-				polCords.push(new LatLng(coords[1],coords[0]));
-			}
-			
-			var polOpt:PolygonOptions=new PolygonOptions({
-				  strokeStyle: {
-				    thickness: 2,
-				    color: 0xFF7600,
-				    alpha: 1
-				  },
-				  fillStyle: {
-				    color: 0xFF7600,
-				    alpha: 0.4
-				  }	
-			});
-			
-			pol = new Polygon(polCords,polOpt);
-			map.addOverlay(pol);
-			map.setCenter(pol.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(pol.getLatLngBounds())-1);		
-			map.panBy(new Point(-310,0),false);
-			
-			getPanoramioPics();		
-				
-		}
-		
-		private function positionElements():void {
-			square.x = (stage.stageWidth/2) - (960/2);
-			square.y = 0;	
-			square.height=stage.stageHeight-40;
-			imgContainer.x = picturesSquare.x+10;
-			imgContainer.y = picturesSquare.y+10;	
-			maskSprite.x = picturesSquare.x+9;
-			maskSprite.y = picturesSquare.y+10;	
-/* 			imgLoading1.x = picturesSquare.x+10;
-			imgLoading1.y = picturesSquare.y+10;	
-			imgLoading2.x = picturesSquare.x+320;
-			imgLoading2.y = picturesSquare.y+10;	 */
-			
-			butButtonsBitmap.x=picturesSquare.width	+picturesSquare.x +9;
-			butButtonsBitmap.y=	square.y+square.height+4;				
-		}
-		
- 		private function stageResizeHandler(ev:Event):void {
 			positionElements();
-			if(map!=null)
-				map.setSize(new Point(stage.stageWidth, stage.stageHeight-45));
+						
+			initMap();	
+			
+		}
+		
+
+		private var isResizing:Boolean=false;
+ 		private function stageResizeHandler(ev:Event):void {
+			if(map!=null && !isResizing) {
+				map.setSize(new Point(stage.stageWidth, stage.stageHeight-5));
+
+			}
 		}	
 		
 		private function initMap():void {
@@ -191,13 +99,12 @@ package {
 			} else {
 				map.key=mapKey;
 			}			
-				
-			map.y=3;
+			
 			
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(stage.stageWidth, stage.stageHeight-6));
-			addChildAt(map,1); 				
+			addChild(map); 				
 			
 			
 		}		
@@ -207,124 +114,188 @@ package {
 				mo.backgroundFillStyle = new FillStyle({color:0xE9E9E9,alpha: Alpha.OPAQUE});
 				mo.mapType=MapType.PHYSICAL_MAP_TYPE;	
 				map.setInitOptions(mo);
-		}		
+		}	
 		
-		private function onMapReady(event:MapEvent):void {
-			var zco:ZoomControlOptions= new ZoomControlOptions({
-				position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)
-			});
-			map.addControl(new ZoomControl(zco));
-			
-			if(dataLoaded && !dataAnalyzed) {
-				dataAnalyzed=true;
-				loadData();	
-			}
-			
-			var tl:GeoserverTileLayer = new GeoserverTileLayer();
-			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
-			//tlo.foreground.alpha=1;
-			map.addOverlay(tlo);				
-
-		}		
 		
-		private function getPanoramioPics():void {
-			var url:String= "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=2&size=mini_square";
-			
-			panoramioMarkers = new Dictionary(true);
-			var bbox:LatLngBounds=pol.getLatLngBounds();
-			var firstBBox:LatLngBounds = new LatLngBounds(bbox.getSouthWest(),bbox.getCenter());
-			var secondBBox:LatLngBounds = new LatLngBounds(bbox.getCenter(),bbox.getNorthEast());
-			var thirdBBox:LatLngBounds = new LatLngBounds(firstBBox.getNorthWest(),new LatLng(secondBBox.getNorth(),bbox.getCenter().lng()));
-			var fourthBBox:LatLngBounds = new LatLngBounds(firstBBox.getSouthEast(),secondBBox.getSouthEast());			
-			
-			var loader:URLLoader= new URLLoader();
-			loader.addEventListener(Event.COMPLETE,onPanoramioResult);
-			
- 			loader.load(new URLRequest(url + "&minx="+firstBBox.getWest()+"&miny="+firstBBox.getSouth()+"&maxx="+firstBBox.getEast()+"&maxy="+firstBBox.getNorth()));
-			loader.load(new URLRequest(url + "&minx="+secondBBox.getWest()+"&miny="+secondBBox.getSouth()+"&maxx="+secondBBox.getEast()+"&maxy="+secondBBox.getNorth()));
-			loader.load(new URLRequest(url + "&minx="+thirdBBox.getWest()+"&miny="+thirdBBox.getSouth()+"&maxx="+thirdBBox.getEast()+"&maxy="+thirdBBox.getNorth()));
-			loader.load(new URLRequest(url + "&minx="+fourthBBox.getWest()+"&miny="+fourthBBox.getSouth()+"&maxx="+fourthBBox.getEast()+"&maxy="+fourthBBox.getNorth()));
-//			loader.load(new URLRequest(url + "&minx="+bbox.getWest()+"&miny="+bbox.getSouth()+"&maxx="+bbox.getEast()+"&maxy="+bbox.getNorth()));
-			
-		}		
-		
-		private function onPanoramioResult(event:Event):void {
-			var res:Object = JSON.decode(event.currentTarget.data as String);
-			for each(var photo:Object in res.photos) {
-				//if(pa.geometry.pointInPolygon(new LatLng(photo.latitude, photo.longitude)) && (!existingPoints.indexOf(photo.latitude+photo.longitude)>=0)) {
-					
-					var img:ImageData=new ImageData();
-					img.latlng = new LatLng(photo.latitude,photo.longitude);
-					img.source="Panoramio";
-					img.owner = photo.owner_name
-					img.sourceUrl = photo.photo_url;
-					img.title = photo.photo_title;
-					img.imageUrl = (photo.photo_file_url as String).replace("medium","small");
-					img.thumbnail = (photo.photo_file_url as String).replace("medium","mini_square");
-					img.id=photo.photo_id;
-					img.height=photo.height;
-					img.width=photo.width;
-					
-					
-					//pictures.addItem(img);
-					var loader:Loader = new Loader();
-					loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createPanoramioMarker,false,0,true);
-					panoramioDict[loader]=img;
-					loader.load(new URLRequest(img.thumbnail));			
-					
-				//}
-			}			
+		private function positionElements():void {
+			square.x = (stage.stageWidth/2) - (960/2);
+			square.y = 0;	
+			square.height=stage.stageHeight;			
 		}
 		
-		private function createPanoramioMarker(ev:Event):void {
+		private function onMapReady(event:MapEvent):void {
+			map.y= 3;
 			
-			var photo:ImageData=panoramioDict[ev.target.loader];
+			var polOpt:PolygonOptions=new PolygonOptions({
+				  strokeStyle: {
+				    thickness: 2,
+				    color: 0xFF7600,
+				    alpha: 1
+				  },
+				  fillStyle: {
+				    color: 0xFF7600,
+				    alpha: 0.4
+				  }	
+			});			
 			
-			var latlng:LatLng = photo.latlng;
-	      	var photoUrl:String = photo.imageUrl;
-	      	
-	       var marker:Marker = new Marker(latlng, new MarkerOptions(
-	       	{tooltip: photo.title,
-	       	 draggable:false,
-	       	 hasShadow:false,	        
-	       	 icon: ev.target.loader}));		        
-              
-        	var infowindow:Loader= new Loader();
-        	infowindow.load(new URLRequest(photo.imageUrl));
-        	infowindow.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void {
-        		navigateToURL(new URLRequest(photo.sourceUrl));
-        	});
-        	
-        	infowindow.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void {
-        				   		
-		   		var loader:LoaderInfo= event.currentTarget as LoaderInfo;
-		   		
-		   		var s:Sprite=new Sprite();
-		   		s.addChild(infowindow);
-		   		s.buttonMode=true;
-		   		
-/* 		   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
-	                customContent: loader.loader,
-	                strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
-	                customOffset: new Point(0, 10),
-	                cornerRadius:0,
-					hasShadow:false,
-	                width: (photo.width/2.1),
-	                height: (photo.height/2.1),
-	                drawDefaultFrame: true					
-				});  	 
-				picturesInfoWindows[marker]=optionsMark; */
+			
+			var temp:String = '[{"name":"Yosemite National Park","geojson":{"type":"MultiPolygon","bbox":[130.666680,-25.416670,131.370590,-25.081670],"coordinates":[[[[130.74986,-25.16335],[130.74999,-25.26666],[130.75002,-25.26666],[130.83337,-25.26665],[130.92921,-25.26668],[130.92924,-25.26857],[131.00841,-25.26841],[131.00837,-25.26667],[131.08337,-25.26667],[131.1667,-25.26666],[131.25002,-25.26665],[131.33338,-25.26666],[131.37059,-25.26666],[131.37058,-25.33332],[131.37059,-25.41667],[131.33336,-25.41667],[131.25003,-25.41667],[131.16669,-25.41667],[131.08337,-25.41665],[131.00003,-25.41665],[130.91668,-25.41665],[130.83337,-25.41667],[130.75004,-25.41665],[130.66668,-25.41666],[130.66671,-25.33333],[130.66669,-25.08167],[130.75002,-25.12334],[130.74986,-25.16335]]]]} ,' + 
+					'"comments":[{"user": "simon","place":{"lat":"-30.34","lon": "123.234"},"ago":"3 hours ago"},{"user": "craig","place":{"lat":"-29.45","lon": "123.234"},"ago":"3 hours ago"},{"user": "saleiva","place":{"lat":"-23.34","lon": "119.234"},"ago":"3 hours ago"},{"user": "jatorre","place":{"lat":"-22.34","lon": "118.234"},"ago":"3 hours ago"},{"user": "jam","place":{"lat":"-23.34","lon": "119.234"},"ago":"3 hours ago"}]}]'; 
+
+			var areasJson:Object = JSON.decode(temp);
+			var areas:Array =[];
+			var bounds:LatLngBounds = new LatLngBounds();
+			markers = [];	
+			dataBbox=new LatLngBounds();
+			
+			for each(var areaJson:Object in areasJson as Array) {
+				var area:Multipolygon = new Multipolygon();
+				area.data.name=areaJson.name;
+				area.fromGeojsonMultiPolygon(areaJson.geojson.coordinates,polOpt);
+				areas.push(area);
+				area.addToMap(map);
+				bounds.union(area.getLatLngBounds());
+				var markerOpt:MarkerOptions=new MarkerOptions({});
 				
-		        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
-		      		//marker.openInfoWindow(optionsMark);  
-		      		//map.panTo(e.latLng);   
-		        });      
-		        
-	        	map.addOverlay(marker);
-        		
-        	});
-	        panoramioMarkers[photo]=marker;
-		} 		
+                var markerData: Object = new Object();	
+                markerData.coordenates = area.getLatLngBounds().getCenter();
+                markerData.area = area.data.name;
+                				
+				var paMarker:PAMarker = new PAMarker(area.getLatLngBounds().getCenter());
+				
+				dataBbox.extend(bounds.getCenter());
+				map.addOverlay(paMarker);                
+			}
+			
+			
+			for each(var m:Object in areasJson[0].comments as Array) {
+				var place:LatLng = new LatLng(m.place.lat,m.place.lon);
+				var marker:SingleMarker=new SingleMarker(place,m.user,m.ago,"commentIcon");
+				iw[marker]=m;
+				marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
+					trace('click in marker');
+				});
+				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+					openInfoWindow(e);									
+				});
+				marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
+					map.closeInfoWindow();
+				});						
+				markers.push(marker);
+				dataBbox.extend(place);
+			}
+			
+			
+			
+			clusterer = new Clusterer(markers, map.getZoom(),25);
+			attachedMarkers = [];
+			attachMarkers();	
+			
+			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
+			
+			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox)-1);
+	
+	 	}		
+	 	
+	 	private function onMapZoomChanged(event:MapZoomEvent):void {
+			map.closeInfoWindow();
+			clusterer.zoom = map.getZoom();
+			attachMarkers();
+		}	
+	 	
+        
+        private function openInfoWindow(e:MapMouseEvent):void {
+			
+			var m:Object = iw[e.target];
+
+			infoWindowToOpen = new PAGeneralInfowindow(m);
+ 			infoWindowToOpen.targetUrl="/protected_areas/4";
+ 			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
+            var options:InfoWindowOptions = new InfoWindowOptions({
+              customContent: infoWindowToOpen,
+              padding: 10,
+              hasCloseButton: false,
+              pointOffset:new Point(-63,-79),
+              hasShadow: true
+            });
+            
+            infoWindowToOpen.alpha=0;
+            map.openInfoWindow(new LatLng(m.place.lat,m.place.lon),options);
+            TweenLite.to(infoWindowToOpen,0.3,{alpha:1});
+                
+        }	 
+        
+ 		private var rollingOver:Boolean=false;
+		private var infoWindowToOpen:PAGeneralInfowindow;       
+		private function onInfowindowRollOut(e:Event ):void {
+			map.closeInfoWindow();
+			rollingOver=false;
+		}  
+		
+
+		
+
+		private function attachMarkers():void {
+			for each (var marker:Marker in attachedMarkers) {
+				map.removeOverlay(marker);
+			}
+			attachedMarkers = [];
+			var clusteredMarkers:Array = clusterer.clusters;
+ 
+			for each (var cluster:Array in clusteredMarkers) {
+				if (cluster.length == 1) {
+					// there is only a single marker in this cluster
+					marker = cluster[0];
+				} else {
+					marker = new ClusterMarker(cluster);
+					marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
+						map.zoomIn(e.latLng,true,false);
+					});
+					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+						var titleFormat:TextFormat = new TextFormat();
+						titleFormat.bold = true;
+						var titleStyleSheet:StyleSheet = new StyleSheet();
+						var contentFormat:TextFormat = new TextFormat("Arial", 12,0x333333);
+						var options:InfoWindowOptions = new InfoWindowOptions({
+
+						  strokeStyle: {
+						    color: 0xcccccc,
+						    thickness:1
+						  },
+						  fillStyle: {
+						    color: 0xFFFFFF,
+						    alpha: 0.9
+						  },
+						  titleFormat: titleFormat,
+						  titleStyleSheet: titleStyleSheet,
+						  contentFormat: contentFormat,
+						  width: 113,
+						  cornerRadius: 3,
+						  padding: 4,
+						  hasCloseButton: false,
+						  hasTail: false,
+						  pointOffset:new Point(12,-5),
+						  tailWidth: 0,
+						  tailHeight: 0,
+						  tailOffset: -22,
+						  tailAlign: InfoWindowOptions.ALIGN_CENTER,
+						  pointOffset: new Point(0,0),
+						  hasShadow: false,
+						  content:"Click to view more"
+						});
+						map.openInfoWindow(e.latLng,options);
+					});					
+					marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
+						map.closeInfoWindow();
+					});
+					
+					
+				}
+				map.addOverlay(marker);
+				attachedMarkers.push(marker);
+			}
+		}
+			
 		
 		
 				
