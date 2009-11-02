@@ -229,7 +229,7 @@ $(document).ready(function(){
 				{else}
 					<div class="pictureUserContainerNoPhotos" id="pictureUserContainerNoPhotos" title="first">
 						<p class="upPhotos">No has subido fotos...</p>
-						<p class="down"><a href="#" id="buttonUploadPicture"><img src="/img/photoIconLight.gif">Subir fotos</a></p>
+						<p class="down"><img src="/img/photoIconLight.gif"><a href="#" id="buttonUploadPicture">Subir fotos</a></p>
 					</div>				
 				{/if}
 				</div>
