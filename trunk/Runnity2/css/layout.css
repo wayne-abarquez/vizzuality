@@ -427,6 +427,9 @@ div.comment_wall textarea {
 	width: 345px;
 	max-width: 345px;
 	height: 70px;
+	font-size: 13px;
+	color: #666666;
+	font-family: "Arial";
 }
 
 p.noComments_wall{
@@ -2133,6 +2136,9 @@ div.titleComents {
 .textArea {
 	height: 40px;
 	width: 560px;
+	font-size: 13px;
+	color: #666666;
+	font-family: "Arial";
 }
 
 .tituloColumnRight{
