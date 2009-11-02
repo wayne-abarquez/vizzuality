@@ -528,7 +528,7 @@ $(document).ready(function(){
 					<div class="localizacionEdit">
 						<p class="data">LOCALIZACIÓN</p>
 						<div class="span-1 first localizatorInputContainer"><input type="text" name="inputLocalizacion" id="inputLocalizacion" class="inputLocalizacion" value="{$privateData.datos.locality}"></div>
-						<div class="span-1 last localizatorInputButton"><input id="buttonLocalizacion" type="button" value="Situar" class="fg-button ButtonLocalizationUpdate"/></div>
+						<div class="span-1 last localizatorInputButton"><input id="buttonLocalizacion" type="button" value="Situar" class="ButtonLocalizationUpdate"/></div>
 					</div>
 					<div id="mapBox">
 						<div class="span-1 mapaAlerts" id="map">
@@ -603,7 +603,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 				<div class="span-1 dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
+					<span><input class="saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">TUS MARCAS</p>
@@ -627,16 +627,18 @@ $(document).ready(function(){
 						<div class="span-1">
 							<input type="text" id="rec_ss_{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
 						</div>
-						<div class="span-1 lastRecordContainer">
-							<span><input type="text" id="rec_dd_{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
-							<input type="button" class="fg-button eraseRecordButton" value="x" onclick="javascript: void borrarRecords(rec_hh_{$record.id},rec_mm_{$record.id},rec_ss_{$record.id},rec_dd_{$record.id})"></span>
+						<div class="span-1">
+							<input type="text" id="rec_dd_{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
 						</div>	
+						
+						<div class="span-1 last deleteButtons"><input type="button" class="deleteButton" value="x" onclick="javascript: void borrarRecords(rec_hh_{$record.id},rec_mm_{$record.id},rec_ss_{$record.id},rec_dd_{$record.id})"></div>
+						
 						</div>				
 						{/foreach}
 					</div>
 				</div>
 				<div class="span-1 dataUserButtons">
-					<span><input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
+					<span><input class="saveChangesButton" type="submit" name="action" value="Guardar cambios"/></span>
 				</div>
 				
 				<p class="titulo tituloLeft tituloRight">DATOS DE CUENTA</p>
@@ -661,7 +663,7 @@ $(document).ready(function(){
 				<div class="span-1 dataUserButtons">
 					<span>
 					<div class="span-1 baja"><a href="javascript: void confirmationWindowUser()" >¿Quieres darte de baja?</a></div>			
-					<input class="fg-button saveChangesButton" type="submit" name="action" value="Guardar cambios"/>
+					<input class="saveChangesButton" type="submit" name="action" value="Guardar cambios"/>
 					</span>
 				</div>
 			</div>			

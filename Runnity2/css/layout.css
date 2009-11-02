@@ -1,5 +1,5 @@
 #editDataForm input.inputName {border: 1px solid #dddddd; margin: 0 0 0 0; width: 362px;padding: 4px 4px 4px 4px; color: #999999;}
-#editDataForm input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 306px;padding: 4px 4px 4px 4px; color: #999999;}
+#editDataForm input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 306px;padding: 4px 4px 4px 4px; color: #999999; height: 14px;}
 #editDataForm input.inputRadio {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputMail {border: 1px solid #dddddd; margin: 0 0 0 0; width: 280px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputPassword,#editDataForm input.inputPassword2 {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
@@ -12,11 +12,9 @@ input.inputLoginPage {border: 1px solid #dddddd; margin: 0; width: 200px;padding
 
 #editDataForm input.roundInputRecords {border: 1px solid #dddddd; margin: 0;margin-bottom: 4px; width: 16px;padding: 4px 4px 4px 4px; color: #999999;}
 
-.lastRecordContainer{
-	width: 70px;
-}
-
 .recordContainer{
+	width: 190px;
+	margin-left: -4px;
 }
 
 #loc{
@@ -74,13 +72,6 @@ a.loginRegisterLink{
 }
 a.loginRegisterLink:hover{
 	color: black;
-}
-
-.buttonLoginPage{
-	float: right;
-	height: 25px;
-	margin-top: 10px;
-	margin-right: 9px;
 }
 
 .loginSpaceFirst{
@@ -217,7 +208,6 @@ label.roundInputDataRadio{
 	margin: 0px;
 	margin-top: 14px;
 	margin-left: -4px;
-	width: 200px;
 }
 
 .distanceName{
@@ -314,6 +304,7 @@ label.roundInputRecords{
 
 .globalContainerUser{
 	padding-bottom: 10px;
+	width: 620px;
 }
 
 .dataUserButtons{
@@ -392,6 +383,7 @@ div.baja a{
 	width: 392px;
 	border-bottom: 1px solid #acc0d5;
 	margin-top: -4px;
+	padding-bottom: 20px;
 }
 
 
@@ -633,28 +625,10 @@ div.rightRegister #roundLocalizacion {width: 313px; border: 1px solid #dddddd; m
 div.rightRegister #roundLocalizacion.error {width: 270px; border: 1px solid #c24949; margin: 0 20px 0 0; padding: 7px 10px;}
 #error_geo {color:#c24949;}
 
-/*
-.buttonLocalizacion{ position: absolute; right:13px; top: 62px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 26px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
-.buttonLocalizacion:hover{background: url(/img/buttonLocalizacion_hover.gif) repeat-y;color: #ffffff;}
-*/
-
-.ButtonLocalizationUpdate{
-	height: 24px;
-	margin-left: 4px;
-}
-
-.localizatorInputContainer{
-	width: 306px;
-}
-
 .rightColumnRegister{
 	border-left: 1px dotted #c3c3c3;
 	margin-left: 24px;
 	width: 275px;
-	/*
-padding-bottom: 32768px;
-	margin-bottom: -32768px;
-*/
 }
 
 .rightColumnRegister ul li{
@@ -807,7 +781,6 @@ div.userComments {
 	font-size: 11px;
 	font-weight: bold;
 	margin-top: 2px;
-	margin-right: 14px;	
 	cursor: pointer;
 }
 
@@ -890,7 +863,7 @@ div.userComments {
 	
 }
 
-.pictureUserContainer{margin-left: 4px;}
+.pictureUserContainer{margin-left: 0px; width: 405px; height: 79px;}
 
 .pictureUserContainerNoPhotos{
 	height: 75px;
@@ -943,7 +916,7 @@ div.userComments {
 	width: 72px;
 	height: 73px;
 	margin-top: 2px;
-	margin-right: 2px;
+	margin-right: 5px;
 	float: left;
 }
 
@@ -2508,146 +2481,50 @@ float: right; width:61px; background:url(/img/buttonLocation.gif) no-repeat 0 0;
 
 .buttonLocalizacion:hover{background:url(/img/buttonLocation.gif) no-repeat 0 -26px;}
 
-/*
-.buttonLocalizacion{ position: absolute; right:13px; top: 62px;background-color: #666666; background-image: url(/img/buttonLocalizacion.gif); background-repeat: repeat-y; height: 26px; width: 61px; border: none; color: #ffffff; font-size: 14px;	font-weight: bold; cursor: pointer; z-index: 1;}
-.buttonLocalizacion:hover{background: url(/img/buttonLocalizacion_hover.gif) repeat-y;color: #ffffff;}
-*/
-
-
-/* botones old (todavia valen)*/
-		.fg-button:hover{
-		-moz-background-clip:border;
-		-moz-background-inline-policy:continuous;
-		-moz-background-origin:padding;
-		background:#999999 none repeat scroll 0 0;
-		}
-		.fg-button{
-		-moz-background-clip:border;
-		-moz-background-inline-policy:continuous;
-		-moz-background-origin:padding;
-		-moz-border-radius-bottomleft:4px;
-		-moz-border-radius-bottomright:4px;
-		-moz-border-radius-topleft:4px;
-		-moz-border-radius-topright:4px;
-		-webkit-border-bottom-left-radius: 4px 4px;
-		-webkit-border-bottom-right-radius: 4px 4px;
-		-webkit-border-top-left-radius: 4px 4px;
-		-webkit-border-top-right-radius: 4px 4px;		
-		background:#666666 none repeat scroll 0 0;
-		border:medium none;
-		color:#FFFFFF;
-		cursor:pointer;
-		font-weight:bold;
-		}
-
-/*
-.buttonComment{
-	float: right;
-	margin-right: -2px;
-	background:#336699 none repeat scroll 0 0;
+.localizatorInputContainer{
+	width: 306px;
 }
 
-.buttonComment:hover{
-	background:#fc6602 none repeat scroll 0 0;
-}
-*/
+.ButtonLocalizationUpdate{
+float: right; width:61px; background:url(/img/buttonLocation.gif) no-repeat 0 0; height:26px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;}
 
-/*
-.buttonLeftArrow{
-	background-image: url(/img/paginatorLeft.gif);
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 20px;
-	height: 20px;
-}
+.ButtonLocalizationUpdate:hover{background:url(/img/buttonLocation.gif) no-repeat 0 -26px;}
 
-.buttonRightArrow{
-	background-image: url(/img/paginatorRight.gif);
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 20px;
-	height: 20px;
-}
-
-.buttonLeftArrow:hover{
-	background-image: url(/img/paginatorLeftOver.gif);
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 20px;
-	height: 20px;
-}
-
-.buttonRightArrow:hover{
-	background-image: url(/img/paginatorRightOver.gif);
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 20px;
-	height: 20px;
-}
-
-
-.buttonLeftArrowDown{
-	background-image: url(/img/paginatorLeft.gif);
-	background-repeat: no-repeat;
-	background-position: left;
-	height: 20px;
-	width: 90px;
-	text-align: right;
-}
-
-.buttonRightArrowDown{
-	background-image: url(/img/paginatorRight.gif);
-	background-repeat: no-repeat;
-	background-position: right;
-	height: 20px;
-	width: 90px;
-	text-align: left;
-}
-
-.buttonLeftArrowDown:hover{
-	background-image: url(/img/paginatorLeftOver.gif);
-	background-repeat: no-repeat;
-	background-position: left;
-	height: 20px;
-	width: 90px;
-	text-align: right;
-}
-
-.buttonRightArrowDown:hover{
-	background-image: url(/img/paginatorRightOver.gif);
-	background-repeat: no-repeat;
-	background-position: right;
-	height: 20px;
-	width: 90px;
-	text-align: left;
-}
-*/
-
-/*
-.buttonRegister{
-	margin-top: 14px;
-	background-color:#336699;
-	font-weight: bold;
-	width: 100px;
-	font-size: 12px;
-	height: 29px;
+.localizatorInputButton{
 	margin-left: -10px;
 }
-*/
 
 .saveChangesButton{
-	background-color:#336699;
-	height: 25px;
-	float: right;
-	margin-right: 4px;
-	margin-top: 4px;
+float: right; width:112px; background:url(/img/saveChangesButton.gif) no-repeat 0 0; height:23px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none; margin-right: 4px; margin-top: 4px;}
+
+.saveChangesButton:hover{background:url(/img/saveChangesButton.gif) no-repeat 0 -23px;}
+
+.buttonNoLogin{
+float: right; width:71px; background:url(/img/buttonNoLogin.gif) no-repeat 0 0; height:26px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none; margin-top: 10px; margin-right: 9px;}
+
+.buttonNoLogin:hover{background:url(/img/buttonNoLogin.gif) no-repeat 0 -26px;}
+
+
+.ButtonLocalizationUpdate{
+	height: 24px;
+	margin-left: 4px;
 }
 
-/*
-.buttonRegister:hover{
-	background-color:#fc6602;
+.localizatorInputContainer{
+	width: 306px;
 }
-*/
+
+.deleteButton{float: right; width:20px; background:url(/img/deleteButton.gif) no-repeat 0 0; height:20px; font-size: 12px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none; padding-bottom: 2px; padding-left: 1px; margin-left: 4px;}
+
+.deleteButton:hover{background:url(/img/deleteButton.gif) no-repeat 0 -20px;}
+
+.deleteButtons{
+	margin-top: 3px;
+	height: 23px;
+}
+
+
+/* ---------------- */
 
 .nodesc{
 	text-align: center;
