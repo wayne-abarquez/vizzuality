@@ -2,6 +2,99 @@
 
 {literal}
 <script type="text/javascript">
+	function situar(){
+        
+        var addressval = $("#inputLocalizacion").val();
+    	var dataObj = ({address : addressval,method: 'geolocateAddress'});
+    
+    	if(addressval="") {
+    		return false; 
+    	}
+    
+    	$('#buttonLocalizacion').val('...');
+		$('#buttonLocalizacion').attr("disabled", "true"); 
+		
+	    // -- Start AJAX Call --
+	    $.ajax({
+	        type: "POST",
+	        url: "/ajaxController.php",
+	        data: dataObj,
+	        cache: false,
+	        success: function(result){
+	                //notify the user that the username is used.
+	                var lat = result.split(",")[0];
+	                var lon = result.split(",")[1];
+	                
+	                $('#buttonLocalizacion').val('Situar');
+					$('#buttonLocalizacion').removeAttr("disabled"); 
+	                $('#latHidden').val(lat);
+	              	$('#lonHidden').val(lon);
+
+                    var map = new GMap2(document.getElementById("map"));
+                    var start = new GLatLng(lat, lon);
+                    map.setCenter(start, 10);
+                    
+                    map.addControl(new GSmallZoomControl());
+                    new GKeyboardHandler(map);
+                    map.enableContinuousZoom();
+                    map.enableDoubleClickZoom();    
+                    
+                    var bounds = new GLatLngBounds();
+
+
+                    function drawCircle(center, radius, nodes, liColor, liWidth, liOpa, fillColor, fillOpa)
+                    {
+                        map.clearOverlays();
+                    // Esa 2006
+                    	//calculating km/degree
+                    	var latConv = center.distanceFrom(new GLatLng(center.lat()+0.1, center.lng()))/100;
+                    	var lngConv = center.distanceFrom(new GLatLng(center.lat(), center.lng()+0.1))/100;
+
+                    	//Loop 
+                    	var points = [];
+                    	var step = parseInt(360/nodes)||10;
+                    	for(var i=0; i<=360; i+=step)
+                    	{
+                    	var pint = new GLatLng(center.lat() + (radius/latConv * Math.cos(i * Math.PI/180)), center.lng() + 
+                    	(radius/lngConv * Math.sin(i * Math.PI/180)));
+                    	points.push(pint);
+                    	bounds.extend(pint); //this is for fit function
+                    	}
+                    	points.push(points[0]); // Closes the circle, thanks Martin
+                    	fillColor = fillColor||liColor||"#0055ff";
+                    	liWidth = liWidth||2;
+                    	var poly = new GPolygon(points,liColor,liWidth,liOpa,fillColor,fillOpa);
+                    	map.addOverlay(poly);
+                    }  
+
+                    function fit(){
+                        map.panTo(bounds.getCenter()); 
+                        map.setZoom(map.getBoundsZoomLevel(bounds)-1);
+                    }
+
+                    {/literal}{if !lat eq ""}{literal}
+                        drawCircle(start,$('#inputRadio').val(), 40);   
+                        fit();
+                    {/literal}{else}{literal}
+                        $('#map').hide();
+                    {/literal}{/if}{literal}
+			       
+	        },
+	        error:function (xhr, ajaxOptions, thrownError){
+	        	$('#buttonLocalizacion').val('Situar');
+				$('#buttonLocalizacion').removeAttr("disabled"); 
+	        }
+	    });
+	    
+	    return false;
+	    }
+
+</script>
+{/literal}
+
+
+{literal}
+<script type="text/javascript">
 function va(id){
 	valhrs = $('#rec_hh_'+id).val();
 	valmin = $('#rec_mm_'+id).val();
@@ -48,347 +141,21 @@ function va(id){
 </script>
 {/literal}
 
-<!-- inputs numéricos -->
-{literal}
-<script type="text/javascript">
-      function onlyNumbers(evt)
-      {
-        var keyPressed = (evt.which) ? evt.which : event.keyCode
-        return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
-      }
-   </script>
-{/literal}
-
-{literal}
-	<script type="text/javascript">
-	$().ready(function() {
-		
-		if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
-			$('div.rightColumn').height($('div.leftColumn').height());	
-		}
-		
-		$("#editDataForm").validate({
-			rules: {
-				inputPassword: {
-					required: true,
-					minlength: 5
-				},
-				inputPassword2: {
-					required: true,
-					minlength: 5,
-					equalTo: "#inputPassword"
-				},
-				inputMail: {
-					required: true,
-					email: true
-				},
-				inputName: {
-					required: true,
-					minlength: 5
-				},
-				inputLocalizacion: {
-					required: true
-				},
-				inputRadio: {
-					required: true
-				},
-				rec_hh_1: {
-					max: 23
-				},
-				rec_hh_2: {
-					max: 23
-				},
-				rec_hh_3: {
-					max: 23
-				},
-				rec_hh_4: {
-					max: 23
-				},
-				rec_hh_5: {
-					max: 23
-				},
-				rec_hh_6: {
-					max: 23
-				},
-				rec_hh_7: {
-					max: 23
-				},
-				rec_hh_8: {
-					max: 23
-				},
-				rec_hh_9: {
-					max: 23
-				},
-				rec_mm_1: {
-					max: 59
-				},
-				rec_mm_2: {
-					max: 59
-				},
-				rec_mm_3: {
-					max: 59
-				},
-				rec_mm_4: {
-					max: 59
-				},
-				rec_mm_5: {
-					max: 59
-				},
-				rec_mm_6: {
-					max: 59
-				},
-				rec_mm_7: {
-					max: 59
-				},
-				rec_mm_8: {
-					max: 59
-				},
-				rec_mm_9: {
-					max: 59
-				},
-				rec_ss_1: {
-					max: 59
-				},
-				rec_ss_2: {
-					max: 59
-				},
-				rec_ss_3: {
-					max: 59
-				},
-				rec_ss_4: {
-					max: 59
-				},
-				rec_ss_5: {
-					max: 59
-				},
-				rec_ss_6: {
-					max: 59
-				},
-				rec_ss_7: {
-					max: 59
-				},
-				rec_ss_8: {
-					max: 59
-				},
-				rec_ss_9: {
-					max: 59
-				}
-			},
-			messages: {
-				password_register: {
-					required: "Introduce una contraseña",
-					minlength: "Al menos 5 caracteres"
-				},
-				confirm_password: {
-					required: "Introduce la misma contraseña",
-					minlength: "Al menos 5 caracteres",
-					equalTo: "Debe ser igual a la contraseña",
-				},
-				inputMail: {
-					required: "Introduce una dirección de correo",
-					email: "No es una dirección válida"
-				},
-				inputName: {
-					required: "Introduce tu nombre",
-					minlength: "Al menos 5 caracteres"
-				},
-				inputLocalizacion: {
-					required: "Introduce localización",
-					minlength: "Al menos 5 caracteres"
-				},
-				inputRadio: {
-					required: "Introduce radio",
-				},
-				rec_hh_1: {
-					max: ""
-				},
-				rec_hh_2: {
-					max: ""
-				},
-				rec_hh_3: {
-					max: ""
-				},
-				rec_hh_4: {
-					max: ""
-				},
-				rec_hh_5: {
-					max: ""
-				},
-				rec_hh_6: {
-					max: ""
-				},
-				rec_hh_7: {
-					max: ""
-				},
-				rec_hh_8: {
-					max: ""
-				},
-				rec_hh_9: {
-					max: ""
-				},
-				rec_mm_1: {
-					max: ""
-				},
-				rec_mm_2: {
-					max: ""
-				},
-				rec_mm_3: {
-					max: ""
-				},
-				rec_mm_4: {
-					max: ""
-				},
-				rec_mm_5: {
-					max: ""
-				},
-				rec_mm_6: {
-					max: ""
-				},
-				rec_mm_7: {
-					max: ""
-				},
-				rec_mm_8: {
-					max: ""
-				},
-				rec_mm_9: {
-					max: ""
-				},
-				rec_ss_1: {
-					max: ""
-				},
-				rec_ss_2: {
-					max: ""
-				},
-				rec_ss_3: {
-					max: ""
-				},
-				rec_ss_4: {
-					max: ""
-				},
-				rec_ss_5: {
-					max: ""
-				},
-				rec_ss_6: {
-					max: ""
-				},
-				rec_ss_7: {
-					max: ""
-				},
-				rec_ss_8: {
-					max: ""
-				},
-				rec_ss_9: {
-					max: ""
-				}			
-			}
-		});
-		
-    	$("#buttonLocalizacion").click(function() {
-            
-	        var addressval = $("#inputLocalizacion").val();
-	    	var dataObj = ({address : addressval,method: 'geolocateAddress'});
-	    
-	    	if(addressval="") {
-	    		return false; 
-	    	}
-	    
-	    	$('#buttonLocalizacion').val('...');
-			$('#buttonLocalizacion').attr("disabled", "true"); 
-			
-		    // -- Start AJAX Call --
-		    $.ajax({
-		        type: "POST",
-		        url: "/ajaxController.php",
-		        data: dataObj,
-		        cache: false,
-		        success: function(result){
-		                //notify the user that the username is used.
-		                var lat = result.split(",")[0];
-		                var lon = result.split(",")[1];
-		                
-		                $('#buttonLocalizacion').val('Situar');
-						$('#buttonLocalizacion').removeAttr("disabled"); 
-		                $('#latHidden').val(lat);
-		              	$('#lonHidden').val(lon);
-
-                        var map = new GMap2(document.getElementById("map"));
-                        var start = new GLatLng(lat, lon);
-                        map.setCenter(start, 10);
-                        
-                        map.addControl(new GSmallZoomControl());
-                        new GKeyboardHandler(map);
-                        map.enableContinuousZoom();
-                        map.enableDoubleClickZoom();    
-                        
-                        var bounds = new GLatLngBounds();
-
-
-                        function drawCircle(center, radius, nodes, liColor, liWidth, liOpa, fillColor, fillOpa)
-                        {
-                            map.clearOverlays();
-                        // Esa 2006
-                        	//calculating km/degree
-                        	var latConv = center.distanceFrom(new GLatLng(center.lat()+0.1, center.lng()))/100;
-                        	var lngConv = center.distanceFrom(new GLatLng(center.lat(), center.lng()+0.1))/100;
-
-                        	//Loop 
-                        	var points = [];
-                        	var step = parseInt(360/nodes)||10;
-                        	for(var i=0; i<=360; i+=step)
-                        	{
-                        	var pint = new GLatLng(center.lat() + (radius/latConv * Math.cos(i * Math.PI/180)), center.lng() + 
-                        	(radius/lngConv * Math.sin(i * Math.PI/180)));
-                        	points.push(pint);
-                        	bounds.extend(pint); //this is for fit function
-                        	}
-                        	points.push(points[0]); // Closes the circle, thanks Martin
-                        	fillColor = fillColor||liColor||"#0055ff";
-                        	liWidth = liWidth||2;
-                        	var poly = new GPolygon(points,liColor,liWidth,liOpa,fillColor,fillOpa);
-                        	map.addOverlay(poly);
-                        }  
-
-                        function fit(){
-                            map.panTo(bounds.getCenter()); 
-                            map.setZoom(map.getBoundsZoomLevel(bounds)-1);
-                        }
-
-                        {/literal}{if !lat eq ""}{literal}
-                            drawCircle(start,$('#inputRadio').val(), 40);   
-                            fit();
-                        {/literal}{else}{literal}
-                            $('#map').hide();
-                        {/literal}{/if}{literal}
-				       
-		        },
-		        error:function (xhr, ajaxOptions, thrownError){
-		        	$('#buttonLocalizacion').val('Situar');
-					$('#buttonLocalizacion').removeAttr("disabled"); 
-		        }
-		    });
-		    
-		    return false;
-
-            
-    	});		
-		
-		
-	});
-</script>
-{/literal}
-
 {literal}
 <script type="text/javascript"> 
 $(document).ready(function(){
 
-    if ($("#alertsCheckBox").is(":checked"))
-      {
-          $("#editRadio").show();
-      }
-      else
-      {     
-          $("#editRadio").hide();
-      }
+	//para hacer crecer las columas a la vez
+	if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
+		$('div.rightColumn').height($('div.leftColumn').height());	
+	}
+
+	//Para controlar la activación del radio de localización
+	if ($("#alertsCheckBox").is(":checked")){
+		$("#editRadio").show();
+	}else{     
+		$("#editRadio").hide();
+	}
 
 	
 	$("#alertsCheckBox").click(function(){
@@ -402,6 +169,276 @@ $(document).ready(function(){
 	      }	
 	});
 	
+	
+	//Para validar datos de usuario
+	$("#editDataForm").validate({
+		rules: {
+			inputPassword: {
+				required: true,
+				minlength: 5
+			},
+			inputPassword2: {
+				required: true,
+				minlength: 5,
+				equalTo: "#inputPassword"
+			},
+			inputMail: {
+				required: true,
+				email: true
+			},
+			inputName: {
+				required: true,
+				minlength: 5
+			},
+			inputLocalizacion: {
+				required: true
+			},
+			inputRadio: {
+				required: true
+			},
+			rec_hh_1: {
+				max: 23
+			},
+			rec_hh_2: {
+				max: 23
+			},
+			rec_hh_3: {
+				max: 23
+			},
+			rec_hh_4: {
+				max: 23
+			},
+			rec_hh_5: {
+				max: 23
+			},
+			rec_hh_6: {
+				max: 23
+			},
+			rec_hh_7: {
+				max: 23
+			},
+			rec_hh_8: {
+				max: 23
+			},
+			rec_hh_9: {
+				max: 23
+			},
+			rec_mm_1: {
+				max: 59
+			},
+			rec_mm_2: {
+				max: 59
+			},
+			rec_mm_3: {
+				max: 59
+			},
+			rec_mm_4: {
+				max: 59
+			},
+			rec_mm_5: {
+				max: 59
+			},
+			rec_mm_6: {
+				max: 59
+			},
+			rec_mm_7: {
+				max: 59
+			},
+			rec_mm_8: {
+				max: 59
+			},
+			rec_mm_9: {
+				max: 59
+			},
+			rec_ss_1: {
+				max: 59
+			},
+			rec_ss_2: {
+				max: 59
+			},
+			rec_ss_3: {
+				max: 59
+			},
+			rec_ss_4: {
+				max: 59
+			},
+			rec_ss_5: {
+				max: 59
+			},
+			rec_ss_6: {
+				max: 59
+			},
+			rec_ss_7: {
+				max: 59
+			},
+			rec_ss_8: {
+				max: 59
+			},
+			rec_ss_9: {
+				max: 59
+			},
+			rec_dd_1: {
+				max: 99
+			},
+			rec_dd_2: {
+				max: 99
+			},
+			rec_dd_3: {
+				max: 99
+			},
+			rec_dd_4: {
+				max: 99
+			},
+			rec_dd_5: {
+				max: 99
+			},
+			rec_dd_6: {
+				max: 99
+			},
+			rec_dd_7: {
+				max: 99
+			},
+			rec_dd_8: {
+				max: 99
+			},
+			rec_dd_9: {
+				max: 99
+			}
+		},
+		messages: {
+			inputPassword: {
+				required: "Introduce contraseña",
+				minlength: "Al menos 5 caracteres"
+			},
+			inputPassword2: {
+				required: "Repite contraseña",
+				minlength: "Al menos 5 caracteres",
+				equalTo: "Debe ser igual a la contraseña"
+			},
+			inputMail: {
+				required: "Introduce una dirección de correo",
+				email: "No es una dirección válida"
+			},
+			inputName: {
+				required: "Introduce tu nombre",
+				minlength: "Al menos 5 caracteres"
+			},
+			inputLocalizacion: {
+				required: "Introduce tu localidad"
+			},
+			inputRadio: {
+				required: "Introduce un valor"
+			},
+			rec_hh_1: {
+				max: ""
+			},
+			rec_hh_2: {
+				max: ""
+			},
+			rec_hh_3: {
+				max: ""
+			},
+			rec_hh_4: {
+				max: ""
+			},
+			rec_hh_5: {
+				max: ""
+			},
+			rec_hh_6: {
+				max: ""
+			},
+			rec_hh_7: {
+				max: ""
+			},
+			rec_hh_8: {
+				max: ""
+			},
+			rec_hh_9: {
+				max: ""
+			},
+			rec_mm_1: {
+				max: ""
+			},
+			rec_mm_2: {
+				max: ""
+			},
+			rec_mm_3: {
+				max: ""
+			},
+			rec_mm_4: {
+				max: ""
+			},
+			rec_mm_5: {
+				max: ""
+			},
+			rec_mm_6: {
+				max: ""
+			},
+			rec_mm_7: {
+				max: ""
+			},
+			rec_mm_8: {
+				max: ""
+			},
+			rec_mm_9: {
+				max: ""
+			},
+			rec_ss_1: {
+				max: ""
+			},
+			rec_ss_2: {
+				max: ""
+			},
+			rec_ss_3: {
+				max: ""
+			},
+			rec_ss_4: {
+				max: ""
+			},
+			rec_ss_5: {
+				max: ""
+			},
+			rec_ss_6: {
+				max: ""
+			},
+			rec_ss_7: {
+				max: ""
+			},
+			rec_ss_8: {
+				max: ""
+			},
+			rec_ss_9: {
+				max: ""
+			},
+			rec_dd_1: {
+				max: ""
+			},
+			rec_dd_2: {
+				max: ""
+			},
+			rec_dd_3: {
+				max: ""
+			},
+			rec_dd_4: {
+				max: ""
+			},
+			rec_dd_5: {
+				max: ""
+			},
+			rec_dd_6: {
+				max: ""
+			},
+			rec_dd_7: {
+				max: ""
+			},
+			rec_dd_8: {
+				max: ""
+			},
+			rec_dd_9: {
+				max: ""
+			}
+		}
+	});
 	
     new AjaxUpload('#avatarPerfil', {
     	action: '/imageController.php',
@@ -448,7 +485,8 @@ $(document).ready(function(){
 						
     	}		
     });
-	
+    
+    	
 });
 </script>
 {/literal}
@@ -528,7 +566,7 @@ $(document).ready(function(){
 					<div class="localizacionEdit">
 						<p class="data">LOCALIZACIÓN</p>
 						<div class="span-1 first localizatorInputContainer"><input type="text" name="inputLocalizacion" id="inputLocalizacion" class="inputLocalizacion" value="{$privateData.datos.locality}"></div>
-						<div class="span-1 last localizatorInputButton"><input id="buttonLocalizacion" type="button" value="Situar" class="ButtonLocalizationUpdate"/></div>
+						<div class="span-1 last localizatorInputButton"><input id="buttonLocalizacion" type="button" value="Situar" class="ButtonLocalizationUpdate" onclick="javascript: situar();"></div>
 					</div>
 					<div id="mapBox">
 						<div class="span-1 mapaAlerts" id="map">
@@ -619,16 +657,16 @@ $(document).ready(function(){
 						{foreach key=id item=record from=$records}
 						<div class="recordContainer"> 
 						<div class="span-1">
-							<input type="text" id="rec_hh_{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
+							<input type="text" id="rec_hh_{$record.id}" name="rec_hh_{$record.id}" value="{$record.time_taken|substr:0:2}" maxlength="2" class="roundInputRecords" onblur="javascript: va({$record.id});">
 						</div>
 						<div class="span-1">
-							<input type="text" id="rec_mm_{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
+							<input type="text" id="rec_mm_{$record.id}" name="rec_mm_{$record.id}" value="{$record.time_taken|substr:3:2}" maxlength="2" class="roundInputRecords" onblur="javascript: va({$record.id});">
 						</div>
 						<div class="span-1">
-							<input type="text" id="rec_ss_{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
+							<input type="text" id="rec_ss_{$record.id}" name="rec_ss_{$record.id}" value="{$record.time_taken|substr:6:2}" maxlength="2" class="roundInputRecords" onblur="javascript: va({$record.id});">
 						</div>
 						<div class="span-1">
-							<input type="text" id="rec_dd_{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" onkeypress="return onlyNumbers(event)" class="roundInputRecords" onblur="va({$record.id});">
+							<input type="text" id="rec_dd_{$record.id}" name="rec_dd_{$record.id}" value="{$record.time_taken|substr:9:2}" maxlength="2" class="roundInputRecords" onblur="javascript: va({$record.id});">
 						</div>	
 						
 						<div class="span-1 last deleteButtons"><input type="button" class="deleteButton" value="x" onclick="javascript: void borrarRecords(rec_hh_{$record.id},rec_mm_{$record.id},rec_ss_{$record.id},rec_dd_{$record.id})"></div>
@@ -645,7 +683,7 @@ $(document).ready(function(){
 				<div class="span-1 editAcount" id="editAcount">
 					<div class="span-1 editMail">
 						<p class="data">EMAIL</p>
-						<input type="text" name="inputMail" id="inputMail" class="inputMail" value="{$privateData.datos.email}" onchange="checkEmail()">
+						<input type="text" name="inputMail" id="inputMail" class="inputMail" value="{$privateData.datos.email}">
 						<span class="emailCheck" id="checkEmailBox">
                             <img style='display:none' id="emailImage">
                             <p id="result"></p>
