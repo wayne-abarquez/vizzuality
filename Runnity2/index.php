@@ -1,8 +1,5 @@
 <?php 
 
-print_r(visitorLocation());
-die();
-
 session_start();
 
 require 'libs/Smarty.class.php';
