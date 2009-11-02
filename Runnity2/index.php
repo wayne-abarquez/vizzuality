@@ -56,26 +56,42 @@ $smarty->assign('activity',$services->getLastActivity());
 $smarty->display('home.tpl');
 
 function visitorLocation(){
+    $location = array();
+    $location['lat'] = "40.4";
+	$location['lon'] = "-3.6833";
+	$location['city'] = "Madrid";
+	$location['country'] = "Spain";
+	    
+    @$link = mysql_connect('localhost:/tmp/mysql.sock', 'root', 'runnit');
+    if (!$link) {
+    	return $location;
+    }
+
+
+
+    @$db_selected = mysql_select_db("ipcity");
+    if (!$db_selected) {
+        return $location;
+    }
+    
 	$ip = $_SERVER['REMOTE_ADDR'];
-	//$ip="87.222.21.38";	
-	//$ip="83.60.101.26"; ip de barcelona	
+    
+    $sql="SELECT region_name,country_name,latitude,longitude 
+        FROM ip_group_city where ip_start <= INET_ATON('$ip') order by ip_start desc limit";
+
+    @$query=mysql_query($sql);
+    if (!$query) {
+        return $location;
+    }
+    
+    @$result = mysql_fetch_assoc($query);
+    if($result){
+        $location['lat'] = $result['latitude'];
+    	$location['lon'] =  $result['longitude'];
+    	$location['city'] =  $result['region_name'];
+    	$location['country'] =  $result['country_name'];        
+    } 
 	
-	$d = file_get_contents("http://www.ipinfodb.com/ip_query.php?ip=$ip&output=xml");
- 
-	//Use backup server if cannot make a connection
-	if (!$d){
-		$backup = file_get_contents("http://backup.ipinfodb.com/ip_query.php?ip=$ip&output=xml");
-		$answer = new SimpleXMLElement($backup);
-		if (!$backup) return false; // Failed to open connection
-	}else{
-		$answer = new SimpleXMLElement($d);
-	}
- 
-	$location = array();
-	$location['lat'] = $answer->Latitude;
-	$location['lon'] = $answer->Longitude;
-	$location['city'] = $answer->RegionName;
-	$location['country'] = $answer->CountryCode;
 	return $location;
 }
 
