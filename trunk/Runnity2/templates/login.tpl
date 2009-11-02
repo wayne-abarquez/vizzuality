@@ -16,7 +16,7 @@
 						<p>Contraseña</p>
 						<input type="password" name="password" class="inputLoginPage">
 						<input type="hidden" name="url" value="{$url}" />
-						<input class="fg-button buttonLoginPage" type="submit" name="action" value="Entrar" />
+						<input class="buttonNoLogin" type="submit" name="action" value="Entrar" />
 						</div>
 						<div class="span-1 loginSpace">
 						<p class="loginRegisterLink">¿Aún no estás registrado?</p>
