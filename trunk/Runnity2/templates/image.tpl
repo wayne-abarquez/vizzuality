@@ -61,8 +61,8 @@
 					<div id="confirmationWindowPhoto" style='display:none'>
 						<p>¿Estás seguro de que quieres borrar esta foto?</p>
 						<div class="erasePhoto">
-						<input class="fg-button" type="submit" value="Si, quiero borrarla" onclick="location.href='/image.php?id={$smarty.request.id}&action=delete'"/>
-						<input class="fg-button" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
+						<input class="deleteAcountButton" type="submit" value="Si, quiero borrarla" onclick="location.href='/image.php?id={$smarty.request.id}&action=delete'"/>
+						<input class="deleteAcountButton" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
 						</div>
 					</div>
 				</div>

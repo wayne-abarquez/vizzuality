@@ -528,8 +528,8 @@ $(document).ready(function(){
 				<div id="confirmationWindowUser" style='display:none'>
 					<p>¿Estás seguro de que quieres borrar tu cuenta?</p>
 					<div class="erasePhoto">
-					<input class="fg-button" type="submit" value="Si, quiero borrar mi cuenta" onclick="location.href='/usuario_editar.php?del_usuario=true'"/>
-					<input class="fg-button" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
+					<input class="deleteAcountButton" type="submit" value="Si, borrar cuenta" onclick="location.href='/usuario_editar.php?del_usuario=true'"/>
+					<input class="deleteAcountButton" type="submit" value="No, ahora no" onclick="$.modal.close();"/>
 					</div>
 				</div>			
 			</div>

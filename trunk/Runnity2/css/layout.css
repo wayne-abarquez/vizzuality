@@ -2536,6 +2536,11 @@ float: right; width:71px; background:url(/img/buttonNoLogin.gif) no-repeat 0 0; 
 	height: 23px;
 }
 
+.deleteAcountButton{
+width:132px; background:url(/img/buttonComment.gif) no-repeat 0 0; height:23px; font-size: 11px; font-weight: bold; color:#ffffff; text-decoration:none; padding:0; margin: 0; border: none;}
+
+.deleteAcountButton:hover{background:url(/img/buttonComment.gif) no-repeat 0 -23px;}
+
 
 /* ---------------- */
 
