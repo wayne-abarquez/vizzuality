@@ -20,6 +20,13 @@ package com.vizzuality.markers
 		{
 			switch(icon) {
 				case "clusterIcon":
+					var background2:Sprite = new Sprite();
+		 			background2.graphics.beginFill(0x336699,0.45);
+		            background2.graphics.drawCircle(0,0,19);
+		            background2.graphics.endFill();
+		            background2.x=13;
+		            background2.y=14;
+		            addChild(background2);
 					addChild(new clusterIcon());
 					break;
 				case "commentIcon":

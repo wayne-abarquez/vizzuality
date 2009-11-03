@@ -20,6 +20,7 @@ package {
 	import com.vizzuality.gmaps.Clusterer;
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.markers.ClusterMarker;
+	import com.vizzuality.markers.GenericMarkerIcon;
 	import com.vizzuality.markers.PAGeneralInfowindow;
 	import com.vizzuality.markers.PAMarker;
 	import com.vizzuality.markers.SingleMarker;
@@ -84,6 +85,7 @@ package {
 
 		private var isResizing:Boolean=false;
  		private function stageResizeHandler(ev:Event):void {
+ 			positionElements();
 			if(map!=null && !isResizing) {
 				map.setSize(new Point(stage.stageWidth, stage.stageHeight-5));
 
@@ -176,10 +178,16 @@ package {
 					trace('click in marker');
 				});
 				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
-					openInfoWindow(e);									
+					openInfoWindow(e);
+					var options:MarkerOptions = new MarkerOptions();
+					options.icon = new GenericMarkerIcon('activityIcon');
+					(e.target as SingleMarker).setOptions(options);								
 				});
 				marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
 					map.closeInfoWindow();
+					var options1:MarkerOptions = new MarkerOptions();
+					options1.icon = GenericMarkerIcon('commentIcon');
+					(e.target as SingleMarker).setOptions(options1);
 				});						
 				markers.push(marker);
 				dataBbox.extend(place);
@@ -252,36 +260,38 @@ package {
 						map.zoomIn(e.latLng,true,false);
 					});
 					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+						
 						var titleFormat:TextFormat = new TextFormat();
 						titleFormat.bold = true;
-						var titleStyleSheet:StyleSheet = new StyleSheet();
-						var contentFormat:TextFormat = new TextFormat("Arial", 12,0x333333);
+						var titleStyleSheet:StyleSheet = new StyleSheet(); 
+						var contentFormat:TextFormat = new TextFormat("Arial", 10,0xFFFFFF,true,null,null,null,null,"center");
 						var options:InfoWindowOptions = new InfoWindowOptions({
 
 						  strokeStyle: {
 						    color: 0xcccccc,
-						    thickness:1
+						    thickness:1,
+						    alpha:0
 						  },
 						  fillStyle: {
-						    color: 0xFFFFFF,
-						    alpha: 0.9
+						    color: 0x000000,
+						    alpha: 0.75
 						  },
-						  titleFormat: titleFormat,
-						  titleStyleSheet: titleStyleSheet,
 						  contentFormat: contentFormat,
-						  width: 113,
+						  contentStyleSheet: titleStyleSheet,
+						  width: 80,
+						  height: 25,
 						  cornerRadius: 3,
-						  padding: 4,
+						  padding: 6,
 						  hasCloseButton: false,
-						  hasTail: false,
+						  hasTail: true,
 						  pointOffset:new Point(12,-5),
-						  tailWidth: 0,
-						  tailHeight: 0,
+						  tailWidth: 15,
+						  tailHeight: 8,
 						  tailOffset: -22,
 						  tailAlign: InfoWindowOptions.ALIGN_CENTER,
 						  pointOffset: new Point(0,0),
 						  hasShadow: false,
-						  content:"Click to view more"
+						  content:"VIEW MORE"
 						});
 						map.openInfoWindow(e.latLng,options);
 					});					
