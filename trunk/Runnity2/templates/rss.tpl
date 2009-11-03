@@ -17,9 +17,9 @@
 <author>Runnity.com</author>
 <category>Carreras</category>
 <pubDate>{$run.created_when}</pubDate>
-<guid>http://runnity.com/carrera.php?id={$run.id}</guid>
+<guid>http://runnity.com/run/{$run.id}/{$run.name|seourl}</guid>
 <georss:point>{$run.start_point_lat},{$run.start_point_lon}</georss:point>
-<comments>http://runnity.com/carrera.php?id={$run.id}#comments</comments>
+<comments>http://runnity.com/run/{$run.id}/{$run.name|seourl}#comments</comments>
 </item>
 {/foreach}
 </channel>
