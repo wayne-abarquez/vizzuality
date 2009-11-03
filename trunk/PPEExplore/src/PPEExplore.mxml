@@ -2,6 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.vizzuality.visualcomponents.*" creationComplete="onCreationComplete()">
 <mx:Script>
 	<![CDATA[
+		import com.vizzuality.tileoverlays.MarkersOverlay;
 		import com.google.maps.overlays.Marker;
 		import com.google.maps.LatLngBounds;
 		import com.google.maps.controls.ZoomControl;
@@ -28,6 +29,8 @@
 		private var polygonsPane:IPane;
 		private	var tl:GeoserverTileLayer;
 		private	var tlo:TileLayerOverlay;	
+		private var waitingForClicked:Boolean=false;
+		private var mo:MarkersOverlay;
 		
 		
 		private function onCreationComplete():void {
@@ -38,6 +41,7 @@
 			jsonService.resultFormat="text";
 			jsonService.addEventListener(ResultEvent.RESULT,onDataLoaded);
 			jsonService.addEventListener(FaultEvent.FAULT,function(ev:FaultEvent):void{trace(ev.fault)});
+			jsonService.showBusyCursor=true;
 			
 			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080"];
 			for each(var dom:String in externalDomains) {
@@ -92,6 +96,21 @@
 			tlo.foreground.alpha=1;
 			
 			
+			//MarkersOverlay test
+			var mg:Object = new Object();
+			mg.anchor=new LatLng(30,0);
+			mg.markers = [];
+			var m1:Object =new Object();
+			m1.title="marker 1";
+			
+			(mg.markers as Array).push(m1);
+			
+			
+			mo= new MarkersOverlay();
+			map.addOverlay(mo);
+			
+			
+			
 			
 			//trace clicks
 			map.addEventListener(MapMouseEvent.CLICK,onMapClick);
@@ -99,12 +118,16 @@
 			
 		}
 				
-		private function onMapClick(ev:MapMouseEvent):void {				
-			//if (tl.isOverFeature) {
+		private function onMapClick(ev:MapMouseEvent):void {			
+				
+			if (!waitingForClicked) {
+				polygonsPane.clear();
+				mo.clearOverlays();
 				jsonService.url="http://localhost/json.php/PPEServices.getAreasByLatLng/"+ev.latLng.lat()+"/"+ev.latLng.lng();
 				jsonService.send();
-				polygonsPane.clear();
-			//}	
+				waitingForClicked=true;
+				discretLoading.visible=true;
+			}	
 		}
 		
 		private function onDataLoaded(ev:ResultEvent):void{
@@ -112,6 +135,9 @@
 			
 			var data:Object = data = JSON.decode(ev.result as String);
 			if(!data) {
+				
+				discretLoading.visible=false;
+				waitingForClicked=false;
 				return;
 			}
 			
@@ -140,8 +166,7 @@
 				
 				
 				//add markers
-				var m:Marker= new Marker(new LatLng(o.center_lat,o.center_lng));
-				polygonsPane.addOverlay(m);
+				mo.addMarkerCluster([{}],new LatLng(o.center_lat,o.center_lng));
 				
 				
 				//calculate bounds
@@ -153,6 +178,8 @@
 				}
 				
 			}
+			
+			
 /* 			var extendZoom:Number = map.getBoundsZoomLevel(extend);
 			if (extendZoom <= (map.getZoom()+1)) {
 				map.setCenter(extend.getCenter(),extendZoom);				
@@ -160,7 +187,12 @@
 				map.setCenter(extend.getCenter(),map.getZoom()+1);
 			} */
 			
+			
+			discretLoading.visible=false;
+			waitingForClicked=false;
+			
 		}
+		
 	]]>
 </mx:Script>	
 	
