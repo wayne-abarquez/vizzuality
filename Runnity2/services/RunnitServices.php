@@ -518,26 +518,35 @@ class RunnitServices {
             $user_from = $_SESSION['user']['username'];
             $msg="Hola!,\n\n  $user_from te ha dejado un comentario en tu perfil en Runnity.com:\n\n$comment\n\nPuedes contestar a este mensaje en http://www.runnity.com/perfil/$user_from\n\nSi deseas no seguir recibiendo estos mesajes puedes activar y desactivar las alertas en http://www.runnity.com/perfil/$user_from";
             
-	       /*
- $mail = $this->getMailService();
+			//mensaje en HTML
+			$noHtml="Hola hola!";
+			
+			$sql="SELECT u.email FROM users as u 
+ 			  INNER JOIN picture as p ON u.id=p.user_fk where p.user_fk=$id";
+			
+			$mailUser= pg_query($this->conn, $sql);
+
+		
+			//Send confirmation emailsear
+	
+	        $mail = $this->getMailService();
 	
 	        $smarty = new Smarty; 
-	        $smarty->assign('name', $completename);
-	        $smarty->assign('username', $username);
-	        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_registro.tpl'));
+	        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_mensaje.tpl'));
+	        $completename="Fernan";
+	        
 	
 			$mail->From = "alertas@runnity.com";
-			$mail->FromName = "Registro Runnity";
-			$mail->Subject = "Bienvenido a Runnity.com ".$username;
+			$mail->FromName = "Runnity";
+			$mail->Subject = "Tienes un nuevo mensaje";
 			$mail->AltBody = $noHtml;
-			$mail->MsgHTML($msg);
-			$mail->AddAddress($email, $completename);
+			$mail->MsgHTML($email_message);
+			$mail->AddAddress($mailUser, $completename);
 			$mail->IsHTML(true);	
 			
 			if(!$mail->Send()) {
 				throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
-			}	
-*/
+			}
             
         }
         
