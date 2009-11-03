@@ -84,6 +84,7 @@ package {
 
 		private var isResizing:Boolean=false;
  		private function stageResizeHandler(ev:Event):void {
+ 			positionElements();
 			if(map!=null && !isResizing) {
 				map.setSize(new Point(stage.stageWidth, stage.stageHeight-5));
 

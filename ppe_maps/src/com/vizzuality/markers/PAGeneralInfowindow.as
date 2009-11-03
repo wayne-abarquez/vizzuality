@@ -1,6 +1,7 @@
 package com.vizzuality.markers
 {
 	import flash.display.Loader;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.net.URLRequest;
@@ -28,7 +29,7 @@ package com.vizzuality.markers
 				var fileRequest:URLRequest = new URLRequest("http://localhost:3000/images/thumbnails/thumb04.jpg");
 				imageLoader.load(fileRequest);
  				
- 				addChild(new bkg());
+				addChild(new bkg());
 
 		        /* var lin:Sprite = new Sprite();
 		        lin.graphics.lineStyle(1,0xcccccc);

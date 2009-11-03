@@ -13,10 +13,9 @@ package com.vizzuality.markers
 		{
 			var options:MarkerOptions = new MarkerOptions();
 			options.iconOffset = new Point(0,0);
-			options.hasShadow = true;
+			options.hasShadow = false;
 			options.draggable = false;
 			options.icon = new GenericMarkerIcon(type);
-
 			super(location, options);
 		}
 	}
