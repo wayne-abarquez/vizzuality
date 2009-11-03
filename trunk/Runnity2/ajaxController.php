@@ -41,7 +41,7 @@ if ($_REQUEST['method'] == 'addComment') {
 			<img src="/avatar.php?id=<?php echo $_SESSION['user']['id']; ?>&type=s"/>	
 		</div>
 		<div class="span-1 commentBox">
-			<div class="nameUser"><a class="name" href="#"><?php echo $name;?>, </a>ahora mismo.</div>
+			<div class="nameUser"><a class="name" href="/user/<?php echo $name?>"><?php echo $name?>, </a>ahora mismo.</div>
 			<p class="commentUser"><?php echo $comment; ?></p>
 		</div>				
 	</div>
