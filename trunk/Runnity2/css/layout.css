@@ -1746,12 +1746,12 @@ a.verTodas:hover{
 #tweets{
 	color: #666666;
 	font-size: 13px;
-	line-height: 0px;
+	line-height: 14px;
 	font-weight: bold;
 	text-decoration: none;
 }
 
-#tweets a{color: #336699; text-decoration: none;}
+#tweets a{color: #336699; text-decoration: none; margin: 0;}
 
 #tweets:hover{
 	color: #999999;
