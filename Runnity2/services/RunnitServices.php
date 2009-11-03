@@ -811,7 +811,7 @@ class RunnitServices {
 
            		//Tweet!!!
 				$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
-				$tweetMessage=substr("$event_date:$event_location-> $name",0,140);
+        				$tweetMessage=substr($event_location-> $name." http://runnity.com/run/".$id."/tw",0,140);
     	        $success = $tweet->update($tweetMessage);
 				if (!$success) {
 					error_log("TWITTER PROBLEM: ".$tweet->error);
@@ -874,11 +874,21 @@ class RunnitServices {
                 
                 //1)Look if the run was already published
                 $sql="SELECT published from run WHERE id=$id";
-                if(res=="t") {
+                $res=pg_fetch_assoc(pg_query($this->conn, $sql));
+                if($res['published']=="t") {
                     $activity_description="Datos actualizados";
                 } else {
                     if ($published=='true') {
                         $activity_description="Alta de carrera";
+                   		//Tweet!!!
+        				$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
+        				$tweetMessage=substr($event_location-> $name." http://runnity.com/run/".$id."/tw",0,140);
+            	        $success = $tweet->update($tweetMessage);
+        				if (!$success) {
+        					error_log("TWITTER PROBLEM: ".$tweet->error);
+        				}                        
+                        
+                        
                     }
                 }
                 $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
