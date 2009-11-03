@@ -42,7 +42,7 @@
 							{/if}
 						</div>
 						<div class="span-1 Race">
-							<p class="span-4 nameRace"><a href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></p>
+							<p class="span-4 nameRace"><a class="nameRaceLink" href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></p>
 							<p class="span-4 infoRace" id="iteracion{$smarty.foreach.raceloop.iteration}">
 							<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> /{$race.distance_text}</p>
 							<p class="span-4 placeRace">{$race.province_name} - {$race.event_location}</p>
@@ -229,7 +229,7 @@
 			
 	    });
 	    
-		$(".nameRace").truncate( {max_length: 50} );
+		$(".nameRaceLink").truncate( {max_length: 50} );
 		$(".infoRace").truncate( {max_length: 30} );
 		$(".nameRaceOrange").truncate( {max_length: 55} );			
 		$(".placeRace").truncate( {max_length:30} );		

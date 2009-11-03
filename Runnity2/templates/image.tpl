@@ -50,7 +50,7 @@
 					{if $nextFotoId gt 0}
 					</a>
 					{/if}
-            		{if $source eq "run"}
+            		{if $source eq "user"}
             		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>
             		{else}
             		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|seourl}">{$pictureDetails.belongs_to_name}</a></p>            		
