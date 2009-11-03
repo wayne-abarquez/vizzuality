@@ -335,7 +335,7 @@ function SubirFotos(){
 		
 		<div class="span-1 ticketOrange"></div>
 		
-		<div class="span-1 functionalContainer">
+		<div class="span-1 functionalContainerRight">
 			<p class="titulo tituloLeft tituloColumnRight">LOCALIZACIÓN</p>
 			<div id="map" class="mapStyleRight">
 	            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
@@ -356,8 +356,8 @@ function SubirFotos(){
 			</div>
 		</div>
 		
-		<div class="span-1 functionalContainer">
 		{if $runsInSameDates}
+		<div class="span-1 functionalContainerRight">
 		<p class="titulo tituloLeft tituloColumnRight">EN LAS MISMAS FECHAS</p>
 		<div class="events">
 			{foreach key=id item=race from=$runsInSameDates name=raceloop}	    				    
@@ -378,11 +378,11 @@ function SubirFotos(){
 				<div class="span-1 last separatorRight"></div>
 		    {/foreach}					
 		</div>
-		{/if}
 		</div>
+		{/if}
 		
-		<div class="span-1 functionalContainer">
 		{if $similarTypeRaces}
+		<div class="span-1 functionalContainerRight">
 		<p class="titulo tituloLeft tituloColumnRight">DE DISTANCIA PARECIDA</p>
 		<div class="events">
 			{foreach key=id item=race from=$similarTypeRaces name=raceloop}	    				    
@@ -403,13 +403,13 @@ function SubirFotos(){
 				<div class="span-1 last separatorRight"></div>
 		    {/foreach}					
 		</div>
-		{/if}
 		</div>
+		{/if}
 
 		{if $data.num_users > 0}
-		<div class="span-1 functionalContainer">		
+		<div class="span-1 functionalContainerRight">		
 			<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
-			<div class="eventsUsers">				
+			<div class="events">				
 				<div class="avatarContainer">
 				{foreach key=id item=person from=$runners}
 					<a href="/user/{$person.username}"><img class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/>

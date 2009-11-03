@@ -223,7 +223,10 @@
 		<div class="menu">
 			<div class="span-13 last horizontalcssmenu">
 			<ul id="cssmenu1">
-				<li><div><a {if $section eq "blog"} class="current"{/if} href="/blog">BLOG</a></div></li>			
+				<li><div><a {if $section eq "blog"} class="current"{/if} href="/blog">BLOG</a></div></li>
+				{if $smarty.session.logged}
+				<li><div class="border"><a {if $section eq "usuario"} class="current"{/if} href="/perfil/{$smarty.session.user.username}">TU PERFIL</a></div></li>
+				{/if}
 				<li><div class="border"><a {if $section eq "carrera" or $section eq "searchresults"} class="current"{/if} href="/buscar">CARRERAS</a></div></li>
 				<li><div class="border"><a {if $section eq "home"} class="current"{/if} href="/">HOME</a></div></li>				
 			</ul>

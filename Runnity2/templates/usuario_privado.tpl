@@ -328,7 +328,7 @@ $(document).ready(function(){
 		{if $friends}
 		<div class="span-1 functionalContainer">
 			<p class="titulo tituloLeft tituloColumnRight">USUARIOS A LOS QUE SIGUES</p>
-			<div class="eventsUsers">
+			<div class="events">
 				<div class="avatarContainer">
 				{foreach key=id item=friend from=$friends}
 					<a href="/user/{$friend.username}"><img class="avatarRight" src="/avatar.php?id={$friend.id}&type=s"/>
