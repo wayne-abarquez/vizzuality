@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" 
-	xmlns:ns1="com.google.maps.*" width="100%" height="100%" xmlns:local="*" currentState="Login"> 
+	xmlns:ns1="com.google.maps.*" width="100%" height="100%" xmlns:local="*" currentState="Login" creationComplete="initMap()" creationPolicy="all"> 
 	
 	<mx:states>
 		<mx:State name="Login">
@@ -52,6 +52,14 @@
 			private var markersArray: Array = new Array();
 			[Bindable]private var provincesArray: ArrayCollection;
 			
+			
+			private function initMap():void {
+				if(this.parameters.mapkey!=null) {
+					map.key=this.parameters.mapkey;							
+				} else {
+					map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxSPLBWm1r4y_v-I6fII4c2FT0yK6w";
+				}								
+			}
 			 
 			private function init():void {
 				listRaces.enabled = false;
@@ -195,8 +203,10 @@
             	inscription_phone.text = "";
             	flickr.text = "";
             	markersArray = new Array();
-            	map.clearOverlays();   
-            	map.setCenter(new LatLng(40.44694705960048, -3.33984375), 5, MapType.NORMAL_MAP_TYPE);      	
+            	if (map.isLoaded()) {
+	            	map.clearOverlays();   
+	            	map.setCenter(new LatLng(40.44694705960048, -3.33984375), 5, MapType.NORMAL_MAP_TYPE);      	
+            	}
             }
             
             private function addNewRace():void {
@@ -445,8 +455,7 @@
 					<mx:Label x="10" y="203" text="Lugar inscripción" width="168" textAlign="right"/>
 					<mx:Label x="10" y="256" text="Ciudad carrera" width="168" textAlign="right" />
 					<mx:Label x="10" y="283" text="Inicio y final carrera" width="168" textAlign="right"/>
-					<ns1:Map id="map" x="186" y="283" width="666" height="400" mapevent_mapready="onMapReady(event)" 
-						key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"/>
+					<ns1:Map id="map" x="186" y="283" width="666" height="400" mapevent_mapready="onMapReady(event)" />
 					<mx:Button x="260" y="294.5" label="Limpiar marcadores" click="cleanOverlay()" alpha="1" fillAlphas="[1.0, 1.0, 1.0, 1.0]"/>
 					<mx:Label x="10" y="718" text="Email organización" width="168" textAlign="right"/>
 					<mx:Label x="10" y="748" text="Teléfono organización" width="168" textAlign="right"/>
@@ -489,7 +498,7 @@
 					</mx:ComboBox>
 					<mx:Button label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)" y="910" x="664" right="40"/>
 					<mx:Button x="633.3" y="652.3" label="Buscar" click="searchLocation(buscador.text)" fillAlphas="[1.0, 1.0, 1.0, 1.0]"/>
-	            </mx:Canvas>
+	            </mx:Canvas> 
 	
 	            <mx:Canvas id="recorridoCanvas" label="Recorrido" backgroundColor="#D7D7D7" enabled="{(iden.text.length>0 &amp;&amp; recorridoCanvasHabilitado)}">
 	                <local:SetRaceLocation id="geometryRace"/>
@@ -500,8 +509,8 @@
 	</mx:VDividedBox>	
 		
 	
-	<mx:RemoteObject id="server" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
-	<mx:RemoteObject id="server2" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices" concurrency="last"/>
+	<mx:RemoteObject id="server" endpoint="http://runnity.com/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
+	<mx:RemoteObject id="server2" endpoint="http://runnity.com/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices" concurrency="last"/>
 
 	
 </mx:Application>
