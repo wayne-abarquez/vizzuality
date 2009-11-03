@@ -21,5 +21,10 @@
 			<type>2</type>
 			<location>/Users/jatorre/workspace/PPE/public/flash</location>
 		</link>
+		<link>
+			<name>bin-debug</name>
+			<type>2</type>
+			<location>/Users/jatorre/workspace/PPE/public/flash</location>
+		</link>
 	</linkedResources>
 </projectDescription>

@@ -58,7 +58,7 @@ package com.vizzuality.tileoverlays
 		}
 		
 		
-		private function loaded(event:Event):void {
+		private function loaded(event:Event):void { 
 			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
 			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 			
