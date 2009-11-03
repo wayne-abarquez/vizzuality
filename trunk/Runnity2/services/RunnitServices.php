@@ -532,15 +532,13 @@ class RunnitServices {
 	        $mail = $this->getMailService();
 	
 	        $smarty = new Smarty; 
-	        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_mensaje.tpl'));
 	        $completename="Fernan";
 	        
-	
 			$mail->From = "alertas@runnity.com";
 			$mail->FromName = "Runnity";
 			$mail->Subject = "Tienes un nuevo mensaje";
 			$mail->AltBody = $noHtml;
-			$mail->MsgHTML($email_message);
+			$mail->MsgHTML($msg);
 			$mail->AddAddress($mailUser, $completename);
 			$mail->IsHTML(true);	
 			
