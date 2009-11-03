@@ -811,7 +811,7 @@ class RunnitServices {
 
            		//Tweet!!!
 				$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
-        		$tweetMessage=substr($name."(".$event_location.") http://runnity.com/run/".$id."/tw",0,140);
+        		$tweetMessage=substr($name." (".$event_location.") http://runnity.com/run/".$id."/tw",0,140);
     	        $success = $tweet->update($tweetMessage);
 				if (!$success) {
 					error_log("TWITTER PROBLEM: ".$tweet->error);
@@ -882,7 +882,7 @@ class RunnitServices {
                         $activity_description="Alta de carrera";
                    		//Tweet!!!
         				$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
-        				$tweetMessage=substr($name."(".$event_location.") http://runnity.com/run/".$id."/tw",0,140);
+        				$tweetMessage=substr($name." (".$event_location.") http://runnity.com/run/".$id."/tw",0,140);
             	        $success = $tweet->update($tweetMessage);
         				if (!$success) {
         					error_log("TWITTER PROBLEM: ".$tweet->error);
