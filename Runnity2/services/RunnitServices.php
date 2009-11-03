@@ -518,7 +518,26 @@ class RunnitServices {
             $user_from = $_SESSION['user']['username'];
             $msg="Hola!,\n\n  $user_from te ha dejado un comentario en tu perfil en Runnity.com:\n\n$comment\n\nPuedes contestar a este mensaje en http://www.runnity.com/perfil/$user_from\n\nSi deseas no seguir recibiendo estos mesajes puedes activar y desactivar las alertas en http://www.runnity.com/perfil/$user_from";
             
-            
+	       /*
+ $mail = $this->getMailService();
+	
+	        $smarty = new Smarty; 
+	        $smarty->assign('name', $completename);
+	        $smarty->assign('username', $username);
+	        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_registro.tpl'));
+	
+			$mail->From = "alertas@runnity.com";
+			$mail->FromName = "Registro Runnity";
+			$mail->Subject = "Bienvenido a Runnity.com ".$username;
+			$mail->AltBody = $noHtml;
+			$mail->MsgHTML($msg);
+			$mail->AddAddress($email, $completename);
+			$mail->IsHTML(true);	
+			
+			if(!$mail->Send()) {
+				throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+			}	
+*/
             
         }
         

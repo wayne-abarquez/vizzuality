@@ -175,7 +175,7 @@
 				{if $smarty.session.logged}
 				<a href="/perfil/{$smarty.session.user.username}">bienvenido {$smarty.session.user.username}</a>
 				/ 
-				<a onclick="logout()">salir</a>
+				<a onclick="logout()">cerrar sesión</a>
 				{else}
 				<a href="javascript: void showLoginWindow()">accede a tu cuenta</a>
 				/ 
