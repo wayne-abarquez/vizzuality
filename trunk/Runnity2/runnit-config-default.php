@@ -1,4 +1,8 @@
 <?php
+if($_SERVER["SERVER_NAME"]=="runnity.es" or $_SERVER["SERVER_NAME"]== "runnity.net") {
+        $newloc="http://runnity.com".$_SERVER["REQUEST_URI"];
+        header( "Location: $newloc") ;
+}
 
 require('combinejs.php');
 require('combinecss.php');
