@@ -161,7 +161,7 @@
 				<div><span id="contactError2" class="errorMessage"></span></div>
 				<div class="bottom">
 					<p>Una vez mandada la información, nuestro equipo contactará contigo para completarla.</p>
-					<input id="contactPublish" class="buttonLogin" value="Enviar" type="submit">
+					<div class="contactButtonContainerRun"><input id="contactPublish" class="buttonLogin" value="Enviar" type="submit"></div>
 				</div>
 			</form>
 		</div>
