@@ -2170,14 +2170,9 @@ div.titleComents {
 
 div.events {
 	width: 262px;
-	height: 80px;
 	margin-left: 24px;
 	margin-top: -4px;
-}
-
-div.eventsUsers {
-	width: 262px;
-	margin-left: 24px;
+	background-color: yellow;
 }
 
 div.raceRight{
@@ -2185,12 +2180,14 @@ div.raceRight{
 	margin-bottom: 0px;
 	margin-top: 0px;
 	background-color: #e0e0e0;
+	min-height: 80px;
 }
 
 div.raceRight2{
 	width: 262px;
 	margin-bottom: 0px;
 	background-color: #e7e7e7;
+	min-height: 80px;
 }
 
 .dateRight{
@@ -2290,6 +2287,13 @@ div.avatarContainer a div.hidden {
 	margin-top: -6px;
 	margin-bottom: 10px;
 	width: auto;
+}
+
+.functionalContainerRight{
+	margin-top: -6px;
+	margin-bottom: 10px;
+	width: auto;
+	height: 250px;
 }
 
 .compartir{
