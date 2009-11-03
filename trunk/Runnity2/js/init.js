@@ -754,7 +754,7 @@ function publishRun() {
         success: function(result){
                 var h = 100;
                 $('#publish_container').html('');
-                $('#publish_container').append('<h2 style="width:450px; text-align: center;">Gracias por enviar tu sugerencia</h2>');
+                $('#publish_container').append('<h2 style="width:450px; text-align: center;">Gracias por enviar tu carrera</h2>');
                 $('#publish_container').append('<div style="text-align:center;width:450px;color:#336699;margin-top:-20px">Gracias por enviar la carrera, en breve se cerrará esta ventana.</div>');
                 $('div.simplemodal-data').animate({height:100},500);
 

@@ -161,7 +161,11 @@ function SubirFotos(){
 						{if $data.inscription_location != null}
 						<div class="span-1 last dataContainer">
 							<div class="span-1 last dataTitle"><p>Lugar:</p></div>
-							<div class="span-1 last data"><p><b>{$data.inscription_location}</b></p></div>
+							{if ($data.inscription_location|truncate:4:"" eq "www.") or ($data.inscription_location|truncate:4:"" eq "http")}
+							<div class="span-1 last data"><p class="special"><a target="_blank" href="{if $data.inscription_location|substr:0:7 eq "http://"}{$data.inscription_location}{else}http://{$data.inscription_location}{/if}">{$data.inscription_location}</a></p></div>							
+							{else}
+								<div class="span-1 last data"><p><b>{$data.inscription_location}</b></p></div>
+							{/if}
 						</div>
 						{/if}
 						{if $data.inscription_email != null}
