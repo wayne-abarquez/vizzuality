@@ -203,6 +203,14 @@ class RunnitServices {
 			throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
 		}			
 		
+   		//Tweet!!!
+		$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
+		$tweetMessage=substr("Tenemos un nuevo usuario! Mira su perfil en www.runnity.com/user/".$username);
+        $success = $tweet->update($tweetMessage);
+		if (!$success) {
+			error_log("TWITTER PROBLEM: ".$tweet->error);
+		}		
+		
 		
         $_SESSION['logged']=true;
         $_SESSION['user']['id']=$user['id'];
