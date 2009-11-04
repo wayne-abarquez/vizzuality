@@ -544,7 +544,7 @@ class RunnitServices {
 	
 			$mail->From = "alertas@runnity.com";
 			$mail->FromName = "Runnity";
-			$mail->Subject = "Tienes un mensaje nuevo".$userName;
+			$mail->Subject = "Tienes un mensaje nuevo ".$userName;
 			$mail->AltBody = $noHtml;
 			$mail->MsgHTML($email_message);
 			$mail->AddAddress($mailUser, $completeName);
@@ -559,19 +559,12 @@ class RunnitServices {
         //Notify the user if a comment has been sent to him
         if($table=="picture") {
             $user_from = $_SESSION['user']['username'];
+            $user_from_id = $_SESSION['user']['id'];
             
-            $sql="SELECT distinct user_fk FROM picture where id=$id";
-			$result=pg_query($this->conn, $sql);
-			$user_Up=pg_fetch_result($result,0); 
+            $sql="select u.id as userid,username,completename,p.id,email from picture as p inner join users as u on p.user_fk=u.id  where p.id=$id";
+			$result=pg_query($this->conn, $sql); 
+			$user_Up=pg_fetch_array($result, NULL, PGSQL_ASSOC);
 			
-			$sql="SELECT distinct email,completename,username FROM users where id=$user_Up";
-			$result=pg_query($this->conn, $sql);
-			$mailUser=pg_fetch_result($result,0);       	
-			$completeName=pg_fetch_result($result,1);
-			$userName=pg_fetch_result($result,2);
-
-						
-			//mensaje en HTML
 			$noHtml="Runnity.com\n\n
 			$user_from ha comentado una foto tuya:\n\n Si quieres puedes ver el mensaje en: /picture/$id/$table";
 		
@@ -580,8 +573,7 @@ class RunnitServices {
 	        $mail = $this->getMailService();
 	
 	        $smarty = new Smarty; 
-	        $smarty->assign('name', $completeName);
-	        $smarty->assign('username', $userName);
+	        $smarty->assign('username', $user_Up['username']);
 	        $smarty->assign('user_from', $user_from);
 	        $smarty->assign('comment', $comment);
 	        $smarty->assign('table', $table);
@@ -591,15 +583,24 @@ class RunnitServices {
 	
 			$mail->From = "alertas@runnity.com";
 			$mail->FromName = "Runnity";
-			$mail->Subject = "Tienes un mensaje nuevo en una foto".$userName;
+			$mail->Subject = "Tienes un mensaje nuevo en una foto ".$user_Up['username'];
 			$mail->AltBody = $noHtml;
 			$mail->MsgHTML($email_message);
-			$mail->AddAddress($mailUser, $completeName);
+			$mail->AddAddress($user_Up['email'], $user_Up['completename']);
 			$mail->IsHTML(true);	
 			
 			if(!$mail->Send()) {
 				throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
-			}			
+			}		
+			
+/*
+			--el que creo la foto
+select u.id, username,completename,p.id,email from picture as p inner join users as u on p.user_fk=u.id  where p.id=627 
+
+--gente que ha comentado y que no es el que la creo ni el que acab de comentar
+
+select distinct username,completename,u.id,email from comments as c inner join users as u on c.user_fk=u.id  where on_id=627 and u.id not in (112,50)
+*/
 
         }
         

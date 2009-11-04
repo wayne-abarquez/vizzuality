@@ -55,7 +55,7 @@
 </head>
 <body>
 
-<h1>Tienes un mensaje nuevo {$name}</h1>
+<h1>Tienes un mensaje nuevo {$username}</h1>
 
 <p>{$user_from} te ha dejado un mensaje nuevo: "{$comment}" en la foto <a href="http://www.runnity.com/picture/{$idFoto}/{$table}">http://www.runnity.com/picture/{$idFoto}/{$table}</a></p> 
 
