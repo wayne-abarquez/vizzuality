@@ -2,6 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.vizzuality.visualcomponents.*" creationComplete="onCreationComplete()">
 <mx:Script>
 	<![CDATA[
+		import com.greensock.TweenLite;
 		import com.vizzuality.tileoverlays.MarkersOverlay;
 		import com.google.maps.overlays.Marker;
 		import com.google.maps.LatLngBounds;
@@ -113,28 +114,38 @@
 			
 			
 			//trace clicks
-			map.addEventListener(MapMouseEvent.CLICK,onMapClick);
+			map.addEventListener(MapMouseEvent.CLICK,function(ev:MapMouseEvent):void{TweenLite.delayedCall(0.1,onMapClick,[ev]);});
+			map.addEventListener(MapMouseEvent.DOUBLE_CLICK,checkDoubleClick);
 			
 			
 		}
+		private var doubleclicked:Boolean=false;
+		private function checkDoubleClick(ev:MapMouseEvent):void {
+			doubleclicked=true;
+			trace("doubleclick");
+		}
 				
 		private function onMapClick(ev:MapMouseEvent):void {			
+			trace("click");
+			if(!doubleclicked) {
 				
-			if (!waitingForClicked) {
-				polygonsPane.clear();
-				mo.clearOverlays();
-				jsonService.url="http://localhost/json.php/PPEServices.getAreasByLatLng/"+ev.latLng.lat()+"/"+ev.latLng.lng();
-				jsonService.send();
-				waitingForClicked=true;
-				discretLoading.visible=true;
-			}	
+				if (!waitingForClicked) {
+					polygonsPane.clear();
+					jsonService.url="http://localhost/json.php/PPEServices.getAreasByLatLng/"+ev.latLng.lat()+"/"+ev.latLng.lng();
+					jsonService.send();
+					waitingForClicked=true;
+					discretLoading.visible=true;
+				}	
+			} else {
+				doubleclicked=false;				
+			}
 		}
 		
 		private function onDataLoaded(ev:ResultEvent):void{
 
-			
-			var data:Object = data = JSON.decode(ev.result as String);
-			if(!data) {
+			mo.clearOverlays();
+			var dataJ:Object = data = JSON.decode(ev.result as String);
+			if(!dataJ) {
 				
 				discretLoading.visible=false;
 				waitingForClicked=false;
@@ -142,8 +153,8 @@
 			}
 			
 			var extend:LatLngBounds;
-			var i:uint=0;
-			for each(var o:Object in data as Array) {
+			var markers:Array = [];
+			for each(var o:Object in dataJ as Array) {
 				
 				var col:Number=Math.random() * 0xFFFFFF;
 				var polOpt:PolygonOptions=new PolygonOptions({
@@ -165,12 +176,11 @@
 				mp.fromGeojsonMultiPolygon(o.geom.coordinates,polOpt);				
 				mp.addToPane(polygonsPane);
 				
-				
-				//add markers
-				if(i==0) {
-					i=1;
-					mo.addMarkerCluster([{}],new LatLng(o.center_lat,o.center_lng));
-				}
+				var mark:Object = {
+					latlng:new LatLng(o.center_lat,o.center_lng)
+					
+				};
+				markers.push(mark);
 				
 				
 				//calculate bounds
@@ -182,6 +192,8 @@
 				}
 				
 			}
+			TweenLite.delayedCall(0.6,delayedMarkersAddition,[markers]);
+
 			
 			
 /* 			var extendZoom:Number = map.getBoundsZoomLevel(extend);
@@ -189,12 +201,14 @@
 				map.setCenter(extend.getCenter(),extendZoom);				
 			} else {
 				map.setCenter(extend.getCenter(),map.getZoom()+1);
-			} */
+			} */	
 			
-			
+		}
+		
+		private function delayedMarkersAddition(markers:Array):void {
 			discretLoading.visible=false;
 			waitingForClicked=false;
-			
+			mo.addMarkerCluster(markers);
 		}
 		
 	]]>

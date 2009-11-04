@@ -1,6 +1,6 @@
 package com.vizzuality.tileoverlays
 {
-	import com.google.maps.LatLng;
+	import com.google.maps.Color;
 	import com.google.maps.MapEvent;
 	import com.google.maps.PaneId;
 	import com.google.maps.interfaces.IMap;
@@ -60,8 +60,10 @@ package com.vizzuality.tileoverlays
 						var pos:Point = pane.fromLatLngToPaneCoords((node as ClusterMarkerIcon).location);
 						node.x=pos.x;
 						node.y=pos.y;
+						
 					}
 				}
+				vis.update();
 			}
 			
 		}	
@@ -69,33 +71,43 @@ package com.vizzuality.tileoverlays
 		public function clearOverlays():void {
 			//graphSprite.data=new Data();
 			//graphSprite.data.clear();
-			if (vis!=null && data!=null && this.getChildAt(0)!=null) {
+			if (vis!=null && data!=null) {
 				removeChild(vis);
+				vis=null;
+				data=null;
 			}
 		}
 		
-		public function addMarkerCluster(markers:Array,llatlng:LatLng):void {
+		public function addMarkerCluster(markers:Array):void {
 
 	        data = new Data();	
 			
-			//create the anchor
-			var baseAnchor:ClusterMarkerIcon = new ClusterMarkerIcon(llatlng);			
-			//var baseAnchor:NodeSprite=data.addNode();
-	        baseAnchor.fix(1);
-	        var pos:Point = pane.fromLatLngToPaneCoords(llatlng);
-	        baseAnchor.x=pos.x;
-			baseAnchor.y=pos.y;
-			data.addNode(baseAnchor);
 	        
+
 	        for each(var m:Object in markers) {
+				//create the anchor
+				var baseAnchor:ClusterMarkerIcon = new ClusterMarkerIcon(m.latlng);			
+				//var baseAnchor:NodeSprite=data.addNode();
+		        baseAnchor.fix(1);
+		        var pos:Point = pane.fromLatLngToPaneCoords(m.latlng);
+		        baseAnchor.x=pos.x;
+				baseAnchor.y=pos.y;
+				data.addNode(baseAnchor);
+				
 		        var m2:SearchMarkerIcon=new SearchMarkerIcon("http://localhost:3000/images/thumbnails/thumb01.jpg",1,true);
 		        //var m2:NodeSprite=data.addNode();
 		        data.addNode(m2);
+		        
+		        //mDict[baseAnchor]=m2;
 		        var ed:CustomEdgeSprite = new CustomEdgeSprite(baseAnchor,m2);
-		        data.addEdge(ed);
-				//var ed:EdgeSprite = data.addEdgeFor(baseAnchor,m2);
+		        ed.lineWidth=3;
+		        ed.lineColor=0xffffffff * Math.random();
+		       	var res:EdgeSprite = data.addEdge(ed);
 		        
 	        }
+	        
+	        
+	        
 	        data.nodes.sortBy("depth");
 	        
 /* 	        var edgDefaults:Object = {
@@ -116,14 +128,15 @@ package com.vizzuality.tileoverlays
  			fdl.defaultSpringTension=0.1;
             vis.operators.add(fdl);
       			            
-            vis.continuousUpdates = true;     	            				
-       
+            vis.continuousUpdates = true;          				      
             vis.update();	        
             addChild(vis);
 	        
-	        
 		}	
 		
+		
+	
+	
 		
 	}
 }

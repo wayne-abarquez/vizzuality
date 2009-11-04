@@ -18,6 +18,7 @@ package com.vizzuality.markers{
 		
         public function SearchMarkerIcon(imageUrl:String,sites:int,isNeeded:Boolean) {
 
+				super();    
 				this.buttonMode = true;
 				this.useHandCursor = true;
 				this.mouseChildren = false;
@@ -94,6 +95,8 @@ package com.vizzuality.markers{
                     percent.addChild(tf1);
                     addChild(percent);
              	}
+         	
+             	
                 
         }
   		
