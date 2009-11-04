@@ -410,7 +410,7 @@ function inscribirseCarrera(userID,raceID) {
 	    	data: dataObj,
 	    	cache: false,
 	    	success: function(result){     				
-				$('#ticketOrangeVoy').html('<b><a><div class="checkboxChecked"></div></a><p id="textoInscribirse">Estoy apuntado a esta carrera</p></b>');	    	
+				$('#ticketOrangeVoy').html('<b><a><div class="checkboxChecked"></div></a><p id="textoInscribirse">Crees que irás a la carrera</p></b>');	    	
 				},
 	        error:function (xhr, ajaxOptions, thrownError){   
 	                alert('Runnit' + xhr.message + "\n" + thrownError);

@@ -331,7 +331,7 @@ function SubirFotos(){
 	
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn">
-		<div class="span-1 ticketOrangeVoy" id="ticketOrangeVoy">{if $smarty.session}{if $data.inscrito eq 'f'}<a href="javascript: void inscribirseCarrera('{$smarty.session.user.id}','{$smarty.request.id}')"><div class="checkboxUnchecked"></div><p id="textoInscribirse">Apúntate a esta carrera</p></a>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Estoy apuntado a esta carrera</p>{/if}{else}<div class="checkbox"></div><p><a href="javascript: void showLoginWindow()">Haz login</a> para apuntarte a la carrera</p>{/if}</div>
+		<div class="span-1 ticketOrangeVoy" id="ticketOrangeVoy">{if $smarty.session}{if $data.inscrito eq 'f'}<a href="javascript: void inscribirseCarrera('{$smarty.session.user.id}','{$smarty.request.id}')"><div class="checkboxUnchecked"></div><p id="textoInscribirse">Crees que irás a la carrera</p></a>{else}<div class="checkboxChecked"></div><p id="textoInscribirse">Crees que irás a la carrera</p>{/if}{else}<div class="checkbox"></div><p><a href="javascript: void showLoginWindow()">Haz login</a> para apuntarte a la carrera</p>{/if}</div>
 		
 		<div class="span-1 ticketOrange"></div>
 		
