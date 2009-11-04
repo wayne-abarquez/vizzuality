@@ -7,19 +7,25 @@ package com.vizzuality.tileoverlays
 	import com.google.maps.interfaces.IPane;
 	import com.google.maps.overlays.OverlayBase;
 	import com.vizzuality.markers.ClusterMarkerIcon;
+	import com.vizzuality.markers.CustomEdgeSprite;
 	import com.vizzuality.markers.SearchMarkerIcon;
 	
+	import flare.physics.Simulation;
+	import flare.vis.Visualization;
+	import flare.vis.data.Data;
+	import flare.vis.data.EdgeSprite;
 	import flare.vis.data.NodeSprite;
+	import flare.vis.operator.layout.ForceDirectedLayout;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 
 	public class MarkersOverlay extends OverlayBase
-	{
+	{		
 		
-		public var graphSprite:MarkersGraphSprite;
-		
-		public var markersGraph:Object;
+		private var data:Data;
+		private var vis:Visualization;
 				
 		public function MarkersOverlay() {
 			super();
@@ -29,12 +35,12 @@ package com.vizzuality.tileoverlays
 		}
 		
 		private function handleOverlayAdded(event:Event):void {
-			graphSprite = new MarkersGraphSprite(pane.map.getSize());
-		    addChild(graphSprite);
+			//graphSprite = new MarkersGraphSprite(pane.map.getSize());
+		    //addChild(graphSprite);
 		}
 		  
 		private function handleOverlayRemoved(event:Event):void {
-		    removeChild(graphSprite);
+		    removeChild(vis);
 		}		
 		
 		override public function getDefaultPane(map:IMap):IPane {
@@ -44,15 +50,17 @@ package com.vizzuality.tileoverlays
 		
 		override public function positionOverlay(zoom:Boolean):void
 		{
-		    if (zoom){
-		    	
-		    }
-		
-			for each(var node:NodeSprite in graphSprite.data.nodes) {
-				if (node is ClusterMarkerIcon) {					
-					var pos:Point = pane.fromLatLngToPaneCoords((node as ClusterMarkerIcon).location);
-					node.x=pos.x;
-					node.y=pos.y;
+			if (vis!=null && data!=null) {
+			    if (zoom){
+			    	
+			    }
+			
+				for each(var node:NodeSprite in data.nodes) {
+					if (node is ClusterMarkerIcon) {					
+						var pos:Point = pane.fromLatLngToPaneCoords((node as ClusterMarkerIcon).location);
+						node.x=pos.x;
+						node.y=pos.y;
+					}
 				}
 			}
 			
@@ -60,36 +68,59 @@ package com.vizzuality.tileoverlays
 		
 		public function clearOverlays():void {
 			//graphSprite.data=new Data();
-			graphSprite.clear();
+			//graphSprite.data.clear();
+			if (vis!=null && data!=null && this.getChildAt(0)!=null) {
+				removeChild(vis);
+			}
 		}
 		
 		public function addMarkerCluster(markers:Array,llatlng:LatLng):void {
+
+	        data = new Data();	
 			
 			//create the anchor
 			var baseAnchor:ClusterMarkerIcon = new ClusterMarkerIcon(llatlng);			
-			graphSprite.data.addNode(baseAnchor);
+			//var baseAnchor:NodeSprite=data.addNode();
 	        baseAnchor.fix(1);
-	        baseAnchor.size = 0.5;
-	        baseAnchor.fillColor = 0x88aaaaaa;
 	        var pos:Point = pane.fromLatLngToPaneCoords(llatlng);
 	        baseAnchor.x=pos.x;
 			baseAnchor.y=pos.y;
+			data.addNode(baseAnchor);
 	        
 	        for each(var m:Object in markers) {
 		        var m2:SearchMarkerIcon=new SearchMarkerIcon("http://localhost:3000/images/thumbnails/thumb01.jpg",1,true);
-		        graphSprite.data.addNode(m2);
-		        //m1.size = 1;
-		        graphSprite.data.addEdgeFor(baseAnchor,m2);	        	
+		        //var m2:NodeSprite=data.addNode();
+		        data.addNode(m2);
+		        var ed:CustomEdgeSprite = new CustomEdgeSprite(baseAnchor,m2);
+		        data.addEdge(ed);
+				//var ed:EdgeSprite = data.addEdgeFor(baseAnchor,m2);
+		        
 	        }
+	        data.nodes.sortBy("depth");
 	        
-	        var edgesStyle:Object = {
-				lineColor: 0x00000000,
-				lineWidth: 3,
-				alpha: 1,
-				visible: true			
-				};
-	        graphSprite.data.edges.setProperties(edgesStyle);	
-	        graphSprite.vis.update();
+/* 	        var edgDefaults:Object = {
+	        	lineColor:Color.RED,
+	        	lineWidth:3,
+	        	visible:true
+	        }; */
+	        
+	        //graphSprite.vis.update();
+	        
+	        
+            vis = new Visualization(data);
+	        vis.bounds = new Rectangle(0, 0, pane.map.getSize().x, pane.map.getSize().y);			
+	        //data.edges.setDefaults(defaultEdgeStyle);		
+ 
+ 			var fdl:ForceDirectedLayout=new ForceDirectedLayout(true,1,new Simulation(0,0,0.5,-4005));
+ 			fdl.defaultSpringLength=50;
+ 			fdl.defaultSpringTension=0.1;
+            vis.operators.add(fdl);
+      			            
+            vis.continuousUpdates = true;     	            				
+       
+            vis.update();	        
+            addChild(vis);
+	        
 	        
 		}	
 		
