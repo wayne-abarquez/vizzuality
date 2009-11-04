@@ -57,7 +57,7 @@
 
 <h1>Tienes un mensaje nuevo {$name}</h1>
 
-<p>{} te ha dejado un mensaje nuevo: "{$comment}"</p> 
+<p>{$user_from} te ha dejado un mensaje nuevo: "{$comment}"</p> 
 
 <p>Sólo tienes que ir a tu página de usuario <a href="http://www.runnity.com/perfil/{$username}">http://www.runnity.com/perfil/{$username}</a> y hacer login para ver el mensaje</p>
 
