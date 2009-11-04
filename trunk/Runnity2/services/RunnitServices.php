@@ -535,7 +535,7 @@ class RunnitServices {
 	        $mail = $this->getMailService();
 	
 	        $smarty = new Smarty; 
-	        $smarty->assign('name', $completename);
+	        $smarty->assign('name', $completeName);
 	        $smarty->assign('username', $userName);
 	        $smarty->assign('user_from', $user_from);
 	        $smarty->assign('comment', $comment);
@@ -547,7 +547,7 @@ class RunnitServices {
 			$mail->Subject = "Tienes un mensaje nuevo".$userName;
 			$mail->AltBody = $noHtml;
 			$mail->MsgHTML($email_message);
-			$mail->AddAddress($mailUser, $completename);
+			$mail->AddAddress($mailUser, $completeName);
 			$mail->IsHTML(true);	
 			
 			if(!$mail->Send()) {
