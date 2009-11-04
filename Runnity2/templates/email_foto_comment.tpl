@@ -55,9 +55,9 @@
 </head>
 <body>
 
-<h1>Tienes un mensaje nuevo en una de tus fotos {$username}</h1>
+<h1>Tienes un mensaje nuevo en una foto que has comentado {$username}</h1>
 
-<p>{$user_from} te ha dejado un mensaje nuevo: "{$comment}" en la foto <a href="http://www.runnity.com/picture/{$idFoto}/{$table}">http://www.runnity.com/picture/{$idFoto}/{$table}</a></p> 
+<p>{$user_from} ha dejado un mensaje nuevo en una foto que has comentado: "{$comment}" <a href="http://www.runnity.com/picture/{$idFoto}/{$table}">http://www.runnity.com/picture/{$idFoto}/{$table}</a></p> 
 
 <p>Para contestar a {$user_from} entra en su perfil <a href="http://www.runnity.com/user/{$user_from}">http://www.runnity.com/user/{$user_from}</a></p>
 

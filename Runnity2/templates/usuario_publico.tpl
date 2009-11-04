@@ -114,7 +114,7 @@ $(document).ready(function(){
 				<p class="span-8 tituloPhotos">FOTOS DE {$data.datos.username|upper}</p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<a name="anclafotos" href="/picture/{$picture.id}/run"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+					<a name="anclafotos" href="/picture/{$picture.id}/user"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
 				{/foreach}	
 				</div>
 			</div>
