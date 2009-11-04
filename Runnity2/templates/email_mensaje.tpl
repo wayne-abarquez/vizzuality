@@ -57,9 +57,13 @@
 
 <h1>Tienes un mensaje nuevo {$name}</h1>
 
-<p>{$user_from} te ha dejado un mensaje nuevo: "{$comment}"</p> 
+<p>{$user_from} te ha dejado un mensaje nuevo: 
 
-<p>Sólo tienes que ir a tu página de usuario <a href="http://www.runnity.com/perfil/{$username}">http://www.runnity.com/perfil/{$username}</a> y hacer login para ver el mensaje</p>
+"{$comment}"</p> 
+
+<p>Para ver el mensaje entra en tu perfil <a href="http://www.runnity.com/perfil/{$username}">http://www.runnity.com/perfil/{$username}</a></p>
+
+<p>Para contestar a {$user_from} entra en su perfil <a href="http://www.runnity.com/user/{$user_from}">http://www.runnity.com/user/{$user_from}</a></p>
 
 <p class="contacta">Si tienes alguna duda o sugerencia, <a href="mailto:contacto@runnity.com">contacta con nosotros</a></p>
 
