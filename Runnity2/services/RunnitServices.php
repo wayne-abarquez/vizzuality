@@ -517,34 +517,43 @@ class RunnitServices {
         if($table=="user") {
             $user_from = $_SESSION['user']['username'];
 			
-			$sql="SELECT distinct u.email FROM users as u INNER JOIN comments as c ON u.id=c.on_Id where c.on_id=$id and c.user_fk=$userId";
-			$mailUser=pg_fetch_result(pg_query($this->conn, $sql),0);       	
-	
-	
-			error_log($mailUser);
+			$sql="SELECT distinct u.email,u.completename,u.username FROM users as u INNER JOIN comments as c ON u.id=c.on_Id where c.on_id=$id and c.user_fk=$userId";
+			$result=pg_query($this->conn, $sql);
+			$mailUser=pg_fetch_result($result,0);       	
+			$completeName=pg_fetch_result($result,1);
+			$userName=pg_fetch_result($result,2);
+			
 			//mensaje en HTML
-			$noHtml="Hola";
-	
+			$noHtml="Runnity.com\n\n
+			$user_from te ha dejado un mensaje:\n\n
+			'$comment'
+			
+			Si quieres puedes ver el mensaje en tu perfil: /user/$userName";
+		
 			//Send confirmation emailsear
 	
 	        $mail = $this->getMailService();
 	
 	        $smarty = new Smarty; 
+	        $smarty->assign('name', $completename);
+	        $smarty->assign('username', $userName);
+	        $smarty->assign('user_from', $user_from);
+	        $smarty->assign('comment', $comment);
+	        
 	        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_mensaje.tpl'));
 	
 			$mail->From = "alertas@runnity.com";
-			$mail->FromName = "Registro Runnity";
-			$mail->Subject = "Bienvenido a Runnity.com ";
+			$mail->FromName = "Runnity";
+			$mail->Subject = "Tienes un mensaje nuevo".$userName;
 			$mail->AltBody = $noHtml;
-			$mail->MsgHTML($noHtml);
-			$mail->AddAddress($mailUser, $user_from);
+			$mail->MsgHTML($email_message);
+			$mail->AddAddress($mailUser, $completename);
 			$mail->IsHTML(true);	
 			
 			if(!$mail->Send()) {
 				throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
 			}			
 
-            
         }
         
         return null;
