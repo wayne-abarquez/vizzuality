@@ -514,7 +514,8 @@ class RunnitServices {
         }
         
         //Notify the user if a comment has been sent to him
-        if($table=="user") {
+        /*
+if($table=="user") {
             $user_from = $_SESSION['user']['username'];
 			
 			$sql="SELECT distinct u.email FROM users as u INNER JOIN comments as c ON u.id=c.user_fk where c.on_id=$id and u.id=$userId";
@@ -544,6 +545,7 @@ class RunnitServices {
 
             
         }
+*/
         
         return null;
 	    
