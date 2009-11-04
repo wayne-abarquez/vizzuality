@@ -521,6 +521,9 @@ class RunnitServices {
 			$mailUser=pg_fetch_result(pg_query($this->conn, $sql),0);       	
 	
 			$mail = $this->getMailService();
+			
+			        $smarty = new Smarty; 
+
 		$mail->From = "alertas@runnity.com";
 		$mail->FromName = "Alertas Runnity";
 		$mail->Subject = "Runnity Carreras";	
