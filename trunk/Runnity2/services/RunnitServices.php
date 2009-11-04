@@ -600,48 +600,38 @@ class RunnitServices {
 			$sql="select distinct username,completename,u.id,email from comments as c inner join users as u on c.user_fk=u.id where on_id=$id and u.id not in ($user_from_id,$user_up_id)";
 			$result=pg_fetch_all(pg_query($this->conn, $sql));			
 			error_log("good!");
-			
-			for($i = 0; $i < sizeof($result); ++$i){
-    			$result[$i]['email'];
-    			
-	    		$noHtml="Runnity.com\n\n $user_from ha comentado una foto que has comentado:\n\n Si quieres puedes ver el mensaje en: /picture/$id/$table";
-			
-				//Send confirmation emailsear
-		
-		        $mail = $this->getMailService();
-		
-		        $smarty = new Smarty; 
-		        $smarty->assign('username', $result[$i]['username']);
-		        $smarty->assign('user_from', $user_from);
-		        $smarty->assign('comment', $comment);
-		        $smarty->assign('table', $table);
-		        $smarty->assign('idFoto', $id);
-		        
-		        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_foto_comment.tpl'));
-		
-				$mail->From = "alertas@runnity.com";
-				$mail->FromName = "Runnity";
-				$mail->Subject = "Alguien ha comentado una foto que tu has comentado ".$result[$i]['username'];
-				$mail->AltBody = $noHtml;
-				$mail->MsgHTML($email_message);
-				$mail->AddAddress($result[$i]['email'], $result[$i]['completename']);
-				$mail->IsHTML(true);	
+			if ($result){
+				for($i = 0; $i < sizeof($result); ++$i){
+	    			error_log($result[$i]['email']);  			
+		    		$noHtml="Runnity.com\n\n
+					$user_from ha comentado una foto que has comentado:\n\n Si quieres puedes ver el mensaje en: /picture/$id/$table";
 				
-				if(!$mail->Send()) {
-					throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
-				}    			
-    			
-			}
+					//Send confirmation emailsear
 			
-/*
-			--el que creo la foto
-select u.id, username,completename,p.id,email from picture as p inner join users as u on p.user_fk=u.id  where p.id=627 
-
---gente que ha comentado y que no es el que la creo ni el que acab de comentar
-
-select distinct username,completename,u.id,email from comments as c inner join users as u on c.user_fk=u.id  where on_id=627 and u.id not in (112,50)
-*/
-
+			        $mail = $this->getMailService();
+			
+			        $smarty = new Smarty; 
+			        $smarty->assign('username', $result[$i]['username']);
+			        $smarty->assign('user_from', $user_from);
+			        $smarty->assign('comment', $comment);
+			        $smarty->assign('table', $table);
+			        $smarty->assign('idFoto', $id);
+			        
+			        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_foto_comment.tpl'));
+			
+					$mail->From = "alertas@runnity.com";
+					$mail->FromName = "Runnity";
+					$mail->Subject = "Tienes un mensaje nuevo en una foto que has comentado ".$result[$i]['username'];
+					$mail->AltBody = $noHtml;
+					$mail->MsgHTML($email_message);
+					$mail->AddAddress($result[$i]['email'], $result[$i]['completename']);
+					$mail->IsHTML(true);	
+					
+					if(!$mail->Send()) {
+						throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+					}
+				}
+			}
         }
         
         return null;
