@@ -517,9 +517,11 @@ class RunnitServices {
         if($table=="user") {
             $user_from = $_SESSION['user']['username'];
 			
-			$sql="SELECT distinct u.email FROM users as u INNER JOIN comments as c ON u.id=c.user_fk where c.on_id=$userId and u.id=$id";
+			$sql="SELECT distinct u.email FROM users as u INNER JOIN comments as c ON u.id=c.on_Id where c.on_id=$id and c.user_fk=$userId";
 			$mailUser=pg_fetch_result(pg_query($this->conn, $sql),0);       	
 	
+	
+			error_log($mailUser);
 			//mensaje en HTML
 			$noHtml="Hola";
 	
