@@ -520,28 +520,28 @@ class RunnitServices {
 			$sql="SELECT distinct u.email FROM users as u INNER JOIN comments as c ON u.id=c.user_fk where c.on_id=$id and u.id=$userId";
 			$mailUser=pg_fetch_result(pg_query($this->conn, $sql),0);       	
 	
-			$mail = $this->getMailService();
+			//mensaje en HTML
+			$noHtml="Hola";
+	
+			//Send confirmation emailsear
+	
+	        $mail = $this->getMailService();
+	
+	        $smarty = new Smarty; 
+	        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_mensaje.tpl'));
+	
+			$mail->From = "alertas@runnity.com";
+			$mail->FromName = "Registro Runnity";
+			$mail->Subject = "Bienvenido a Runnity.com ";
+			$mail->AltBody = $noHtml;
+			$mail->MsgHTML($noHtml);
+			$mail->AddAddress($mailUser, $user_from);
+			$mail->IsHTML(true);	
 			
-			        $smarty = new Smarty; 
+			if(!$mail->Send()) {
+				throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+			}			
 
-		$mail->From = "alertas@runnity.com";
-		$mail->FromName = "Alertas Runnity";
-		$mail->Subject = "Runnity Carreras";	
-
-        
-
-        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_mensaje.tpl'));
-        $noHtml="";
-
-		$mail->MsgHTML($email_message);
-		$mail->AddAddress($mailUser, $user_from);
-		$mail->IsHTML(true);		
-		$mail->AltBody = "";
-
-
-		if(!$mail->Send()) {
-		    error_log("ALERTAS: Email to $user_from no pudo enviarse");
-		} 
             
         }
         
