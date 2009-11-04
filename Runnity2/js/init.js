@@ -398,7 +398,7 @@ function commentAction(tipo,id,on_table,comment) {
 //INSCRIBIRSE O QUITARSE LA CARRRERA
 function inscribirseCarrera(userID,raceID) {
 	
-		$('#ticketOrangeVoy').html('<b><a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Incribiéndote a esta carrera...</p></b>');
+		$('#ticketOrangeVoy').html('<b><a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Actualizando...</p></b>');
 		var dataObj = ({runId : raceID,
 	        method: 'inscribeUserToRun',
 	        userId: userID
@@ -424,7 +424,7 @@ function inscribirseCarrera(userID,raceID) {
 function followUser(friendId) {
 	
 		
-$('#ticketOrangeVoy').html('<b><a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Procesando...</p></b>');
+$('#ticketOrangeVoy').html('<b><a><div class="checkboxUnchecked"></div></a><p id="textoInscribirse">Actualizando...</p></b>');
 		var dataObj = ({
 			method: 'setUserToFriend',
 	        friendId: friendId
