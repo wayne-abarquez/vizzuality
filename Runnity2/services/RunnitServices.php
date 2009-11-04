@@ -517,28 +517,27 @@ class RunnitServices {
         if($table=="user") {
             $user_from = $_SESSION['user']['username'];
             $msg="Hola!,\n\n  $user_from te ha dejado un comentario en tu perfil en Runnity.com:\n\n$comment\n\nPuedes contestar a este mensaje en http://www.runnity.com/perfil/$user_from\n\nSi deseas no seguir recibiendo estos mesajes puedes activar y desactivar las alertas en http://www.runnity.com/perfil/$user_from";
-            
+			
+			$sql="SELECT distinct u.email FROM users as u INNER JOIN comments as c ON u.id=c.user_fk where c.on_id=$id and u.id=$userId";
+			$mailUser=pg_fetch_result(pg_query($this->conn, $sql),0);       	
+	
 			//mensaje en HTML
-			$noHtml="Hola hola!";
-			
-			$sql="SELECT u.email FROM users as u 
- 			  INNER JOIN picture as p ON u.id=p.user_fk where p.user_fk=$id";
-			
-			$mailUser= pg_query($this->conn, $sql);
-
+			$noHtml="Hola";
 		
 			//Send confirmation emailsear
 	
 	        $mail = $this->getMailService();
 	
+			$completename="Vicentin";
+		
 	        $smarty = new Smarty; 
-	        $completename="Fernan";
-	        
+	        $email_message = utf8_decode($msg);
+	
 			$mail->From = "alertas@runnity.com";
-			$mail->FromName = "Runnity";
-			$mail->Subject = "Tienes un nuevo mensaje";
+			$mail->FromName = "Registro Runnity";
+			$mail->Subject = "wajaaa";
 			$mail->AltBody = $noHtml;
-			$mail->MsgHTML($msg);
+			$mail->MsgHTML($email_message);
 			$mail->AddAddress($mailUser, $completename);
 			$mail->IsHTML(true);	
 			
