@@ -514,11 +514,10 @@ class RunnitServices {
         }
         
         //Notify the user if a comment has been sent to him
-        /*
-if($table=="user") {
+        if($table=="user") {
             $user_from = $_SESSION['user']['username'];
 			
-			$sql="SELECT distinct u.email FROM users as u INNER JOIN comments as c ON u.id=c.user_fk where c.on_id=$id and u.id=$userId";
+			$sql="SELECT distinct u.email FROM users as u INNER JOIN comments as c ON u.id=c.user_fk where c.on_id=$userId and u.id=$id";
 			$mailUser=pg_fetch_result(pg_query($this->conn, $sql),0);       	
 	
 			//mensaje en HTML
@@ -545,7 +544,6 @@ if($table=="user") {
 
             
         }
-*/
         
         return null;
 	    
