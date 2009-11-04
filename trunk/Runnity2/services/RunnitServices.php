@@ -556,6 +556,53 @@ class RunnitServices {
 
         }
         
+        //Notify the user if a comment has been sent to him
+        if($table=="picture") {
+            $user_from = $_SESSION['user']['username'];
+            
+            $sql="SELECT distinct user_fk FROM picture where id=$id";
+			$result=pg_query($this->conn, $sql);
+			$user_Up=pg_fetch_result($result,0); 
+			
+			$sql="SELECT distinct email,completename,username FROM users where id=$user_Up";
+			$result=pg_query($this->conn, $sql);
+			$mailUser=pg_fetch_result($result,0);       	
+			$completeName=pg_fetch_result($result,1);
+			$userName=pg_fetch_result($result,2);
+
+						
+			//mensaje en HTML
+			$noHtml="Runnity.com\n\n
+			$user_from ha comentado una foto tuya:\n\n Si quieres puedes ver el mensaje en: /picture/$id/$table";
+		
+			//Send confirmation emailsear
+	
+	        $mail = $this->getMailService();
+	
+	        $smarty = new Smarty; 
+	        $smarty->assign('name', $completeName);
+	        $smarty->assign('username', $userName);
+	        $smarty->assign('user_from', $user_from);
+	        $smarty->assign('comment', $comment);
+	        $smarty->assign('table', $table);
+	        $smarty->assign('idFoto', $id);
+	        
+	        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_foto.tpl'));
+	
+			$mail->From = "alertas@runnity.com";
+			$mail->FromName = "Runnity";
+			$mail->Subject = "Tienes un mensaje nuevo en una foto".$userName;
+			$mail->AltBody = $noHtml;
+			$mail->MsgHTML($email_message);
+			$mail->AddAddress($mailUser, $completeName);
+			$mail->IsHTML(true);	
+			
+			if(!$mail->Send()) {
+				throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+			}			
+
+        }
+        
         return null;
 	    
 	}
