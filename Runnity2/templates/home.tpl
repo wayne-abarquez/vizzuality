@@ -42,10 +42,10 @@
 							{/if}
 						</div>
 						<div class="span-1 Race">
-							<p class="span-4 nameRace"><a class="nameRaceLink" href="/run/{$race.id}/{$race.name|seourl}">{$race.name}</a></p>
+							<p class="span-4 nameRace"><a class="nameRaceLink" href="/run/{$race.id}/{$race.name|seourl}">{$race.name|truncate:50:"..."}</a></p>
 							<p class="span-4 infoRace" id="iteracion{$smarty.foreach.raceloop.iteration}">
-							<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> /{$race.distance_text}</p>
-							<p class="span-4 placeRace">{$race.province_name} - {$race.event_location}</p>
+							<b>{$race.event_date|substr:8:2}/{getMonth month=$race.event_date|substr:5:2}/{$race.event_date|substr:2:2}</b> /{$race.distance_text|truncate:20:"..."}</p>
+							<p class="span-4 placeRace">{$race.province_name} - {$race.event_location |truncate:20:"..."}</p>
 						</div>
 						{if $race.num_users > 0}
 							<div class="ticketBlue"><p>{$race.num_users}</p></div>
@@ -74,7 +74,7 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="/run/{$race.run1_id}/{$race.run1_name|seourl}">{$race.run1_name}</a></p>
+					<p class="span-4 nameRace"><a href="/run/{$race.run1_id}/{$race.run1_name|seourl}">{$race.run1_name|truncate:50:"..."}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif" alt="">{$race.run1_description}</p>
 				</div>
 				{if $race.run1_num_users > 0}
@@ -92,7 +92,7 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="/run/{$race.run2_id}/{$race.run2_name|seourl}">{$race.run2_name}</a></p>
+					<p class="span-4 nameRace"><a href="/run/{$race.run2_id}/{$race.run2_name|seourl}">{$race.run2_name|truncate:50:"..."}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif" alt="">{$race.run2_description}</p>
 				</div>
 				{if $race.run2_num_users > 0}
@@ -110,7 +110,7 @@
 					{/if}
 				</div>
 				<div class="span-1 Race">
-					<p class="span-4 nameRace"><a href="/run/{$race.run3_id}/{$race.run3_name|seourl}">{$race.run3_name}</a></p>
+					<p class="span-4 nameRace"><a href="/run/{$race.run3_id}/{$race.run3_name|seourl}">{$race.run3_name|truncate:50:"..."}</a></p>
 					<p class="span-4 recentActivity"><img src="/img/note.gif" alt="">{$race.run3_description}</p>
 				</div>
 				{if $race.run3_num_users > 0}
@@ -134,9 +134,9 @@
 				    <img src="/runThumbImage.php?id={$VipRace.id}&amp;photo_id={$VipRace.flickr_img_id}" alt="Foto de la carrera {$VipRace.name}" class="avatar">
 			</div>
 			<div class="span-1 Race">
-				<p class="nameRaceOrange"><a href="/run/{$VipRace.id}/{$VipRace.name|seourl}">{$VipRace.name}</a></p>
-				<p class="span-4 infoRaceOrange"><b>{$VipRace.event_date|substr:8:2}/{getMonth month=$VipRace.event_date|substr:5:2}/{$VipRace.event_date|substr:2:2}</b> / {$VipRace.distance_text}</p>
-				<p class="span-4 placeRaceOrange">{$VipRace.event_location}</p>
+				<p class="nameRaceOrange"><a href="/run/{$VipRace.id}/{$VipRace.name|seourl}">{$VipRace.name|truncate:50:"..."}</a></p>
+				<p class="span-4 infoRaceOrange"><b>{$VipRace.event_date|substr:8:2}/{getMonth month=$VipRace.event_date|substr:5:2}/{$VipRace.event_date|substr:2:2}</b> / {$VipRace.distance_text|truncate:20:"..."}</p>
+				<p class="span-4 placeRaceOrange">{$VipRace.event_location|truncate:20:"..."}</p>
 			</div>
 		{if $smarty.foreach.raceloop.iteration < 3}
 			<div class="span-1 last separatorRightOrange"></div>
@@ -228,10 +228,10 @@
 			
 	    });
 	    
-		$(".nameRaceLink").truncate( {max_length: 50} );
-		$(".infoRace").truncate( {max_length: 30} );
-		$(".nameRaceOrange").truncate( {max_length: 55} );			
-		$(".placeRace").truncate( {max_length:30} );		
+/* 		$(".nameRaceLink").truncate( {max_length: 50} ); */
+/* 		$(".infoRace").truncate( {max_length: 30} ); */
+/* 		$(".nameRaceOrange").truncate( {max_length: 55} );			 */
+/* 		$(".placeRace").truncate( {max_length:30} );		 */
 		
 		function twitter_callback (){
 			return true;

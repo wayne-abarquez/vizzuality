@@ -97,7 +97,7 @@ $(document).ready(function(){
 		$('div.rightColumn').height($('div.leftColumn').height());	
 	}
 	
-	$('#datos1').truncate({max_length: 32});
+/* 	$('#datos1').truncate({max_length: 32}); */
 
     new AjaxUpload('#avatarPerfil', {
     	action: '/imageController.php',
@@ -192,7 +192,7 @@ $(document).ready(function(){
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Email:</p></div>
-						<div class="span-1 last dataUserProfile"><p id="datos1"><b>{$privateData.datos.email}</b></p></div>
+						<div class="span-1 last dataUserProfile"><p id="datos1"><b>{$privateData.datos.email|truncate:32:"..."}</b></p></div>
 					</div>
 					<div class="span-1 last dataContainerUser">
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
