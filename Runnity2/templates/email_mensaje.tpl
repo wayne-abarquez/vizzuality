@@ -31,7 +31,7 @@
     }
 
     .contacta{
-    	margin-top: 30px;
+    	margin-top: 50px;
     	margin-bottom: 30px;
     	font-family: "Arial";
     }
@@ -55,13 +55,13 @@
 </head>
 <body>
 
-<h1>Tienes un mensaje nuevo {$name}</h1>
+<h1>{$user_from} te ha dejado un mensaje nuevo</h1>
 
-<p>{$user_from} te ha dejado un mensaje nuevo: "{$comment}"</p> 
+<p>{$comment}</p> 
 
-<p>Para ver el mensaje entra en tu perfil <a href="http://www.runnity.com/perfil/{$username}">http://www.runnity.com/perfil/{$username}</a></p>
+<p>Para contestar a {$user_from} entra en su perfil <a href="http://www.runnity.com/user/{$user_from}"> http://www.runnity.com/user/{$user_from}</a></p>
 
-<p>Para contestar a {$user_from} entra en su perfil <a href="http://www.runnity.com/user/{$user_from}">http://www.runnity.com/user/{$user_from}</a></p>
+<p>Para ver todos tus mensajes entra en tu cuenta de Runnity <a href="http://www.runnity.com/perfil/{$username}"> http://www.runnity.com/perfil/{$username}</a></p>
 
 <p class="contacta">Si tienes alguna duda o sugerencia, <a href="mailto:contacto@runnity.com">contacta con nosotros</a></p>
 

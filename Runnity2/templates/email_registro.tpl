@@ -31,7 +31,7 @@
     }
 
     .contacta{
-    	margin-top: 30px;
+    	margin-top: 50px;
     	margin-bottom: 30px;
     	font-family: "Arial";
     }
@@ -55,13 +55,11 @@
 </head>
 <body>
 
-<h1>Bienvenido a Runnity {$name}</h1>
-
-<p class="title">Estamos encantados de que formes partes de Runnity</p>
+<h1>Bienvenido a Runnity {$username}</h1>
 
 <p>Ya puedes inscribirte a las carreras y activar tu alerta de proximidad por email. </p> 
 
-<p>Sólo tienes que ir a tu página de usuario <a href="http://www.runnity.com/perfil/{$username}">http://www.runnity.com/perfil/{$username}</a>,hacer login y rellenar el formulario.</p>
+<p>Sólo tienes que ir a tu página de usuario <a href="http://www.runnity.com/perfil/{$username}"> http://www.runnity.com/perfil/{$username}</a>,hacer login y rellenar el formulario.</p>
 
 <p>Además, como usuario de <a href="http://www.runnity.com">runnity.com</a> serás el primero en enterarte de las novedades y las mejoras que vayamos haciendo y podrás compartir tus opiniones y experiencias corriendo.</p>
 

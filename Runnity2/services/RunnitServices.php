@@ -1346,7 +1346,7 @@ SQL;
 		$mail->Subject = "Runnity: Carreras en los siguientes 14 dias (".count($userRunsBlock).")";	
 
 
-        
+        $smarty->assign('username', $currentUserName);
         $smarty->assign('name', $currentCompleteName);
         $smarty->assign('user_id', $currentUserId);
         $smarty->assign('user_name', $currentUserName);
