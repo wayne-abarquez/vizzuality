@@ -93,6 +93,9 @@ package {
 		}	
 		
 		private function initMap():void {
+			
+			//json urle xample: "/protected_areas/"+this.root.loaderInfo.parameters.id+"/comments.json"
+			
 			map=new Map();
 			
 			var mk:String=root.loaderInfo.parameters.key;
