@@ -671,7 +671,7 @@ class RunnitServices {
 	
 	//usuario.php
 	public function getUserRuns($id) {
-	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type from (run as r inner join users_run as ur on r.id=ur.run_fk) left join province as p on r.province_fk=p.id where ur.users_fk=$id AND r.event_date > now()";
+	    $sql="select r.id,r.name,event_date,event_location,distance_text, (select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type from (run as r inner join users_run as ur on r.id=ur.run_fk) left join province as p on r.province_fk=p.id where ur.users_fk=$id AND r.event_date > now() order by event_date ASC";
         $result = pg_query($this->conn, $sql);  
         return pg_fetch_all(pg_query($this->conn, $sql));
 	}	
