@@ -428,6 +428,38 @@ class RunnitServices {
 	    }	    
 	    $sql="INSERT INTO users_relations(users_fk,friend_fk) VALUES(".$_SESSION['user']['id'].",$friendId)";
 	    $result= pg_query($this->conn, $sql);
+	    
+	    $sql="select username,email from users where id=".$friendId;
+	    $res=pg_fetch_assoc(pg_query($this->conn, $sql));
+	    
+	    $followingFriendName=$res['username'];
+	    $followingFriendEmail=$res['email'];
+	    
+	    //Send message to user to let him know that someone has made him friend
+        $mail = $this->getMailService();
+		$mail->From = "alertas@runnity.com";
+		$mail->FromName = "Alertas Runnity";
+		$mail->Subject = "Runnity: ".$_SESSION['user']['username']." te esta siguiendo!";	
+
+        
+        $smarty = new Smarty; 
+        $smarty->assign('followerName', $_SESSION['user']['username']);
+        $smarty->assign('followingFriendName', $followingFriendName);
+        
+
+        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_amigo_recien_creado.tpl'));
+        $noHtml="";
+
+		$mail->MsgHTML($email_message);
+		$mail->AddAddress($followingFriendEmail, $followingFriendName);
+		$mail->IsHTML(true);		
+		$mail->AltBody = "";
+
+
+		if(!$mail->Send()) {
+		    error_log("ALERTAS: Email to $followingFriendName no pudo enviarse");
+		}	    
+	    
 	    return null;
 	}
 	
