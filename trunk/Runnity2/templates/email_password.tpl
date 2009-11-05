@@ -55,7 +55,7 @@ a{
 </head>
 <body>
 
-<h1>Hola {$name}</h1>
+<h1>Hola {$username}</h1>
 
 <p class="title">El password para {$email} / {$username} es <b>{$password}</b></p>
 

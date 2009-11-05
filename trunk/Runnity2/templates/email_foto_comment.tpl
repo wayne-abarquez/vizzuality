@@ -31,7 +31,7 @@
     }
 
     .contacta{
-    	margin-top: 30px;
+    	margin-top: 50px;
     	margin-bottom: 30px;
     	font-family: "Arial";
     }
@@ -55,13 +55,13 @@
 </head>
 <body>
 
-<h1>Tienes un mensaje nuevo en una foto que has comentado {$username}</h1>
+<h1>{$user_from} ha dejado un comentario en una foto que tu también has comentado </h1>
 
-<p>{$user_from} ha dejado un mensaje nuevo en una foto que has comentado: "{$comment}" <a href="http://www.runnity.com/picture/{$idFoto}/{$table}">http://www.runnity.com/picture/{$idFoto}/{$table}</a></p> 
+<p>{$comment}</p> 
 
-<p>Para contestar a {$user_from} entra en su perfil <a href="http://www.runnity.com/user/{$user_from}">http://www.runnity.com/user/{$user_from}</a></p>
+<a href="http://www.runnity.com/picture/{$idFoto}/{$table}">http://www.runnity.com/picture/{$idFoto}/{$table}</a> 
 
-<p class="contacta">Si tienes alguna duda o sugerencia, <a href="mailto:contacto@runnity.com">contacta con nosotros</a></p>
+<p class="contacta">Recuerda que si tienes alguna duda o sugerencia, <a href="mailto:contacto@runnity.com">contacta con nosotros</a></p>
 
 <p class="title">¡Suerte en tus próximas carreras!</p>
 

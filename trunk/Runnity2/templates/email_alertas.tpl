@@ -89,7 +89,7 @@ p.footerText {
 </head>
 <body>
 
-<h1>Hola {$name}!</h1>
+<h1>Hola {$username}!</h1>
 
 <p class="title">Aquí tienes un listado de con las próximas carreras que tendrán lugar en las próximas semanas cerca de donde vives. No te las pierdas!<br> Por defecto te mandamos las carreras a menos de 200Km de tu localidad, si quieres puedes cambiar esta distancia en tus <a href="http://www.runnity.com/usuario_editar.php">preferencias de usuario</a></b></p>
 
