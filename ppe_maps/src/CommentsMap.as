@@ -13,12 +13,10 @@ package {
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.Polygon;
-	import com.google.maps.overlays.PolygonOptions;
 	import com.google.maps.styles.FillStyle;
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.*;
 	import com.vizzuality.gmaps.Clusterer;
-	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.markers.ClusterMarker;
 	import com.vizzuality.markers.GenericMarkerIcon;
 	import com.vizzuality.markers.PAGeneralInfowindow;
@@ -51,6 +49,7 @@ package {
 		private var attachedMarkers:Array;
 		private var mapKey:String = "nokey";
 		private var iw:Dictionary=new Dictionary();	
+		private var paPoint: LatLng;
 		
 		
 					
@@ -94,8 +93,6 @@ package {
 		
 		private function initMap():void {
 			
-			//json urle xample: "/protected_areas/"+this.root.loaderInfo.parameters.id+"/comments.json"
-			
 			map=new Map();
 			
 			var mk:String=root.loaderInfo.parameters.key;
@@ -115,10 +112,10 @@ package {
 		}		
 		
 		private function preinit(ev:Event):void {
-				var mo:MapOptions = new MapOptions();
-				mo.backgroundFillStyle = new FillStyle({color:0xE9E9E9,alpha: Alpha.OPAQUE});
-				mo.mapType=MapType.PHYSICAL_MAP_TYPE;	
-				map.setInitOptions(mo);
+			var mo:MapOptions = new MapOptions();
+			mo.backgroundFillStyle = new FillStyle({color:0xE9E9E9,alpha: Alpha.OPAQUE});
+			mo.mapType=MapType.PHYSICAL_MAP_TYPE;	
+			map.setInitOptions(mo);
 		}	
 		
 		
@@ -130,67 +127,50 @@ package {
 		
 		private function onMapReady(event:MapEvent):void {
 			map.y= 3;
-			
-			var polOpt:PolygonOptions=new PolygonOptions({
-				  strokeStyle: {
-				    thickness: 2,
-				    color: 0xFF7600,
-				    alpha: 1
-				  },
-				  fillStyle: {
-				    color: 0xFF7600,
-				    alpha: 0.4
-				  }	
-			});			
-			
-			
-			var temp:String = '[{"name":"Yosemite National Park","geojson":{"type":"MultiPolygon","bbox":[130.666680,-25.416670,131.370590,-25.081670],"coordinates":[[[[130.74986,-25.16335],[130.74999,-25.26666],[130.75002,-25.26666],[130.83337,-25.26665],[130.92921,-25.26668],[130.92924,-25.26857],[131.00841,-25.26841],[131.00837,-25.26667],[131.08337,-25.26667],[131.1667,-25.26666],[131.25002,-25.26665],[131.33338,-25.26666],[131.37059,-25.26666],[131.37058,-25.33332],[131.37059,-25.41667],[131.33336,-25.41667],[131.25003,-25.41667],[131.16669,-25.41667],[131.08337,-25.41665],[131.00003,-25.41665],[130.91668,-25.41665],[130.83337,-25.41667],[130.75004,-25.41665],[130.66668,-25.41666],[130.66671,-25.33333],[130.66669,-25.08167],[130.75002,-25.12334],[130.74986,-25.16335]]]]} ,' + 
-					'"comments":[{"user": "simon","place":{"lat":"-30.34","lon": "123.234"},"ago":"3 hours ago"},{"user": "craig","place":{"lat":"-29.45","lon": "123.234"},"ago":"3 hours ago"},{"user": "saleiva","place":{"lat":"-23.34","lon": "119.234"},"ago":"3 hours ago"},{"user": "jatorre","place":{"lat":"-22.34","lon": "118.234"},"ago":"3 hours ago"},{"user": "jam","place":{"lat":"-23.34","lon": "119.234"},"ago":"3 hours ago"}]}]'; 
+			//json urle xample: "/protected_areas/"+this.root.loaderInfo.parameters.id+"/comments.json"
+			paPoint = new LatLng(this.root.loaderInfo.parameters.palat,this.root.loaderInfo.parameters.palon);
+			var paId:Number=root.loaderInfo.parameters.id;
+			var commentJson: URLRequest = new URLRequest("http://localhost:3000/protected_areas/"+(paId)+"/comments.json");
 
-			var areasJson:Object = JSON.decode(temp);
+            var urlLdr: URLLoader = new URLLoader();
+            urlLdr.addEventListener(Event.COMPLETE, onGetPAJson);
+            urlLdr.load(commentJson);
+
+		}
+		
+		private function onGetPAJson(ev:Event):void {	
+			
+			var areasJson:Object = JSON.decode(ev.target.data);
 			var areas:Array =[];
 			var bounds:LatLngBounds = new LatLngBounds();
 			markers = [];	
 			dataBbox=new LatLngBounds();
+							
+			var paMarker:PAMarker = new PAMarker(paPoint);
+			 
+			dataBbox.extend(paMarker.getLatLng());
+			map.addOverlay(paMarker);                
 			
-			for each(var areaJson:Object in areasJson as Array) {
-				var area:Multipolygon = new Multipolygon();
-				area.data.name=areaJson.name;
-				area.fromGeojsonMultiPolygon(areaJson.geojson.coordinates,polOpt);
-				areas.push(area);
-				area.addToMap(map);
-				bounds.union(area.getLatLngBounds());
-				var markerOpt:MarkerOptions=new MarkerOptions({});
+			
+			for each(var m:Object in areasJson.protected_area.comments as Array) {
 				
-                var markerData: Object = new Object();	
-                markerData.coordenates = area.getLatLngBounds().getCenter();
-                markerData.area = area.data.name;
-                				
-				var paMarker:PAMarker = new PAMarker(area.getLatLngBounds().getCenter());
-				
-				dataBbox.extend(bounds.getCenter());
-				map.addOverlay(paMarker);                
-			}
-			
-			
-			for each(var m:Object in areasJson[0].comments as Array) {
-				var place:LatLng = new LatLng(m.place.lat,m.place.lon);
-				var marker:SingleMarker=new SingleMarker(place,m.user,m.ago,"commentIcon");
+				var place:LatLng = new LatLng(m.user.latitude,m.user.longitude);
+				var marker:SingleMarker=new SingleMarker(place,m.username,m.created_at,"commentIcon");
 				iw[marker]=m;
 				marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
 					trace('click in marker');
 				});
 				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
 					openInfoWindow(e);
-					var options:MarkerOptions = new MarkerOptions();
+					/* var options:MarkerOptions = new MarkerOptions();
 					options.icon = new GenericMarkerIcon('activityIcon');
-					(e.target as SingleMarker).setOptions(options);								
+					(e.target as SingleMarker).setOptions(options);	 */							
 				});
 				marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
 					map.closeInfoWindow();
-					var options1:MarkerOptions = new MarkerOptions();
+					/* var options1:MarkerOptions = new MarkerOptions();
 					options1.icon = GenericMarkerIcon('commentIcon');
-					(e.target as SingleMarker).setOptions(options1);
+					(e.target as SingleMarker).setOptions(options1); */
 				});						
 				markers.push(marker);
 				dataBbox.extend(place);
@@ -231,7 +211,7 @@ package {
             });
             
             infoWindowToOpen.alpha=0;
-            map.openInfoWindow(new LatLng(m.place.lat,m.place.lon),options);
+            map.openInfoWindow(new LatLng(m.user.latitude,m.user.longitude),options);
             TweenLite.to(infoWindowToOpen,0.3,{alpha:1});
                 
         }	 
@@ -308,6 +288,8 @@ package {
 				attachedMarkers.push(marker);
 			}
 		}
+		
+		
 			
 		
 		

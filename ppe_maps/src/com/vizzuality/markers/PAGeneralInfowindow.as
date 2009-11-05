@@ -1,7 +1,6 @@
 package com.vizzuality.markers
 {
 	import flash.display.Loader;
-	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.net.URLRequest;
@@ -26,7 +25,8 @@ package com.vizzuality.markers
  				
 				imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, displayImg);
 			
-				var fileRequest:URLRequest = new URLRequest("http://localhost:3000/images/thumbnails/thumb04.jpg");
+				var fileRequest:URLRequest = new URLRequest("http://localhost:3000"+ob.user.avatar);
+				
 				imageLoader.load(fileRequest);
  				
 				addChild(new bkg());
@@ -57,7 +57,7 @@ package com.vizzuality.markers
 	            
                 var mainNameSprite: Sprite = new Sprite();
 	            var nameText: TextField = new TextField();
-	            nameText.text =  ob.user;
+	            nameText.text =  ob.user.username;
 	            var newFormat:TextFormat = new TextFormat(); 
 	   			newFormat.size = 11; 
 	   			newFormat.color = 0x336699;
@@ -83,7 +83,7 @@ package com.vizzuality.markers
 	            
 	            var exampleSprite2: Sprite = new Sprite();
 	            var countryText2: TextField = new TextField();
-	            countryText2.text =  ob.ago;
+	            countryText2.text =  returnTweetAge(ob.created_at);
 	            var newFormat2:TextFormat = new TextFormat(); 
 	   			newFormat2.size = 11; 
 	   			newFormat2.color = 0x999999;
@@ -168,5 +168,93 @@ package com.vizzuality.markers
 	  			imageLoader.y = 4; 
 	  			addChildAt(imageLoader,2);
   			}
+  			
+  			private function returnTweetAge(created_at:String):String
+                {
+                        var time:Date = new Date();
+                        var tp:Array; var year:int; var month:int; var date:int;
+                        var hour:int; var minutes:int; var seconds:int; var timezone:int;
+
+                        if (created_at.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z/g).length==1)
+                        {
+                                // match 2008-12-07T16:24:24Z
+                                tp = created_at.split(/[-T:Z]/g);
+                                year = tp[0];
+                                month = tp[1];
+                                date = tp[2];
+                                hour = tp[3];
+                                minutes = tp[4];
+                                seconds = tp[5];
+                                month--;
+                        }
+                        else if (created_at.match(/[a-zA-z]{3}, \d{2} [a-zA-Z]{3} \d{4} \d{2}:\d{2}:\d{2} \+\d{4}/g).length==1)
+                        {
+                                // match Fri Dec 05 16:40:02 +0000 2008
+                                tp = created_at.split(/[ :]/g);
+                                if (tp[3]=="Jan")
+                                        month = 0;
+                                else if (tp[2]=="Feb")
+                                        month = 1;
+                                else if (tp[2]=="Mar")
+                                        month = 2;
+                                else if (tp[2]=="Apr")
+                                        month = 3;
+                                else if (tp[2]=="May")
+                                        month = 4;
+                                else if (tp[2]=="Jun")
+                                        month = 5;
+                                else if (tp[2]=="Jul")
+                                        month = 6;
+                                else if (tp[2]=="Aug")
+                                        month = 7;
+                                else if (tp[2]=="Sep")
+                                        month = 8;
+                                else if (tp[2]=="Oct")
+                                        month = 9;
+                                else if (tp[2]=="Nov")
+                                        month = 10;
+                                else if (tp[2]=="Dec")
+                                        month = 11;
+
+                                date = tp[1];
+                                hour = tp[4];
+                                minutes = tp[5];
+                                seconds = tp[6];
+                                timezone = tp[7];
+                                year = tp[3];
+                        }
+
+                        time.setUTCFullYear(year, month, date);
+                        time.setUTCHours(hour, minutes, seconds);
+
+                        var currentTime:Date = new Date();
+                        currentTime.setHours(currentTime.hours);
+                        var diffTime:int = currentTime.getTime() - time.getTime();
+                        var diff:Date = new Date();
+                        diff.setTime(diffTime);
+
+            var txt:String;
+                        if(diff.date > 1)
+                        {
+                            txt = diff.date + " days ago...";
+                        }
+                        else if(diff.hours > 0)
+                        {
+                        txt = diff.hours+" hours ago";
+                        }
+                        else if(diff.minutes > 0)
+                        {
+                        txt = diff.minutes+" minutes ago";
+                        }
+                        else if(diff.seconds > 0)
+                        {
+                        txt = diff.seconds+" seconds ago";
+                        }
+
+                        return txt;
+                }
+
+  			
+  			
       }
 }

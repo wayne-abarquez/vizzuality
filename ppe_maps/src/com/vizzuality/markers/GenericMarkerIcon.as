@@ -22,12 +22,25 @@ package com.vizzuality.markers
 				case "clusterIcon":
 					var background2:Sprite = new Sprite();
 		 			background2.graphics.beginFill(0x336699,0.45);
-		            background2.graphics.drawCircle(0,0,19);
+		            background2.graphics.drawCircle(0,0,18);
 		            background2.graphics.endFill();
 		            background2.x=13;
 		            background2.y=14;
 		            addChild(background2);
-					addChild(new clusterIcon());
+		            var whiteCircle:Sprite = new Sprite();
+		 			whiteCircle.graphics.beginFill(0xFFFFFF);
+		            whiteCircle.graphics.drawCircle(0,0,13);
+		            whiteCircle.graphics.endFill();
+		            whiteCircle.x=13;
+		            whiteCircle.y=14;
+		            addChild(whiteCircle);
+		             var blueCircle:Sprite = new Sprite();
+		 			blueCircle.graphics.beginFill(0x336699);
+		            blueCircle.graphics.drawCircle(0,0,11);
+		            blueCircle.graphics.endFill();
+		            blueCircle.x=13;
+		            blueCircle.y=14;
+		            addChild(blueCircle);
 					break;
 				case "commentIcon":
 					addChild(new comment());
@@ -52,7 +65,7 @@ package com.vizzuality.markers
 				} else if (texto.length>1) {
 					tf.x = 6;
 				} else {
-					tf.x = 9;
+					tf.x = 8;
 				}
 				
 				tf.mouseEnabled = false;
