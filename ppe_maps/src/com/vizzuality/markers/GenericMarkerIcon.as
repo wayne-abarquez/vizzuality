@@ -6,12 +6,9 @@ package com.vizzuality.markers
 	
 	public class GenericMarkerIcon extends Sprite
 	{
-	
-
-	  [Embed('assets/cluster.png')] 
-	  private var clusterIcon:Class;
 	  [Embed('assets/comment.png')] 
 	  private var comment:Class;
+	  
 	  [Embed('assets/activity.png')] 
 	  private var activity:Class;
 
