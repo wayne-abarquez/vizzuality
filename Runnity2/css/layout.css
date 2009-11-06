@@ -1412,12 +1412,15 @@ div.separatorRight{
 
 .ticketBlueCorner{
 	background-image: url(/img/ticketBlueCorner.gif);
+	background-position: right;
 	background-repeat: no-repeat;
 	height: 5px;
-	width: 5px;
+	width: 26px;
 	float: right;
-	margin-top: 24px;
 	margin-right: -26px;
+	margin-top: 24px;
+	position: relative;
+	
 }
 
 .ticketBlueCornerRight{
