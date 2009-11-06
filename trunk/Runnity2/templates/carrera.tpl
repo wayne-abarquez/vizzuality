@@ -84,7 +84,7 @@ function SubirFotos(){
 	{literal}	
 		
 	if ($('div.rightColumn').height()<$('div.leftColumn').height()) {
-		$('div.rightColumn').height($('div.leftColumn').height());	
+		$('div.rightColumn').height($('div.leftColumn').height() + 25);	
 	}
 	
 /*
@@ -301,11 +301,9 @@ function SubirFotos(){
 						<p class="commentUser">{$comment.commenttext}</p>
 						</div>
 					</div>	
-				{else}
-					<div class="span-1 separatorFirstComment"></div>
-          		{/if} 
-            	{/foreach}	
-            </ol>						
+        {/if} 
+       	{/foreach}	
+       </ol>						
 			</div>
 			
 			<!-- PARA AÑADIR COMENTARIOS -->
@@ -365,7 +363,7 @@ function SubirFotos(){
 			{foreach key=id item=race from=$runsInSameDates name=raceloop}	    				    
 				<div class="span-1 {cycle values="raceRight,raceRight2"}">
 					<div class="span-1 first dateRight calendarRight">
-				        <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
+				    <div class="month month{$race.run_type}">{getMonth month=$race.event_date|substr:5:2}</div>
 						<div class="day">{$race.event_date|substr:8:2}</div>
 					</div>
 					{if $race.num_users > 0}
