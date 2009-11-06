@@ -539,15 +539,56 @@ class RunnitServices {
         
 
         $activity_description="Un nuevo comentario";
+        $user_from = $_SESSION['user']['username'];
 
         if($table=="run") {
             $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
-            $result= pg_query($this->conn, $sql);            
+            $result= pg_query($this->conn, $sql);   
+            
+            $user_from_id = $_SESSION['user']['id'];
+            $sql="select distinct username,completename,u.id,email from comments as c inner join users as u on c.user_fk=u.id where on_id=$id and u.id not in ($user_from_id)";
+			$result=pg_fetch_all(pg_query($this->conn, $sql));			
+			if ($result){
+				for($i = 0; $i < sizeof($result); ++$i){
+	    			error_log($result[$i]['email']);  			
+		    		$noHtml="Runnity.com\n\n
+					$user_from ha comentado una carrera que has comentado:\n\n Si quieres puedes ver el mensaje en: /run/$id";
+				
+					//Send confirmation emailsear
+			
+			        $mail = $this->getMailService();
+			
+			        $smarty = new Smarty; 
+			        $smarty->assign('username', $result[$i]['username']);
+			        $smarty->assign('user_from', $user_from);
+			        $smarty->assign('comment', $comment);
+			        $smarty->assign('table', $table);
+			        $smarty->assign('idRun', $id);
+			        
+			        $email_message = utf8_decode($smarty->fetch(ABSPATH.'templates/email_carrera_comment.tpl'));
+			
+					$mail->From = "alertas@runnity.com";
+					$mail->FromName = "Runnity";
+					$mail->Subject = "Tienes un mensaje nuevo en una carrera que has comentado ".$result[$i]['username'];
+					$mail->AltBody = $noHtml;
+					$mail->MsgHTML($email_message);
+					$mail->AddAddress($result[$i]['email'], $result[$i]['completename']);
+					$mail->IsHTML(true);	
+					
+					if(!$mail->Send()) {
+						throw new Exception('Problema al enviar el email:'.$mail->ErrorInfo,110);
+					}
+				}
+			}
+            
+            
+            
+            
+                     
         }
         
         //Notify the user if a comment has been sent to him
         if($table=="user") {
-            $user_from = $_SESSION['user']['username'];
 			
 			$sql="SELECT distinct u.email,u.completename,u.username FROM users as u INNER JOIN comments as c ON u.id=c.on_Id where c.on_id=$id and c.user_fk=$userId";
 			$result=pg_query($this->conn, $sql);
@@ -590,7 +631,6 @@ class RunnitServices {
         
         //Notify the user if a comment has been sent to him
         if($table=="picture") {
-            $user_from = $_SESSION['user']['username'];
             
             $sql="select u.id as userid,username,completename,p.id,email from picture as p inner join users as u on p.user_fk=u.id  where p.id=$id";
 			$result=pg_query($this->conn, $sql); 
@@ -626,12 +666,9 @@ class RunnitServices {
 			
 			$user_up_id=$user_Up['userid'];
             $user_from_id = $_SESSION['user']['id'];
-			error_log($user_from_id);
-			error_log($user_up_id);
 			
 			$sql="select distinct username,completename,u.id,email from comments as c inner join users as u on c.user_fk=u.id where on_id=$id and u.id not in ($user_from_id,$user_up_id)";
 			$result=pg_fetch_all(pg_query($this->conn, $sql));			
-			error_log("good!");
 			if ($result){
 				for($i = 0; $i < sizeof($result); ++$i){
 	    			error_log($result[$i]['email']);  			

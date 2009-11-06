@@ -57,7 +57,7 @@
 
 <h1>{$user_from} te ha dejado un mensaje nuevo</h1>
 
-<p>{$comment}</p> 
+<p>"{$comment}"</p> 
 
 <p>Para contestar a {$user_from} entra en su perfil <a href="http://www.runnity.com/user/{$user_from}"> http://www.runnity.com/user/{$user_from}</a></p>
 

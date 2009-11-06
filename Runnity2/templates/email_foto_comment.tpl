@@ -57,7 +57,7 @@
 
 <h1>{$user_from} ha dejado un comentario en una foto que tu también has comentado </h1>
 
-<p>{$comment}</p> 
+<p>"{$comment}"</p> 
 
 <a href="http://www.runnity.com/picture/{$idFoto}/{$table}">http://www.runnity.com/picture/{$idFoto}/{$table}</a> 
 

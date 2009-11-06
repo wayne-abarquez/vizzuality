@@ -55,11 +55,11 @@
 </head>
 <body>
 
-<h1>{$user_from} ha dejado un comentario en una de tus fotos</h1>
+<h1>{$user_from} ha dejado un comentario en una carrera que tu también has comentado </h1>
 
 <p>"{$comment}"</p> 
 
-<a href="http://www.runnity.com/picture/{$idFoto}/{$table}">http://www.runnity.com/picture/{$idFoto}/{$table}</a> 
+<p><a href="http://www.runnity.com/run/{$idRun}/carreracomentada">http://www.runnity.comrun/{$idRun}/carreracomentada</a></p> 
 
 <p class="contacta">Recuerda que si tienes alguna duda o sugerencia, <a href="mailto:contacto@runnity.com">contacta con nosotros</a></p>
 
