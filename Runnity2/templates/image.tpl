@@ -6,7 +6,7 @@
 		var left = $('.leftColumn').height();
 		var right = $('.rightColumn').height();
 		if ( right < left ) {
-			$('.rightColumn').height(left - 22);
+			$('.rightColumn').height(left);
 		}            				
 	});
 </script>
