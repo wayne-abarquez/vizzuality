@@ -2304,14 +2304,20 @@ div.avatarContainer a div.hidden {
 .functionalContainer{
 	margin-top: -6px;
 	margin-bottom: 10px;
-	width: auto;
+	width: 216px;
 }
 
 .functionalContainerRight{
 	margin-top: -6px;
 	margin-bottom: 10px;
 	width: auto;
-	height: 250px;
+	height: 400px;
+}
+
+.functionalContainerInfoRun{
+	margin-top: -6px;
+	margin-bottom: 10px;
+	width: 380px;
 }
 
 .compartir{

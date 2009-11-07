@@ -121,7 +121,7 @@ function SubirFotos(){
 			<div class="span-1 last raceData">
 				{if $data.distance_text != null or $data.category != null or $data.awards != null}
 				<div class="span-1 last functionalContainer">
-					<p class="titulo tituloLeft">DATOS TÉCNICOS</p>
+					<p class="titulo tituloLeft tituloRight">DATOS TÉCNICOS</p>
 					{if $data.distance_text != null}
 						<div class="span-1 last dataContainer">
 							<div class="span-1 last dataTitle"><p>Distancia:</p></div>
@@ -153,7 +153,7 @@ function SubirFotos(){
 					or $data.inscription_email != null or $data.inscription_website != null
 					or $data.tlf_informacion != null}
 					<div class="span-1 last functionalContainer">
-						<p class="titulo tituloLeft">INSCRIPCIONES</p>
+						<p class="titulo tituloLeft tituloRight">INSCRIPCIONES</p>
 						{if $data.inscription_price != null}
 						<div class="span-1 last dataContainer">
 							<div class="span-1 last dataTitle"><p>Precio:</p></div>
@@ -203,7 +203,7 @@ function SubirFotos(){
 			</div>
 			
 			<div class="span-1 last raceDescription">
-				<div class="span-1 last functionalContainer">
+				<div class="span-1 last functionalContainerInfoRun">
 					<p class="titulo tituloLeft tituloRight columnLonga">DESCRIPCIÓN Y DATOS ADICIONALES</p>
 					<p class="textRace">
 						{if $data.description!=null}
