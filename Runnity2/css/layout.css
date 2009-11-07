@@ -857,6 +857,7 @@ div.userComments {
 	border-bottom: 1px dotted gray;
 	margin: 0px 0px 0px 0px;
 	padding-bottom: 1px;
+	margin-right: 3px;
 }
 
 .dataContainerUser p{
@@ -2304,7 +2305,7 @@ div.avatarContainer a div.hidden {
 .functionalContainer{
 	margin-top: -6px;
 	margin-bottom: 10px;
-	width: 216px;
+	width: 214px;
 }
 
 .functionalContainerRight{
