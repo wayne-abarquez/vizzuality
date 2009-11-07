@@ -284,7 +284,7 @@ $(document).ready(function(){
 	<!-- RIGHT COLUMN -->
 	<div class="span-1 last rightColumn userRightColumn">
 		{if $nextRaces}
-		<div class="span-1 functionalContainer">
+		<div class="span-1 functionalContainerRight">
 			<p class="titulo tituloLeft tituloColumnRight">TUS PRÓXIMAS CARRERAS</p>
 			<div class="events">
 				{foreach key=id item=race from=$nextRaces name=raceloop}	    				    
@@ -308,7 +308,7 @@ $(document).ready(function(){
 		</div>
 		{/if}
 		
-		<div class="span-1 functionalContainer">
+		<div class="span-1 functionalContainerRight">
 			<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
 				<div id="map" class="mapStyleRight">
 		            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192">
@@ -326,7 +326,7 @@ $(document).ready(function(){
 		</div>
 		
 		{if $friends}
-		<div class="span-1 functionalContainer">
+		<div class="span-1 functionalContainerRight">
 			<p class="titulo tituloLeft tituloColumnRight">USUARIOS A LOS QUE SIGUES</p>
 			<div class="events">
 				<div class="avatarContainer">
