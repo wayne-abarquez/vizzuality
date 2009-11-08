@@ -1846,7 +1846,6 @@ div.month5 {background-color: #9f00c6;}
 	width: 600px;
 	height: auto;
 	min-height: 201px;
-	margin-top: -10px;
 	padding: 0;
 }
 
@@ -1858,7 +1857,7 @@ div.month5 {background-color: #9f00c6;}
 .avatarPhoto{
 	margin: 0; padding: 0;
 	display: inline;
-	float: left;
+	float: inherit;
 }
 
 .noPhotosLogin{
