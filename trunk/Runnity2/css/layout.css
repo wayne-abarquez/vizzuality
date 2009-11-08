@@ -807,7 +807,9 @@ div.userComments {
 	color: #666666;
 	font-weight: bold;
 	margin-left: 20px;
-	padding-top: 1px;
+	padding-top: 4px;
+	line-height: 9px;
+	height: 17px;
 }
 
 .dataUserPosition{
