@@ -410,7 +410,7 @@ function SubirFotos(){
 		<div class="span-1 functionalContainerRight">		
 			<p class="titulo tituloLeft tituloColumnRight">USUARIOS APUNTADOS</p>
 			<div class="events">				
-				<div class="avatarContainer">
+				<div class="span-1 avatarContainer">
 				{foreach key=id item=person from=$runners}
 					<a href="/user/{$person.username}"><img class="avatarRight" src="/avatar.php?id={$person.user_id}&type=s"/>
 						<div class="hidden">{$person.username}</div>
