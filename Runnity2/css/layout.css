@@ -1842,7 +1842,7 @@ div.month5 {background-color: #9f00c6;}
 }
 
 #imgItems{
-	margin-left: 10px;
+	margin-left: 11px;
 	margin-top: -10px;
 	width: 621px;
 	height: auto;
@@ -1856,8 +1856,9 @@ div.month5 {background-color: #9f00c6;}
 }
 
 .avatarPhoto{
-	margin: 0; padding: 0;
-	float: inherit;
+	margin: 0px 0px 0px 0px; 
+	padding: 0px 0px 0px 0px;
+	float: left;
 	margin-top: -2px;
 }
 
