@@ -1859,7 +1859,7 @@ div.month5 {background-color: #9f00c6;}
 	margin: 0px 0px 0px 0px; 
 	padding: 0px 0px 0px 0px;
 	float: left;
-	margin-top: -2px;
+	position: static;
 }
 
 .noPhotosLogin{
