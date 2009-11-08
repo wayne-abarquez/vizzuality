@@ -1716,13 +1716,14 @@ a.verTodas:hover{
 }
 
 .columnPhotos{
+/*
 	background-image: url(/img/background_photos.jpg);
 	background-repeat: repeat-x;
+*/
 	width: 641px;
-	min-height: 203px;
 	margin: 0px 0px 20px -20px;	
 	background-color: #143c64;
-	max-height: auto;
+	height: auto;
 	padding-bottom: 10px;
 }
 
@@ -1841,16 +1842,23 @@ div.month5 {background-color: #9f00c6;}
 }
 
 #imgItems{
-	margin-left: 30px;
+	margin-left: 24px;
 	width: 600px;
-	min-height: 150px;
-	max-height: auto;
+	height: auto;
+	min-height: 201px;
 	margin-top: -10px;
 	padding: 0;
+	background-color: yellow;
+}
+
+#imgItems a{
+	padding: 0;
+	margin: 0;
 }
 
 .avatarPhoto{
-	margin: 0;
+	margin: 0; padding: 0;
+	display: inline;
 	float: left;
 }
 
