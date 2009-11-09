@@ -765,7 +765,7 @@ div.userComments {
 #commentUser {width: 390px; border-bottom: 1px dotted #cccccc; margin-left: -17px; margin-top: -10px; margin-bottom: 22px;}
 #commentUser a.name {color: #336699; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
 #commentUser a.name:hover {color: #ff6600;}
-#commentUser div.commentBoxUser {margin-left: 10px; width: 290px; height: 76px; margin-bottom: 10px;}
+#commentUser div.commentBoxUser {margin-left: 10px; width: 290px !important; overflow: hidden; height: 76px; margin-bottom: 10px;}
 #commentUser div.commentBoxUser p {margin-right: 30px;}
 #commentUser div.commentBoxUser p.commentUserProfile {float: left; margin-right: 30px; color: #666666;}
 #commentUser div.commentBoxUser p.commentUserProfile a {color: #336699; font-weight: bold; text-decoration: none;}
@@ -2069,7 +2069,7 @@ div.mapStyleRight {
 #comment {width: 610px; border-bottom: 1px dotted #cccccc; margin-left: -17px; margin-top: -6px; margin-bottom: 18px;}
 #comment a.name {color: #336699; font-size: 16px; font-weight: bold; text-decoration: none; float: none; margin: 0px 0px 0px -30px;}
 #comment a.name:hover {color: #ff6600;}
-#comment div.commentBox {margin-left: 10px; width: 500px; height: 76px; margin-bottom: 10px;}
+#comment div.commentBox {margin-left: 10px; width: 500px !important; overflow: hidden; height: 76px; margin-bottom: 10px;}
 #comment div.commentBox p {margin-right: 30px;}
 #comment div.commentBox p.commentUser {float: left; margin-right: 30px; color: #666666;}
 #comment div.commentBox p.commentUser a {color: #336699; font-weight: bold; text-decoration: none;}
