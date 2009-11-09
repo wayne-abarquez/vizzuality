@@ -325,7 +325,7 @@ class MediaServices {
 	}
 	
 	function getUserPictures($userId) {
-	    $sql="SELECT p.id,path,width,height,on_id,u.username,p.created_when, u.id as user_id FROM picture as p inner join users as u on p.user_fk=u.id WHERE user_fk=$userId and on_table<>'avatar' ORDER BY p.created_when ASC";
+	    $sql="SELECT p.id,path,width,height,on_id,u.username,p.created_when, u.id as user_id FROM picture as p inner join users as u on p.user_fk=u.id WHERE user_fk=$userId and on_table<>'avatar' ORDER BY p.created_when ASC"; 
 	    return pg_fetch_all(pg_query($this->conn, $sql));
 	}	
 	
