@@ -320,7 +320,7 @@ class MediaServices {
 	
 	function getObjectPictures($table,$id) {
 	    $table=pg_escape_string($table);
-	    $sql="SELECT p.id,path,width,height,on_id,u.username FROM picture as p inner join users as u on p.user_fk=u.id WHERE on_id=$id AND on_table='$table' ORDER BY p.created_when ASC";
+	    $sql="SELECT p.id,path,width,height,on_id,u.username FROM picture as p inner join users as u on p.user_fk=u.id WHERE on_id=$id AND on_table='$table' ORDER BY p.created_when DESC";
 	    return pg_fetch_all(pg_query($this->conn, $sql));
 	}
 	
