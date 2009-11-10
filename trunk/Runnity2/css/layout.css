@@ -1595,8 +1595,7 @@ a.verTodas:hover{
 }
 
 .titulo{
-	font-family: "Arial"
-	font-size: 28px;
+	font-family: "Arial";
 	font-weight: bold;
 	color: #336699;
 	border-bottom: solid 2px #336699;
@@ -1605,6 +1604,19 @@ a.verTodas:hover{
 	padding-left: 5px;
 	margin-right: 10px;
 	margin-bottom: 4px;
+}
+
+p.tituloUserImage{
+	font-family: "Arial";
+	font-weight: bold;
+	color: #336699;
+	border-bottom: solid 2px #336699;
+	padding-top: 10px;
+	padding-bottom: 6px;
+	padding-left: 5px;
+	margin-bottom: 4px;
+	width:256px;
+	margin-left:24px;
 }
 
 .titulo a{
