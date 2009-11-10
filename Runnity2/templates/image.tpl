@@ -71,7 +71,7 @@
 	
 		<div class="span-1 last columnLong">
 			<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
-			<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
+				<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
 			</p>
 			<ol id="update">
 			{foreach key=id item=comment from=$comments name=commentloop}
@@ -119,9 +119,9 @@
 	<div class="span-1 last rightColumn userRightColumn">
 		<div class="span-1 functionalContainer">
 			{if $source eq "run"}
-				<p class="titulo tituloLeft tituloColumnRight">MÁS FOTOS DE ESTA CARRERA</p>
+				<p class="tituloUserImage">MÁS FOTOS DE ESTA CARRERA</p>
 			{else}
-				<p class="titulo tituloLeft tituloColumnRight">MÁS FOTOS DE {$pictureDetails.username|upper}</p>
+				<p class="tituloUserImage">MÁS FOTOS DE {$pictureDetails.username|upper}</p>
 			{/if}	
 			
 			<div class="eventsUsers">
