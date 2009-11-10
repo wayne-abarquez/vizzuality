@@ -157,7 +157,6 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
-					
 					<div class="column last buttonSearchBig">
 						<span><a href="#"><input id="inputSearchGeneral" class="buttonsearchbig" type="submit" value="Buscar"></a></span>
 					</div>
@@ -165,7 +164,7 @@ $(document).ready(function(){
 
 					
 				</div>
-				<div class="span-24 topPaginator">
+				<div class="span-23 topPaginator">
 					<div id="racesTab" class="column first racesTab">
 					 	<ul>
 					 		<li {if ($tipoBusqueda=="Proximas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
