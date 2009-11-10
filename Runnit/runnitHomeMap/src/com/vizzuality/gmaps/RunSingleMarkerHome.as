@@ -21,7 +21,6 @@ package com.vizzuality.gmaps
 			options.draggable = false;
 			var dateNow: Date = new Date();
 			var raceDate: Date = new Date();
-			trace(eventDate.slice(0,4));
 			raceDate.setFullYear(Number(eventDate.slice(0,4)),Number(eventDate.slice(5,7))-1,Number(eventDate.slice(8,10)));
  			raceDate.setHours(Number(eventDate.slice(11,13)),Number(eventDate.slice(14,16)),Number(eventDate.slice(17,19)));
  			
