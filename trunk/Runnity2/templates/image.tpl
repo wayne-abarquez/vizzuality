@@ -84,9 +84,7 @@
 					<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
 					<p class="commentUser">{$comment.commenttext}</p>
 					</div>
-				</div>	
-				{else}
-					<div class="span-1 separatorFirstComment"></div>
+				</div>
 				{/if}
 			{/foreach}	
 		</ol>						
