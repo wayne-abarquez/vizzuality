@@ -228,18 +228,17 @@ function SubirFotos(){
 					<div>
 						<div class="mapStyle">
 							<div id="trackMap">
-	       						  <object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400">
+	       				<object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400">
 								  <param name="flashvars" value="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
-	                              <param name="wmode" value="opaque">
-	                              <param name="movie" value="/flash/raceMapViewer.swf?2" />
-	                              <!--[if !IE]>-->
-	                              <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="600" height="400" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
-	                              <!--<![endif]-->
-
-	                              <!--[if !IE]>-->
-	                              </object>
-	                              <!--<![endif]-->
-	                            </object>		    					    
+	                  <param name="wmode" value="opaque">
+                   <param name="movie" value="/flash/raceMapViewer.swf?2" />
+                   <!--[if !IE]>-->
+                   <object type="application/x-shockwave-flash" data="/flash/raceMapViewer.swf" width="600" height="400" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
+                   <!--<![endif]-->
+                   <!--[if !IE]>-->
+                   </object>
+                   <!--<![endif]-->
+                 </object>		    					    
 							</div>
 						</div>	
 					</div>
@@ -280,30 +279,27 @@ function SubirFotos(){
 			</div>	
 			
 			<div class="span-1 last columnLong">
-			    <a NAME="comentarios"></a>
+			  <a NAME="comentarios"></a>
 				<p class="titulo tituloLeft tituloRight">COMENTARIOS {if !empty($comments)}[{$comments|@count}]{/if}
 				{if $smarty.session.logged}
 					<a class="publica" onclick="document.getElementById('commentTextArea').focus();">publicar un comentario</a>
 				{/if}
 				</p>
-				<ol id="update">
+				<ol id="update">				
 				{foreach key=id item=comment from=$comments name=commentloop}
-				{if $comment}	    
-				{if $smarty.foreach.commentloop.iteration==1}		
-					<div class="span-1 separatorFirstComment"></div>
-				{/if}								
-					<div id="comment" class="span-1 last">
-						<div class="span-1 last avatarBox">
-							<img width="67" height="66" src="/avatar.php?id={$comment.user_id}&type=s"/>	
-						</div>
-						<div class="span-1 commentBox">
-						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
-						<p class="commentUser">{$comment.commenttext}</p>
-						</div>
-					</div>	
-        {/if} 
+				{if $comment}						
+						<div id="comment" class="span-1 last">
+							<div class="span-1 last avatarBox">
+								<img width="67" height="66" src="/avatar.php?id={$comment.user_id}&type=s"/>	
+							</div>
+							<div class="span-1 commentBox">
+							<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
+							<p class="commentUser">{$comment.commenttext}</p>
+							</div>
+						</div>	
+					{/if}
        	{/foreach}	
-       </ol>						
+				</ol>
 			</div>
 			
 			<!-- PARA AÑADIR COMENTARIOS -->

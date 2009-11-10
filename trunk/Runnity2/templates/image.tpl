@@ -75,9 +75,6 @@
 			</p>
 			<ol id="update">
 			{foreach key=id item=comment from=$comments name=commentloop}
-				{if $smarty.foreach.commentloop.iteration==1}		
-					<div class="span-1 separatorFirstComment"></div>
-				{/if}
 				{if $comment}										
 				<div id="comment" class="span-1 last">
 					<div class="span-1 last avatarBox">
