@@ -752,11 +752,10 @@ function publishRun() {
         data: dataObj,
         cache: false,
         success: function(result){
-                var h = 100;
-                $('#publish_container').html('');
-                $('#publish_container').append('<h2 style="width:450px; text-align: center;">Gracias por enviar tu carrera</h2>');
-                $('#publish_container').append('<div style="text-align:center;width:450px;color:#336699;margin-top:-20px">Gracias por enviar la carrera, en breve se cerrará esta ventana.</div>');
-                $('div.simplemodal-data').animate({height:100},500);
+                $('div.publish_container').html('');
+                $('div.publish_container').append('<h2 style="width:450px; text-align: center;">Gracias por enviar tu carrera</h2>');
+                $('div.publish_container').append('<div style="text-align:center;width:450px;color:#336699;margin-top:-20px">Gracias por enviar la carrera, en breve se cerrará esta ventana.</div>');
+                $('#publish_modal').animate({height:100},500);
 
                	timerID = setTimeout("timerHide()", 2000);
         },
