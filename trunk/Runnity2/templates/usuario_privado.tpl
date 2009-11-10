@@ -51,8 +51,8 @@ function SubirFotoUser () {
 		
         	if(tipoCont=="first"){
         		$("#pictureUserContainerNoPhotos").remove();
-        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&source=user">' +response+ '</a></div></li></ul></div><div class="span-1 editUserLinkDiv"><a class="editUserLink" id="buttonUploadPicture" onclick="javascript: SubirFotoUser();">Subir fotos <img src="/img/pencil.gif"></a></div>');
-        		$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
+        		$("#newphotos").append('<div class="pictureUserContainer" id="pictureUserContainer"><ul id="loc"><li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&amp;source=user">' +response+ '</a></div></li></ul></div><div class="span-1 editUserLinkDiv"><a class="editUserLink" id="buttonUploadPicture" onclick="javascript: SubirFotoUser();">Subir fotos <img src="/img/pencil.gif" alt="pencil"></a></div>');
+        		$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif' alt='pencil'>");
 				window.clearInterval(interval);
 
 				//enable upload button
@@ -60,16 +60,16 @@ function SubirFotoUser () {
         	} else {
         	    var i=$('ul#loc li').size()+1;
         		if(i<6){
-	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
-	            	$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
+	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&amp;source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
+	            	$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif' alt='pencil'>");
 					window.clearInterval(interval);
 
 					//enable upload button
 					this.enable();
         		} else {
         			$('ul#loc li:last').remove();
-	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
-					$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif'>");
+	            	$('<li><div class="imagesUser" id="imagesUser"><a href="/image.php?id='+cadena+'&amp;source=user">' +response+ '</a></div></li>').prependTo('ul#loc');
+					$("#buttonUploadPicture").html("Subir fotos <img src='/img/pencil.gif' alt='pencil'>");
 					window.clearInterval(interval);
 
 					//enable upload button
@@ -134,7 +134,7 @@ $(document).ready(function(){
     	},
     	onComplete : function(file){
 
-			$("#userImg").attr("src","/avatar.php?id={/literal}{$smarty.session.user.id}{literal}&type=t&"+new Date().valueOf());
+			$("#userImg").attr("src","/avatar.php?id={/literal}{$smarty.session.user.id}{literal}&amp;type=t&amp;"+new Date().valueOf());
 			$("#buttonUpload").html("Subir foto");
 
 			window.clearInterval(interval);
@@ -157,7 +157,7 @@ $(document).ready(function(){
 		<div class="globalContainerUser">	
 			<div class="span-1 last userData">
 				<div class="span-1 avatarPerfil" id="avatarPerfil">
-					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$smarty.session.user.id}&type=t">
+					<img class="imgAvatarPerfil" id="userImg" src="/avatar.php?id={$smarty.session.user.id}&amp;type=t" alt="avatar">
 					<a class="changeAvatar" id="buttonUpload">Click para subir avatar</a>
 				</div>
 				<div class="span-1 last functionalContainer">
@@ -186,7 +186,7 @@ $(document).ready(function(){
 							<p>No hay records, anímate y edita tus marcas</p>
 						</div>					
 					{/if}
-					<a class="editUserLink editUserLinkMargin" href="/usuario_editar.php">editar tus marcas <img src="/img/pencil.gif"></a>
+					<a class="editUserLink editUserLinkMargin" href="/usuario_editar.php">editar tus marcas <img src="/img/pencil.gif" alt='pencil'></a>
 				</div>
 				<div class="span-1 last functionalContainer">
 				<p class="titulo tituloLeft">DATOS PERSONALES</p>
@@ -198,7 +198,7 @@ $(document).ready(function(){
 						<div class="span-1 last dataTitleUserProfile"><p>Categoría:</p></div>
 						<div class="span-1 last dataUserProfile"><p><b>{$categoria}</b></p></div>
 					</div>
-					<a class="editUserLink editUserLinkMargin" href="/usuario_editar.php">editar tus datos <img src="/img/pencil.gif"></a>
+					<a class="editUserLink editUserLinkMargin" href="/usuario_editar.php">editar tus datos <img src="/img/pencil.gif" alt='pencil'></a>
 				</div>
 			</div>
 			
@@ -218,18 +218,18 @@ $(document).ready(function(){
 						{if $smarty.foreach.pic.iteration<6}
 							<li>
 								<div class="imagesUser" id="imagesUser">
-									<a href="/image.php?id={$picture.id}&source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+									<a href="/image.php?id={$picture.id}&amp;source=user"><img src="{$picture.path|replace:"_b.jpg":"_t.jpg"}" alt=""></a>
 								</div>
 							</li>
 						{/if}
 					{/foreach}
 					</ul>
 				</div>
-				<div class="span-1 editUserLinkDiv"><a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif"></a></div>
+				<div class="span-1 editUserLinkDiv"><a class="editUserLink" id="buttonUploadPicture">Subir fotos <img src="/img/pencil.gif" alt='pencil'></a></div>
 				{else}
 					<div class="pictureUserContainerNoPhotos" id="pictureUserContainerNoPhotos" title="first">
 						<p class="upPhotos">No has subido fotos...</p>
-						<p class="down"><img src="/img/photoIconLight.gif"><a href="#" id="buttonUploadPicture">Subir fotos</a></p>
+						<p class="down"><img src="/img/photoIconLight.gif" alt=""><a href="#" id="buttonUploadPicture">Subir fotos</a></p>
 					</div>				
 				{/if}
 				</div>
@@ -246,7 +246,7 @@ $(document).ready(function(){
 				{/if}
 					<div id="commentUser" class="span-1 last">
 						<div class="span-1 last avatarBox">
-							<img src="/avatar.php?id={$comment.user_id}&type=s"/>	
+							<img src="/avatar.php?id={$comment.user_id}&amp;type=s" alt="avatar">	
 						</div>
 						<div class="span-1 commentBoxUser">
 						<div class="nameUser"><a class="name" href="/user/{$comment.username}">{$comment.username}, </a>hace {$comment.created_when|timeAgo}</div>
@@ -271,7 +271,7 @@ $(document).ready(function(){
 				<p class="span-8 tituloPhotos">TODAS TUS FOTOS</p>
 				<div id="imgItems">
 				{foreach key=id item=picture from=$pictures}
-					<a name="anclafotos" href="/picture/{$picture.id}/user"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}"/></a>
+					<a name="anclafotos" href="/picture/{$picture.id}/user"><img class="avatarPhoto" src="{$picture.path|replace:"_b.jpg":"_t.jpg"}" alt="{$picture.id}"></a>
 				{/foreach}	
 				</div>
 			</div>
@@ -312,9 +312,9 @@ $(document).ready(function(){
 			<p class="titulo tituloLeft tituloColumnRight">CARRERAS APUNTADAS</p>
 				<div id="map" class="mapStyleRight">
 		            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192">
-			          <param name="flashvars" value="id={$smarty.session.user.id}&amp;mapkey={$smarty.const.GMAPS_KEY}" />
-		              <param name="wmode" value="opaque" />
-		              <param name="movie" value="/flash/UserRacesMap.swf?7" />
+			          <param name="flashvars" value="id={$smarty.session.user.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
+		              <param name="wmode" value="opaque">
+		              <param name="movie" value="/flash/UserRacesMap.swf?7">
 		              <!--[if !IE]>-->
 		              <object type="application/x-shockwave-flash" data="/flash/UserRacesMap.swf?7" width="254" height="192" flashvars="id={$smarty.session.user.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
 		              <!--<![endif]-->
@@ -331,7 +331,7 @@ $(document).ready(function(){
 			<div class="events">
 				<div class="avatarContainer">
 				{foreach key=id item=friend from=$friends}
-					<a href="/user/{$friend.username}"><img class="avatarRight" src="/avatar.php?id={$friend.id}&type=s"/>
+					<a href="/user/{$friend.username}"><img class="avatarRight" src="/avatar.php?id={$friend.id}&amp;type=s" alt="">
 						<div class="hidden">{$friend.username}</div>
 					</a>
 			    {/foreach}

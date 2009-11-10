@@ -159,13 +159,13 @@ $(document).ready(function(){
 					</div>
 					
 					<div class="column last buttonSearchBig">
-						<span><a href="#"><input id="inputSearchGeneral" class="buttonsearchbig" type="submit" value="Buscar"/></a></span>
+						<span><a href="#"><input id="inputSearchGeneral" class="buttonsearchbig" type="submit" value="Buscar"></a></span>
 					</div>
 				</form>
 
 					
 				</div>
-				<div class="topPaginator" class="span-24">
+				<div class="span-24 topPaginator">
 					<div id="racesTab" class="column first racesTab">
 					 	<ul>
 					 		<li {if ($tipoBusqueda=="Proximas") or ($tipoBusqueda=="")}id="current"{/if}><a href="#" title="Proximas"><span>Carreras por llegar</span></a></li>
@@ -176,10 +176,10 @@ $(document).ready(function(){
 						{if $count > 10}
 							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$count}</b> de {$count}
 								{if $offset > 0}
-									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&tipoBusqueda={$tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.fechaInicio}&fechaFin={$smarty.request.fechaFin}&q={$smarty.request.q}"><input class="leftPaginator" type="button"/></a></span>
+									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&amp;tipoBusqueda={$tipoBusqueda}&amp;tipoCarrera={$smarty.request.tipoCarrera}&amp;fechaInicio={$smarty.request.fechaInicio}&amp;fechaFin={$smarty.request.fechaFin}&amp;q={$smarty.request.q}"><input class="leftPaginator" type="button"></a></span>
 								{/if}
 								{if $offset < $count-10}
-									<span><a href="?offset={$offset+10}&tipoBusqueda={$tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.fechaInicio}&fechaFin={$smarty.request.fechaFin}&q={$smarty.request.q}"><input class="rightPaginator" type="button"/></a></span>
+									<span><a href="?offset={$offset+10}&amp;tipoBusqueda={$tipoBusqueda}&amp;tipoCarrera={$smarty.request.tipoCarrera}&amp;fechaInicio={$smarty.request.fechaInicio}&amp;fechaFin={$smarty.request.fechaFin}&amp;q={$smarty.request.q}"><input class="rightPaginator" type="button"></a></span>
 	                			{/if}	
 							</p>	
 	                    {/if}
@@ -206,15 +206,15 @@ $(document).ready(function(){
 	    								<div class="day">{$race.event_date|substr:8:2}</div>
 	    							</div>
 	    							<div class="column last">
-	    								<div><img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}"/></div>
+	    								<div><img src="/runThumbImage.php?id={$race.id}&amp;photo_id={$race.flickr_img_id}" alt="Foto de la carrera {$race.name}"></div>
 	    							</div>
 	    						</div>
 	    						<div class="column last">
 	    							<p class="span-1 raceLocationText"><b>{$race.distance_text}</b> / {$race.event_location}, {$race.province_name}</p>   							
 	    							<p class="span-18"><a href="/run/{$race.id}/{$race.name|seourl}" class="raceTitleText">{$race.name}</a></p>
 	    							<div id="socialDetails">
-	    								<div class="column socialBox first"><img src="/img/photo.jpg"/><a href="/run/{$race.id}/{$race.name|seourl}#fotos">{$race.num_pictures} fotos</a></div>
-	    								<div class="column socialBox last"><img src="img/comment.jpg"/> <a href="/run/{$race.id}/{$race.name|seourl}#comentarios">{$race.num_comments} comentarios</a></div>
+	    								<div class="column socialBox first"><img src="/img/photo.jpg" alt="photo"><a href="/run/{$race.id}/{$race.name|seourl}#fotos">{$race.num_pictures} fotos</a></div>
+	    								<div class="column socialBox last"><img src="img/comment.jpg" alt="comments"> <a href="/run/{$race.id}/{$race.name|seourl}#comentarios">{$race.num_comments} comentarios</a></div>
 	    							</div>
 	    						</div>
 	    						{if $race.num_users>0}
@@ -241,10 +241,10 @@ $(document).ready(function(){
 						{if $count > 10}
  							<p>viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$count}</b> de {$count}
 								{if $offset > 0}
-									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&tipoBusqueda={$tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.fechaInicio}&fechaFin={$smarty.request.fechaFin}&q={$smarty.request.q}"><input class="leftPaginator" type="button"/></a></span>
+									<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&amp;tipoBusqueda={$tipoBusqueda}&amp;tipoCarrera={$smarty.request.tipoCarrera}&amp;fechaInicio={$smarty.request.fechaInicio}&amp;fechaFin={$smarty.request.fechaFin}&amp;q={$smarty.request.q}"><input class="leftPaginator" type="button"></a></span>
 								{/if}
 								{if $offset < $count-10}
-									<span><a href="?offset={$offset+10}&tipoBusqueda={$tipoBusqueda}&tipoCarrera={$smarty.request.tipoCarrera}&fechaInicio={$smarty.request.fechaInicio}&fechaFin={$smarty.request.fechaFin}&q={$smarty.request.q}"><input class="rightPaginator" type="button"/></a></span>
+									<span><a href="?offset={$offset+10}&amp;tipoBusqueda={$tipoBusqueda}&amp;tipoCarrera={$smarty.request.tipoCarrera}&amp;fechaInicio={$smarty.request.fechaInicio}&amp;fechaFin={$smarty.request.fechaFin}&amp;q={$smarty.request.q}"><input class="rightPaginator" type="button"></a></span>
 	                			{/if}
  								
  							</p>	
