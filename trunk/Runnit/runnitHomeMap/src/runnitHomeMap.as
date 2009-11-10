@@ -113,8 +113,8 @@ package {
 		
 		private function downloadData():void {
 			with(RosaSettings) {
-				localTestGatewayURL="/amfphp/gateway.php";
-				gatewayURL = "/amfphp/gateway.php";
+				localTestGatewayURL="http://localhost:8888/amfphp/gateway.php";
+				gatewayURL = "http://localhost:8888/amfphp/gateway.php";
 				
 			}
 			service = new ServiceProxy("RunnitServices");
@@ -196,7 +196,7 @@ package {
 			
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			
-			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox)-1);
+			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
 				
 			
 			

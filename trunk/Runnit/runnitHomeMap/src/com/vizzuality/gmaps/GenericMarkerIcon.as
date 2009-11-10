@@ -19,6 +19,8 @@ package com.vizzuality.gmaps
 	  private var groupMarkerIcon:Class;
 	  [Embed('assets/markerIcon.png')] 
 	  private var markerIcon:Class;
+	  [Embed('assets/oldRaces.png')] 
+	  private var oldRaces:Class;
 	  [Embed('assets/raceNoActive.png')] 
 	  private var raceNoActive:Class;
 	  [Embed('assets/raceNoActiveEmpty.png')] 
@@ -51,7 +53,9 @@ package com.vizzuality.gmaps
 				case "raceNoActiveEmpty":
 					addChild(new raceNoActiveEmpty());
 					break;
-			}
+				case "oldRaces":
+					addChild(new oldRaces());
+					break;			}
 			if(texto!="") {
 				//graphics.beginFill(0x336699);
 				//graphics.drawCircle(0, 0, 15);
