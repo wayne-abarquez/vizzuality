@@ -241,9 +241,6 @@ $(document).ready(function(){
 				<div class="span-1 last columnComments">
 				<ol id="update">
 				{foreach key=id item=comment from=$comments name=commentloop}
-				{if $smarty.foreach.commentloop.iteration==1}		
-					<div class="span-1 separatorFirstCommentUser"></div>
-				{/if}
 					<div id="commentUser" class="span-1 last">
 						<div class="span-1 last avatarBox">
 							<img src="/avatar.php?id={$comment.user_id}&amp;type=s" alt="avatar">	
@@ -253,8 +250,8 @@ $(document).ready(function(){
 						<p class="commentUserProfile">{$comment.commenttext}</p>
 						</div>
 					</div>
-            	{/foreach}
-            	</ol>
+          {/foreach}
+        </ol>
 				</div>
 				{else}
 					<div class="pictureUserContainerNoPhotos">
