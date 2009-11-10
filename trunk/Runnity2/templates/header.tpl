@@ -31,13 +31,6 @@
 	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/Arial_Rounded_MT_Bold_400.font.js"></script>	
 	<script type="text/javascript" src="/js/init.js"></script>	
 	
-	
-	<!--[if IE 6]>
-	<link rel="stylesheet" href="/css/layout_ie.css" type="text/css" media="screen, projection">
-	<![endif]-->
-	
-
-	
 	{if $section eq "index"}
 		{literal}
 		<script type="text/javascript">
