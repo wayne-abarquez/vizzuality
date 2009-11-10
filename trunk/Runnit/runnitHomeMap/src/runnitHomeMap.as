@@ -33,7 +33,7 @@ package {
 	import rosa.events.RosaEvent;
 	import rosa.services.ServiceProxy;
 
-	[SWF(backgroundColor=0xFFFFFF, width=939, height=364)]
+	[SWF(backgroundColor=0x9FB4CB, width=895, height=364)]
 	public class runnitHomeMap extends Sprite
 	{
 		
@@ -50,6 +50,9 @@ package {
 		[Embed('assets/cargandomapa1.png')] 
 		private var loadingImg:Class;		
 		private var imgLoading:Bitmap;
+		[Embed('assets/leyenda.png')] 
+		private var legend:Class;	
+		
 		
 		public function runnitHomeMap()
 		{
@@ -67,6 +70,7 @@ package {
 		
 		
 		private function initMap():void {
+			
 			map=new Map();
 			if(this.root.loaderInfo.parameters.mapkey!=null) {
 				map.key=this.root.loaderInfo.parameters.mapkey;							
@@ -75,11 +79,13 @@ package {
 			}
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
-			map.setSize(new Point(939, 364));
+			map.x=1;
+			map.y=1;
+			map.setSize(new Point(892, 362));
 			addChild(map);
 			square = new Sprite();
 			square.graphics.beginFill(0xFFFFFF);
-			square.graphics.drawRect(0,0,939,364);
+			square.graphics.drawRect(0,0,895,364);
 			square.graphics.endFill();
 			square.x = 0;
 			square.y = 0;			
@@ -113,8 +119,8 @@ package {
 		
 		private function downloadData():void {
 			with(RosaSettings) {
-				localTestGatewayURL="http://localhost:8888/amfphp/gateway.php";
-				gatewayURL = "http://localhost:8888/amfphp/gateway.php";
+				localTestGatewayURL="/amfphp/gateway.php";
+				gatewayURL = "/amfphp/gateway.php";
 				
 			}
 			service = new ServiceProxy("RunnitServices");
@@ -201,8 +207,12 @@ package {
 			
 			
 			removeChild(imgLoading);	
-			removeChild(square);	
-			
+			removeChild(square);
+			var raceLegend: Sprite = new Sprite();
+			raceLegend.x = 750;
+			raceLegend.y = 5;	
+			raceLegend.addChild(new legend());
+			addChild(raceLegend);
 		}
 		
 		private function goToRunPage(e:MapMouseEvent):void {

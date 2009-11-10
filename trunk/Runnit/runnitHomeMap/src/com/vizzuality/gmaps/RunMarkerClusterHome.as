@@ -19,6 +19,7 @@ package com.vizzuality.gmaps
 			options.hasShadow = false; 		
 			//options.tooltip="Click para acercar";
 			
+			
 			super((cluster[0] as Marker).getLatLng(), options);
 		}
 	}
