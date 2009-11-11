@@ -74,7 +74,7 @@ $(document).ready(function(){
 	    						</div>
 	    						<div class="column last">	
 										<p class="span-20"><a href="/user/{$user.username}" class="userTitleText">{$user.completename}</a></p>
-										<p class="span-1 userName"><b></b> {$user.username} / 
+										<p class="span-1 userName"><b>{$user.username}</b> |
 											{if $user.birthday|substr:0:4>="1987" && $user.birthday|substr:0:4<="1989"}
 												Promesa
 											{/if}
