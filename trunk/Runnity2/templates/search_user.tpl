@@ -19,7 +19,7 @@ $(document).ready(function(){
 			
 			<div id="searchBox">
 				<div class="searchForm">
-					<div class="column regionInput">
+					<div class="column regionInput2">
 						<!-- METODO BUSCAR!?!??! -->
 						<form id="searchForm" method="GET" action="/usuarios">
 							<div class="searchlabel"><p>NOMBRE</p></div>
