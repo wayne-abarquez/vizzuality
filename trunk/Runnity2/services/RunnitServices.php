@@ -1564,6 +1564,64 @@ SQL;
 	    
 	    return array($lat,$lng);
 	}
+	
+	
+	
+	//searchusers
+		public function searchUsers($q,$offset) { 
+	    $q=pg_escape_string($q);
+        if(!$offset) {
+            $offset=0;
+        }
+        
+        $sql="select u.id,u.username,u.completename,(SELECT COUNT(id) FROM picture where user_fk=u.id) as num_pictures from users u";
+
+	    $terms=explode(" ",$q);
+
+        $termsToAvoid=array("El","el","LA","La","la","Los","los","Las","las","En","en","De","de","y","o","i");
+	    if(count($terms)>0 and $q!="") {
+	        $sql.=" where (";
+    	    foreach($terms as $term) {
+    	        if (!in_array($term, $termsToAvoid)) {
+    	            $sql.=" to_ascii(convert_to(u.username, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') or to_ascii(convert_to(u.completename, 'latin1'), 'latin1') ilike to_ascii(convert_to('%$term%', 'latin1'), 'latin1') AND";
+    	        }
+    	    }	 
+    	    $sql=substr($sql,0,-3);
+    	    $sql.=")";       
+	    } 
+	    
+	    $sqlForCount="SELECT COUNT(id) as num_results FROM ($sql) as s";
+	    
+	    $sql.=" order by u.username ASC limit 10 offset $offset";
+        
+        //echo($sql);
+        
+        $results=array();
+        $results['data'] = pg_fetch_all(pg_query($this->conn, $sql));
+        
+        if($results['data']) {
+            $resultCount=pg_query($this->conn, $sqlForCount);
+    	    $resultCount=pg_fetch_assoc($resultCount);
+            $results['count'] =(int)$resultCount['num_results'];            
+        } else {
+            $results['count'] =0;  
+			return $results;
+        }
+
+        //Iterate over the array to check if the runs have images on the server or not and provide a random one
+	    foreach ($results['data'] as &$user) {
+	        $targetPicture=$this->basePath."media/avatar/".$user['id']."_s.jpg";
+            if (file_exists($targetPicture)) {
+                $user['avatar'] = $user['id']."_s.jpg";
+            } else {
+                //no image for the run, select random
+                $user['avatar'] = "0.jpg";
+            }
+        }
+
+        return $results;  
+	}
+	
 
 }
 
