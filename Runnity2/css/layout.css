@@ -2521,7 +2521,6 @@ div.inputRight .a5 {
 #results .one {background-color: #efefef;}
 #results div.raceResult { border-bottom: dotted 1px #999999; height: 100px; padding-top: 10px; padding-left: 10px;margin-bottom: 1px;}
 #results div.raceResult div.firstDetails { height: 75px; width: 134px; padding: 5px 5px; border: 1px solid #d7d7d7; background-color: white; }
-#results div.raceResult div.secondDetails { height: 66px; width: 68px; padding: 5px 5px; border: 1px solid #d7d7d7; background-color: white; }
 #results div.raceResult div.firstDetails div.raceResultDate { width: 30px; margin-right: 3px;}
 #results div.raceResult div.firstDetails img { height:75px; width: 100px;}
 #results div.raceResult div.raceDetailText {width: 820px;}
@@ -2535,14 +2534,14 @@ div.inputRight .a5 {
 #results div.blueTag a {float:right;font-size: 12px;font-weight: bold;color: #FFFFFF;background:url("../img/arrowGo.gif") no-repeat right top;text-decoration:none;color: white;text-align: right;}
 #results div.blueTag span {float: left;display:block;background:url("../img/runnersGo.jpg") repeat-x;padding-bottom:5px;padding-left: 10px;padding-right: 10px;padding-top: 1px;text-align: right;}
 
-#results div.userResult { border-bottom: dotted 1px #999999; height: 87px; padding-top: 10px; padding-left: 10px;margin-bottom: 1px;}
-#results div.userResult div.secondDetails { height: 66px; width: 68px; padding: 5px 5px; border: 1px solid #d7d7d7; background-color: white; }
+#results div.userResult { border-bottom: dotted 1px #999999; height: 84px; padding-top: 10px; padding-left: 10px;margin-bottom: 1px;}
+#results div.userResult div.secondDetails { height: 66px; width: 67px; padding: 3px; border: 1px solid #d7d7d7; background-color: white; }
 #results div.userResult div.firstDetails img { height:75px; width: 100px;}
 #results div.userResult div.raceDetailText {width: 820px;}
 #results div.userResult p {margin:0; padding:0;}
 #results div.userResult a.userTitleText {font-size: 20px; font-weight: bold; color: #336699; width: 720px; text-decoration: none; line-height: 18px; margin:0; padding:0;}
 #results div.userResult a.userTitleText:hover {color: #333333;}
-#results div.userResult p.userName {font-size: 14px; color: #666666; width: 720px; margin:0 0 16px 0; padding:0;}
+#results div.userResult p.userName {font-size: 14px; color: #666666; width: 720px; margin:0 0 10px 0; padding:0;}
 #results div.userResult #socialDetails div.socialBox {background-color: #FFFFFF;height: 18px;padding-left:6px; padding-right:6px;-moz-border-radius: 3px;-webkit-border-radius: 3px;}
 #results div.userResult #socialDetails div.socialBox img {margin-right: 2px;}
 #results div.userResult #socialDetails div.socialBox a {text-decoration:none; font-size: 10px; color:#666666; font-weight: bold;}
