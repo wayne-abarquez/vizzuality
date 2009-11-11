@@ -1211,6 +1211,34 @@ label.roundsearch1 {
 
 #inputsearch1 {width:443px}
 
+
+label.roundsearchUser {
+	float:left;
+	clear:left;
+	background:url(/img/inputSearchUser.gif) no-repeat 0 0;
+	padding: 0px 0px 0px 0px;
+	height: 28px;
+	margin:0px 0px 0px 0px;
+}
+
+.roundsearchUser input {
+	background:transparent;
+	padding-top: 8px;
+	padding-left: 6px;
+	float:left;
+	border: none;
+	color: gray;
+	font-size: 12px;
+}
+
+.roundsearchUser input:focus {
+	outline:none;
+}
+
+#userInputSearch {width:775px;}
+
+
+
 .inputLeft{
 	margin: 0px 0px 0px -5px;
 	padding: 0px 0px 0px 0px;
@@ -1229,21 +1257,24 @@ label.roundsearch1 {
 p.subTitle{
 	font-size: 24px;
 	color: #666666;
-	padding-top: 15px;
-	padding-left: 40px;
+	padding:0 0 0 25px;
+	margin:15px 0 0;
 }
 
 p.subTitleInfo{
 	font-size: 14px;
 	color: #666666;
-	padding-left: 40px;
-	margin-top: -46px;
+	padding-left: 25px;
+	padding-top:0;
+	margin:0;
+	line-height:0px;
 }
 
 .subTitleInfo a{
 	color: #336699;
 	text-decoration: none;
 }
+
 
 /***** FOOTER *****/
 
@@ -2196,8 +2227,8 @@ div.titleComents {
 
 .avatarContainer{
 	width: 264px;
-	height: 300px;
 	margin-left: 0px;
+	min-height:50px;
 }
 
 div.events {
@@ -2698,3 +2729,14 @@ width:132px; background:url(/img/buttonComment.gif) no-repeat 0 0; height:23px; 
 	margin-right: 0px;
 	color: #666666;
 }
+
+#buy_banner {float:left; width:250px; margin: 0 0 0 30px;}
+div.banner_shadow {float:left; position:relative; width: 250px; height:103px; background:#d6d6d6;}
+div.buy_photo {position:absolute; top:-5px; left:-5px; height:103px; border:1px solid #d5d5d5; width:250px; z-index:90; background:white;}
+div.buy_photo h5{float:left; font:12px Helvetica; color:#ff6600; font-weight:bold; padding:10px 0 0 7px; margin:0;}
+div.buy_photo p{float:left; margin:5px 0 5px 7px; width:235px; font:13px Helvetica; color:#666666; font-weight:normal; line-height:17px;}
+div.buy_photo p a {color: #336699; text-decoration: none; font-weight: bold;}
+div.buy_photo p a:hover{color: #ff6600;}
+div.buy_photo input { background:url(../img/buyButton.gif) 0 0 no-repeat; font:13px Arial; font-weight:bold; color:#FFFFFF; padding:0 0 1px 0; margin:3px 0 0 7px; border:0; width:85px; height:22px; text-shadow: 0px -1px 0px #374683;}
+div.buy_photo input:hover {background:url(../img/buyButton.gif) 0 -22px no-repeat;}
+div.buy_photo input:focus { outline:none;}
