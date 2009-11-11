@@ -42,7 +42,6 @@
 					</p>	
 				</div>	
 				<div class="span-1 containerImg ">
-					<!--HACER CLick EN LA FOTO PARA PASAR A LA SIGUIENTE-->
 					{if $nextFotoId gt 0}
 					<a href="/picture/{$nextFotoId}/{$smarty.get.source}">
 					{/if}
