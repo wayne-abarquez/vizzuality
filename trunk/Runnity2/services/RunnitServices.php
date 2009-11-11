@@ -1574,7 +1574,7 @@ SQL;
             $offset=0;
         }
         
-        $sql="select u.id,u.username,u.completename,(SELECT COUNT(id) FROM picture where user_fk=u.id) as num_pictures from users u";
+        $sql="select u.id,u.username,u.completename,u.birthday,(SELECT COUNT(id) FROM picture where user_fk=u.id) as num_pictures from users u";
 
 	    $terms=explode(" ",$q);
 
