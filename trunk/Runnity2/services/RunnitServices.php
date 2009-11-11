@@ -1592,7 +1592,7 @@ SQL;
 	    
 	    $sqlForCount="SELECT COUNT(id) as num_results FROM ($sql) as s";
 	    
-	    $sql.=" order by u.username ASC limit 10 offset $offset";
+	    $sql.=" order by u.completename ASC limit 10 offset $offset";
         
         //echo($sql);
         
