@@ -3,10 +3,11 @@
 {literal}
 <script type="text/javascript"> 
 $(document).ready(function(){
-
-    if(gup('q').length<1) {
-        $('#inputsearch1').emptyonclick();
-    }
+    $('#userInputSearch').click(function(){
+			if ($('#userInputSearch').attr('value')=='Nombre de usuario (dejalo vacío para ver todos)') {
+				$('#userInputSearch').attr('value','');
+			}
+		});
 });
 </script>
 {/literal}
@@ -20,7 +21,6 @@ $(document).ready(function(){
 			<div id="searchBox">
 				<div class="searchForm">
 					<div class="column regionInput2">
-						<!-- METODO BUSCAR!?!??! -->
 						<form id="searchForm" method="GET" action="/usuarios">
 							<div class="searchlabel"><p>NOMBRE</p></div>
 							<div class="inputSearch">
