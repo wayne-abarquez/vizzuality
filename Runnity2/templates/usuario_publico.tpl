@@ -77,8 +77,6 @@ $(document).ready(function(){
 							<p class="commentUserProfile">{$comment.commenttext}</p>
 							</div>
 						</div>
-					{else}
-						<div class="span-1 separatorFirstCommentUser"></div>
 					{/if}
             	{/foreach}
             	</ol>
