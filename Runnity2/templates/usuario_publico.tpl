@@ -78,8 +78,8 @@ $(document).ready(function(){
 							</div>
 						</div>
 					{/if}
-            	{/foreach}
-            	</ol>
+         {/foreach}
+         </ol>
 				</div> 
 			
 				<div class="span-8" id="flash" align="left"></div>
