@@ -75,41 +75,36 @@ $(document).ready(function(){
 	    						<div class="column last">	
 										<p class="span-20"><a href="/user/{$user.username}" class="userTitleText">{$user.completename}</a></p>
 										<p class="span-1 userName"><b></b> {$user.username} / 
-											{php}
-													switch ($user.birthday){
-														case ($anio>="1987" && $anio<="1989"):
-															$categoria="Promesa";
-														break;
-														case ($anio>="1990" && $anio<="1991"):
-															$categoria="Júnior";
-														break;
-														case ($anio>="1992" && $anio<="1993"):
-															$categoria="Juvenil";
-														break;
-														case ($anio>="1994" && $anio<="1995"):
-															$categoria="Cadete";
-														break;
-														case ($anio>="1996" && $anio<="1997"):
-															$categoria="Infantil";
-														break;
-														case ($anio>="1998" && $anio<="1999"):
-															$categoria="Alevín";
-														break;
-														case ($anio>="2000" && $anio<="2001"):
-															$categoria="Benjamín";
-														break;
-															case ($anio<="1974"):
-															$categoria="Veterano";
-														break;
-														case ($anio>="1975" && $anio<="1986"):
-															$categoria="Senior";
-														break;
-														case ($anio>="2002"):
-															$categoria="Pre-Benjamín";
-														break;
-													}
-													echo $categoria;
-											{/php}
+											{if $user.birthday|substr:0:4>="1987" && $user.birthday|substr:0:4<="1989"}
+												Promesa
+											{/if}
+											{if $user.birthday|substr:0:4>="1990" && $user.birthday|substr:0:4<="1991"}
+												Júnior
+											{/if}
+											{if $user.birthday|substr:0:4>="1992" && $user.birthday|substr:0:4<="1993"}
+												Juvenil
+											{/if}
+											{if $user.birthday|substr:0:4>="1994" && $user.birthday|substr:0:4<="1995"}
+												Cadete
+											{/if}
+											{if $user.birthday|substr:0:4>="1996" && $user.birthday|substr:0:4<="1997"}
+												Infantil
+											{/if}
+											{if $user.birthday|substr:0:4>="1998" && $user.birthday|substr:0:4<="1999"}
+												Alevín
+											{/if}
+											{if $user.birthday|substr:0:4>="2000" && $user.birthday|substr:0:4<="2001"}
+												Benjamín
+											{/if}
+											{if $user.birthday|substr:0:4<="1974"}
+												Veterano
+											{/if}
+											{if $user.birthday|substr:0:4>="1975" && $user.birthday|substr:0:4<="1986"}
+												Senior
+											{/if}
+											{if $user.birthday|substr:0:4>="2002"}
+												Pre-Benjamín
+											{/if}		
 										</p>
 	    							
 	    							<div id="socialDetails">
