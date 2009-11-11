@@ -50,9 +50,11 @@
 					</a>
 					{/if}
             		{if $source eq "user"}
-            		    <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>
+										{if $pictureDetails.belongs_to_name ne null}
+											<p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|seourl}">{$pictureDetails.belongs_to_name}</a></p>
+										{/if}
             		{else}
-            		    <p>ver más fotos de <a href="/run/{$pictureDetails.belongs_to_fk}/{$pictureDetails.belongs_to_name|seourl}">{$pictureDetails.belongs_to_name}</a></p>            		
+            		     <p>ver más fotos de <a href="/user/{$pictureDetails.username}">{$pictureDetails.username}</a></p>           		
             		{/if}	
 					{if $canEdit}				
 						<a href="javascript: void confirmationWindowPhoto()">borrar foto</a>
