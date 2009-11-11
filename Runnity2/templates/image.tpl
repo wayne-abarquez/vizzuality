@@ -3,10 +3,10 @@
 {literal}
 <script type="text/javascript">
   $(document).ready(function(){	
-		var left = $('.leftColumn').height();
-		var right = $('.rightColumn').height();
+		var left = $('div.leftColumn').height();
+		var right = $('div.rightColumn').height();
 		if ( right < left ) {
-			$('.rightColumn').height(left);
+			$('div.rightColumn').height(left);
 		}            				
 	});
 </script>
