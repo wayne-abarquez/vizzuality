@@ -1348,6 +1348,14 @@ padding-bottom: 32768px;
 */
 }
 
+.rightColumn_User{
+	background-image: url(/img/background-right.jpg);
+	background-position: right;
+	background-repeat: repeat-y;
+	width: 300px;
+	padding-top: 13px;
+}
+
 .container{
 	margin-bottom: 10px;
 }
