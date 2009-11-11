@@ -2535,8 +2535,8 @@ div.inputRight .a5 {
 #results div.blueTag span {float: left;display:block;background:url("../img/runnersGo.jpg") repeat-x;padding-bottom:5px;padding-left: 10px;padding-right: 10px;padding-top: 1px;text-align: right;}
 
 #results div.userResult { border-bottom: dotted 1px #999999; height: 84px; padding-top: 10px; padding-left: 10px;margin-bottom: 1px;}
-#results div.userResult div.secondDetails { height: 66px; width: 67px; padding: 3px; border: 1px solid #d7d7d7; background-color: white; }
-#results div.userResult div.firstDetails img { height:75px; width: 100px;}
+#results div.userResult div.secondDetails { height: 66px; width: 66px; padding: 3px; border: 1px solid #d7d7d7; background-color: white; }
+#results div.userResult div.secondDetails img { height:66px; width: 66px;}
 #results div.userResult div.raceDetailText {width: 820px;}
 #results div.userResult p {margin:0; padding:0;}
 #results div.userResult a.userTitleText {font-size: 20px; font-weight: bold; color: #336699; width: 720px; text-decoration: none; line-height: 18px; margin:0; padding:0;}
