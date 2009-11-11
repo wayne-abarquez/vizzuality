@@ -213,7 +213,7 @@
 				{if $smarty.session.logged}
 				<li><div class="border"><a {if $section eq "usuario"} class="current"{/if} href="/perfil/{$smarty.session.user.username}">TU PERFIL</a></div></li>
 				{/if}
-				<li><div class="border"><a {if $section eq "search_user" or $section eq "search_user"} class="current"{/if} href="/">USUARIOS</a></div></li>
+				<li><div class="border"><a {if $section eq "search_user" or $section eq "search_user"} class="current"{/if} href="/usuarios">USUARIOS</a></div></li>
 				<li><div class="border"><a {if $section eq "carrera" or $section eq "searchresults"} class="current"{/if} href="/buscar">CARRERAS</a></div></li>
 				<li><div class="border"><a {if $section eq "home"} class="current"{/if} href="/">HOME</a></div></li>				
 			</ul>
