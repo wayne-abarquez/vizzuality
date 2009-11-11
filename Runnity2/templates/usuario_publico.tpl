@@ -104,7 +104,7 @@ $(document).ready(function(){
 		<div class="span-1 separatorBannerPhotosUser"></div>
 		
 		{if $pictures}
-			<div class="span-1 last bannerTopPhotos"></div>
+			<div class="span-1 last bannerTopPhotos" id="user_photos_id"></div>
 			<div class="span-1 last columnPhotos">
 				<p class="span-8 tituloPhotos">FOTOS DE {$data.datos.username|upper}</p>
 				<div id="imgItems">

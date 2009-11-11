@@ -108,7 +108,7 @@ $(document).ready(function(){
 										</p>
 	    							
 	    							<div id="socialDetails">
-	    								<div class="column socialBox first"><img src="/img/photo.jpg" alt="photo"><a href="/run/{$race.id}/{$race.name|seourl}#fotos">{$user.num_pictures} fotos</a></div>
+	    								<div class="column socialBox first"><img src="/img/photo.jpg" alt="photo"><a {if $user.num_pictures ne 0}href="/user/{$user.username}#user_photos_id"{/if}>{$user.num_pictures} fotos</a></div>
 	    							</div>
 	    						</div>
 	    					</div>     
