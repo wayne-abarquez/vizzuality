@@ -13,8 +13,8 @@ if(isset($_REQUEST['q'])) {
 	$smarty->assign('titulo_pagina', 'Resultados de usuario en '.$_REQUEST['q'].' - Runnity.com');
 	$smarty->assign('titulo_breadcrumb','Resultados de tu búsqueda de usuario');
 } else {
-	$smarty->assign('titulo_pagina', 'Todas los usuarios - Runnity.com');
-	$smarty->assign('titulo_breadcrumb','Todas los usuarios');
+	$smarty->assign('titulo_pagina', 'Todos los usuarios - Runnity.com');
+	$smarty->assign('titulo_breadcrumb','Todos los usuarios');
 }
 
 $offset=0;
