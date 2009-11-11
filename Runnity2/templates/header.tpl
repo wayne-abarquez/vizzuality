@@ -189,7 +189,7 @@
 	</div>
 		
 	<div class="span-24 subHeader">
-		<div class="span-11 first subInfo">
+		<div class="span-10 first subInfo">
 		{if $section eq "home"} 
 			<p class="subTitle">Carreras, fotos, comentarios...</p>
 			<p class="subTitleInfo">Todo sobre más de <a href="/buscar">140 carreras</a> en toda España</p>				
@@ -199,27 +199,21 @@
 				<a href="javascript: void show_publish()"><div class="menu_button"><p>Publica tu carrera en Runnity</p></div></a>
 			</div>			
 		{/if}
-		{if $section eq "searchresults"} 
+		{if $section eq "searchresults" or $section eq "search_user"} 
 			<div class="buttonmenuContainer">
 				<a href="javascript: void show_publish()"><div class="menu_button"><p>Publica tu carrera en Runnity</p></div></a>
 			</div>			
 		{/if}
-		{*
-{if $section eq "usuario" or $section eq "registro" or $section eq "404"} 
-			<div class="buttonmenuContainer">
-				<a href="#"><div class="menu_button"><p>Invita a tus amigos a Runnity</p></div></a>
-			</div>			
-		{/if}
-*}
 		</div>
 		
 		<div class="menu">
-			<div class="span-13 last horizontalcssmenu">
+			<div class="span-14 last horizontalcssmenu">
 			<ul id="cssmenu1">
 				<li><div><a {if $section eq "blog"} class="current"{/if} href="/blog">BLOG</a></div></li>
 				{if $smarty.session.logged}
 				<li><div class="border"><a {if $section eq "usuario"} class="current"{/if} href="/perfil/{$smarty.session.user.username}">TU PERFIL</a></div></li>
 				{/if}
+				<li><div class="border"><a {if $section eq "search_user" or $section eq "search_user"} class="current"{/if} href="/">USUARIOS</a></div></li>
 				<li><div class="border"><a {if $section eq "carrera" or $section eq "searchresults"} class="current"{/if} href="/buscar">CARRERAS</a></div></li>
 				<li><div class="border"><a {if $section eq "home"} class="current"{/if} href="/">HOME</a></div></li>				
 			</ul>

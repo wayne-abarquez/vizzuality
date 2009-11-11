@@ -120,7 +120,6 @@
 			{else}
 				<p class="tituloUserImage">MÁS FOTOS DE {$pictureDetails.username|upper}</p>
 			{/if}	
-			
 			<div class="eventsUsers">
 			{if $pictures}
 				<div class="avatarContainer">
@@ -130,6 +129,21 @@
 				</div>
 			{/if}
 			</div>
+			<!-- {if $source eq "user"}
+								{if $pictureDetails.username eq "Santialcarria"}
+			          	<div id="buy_banner">
+										<div class="banner_shadow">
+											<div class="buy_photo">
+												<h5>CONSIGUE ESTA FOTO A ALTA CALIDAD</h5>
+												<p><a href="/user/{$pictureDetails.username}">Santialcarria</a> vende sus fotos a alta 
+												calidad por sólo 1 euro.</p>
+												<input type="button" value="Cómprala!"/>
+											</div>
+										</div>
+										
+									</div>
+								{/if}	
+			  		{/if} -->
 		</div>
 	</div>
 
