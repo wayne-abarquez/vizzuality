@@ -1862,15 +1862,15 @@ div.month5 {background-color: #9f00c6;}
 }
 
 #imgItems a{
+	float:left;
 	padding: 0;
 	margin: 0;
 }
 
 .avatarPhoto{
-	margin: 0px 0px 0px 0px; 
-	padding: 0px 0px 0px 0px;
+	margin: 0; 
+	padding: 0;
 	float: inherit;
-	margin-top: -2px;
 }
 
 .noPhotosLogin{
