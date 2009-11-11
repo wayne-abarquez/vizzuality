@@ -4,9 +4,9 @@
 <script type="text/javascript">
   $(document).ready(function(){	
 		var left = $('div.leftColumn').height();
-		var right = $('div.rightColumn').height();
+		var right = $('div.rightColumn_User').height();
 		if ( right < left ) {
-			$('div.rightColumn').height(left);
+			$('div.rightColumn_User').height(left);
 		}            				
 	});
 </script>
@@ -115,7 +115,7 @@
 
 
 	<!-- RIGHT COLUMN -->
-	<div class="span-1 last rightColumn userRightColumn">
+	<div class="span-1 last rightColumn_User">
 		<div class="span-1 functionalContainer">
 			{if $source eq "run"}
 				<p class="tituloUserImage">MÁS FOTOS DE ESTA CARRERA</p>
