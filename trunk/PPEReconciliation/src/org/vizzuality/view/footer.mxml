@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Footer -->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="109" backgroundColor="#DDDDDD">
+	<mx:HBox horizontalGap="0" y="20" x="10" verticalAlign="middle">
+		<mx:Button height="20" label="Protect Planet Earth" />
+		<mx:Label x="10" y="81" text="  /  All rghts reserved. 2009  /  "/>
+		<mx:Button height="20" label="Contact us" />
+		<mx:Label x="10" y="81" text="  /  "/>
+		<mx:Button height="20" label="Sitemap" />
+	</mx:HBox>
+</mx:Canvas>
