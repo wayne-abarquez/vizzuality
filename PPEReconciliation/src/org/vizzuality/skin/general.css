@@ -12,4 +12,13 @@ Canvas.stepContainer{
 	rounded-bottom-corners: true;
 	corner-radius: 4;
 }
+
+Label.welcome{
+	font-size:20;
+	font-family:Helvetica;
+	font-weight:bold;
+	color: #c6c6c6;	
+}
+
+
 	

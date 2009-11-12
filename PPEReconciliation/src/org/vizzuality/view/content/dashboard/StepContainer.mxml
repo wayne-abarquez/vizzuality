@@ -6,11 +6,12 @@
 			
 			[Bindable] public var num:Number = 0;
 			[Bindable] public var expl:String = "";
+			[Bindable] public var imgsource:Class;
 			
 		]]>
 	</mx:Script>
 
-	<mx:Image y="10" left="34"/>
+	<mx:Image y="10" left="34" source="{imgsource}"/>
 	<mx:Label y="10" text="{num}" left="10"/>
 	<mx:Text y="10" text="{expl}" width="116" height="32" left="74"/>
 	
