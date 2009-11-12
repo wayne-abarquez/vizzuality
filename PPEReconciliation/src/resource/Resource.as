@@ -13,5 +13,8 @@ package resource
         [Embed (source="org/vizzuality/assets/logo.png" )]
         public static const LOGO:Class;
         
+        [Embed (source="org/vizzuality/assets/unfinished.png" )]
+        public static const UNFINISHED:Class;
+        
 	}
 }
