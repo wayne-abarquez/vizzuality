@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="org.vizzuality.view.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="org.vizzuality.view.*" horizontalScrollPolicy="off" 
+	backgroundColor="#dddddd" backgroundGradientColors="[#dddddd]">
 
 	<mx:Style source="org/vizzuality/skin/general.css" />
 
 	<ns1:header left="0" right="0" top="0" />
-	<ns1:footer left="0" right="0" bottom="0" />
-	<ns1:contentContainer y="153" height="370" left="30" right="30" />
+	<mx:VBox top="110" bottom="0" verticalScrollPolicy="off"  width="100%" horizontalAlign="center">
+		<ns1:contentContainer height="600" width="874" horizontalScrollPolicy="off" horizontalCenter="0">
+		</ns1:contentContainer>
+		<ns1:footer width="874"/>
+	</mx:VBox>
 </mx:Application>

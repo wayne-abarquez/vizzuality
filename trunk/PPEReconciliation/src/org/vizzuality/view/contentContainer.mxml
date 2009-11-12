@@ -5,28 +5,28 @@
 	-DataUpload
 -->
 
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#DAD8D8" xmlns:dashboard="org.vizzuality.view.content.dashboard.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#FFFFFF" xmlns:dashboard="org.vizzuality.view.content.dashboard.*">
 	<mx:Script>
 		<![CDATA[
 			import resource.*;
 		]]>
 	</mx:Script>
-	<mx:ViewStack x="10" y="31" id="myViewStack" width="830" height="443">
-		<mx:Canvas label="DASHBOARD" width="100%" height="100%" backgroundColor="#FDD5D5" id="mydashboard">
-			<mx:VBox x="10" y="267" width="800" height="138" backgroundColor="#9D8484">
-				<mx:Canvas width="100%" height="39" backgroundColor="#FE8D8D">
-					<mx:Image x="10" y="10" height="19" width="47"/>
+	<mx:ViewStack x="10" y="31" id="myViewStack" width="830" height="513">
+		<mx:Canvas label="DASHBOARD" backgroundColor="#FEFEFE" id="mydashboard">
+			<mx:VBox y="267" backgroundColor="#FEFEFE" right="10" left="10">
+				<mx:Canvas width="100%" height="65" backgroundColor="#F5F5F5" borderStyle="solid" cornerRadius="4">
+					<mx:Image x="10" y="10" source="{resource.Resource.UNFINISHED}"/>
 					<mx:Label x="65" y="3" text="You have 3 unfinished data uploads"/>
 					<mx:Label x="65" y="18" text="If you have finished your edits on any of this datasets, please upload it"/>
-					<mx:Button x="542" y="10" label="upload now"/>
+					<mx:Button label="upload now" bottom="10" right="10"/>
 				</mx:Canvas>
-				<mx:Canvas width="100%" height="38" backgroundColor="#FF2A2A">
+				<mx:Canvas width="100%" height="65" backgroundColor="#F5F5F5" cornerRadius="4" borderStyle="solid">
 					<mx:Image x="10" y="10" height="19" width="47"/>
 					<mx:Label x="65" y="5" text="Download new data"/>
 					<mx:Label x="65" y="18" text="Use our search tools to get some new data, and star a new proccess"/>
-					<mx:Button x="542" y="10" label="download new"/>
+					<mx:Button label="download new" right="10" bottom="10"/>
 				</mx:Canvas>
-				<mx:Canvas width="100%" height="40" backgroundColor="#FEECD4">
+				<mx:Canvas width="100%" height="102" backgroundColor="#f5f5f5" borderStyle="solid" cornerRadius="4">
 					<mx:Image x="10" y="10" height="19" width="47"/>
 					<mx:Label x="66" y="1" text="We suggest you to..."/>
 					<mx:Label x="66" y="22" text="2"/>
@@ -34,25 +34,20 @@
 					<mx:Label x="66" y="10" text="1"/>
 				</mx:Canvas>
 			</mx:VBox>
-			<mx:Canvas y="10" height="224" left="10" right="10" backgroundColor="#EBEBEB" borderColor="#c6c6c6" borderStyle="solid" borderThickness="1">
+			<mx:Canvas height="224" left="0" right="0" backgroundColor="#EBEBEB" borderColor="#c6c6c6" borderStyle="solid" borderThickness="1" top="0">
 				<mx:Label x="10" y="10" text="Welcome back wwf.org!" styleName="welcome"/>
-				<mx:Label x="10" y="30" height="109" width="100%">
+				<mx:Text x="10" y="40" height="109" width="100%" color="#666666">
 				    <mx:htmlText>
-						<![CDATA[
-                			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                			Phasellus ut quam ligula, et elementum nisl. 
-                			Nunc a erat eu sem suscipit auctor. Nam aliquam enim vitae mi hendrerit imperdiet. 
-                			Morbi massa orci, lobortis sed tempor id, convallis at tortor. 
-                			Cras ipsum diam, tincidunt eu mattis tristique, <b>consectetur vitae risus.</b> 
-                			Nam interdum orci odio. Nulla tincidunt mi vel tellus dapibus rhoncus. Vestibulum nec euismod risus</p>
+						<![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut quam ligula, et elementum nisl. Nunc a erat eu sem suscipit auctor. Nam aliquam enim vitae mi hendrerit imperdiet. Morbi massa orci, lobortis sed tempor id, convallis at tortor. Cras ipsum diam, tincidunt eu mattis tristique, <b>consectetur vitae risus.</b> Nam interdum orci odio. Nulla tincidunt mi vel tellus dapibus rhoncus. Vestibulum nec euismod risus
             			]]>
 					</mx:htmlText>
-				</mx:Label>
+				</mx:Text>
 				<mx:HBox x="5" width="800" bottom="17">
 					<dashboard:StepContainer num="1" expl="Download the data that you will modify" height="59" imgsource="{resource.Resource.STEP1}"/>
 					<dashboard:StepContainer num="2" expl="Modify your data with your own editor" height="59" imgsource="{resource.Resource.STEP2}"/>
 					<dashboard:StepContainer num="3" expl="Upload your modified data&#xd;and commit your changes" height="59" imgsource="{resource.Resource.STEP3}"/>
 				</mx:HBox>
+				<mx:Button label="x" width="31" right="6" top="6"/>
 			</mx:Canvas>
 		</mx:Canvas>
 		<mx:Canvas label="DOWNLOAD DATA" width="100%" height="100%" backgroundColor="#FCB561" id="download_data">
