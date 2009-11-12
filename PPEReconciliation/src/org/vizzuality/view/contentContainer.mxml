@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--- This component contains all the content components
+	-Dashboard
+	-DataDownload
+	-DataUpload
+-->
+
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#DAD8D8" xmlns:dashboard="org.vizzuality.view.content.dashboard.*">
+	<mx:Script>
+		<![CDATA[
+			import resource.*;
+		]]>
+	</mx:Script>
+	<mx:ViewStack x="10" y="31" id="myViewStack" width="830" height="443">
+		<mx:Canvas label="DASHBOARD" width="100%" height="100%" backgroundColor="#FDD5D5" id="mydashboard">
+			<mx:Text x="10" y="30" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut quam ligula, et elementum nisl. Nunc a erat eu sem suscipit auctor. Nam aliquam enim vitae mi hendrerit imperdiet. Morbi massa orci, lobortis sed tempor id, convallis at tortor. Cras ipsum diam, tincidunt eu mattis tristique, consectetur vitae risus. Nam interdum orci odio. Nulla tincidunt mi vel tellus dapibus rhoncus. Vestibulum nec euismod risus" width="650" height="61"/>
+			<mx:Label x="10" y="10" text="Welcome back wwf.org!"/>
+			<mx:HBox x="10" y="99" width="800">
+				<dashboard:StepContainer num="1" expl="Download the data that you will modify" height="59"/>
+				<dashboard:StepContainer num="2" expl="Modify your data with your own editor" height="59"/>
+				<dashboard:StepContainer num="3" expl="Upload your modified data&#xd;and commit your changes" height="59"/>
+			</mx:HBox>
+			<mx:VBox x="10" y="183" width="800" height="138" backgroundColor="#9D8484">
+				<mx:Canvas width="100%" height="39" backgroundColor="#FE8D8D">
+					<mx:Image x="10" y="10" height="19" width="47"/>
+					<mx:Label x="65" y="3" text="You have 3 unfinished data uploads"/>
+					<mx:Label x="65" y="18" text="If you have finished your edits on any of this datasets, please upload it"/>
+					<mx:Button x="542" y="10" label="upload now"/>
+				</mx:Canvas>
+				<mx:Canvas width="100%" height="38" backgroundColor="#FF2A2A">
+					<mx:Image x="10" y="10" height="19" width="47"/>
+					<mx:Label x="65" y="5" text="Download new data"/>
+					<mx:Label x="65" y="18" text="Use our search tools to get some new data, and star a new proccess"/>
+					<mx:Button x="542" y="10" label="download new"/>
+				</mx:Canvas>
+				<mx:Canvas width="100%" height="62" backgroundColor="#FEECD4">
+					<mx:Image x="10" y="10" height="19" width="47"/>
+					<mx:Label x="66" y="1" text="We suggest you to..."/>
+					<mx:Label x="66" y="22" text="2"/>
+					<mx:Label x="66" y="36" text="3"/>
+					<mx:Label x="66" y="10" text="1"/>
+				</mx:Canvas>
+			</mx:VBox>
+		</mx:Canvas>
+		<mx:Canvas label="DOWNLOAD DATA" width="100%" height="100%" backgroundColor="#FCB561" id="download_data">
+			<mx:Label x="10" y="10" text="Create new download dataset"/>
+			<mx:ViewStack x="26" y="57" id="myViewStack2" width="617" height="376">
+				<mx:Canvas label="search based" width="100%" height="100%" backgroundColor="#FCDEDE" id="search_based">
+					<mx:Canvas x="10" y="146" width="597" height="220" backgroundColor="#E1EFFF">
+						<mx:Canvas x="10" y="21" width="577" height="34">
+							<mx:Label x="10" y="6" text="info"/>
+						</mx:Canvas>
+						<mx:Canvas x="10" y="63" width="577" height="34">
+							<mx:Button x="429" y="2" label="Button"/>
+							<mx:Button x="502" y="2" label="Button"/>
+							<mx:Label x="10" y="6" text="paginator"/>
+							<mx:Label x="348" y="10" text="page 1 of 7"/>
+						</mx:Canvas>
+						<mx:Canvas x="10" y="105" width="577" height="54">
+							<mx:Label x="63" y="0" text="If you want to download a complete country “country based tab”"/>
+							<mx:Image x="23" y="0" source="{resource.Resource.SHIPS_1}"/>
+							<mx:Label x="63" y="16" text="Do you want to download a complete country data? Then go to the “country tab”"/>
+						</mx:Canvas>
+					</mx:Canvas>
+					<mx:Canvas x="10" y="10" width="597" height="128" backgroundColor="#4D3EDD">
+						<mx:Canvas x="10" y="75" width="577" height="40" backgroundColor="#D6E4FB">
+							<mx:Label x="10" y="10" text="map"/>
+						</mx:Canvas>
+						<mx:Label x="10" y="10" text="Search and browse the WDPA throw the map"/>
+						<mx:TextInput x="215" y="36" width="274"/>
+						<mx:Button x="497" y="36" label="Button" width="41"/>
+						<mx:Button x="546" y="36" label="Button" width="41"/>
+					</mx:Canvas>
+				</mx:Canvas>
+				<mx:Canvas label="country based" width="100%" height="100%" backgroundColor="#624E4E" id="country_based">
+					<mx:Canvas x="10" y="10" width="597" height="84">
+						<mx:Label x="10" y="10" text="Search and browse the WDPA throw the map"/>
+						<mx:Button x="21" y="52" label="Africa"/>
+						<mx:Button x="94" y="52" label="Asia"/>
+						<mx:Button x="153" y="52" label="Europe"/>
+						<mx:Button x="227" y="52" label="N.America"/>
+						<mx:Button x="321" y="52" label="S.America"/>
+						<mx:Button x="414" y="52" label="Oceania"/>
+					</mx:Canvas>
+					<mx:ViewStack x="10" y="102" id="viewstack2" width="597" height="145" backgroundColor="#D6B6B6">
+						<mx:Canvas label="View 1" width="100%" height="100%">
+						</mx:Canvas>
+					</mx:ViewStack>
+					<mx:Canvas x="10" y="259" width="597" height="34">
+						<mx:Button x="429" y="2" label="Button"/>
+						<mx:Button x="502" y="2" label="Button"/>
+						<mx:Label x="10" y="6" text="paginator"/>
+						<mx:Label x="348" y="10" text="page 1 of 7"/>
+					</mx:Canvas>
+					<mx:Canvas x="10" y="336" width="597" height="34">
+						<mx:Label x="63" y="0" text="If you want to download a complete country “country based tab”"/>
+						<mx:Image x="23" y="0"/>
+						<mx:Label x="63" y="16" text="Do you want to download a complete country data? Then go to the “country tab”"/>
+					</mx:Canvas>
+				</mx:Canvas>
+			</mx:ViewStack>
+			<mx:Button x="427" y="27" label="search based" click="myViewStack2.selectedChild=search_based;"/>
+			<mx:Button x="536" y="27" label="country based" click="myViewStack2.selectedChild=country_based;"/>
+			<mx:VBox x="651" y="58" width="169" height="375" backgroundColor="#413131">
+				<mx:Canvas width="170" height="33" backgroundColor="#FCF9D1">
+					<mx:Label x="10" y="10" text="Current dataset" width="150"/>
+				</mx:Canvas>
+				<mx:Button label="download all"/>
+			</mx:VBox>
+		</mx:Canvas>
+		<mx:Canvas label="PREVIOUS DOWNLOADS" width="100%" height="100%" backgroundColor="#8FFA55" id="previous_downloads">
+			<mx:Label x="10" y="10" text="Unfinished previous downloads"/>
+		</mx:Canvas>
+		<mx:Canvas label="PREVIOUS UPLOADS" width="100%" height="100%" backgroundColor="#A98E8E" id="previous_uploads">
+		</mx:Canvas>
+	</mx:ViewStack>
+	<mx:HBox left="10" right="10" top="10">
+		<mx:Button label="DASHBOARD" click="myViewStack.selectedChild=mydashboard;"/>
+		<mx:Button label="DOWNLOAD DATA" click="myViewStack.selectedChild=download_data;"/>
+		<mx:Button label="PREVIOUS DOWNLOADS" click="myViewStack.selectedChild=previous_downloads;"/>
+		<mx:Button label="PREVIOUS UPLOADS" click="myViewStack.selectedChild=previous_uploads;"/>
+	</mx:HBox>
+	
+</mx:Canvas>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Component that includes the logo of the application and the login menu -->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="145" width="100%" backgroundColor="#386EA6">
+	<mx:Label x="12" y="28" text="ProtectPlanetEarth" fontSize="20" color="#FDFFFF"/>
+	<mx:Label x="13" y="48" text="DATA RECONCILIATION TOOL" color="#FFFFFF" fontSize="13"/>
+	<mx:HBox y="0" horizontalGap="0" right="38">
+		<mx:Button label="welcome back cacacaacaca"/>
+		<mx:Button label="Close session"/>
+	</mx:HBox>
+	<mx:Canvas x="0" y="0" width="100%" height="3" styleName="blackHLine">
+	</mx:Canvas>
+</mx:Canvas>

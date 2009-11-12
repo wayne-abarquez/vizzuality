@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" styleName="stepContainer">
+
+	<mx:Script>
+		<![CDATA[
+			
+			[Bindable] public var num:Number = 0;
+			[Bindable] public var expl:String = "";
+			
+		]]>
+	</mx:Script>
+
+	<mx:Image y="10" left="34"/>
+	<mx:Label y="10" text="{num}" left="10"/>
+	<mx:Text y="10" text="{expl}" width="116" height="32" left="74"/>
+	
+</mx:Canvas>
