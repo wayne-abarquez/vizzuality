@@ -9,6 +9,10 @@ package resource
         public static const STEP2:Class;
         [Embed (source="org/vizzuality/assets/step3.png" )]
         public static const STEP3:Class;
+        [Embed (source="org/vizzuality/assets/step4.gif" )]
+        public static const STEP4:Class;
+        [Embed (source="org/vizzuality/assets/step5.gif" )]
+        public static const STEP5:Class;
                 
         [Embed (source="org/vizzuality/assets/logo.png" )]
         public static const LOGO:Class;
