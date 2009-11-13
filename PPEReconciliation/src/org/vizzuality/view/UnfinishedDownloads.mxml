@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="956" backgroundColor="#EBEBEB" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="500" backgroundColor="#FFFFFF" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
 			import resource.Resource;
 		]]>
 	</mx:Script>
-	<mx:Label text="Create new download dataset" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="15" top="15" letterSpacing="-1"/>
+	<mx:Canvas left="0" right="0" top="0" height="70" backgroundColor="#EBEBEB">
+		<mx:HBox left="15" right="15" top="15" bottom="28" horizontalGap="-3" verticalAlign="bottom">
+			<mx:Label text="Unfinished previous downloads" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
+			<mx:Label text="(4)"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
+		</mx:HBox>
+	</mx:Canvas>
 
-    <mx:VBox>
-		<mx:Canvas backgroundColor="#e1efff" width="100%" height="394">
-			<mx:Label text="Search and browse the WDPA throw the map"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10"/>
-			<mx:HBox left="10" right="10" top="30" horizontalAlign="right" verticalAlign="middle" horizontalGap="4">
-				<mx:Label text="search" />
-				<mx:TextInput text="Keyword, name, country..."  borderStyle="solid" cornerRadius="8" fontStyle="italic" paddingTop="3" paddingLeft="5" paddingRight="5" fontSize="11" fontFamily="Helvetica" color="#666666"/>
-				<mx:Button  width="25"/>
-			</mx:HBox>
+    <mx:VBox left="15" right="15" top="90">
+		<mx:Canvas backgroundColor="#e1efff" width="100%" height="54">
+			<mx:Label text="Select one to continue with the upload proccess"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="570" left="10" top="10"/>
 
 		</mx:Canvas>
+		
+		<mx:TileList backgroundColor="#333333" height="150" width="100%">
+			
+		</mx:TileList>
 		
 		<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
 			<mx:Label  right="100" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right"/>
@@ -24,10 +28,16 @@
 			<mx:Button right="8" verticalCenter="0" label="&gt;"/>
 		</mx:Canvas>	
 		
-		<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4">	
-			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-			<mx:Label text="If you want to download a complete country “country based tab”"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-			<mx:Label x="65" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
+		<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" backgroundColor="#F5F5F5">	
+			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP4}"/>
+			<mx:Label text="Download new data"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
+			<mx:Label x="65" y="34" text="Use our search tools to get some new data, and stat a new proccess" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
+		</mx:Canvas>
+		
+		<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" backgroundColor="#F5F5F5">	
+			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP5}"/>
+			<mx:Label text="Browse your completed uploads"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
+			<mx:Label x="65" y="34" text="Go to the Previous uploads tab and view your completed uploads" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
 		</mx:Canvas>
     </mx:VBox>
 
