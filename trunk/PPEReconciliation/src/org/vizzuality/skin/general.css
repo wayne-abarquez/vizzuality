@@ -20,5 +20,25 @@ Label.welcome{
 	color: #c6c6c6;	
 }
 
+Canvas.ContainersInfo{
+	background-color: #F5F5F5;
+	border-style: solid;
+	border-color: #c6c6c6;
+	rounded-bottom-corners: true;
+	corner-radius: 4;
+}
+
+Text.titleInfo{
+	color: #414141;
+	font-size: 15;
+	font-weight: bold;
+}
+
+Text.explInfo{
+	color: #414141;
+	font-size: 14;
+}
+
+
 
 	

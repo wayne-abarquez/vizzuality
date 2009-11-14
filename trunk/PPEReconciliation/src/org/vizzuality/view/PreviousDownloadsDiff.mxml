@@ -57,7 +57,7 @@
 	    			<mx:Label y="69" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
 	    			<mx:Label y="354" text="lb (lorem ipsum dolor sit)" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12" left="16"/>
 	    			<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="85" width="257" height="218" left="16">
-		    			<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
+		    			<maps:Map  id="map3" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
 
 	    			</mx:Canvas>
 	    			<mx:Label y="379" text="DESIGNATION DATE" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
