@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" styleName="ContainersInfo">
+
+	<mx:Script>
+		<![CDATA[
+			
+			[Bindable] public var title:String = "";
+			[Bindable] public var expl:String = "";
+			[Bindable] public var expl2:String = "";
+			[Bindable] public var textButton:String = "";
+			[Bindable] public var imgsource:Class;
+			
+		]]>
+	</mx:Script>
+
+	<mx:Image y="5" left="14" source="{imgsource}"/>
+	<mx:Button y="11" height="32" left="74" label="{title}"/>
+	<mx:HBox left="150" top="15">
+		<mx:Text y="25" text="{expl}" height="32" left="74" styleName="explInfo"/>
+		<mx:Button y="25" label="{expl2}"/>		
+	</mx:HBox>
+		
+	<mx:Button y="25" right="10" label="{textButton}"/>
+	
+</mx:Canvas>

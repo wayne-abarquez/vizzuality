@@ -16,12 +16,18 @@ package resource
                 
         [Embed (source="org/vizzuality/assets/logo.png" )]
         public static const LOGO:Class;
+        [Embed (source="org/vizzuality/assets/logoIUCN.png" )]
+        public static const LOGOIUCN:Class;
         
         [Embed (source="org/vizzuality/assets/information_download.gif" )]
         public static const INFORMATION:Class;
         
         [Embed (source="org/vizzuality/assets/unfinished.png" )]
         public static const UNFINISHED:Class;
+        [Embed (source="org/vizzuality/assets/newdata.png" )]
+        public static const NEWDATA:Class;
+	    [Embed (source="org/vizzuality/assets/suggest.png" )]
+        public static const SUGGEST:Class;
         
 	}
 }
