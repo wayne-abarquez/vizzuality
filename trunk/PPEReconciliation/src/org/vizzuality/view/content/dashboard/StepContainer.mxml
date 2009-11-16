@@ -11,8 +11,8 @@
 		]]>
 	</mx:Script>
 
-	<mx:Image y="10" left="32" source="{imgsource}"/>
-	<mx:Canvas width="20" height="100%" backgroundColor="#c1e0ff" >
+	<mx:Image y="9" left="32" source="{imgsource}"/>
+	<mx:Canvas width="20" height="100%"  styleName="softBlueStepBackground" backgroundSize="100%">
 		<mx:Label text="{num}" left="4" fontWeight="bold" fontSize="14" fontFamily="Helvetica" color="#336699" top="12"/>
 	</mx:Canvas>
 	<mx:Text text="{expl}" left="80" right="15" fontWeight="normal" fontSize="14" fontFamily="Helvetica" color="#666666" bottom="0" top="10"/>
