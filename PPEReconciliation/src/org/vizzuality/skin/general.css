@@ -1,5 +1,35 @@
 /* CSS file */
 
+
+/*MAIN MENU*/
+Button.mainMenuButton{
+	up-skin: Embed(source="general.swf",symbol="mainMenuButton_up");
+	over-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	down-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	over-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	selected-up-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	selected-over-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	selected-down-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	font-family: "DINOT-Medium";
+	color: #6686AE;
+	font-size: 13;
+	padding-bottom: 7;
+}
+
+/**/
+
+/*Container backgrounds */
+Canvas.dashboardContainer{
+	background-image: Embed(source="general.swf",symbol="bkgDashboardContainer");	
+}
+
+/**/
+
+Canvas.softBlueStepBackground{
+	background-image: Embed(source="general.swf",symbol="softBlueStepBackground");	
+	
+}
+
 Canvas.blackHLine{
 	background-color: #000000;
 	border-style: none;	

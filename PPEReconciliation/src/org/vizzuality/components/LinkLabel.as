@@ -8,15 +8,11 @@ package org.vizzuality.components
     import mx.utils.ArrayUtil;
 
     [Style(name="linkColor", type="uint", format="Color", inherit="no")]
-
     [Style(name="linkDecoration", type="String", inherit="no")]
-
     [Style(name="hoverColor", type="uint", format="Color", inherit="no")]
-
     [Style(name="hoverDecoration", type="String", inherit="no")]
     
-    public class LinkLabel extends Label
-    {
+    public class LinkLabel extends Label{
 
         
         public var text_decoration:String;
@@ -109,12 +105,11 @@ package org.vizzuality.components
             navigateToURL(urlRequest, value.target);
         }
 
-        
         private function mouseOverHandler(event:MouseEvent):void
         {
             setStyle("color", default_hover_color);
             setStyle("textDecoration", default_hover_decoration);
-             setStyle("fontWeight", default_hover_weight);
+            setStyle("fontWeight", default_hover_weight);
          }
         
         private function mouseOutHandler(event:MouseEvent):void
