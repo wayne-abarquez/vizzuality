@@ -81,6 +81,18 @@ class WorksHandler(webapp.RequestHandler):
 		self.response.out.write(template.render(path, {'section':'works'}, debug=True))		
 
 
+class EmployeeHandler(webapp.RequestHandler):
+
+			def get(self,p):
+				path = os.path.join(os.path.dirname(__file__), 'templates/employees/'+p+'.html')
+		#		logging.error("value of my p is %s", str(path))		
+				if not os.path.exists(path):
+					self.error(404)
+					path = os.path.join(os.path.dirname(__file__), 'templates/404.html')
+					self.response.out.write(template.render(path, {'title': 'Error 404: Page not found'}, debug=True))
+
+				self.response.out.write(template.render(path, {'section':'works'},debug=True))
+
 class DetailHandler(webapp.RequestHandler):
 
 	def get(self,p):
@@ -113,6 +125,7 @@ def main():
 	application = webapp.WSGIApplication([
 		('/', IndexHandler),
 		('/company', CompanyHandler),
+		(r'/company/(.*)', EmployeeHandler),
 		('/contact', CompanyHandler),
 		('/works', WorksHandler),
 		(r'/project/(.*)', DetailHandler),

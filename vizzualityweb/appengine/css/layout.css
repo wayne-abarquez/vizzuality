@@ -72,6 +72,13 @@ div.content .longcol{float:left; width:550px; padding-right:10px; position:relat
 div.content .longcol img{margin-bottom: 15px; }
 div.content .longcol img.last{margin-bottom: 0px; }
 
+div.content .desccol{float:left; width:550px; padding-right:10px; position:relative; height:auto; text-align: left;}
+div.content .desccol p{margin-top: 37px; font-size: 14px; line-height: 18px; }
+div.content .desccol a {color: #666666; text-decoration: none; font-weight: bold;}
+div.content .desccol .externalLinks {float:left; width: 250px;}
+div.content .desccol .externalLinks a{font-weight: bold; color: #ff3f12; text-decoration: none;}
+
+
 div#footer{float:left; width:885px; padding:10px 0 20px 0;}
 div#footer p{float:right; padding:0 74px 0 0; line-height:15px}
 div#footer p strong{ display:block; font-size:14px; line-height:38px;}
