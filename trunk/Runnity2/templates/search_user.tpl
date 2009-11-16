@@ -2,12 +2,10 @@
  
 {literal}
 <script type="text/javascript"> 
-$(document).ready(function(){
-    $('#userInputSearch').click(function(){
-			if ($('#userInputSearch').attr('value')=='Nombre de usuario (dejalo vacío para ver todos)') {
-				$('#userInputSearch').attr('value','');
-			}
-		});
+	$(document).ready(function(){
+        if(gup('q').length<1) {
+        $('#userInputSearch').emptyonclick();
+    }
 });
 </script>
 {/literal}
@@ -111,6 +109,13 @@ $(document).ready(function(){
 	    								<div class="column socialBox first"><img src="/img/photo.jpg" alt="photo"><a {if $user.num_pictures ne 0}href="/user/{$user.username}#user_photos_id"{/if}>{$user.num_pictures} fotos</a></div>
 	    							</div>
 	    						</div>
+	    						{if $smarty.session.logged}
+	    							{foreach key=id item=friend from=$friends}
+	    								{if $friend.id==$user.id}
+	    								<div class="blueTagUser"><a><span class="start">LE SIGUES</span></a></div> 	
+	    								{/if}
+	    							{/foreach}
+	    						{/if}
 	    					</div>     
 	        			{/if}
 	        	    {foreachelse}

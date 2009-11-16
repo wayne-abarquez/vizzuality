@@ -2542,6 +2542,11 @@ div.inputRight .a5 {
 #results div.blueTag a {float:right;font-size: 12px;font-weight: bold;color: #FFFFFF;background:url("../img/arrowGo.gif") no-repeat right top;text-decoration:none;color: white;text-align: right;}
 #results div.blueTag span {float: left;display:block;background:url("../img/runnersGo.jpg") repeat-x;padding-bottom:5px;padding-left: 10px;padding-right: 10px;padding-top: 1px;text-align: right;}
 
+/* blue tag para user */
+div.blueTagUser {position: absolute;display:inline;padding:0;text-align:right; float:right; color:white;width: 100px;margin-left: -95px;line-height: 20px;}
+div.blueTagUser a {float:right;font-size: 12px;font-weight: bold;color: #FFFFFF;background:url("../img/arrowGo.gif") no-repeat right top;text-decoration:none;color: white;text-align: right;}
+div.blueTagUser span {float: left;display:block;background:url("../img/runnersGo.jpg") repeat-x;padding-bottom:5px;padding-left: 10px;padding-right: 10px;padding-top: 1px;text-align: right;}
+
 #results div.userResult { border-bottom: dotted 1px #999999; height: 84px; padding-top: 10px; padding-left: 10px;margin-bottom: 1px;}
 #results div.userResult div.secondDetails { height: 66px; width: 66px; padding: 3px; border: 1px solid #d7d7d7; background-color: white; }
 #results div.userResult div.secondDetails img { height:66px; width: 66px;}

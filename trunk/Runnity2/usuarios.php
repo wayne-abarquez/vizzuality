@@ -26,7 +26,7 @@ $hayQ=false;
 $q="";
 if (isset($_REQUEST['q'])) {
 	$q=$_REQUEST['q'];
-	if ($q=="Busca carreras" or $q=="Busca por nombre, localidad, provincia"){
+	if ($q=="Nombre de usuario (dejalo vacío para ver todos)"){
 		$q="";
 	}
 	if(strlen($q)>0) {
@@ -39,6 +39,11 @@ $results=$services->searchusers($q,$offset);
 $smarty->assign('results',$results['data']);
 $smarty->assign('count', $results['count']);
 $smarty->assign('offset', $offset);
+
+if (isset($_SESSION['logged'])) {
+	$smarty->assign('friends',$services->getUserFriends($_SESSION['user']['id']));
+}
+
 
 $smarty->display('search_user.tpl');
 ?>
