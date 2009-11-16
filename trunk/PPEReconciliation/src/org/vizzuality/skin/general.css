@@ -7,6 +7,15 @@
 Canvas.dashboardContainer{
 	background-image: Embed(source="general.swf",symbol="bkgDashboardContainer");	
 }
+Canvas.dataDownloadContainer{
+	background-image: Embed(source="general.swf",symbol="bkgDataDownloadContainer");	
+}
+Canvas.softBlueUp{
+	background-image: Embed(source="general.swf",symbol="bkgSoftBlueUp");	
+}
+Canvas.softBlueBottom{
+	background-image: Embed(source="general.swf",symbol="softBlueBottom");	
+}
 
 /**/
 
