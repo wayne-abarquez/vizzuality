@@ -1,22 +1,7 @@
 /* CSS file */
 
 
-/*MAIN MENU*/
-Button.mainMenuButton{
-	up-skin: Embed(source="general.swf",symbol="mainMenuButton_up");
-	over-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
-	down-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
-	over-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
-	selected-up-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
-	selected-over-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
-	selected-down-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
-	font-family: "DINOT-Medium";
-	color: #6686AE;
-	font-size: 13;
-	padding-bottom: 7;
-}
 
-/**/
 
 /*Container backgrounds */
 Canvas.dashboardContainer{
@@ -33,14 +18,6 @@ Canvas.softBlueStepBackground{
 Canvas.blackHLine{
 	background-color: #000000;
 	border-style: none;	
-}
-
-Canvas.stepContainer{
-	background-color: #FFFFFF;
-	border-style: solid;
-	border-color: #FFFFFF;
-	rounded-bottom-corners: true;
-	corner-radius: 4;
 }
 
 Label.welcome{
@@ -73,19 +50,6 @@ GradientCanvas.header{
     fill-colors: #376ea7, #23548c;
     fill-alphas: 1.0, 1.0;
     corner-radius: 0;
-}
-
-
-Button.green{
-	borderColor: #336600;
-	themeColor: #336600;
-	fillAlphas: 1.0, 1.0;
-	fillColors: #55AC3D, #237C16, #237C16, #55AC3D;
-	color: #FFFFFF;
-	textRollOverColor: #E4E6E7;
-	letterSpacing: -1;
-	paddingTop: 3;
-	paddingBottom: 3;
 }
 
 Button.close {

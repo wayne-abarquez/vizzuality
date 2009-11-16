@@ -7,10 +7,12 @@
 	</mx:Script>
 	<mx:Label text="Create new download dataset" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="15" top="15" letterSpacing="-1"/>
 	
-	<mx:HBox right="225" top="37">
+	<mx:HBox right="225" top="37" horizontalGap="3">
         <mx:Button label="search based"
+        	styleName="subMenuButton" height="35"
     		click="vs.selectedIndex=0" />
         <mx:Button label="country based"
+    		styleName="subMenuButton" height="35"
     		click="vs.selectedIndex=1" />
     </mx:HBox>
 	
@@ -25,7 +27,7 @@
 		</mx:Canvas>		
 	</mx:VBox>
     
-    <mx:ViewStack id="vs" height="909" selectedIndex="0" left="0" right="225" top="60" backgroundColor="#ffffff" paddingLeft="15" paddingRight="15" paddingBottom="15" paddingTop="15">
+    <mx:ViewStack id="vs" height="909" selectedIndex="0" left="0" right="225" top="71" backgroundColor="#ffffff" paddingLeft="15" paddingRight="15" paddingBottom="15" paddingTop="15">
 
 	    <mx:VBox>
     		<mx:Canvas backgroundColor="#e1efff" width="100%" height="394">

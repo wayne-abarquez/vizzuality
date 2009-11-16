@@ -16,7 +16,7 @@
 	<mx:HBox horizontalGap="0" verticalAlign="middle" left="0" verticalCenter="0">
 		<components:LinkLabel id="protect" text="Protect Planet Earth" url="http://www.vizzuality.com" fontSize="11" fontFamily="Arial" target="_blank" color="#999999" fontWeight="bold"
 			default_color="0x999999" default_hover_color="0x333333" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>  
-		<mx:Label x="10" y="81" text="   /   All rights reserved. 2009   / " color="#999999" fontSize="11" fontFamily="Arial"/>
+		<mx:Label x="10" y="81" text=" /  All rights reserved. 2009   / " color="#999999" fontSize="11" fontFamily="Arial"/>
 		<components:LinkLabel text="Contact us" url="http://www.vizzuality.com" fontSize="11" fontFamily="Arial" target="_blank" color="#999999" fontWeight="bold"
 			default_color="0x999999" default_hover_color="0x333333" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>  
 		<mx:Label x="10" y="81" text=" / " color="#999999" fontSize="11"/>
