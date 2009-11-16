@@ -12,6 +12,7 @@ Button.mainMenuButton{
 	color: #6686AE;
 	font-size: 13;
 	padding-bottom: 7;
+	font-weight: normal;
 }
 
 /*SUB MENU*/
@@ -27,6 +28,7 @@ Button.subMenuButton{
 	text-roll-over-color: #666666;
 	font-size: 14;
 	letter-spacing: -1;
+	font-weight: normal;	
 }
 
 Button.greenButton{
@@ -37,4 +39,5 @@ Button.greenButton{
 	font-size: 10;
 	font-family: "DINOT-Medium";
 	text-roll-over-color: #FFFFFF;	
+	font-weight: normal;	
 }
