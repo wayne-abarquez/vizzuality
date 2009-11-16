@@ -5,36 +5,40 @@
 	-DataUpload
 -->
 
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#FFFFFF" xmlns:dashboard="org.vizzuality.view.content.dashboard.*" width="874" xmlns:ns1="org.vizzuality.view.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#FFFFFF" xmlns:dashboard="org.vizzuality.view.content.dashboard.*" width="874" xmlns:ns1="org.vizzuality.view.*" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
 			import resource.*;
 		]]>
 	</mx:Script>
-	<mx:ViewStack x="0" y="31" id="myViewStack" width="874" height="513">
+	<mx:ViewStack x="0" y="31" id="myViewStack" width="874" height="555">
 		<mx:Canvas label="DASHBOARD" backgroundColor="#FEFEFE" id="mydashboard">
-			<mx:VBox y="267" backgroundColor="#FEFEFE" right="10" left="10">
+			<mx:VBox backgroundColor="#FEFEFE" right="10" left="10" top="315">
 				<dashboard:ContainersInfo title="You have 3 unfinished data uploads" 
 										  expl="If you have finished your edits on any of this datasets, " height="59" 
 										  expl2="please upload it" 
 										  imgsource="{Resource.UNFINISHED}"
-										  textButton="Upload Now"/>
+										  textButton="Upload Now" borderColor="#D9D9D9"/>
 				<dashboard:ContainersInfo title="Download new data" 
 										  expl="Modify your data with your own editor" height="59" 
 										  expl2="please upload it" 
 										  imgsource="{Resource.NEWDATA}"
-										  textButton="Download new"/>
-				<mx:Canvas width="100%" height="102" backgroundColor="#f5f5f5" borderStyle="solid" cornerRadius="4">
+										  textButton="Download new" borderColor="#D9D9D9"/>
+				<mx:Canvas width="100%" height="102" backgroundColor="#f5f5f5" borderStyle="solid" cornerRadius="4" borderColor="#D9D9D9">
 					<mx:Image x="10" y="10" source="{Resource.SUGGEST}"/>
-					<mx:Label x="66" text="We suggest you to..." color="#414141" fontWeight="bold" fontSize="15" top="18"/>
-					<mx:Label x="78" text="Download all the PA’s in UK" color="#336699" fontWeight="bold" fontSize="14" top="37"/>
-					<mx:Label x="78" text="Download all the PA’s in USA" color="#336699" fontWeight="bold" fontSize="14" top="52"/>
-					<mx:Label x="78" text="Download Any England Protected Area data" color="#336699" fontWeight="bold" fontSize="14" top="67"/>
+					<components:LinkLabel x="58" text="We suggest you to..." color="#414141" fontWeight="bold" fontSize="15" top="18" fontFamily="Helvetica" url="http://www.vizzuality.com"
+						default_color="0x414141" default_hover_color="0x333333" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
+					<components:LinkLabel x="78" text="Download all the PA’s in UK" color="#336699" fontWeight="bold" fontSize="14" top="38" fontFamily="Helvetica" url="http://www.vizzuality.com"
+						default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
+					<components:LinkLabel x="78" text="Download all the PA’s in USA" color="#336699" fontWeight="bold" fontSize="14" top="54" fontFamily="Helvetica" url="http://www.vizzuality.com"
+						default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
+					<components:LinkLabel x="78" text="Download Any England Protected Area data" color="#336699" fontWeight="bold" fontSize="14" top="70" fontFamily="Helvetica" url="http://www.vizzuality.com"
+						default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
 				</mx:Canvas>
 			</mx:VBox>
-			<mx:Canvas height="253" backgroundColor="#EBEBEB" right="0" left="0" top="0">
-				<mx:Canvas height="170" left="15" right="15" backgroundColor="#F5F5F5" borderColor="#c6c6c6" borderStyle="solid" borderThickness="1" bottom="15">
-					<mx:Text x="10" y="40" height="46" width="100%" color="#666666">
+			<mx:Canvas height="300" backgroundColor="#EBEBEB" right="0" left="0" top="0">
+				<mx:Canvas height="194" left="15" right="15" backgroundColor="#F5F5F5" borderColor="#c6c6c6" borderStyle="solid" borderThickness="1" bottom="15">
+					<mx:Text height="76" color="#666666" fontSize="14" fontFamily="Helvetica" top="15" left="15" right="45">
 					    <mx:htmlText>
 						<![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut quam ligula, et elementum nisl. Nunc a erat eu sem suscipit auctor. Nam aliquam enim vitae mi hendrerit imperdiet. Morbi massa orci, lobortis sed tempor id, convallis at tortor. Cras ipsum diam, tincidunt eu mattis tristique, <b>consectetur vitae risus.</b> Nam interdum orci odio. Nulla tincidunt mi vel tellus dapibus rhoncus. Vestibulum nec euismod risus
             			]]>
@@ -47,7 +51,7 @@
 					</mx:HBox>
 					<mx:Button label="x" width="31" right="6" top="6"/>
 				</mx:Canvas>
-				<mx:Label text="Welcome back wwf.org!" styleName="welcome" left="15" top="25" color="#666666"/>
+				<mx:Label text="Welcome back wwf.org!" styleName="welcome" left="15" top="30" color="#666666"/>
 			</mx:Canvas>
 		</mx:Canvas>
 		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" backgroundColor="#FCB561" id="download_data">
