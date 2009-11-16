@@ -1,0 +1,40 @@
+/* CSS file */
+
+/*MAIN MENU*/
+Button.mainMenuButton{
+	up-skin: Embed(source="general.swf",symbol="mainMenuButton_up");
+	over-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	down-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	selected-up-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	selected-over-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	selected-down-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
+	font-family: "DINOT-Medium";
+	color: #6686AE;
+	font-size: 13;
+	padding-bottom: 7;
+}
+
+/*SUB MENU*/
+Button.subMenuButton{
+	up-skin: Embed(source="buttons.swf",symbol="subMenuButton_up");
+	over-skin: Embed(source="buttons.swf",symbol="subMenuButton_active");
+	down-skin: Embed(source="buttons.swf",symbol="subMenuButton_active");
+	selected-up-skin: Embed(source="buttons.swf",symbol="subMenuButton_active");
+	selected-over-skin: Embed(source="buttons.swf",symbol="subMenuButton_active");
+	selected-down-skin: Embed(source="buttons.swf",symbol="subMenuButton_active");
+	font-family: "Helvetica";
+	color: #999999;
+	text-roll-over-color: #666666;
+	font-size: 14;
+	letter-spacing: -1;
+}
+
+Button.greenButton{
+	up-skin: Embed(source="buttons.swf",symbol="greenButton_up");
+	over-skin: Embed(source="buttons.swf",symbol="greenButton_over");
+	down-skin: Embed(source="buttons.swf",symbol="greenButton_over");
+	color:#FFFFFF;
+	font-size: 10;
+	font-family: "DINOT-Medium";
+	text-roll-over-color: #FFFFFF;	
+}
