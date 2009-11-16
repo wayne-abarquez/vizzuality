@@ -13,7 +13,7 @@
 	</mx:Script>
 	<mx:ViewStack x="0" y="31" id="myViewStack" width="874" height="555">
 		<mx:Canvas label="DASHBOARD" backgroundColor="#FEFEFE" id="mydashboard">
-			<mx:VBox backgroundColor="#FEFEFE" right="10" left="10" top="315">
+			<mx:VBox backgroundColor="#FEFEFE" right="15" left="15" top="280">
 				<mx:Canvas  height="59" borderColor="#D9D9D9" width="100%" styleName="ContainersInfo">
 					<mx:Image y="5" left="14" source="{Resource.UNFINISHED}"/>
 					<mx:Button right="10" label="UPLOAD NOW" bottom="10" styleName="green"/>
@@ -54,8 +54,8 @@
 						default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold" left="90"/>
 				</mx:Canvas>
 			</mx:VBox>
-			<mx:Canvas height="300" backgroundColor="#EBEBEB" right="0" left="0" top="0">
-				<mx:Canvas height="194" left="15" right="15" backgroundColor="#F5F5F5" borderColor="#c6c6c6" borderStyle="solid" borderThickness="1" bottom="15">
+			<mx:Canvas height="250" backgroundColor="#EBEBEB" right="0" left="0" top="0">
+				<mx:Canvas height="175" left="15" right="15" backgroundColor="#F5F5F5" borderColor="#c6c6c6" borderStyle="solid" borderThickness="1" bottom="20">
 					<mx:Text height="76" color="#666666" fontSize="14" fontFamily="Helvetica" top="15" left="15" right="45">
 					    <mx:htmlText>
 						<![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut quam ligula, et elementum nisl. Nunc a erat eu sem suscipit auctor. Nam aliquam enim vitae mi hendrerit imperdiet. Morbi massa orci, lobortis sed tempor id, convallis at tortor. Cras ipsum diam, tincidunt eu mattis tristique, <b>consectetur vitae risus.</b> Nam interdum orci odio. Nulla tincidunt mi vel tellus dapibus rhoncus. Vestibulum nec euismod risus
@@ -67,9 +67,9 @@
 						<dashboard:StepContainer num="2" expl="Modify your data with your own editor" height="59" imgsource="{Resource.STEP2}"/>
 						<dashboard:StepContainer num="3" expl="Upload your modified data&#xd;and commit your changes" height="59" imgsource="{Resource.STEP3}"/>
 					</mx:HBox>
-					<mx:Button label="x" width="31" right="6" top="6"/>
+					<mx:Button label="x" width="31" right="6" top="6" styleName="close"/>
 				</mx:Canvas>
-				<mx:Label text="Welcome back wwf.org!" styleName="welcome" left="15" top="30" color="#666666"/>
+				<mx:Label text="Welcome back wwf.org!" styleName="welcome" left="15" top="20" color="#666666"/>
 			</mx:Canvas>
 		</mx:Canvas>
 		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" backgroundColor="#FCB561" id="download_data">
