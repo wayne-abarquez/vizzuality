@@ -82,7 +82,7 @@
 			<ns1:DownloadData top="0" left="0" right="0" height="100%">
 			</ns1:DownloadData>
 		</mx:Canvas>
-		<mx:Canvas label="PREVIOUS DOWNLOADS" width="874" height="100%" backgroundColor="#8FFA55" id="previous_downloads">
+		<mx:Canvas label="PENDING TASKS" width="874" height="100%" backgroundColor="#8FFA55" id="previous_downloads">
 			<ns1:PreviousDownloadsDiff left="0" top="0">
 			</ns1:PreviousDownloadsDiff>
 		</mx:Canvas>

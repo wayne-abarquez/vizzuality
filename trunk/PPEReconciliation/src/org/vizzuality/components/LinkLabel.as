@@ -67,7 +67,7 @@ package org.vizzuality.components
                 return;
             
             _url = value;
-            toolTip = value;
+            //toolTip = value;
         }
         
         public function get url():String
