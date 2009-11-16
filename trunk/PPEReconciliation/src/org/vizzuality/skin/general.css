@@ -39,14 +39,15 @@ Text.explInfo{
 	font-size: 14;
 }
 
-GradientCanvas.header {
+GradientCanvas.header{
     fill-colors: #376ea7, #23548c;
     fill-alphas: 1.0, 1.0;
-
     corner-radius: 0;
-	
 }
 
+/* Button.Green_button{
+	color: #FFFFFF;
+} */
 
 
 
