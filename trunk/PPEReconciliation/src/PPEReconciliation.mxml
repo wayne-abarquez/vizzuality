@@ -3,6 +3,7 @@
 	backgroundColor="#dddddd" backgroundGradientColors="[#dddddd]">
 
 	<mx:Style source="org/vizzuality/skin/general.css" />
+	<mx:Style source="org/vizzuality/skin/fonts.css" />
 
 	<ns1:header left="0" right="0" top="0" />
 	<mx:VBox top="110" bottom="0" verticalScrollPolicy="off" width="100%" horizontalAlign="center">

@@ -13,9 +13,9 @@ package resource
         public static const STEP4:Class;
         [Embed (source="org/vizzuality/assets/step5.gif" )]
         public static const STEP5:Class;      
-        [Embed (source="org/vizzuality/assets/logo.png" )]
-        public static const LOGO:Class;
-        [Embed (source="org/vizzuality/assets/logoIUCN.png" )]
+        [Embed (source="org/vizzuality/assets/logoWDPA.gif" )]
+        public static const LOGOWDPA:Class;
+        [Embed (source="org/vizzuality/assets/logoIUCN.gif" )]
         public static const LOGOIUCN:Class;
         [Embed (source="org/vizzuality/assets/information_download.gif" )]
         public static const INFORMATION:Class;
