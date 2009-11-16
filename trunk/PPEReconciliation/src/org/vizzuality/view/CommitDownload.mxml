@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" backgroundColor="#EBEBEB" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off">
+	<mx:Script>
+		<![CDATA[
+			import resource.Resource;
+		]]>
+	</mx:Script>
+	<mx:Label y="22" text="Unfinished previous downloads" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="10" right="20"/>
+	<mx:HBox left="10" top="35" verticalAlign="bottom" horizontalGap="0" right="20">
+		<mx:Label text="Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
+	</mx:HBox>
+	
+	<mx:VBox top="81" left="0" right="20" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0">
+		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" backgroundColor="#414141" top="0" left="0" right="0" width="100%">
+			<mx:Label text="Changes overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" left="655" letterSpacing="-1"/>
+		</mx:Canvas>
+		<mx:Canvas height="100" width="100%" backgroundColor="#FFFFFF">
+		</mx:Canvas>
+		<mx:Canvas height="33" borderStyle="none" color="#333333" backgroundColor="#dadada" top="0" left="0" right="0" width="100%">
+			<mx:Button label="COMMIT CHANGES" verticalCenter="0" right="10" width="130" letterSpacing="-1"/>
+		</mx:Canvas>		
+	</mx:VBox>
+    
+	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="230" top="69" bottom="10">
+		<mx:VBox left="15" right="15" top="15">
+			<mx:Canvas backgroundColor="#FFE0E0" width="100%" height="34">
+				<mx:Label text="Deleted Protected Areas (4)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
+				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
+			</mx:Canvas>
+			
+			<mx:TileList backgroundColor="#333333" height="150" width="100%">
+				
+			</mx:TileList>
+			
+			<mx:Canvas width="100%" height="34" backgroundColor="#FFE0E0">
+				<mx:Button x="437" label="confirm all" verticalCenter="0"/>
+				<mx:Button x="528" label="reject all" verticalCenter="0"/>
+			</mx:Canvas>
+			
+			<mx:Canvas backgroundColor="#D6EBD6" width="100%" height="34">
+				<mx:Label text="New Protected Areas (2)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
+				<mx:Label text=" waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
+			</mx:Canvas>
+			
+			<mx:TileList backgroundColor="#333333" height="150" width="100%">
+				
+			</mx:TileList>
+			
+			<mx:Canvas width="100%" height="34" backgroundColor="#D6EBD6">
+				<mx:Button label="Confirm all" verticalCenter="0" right="95"/>
+				<mx:Button label="Reject all" verticalCenter="0" right="10"/>
+			</mx:Canvas>	
+			
+			<mx:Canvas backgroundColor="#e1efff" width="100%" height="34">
+				<mx:Label text="Modified Protected Areas"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
+				<mx:Label text="6 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
+			</mx:Canvas>
+			
+			<mx:TileList backgroundColor="#333333" height="150" width="100%">
+				
+			</mx:TileList>
+			
+			<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
+				<mx:Button label="Button" right="-44" verticalCenter="0"/>
+				<mx:Button label="Button" right="-116" verticalCenter="0"/>
+			</mx:Canvas>				
+	
+	    </mx:VBox>
+	</mx:Canvas>
+
+
+
+	
+</mx:Canvas>

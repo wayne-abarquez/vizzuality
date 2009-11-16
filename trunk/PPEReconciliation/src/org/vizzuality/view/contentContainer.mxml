@@ -50,17 +50,17 @@
 				<mx:Label text="Welcome back wwf.org!" styleName="welcome" left="15" top="25" color="#666666"/>
 			</mx:Canvas>
 		</mx:Canvas>
-		<mx:Canvas label="DOWNLOAD DATA" width="100%" height="100%" backgroundColor="#FCB561" id="download_data">
+		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" backgroundColor="#FCB561" id="download_data">
 			<mx:VBox x="651" y="58" width="169" height="375" backgroundColor="#413131">
 				<mx:Canvas width="170" height="33" backgroundColor="#FCF9D1">
 					<mx:Label x="10" y="10" text="Current dataset" width="150"/>
 				</mx:Canvas>
 				<mx:Button label="download all"/>
 			</mx:VBox>
-			<ns1:DownloadData top="0" left="0">
+			<ns1:DownloadData top="0" left="0" right="0" height="100%">
 			</ns1:DownloadData>
 		</mx:Canvas>
-		<mx:Canvas label="PREVIOUS DOWNLOADS" width="100%" height="100%" backgroundColor="#8FFA55" id="previous_downloads">
+		<mx:Canvas label="PREVIOUS DOWNLOADS" width="874" height="100%" backgroundColor="#8FFA55" id="previous_downloads">
 			<ns1:PreviousDownloadsDiff left="0" top="0">
 			</ns1:PreviousDownloadsDiff>
 		</mx:Canvas>
