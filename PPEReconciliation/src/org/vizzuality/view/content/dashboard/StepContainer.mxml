@@ -12,7 +12,7 @@
 	</mx:Script>
 
 	<mx:Image y="10" left="34" source="{imgsource}"/>
-	<mx:Label y="10" text="{num}" left="10"/>
-	<mx:Text y="10" text="{expl}" width="116" height="32" left="74"/>
+	<mx:Label y="10" text="{num}" left="10" fontWeight="bold" fontSize="14" fontFamily="Helvetica" color="#336699"/>
+	<mx:Text text="{expl}" left="80" right="15" fontWeight="normal" fontSize="14" fontFamily="Helvetica" color="#666666" bottom="0" top="10"/>
 	
 </mx:Canvas>
