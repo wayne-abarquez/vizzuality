@@ -7,8 +7,7 @@
 
 	<ns1:header left="0" right="0" top="0" />
 	<mx:VBox top="110" bottom="0" verticalScrollPolicy="off" width="100%" horizontalAlign="center">
-		<ns1:contentContainer height="600" width="874" horizontalScrollPolicy="off" horizontalCenter="0">
-		</ns1:contentContainer>
+		<ns1:contentContainer height="600" width="874" horizontalScrollPolicy="off" horizontalCenter="0" />
 		<ns1:footer width="874"/>
 	</mx:VBox>
 </mx:Application>

@@ -10,3 +10,9 @@
     fontFamily: "DINOT-Bold";
     font-weight: normal;
 }    
+
+@font-face {
+    src:url("Helvetica.swf");
+    fontFamily: "Helvetica";
+    font-weight: normal;
+}
