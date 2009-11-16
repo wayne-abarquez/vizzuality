@@ -45,6 +45,18 @@ GradientCanvas.header{
     corner-radius: 0;
 }
 
+Button.green{
+	borderColor: #336600;
+	themeColor: #336600;
+	fillAlphas: 1.0, 1.0;
+	fillColors: #55AC3D, #237C16, #237C16, #55AC3D;
+	color: #FFFFFF;
+	textRollOverColor: #E4E6E7;
+	letterSpacing: -1;
+	paddingTop: 3;
+	paddingBottom: 3;
+}
+
 /* Button.Green_button{
 	color: #FFFFFF;
 } */

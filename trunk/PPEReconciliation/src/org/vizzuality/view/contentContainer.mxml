@@ -16,7 +16,7 @@
 			<mx:VBox backgroundColor="#FEFEFE" right="10" left="10" top="315">
 				<mx:Canvas  height="59" borderColor="#D9D9D9" width="100%" styleName="ContainersInfo">
 					<mx:Image y="5" left="14" source="{Resource.UNFINISHED}"/>
-					<mx:Button right="10" label="UPLOAD NOW" bottom="10" styleName="Green_button"/>
+					<mx:Button right="10" label="UPLOAD NOW" bottom="10" styleName="green"/>
 					<mx:HBox left="70" top="11" horizontalGap="0" fontSize="14" fontFamily="Helvetica" width="662">
 						<mx:Label text="You have" fontSize="15" color="#414141" fontWeight="bold"/>
 						<components:LinkLabel text="3 unfinished data uploads"  color="#FF0000" fontWeight="bold" fontSize="15" default_color="0xFF0000" default_hover_color="0xFF0000" default_hover_decoration="underline" 
@@ -31,7 +31,7 @@
 				</mx:Canvas>
 				<mx:Canvas  height="59" borderColor="#D9D9D9" width="100%" styleName="ContainersInfo">
 					<mx:Image y="5" left="14" source="{Resource.NEWDATA}"/>
-					<mx:Button right="10" label="DOWNLOAD NEW" bottom="10" styleName="Green_button"/>
+					<mx:Button right="10" label="DOWNLOAD NEW" bottom="10" styleName="green"/>
 					<mx:HBox left="70" top="11" horizontalGap="0" fontSize="14" fontFamily="Helvetica" width="637">
 						<mx:Label text="Download new data" fontSize="15" color="#414141" fontWeight="bold"/>
 					</mx:HBox>
