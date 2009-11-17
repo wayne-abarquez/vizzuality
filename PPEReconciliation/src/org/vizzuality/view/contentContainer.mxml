@@ -1,13 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--- This component contains all the content components
-	-Dashboard
-	-DataDownload
-	-DataUpload
--->
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:dashboard="org.vizzuality.view.content.dashboard.*" width="874" xmlns:ns1="org.vizzuality.view.*" xmlns:components="org.vizzuality.components.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:dashboard="org.vizzuality.view.content.dashboard.*" 
+	width="874" xmlns:ns1="org.vizzuality.view.*" xmlns:components="org.vizzuality.components.*" currentState="Dashboard"
+	addedToStage="initSWFAddress()"
+    removedFromStage="destroySWFAddress()"
+    currentStateChange="setSWFAddress()">
+	<mx:states>
+		<mx:State name="Dashboard">
+			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="0"/>
+			<mx:SetProperty target="{button1}" name="selected" value="true"/>
+			<mx:SetProperty target="{button2}" name="selected" value="false"/>
+			<mx:SetProperty target="{button3}" name="selected" value="false"/>
+			<mx:SetProperty target="{button4}" name="selected" value="false"/>
+		</mx:State>
+		<mx:State name="Pendingtasks">
+			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="2"/>
+			<mx:SetProperty target="{button3}" name="selected" value="true"/>
+			<mx:SetProperty target="{button4}" name="selected" value="false"/>
+			<mx:SetProperty target="{button2}" name="selected" value="false"/>
+			<mx:SetProperty target="{button1}" name="selected" value="false"/>
+		</mx:State>
+		<mx:State name="Checkout">
+			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="1"/>
+			<mx:SetProperty target="{button1}" name="selected" value="false"/>
+			<mx:SetProperty target="{button2}" name="selected" value="true"/>
+			<mx:SetProperty target="{button3}" name="selected" value="false"/>
+			<mx:SetProperty target="{button4}" name="selected" value="false"/>
+		</mx:State>
+		<mx:State name="Previous">
+			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="3"/>
+			<mx:SetProperty target="{button4}" name="selected" value="true"/>
+			<mx:SetProperty target="{button3}" name="selected" value="false"/>
+			<mx:SetProperty target="{button2}" name="selected" value="false"/>
+			<mx:SetProperty target="{button1}" name="selected" value="false"/>
+		</mx:State>
+	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.asual.swfaddress.SWFAddress;
+			import com.asual.swfaddress.SWFAddressEvent;
 			import resource.*;
+            public var path:String="rec";
+            public var depth:int=1;			
+			
+            private function initSWFAddress():void {
+                handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
+                SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+            }
+            
+            private function destroySWFAddress():void {
+                SWFAddress.removeEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+            }
+            
+            private function setSWFAddress():void {
+                Helper.setSWFAddress(this, path, depth);
+            }
+            
+            private function handleSWFAddress(event:SWFAddressEvent):void {
+                if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
+                    Helper.handleSWFAddress(this, event, depth);
+                    trace(depth + ":" + event.value);
+                }
+            }			
+			
 		]]>
 	</mx:Script>
 	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="1020">
@@ -28,10 +82,10 @@
 		</mx:Canvas>
 	</mx:ViewStack>
 	<mx:HBox left="0" top="0" horizontalGap="3">
-		<mx:Button label="DASHBOARD" click="myViewStack.selectedChild=mydashboard;" styleName="mainMenuButton" height="35"/>
-		<mx:Button label="DOWNLOAD DATA" click="myViewStack.selectedChild=download_data;" styleName="mainMenuButton" height="35"/>
-		<mx:Button label="PREVIOUS DOWNLOADS" click="myViewStack.selectedChild=previous_downloads;" styleName="mainMenuButton" height="35"/>
-		<mx:Button label="PREVIOUS UPLOADS" click="myViewStack.selectedChild=previous_uploads;" styleName="mainMenuButton" height="35"/>
+		<mx:Button label="DASHBOARD" click="currentState='Dashboard'" styleName="mainMenuButton" height="35" id="button1" selected="true"/>
+		<mx:Button label="DOWNLOAD DATA" click="currentState='Checkout'" styleName="mainMenuButton" height="35" id="button2"/>
+		<mx:Button label="PENDING TASKS" click="currentState='Pendingtasks'" styleName="mainMenuButton" height="35" id="button3"/>
+		<mx:Button label="PREVIOUS UPLOADS" click="currentState='Previous'" styleName="mainMenuButton" height="35" id="button4"/>
 	</mx:HBox>
 	
 </mx:Canvas>
