@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="org.vizzuality.view.*" horizontalScrollPolicy="off" 
-	backgroundColor="#dddddd" backgroundGradientColors="[#dddddd]" currentState="login">
+	backgroundColor="#dddddd" backgroundGradientColors="[#dddddd]" currentState="Login"
+    applicationComplete="initSWFAddress()"
+    currentStateChange="setSWFAddress()">
 	
 	<mx:Script>
 		<![CDATA[
+			import com.asual.swfaddress.SWFAddress;
+			import com.asual.swfaddress.SWFAddressEvent;
 			import com.adobe.serialization.json.JSON;
 			import mx.rpc.events.FaultEvent;
 			import mx.rpc.http.mxml.HTTPService;
@@ -14,9 +18,22 @@
 			[Bindable]
 			public var username:String="";
 			public var userId:Number;
+			
+             private function initSWFAddress():void {
+                handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
+                SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+            }		
+            
+            private function setSWFAddress():void {
+                Helper.setSWFAddress(this);
+            }
+            
+            private function handleSWFAddress(event:SWFAddressEvent):void {
+                Helper.handleSWFAddress(this, event);
+            }          	
 		
 			private function login():void {
-				currentState="loading";
+				currentState="Loading";
 				var jsonReq:String = serverUrl + "/json.php/DumpServices.login/"+ usernameInput.text + "/"+passwordInput.text;
 				var httpserv:HTTPService = new HTTPService();
 				httpserv.method="POST";
@@ -32,21 +49,21 @@
 				if(response.loginresult) {
 					username=response.username;
 					userId=response.userid;
-					currentState="";	
+					currentState="Rec";	
 				} else {
-					currentState="login";
+					currentState="Login";
 					Alert.show("The login credentials fail, try again.");
 				}
 				
 			}
 			private function loginFail(ev:ResultEvent):void {
-				currentState="login";
+				currentState="Login";
 				Alert.show("Sorry, there is an error on the server, please contact admin@protectplanetearth.com");
 			}
 		]]>
 	</mx:Script>
 	<mx:states>
-		<mx:State name="login">
+		<mx:State name="Login">
 			<mx:RemoveChild target="{header1}"/>
 			<mx:RemoveChild target="{contentcontainer1}"/>
 			<mx:AddChild  relativeTo="{vBoxContainer}" position="firstChild">
@@ -57,11 +74,12 @@
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="loading" basedOn="login">
+		<mx:State name="Loading" basedOn="Login">
 			<mx:SetProperty target="{usernameInput}" name="enabled" value="false"/>
 			<mx:SetProperty target="{passwordInput}" name="enabled" value="false"/>
 			<mx:SetProperty target="{button1}" name="enabled" value="false"/>
 		</mx:State>
+		<mx:State name="Rec"/>
 	</mx:states>
 
 	<mx:Style source="org/vizzuality/skin/general.css" />
