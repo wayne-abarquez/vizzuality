@@ -25,6 +25,8 @@ package resource
         public static const NEWDATA:Class;
 	    [Embed (source="org/vizzuality/assets/suggest.png" )]
         public static const SUGGEST:Class;
+	    [Embed (source="org/vizzuality/assets/blueBullet.png" )]
+        public static const BLUE_BULLET:Class;
         
 	}
 }
