@@ -16,14 +16,14 @@
 		]]>
 	</mx:Script>
 	<mx:HBox horizontalGap="0" top="5" left="11">
-		<mx:Label text="{data.type}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+		<mx:Label text="{data.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 		<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
-		<mx:Label text="{data.area}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
+		<mx:Label text="{data.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
 	</mx:HBox>
-	<mx:Label id="number" text="{data.number + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
+	<mx:Label id="number" text="{data.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
 	
 	<mx:Label text="{data.status}" color="{(data.status=='Commiting changes')?0xff6600:0xff3333}"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
-	<mx:Label id="percentage" text="{'(' + data.percentage + '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>
+	<mx:Label id="percentage" text="{'(' + data.statuspercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>
 
 	<mx:Label text="{data.date}" color="#666666"  left="639" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
 	<mx:Label id="ago" text="{data.ago + ' days ago'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="639" fontFamily="Helvetica"/>
@@ -36,11 +36,11 @@
 		cornerRadius="2" visible="false" alpha="0" >
 		
 		<mx:HBox horizontalGap="0" top="5" left="8">
-			<mx:Label text="{data.type}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+			<mx:Label text="{data.what}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 			<mx:Label text="-" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
-			<mx:Label text="{data.area}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
+			<mx:Label text="{data.description}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
 		</mx:HBox>
-		<mx:Label text="{data.number + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="8"/>
+		<mx:Label text="{data.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="8"/>
 		
 		<mx:Label text="{data.status}" color="#FFFFFF"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
 		<mx:Label text="{'(' + data.percentage + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>

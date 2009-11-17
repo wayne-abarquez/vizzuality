@@ -23,7 +23,7 @@ class DumpServices {
 		$resul=array();
 		
 		$res=array();
-		for($i=0;$i<24;$i++) {
+		for($i=1;$i<25;$i++) {
 			$c=array();
 			$c['id']=$i;
 			$c['name']=$regionId."-".$i;
@@ -37,6 +37,27 @@ class DumpServices {
 	
 	function prepareDownload($countries,$pas,$search) {
 		error_log($countries);
+	}
+	
+	function getPendingTasks($page,$perPage) {
+		$resul=array();
+		$res=array();
+		for($i=1;$i<9;$i++) {
+			$t=array();
+			$t['type'] = $i;
+			$t['code'] = "DW541";
+			$t['description'] = "Spain";
+			$t['what']="Country Download";
+			$t['numareas']=2431;
+			$t['status'] = "Download preparing";
+			$t['statuspercen'] = 72;
+			$t['date'] = "2009-11-".$i." 12:34:00";
+			$res[]=$t;
+		}
+		$resul['results'] = $res;
+		$resul['total'] = 50;		
+		
+		return $resul;
 	}
 	
 	

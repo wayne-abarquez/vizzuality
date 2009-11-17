@@ -12,6 +12,10 @@
 		
 			public var path:String="rec/checkout/countries";
             public var depth:int=3;	
+			private var totalCountries:Number=0;
+			[Bindable] private var page:Number=1;
+			[Bindable] private var totalPages:Number=1;            
+            
 		
 			private function init():void {
 				currentState="Africa";
