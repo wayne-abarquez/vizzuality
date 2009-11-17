@@ -1,3 +1,11 @@
+div.demo {
+	padding: 20px;
+	border: 1px solid #E5E5E5;
+	margin-bottom: 20px;
+	background-color: #FFFFFF;
+}
+
+
 #editDataForm input.inputName {border: 1px solid #dddddd; margin: 0 0 0 0; width: 362px;padding: 4px 4px 4px 4px; color: #999999;}
 #editDataForm input.inputLocalizacion {border: 1px solid #dddddd; margin: 0 0 0 0; width: 306px;padding: 4px 4px 4px 4px; color: #999999; height: 14px;}
 #editDataForm input.inputRadio {border: 1px solid #dddddd; margin: 0 0 0 0; width: 130px;padding: 4px 4px 4px 4px; color: #999999;}
@@ -1267,7 +1275,7 @@ p.subTitleInfo{
 	padding-left: 25px;
 	padding-top:0;
 	margin:0;
-	line-height:0px;
+	margin-top: -10px;
 }
 
 .subTitleInfo a{
@@ -1521,6 +1529,14 @@ a.verTodas{
 
 a.verTodas:hover{
 	color: #fc6602;
+}
+
+#uploadMultipleWindow{
+	min-height: 200px;
+	height: auto;
+	width: 420px;
+	background: #eaeaea;
+	border:6px solid #ffffff;
 }
 
 #confirmationWindowPhoto, #confirmationWindowUser{
@@ -1892,7 +1908,7 @@ div.month5 {background-color: #9f00c6;}
 }
 
 #imgItems{
-	margin-left: 11px;
+	margin-left: 21px;
 	margin-top: -10px;
 	width: 621px;
 	height: auto;
