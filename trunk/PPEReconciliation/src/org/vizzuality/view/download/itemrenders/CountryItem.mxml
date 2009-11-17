@@ -3,6 +3,7 @@
 	rollOver="handleOver(event)" rollOut="handleOut(event)">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.MyEventDispatcher;
 			import org.vizzuality.events.DataSelectionEvent;
 			import gs.TweenMax;
 			
@@ -18,7 +19,11 @@
 			
 			private function handleOut(e:MouseEvent):void{
 				TweenMax.to(overCanvas, .3, {autoAlpha:0});
-			}			
+			}		
+			
+			private function onAddedClick():void {
+				MyEventDispatcher.selectCountryForDownload(data);
+			}	
 			
 		]]>
 	</mx:Script>
@@ -32,7 +37,7 @@
 		<mx:Label x="7" y="5" text="{data.name}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>
 		<mx:Label x="7" y="19" text="{data.numareas}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11"/>		
 		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" 
-			click="dispatchEvent(new DataSelectionEvent(DataSelectionEvent.COUNTRY_ADDED,data.id))"/>
+			click="onAddedClick()"/>
 	</mx:Canvas>
 	
 </mx:Canvas>

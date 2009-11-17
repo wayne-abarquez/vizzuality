@@ -4,28 +4,79 @@
 	 creationComplete="init()">
 <mx:Script>
 	<![CDATA[
+		import com.asual.swfaddress.SWFAddress;
+		import mx.rpc.events.ResultEvent;
+		import mx.core.Application;
+		import mx.collections.ArrayCollection;
+		import org.vizzuality.events.MyEventDispatcher;
 		import mx.controls.Alert;
 		import org.vizzuality.events.DataSelectionEvent;
 		
+		[Bindable] private var selectedCountries:ArrayCollection=new ArrayCollection();
+		
 		private function init():void {
-			this.addEventListener(DataSelectionEvent.COUNTRY_ADDED,onCountryAdded);
+			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_ADDED,onCountryAdded);
+			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_REMOVED,onCountryRemoved);
 		}
 		
 		private function onCountryAdded(event:DataSelectionEvent):void {
-			Alert.show(event.selectedCountryId.toString());
+			if (isNaN(checkIfCountryOnSelected(event.selectedCountry)))
+				selectedCountries.addItem(event.selectedCountry);
 		}
+		
+		private function onCountryRemoved(event:DataSelectionEvent):void {
+			var pos:Number =checkIfCountryOnSelected(event.selectedCountry)
+			
+			if (!isNaN(pos))
+				selectedCountries.removeItemAt(pos);
+			
+		}
+		
+		private function checkIfCountryOnSelected(country:Object):Number {
+			var i:Number=0;
+			for each(var c:Object in selectedCountries) {
+				if(c.id==country.id) {
+					return i;				
+				}
+				i++;
+			}
+			return NaN;			
+		}
+		
+		
+		private function onDownloadButtonClick():void {
+			jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.prepareDownload";
+			var params:Object = {};
+			params.countries=[];
+			for each(var c:Object in selectedCountries) {
+				params.countries.push(c.id);
+			}		
+			params.pas=[1,2];
+			params.filter="somekindofid";
+			jsonService.send(params);
+							
+		}
+		
+		private function onDownloadSentResult(event:ResultEvent):void {
+			//Move the application to the correct state
+			SWFAddress.setValue("/rec/pendingtasks");
+			
+			//empty the list
+			selectedCountries=new ArrayCollection();
+		}
+		
 	]]>
 </mx:Script>
 	<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 		<mx:Label text="Current dataset" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 	</mx:Canvas>
-	<mx:VBox width="100%" verticalGap="1" >
-		<itemrenders:CountrySelectedForDownloadItem />
-		<itemrenders:CountrySelectedForDownloadItem />
-		<itemrenders:CountrySelectedForDownloadItem />
-	</mx:VBox>
+	<mx:List width="100%" dataProvider="{selectedCountries}" itemRenderer="org.vizzuality.view.download.itemrenders.CountrySelectedForDownloadItem">
+		
+	</mx:List>
 	<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 		<mx:Label text="56 PA’s" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999"/>
-		<mx:Button right="6" y="4" label="DOWNLOAD DATASET" styleName="greenButton" mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3"/>
-	</mx:Canvas>		
+		<mx:Button right="6" y="4" label="DOWNLOAD DATASET" styleName="greenButton" click="onDownloadButtonClick()" 
+			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3"/>
+	</mx:Canvas>	
+	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="onDownloadSentResult(event)" />	
 </mx:VBox>
