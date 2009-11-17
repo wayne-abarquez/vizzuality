@@ -52,9 +52,9 @@
 		<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
 			<mx:Label id="pagingInfo"  right="70" verticalCenter="0" width="211" text="{'page '+page+' of '+totalPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
 			<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
-				width="27" height="24" click="getCountries(page-1)" enabled="{page>1}"/>
+				width="27" height="24" click="getCountries(page-1)" enabled="{page>1}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{page &lt; totalPages}"
-				width="27" height="24" click="getCountries(page+1)"/>
+				width="27" height="24" click="getCountries(page+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>
 	</mx:VBox>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getCountriesResult(event)" />

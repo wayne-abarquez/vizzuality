@@ -90,17 +90,17 @@
 	    <mx:Canvas backgroundColor="#e1efff" width="100%">
 			<mx:Label text="Select one or more countries from the list below"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10" id="label1"/>
 	    	<mx:HBox top="34" left="10" id="hbox1" horizontalGap="3">
-		        <mx:Button label="Africa"
+		        <mx:Button label="Africa" useHandCursor="true" mouseChildren="false" buttonMode="true"
 		    		click="currentState='Africa'"  id="button3" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="true"/>
-		        <mx:Button label="Asia"
+		        <mx:Button label="Asia" useHandCursor="true" mouseChildren="false" buttonMode="true"
 		    		click="currentState='Asia'" id="button4" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
-		    	<mx:Button label="Europe"
+		    	<mx:Button label="Europe" useHandCursor="true" mouseChildren="false" buttonMode="true"
 		    		click="currentState='Europe'"  id="button6" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
-		        <mx:Button label="N.America"
+		        <mx:Button label="N.America" useHandCursor="true" mouseChildren="false" buttonMode="true"
 		    		click="currentState='Namerica'"  id="button5" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
-		    	<mx:Button label="S.America"
+		    	<mx:Button label="S.America" useHandCursor="true" mouseChildren="false" buttonMode="true"
 		    		click="currentState='Samerica'"  id="button7" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
-		        <mx:Button label="Oceania"
+		        <mx:Button label="Oceania" useHandCursor="true" mouseChildren="false" buttonMode="true"
 		    		click="currentState='Oceania'"  id="button8" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
 		    </mx:HBox>
 		</mx:Canvas>

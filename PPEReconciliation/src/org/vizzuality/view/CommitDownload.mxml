@@ -17,7 +17,7 @@
 		<mx:Canvas height="100" width="100%" backgroundColor="#FFFFFF">
 		</mx:Canvas>
 		<mx:Canvas height="33" borderStyle="none" color="#333333" backgroundColor="#dadada" top="0" left="0" right="0" width="100%">
-			<mx:Button label="COMMIT CHANGES" verticalCenter="0" right="10" width="130" letterSpacing="-1"/>
+			<mx:Button label="COMMIT CHANGES" verticalCenter="0" right="10" width="130" letterSpacing="-1" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>		
 	</mx:VBox>
     
@@ -33,8 +33,8 @@
 			</mx:TileList>
 			
 			<mx:Canvas width="100%" height="34" backgroundColor="#FFE0E0">
-				<mx:Button x="437" label="confirm all" verticalCenter="0"/>
-				<mx:Button x="528" label="reject all" verticalCenter="0"/>
+				<mx:Button x="437" label="confirm all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+				<mx:Button x="528" label="reject all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:Canvas>
 			
 			<mx:Canvas backgroundColor="#D6EBD6" width="100%" height="34">

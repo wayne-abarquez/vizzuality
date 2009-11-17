@@ -14,6 +14,6 @@
 
 	<mx:Image y="9" left="32" source="{imgsource}"/>
 	<mx:Label text="{num}" left="4" fontWeight="bold" fontSize="14" fontFamily="Helvetica" color="#336699" top="12"/>
-	<mx:Text text="{expl}" left="78" right="15" fontWeight="normal" fontSize="14" fontFamily="Helvetica" color="#666666" bottom="-2" top="12"/>
+	<mx:Text htmlText="{expl}" left="78" right="15" fontWeight="normal" fontSize="14" fontFamily="Helvetica" color="#666666" bottom="-2" top="12"/>
 	
 </mx:Canvas>

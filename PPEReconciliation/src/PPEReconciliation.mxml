@@ -84,9 +84,9 @@
 			<mx:RemoveChild target="{header1}"/>
 			<mx:AddChild  relativeTo="{vBoxContainer}" position="firstChild">
 				<mx:Canvas x="10" y="0" width="500" height="100%">
-					<mx:TextInput id="usernameInput" x="95" y="74" enter="login()"/>
-					<mx:TextInput id="passwordInput" x="95" y="104" displayAsPassword="true" enter="login()"/>
-					<mx:Button x="190" y="134" label="Login" id="button1" click="login()"/>
+					<mx:TextInput id="usernameInput" y="74" enter="login()" horizontalCenter="0" color="#666666"/>
+					<mx:TextInput id="passwordInput" y="104" displayAsPassword="true" enter="login()" horizontalCenter="0" color="#666666"/>
+					<mx:Button y="134" label="Login" id="button1" click="login()" horizontalCenter="0" color="#333333" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
