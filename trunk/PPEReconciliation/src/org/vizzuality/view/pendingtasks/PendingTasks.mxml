@@ -15,7 +15,7 @@
 	</mx:Script>
 	<mx:Canvas left="0" right="0" top="0" height="70" backgroundColor="#EBEBEB">
 		<mx:HBox left="15" right="15" top="15" bottom="28" horizontalGap="-3" verticalAlign="bottom">
-			<mx:Label text="Unfinished previous downloads" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
+			<mx:Label text="Pending tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
 			<mx:Label text="(4)"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
 		</mx:HBox>
 	</mx:Canvas>
