@@ -58,6 +58,18 @@ Button.redButton{
 	padding-top:3;
 }
 
+Button.whiteButton{
+	up-skin: Embed(source="buttons.swf",symbol="whiteButton_up");
+	over-skin: Embed(source="buttons.swf",symbol="whiteButton_over");
+	down-skin: Embed(source="buttons.swf",symbol="whiteButton_over");
+	color:#FFFFFF;
+	font-size: 10;
+	font-family: "DINOT-Medium";
+	text-roll-over-color: #FFFFFF;	
+	font-weight: normal;
+	padding-top:3;
+}
+
 /*PAGINATION*/
 Button.whitePaginationLeft{
 	up-skin: Embed(source="buttons.swf",symbol="whitePaginationLeft_up");

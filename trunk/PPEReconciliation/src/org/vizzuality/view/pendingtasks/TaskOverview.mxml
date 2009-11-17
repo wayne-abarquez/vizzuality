@@ -63,8 +63,8 @@
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedBottom">
-				<mx:Button label="confirm all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="95"/>
-				<mx:Button label="reject all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="10"/>
+				<mx:Button label="confirm all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="95" styleName="whiteButton"/>
+				<mx:Button label="reject all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="10" styleName="whiteButton"/>
 			</mx:Canvas>
 			
 			<mx:Spacer height="10" />
@@ -78,8 +78,8 @@
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softGreenBottom">
-				<mx:Button label="Confirm all" verticalCenter="0" right="95"/>
-				<mx:Button label="Reject all" verticalCenter="0" right="10"/>
+				<mx:Button label="Confirm all" verticalCenter="0" right="95" styleName="whiteButton"/>
+				<mx:Button label="Reject all" verticalCenter="0" right="10" styleName="whiteButton"/>
 			</mx:Canvas>	
 			
 			<mx:Spacer height="10" />
