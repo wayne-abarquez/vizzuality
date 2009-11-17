@@ -19,16 +19,19 @@ class DumpServices {
 		return $res;
 	}
 	
-	function getContriesForRegion($regionId) {
-		$res=array();
+	function getContriesForRegion($regionId,$page,$perPage) {
+		$resul=array();
 		
-		for($i=0;$i<18;$i++) {
+		$res=array();
+		for($i=0;$i<24;$i++) {
 			$c=array();
 			$c['id']=$i;
-			$c['name']="Spain".$i;
+			$c['name']=$regionId."-".$i;
 			$res[]=$c;
 		}
-		return $res;
+		$resul['results'] = $res;
+		$resul['total'] = 50; 
+		return $resul;
 	}
 	
 	

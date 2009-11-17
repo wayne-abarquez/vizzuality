@@ -58,7 +58,6 @@
             private function handleSWFAddress(event:SWFAddressEvent):void {
                 if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
                     Helper.handleSWFAddress(this, event, depth);
-                    trace(depth + ":" + event.value);
                 }
             }			
 			

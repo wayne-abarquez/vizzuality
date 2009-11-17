@@ -6,32 +6,49 @@
 			import com.adobe.serialization.json.JSON;
 			import mx.rpc.events.ResultEvent;
 			import mx.collections.ArrayCollection;
+			
+			[Bindable] private var countries:ArrayCollection;
 			private var _continenId:Number;
+			
+			private var totalCountries:Number=0;
+			[Bindable] private var page:Number=1;
+			[Bindable] private var totalPages:Number=1;
 			
 			public function set continentId(val:Number):void {
 				_continenId=val;
-				jsonService.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void{
-					countries=new ArrayCollection(JSON.decode(ev.result as String) as Array);
-				});
-				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getContriesForRegion/"+val;
-				jsonService.send();
+				getCountries(1);
+			}
+			
+			public function get continentId():Number {
+				return _continenId;
+			}
+			
+			private function getCountries(p:Number):void {
+				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getContriesForRegion/"+_continenId+"/"+p+"/18";
+				jsonService.send();		
+				page=p;		
+			}
+			
+			private function getCountriesResult(ev:ResultEvent):void {
+				var res:Object = JSON.decode(ev.result as String);
+				countries=new ArrayCollection(res.results as Array);
+				totalCountries=res.total;
+				totalPages = Math.ceil(totalCountries/24);			
 				
 			}
 			
-			[Bindable] private var countries:ArrayCollection;
 		]]>
 	</mx:Script>
 	<mx:VBox width="100%" height="100%">
-		<mx:TileList  width="100%" height="100%" dataProvider="{countries}" 
-			itemRenderer="org.vizzuality.view.itemrenderes.CountryItem" 
-			paddingBottom="0"
-			paddingTop="0" borderStyle="none">
+		<mx:TileList  width="100%" height="100%" dataProvider="{countries}" itemRenderer="org.vizzuality.view.itemrenderes.CountryItem">
 		</mx:TileList>
 		<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-			<mx:Label  right="70" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
-			<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" width="27" height="24"/>
-			<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight" width="27" height="24"/>
+			<mx:Label id="pagingInfo"  right="70" verticalCenter="0" width="211" text="{'page '+page+' of '+totalPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
+			<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
+				width="27" height="24" click="getCountries(page-1)" enabled="{page>1}"/>
+			<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{page &lt; totalPages}"
+				width="27" height="24" click="getCountries(page+1)"/>
 		</mx:Canvas>
 	</mx:VBox>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getCountriesResult(event)" />
 </mx:Canvas>
