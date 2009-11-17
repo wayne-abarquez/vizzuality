@@ -65,13 +65,7 @@
 	</mx:Script>
 	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="1020">
 		<dashboard:DashboardContainer label="DASHBOARD" id="mydashboard"/>
-		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" backgroundColor="#FCB561" id="download_data">
-			<mx:VBox x="651" y="58" width="169" height="375" backgroundColor="#413131">
-				<mx:Canvas width="170" height="33" backgroundColor="#FCF9D1">
-					<mx:Label x="10" y="10" text="Current dataset" width="150"/>
-				</mx:Canvas>
-				<mx:Button label="download all"/>
-			</mx:VBox>
+		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data">
 			<ns1:DownloadData top="0" left="0" right="0" height="100%" />
 		</mx:Canvas>
 		<mx:Canvas label="PENDING TASKS" width="874" height="100%" backgroundColor="#8FFA55" id="previous_downloads">

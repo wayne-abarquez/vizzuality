@@ -38,6 +38,7 @@
         <mx:State name="Africa">
             <mx:SetProperty target="{button3}" name="selected" value="true"/>
             <mx:SetProperty target="{countryList}" name="continentId" value="1"/>
+            <mx:SetProperty target="{countryList}" name="height"/>
         </mx:State>
         <mx:State name="Asia">
             <mx:SetProperty target="{button4}" name="selected" value="true"/>
