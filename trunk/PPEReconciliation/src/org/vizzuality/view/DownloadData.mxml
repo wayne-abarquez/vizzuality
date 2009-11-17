@@ -10,33 +10,6 @@
 			<mx:SetProperty target="{vs}" name="selectedIndex" value="0"/>
 			<mx:SetProperty target="{button2}" name="selected" value="false"/>
 			<mx:SetProperty target="{button1}" name="selected" value="true"/>
-			<mx:SetStyle target="{hbox1}" name="top" value="34"/>
-			<mx:SetProperty target="{button3}" name="height" value="25"/>
-			<mx:SetProperty target="{button4}" name="height" value="25"/>
-			<mx:SetProperty target="{button5}" name="height" value="25"/>
-			<mx:SetProperty target="{button6}" name="height" value="25"/>
-			<mx:SetProperty target="{button7}" name="height" value="25"/>
-			<mx:SetProperty target="{button8}" name="height" value="25"/>
-			<mx:SetStyle target="{hbox1}" name="horizontalGap" value="3"/>
-			<mx:SetStyle target="{button4}" name="fontSize" value="13"/>
-			<mx:SetStyle target="{button3}" name="fontSize" value="13"/>
-			<mx:SetStyle target="{button6}" name="fontSize" value="13"/>
-			<mx:SetStyle target="{button7}" name="fontSize" value="13"/>
-			<mx:SetStyle target="{button8}" name="fontSize" value="13"/>
-			<mx:SetStyle target="{button5}" name="fontSize" value="13"/>
-			<mx:SetStyle target="{label1}" name="top" value="10"/>
-			<mx:SetProperty target="{button8}" name="styleName" value="subMenuButton"/>
-			<mx:SetProperty target="{button7}" name="styleName" value="subMenuButton"/>
-			<mx:SetProperty target="{button5}" name="styleName" value="subMenuButton"/>
-			<mx:SetProperty target="{button6}" name="styleName" value="subMenuButton"/>
-			<mx:SetProperty target="{button4}" name="styleName" value="subMenuButton"/>
-			<mx:SetProperty target="{button3}" name="styleName" value="subMenuButton"/>
-			<mx:SetStyle target="{button8}" name="paddingTop" value="5"/>
-			<mx:SetStyle target="{button7}" name="paddingTop" value="5"/>
-			<mx:SetStyle target="{button5}" name="paddingTop" value="5"/>
-			<mx:SetStyle target="{button6}" name="paddingTop" value="5"/>
-			<mx:SetStyle target="{button4}" name="paddingTop" value="5"/>
-			<mx:SetStyle target="{button3}" name="paddingTop" value="5"/>
 		</mx:State>
 		<mx:State name="Countries">
 			<mx:SetProperty target="{vs}" name="selectedIndex" value="1"/>
@@ -133,20 +106,20 @@
 	    
 	    <mx:VBox>
 	    	<mx:Canvas backgroundColor="#e1efff">
-	    		<mx:Label text="Select one or more countries from the list below"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="7" id="label1"/>
-		    	<mx:HBox right="225" top="30" left="10" id="hbox1">
+	    		<mx:Label text="Select one or more countries from the list below"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10" id="label1"/>
+		    	<mx:HBox right="225" top="34" left="10" id="hbox1" horizontalGap="3">
 			        <mx:Button label="Africa"
-			    		click="continents.selectedIndex=0"  id="button3"/>
+			    		click="continents.selectedIndex=0"  id="button3" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
 			        <mx:Button label="Asia"
-			    		click="continents.selectedIndex=1"  id="button4"/>
+			    		click="continents.selectedIndex=1"  id="button4" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
 			    	<mx:Button label="Europe"
-			    		click="continents.selectedIndex=2"  id="button6"/>
+			    		click="continents.selectedIndex=2"  id="button6" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
 			        <mx:Button label="N.America"
-			    		click="continents.selectedIndex=3"  id="button5"/>
+			    		click="continents.selectedIndex=3"  id="button5" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
 			    	<mx:Button label="S.America"
-			    		click="continents.selectedIndex=4"  id="button7"/>
+			    		click="continents.selectedIndex=4"  id="button7" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
 			        <mx:Button label="Oceania"
-			    		click="continents.selectedIndex=5"  id="button8"/>
+			    		click="continents.selectedIndex=5"  id="button8" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
 			    </mx:HBox>
 	    	</mx:Canvas>
 		    
