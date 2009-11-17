@@ -8,7 +8,6 @@
 	<mx:states>
 		<mx:State name="Dashboard">
 			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="0"/>
-			<mx:SetProperty target="{button5}" name="selected" value="false"/>
 			<mx:SetProperty target="{button1}" name="selected" value="true"/>
 			<mx:SetProperty target="{button2}" name="selected" value="false"/>
 			<mx:SetProperty target="{button3}" name="selected" value="false"/>
@@ -16,7 +15,6 @@
 		</mx:State>
 		<mx:State name="Pendingtasks">
 			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="2"/>
-			<mx:SetProperty target="{button5}" name="selected" value="false"/>
 			<mx:SetProperty target="{button3}" name="selected" value="true"/>
 			<mx:SetProperty target="{button4}" name="selected" value="false"/>
 			<mx:SetProperty target="{button2}" name="selected" value="false"/>
@@ -24,7 +22,6 @@
 		</mx:State>
 		<mx:State name="Checkout">
 			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="1"/>
-			<mx:SetProperty target="{button5}" name="selected" value="false"/>
 			<mx:SetProperty target="{button1}" name="selected" value="false"/>
 			<mx:SetProperty target="{button2}" name="selected" value="true"/>
 			<mx:SetProperty target="{button3}" name="selected" value="false"/>
@@ -32,16 +29,7 @@
 		</mx:State>
 		<mx:State name="Previous">
 			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="3"/>
-			<mx:SetProperty target="{button5}" name="selected" value="false"/>
 			<mx:SetProperty target="{button4}" name="selected" value="true"/>
-			<mx:SetProperty target="{button3}" name="selected" value="false"/>
-			<mx:SetProperty target="{button2}" name="selected" value="false"/>
-			<mx:SetProperty target="{button1}" name="selected" value="false"/>
-		</mx:State>
-		<mx:State name="Commit">
-			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="4"/>
-			<mx:SetProperty target="{button5}" name="selected" value="true"/>
-			<mx:SetProperty target="{button4}" name="selected" value="false"/>
 			<mx:SetProperty target="{button3}" name="selected" value="false"/>
 			<mx:SetProperty target="{button2}" name="selected" value="false"/>
 			<mx:SetProperty target="{button1}" name="selected" value="false"/>
@@ -96,7 +84,6 @@
 		<mx:Button label="DOWNLOAD DATA" click="currentState='Checkout'" styleName="mainMenuButton" height="35" id="button2" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		<mx:Button label="PENDING TASKS" click="currentState='Pendingtasks'" styleName="mainMenuButton" height="35" id="button3" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		<mx:Button label="PREVIOUS UPLOADS" click="currentState='Previous'" styleName="mainMenuButton" height="35" id="button4" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
-		<mx:Button label="COMMIT DOWNLOAD" click="currentState='Commit'" styleName="mainMenuButton" height="35" id="button5" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 	</mx:HBox>
 	
 </mx:Canvas>
