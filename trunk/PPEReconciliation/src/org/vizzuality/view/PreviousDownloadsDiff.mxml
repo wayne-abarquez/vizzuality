@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" 
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
-	styleName="dataDownloadContainer" backgroundSize="100%">
+	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*">
 	<mx:Script>
 		<![CDATA[
 			import resource.Resource;
@@ -17,7 +17,14 @@
 		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 			<mx:Label text="Merge overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 		</mx:Canvas>
-		<mx:VBox width="100%" verticalGap="1" >
+		<mx:VBox width="100%" verticalGap="0" >
+			<!--Separador-->
+			<mx:Canvas height="5" width="100%" backgroundColor="#FFFFFF" />
+			<itemrenderes:MergeChangesSummaryItem />
+			<itemrenderes:MergeChangesSummaryItem />
+			<itemrenderes:MergeChangesSummaryItem />
+			<!--Separador-->
+			<mx:Canvas height="5" width="100%" backgroundColor="#FFFFFF" />
 		</mx:VBox>
 		<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 			<mx:Button right="6" y="4" label="FINISH" styleName="greenButton" mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3"/>
@@ -25,8 +32,8 @@
 	</mx:VBox>
     
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10">
-	    <mx:VBox left="21" right="21" top="15" bottom="15">
-	    	<mx:HBox horizontalGap="0">
+	    <mx:VBox left="15" right="20" top="15" bottom="15">
+	    	<mx:HBox horizontalGap="0" height="454">
 	    		<mx:Canvas backgroundColor="#FFFFE5" width="300" height="452" borderStyle="solid" cornerRadius="6">
 	    			<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="10">
 		    			<mx:Label text="Head version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
@@ -46,7 +53,7 @@
 	    			<mx:Label y="379" text="DESIGNATION DATE" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="23"/>
 	    			<mx:Label y="392" text="1981" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12" left="23"/>
 	    		</mx:Canvas>
-	    		<mx:Canvas width="307" height="452" borderStyle="solid" borderColor="#FFFFFF">
+	    		<mx:Canvas width="313" height="452" borderStyle="solid" borderColor="#FFFFFF">
 	    			<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="10">
 		    			<mx:Label text="Your version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 	    			</mx:HBox>

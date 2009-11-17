@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="34"
+	backgroundColor="#FFFFFF">
+	<mx:Script>
+		<![CDATA[
+			import resource.Resource;
+			
+			// HACER QUE LOS TEXTOS CAMBIEN DE COLOR DEPENDIENDO DEL ESTADO
+			
+		]]>
+	</mx:Script>
+	<mx:Image y="9" source="{Resource.BLUE_BULLET}" left="12" width="14"/>
+	<mx:Label y="4" text="Geometry" color="#339900" fontWeight="bold" fontFamily="Helvetica" fontSize="12" left="17" right="21"/>
+	<mx:Label y="17" text="confirmed" color="#339900" fontWeight="normal" fontFamily="Helvetica" fontSize="11" left="17" right="21"/>
+	
+</mx:Canvas>
