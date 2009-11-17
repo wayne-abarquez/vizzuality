@@ -23,9 +23,9 @@
 		</mx:TileList>
 		
 		<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-			<mx:Label  right="100" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right"/>
-			<mx:Button label="&lt;" right="52" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
-			<mx:Button right="8" verticalCenter="0" label="&gt;" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			<mx:Label  right="75" verticalCenter="-1" width="211" text="page 1 of 7" textAlign="right" fontFamily="Helvetica" fontSize="11" color="#333333" fontWeight="bold" height="15"/>
+			<mx:Button right="40" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="whitePaginationLeft" width="27" height="24"/>
+			<mx:Button right="8" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="whitePaginationRight" width="27" height="24"/>
 		</mx:Canvas>	
 		
 		<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" backgroundColor="#F5F5F5">	

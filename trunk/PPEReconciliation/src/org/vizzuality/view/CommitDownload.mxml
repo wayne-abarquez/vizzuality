@@ -12,12 +12,12 @@
 	
 	<mx:VBox top="81" left="0" right="20" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0">
 		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" backgroundColor="#414141" top="0" left="0" right="0" width="100%">
-			<mx:Label text="Changes overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" left="655" letterSpacing="-1"/>
+			<mx:Label text="Changes overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" left="655" letterSpacing="-1" right="196"/>
 		</mx:Canvas>
 		<mx:Canvas height="100" width="100%" backgroundColor="#FFFFFF">
 		</mx:Canvas>
 		<mx:Canvas height="33" borderStyle="none" color="#333333" backgroundColor="#dadada" top="0" left="0" right="0" width="100%">
-			<mx:Button label="COMMIT CHANGES" verticalCenter="0" right="10" width="130" letterSpacing="-1" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			<mx:Button label="COMMIT CHANGES" verticalCenter="0" right="10" width="128" letterSpacing="0" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>		
 	</mx:VBox>
     
@@ -33,13 +33,13 @@
 			</mx:TileList>
 			
 			<mx:Canvas width="100%" height="34" backgroundColor="#FFE0E0">
-				<mx:Button x="437" label="confirm all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
-				<mx:Button x="528" label="reject all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+				<mx:Button label="confirm all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="95"/>
+				<mx:Button label="reject all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="10"/>
 			</mx:Canvas>
 			
 			<mx:Canvas backgroundColor="#D6EBD6" width="100%" height="34">
 				<mx:Label text="New Protected Areas (2)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
-				<mx:Label text=" waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
+				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
 			<mx:TileList backgroundColor="#333333" height="150" width="100%">
@@ -60,9 +60,7 @@
 				
 			</mx:TileList>
 			
-			<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-				<mx:Button label="Button" right="-44" verticalCenter="0"/>
-				<mx:Button label="Button" right="-116" verticalCenter="0"/>
+			<mx:Canvas height="34" backgroundColor="#e1efff" width="100%">
 			</mx:Canvas>				
 	
 	    </mx:VBox>
