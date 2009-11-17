@@ -33,9 +33,13 @@ Label.welcome{
 Canvas.ContainersInfo{
 	background-color: #F5F5F5;
 	border-style: solid;
-	border-color: #c6c6c6;
+	border-color: #e6e6e6;
 	rounded-bottom-corners: true;
 	corner-radius: 4;
+}
+
+Canvas.shadow{
+	background-image: Embed(source="general.swf",symbol="shadow");	
 }
 
 GradientCanvas.header{

@@ -10,6 +10,8 @@ Button.mainMenuButton{
 	selected-down-skin: Embed(source="general.swf",symbol="mainMenuButton_active");
 	font-family: "DINOT-Medium";
 	color: #6686AE;
+	text-roll-over-color: #333333;
+	text-selected-color: #333333;
 	font-size: 13;
 	padding-bottom: 7;
 	font-weight: normal;
@@ -26,8 +28,8 @@ Button.subMenuButton{
 	font-family: "Helvetica";
 	color: #999999;
 	text-roll-over-color: #666666;
+	text-selected-color: #666666;
 	font-size: 14;
-	letter-spacing: -1;
 	font-weight: bold;	
 }
 
@@ -40,7 +42,20 @@ Button.greenButton{
 	font-size: 10;
 	font-family: "DINOT-Medium";
 	text-roll-over-color: #FFFFFF;	
-	font-weight: normal;	
+	font-weight: normal;
+	padding-top:3;
+}
+
+Button.redButton{
+	up-skin: Embed(source="buttons.swf",symbol="redButton_up");
+	over-skin: Embed(source="buttons.swf",symbol="redButton_over");
+	down-skin: Embed(source="buttons.swf",symbol="redButton_over");
+	color:#FFFFFF;
+	font-size: 10;
+	font-family: "DINOT-Medium";
+	text-roll-over-color: #FFFFFF;	
+	font-weight: normal;
+	padding-top:3;
 }
 
 /*PAGINATION*/

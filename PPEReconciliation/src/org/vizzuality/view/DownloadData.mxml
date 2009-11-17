@@ -97,8 +97,8 @@
 				<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight" width="27" height="24"/>
 			</mx:Canvas>	
 			
-			<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4">	
-				<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
+			<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" styleName="ContainersInfo">	
+				<mx:Image x="13" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
 				<mx:Label text="If you want to download a complete country “country based tab”"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
 				<mx:Label x="65" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
 			</mx:Canvas>
@@ -107,19 +107,19 @@
 	    <mx:VBox>
 	    	<mx:Canvas backgroundColor="#e1efff" width="100%">
 	    		<mx:Label text="Select one or more countries from the list below"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10" id="label1"/>
-		    	<mx:HBox top="34" left="10" id="hbox1" horizontalGap="3" width="519">
+		    	<mx:HBox top="34" left="10" id="hbox1" horizontalGap="3">
 			        <mx:Button label="Africa"
-			    		click="continents.selectedIndex=0"  id="button3" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
+			    		click="continents.selectedIndex=0"  id="button3" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold"/>
 			        <mx:Button label="Asia"
-			    		click="continents.selectedIndex=1"  id="button4" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
+			    		click="continents.selectedIndex=1"  id="button4" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold"/>
 			    	<mx:Button label="Europe"
-			    		click="continents.selectedIndex=2"  id="button6" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
+			    		click="continents.selectedIndex=2"  id="button6" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold"/>
 			        <mx:Button label="N.America"
-			    		click="continents.selectedIndex=3"  id="button5" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
+			    		click="continents.selectedIndex=3"  id="button5" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold"/>
 			    	<mx:Button label="S.America"
-			    		click="continents.selectedIndex=4"  id="button7" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
+			    		click="continents.selectedIndex=4"  id="button7" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold"/>
 			        <mx:Button label="Oceania"
-			    		click="continents.selectedIndex=5"  id="button8" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="25"/>
+			    		click="continents.selectedIndex=5"  id="button8" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold"/>
 			    </mx:HBox>
 	    	</mx:Canvas>
 		    
@@ -135,10 +135,10 @@
 					</mx:Canvas>
 			    
 			    
-					<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4">	
-						<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-						<mx:Label text="If you want to download a complete country “country based tab”"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-						<mx:Label x="65" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
+					<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" styleName="ContainersInfo" id="canvas1">	
+						<mx:Image x="14" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
+						<mx:Label text="If you want to download a complete country “country based tab”"  left="58" right="7" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
+						<mx:Label x="58" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
 					</mx:Canvas> 
 		    	</mx:VBox>
 		    	
@@ -237,6 +237,6 @@
 
 	</mx:ViewStack>
 
-
+	<mx:Canvas x="648" y="53" width="18" height="900" styleName="shadow" backgroundSize="100%" />
 	
 </mx:Canvas>
