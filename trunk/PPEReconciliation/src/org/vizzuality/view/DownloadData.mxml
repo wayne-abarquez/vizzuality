@@ -4,7 +4,7 @@
 	styleName="dataDownloadContainer" backgroundSize="100%" height="1000" currentState="Search"
 	addedToStage="initSWFAddress()"
     removedFromStage="destroySWFAddress()"
-    currentStateChange="setSWFAddress()">
+    currentStateChange="setSWFAddress()" xmlns:view="org.vizzuality.view.*">
 	<mx:states>
 		<mx:State name="Search">
 			<mx:SetProperty target="{vs}" name="selectedIndex" value="0"/>
@@ -123,116 +123,20 @@
 			    </mx:HBox>
 	    	</mx:Canvas>
 		    
-		    <mx:ViewStack id="continents">
-		    	<mx:VBox>
-		    		<mx:Canvas width="618" height="324" backgroundColor="#333333">
-					</mx:Canvas>
-					
-					<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-						<mx:Label  right="70" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
-						<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" width="27" height="24"/>
-						<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight" width="27" height="24"/>
-					</mx:Canvas>
-			    
-			    
-					<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" styleName="ContainersInfo" id="canvas1">	
-						<mx:Image x="14" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-						<mx:Label text="If you want to download a complete country “country based tab”"  left="58" right="7" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-						<mx:Label x="58" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-					</mx:Canvas> 
-		    	</mx:VBox>
-		    	
-		    	<mx:VBox>
-		    		<mx:Canvas width="618" height="324" backgroundColor="#333333">
-					</mx:Canvas>
-					
-					<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-						<mx:Label  right="100" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right"/>
-						<mx:Button label="&lt;" right="52" verticalCenter="0"/>
-						<mx:Button right="8" verticalCenter="0" label="&gt;"/>
-					</mx:Canvas>
-			    
-			    
-					<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4">	
-						<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-						<mx:Label text="If you want to download a complete country “country based tab”"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-						<mx:Label x="65" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-					</mx:Canvas> 
-		    	</mx:VBox>
-		    	
-		    	<mx:VBox>
-		    		<mx:Canvas width="618" height="324" backgroundColor="#333333">
-					</mx:Canvas>
-					
-					<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-						<mx:Label  right="100" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right"/>
-						<mx:Button label="&lt;" right="52" verticalCenter="0"/>
-						<mx:Button right="8" verticalCenter="0" label="&gt;"/>
-					</mx:Canvas>
-			    
-			    
-					<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4">	
-						<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-						<mx:Label text="If you want to download a complete country “country based tab”"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-						<mx:Label x="65" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-					</mx:Canvas> 
-		    	</mx:VBox>
-		    	
-		    	<mx:VBox>
-		    		<mx:Canvas width="618" height="324" backgroundColor="#333333">
-					</mx:Canvas>
-					
-					<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-						<mx:Label  right="100" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right"/>
-						<mx:Button label="&lt;" right="52" verticalCenter="0"/>
-						<mx:Button right="8" verticalCenter="0" label="&gt;"/>
-					</mx:Canvas>
-			    
-			    
-					<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4">	
-						<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-						<mx:Label text="If you want to download a complete country “country based tab”"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-						<mx:Label x="65" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-					</mx:Canvas> 
-		    	</mx:VBox>
-		    	
-		    	<mx:VBox>
-		    		<mx:Canvas width="618" height="324" backgroundColor="#333333">
-					</mx:Canvas>
-					
-					<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-						<mx:Label  right="100" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right"/>
-						<mx:Button label="&lt;" right="52" verticalCenter="0"/>
-						<mx:Button right="8" verticalCenter="0" label="&gt;"/>
-					</mx:Canvas>
-			    
-			    
-					<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4">	
-						<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-						<mx:Label text="If you want to download a complete country “country based tab”"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-						<mx:Label x="65" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-					</mx:Canvas> 
-		    	</mx:VBox>
-		    	
-		    	<mx:VBox>
-		    		<mx:Canvas width="618" height="324" backgroundColor="#333333">
-					</mx:Canvas>
-					
-					<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
-						<mx:Label  right="100" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right"/>
-						<mx:Button label="&lt;" right="52" verticalCenter="0"/>
-						<mx:Button right="8" verticalCenter="0" label="&gt;"/>
-					</mx:Canvas>
-			    
-			    
-					<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4">	
-						<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-						<mx:Label text="If you want to download a complete country “country based tab”"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-						<mx:Label x="65" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-					</mx:Canvas> 
-		    	</mx:VBox>
+		    <mx:ViewStack id="continents" width="100%" height="316">
+		    	<view:CountryList continentId="1"  width="100%" height="100%"/>
+		    	<view:CountryList continentId="2"  width="100%" height="100%"/>
+		    	<view:CountryList continentId="3"  width="100%" height="100%"/>
+		    	<view:CountryList continentId="4"  width="100%" height="100%"/>
+		    	<view:CountryList continentId="5"  width="100%" height="100%"/>
+		    	<view:CountryList continentId="6"  width="100%" height="100%"/>
 		    	
 		    </mx:ViewStack>	
+				<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" styleName="ContainersInfo" id="canvas1">	
+					<mx:Image x="14" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
+					<mx:Label text="If you want to download a complete country “country based tab”"  left="58" right="7" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
+					<mx:Label x="58" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
+				</mx:Canvas> 
 	    </mx:VBox>
 
 	</mx:ViewStack>

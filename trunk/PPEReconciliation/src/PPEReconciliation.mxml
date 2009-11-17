@@ -15,7 +15,7 @@
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 		
-			public var serverUrl:String="http://10.0.1.15/";
+			public var serverUrl:String="http://localhost/php";
 			[Bindable]
 			public var username:String="";
 			public var userId:Number;

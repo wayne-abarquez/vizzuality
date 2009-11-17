@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="198" height="40" backgroundColor="#484848">
+	<mx:Script>
+		<![CDATA[
+			[Bindable] public var countryName:String;
+			[Bindable] public var countryId:Number;
+			[Bindable] public var numProtectedAreas:Number;
+		]]>
+	</mx:Script>
+	<mx:Label x="10" y="10" text="{data.name}" color="#FFFFFF" fontWeight="bold"/>
+	
+</mx:Canvas>
