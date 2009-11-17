@@ -93,6 +93,11 @@
                 	search_text.setStyle("color","#333333");
                 	search_text.setStyle("fontSize","13");
                 	search_text.text = '';
+                }else if (search_text.text==""){            	
+                	search_text.setStyle("fontStyle","italic");
+                	search_text.setStyle("color","#999999");
+                	search_text.setStyle("fontSize","11");
+                	search_text.text = 'Keyword, name, country...';
                 }
             }			
 		]]>
@@ -130,7 +135,8 @@
     			<mx:Label text="Search and browse the WDPA throw the map"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10"/>
     			<mx:HBox left="10" right="10" top="34" horizontalAlign="right" verticalAlign="middle" horizontalGap="4">
     				<mx:Label text="search"  fontFamily="Helvetica" fontSize="12" color="#666666" height="13"/>
-    				<mx:TextInput id="search_text" text="Keyword, name, country..." click="changeStyle()"
+    				<mx:TextInput id="search_text" text="Keyword, name, country..." 
+    					focusIn="changeStyle()" focusOut="changeStyle()"
     					fontStyle="italic" paddingTop="5" paddingLeft="5" paddingRight="5" fontSize="11" 
     					fontFamily="Helvetica" color="#999999" width="341" styleName="searchTextInput" 
     					backgroundSize="100%" borderStyle="none" height="25"/>
