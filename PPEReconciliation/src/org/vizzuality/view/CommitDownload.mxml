@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" backgroundColor="#EBEBEB" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" backgroundColor="#EBEBEB" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
+	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import resource.Resource;
+			
+			[Bindable]private var deletedArray: ArrayCollection = new ArrayCollection([
+               {area:"Yosemite National Park", country:"United States", status:"confirmed"},
+               {area:"Yosemite National Area", country:"United States", status:"rejected"},
+               {area:"Galapagos national reserve", country:"Ecuador", status:""},
+               {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"confirmed"}
+			]);
+			
+			[Bindable]private var mergeArray: ArrayCollection = new ArrayCollection([
+               {area:"Yosemite National Park", country:"United States", status:"merged"},
+               {area:"Yosemite National Area", country:"United States", status:"2 conflicts"},
+               {area:"Galapagos national reserve", country:"Ecuador", status:""},
+               {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"merged"},
+               {area:"Yosemite National Park", country:"United States", status:"2 conflicts"},
+               {area:"Yosemite National Area", country:"United States", status:"merged"},
+               {area:"Galapagos national reserve", country:"Ecuador", status:"2 conflicts"},
+               {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"merged"},
+               {area:"Yosemite National Park", country:"United States", status:"merged"},
+               {area:"Yosemite National Area", country:"United States", status:"merged"},
+               {area:"Galapagos national reserve", country:"Ecuador", status:"merged"},
+               {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"1 conflict"}
+			]);
+			
+			private function init():void {
+				
+			}
+			
 		]]>
 	</mx:Script>
+	
+	
 	<mx:Label y="22" text="Unfinished previous downloads" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="10" right="20"/>
 	<mx:HBox left="10" top="35" verticalAlign="bottom" horizontalGap="0" right="20">
 		<mx:Label text="Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
@@ -21,16 +52,15 @@
 		</mx:Canvas>		
 	</mx:VBox>
     
-	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="230" top="69" bottom="10">
-		<mx:VBox left="15" right="15" top="15">
+	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="220" top="69" bottom="10">
+		<mx:VBox left="19" right="19" top="15">
 			<mx:Canvas backgroundColor="#FFE0E0" width="100%" height="34">
 				<mx:Label text="Deleted Protected Areas (4)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList backgroundColor="#333333" height="150" width="100%">
-				
-			</mx:TileList>
+			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.itemrenderes.ProtectedArea" 
+				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundColor="#FFE0E0">
 				<mx:Button label="confirm all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="95"/>
@@ -42,9 +72,8 @@
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList backgroundColor="#333333" height="150" width="100%">
-				
-			</mx:TileList>
+			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.itemrenderes.ProtectedArea" 
+				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundColor="#D6EBD6">
 				<mx:Button label="Confirm all" verticalCenter="0" right="95"/>
@@ -56,9 +85,8 @@
 				<mx:Label text="6 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList backgroundColor="#333333" height="150" width="100%">
-				
-			</mx:TileList>
+			<mx:TileList width="100%" dataProvider="{mergeArray}" itemRenderer="org.vizzuality.view.itemrenderes.ProtectedArea" 
+				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas height="34" backgroundColor="#e1efff" width="100%">
 			</mx:Canvas>				
