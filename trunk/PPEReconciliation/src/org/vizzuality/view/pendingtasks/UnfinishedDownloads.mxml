@@ -29,7 +29,7 @@
 
 		</mx:Canvas>
 		
-		<mx:List height="250" width="100%" itemRenderer="org.vizzuality.view.itemrenderes.UnfinishedRenderer" dataProvider="{unfinishedArray}" borderStyle="none"
+		<mx:List height="250" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.UnfinishedRenderer" dataProvider="{unfinishedArray}" borderStyle="none"
 			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" />
 		
 		<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
