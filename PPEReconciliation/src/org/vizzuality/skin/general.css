@@ -18,6 +18,9 @@ Canvas.softBlueStepBackground{
 Canvas.darkHeader{
 	background-image: Embed(source="general.swf",symbol="darkHeaderBkg");	
 }
+Canvas.softGreyBottom{
+	background-image: Embed(source="general.swf",symbol="softGreyBottomBkg");	
+}
 
 
 Canvas.blackHLine{
