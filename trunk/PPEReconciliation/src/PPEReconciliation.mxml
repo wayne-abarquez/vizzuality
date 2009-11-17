@@ -6,6 +6,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import org.hasseg.externalMouseWheel.ExternalMouseWheelSupport;
 			import com.asual.swfaddress.SWFAddress;
 			import com.asual.swfaddress.SWFAddressEvent;
 			import com.adobe.serialization.json.JSON;
@@ -18,10 +19,13 @@
 			[Bindable]
 			public var username:String="";
 			public var userId:Number;
+			private var _mwSupport:ExternalMouseWheelSupport;
 			
              private function initSWFAddress():void {
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+                
+                 _mwSupport= ExternalMouseWheelSupport.getInstance(stage);
             }		
             
             private function setSWFAddress():void {
