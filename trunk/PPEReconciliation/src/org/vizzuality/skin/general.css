@@ -12,16 +12,16 @@ Canvas.softBlueUp{
 Canvas.softBlueBottom{
 	background-image: Embed(source="general.swf",symbol="bkgSoftBlueBottom");	
 }
-Canvas.greenBlueUp{
+Canvas.softGreenUp{
 	background-image: Embed(source="general.swf",symbol="bkgSoftGreenUp");	
 }
-Canvas.greenBlueBottom{
+Canvas.softGreenBottom{
 	background-image: Embed(source="general.swf",symbol="bkgSoftGreenBottom");	
 }
-Canvas.redBlueUp{
+Canvas.softRedUp{
 	background-image: Embed(source="general.swf",symbol="bkgSoftRedUp");	
 }
-Canvas.redBlueBottom{
+Canvas.softRedBottom{
 	background-image: Embed(source="general.swf",symbol="bkgSoftRedBottom");	
 }
 Canvas.softBlueStepBackground{
