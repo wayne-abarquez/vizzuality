@@ -81,11 +81,10 @@
 		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data">
 			<ns1:DownloadData top="0" left="0" right="0" height="100%" />
 		</mx:Canvas>
-		<mx:Canvas label="PENDING TASKS" width="874" height="100%" backgroundColor="#8FFA55" id="previous_downloads">
+		<mx:Canvas label="PENDING TASKS" width="874" height="100%" id="previous_downloads">
 			<ns1:PreviousDownloadsDiff left="0" top="0" />
 		</mx:Canvas>
-		<mx:Canvas label="PREVIOUS UPLOADS" width="100%" height="100%" backgroundColor="#FFFFFF" id="previous_uploads">
-			<ns1:UnfinishedDownloads left="0" right="0" top="0" bottom="0" />
+		<mx:Canvas label="PREVIOUS UPLOADS" width="100%" height="100%" id="previous_uploads">
 		</mx:Canvas>
 		<mx:Canvas label="COMMIT DOWNLOAD" width="100%" height="100%" backgroundColor="#FFFFFF" id="commit">
 			<ns1:CommitDownload left="0" right="0" top="0" bottom="0" />
