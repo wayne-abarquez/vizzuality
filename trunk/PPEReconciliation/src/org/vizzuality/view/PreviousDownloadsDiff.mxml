@@ -7,8 +7,8 @@
 			import resource.Resource;
 		]]>
 	</mx:Script>
-	<mx:Label y="17" text="Unfinished previous downloads &gt;&gt; Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="10" right="20"/>
-	<mx:HBox left="10" top="30" verticalAlign="bottom" horizontalGap="0" right="20">
+	<mx:Label y="17" text="Unfinished previous downloads &gt;&gt; Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
+	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" right="20">
 		<mx:Label text="Pemba Channel National Park" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
 		<mx:Label text="- Merge your changes" color="#666666" fontFamily="Helvetica" fontWeight="normal" fontSize="15" fontStyle="italic" height="23"/>
 	</mx:HBox>
@@ -72,7 +72,7 @@
 	    </mx:VBox>
 
 	</mx:Canvas>
-	<mx:Canvas x="648" y="53" width="18" height="900" styleName="shadow" backgroundSize="100%" />
+	<mx:Canvas x="648" y="53" width="18" height="565" styleName="shadow" backgroundSize="100%" />
 
 
 
