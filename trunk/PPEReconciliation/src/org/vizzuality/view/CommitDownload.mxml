@@ -17,7 +17,7 @@
 		<mx:Canvas height="100" width="100%" backgroundColor="#FFFFFF">
 		</mx:Canvas>
 		<mx:Canvas height="33" borderStyle="none" color="#333333" backgroundColor="#dadada" top="0" left="0" right="0" width="100%">
-			<mx:Button label="COMMIT CHANGES" verticalCenter="0" right="10" width="128" letterSpacing="0" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			<mx:Button label="COMMIT CHANGES" verticalCenter="-1" right="4" width="128" letterSpacing="0" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton"/>
 		</mx:Canvas>		
 	</mx:VBox>
     

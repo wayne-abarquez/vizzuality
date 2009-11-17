@@ -19,7 +19,7 @@
 		</mx:Canvas>
 		<mx:Canvas height="33" borderStyle="none" color="#333333" backgroundColor="#dadada" top="0" left="0" right="0" width="100%">
 			<mx:Label text="save and exit" fontSize="11" fontWeight="bold" fontFamily="Helvetica" left="655" color="#336699" height="13" verticalCenter="0"/>
-			<mx:Button label="FINISH" verticalCenter="0" right="10" width="70" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			<mx:Button label="FINISH" verticalCenter="-1" right="5" width="70" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton"/>
 		</mx:Canvas>		
 	</mx:VBox>
     
