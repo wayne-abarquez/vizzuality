@@ -28,6 +28,7 @@ class DumpServices {
 			$c=array();
 			$c['id']=$i;
 			$c['name']=$regionId."-".$i;
+			$c['numareas']=23;
 			$res[]=$c;
 		}
 		$resul['results'] = $res;
