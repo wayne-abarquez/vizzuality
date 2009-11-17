@@ -70,7 +70,10 @@
 	<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 		<mx:Label text="Current dataset" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 	</mx:Canvas>
-	<mx:List width="100%" dataProvider="{selectedCountries}" itemRenderer="org.vizzuality.view.download.itemrenders.CountrySelectedForDownloadItem">
+	<mx:List width="100%" dataProvider="{selectedCountries}" 
+		paddingTop="0" paddingBottom="1" focusAlpha="0"
+		itemRenderer="org.vizzuality.view.download.itemrenders.CountrySelectedForDownloadItem"
+		backgroundColor="#EBEBEB" borderStyle="none">
 		
 	</mx:List>
 	<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">

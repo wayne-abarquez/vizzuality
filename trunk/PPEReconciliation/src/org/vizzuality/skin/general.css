@@ -10,18 +10,29 @@ Canvas.softBlueUp{
 	background-image: Embed(source="general.swf",symbol="bkgSoftBlueUp");	
 }
 Canvas.softBlueBottom{
-	background-image: Embed(source="general.swf",symbol="softBlueBottom");	
+	background-image: Embed(source="general.swf",symbol="bkgSoftBlueBottom");	
+}
+Canvas.greenBlueUp{
+	background-image: Embed(source="general.swf",symbol="bkgSoftGreenUp");	
+}
+Canvas.greenBlueBottom{
+	background-image: Embed(source="general.swf",symbol="bkgSoftGreenBottom");	
+}
+Canvas.redBlueUp{
+	background-image: Embed(source="general.swf",symbol="bkgSoftRedUp");	
+}
+Canvas.redBlueBottom{
+	background-image: Embed(source="general.swf",symbol="bkgSoftRedBottom");	
 }
 Canvas.softBlueStepBackground{
 	background-image: Embed(source="general.swf",symbol="softBlueStepBackground");	
 }
 Canvas.darkHeader{
-	background-image: Embed(source="general.swf",symbol="darkHeaderBkg");	
+	background-image: Embed(source="general.swf",symbol="bkgDarkGreyUp");	
 }
 Canvas.softGreyBottom{
-	background-image: Embed(source="general.swf",symbol="softGreyBottomBkg");	
+	background-image: Embed(source="general.swf",symbol="bkgSoftGreyBottom");	
 }
-
 
 Canvas.blackHLine{
 	background-color: #000000;
