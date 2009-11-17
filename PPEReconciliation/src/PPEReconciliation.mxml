@@ -66,6 +66,12 @@
 			}
 		]]>
 	</mx:Script>
+	
+
+	<mx:Style source="org/vizzuality/skin/general.css" />
+	<mx:Style source="org/vizzuality/skin/fonts.css" />
+	<mx:Style source="org/vizzuality/skin/buttons.css" />	
+	
 	<mx:states>
 		<mx:State name="Login">
 			<mx:RemoveChild target="{header1}"/>
@@ -85,10 +91,6 @@
 		</mx:State>
 		<mx:State name="Rec"/>
 	</mx:states>
-
-	<mx:Style source="org/vizzuality/skin/general.css" />
-	<mx:Style source="org/vizzuality/skin/fonts.css" />
-	<mx:Style source="org/vizzuality/skin/buttons.css" />
 
 	<ns1:header left="0" right="0" top="0" id="header1" />
 	<mx:VBox id="vBoxContainer" top="110" bottom="0" verticalScrollPolicy="off" width="100%" horizontalAlign="center">
