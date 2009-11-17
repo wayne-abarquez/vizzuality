@@ -12,11 +12,13 @@ Canvas.softBlueUp{
 Canvas.softBlueBottom{
 	background-image: Embed(source="general.swf",symbol="softBlueBottom");	
 }
-
 Canvas.softBlueStepBackground{
 	background-image: Embed(source="general.swf",symbol="softBlueStepBackground");	
-	
 }
+Canvas.darkHeader{
+	background-image: Embed(source="general.swf",symbol="darkHeaderBkg");	
+}
+
 
 Canvas.blackHLine{
 	background-color: #000000;
