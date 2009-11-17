@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"  verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="210" xmlns:itemrenders="org.vizzuality.view.download.itemrenders.*">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"  verticalGap="0" borderStyle="solid" borderThickness="0" 
+	cornerRadius="0" width="210" xmlns:itemrenders="org.vizzuality.view.download.itemrenders.*"
+	 creationComplete="init()">
+<mx:Script>
+	<![CDATA[
+		import org.vizzuality.events.DataSelectionEvent;
+		
+		private function init():void {
+			this.addEventListener(DataSelectionEvent.COUNTRY_ADDED,onCountryAdded);
+		}
+		
+		private function onCountryAdded(event:DataSelectionEvent):void {
+			
+		}
+	]]>
+</mx:Script>
 	<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 		<mx:Label text="Current dataset" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 	</mx:Canvas>
 	<mx:VBox width="100%" verticalGap="1" >
-		<itemrenders:DataForDownloadItem />
-		<itemrenders:DataForDownloadItem />
-		<itemrenders:DataForDownloadItem />
+		<itemrenders:CountrySelectedForDownloadItem />
+		<itemrenders:CountrySelectedForDownloadItem />
+		<itemrenders:CountrySelectedForDownloadItem />
 	</mx:VBox>
 	<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 		<mx:Label text="56 PA’s" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999"/>
