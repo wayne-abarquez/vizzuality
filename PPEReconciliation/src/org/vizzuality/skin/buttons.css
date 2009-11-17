@@ -63,11 +63,13 @@ Button.whitePaginationLeft{
 	up-skin: Embed(source="buttons.swf",symbol="whitePaginationLeft_up");
 	over-skin: Embed(source="buttons.swf",symbol="whitePaginationLeft_over");
 	down-skin: Embed(source="buttons.swf",symbol="whitePaginationLeft_over");
+	disabled-skin: Embed(source="buttons.swf",symbol="whitePaginationLeft_disabled");
 }
 Button.whitePaginationRight{
 	up-skin: Embed(source="buttons.swf",symbol="whitePaginationRight_up");
 	over-skin: Embed(source="buttons.swf",symbol="whitePaginationRight_over");
 	down-skin: Embed(source="buttons.swf",symbol="whitePaginationRight_over");
+	disabled-skin: Embed(source="buttons.swf",symbol="whitePaginationRight_disabled");	
 }
 
 /*MAP*/
