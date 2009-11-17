@@ -28,9 +28,10 @@ Button.subMenuButton{
 	text-roll-over-color: #666666;
 	font-size: 14;
 	letter-spacing: -1;
-	font-weight: normal;	
+	font-weight: bold;	
 }
 
+/*OTHER*/
 Button.greenButton{
 	up-skin: Embed(source="buttons.swf",symbol="greenButton_up");
 	over-skin: Embed(source="buttons.swf",symbol="greenButton_over");
@@ -41,3 +42,23 @@ Button.greenButton{
 	text-roll-over-color: #FFFFFF;	
 	font-weight: normal;	
 }
+
+/*PAGINATION*/
+Button.whitePaginationLeft{
+	up-skin: Embed(source="buttons.swf",symbol="whitePaginationLeft_up");
+	over-skin: Embed(source="buttons.swf",symbol="whitePaginationLeft_over");
+	down-skin: Embed(source="buttons.swf",symbol="whitePaginationLeft_over");
+}
+Button.whitePaginationRight{
+	up-skin: Embed(source="buttons.swf",symbol="whitePaginationRight_up");
+	over-skin: Embed(source="buttons.swf",symbol="whitePaginationRight_over");
+	down-skin: Embed(source="buttons.swf",symbol="whitePaginationRight_over");
+}
+
+/*MAP*/
+Button.boundingBoxButton{
+	up-skin: Embed(source="general.swf",symbol="boundingBoxButton_up");
+	over-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
+	down-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
+}
+
