@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:dashboard="org.vizzuality.view.content.dashboard.*" 
-	width="874" xmlns:ns1="org.vizzuality.view.*" xmlns:components="org.vizzuality.components.*" currentState="Dashboard"
+	width="874" xmlns:ns1="org.vizzuality.view.*" xmlns:components="org.vizzuality.components.*"
 	addedToStage="initSWFAddress()"
     removedFromStage="destroySWFAddress()"
-    currentStateChange="setSWFAddress()">
+    currentStateChange="setSWFAddress()"
+     creationComplete="currentState='Dashboard'">
 	<mx:states>
 		<mx:State name="Dashboard">
 			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="0"/>
