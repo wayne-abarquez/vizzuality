@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="41" backgroundColor="#FFFFFF">
+	<mx:Label y="7" text="Bacalar Chico Protected Area" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13" left="9" truncateToFit="true" width="160"/>
+	<mx:Label y="21" text="Ecuador" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="11" left="10" truncateToFit="true" width="160"/>
+	<mx:Button y="6" label="x" styleName="redButton" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" right="7"/>
+	
+</mx:Canvas>
