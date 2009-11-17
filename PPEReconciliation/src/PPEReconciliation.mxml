@@ -22,6 +22,11 @@
 			private var _mwSupport:ExternalMouseWheelSupport;
 			
              private function initSWFAddress():void {
+             	if (parameters.dataurl !=null && parameters.dataurl!='') {
+             		serverUrl=parameters.dataurl;
+             	}
+             	
+             	
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
                 

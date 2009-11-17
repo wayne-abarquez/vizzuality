@@ -2,6 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
 			import com.adobe.serialization.json.JSON;
 			import mx.rpc.events.ResultEvent;
 			import mx.collections.ArrayCollection;
@@ -12,7 +13,7 @@
 				jsonService.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void{
 					countries=new ArrayCollection(JSON.decode(ev.result as String) as Array);
 				});
-				jsonService.url = "http://localhost/php/json.php/DumpServices.getContriesForRegion/"+val;
+				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getContriesForRegion/"+val;
 				jsonService.send();
 				
 			}
