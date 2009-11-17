@@ -15,6 +15,7 @@ Learn more about Flex at http://flex.org
 <title>SWFAddress Application</title>
 <script src="AC_OETags.js" language="javascript"></script>
 <script src="swfaddress/swfaddress.js" language="javascript"></script>
+<script type="text/javascript" src="extMouseWheel.js"></script>
 <style>
 body { margin: 0px; overflow:hidden }
 </style>
@@ -34,6 +35,8 @@ var requiredRevision = 124;
 </head>
 
 <body scroll="no">
+<div style="width:100%;height:100%;" id="flashContainerDiv">
+
 <script language="JavaScript" type="text/javascript">
 <!--
 // Version check based upon the values entered above in "Globals"
@@ -84,5 +87,6 @@ if (hasRequestedVersion) {  // if we've detected an acceptable version
             </embed>
     </object>
 </noscript>
+</div>
 </body>
 </html>
