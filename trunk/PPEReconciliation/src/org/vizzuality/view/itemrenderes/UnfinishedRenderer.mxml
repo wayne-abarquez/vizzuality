@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="844" height="43" backgroundColor="#FFFFFF"
+	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)">
+	<mx:Script>
+		<![CDATA[
+			import gs.TweenMax;
+			
+			
+			
+ 			private function handleOver(e:MouseEvent):void{
+				TweenMax.to(overCanvas, .3, {autoAlpha:1});
+			}
+			
+			private function handleOut(e:MouseEvent):void{
+				TweenMax.to(overCanvas, .3, {autoAlpha:0});
+			} 			
+			
+		]]>
+	</mx:Script>
+	<mx:HBox horizontalGap="0" top="5" left="15">
+		<mx:Label text="{data.type}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+		<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
+		<mx:Label text="{data.area}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
+	</mx:HBox>
+	<mx:Label id="number" text="{data.number + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="italic" top="20" left="15"/>
+	
+	<mx:Label text="{data.status}" color="{(data.status=='Commiting changes')?0xff6600:0xff3333}"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
+	<mx:Label id="percentage" text="{'(' + data.percentage + '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="454" fontFamily="Helvetica"/>
+
+	<mx:Label text="{data.date}" color="#666666"  left="639" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
+	<mx:Label id="ago" text="{data.ago + ' days ago'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="639" fontFamily="Helvetica"/>
+	
+	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
+	
+	
+	<mx:Canvas id="overCanvas" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off"
+		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
+		cornerRadius="2" visible="false" alpha="0">
+		
+		<mx:HBox horizontalGap="0" top="5" left="15">
+			<mx:Label text="{data.type}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+			<mx:Label text="-" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
+			<mx:Label text="{data.area}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
+		</mx:HBox>
+		<mx:Label text="{data.number + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="italic" top="20" left="15"/>
+		
+		<mx:Label text="{data.status}" color="#FFFFFF"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label text="{'(' + data.percentage + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="454" fontFamily="Helvetica"/>
+	
+		<mx:Label text="{data.date}" color="#FFFFFF"  left="639" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label text="{data.ago + ' days ago'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="639" fontFamily="Helvetica"/>
+		
+			
+		<mx:Button label="x" styleName="redButton" top="2" right="3" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
+		mouseChildren="false" buttonMode="true" useHandCursor="true" />
+		<mx:Button label="CONTINUE" styleName="greenButton" top="2" right="22" fontSize="10" paddingRight="5" paddingLeft="5" paddingTop="3" paddingBottom="3" height="18" 
+		mouseChildren="false" buttonMode="true" useHandCursor="true" />
+	</mx:Canvas>
+	
+</mx:Canvas>
