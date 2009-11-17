@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" backgroundColor="#EBEBEB" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" 
+	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
+	styleName="dataDownloadContainer" backgroundSize="100%">
 	<mx:Script>
 		<![CDATA[
 			import resource.Resource;
 		]]>
 	</mx:Script>
-	<mx:Label y="22" text="Unfinished previous downloads &gt;&gt; Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="10" right="20"/>
-	<mx:HBox left="10" top="35" verticalAlign="bottom" horizontalGap="0" right="20">
+	<mx:Label y="17" text="Unfinished previous downloads &gt;&gt; Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="10" right="20"/>
+	<mx:HBox left="10" top="30" verticalAlign="bottom" horizontalGap="0" right="20">
 		<mx:Label text="Pemba Channel National Park" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
 		<mx:Label text="- Merge your changes" color="#666666" fontFamily="Helvetica" fontWeight="normal" fontSize="15" fontStyle="italic" height="23"/>
 	</mx:HBox>
 	
-	<mx:VBox top="81" left="0" right="20" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0">
-		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" backgroundColor="#414141" top="0" left="0" right="0" width="100%">
-			<mx:Label text="Merge overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" left="655"/>
+	<mx:VBox top="72" right="17" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="210">
+		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
+			<mx:Label text="Merge overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 		</mx:Canvas>
-		<mx:Canvas height="100" width="100%" backgroundColor="#FFFFFF">
-		</mx:Canvas>
-		<mx:Canvas height="33" borderStyle="none" color="#333333" backgroundColor="#dadada" top="0" left="0" right="0" width="100%">
-			<mx:Label text="save and exit" fontSize="11" fontWeight="bold" fontFamily="Helvetica" left="655" color="#336699" height="13" verticalCenter="0"/>
-			<mx:Button label="FINISH" verticalCenter="-1" right="5" width="70" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton"/>
+		<mx:VBox width="100%" verticalGap="1" >
+		</mx:VBox>
+		<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
+			<mx:Button right="6" y="4" label="FINISH" styleName="greenButton" mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3"/>
 		</mx:Canvas>		
 	</mx:VBox>
     
-	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="230" top="75" bottom="10">
+	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10">
 	    <mx:VBox left="21" right="21" top="15" bottom="15">
 	    	<mx:HBox horizontalGap="0">
 	    		<mx:Canvas backgroundColor="#FFFFE5" width="300" height="452" borderStyle="solid" cornerRadius="6">
@@ -45,7 +46,7 @@
 	    			<mx:Label y="379" text="DESIGNATION DATE" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="23"/>
 	    			<mx:Label y="392" text="1981" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12" left="23"/>
 	    		</mx:Canvas>
-	    		<mx:Canvas width="300" height="452" borderStyle="solid" borderColor="#FFFFFF">
+	    		<mx:Canvas width="307" height="452" borderStyle="solid" borderColor="#FFFFFF">
 	    			<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="10">
 		    			<mx:Label text="Your version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 	    			</mx:HBox>
@@ -64,14 +65,14 @@
 	    			<mx:Label y="392" text="1981" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12" left="16"/>
 	    		</mx:Canvas>
 	    	</mx:HBox>
-		    <mx:HBox horizontalGap="0" bottom="0" width="601" height="41" verticalAlign="bottom">
-				<mx:Button label="save and exit" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
-				<mx:Button label="FINISH" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+		    <mx:HBox horizontalGap="4" bottom="0" verticalAlign="bottom" width="100%" horizontalAlign="right">
+				<mx:Button label="SAVE AND EXIT" styleName="redButton"/>
 	    	</mx:HBox>
 	    	
 	    </mx:VBox>
 
 	</mx:Canvas>
+	<mx:Canvas x="648" y="53" width="18" height="900" styleName="shadow" backgroundSize="100%" />
 
 
 
