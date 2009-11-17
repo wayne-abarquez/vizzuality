@@ -61,7 +61,7 @@
     </mx:HBox>
 	
 	<mx:VBox top="72" left="0" right="20" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0">
-		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" backgroundColor="#414141" top="0" left="0" right="0" width="100%">
+		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 			<mx:Label text="Current dataset" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" left="655"/>
 		</mx:Canvas>
 		<mx:Canvas height="100" width="100%" backgroundColor="#FFFFFF">
@@ -132,11 +132,6 @@
 		    	<view:CountryList continentId="6"  width="100%" height="100%"/>
 		    	
 		    </mx:ViewStack>	
-				<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" styleName="ContainersInfo" id="canvas1">	
-					<mx:Image x="14" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
-					<mx:Label text="If you want to download a complete country “country based tab”"  left="58" right="7" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-					<mx:Label x="58" y="34" text="Do you want to download a complete country data? Then go to the “country tab”" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-				</mx:Canvas> 
 	    </mx:VBox>
 
 	</mx:ViewStack>
