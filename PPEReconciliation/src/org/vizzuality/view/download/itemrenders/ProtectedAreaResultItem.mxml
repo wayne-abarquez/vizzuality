@@ -41,10 +41,7 @@
 		cornerRadius="2" visible="false" alpha="0">
 		<mx:Label x="7" y="5" text="{paName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(status!='')?140:180}" textAlign="left"/>
 		<mx:Label x="7" y="19" text="{countryName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
-		<mx:Button label="x" styleName="redButton" top="2" right="3" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
-		mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
-		<mx:Button label="x" styleName="redButton" top="2" right="22" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
-		mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
+		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" />
 	</mx:Canvas>
 	
 </mx:Canvas>
