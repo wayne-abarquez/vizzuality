@@ -14,12 +14,12 @@
 	</mx:Script>
 
 	<mx:Image y="5" left="14" source="{imgsource}"/>
-	<mx:Button y="11" height="32" left="74" label="{title}"/>
+	<mx:Button y="11" height="32" left="74" label="{title}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 	<mx:HBox left="150" top="15">
 		<mx:Text y="25" text="{expl}" height="32" left="74" styleName="explInfo"/>
-		<mx:Button y="25" label="{expl2}"/>		
+		<mx:Button y="25" label="{expl2}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>		
 	</mx:HBox>
 		
-	<mx:Button y="25" right="10" label="{textButton}"/>
+	<mx:Button y="25" right="10" label="{textButton}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 	
 </mx:Canvas>

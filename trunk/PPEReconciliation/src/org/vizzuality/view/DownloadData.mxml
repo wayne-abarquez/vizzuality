@@ -4,7 +4,7 @@
 	styleName="dataDownloadContainer" backgroundSize="100%" height="1000" currentState="Search"
 	addedToStage="initSWFAddress()"
     removedFromStage="destroySWFAddress()"
-    currentStateChange="setSWFAddress()" xmlns:view="org.vizzuality.view.*" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*">
+    currentStateChange="setSWFAddress()" xmlns:view="org.vizzuality.view.*" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*">	
 	<mx:states>
 		<mx:State name="Search">
 			<mx:SetProperty target="{vs}" name="selectedIndex" value="0"/>
@@ -26,11 +26,23 @@
 	        
 	        
 	        public var path:String="rec/checkout";
-            public var depth:int=2;			
+            public var depth:int=2;	
+            
 			
             private function initSWFAddress():void {
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+                if (search_text) {
+	                if (search_text.text=="Keyword, name, country...") {
+	                	search_text.setStyle("fontStyle","italic");
+	                	search_text.setStyle("color","#999999");
+	                	search_text.setStyle("fontSize","12");
+	                } else {
+	                	search_text.setStyle("fontStyle","normal");
+	                	search_text.setStyle("color","#333333");
+	                	search_text.setStyle("fontSize","13");
+	                }                	
+                }
             }
             
             private function destroySWFAddress():void {
@@ -45,6 +57,15 @@
                 if (event.pathNames.length > depth && event.pathNames[depth - 1] == "checkout") {
                     Helper.handleSWFAddress(this, event, depth);
                 }
+            }
+            
+            private function changeStyle():void {
+            	if (search_text.text=="Keyword, name, country...") {
+                	search_text.setStyle("fontStyle","normal");
+                	search_text.setStyle("color","#333333");
+                	search_text.setStyle("fontSize","13");
+                	search_text.text = '';
+                }
             }			
 		]]>
 	</mx:Script>
@@ -53,10 +74,10 @@
 	<mx:HBox right="225" top="28" horizontalGap="3">
         <mx:Button label="search based"
         	styleName="subMenuButton" height="35"
-    		click="currentState='Search'"  id="button1"/>
+    		click="currentState='Search'"  id="button1" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
         <mx:Button label="country based"
     		styleName="subMenuButton" height="35"
-    		click="currentState='Countries'"  id="button2"/>
+    		click="currentState='Countries'"  id="button2" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
     </mx:HBox>
 	
 <mx:VBox top="72" right="20" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="208">
@@ -70,7 +91,7 @@
 		</mx:VBox>
 		<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 			<mx:Label text="56 PA’s" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999"/>
-			<mx:Button right="6" y="4" label="DOWNLOAD DATASET" styleName="greenButton"/>
+			<mx:Button right="6" y="4" label="DOWNLOAD DATASET" styleName="greenButton" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 		</mx:Canvas>		
 	</mx:VBox>
     
@@ -81,11 +102,11 @@
     			<mx:Label text="Search and browse the WDPA throw the map"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10"/>
     			<mx:HBox left="10" right="10" top="34" horizontalAlign="right" verticalAlign="middle" horizontalGap="4">
     				<mx:Label text="search"  fontFamily="Helvetica" fontSize="12" color="#666666" height="13"/>
-    				<mx:TextInput text="Keyword, name, country..."
+    				<mx:TextInput id="search_text" text="Keyword, name, country..." click="changeStyle()"
     					fontStyle="italic" paddingTop="5" paddingLeft="5" paddingRight="5" fontSize="11" 
     					fontFamily="Helvetica" color="#999999" width="341" styleName="searchTextInput" 
     					backgroundSize="100%" borderStyle="none" height="25"/>
-    				<mx:Button  width="29" styleName="boundingBoxButton" height="25"/>
+    				<mx:Button  width="29" styleName="boundingBoxButton" height="25" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
     			</mx:HBox>
     			<maps:Map  left="10" bottom="10" right="10" id="map" height="326" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ"/>
 
@@ -96,8 +117,8 @@
 			
 			<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">
 				<mx:Label  right="70" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
-				<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" width="27" height="24"/>
-				<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight" width="27" height="24"/>
+				<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+				<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight" width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 			</mx:Canvas>	
 			
 			<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" styleName="ContainersInfo">	
