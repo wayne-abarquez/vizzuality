@@ -4,7 +4,7 @@
 	addedToStage="initSWFAddress()"
     removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()"
-     creationComplete="currentState='Dashboard'">
+     creationComplete="currentState='Dashboard'" xmlns:dashboard1="org.vizzuality.view.dashboard.*" xmlns:download="org.vizzuality.view.download.*" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*">
 	<mx:states>
 		<mx:State name="Dashboard">
 			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="0"/>
@@ -77,18 +77,18 @@
 		]]>
 	</mx:Script>
 	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="1020">
-		<dashboard:DashboardContainer label="DASHBOARD" id="mydashboard"/>
+		<dashboard1:DashboardContainer label="DASHBOARD" id="mydashboard"/>
 		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data">
-			<ns1:DownloadData top="0" left="0" right="0" height="100%" />
+			<download:DownloadData top="0" left="0" right="0" height="100%" />
 		</mx:Canvas>
 		<mx:Canvas label="PENDING TASKS" width="874" height="100%" id="previous_downloads">
-			<ns1:UnfinishedDownloads left="0" top="0" />
+			<pendingtasks:UnfinishedDownloads left="0" top="0" />
 		</mx:Canvas>
 		<mx:Canvas label="PREVIOUS UPLOADS" width="100%" height="100%" id="previous_uploads">
 			<mx:Canvas />
 		</mx:Canvas>
 		<mx:Canvas label="COMMIT DOWNLOAD" width="100%" height="100%" backgroundColor="#FFFFFF" id="commit">
-			<ns1:CommitDownload left="0" right="0" top="0" bottom="0"/>
+			<pendingtasks:CommitDownload left="0" right="0" top="0" bottom="0"/>
 		</mx:Canvas>
 	</mx:ViewStack>
 	<mx:HBox left="0" top="0" horizontalGap="3">
