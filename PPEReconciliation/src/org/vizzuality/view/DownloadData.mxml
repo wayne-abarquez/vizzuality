@@ -10,7 +10,6 @@
 			<mx:SetProperty target="{vs}" name="selectedIndex" value="0"/>
 			<mx:SetProperty target="{button2}" name="selected" value="false"/>
 			<mx:SetProperty target="{button1}" name="selected" value="true"/>
-			<mx:SetStyle target="{button3}" name="right" value="5"/>
 		</mx:State>
 		<mx:State name="Countries">
 			<mx:SetProperty target="{vs}" name="selectedIndex" value="1"/>
