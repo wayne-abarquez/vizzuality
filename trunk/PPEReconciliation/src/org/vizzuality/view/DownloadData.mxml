@@ -42,9 +42,8 @@
             }
             
             private function handleSWFAddress(event:SWFAddressEvent):void {
-                if (event.pathNames.length > depth && event.pathNames[depth - 1] == path) {
+                if (event.pathNames.length > depth && event.pathNames[depth - 1] == "checkout") {
                     Helper.handleSWFAddress(this, event, depth);
-                    //trace(depth + ":" + event.value);
                 }
             }			
 		]]>

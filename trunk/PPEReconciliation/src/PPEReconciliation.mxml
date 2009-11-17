@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="org.vizzuality.view.*" horizontalScrollPolicy="off" 
-	backgroundColor="#dddddd" backgroundGradientColors="[#dddddd]" currentState="Login"
+	backgroundColor="#dddddd" backgroundGradientColors="[#dddddd]"
     applicationComplete="initSWFAddress()"
-    currentStateChange="setSWFAddress()">
+    currentStateChange="setSWFAddress()"
+    >
 	
 	<mx:Script>
 		<![CDATA[
@@ -21,7 +22,7 @@
 			public var userId:Number;
 			private var _mwSupport:ExternalMouseWheelSupport;
 			
-             private function initSWFAddress():void {
+            private function initSWFAddress():void {
              	if (parameters.dataurl !=null && parameters.dataurl!='') {
              		serverUrl=parameters.dataurl;
              	}
@@ -31,6 +32,7 @@
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
                 
                  _mwSupport= ExternalMouseWheelSupport.getInstance(stage);
+				currentState="Login";
             }		
             
             private function setSWFAddress():void {
@@ -65,7 +67,7 @@
 				}
 				
 			}
-			private function loginFail(ev:ResultEvent):void {
+			private function loginFail(ev:FaultEvent):void {
 				currentState="Login";
 				Alert.show("Sorry, there is an error on the server, please contact admin@protectplanetearth.com");
 			}
@@ -80,7 +82,6 @@
 	<mx:states>
 		<mx:State name="Login">
 			<mx:RemoveChild target="{header1}"/>
-			<mx:RemoveChild target="{contentcontainer1}"/>
 			<mx:AddChild  relativeTo="{vBoxContainer}" position="firstChild">
 				<mx:Canvas x="10" y="0" width="500" height="100%">
 					<mx:TextInput id="usernameInput" x="95" y="74" enter="login()"/>
@@ -94,12 +95,15 @@
 			<mx:SetProperty target="{passwordInput}" name="enabled" value="false"/>
 			<mx:SetProperty target="{button1}" name="enabled" value="false"/>
 		</mx:State>
-		<mx:State name="Rec"/>
+		<mx:State name="Rec">
+			<mx:AddChild  relativeTo="{vBoxContainer}" position="firstChild">
+				<ns1:contentContainer id="contentcontainer1" width="874" horizontalScrollPolicy="off" horizontalCenter="0" />
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 
 	<ns1:header left="0" right="0" top="0" id="header1" />
 	<mx:VBox id="vBoxContainer" top="110" bottom="0" verticalScrollPolicy="off" width="100%" horizontalAlign="center">
-		<ns1:contentContainer id="contentcontainer1" width="874" horizontalScrollPolicy="off" horizontalCenter="0" />
 		<ns1:footer width="874"/>
 	</mx:VBox>
 </mx:Application>

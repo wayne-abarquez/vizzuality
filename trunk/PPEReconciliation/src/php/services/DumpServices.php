@@ -20,6 +20,7 @@ class DumpServices {
 	}
 	
 	function getContriesForRegion($regionId,$page,$perPage) {
+		error_log("getContriesForRegion");
 		$resul=array();
 		
 		$res=array();

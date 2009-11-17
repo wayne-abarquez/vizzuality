@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:view="org.vizzuality.view.*"
+	 creationComplete="init()"
 	addedToStage="initSWFAddress()"
     removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()"	
-	 currentState="Africa">
+	>
 	<mx:Script>
 		<![CDATA[
 			import com.asual.swfaddress.SWFAddress;
@@ -12,6 +13,9 @@
 			public var path:String="rec/checkout/countries";
             public var depth:int=3;	
 		
+			private function init():void {
+				currentState="Africa";
+			}
 		
 			private function initSWFAddress():void {
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
@@ -24,11 +28,34 @@
             
             private function setSWFAddress():void {
                 Helper.setSWFAddress(this, path, depth);
+                switch(currentState) {
+                	case "Africa":
+	                	countryList.continentId=1;
+                		break;
+                	case "Asia":
+	                	countryList.continentId=2;
+                		break;
+                	case "Europe":
+	                	countryList.continentId=3;
+                		break;
+                	case "Namerica":
+	                	countryList.continentId=4;
+                		break;
+                	case "Samerica":
+	                	countryList.continentId=5;
+                		break;
+                	case "Oceania":
+	                	countryList.continentId=6;
+                		break;
+                }
+                
             }
             
             private function handleSWFAddress(event:SWFAddressEvent):void {
-                if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
+            	//trace(event.path);
+                if (event.pathNames.length >= depth && event.pathNames[depth - 1] == "countries") {
                     Helper.handleSWFAddress(this, event, depth);
+                    trace(event.path);
                 }
             }	
 		]]>
@@ -37,28 +64,26 @@
     <mx:states>
         <mx:State name="Africa">
             <mx:SetProperty target="{button3}" name="selected" value="true"/>
-            <mx:SetProperty target="{countryList}" name="continentId" value="1"/>
-            <mx:SetProperty target="{countryList}" name="height"/>
         </mx:State>
         <mx:State name="Asia">
             <mx:SetProperty target="{button4}" name="selected" value="true"/>
-            <mx:SetProperty target="{countryList}" name="continentId" value="2"/>
+            <mx:SetProperty target="{button3}" name="selected" value="false"/>
         </mx:State>
         <mx:State name="Europe">
             <mx:SetProperty target="{button6}" name="selected" value="true"/>
-            <mx:SetProperty target="{countryList}" name="continentId" value="3"/>
+            <mx:SetProperty target="{button3}" name="selected" value="false"/>
         </mx:State>
         <mx:State name="Namerica">
             <mx:SetProperty target="{button5}" name="selected" value="true"/>
-            <mx:SetProperty target="{countryList}" name="continentId" value="4"/>
+            <mx:SetProperty target="{button3}" name="selected" value="false"/>
         </mx:State>
         <mx:State name="Samerica">
             <mx:SetProperty target="{button7}" name="selected" value="true"/>
-            <mx:SetProperty target="{countryList}" name="continentId" value="5"/>
+            <mx:SetProperty target="{button3}" name="selected" value="false"/>
         </mx:State>
         <mx:State name="Oceania">
             <mx:SetProperty target="{button8}" name="selected" value="true"/>
-            <mx:SetProperty target="{countryList}" name="continentId" value="6"/>
+            <mx:SetProperty target="{button3}" name="selected" value="false"/>
         </mx:State>
     </mx:states>
     <mx:VBox width="100%" height="100%">    	
@@ -66,7 +91,7 @@
 			<mx:Label text="Select one or more countries from the list below"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10" id="label1"/>
 	    	<mx:HBox top="34" left="10" id="hbox1" horizontalGap="3">
 		        <mx:Button label="Africa"
-		    		click="currentState='Africa'"  id="button3" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
+		    		click="currentState='Africa'"  id="button3" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="true"/>
 		        <mx:Button label="Asia"
 		    		click="currentState='Asia'" id="button4" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
 		    	<mx:Button label="Europe"
@@ -80,7 +105,7 @@
 		    </mx:HBox>
 		</mx:Canvas>
 	    
-    	<view:CountryList id="countryList" continentId="1"  width="100%" height="100%"/>
+    	<view:CountryList id="countryList"  width="100%" height="100%"/>
 <!--	    <mx:ViewStack id="continents" width="100%" height="100%">
 	    	<view:CountryList continentId="2"  width="100%" height="100%"/>
 	    	<view:CountryList continentId="3"  width="100%" height="100%"/>

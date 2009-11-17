@@ -14,7 +14,7 @@ package {
         
         public static function handleSWFAddress(scope:UIComponent, event:SWFAddressEvent, depth:int=0):void {
             var value:String = toTitleCase(event.pathNames.length > depth ? event.pathNames[depth] : '');
-            if (scope.currentState != value) {
+            if (scope.currentState != value && value!='') {
                 scope.currentState = value;
             }
             var title:String = 'SWFAddress Application';
