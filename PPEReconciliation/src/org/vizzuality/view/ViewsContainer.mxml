@@ -79,7 +79,7 @@
 	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="1020">
 		<dashboard1:Dashboard label="DASHBOARD" id="mydashboard"/>
 		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data">
-			<download:DownloadData top="0" left="0" right="0" height="100%" />
+			<download:Download top="0" left="0" right="0" height="100%" />
 		</mx:Canvas>
 		<mx:Canvas label="PENDING TASKS" width="874" height="100%" id="previous_downloads">
 			<pendingtasks:PendingTasks left="0" top="0" />

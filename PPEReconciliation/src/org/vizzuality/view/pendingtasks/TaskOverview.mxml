@@ -85,7 +85,7 @@
 				<mx:Label text="6 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList width="100%" dataProvider="{mergeArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaMerge" 
+			<mx:TileList width="100%" dataProvider="{mergeArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaMergeItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas height="34" backgroundColor="#e1efff" width="100%">
