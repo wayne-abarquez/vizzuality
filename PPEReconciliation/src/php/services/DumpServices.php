@@ -20,7 +20,6 @@ class DumpServices {
 	}
 	
 	function getContriesForRegion($regionId,$page,$perPage) {
-		error_log("getContriesForRegion");
 		$resul=array();
 		
 		$res=array();
@@ -34,6 +33,10 @@ class DumpServices {
 		$resul['results'] = $res;
 		$resul['total'] = 50; 
 		return $resul;
+	}
+	
+	function prepareDownload($countries,$pas,$search) {
+		error_log($countries);
 	}
 	
 	
