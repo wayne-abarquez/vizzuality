@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" backgroundColor="#FFFFFF"
+	rollOver="handleOver(event)" rollOut="handleOut(event)" xmlns:components="org.vizzuality.components.*">
+	<mx:Script>
+		<![CDATA[
+			import gs.TweenMax;
+			
+			[Bindable] public var countryName:String;
+			[Bindable] public var paName:String;
+			[Bindable] public var status:String;
+			[Bindable] public var textColor:uint;
+			[Bindable] public var statusColor:uint;
+			
+			override public function set data(value:Object):void {
+            	if (value != null) {
+                	super.data = value;
+                	countryName = value.country;
+                	paName = value.area;
+                	status = value.status;
+           			if (status != '') {
+           				textColor = 0x999999;
+           			} else {
+           				textColor = 0x666666;
+           			}
+           			
+           			if (status == 'confirmed') {
+           				statusColor = 0x339900;
+           			} else {
+           				statusColor = 0xff3300;
+           			}
+                }
+            }
+			
+			//EL Color grisecito para cuando la fila es par es el #f5f5f5, sólo habría que hacer un setStyle
+			
+			private function handleOver(e:MouseEvent):void{
+				TweenMax.to(overCanvas, .3, {autoAlpha:1});
+			}
+			
+			private function handleOut(e:MouseEvent):void{
+				TweenMax.to(overCanvas, .3, {autoAlpha:0});
+			}			
+			
+		]]>
+	</mx:Script>
+	<mx:Label id="area" x="7" y="5" text="{paName}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+	<mx:Label id="country" x="7" y="19" text="{countryName}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="italic"/>
+	<mx:Label text="{status}" right="5" bottom="5" width="66" textAlign="right" fontFamily="Helvetica" fontSize="10" fontStyle="italic" color="{statusColor}"/>
+	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
+	
+	<mx:Canvas id="overCanvas" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off"
+		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
+		cornerRadius="2" visible="false" alpha="0">
+		<mx:Label x="7" y="5" text="{paName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(status!='')?140:180}" textAlign="left"/>
+		<mx:Label x="7" y="19" text="{countryName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="italic" width="140" textAlign="left"/>		
+		<mx:Button label="x" styleName="redButton" top="2" right="3" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
+		mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
+		<mx:Button label="x" styleName="redButton" top="2" right="22" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
+		mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
+		<components:LinkLabel text="view details" color="#FFFFFF" bottom="-2" right="3" textAlign="right" fontSize="10" fontFamily="Helvetica" fontWeight="normal"
+			default_color="0xFFFFFF" default_hover_color="0xf4f4f4" default_hover_decoration="none" text_decoration="none" default_weight="normal" default_hover_weight="normal"/>
+	</mx:Canvas>
+	
+</mx:Canvas>
