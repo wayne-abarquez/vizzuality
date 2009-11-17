@@ -5,8 +5,6 @@
 		<![CDATA[
 			import gs.TweenMax;
 			
-			
-			
  			private function handleOver(e:MouseEvent):void{
 				TweenMax.to(overCanvas, .3, {autoAlpha:1});
 			}
@@ -17,12 +15,12 @@
 			
 		]]>
 	</mx:Script>
-	<mx:HBox horizontalGap="0" top="5" left="15">
+	<mx:HBox horizontalGap="0" top="5" left="10">
 		<mx:Label text="{data.type}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 		<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
 		<mx:Label text="{data.area}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
 	</mx:HBox>
-	<mx:Label id="number" text="{data.number + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="italic" top="20" left="15"/>
+	<mx:Label id="number" text="{data.number + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="italic" top="20" left="10"/>
 	
 	<mx:Label text="{data.status}" color="{(data.status=='Commiting changes')?0xff6600:0xff3333}"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
 	<mx:Label id="percentage" text="{'(' + data.percentage + '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="454" fontFamily="Helvetica"/>

@@ -19,6 +19,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			import com.asual.swfaddress.SWFAddress;
 			import com.asual.swfaddress.SWFAddressEvent;
 			import resource.Resource;
@@ -27,6 +28,33 @@
 	        
 	        public var path:String="rec/checkout";
             public var depth:int=2;	
+            
+            [Bindable]private var areasArr: ArrayCollection = new ArrayCollection([
+               {name:"Yosemite National Park", country:"United States"},
+               {name:"Yosemite National Area", country:"United States"},
+               {name:"Galapagos national reserve", country:"Ecuador"},
+               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+               {name:"Yosemite National Park", country:"United States"},
+               {name:"Yosemite National Area", country:"United States"},
+               {name:"Galapagos national reserve", country:"Ecuador"},
+               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+               {name:"Yosemite National Park", country:"United States"},
+               {name:"Yosemite National Area", country:"United States"},
+               {name:"Galapagos national reserve", country:"Ecuador"},
+               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+               {name:"Yosemite National Park", country:"United States"},
+               {name:"Yosemite National Area", country:"United States"},
+               {name:"Galapagos national reserve", country:"Ecuador"},
+               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+               {name:"Yosemite National Park", country:"United States"},
+               {name:"Yosemite National Area", country:"United States"},
+               {name:"Galapagos national reserve", country:"Ecuador"},
+               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+               {name:"Yosemite National Park", country:"United States"},
+               {name:"Yosemite National Area", country:"United States"},
+               {name:"Galapagos national reserve", country:"Ecuador"},
+               {name:"Bacalar Chico Protected Area", country:"Ecuador"}
+			]);
             
 			
             private function initSWFAddress():void {
@@ -112,8 +140,9 @@
 
     		</mx:Canvas>
     		
-    		<mx:Canvas width="618" height="324" backgroundColor="#333333">
-			</mx:Canvas>
+    		<mx:TileList  width="100%" height="100%" dataProvider="{areasArr}" 
+				itemRenderer="org.vizzuality.view.itemrenderes.CountryItem" paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none">
+			</mx:TileList>
 			
 			<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">
 				<mx:Label  right="70" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
