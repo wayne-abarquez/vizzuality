@@ -3,6 +3,7 @@
 	rollOver="handleOver(event)" rollOut="handleOut(event)">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.DataSelectionEvent;
 			import gs.TweenMax;
 			
 /* 			[Bindable] public var countryName:String;
@@ -30,7 +31,8 @@
 		cornerRadius="2" visible="false" alpha="0">
 		<mx:Label x="7" y="5" text="{data.name}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>
 		<mx:Label x="7" y="19" text="{data.numareas}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11"/>		
-		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2"/>
+		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" 
+			click="dispatchEvent(new DataSelectionEvent(DataSelectionEvent.COUNTRY_ADDED,data.id))"/>
 	</mx:Canvas>
 	
 </mx:Canvas>

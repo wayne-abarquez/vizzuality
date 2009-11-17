@@ -4,6 +4,7 @@
 	 creationComplete="init()">
 <mx:Script>
 	<![CDATA[
+		import mx.controls.Alert;
 		import org.vizzuality.events.DataSelectionEvent;
 		
 		private function init():void {
@@ -11,7 +12,7 @@
 		}
 		
 		private function onCountryAdded(event:DataSelectionEvent):void {
-			
+			Alert.show(event.selectedCountryId.toString());
 		}
 	]]>
 </mx:Script>
