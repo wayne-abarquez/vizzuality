@@ -77,7 +77,7 @@
 		]]>
 	</mx:Script>
 	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="1020">
-		<dashboard1:DashboardContainer label="DASHBOARD" id="mydashboard"/>
+		<dashboard1:Dashboard label="DASHBOARD" id="mydashboard"/>
 		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data">
 			<download:DownloadData top="0" left="0" right="0" height="100%" />
 		</mx:Canvas>
