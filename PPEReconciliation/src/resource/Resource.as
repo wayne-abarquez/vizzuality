@@ -1,7 +1,6 @@
-package resource
-{
-	public final class Resource
-	{
+package resource{
+	
+	public final class Resource{
 		
 		[Embed (source="org/vizzuality/assets/step1.png" )]
         public static const STEP1:Class;
@@ -27,6 +26,8 @@ package resource
         public static const SUGGEST:Class;
 	    [Embed (source="org/vizzuality/assets/blueBullet.png" )]
         public static const BLUE_BULLET:Class;
+	    [Embed (source="org/vizzuality/assets/breadCrumbArrow.png" )]
+        public static const BREADCRUMB_ARROW:Class;
         
 	}
 }

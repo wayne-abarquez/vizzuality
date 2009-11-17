@@ -80,7 +80,7 @@
     		click="currentState='Countries'"  id="button2" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
     </mx:HBox>
 	
-	<mx:VBox top="72" right="17" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="210">
+	<mx:VBox top="80" right="17" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="210">
 		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 			<mx:Label text="Current dataset" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 		</mx:Canvas>
