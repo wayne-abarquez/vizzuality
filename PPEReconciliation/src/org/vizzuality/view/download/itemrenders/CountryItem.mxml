@@ -22,8 +22,8 @@
 			
 		]]>
 	</mx:Script>
-	<mx:Label x="7" y="5" text="{data.name}" color="#333333" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-	<mx:Label x="7" y="19" text="{data.country}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="italic"/>
+	<mx:Label x="7" y="5" text="{data.name}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+	<mx:Label x="7" y="19" text="{data.numareas}" color="#333333" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
 	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
 	
 	<mx:Canvas id="overCanvas" width="100%" height="100%" 

@@ -78,7 +78,7 @@
 	</mx:Canvas>
 	
 	<mx:TileList  width="100%" height="100%" dataProvider="{areasArr}" 
-		itemRenderer="org.vizzuality.view.download.itemrenders.CountryItem" paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none">
+		itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaResultItem" paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none">
 	</mx:TileList>
 	
 	<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">
