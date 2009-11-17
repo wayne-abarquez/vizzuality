@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" backgroundColor="#EBEBEB" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="1170" backgroundColor="#EBEBEB" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
@@ -36,25 +36,25 @@
 	</mx:Script>
 	
 	
-	<mx:Label y="22" text="Unfinished previous downloads" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="10" right="20"/>
-	<mx:HBox left="10" top="35" verticalAlign="bottom" horizontalGap="0" right="20">
+	<mx:Label text="Unfinished previous downloads" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" top="17" width="840"/>
+	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" width="841">
 		<mx:Label text="Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
 	</mx:HBox>
 	
-	<mx:VBox top="81" left="0" right="20" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0">
-		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" backgroundColor="#414141" top="0" left="0" right="0" width="100%">
-			<mx:Label text="Changes overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" left="655" letterSpacing="-1" right="196"/>
+	<mx:VBox top="80" right="17" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="205">
+		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
+			<mx:Label text="Changes overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" letterSpacing="-1" right="64" width="129"/>
 		</mx:Canvas>
 		<mx:Canvas height="100" width="100%" backgroundColor="#FFFFFF">
 		</mx:Canvas>
-		<mx:Canvas height="33" borderStyle="none" color="#333333" backgroundColor="#dadada" top="0" left="0" right="0" width="100%">
-			<mx:Button label="COMMIT CHANGES" verticalCenter="-1" right="4" width="128" letterSpacing="0" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton"/>
+		<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
+			<mx:Button label="COMMIT CHANGES" verticalCenter="-1" right="5" width="128" letterSpacing="0" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton"/>
 		</mx:Canvas>		
 	</mx:VBox>
     
-	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="220" top="69" bottom="10">
+	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="220" top="62" bottom="10">
 		<mx:VBox left="19" right="19" top="15">
-			<mx:Canvas backgroundColor="#FFE0E0" width="100%" height="34">
+			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedUp">
 				<mx:Label text="Deleted Protected Areas (4)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
@@ -62,12 +62,14 @@
 			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
-			<mx:Canvas width="100%" height="34" backgroundColor="#FFE0E0">
+			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedBottom">
 				<mx:Button label="confirm all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="95"/>
 				<mx:Button label="reject all" verticalCenter="0" useHandCursor="true" mouseChildren="false" buttonMode="true" right="10"/>
 			</mx:Canvas>
 			
-			<mx:Canvas backgroundColor="#D6EBD6" width="100%" height="34">
+			<mx:Spacer height="15" />
+			
+			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softGreenUp">
 				<mx:Label text="New Protected Areas (2)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
@@ -75,12 +77,14 @@
 			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
-			<mx:Canvas width="100%" height="34" backgroundColor="#D6EBD6">
+			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softGreenBottom">
 				<mx:Button label="Confirm all" verticalCenter="0" right="95"/>
 				<mx:Button label="Reject all" verticalCenter="0" right="10"/>
 			</mx:Canvas>	
 			
-			<mx:Canvas backgroundColor="#e1efff" width="100%" height="34">
+			<mx:Spacer height="15" />
+			
+			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softBlueUp">
 				<mx:Label text="Modified Protected Areas"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
 				<mx:Label text="6 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
@@ -88,7 +92,7 @@
 			<mx:TileList width="100%" dataProvider="{mergeArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaMergeItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
-			<mx:Canvas height="34" backgroundColor="#e1efff" width="100%">
+			<mx:Canvas height="34" width="100%" backgroundSize="100%" styleName="softBlueBottom">
 			</mx:Canvas>				
 	
 	    </mx:VBox>
