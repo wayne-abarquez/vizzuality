@@ -61,10 +61,26 @@ GradientCanvas.header{
     corner-radius: 0;
 }
 
+Button.close {
+	cornerRadius: 0;
+	border-alpha: 0;
+	border-thickness:0;
+	color: #336699;
+	border-style: none;
+	background-color: none;
+	fillAlphas: 0.0, 0.0, 0.0, 0.0;
+	borderColor: #F5F5F5;
+	themeColor: #F5F5F5;
+	fillColors: #F5F5F5, #F5F5F5;
+	textRollOverColor: #003366;
+	focusAlpha: 0.0;
+	disabledColor: #F5F5F5;
+	textSelectedColor: #333333;
+}
+
 TextInput.searchTextInput{
 	background-image: Embed(source="general.swf",symbol="searchTextInputBkg");
 	focus-alpha: 0;	
 }
-
 
 	
