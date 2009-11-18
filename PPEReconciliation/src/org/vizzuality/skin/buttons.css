@@ -91,3 +91,13 @@ Button.boundingBoxButton{
 	down-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
 }
 
+
+Button.noSkinButton{
+	skin: ClassReference(null);
+	roll-over-color: #003366;
+	color: #336699;	
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
