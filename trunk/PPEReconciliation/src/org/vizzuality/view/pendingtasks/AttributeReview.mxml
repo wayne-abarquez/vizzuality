@@ -32,13 +32,15 @@
 		]]>
 	</mx:Script>
 	
-	<mx:HBox y="17" left="14" verticalAlign="middle" horizontalGap="1">
+	<mx:HBox y="17" left="14" verticalAlign="middle" horizontalGap="1" right="225">
 		<mx:Label y="17" text="All tasks" useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks')"
 			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
 		<mx:Image source="{Resource.BREADCRUMB_ARROW}" height="8" />
 		<mx:Label y="17" text="{task.status + ' - ' + task.description + ' ('+task.code+')'}" 
 			useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks/task')"
 			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
+		<mx:Spacer width="100%" />
+		<mx:Button label="go back" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12"/>
 	</mx:HBox>
 	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" right="20">
 		<mx:Label text="Pemba Channel National Park" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
@@ -67,9 +69,11 @@
 	    <mx:VBox left="15" right="20" top="15" bottom="15">
 	    	<mx:HBox horizontalGap="0" height="454">
 	    		<pendingtasks:PaReviewBox id="headPa" backgroundColor="#FFFFE5"  />
-	    		<pendingtasks:PaReviewBox id="reviewPa" backgroundColor="#FFFFFF"  />				
+	    		<pendingtasks:PaReviewBox id="reviewPa" backgroundColor="#FFFFFF"   borderStyle="none"/>				
 	    	</mx:HBox>
 		    <mx:HBox horizontalGap="4" bottom="0" verticalAlign="bottom" width="100%" horizontalAlign="right">
+				<mx:Button label="go back" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12"/>
+				<mx:Spacer width="100%" />
 				<mx:Button label="SAVE AND EXIT" styleName="redButton"/>
 	    	</mx:HBox>
 	    	
