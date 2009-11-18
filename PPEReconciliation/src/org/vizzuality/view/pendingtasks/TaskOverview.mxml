@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="1170" backgroundColor="#EBEBEB" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="1170" 
+	styleName="dataDownloadContainer" backgroundSize="100%"
+	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
