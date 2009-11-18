@@ -3,6 +3,7 @@
 	rollOver="handleOver(event)" rollOut="handleOut(event)">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.Country;
 			import org.vizzuality.events.MyEventDispatcher;
 			import org.vizzuality.events.DataSelectionEvent;
 			import gs.TweenMax;
@@ -22,7 +23,7 @@
 			}		
 			
 			private function onAddedClick():void {
-				MyEventDispatcher.selectCountryForDownload(data);
+				MyEventDispatcher.selectCountryForDownload(data as Country);
 			}	
 			
 		]]>

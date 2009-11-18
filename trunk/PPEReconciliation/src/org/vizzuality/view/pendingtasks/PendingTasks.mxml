@@ -4,6 +4,7 @@
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.Task;
 			import mx.utils.ObjectProxy;
 			import mx.core.Application;
 			import com.adobe.serialization.json.JSON;
@@ -30,10 +31,19 @@
 			
 			private function getPendingTasksResult(ev:ResultEvent):void {
 				var res:Object = JSON.decode(ev.result as String);
+				var resArr:Array = [];
 				for(var i:String in res.results as Array)  {
-					res.results[i] = new ObjectProxy(res.results[i]);
+					var ta:Task = new Task();
+					ta.code=res.results[i].code;
+					ta.type=res.results[i].type;
+					ta.description=res.results[i].description;
+					ta.what=res.results[i].what;
+					ta.numareas=res.results[i].numareas;
+					ta.status=res.results[i].status;
+					ta.statusPercen=res.results[i].statuspercen;
+					resArr.push(ta);
 				}
-				pendingTasks=new ArrayCollection(res.results);
+				pendingTasks=new ArrayCollection(resArr);
 				totalTasks=res.total;
 				totalPages = Math.ceil(totalTasks/8);		
 				
@@ -44,7 +54,7 @@
 	<mx:Canvas left="0" right="0" top="0" height="62" >
 		<mx:HBox left="13" top="20" horizontalGap="-3" verticalAlign="bottom" height="25" width="844">
 			<mx:Label text="Pending tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
-			<mx:Label text="(4)"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
+			<mx:Label text="{'('+pendingTasks.length+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
 		</mx:HBox>
 	</mx:Canvas>
 
