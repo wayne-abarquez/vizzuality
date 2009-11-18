@@ -32,16 +32,16 @@
 			
 		]]>
 	</mx:Script>
-	<mx:Label id="area" x="7" y="5" text="{paName}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-	<mx:Label id="country" x="7" y="19" text="{countryName}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
+	<mx:Label id="area" x="7" y="7" text="{paName}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+	<mx:Label id="country" x="7" y="22" text="{countryName}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
 	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
 	
 	<mx:Canvas id="overCanvas" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off"
 		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
 		cornerRadius="2" visible="false" alpha="0">
 		<mx:Label x="7" y="5" text="{paName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(status!='')?140:180}" textAlign="left"/>
-		<mx:Label x="7" y="19" text="{countryName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
-		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" />
+		<mx:Label x="7" y="21" text="{countryName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
+		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" width="45" />
 	</mx:Canvas>
 	
 </mx:Canvas>
