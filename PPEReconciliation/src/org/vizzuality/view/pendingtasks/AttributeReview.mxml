@@ -6,6 +6,7 @@
 	 creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import com.asual.swfaddress.SWFAddress;
 			import org.vizzuality.events.TaskSelectionEvent;
 			import org.vizzuality.events.MyEventDispatcher;
 			import org.vizzuality.model.Task;
@@ -13,7 +14,8 @@
 			import resource.Resource;
 			
 			private var _pa:Pa;
-			public var task:Task;
+			
+			[Bindable] public var task:Task;
 			
 			public function set pa(val:Pa):void {
 				_pa=val;
@@ -31,9 +33,12 @@
 	</mx:Script>
 	
 	<mx:HBox y="17" left="14" verticalAlign="middle" horizontalGap="1">
-		<mx:Label y="17" text="Unfinished previous downloads" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
+		<mx:Label y="17" text="All tasks" useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks')"
+			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
 		<mx:Image source="{Resource.BREADCRUMB_ARROW}" height="8" />
-		<mx:Label y="17" text="Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
+		<mx:Label y="17" text="{task.status + ' - ' + task.description + ' ('+task.code+')'}" 
+			useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks/task')"
+			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
 	</mx:HBox>
 	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" right="20">
 		<mx:Label text="Pemba Channel National Park" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
