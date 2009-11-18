@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#000000" backgroundAlpha="0.45">
+	<mx:Canvas width="400" height="88" backgroundColor="#FFFFFF" borderColor="#FFFFFF" horizontalCenter="0" top="190" cornerRadius="5" borderStyle="solid">
+		<mx:ProgressBar x="139" y="36" indeterminate="true" width="233"/>
+		<mx:Label x="20" y="31" text="Uploading data" fontSize="15" fontWeight="bold" fontFamily="Helvetica" color="#666666"/>
+		<mx:Label x="289" y="49" text="cancel upload" fontSize="12" fontWeight="bold" fontFamily="Helvetica" color="#FC2F00"/>
+	</mx:Canvas>
+	
+</mx:Canvas>
