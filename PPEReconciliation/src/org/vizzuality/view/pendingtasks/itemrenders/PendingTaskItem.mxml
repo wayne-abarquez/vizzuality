@@ -26,10 +26,10 @@
 	<mx:Label id="number" text="{data.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
 	
 	<mx:Label text="{data.status}" color="{(data.status=='Commiting changes')?0xff6600:0xff3333}"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
-	<mx:Label id="percentage" text="{'(' + data.statuspercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>
+	<mx:Label id="percentage" text="{'(' + data.statusPercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>
 
-	<mx:Label text="{data.date}" color="#666666"  left="639" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
-	<mx:Label id="ago" text="{data.ago + ' days ago'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="639" fontFamily="Helvetica"/>
+	<mx:Label text="{(data.date as Date)}" color="#666666"  left="639" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
+	<mx:Label id="ago" text="{data.date + ' days ago'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="639" fontFamily="Helvetica"/>
 	
 	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
 	
@@ -46,10 +46,10 @@
 		<mx:Label text="{data.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="8"/>
 		
 		<mx:Label text="{data.status}" color="#FFFFFF"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
-		<mx:Label text="{'(' + data.percentage + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>
+		<mx:Label text="{'(' + data.statusPercen + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>
 	
 		<mx:Label text="{data.date}" color="#FFFFFF"  left="639" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
-		<mx:Label text="{data.ago + ' days ago'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="639" fontFamily="Helvetica"/>
+		<mx:Label text="{data.date + ' days ago'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="639" fontFamily="Helvetica"/>
 		
 			
 		<mx:Button label="x" styleName="redButton" top="4" right="5" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 

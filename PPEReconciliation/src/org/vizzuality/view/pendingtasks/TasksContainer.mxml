@@ -7,19 +7,32 @@
 	xmlns:ns1="org.vizzuality.view.pendingtasks.*">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.Task;
+			import org.vizzuality.events.TaskSelectionEvent;
+			import org.vizzuality.events.MyEventDispatcher;
 			import com.asual.swfaddress.SWFAddress;
 			import com.asual.swfaddress.SWFAddressEvent;
 			
 			public var path:String="rec/pendingtasks";
             public var depth:int=2;		
+            public var selectedTask:Task;
 			
 			private function init():void {
 				currentState="Overview";
+				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_TASK,onTaskSelected);
+			}
+			
+			private function onTaskSelected(ev:TaskSelectionEvent):void {
+				currentState='Task';
+				selectedTask=ev.task;
+				taskOverView.task = selectedTask;
 			}
 		
 			private function initSWFAddress():void {
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
-                SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+                //if (!SWFAddress.hasEventListener(SWFAddressEvent.CHANGE)) {
+	                SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+                //}
             }
             
             private function destroySWFAddress():void {
@@ -33,7 +46,11 @@
             private function handleSWFAddress(event:SWFAddressEvent):void {
             	//trace(event.path);
                 if (event.pathNames.length >= depth && event.pathNames[depth - 1] == "pendingtasks") {
-                    Helper.handleSWFAddress(this, event, depth);
+                    if(event.pathNames.length==2) {
+                    	currentState="Overview";
+                    }else {
+	                    Helper.handleSWFAddress(this, event, depth);
+                    }
                 }
             }
 		]]>
@@ -41,20 +58,17 @@
 	<mx:states>
 		<mx:State name="Overview">
 			<mx:AddChild position="lastChild">
-				<ns1:PendingTasks>
-				</ns1:PendingTasks>
+				<ns1:PendingTasks id="pendingTask" />
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Task">
 			<mx:AddChild position="lastChild">
-				<ns1:TaskOverview>
-				</ns1:TaskOverview>
+				<ns1:TaskOverview id="taskOverView" />
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Pa">
 			<mx:AddChild position="lastChild">
-				<ns1:AttributeReview>
-				</ns1:AttributeReview>
+				<ns1:AttributeReview id="attributeReview" />
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>

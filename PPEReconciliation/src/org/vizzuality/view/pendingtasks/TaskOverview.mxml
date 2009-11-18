@@ -5,8 +5,10 @@
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.Task;
 			import mx.collections.ArrayCollection;
 			import resource.Resource;
+			
 			
 			[Bindable]private var deletedArray: ArrayCollection = new ArrayCollection([
                {area:"Yosemite National Park", country:"United States", status:"confirmed"},
@@ -29,6 +31,17 @@
                {area:"Galapagos national reserve", country:"Ecuador", status:"merged"},
                {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"1 conflict"}
 			]);
+			
+			[Bindable]
+			private var _task:Task;
+			
+			public function set task(val:Task):void {
+				_task=val;
+			}
+			
+			public function get task():Task {
+				return _task;
+			}
 			
 			private function init():void {
 				
