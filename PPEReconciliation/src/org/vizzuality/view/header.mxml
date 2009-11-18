@@ -18,9 +18,6 @@
 				<components:LinkLabel text="{'welcome back '+Application.application.username}" url="http://www.vizzuality.com" fontSize="10" fontFamily="Helvetica" target="_blank" color="#FFFFFF" fontWeight="normal"
 				default_color="0xFFFFFF" default_hover_color="0xdddddd" default_hover_decoration="none" text_decoration="none" default_weight="normal" default_hover_weight="normal"
 				paddingRight="-4"/>
-				<mx:Label text=" |" color="#FFFFFF" fontFamily="Helvetica" fontSize="13"/>
-				<components:LinkLabel text="Close session" url="http://www.vizzuality.com" fontSize="10" fontFamily="Helvetica" target="_blank" color="#FFFFFF" fontWeight="bold"
-				default_color="0xFFFFFF" default_hover_color="0xdddddd" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
 			</mx:HBox>
 			<mx:Label text="ProtectPlanetEarth" fontFamily="DINOT-Medium"  left="0" top="35" fontSize="20" color="#FFFFFF"/>
 			<mx:Label text="DATA RECONCILIATION TOOL" fontFamily="DINOT-Medium"  left="0" top="57" fontSize="13" color="#FFFFFF"/>
