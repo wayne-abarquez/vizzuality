@@ -60,6 +60,42 @@ class DumpServices {
 		return $resul;
 	}
 	
+	function getTaskDetails($code) {
+		$task=array();
+		$deleted=array();
+		for($i=1;$i<9;$i++) {
+			$del=array();
+			$del['id'] = $i;
+			$del['name'] = "PA-". $i;
+			$del['country'] = "United States";
+			$deleted[]=$del;
+		}
+		$task['deleted']=$deleted;
+		
+		$news=array();
+		for($i=9;$i<16;$i++) {
+			$new=array();
+			$new['id'] = $i;
+			$new['name'] = "PA-". $i;
+			$new['country'] = "United States";
+			$news[]=$del;
+		}		
+		$task['new']=$news;
+		
+		$updates=array();
+		for($i=17;$i<21;$i++) {
+			$up=array();
+			$up['id'] = $i;
+			$up['name'] = "PA-". $i;
+			$up['country'] = "United States";
+			$updates[]=$up;
+		}		
+		
+		$task['updated']=$updates;
+		
+		return $task;
+	}
+	
 	
 }
 ?>
