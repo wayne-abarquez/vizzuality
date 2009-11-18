@@ -32,7 +32,7 @@
 		]]>
 	</mx:Script>
 	
-	<mx:HBox y="17" left="14" verticalAlign="middle" horizontalGap="1" right="20">
+	<mx:HBox y="17" left="14" verticalAlign="middle" horizontalGap="1" right="392">
 		<mx:Label y="17" text="All tasks" useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks')"
 			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
 		<mx:Image source="{Resource.BREADCRUMB_ARROW}" height="8" />
@@ -41,47 +41,43 @@
 			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
 		<mx:Spacer width="100%" />
 	</mx:HBox>
-	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" right="20">
+	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" right="373">
 		<mx:Label text="Pemba Channel National Park" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
 		<mx:Label text="- Merge your changes" color="#666666" fontFamily="Helvetica" fontWeight="normal" fontSize="15" fontStyle="italic" height="23"/>
 	</mx:HBox>
-	
-	<mx:VBox top="80" right="17" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="210">
-		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
-			<mx:Label text="Merge overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
-		</mx:Canvas>
-		<mx:VBox width="100%" verticalGap="0" >
-			<!--Separador-->
-			<mx:Canvas height="5" width="100%" backgroundColor="#FFFFFF" />
-			<itemrenders:MergeChangesSummaryItem />
-			<itemrenders:MergeChangesSummaryItem />
-			<itemrenders:MergeChangesSummaryItem />
-			<!--Separador-->
-			<mx:Canvas height="5" width="100%" backgroundColor="#FFFFFF" />
-		</mx:VBox>
-		<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
-			<mx:Button right="6" y="4" label="FINISH" styleName="greenButton" mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3"/>
-			<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->
-			<mx:Button label="go back" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" y="9" x="11"/>
-		</mx:Canvas>		
-	</mx:VBox>
     
-	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10">
-	    <mx:VBox left="15" right="20" top="15" bottom="15">
-	    	<mx:HBox horizontalGap="0" height="454">
-	    		<pendingtasks:PaReviewBox id="headPa" backgroundColor="#FFFFE5" borderColor="#E9E9E9"/>
-	    		<pendingtasks:PaWhiteReviewBox id="reviewPa" backgroundColor="#FFFFFF"/>				
+	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="0" top="62" bottom="10">
+	    <mx:VBox left="15" right="15" top="15" bottom="15">
+	    	<mx:HBox horizontalGap="0" height="454" width="100%">
+	    		<pendingtasks:PaReviewBox id="headPa" backgroundColor="#FFFFE5" borderColor="#E9E9E9" width="100%"/>
+	    		<pendingtasks:PaWhiteReviewBox id="reviewPa" backgroundColor="#FFFFFF" width="100%"/>				
 	    	</mx:HBox>
 		    <mx:HBox horizontalGap="4" bottom="0" verticalAlign="bottom" width="100%" horizontalAlign="right">
 				<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
-				<mx:Button label="go back" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12"/>
+				<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12"/>
 				<mx:Spacer width="100%" />
-				<mx:Button label="SAVE AND EXIT" styleName="redButton"/>
+				<mx:Button label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
+				<mx:Button label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
 	    	</mx:HBox>
 	    	
 	    </mx:VBox>
 
+
+	    <mx:HBox horizontalGap="4" verticalAlign="bottom" horizontalAlign="right" left="15" right="15" top="28">
+			<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
+			<mx:Spacer width="100%" />
+			<mx:Button label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
+			<mx:Button label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
+    	</mx:HBox>
+
 	</mx:Canvas>
-	<mx:Canvas x="648" y="53" width="18" height="565" styleName="shadow" backgroundSize="100%" />
+	<mx:HBox right="15" horizontalAlign="right" horizontalGap="3" verticalAlign="middle" top="30">
+		<mx:Label id="pagingDelInfo"  right="70" verticalCenter="0" text="1 of 534" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
+		<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
+			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+		<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"
+			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
+	</mx:HBox>
+	<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" x="732" y="14"/>
 
 </mx:Canvas>

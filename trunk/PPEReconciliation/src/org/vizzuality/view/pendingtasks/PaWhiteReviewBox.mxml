@@ -2,8 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
 	width="300" height="452" borderStyle="none" cornerRadius="6" xmlns:maps="com.google.maps.*" borderColor="#FFFFFF">
 	<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="15">
-		<mx:Label text="Head version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
-		<mx:Label text="(09/11/2009)"  fontFamily="Helvetica" fontStyle="normal" fontSize="13" fontWeight="bold" color="#666666"  height="21"/>
+		<mx:Label text="Your version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 	</mx:HBox>
 	<mx:HRule height="1" left="0" right="0" top="64"/>
 	<mx:HRule height="1" left="0" right="0" top="337"/>
