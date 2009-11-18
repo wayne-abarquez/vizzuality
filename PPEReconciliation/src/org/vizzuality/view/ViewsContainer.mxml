@@ -70,7 +70,7 @@
 			<download:Download top="0" left="0" right="0" height="100%" />
 		</mx:Canvas>
 		<mx:Canvas label="PENDING TASKS" width="874" height="100%" id="previous_downloads">
-			<pendingtasks:PendingTasks left="0" top="0" />
+			<pendingtasks:TasksContainer />
 		</mx:Canvas>
 		<mx:Canvas label="PREVIOUS UPLOADS" width="100%" height="100%" id="previous_uploads">
 			<mx:Canvas />
