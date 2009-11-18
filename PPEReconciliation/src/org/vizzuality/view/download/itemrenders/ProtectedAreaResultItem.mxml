@@ -40,7 +40,7 @@
             }
             
             
-/*             override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+            /*override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			     super.updateDisplayList(unscaledWidth, unscaledHeight);
 			     
 			 	 if(TileList(owner).isItemSelected(data)) {
@@ -59,10 +59,7 @@
 				 }
 			} */
 			
-            
-            
-			
-			
+
 			private function handleOver(e:MouseEvent):void{
 				TweenMax.to(overCanvas, .3, {autoAlpha:1});
 			}
