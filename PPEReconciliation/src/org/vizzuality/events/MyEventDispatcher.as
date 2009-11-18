@@ -2,6 +2,9 @@ package org.vizzuality.events
 {
   	import flash.events.Event;
   	import flash.events.EventDispatcher;
+  	
+  	import org.vizzuality.model.Country;
+  	import org.vizzuality.model.Task;
   	public class MyEventDispatcher {
     		protected static var disp:EventDispatcher;
     		public static function addEventListener(p_type:String, p_listener:Function, p_useCapture:Boolean=false, p_priority:int=0, p_useWeakReference:Boolean=false):void {
@@ -18,12 +21,16 @@ package org.vizzuality.events
       		}
     		
   		// Public API that dispatches an event
-  		public static function selectCountryForDownload(country:Object):void {
+  		public static function selectCountryForDownload(country:Country):void {
    			dispatchEvent(new DataSelectionEvent(DataSelectionEvent.COUNTRY_ADDED,country));
    		}
    		
-   		public static function removeCountryForDownload(country:Object):void {
+   		public static function removeCountryForDownload(country:Country):void {
    			dispatchEvent(new DataSelectionEvent(DataSelectionEvent.COUNTRY_REMOVED,country));
+   		}
+   		
+   		public static function selectTaskForOverview(task:Task):void {
+   			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_TASK,task));		
    		}
     }
 }

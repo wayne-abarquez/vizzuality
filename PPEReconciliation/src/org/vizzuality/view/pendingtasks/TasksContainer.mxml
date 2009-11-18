@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" 
 	 creationComplete="init()"
+	addedToStage="initSWFAddress()"
+    removedFromStage="destroySWFAddress()"
+    currentStateChange="setSWFAddress()"
 	xmlns:ns1="org.vizzuality.view.pendingtasks.*">
 	<mx:Script>
 		<![CDATA[
@@ -11,7 +14,7 @@
             public var depth:int=2;		
 			
 			private function init():void {
-				currentState="Pendingtasks";
+				currentState="Overview";
 			}
 		
 			private function initSWFAddress():void {
@@ -29,32 +32,26 @@
             
             private function handleSWFAddress(event:SWFAddressEvent):void {
             	//trace(event.path);
-                if (event.pathNames.length >= depth && event.pathNames[depth - 1] == "countries") {
+                if (event.pathNames.length >= depth && event.pathNames[depth - 1] == "pendingtasks") {
                     Helper.handleSWFAddress(this, event, depth);
                 }
             }
 		]]>
 	</mx:Script>
 	<mx:states>
-		<mx:State name="Pendingtasks">
+		<mx:State name="Overview">
 			<mx:AddChild position="lastChild">
 				<ns1:PendingTasks>
 				</ns1:PendingTasks>
 			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Button label="TaskOverview" right="10" top="10" click="currentState='Taskoverview'"/>
-			</mx:AddChild>
 		</mx:State>
-		<mx:State name="Taskoverview">
+		<mx:State name="Task">
 			<mx:AddChild position="lastChild">
 				<ns1:TaskOverview>
 				</ns1:TaskOverview>
 			</mx:AddChild>
-			<mx:AddChild position="lastChild">
-				<mx:Button label="AttributeReview" right="10" top="10" click="currentState='Attributereview'"/>
-			</mx:AddChild>
 		</mx:State>
-		<mx:State name="Attributereview">
+		<mx:State name="Pa">
 			<mx:AddChild position="lastChild">
 				<ns1:AttributeReview>
 				</ns1:AttributeReview>

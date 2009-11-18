@@ -14,6 +14,8 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.Region;
+			import org.vizzuality.model.Country;
 			import resource.Resource;
 			import mx.utils.ObjectProxy;
 			import mx.core.Application;
@@ -22,35 +24,41 @@
 			import mx.collections.ArrayCollection;
 			
 			[Bindable] private var countries:ArrayCollection;
-			private var _continenId:Number;
+			private var _regionId:Number;
 			
 			private var totalCountries:Number=0;
 			[Bindable] private var page:Number=1;
 			[Bindable] private var totalPages:Number=1;
 			
-			public function set continentId(val:Number):void {
-				if(!isNaN(val) && val!=_continenId) {
-					_continenId=val;
+			public function set regionId(regId:Number):void {
+				if(!isNaN(regId) && regId!=_regionId) {
+					_regionId=regId;
 					getCountries(1);
 				}
 			}
 			
-			public function get continentId():Number {
-				return _continenId;
+			public function get regionId():Number {
+				return _regionId;
 			}
 			
 			private function getCountries(p:Number):void {
-				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getContriesForRegion/"+_continenId+"/"+p+"/18";
+				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getContriesForRegion/"+_regionId+"/"+p+"/18";
 				jsonService.send();		
 				page=p;		
 			}
 			
 			private function getCountriesResult(ev:ResultEvent):void {
 				var res:Object = JSON.decode(ev.result as String);
+				var countriesArr:Array = [];
 				for(var i:String in res.results as Array)  {
-					res.results[i] = new ObjectProxy(res.results[i]);
+					var country:Country = new Country();
+					country.id=res.results[i].id;
+					country.name=res.results[i].name;
+					country.numareas=res.results[i].numareas;
+					countriesArr.push(country);
+					//res.results[i] = new ObjectProxy(res.results[i]);
 				}
-				countries=new ArrayCollection(res.results);
+				countries=new ArrayCollection(countriesArr);
 				totalCountries=res.total;
 				totalPages = Math.ceil(totalCountries/24);			
 				

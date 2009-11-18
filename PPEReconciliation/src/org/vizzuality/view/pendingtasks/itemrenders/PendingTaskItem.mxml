@@ -3,6 +3,8 @@
 	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.Task;
+			import org.vizzuality.events.MyEventDispatcher;
 			import com.asual.swfaddress.SWFAddress;
 			import gs.TweenMax;
 			
@@ -52,7 +54,8 @@
 			
 		<mx:Button label="x" styleName="redButton" top="4" right="5" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
 		mouseChildren="false" buttonMode="true" useHandCursor="true" />
-		<mx:Button label="CONTINUE" styleName="greenButton" top="4" right="24" fontSize="10" paddingRight="5" paddingLeft="5" paddingTop="3" paddingBottom="3" height="18" 
+		<mx:Button label="CONTINUE" styleName="greenButton" click="MyEventDispatcher.selectTaskForOverview(data as Task)"
+			top="4" right="24" fontSize="10" paddingRight="5" paddingLeft="5" paddingTop="3" paddingBottom="3" height="18" 
 		mouseChildren="false" buttonMode="true" useHandCursor="true" />
 	</mx:Canvas>
 	
