@@ -32,7 +32,7 @@
 		]]>
 	</mx:Script>
 	
-	<mx:HBox y="17" left="14" verticalAlign="middle" horizontalGap="1" right="225">
+	<mx:HBox y="17" left="14" verticalAlign="middle" horizontalGap="1" right="20">
 		<mx:Label y="17" text="All tasks" useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks')"
 			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
 		<mx:Image source="{Resource.BREADCRUMB_ARROW}" height="8" />
@@ -68,8 +68,8 @@
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10">
 	    <mx:VBox left="15" right="20" top="15" bottom="15">
 	    	<mx:HBox horizontalGap="0" height="454">
-	    		<pendingtasks:PaReviewBox id="headPa" backgroundColor="#FFFFE5"  />
-	    		<pendingtasks:PaReviewBox id="reviewPa" backgroundColor="#FFFFFF"   borderStyle="none"/>				
+	    		<pendingtasks:PaReviewBox id="headPa" backgroundColor="#FFFFE5" borderColor="#E9E9E9"/>
+	    		<pendingtasks:PaWhiteReviewBox id="reviewPa" backgroundColor="#FFFFFF"/>				
 	    	</mx:HBox>
 		    <mx:HBox horizontalGap="4" bottom="0" verticalAlign="bottom" width="100%" horizontalAlign="right">
 				<mx:Button label="go back" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12"/>
