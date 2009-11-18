@@ -30,6 +30,8 @@
 			if (!isNaN(pos))
 				selectedCountries.removeItemAt(pos);
 			
+			
+			
 		}
 		
 		private function checkIfCountryOnSelected(country:Object):Number {
