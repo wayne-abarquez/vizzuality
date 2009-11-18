@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="135" height="75">
+
+	<mx:Script>
+		<![CDATA[
+			import resource.Resource;
+		]]>
+	</mx:Script>
+
+	<mx:Image top="0" left="0" right="0" bottom="0" source="{Resource.ALERT_BKG}" />
+	<mx:Button mouseChildren="false" useHandCursor="true" buttonMode="true" styleName="greenButton" label="YES" paddingTop="5"
+		paddingLeft="2" paddingRight="2"  width="42" height="15" right="20" bottom="17" fontFamily="Helvetica" fontWeight="bold" fontSize="9" color="#FFFFFF" textAlign="center"/>
+	<mx:Button mouseChildren="false" useHandCursor="true" buttonMode="true" styleName="redButton" label="NOT" paddingTop="5"
+		width="42" height="15" left="24" bottom="17" fontFamily="Helvetica" fontWeight="bold" fontSize="9" color="#FFFFFF" textAlign="center" paddingLeft="1" paddingRight="2"/>
+	<mx:Label text="Are you sure?" horizontalCenter="0" verticalCenter="-12" textAlign="center" fontSize="13" fontFamily="Helvetica" fontWeight="bold" color="#333333"/>
+	
+			
+</mx:Canvas>

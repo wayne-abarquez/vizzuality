@@ -39,6 +39,8 @@ package resource{
         public static const TICK_ICON_OVER:Class;
 	    [Embed (source="org/vizzuality/assets/crossIcon_over.png" )]
         public static const CROSS_ICON_OVER:Class;
+        [Embed (source="org/vizzuality/assets/alert.png" )]
+        public static const ALERT_BKG:Class;
         
 	}
 }
