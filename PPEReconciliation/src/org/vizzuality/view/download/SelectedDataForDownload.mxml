@@ -71,7 +71,7 @@
 		<mx:Label text="Current dataset" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 	</mx:Canvas>
 	<mx:List width="100%" dataProvider="{selectedCountries}" 
-		paddingTop="0" paddingBottom="1" focusAlpha="0"
+		paddingTop="0" paddingBottom="1" focusAlpha="0" focusEnabled="false"
 		itemRenderer="org.vizzuality.view.download.itemrenders.CountrySelectedForDownloadItem"
 		backgroundColor="#EBEBEB" borderStyle="none">
 		
