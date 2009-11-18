@@ -2,6 +2,9 @@ package resource{
 	
 	public final class Resource{
 		
+		[Embed (source="org/vizzuality/assets/loadAnimation.swf" )]
+        public static const LOAD_ANIMATION:Class;
+        
 		[Embed (source="org/vizzuality/assets/step1.png" )]
         public static const STEP1:Class;
         [Embed (source="org/vizzuality/assets/step2.png" )]
