@@ -5,6 +5,7 @@
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import com.asual.swfaddress.SWFAddress;
 			import org.vizzuality.model.Task;
 			import mx.collections.ArrayCollection;
 			import resource.Resource;
@@ -51,9 +52,10 @@
 	</mx:Script>
 	
 	
-	<mx:Label text="Unfinished previous downloads" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" top="17" width="840"/>
+	<mx:Label text="All tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" top="17"
+		 useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks')"/>
 	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" width="841">
-		<mx:Label text="Country download - Algeria (DW65734)" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
+		<mx:Label text="{_task.status + ' - ' + _task.description + ' ('+_task.code+')'}" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
 	</mx:HBox>
 	
 	<mx:VBox top="80" right="17" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="210">

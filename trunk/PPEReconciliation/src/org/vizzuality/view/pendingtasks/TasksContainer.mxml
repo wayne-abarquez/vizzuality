@@ -82,6 +82,11 @@
 				<ns1:AttributeReview id="attributeReview" />
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="Errors">
+			<mx:AddChild position="lastChild">
+				<ns1:ErrorsReview id="errorsReview" />
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	
 </mx:Canvas>
