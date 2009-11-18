@@ -60,8 +60,7 @@ class DumpServices {
 		return $resul;
 	}
 	
-	function getTaskDetails($code) {
-		$task=array();
+	function getTaskDeletions($code,$p) {
 		$deleted=array();
 		for($i=1;$i<9;$i++) {
 			$del=array();
@@ -70,7 +69,12 @@ class DumpServices {
 			$del['country'] = "United States";
 			$deleted[]=$del;
 		}
-		$task['deleted']=$deleted;
+		$resul=array();	
+		$resul['results'] = $deleted;
+		$resul['total'] = 50;
+		return $resul;
+	}
+	function getTaskNewPas($code,$p) {
 		
 		$news=array();
 		for($i=9;$i<16;$i++) {
@@ -78,10 +82,15 @@ class DumpServices {
 			$new['id'] = $i;
 			$new['name'] = "PA-". $i;
 			$new['country'] = "United States";
-			$news[]=$del;
-		}		
-		$task['new']=$news;
-		
+			$news[]=$new;
+		}	
+		$resul=array();	
+		$resul['results'] = $news;
+		$resul['total'] = 50;
+		return $resul;
+	}
+	function getTaskUpdates($code,$p) {	
+		$resul=array();
 		$updates=array();
 		for($i=17;$i<21;$i++) {
 			$up=array();
@@ -90,10 +99,9 @@ class DumpServices {
 			$up['country'] = "United States";
 			$updates[]=$up;
 		}		
-		
-		$task['updated']=$updates;
-		
-		return $task;
+		$resul['results'] = $updates;
+		$resul['total'] = 50;
+		return $resul;
 	}
 	
 	
