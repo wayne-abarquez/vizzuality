@@ -28,6 +28,14 @@ package resource{
         public static const BLUE_BULLET:Class;
 	    [Embed (source="org/vizzuality/assets/breadCrumbArrow.png" )]
         public static const BREADCRUMB_ARROW:Class;
+	    [Embed (source="org/vizzuality/assets/tickIcon.png" )]
+        public static const TICK_ICON:Class;
+	    [Embed (source="org/vizzuality/assets/crossIcon.png" )]
+        public static const CROSS_ICON:Class;
+	    [Embed (source="org/vizzuality/assets/tickIcon_over.png" )]
+        public static const TICK_ICON_OVER:Class;
+	    [Embed (source="org/vizzuality/assets/crossIcon_over.png" )]
+        public static const CROSS_ICON_OVER:Class;
         
 	}
 }
