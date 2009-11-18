@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
 	
 	<mx:states>
 		<mx:State name="loading">
@@ -14,6 +14,9 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.view.download.itemrenders.CountryItem;
+			import org.vizzuality.events.MyEventDispatcher;
+			import org.vizzuality.events.DataSelectionEvent;
 			import org.vizzuality.model.Region;
 			import org.vizzuality.model.Country;
 			import resource.Resource;
@@ -29,6 +32,29 @@
 			private var totalCountries:Number=0;
 			[Bindable] private var page:Number=1;
 			[Bindable] private var totalPages:Number=1;
+			
+			private function init():void {
+				MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_REMOVED,onCountryRemoved);
+			}
+			
+			private function onCountryRemoved(event:DataSelectionEvent):void {
+				var find:Boolean = false;
+				var renderers_array : Array = country_tilelist.renderers;
+				for each(var renderer:Array in renderers_array) {
+					for each(var renderer_each:CountryItem in renderer) {
+ 						if (find) {
+							return;
+						}
+						if (renderer_each.data.name == event.selectedCountry.name) {
+							CountryItem(renderer_each).addedItem = false;
+							find = true;
+						}
+                	}
+                 	if (find) {
+						break;	
+					}
+                }
+			}
 			
 			public function set regionId(regId:Number):void {
 				if(!isNaN(regId) && regId!=_regionId) {
@@ -68,9 +94,9 @@
 	</mx:Script>
 	<mx:VBox width="100%" height="100%">
 		<mx:Canvas width="100%" height="100%" id="canvas1">
-			<mx:TileList width="100%" height="100%" dataProvider="{countries}" 
+			<components:TileListRenderers width="100%" height="100%" dataProvider="{countries}" id="country_tilelist"
 				itemRenderer="org.vizzuality.view.download.itemrenders.CountryItem" paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none">
-			</mx:TileList>
+			</components:TileListRenderers>
 		</mx:Canvas>
 		<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
 			<mx:Label id="pagingInfo"  right="70" verticalCenter="0" width="211" text="{'page '+page+' of '+totalPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
