@@ -3,6 +3,8 @@
 	rollOver="handleOver(event)" rollOut="handleOut(event)" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.Pa;
+			import org.vizzuality.events.MyEventDispatcher;
 			import resource.Resource;
 			import gs.TweenMax;
 			
@@ -62,7 +64,9 @@
 		<mx:Button styleName="redButton" top="4" right="24" width="18" fontSize="12" 
 			icon="{Resource.CROSS_ICON_OVER}" paddingBottom="1" paddingLeft="-1" paddingRight="1" height="18" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
-		<components:LinkLabel text="view details" color="#FFFFFF" bottom="1" right="5" textAlign="right" fontSize="10" fontFamily="Helvetica" fontWeight="normal"
+		<components:LinkLabel text="view details" color="#FFFFFF" 
+			click="MyEventDispatcher.selectPaForOverview(data as Pa)"
+			bottom="1" right="5" textAlign="right" fontSize="10" fontFamily="Helvetica" fontWeight="normal"
 			default_color="0xFFFFFF" default_hover_color="0xf4f4f4" default_hover_decoration="none" text_decoration="none" default_weight="normal" default_hover_weight="normal"/>
 	</mx:Canvas>
 	

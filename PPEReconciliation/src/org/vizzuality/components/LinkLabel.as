@@ -101,8 +101,10 @@ package org.vizzuality.components
         
         private function navigateURL(value:Object):void
         {
-            var urlRequest:URLRequest = new URLRequest(value.url);
-            navigateToURL(urlRequest, value.target);
+            if(value.url!=null) {
+	            var urlRequest:URLRequest = new URLRequest(value.url);
+	            navigateToURL(urlRequest, value.target);
+            }
         }
 
         private function mouseOverHandler(event:MouseEvent):void
