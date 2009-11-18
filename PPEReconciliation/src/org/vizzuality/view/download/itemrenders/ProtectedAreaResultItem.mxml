@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" creationComplete="init()"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" creationComplete="init()" backgroundColor="#FFFFFF"
 	rollOver="handleOver(event)" rollOut="handleOut(event)" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
@@ -24,18 +24,18 @@
             }
             
             private function init():void {
-/*             	var ow:TileList = owner as TileList;
+             	var ow:TileList = owner as TileList;
 				var dataIndex:int = ow.itemRendererToIndex(this);
 				var itsAmount:int = ow.columnCount*ow.rowCount;
 				var rendererPosition:int = dataIndex%itsAmount;
 				
-				var result:Number = (rendererPosition/3).toFixed(0);
 				
-				if (((rendererPosition/3) % 2) ==0) {
-					this.setStyle('backgroundColor','0xFFFFFF');
+				var result: String = (rendererPosition/3).toString().slice(0,1);
+				if ((Number(result) % 2) == 0) {
+					mamufas.setStyle('backgroundColor','0xFFFFFF');
 				} else {
-					this.setStyle('backgroundColor','0xF5F5F5');
-				} */
+					mamufas.setStyle('backgroundColor','0xF5F5F5');
+				}
 				
             }
             
@@ -73,9 +73,11 @@
 			
 		]]>
 	</mx:Script>
-	<mx:Label id="area" x="7" y="7" text="{paName}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-	<mx:Label id="country" x="7" y="22" text="{countryName}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
-	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
+	<mx:Canvas left="5" right="5" top="0" bottom="0" id="mamufas">
+		<mx:Label id="area" x="2" y="7" text="{paName}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+		<mx:Label id="country" x="2" y="22" text="{countryName}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
+		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
+	</mx:Canvas>
 	
 	<mx:Canvas id="overCanvas" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off"
 		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
