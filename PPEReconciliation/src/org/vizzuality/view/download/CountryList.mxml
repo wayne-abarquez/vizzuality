@@ -51,7 +51,7 @@
 						}
                 	}
                  	if (find) {
-						break;	
+						return;	
 					}
                 }
 			}
