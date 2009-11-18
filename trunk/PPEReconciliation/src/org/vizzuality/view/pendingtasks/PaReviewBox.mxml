@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
-	width="300" height="452" borderStyle="solid" cornerRadius="6" xmlns:maps="com.google.maps.*">
-	<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="10">
+	width="300" height="452" borderStyle="solid" cornerRadius="4" xmlns:maps="com.google.maps.*">
+	<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="14">
 		<mx:Label text="Head version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 		<mx:Label text="(09/11/2009)"  fontFamily="Helvetica" fontStyle="normal" fontSize="13" fontWeight="bold" color="#666666"  height="21"/>
 	</mx:HBox>
@@ -9,14 +9,14 @@
 	<mx:HRule height="1" left="15" right="0" top="336"/>
 	<mx:HRule height="1" left="15" right="0" top="411"/>
 	<mx:HRule height="1" left="15" right="0" top="373"/>
-	<mx:Label y="341" text="IUCN CATEGORY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="23"/>
-	<mx:Label y="69" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="23"/>
-	<mx:Label y="354" text="lb (lorem ipsum dolor sit)" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12" left="23"/>
-	<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="85" width="257" height="218" left="23">
+	<mx:Label y="341" text="IUCN CATEGORY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="17"/>
+	<mx:Label y="69" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="17"/>
+	<mx:Label y="354" text="lb (lorem ipsum dolor sit)" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12" left="17"/>
+	<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="85" height="218" left="20" right="17">
 		<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
 
 	</mx:Canvas>
-	<mx:Label y="379" text="DESIGNATION DATE" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="23"/>
-	<mx:Label y="392" text="1981" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12" left="23"/>
+	<mx:Label y="379" text="DESIGNATION DATE" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="17"/>
+	<mx:Label y="392" text="1981" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12" left="17"/>
 </mx:Canvas>
 
