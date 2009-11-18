@@ -40,7 +40,6 @@
 			useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks/task')"
 			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
 		<mx:Spacer width="100%" />
-		<mx:Button label="go back" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12"/>
 	</mx:HBox>
 	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" right="20">
 		<mx:Label text="Pemba Channel National Park" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
@@ -63,7 +62,7 @@
 		<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 			<mx:Button right="6" y="4" label="FINISH" styleName="greenButton" mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3"/>
 			<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->
-			<mx:Button label="go back" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" y="6" x="11"/>
+			<mx:Button label="go back" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" y="9" x="11"/>
 		</mx:Canvas>		
 	</mx:VBox>
     
