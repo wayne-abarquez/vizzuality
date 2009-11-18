@@ -152,16 +152,20 @@
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedBottom">
-				<mx:HBox y="6" right="6" horizontalAlign="right" horizontalGap="3">
-					<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" 
-						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
-					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
-						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
-					<mx:Label id="pagingDelInfo"  right="70" verticalCenter="0" text="{'page '+delPage+' of '+totalDelPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
+				<mx:HBox y="6" right="6" horizontalAlign="right" horizontalGap="3" verticalAlign="middle">
+					<mx:Label id="pagingDelInfo"  right="70" verticalCenter="0" text="{'page '+delPage+' of '+totalDelPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
 					<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
 						width="27" height="24" click="getTaskDeletions(delPage-1)" enabled="{delPage>1}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 					<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{delPage &lt; totalDelPages}"
 						width="27" height="24" click="getTaskDeletions(delPage+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
+				</mx:HBox>
+				<mx:HBox x="6" y="6" horizontalGap="4" verticalAlign="middle">
+					<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" 
+						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
+						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Label id="pagingDelInfo2" text="You have selected 10 of 23,123." textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="normal" paddingTop="3"/>
+					<mx:Label id="pagingDelInfo3" text="Select all?" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3" paddingLeft="-4"/>
 				</mx:HBox>
 			</mx:Canvas>
 			
@@ -176,18 +180,22 @@
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softGreenBottom">
-				<mx:HBox y="6" right="6" horizontalAlign="right" horizontalGap="3">
-					<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" 
-						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
-					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
-						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
-					<mx:Label id="pagingNewInfo"  right="70" verticalCenter="0" text="{'page '+newPage+' of '+totalNewPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
+				<mx:HBox y="6" right="6" horizontalAlign="right" horizontalGap="3" verticalAlign="middle">
+					<mx:Label id="pagingDelInfo0" text="{'page '+delPage+' of '+totalDelPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
 
 					<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
 						width="27" height="24" click="getTaskNewPas(newPage-1)" enabled="{newPage>1}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 					<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{newPage &lt; totalNewPages}"
 						width="27" height="24" click="getTaskNewPas(newPage+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
 
+				</mx:HBox>
+				<mx:HBox x="6" y="6" horizontalGap="4" verticalAlign="middle">
+					<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" 
+						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
+						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Label id="pagingDelInfo4" text="You have selected 10 of 23,123." textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="normal" paddingTop="3"/>
+					<mx:Label id="pagingDelInfo5" text="Select all?" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3" paddingLeft="-4"/>
 				</mx:HBox>
 			</mx:Canvas>	
 			
@@ -202,18 +210,22 @@
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas height="34" width="100%" backgroundSize="100%" styleName="softBlueBottom">
-				<mx:HBox y="6" right="6" horizontalAlign="right" horizontalGap="3">
-					<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" 
-						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
-					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
-						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
-					<mx:Label id="pagingUpdateInfo"  right="70" verticalCenter="0" text="{'page '+updatePage+' of '+totalUpdatesPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
+				<mx:HBox y="6" right="6" horizontalAlign="right" horizontalGap="3" verticalAlign="middle">
+					<mx:Label id="pagingDelInfo1" text="{'page '+delPage+' of '+totalDelPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
 
 					<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
 						width="27" height="24" click="getTaskUpdates(updatePage-1)" enabled="{updatePage>1}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 					<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{updatePage &lt; totalUpdatesPages}"
 						width="27" height="24" click="getTaskUpdates(updatePage+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
 
+				</mx:HBox>
+				<mx:HBox x="6" y="6" horizontalGap="4" verticalAlign="middle">
+					<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" 
+						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
+						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Label id="pagingDelInfo6" text="You have selected 10 of 23,123." textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="normal" paddingTop="3"/>
+					<mx:Label id="pagingDelInfo7" text="Select all?" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3" paddingLeft="-4"/>
 				</mx:HBox>
 			</mx:Canvas>
 	
