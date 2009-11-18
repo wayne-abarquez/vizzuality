@@ -5,39 +5,43 @@
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			import org.vizzuality.model.Pa;
+			import mx.rpc.events.ResultEvent;
+			import mx.core.Application;
 			import com.asual.swfaddress.SWFAddress;
 			import org.vizzuality.model.Task;
 			import mx.collections.ArrayCollection;
 			import resource.Resource;
 			
 			
-			[Bindable]private var deletedArray: ArrayCollection = new ArrayCollection([
-               {area:"Yosemite National Park", country:"United States", status:"confirmed"},
-               {area:"Yosemite National Area", country:"United States", status:"rejected"},
-               {area:"Galapagos national reserve", country:"Ecuador", status:""},
-               {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"confirmed"}
-			]);
+			[Bindable] private var newPage:Number=1;
+			[Bindable] private var totalNewPages:Number=1;
+			[Bindable] private var delPage:Number=1;
+			[Bindable] private var totalDelPages:Number=1;
+			[Bindable] private var updatePage:Number=1;
+			[Bindable] private var totalUpdatesPages:Number=1;
+			[Bindable] private var totalDeleted:Number=0;
+			[Bindable] private var totalUpdated:Number=0;
+			[Bindable] private var totalNew:Number=0;
 			
-			[Bindable]private var mergeArray: ArrayCollection = new ArrayCollection([
-               {area:"Yosemite National Park", country:"United States", status:"merged"},
-               {area:"Yosemite National Area", country:"United States", status:"2 conflicts"},
-               {area:"Galapagos national reserve", country:"Ecuador", status:"5 conflicts"},
-               {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"merged"},
-               {area:"Yosemite National Park", country:"United States", status:"2 conflicts"},
-               {area:"Yosemite National Area", country:"United States", status:"merged"},
-               {area:"Galapagos national reserve", country:"Ecuador", status:"2 conflicts"},
-               {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"merged"},
-               {area:"Yosemite National Park", country:"United States", status:"merged"},
-               {area:"Yosemite National Area", country:"United States", status:"merged"},
-               {area:"Galapagos national reserve", country:"Ecuador", status:"merged"},
-               {area:"Bacalar Chico Protected Area", country:"Ecuador", status:"1 conflict"}
-			]);
+			[Bindable]private var deleted: ArrayCollection = new ArrayCollection();
+			[Bindable]private var news: ArrayCollection = new ArrayCollection();
+			[Bindable]private var updates: ArrayCollection = new ArrayCollection();
+			
+			[Bindable]private var mergeArray: ArrayCollection = new ArrayCollection();
 			
 			[Bindable]
 			private var _task:Task;
 			
 			public function set task(val:Task):void {
 				_task=val;
+				
+				//Get the details of the task
+				getTaskDeletions(1);
+				getTaskNewPas(1);
+				getTaskUpdates(1);
+				
 			}
 			
 			public function get task():Task {
@@ -45,6 +49,69 @@
 			}
 			
 			private function init():void {
+				
+			}
+			
+			private function getTaskDeletions(p:Number):void {
+				jsonService1.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskDeletions/"+_task.code+"/"+p+"/18";
+				jsonService1.send();		
+				delPage=p;						
+			}
+			private function getTaskNewPas(p:Number):void {
+				jsonService2.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskNewPas/"+_task.code+"/"+p+"/18";
+				jsonService2.send();		
+				newPage=p;						
+				
+			}
+			private function getTaskUpdates(p:Number):void {
+				jsonService3.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskUpdates/"+_task.code+"/"+p+"/18";
+				jsonService3.send();		
+				updatePage=p;						
+				
+			}
+			
+			private function onGetTaskDeletionsResult(event:ResultEvent):void {
+				var res:Object = JSON.decode(event.result as String);
+				var tem:Array = [];
+				for(var i:String in res.results as Array)  {
+					var pa:Pa = new Pa();
+					pa.id=res.results[i].id;
+					pa.name=res.results[i].name;
+					pa.country=res.results[i].country;
+					tem.push(pa);
+				}
+				deleted=new ArrayCollection(tem);
+				totalDeleted=res.total;
+				totalDelPages = Math.ceil(totalDeleted/24);						
+			}
+			private function onGetTaskNewPasResult(event:ResultEvent):void {
+				var res:Object = JSON.decode(event.result as String);
+				var tem:Array = [];
+				for(var i:String in res.results as Array)  {
+					var pa:Pa = new Pa();
+					pa.id=res.results[i].id;
+					pa.name=res.results[i].name;
+					pa.country=res.results[i].country;
+					tem.push(pa);
+				}
+				news=new ArrayCollection(tem);
+				totalNew=res.total;
+				totalNewPages = Math.ceil(totalNew/24);						
+				
+			}
+			private function onGetTaskUpdatesResult(event:ResultEvent):void {
+				var res:Object = JSON.decode(event.result as String);
+				var tem:Array = [];
+				for(var i:String in res.results as Array)  {
+					var pa:Pa = new Pa();
+					pa.id=res.results[i].id;
+					pa.name=res.results[i].name;
+					pa.country=res.results[i].country;
+					tem.push(pa);
+				}
+				updates=new ArrayCollection(tem);
+				totalUpdated=res.total;
+				totalUpdatesPages = Math.ceil(totalUpdated/24);						
 				
 			}
 			
@@ -72,11 +139,11 @@
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10">
 		<mx:VBox left="15" right="15" top="15">
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedUp">
-				<mx:Label text="Deleted Protected Areas (4)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
+				<mx:Label text="{'Deleted Protected Areas ('+totalDeleted+')'}"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
+			<mx:TileList width="100%" dataProvider="{deleted}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedBottom">
@@ -85,17 +152,22 @@
 						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
 					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
 						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Label id="pagingDelInfo"  right="70" verticalCenter="0" text="{'page '+delPage+' of '+totalDelPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
+					<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
+						width="27" height="24" click="getTaskDeletions(delPage-1)" enabled="{delPage>1}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+					<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{delPage &lt; totalDelPages}"
+						width="27" height="24" click="getTaskDeletions(delPage+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
 				</mx:HBox>
 			</mx:Canvas>
 			
 			<mx:Spacer height="10" />
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softGreenUp">
-				<mx:Label text="New Protected Areas (2)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
+				<mx:Label text="{'New Protected Areas ('+totalNew+')'}"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
+			<mx:TileList width="100%" dataProvider="{news}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softGreenBottom">
@@ -104,17 +176,24 @@
 						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
 					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
 						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Label id="pagingNewInfo"  right="70" verticalCenter="0" text="{'page '+newPage+' of '+totalNewPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
+
+					<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
+						width="27" height="24" click="getTaskNewPas(newPage-1)" enabled="{newPage>1}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+					<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{newPage &lt; totalNewPages}"
+						width="27" height="24" click="getTaskNewPas(newPage+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
+
 				</mx:HBox>
 			</mx:Canvas>	
 			
 			<mx:Spacer height="10" />
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softBlueUp">
-				<mx:Label text="Modified Protected Areas"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
-				<mx:Label text="6 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
+				<mx:Label text="{'Modified Protected Areas ('+totalUpdated+')'}"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
+				<mx:Label text="{totalUpdated +' waiting for confirmation'}"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 		
-			<mx:TileList width="100%" dataProvider="{mergeArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
+			<mx:TileList width="100%" dataProvider="{updates}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas height="34" width="100%" backgroundSize="100%" styleName="softBlueBottom">
@@ -123,6 +202,13 @@
 						icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
 					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
 						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+					<mx:Label id="pagingUpdateInfo"  right="70" verticalCenter="0" text="{'page '+updatePage+' of '+totalUpdatesPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
+
+					<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
+						width="27" height="24" click="getTaskUpdates(updatePage-1)" enabled="{updatePage>1}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+					<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{updatePage &lt; totalUpdatesPages}"
+						width="27" height="24" click="getTaskUpdates(updatePage+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
+
 				</mx:HBox>
 			</mx:Canvas>
 	
@@ -130,7 +216,9 @@
 	</mx:Canvas>
 	<mx:Canvas x="648" y="53" width="18" height="1107" styleName="shadow" backgroundSize="100%" />
 
-
+	<mx:HTTPService id="jsonService1" resultFormat="text" method="GET" result="onGetTaskDeletionsResult(event)" fault="trace(event.fault)" />
+	<mx:HTTPService id="jsonService2" resultFormat="text" method="GET" result="onGetTaskNewPasResult(event)" fault="trace(event.fault)" />
+	<mx:HTTPService id="jsonService3" resultFormat="text" method="GET" result="onGetTaskUpdatesResult(event)" fault="trace(event.fault)" />
 
 	
 </mx:Canvas>

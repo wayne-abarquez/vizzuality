@@ -17,9 +17,10 @@
 			override public function set data(value:Object):void {
             	if (value != null) {
                 	super.data = value;
-                	countryName = value.country;
-                	paName = value.area;
-                	status = value.status;
+                	var pa:Pa = value as Pa;
+                	countryName = pa.country;
+                	paName = pa.name;
+                	status = "TBD";
            			if (status != '') {
            				textColor = 0x999999;
            			} else {
