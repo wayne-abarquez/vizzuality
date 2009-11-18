@@ -59,7 +59,7 @@
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaItem" 
+			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedBottom">
@@ -78,7 +78,7 @@
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaItem" 
+			<mx:TileList width="100%" dataProvider="{deletedArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softGreenBottom">
@@ -97,7 +97,7 @@
 				<mx:Label text="6 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 		
-			<mx:TileList width="100%" dataProvider="{mergeArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaMergeItem" 
+			<mx:TileList width="100%" dataProvider="{mergeArray}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas height="34" width="100%" backgroundSize="100%" styleName="softBlueBottom">
@@ -107,7 +107,7 @@
 					<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
 						icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
 				</mx:HBox>
-			</mx:Canvas>				
+			</mx:Canvas>
 	
 	    </mx:VBox>
 	</mx:Canvas>
