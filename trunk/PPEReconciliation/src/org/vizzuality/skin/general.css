@@ -69,4 +69,11 @@ TextInput.searchTextInput{
 	focus-alpha: 0;	
 }
 
+ProgressBar {
+   borderColor: #ffffff;
+   barColor: #0066cc;
+   color: #ffffff;
+   trackHeight: 10;
+}
+
 	
