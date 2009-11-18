@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" 
+	 creationComplete="init()"
+	addedToStage="initSWFAddress()"
+    removedFromStage="destroySWFAddress()"
+    currentStateChange="setSWFAddress()"
+	xmlns:ns1="org.vizzuality.view.pendingtasks.*">
+	<mx:Script>
+		<![CDATA[
+			import org.vizzuality.model.Pa;
+			import org.vizzuality.model.Task;
+			import org.vizzuality.events.TaskSelectionEvent;
+			import org.vizzuality.events.MyEventDispatcher;
+			import com.asual.swfaddress.SWFAddress;
+			import com.asual.swfaddress.SWFAddressEvent;
+			
+			public var path:String="rec/previous";
+            public var depth:int=2;		
+            public var selectedTask:Task;
+            public var selectedPa:Pa;
+			
+			private function init():void {
+				currentState="Overview";
+/* 				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_TASK,onTaskSelected);
+				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,onPaSelected); */
+			}
+			
+			private function onTaskSelected(ev:TaskSelectionEvent):void {
+/* 				currentState='Task';
+				selectedTask=ev.task;
+				taskOverView.task = selectedTask; */
+			}
+			
+			private function onPaSelected(ev:TaskSelectionEvent):void {
+/* 				currentState='Pa';
+				selectedPa=ev.pa;
+				attributeReview.task = selectedTask;
+				attributeReview.pa = ev.pa; */
+				
+			}
+		
+			private function initSWFAddress():void {
+                handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
+                //if (!SWFAddress.hasEventListener(SWFAddressEvent.CHANGE)) {
+	                SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+                //}
+            }
+            
+            private function destroySWFAddress():void {
+                SWFAddress.removeEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+            }
+            
+            private function setSWFAddress():void {
+                Helper.setSWFAddress(this, path, depth);
+            }
+            
+            private function handleSWFAddress(event:SWFAddressEvent):void {
+            	//trace(event.path);
+                if (event.pathNames.length >= depth && event.pathNames[depth - 1] == "previous") {
+                    if(event.pathNames.length==2) {
+                    	currentState="Overview";
+                    }else {
+	                    Helper.handleSWFAddress(this, event, depth);
+                    }
+                }
+            }
+		]]>
+	</mx:Script>
+	<mx:states>
+		<mx:State name="Overview">
+			<mx:AddChild position="lastChild">
+				<ns1:PendingTasks id="pendingTask" />
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	
+</mx:Canvas>
