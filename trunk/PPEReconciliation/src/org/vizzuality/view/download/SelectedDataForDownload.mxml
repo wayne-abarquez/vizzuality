@@ -74,9 +74,7 @@
 	<components:AutoSizingList width="100%" dataProvider="{selectedCountries}" verticalScrollPolicy="off" horizontalScrollPolicy="off"
 		paddingTop="0" paddingBottom="1" focusAlpha="0" focusEnabled="false"
 		itemRenderer="org.vizzuality.view.download.itemrenders.CountrySelectedForDownloadItem"
-		backgroundColor="#EBEBEB" borderStyle="none">
-		
-	</components:AutoSizingList>
+		backgroundColor="#EBEBEB" borderStyle="none"/>
 	<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 		<mx:Label text="56 PA’s" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999"/>
 		<mx:Button right="6" y="4" label="DOWNLOAD DATASET" styleName="greenButton" click="onDownloadButtonClick()" 
