@@ -49,9 +49,9 @@ class DumpServices {
 			$t['description'] = "Spain";
 			$t['what']="Country Download";
 			$t['numareas']=2431;
-			$t['status'] = "Download preparing";
+			$t['status'] = "preparingDownload";
 			$t['statuspercen'] = 72;
-			$t['date'] = "2009-11-".$i." 12:34:00";
+			$t['date'] = "2009/11/".$i." 12:34:00";
 			$res[]=$t;
 		}
 		$resul['results'] = $res;

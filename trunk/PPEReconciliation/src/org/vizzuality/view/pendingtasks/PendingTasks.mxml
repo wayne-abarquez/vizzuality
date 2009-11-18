@@ -41,6 +41,7 @@
 					ta.numareas=res.results[i].numareas;
 					ta.status=res.results[i].status;
 					ta.statusPercen=res.results[i].statuspercen;
+					ta.date=new Date(Date.parse(res.results[i].date));
 					resArr.push(ta);
 				}
 				pendingTasks=new ArrayCollection(resArr);
@@ -48,6 +49,9 @@
 				totalPages = Math.ceil(totalTasks/8);		
 				
 			}
+
+			
+			
 			
 		]]>
 	</mx:Script>
