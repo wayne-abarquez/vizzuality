@@ -4,6 +4,7 @@ package org.vizzuality.events
   	import flash.events.EventDispatcher;
   	
   	import org.vizzuality.model.Country;
+  	import org.vizzuality.model.Pa;
   	import org.vizzuality.model.Task;
   	public class MyEventDispatcher {
     		protected static var disp:EventDispatcher;
@@ -32,5 +33,11 @@ package org.vizzuality.events
    		public static function selectTaskForOverview(task:Task):void {
    			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_TASK,task));		
    		}
+   		
+   		public static function selectPaForOverview(pa:Pa):void {
+   			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,null,pa));
+   		}
+   		
+   		
     }
 }

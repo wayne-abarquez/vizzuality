@@ -1,5 +1,7 @@
 package org.vizzuality.model
 {
+	import flash.events.EventDispatcher;
+	
 	[Bindable]
 	public class Pa extends EventDispatcher
 	{

@@ -7,6 +7,7 @@
 	xmlns:ns1="org.vizzuality.view.pendingtasks.*">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.Pa;
 			import org.vizzuality.model.Task;
 			import org.vizzuality.events.TaskSelectionEvent;
 			import org.vizzuality.events.MyEventDispatcher;
@@ -16,16 +17,26 @@
 			public var path:String="rec/pendingtasks";
             public var depth:int=2;		
             public var selectedTask:Task;
+            public var selectedPa:Pa;
 			
 			private function init():void {
 				currentState="Overview";
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_TASK,onTaskSelected);
+				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,onPaSelected);
 			}
 			
 			private function onTaskSelected(ev:TaskSelectionEvent):void {
 				currentState='Task';
 				selectedTask=ev.task;
 				taskOverView.task = selectedTask;
+			}
+			
+			private function onPaSelected(ev:TaskSelectionEvent):void {
+				currentState='Pa';
+				selectedPa=ev.pa;
+				attributeReview.task = selectedTask;
+				attributeReview.pa = ev.pa;
+				
 			}
 		
 			private function initSWFAddress():void {

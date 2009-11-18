@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" 
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
-	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*">
+	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" 
+	xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*"
+	 creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.TaskSelectionEvent;
+			import org.vizzuality.events.MyEventDispatcher;
+			import org.vizzuality.model.Task;
+			import org.vizzuality.model.Pa;
 			import resource.Resource;
+			
+			private var _pa:Pa;
+			public var task:Task;
+			
+			public function set pa(val:Pa):void {
+				_pa=val;
+			}
+			public function get pa():Pa {
+				return _pa;
+			}
+			
+			private function init():void {
+				//MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,on
+			}
+			
+			
 		]]>
 	</mx:Script>
 	
