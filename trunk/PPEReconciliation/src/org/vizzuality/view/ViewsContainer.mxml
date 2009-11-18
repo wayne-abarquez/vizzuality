@@ -75,7 +75,7 @@
 		<mx:Canvas label="PREVIOUS UPLOADS" width="100%" height="100%" id="previous_uploads">
 			<mx:Canvas />
 		</mx:Canvas>
-		<mx:Canvas label="COMMIT DOWNLOAD" width="100%" height="100%" backgroundColor="#FFFFFF" id="commit">
+		<mx:Canvas label="COMMIT DOWNLOAD" width="100%" height="100%" backgroundColor="#FFFFFF" id="commit" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<pendingtasks:TaskOverview left="0" right="0" top="0" bottom="0"/>
 		</mx:Canvas>
 	</mx:ViewStack>
