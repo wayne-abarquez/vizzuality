@@ -70,7 +70,7 @@
 	</mx:VBox>
     
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10">
-		<mx:VBox left="16" right="16" top="15">
+		<mx:VBox left="15" right="15" top="15">
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedUp">
 				<mx:Label text="Deleted Protected Areas (4)"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
