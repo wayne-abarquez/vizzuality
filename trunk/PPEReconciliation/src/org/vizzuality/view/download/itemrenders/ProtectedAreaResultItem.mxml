@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" backgroundColor="#FFFFFF"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" creationComplete="init()"
 	rollOver="handleOver(event)" rollOut="handleOut(event)" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.TileList;
 			import gs.TweenMax;
 			
 			[Bindable] public var countryName:String;
@@ -18,9 +19,49 @@
                 	paName = value.name;
                 	status = value.status;
                 }
+                
+                
             }
+            
+            private function init():void {
+/*             	var ow:TileList = owner as TileList;
+				var dataIndex:int = ow.itemRendererToIndex(this);
+				var itsAmount:int = ow.columnCount*ow.rowCount;
+				var rendererPosition:int = dataIndex%itsAmount;
+				
+				var result:Number = (rendererPosition/3).toFixed(0);
+				
+				if (((rendererPosition/3) % 2) ==0) {
+					this.setStyle('backgroundColor','0xFFFFFF');
+				} else {
+					this.setStyle('backgroundColor','0xF5F5F5');
+				} */
+				
+            }
+            
+            
+/*             override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			     super.updateDisplayList(unscaledWidth, unscaledHeight);
+			     
+			 	 if(TileList(owner).isItemSelected(data)) {
+			 	 	if (TileList(owner).isItemHighlighted(data)) {
+						TweenMax.to(overCanvas, .3, {autoAlpha:1});
+				     } else {
+				     	TweenMax.to(overCanvas, .3, {autoAlpha:0});
+				     }
+				 }
+				 else {
+				 	 if (TileList(owner).isItemHighlighted(data)) {
+						TweenMax.to(overCanvas, .3, {autoAlpha:1});
+				     } else {
+				     	TweenMax.to(overCanvas, .3, {autoAlpha:0});
+				     }
+				 }
+			} */
 			
-			//EL Color grisecito para cuando la fila es par es el #f5f5f5, sólo habría que hacer un setStyle
+            
+            
+			
 			
 			private function handleOver(e:MouseEvent):void{
 				TweenMax.to(overCanvas, .3, {autoAlpha:1});
@@ -41,7 +82,7 @@
 		cornerRadius="2" visible="false" alpha="0">
 		<mx:Label x="7" y="5" text="{paName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(status!='')?140:180}" textAlign="left"/>
 		<mx:Label x="7" y="21" text="{countryName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
-		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" width="45" />
+		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" width="45" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 	</mx:Canvas>
 	
 </mx:Canvas>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" addedToStage="init()">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" addedToStage="init()" 
+	xmlns:components="org.vizzuality.components.*">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
@@ -10,37 +11,46 @@
 		</mx:State>
 		<mx:State name="list"/>
 	</mx:states>
+
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.controls.ControlPosition;
+		import com.google.maps.controls.ZoomControlOptions;
+		import com.google.maps.MapType;
+		import com.google.maps.LatLng;
+		import com.google.maps.controls.ZoomControl;
+		import com.google.maps.MapEvent;
 		import resource.Resource;
 		import mx.collections.ArrayCollection;
+		
+		private var selectedArea: Boolean = false;
 	
-            [Bindable]private var areasArr: ArrayCollection = new ArrayCollection([
-               {name:"Yosemite National Park", country:"United States"},
-               {name:"Yosemite National Area", country:"United States"},
-               {name:"Galapagos national reserve", country:"Ecuador"},
-               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-               {name:"Yosemite National Park", country:"United States"},
-               {name:"Yosemite National Area", country:"United States"},
-               {name:"Galapagos national reserve", country:"Ecuador"},
-               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-               {name:"Yosemite National Park", country:"United States"},
-               {name:"Yosemite National Area", country:"United States"},
-               {name:"Galapagos national reserve", country:"Ecuador"},
-               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-               {name:"Yosemite National Park", country:"United States"},
-               {name:"Yosemite National Area", country:"United States"},
-               {name:"Galapagos national reserve", country:"Ecuador"},
-               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-               {name:"Yosemite National Park", country:"United States"},
-               {name:"Yosemite National Area", country:"United States"},
-               {name:"Galapagos national reserve", country:"Ecuador"},
-               {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-               {name:"Yosemite National Park", country:"United States"},
-               {name:"Yosemite National Area", country:"United States"},
-               {name:"Galapagos national reserve", country:"Ecuador"},
-               {name:"Bacalar Chico Protected Area", country:"Ecuador"}
-			]);	
+        [Bindable]private var areasArr: ArrayCollection = new ArrayCollection([
+           {name:"Yosemite National Park", country:"United States"},
+           {name:"Yosemite National Area", country:"United States"},
+           {name:"Galapagos national reserve", country:"Ecuador"},
+           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+           {name:"Yosemite National Park", country:"United States"},
+           {name:"Yosemite National Area", country:"United States"},
+           {name:"Galapagos national reserve", country:"Ecuador"},
+           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+           {name:"Yosemite National Park", country:"United States"},
+           {name:"Yosemite National Area", country:"United States"},
+           {name:"Galapagos national reserve", country:"Ecuador"},
+           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+           {name:"Yosemite National Park", country:"United States"},
+           {name:"Yosemite National Area", country:"United States"},
+           {name:"Galapagos national reserve", country:"Ecuador"},
+           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+           {name:"Yosemite National Park", country:"United States"},
+           {name:"Yosemite National Area", country:"United States"},
+           {name:"Galapagos national reserve", country:"Ecuador"},
+           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
+           {name:"Yosemite National Park", country:"United States"},
+           {name:"Yosemite National Area", country:"United States"},
+           {name:"Galapagos national reserve", country:"Ecuador"},
+           {name:"Bacalar Chico Protected Area", country:"Ecuador"}
+		]);	
 	
 		private function init():void {
 		    if (search_text) {
@@ -68,8 +78,17 @@
             	search_text.setStyle("fontSize","11");
             	search_text.text = 'Keyword, name, country...';
             }
-        }		
-		
+        }	
+        
+        private function onMapReady(ev:MapEvent):void {
+        	var zco:ZoomControlOptions= new ZoomControlOptions({position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)});
+            map.addControl(new ZoomControl(zco));
+            map.enableScrollWheelZoom();
+            map.setCenter(new LatLng(0,0),1);
+        }	
+        
+
+        
 	]]>
 </mx:Script>
 	<mx:Canvas width="100%" height="400" styleName="softBlueUp" backgroundSize="100%">
@@ -83,14 +102,16 @@
 				backgroundSize="100%" borderStyle="none" height="25"/>
 			<mx:Button  width="29" styleName="boundingBoxButton" height="25" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:HBox>
-		<maps:Map  left="10" bottom="10" right="10" id="map" height="326" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ"/>
+		
+		<maps:Map  left="10" bottom="10" right="10" id="map" height="326" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ"
+			mapevent_mapready="onMapReady(event)"/>
 
 	</mx:Canvas>
 	
 	<mx:Canvas width="100%" height="100%" id="canvas1">
-		<mx:TileList dataProvider="{areasArr}"  width="100%" height="100%" 
-			itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaResultItem" 
-			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none">
+		<mx:TileList dataProvider="{areasArr}"  width="100%" height="100%" itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaResultItem" 
+			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"
+			>
 		</mx:TileList>
 	</mx:Canvas>
 	
