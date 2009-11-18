@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="844" height="43" backgroundColor="#FFFFFF" horizontalScrollPolicy="off" verticalScrollPolicy="off"
-	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)">
+	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)" creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.List;
 			import org.vizzuality.components.ReturnTimeAgo;
 			import org.vizzuality.model.Task;
 			import org.vizzuality.events.MyEventDispatcher;
@@ -26,22 +27,37 @@
 			private function getAgo (str:String):String {
 				return timeAgo.returnTimeAgo(str);
 			}
+			
+			private function init():void {
+				var ow:List = owner as List;
+				var dataIndex:int = ow.itemRendererToIndex(this);
+				var itsAmount:int = ow.columnCount*ow.rowCount;
+				var rendererPosition:int = dataIndex%itsAmount;
+				
+				if ((rendererPosition % 2) == 0) {
+					mamufas.setStyle('backgroundColor','0xFFFFFF');
+				} else {
+					mamufas.setStyle('backgroundColor','0xF5F5F5');
+				}
+			}
 		]]>
 	</mx:Script>
-	<mx:HBox horizontalGap="0" top="5" left="11">
-		<mx:Label text="{data.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-		<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
-		<mx:Label text="{data.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
-	</mx:HBox>
-	<mx:Label id="number" text="{data.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
+	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0">
+		<mx:HBox horizontalGap="0" top="5" left="11">
+			<mx:Label text="{data.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
+			<mx:Label text="{data.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
+		</mx:HBox>
+		<mx:Label id="number" text="{data.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
+		
+		<mx:Label text="{data.status}" color="{(data.status=='Commiting changes')?0xff6600:0xff3333}"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label id="percentage" text="{'(' + data.statusPercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>
 	
-	<mx:Label text="{data.status}" color="{(data.status=='Commiting changes')?0xff6600:0xff3333}"  left="454" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
-	<mx:Label id="percentage" text="{'(' + data.statusPercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="454" fontFamily="Helvetica"/>
-
-	<mx:Label id="date" text="{getDate(data.date)}" color="#666666"  left="639" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
-	<mx:Label id="ago" text="{getAgo(data.date)}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="639" fontFamily="Helvetica"/>
-	
-	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
+		<mx:Label id="date" text="{getDate(data.date)}" color="#666666"  left="639" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label id="ago" text="{getAgo(data.date)}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="italic" top="20" left="639" fontFamily="Helvetica"/>
+		
+		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
+	</mx:Canvas>
 	
 	
 	<mx:Canvas id="overCanvas" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off"

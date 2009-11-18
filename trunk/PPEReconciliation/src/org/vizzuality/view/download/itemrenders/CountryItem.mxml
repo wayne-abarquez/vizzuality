@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="40" backgroundColor="#FFFFFF"
-	rollOver="handleOver(event)" rollOut="handleOut(event)">
+	rollOver="handleOver(event)" rollOut="handleOut(event)" creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.TileList;
 			import org.vizzuality.model.Country;
 			import org.vizzuality.events.MyEventDispatcher;
 			import org.vizzuality.events.DataSelectionEvent;
@@ -12,7 +13,21 @@
 			[Bindable] public var countryId:Number;
 			[Bindable] public var numProtectedAreas:Number; */
 			
-			//EL Color grisecito para cuando la fila es par es el #f5f5f5, sólo habría que hacer un setStyle
+			private function init():void {
+             	var ow:TileList = owner as TileList;
+				var dataIndex:int = ow.itemRendererToIndex(this);
+				var itsAmount:int = ow.columnCount*ow.rowCount;
+				var rendererPosition:int = dataIndex%itsAmount;
+				
+				
+				var result: String = (rendererPosition/3).toString().slice(0,1);
+				if ((Number(result) % 2) == 0) {
+					mamufas.setStyle('backgroundColor','0xFFFFFF');
+				} else {
+					mamufas.setStyle('backgroundColor','0xF5F5F5');
+				}
+				
+            }
 			
 			private function handleOver(e:MouseEvent):void{
 				TweenMax.to(overCanvas, .3, {autoAlpha:1});
@@ -26,11 +41,16 @@
 				MyEventDispatcher.selectCountryForDownload(data as Country);
 			}	
 			
+			
+			
 		]]>
 	</mx:Script>
-	<mx:Label x="7" y="6" text="{data.name}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-	<mx:Label x="7" y="21" text="{data.numareas}" color="#333333" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
-	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
+	<mx:Canvas left="5" right="5" top="0" bottom="0" id="mamufas">
+		<mx:Label id="area" x="2" y="7" text="{data.name}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+		<mx:Label id="country" x="2" y="22" text="{data.numareas}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
+		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
+	</mx:Canvas>
+
 	
 	<mx:Canvas id="overCanvas" width="100%" height="100%" 
 		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
