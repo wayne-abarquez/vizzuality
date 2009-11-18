@@ -38,6 +38,13 @@ package org.vizzuality.events
    			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,null,pa));
    		}
    		
+   		public static function rejectPa(pa:Pa,mode:String):void {
+   			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.PA_REJECTED,null,pa,mode));
+   		}
+   		public static function confirmPa(pa:Pa,mode:String):void {
+   			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.PA_CONFIRMED,null,pa,mode));
+   		}
+   		
    		
     }
 }
