@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="844" backgroundColor="#FFFFFF" 
+	horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	xmlns:components="org.vizzuality.components.*" 
+	paddingTop="10" paddingBottom="0" verticalGap="2">
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.List;
+			import org.vizzuality.components.ReturnTimeAgo;
+			import org.vizzuality.model.Task;
+			import org.vizzuality.events.MyEventDispatcher;
+			import com.asual.swfaddress.SWFAddress;
+			import gs.TweenMax;
+			
+		]]>
+	</mx:Script>
+	
+	<mx:Label text="- 2 areas has an incorrect type in the IUCN Category " color="#FF0000" fontWeight="bold" 
+		fontFamily="Helvetica" fontSize="13" paddingLeft="10"/>
+	<mx:VBox verticalGap="0" paddingTop="0" paddingBottom="10" paddingLeft="25">
+		<mx:Label text="Yosemite Natural Park" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="12" fontStyle="normal" />
+		<mx:Label text="Yosemite Natural Park lorem ipsum" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="12" fontStyle="normal" />
+		<mx:Label text="Yosemite Park" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="12" fontStyle="normal" />
+	</mx:VBox>
+		
+	<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
+	
+</mx:VBox>

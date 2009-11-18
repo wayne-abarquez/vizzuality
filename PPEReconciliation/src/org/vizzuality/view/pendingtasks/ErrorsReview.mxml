@@ -57,43 +57,28 @@
 	</mx:Script>
 	<mx:Canvas left="0" right="0" top="0" height="62" >
 		<mx:HBox left="13" top="20" horizontalGap="-3" verticalAlign="bottom" height="25" width="844">
-			<mx:Label text="Pending tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
-			<mx:Label text="{'('+pendingTasks.length+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
+			<mx:Label text="Errors review" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
+			<mx:Label text="(7)"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
 		</mx:HBox>
 	</mx:Canvas>
 
     <mx:VBox left="0" right="0" top="62" backgroundColor="#FFFFFF" paddingLeft="15" paddingRight="15" bottom="0" paddingTop="15">
 		<mx:Canvas width="100%" height="54" styleName="softBlueUp" backgroundSize="100%">
-			<mx:Label text="Select one to continue with the upload proccess"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="570" left="10" top="10"/>
+			<mx:Label text="We've detected the following errors in your data"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="570" left="10" top="10"/>
 			<mx:Label text="What" top="36" left="10" fontFamily="Helvetica" fontSize="11" color="#336699"/>
-			<mx:Label text="Status" left="454" top="36" fontFamily="Helvetica" fontSize="11" color="#336699"/>
-			<mx:Label text="Date" left="639" top="36" fontFamily="Helvetica" fontSize="11" color="#336699"/>
 
 		</mx:Canvas>
 		
-		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.PendingTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
+		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ErrorItem" dataProvider="{pendingTasks}" borderStyle="none"
 			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" />
-		
-		<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">
-			<mx:Label  right="75" verticalCenter="-1" width="211" text="{'page '+page+' of '+totalPages}" textAlign="right" fontFamily="Helvetica" fontSize="11" color="#333333" fontWeight="bold" height="15"/>
-			<mx:Button right="40" verticalCenter="0" click="getPendingTasks(page-1)" enabled="{page>1}"
-				useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="whitePaginationLeft" width="27" height="24"/>
-			<mx:Button right="8" verticalCenter="0" useHandCursor="true" click="getPendingTasks(page+1)" enabled="{page &lt; totalPages}"
-				 mouseChildren="false" buttonMode="true" styleName="whitePaginationRight" width="27" height="24"/>
-		</mx:Canvas>	
 		
 		<mx:Spacer height="12" />
 		
 		<mx:Canvas width="100%" height="66" styleName="ContainersInfo">	
 			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP4}"/>
-			<mx:Label text="Download new data"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-			<mx:Label x="65" y="34" text="Use our search tools to get some new data, and stat a new proccess" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-		</mx:Canvas>
-		
-		<mx:Canvas width="100%" height="66" styleName="ContainersInfo">	
-			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP5}"/>
-			<mx:Label text="Browse your completed uploads"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-			<mx:Label x="65" y="34" text="Go to the Previous uploads tab and view your completed uploads" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
+			<mx:Label text="Retry your download"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
+			<mx:Label x="65" y="34" text="Have you already changed your data? Then upload it" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
+			<mx:Button right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>
     </mx:VBox>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" />
