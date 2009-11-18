@@ -5,6 +5,10 @@
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem;
+			import org.vizzuality.events.TaskSelectionEvent;
+			import org.vizzuality.events.MyEventDispatcher;
+			import org.vizzuality.model.ReviewProcess;
 			import com.adobe.serialization.json.JSON;
 			import org.vizzuality.model.Pa;
 			import mx.rpc.events.ResultEvent;
@@ -34,6 +38,10 @@
 			[Bindable]
 			private var _task:Task;
 			
+			[Bindable]
+			public var review:ReviewProcess = new ReviewProcess();
+			
+			
 			public function set task(val:Task):void {
 				_task=val;
 				
@@ -49,8 +57,17 @@
 			}
 			
 			private function init():void {
-				
+				MyEventDispatcher.addEventListener(TaskSelectionEvent.PA_CONFIRMED,onPaConfirmed);
+				MyEventDispatcher.addEventListener(TaskSelectionEvent.PA_REJECTED,onPaRejected);
 			}
+			
+			private function onPaConfirmed(event:TaskSelectionEvent):void {
+				review.addPa(event.mode,event.pa,ReviewProcess.CONFIRMED)
+			}
+			private function onPaRejected(event:TaskSelectionEvent):void {
+				review.addPa(event.mode,event.pa,ReviewProcess.REJECTED)			
+			}
+			
 			
 			private function getTaskDeletions(p:Number):void {
 				jsonService1.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskDeletions/"+_task.code+"/"+p+"/18";
@@ -115,6 +132,14 @@
 				
 			}
 			
+			public static function createRendererWithProperties(renderer:Class,properties:Object ):IFactory {
+			  var factory:ClassFactory = new ClassFactory(renderer); 
+			  factory.properties = properties;
+			  return factory;
+			}			
+			
+			
+			
 		]]>
 	</mx:Script>
 	
@@ -148,7 +173,7 @@
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList width="100%" dataProvider="{deleted}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
+			<mx:TileList width="100%" dataProvider="{deleted}" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: ReviewProcess.DELETE})}" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softRedBottom">
@@ -176,7 +201,7 @@
 				<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 			
-			<mx:TileList width="100%" dataProvider="{news}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
+			<mx:TileList width="100%" dataProvider="{news}" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: ReviewProcess.CREATE})}" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="softGreenBottom">
@@ -206,7 +231,7 @@
 				<mx:Label text="{totalUpdated +' waiting for confirmation'}"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 			</mx:Canvas>
 		
-			<mx:TileList width="100%" dataProvider="{updates}" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem" 
+			<mx:TileList width="100%" dataProvider="{updates}" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: ReviewProcess.UPDATE})}" 
 				paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 			
 			<mx:Canvas height="34" width="100%" backgroundSize="100%" styleName="softBlueBottom">

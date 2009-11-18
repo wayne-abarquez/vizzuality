@@ -13,11 +13,13 @@
 			[Bindable] public var status:String;
 			[Bindable] public var textColor:uint;
 			[Bindable] public var statusColor:uint;
+			[Bindable] public var pa:Pa;
+			public var mode:String;
 			
 			override public function set data(value:Object):void {
             	if (value != null) {
                 	super.data = value;
-                	var pa:Pa = value as Pa;
+                	pa = value as Pa;
                 	countryName = pa.country;
                 	paName = pa.name;
                 	status = "TBD";
@@ -60,10 +62,12 @@
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="6" y="7" text="{paName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(status!='')?140:180}" textAlign="left"/>
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="7" y="23" text="{countryName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
 		<mx:Button styleName="greenButton" top="4" right="5" width="18" fontSize="12" 
+			click="MyEventDispatcher.confirmPa(pa,mode);event.stopPropagation();"
 			paddingRight="0" paddingLeft="0" height="17"
 			icon="{Resource.TICK_ICON_OVER}" paddingBottom="0"
 			mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
 		<mx:Button styleName="redButton" top="4" right="24" width="18" fontSize="12" 
+			click="MyEventDispatcher.rejectPa(pa,mode);event.stopPropagation();"
 			icon="{Resource.CROSS_ICON_OVER}" paddingBottom="1" paddingLeft="-1" paddingRight="1" height="18" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" text="view details" color="#FFFFFF" 
