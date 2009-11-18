@@ -106,6 +106,4 @@
 		<ns1:footer width="874"/>
 	</mx:VBox>
 	
-	<pendingtasks:UploadingData />
-	
 </mx:Application>
