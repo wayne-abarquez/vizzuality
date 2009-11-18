@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" 
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
-	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*">
+	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*">
 	<mx:Script>
 		<![CDATA[
 			import resource.Resource;
@@ -25,9 +25,9 @@
 		<mx:VBox width="100%" verticalGap="0" >
 			<!--Separador-->
 			<mx:Canvas height="5" width="100%" backgroundColor="#FFFFFF" />
-			<itemrenderes:MergeChangesSummaryItem />
-			<itemrenderes:MergeChangesSummaryItem />
-			<itemrenderes:MergeChangesSummaryItem />
+			<itemrenders:MergeChangesSummaryItem />
+			<itemrenders:MergeChangesSummaryItem />
+			<itemrenders:MergeChangesSummaryItem />
 			<!--Separador-->
 			<mx:Canvas height="5" width="100%" backgroundColor="#FFFFFF" />
 		</mx:VBox>

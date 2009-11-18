@@ -3,6 +3,7 @@
 	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)">
 	<mx:Script>
 		<![CDATA[
+			import com.asual.swfaddress.SWFAddress;
 			import gs.TweenMax;
 			
  			private function handleOver(e:MouseEvent):void{
