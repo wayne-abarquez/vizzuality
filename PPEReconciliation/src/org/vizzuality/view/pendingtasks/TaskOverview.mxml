@@ -2,7 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="950" 
 	styleName="dataDownloadContainer" backgroundSize="100%"
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" horizontalScrollPolicy="off"
-	creationComplete="init()">
+	creationComplete="init()" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*">
 	<mx:Script>
 		<![CDATA[
 			import org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem;
@@ -154,13 +154,11 @@
 		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 			<mx:Label text="Changes overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" letterSpacing="-1" right="69" width="129"/>
 		</mx:Canvas>
-		<mx:Canvas height="100" width="100%" backgroundColor="#FFFFFF">
-			<mx:VBox>
-				<mx:Label text="{totalDeleted + ' deletes'}" />
-				<mx:Label text="{totalNew + ' new'}" />
-				<mx:Label text="{totalUpdated + ' updates'}" />
-			</mx:VBox>
-		</mx:Canvas>
+		<mx:VBox verticalGap="1" width="100%" backgroundColor="#EBEBEB">
+			<itemrenders:MergeOverviewItem />
+			<itemrenders:MergeOverviewItem />
+			<itemrenders:MergeOverviewItem />
+		</mx:VBox>
 		<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 			<mx:Button label="COMMIT CHANGES" verticalCenter="-1" right="5" width="128" letterSpacing="0" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton"/>
 		</mx:Canvas>		
