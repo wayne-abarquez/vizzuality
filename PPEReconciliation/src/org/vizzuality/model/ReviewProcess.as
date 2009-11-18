@@ -21,6 +21,10 @@ package org.vizzuality.model
 		public var isAllDeletedAcceptedChecked:Boolean=false;
 		public var isAllNewAcceptedChecked:Boolean=false;
 		public var isAllUpdateAcceptedChecked:Boolean=false;
+		
+		public var pendingDeletedToReview:Number=0;
+		public var pendingEditedToReview:Number=0;
+		public var pendingNewToReview:Number=0;
 	
 	
 		public function addPa(mode:String,pa:Pa,status:String):void {

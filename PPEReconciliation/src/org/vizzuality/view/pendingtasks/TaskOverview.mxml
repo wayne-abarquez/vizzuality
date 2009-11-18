@@ -136,7 +136,8 @@
 			  var factory:ClassFactory = new ClassFactory(renderer); 
 			  factory.properties = properties;
 			  return factory;
-			}			
+			}		
+				
 			
 			
 			
