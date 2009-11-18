@@ -3,14 +3,16 @@
 	rollOver="handleOver(event)" rollOut="handleOut(event)" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.TaskSelectionEvent;
+			import org.vizzuality.model.ReviewProcess;
 			import org.vizzuality.model.Pa;
 			import org.vizzuality.events.MyEventDispatcher;
 			import resource.Resource;
 			import gs.TweenMax;
 			
-			[Bindable] public var countryName:String;
+			/*[Bindable] public var countryName:String;
 			[Bindable] public var paName:String;
-			[Bindable] public var status:String;
+			[Bindable] public var status:String;*/
 			[Bindable] public var textColor:uint;
 			[Bindable] public var statusColor:uint;
 			[Bindable] public var pa:Pa;
@@ -20,16 +22,13 @@
             	if (value != null) {
                 	super.data = value;
                 	pa = value as Pa;
-                	countryName = pa.country;
-                	paName = pa.name;
-                	status = "TBD";
-           			if (status != '') {
+           			if (pa.status != null) {
            				textColor = 0x999999;
            			} else {
            				textColor = 0x666666;
            			}
            			
-           			if (status == 'confirmed') {
+           			if (pa.status == ReviewProcess.CONFIRMED) {
            				statusColor = 0x339900;
            			} else {
            				statusColor = 0xff3300;
@@ -45,13 +44,39 @@
 			
 			private function handleOut(e:MouseEvent):void{
 				TweenMax.to(overCanvas, .3, {autoAlpha:0});
-			}			
+			}		
+			
+			private function getAlphaForButton(button:Button):void {
+				if(pa.status==ReviewProcess.CONFIRMED && button==confirmButton) {
+					confirmButton.alpha= 1;
+				}
+				if(pa.status==ReviewProcess.REJECTED && button==confirmButton) {
+					confirmButton.alpha= 0.5;
+				}
+				if(pa.status==ReviewProcess.CONFIRMED && button==rejectButton) {
+					rejectButton.alpha= 0.5;
+				}
+				if(pa.status==ReviewProcess.REJECTED && button==rejectButton) {
+					rejectButton.alpha= 1;
+				}
+			}	
+			
+			private function confirmPa(event:Event):void {
+				event.stopPropagation();
+				MyEventDispatcher.confirmPa(pa,mode);
+				//getAlphaForButton(confirmButton);
+			}
+			private function rejectPa(event:Event):void {
+				event.stopPropagation();
+				MyEventDispatcher.rejectPa(pa,mode);
+				//getAlphaForButton(confirmButton);
+			}
 			
 		]]>
 	</mx:Script>
-	<mx:Label id="area" x="6" y="6" text="{paName}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-	<mx:Label id="country" x="7" y="22" text="{countryName}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
-	<mx:Label text="{status}" right="5" bottom="5" width="66" textAlign="right" fontFamily="Helvetica" fontSize="10" fontStyle="normal" color="{statusColor}"/>
+	<mx:Label id="area" x="6" y="6" text="{pa.name}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+	<mx:Label id="country" x="7" y="22" text="{pa.country}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
+	<mx:Label text="{pa.getStatusDescription()}" right="5" bottom="5" width="66" textAlign="right" fontFamily="Helvetica" fontSize="10" fontStyle="normal" color="{statusColor}"/>
 	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
 	
 	<mx:Canvas id="overCanvas" width="100%" height="100%" click="MyEventDispatcher.selectPaForOverview(data as Pa)" 
@@ -59,17 +84,17 @@
 		horizontalScrollPolicy="off" verticalScrollPolicy="off"
 		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
 		cornerRadius="2" visible="false" alpha="0">
-		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="6" y="7" text="{paName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(status!='')?140:180}" textAlign="left"/>
-		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="7" y="23" text="{countryName}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
-		<mx:Button styleName="greenButton" top="4" right="5" width="18" fontSize="12" 
-			click="MyEventDispatcher.confirmPa(pa,mode);event.stopPropagation();"
+		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="6" y="7" text="{pa.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(pa.status!=null)?140:180}" textAlign="left"/>
+		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="7" y="23" text="{pa.country}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
+		<mx:Button id="rejectButton" styleName="greenButton" top="4" right="5" width="18" fontSize="12" 
+			click="rejectPa(event)"
 			paddingRight="0" paddingLeft="0" height="17"
 			icon="{Resource.TICK_ICON_OVER}" paddingBottom="0"
-			mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
-		<mx:Button styleName="redButton" top="4" right="24" width="18" fontSize="12" 
-			click="MyEventDispatcher.rejectPa(pa,mode);event.stopPropagation();"
+			mouseChildren="false" buttonMode="true" useHandCursor="true" />
+		<mx:Button id="confirmButton" styleName="redButton" top="4" right="24" width="18" fontSize="12" 
+			click="confirmPa(event)"
 			icon="{Resource.CROSS_ICON_OVER}" paddingBottom="1" paddingLeft="-1" paddingRight="1" height="18" 
-			mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(status!='')?true:false}"/>
+			mouseChildren="false" buttonMode="true" useHandCursor="true" />
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" text="view details" color="#FFFFFF" 
 			bottom="1" right="5" textAlign="right" fontSize="10" fontFamily="Helvetica" fontWeight="normal"/>
 	</mx:Canvas>
