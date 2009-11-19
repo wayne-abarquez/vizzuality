@@ -134,12 +134,13 @@
 						<mx:Button label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
 						<mx:Button label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
 			    	</mx:HBox>
-					<mx:HRule height="1" left="0" right="0" top="64"/>
+					<mx:HRule height="1" left="0" right="17" top="64"/>
 					<mx:Label y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
 					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
 						<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
 					</mx:Canvas>
-					<mx:VBox  id="newAttributes" x="0" y="336" left="0" right="15" verticalGap="0">
+					<mx:VBox id="newAttributes" y="336" left="0" verticalGap="0"
+						verticalScrollPolicy="off" horizontalScrollPolicy="off" right="17">
 						<itemrenders:NewAttribute attName="attName" attValue="val"/>
 						<itemrenders:NewAttribute attName="attName" attValue="val" />
 						<itemrenders:NewAttribute attName="attName" attValue="val" />
