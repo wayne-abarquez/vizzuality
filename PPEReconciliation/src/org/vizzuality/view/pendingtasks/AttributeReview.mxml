@@ -270,7 +270,7 @@
 					<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="15">
 						<mx:Label text="Your version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 					</mx:HBox>
-				    <mx:HBox horizontalGap="4" top="14" verticalAlign="bottom"  horizontalAlign="right" right="15">
+				    <mx:HBox horizontalGap="4" top="14" verticalAlign="bottom"  horizontalAlign="right" right="1">
 						<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
 						<mx:Spacer width="100%" />
 						<components:ShadowButton label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
@@ -295,6 +295,7 @@
 					</mx:VBox>
 				</mx:Canvas>						
 	    	</mx:HBox>
+		    <mx:Spacer height="12" />
 		    <mx:HBox horizontalGap="4" bottom="0" verticalAlign="bottom" 
 		    	width="100%" horizontalAlign="right" id="confirmRejectButtons">
 				<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
