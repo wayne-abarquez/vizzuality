@@ -27,6 +27,9 @@ Canvas.softRedBottom{
 Canvas.softBlueStepBackground{
 	background-image: Embed(source="general.swf",symbol="softBlueStepBackground");	
 }
+Canvas.softYellow{
+	background-image: Embed(source="general.swf",symbol="bkgSoftYellow");	
+}
 Canvas.darkHeader{
 	background-image: Embed(source="general.swf",symbol="bkgDarkGreyUp");	
 }

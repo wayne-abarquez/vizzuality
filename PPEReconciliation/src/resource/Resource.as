@@ -43,6 +43,8 @@ package resource{
         public static const ALERT_BKG:Class;
 	    [Embed (source="org/vizzuality/assets/goBackMiniArrow.png" )]
         public static const GO_BACK_MINI_ARROW:Class;
+	    [Embed (source="org/vizzuality/assets/clockExclamation.png" )]
+        public static const CLOCK_EXCLAMATION_ICON:Class;
         
 	}
 }

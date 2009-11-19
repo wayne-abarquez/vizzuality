@@ -124,7 +124,7 @@
 		<mx:Canvas id="redFlashCanvas" width="100%" height="100%" 
 			horizontalScrollPolicy="off" verticalScrollPolicy="off"
 			backgroundColor="#ff6600" borderStyle="solid" borderColor="#cc6600"
-			cornerRadius="2" visible="false" alpha="0" />		
+			cornerRadius="2" visible="false" alpha="0" />
 		
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="6" y="7" text="{pa.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(pa.status!=null)?140:180}" textAlign="left"/>
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="7" y="23" text="{pa.country}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
