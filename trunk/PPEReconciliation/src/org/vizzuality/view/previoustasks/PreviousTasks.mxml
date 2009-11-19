@@ -65,12 +65,12 @@
 		<mx:Canvas width="100%" height="54" styleName="softBlueUp" backgroundSize="100%">
 			<mx:Label text="Select one to continue to view the details"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="570" left="10" top="10"/>
 			<mx:Label text="What" top="36" left="10" fontFamily="Helvetica" fontSize="11" color="#336699"/>
-			<mx:Label text="Status" left="404" top="36" fontFamily="Helvetica" fontSize="11" color="#336699"/>
-			<mx:Label text="Date" left="619" top="36" fontFamily="Helvetica" fontSize="11" color="#336699"/>
+			<mx:Label text="Done date" left="444" top="36" fontFamily="Helvetica" fontSize="11" color="#336699"/>
+			<mx:Label text="Start Date" left="659" top="36" fontFamily="Helvetica" fontSize="11" color="#336699"/>
 
 		</mx:Canvas>
 		
-		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.PendingTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
+		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.previoustasks.itemrenders.PreviousTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
 			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" />
 		
 		<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">
@@ -87,12 +87,6 @@
 			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP4}"/>
 			<mx:Label text="Download new data"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
 			<mx:Label x="65" y="34" text="Use our search tools to get some new data, and stat a new proccess" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-		</mx:Canvas>
-		
-		<mx:Canvas width="100%" height="66" styleName="ContainersInfo">	
-			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP5}"/>
-			<mx:Label text="Browse your completed uploads"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-			<mx:Label x="65" y="34" text="Go to the Previous uploads tab and view your completed uploads" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
 		</mx:Canvas>
     </mx:VBox>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" />
