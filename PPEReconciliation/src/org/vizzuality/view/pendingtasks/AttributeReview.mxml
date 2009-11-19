@@ -36,7 +36,7 @@
 				currentState="loading";
 				//Get the data for the pa
 				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getPaAttributesComparision/"+task.code+"/"+_pa.id;
-				jsonService.send();				
+				jsonService.send();
 				
 			}
 			public function get pa():Pa {
@@ -100,6 +100,11 @@
     
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="0" top="62" bottom="10">
 	    <mx:VBox left="15" right="15" top="15" bottom="15">
+			<mx:Canvas styleName="softRed" width="100%" height="30" backgroundSize="100%">
+				<mx:Label x="27" y="10" text="Your are about to delete this Protected Area" fontFamily="Helvetica" fontWeight="bold" fontSize="11" color="#666666"/>
+				<mx:Image x="9" y="7" source="{Resource.EXCLAMATION}"/>
+			</mx:Canvas>
+	    	<!--<mx:HBox horizontalGap="0" height="454" width="100%">-->			
 	    	<mx:HBox horizontalGap="0" width="100%">
 	    		<mx:Canvas width="300" 
 	    			id="headPa" backgroundColor="#FFFFE5" borderColor="#E9E9E9"
@@ -127,7 +132,6 @@
 					<mx:Label y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
 					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
 						<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
-				
 					</mx:Canvas>
 					<mx:VBox  id="newAttributes" x="0" y="336" width="298">
 						<itemrenders:NewAttribute attName="attName" attValue="val"/>
@@ -150,14 +154,6 @@
 	    	
 	    </mx:VBox>
 
-
-	    <mx:HBox horizontalGap="4" verticalAlign="bottom" horizontalAlign="right" left="15" right="15" top="28">
-			<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
-			<mx:Spacer width="100%" />
-			<mx:Button label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
-			<mx:Button label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
-    	</mx:HBox>
-
 	</mx:Canvas>
 	<mx:HBox right="15" horizontalAlign="right" horizontalGap="3" verticalAlign="middle" top="32">
 		<mx:Label id="pagingDelInfo"  right="70" verticalCenter="0" text="1 of 534" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
@@ -168,5 +164,4 @@
 	</mx:HBox>
 	<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" x="732" y="16"/>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="onGetPaAttributesComparisionResult(event)" fault="trace(event.fault)" />
-	
 </mx:Canvas>
