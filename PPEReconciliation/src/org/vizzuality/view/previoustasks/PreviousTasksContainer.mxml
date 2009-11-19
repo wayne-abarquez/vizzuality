@@ -4,7 +4,7 @@
 	addedToStage="initSWFAddress()"
     removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()"
-	xmlns:ns1="org.vizzuality.view.pendingtasks.*">
+	xmlns:ns1="org.vizzuality.view.pendingtasks.*" xmlns:previoustasks="org.vizzuality.view.previoustasks.*">
 	<mx:Script>
 		<![CDATA[
 			import org.vizzuality.model.Pa;
@@ -69,7 +69,7 @@
 	<mx:states>
 		<mx:State name="Overview">
 			<mx:AddChild position="lastChild">
-				<ns1:PendingTasks id="pendingTask" />
+				<previoustasks:PreviousTasks id="previousTask" />
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>

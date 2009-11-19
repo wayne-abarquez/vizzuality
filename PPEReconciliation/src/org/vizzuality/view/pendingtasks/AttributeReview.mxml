@@ -41,7 +41,7 @@
 			fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" right="20"/>
 		<mx:Spacer width="100%" />
 	</mx:HBox>
-	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" right="373">
+	<mx:HBox left="13" top="32" verticalAlign="bottom" horizontalGap="0" right="373">
 		<mx:Label text="Pemba Channel National Park" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
 		<mx:Label text="- Merge your changes" color="#666666" fontFamily="Helvetica" fontWeight="normal" fontSize="15" fontStyle="italic" height="23"/>
 	</mx:HBox>
@@ -71,13 +71,13 @@
     	</mx:HBox>
 
 	</mx:Canvas>
-	<mx:HBox right="15" horizontalAlign="right" horizontalGap="3" verticalAlign="middle" top="30">
+	<mx:HBox right="15" horizontalAlign="right" horizontalGap="3" verticalAlign="middle" top="32">
 		<mx:Label id="pagingDelInfo"  right="70" verticalCenter="0" text="1 of 534" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
 		<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
 			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"
 			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
 	</mx:HBox>
-	<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" x="732" y="14"/>
+	<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" x="732" y="16"/>
 
 </mx:Canvas>
