@@ -164,7 +164,7 @@ cornerRadius: 0;
 			
 			map.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 
-			r = new Rectangle(Number(e.stageX-260),Number(e.stageY-287) + (scrollPosition),0,0);
+			r = new Rectangle(Number(e.stageX-(((stage.width-874)/2)+25)),Number(e.stageY-287) + (scrollPosition),0,0);
 			
 			selectionRectangle.x = r.x;
 			selectionRectangle.y = r.y;
@@ -180,15 +180,12 @@ cornerRadius: 0;
 		}
 		
 		private function onMouseMove(e:MouseEvent):void {
-			trace('x: '+e.localX +' --  y: ' + e.localY);
-			trace('largo: '+r.width +' --  alto: ' + r.height);
-			r.bottomRight = new Point(e.stageX-260, e.stageY-287 + (scrollPosition));
-			
+
+			r.bottomRight = new Point(e.stageX-(((stage.width-874)/2)+25), e.stageY-287 + (scrollPosition));
 			selectionRectangle.x = r.x;
 			selectionRectangle.y = r.y;
 			selectionRectangle.width = r.width;
 			selectionRectangle.height = r.height;				
-			trace('');
 		}
 
         
