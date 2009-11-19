@@ -49,6 +49,8 @@ package resource{
         public static const EXCLAMATION:Class;
         [Embed (source="org/vizzuality/assets/cursorCross.png" )]
         public static const CURSOR_RECTANGLE:Class;
+        [Embed (source="org/vizzuality/assets/clockSmall.png" )]
+        public static const CLOCK_SMALL:Class;
         
         
 	}
