@@ -82,12 +82,24 @@
 		<mx:State name="Login">
 			<mx:RemoveChild target="{header1}"/>
 			<mx:AddChild  relativeTo="{vBoxContainer}" position="firstChild">
-				<mx:Canvas x="10" y="0" width="500" height="100%">
-					<mx:TextInput id="usernameInput" y="74" enter="login()" horizontalCenter="0" color="#666666"/>
-					<mx:TextInput id="passwordInput" y="104" displayAsPassword="true" enter="login()" horizontalCenter="0" color="#666666"/>
-					<mx:Button y="134" label="Login" id="button1" click="login()" horizontalCenter="0" color="#333333" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+				<mx:Canvas x="10" y="0" width="384" height="255">
+					<mx:Canvas y="7" width="258" height="181" borderColor="#D3D3D3" borderStyle="solid" 
+						backgroundColor="#D3D3D3" horizontalCenter="0" cornerRadius="4" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+						<mx:TextInput id="usernameInput" y="80" enter="login()" 
+							color="#333333" borderStyle="solid" borderColor="#E2E2E2" backgroundColor="#E2E2E2" cornerRadius="4" left="82" right="20" focusAlpha="0" fontFamily="Helvetica" fontSize="12" paddingTop="3" paddingLeft="3"/>
+						<mx:TextInput id="passwordInput" y="108" displayAsPassword="true" enter="login()" 
+							color="#333333" borderStyle="solid" borderColor="#E2E2E2" backgroundColor="#E2E2E2" cornerRadius="4" left="82" right="20" focusAlpha="0" fontFamily="Helvetica" fontSize="12" paddingTop="3" paddingLeft="3"/>
+						<mx:Button y="138" label="ENTER" id="button1" click="login()" color="#FFFFFF" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton" fontSize="12" right="20" height="24"/>
+						<mx:Label y="17" text="Welcome to the Protect Planet Earth" fontFamily="Helvetica" fontSize="14" fontWeight="bold" color="#8F8F8F" textAlign="left" width="246" letterSpacing="-1" left="14"/>
+						<mx:Label y="33" text="Data Reconciliation Tool" fontFamily="Helvetica" fontSize="18" fontWeight="bold" color="#666666" textAlign="left" letterSpacing="-1" left="13"/>
+						<mx:Label y="112.1" text="PASWORD" fontFamily="Helvetica" fontSize="9" fontWeight="bold" color="#666666" textAlign="right" left="15"/>
+						<mx:Label text="USERNAME" fontFamily="Helvetica" fontSize="9" fontWeight="bold" color="#666666" textAlign="right" y="84.1" left="15"/>
+					</mx:Canvas>
+					<mx:Label text="do you need help?" fontFamily="Helvetica" fontSize="12" color="#336699" fontWeight="bold" x="189" y="192"/>
 				</mx:Canvas>
 			</mx:AddChild>
+			<mx:SetProperty target="{footer1}" name="visible" value="false"/>
+			<mx:SetStyle target="{vBoxContainer}" name="top" value="190"/>
 		</mx:State>
 		<mx:State name="Loading" basedOn="Login">
 			<mx:SetProperty target="{usernameInput}" name="enabled" value="false"/>
@@ -103,7 +115,7 @@
 
 	<ns1:header left="0" right="0" top="0" id="header1" />
 	<mx:VBox id="vBoxContainer" top="110" bottom="0" verticalScrollPolicy="off" width="100%" horizontalAlign="center">
-		<ns1:footer width="874"/>
+		<ns1:footer width="874" id="footer1"/>
 	</mx:VBox>
 	
 </mx:Application>

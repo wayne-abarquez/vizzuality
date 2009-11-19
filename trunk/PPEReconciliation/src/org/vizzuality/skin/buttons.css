@@ -38,6 +38,7 @@ Button.greenButton{
 	up-skin: Embed(source="buttons.swf",symbol="greenButton_up");
 	over-skin: Embed(source="buttons.swf",symbol="greenButton_over");
 	down-skin: Embed(source="buttons.swf",symbol="greenButton_over");
+	disabled-skin: Embed(source="buttons.swf",symbol="greenButton_disabled");
 	color:#FFFFFF;
 	font-size: 10;
 	font-family: "DINOT-Medium";
