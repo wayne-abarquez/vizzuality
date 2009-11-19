@@ -157,6 +157,8 @@
 				map.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
         		map.addEventListener(MapMouseEvent.MOUSE_DOWN,onClickMapArea);
         		map.addEventListener(MapMouseEvent.MOUSE_UP,onMouseUpMapArea);
+        		map.addEventListener(MouseEvent.ROLL_OVER, onMouseOverMap);
+        		map.addEventListener(MouseEvent.ROLL_OUT, onMouseOutMap);
         	} else {
         		map.enableDragging();
         		try {
@@ -169,14 +171,22 @@
 				map.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
         		map.removeEventListener(MapMouseEvent.MOUSE_DOWN,onClickMapArea);
         		map.removeEventListener(MapMouseEvent.MOUSE_UP,onMouseUpMapArea);
+        		map.removeEventListener(MouseEvent.ROLL_OVER, onMouseOverMap);
+        		map.removeEventListener(MouseEvent.ROLL_OUT, onMouseOutMap);
         	}
+        }
+        
+        private function onMouseOverMap(ev:MouseEvent):void {
+        	CursorManager.setCursor(Resource.CURSOR_RECTANGLE);
+        }
+        
+        private function onMouseOutMap(ev:MouseEvent):void {
+        	CursorManager.removeAllCursors();
         }
         
 
 		private function onMouseDown(e:MouseEvent):void {
-			
-			CursorManager.setCursor(Resource.CURSOR_RECTANGLE);
-			
+						
 			map.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 
 			r = new Rectangle(Number(e.stageX-(((stage.width-874)/2)+25)),Number(e.stageY-287) + (scrollPosition),0,0);
@@ -191,7 +201,6 @@
 		
 		private function onMouseUp(e:MouseEvent):void {
 			map.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-			CursorManager.removeAllCursors();
 			/* map.removeChild(selectionRectangle); */
 		}
 		
@@ -210,14 +219,14 @@
 	<mx:Canvas width="100%" height="400" styleName="softBlueUp" backgroundSize="100%" id="canvas_map">
 		<mx:Label text="Search and browse the WDPA throw the map"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10"/>
 		<mx:HBox left="10" right="10" top="34" horizontalAlign="right" verticalAlign="middle" horizontalGap="4">
-			<mx:CheckBox label="MAP AREA SELECT" click="checkSelectArea()" id="checkArea"/>
 			<mx:Label text="search"  fontFamily="Helvetica" fontSize="12" color="#666666" height="13"/>
 			<mx:TextInput id="search_text" text="Keyword, name, country..." 
 				focusIn="changeStyle()" focusOut="changeStyle()"
 				fontStyle="italic" paddingTop="5" paddingLeft="5" paddingRight="5" fontSize="11" 
 				fontFamily="Helvetica" color="#999999" width="341" styleName="searchTextInput" 
 				backgroundSize="100%" borderStyle="none" height="25"/>
-			<mx:Button  width="29" styleName="boundingBoxButton" height="25" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			<mx:Button id="checkArea"  width="29" styleName="boundingBoxButton" height="25" useHandCursor="true" 
+				toggle="true" mouseChildren="false" buttonMode="true" click="checkSelectArea()"/>
 		</mx:HBox>
 		
 		<maps:Map  left="10" bottom="10" right="10" id="map" height="326" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ"
