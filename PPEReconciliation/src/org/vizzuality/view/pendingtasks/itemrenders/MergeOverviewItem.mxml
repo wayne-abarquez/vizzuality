@@ -5,6 +5,12 @@
 		<![CDATA[
 			import resource.Resource;
 			
+			[Bindable] public var pending:Number;
+			[Bindable] public var type:String;
+			[Bindable] public var total:Number;
+			[Bindable] public var color:Number;
+			
+			
 			// HACER QUE LOS TEXTOS CAMBIEN DE COLOR DEPENDIENDO DEL ESTADO
 			// LOS COLORES SON:	
 				//VERDE: NUEVAS AREAS - 339900
@@ -14,7 +20,7 @@
 		]]>
 	</mx:Script>
 	<mx:Image y="9" source="{Resource.BLUE_BULLET}" left="12" width="14"/>
-	<mx:Label y="4" text="New Protected Areas (4)" color="#339900" fontWeight="bold" fontFamily="Helvetica" fontSize="12" left="17" right="21"/>
-	<mx:Label y="17" text="2 pending confirmation" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="11" left="17" right="21"/>
+	<mx:Label y="4" text="{type + ' Protected Areas ('+total+')'}" color="{color}" fontWeight="bold" fontFamily="Helvetica" fontSize="12" left="17" right="21"/>
+	<mx:Label y="17" text="{ pending+' pending confirmation'}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="11" left="17" right="21"/>
 	
 </mx:Canvas>

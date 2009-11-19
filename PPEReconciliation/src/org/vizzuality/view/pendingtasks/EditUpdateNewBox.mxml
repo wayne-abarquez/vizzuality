@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%">
+
+	<mx:Script>
+		<![CDATA[
+			import resource.Resource;
+			import org.vizzuality.model.ReviewProcess;
+			import org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable] public var total:Number;
+			[Bindable] public var dataAc:ArrayCollection;
+			[Bindable] public var page:Number;
+			[Bindable] public var totalPages:Number;
+			[Bindable] public var typeBox:String;
+			[Bindable] public var styleUp:String;
+			[Bindable] public var styleDown:String;
+			public var getNewData:Function;
+			
+			
+			public static function createRendererWithProperties(renderer:Class,properties:Object ):IFactory {
+			  var factory:ClassFactory = new ClassFactory(renderer); 
+			  factory.properties = properties;
+			  return factory;
+			}		
+			
+			
+			
+			
+		]]>
+	</mx:Script>
+
+	<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="{styleUp}">
+		<mx:Label text="{typeBox+' Protected Areas ('+total+')'}"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="369" left="10" top="10"/>
+		<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
+	</mx:Canvas>
+	
+	<mx:TileList width="100%" dataProvider="{dataAc}" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: ReviewProcess.CREATE})}" 
+		paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
+	
+	<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="{styleDown}">
+		<mx:HBox y="6" right="6" horizontalAlign="right" horizontalGap="3" verticalAlign="middle">
+			<mx:Label id="pagingDelInfo0" text="{'page '+page+' of '+totalPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
+
+			<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
+				width="27" height="24" click="getNewData(page-1)" enabled="{page>1}" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"  enabled="{page &lt; totalPages}"
+				width="27" height="24" click="getNewData(page+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
+
+		</mx:HBox>
+		<mx:HBox x="6" y="6" horizontalGap="4" verticalAlign="middle">
+			<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" 
+				icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+			<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
+				icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton"/>
+			<mx:Label id="pagingDelInfo4" text="You have selected 10 of 23,123." textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="normal" paddingTop="3"/>
+			<mx:Label id="pagingDelInfo5" text="Select all?" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3" paddingLeft="-4"/>
+		</mx:HBox>
+	</mx:Canvas>	
+	
+	<mx:Spacer height="10" />
+</mx:VBox>
