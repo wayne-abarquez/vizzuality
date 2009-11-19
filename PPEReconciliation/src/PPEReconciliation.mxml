@@ -45,6 +45,7 @@
 			private function login():void {
 				currentState="Loading";
 				var jsonReq:String = serverUrl + "/json.php/DumpServices.login/"+ usernameInput.text + "/"+passwordInput.text;
+				//var jsonReq:String = "http://10.0.1.3:3000/reconciliation/user_sessions";
 				var httpserv:HTTPService = new HTTPService();
 				httpserv.method="POST";
 				httpserv.addEventListener(ResultEvent.RESULT,loginResponse);
@@ -52,6 +53,8 @@
 				httpserv.resultFormat="text";
 				httpserv.url=jsonReq;
 				httpserv.send();
+				//httpserv.send({username:usernameInput.text,password:passwordInput.text});
+
 			}
 			
 			private function loginResponse(ev:ResultEvent):void {

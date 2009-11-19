@@ -13,9 +13,22 @@
 			private var timeAgo: ReturnTimeAgo = new ReturnTimeAgo();
 			[Bindable] private var bkg_color: uint;
 			
+			[Bindable] private var task:Task;
+			
 			override public function set data(value:Object):void {
             	if (value != null) {
 					super.data = value;
+					task = new Task();
+					task.code = value.code;
+					task.date = new Date(Date.parse(value.date));
+					task.description = value.description;
+					task.id = value.id;
+					task.numareas = value.numareas;
+					task.status = value.status;
+					task.statusPercen = value.statusPercen;
+					task.type = value.type;
+					task.what = value.what;
+					
 	                var ow:List = owner as List;
 					var dataIndex:int = ow.itemRendererToIndex(this);
 					var itsAmount:int = ow.columnCount*ow.rowCount;
@@ -26,6 +39,12 @@
 					} else {
 						bkg_color = 0xF5F5F5;
 					}
+					
+					
+					//change the button depending on what status the task is
+					
+					
+					
                 } 
             }
             
@@ -52,17 +71,17 @@
 	</mx:Script>
 	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0" backgroundColor="{bkg_color}">
 		<mx:HBox horizontalGap="0" top="5" left="11">
-			<mx:Label text="{data.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+			<mx:Label text="{task.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
-			<mx:Label text="{data.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
+			<mx:Label text="{task.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
 		</mx:HBox>
-		<mx:Label id="number" text="{data.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
+		<mx:Label id="number" text="{task.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
 		
-		<mx:Label text="{data.status}" color="{(data.status=='Commiting changes')?0xff6600:0xff3333}"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
-		<mx:Label id="percentage" text="{'(' + data.statusPercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="404" fontFamily="Helvetica"/>
+		<mx:Label text="{task.status}" color="{(task.status=='Commiting changes')?0xff6600:0xff3333}"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label id="percentage" text="{'(' + task.statusPercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="404" fontFamily="Helvetica"/>
 	
-		<mx:Label id="date" text="{getDate(data.date)}" color="#666666"  left="619" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
-		<mx:Label id="ago" text="{getAgo(data.date)}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="619" fontFamily="Helvetica"/>
+		<mx:Label id="date" text="{getDate(task.date.toString())}" color="#666666"  left="619" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label id="ago" text="{getAgo(task.date.toString())}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="619" fontFamily="Helvetica"/>
 		
 		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
 	</mx:Canvas>
@@ -73,12 +92,12 @@
 		cornerRadius="2" visible="false" alpha="0"  >
 		
 		<mx:HBox horizontalGap="0" top="5" left="8">
-			<mx:Label text="{data.what}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+			<mx:Label text="{task.what}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 			<mx:Label text="-" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
-			<mx:Label text="{data.description}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>
+			<mx:Label text="{task.description}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>
 			<mx:Label text="(re-download) " color="#FFFFFF" fontFamily="Helvetica" fontSize="12"/>	
 		</mx:HBox>
-		<mx:Label text="{data.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="21" left="8"/>
+		<mx:Label text="{task.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="21" left="8"/>
 		
 		<mx:Label text="{data.status}" color="#FFFFFF"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
 		<mx:Label text="{'(' + data.statusPercen + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="404" fontFamily="Helvetica"/>
