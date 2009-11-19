@@ -17,6 +17,11 @@ package org.vizzuality.components
 			this.verticalScrollPolicy = "off";
 		}
 		
+		public function get renderers():Array
+        {
+            return mx_internal::rendererArray;
+        }
+		
 		protected var contentHeight:int = 0;
 		
 		protected function getMeasuredHeight( maxHeight:int ):Number 
