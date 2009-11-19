@@ -9,6 +9,7 @@ package org.vizzuality.events
 	{
 		public static const SELECTED_TASK:String = "selectedTask";
 		public static const SELECTED_PA_FOR_REVIEW:String = "selectedPaForReview";
+		public static const SELECTED_PA_FOR_ERRORS:String = "selectedPaForErrors";
 		public static const PA_CONFIRMED:String = "paConfirmed";
 		public static const PA_REJECTED:String = "paRejected";
 		public var task:Task;

@@ -3,6 +3,8 @@
 	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)" >
 	<mx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
+			import gs.TweenLite;
 			import mx.controls.List;
 			import org.vizzuality.components.ReturnTimeAgo;
 			import org.vizzuality.model.Task;
@@ -14,6 +16,10 @@
 			[Bindable] private var bkg_color: uint;
 			
 			[Bindable] private var task:Task;
+			
+			[Bindable] private var taskColor:Number;
+			
+			private var mustRollOver:Boolean=true;
 			
 			override public function set data(value:Object):void {
             	if (value != null) {
@@ -42,19 +48,107 @@
 					
 					
 					//change the button depending on what status the task is
-					
+					switch(task.status) {
+						case Task.PREPARING_DOWNLOAD:
+							actionButton.visible=false;
+							cancelButton.visible=false;
+							mustRollOver=false;
+							taskColor=0xff9900;
+							break;
+						case Task.WAITING_FOR_DOWNLOAD:
+							actionButton.visible=true;
+							cancelButton.visible=true;
+							actionButton.addEventListener(MouseEvent.CLICK,waitingForDownloadClicked,false,0,true);
+							actionButton.label = "DOWNLOAD";
+							taskColor=0xff9900;
+							break;
+						case Task.WAITING_FOR_UPLOAD:
+							actionButton.visible=true;
+							cancelButton.visible=true;
+							actionButton.addEventListener(MouseEvent.CLICK,waitingForUploadClicked,false,0,true);
+							actionButton.label = "UPLOAD";
+							taskColor=0xff9900;
+							break;
+						case Task.UPLOAD_PROCESSING:
+							actionButton.visible=false;
+							cancelButton.visible=false;
+							mustRollOver=false;
+							actionButton.label = "";
+							taskColor=0xff9900;
+							break;
+						case Task.ERROR_IN_DATA:
+							actionButton.visible=true;
+							cancelButton.visible=true;
+							actionButton.addEventListener(MouseEvent.CLICK,errorInDataClicked,false,0,true);
+							actionButton.label = "REVIEW";
+							taskColor=0xff3300;
+							break;
+						case Task.REVIEW_STARTED:
+							actionButton.visible=true;
+							cancelButton.visible=true;
+							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
+							actionButton.label = "CONTINUE";
+							taskColor=0x339900;
+							break;
+						case Task.REVIEW_PROCESSING:
+							actionButton.visible=false;
+							cancelButton.visible=false;
+							mustRollOver=false;
+							actionButton.label = "";
+							taskColor=0xff9900;
+							break;
+						case Task.TASK_FINISHED:
+							actionButton.visible=false;
+							cancelButton.visible=false;
+							mustRollOver=false;
+							actionButton.label = "";
+							taskColor=0x339900;
+							break;
+					}
 					
 					
                 } 
             }
             
+            private function waitingForDownloadClicked(event:Event):void {
+            	//Do a download.
+            	navigateToURL(new URLRequest("http://localhost/shapefile.shp"),"_blank");
+            	
+            	//After 10 seconds change the status
+            	TweenLite.delayedCall(2,changeStatusAfterDownload,null);
+            }
+            private function changeStatusAfterDownload(params:Object=null):void {
+            	task.status = Task.WAITING_FOR_UPLOAD;
+				actionButton.visible=true;
+				cancelButton.visible=true;
+				actionButton.addEventListener(MouseEvent.CLICK,waitingForUploadClicked,false,0,true);
+				actionButton.label = "UPLOAD";
+				taskColor=0xff9900;            	
+            }
+            private function waitingForUploadClicked(event:Event):void {
+            	
+            }
+            private function errorInDataClicked(event:Event):void {
+            	MyEventDispatcher.selectTaskForErrors(task);            	
+            }
+            private function reviewStartedClicked(event:Event):void {
+            	MyEventDispatcher.selectTaskForOverview(task);
+            }
+            
+
+
+
 			
  			private function handleOver(e:MouseEvent):void{
-				TweenMax.to(overCanvas, .3, {autoAlpha:1});
+ 				if(mustRollOver) {
+					TweenMax.to(overCanvas, .3, {autoAlpha:1});
+ 				}
 			}
 			
 			private function handleOut(e:MouseEvent):void{
-				TweenMax.to(overCanvas, .3, {autoAlpha:0});
+ 				if(mustRollOver) {
+					TweenMax.to(overCanvas, .3, {autoAlpha:0});
+ 				}
 			} 		
 			
 			private function getDate (str:String):String {
@@ -77,7 +171,7 @@
 		</mx:HBox>
 		<mx:Label id="number" text="{task.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
 		
-		<mx:Label text="{task.status}" color="{(task.status=='Commiting changes')?0xff6600:0xff3333}"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label text="{task.status}" color="{taskColor}"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
 		<mx:Label id="percentage" text="{'(' + task.statusPercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="404" fontFamily="Helvetica"/>
 	
 		<mx:Label id="date" text="{getDate(task.date.toString())}" color="#666666"  left="619" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
@@ -99,16 +193,16 @@
 		</mx:HBox>
 		<mx:Label text="{task.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="21" left="8"/>
 		
-		<mx:Label text="{data.status}" color="#FFFFFF"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
-		<mx:Label text="{'(' + data.statusPercen + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="404" fontFamily="Helvetica"/>
+		<mx:Label text="{task.status}" color="#FFFFFF"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label text="{'(' + task.statusPercen + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="404" fontFamily="Helvetica"/>
 	
 		<mx:Label text="{date.text}" color="#FFFFFF"  left="619" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold" width="116" textAlign="left"/>
 		<mx:Label text="{ago.text}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="619" fontFamily="Helvetica"/>
 		
 			
-		<components:ShadowButton label="x" styleName="redButton" top="4" right="5" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
+		<components:ShadowButton id="cancelButton" label="x" styleName="redButton" top="4" right="5" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
 		mouseChildren="false" buttonMode="true" useHandCursor="true" />
-		<components:ShadowButton label="CONTINUE" styleName="greenButton" click="MyEventDispatcher.selectTaskForOverview(data as Task)"
+		<components:ShadowButton id="actionButton" label="CONTINUE" styleName="greenButton"
 			top="4" right="24" fontSize="10" paddingRight="2" paddingLeft="2" paddingTop="3" paddingBottom="3" height="18" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" />
 	</mx:Canvas>

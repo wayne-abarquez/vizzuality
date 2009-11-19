@@ -23,6 +23,7 @@
 				currentState="Overview";
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_TASK,onTaskSelected);
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,onPaSelected);
+				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_PA_FOR_ERRORS,onPaSelected);
 			}
 			
 			private function onTaskSelected(ev:TaskSelectionEvent):void {
@@ -38,6 +39,12 @@
 				attributeReview.pa = ev.pa;
 				
 			}
+			
+			private function onPaErrorsSelected(ev:TaskSelectionEvent):void {
+				currentState='Errors';
+				selectedPa=ev.pa;
+				
+			}		
 		
 			private function initSWFAddress():void {
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
