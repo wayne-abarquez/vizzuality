@@ -32,8 +32,9 @@
             }
 			
 			private function handleOver(e:MouseEvent):void{
-				if (!addedItem)
+				if (!addedItem){
 					TweenMax.to(overCanvas, .3, {autoAlpha:1});
+				}
 			}
 			
 			private function handleOut(e:MouseEvent):void{
@@ -42,6 +43,7 @@
 			
 			private function onAddedClick():void {
 				MyEventDispatcher.selectCountryForDownload(data as Country);
+				TweenMax.to(overCanvas, .2, {autoAlpha:0});
 				addedItem = true;
 			}	
 			
@@ -52,6 +54,8 @@
 	<mx:Canvas left="5" right="5" top="0" bottom="0" id="mamufas">
 		<mx:Label id="area" x="2" y="7" text="{data.name}" color="{(addedItem)?0xdddddd:0x666666}" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 		<mx:Label id="country" x="2" y="22" text="{data.numareas}" color="{(addedItem)?0xddddddd:0x999999}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
+		<mx:Label id="addedLabel" x="152" y="22" text="added" color="#339900"
+			visible="{addedItem}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
 		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
 	</mx:Canvas>
 

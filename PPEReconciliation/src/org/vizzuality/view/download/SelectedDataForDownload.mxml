@@ -28,9 +28,8 @@
 			var pos:Number =checkIfCountryOnSelected(event.selectedCountry)
 			
 			if (!isNaN(pos))
+			
 				selectedCountries.removeItemAt(pos);
-			
-			
 			
 		}
 		
