@@ -67,6 +67,7 @@ class DumpServices {
 			$del['id'] = $i;
 			$del['name'] = "PA-". $i;
 			$del['country'] = "United States";
+			$new['status'] = "";
 			$deleted[]=$del;
 		}
 		$resul=array();	
@@ -75,13 +76,14 @@ class DumpServices {
 		return $resul;
 	}
 	function getTaskNewPas($code,$p) {
-		
+		//return array();
 		$news=array();
 		for($i=9;$i<16;$i++) {
 			$new=array();
 			$new['id'] = $i;
 			$new['name'] = "PA-". $i;
 			$new['country'] = "United States";
+			$new['status'] = "";
 			$news[]=$new;
 		}	
 		$resul=array();	
@@ -97,6 +99,7 @@ class DumpServices {
 			$up['id'] = $i;
 			$up['name'] = "PA-". $i;
 			$up['country'] = "United States";
+			$new['status'] = "";
 			$updates[]=$up;
 		}		
 		$resul['results'] = $updates;

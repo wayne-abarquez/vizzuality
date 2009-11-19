@@ -32,16 +32,19 @@ package org.vizzuality.model
 				case DELETE:
 					if(!checkIfPaInAc(pa,pasDeletedReviewed)) {
 						pasDeletedReviewed.addItem({pa:pa,status:status});
+						pendingDeletedToReview--;
 					}
 					break;
 				case UPDATE:
 					if(!checkIfPaInAc(pa,pasEditedReviewed)) {
 						pasEditedReviewed.addItem({pa:pa,status:status});
+						pendingEditedToReview--;
 					}
 					break;
 				case CREATE:
 					if(!checkIfPaInAc(pa,pasNewReviewed)) {
 						pasNewReviewed.addItem({pa:pa,status:status});
+						pendingNewToReview--;
 					}
 					break;
 			}
