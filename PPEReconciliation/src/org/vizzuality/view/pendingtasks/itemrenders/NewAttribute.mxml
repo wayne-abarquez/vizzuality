@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" verticalGap="-2" paddingBottom="3">
 	<mx:Script>
 		<![CDATA[
 			[Bindable] public var attName:String;
@@ -7,9 +7,10 @@
 		]]>
 	</mx:Script>
 	<mx:HRule height="1" width="100%"/>
+	<mx:Spacer height="10" />
 	<mx:HBox>
 		<mx:Spacer width="12" />
-		<mx:Label text="{attName}" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10"/>
+		<mx:Label text="{attName.toUpperCase()}" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10"/>
 	</mx:HBox>
 	<mx:HBox>
 		<mx:Spacer width="12" />
