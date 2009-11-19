@@ -2,7 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:ns1="org.vizzuality.view.*" horizontalScrollPolicy="off" 
 	backgroundColor="#dddddd" backgroundGradientColors="[#dddddd]"
     applicationComplete="initSWFAddress()"
-    currentStateChange="setSWFAddress()" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*">
+    currentStateChange="setSWFAddress()" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" xmlns:components="org.vizzuality.components.*">
 	
 	<mx:Script>
 		<![CDATA[
@@ -95,7 +95,9 @@
 						<mx:Label y="112.1" text="PASWORD" fontFamily="Helvetica" fontSize="9" fontWeight="bold" color="#666666" textAlign="right" left="15"/>
 						<mx:Label text="USERNAME" fontFamily="Helvetica" fontSize="9" fontWeight="bold" color="#666666" textAlign="right" y="84.1" left="15"/>
 					</mx:Canvas>
-					<mx:Label text="do you need help?" fontFamily="Helvetica" fontSize="12" color="#336699" fontWeight="bold" x="189" y="192"/>
+					<components:LinkLabel text="do you need help?" fontFamily="Helvetica" fontSize="12" color="#336699" fontWeight="bold" x="189" y="192" 
+						url="http://www.vizzuality.com" target="_blank" default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" 
+						text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:SetProperty target="{footer1}" name="visible" value="false"/>

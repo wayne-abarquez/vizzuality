@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="684" 
 	styleName="dataDownloadContainer" backgroundSize="100%" 
-	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()">
+	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
 			import org.vizzuality.model.Task;
@@ -86,7 +86,12 @@
 		<mx:Canvas width="100%" height="66" styleName="ContainersInfo">	
 			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP4}"/>
 			<mx:Label text="Download new data"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
-			<mx:Label x="65" y="34" text="Use our search tools to get some new data, and stat a new proccess" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
+			<mx:HBox id="hbox1" x="65" y="34"  horizontalGap="0" width="542">
+				<mx:Label  text="Use our" fontSize="12" fontFamily="Helvetica" color="#414141"/>
+				<components:LinkLabel text="search tools"  fontSize="12" fontFamily="Helvetica" color="#336699" fontWeight="bold"
+				default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
+				<mx:Label text="to get some new data, and stat a new proccess"  fontSize="12" fontFamily="Helvetica" color="#414141"/>
+			</mx:HBox>
 		</mx:Canvas>
     </mx:VBox>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" />

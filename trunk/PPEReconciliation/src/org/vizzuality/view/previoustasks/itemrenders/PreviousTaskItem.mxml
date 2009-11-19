@@ -10,6 +10,24 @@
 			import com.asual.swfaddress.SWFAddress;
 			import gs.TweenMax;
 			
+			[Bindable] private var bkg_color: uint;
+			
+			override public function set data(value:Object):void {
+            	if (value != null) {
+					super.data = value;
+	                var ow:List = owner as List;
+					var dataIndex:int = ow.itemRendererToIndex(this);
+					var itsAmount:int = ow.columnCount*ow.rowCount;
+					var rendererPosition:int = dataIndex%itsAmount;
+
+					if ((rendererPosition % 2) == 0) {
+						bkg_color = 0xFFFFFF ;
+					} else {
+						bkg_color = 0xF5F5F5;
+					}
+                } 
+            }
+			
 			private var timeAgo: ReturnTimeAgo = new ReturnTimeAgo();		
 			
 			private function getDate (str:String):String {
@@ -20,9 +38,11 @@
 				return timeAgo.returnTimeAgo(str);
 			}
 			
+			
+			
 		]]>
 	</mx:Script>
-	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0">
+	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0" backgroundColor="{bkg_color}">
 		<mx:HBox horizontalGap="0" top="5" left="11">
 			<mx:Label text="{data.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="844" height="43" backgroundColor="#FFFFFF" horizontalScrollPolicy="off" verticalScrollPolicy="off"
-	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)" creationComplete="init()">
+	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)" >
 	<mx:Script>
 		<![CDATA[
 			import mx.controls.List;
@@ -11,6 +11,24 @@
 			import gs.TweenMax;
 			
 			private var timeAgo: ReturnTimeAgo = new ReturnTimeAgo();
+			[Bindable] private var bkg_color: uint;
+			
+			override public function set data(value:Object):void {
+            	if (value != null) {
+					super.data = value;
+	                var ow:List = owner as List;
+					var dataIndex:int = ow.itemRendererToIndex(this);
+					var itsAmount:int = ow.columnCount*ow.rowCount;
+					var rendererPosition:int = dataIndex%itsAmount;
+
+					if ((rendererPosition % 2) == 0) {
+						bkg_color = 0xFFFFFF ;
+					} else {
+						bkg_color = 0xF5F5F5;
+					}
+                } 
+            }
+            
 			
  			private function handleOver(e:MouseEvent):void{
 				TweenMax.to(overCanvas, .3, {autoAlpha:1});
@@ -28,21 +46,11 @@
 				return timeAgo.returnTimeAgo(str);
 			}
 			
-			private function init():void {
-				var ow:List = owner as List;
-				var dataIndex:int = ow.itemRendererToIndex(this);
-				var itsAmount:int = ow.columnCount*ow.rowCount;
-				var rendererPosition:int = dataIndex%itsAmount;
-				
-				if ((rendererPosition % 2) == 0) {
-					mamufas.setStyle('backgroundColor','0xFFFFFF');
-				} else {
-					mamufas.setStyle('backgroundColor','0xF5F5F5');
-				}
-			}
+
+			
 		]]>
 	</mx:Script>
-	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0">
+	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0" backgroundColor="{bkg_color}">
 		<mx:HBox horizontalGap="0" top="5" left="11">
 			<mx:Label text="{data.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
