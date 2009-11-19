@@ -9,7 +9,7 @@
 			import mx.collections.ArrayCollection;
 			
 			[Bindable] public var total:Number;
-			[Bindable] public var dataAc:ArrayCollection;
+			private var _dataAc:ArrayCollection;
 			[Bindable] public var page:Number;
 			[Bindable] public var totalPages:Number;
 			[Bindable] public var typeBox:String;
@@ -20,12 +20,27 @@
 			public var getNewData:Function;
 			
 			
-			
 			public static function createRendererWithProperties(renderer:Class,properties:Object ):IFactory {
 			  var factory:ClassFactory = new ClassFactory(renderer); 
 			  factory.properties = properties;
 			  return factory;
 			}		
+			
+			public function set dataAc(d:ArrayCollection):void{
+				this._dataAc = d;
+				itemList.dataProvider = d;
+				calculateHeight();
+			}
+			
+			private function calculateHeight():void{
+				trace(((this.itemList.dataProvider) as ArrayCollection).length);
+				trace(((this.itemList.dataProvider) as ArrayCollection).length / 3);
+				if((((this.itemList.dataProvider) as ArrayCollection).length % 3) ==0){
+					this.itemList.height = Math.floor(((this.itemList.dataProvider) as ArrayCollection).length / 3) * 43;  
+				}else{
+					this.itemList.height = (Math.floor(((this.itemList.dataProvider) as ArrayCollection).length / 3) + 1) * 43;
+				}
+			}
 			
 		]]>
 	</mx:Script>
@@ -35,7 +50,7 @@
 		<mx:Label text="{pendingItems + ' waiting for confirmation'}"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 	</mx:Canvas>
 	
-	<mx:TileList width="100%" dataProvider="{dataAc}" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: mode})}" 
+	<mx:TileList id="itemList" width="100%" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: mode})}" 
 		paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 	
 	<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="{styleDown}">
