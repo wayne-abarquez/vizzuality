@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="628" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" 
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
 	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" 
 	xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*"
-	 creationComplete="init()" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*">
+	 creationComplete="init()" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" height="100%">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:RemoveChild target="{headPa}"/>
+			<mx:RemoveChild target="{reviewPa}"/>
+		</mx:State>
+	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.view.pendingtasks.itemrenders.NewAttribute;
+			import org.vizzuality.view.pendingtasks.itemrenders.headAttribute;
+			import com.adobe.serialization.json.JSON;
+			import mx.rpc.events.ResultEvent;
+			import mx.core.Application;
 			import com.asual.swfaddress.SWFAddress;
 			import org.vizzuality.events.TaskSelectionEvent;
 			import org.vizzuality.events.MyEventDispatcher;
@@ -15,10 +26,18 @@
 			
 			private var _pa:Pa;
 			
+			private var originalPa:Pa;
+			private var newPa:Pa;
+			
 			[Bindable] public var task:Task;
 			
 			public function set pa(val:Pa):void {
 				_pa=val;
+				currentState="loading";
+				//Get the data for the pa
+				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getPaAttributesComparision/"+task.code+"/"+_pa.id;
+				jsonService.send();				
+				
 			}
 			public function get pa():Pa {
 				return _pa;
@@ -26,6 +45,39 @@
 			
 			private function init():void {
 				//MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,on
+			}
+			
+			private function onGetPaAttributesComparisionResult(event:ResultEvent):void {
+				var res:Object = JSON.decode(event.result as String);
+				originalPa=new Pa();
+				originalPa.country=res.originalPa.country;
+				originalPa.id = res.originalPa.id;
+				originalPa.name = res.originalPa.name;
+				//the rest of the stuff is flexible
+				originalPa.data = res.originalPa;
+				
+				//headAttributes
+				for (var prop:String in originalPa.data) {
+					var ha:headAttribute = new headAttribute();
+					ha.attName=prop;
+					ha.attValue=originalPa.data[prop];
+					headAttributes.addChildAt(ha,0);
+				}
+				
+				newPa=new Pa();
+				newPa.country=res.newPa.country;
+				newPa.id = res.newPa.id;
+				newPa.name = res.newPa.name;
+				//the rest of the stuff is flexible
+				newPa.data = res.newPa;				
+				for (var prop2:String in newPa.data) {
+					var na:NewAttribute = new NewAttribute();
+					na.attName=prop2;
+					na.attValue=newPa.data[prop2];
+					newAttributes.addChildAt(na,0);
+				}
+				
+				currentState="";
 			}
 			
 			
@@ -48,9 +100,45 @@
     
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="0" top="62" bottom="10">
 	    <mx:VBox left="15" right="15" top="15" bottom="15">
-	    	<mx:HBox horizontalGap="0" height="454" width="100%">
-	    		<pendingtasks:PaReviewBox id="headPa" backgroundColor="#FFFFE5" borderColor="#E9E9E9" width="100%"/>
-	    		<pendingtasks:PaWhiteReviewBox id="reviewPa" backgroundColor="#FFFFFF" width="100%"/>				
+	    	<mx:HBox horizontalGap="0" width="100%">
+	    		<mx:Canvas width="300" 
+	    			id="headPa" backgroundColor="#FFFFE5" borderColor="#E9E9E9"
+	    			borderStyle="solid" cornerRadius="4">
+					<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="14">
+						<mx:Label text="Head version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
+						<mx:Label text="(09/11/2009)"  fontFamily="Helvetica" fontStyle="normal" fontSize="13" fontWeight="bold" color="#666666"  height="21"/>
+					</mx:HBox>
+					<mx:HRule height="1" left="15" right="0" top="63"/>
+					<mx:Label y="69" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="17"/>
+					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="85" height="218" left="20" right="17">
+						<maps:Map  id="map1" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
+				
+					</mx:Canvas>
+					<mx:VBox id="headAttributes" x="20" y="335" width="278">				
+						<mx:HRule height="1" width="100%"/>
+					</mx:VBox>
+				</mx:Canvas>
+				<mx:Canvas id="reviewPa" backgroundColor="#FFFFFF"
+					width="300" borderStyle="solid" cornerRadius="4" borderColor="#E9E9E9">
+					<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="15">
+						<mx:Label text="Your version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
+					</mx:HBox>
+					<mx:HRule height="1" left="0" right="0" top="64"/>
+					<mx:Label y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
+					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
+						<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
+				
+					</mx:Canvas>
+					<mx:VBox  id="newAttributes" x="0" y="336" width="298">
+						<itemrenders:NewAttribute attName="attName" attValue="val"/>
+						<itemrenders:NewAttribute attName="attName" attValue="val" />
+						<itemrenders:NewAttribute attName="attName" attValue="val" />
+						<itemrenders:NewAttribute attName="attName" attValue="val" />
+						<itemrenders:NewAttribute attName="attName" attValue="val" />
+						<itemrenders:NewAttribute attName="attName" attValue="val" />
+						<mx:HRule height="1" width="100%"/>
+					</mx:VBox>
+				</mx:Canvas>						
 	    	</mx:HBox>
 		    <mx:HBox horizontalGap="4" bottom="0" verticalAlign="bottom" width="100%" horizontalAlign="right">
 				<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
@@ -79,5 +167,6 @@
 			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
 	</mx:HBox>
 	<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" x="732" y="16"/>
-
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="onGetPaAttributesComparisionResult(event)" fault="trace(event.fault)" />
+	
 </mx:Canvas>

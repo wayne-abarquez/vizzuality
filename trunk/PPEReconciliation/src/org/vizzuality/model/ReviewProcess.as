@@ -28,35 +28,41 @@ package org.vizzuality.model
 	
 	
 		public function addPa(mode:String,pa:Pa,status:String):void {
+			var pasPos:Number =checkIfPaInAc(pa,pasDeletedReviewed);
+			
 			switch(mode) {
 				case DELETE:
-					if(!checkIfPaInAc(pa,pasDeletedReviewed)) {
-						pasDeletedReviewed.addItem({pa:pa,status:status});
+					if(pasPos<0) {
+						pasDeletedReviewed.addItem(pa);
 						pendingDeletedToReview--;
 					}
 					break;
 				case UPDATE:
-					if(!checkIfPaInAc(pa,pasEditedReviewed)) {
-						pasEditedReviewed.addItem({pa:pa,status:status});
+					if(pasPos<0) {
+						pasEditedReviewed.addItem(pa);
 						pendingEditedToReview--;
 					}
 					break;
 				case CREATE:
-					if(!checkIfPaInAc(pa,pasNewReviewed)) {
-						pasNewReviewed.addItem({pa:pa,status:status});
+					if(pasPos<0) {
+						pasNewReviewed.addItem(pa);
 						pendingNewToReview--;
+					} else {
+						
 					}
 					break;
 			}
 		}
 		
-		private function checkIfPaInAc(pa:Pa,ac:ArrayCollection):Boolean {
-			for each(var item:Object in ac) {
-				if((item.pa as Pa).id == pa.id) {
-					return true;
+		private function checkIfPaInAc(pa:Pa,ac:ArrayCollection):Number {
+			var i:Number=0;
+			for each(var item:Pa in ac) {
+				if(item.id == pa.id) {
+					return i;
 				}
+				i++;
 			}
-			return false;	
+			return -1;	
 		}
 		
 		

@@ -13,6 +13,7 @@
 			[Bindable] public var page:Number;
 			[Bindable] public var totalPages:Number;
 			[Bindable] public var typeBox:String;
+			[Bindable] public var mode:String;			
 			[Bindable] public var styleUp:String;
 			[Bindable] public var styleDown:String;
 			public var getNewData:Function;
@@ -32,7 +33,7 @@
 		<mx:Label text="1 waiting for confirmation"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14"/>
 	</mx:Canvas>
 	
-	<mx:TileList width="100%" dataProvider="{dataAc}" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: ReviewProcess.CREATE})}" 
+	<mx:TileList width="100%" dataProvider="{dataAc}" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: mode})}" 
 		paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 	
 	<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="{styleDown}">

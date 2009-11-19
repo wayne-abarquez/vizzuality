@@ -107,6 +107,74 @@ class DumpServices {
 		return $resul;
 	}
 	
+	function commitChanges($taskCode,$deleted,$added,$removed) {
+		
+		error_log(print_r($deleted,true));
+		error_log(print_r($added,true));
+		error_log(print_r($removed,true));
+		
+		return "great!";
+	}
+	
+	function getPaAttributesComparision($taskCode,$paId) {
+		
+		
+		$originalPa=array();
+		
+		//mandatory to stay with this naame
+		$originalPa['id']="213";
+		$originalPa['country']="Spain";
+		$originalPa['name']="Donana";
+		$originalPa['geom']= "[[[[130.74986,-25.16335],[130.74999,-25.26666],[130.75002,-25.26666],[130.83337,-25.26665],[130.92921,-25.26668],[130.92924,-25.26857],[131.00841,-25.26841],[131.00837,-25.26667],[131.08337,-25.26667],[131.1667,-25.26666],[131.25002,-25.26665],[131.33338,-25.26666],[131.37059,-25.26666],[131.37058,-25.33332],[131.37059,-25.41667],[131.33336,-25.41667],[131.25003,-25.41667],[131.16669,-25.41667],[131.08337,-25.41665],[131.00003,-25.41665],[130.91668,-25.41665],[130.83337,-25.41667],[130.75004,-25.41665],[130.66668,-25.41666],[130.66671,-25.33333],[130.66669,-25.08167],[130.75002,-25.12334],[130.74986,-25.16335]]]]";
+		
+		//Flexible
+		$originalPa['Local name']="asdasd";
+		$originalPa['WDPA code']="asd";
+		$originalPa['Total area']="213";
+		$originalPa['Total area marine']="213123";
+		$originalPa['Status date']="213132";
+		$originalPa['Valid from']="123132";
+		$originalPa['Countries']="123312";
+		$originalPa['Designation']="123321";
+		$originalPa['IUCN Category']="II";
+		$originalPa['Legal status']="qweqwe";
+		$originalPa['Legally reclassified']="asdasdasd";
+		$originalPa['Legally reduced']="fghfgh";
+		$originalPa['Legally extended']="xcvxcv";
+		$originalPa['Citation']="fredfs sd f";
+		$originalPa['Author']="sdf fff";
+
+
+		//mandatory to stay with this naame
+		$newPa=array();
+		$newPa['id']="213";
+		$newPa['country']="Spain";
+		$newPa['name']="Donana";
+		$newPa['geom']= "[[[[130.74986,-25.16335],[130.74999,-25.26666],[130.75002,-25.26666],[130.83337,-25.26665],[130.92921,-25.26668],[130.92924,-25.26857],[131.00841,-25.26841],[131.00837,-25.26667],[131.08337,-25.26667],[131.1667,-25.26666],[131.25002,-25.26665],[131.33338,-25.26666],[131.37059,-25.26666],[131.37058,-25.33332],[131.37059,-25.41667],[131.33336,-25.41667],[131.25003,-25.41667],[131.16669,-25.41667],[131.08337,-25.41665],[131.00003,-25.41665],[130.91668,-25.41665],[130.83337,-25.41667],[130.75004,-25.41665],[130.66668,-25.41666],[130.66671,-25.33333],[130.66669,-25.08167],[130.75002,-25.12334],[130.74986,-25.16335]]]]";		
+
+		//Flexible
+		$newPa['Local name']="asdasd";
+		$newPa['WDPA code']="asd";
+		$newPa['Total area']="213";
+		$newPa['Total area marine']="213123";
+		$newPa['Status date']="213132";
+		$newPa['Valid from']="123132";
+		$newPa['Countries']="123312";
+		$newPa['Designation']="123321";
+		$newPa['IUCN Category']="II";
+		$newPa['Legal status']="qweqwe";
+		$newPa['Legally reclassified']="asdasdasd";
+		$newPa['Legally reduced']="fghfgh";
+		$newPa['Legally extended']="xcvxcv";
+		$newPa['Citation']="fredfs sd f";
+		$newPa['Author']="sdf fff";
+		
+		$res=array();
+		$res['originalPa']=$originalPa;
+		$res['newPa']=$newPa;
+		return $res;
+	}
+	
 	
 }
 ?>

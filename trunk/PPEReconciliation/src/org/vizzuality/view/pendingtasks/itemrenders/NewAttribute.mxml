@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%">
+	<mx:Script>
+		<![CDATA[
+			[Bindable] public var attName:String;
+			[Bindable] public var attValue:String;
+		]]>
+	</mx:Script>
+	<mx:HRule height="1" width="100%"/>
+	<mx:HBox>
+		<mx:Spacer width="12" />
+		<mx:Label text="{attName}" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10"/>
+	</mx:HBox>
+	<mx:HBox>
+		<mx:Spacer width="12" />
+		<mx:Label text="{attValue}" color="#333333" fontFamily="Helvetica" fontWeight="normal" fontSize="12"/>
+	</mx:HBox>
+</mx:VBox>
