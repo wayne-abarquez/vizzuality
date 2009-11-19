@@ -78,7 +78,7 @@
 			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP4}"/>
 			<mx:Label text="Retry your download"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
 			<mx:Label x="65" y="34" text="Have you already changed your data? Then upload it" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-			<mx:Button right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			<components:ShadowButton right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>
     </mx:VBox>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" />
