@@ -201,13 +201,13 @@
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10">
 		<mx:VBox left="15" right="15" top="15">
 			<pendingtasks:EditUpdateNewBox id="deletedBox" includeInLayout="{deleted.length>0}" visible="{deleted.length>0}" 
-				getNewData="{getTaskDeletions}" total="{totalDeleted}" totalPages="{totalDelPages}"
+				getNewData="{getTaskDeletions}" total="{totalDeleted}" totalPages="{totalDelPages}" pendingItems="{review.pendingDeletedToReview}"
 				typeBox="Deleted" mode="{ReviewProcess.DELETE}" page="{delPage}" dataAc="{deleted}" styleUp="softRedUp" styleDown="softRedBottom" />
 			<pendingtasks:EditUpdateNewBox id="newBox"  includeInLayout="{news.length>0}" visible="{news.length>0}"
-				getNewData="{getTaskNewPas}" total="{totalNew}" totalPages="{totalNewPages}"
+				getNewData="{getTaskNewPas}" total="{totalNew}" totalPages="{totalNewPages}"  pendingItems="{review.pendingNewToReview}"
 				typeBox="New" mode="{ReviewProcess.CREATE}" page="{newPage}" dataAc="{news}" styleUp="softGreenUp" styleDown="softGreenBottom" />
 			<pendingtasks:EditUpdateNewBox id="updatedBox"  includeInLayout="{updates.length>0}" visible="{updates.length>0}"
-				getNewData="{getTaskUpdates}" total="{totalUpdated}" totalPages="{totalUpdatesPages}"
+				getNewData="{getTaskUpdates}" total="{totalUpdated}" totalPages="{totalUpdatesPages}" pendingItems="{review.pendingEditedToReview}"
 				typeBox="Modified" mode="{ReviewProcess.UPDATE}" page="{updatePage}" dataAc="{updates}" styleUp="softBlueUp" styleDown="softBlueBottom"  />
 
 	    </mx:VBox>

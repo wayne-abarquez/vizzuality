@@ -16,6 +16,7 @@
 			private var totalTasks:Number=0;
 			[Bindable] private var page:Number=1;
 			[Bindable] private var totalPages:Number=1;
+			[Bindable] public var warningMessage:String = "We are proccessing your data upload, please wait a few minutes";
 			
 			[Bindable]private var pendingTasks: ArrayCollection = new ArrayCollection();
 			
@@ -49,6 +50,12 @@
 				totalPages = Math.ceil(totalTasks/8);		
 				
 			}
+			
+			public static function createRendererWithProperties(renderer:Class,properties:Object ):IFactory {
+			  var factory:ClassFactory = new ClassFactory(renderer); 
+			  factory.properties = properties;
+			  return factory;
+			}	
 
 		]]>
 	</mx:Script>
@@ -61,8 +68,8 @@
 
     <mx:VBox left="0" right="0" top="62" backgroundColor="#FFFFFF" paddingLeft="14" paddingRight="15" bottom="0" paddingTop="15">
 		
-		<mx:Canvas styleName="softYellow" width="100%" height="30" backgroundSize="100%">
-			<mx:Label x="27" y="10" text="We are proccessing your data upload, please wait a few minutes" fontFamily="Helvetica" fontWeight="bold" fontSize="11" color="#666666"/>
+		<mx:Canvas id="messageBox" includeInLayout="{warningMessage.length>0}" visible="{warningMessage.length>0}" styleName="softYellow" width="100%" height="30" backgroundSize="100%">
+			<mx:Label x="27" y="10" text="{warningMessage}" fontFamily="Helvetica" fontWeight="bold" fontSize="11" color="#666666"/>
 			<mx:Image x="9" y="7" source="{Resource.CLOCK_EXCLAMATION_ICON}"/>
 			
 		</mx:Canvas>		
