@@ -159,6 +159,11 @@
 				return timeAgo.returnTimeAgo(str);
 			}
 			
+			private function removeItemClick(ev:MouseEvent):void {
+				
+				MyEventDispatcher.deletePendingTask(ev.stageX-70,ev.stageY-80);
+			}
+			
 
 			
 		]]>
@@ -182,8 +187,7 @@
 	
 	
 	<mx:Canvas id="overCanvas" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off"
-		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
-		cornerRadius="2" visible="false" alpha="0"  >
+		backgroundColor="#333333" borderStyle="solid" borderColor="#000000" cornerRadius="2" visible="false" alpha="0">
 		
 		<mx:HBox horizontalGap="0" top="5" left="8">
 			<mx:Label text="{task.what}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
@@ -201,7 +205,7 @@
 		
 			
 		<components:ShadowButton id="cancelButton" label="x" styleName="redButton" top="4" right="5" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
-		mouseChildren="false" buttonMode="true" useHandCursor="true" />
+		mouseChildren="false" buttonMode="true" useHandCursor="true" click="removeItemClick(event)"/>
 		<components:ShadowButton id="actionButton" label="CONTINUE" styleName="greenButton"
 			top="4" right="24" fontSize="10" paddingRight="2" paddingLeft="2" paddingTop="3" paddingBottom="3" height="18" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" />

@@ -4,6 +4,9 @@
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.MyEventDispatcher;
+			import org.vizzuality.events.DeleteAlertEvent;
+			import org.vizzuality.view.confirmationAlert;
 			import org.vizzuality.model.Task;
 			import mx.utils.ObjectProxy;
 			import mx.core.Application;
@@ -16,13 +19,23 @@
 			private var totalTasks:Number=0;
 			[Bindable] private var page:Number=1;
 			[Bindable] private var totalPages:Number=1;
+			private var alertConfirmation: confirmationAlert = new confirmationAlert(); 
 			[Bindable] public var warningMessage:String = "We are proccessing your data upload, please wait a few minutes";
+
 			
 			[Bindable]private var pendingTasks: ArrayCollection = new ArrayCollection();
 			
 			private function init():void {
 				getPendingTasks(1);
+				MyEventDispatcher.addEventListener(DeleteAlertEvent.DELETE_ITEM, showConfirmationAlert);
 			}
+			
+			private function showConfirmationAlert(ev:DeleteAlertEvent):void {
+				alertConfirmation.x = ev.positionX;
+				alertConfirmation.y = ev.positionY;
+				Application.application.addChild(alertConfirmation);
+			}
+			
 			
 			private function getPendingTasks(p:Number):void {
 				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getPendingTasks/"+p+"/8";
