@@ -47,6 +47,8 @@ package resource{
         public static const CLOCK_EXCLAMATION_ICON:Class;
 	    [Embed (source="org/vizzuality/assets/exclamation.png" )]
         public static const EXCLAMATION:Class;
+        [Embed (source="org/vizzuality/assets/cursorCross.png" )]
+        public static const CURSOR_RECTANGLE:Class;
         
         
 	}
