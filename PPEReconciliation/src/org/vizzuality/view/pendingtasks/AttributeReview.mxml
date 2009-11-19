@@ -17,6 +17,15 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.google.maps.controls.ControlPosition;
+			import com.google.maps.controls.ZoomControlOptions;
+			import com.google.maps.controls.ZoomControl;
+			import com.google.maps.MapZoomEvent;
+			import com.google.maps.MapEvent;
+			import com.google.maps.MapMouseEvent;
+			import com.google.maps.MapMoveEvent;
+			import com.google.maps.overlays.PolygonOptions;
+			import org.vizzuality.maps.Multipolygon;
 			import org.vizzuality.view.pendingtasks.itemrenders.NewAttribute;
 			import org.vizzuality.view.pendingtasks.itemrenders.headAttribute;
 			import com.adobe.serialization.json.JSON;
@@ -61,29 +70,157 @@
 				//the rest of the stuff is flexible
 				originalPa.data = res.originalPa;
 				
-				//headAttributes
-				for (var prop:String in originalPa.data) {
-					var ha:headAttribute = new headAttribute();
-					ha.attName=prop;
-					ha.attValue=originalPa.data[prop];
-					headAttributes.addChildAt(ha,0);
-				}
-				
 				newPa=new Pa();
 				newPa.country=res.newPa.country;
 				newPa.id = res.newPa.id;
 				newPa.name = res.newPa.name;
-				//the rest of the stuff is flexible
-				newPa.data = res.newPa;				
-				for (var prop2:String in newPa.data) {
-					var na:NewAttribute = new NewAttribute();
-					na.attName=prop2;
-					na.attValue=newPa.data[prop2];
-					newAttributes.addChildAt(na,0);
-				}
 				
+				
+				
+				//the rest of the stuff is flexible
+				newPa.data = res.newPa;		
+				
+				var addedAttributes:Object={};
+				var changedAttributes:Object={};
+				var deletedAttributes:Object={};
+				
+				for (var atrib:String in newPa.data) {
+					if(atrib!='name' && atrib!='geom' && atrib!='country' && atrib!='id') {
+						//ATTRIBUTES ADDED
+						if (originalPa.data[atrib]==null || originalPa.data[atrib]=='') {
+							addedAttributes[atrib]=newPa.data[atrib];
+						}
+						//ATTRIBUTES CHANGED
+						if (originalPa.data[atrib]!=newPa.data[atrib] && originalPa.data[atrib]!=null  && newPa.data[atrib]!='') {
+							changedAttributes[atrib]=newPa.data[atrib];
+						}
+					}
+				}	
+				
+				for (var atrib2:String in originalPa.data) {
+					if(atrib!='name' && atrib!='geom' && atrib!='country' && atrib!='id') {
+						//ATTRIBUTES DELETED
+						if (newPa.data[atrib2]==null || newPa.data[atrib2]=='') {
+							deletedAttributes[atrib2]=originalPa.data[atrib2];
+						}
+					}
+				}
+						
+				
+				newAttributes.removeAllChildren();
+				headAttributes.removeAllChildren();
+				var ha:headAttribute;
+				var na:NewAttribute
+				//ADDED AATRIBUTES
+				for (var prop:String in addedAttributes) {
+					ha = new headAttribute();
+					ha.attName=prop;
+					ha.attValue='';	
+					ha.setStyle("backgroundColor",0xC1E1FF);
+					headAttributes.addChildAt(ha,0);
+					
+					na = new NewAttribute();
+					na.attName=prop;
+					na.attValue=addedAttributes[prop];
+					na.setStyle("backgroundColor",0xC1E1FF);
+					newAttributes.addChildAt(na,0);									
+				}
+				//REMOVED AATRIBUTES
+				for (var prop2:String in deletedAttributes) {
+					ha = new headAttribute();
+					ha.attName=prop2;
+					ha.attValue=deletedAttributes[prop2];	
+					ha.setStyle("backgroundColor",0xFFC1C1);
+					headAttributes.addChildAt(ha,0);
+					
+					na = new NewAttribute();
+					na.attName=prop2;
+					na.attValue='';
+					na.setStyle("backgroundColor",0xFFC1C1);
+					newAttributes.addChildAt(na,0);									
+				}
+				//CHANGED AATRIBUTES
+				for (var prop3:String in changedAttributes) {
+					ha = new headAttribute();
+					ha.attName=prop3;
+					ha.attValue=originalPa.data[prop3];	
+					ha.setStyle("backgroundColor",0xCBFFC1);
+					headAttributes.addChildAt(ha,0);
+					
+					na = new NewAttribute();
+					na.attName=prop3;
+					na.attValue=changedAttributes[prop3];
+					na.setStyle("backgroundColor",0xCBFFC1);
+					newAttributes.addChildAt(na,0);									
+				}
 				currentState="";
+				
+				
 			}
+			
+			private function map2Ready():void {
+				map2.clearOverlays();
+				if (newPa.data.geom!=null) {
+					addGeoJsonToMap((newPa.data.geom as String),map2);
+				}
+				var zco:ZoomControlOptions = new ZoomControlOptions({hasScrollTrack:false,position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,5,5)});
+				var zc:ZoomControl = new ZoomControl(zco);
+				map2.addControl(zc);				
+				syncMaps(map1,map2);
+			}
+			private function map1Ready():void {
+				map1.clearOverlays();
+				if (originalPa.data.geom!=null) {
+					addGeoJsonToMap((originalPa.data.geom as String),map1);
+				}
+				var zco:ZoomControlOptions = new ZoomControlOptions({hasScrollTrack:false,position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,5,5)});
+				var zc:ZoomControl = new ZoomControl(zco);
+				map1.addControl(zc);
+			}
+			
+			private function addGeoJsonToMap(geoJson:String,map:Map):void {
+				var polOpt:PolygonOptions=new PolygonOptions({
+					  strokeStyle: {
+					    thickness: 2,
+					    color: 0xFF7600,
+					    alpha: 1
+					  },
+					  fillStyle: {
+					    color: 0xFF7600,
+					    alpha: 0.4
+					  }	
+				});
+
+				data = JSON.decode(geoJson);
+				var mp:Multipolygon= new Multipolygon();
+				mp.fromGeojsonMultiPolygon(data,polOpt);						
+				mp.addToMap(map);
+			
+				map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);	
+			}
+			
+			private function syncMaps(m1:Map,m2:Map):void {
+				m1.addEventListener(MapMouseEvent.DRAG_STEP,function(event:MapMouseEvent):void {
+					m2.setCenter(event.latLng);
+				});
+				m1.addEventListener(MapZoomEvent.ZOOM_CHANGED,function(event:MapZoomEvent):void {
+					m2.setCenter(m1.getCenter(),event.zoomLevel);
+				});
+				m1.addEventListener(MapMouseEvent.DRAG_END,function(event:MapMouseEvent):void {
+					m2.setCenter(event.latLng);
+				});
+				m2.addEventListener(MapMouseEvent.DRAG_STEP,function(event:MapMouseEvent):void {
+					m1.setCenter(event.latLng);
+				});
+				m2.addEventListener(MapMouseEvent.DRAG_END,function(event:MapMouseEvent):void {
+					m1.setCenter(event.latLng);
+				});
+				m2.addEventListener(MapZoomEvent.ZOOM_CHANGED,function(event:MapZoomEvent):void {
+					m1.setCenter(m2.getCenter(),event.zoomLevel);
+				});
+				
+			}
+			
 			
 			
 		]]>
@@ -121,7 +258,8 @@
 					<mx:HRule height="1" left="15" right="0" top="63"/>
 					<mx:Label y="69" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="17"/>
 					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="85" height="218" left="20" right="17">
-						<maps:Map  id="map1" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
+						<maps:Map  id="map1" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"
+							mapevent_mapready="map1Ready()"/>
 					</mx:Canvas>
 					<mx:VBox id="headAttributes" left="15" right="0" y="335" verticalGap="0">				
 						<mx:HRule height="1" width="100%"/>
@@ -141,7 +279,9 @@
 					<mx:HRule height="1" left="0" right="17" top="64"/>
 					<mx:Label y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
 					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
-						<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
+						<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ"
+							 mapevent_mapready="map2Ready()"
+							 left="3" right="3" top="3" bottom="3"/>
 					</mx:Canvas>
 					<mx:VBox id="newAttributes" y="336" left="0" verticalGap="0"
 						verticalScrollPolicy="off" horizontalScrollPolicy="off" right="17">

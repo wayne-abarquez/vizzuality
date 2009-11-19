@@ -156,6 +156,8 @@ class DumpServices {
 		$newPa['Local name']="new local name";
 		$newPa['Sergio polla']="pos eso";
 		$newPa['WDPA code']="";
+		$newPa['Simon']="the best";
+		$newPa['Craig']="the looser";
 		$newPa['My new attrib']="nuevos datos";
 		$newPa['Total area']="";
 		$newPa['Total area marine']="SF";
