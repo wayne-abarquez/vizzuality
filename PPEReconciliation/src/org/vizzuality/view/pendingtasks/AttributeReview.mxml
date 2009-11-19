@@ -128,6 +128,12 @@
 					<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="15">
 						<mx:Label text="Your version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 					</mx:HBox>
+				    <mx:HBox horizontalGap="4" top="14" verticalAlign="bottom"  horizontalAlign="right" right="15">
+						<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
+						<mx:Spacer width="100%" />
+						<mx:Button label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
+						<mx:Button label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
+			    	</mx:HBox>
 					<mx:HRule height="1" left="0" right="0" top="64"/>
 					<mx:Label y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
 					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
