@@ -18,6 +18,9 @@
 			[Bindable] public var pa:Pa;
 			public var mode:String;
 			
+			private var rejectButtonAuxAlpha:Number = 1;			
+			private var confirmButtonAuxAlpha:Number = 1;			
+			
 			override public function set data(value:Object):void {
             	if (value != null) {
                 	super.data = value;
@@ -39,10 +42,7 @@
 						statusText.text="Confirmed";
 						statusColor = 0x339900;
 	                }
-           			
                 }
-                
-                
             }
 			
 			//EL Color grisecito para cuando la fila es par es el #f5f5f5, sólo habría que hacer un setStyle
@@ -57,33 +57,49 @@
 			
 			
 			private function confirmPa(event:Event):void {
+				statusOverText.visible = true;
 				event.stopPropagation();
 				MyEventDispatcher.confirmPa(pa,mode);
 				//getAlphaForButton(confirmButton);
 				confirmButton.alpha=1;
+				confirmButtonAuxAlpha = 1;
 				rejectButton.alpha=0.2;	
+				rejectButtonAuxAlpha = .2;
 				statusText.text="Confirmed";	
+				statusOverText.text= statusText.text;	
 				statusColor = 0x339900;		
 				textColor = 0x999999;
+				greenFlashCanvas.visible = true;
+				greenFlashCanvas.alpha = 1;
+				TweenMax.to(greenFlashCanvas, 1, {autoAlpha:0});
 			}
 			private function rejectPa(event:Event):void {
+				statusOverText.visible = true;
 				event.stopPropagation();
 				MyEventDispatcher.rejectPa(pa,mode);
 				//getAlphaForButton(confirmButton);
 				confirmButton.alpha=0.2;
+				confirmButtonAuxAlpha = .2;
 				rejectButton.alpha=1;
+				rejectButtonAuxAlpha = 1;
 				statusText.text="Rejected";
+				statusOverText.text=statusText.text;
 				statusColor = 0xff3300;
 				textColor = 0x999999;
+				redFlashCanvas.visible = true;
+				redFlashCanvas.alpha = 1;
+				TweenMax.to(redFlashCanvas, 1, {autoAlpha:0});			
 			}
 			
-			private var prevAlphaVal:Number;
 			private function rollOverButton(event:MouseEvent):void {
-				prevAlphaVal=(event.currentTarget as Button).alpha;
 				(event.currentTarget as Button).alpha=1;
 			}
 			private function rollOutButton(event:MouseEvent):void {
-				(event.currentTarget as Button).alpha=prevAlphaVal;			
+				if(event.currentTarget == confirmButton){
+					(event.currentTarget as Button).alpha = confirmButtonAuxAlpha;
+				}else if(event.currentTarget == rejectButton){
+					(event.currentTarget as Button).alpha = rejectButtonAuxAlpha;
+				}
 			}
 			
 			
@@ -99,6 +115,17 @@
 		horizontalScrollPolicy="off" verticalScrollPolicy="off"
 		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
 		cornerRadius="2" visible="false" alpha="0">
+		
+		<mx:Canvas id="greenFlashCanvas" width="100%" height="100%" 
+			horizontalScrollPolicy="off" verticalScrollPolicy="off"
+			backgroundColor="#99cc00" borderStyle="solid" borderColor="#669900"
+			cornerRadius="2" visible="false" alpha="0" />
+			
+		<mx:Canvas id="redFlashCanvas" width="100%" height="100%" 
+			horizontalScrollPolicy="off" verticalScrollPolicy="off"
+			backgroundColor="#ff6600" borderStyle="solid" borderColor="#cc6600"
+			cornerRadius="2" visible="false" alpha="0" />		
+		
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="6" y="7" text="{pa.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(pa.status!=null)?140:180}" textAlign="left"/>
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="7" y="23" text="{pa.country}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
 		<mx:Button id="confirmButton" styleName="greenButton" top="4" right="5" width="18" fontSize="12" 
@@ -114,8 +141,8 @@
 			rollOut="rollOutButton(event)"			
 			icon="{Resource.CROSS_ICON_OVER}" paddingBottom="1" paddingLeft="-1" paddingRight="1" height="18" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" />
-		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" text="view details" color="#FFFFFF" 
-			bottom="1" right="5" textAlign="right" fontSize="10" fontFamily="Helvetica" fontWeight="normal"/>
+		<mx:Label id="statusOverText" buttonMode="true" useHandCursor="true" mouseChildren="false" text="view details" color="{statusColor}" 
+			bottom="1" right="5" textAlign="right" fontSize="10" fontFamily="Helvetica" fontWeight="normal" visible="false"/>
 	</mx:Canvas>
 	
 </mx:Canvas>
