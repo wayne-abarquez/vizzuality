@@ -98,7 +98,8 @@
 		<mx:Label text="- Merge your changes" color="#666666" fontFamily="Helvetica" fontWeight="normal" fontSize="15" fontStyle="italic" height="23"/>
 	</mx:HBox>
     
-	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="0" top="62" bottom="10">
+	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="0" top="62" bottom="10"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	    <mx:VBox left="15" right="15" top="15" bottom="15">
 			<mx:Canvas styleName="softRed" width="100%" height="30" backgroundSize="100%">
 				<mx:Label x="27" y="10" text="Your are about to delete this Protected Area" fontFamily="Helvetica" fontWeight="bold" fontSize="11" color="#666666"/>
@@ -106,7 +107,7 @@
 			</mx:Canvas>
 	    	<!--<mx:HBox horizontalGap="0" height="454" width="100%">-->			
 	    	<mx:HBox horizontalGap="0" width="100%">
-	    		<mx:Canvas width="300" 
+	    		<mx:Canvas width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off"
 	    			id="headPa" backgroundColor="#FFFFE5" borderColor="#E9E9E9"
 	    			borderStyle="solid" cornerRadius="4">
 					<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="14">
@@ -117,14 +118,13 @@
 					<mx:Label y="69" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="17"/>
 					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="85" height="218" left="20" right="17">
 						<maps:Map  id="map1" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
-				
 					</mx:Canvas>
-					<mx:VBox id="headAttributes" x="20" y="335" width="278">				
+					<mx:VBox id="headAttributes" left="15" right="0" y="335" verticalGap="0">				
 						<mx:HRule height="1" width="100%"/>
 					</mx:VBox>
 				</mx:Canvas>
-				<mx:Canvas id="reviewPa" backgroundColor="#FFFFFF"
-					width="300" borderStyle="solid" cornerRadius="4" borderColor="#E9E9E9">
+				<mx:Canvas id="reviewPa" backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off"
+					width="100%" borderStyle="none" cornerRadius="4" borderColor="#E9E9E9">
 					<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="15">
 						<mx:Label text="Your version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 					</mx:HBox>
@@ -133,7 +133,7 @@
 					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
 						<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"/>
 					</mx:Canvas>
-					<mx:VBox  id="newAttributes" x="0" y="336" width="298">
+					<mx:VBox  id="newAttributes" x="0" y="336" left="0" right="15" verticalGap="0">
 						<itemrenders:NewAttribute attName="attName" attValue="val"/>
 						<itemrenders:NewAttribute attName="attName" attValue="val" />
 						<itemrenders:NewAttribute attName="attName" attValue="val" />
