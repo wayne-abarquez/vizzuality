@@ -13,18 +13,20 @@
 	</mx:states>
 	
 <mx:Style>
-.selectionRectangleStyle {
-backgroundAlpha: 0.3;
-backgroundColor: #067EE3;
-borderColor: #FFFFFF;
-borderStyle: inset;
-borderThickness: 2;
-cornerRadius: 0;
-}
+	.selectionRectangleStyle {
+	backgroundAlpha: 0.3;
+	backgroundColor: #067EE3;
+	borderColor: #FFFFFF;
+	borderStyle: inset;
+	borderThickness: 2;
+	cornerRadius: 0;
+	}
 </mx:Style>
 
 <mx:Script>
 	<![CDATA[
+		import mx.managers.CursorManager;
+		import com.google.maps.MapZoomEvent;
 		import mx.events.ScrollEvent;
 		import mx.core.Application;
 		import com.google.maps.LatLngBounds;
@@ -43,6 +45,7 @@ cornerRadius: 0;
 		private var selectionRectangle:Canvas;
 		private var r:Rectangle;
 		private var scrollPosition: Number = 0;
+		
 		
 
 	
@@ -114,10 +117,20 @@ cornerRadius: 0;
         
         private function onMapReady(ev:MapEvent):void {
         	var zco:ZoomControlOptions= new ZoomControlOptions({position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)});
+        	map.addEventListener(MapZoomEvent.ZOOM_CHANGED, deleteRectangle);
             map.addControl(new ZoomControl(zco));
             map.enableScrollWheelZoom();
             map.setCenter(new LatLng(0,0),1);
+            
         }	
+        
+        private function deleteRectangle (ev: MapZoomEvent):void {
+        	try {
+    			map.removeChild(selectionRectangle);
+    		}catch (erObject:Error) { 
+      			trace("There isn't rectangles");
+      		}
+        }
         
         private function onClickMapArea(ev:MapMouseEvent):void {
         	selectedArea = new ArrayCollection();
@@ -162,6 +175,8 @@ cornerRadius: 0;
 
 		private function onMouseDown(e:MouseEvent):void {
 			
+			CursorManager.setCursor(Resource.CURSOR_RECTANGLE);
+			
 			map.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 
 			r = new Rectangle(Number(e.stageX-(((stage.width-874)/2)+25)),Number(e.stageY-287) + (scrollPosition),0,0);
@@ -176,6 +191,7 @@ cornerRadius: 0;
 		
 		private function onMouseUp(e:MouseEvent):void {
 			map.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+			CursorManager.removeAllCursors();
 			/* map.removeChild(selectionRectangle); */
 		}
 		
