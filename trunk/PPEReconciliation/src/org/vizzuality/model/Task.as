@@ -8,6 +8,7 @@ package org.vizzuality.model
 		public static const PREPARING_DOWNLOAD:String="preparingDownload"; //ff9900
 		public static const WAITING_FOR_DOWNLOAD:String="waitingForDownload"; //ff9900
 		public static const WAITING_FOR_UPLOAD:String="waitingForUpload"; //ff9900
+		public static const UPLOAD_PROCESSING:String="uploadProcessing"; //ff9900
 		public static const ERROR_IN_DATA:String="errorInData"; //ff3300
 		public static const REVIEW_STARTED:String="reviewStarted"; //ff9900
 		public static const REVIEW_PROCESSING:String="reviewProcessing"; //ff9900

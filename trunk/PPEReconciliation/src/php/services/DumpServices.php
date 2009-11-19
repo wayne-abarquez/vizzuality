@@ -35,6 +35,26 @@ class DumpServices {
 		return $resul;
 	}
 	
+	function getOceans() {
+		$res=array();
+			$c=array();
+			$c['id']=1;
+			$c['name']="Pacific";
+			$c['numareas']=23;
+			$res[]=$c;
+			$c=array();
+			$c['id']=2;
+			$c['name']="Atlantic";
+			$c['numareas']=23;
+			$res[]=$c;		
+			$c=array();
+			$c['id']=3;
+			$c['name']="Mediterranean";
+			$c['numareas']=23;
+			$res[]=$c;				
+		return $res;
+	}	
+	
 	function prepareDownload($countries,$pas,$search) {
 		error_log($countries);
 	}
@@ -75,11 +95,21 @@ class DumpServices {
 			$res[]=$t;
 			$t=array();
 			$t['type'] = 1;
-			$t['code'] = "DW545";
+			$t['code'] = "DW5423";
 			$t['description'] = "asdasdasd";
 			$t['what']="Country Download";
 			$t['numareas']=2431;
 			$t['status'] = "errorInData";
+			$t['statuspercen'] = 0;
+			$t['date'] = "2009/11/10 12:34:00";
+			$res[]=$t;			
+			$t=array();
+			$t['type'] = 1;
+			$t['code'] = "DW545";
+			$t['description'] = "asdasdasd";
+			$t['what']="Country Download";
+			$t['numareas']=2431;
+			$t['status'] = "uploadProcessing";
 			$t['statuspercen'] = 0;
 			$t['date'] = "2009/11/10 12:34:00";
 			$res[]=$t;

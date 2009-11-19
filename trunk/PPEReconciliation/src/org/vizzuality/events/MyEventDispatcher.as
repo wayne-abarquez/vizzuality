@@ -33,6 +33,9 @@ package org.vizzuality.events
    		public static function selectTaskForOverview(task:Task):void {
    			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_TASK,task));		
    		}
+   		public static function selectTaskForErrors(task:Task):void {
+   			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_PA_FOR_ERRORS,task));		
+   		}
    		
    		public static function selectPaForOverview(pa:Pa):void {
    			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,null,pa));
