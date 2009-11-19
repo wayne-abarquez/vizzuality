@@ -56,26 +56,112 @@
 				//the rest of the stuff is flexible
 				originalPa.data = res.originalPa;
 				
-				//headAttributes
-				for (var prop:String in originalPa.data) {
-					var ha:headAttribute = new headAttribute();
-					ha.attName=prop;
-					ha.attValue=originalPa.data[prop];
-					headAttributes.addChildAt(ha,0);
-				}
-				
 				newPa=new Pa();
 				newPa.country=res.newPa.country;
 				newPa.id = res.newPa.id;
 				newPa.name = res.newPa.name;
 				//the rest of the stuff is flexible
-				newPa.data = res.newPa;				
+				newPa.data = res.newPa;		
+				
+				var addedAttributes:Object={};
+				var changedAttributes:Object={};
+				var deletedAttributes:Object={};
+				
+				for (var atrib:String in newPa.data) {
+					//ATTRIBUTES ADDED
+					if (originalPa.data[atrib]==null || originalPa.data[atrib]=='') {
+						addedAttributes[atrib]=newPa.data[atrib];
+					}
+					//ATTRIBUTES CHANGED
+					if (originalPa.data[atrib]!=newPa.data[atrib] && originalPa.data[atrib]!=null  && newPa.data[atrib]!='') {
+						changedAttributes[atrib]=newPa.data[atrib];
+					}
+				}	
+				
+				for (var atrib2:String in originalPa.data) {
+					//ATTRIBUTES DELETED
+					if (newPa.data[atrib2]==null || newPa.data[atrib2]=='') {
+						deletedAttributes[atrib2]=originalPa.data[atrib2];
+					}
+					
+				}
+						
+				
+				newAttributes.removeAllChildren();
+				headAttributes.removeAllChildren();
+				
+				//ADDED AATRIBUTES
+				for (var prop:String in addedAttributes) {
+					var ha:headAttribute = new headAttribute();
+					ha.attName=prop;
+					ha.attValue='';	
+					ha.setStyle("backgroundColor",0xC1E1FF);
+					headAttributes.addChildAt(ha,0);
+					
+					var na:NewAttribute = new NewAttribute();
+					na.attName=prop;
+					na.attValue=addedAttributes[prop];
+					na.setStyle("backgroundColor",0xC1E1FF);
+					newAttributes.addChildAt(na,0);									
+				}
+				//REMOVED AATRIBUTES
+				for (var prop:String in deletedAttributes) {
+					var ha:headAttribute = new headAttribute();
+					ha.attName=prop;
+					ha.attValue=deletedAttributes[prop];	
+					ha.setStyle("backgroundColor",0xFFC1C1);
+					headAttributes.addChildAt(ha,0);
+					
+					var na:NewAttribute = new NewAttribute();
+					na.attName=prop;
+					na.attValue='';
+					na.setStyle("backgroundColor",0xFFC1C1);
+					newAttributes.addChildAt(na,0);									
+				}
+				//CHANGED AATRIBUTES
+				for (var prop:String in changedAttributes) {
+					var ha:headAttribute = new headAttribute();
+					ha.attName=prop;
+					ha.attValue=originalPa.data[prop];	
+					ha.setStyle("backgroundColor",0xCBFFC1);
+					headAttributes.addChildAt(ha,0);
+					
+					var na:NewAttribute = new NewAttribute();
+					na.attName=prop;
+					na.attValue=changedAttributes[prop];
+					na.setStyle("backgroundColor",0xCBFFC1);
+					newAttributes.addChildAt(na,0);									
+				}
+				
+				
+				
+/* 				//headAttributes
+				for (var prop:String in originalPa.data) {
+					var ha:headAttribute = new headAttribute();
+					ha.attName=prop;
+					ha.attValue=originalPa.data[prop];
+					//DELETED
+					if (deletedAttributes[prop]!=null) {
+						ha.setStyle("backgroundColor",0xFFC1C1);
+					} else {
+						headAttributes.addChildAt(ha,0);
+					}
+				}
+					
 				for (var prop2:String in newPa.data) {
 					var na:NewAttribute = new NewAttribute();
 					na.attName=prop2;
 					na.attValue=newPa.data[prop2];
 					newAttributes.addChildAt(na,0);
-				}
+					//ANADIDO
+					if (addedAttributes[prop]!=null) {
+						ha.setStyle("backgroundColor",0xC1E1FF);
+					}
+					//MODIFICADO
+					if (changedAttributes[prop]!=null) {
+						ha.setStyle("backgroundColor",0xCBFFC1);
+					}
+				} */			
 				
 				currentState="";
 			}
