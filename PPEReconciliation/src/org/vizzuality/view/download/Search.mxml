@@ -125,7 +125,7 @@ cornerRadius: 0;
 				dataBbox.extend(m);
 			}
 			
-			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+			/* map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox)); */
         	
         }
         
@@ -148,9 +148,9 @@ cornerRadius: 0;
         }
         
 
-
-		
 		private function onMouseDown(e:MouseEvent):void {
+			
+			map.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 
 			r = new Rectangle(Number(e.localX),Number(e.localY),0,0);
 			
@@ -163,7 +163,8 @@ cornerRadius: 0;
 		}
 		
 		private function onMouseUp(e:MouseEvent):void {
-			map.removeChild(selectionRectangle);
+			map.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+			/* map.removeChild(selectionRectangle); */
 		}
 		
 		private function onMouseMove(e:MouseEvent):void {
