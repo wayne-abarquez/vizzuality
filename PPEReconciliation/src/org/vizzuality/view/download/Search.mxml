@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" addedToStage="init()" 
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" addedToStage="added()"  creationComplete="init()"
 	xmlns:components="org.vizzuality.components.*">
 	<mx:states>
 		<mx:State name="loading">
@@ -11,9 +11,22 @@
 		</mx:State>
 		<mx:State name="list"/>
 	</mx:states>
+	
+<mx:Style>
+.selectionRectangleStyle {
+backgroundAlpha: 0.3;
+backgroundColor: #067EE3;
+borderColor: #FFFFFF;
+borderStyle: inset;
+borderThickness: 2;
+cornerRadius: 0;
+}
+</mx:Style>
 
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.LatLngBounds;
+		import com.google.maps.MapMouseEvent;
 		import com.google.maps.controls.ControlPosition;
 		import com.google.maps.controls.ZoomControlOptions;
 		import com.google.maps.MapType;
@@ -23,7 +36,12 @@
 		import resource.Resource;
 		import mx.collections.ArrayCollection;
 		
-		private var selectedArea: Boolean = false;
+		private var selectedArea: ArrayCollection = new ArrayCollection();
+		private var dataBbox:LatLngBounds;	
+		private var selectionRectangle:Canvas;
+		private var r:Rectangle;
+		
+
 	
         [Bindable]private var areasArr: ArrayCollection = new ArrayCollection([
            {name:"Yosemite National Park", country:"United States"},
@@ -53,6 +71,13 @@
 		]);	
 	
 		private function init():void {
+		    selectionRectangle = new Canvas();
+			selectionRectangle.setStyle("styleName", "selectionRectangleStyle");
+			
+			r = new Rectangle(0,0,0,0);
+		}
+		
+		private function added():void {
 		    if (search_text) {
                 if (search_text.text=="Keyword, name, country...") {
                 	search_text.setStyle("fontStyle","italic");
@@ -87,13 +112,76 @@
             map.setCenter(new LatLng(0,0),1);
         }	
         
+        private function onClickMapArea(ev:MapMouseEvent):void {
+        	selectedArea = new ArrayCollection();
+        	selectedArea.addItem(ev.latLng);
+        }
+        
+        private function onMouseUpMapArea(ev:MapMouseEvent):void {
+        	selectedArea.addItem(ev.latLng);
+        	/* uckAppManager.rectTool(); */
+        	dataBbox=new LatLngBounds();
+			for each(var m:LatLng in selectedArea) {
+				dataBbox.extend(m);
+			}
+			
+			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+        	
+        }
+        
+        private function checkSelectArea():void {
+        	if (checkArea.selected) {
+        		map.disableDragging();
+				map.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+				map.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+				map.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+        		map.addEventListener(MapMouseEvent.MOUSE_DOWN,onClickMapArea);
+        		map.addEventListener(MapMouseEvent.MOUSE_UP,onMouseUpMapArea);
+        	} else {
+        		map.enableDragging();
+        		map.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+				map.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+				map.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+        		map.removeEventListener(MapMouseEvent.MOUSE_DOWN,onClickMapArea);
+        		map.removeEventListener(MapMouseEvent.MOUSE_UP,onMouseUpMapArea);
+        	}
+        }
+        
+
+
+		
+		private function onMouseDown(e:MouseEvent):void {
+
+			r = new Rectangle(Number(e.localX),Number(e.localY),0,0);
+			
+			selectionRectangle.x = r.x;
+			selectionRectangle.y = r.y;
+			selectionRectangle.width = r.width;
+			selectionRectangle.height = r.height;
+			
+			map.addChild(selectionRectangle);
+		}
+		
+		private function onMouseUp(e:MouseEvent):void {
+			map.removeChild(selectionRectangle);
+		}
+		
+		private function onMouseMove(e:MouseEvent):void {
+			r.bottomRight = new Point(e.localX, e.localY);
+			
+			selectionRectangle.x = r.x;
+			selectionRectangle.y = r.y;
+			selectionRectangle.width = r.width;
+			selectionRectangle.height = r.height;
+		}
 
         
 	]]>
 </mx:Script>
-	<mx:Canvas width="100%" height="400" styleName="softBlueUp" backgroundSize="100%">
+	<mx:Canvas width="100%" height="400" styleName="softBlueUp" backgroundSize="100%" id="canvas_map">
 		<mx:Label text="Search and browse the WDPA throw the map"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10"/>
 		<mx:HBox left="10" right="10" top="34" horizontalAlign="right" verticalAlign="middle" horizontalGap="4">
+			<mx:CheckBox label="MAP AREA SELECT" click="checkSelectArea()" id="checkArea"/>
 			<mx:Label text="search"  fontFamily="Helvetica" fontSize="12" color="#666666" height="13"/>
 			<mx:TextInput id="search_text" text="Keyword, name, country..." 
 				focusIn="changeStyle()" focusOut="changeStyle()"

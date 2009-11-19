@@ -79,4 +79,13 @@ ProgressBar {
    trackHeight: 10;
 }
 
+.selectionRectangleStyle {
+backgroundAlpha: 0.3;
+backgroundColor: #067EE3;
+borderColor: #FFFFFF;
+borderStyle: inset;
+borderThickness: 2;
+cornerRadius: 0;
+}
+
 	
