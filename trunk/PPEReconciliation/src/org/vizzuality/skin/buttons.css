@@ -90,6 +90,10 @@ Button.boundingBoxButton{
 	up-skin: Embed(source="general.swf",symbol="boundingBoxButton_up");
 	over-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
 	down-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
+	selected-down-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
+	selected-up-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
+	selected-over-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
+	selected-down-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
 }
 
 
