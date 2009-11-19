@@ -70,9 +70,10 @@
 				statusOverText.text= statusText.text;	
 				statusColor = 0x339900;		
 				textColor = 0x999999;
-				greenFlashCanvas.visible = true;
-				greenFlashCanvas.alpha = 1;
-				TweenMax.to(greenFlashCanvas, 1, {autoAlpha:0});
+				//greenFlashCanvas.visible = true;
+				//greenFlashCanvas.alpha = 1;
+				//TweenMax.to(greenFlashCanvas, 1, {autoAlpha:0});
+				TweenMax.to(overCanvas, .2, {autoAlpha:0});
 			}
 			private function rejectPa(event:Event):void {
 				statusOverText.visible = true;
@@ -88,9 +89,10 @@
 				statusOverText.text=statusText.text;
 				statusColor = 0xff3300;
 				textColor = 0x999999;
-				redFlashCanvas.visible = true;
-				redFlashCanvas.alpha = 1;
-				TweenMax.to(redFlashCanvas, 1, {autoAlpha:0});			
+				//redFlashCanvas.visible = true;
+				//redFlashCanvas.alpha = 1;
+				//TweenMax.to(redFlashCanvas, 1, {autoAlpha:0});
+				TweenMax.to(overCanvas, .2, {autoAlpha:0});		
 			}
 			
 			private function rollOverButton(event:MouseEvent):void {
