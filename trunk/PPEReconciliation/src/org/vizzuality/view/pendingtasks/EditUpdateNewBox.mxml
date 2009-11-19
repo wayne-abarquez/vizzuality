@@ -19,7 +19,6 @@
 			[Bindable] public var pendingItems:Number;
 			public var getNewData:Function;
 			
-			
 			public static function createRendererWithProperties(renderer:Class,properties:Object ):IFactory {
 			  var factory:ClassFactory = new ClassFactory(renderer); 
 			  factory.properties = properties;
