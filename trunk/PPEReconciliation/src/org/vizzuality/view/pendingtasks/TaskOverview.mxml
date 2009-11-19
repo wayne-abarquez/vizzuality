@@ -2,7 +2,7 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="950" 
 	styleName="dataDownloadContainer" backgroundSize="100%"
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" horizontalScrollPolicy="off"
-	creationComplete="init()" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*">
+	creationComplete="init()" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
 			import org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem;
@@ -171,9 +171,6 @@
 			private function onCommitResult(event:ResultEvent):void {
 				
 			}
-
-				
-			
 			
 			
 		]]>
