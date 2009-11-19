@@ -24,6 +24,9 @@ Canvas.softRedUp{
 Canvas.softRedBottom{
 	background-image: Embed(source="general.swf",symbol="bkgSoftRedBottom");	
 }
+Canvas.softRed{
+	background-image: Embed(source="general.swf",symbol="bkgSoftRed");	
+}
 Canvas.softBlueStepBackground{
 	background-image: Embed(source="general.swf",symbol="softBlueStepBackground");	
 }
