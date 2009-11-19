@@ -3,6 +3,7 @@
 	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)" >
 	<mx:Script>
 		<![CDATA[
+			import resource.Resource;
 			import flash.net.navigateToURL;
 			import gs.TweenLite;
 			import mx.controls.List;
@@ -19,7 +20,9 @@
 			
 			[Bindable] private var taskColor:Number;
 			
-			private var mustRollOver:Boolean=true;
+			[Bindable] private var textAlpha:Number = 1;
+			
+			[Bindable] private var mustRollOver:Boolean=true;
 			
 			override public function set data(value:Object):void {
             	if (value != null) {
@@ -54,6 +57,7 @@
 							cancelButton.visible=false;
 							mustRollOver=false;
 							taskColor=0xff9900;
+							textAlpha = 0.5;
 							break;
 						case Task.WAITING_FOR_DOWNLOAD:
 							actionButton.visible=true;
@@ -73,6 +77,7 @@
 							actionButton.visible=false;
 							cancelButton.visible=false;
 							mustRollOver=false;
+							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0xff9900;
 							break;
@@ -94,6 +99,7 @@
 							actionButton.visible=false;
 							cancelButton.visible=false;
 							mustRollOver=false;
+							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0xff9900;
 							break;
@@ -101,6 +107,7 @@
 							actionButton.visible=false;
 							cancelButton.visible=false;
 							mustRollOver=false;
+							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0x339900;
 							break;
@@ -170,17 +177,25 @@
 	</mx:Script>
 	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0" backgroundColor="{bkg_color}">
 		<mx:HBox horizontalGap="0" top="5" left="11">
-			<mx:Label text="{task.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
-			<mx:Label text="{task.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
+			<mx:Label text="{task.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" alpha="{textAlpha}"/>
+			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9" alpha="{textAlpha}"/>
+			<mx:Label text="{task.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13" alpha="{textAlpha}"/>	
 		</mx:HBox>
-		<mx:Label id="number" text="{task.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>
+		<mx:Label id="number" text="{task.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" 
+			fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11" alpha="{textAlpha}"/>
 		
-		<mx:Label text="{task.status}" color="{taskColor}"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
-		<mx:Label id="percentage" text="{'(' + task.statusPercen+ '%)'}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="404" fontFamily="Helvetica"/>
+		<mx:HBox left="404" top="5" horizontalGap="-3">
+			<mx:Image id="clockImage" source="{Resource.CLOCK_SMALL}" visible="{!mustRollOver}" includeInLayout="{!mustRollOver}"/>
+			<mx:Label text="{task.status}" color="{taskColor}" fontSize="13" 
+				fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
+		</mx:HBox>
+		<mx:Label id="percentage" text="{'(' + task.statusPercen+ '%)'}" color="#999999" fontWeight="normal" 
+			fontSize="11" fontStyle="normal" top="20" left="404" fontFamily="Helvetica" alpha="{textAlpha}"/>
 	
-		<mx:Label id="date" text="{getDate(task.date.toString())}" color="#666666"  left="619" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
-		<mx:Label id="ago" text="{getAgo(task.date.toString())}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="619" fontFamily="Helvetica"/>
+		<mx:Label id="date" text="{getDate(task.date.toString())}" color="#666666"  left="619" top="5" 
+			fontSize="12" fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
+		<mx:Label id="ago" text="{getAgo(task.date.toString())}" color="#999999" fontWeight="normal" 
+			fontSize="11" fontStyle="normal" top="20" left="619" fontFamily="Helvetica" alpha="{textAlpha}"/>
 		
 		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
 	</mx:Canvas>
@@ -197,7 +212,7 @@
 		</mx:HBox>
 		<mx:Label text="{task.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="21" left="8"/>
 		
-		<mx:Label text="{task.status}" color="#FFFFFF"  left="404" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
+		<mx:Label text="{task.status}" color="#FFFFFF" fontSize="13" fontFamily="Helvetica" fontWeight="bold" left="404" top="5"/>
 		<mx:Label text="{'(' + task.statusPercen + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="404" fontFamily="Helvetica"/>
 	
 		<mx:Label text="{date.text}" color="#FFFFFF"  left="619" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold" width="116" textAlign="left"/>
