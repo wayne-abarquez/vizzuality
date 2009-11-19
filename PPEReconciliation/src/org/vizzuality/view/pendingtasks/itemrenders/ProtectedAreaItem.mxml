@@ -60,6 +60,7 @@
 				statusOverText.visible = true;
 				event.stopPropagation();
 				MyEventDispatcher.confirmPa(pa,mode);
+				pa.status = ReviewProcess.CONFIRMED;
 				//getAlphaForButton(confirmButton);
 				confirmButton.alpha=1;
 				confirmButtonAuxAlpha = 1;
@@ -77,6 +78,7 @@
 				statusOverText.visible = true;
 				event.stopPropagation();
 				MyEventDispatcher.rejectPa(pa,mode);
+				pa.status = ReviewProcess.REJECTED;
 				//getAlphaForButton(confirmButton);
 				confirmButton.alpha=0.2;
 				confirmButtonAuxAlpha = .2;

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
 	width="300" height="452" borderStyle="solid" cornerRadius="4" xmlns:maps="com.google.maps.*">
+	<mx:Script>
+		<![CDATA[
+			import org.vizzuality.model.Pa;
+			private var _pa:Pa;
+			
+			public function set pa(val:Pa):void {
+				_pa=val;
+			}
+		]]>
+	</mx:Script>
 	<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="14">
 		<mx:Label text="Head version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 		<mx:Label text="(09/11/2009)"  fontFamily="Helvetica" fontStyle="normal" fontSize="13" fontWeight="bold" color="#666666"  height="21"/>
