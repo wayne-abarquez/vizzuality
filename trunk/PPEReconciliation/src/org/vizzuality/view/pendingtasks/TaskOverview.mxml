@@ -164,7 +164,7 @@
 		<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 			<mx:Label text="Changes overview" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="7" bottom="7" letterSpacing="-1" right="69" width="129"/>
 		</mx:Canvas>
-		<mx:VBox verticalGap="1" width="100%" backgroundColor="#EBEBEB">
+		<mx:VBox verticalGap="0" width="100%" backgroundColor="#FFFFFF" paddingBottom="4" paddingTop="4">
 			<itemrenders:MergeOverviewItem type="Deleted" total="{totalDeleted}" color="#ff3300" pending="{review.pendingDeletedToReview}" />
 			<itemrenders:MergeOverviewItem type="New" total="{totalNew}" color="#339900" pending="{review.pendingNewToReview}" />
 			<itemrenders:MergeOverviewItem type="Modified" total="{totalUpdated}" color="#336699" pending="{review.pendingEditedToReview}" />
