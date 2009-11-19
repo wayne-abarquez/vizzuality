@@ -30,7 +30,7 @@ Button.subMenuButton{
 }
 
 /*OTHER*/
-Button.greenButton{
+ShadowButton.greenButton{
 	up-skin: Embed(source="buttons.swf",symbol="greenButton_up");
 	over-skin: Embed(source="buttons.swf",symbol="greenButton_over");
 	down-skin: Embed(source="buttons.swf",symbol="greenButton_over");
@@ -41,9 +41,12 @@ Button.greenButton{
 	text-roll-over-color: #FFFFFF;	
 	font-weight: normal;
 	padding-top:3;
+	shadowColor: #235819;
+	shadowAngle: -180;
+	shadowDistance: 1;
 }
 
-Button.redButton{
+ShadowButton.redButton{
 	up-skin: Embed(source="buttons.swf",symbol="redButton_up");
 	over-skin: Embed(source="buttons.swf",symbol="redButton_over");
 	down-skin: Embed(source="buttons.swf",symbol="redButton_over");
@@ -53,6 +56,10 @@ Button.redButton{
 	text-roll-over-color: #FFFFFF;	
 	font-weight: normal;
 	padding-top:3;
+	shadowColor: #731d12;
+	shadowAngle: -180;
+	shadowDistance: 1;
+	
 }
 
 Button.whiteButton{

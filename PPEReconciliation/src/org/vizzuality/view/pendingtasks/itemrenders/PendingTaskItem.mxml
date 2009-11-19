@@ -87,9 +87,9 @@
 		<mx:Label text="{ago.text}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="619" fontFamily="Helvetica"/>
 		
 			
-		<mx:Button label="x" styleName="redButton" top="4" right="5" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
+		<components:ShadowButton label="x" styleName="redButton" top="4" right="5" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
 		mouseChildren="false" buttonMode="true" useHandCursor="true" />
-		<mx:Button label="CONTINUE" styleName="greenButton" click="MyEventDispatcher.selectTaskForOverview(data as Task)"
+		<components:ShadowButton label="CONTINUE" styleName="greenButton" click="MyEventDispatcher.selectTaskForOverview(data as Task)"
 			top="4" right="24" fontSize="10" paddingRight="2" paddingLeft="2" paddingTop="3" paddingBottom="3" height="18" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" />
 	</mx:Canvas>

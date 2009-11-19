@@ -94,13 +94,13 @@
 			}
 			
 			private function rollOverButton(event:MouseEvent):void {
-				(event.currentTarget as Button).alpha=1;
+				(event.currentTarget as ShadowButton).alpha=1;
 			}
 			private function rollOutButton(event:MouseEvent):void {
 				if(event.currentTarget == confirmButton){
-					(event.currentTarget as Button).alpha = confirmButtonAuxAlpha;
+					(event.currentTarget as ShadowButton).alpha = confirmButtonAuxAlpha;
 				}else if(event.currentTarget == rejectButton){
-					(event.currentTarget as Button).alpha = rejectButtonAuxAlpha;
+					(event.currentTarget as ShadowButton).alpha = rejectButtonAuxAlpha;
 				}
 			}
 			
@@ -130,14 +130,14 @@
 		
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="6" y="7" text="{pa.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(pa.status!=null)?140:180}" textAlign="left"/>
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="7" y="23" text="{pa.country}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
-		<mx:Button id="confirmButton" styleName="greenButton" top="4" right="5" width="18" fontSize="12" 
+		<components:ShadowButton id="confirmButton" styleName="greenButton" top="4" right="5" width="18" fontSize="12" 
 			click="confirmPa(event)"
 			rollOver="rollOverButton(event)"
 			rollOut="rollOutButton(event)"
 			paddingRight="0" paddingLeft="0" height="17"
 			icon="{Resource.TICK_ICON_OVER}" paddingBottom="0"
 			mouseChildren="false" buttonMode="true" useHandCursor="true" />
-		<mx:Button id="rejectButton" styleName="redButton" top="4" right="24" width="18" fontSize="12" 
+		<components:ShadowButton id="rejectButton" styleName="redButton" top="4" right="24" width="18" fontSize="12" 
 			click="rejectPa(event)"
 			rollOver="rollOverButton(event)"
 			rollOut="rollOutButton(event)"			

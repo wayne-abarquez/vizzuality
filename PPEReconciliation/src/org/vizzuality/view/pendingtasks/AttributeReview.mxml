@@ -3,7 +3,7 @@
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
 	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" 
 	xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*"
-	 creationComplete="init()" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" height="100%">
+	 creationComplete="init()" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" height="100%" xmlns:components="org.vizzuality.components.*">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:RemoveChild target="{headPa}"/>
@@ -135,8 +135,8 @@
 				    <mx:HBox horizontalGap="4" top="14" verticalAlign="bottom"  horizontalAlign="right" right="15">
 						<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
 						<mx:Spacer width="100%" />
-						<mx:Button label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
-						<mx:Button label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
+						<components:ShadowButton label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
+						<components:ShadowButton label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
 			    	</mx:HBox>
 					<mx:HRule height="1" left="0" right="17" top="64"/>
 					<mx:Label y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
@@ -160,8 +160,8 @@
 				<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
 				<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12"/>
 				<mx:Spacer width="100%" />
-				<mx:Button label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
-				<mx:Button label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
+				<components:ShadowButton label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
+				<components:ShadowButton label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
 	    	</mx:HBox>
 	    	
 	    </mx:VBox>

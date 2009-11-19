@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="40" backgroundColor="#FFFFFF"
-	rollOver="handleOver(event)" rollOut="handleOut(event)" creationComplete="init()">
+	rollOver="handleOver(event)" rollOut="handleOut(event)" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
 			import mx.controls.TileList;
@@ -61,7 +61,7 @@
 		cornerRadius="2" visible="false" alpha="0" >
 		<mx:Label x="7" y="5" text="{data.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 		<mx:Label x="7" y="20" text="{data.numareas}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11"/>		
-		<mx:Button label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" 
+		<components:ShadowButton label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" 
 			click="onAddedClick()" width="45" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 	</mx:Canvas>
 	

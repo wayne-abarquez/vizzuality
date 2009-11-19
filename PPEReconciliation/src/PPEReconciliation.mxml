@@ -89,7 +89,7 @@
 							color="#333333" borderStyle="solid" borderColor="#E2E2E2" backgroundColor="#E2E2E2" cornerRadius="4" left="82" right="20" focusAlpha="0" fontFamily="Helvetica" fontSize="12" paddingTop="3" paddingLeft="3"/>
 						<mx:TextInput id="passwordInput" y="108" displayAsPassword="true" enter="login()" 
 							color="#333333" borderStyle="solid" borderColor="#E2E2E2" backgroundColor="#E2E2E2" cornerRadius="4" left="82" right="20" focusAlpha="0" fontFamily="Helvetica" fontSize="12" paddingTop="3" paddingLeft="3"/>
-						<mx:Button y="138" label="ENTER" id="button1" click="login()" color="#FFFFFF" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton" fontSize="12" right="20" height="24"/>
+						<components:ShadowButton y="138" label="ENTER" id="button1" click="login()" color="#FFFFFF" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton" fontSize="12" right="20" height="24"/>
 						<mx:Label y="17" text="Welcome to the Protect Planet Earth" fontFamily="Helvetica" fontSize="14" fontWeight="bold" color="#8F8F8F" textAlign="left" width="246" letterSpacing="-1" left="14"/>
 						<mx:Label y="33" text="Data Reconciliation Tool" fontFamily="Helvetica" fontSize="18" fontWeight="bold" color="#666666" textAlign="left" letterSpacing="-1" left="13"/>
 						<mx:Label y="112.1" text="PASWORD" fontFamily="Helvetica" fontSize="9" fontWeight="bold" color="#666666" textAlign="right" left="15"/>
