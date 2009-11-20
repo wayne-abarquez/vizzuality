@@ -47,14 +47,15 @@
 		
 		
 		private function onDownloadButtonClick():void {
-			jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.prepareDownload";
+			jsonService.url = Application.application.serverUrl + "/exports";
 			var params:Object = {};
 			params.countries=[];
 			for each(var c:Object in selectedCountries) {
 				params.countries.push(c.id);
 			}		
-			params.pas=[1,2];
-			params.filter="somekindofid";
+			params.protected_areas=[1,2];
+			params.filter=["somekindofid"];
+			params.has_shapefile=true;
 			jsonService.send(params);
 							
 		}
