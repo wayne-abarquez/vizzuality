@@ -22,8 +22,11 @@
 			</mx:HBox>
 			<mx:HBox left="65" top="28" fontSize="14" fontFamily="Helvetica" horizontalGap="0" width="662">
 				<mx:Label text="If you have finished your edits on any of this datasets, please" color="#414141"/>
-				<components:LinkLabel text="upload it"  fontWeight="bold" color="#24578E" default_color="0x24578E" default_hover_color="0x003366" default_hover_decoration="underline" 
-					text_decoration="none" default_weight="bold" default_hover_weight="bold" fontFamily="Helvetica"/>
+				<components:LinkLabel text="upload it"  fontWeight="bold" color="#24578E" default_color="0x24578E" 
+					default_hover_color="0x003366" default_hover_decoration="underline" 
+					text_decoration="none" default_weight="bold" default_hover_weight="bold" 
+					fontFamily="Helvetica" 
+					click="{SWFAddress.setValue('/rec/pendingtasks/overview')}"/>
 			</mx:HBox>
 				
 		</mx:Canvas>
@@ -36,7 +39,8 @@
 			<mx:HBox left="65" top="28" fontSize="14" fontFamily="Helvetica" horizontalGap="0" width="637">
 				<mx:Label text="Use our" color="#414141"/>
 				<components:LinkLabel text="search tools"  fontWeight="bold" color="#24578E" default_color="0x24578E" default_hover_color="0x003366" default_hover_decoration="underline" 
-					text_decoration="none" default_weight="bold" default_hover_weight="bold" click="SWFAddress.setValue('/rec/checkout/search')"/>
+					text_decoration="none" default_weight="bold" default_hover_weight="bold" 
+					click="SWFAddress.setValue('/rec/checkout/search')"/>
 				<mx:Label text="to get some new data, and star a new proccess" color="#414141"/>
 			</mx:HBox>
 		</mx:Canvas>
@@ -69,9 +73,9 @@
 				<mx:Canvas width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="softBlueStepBackground" backgroundSize="100%" height="59">
 					<mx:Image left="32" source="{Resource.STEP2}" top="9"/>
 					<mx:Label text="2" left="4" fontWeight="bold" fontSize="14" fontFamily="Helvetica" color="#336699" top="12"/>
-					<components:LinkLabel text="Modify your data" left="78" right="15" fontWeight="bold" fontSize="14" fontFamily="Helvetica" color="#666666" 
-						bottom="-2" top="12" default_color="0x666666" default_hover_color="0x333333" default_hover_decoration="none" 
-						text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
+					<mx:Label text="Modify your data" left="78" right="15" fontWeight="bold" 
+						fontSize="14" fontFamily="Helvetica" color="#666666"
+						bottom="-2" top="12" />
 					<mx:Text fontWeight="normal" fontSize="14" fontFamily="Helvetica" color="#666666" text="with your own editor" left="78" top="30"/>
 				</mx:Canvas>
 				<mx:Canvas width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="softBlueStepBackground" backgroundSize="100%" height="59">

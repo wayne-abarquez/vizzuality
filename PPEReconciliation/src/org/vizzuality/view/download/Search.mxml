@@ -25,6 +25,7 @@
 
 <mx:Script>
 	<![CDATA[
+		import com.asual.swfaddress.SWFAddress;
 		import mx.managers.CursorManager;
 		import com.google.maps.MapZoomEvent;
 		import mx.events.ScrollEvent;
@@ -251,7 +252,9 @@
 		<mx:HBox id="hbox1" x="58" y="34"  horizontalGap="0">
 			<mx:Label text="Do you want to download a complete country data? Then"  fontSize="12" fontFamily="Helvetica" color="#414141"/>
 			<components:LinkLabel text="go to the “country tab”"  fontSize="12" fontFamily="Helvetica" color="#336699" fontWeight="bold"
-				default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
+				default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" 
+				text_decoration="none" default_weight="bold" default_hover_weight="bold"
+				click="{SWFAddress.setValue('/rec/checkout/countries/africa')}"/>
 		</mx:HBox>
 	</mx:Canvas>
 </mx:VBox>
