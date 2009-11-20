@@ -91,6 +91,14 @@
 							actionButton.label = "REVIEW";
 							taskColor=0xff3300;
 							break;
+						case Task.TASK_READY_FOR_REVIEW:
+							actionButton.visible=true;
+							cancelButton.visible=true;
+							this.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
+							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
+							actionButton.label = "CONTINUE";
+							taskColor=0x339900;
+							break;
 						case Task.REVIEW_STARTED:
 							actionButton.visible=true;
 							cancelButton.visible=true;
@@ -183,8 +191,8 @@
 	</mx:Script>
 	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0" backgroundColor="{bkg_color}">
 		<mx:HBox horizontalGap="0" top="5" left="11">
-			<mx:Label text="{task.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" alpha="{textAlpha}"/>
-			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9" alpha="{textAlpha}"/>
+			<!--mx:Label text="{task.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" alpha="{textAlpha}"/>
+			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9" alpha="{textAlpha}"/ -->
 			<mx:Label text="{task.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13" alpha="{textAlpha}"/>	
 		</mx:HBox>
 		<mx:Label id="number" text="{task.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" 
