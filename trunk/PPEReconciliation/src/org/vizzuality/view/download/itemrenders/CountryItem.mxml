@@ -52,8 +52,8 @@
 		]]>
 	</mx:Script>
 	<mx:Canvas left="5" right="5" top="0" bottom="0" id="mamufas">
-		<mx:Label id="area" y="7" text="{data.name}" color="{(addedItem)?0xdddddd:0x666666}" fontWeight="normal" fontFamily="Helvetica" fontSize="13" x="2" width="180"/>
-		<mx:Label id="country" x="2" y="22" text="{data.numareas}" color="{(addedItem)?0xddddddd:0x999999}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="130"/>
+		<mx:Label id="area" y="7" text="{data.name}" color="{(addedItem)?0xdddddd:0x666666}" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="180" left="2"/>
+		<mx:Label id="country" y="22" text="{data.numareas}" color="{(addedItem)?0xddddddd:0x999999}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="130" left="2"/>
 		<mx:Label id="addedLabel" x="152" y="22" text="added" color="#339900"
 			visible="{addedItem}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
 		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
@@ -64,8 +64,8 @@
 		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
 		cornerRadius="2" visible="false" alpha="0" 
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
-		<mx:Label x="7" y="5" text="{data.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="140"/>
-		<mx:Label x="7" y="20" text="{data.numareas}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" width="130"/>		
+		<mx:Label left="7" y="5" text="{data.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="140"/>
+		<mx:Label left="7" y="20" text="{data.numareas}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" width="130"/>		
 		<components:ShadowButton label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" 
 			click="onAddedClick()" width="45" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 	</mx:Canvas>
