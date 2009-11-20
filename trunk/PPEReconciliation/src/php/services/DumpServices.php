@@ -12,6 +12,7 @@ class DumpServices {
 			$res['loginresult']=true;
 			$res['username']="Craig";
 			$res['userid']="65";
+			$res['pendingTasks']="1";
 		} else {
 			$res['loginresult']=false;
 		}
@@ -267,6 +268,11 @@ class DumpServices {
 		$res['originalPa']=$originalPa;
 		$res['newPa']=$newPa;
 		return $res;
+	}
+	
+	function cancelTask($taskId) {
+		
+		return null;
 	}
 	
 	

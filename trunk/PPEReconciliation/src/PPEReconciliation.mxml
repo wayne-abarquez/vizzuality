@@ -19,6 +19,8 @@
 			[Bindable]
 			public var username:String="";
 			public var userId:Number;
+			[Bindable]
+			public var pendingTasks:Number;
 			private var _mwSupport:ExternalMouseWheelSupport;
 			
             private function initSWFAddress():void {
@@ -62,6 +64,7 @@
 				if(response.loginresult) {
 					username=response.username;
 					userId=response.userid;
+					pendingTasks=response.pendingTasks;
 					currentState="Rec";	
 				} else {
 					currentState="Login";
