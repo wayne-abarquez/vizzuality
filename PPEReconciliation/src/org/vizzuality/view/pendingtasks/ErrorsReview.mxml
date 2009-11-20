@@ -20,7 +20,7 @@
 			[Bindable]private var pendingTasks: ArrayCollection = new ArrayCollection();
 			
 			private function init():void {
-				getPendingTasks(1);
+				//getPendingTasks(1);
 			}
 			
 			private function getPendingTasks(p:Number):void {

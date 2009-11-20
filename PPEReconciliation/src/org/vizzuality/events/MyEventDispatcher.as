@@ -47,8 +47,10 @@ package org.vizzuality.events
    		public static function confirmPa(pa:Pa,mode:String):void {
    			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.PA_CONFIRMED,null,pa,mode));
    		}
-   		public static function deletePendingTask(localX:Number, localY:Number):void {
-   			dispatchEvent(new DeleteAlertEvent(DeleteAlertEvent.DELETE_ITEM,localX,localY));
+   		public static function cancelTask(task:Task):void {
+   			dispatchEvent(new CancelTaskEvent(CancelTaskEvent.CANCEL_TASK,task));
    		}
+   		
+   		
     }
 }

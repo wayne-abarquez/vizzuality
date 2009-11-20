@@ -117,6 +117,10 @@
                 } 
             }
             
+            private function cancelTask(event:Event):void {
+            	MyEventDispatcher.cancelTask(task);
+            }
+            
             private function waitingForDownloadClicked(event:Event):void {
             	//Do a download.
             	navigateToURL(new URLRequest("http://localhost/shapefile.shp"),"_blank");
@@ -128,6 +132,7 @@
             	task.status = Task.WAITING_FOR_UPLOAD;
 				actionButton.visible=true;
 				cancelButton.visible=true;
+				actionButton.removeEventListener(MouseEvent.CLICK,waitingForDownloadClicked);
 				actionButton.addEventListener(MouseEvent.CLICK,waitingForUploadClicked,false,0,true);
 				actionButton.label = "UPLOAD";
 				taskColor=0xff9900;            	
@@ -164,11 +169,6 @@
 			
 			private function getAgo (str:String):String {
 				return timeAgo.returnTimeAgo(str);
-			}
-			
-			private function removeItemClick(ev:MouseEvent):void {
-				
-				MyEventDispatcher.deletePendingTask(ev.stageX-70,ev.stageY-80);
 			}
 			
 
@@ -220,7 +220,7 @@
 		
 			
 		<components:ShadowButton id="cancelButton" label="x" styleName="redButton" top="4" right="5" width="18" fontSize="12" paddingRight="0" paddingLeft="0" paddingTop="-1" paddingBottom="3" height="18" 
-		mouseChildren="false" buttonMode="true" useHandCursor="true" click="removeItemClick(event)"/>
+		mouseChildren="false" buttonMode="true" useHandCursor="true" click="cancelTask(event)"/>
 		<components:ShadowButton id="actionButton" label="CONTINUE" styleName="greenButton"
 			top="4" right="24" fontSize="10" paddingRight="2" paddingLeft="2" paddingTop="3" paddingBottom="3" height="18" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" />
