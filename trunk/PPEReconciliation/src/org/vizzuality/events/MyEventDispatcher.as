@@ -50,6 +50,12 @@ package org.vizzuality.events
    		public static function cancelTask(task:Task):void {
    			dispatchEvent(new CancelTaskEvent(CancelTaskEvent.CANCEL_TASK,task));
    		}
+   		public static function uploadTaskFile(task:Task):void {
+   			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_TASK_FOR_UPLOAD,task));
+   		}
+   		public static function taskUploaded(task:Task):void {
+   			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.TASK_UPLOADED,task));
+   		}
    		
    		
     }

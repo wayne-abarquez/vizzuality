@@ -17,7 +17,7 @@ package {
             if (scope.currentState != value && value!='') {
                 scope.currentState = value;
             }
-            var title:String = 'SWFAddress Application';
+            var title:String = 'Reconciliation tool: Protect Planet Earth';
             for (var i:int = 0; i < event.pathNames.length; i++) {
                 title += ' » ' + toTitleCase(event.pathNames[i]);
             }

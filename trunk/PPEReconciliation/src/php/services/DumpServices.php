@@ -270,9 +270,23 @@ class DumpServices {
 		return $res;
 	}
 	
-	function cancelTask($taskId) {
+	function cancelTask($taskCode) {
 		
 		return null;
+	}
+	
+	function getTaskErrors($taskCode) {
+		$res=array();
+		$er=array();
+		$er['error']="Error 1asdasdsad";
+		$res[]=$er;		
+		$er['error']="Error 1asdasdsad";
+		$res[]=$er;
+		$er['error']="Error 1asdasdsad";
+		$res[]=$er;
+		$er['error']="Error 1asdasdsad";
+		$res[]=$er;														
+		return $res;
 	}
 	
 	

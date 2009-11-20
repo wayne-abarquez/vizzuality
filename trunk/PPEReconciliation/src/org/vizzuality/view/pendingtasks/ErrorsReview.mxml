@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="684" 
 	styleName="dataDownloadContainer" backgroundSize="100%" 
-	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
+	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
 			import org.vizzuality.model.Task;
@@ -13,40 +13,17 @@
 			import resource.Resource;
 			
 			
-			private var totalTasks:Number=0;
-			[Bindable] private var page:Number=1;
-			[Bindable] private var totalPages:Number=1;
+			[Bindable]private var errors: ArrayCollection = new ArrayCollection();
 			
-			[Bindable]private var pendingTasks: ArrayCollection = new ArrayCollection();
-			
-			private function init():void {
-				//getPendingTasks(1);
+			public function getErrors(task:Task):void {
+				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskErrors/"+task.code;
+				jsonService.send();				
 			}
 			
-			private function getPendingTasks(p:Number):void {
-				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getPendingTasks/"+p+"/8";
-				jsonService.send();	
-				page=p;					
-			}
-			
-			private function getPendingTasksResult(ev:ResultEvent):void {
-				var res:Object = JSON.decode(ev.result as String);
-				var resArr:Array = [];
-				for(var i:String in res.results as Array)  {
-					var ta:Task = new Task();
-					ta.code=res.results[i].code;
-					ta.type=res.results[i].type;
-					ta.description=res.results[i].description;
-					ta.what=res.results[i].what;
-					ta.numareas=res.results[i].numareas;
-					ta.status=res.results[i].status;
-					ta.statusPercen=res.results[i].statuspercen;
-					ta.date=new Date(Date.parse(res.results[i].date));
-					resArr.push(ta);
-				}
-				pendingTasks=new ArrayCollection(resArr);
-				totalTasks=res.total;
-				totalPages = Math.ceil(totalTasks/8);		
+			private function getErrorsResult(ev:ResultEvent):void {
+				var ob:Object = JSON.decode(ev.result as String);
+				
+				errors = new ArrayCollection(ob as Array);	
 				
 			}
 
@@ -69,19 +46,19 @@
 
 		</mx:Canvas>
 		
-		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ErrorItem" dataProvider="{pendingTasks}" borderStyle="none"
+		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ErrorItem" dataProvider="{errors}" borderStyle="none"
 			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" />
 		
 		<mx:Spacer height="12" />
 		
 		<mx:Canvas width="100%" height="66" styleName="ContainersInfo">	
 			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP4}"/>
-			<mx:Label text="Retry your download"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
+			<mx:Label text="Retry your upload"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
 			<mx:Label x="65" y="34" text="Have you already changed your data? Then upload it" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
 			<components:ShadowButton right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>
     </mx:VBox>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getErrorsResult(event)" />
 
 	
 </mx:Canvas>

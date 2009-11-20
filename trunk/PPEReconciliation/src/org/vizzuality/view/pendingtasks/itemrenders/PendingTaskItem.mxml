@@ -126,7 +126,8 @@
             	navigateToURL(new URLRequest("http://localhost/shapefile.shp"),"_blank");
             	
             	//After 10 seconds change the status
-            	TweenLite.delayedCall(2,changeStatusAfterDownload,null);
+            	changeStatusAfterDownload()
+            	//TweenLite.delayedCall(2,changeStatusAfterDownload,null);
             }
             private function changeStatusAfterDownload(params:Object=null):void {
             	task.status = Task.WAITING_FOR_UPLOAD;
@@ -138,6 +139,7 @@
 				taskColor=0xff9900;            	
             }
             private function waitingForUploadClicked(event:Event):void {
+            	MyEventDispatcher.uploadTaskFile(task);
             	
             }
             private function errorInDataClicked(event:Event):void {

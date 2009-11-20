@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="754" 
 	styleName="dataDownloadContainer" backgroundSize="100%" 
-	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
+	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*" xmlns:ns1="org.vizzuality.view.pendingtasks.*">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
@@ -14,6 +14,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.TaskSelectionEvent;
 			import org.vizzuality.events.CancelTaskEvent;
 			import org.vizzuality.events.MyEventDispatcher;
 			import org.vizzuality.events.MyEventDispatcher;
@@ -27,6 +28,7 @@
 			import mx.collections.ArrayCollection;
 			import resource.Resource;
 			
+			private var ud:UploadingData;
 			
 			private var totalTasks:Number=0;
 			[Bindable] private var page:Number=1;
@@ -38,9 +40,24 @@
 			[Bindable]private var pendingTasks: ArrayCollection = new ArrayCollection();
 			
 			private function init():void {
-				MyEventDispatcher.addEventListener(CancelTaskEvent.CANCEL_TASK,onTaskCanceled);
 				getPendingTasks(1);
+				MyEventDispatcher.addEventListener(CancelTaskEvent.CANCEL_TASK,onTaskCanceled);
 				MyEventDispatcher.addEventListener(DeleteAlertEvent.DELETE_ITEM, showConfirmationAlert);
+				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_TASK_FOR_UPLOAD,onSelectedTaskForUpload);
+				MyEventDispatcher.addEventListener(TaskSelectionEvent.TASK_UPLOADED,onTaskUploaded);
+			}
+			
+			private function onSelectedTaskForUpload(ev:TaskSelectionEvent):void {
+				ud = new UploadingData();
+				ud.setTask(ev.task);
+				Application.application.addChild(ud);				 
+				ud.selectFile();
+			}			
+			
+			private function onTaskUploaded(ev:TaskSelectionEvent):void {
+				currentState='';
+				getPendingTasks(1);
+				Application.application.removeChild(ud);	
 			}
 			
 			private function showConfirmationAlert(ev:DeleteAlertEvent):void {
