@@ -170,8 +170,8 @@
 			</mx:HBox>		
 		</mx:Canvas>
     </mx:VBox>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" />
-	<mx:HTTPService id="cancelJsonService" resultFormat="text" method="GET" result="cancelTaskResult(event)" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" fault="trace(event.message)" result="getPendingTasksResult(event)" />
+	<mx:HTTPService id="cancelJsonService" resultFormat="text" method="GET" fault="trace(event.message)" result="cancelTaskResult(event)" />
 
 	
 </mx:Canvas>
