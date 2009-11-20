@@ -100,6 +100,16 @@ Button.boundingBoxButton{
 	selected-down-skin: Embed(source="general.swf",symbol="boundingBoxButton_over");
 }
 
+Button.ephimerButton{
+	up-skin: Embed(source="buttons.swf",symbol="ephimerButton");
+	over-skin: Embed(source="buttons.swf",symbol="ephimerButton");
+	down-skin: Embed(source="buttons.swf",symbol="ephimerButton");
+	selected-down-skin: Embed(source="buttons.swf",symbol="ephimerButton");
+	selected-up-skin: Embed(source="buttons.swf",symbol="ephimerButton");
+	selected-over-skin: Embed(source="buttons.swf",symbol="ephimerButton");
+	selected-down-skin: Embed(source="buttons.swf",symbol="ephimerButton");
+}
+
 
 Button.noSkinButton{
 	skin: ClassReference(null);

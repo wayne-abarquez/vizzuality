@@ -5,7 +5,8 @@
 		<mx:State name="loading">
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
 				<mx:Canvas x="0" y="0" width="100%" height="100%" backgroundColor="#FFFFFF">
-					<mx:SWFLoader horizontalCenter="0" verticalCenter="0" source="{Resource.LOAD_ANIMATION}" alpha=".6"/>
+					<mx:SWFLoader horizontalCenter="0" verticalCenter="0" source="{Resource.LOAD_ANIMATION}" 
+						alpha=".6"/>
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
@@ -292,6 +293,9 @@
 		<maps:Map  left="10" bottom="10" right="10" id="map" height="326" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ"
 			mapevent_mapready="onMapReady(event)"/>
 		<components:DiscretLoading id="discretLoading" left="39" top="73"/>
+		<mx:Button x="546" y="35" styleName="ephimerButton" width="35" 
+			click="doGeocode()" visible="{!searchInput.text==''}" 
+			useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 
 	</mx:Canvas>
 	
