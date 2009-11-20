@@ -8,6 +8,7 @@ package org.vizzuality.model
 		public static const NORTH_AMERICA_ID:Number=4;
 		public static const OCEANIA_ID:Number=5;
 		public static const SOUTH_AMERICA_ID:Number=6;
+		public static const OTHER:Number=7;
 		
 		
 		public var id:Number;

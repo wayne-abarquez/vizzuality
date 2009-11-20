@@ -3,6 +3,7 @@
 	 xmlns:components="org.vizzuality.components.*" rollOver="handleOver(event)" rollOut="handleOut(event)">
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
 			import resource.Resource;
 			import flash.net.navigateToURL;
 			import gs.TweenLite;
@@ -147,7 +148,7 @@
             private function waitingForDownloadClicked(event:Event):void {
             	//Do a download.
             	event.stopPropagation();
-            	navigateToURL(new URLRequest("http://localhost/shapefile.shp"),"_blank");
+            	navigateToURL(new URLRequest(Application.application.serverUrl + "/exports/"+task.id),"_blank");
             	
             	//After 10 seconds change the status
             	changeStatusAfterDownload()
@@ -236,8 +237,8 @@
 		useHandCursor="true" mouseChildren="true" buttonMode="true" >
 		
 		<mx:HBox horizontalGap="0" top="5" left="8">
-			<mx:Label text="{task.what}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-			<mx:Label text="-" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
+			<!--mx:Label text="{task.what}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+			<mx:Label text="-" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/ -->
 			<mx:Label text="{task.description}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>
 			<mx:Label text="(re-download) " color="#FFFFFF" fontFamily="Helvetica" fontSize="12"/>	
 		</mx:HBox>
