@@ -52,6 +52,9 @@
                 	case "Oceania":
 	                	countryList.regionId=Region.OCEANIA_ID;
                 		break;
+                	case "Other":
+	                	countryList.regionId=Region.OTHER;
+                		break;
                 }
                 
             }
@@ -86,8 +89,14 @@
             <mx:SetProperty target="{button3}" name="selected" value="false"/>
         </mx:State>
         <mx:State name="Oceania">
-            <mx:SetProperty target="{button8}" name="selected" value="true"/>
             <mx:SetProperty target="{button3}" name="selected" value="false"/>
+            <mx:SetProperty target="{button8}" name="selected" value="true"/>
+        </mx:State>
+        <mx:State name="Other">
+            <mx:SetProperty target="{button3}" name="selected" value="false"/>
+            <mx:SetProperty target="{button9}" name="selected" value="true"/>
+            <mx:SetProperty target="{button9}" name="selected" value="true"/>
+            <mx:SetProperty target="{button9}" name="selected" value="true"/>
         </mx:State>
     </mx:states>
     <mx:VBox width="100%" height="100%">    	
@@ -106,6 +115,8 @@
 		    		click="currentState='Samerica'"  id="button7" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
 		        <mx:Button label="Oceania" useHandCursor="true" mouseChildren="false" buttonMode="true"
 		    		click="currentState='Oceania'"  id="button8" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false"/>
+		        <mx:Button label="Other" useHandCursor="true" mouseChildren="false" buttonMode="true"
+		    		click="currentState='Other'"  id="button9" styleName="subMenuButton" fontSize="13" paddingTop="4" paddingBottom="0" height="27" fontWeight="bold" selected="false" width="62"/>
 		    </mx:HBox>
 		</mx:Canvas>
 	    

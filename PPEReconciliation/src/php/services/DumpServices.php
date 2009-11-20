@@ -71,6 +71,7 @@ class DumpServices {
 			$t['what']="Country Download";
 			$t['numareas']=2431;
 			$t['status'] = "preparingDownload";
+			$t['url'] = "http://localhost/shp.zip";
 			$t['statuspercen'] = 0;
 			$t['date'] = "2009/11/10 12:34:00";
 			$res[]=$t;
@@ -81,6 +82,7 @@ class DumpServices {
 			$t['what']="Country Download";
 			$t['numareas']=15;
 			$t['status'] = "waitingForDownload";
+			$t['url'] = "http://localhost/shp.zip";			
 			$t['statuspercen'] = 0;
 			$t['date'] = "2009/11/10 12:34:00";
 			$res[]=$t;
@@ -89,6 +91,7 @@ class DumpServices {
 			$t['code'] = "DW543";
 			$t['description'] = "France";
 			$t['what']="Country Download";
+			$t['url'] = "http://localhost/shp.zip";			
 			$t['numareas']=878787;
 			$t['status'] = "waitingForUpload";
 			$t['statuspercen'] = 0;
@@ -99,6 +102,7 @@ class DumpServices {
 			$t['code'] = "DW5423";
 			$t['description'] = "asdasdasd";
 			$t['what']="Country Download";
+			$t['url'] = "http://localhost/shp.zip";			
 			$t['numareas']=2431;
 			$t['status'] = "errorInData";
 			$t['statuspercen'] = 0;
@@ -111,6 +115,7 @@ class DumpServices {
 			$t['what']="Country Download";
 			$t['numareas']=2431;
 			$t['status'] = "uploadProcessing";
+			$t['url'] = "http://localhost/shp.zip";			
 			$t['statuspercen'] = 0;
 			$t['date'] = "2009/11/10 12:34:00";
 			$res[]=$t;
@@ -120,6 +125,7 @@ class DumpServices {
 			$t['description'] = "Holland";
 			$t['what']="Country Download";
 			$t['numareas']=2431;
+			$t['url'] = "http://localhost/shp.zip";			
 			$t['status'] = "reviewStarted";
 			$t['statuspercen'] = 0;
 			$t['date'] = "2009/11/10 12:34:00";
@@ -287,6 +293,10 @@ class DumpServices {
 		$er['error']="Error 1asdasdsad";
 		$res[]=$er;														
 		return $res;
+	}
+	
+	function getPasByBoundingBox($north,$south,$west,$east) {
+		$res=array();
 	}
 	
 	

@@ -91,6 +91,7 @@
 				for(var i:String in res.results as Array)  {
 					var ta:Task = new Task();
 					ta.code=res.results[i].id;
+					ta.id=res.results[i].id;
 					//ta.type=res.results[i].type;
 					ta.description=res.results[i].description;
 					//ta.what=res.results[i].what;
