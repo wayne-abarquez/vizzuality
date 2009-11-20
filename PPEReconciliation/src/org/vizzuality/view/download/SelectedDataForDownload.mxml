@@ -46,7 +46,7 @@
 		}
 		
 		
-		private function onDownloadButtonClick():void {
+		private function onDownloadButtonClick(type:String = "csv"):void {
 			jsonService.url = Application.application.serverUrl + "/exports";
 			var params:Object = {};
 			params.countries=[];
@@ -54,8 +54,12 @@
 				params.countries.push(c.id);
 			}		
 			params.protected_areas=[1,2];
+			if(type=="csv") {
+				params.has_shapefile=false;
+			} else {
+				params.has_shapefile=true;				
+			}
 			params.filter=["somekindofid"];
-			params.has_shapefile=true;
 			jsonService.send(params);
 							
 		}
@@ -79,9 +83,9 @@
 		backgroundColor="#EBEBEB" borderStyle="none"/>
 	<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 		<mx:Label text="Download" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999" width="61"/>
-		<components:ShadowButton right="6" y="4" label="SHP" styleName="greenButton" click="onDownloadButtonClick()" 
+		<components:ShadowButton right="6" y="4" label="SHP" styleName="greenButton" click="onDownloadButtonClick('shp')" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3" width="50"/>
-		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" click="onDownloadButtonClick()" 
+		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" click="onDownloadButtonClick('csv')" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button0" width="50"/>
 	</mx:Canvas>	
 	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="onDownloadSentResult(event)" fault="trace(event.message)" />	
