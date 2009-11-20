@@ -196,6 +196,10 @@
 				return timeAgo.returnTimeAgo(str);
 			}
 			
+			public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24; 
+			private function getDaysDifference(minDate:Date, maxDate:Date):uint { 
+				return Math.ceil(( minDate.getTime() - maxDate.getTime()) / millisecondsPerDay); 
+			} 			
 			
 
 			
@@ -220,7 +224,7 @@
 	
 		<mx:Label id="date" text="{getDate(task.date.toString())}" color="#666666"  left="619" top="5" 
 			fontSize="12" fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
-		<mx:Label id="ago" text="{getAgo(task.date.toString())}" color="#999999" fontWeight="normal" 
+		<mx:Label id="ago" text="{getDaysDifference(task.date,new Date()) + ' days ago'}" color="#999999" fontWeight="normal" 
 			fontSize="11" fontStyle="normal" top="20" left="619" fontFamily="Helvetica" alpha="{textAlpha}"/>
 		
 		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
