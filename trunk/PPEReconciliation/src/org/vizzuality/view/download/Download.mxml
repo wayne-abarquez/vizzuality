@@ -77,7 +77,9 @@
 					<mx:HBox id="hbox1" x="58" y="34"  horizontalGap="0">
 						<mx:Label text="Do you want to download a complete country data? Then"  fontSize="12" fontFamily="Helvetica" color="#414141" id="label1"/>
 						<components:LinkLabel text="go to the “search tab”"  fontSize="12" fontFamily="Helvetica" color="#336699" fontWeight="bold"
-							default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>
+							default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" 
+							text_decoration="none" default_weight="bold" default_hover_weight="bold"
+							click="{SWFAddress.setValue('/rec/checkout/search')}"/>
 					</mx:HBox>
 				</mx:Canvas> 
 	    </mx:VBox>
