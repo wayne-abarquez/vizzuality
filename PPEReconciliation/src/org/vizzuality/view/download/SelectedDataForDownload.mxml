@@ -84,5 +84,5 @@
 		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" click="onDownloadButtonClick()" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button0" width="50"/>
 	</mx:Canvas>	
-	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="onDownloadSentResult(event)" />	
+	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="onDownloadSentResult(event)" fault="trace(event.message)" />	
 </mx:VBox>
