@@ -1,7 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#000000" backgroundAlpha="0.45">
+	<mx:Script>
+		<![CDATA[
+			import org.vizzuality.events.MyEventDispatcher;
+			import org.vizzuality.model.Task;
+			
+			private var task:Task;
+			private var refFile:FileReference;
+			
+			
+			public function setTask(_task:Task):void {
+				task=_task;
+			}
+			
+			public function selectFile():void {
+				refFile = new FileReference();
+				refFile.addEventListener(Event.SELECT, onSelectFile);
+                refFile.addEventListener(ProgressEvent.PROGRESS, onUploadProgress);
+                refFile.addEventListener(Event.COMPLETE, onUploadComplete);
+                refFile.addEventListener(IOErrorEvent.IO_ERROR, onUploadIoError);
+                refFile.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onUploadSecurityError);
+				refFile.browse();
+			}
+			
+			private function onSelectFile(event:Event):void {
+				
+				//Start the upload
+				var sendVars:URLVariables = new URLVariables();
+                sendVars.action = "upload";
+                var request:URLRequest = new URLRequest();
+                request.data = sendVars;
+                request.url = "http://localhost/php/uploader.php";
+                request.method = URLRequestMethod.POST;
+                refFile.upload(request, "file",false);             
+				
+			}
+			
+            // Get upload progress
+            private function onUploadProgress(event:ProgressEvent):void {
+                var numPerc:Number = Math.round((event.bytesLoaded / event.bytesTotal) * 100);
+                updateProgBar(numPerc);
+                var evt:ProgressEvent = new ProgressEvent("uploadProgress", false, false, event.bytesLoaded, event.bytesTotal);
+                dispatchEvent(evt);
+            }			
+			
+            // Update progBar
+            private function updateProgBar(numPerc:Number = 0):void {
+/*                 //var strLabel:String = (_numCurrentUpload + 1) + "/" + _arrUploadFiles.length;
+                strLabel = (_numCurrentUpload + 1 <= _arrUploadFiles.length && numPerc > 0 && numPerc < 100) ? numPerc + "% - " + strLabel : strLabel;
+                strLabel = (_numCurrentUpload + 1 == _arrUploadFiles.length && numPerc == 100) ? "Upload Complete - " + strLabel : strLabel;
+                strLabel = (_arrUploadFiles.length == 0) ? "" : strLabel;
+                progBar.label = strLabel; */
+                progBar.setProgress(numPerc, 100);
+                progBar.validateNow();
+            }
+            // Called on upload complete
+            private function onUploadComplete(event:Event):void {
+				MyEventDispatcher.taskUploaded(task);
+            }      
+            
+            // Called on upload io error
+            private function onUploadIoError(event:IOErrorEvent):void {
+                //var evt:IOErrorEvent = new IOErrorEvent("uploadIoError", false, false, event.text);
+                //dispatchEvent(evt);
+            }  
+            private function onUploadSecurityError(event:SecurityErrorEvent):void {
+            }                            			
+            
+        ]]>
+    </mx:Script>
 	<mx:Canvas width="400" height="100" horizontalCenter="-1" top="190" backgroundColor="#FFFFFF" borderStyle="solid" cornerRadius="5" borderColor="#FFFFFF">
-		<mx:ProgressBar x="148" y="41" width="217" indeterminate="true"/>
+		<mx:ProgressBar id="progBar" x="148" y="41" width="217" indeterminate="false"/>
 		<mx:Label x="28" y="37" text="Uploading data" fontFamily="Helvetica" fontWeight="bold" fontSize="15" color="#666666"/>
 		<mx:Label x="287" y="53" text="cancel upload" color="#FF2400" fontFamily="Helvetica" fontSize="11" fontWeight="bold"/>
 	</mx:Canvas>
