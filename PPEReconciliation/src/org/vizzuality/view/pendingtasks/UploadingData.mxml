@@ -63,6 +63,7 @@
             private function onUploadIoError(event:IOErrorEvent):void {
                 //var evt:IOErrorEvent = new IOErrorEvent("uploadIoError", false, false, event.text);
                 //dispatchEvent(evt);
+				MyEventDispatcher.taskUploaded(task);
             }  
             private function onUploadSecurityError(event:SecurityErrorEvent):void {
             }                            			
