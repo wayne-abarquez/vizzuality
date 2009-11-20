@@ -57,7 +57,7 @@
 			private function onTaskUploaded(ev:TaskSelectionEvent):void {
 				currentState='';
 				getPendingTasks(1);
-				Application.application.removeChild(ud);	
+				Application.application.removeChild(ud);
 			}
 			
 			private function showConfirmationAlert(ev:DeleteAlertEvent):void {
