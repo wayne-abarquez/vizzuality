@@ -10,6 +10,7 @@ package org.vizzuality.model
 		public var code:String;
 		public var numareas:Number;
 		public var isSelectedForDownload:Boolean=false;
+		public var ind:Number;
 
 	}
 }
