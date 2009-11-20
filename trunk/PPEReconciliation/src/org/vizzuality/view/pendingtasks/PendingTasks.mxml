@@ -95,7 +95,7 @@
 					ta.description=res.results[i].description;
 					//ta.what=res.results[i].what;
 					ta.numareas=res.results[i].numareas;
-					ta.status=res.results[i].state;
+					ta.status=res.results[i].task_status;
 					ta.statusPercen=res.results[i].statuspercen;
 					ta.date=new Date(Date.parse(res.results[i].date));
 					resArr.push(ta);

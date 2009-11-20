@@ -123,6 +123,18 @@
 							actionButton.label = "";
 							taskColor=0x339900;
 							break;
+							
+							
+							
+						case Task.TASK_CANCEL:
+							actionButton.visible=false;
+							cancelButton.visible=false;
+							mustRollOver=false;
+							textAlpha = 0.5;
+							actionButton.label = "";
+							taskColor=0x339900;
+							break;
+							
 					}
                 } 
             }

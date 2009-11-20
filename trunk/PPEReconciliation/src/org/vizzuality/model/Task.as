@@ -15,6 +15,10 @@ package org.vizzuality.model
 		public static const REVIEW_PROCESSING:String="reviewProcessing"; //ff9900 //working
 		public static const TASK_FINISHED:String="taskFinished"; //339900 //rec_completed
 		
+		public static const TASK_CANCEL:String="taskCancel"; //339900 //canceled
+		
+		
+		
 		public var id:Number;
 		public var type:String;
 		public var code:String;

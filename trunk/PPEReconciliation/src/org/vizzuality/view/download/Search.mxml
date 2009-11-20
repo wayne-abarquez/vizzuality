@@ -25,6 +25,13 @@
 
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.overlays.Marker;
+		import com.google.maps.services.GeocodingEvent;
+		import com.google.maps.services.ClientGeocoder;
+		import com.google.maps.interfaces.IPane;
+		import org.vizzuality.maps.GeoserverTileLayer;
+		import com.google.maps.overlays.TileLayerOverlay;
+		import com.google.maps.controls.MapTypeControl;
 		import com.asual.swfaddress.SWFAddress;
 		import mx.managers.CursorManager;
 		import com.google.maps.MapZoomEvent;
@@ -47,6 +54,10 @@
 		private var r:Rectangle;
 		private var scrollPosition: Number = 0;
 		
+		private	var tl:GeoserverTileLayer;
+		private	var tlo:TileLayerOverlay;			
+		private var tilesPane:IPane;
+		//private var polygonsPane:IPane;		
 		
 
 	
@@ -89,15 +100,15 @@
 		}
 		
 		private function added():void {
-		    if (search_text) {
-                if (search_text.text=="Keyword, name, country...") {
-                	search_text.setStyle("fontStyle","italic");
-                	search_text.setStyle("color","#999999");
-                	search_text.setStyle("fontSize","12");
+		    if (searchInput) {
+                if (searchInput.text=="Keyword, name, country...") {
+                	searchInput.setStyle("fontStyle","italic");
+                	searchInput.setStyle("color","#999999");
+                	searchInput.setStyle("fontSize","12");
                 } else {
-                	search_text.setStyle("fontStyle","normal");
-                	search_text.setStyle("color","#333333");
-                	search_text.setStyle("fontSize","13");
+                	searchInput.setStyle("fontStyle","normal");
+                	searchInput.setStyle("color","#333333");
+                	searchInput.setStyle("fontSize","13");
                 }                	
             }
 		}
@@ -122,7 +133,56 @@
             map.addControl(new ZoomControl(zco));
             map.enableScrollWheelZoom();
             map.setCenter(new LatLng(0,0),1);
+            //map.addControl(new MapTypeControl());
+            map.setMapType(MapType.PHYSICAL_MAP_TYPE);
+            
+            //Add the PA layer
+			tilesPane = map.getPaneManager().createPane();
+			tl = new GeoserverTileLayer(map);
+			tlo = new TileLayerOverlay(tl);
+
+			tl.addEventListener("GEOSERVER_TILE_LAYER_LOADED",function(ev:Event):void {
+				discretLoading.visible=false;
+			});
+			tl.addEventListener("GEOSERVER_TILE_LAYER_LOADING",function(ev:Event):void {
+				discretLoading.visible=true;
+			});
+			tilesPane.addOverlay(tlo);	
+			tlo.foreground.alpha=1;            
+            
+            
         }	
+        
+	      private function doGeocode():void {
+	        // Geocoding example
+	        var geocoder:ClientGeocoder = new ClientGeocoder();
+	        
+	        geocoder.addEventListener(
+	          GeocodingEvent.GEOCODING_SUCCESS,
+	          function(event:GeocodingEvent):void {
+	          var placemarks:Array = event.response.placemarks;
+	          if (placemarks.length > 0) {
+	          	var bbox:LatLngBounds =  new LatLngBounds(
+	          		new LatLng(placemarks[0].ExtendedData.LatLonBox.north,placemarks[0].ExtendedData.LatLonBox.west),
+	          		new LatLng(placemarks[0].ExtendedData.LatLonBox.south,placemarks[0].ExtendedData.LatLonBox.east));	
+	          		
+	            map.setCenter(placemarks[0].point,map.getBoundsZoomLevel(bbox));
+/* 	            var marker:Marker = new Marker(placemarks[0].point);
+	            
+	            marker.addEventListener(MapMouseEvent.CLICK, function (event:MapMouseEvent):void {
+	                marker.openInfoWindow(new InfoWindowOptions({content: placemarks[0].address}));
+	            }); 
+	            map.addOverlay(marker);*/
+	          }
+	        });
+	        geocoder.addEventListener(
+	          GeocodingEvent.GEOCODING_FAILURE,
+	          function(event:GeocodingEvent):void {
+	            trace(event);
+	            trace(event.status);
+	          });
+	        geocoder.geocode(searchInput.text);
+	      }
         
         private function deleteRectangle (ev: MapZoomEvent):void {
         	try {
@@ -220,17 +280,18 @@
 		<mx:Label text="Search and browse the WDPA throw the map"  fontFamily="Helvetica" fontStyle="normal" fontSize="12" fontWeight="bold" color="#666666" width="264" left="10" top="10"/>
 		<mx:HBox left="10" right="10" top="34" horizontalAlign="right" verticalAlign="middle" horizontalGap="4">
 			<mx:Label text="search"  fontFamily="Helvetica" fontSize="12" color="#666666" height="13"/>
-			<mx:TextInput id="search_text" 
+			<mx:TextInput id="searchInput" 
 				focusIn="changeStyle()" focusOut="changeStyle()"
 				fontStyle="italic" paddingTop="5" paddingLeft="5" paddingRight="5" fontSize="11" 
 				fontFamily="Helvetica" color="#999999" width="341" styleName="searchTextInput" 
-				backgroundSize="100%" borderStyle="none" height="25"/>
+				backgroundSize="100%" borderStyle="none" height="25" enter="doGeocode()"/>
 			<mx:Button id="checkArea" width="29" styleName="boundingBoxButton" height="25" useHandCursor="true" 
 				toggle="true" mouseChildren="false" buttonMode="true" click="checkSelectArea()"/>
 		</mx:HBox>
 		
 		<maps:Map  left="10" bottom="10" right="10" id="map" height="326" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ"
 			mapevent_mapready="onMapReady(event)"/>
+		<components:DiscretLoading id="discretLoading" left="39" top="73"/>
 
 	</mx:Canvas>
 	
