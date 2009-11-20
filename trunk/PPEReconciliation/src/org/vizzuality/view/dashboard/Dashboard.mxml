@@ -54,11 +54,8 @@
 	</mx:VBox>
 	<mx:Canvas height="250" right="0" left="0" top="0">
 		<mx:Canvas height="175" left="15" right="15" backgroundColor="#F5F5F5" borderColor="#c6c6c6" borderStyle="solid" borderThickness="1" bottom="20">
-			<mx:Text height="76" color="#666666" fontSize="14" fontFamily="Helvetica" top="15" left="15" right="15">
-			    <mx:htmlText>
-				<![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ut quam ligula, et elementum nisl. Nunc a erat eu sem suscipit auctor. Nam aliquam enim vitae mi hendrerit imperdiet. Morbi massa orci, lobortis sed tempor id, convallis at tortor. Cras ipsum diam, tincidunt eu mattis tristique, <b>consectetur vitae risus.</b> Nam interdum orci odio. Nulla tincidunt mi vel tellus dapibus rhoncus. Vestibulum nec euismod risus
-    			]]>
-				</mx:htmlText>
+			<mx:Text height="76" color="#666666" fontSize="13" fontFamily="Helvetica" top="15" left="15" right="15" leading="3">
+			    <mx:text><![CDATA[This data reconciliation tool enables you to provide batch updates to the World Database on Protected Areas. To use it, download the data that you wish to update, edit the data, then re-upload it. You can add new sites, delete existing sites, or edit boundary and/or attribute data for existing sites . Your upload will be tested for conflicts with existing data, and you will need to resolve any conflicts, and confirm all changes before final submission. Once you have made the final submission, your edits will be immediately viewable in the database.]]></mx:text>
 			</mx:Text>
 			<mx:HBox bottom="15" right="15" left="15">
 				<mx:Canvas width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="softBlueStepBackground" backgroundSize="100%" height="59">
