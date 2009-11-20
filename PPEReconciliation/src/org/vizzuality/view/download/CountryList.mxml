@@ -76,11 +76,14 @@
 			private function getCountriesResult(ev:ResultEvent):void {
 				var res:Object = JSON.decode(ev.result as String);
 				var countriesArr:Array = [];
+				var ind:Number = 0;
 				for(var i:String in res.results as Array)  {
 					var country:Country = new Country();
 					country.id=res.results[i].id;
 					country.name=res.results[i].name;
 					country.numareas=res.results[i].numareas;
+					country.ind=ind;
+					ind++;
 					countriesArr.push(country);
 					//res.results[i] = new ObjectProxy(res.results[i]);
 				}

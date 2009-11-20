@@ -11,21 +11,15 @@
 			import gs.TweenMax;
 			
 			[Bindable] private var c:Country;
-
 			
 			override public function set data(value:Object):void {
 				c = value as Country;
+				
 			}
 			
 			private function init():void {
-             	var ow:TileList = owner as TileList;
-				var dataIndex:int = ow.itemRendererToIndex(this);
-				var itsAmount:int = ow.columnCount*ow.rowCount;
-				var rendererPosition:int = dataIndex%itsAmount;
 				
-				
-				var result: String = (rendererPosition/3).toString().slice(0,1);
-				if ((Number(result) % 2) == 0) {
+				if ((Math.floor(c.ind/3) % 2) == 0) {
 					mamufas.setStyle('backgroundColor','0xFFFFFF');
 				} else {
 					mamufas.setStyle('backgroundColor','0xF5F5F5');
