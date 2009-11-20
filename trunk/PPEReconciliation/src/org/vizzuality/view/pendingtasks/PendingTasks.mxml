@@ -14,6 +14,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import gs.TweenMax;
 			import org.vizzuality.events.TaskSelectionEvent;
 			import org.vizzuality.events.CancelTaskEvent;
 			import org.vizzuality.events.MyEventDispatcher;
