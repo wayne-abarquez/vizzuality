@@ -78,7 +78,7 @@
 		backgroundColor="#EBEBEB" borderStyle="none"/>
 	<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 		<mx:Label text="Download" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999" width="61"/>
-		<components:ShadowButton right="6" y="4" label="CSV" styleName="greenButton" click="onDownloadButtonClick()" 
+		<components:ShadowButton right="6" y="4" label="SHP" styleName="greenButton" click="onDownloadButtonClick()" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3" width="50"/>
 		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" click="onDownloadButtonClick()" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button0" width="50"/>
