@@ -58,7 +58,7 @@
         <mx:Button label="search based" color="{(button1.selected)?0x666666:0x999999}"
         	styleName="subMenuButton" height="35"
     		click="currentState='Search'"  id="button1" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
-        <mx:Button label="country based" color="{(button2.selected)?0x666666:0x999999}"
+        <mx:Button label="region based" color="{(button2.selected)?0x666666:0x999999}"
     		styleName="subMenuButton" height="35"
     		click="currentState='Countries'"  id="button2" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
     </mx:HBox>

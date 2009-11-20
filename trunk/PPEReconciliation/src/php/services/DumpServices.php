@@ -13,6 +13,7 @@ class DumpServices {
 			$res['username']="Craig";
 			$res['userid']="65";
 			$res['pendingTasks']="1";
+			$res['previousTasks']="1";
 		} else {
 			$res['loginresult']=false;
 		}
@@ -36,25 +37,6 @@ class DumpServices {
 		return $resul;
 	}
 	
-	function getOceans() {
-		$res=array();
-			$c=array();
-			$c['id']=1;
-			$c['name']="Pacific";
-			$c['numareas']=23;
-			$res[]=$c;
-			$c=array();
-			$c['id']=2;
-			$c['name']="Atlantic";
-			$c['numareas']=23;
-			$res[]=$c;		
-			$c=array();
-			$c['id']=3;
-			$c['name']="Mediterranean";
-			$c['numareas']=23;
-			$res[]=$c;				
-		return $res;
-	}	
 	
 	function prepareDownload($countries,$pas,$search) {
 		error_log($countries);
@@ -296,7 +278,20 @@ class DumpServices {
 	}
 	
 	function getPasByBoundingBox($north,$south,$west,$east) {
-		$res=array();
+		$resul=array();
+		$pas=array();
+		for($i=17;$i<21;$i++) {
+			$pa=array();
+			$pa['id'] = $i;
+			$pa['name'] = "PA-". $i;
+			$pa['country'] = "United States";
+			$pas[]=$pa;
+		}		
+		$resul['results'] = $pas;
+		$resul['total'] = 50;
+		return $resul;
+		
+		
 	}
 	
 	
