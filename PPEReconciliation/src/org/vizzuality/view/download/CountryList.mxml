@@ -70,10 +70,12 @@
 			private function getCountries(p:Number):void {
 				jsonService.url = Application.application.serverUrl + "/regions/"+_regionId+"/countries?page="+p+"&per_page=24";
 				jsonService.send();		
-				page=p;		
+				page=p;
+				this.currentState = "loading";	
 			}
 			
 			private function getCountriesResult(ev:ResultEvent):void {
+				this.currentState = "";
 				var res:Object = JSON.decode(ev.result as String);
 				var countriesArr:Array = [];
 				var ind:Number = 0;
