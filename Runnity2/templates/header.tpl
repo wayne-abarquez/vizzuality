@@ -24,12 +24,20 @@
 	
 	<link rel="alternate" type="application/rss+xml" title="Próximas carreras en runnity.com RSS feed" href="http://feeds.feedburner.com/runnity">
 	
+
+	
 	<!-- Import JS source files -->
     <!-- script type="text/javascript" src="/js/site_{$smarty.const.JS_VERSION}.js"></script -->
 	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/1256935337.js"></script>	
 	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/cufon-yui.js"></script>	
 	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/Arial_Rounded_MT_Bold_400.font.js"></script>	
 	<script type="text/javascript" src="/js/init.js"></script>	
+	
+		<!-- multiple upload files -->
+<!--
+	<script type="text/javascript" src="/js/jquery.uploadify.v2.1.0.js"></script>	
+	<link href="/css/uploadify.css" rel="stylesheet" type="text/css" />
+-->
 	
 	{if $section eq "index"}
 		{literal}
@@ -213,7 +221,7 @@
 				{if $smarty.session.logged}
 				<li><div class="border"><a {if $section eq "usuario"} class="current"{/if} href="/perfil/{$smarty.session.user.username}">TU PERFIL</a></div></li>
 				{/if}
-				<li><div class="border"><a {if $section eq "search_user" or $section eq "search_user"} class="current"{/if} href="/usuarios">USUARIOS</a></div></li>
+				<li><div class="border"><a {if $section eq "search_user" or $section eq "search_user"} class="current"{/if} href="/usuarios">RUNNERS</a></div></li>
 				<li><div class="border"><a {if $section eq "carrera" or $section eq "searchresults"} class="current"{/if} href="/buscar">CARRERAS</a></div></li>
 				<li><div class="border"><a {if $section eq "home"} class="current"{/if} href="/">HOME</a></div></li>				
 			</ul>
