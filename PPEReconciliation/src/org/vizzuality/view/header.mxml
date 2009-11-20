@@ -19,8 +19,12 @@
 				default_color="0xFFFFFF" default_hover_color="0xdddddd" default_hover_decoration="none" text_decoration="none" default_weight="normal" default_hover_weight="normal"
 				paddingRight="-4"/>
 			</mx:HBox>
-			<mx:Label text="ProtectPlanetEarth" fontFamily="DINOT-Medium"  left="0" top="35" fontSize="20" color="#FFFFFF"/>
-			<mx:Label text="DATA RECONCILIATION TOOL" fontFamily="DINOT-Medium"  left="0" top="57" fontSize="13" color="#FFFFFF"/>
+			<mx:Label text="ProtectPlanetEarth" fontFamily="DINOT-Medium"  left="0" top="35" fontSize="20" color="#FFFFFF"
+				click="Application.application.contentcontainer1.currentState='Dashboard'"
+				useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+			<mx:Label text="DATA RECONCILIATION TOOL" fontFamily="DINOT-Medium"  left="0" top="57" fontSize="13" color="#FFFFFF"
+				click="Application.application.contentcontainer1.currentState='Dashboard'"
+				useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 		</mx:Canvas>		
 	</components:GradientCanvas>
 </mx:Canvas>
