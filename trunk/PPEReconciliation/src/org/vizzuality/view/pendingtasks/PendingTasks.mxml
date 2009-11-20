@@ -104,6 +104,11 @@
 				totalTasks=res.total;
 				totalPages = Math.ceil(totalTasks/8);		
 				currentState="";
+				calculateHeight();
+			}
+			
+			private function calculateHeight():void{
+				this.itemList.height = pendingTasks.length * 43;
 			}
 			
 			public static function createRendererWithProperties(renderer:Class,properties:Object ):IFactory {
@@ -136,7 +141,7 @@
 
 		</mx:Canvas>
 		
-		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.PendingTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
+		<mx:List id="itemList" height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.PendingTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
 			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" />
 		
 		<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">

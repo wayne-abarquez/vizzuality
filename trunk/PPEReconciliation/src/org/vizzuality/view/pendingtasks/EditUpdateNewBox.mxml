@@ -32,8 +32,6 @@
 			}
 			
 			private function calculateHeight():void{
-				trace(((this.itemList.dataProvider) as ArrayCollection).length);
-				trace(((this.itemList.dataProvider) as ArrayCollection).length / 3);
 				if((((this.itemList.dataProvider) as ArrayCollection).length % 3) ==0){
 					this.itemList.height = Math.floor(((this.itemList.dataProvider) as ArrayCollection).length / 3) * 43;  
 				}else{
