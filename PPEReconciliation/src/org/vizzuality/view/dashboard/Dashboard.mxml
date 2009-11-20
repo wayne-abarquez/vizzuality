@@ -12,7 +12,9 @@
 	</mx:Script>
 
 	<mx:VBox backgroundColor="#FEFEFE" right="15" left="15" top="272">
-		<mx:Canvas  height="59" borderColor="#D9D9D9" width="100%" styleName="ContainersInfo">
+		<mx:Canvas  height="59" borderColor="#D9D9D9" width="100%" styleName="ContainersInfo" 
+			includeInLayout="{Application.application.pendingTasks}"
+			visible="{Application.application.pendingTasks}">
 			<mx:Image y="5" left="12" source="{Resource.UNFINISHED}"/>
 			<components:ShadowButton right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks/overview')"/>
 			<mx:HBox left="65" top="11" horizontalGap="0" fontSize="14" fontFamily="Helvetica" width="662">

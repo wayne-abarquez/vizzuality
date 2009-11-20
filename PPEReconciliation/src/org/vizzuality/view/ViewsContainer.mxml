@@ -37,6 +37,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
 			import com.asual.swfaddress.SWFAddress;
 			import com.asual.swfaddress.SWFAddressEvent;
 			import resource.*;
@@ -82,8 +83,8 @@
 	<mx:HBox left="0" top="0" horizontalGap="3">
 		<mx:Button label="DASHBOARD" click="currentState='Dashboard'" styleName="mainMenuButton" height="35" id="button1" selected="true" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button1.selected)?0x333333:0x6686AE}"/>
 		<mx:Button label="DOWNLOAD DATA" click="currentState='Checkout'" styleName="mainMenuButton" height="35" id="button2" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button2.selected)?0x333333:0x6686AE}"/>
-		<mx:Button label="PENDING TASKS" click="currentState='Pendingtasks'" styleName="mainMenuButton" height="35" id="button3" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button3.selected)?0x333333:0x6686AE}"/>
-		<mx:Button label="PREVIOUS UPLOADS" click="currentState='Previous'" styleName="mainMenuButton" height="35" id="button4" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button4.selected)?0x333333:0x6686AE}"/>
+		<mx:Button label="PENDING TASKS" visible="{Application.application.pendingTasks}" includeInLayout="{Application.application.pendingTasks}" click="currentState='Pendingtasks'" styleName="mainMenuButton" height="35" id="button3" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button3.selected)?0x333333:0x6686AE}"/>
+		<mx:Button label="PREVIOUS TASKS" visible="{Application.application.previousTasks}" includeInLayout="{Application.application.previousTasks}" click="currentState='Previous'" styleName="mainMenuButton" height="35" id="button4" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button4.selected)?0x333333:0x6686AE}"/>
 	</mx:HBox>
 	
 </mx:Canvas>
