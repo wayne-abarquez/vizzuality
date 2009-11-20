@@ -36,7 +36,9 @@
 			}
 			
 			private function onCountryRemoved(event:DataSelectionEvent):void {
-				var find:Boolean = false;
+				event.selectedCountry.isSelectedForDownload=false;
+				
+/* 				var find:Boolean = false;
 				var renderers_array : Array = country_tilelist.renderers;
 				for each(var renderer:Array in renderers_array) {
 					for each(var renderer_each:CountryItem in renderer) {
@@ -51,7 +53,7 @@
                  	if (find) {
 						return;	
 					}
-                }
+                } */
 			}
 			
 			public function set regionId(regId:Number):void {
@@ -66,7 +68,7 @@
 			}
 			
 			private function getCountries(p:Number):void {
-				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getContriesForRegion/"+_regionId+"/"+p+"/18";
+				jsonService.url = Application.application.serverUrl + "/regions/"+_regionId+"/countries?page="+p+"&per_page=24";
 				jsonService.send();		
 				page=p;		
 			}
@@ -104,5 +106,5 @@
 				width="27" height="24" click="getCountries(page+1)" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>
 	</mx:VBox>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getCountriesResult(event)" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getCountriesResult(event)" fault="trace(event.message)" />
 </mx:Canvas>

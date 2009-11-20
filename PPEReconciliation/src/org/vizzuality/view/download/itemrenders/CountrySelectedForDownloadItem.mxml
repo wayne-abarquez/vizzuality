@@ -8,6 +8,12 @@
 			import org.vizzuality.events.MyEventDispatcher;
 			import resource.Resource;
 			
+			[Bindable] private var c:Country;
+			
+			override public function set data(value:Object):void {
+				c = value as Country;
+			}
+			
 			private function handleAdded(e:Event):void{
 				alpha = 0;
 				TweenMax.to(this, 1, {alpha: 1});
@@ -15,11 +21,11 @@
 			
 		]]>
 	</mx:Script>
-	<mx:Label y="7" text="{data.name}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13" left="9" truncateToFit="true" width="160"/>
-	<mx:Label y="21" text="{data.numareas + ' pas.'}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="11" left="10" truncateToFit="true" width="160"/>
+	<mx:Label y="7" text="{c.name}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13" left="9" truncateToFit="true" width="160"/>
+	<mx:Label y="21" text="{c.numareas + ' pas.'}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="11" left="10" truncateToFit="true" width="160"/>
 	<mx:Button styleName="redButton" top="7" right="9" width="18" fontSize="12" 
 		icon="{Resource.CROSS_ICON_OVER}" paddingBottom="1" paddingLeft="-1" paddingRight="1" height="18" 
 		mouseChildren="false" buttonMode="true" useHandCursor="true" 
-		click="MyEventDispatcher.removeCountryForDownload(data as Country)"/>
+		click="MyEventDispatcher.removeCountryForDownload(c)"/>
 	
 </mx:Canvas>

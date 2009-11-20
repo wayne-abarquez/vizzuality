@@ -10,11 +10,12 @@
 			import org.vizzuality.events.DataSelectionEvent;
 			import gs.TweenMax;
 			
-			[Bindable] public var addedItem: Boolean = false;
+			[Bindable] private var c:Country;
+
 			
-/* 			[Bindable] public var countryName:String;
-			[Bindable] public var countryId:Number;
-			[Bindable] public var numProtectedAreas:Number; */
+			override public function set data(value:Object):void {
+				c = value as Country;
+			}
 			
 			private function init():void {
              	var ow:TileList = owner as TileList;
@@ -33,7 +34,7 @@
             }
 			
 			private function handleOver(e:MouseEvent):void{
-				if (!addedItem){
+				if (c!=null && !c.isSelectedForDownload){
 					TweenMax.to(overCanvas, .3, {autoAlpha:1});
 				}
 			}
@@ -43,19 +44,19 @@
 			}		
 			
 			private function onAddedClick():void {
-				MyEventDispatcher.selectCountryForDownload(data as Country);
+				MyEventDispatcher.selectCountryForDownload(c);
 				TweenMax.to(overCanvas, .2, {autoAlpha:0});
-				addedItem = true;
+				c.isSelectedForDownload = true;
 			}	
 			
 			
 		]]>
 	</mx:Script>
 	<mx:Canvas left="5" right="5" top="0" bottom="0" id="mamufas">
-		<mx:Label id="area" y="7" text="{data.name}" color="{(addedItem)?0xdddddd:0x666666}" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="180" left="2" textAlign="left"/>
-		<mx:Label id="country" y="22" text="{data.numareas}" color="{(addedItem)?0xddddddd:0x999999}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="130" left="2" textAlign="left"/>
+		<mx:Label id="area" y="7" text="{c.name}" color="{(c.isSelectedForDownload)?0xdddddd:0x666666}" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="180" left="2" textAlign="left"/>
+		<mx:Label id="country" y="22" text="{c.numareas}" color="{(c.isSelectedForDownload)?0xddddddd:0x999999}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="130" left="2" textAlign="left"/>
 		<mx:Label id="addedLabel" x="152" y="22" text="added" color="#339900"
-			visible="{addedItem}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
+			visible="{c.isSelectedForDownload}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
 		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
 	</mx:Canvas>
 
@@ -64,8 +65,8 @@
 		backgroundColor="#333333" borderStyle="solid" borderColor="#000000"
 		cornerRadius="2" visible="false" alpha="0" 
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
-		<mx:Label left="7" y="5" text="{data.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="140"  textAlign="left"/>
-		<mx:Label left="7" y="20" text="{data.numareas}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" width="130"  textAlign="left"/>		
+		<mx:Label left="7" y="5" text="{c.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="140"  textAlign="left"/>
+		<mx:Label left="7" y="20" text="{c.numareas}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" width="130"  textAlign="left"/>		
 		<components:ShadowButton label="ADD" styleName="greenButton" height="18" top="5" right="7" paddingTop="2" 
 			click="onAddedClick()" width="45" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 	</mx:Canvas>
