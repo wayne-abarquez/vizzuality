@@ -91,4 +91,17 @@ borderThickness: 2;
 cornerRadius: 0;
 }
 
+Alert{
+	border-style: solid;
+	border-color: #336699;
+	border-alpha: .5;
+	border-thickness: 10;
+	corner-radius: 5;
+	background-color: #FFFFFF;
+	shadow-distance: 2;
+	color: #666666;
+	font-family: "Helvetica";
+	font-size: 13;
+	button-style-name: "greenButton";
+}
 	
