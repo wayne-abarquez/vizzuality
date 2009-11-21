@@ -4,6 +4,7 @@
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import org.vizzuality.model.Task;
 			import mx.utils.ObjectProxy;
 			import mx.core.Application;
@@ -58,7 +59,7 @@
 			<components:ShadowButton right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>
     </mx:VBox>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getErrorsResult(event)" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getErrorsResult(event)" fault="Alert.show('getErrorsResult ERROR: Please contact administrator')" />
 
 	
 </mx:Canvas>

@@ -17,6 +17,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import com.google.maps.controls.ControlPosition;
 			import com.google.maps.controls.ZoomControlOptions;
 			import com.google.maps.controls.ZoomControl;
@@ -318,5 +319,5 @@
 	</mx:HBox>
 	<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" 
 		icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" x="732" y="16" click="SWFAddress.setValue('/rec/pendingtasks')"/>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="onGetPaAttributesComparisionResult(event)" fault="trace(event.fault)" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="onGetPaAttributesComparisionResult(event)" fault="Alert.show('onGetPaAttributesComparisionResult ERROR: Please contact administrator')" />
 </mx:Canvas>

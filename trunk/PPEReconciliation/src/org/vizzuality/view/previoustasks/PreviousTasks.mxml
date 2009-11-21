@@ -4,6 +4,7 @@
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import com.asual.swfaddress.SWFAddress;
 			import org.vizzuality.model.Task;
 			import mx.utils.ObjectProxy;
@@ -97,7 +98,7 @@
 			</mx:HBox>
 		</mx:Canvas>
     </mx:VBox>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" fault="Alert.show('getPendingTasksResult ERROR: Please contact administrator')" />
 
 	
 </mx:Canvas>
