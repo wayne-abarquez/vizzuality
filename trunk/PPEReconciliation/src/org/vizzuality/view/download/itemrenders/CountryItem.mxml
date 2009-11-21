@@ -19,7 +19,7 @@
 			
 			private function init():void {
 				
-				if ((Math.floor(c.ind/3) % 2) == 0) {
+				if ((c.ind % 2) == 0) {
 					mamufas.setStyle('backgroundColor','0xFFFFFF');
 				} else {
 					mamufas.setStyle('backgroundColor','0xF5F5F5');
