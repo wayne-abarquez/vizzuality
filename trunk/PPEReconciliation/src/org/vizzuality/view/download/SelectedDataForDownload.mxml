@@ -4,6 +4,7 @@
 	 creationComplete="init()" xmlns:components="org.vizzuality.components.*">
 <mx:Script>
 	<![CDATA[
+		import org.vizzuality.model.Pa;
 		import com.asual.swfaddress.SWFAddress;
 		import mx.rpc.events.ResultEvent;
 		import mx.core.Application;
@@ -13,10 +14,13 @@
 		import org.vizzuality.events.DataSelectionEvent;
 		
 		[Bindable] private var selectedCountries:ArrayCollection=new ArrayCollection();
+		[Bindable] private var selectedPas:ArrayCollection=new ArrayCollection();
 		
 		private function init():void {
 			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_ADDED,onCountryAdded);
 			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_REMOVED,onCountryRemoved);
+			MyEventDispatcher.addEventListener(DataSelectionEvent.PA_ADDED,onPaAdded);
+			MyEventDispatcher.addEventListener(DataSelectionEvent.PA_REMOVED,onPaRemoved);
 		}
 		
 		private function onCountryAdded(event:DataSelectionEvent):void {
@@ -33,10 +37,36 @@
 			
 		}
 		
+		private function onPaAdded(event:DataSelectionEvent):void {
+			if (isNaN(checkIfPaOnSelected(event.selectedPa)))
+				selectedPas.addItem(event.selectedPa);
+		}
+		
+		private function onPaRemoved(event:DataSelectionEvent):void {
+			var pos:Number =checkIfPaOnSelected(event.selectedPa)
+			
+			if (!isNaN(pos))
+			
+				selectedPas.removeItemAt(pos);
+			
+		}
+		
 		private function checkIfCountryOnSelected(country:Object):Number {
 			var i:Number=0;
 			for each(var c:Object in selectedCountries) {
 				if(c.id==country.id) {
+					return i;				
+				}
+				i++;
+			}
+			return NaN;	
+					
+		}
+		
+		private function checkIfPaOnSelected(pa:Pa):Number {
+			var i:Number=0;
+			for each(var c:Pa in selectedPas) {
+				if(c.id==pa.id) {
 					return i;				
 				}
 				i++;
@@ -52,9 +82,13 @@
 			var coun:Array = [];
 			for each(var c:Object in selectedCountries) {
 				coun.push(c.id);
+			}	
+			var pas:Array = [];	
+			for each(var c2:Object in selectedPas) {
+				pas.push(c2.id);
 			}		
 			params["countries[]"]=coun;
-			params["protected_areas[]"]=[];
+			params["protected_areas[]"]=pas;
 			if(type=="csv") {
 				params.has_shapefile=false;
 			} else {
@@ -73,6 +107,7 @@
 			
 			//empty the list
 			selectedCountries=new ArrayCollection();
+			selectedPas=new ArrayCollection();
 		}
 		
 	]]>
@@ -86,15 +121,21 @@
 		paddingTop="1" paddingBottom="0" focusAlpha="0" focusEnabled="false"
 		itemRenderer="org.vizzuality.view.download.itemrenders.CountrySelectedForDownloadItem"
 		backgroundColor="#EBEBEB" borderStyle="none"/>
+	<components:AutoSizingList width="100%" dataProvider="{selectedPas}"
+		id="list2" 
+		verticalScrollPolicy="off" horizontalScrollPolicy="off"
+		paddingTop="1" paddingBottom="0" focusAlpha="0" focusEnabled="false"
+		itemRenderer="org.vizzuality.view.download.itemrenders.PaSelectedForDownloadItem"
+		backgroundColor="#EBEBEB" borderStyle="none"/>
 	<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 		<mx:Label text="Download" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999" width="61"/>
 		<components:ShadowButton right="6" y="4" label="SHP" styleName="greenButton" click="onDownloadButtonClick('shp')" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3" width="50"
-			visible="{selectedCountries.length > 0}"/>
+			visible="{(selectedCountries.length > 0 || selectedPas.length > 0)}"/>
 		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" 
 			click="onDownloadButtonClick('csv')" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button0" width="50"
-			visible="{selectedCountries.length > 0}"/>
+			visible="{(selectedCountries.length > 0 || selectedPas.length > 0)}"/>
 	</mx:Canvas>	
 	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="onDownloadSentResult(event)" fault="trace(event.message)" />	
 </mx:VBox>

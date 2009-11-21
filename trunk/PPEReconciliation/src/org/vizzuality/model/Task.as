@@ -19,7 +19,7 @@ package org.vizzuality.model
 		public static const TASK_CANCEL:String="taskCancel"; //339900 //canceled
  		public static const TASK_DESCRIPTIONS:Object = {
 				preparingDownload:"Preparing Download",							
-				waitingForDownload:"Waiting for Download",							
+				waitingForDownload:"Ready for Download",							
 				waitingForUpload:"Waiting for Upload",							
 				uploadProcessing:"Upload being processed",							
 				errorInData:"Errors in data",							
