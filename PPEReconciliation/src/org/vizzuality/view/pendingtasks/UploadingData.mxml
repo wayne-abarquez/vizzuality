@@ -3,6 +3,7 @@
 	addedToStage="handleAdded(event)" alpha="0">
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
 			import gs.TweenMax;
 			import org.vizzuality.events.MyEventDispatcher;
 			import org.vizzuality.model.Task;
@@ -32,9 +33,9 @@
                 sendVars.action = "upload";
                 var request:URLRequest = new URLRequest();
                 request.data = sendVars;
-                request.url = "http://localhost/php/uploader.php";
+                request.url = Application.application.serverUrl + "/imports";
                 request.method = URLRequestMethod.POST;
-                refFile.upload(request, "file",false);             
+                refFile.upload(request, "upload",false);             
 				
 			}
 			
