@@ -19,6 +19,8 @@
 			
 			[Bindable] private var task:Task;
 			
+			[Bindable] private var taskName:String;
+			
 			[Bindable] private var taskColor:Number;
 			
 			[Bindable] private var textAlpha:Number = 1;
@@ -28,7 +30,8 @@
 			override public function set data(value:Object):void {
             	if (value != null) {
 					super.data = value;
-					task = new Task();
+					task = value as Task;
+					/*task = new Task();
 					task.code = value.code;
 					task.date = new Date(Date.parse(value.date));
 					task.description = value.description;
@@ -37,7 +40,10 @@
 					task.status = value.status;
 					task.statusPercen = value.statusPercen;
 					task.type = value.type;
-					task.what = value.what;
+					task.what = value.what;*/
+					
+					
+					taskName = Task.TASK_DESCRIPTIONS[task.status];
 					
 	                var ow:List = owner as List;
 					var dataIndex:int = ow.itemRendererToIndex(this);
@@ -63,6 +69,8 @@
 					this.removeEventListener(MouseEvent.CLICK,reviewStartedClicked);
 					actionButton.removeEventListener(MouseEvent.CLICK,reviewStartedClicked);
 					
+					statusPercenLabel.visible=false;
+					percentage.visible=false;
 					
 					//change the button depending on what status the task is
 					switch(task.status) {
@@ -120,6 +128,8 @@
 							textAlpha = 1;
 							actionButton.label = "CONTINUE";
 							taskColor=0x339900;
+							statusPercenLabel.visible=true;
+							percentage.visible=true;
 							break;
 						case Task.REVIEW_STARTED:
 							actionButton.visible=true;
@@ -129,6 +139,8 @@
 							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							textAlpha = 1;
 							actionButton.label = "CONTINUE";
+							statusPercenLabel.visible=true;
+							percentage.visible=true;
 							taskColor=0x339900;
 							break;
 						case Task.REVIEW_PROCESSING:
@@ -246,7 +258,7 @@
 		
 		<mx:HBox left="404" top="5" horizontalGap="-3">
 			<mx:Image id="clockImage" source="{Resource.CLOCK_SMALL}" visible="{!mustRollOver}" includeInLayout="{!mustRollOver}"/>
-			<mx:Label text="{task.status}" color="{taskColor}" fontSize="13" 
+			<mx:Label text="{taskName}" color="{taskColor}" fontSize="13" 
 				fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
 		</mx:HBox>
 		<mx:Label id="percentage" text="{'(' + task.statusPercen+ '%)'}" color="#999999" fontWeight="normal" 
@@ -273,8 +285,8 @@
 		</mx:HBox>
 		<mx:Label text="{task.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="21" left="8"/>
 		
-		<mx:Label text="{task.status}" color="#FFFFFF" fontSize="13" fontFamily="Helvetica" fontWeight="bold" left="404" top="5"/>
-		<mx:Label text="{'(' + task.statusPercen + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="404" fontFamily="Helvetica"/>
+		<mx:Label text="{taskName}" color="#FFFFFF" fontSize="13" fontFamily="Helvetica" fontWeight="bold" left="404" top="5"/>
+		<mx:Label id="statusPercenLabel" text="{'(' + task.statusPercen + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="404" fontFamily="Helvetica"/>
 	
 		<mx:Label text="{date.text}" color="#FFFFFF"  left="619" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold" width="116" textAlign="left"/>
 		<mx:Label text="{ago.text}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="619" fontFamily="Helvetica"/>

@@ -1,6 +1,7 @@
 package org.vizzuality.model
 {
 	import flash.events.EventDispatcher;
+	import flash.utils.Dictionary;
 	
 	[Bindable]
 	public class Task extends EventDispatcher
@@ -16,7 +17,17 @@ package org.vizzuality.model
 		public static const TASK_FINISHED:String="taskFinished"; //339900 //rec_completed
 		
 		public static const TASK_CANCEL:String="taskCancel"; //339900 //canceled
-		
+ 		public static const TASK_DESCRIPTIONS:Object = {
+				preparingDownload:"Preparing Download",							
+				waitingForDownload:"Waiting for Download",							
+				waitingForUpload:"Waiting for Upload",							
+				uploadProcessing:"Upload being processed",							
+				errorInData:"Errors in data",							
+				taskReadForReview:"Task ready for review",							
+				reviewStarted:"Task under review",													
+				reviewProcessing:"Task reviewed and processing",							
+				taskFinished:"Task finished"							
+		}; 
 		
 		
 		public var id:Number;
