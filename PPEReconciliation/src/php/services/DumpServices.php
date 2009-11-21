@@ -283,7 +283,7 @@ class DumpServices {
 		for($i=17;$i<21;$i++) {
 			$pa=array();
 			$pa['id'] = $i;
-			$pa['name'] = "PA-". $i;
+			$pa['name'] = "Yosemite". $i;
 			$pa['country'] = "United States";
 			$pas[]=$pa;
 		}		

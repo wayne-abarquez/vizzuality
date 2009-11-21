@@ -49,17 +49,18 @@
 		private function onDownloadButtonClick(type:String = "csv"):void {
 			jsonService.url = Application.application.serverUrl + "/exports";
 			var params:Object = {};
-			params.countries=[];
+			var coun:Array = [];
 			for each(var c:Object in selectedCountries) {
-				params.countries.push(c.id);
+				coun.push(c.id);
 			}		
-			params.protected_areas=[1,2];
+			params["countries[]"]=coun;
+			params["protected_areas[]"]=[1,2];
 			if(type=="csv") {
 				params.has_shapefile=false;
 			} else {
 				params.has_shapefile=true;				
 			}
-			params.filter=["somekindofid"];
+			params["filters[]"]=["somekindofid"];
 			jsonService.send(params);
 							
 		}

@@ -2,7 +2,7 @@
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" addedToStage="added()"  creationComplete="init()"
 	xmlns:components="org.vizzuality.components.*">
 	<mx:states>
-		<mx:State name="loading">
+		<mx:State name="loading" enterState="loadingEnter()" exitState="loadingExist()">
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
 				<mx:Canvas x="0" y="0" width="100%" height="100%" backgroundColor="#FFFFFF">
 					<mx:SWFLoader horizontalCenter="0" verticalCenter="0" source="{Resource.LOAD_ANIMATION}" 
@@ -26,6 +26,7 @@
 
 <mx:Script>
 	<![CDATA[
+		import mx.rpc.events.ResultEvent;
 		import com.google.maps.overlays.Marker;
 		import com.google.maps.services.GeocodingEvent;
 		import com.google.maps.services.ClientGeocoder;
@@ -88,6 +89,14 @@
            {name:"Galapagos national reserve", country:"Ecuador"},
            {name:"Bacalar Chico Protected Area", country:"Ecuador"}
 		]);	
+		
+		private function loadingEnter():void {
+			
+		}
+	
+		private function loadingExist():void {
+			
+		}
 	
 		private function init():void {
 		    selectionRectangle = new Canvas();
@@ -168,12 +177,6 @@
 	          		new LatLng(placemarks[0].ExtendedData.LatLonBox.south,placemarks[0].ExtendedData.LatLonBox.east));	
 	          		
 	            map.setCenter(placemarks[0].point,map.getBoundsZoomLevel(bbox));
-/* 	            var marker:Marker = new Marker(placemarks[0].point);
-	            
-	            marker.addEventListener(MapMouseEvent.CLICK, function (event:MapMouseEvent):void {
-	                marker.openInfoWindow(new InfoWindowOptions({content: placemarks[0].address}));
-	            }); 
-	            map.addOverlay(marker);*/
 	          }
 	        });
 	        geocoder.addEventListener(
@@ -273,6 +276,15 @@
 			selectionRectangle.width = r.width;
 			selectionRectangle.height = r.height;				
 		}
+		
+		
+		private function getPas(p:Number):void {
+			
+		}
+		
+		private function getSearchResult(event:ResultEvent):void {
+			
+		}
 
         
 	]]>
@@ -322,4 +334,6 @@
 				click="{SWFAddress.setValue('/rec/checkout/countries/africa')}"/>
 		</mx:HBox>
 	</mx:Canvas>
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getSearchResult(event)" fault="trace(event.message)" />
+	
 </mx:VBox>
