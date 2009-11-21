@@ -50,7 +50,18 @@
 						bkg_color = 0xF5F5F5;
 					}
 					
-					//b
+					//remove all previous event listeners
+					this.removeEventListener(MouseEvent.CLICK,waitingForDownloadClicked);
+					actionButton.removeEventListener(MouseEvent.CLICK,waitingForDownloadClicked);
+					
+					this.removeEventListener(MouseEvent.CLICK,waitingForUploadClicked);
+					actionButton.removeEventListener(MouseEvent.CLICK,waitingForUploadClicked);
+					
+					this.removeEventListener(MouseEvent.CLICK,errorInDataClicked);
+					actionButton.removeEventListener(MouseEvent.CLICK,errorInDataClicked);
+					
+					this.removeEventListener(MouseEvent.CLICK,reviewStartedClicked);
+					actionButton.removeEventListener(MouseEvent.CLICK,reviewStartedClicked);
 					
 					
 					//change the button depending on what status the task is
@@ -137,8 +148,6 @@
 							taskColor=0x339900;
 							break;
 							
-							
-							
 						case Task.TASK_CANCEL:
 							actionButton.visible=false;
 							cancelButton.visible=false;
@@ -152,6 +161,7 @@
                 } 
             }
             
+            
             private function cancelTask(event:Event):void {
             	event.stopPropagation();
             	MyEventDispatcher.cancelTask(task);
@@ -163,8 +173,8 @@
             	navigateToURL(new URLRequest(Application.application.serverUrl + "/exports/"+task.id),"_blank");
             	
             	//After 10 seconds change the status
-            	changeStatusAfterDownload()
-            	//TweenLite.delayedCall(2,changeStatusAfterDownload,null);
+            	//changeStatusAfterDownload()
+            	TweenLite.delayedCall(5,changeStatusAfterDownload,null);
             }
             private function changeStatusAfterDownload(params:Object=null):void {
             	task.status = Task.WAITING_FOR_UPLOAD;
