@@ -26,8 +26,15 @@ package org.vizzuality.events
    			dispatchEvent(new DataSelectionEvent(DataSelectionEvent.COUNTRY_ADDED,country));
    		}
    		
+  		public static function selectPaForDownload(pa:Pa):void {
+   			dispatchEvent(new DataSelectionEvent(DataSelectionEvent.PA_ADDED,null,pa));
+   		}   		
+   		
    		public static function removeCountryForDownload(country:Country):void {
    			dispatchEvent(new DataSelectionEvent(DataSelectionEvent.COUNTRY_REMOVED,country));
+   		}
+   		public static function removePaForDownload(pa:Pa):void {
+   			dispatchEvent(new DataSelectionEvent(DataSelectionEvent.PA_REMOVED,null,pa));
    		}
    		
    		public static function selectTaskForOverview(task:Task):void {

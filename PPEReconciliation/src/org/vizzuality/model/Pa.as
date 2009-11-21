@@ -10,5 +10,6 @@ package org.vizzuality.model
 		public var country:String;
 		public var status:String;
 		public var data:Object;
+		public var isSelectedForDownload:Boolean=false;
 	}
 }

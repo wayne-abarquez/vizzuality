@@ -26,6 +26,8 @@
 
 <mx:Script>
 	<![CDATA[
+		import org.vizzuality.events.MyEventDispatcher;
+		import org.vizzuality.events.DataSelectionEvent;
 		import com.google.maps.MapMoveEvent;
 		import org.vizzuality.model.Pa;
 		import com.adobe.serialization.json.JSON;
@@ -108,6 +110,13 @@
 			Application.application.addEventListener(ScrollEvent.SCROLL,onScrollApplication);
 			r = new Rectangle(0,0,0,0);
 			getPas(1);
+			
+			MyEventDispatcher.addEventListener(DataSelectionEvent.PA_REMOVED,onPaRemoved);
+			
+		}
+		
+		private function onPaRemoved(event:DataSelectionEvent):void {
+			event.selectedPa.isSelectedForDownload=false;
 		}
 		
 		private function onScrollApplication(ev:ScrollEvent):void {
