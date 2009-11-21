@@ -65,6 +65,7 @@
 						case Task.WAITING_FOR_DOWNLOAD:
 							actionButton.visible=true;
 							cancelButton.visible=true;
+							mustRollOver=true;
 							this.addEventListener(MouseEvent.CLICK,waitingForDownloadClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,waitingForDownloadClicked,false,0,true);
 							textAlpha = 1;
@@ -74,6 +75,7 @@
 						case Task.WAITING_FOR_UPLOAD:
 							actionButton.visible=true;
 							cancelButton.visible=true;
+							mustRollOver=true;
 							this.addEventListener(MouseEvent.CLICK,waitingForUploadClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,waitingForUploadClicked,false,0,true);
 							textAlpha = 1;
@@ -91,6 +93,7 @@
 						case Task.ERROR_IN_DATA:
 							actionButton.visible=true;
 							cancelButton.visible=true;
+							mustRollOver=true;
 							this.addEventListener(MouseEvent.CLICK,errorInDataClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,errorInDataClicked,false,0,true);
 							textAlpha = 1;
@@ -100,6 +103,7 @@
 						case Task.TASK_READY_FOR_REVIEW:
 							actionButton.visible=true;
 							cancelButton.visible=true;
+							mustRollOver=true;
 							this.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							textAlpha = 1;
@@ -109,6 +113,7 @@
 						case Task.REVIEW_STARTED:
 							actionButton.visible=true;
 							cancelButton.visible=true;
+							mustRollOver=true;
 							this.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							textAlpha = 1;
