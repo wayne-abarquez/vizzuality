@@ -67,18 +67,19 @@
 	</mx:Script>
 	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="1020">
 		<dashboard1:Dashboard label="DASHBOARD" id="mydashboard"/>
-		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data">
+		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data" showEffect="{fadeIn}" hideEffect="{fadeOut}">
 			<download:Download top="0" left="0" right="0" height="100%" />
 		</mx:Canvas>
-		<mx:Canvas label="PENDING TASKS" width="874" height="100%" id="previous_downloads">
+		<mx:Canvas label="PENDING TASKS" width="874" height="100%" id="previous_downloads" showEffect="{fadeIn}" hideEffect="{fadeOut}">
 			<pendingtasks:TasksContainer />
 		</mx:Canvas>
-		<mx:Canvas label="PREVIOUS UPLOADS" width="100%" height="100%" id="previous_uploads">
+		<mx:Canvas label="PREVIOUS TASKS" width="100%" height="100%" id="previous_uploads" showEffect="{fadeIn}" hideEffect="{fadeOut}">
 			<previoustasks:PreviousTasksContainer />
 		</mx:Canvas>
-		<mx:Canvas label="COMMIT DOWNLOAD" width="100%" height="100%" backgroundColor="#FFFFFF" id="commit" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<!--mx:Canvas label="" width="100%" height="100%" showEffect="{fadeIn}" hideEffect="{fadeOut}"
+			backgroundColor="#FFFFFF" id="commit" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<pendingtasks:TaskOverview left="0" right="0" top="0" bottom="0"/>
-		</mx:Canvas>
+		</mx:Canvas -->
 	</mx:ViewStack>
 	<mx:HBox left="0" top="0" horizontalGap="3">
 		<mx:Button label="DASHBOARD" click="currentState='Dashboard'" styleName="mainMenuButton" height="35" id="button1" selected="true" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button1.selected)?0x333333:0x6686AE}"/>
@@ -86,5 +87,6 @@
 		<mx:Button label="PENDING TASKS" visible="{Application.application.pendingTasks}" includeInLayout="{Application.application.pendingTasks}" click="currentState='Pendingtasks'" styleName="mainMenuButton" height="35" id="button3" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button3.selected)?0x333333:0x6686AE}"/>
 		<mx:Button label="PREVIOUS TASKS" visible="{Application.application.previousTasks}" includeInLayout="{Application.application.previousTasks}" click="currentState='Previous'" styleName="mainMenuButton" height="35" id="button4" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button4.selected)?0x333333:0x6686AE}"/>
 	</mx:HBox>
-	
+        <mx:Fade id="fadeIn" alphaFrom="0" alphaTo="1" duration="200"/>
+        <mx:Fade id="fadeOut" alphaFrom="1" alphaTo="0" duration="200"/>	
 </mx:Canvas>
