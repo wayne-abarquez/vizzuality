@@ -204,7 +204,6 @@
             	event.stopPropagation();
             	navigateToURL(new URLRequest(Application.application.serverUrl + "/exports/"+task.id),"_blank");
             	
-            	//After 10 seconds change the status
             	//changeStatusAfterDownload()
             	TweenLite.delayedCall(5,changeStatusAfterDownload,null);
             }
