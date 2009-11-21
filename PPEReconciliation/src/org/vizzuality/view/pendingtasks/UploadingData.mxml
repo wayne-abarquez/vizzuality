@@ -3,6 +3,7 @@
 	addedToStage="handleAdded(event)" alpha="0">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import mx.core.Application;
 			import gs.TweenMax;
 			import org.vizzuality.events.MyEventDispatcher;
@@ -49,11 +50,6 @@
 			
             // Update progBar
             private function updateProgBar(numPerc:Number = 0):void {
-/*                 //var strLabel:String = (_numCurrentUpload + 1) + "/" + _arrUploadFiles.length;
-                strLabel = (_numCurrentUpload + 1 <= _arrUploadFiles.length && numPerc > 0 && numPerc < 100) ? numPerc + "% - " + strLabel : strLabel;
-                strLabel = (_numCurrentUpload + 1 == _arrUploadFiles.length && numPerc == 100) ? "Upload Complete - " + strLabel : strLabel;
-                strLabel = (_arrUploadFiles.length == 0) ? "" : strLabel;
-                progBar.label = strLabel; */
                 progBar.setProgress(numPerc, 100);
                 progBar.validateNow();
             }
@@ -66,10 +62,18 @@
             private function onUploadIoError(event:IOErrorEvent):void {
                 //var evt:IOErrorEvent = new IOErrorEvent("uploadIoError", false, false, event.text);
                 //dispatchEvent(evt);
+                Alert.show('onUploadIoError: Please contact support');
 				MyEventDispatcher.taskUploaded(task);
             }  
             
+            private function cancelUpload():void {
+            	refFile.cancel();
+            	MyEventDispatcher.taskUploaded(task);
+            }
+            
             private function onUploadSecurityError(event:SecurityErrorEvent):void {
+            	Alert.show('onUploadSecurityError: Please contact support');
+            	MyEventDispatcher.taskUploaded(task);
             }                            		
             
             private function handleAdded(ev:Event):void{
@@ -81,6 +85,8 @@
 	<mx:Canvas width="400" height="100" horizontalCenter="-1" top="190" backgroundColor="#FFFFFF" borderStyle="solid" cornerRadius="5" borderColor="#FFFFFF">
 		<mx:ProgressBar id="progBar" x="148" y="41" width="217" indeterminate="false"/>
 		<mx:Label x="28" y="37" text="Uploading data" fontFamily="Helvetica" fontWeight="bold" fontSize="15" color="#666666"/>
-		<mx:Label x="287" y="53" text="cancel upload" color="#FF2400" fontFamily="Helvetica" fontSize="11" fontWeight="bold"/>
+		<mx:Label
+			 click="cancelUpload()"
+			 x="287" y="53" text="cancel upload" color="#FF2400" fontFamily="Helvetica" fontSize="11" fontWeight="bold"/>
 	</mx:Canvas>
 </mx:Canvas>
