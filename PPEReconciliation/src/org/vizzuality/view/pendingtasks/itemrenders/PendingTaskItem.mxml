@@ -80,6 +80,8 @@
 							mustRollOver=false;
 							taskColor=0xff9900;
 							textAlpha = 0.5;
+							iconImage.source = Resource.CLOCK_SMALL;
+							iconImage.visible = true;
 							break;
 						case Task.WAITING_FOR_DOWNLOAD:
 							actionButton.visible=true;
@@ -90,6 +92,8 @@
 							textAlpha = 1;
 							actionButton.label = "DOWNLOAD";
 							taskColor=0xff9900;
+							iconImage.source = Resource.ARROW_DOWN_SMALL;
+							iconImage.visible = true;							
 							break;
 						case Task.WAITING_FOR_UPLOAD:
 							actionButton.visible=true;
@@ -100,6 +104,8 @@
 							textAlpha = 1;
 							actionButton.label = "UPLOAD";
 							taskColor=0xff9900;
+							iconImage.source = Resource.ARROW_UP_SMALL;
+							iconImage.visible = true;
 							break;
 						case Task.UPLOAD_PROCESSING:
 							actionButton.visible=false;
@@ -108,6 +114,8 @@
 							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0xff9900;
+							iconImage.source = Resource.CLOCK_SMALL;
+							iconImage.visible = true;
 							break;
 						case Task.ERROR_IN_DATA:
 							actionButton.visible=true;
@@ -118,6 +126,8 @@
 							textAlpha = 1;
 							actionButton.label = "REVIEW";
 							taskColor=0xff3300;
+							iconImage.includeInLayout = false;
+							iconImage.visible = false;
 							break;
 						case Task.TASK_READY_FOR_REVIEW:
 							actionButton.visible=true;
@@ -130,6 +140,8 @@
 							taskColor=0x339900;
 							statusPercenLabel.visible=true;
 							percentage.visible=true;
+							iconImage.includeInLayout = false;
+							iconImage.visible = false;
 							break;
 						case Task.REVIEW_STARTED:
 							actionButton.visible=true;
@@ -142,6 +154,8 @@
 							statusPercenLabel.visible=true;
 							percentage.visible=true;
 							taskColor=0x339900;
+							iconImage.includeInLayout = false;
+							iconImage.visible = false;
 							break;
 						case Task.REVIEW_PROCESSING:
 							actionButton.visible=false;
@@ -150,6 +164,8 @@
 							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0xff9900;
+							iconImage.source = Resource.CLOCK_SMALL;
+							iconImage.visible = true;
 							break;
 						case Task.TASK_FINISHED:
 							actionButton.visible=false;
@@ -158,6 +174,8 @@
 							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0x339900;
+							iconImage.includeInLayout = false;
+							iconImage.visible = false;
 							break;
 							
 						case Task.TASK_CANCEL:
@@ -167,6 +185,8 @@
 							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0x339900;
+							iconImage.includeInLayout = false;
+							iconImage.visible = false;
 							break;
 							
 					}
@@ -257,7 +277,7 @@
 			fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11" alpha="{textAlpha}"/>
 		
 		<mx:HBox left="404" top="5" horizontalGap="-3">
-			<mx:Image id="clockImage" source="{Resource.CLOCK_SMALL}" visible="{!mustRollOver}" includeInLayout="{!mustRollOver}"/>
+			<mx:Image id="iconImage"/>
 			<mx:Label text="{taskName}" color="{taskColor}" fontSize="13" 
 				fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
 		</mx:HBox>
