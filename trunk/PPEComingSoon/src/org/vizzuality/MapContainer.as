@@ -21,6 +21,7 @@ package org.vizzuality{
 			super();
 			
 			var mi:Bitmap = new MapImage();
+			mi.x = 40;
 			this.addChild(mi);
 			
 			var tf:TextFormat = new TextFormat();
@@ -36,7 +37,7 @@ package org.vizzuality{
 			t1.width = 100;
 			t1.selectable = false;
 			t1.x = -12;
-			t1.y = 91;
+			t1.y = 128;
 			this.addChild(t1);
 
 			var t2:TextField = new TextField();
@@ -44,8 +45,8 @@ package org.vizzuality{
 			t2.text = " in the las 24 hours";
 			t2.textColor = 0x1b4063;
 			t2.width = 99;
-			t2.x = 331;
-			t2.y = 89;
+			t2.x = 342;
+			t2.y = 129;
 			t2.selectable = false;
 			this.addChild(t2);
 			
