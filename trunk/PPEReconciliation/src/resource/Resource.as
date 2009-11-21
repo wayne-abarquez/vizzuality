@@ -51,7 +51,10 @@ package resource{
         public static const CURSOR_RECTANGLE:Class;
         [Embed (source="org/vizzuality/assets/clockSmall.png" )]
         public static const CLOCK_SMALL:Class;
-        
+        [Embed (source="org/vizzuality/assets/arrowDownSmall.png" )]
+        public static const ARROW_DOWN_SMALL:Class;
+        [Embed (source="org/vizzuality/assets/arrowUpSmall.png" )]
+        public static const ARROW_UP_SMALL:Class;
         
 	}
 }
