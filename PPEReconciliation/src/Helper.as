@@ -3,6 +3,7 @@ package {
     import com.asual.swfaddress.SWFAddress;
     import com.asual.swfaddress.SWFAddressEvent;
     
+    import mx.core.Application;
     import mx.core.UIComponent;
 
     public class Helper {
@@ -25,6 +26,10 @@ package {
         }
         
         public static function setSWFAddress(scope:UIComponent, path:String='', depth:int=0):void {
+            if (path!='') {
+	            Application.application.tracker.trackPageview( path );
+            	
+            }
             var value:String = '';
             if (scope.currentState != '' && scope.currentState != null) {
                 value += scope.currentState.toLowerCase();

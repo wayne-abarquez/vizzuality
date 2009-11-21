@@ -137,5 +137,5 @@
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button0" width="50"
 			visible="{(selectedCountries.length > 0 || selectedPas.length > 0)}"/>
 	</mx:Canvas>	
-	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="onDownloadSentResult(event)" fault="trace(event.message)" />	
+	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="onDownloadSentResult(event)" fault="Alert.show('onDownloadSentResult ERROR: Please contact administrator')" />	
 </mx:VBox>

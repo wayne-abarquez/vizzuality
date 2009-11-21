@@ -75,7 +75,7 @@
 			}
 			private function loginFail(ev:FaultEvent):void {
 				currentState="Login";
-				Alert.show("Sorry, there is an error on the server, please contact admin@protectplanetearth.com");
+				Alert.show("Sorry, there is an error on the server, please refer to http://getsatisfaction.com/wdpa/");
 			}
 		]]>
 	</mx:Script>
@@ -126,5 +126,13 @@
 	<mx:VBox id="vBoxContainer" top="110" bottom="0" verticalScrollPolicy="off" width="100%" horizontalAlign="center">
 		<ns1:footer width="874" id="footer1"/>
 	</mx:VBox>
+	
+	 <analytics:FlexTracker
+        xmlns:analytics="com.google.analytics.components.*"
+        id="tracker"
+        account="UA-4755361-1"
+        mode="AS3"
+        visualDebug="false"
+     />
 	
 </mx:Application>

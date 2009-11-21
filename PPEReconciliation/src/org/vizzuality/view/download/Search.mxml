@@ -26,6 +26,7 @@
 
 <mx:Script>
 	<![CDATA[
+		import mx.controls.Alert;
 		import org.vizzuality.events.MyEventDispatcher;
 		import org.vizzuality.events.DataSelectionEvent;
 		import com.google.maps.MapMoveEvent;
@@ -380,6 +381,6 @@
 				click="{SWFAddress.setValue('/rec/checkout/countries/africa')}"/>
 		</mx:HBox>
 	</mx:Canvas>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getSearchResult(event)" fault="trace(event.message)" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getSearchResult(event)" fault="Alert.show('getSearchResult ERROR: Please contact administrator')" />
 	
 </mx:VBox>

@@ -5,6 +5,7 @@
 	creationComplete="init()" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Alert;
 			import org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem;
 			import org.vizzuality.events.TaskSelectionEvent;
 			import org.vizzuality.events.MyEventDispatcher;
@@ -214,10 +215,10 @@
 	</mx:Canvas>
 	<mx:Canvas x="648" y="53" width="18" height="1107" styleName="shadow" backgroundSize="100%" />
 
-	<mx:HTTPService id="jsonService1" resultFormat="text" method="GET" result="onGetTaskDeletionsResult(event)" fault="trace(event.fault)" />
-	<mx:HTTPService id="jsonService2" resultFormat="text" method="GET" result="onGetTaskNewPasResult(event)" fault="trace(event.fault)" />
-	<mx:HTTPService id="jsonService3" resultFormat="text" method="GET" result="onGetTaskUpdatesResult(event)" fault="trace(event.fault)" />
-	<mx:HTTPService id="jsonServiceCommit" resultFormat="text" method="POST" result="onCommitResult(event)" fault="trace(event.fault)" />
+	<mx:HTTPService id="jsonService1" resultFormat="text" method="GET" result="onGetTaskDeletionsResult(event)" fault="Alert.show('onGetTaskDeletionsResult ERROR: Please contact administrator')" />
+	<mx:HTTPService id="jsonService2" resultFormat="text" method="GET" result="onGetTaskNewPasResult(event)" fault="Alert.show('onGetTaskNewPasResult ERROR: Please contact administrator')" />
+	<mx:HTTPService id="jsonService3" resultFormat="text" method="GET" result="onGetTaskUpdatesResult(event)" fault="Alert.show('onGetTaskUpdatesResult ERROR: Please contact administrator')" />
+	<mx:HTTPService id="jsonServiceCommit" resultFormat="text" method="POST" result="onCommitResult(event)" fault="Alert.show('onCommitResult ERROR: Please contact administrator')" />
 
 	
 </mx:Canvas>
