@@ -50,6 +50,8 @@
 						bkg_color = 0xF5F5F5;
 					}
 					
+					//b
+					
 					
 					//change the button depending on what status the task is
 					switch(task.status) {
@@ -65,6 +67,7 @@
 							cancelButton.visible=true;
 							this.addEventListener(MouseEvent.CLICK,waitingForDownloadClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,waitingForDownloadClicked,false,0,true);
+							textAlpha = 1;
 							actionButton.label = "DOWNLOAD";
 							taskColor=0xff9900;
 							break;
@@ -73,6 +76,7 @@
 							cancelButton.visible=true;
 							this.addEventListener(MouseEvent.CLICK,waitingForUploadClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,waitingForUploadClicked,false,0,true);
+							textAlpha = 1;
 							actionButton.label = "UPLOAD";
 							taskColor=0xff9900;
 							break;
@@ -89,6 +93,7 @@
 							cancelButton.visible=true;
 							this.addEventListener(MouseEvent.CLICK,errorInDataClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,errorInDataClicked,false,0,true);
+							textAlpha = 1;
 							actionButton.label = "REVIEW";
 							taskColor=0xff3300;
 							break;
@@ -97,6 +102,7 @@
 							cancelButton.visible=true;
 							this.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
+							textAlpha = 1;
 							actionButton.label = "CONTINUE";
 							taskColor=0x339900;
 							break;
@@ -105,6 +111,7 @@
 							cancelButton.visible=true;
 							this.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
+							textAlpha = 1;
 							actionButton.label = "CONTINUE";
 							taskColor=0x339900;
 							break;
@@ -198,8 +205,15 @@
 			}
 			
 			public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24; 
-			private function getDaysDifference(minDate:Date, maxDate:Date):uint { 
-				return Math.ceil(( minDate.getTime() - maxDate.getTime()) / millisecondsPerDay); 
+			private function getDaysDifference(minDate:Date, maxDate:Date):String { 
+				var d:Number = Math.ceil(( minDate.getTime() - maxDate.getTime()) / millisecondsPerDay);
+				if(d < 1) {
+					return "today";					
+				}
+				if(d == 1) {
+					return "yesterday";					
+				}				
+				return d + " days ago"; 
 			} 			
 			
 
@@ -225,7 +239,7 @@
 	
 		<mx:Label id="date" text="{getDate(task.date.toString())}" color="#666666"  left="619" top="5" 
 			fontSize="12" fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
-		<mx:Label id="ago" text="{getDaysDifference(task.date,new Date()) + ' days ago'}" color="#999999" fontWeight="normal" 
+		<mx:Label id="ago" text="{getDaysDifference(task.date,new Date()) }" color="#999999" fontWeight="normal" 
 			fontSize="11" fontStyle="normal" top="20" left="619" fontFamily="Helvetica" alpha="{textAlpha}"/>
 		
 		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>

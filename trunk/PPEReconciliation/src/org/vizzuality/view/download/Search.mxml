@@ -26,6 +26,10 @@
 
 <mx:Script>
 	<![CDATA[
+		import com.google.maps.MapMoveEvent;
+		import org.vizzuality.model.Pa;
+		import com.adobe.serialization.json.JSON;
+		import com.google.maps.MapAction;
 		import mx.rpc.events.ResultEvent;
 		import com.google.maps.overlays.Marker;
 		import com.google.maps.services.GeocodingEvent;
@@ -50,6 +54,10 @@
 		import resource.Resource;
 		import mx.collections.ArrayCollection;
 		
+		
+		private var aSprite:Sprite;
+		private var bSprite:Sprite;
+		
 		private var selectedArea: ArrayCollection = new ArrayCollection();
 		private var dataBbox:LatLngBounds;	
 		private var selectionRectangle:Canvas;
@@ -59,42 +67,38 @@
 		private	var tl:GeoserverTileLayer;
 		private	var tlo:TileLayerOverlay;			
 		private var tilesPane:IPane;
-		//private var polygonsPane:IPane;		
 		
+		private var filter:ColorMatrixFilter = new ColorMatrixFilter([0.13238779460000002,1.0025112879999998,0.0490316186,0,-43.75271063919999,0.0749877946,1.230711288,0.0490316186,0,-78.25571063919999,0.0749877946,1.0025112879999998,0.15963161860000002,0,-56.89591063919999,0,0,0,1,0]);
+		private var emptyFilter:ColorMatrixFilter = new ColorMatrixFilter();		
+	
+		private var totalAreas:Number=0;
+		[Bindable] private var page:Number=1;
+		[Bindable] private var totalPages:Number=1;
 
 	
-        [Bindable]private var areasArr: ArrayCollection = new ArrayCollection([
-           {name:"Yosemite National Park", country:"United States"},
-           {name:"Yosemite National Area", country:"United States"},
-           {name:"Galapagos national reserve", country:"Ecuador"},
-           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-           {name:"Yosemite National Park", country:"United States"},
-           {name:"Yosemite National Area", country:"United States"},
-           {name:"Galapagos national reserve", country:"Ecuador"},
-           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-           {name:"Yosemite National Park", country:"United States"},
-           {name:"Yosemite National Area", country:"United States"},
-           {name:"Galapagos national reserve", country:"Ecuador"},
-           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-           {name:"Yosemite National Park", country:"United States"},
-           {name:"Yosemite National Area", country:"United States"},
-           {name:"Galapagos national reserve", country:"Ecuador"},
-           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-           {name:"Yosemite National Park", country:"United States"},
-           {name:"Yosemite National Area", country:"United States"},
-           {name:"Galapagos national reserve", country:"Ecuador"},
-           {name:"Bacalar Chico Protected Area", country:"Ecuador"},
-           {name:"Yosemite National Park", country:"United States"},
-           {name:"Yosemite National Area", country:"United States"},
-           {name:"Galapagos national reserve", country:"Ecuador"},
-           {name:"Bacalar Chico Protected Area", country:"Ecuador"}
-		]);	
+        [Bindable] private var areasArr: ArrayCollection = new ArrayCollection();	
 		
 		private function loadingEnter():void {
+			if (map!=null && map.isLoaded()) {
+				map.disableDragging();
+				map.disableScrollWheelZoom();
+				map.setDoubleClickMode(MapAction.ACTION_NOTHING);
+				if (bSprite==null) {
+					aSprite = map.getChildAt(1) as Sprite;
+					bSprite = aSprite.getChildAt(0) as Sprite;
+				}
+				bSprite.filters = [filter];
+			}
 			
 		}
 	
 		private function loadingExist():void {
+			if (map!=null && map.isLoaded() &&bSprite!=null) {
+				map.enableDragging();
+				map.enableScrollWheelZoom();
+				map.setDoubleClickMode(MapAction.ACTION_ZOOM_IN);
+				bSprite.filters = [emptyFilter];
+			}
 			
 		}
 	
@@ -103,6 +107,7 @@
 			selectionRectangle.setStyle("styleName", "selectionRectangleStyle");
 			Application.application.addEventListener(ScrollEvent.SCROLL,onScrollApplication);
 			r = new Rectangle(0,0,0,0);
+			getPas(1);
 		}
 		
 		private function onScrollApplication(ev:ScrollEvent):void {
@@ -159,6 +164,14 @@
 			});
 			tilesPane.addOverlay(tlo);	
 			tlo.foreground.alpha=1;            
+            
+            //link when bbox of map changes
+            map.addEventListener(MapZoomEvent.ZOOM_CHANGED,function(event:MapZoomEvent):void {
+            	getPas(1);
+            });
+            map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
+            	getPas(1);
+            });
             
             
         }	
@@ -279,11 +292,35 @@
 		
 		
 		private function getPas(p:Number):void {
-			
+			currentState = "loading";	
+			//jsonService.url = Application.application.serverUrl + "/regions/"+_regionId+"/countries?page="+p+"&per_page=24";
+			var params:String = "";
+			if (map!=null && map.isLoaded()) {
+				var bbox:LatLngBounds = map.getLatLngBounds();
+				params=bbox.getNorth()+"/"+bbox.getSouth()+"/"+bbox.getWest()+"/"+bbox.getEast()+"/"+p;
+			} else {
+				params="90/-90/-180/180/1";				
+			}
+			jsonService.url = "http://localhost/php/json.php/DumpServices.getPasByBoundingBox/"+params;
+			jsonService.send();		
+			page=p;
 		}
 		
 		private function getSearchResult(event:ResultEvent):void {
-			
+				var res:Object = JSON.decode(event.result as String);
+				var pasArr:Array = [];
+				for(var i:String in res.results as Array)  {
+					var pa:Pa = new Pa();
+					pa.id=res.results[i].id;
+					pa.name=res.results[i].name;
+					pa.country=res.results[i].country;
+					pasArr.push(pa);
+					//res.results[i] = new ObjectProxy(res.results[i]);
+				}
+				areasArr=new ArrayCollection(pasArr);
+				totalAreas=res.total;
+				totalPages = Math.ceil(totalAreas/24);			
+				currentState = "";
 		}
 
         
@@ -318,9 +355,9 @@
 	</mx:Canvas>
 	
 	<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">
-		<mx:Label  right="70" verticalCenter="0" width="211" text="page 1 of 7" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
-		<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
-		<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight" width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+		<mx:Label  right="70" verticalCenter="0" width="211" text="{'page '+page+' of '+totalPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>
+		<mx:Button right="39" click="getPas(page-1)" enabled="{page>1}" verticalCenter="0" styleName="whitePaginationLeft" width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+		<mx:Button right="8"  click="getPas(page+1)" enabled="{page &lt; totalPages}" verticalCenter="0" styleName="whitePaginationRight" width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 	</mx:Canvas>	
 	
 	<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" styleName="ContainersInfo">	

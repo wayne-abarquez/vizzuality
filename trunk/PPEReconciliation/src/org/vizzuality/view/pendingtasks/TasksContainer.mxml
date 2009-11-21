@@ -50,9 +50,7 @@
 		
 			private function initSWFAddress():void {
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
-                //if (!SWFAddress.hasEventListener(SWFAddressEvent.CHANGE)) {
-	                SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
-                //}
+	            SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
             }
             
             private function destroySWFAddress():void {
@@ -68,6 +66,8 @@
                 if (event.pathNames.length >= depth && event.pathNames[depth - 1] == "pendingtasks") {
                     if(event.pathNames.length==2) {
                     	currentState="Overview";
+                    	if (pendingTask!=null)
+                    		pendingTask.getPendingTasks(1);
                     }else {
 	                    Helper.handleSWFAddress(this, event, depth);
                     }
