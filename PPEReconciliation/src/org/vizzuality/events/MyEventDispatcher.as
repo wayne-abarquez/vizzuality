@@ -57,6 +57,10 @@ package org.vizzuality.events
    			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.TASK_UPLOADED,task));
    		}
    		
+   		public static function taskListNotification(message:String):void {
+   			dispatchEvent(new NotificationEvent(NotificationEvent.TASK_LIST_NOTIFICATION,message));
+   		}
+   		
    		
     }
 }

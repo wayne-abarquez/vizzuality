@@ -277,10 +277,10 @@ class DumpServices {
 		return $res;
 	}
 	
-	function getPasByBoundingBox($north,$south,$west,$east) {
+	function getPasByBoundingBox($north,$south,$west,$east,$page) {
 		$resul=array();
 		$pas=array();
-		for($i=17;$i<21;$i++) {
+		for($i=1;$i<25;$i++) {
 			$pa=array();
 			$pa['id'] = $i;
 			$pa['name'] = "Yosemite". $i;
