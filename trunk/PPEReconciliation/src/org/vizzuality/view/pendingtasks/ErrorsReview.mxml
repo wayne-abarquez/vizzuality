@@ -17,7 +17,7 @@
 			[Bindable]private var errors: ArrayCollection = new ArrayCollection();
 			
 			public function getErrors(task:Task):void {
-				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskErrors/"+task.code;
+				jsonService.url = Application.application.serverUrl + "/tasks/"+task.code+"/errors";
 				jsonService.send();				
 			}
 			

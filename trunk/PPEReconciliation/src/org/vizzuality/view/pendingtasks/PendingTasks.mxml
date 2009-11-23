@@ -81,7 +81,7 @@
 			}
 			
 			private function onTaskCanceled(event:CancelTaskEvent):void {
-				cancelJsonService.url = Application.application.serverUrl + "/json.php/DumpServices.cancelTask/"+event.task.code;
+				cancelJsonService.url = Application.application.serverUrl + "/tasks/"+event.task.code+"/destroy";
 				cancelJsonService.send();
 			}
 			
