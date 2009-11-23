@@ -34,16 +34,30 @@
 	                	confirmButton.alpha=0.2;
 						rejectButton.alpha=1;
 						statusText.text="Rejected";
+						statusOverText.text= statusText.text;	
 						statusColor = 0xff3300;
-	                }
-	                if(pa.status==ReviewProcess.CONFIRMED) {
+	                } else if(pa.status==ReviewProcess.CONFIRMED) {
 	                	confirmButton.alpha=1;
 						rejectButton.alpha=0.2;
 						statusText.text="Confirmed";
+						statusOverText.text= statusText.text;	
 						statusColor = 0x339900;
+	                } else {
+	                	if( confirmButton!=null)
+	                		confirmButton.alpha=1;
+	                	if( rejectButton!=null)
+							rejectButton.alpha=1;
+	                	if( statusText!=null)
+							statusText.text="";
+	                	if( statusText!=null)
+							statusOverText.text="";
+							
+						//statusColor = 0x339900;
+	                	
 	                }
                 }
             }
+			
 			
 			//EL Color grisecito para cuando la fila es par es el #f5f5f5, sólo habría que hacer un setStyle
 			

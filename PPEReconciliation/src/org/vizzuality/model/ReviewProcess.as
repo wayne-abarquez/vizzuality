@@ -22,33 +22,61 @@ package org.vizzuality.model
 		public var isAllNewAcceptedChecked:Boolean=false;
 		public var isAllUpdateAcceptedChecked:Boolean=false;
 		
-		public var pendingDeletedToReview:Number=0;
-		public var pendingEditedToReview:Number=0;
-		public var pendingNewToReview:Number=0;
+		public var deletedReviewed:Number=0;
+		public var editedReviewed:Number=0;
+		public var newReviewed:Number=0;
+		public var totalReviewed:Number=0;
+		
+		public var deletedPending:Number=0;
+		public var editedPending:Number=0;
+		public var newPending:Number=0;
+		
+		public var totalPending:Number=0;
+		
+		
+		public function recalculatePendings():void {
+			totalPending=deletedPending + editedPending + newPending;
+		}
 	
 	
 		public function addPa(mode:String,pa:Pa,status:String):void {
-			var pasPos:Number =checkIfPaInAc(pa,pasDeletedReviewed);
+			var pasPos:Number;
 			
 			switch(mode) {
 				case DELETE:
+					 pasPos=checkIfPaInAc(pa,pasDeletedReviewed);
 					if(pasPos<0) {
 						pasDeletedReviewed.addItem(pa);
-						pendingDeletedToReview--;
+						deletedReviewed++;
+						totalReviewed++;
+						deletedPending--;
+						totalPending--;
+					} else {
+						(pasDeletedReviewed.getItemAt(pasPos) as Pa).status=status;
 					}
 					break;
 				case UPDATE:
+					 pasPos=checkIfPaInAc(pa,pasEditedReviewed);
 					if(pasPos<0) {
 						pasEditedReviewed.addItem(pa);
-						pendingEditedToReview--;
+						editedReviewed++;
+						totalReviewed++;
+						editedPending--;
+						totalPending--;
+					} else {
+						(pasEditedReviewed.getItemAt(pasPos) as Pa).status=status;
 					}
 					break;
 				case CREATE:
+					 pasPos=checkIfPaInAc(pa,pasNewReviewed);
 					if(pasPos<0) {
 						pasNewReviewed.addItem(pa);
-						pendingNewToReview--;
+						newReviewed++;
+						totalReviewed++;
+						newPending--;
+						totalPending--;
 					} else {
-						
+						(pasNewReviewed.getItemAt(pasPos) as Pa).status=status;
 					}
 					break;
 			}
@@ -63,6 +91,39 @@ package org.vizzuality.model
 				i++;
 			}
 			return -1;	
+		}
+		
+		public function getIfPaIdInReview(paId:String,mode:String):String {			
+			var ac:ArrayCollection;
+			switch(mode) {
+				case ReviewProcess.DELETE:
+					ac=pasDeletedReviewed;
+					break;
+				case ReviewProcess.UPDATE:
+					ac=pasEditedReviewed;
+					break;
+				case ReviewProcess.CREATE:
+					ac=pasNewReviewed;
+					break;
+			}
+			var i:Number=0;
+			var found:Boolean=false;
+			for each(var item:Pa in ac) {
+				if(item.id == paId) {
+					found=true;
+					break;
+				}
+				i++;
+			}
+			
+			var status:String="";
+			if(found) {
+				status = (ac[i] as Pa).status;
+			} else {
+				status="";
+			}
+			return status;			
+			
 		}
 		
 		
