@@ -311,7 +311,7 @@
 			} else {
 				params="90/-90/-180/180/1";				
 			}
-			jsonService.url = "http://localhost/php/json.php/DumpServices.getPasByBoundingBox/"+params;
+			jsonService.url = Application.application.serverUrl + "/search/"+params;
 			jsonService.send();		
 			page=p;
 		}
