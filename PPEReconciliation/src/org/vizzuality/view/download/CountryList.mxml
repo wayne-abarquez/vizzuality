@@ -100,9 +100,9 @@
 	</mx:Script>
 	<mx:VBox width="100%" height="100%">
 		<mx:Canvas width="100%" height="100%" id="canvas1">
-			<components:TileListRenderers direction="vertical" width="100%" height="100%" dataProvider="{countries}" id="country_tilelist"
+			<mx:TileList direction="vertical" width="100%" height="100%" dataProvider="{countries}" id="country_tilelist"
 				itemRenderer="org.vizzuality.view.download.itemrenders.CountryItem" paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none">
-			</components:TileListRenderers>
+			</mx:TileList>
 		</mx:Canvas>
 		<mx:Canvas width="100%" height="34" backgroundColor="#e1efff">
 			<mx:Label id="pagingInfo"  right="70" verticalCenter="0" width="211" text="{'page '+page+' of '+totalPages}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold"/>

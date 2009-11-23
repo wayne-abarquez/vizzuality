@@ -29,6 +29,7 @@
 			[Bindable] private var totalDeleted:Number=0;
 			[Bindable] private var totalUpdated:Number=0;
 			[Bindable] private var totalNew:Number=0;
+			[Bindable] private var totalPendingTasks:Number=0;
 			
 			[Bindable]private var deleted: ArrayCollection = new ArrayCollection();
 			[Bindable]private var news: ArrayCollection = new ArrayCollection();
@@ -45,7 +46,7 @@
 			
 			public function set task(val:Task):void {
 				_task=val;
-				
+				totalPendingTasks=0;
 				//Get the details of the task
 				getTaskDeletions(1);
 				getTaskNewPas(1);
@@ -71,18 +72,18 @@
 			
 			
 			private function getTaskDeletions(p:Number):void {
-				jsonService1.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskDeletions/"+_task.code+"/"+p+"/18";
+				jsonService1.url = Application.application.serverUrl + "/imports/"+_task.id+"/deleted?page="+p+"&per_page=12";
 				jsonService1.send();		
 				delPage=p;						
 			}
 			private function getTaskNewPas(p:Number):void {
-				jsonService2.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskNewPas/"+_task.code+"/"+p+"/18";
+				jsonService2.url = Application.application.serverUrl + "/imports/"+_task.id+"/added?page="+p+"&per_page=12";
 				jsonService2.send();		
 				newPage=p;						
 				
 			}
 			private function getTaskUpdates(p:Number):void {
-				jsonService3.url = Application.application.serverUrl + "/json.php/DumpServices.getTaskUpdates/"+_task.code+"/"+p+"/18";
+				jsonService3.url = Application.application.serverUrl + "/imports/"+_task.id+"/changed?page="+p+"&per_page=12";
 				jsonService3.send();		
 				updatePage=p;						
 				
@@ -104,7 +105,8 @@
 				}
 				deleted=new ArrayCollection(tem);
 				totalDeleted=res.total;
-				totalDelPages = Math.ceil(totalDeleted/24);						
+				totalDelPages = Math.ceil(totalDeleted/12);		
+				totalPendingTasks=totalPendingTasks+totalDeleted;				
 			}
 			private function onGetTaskNewPasResult(event:ResultEvent):void {
 				var res:Object = JSON.decode(event.result as String);
@@ -122,8 +124,8 @@
 				}
 				news=new ArrayCollection(tem);
 				totalNew=res.total;
-				totalNewPages = Math.ceil(totalNew/24);				
-						
+				totalNewPages = Math.ceil(totalNew/12);				
+				totalPendingTasks=totalPendingTasks+totalNew;			
 				
 			}
 			private function onGetTaskUpdatesResult(event:ResultEvent):void {
@@ -142,27 +144,30 @@
 				}
 				updates=new ArrayCollection(tem);
 				totalUpdated=res.total;
-				totalUpdatesPages = Math.ceil(totalUpdated/24);						
-				
+				totalUpdatesPages = Math.ceil(totalUpdated/12);						
+				totalPendingTasks=totalPendingTasks+totalUpdated;
 			}
 			
 			
 			private function commitChanges():void {
-				jsonServiceCommit.url = Application.application.serverUrl + "/json.php/DumpServices.commitChanges";
+				jsonServiceCommit.url = Application.application.serverUrl + "/imports/" + task.id +'/update';
 				var params:Object={};
 				params.taskCode = task.code;
-				params.deleted = [];
+				var dels:Array = [];
 				for each(var pa:Pa in review.pasDeletedReviewed) {
-					params.deleted.push(pa.id+","+pa.status);
+					dels.push(pa.id+","+pa.status);
 				}
-				params.added = [];
+				params["deleted[]"]=dels;
+				var added:Array = [];
 				for each(var pa2:Pa in review.pasNewReviewed) {
-					params.added.push(pa2.id+","+pa2.status);
+					added.push(pa2.id+","+pa2.status);
 				}
-				params.updated = [];
+				params["added[]"]=added;
+				var updated:Array = [];
 				for each(var pa3:Pa in review.pasEditedReviewed) {
-					params.updated.push(pa3.id+","+pa3.status);
+					updated.push(pa3.id+","+pa3.status);
 				}
+				params["updated[]"]=updated;
 				jsonServiceCommit.send(params);		
 
 				
@@ -181,7 +186,7 @@
 	<mx:Label text="All tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" top="17"
 		 useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks')"/>
 	<mx:HBox left="13" top="30" verticalAlign="bottom" horizontalGap="0" width="841">
-		<mx:Label text="{_task.status + ' - ' + _task.description + ' ('+_task.code+')'}" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
+		<mx:Label text="{'Review data and confirm ('+totalPendingTasks+' pas) ' + ' - ' + _task.description + ' (wdpa_'+_task.code+'_export.zip)'}" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
 	</mx:HBox>
 	
 	<mx:VBox top="80" right="17" verticalGap="0" borderStyle="solid" borderThickness="0" cornerRadius="0" width="210">
