@@ -70,9 +70,9 @@
 			}		
 			
 			
-			private function confirmPa(event:Event):void {
+			public function confirmPa():void {
 				statusOverText.visible = true;
-				event.stopPropagation();
+				//event.stopPropagation();
 				MyEventDispatcher.confirmPa(pa,mode);
 				pa.status = ReviewProcess.CONFIRMED;
 				//getAlphaForButton(confirmButton);
@@ -89,9 +89,9 @@
 				//TweenMax.to(greenFlashCanvas, 1, {autoAlpha:0});
 				TweenMax.to(overCanvas, .2, {autoAlpha:0});
 			}
-			private function rejectPa(event:Event):void {
+			public function rejectPa():void {
 				statusOverText.visible = true;
-				event.stopPropagation();
+				//event.stopPropagation();
 				MyEventDispatcher.rejectPa(pa,mode);
 				pa.status = ReviewProcess.REJECTED;
 				//getAlphaForButton(confirmButton);
@@ -147,14 +147,14 @@
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="6" y="7" text="{pa.name}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="{(pa.status!=null)?140:180}" textAlign="left"/>
 		<mx:Label buttonMode="true" useHandCursor="true" mouseChildren="false" x="7" y="23" text="{pa.country}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" width="140" textAlign="left"/>		
 		<components:ShadowButton id="confirmButton" styleName="greenButton" top="4" right="5" width="18" fontSize="12" 
-			click="confirmPa(event)"
+			click="confirmPa();event.stopPropagation();"
 			rollOver="rollOverButton(event)"
 			rollOut="rollOutButton(event)"
 			paddingRight="0" paddingLeft="0" height="17"
 			icon="{Resource.TICK_ICON_OVER}" paddingBottom="0"
 			mouseChildren="false" buttonMode="true" useHandCursor="true" />
 		<components:ShadowButton id="rejectButton" styleName="redButton" top="4" right="24" width="18" fontSize="12" 
-			click="rejectPa(event)"
+			click="rejectPa();event.stopPropagation();"
 			rollOver="rollOverButton(event)"
 			rollOut="rollOutButton(event)"			
 			icon="{Resource.CROSS_ICON_OVER}" paddingBottom="1" paddingLeft="-1" paddingRight="1" height="18" 

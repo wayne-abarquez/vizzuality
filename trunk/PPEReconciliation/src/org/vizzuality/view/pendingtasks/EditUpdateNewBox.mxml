@@ -8,6 +8,22 @@
 				</ns1:LoadingCanvas>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="allConfirm">
+			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
+				<mx:Label id="pagingDelInfo4" text="{'You have selected '+totalInCurrent+' of '+total}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="normal" paddingTop="3"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
+				<mx:Label id="pagingDelInfo5" text="Select all?" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3" paddingLeft="-4"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="allRejected">
+			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
+				<mx:Label id="pagingDelInfo1" text="{'You have selected '+totalInCurrent+' of '+total}" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="normal" paddingTop="3"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
+				<mx:Label id="pagingDelInfo2" text="Select all?" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3" paddingLeft="-4"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 
 	<mx:Script>
@@ -18,6 +34,7 @@
 			import mx.collections.ArrayCollection;
 			
 			[Bindable] public var total:Number;
+			[Bindable] public var totalInCurrent:Number;
 			private var _dataAc:ArrayCollection;
 			[Bindable] public var page:Number;
 			[Bindable] public var totalPages:Number;
@@ -38,6 +55,7 @@
 				this._dataAc = d;
 				itemList.dataProvider = d;
 				calculateHeight();
+				totalInCurrent=_dataAc.length;
 			}
 			
 			private function calculateHeight():void{
@@ -46,6 +64,23 @@
 				}else{
 					this.itemList.height = (Math.floor(((this.itemList.dataProvider) as ArrayCollection).length / 3) + 1) * 43;
 				}
+			}
+			
+			private function onRejectAllClicked():void {
+				for each(var row:Array in itemList.renderers) {
+					for each(var renderer:ProtectedAreaItem in row) {
+						renderer.rejectPa();
+					}
+				}
+				currentState='allRejected';
+			}
+			private function onConfirmAllClicked():void {
+				for each(var row:Array in itemList.renderers) {
+					for each(var renderer:ProtectedAreaItem in row) {
+						renderer.confirmPa();
+					}
+				}
+				currentState='allRejected';
 			}
 			
 		]]>
@@ -57,7 +92,7 @@
 			<mx:Label text="{pendingItems + ' waiting for confirmation'}"  fontFamily="Helvetica" fontStyle="italic" fontSize="11" fontWeight="normal" color="#666666" width="213" left="391" top="12" textAlign="right" height="14" id="label2"/>
 		</mx:Canvas>
 		
-		<mx:TileList direction="vertical" id="itemList" width="100%" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: mode})}" 
+		<ns1:CustomTileList direction="vertical" id="itemList" width="100%" itemRenderer="{createRendererWithProperties(ProtectedAreaItem, {mode: mode})}" 
 			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none"/>
 		
 		<mx:Canvas width="100%" height="34" backgroundSize="100%" styleName="{styleDown}">
@@ -70,13 +105,11 @@
 					width="27" height="24" click="getNewData(page+1)" useHandCursor="true" mouseChildren="false" buttonMode="true" id="button4"/>						
 	
 			</mx:HBox>
-			<mx:HBox x="6" y="6" horizontalGap="4" verticalAlign="middle">
-				<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" 
+			<mx:HBox x="6" y="6" horizontalGap="4" verticalAlign="middle" id="hbox1">
+				<mx:Button label="reject all" useHandCursor="true" mouseChildren="false" click="onRejectAllClicked()" 
 					icon="{Resource.CROSS_ICON}" overIcon="{Resource.CROSS_ICON_OVER}" buttonMode="true" styleName="whiteButton" id="button1"/>
-				<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" 
+				<mx:Button label="confirm all" useHandCursor="true" mouseChildren="false" click="onConfirmAllClicked()" 
 					icon="{Resource.TICK_ICON}" overIcon="{Resource.TICK_ICON_OVER}" buttonMode="true" styleName="whiteButton" id="button2"/>
-				<mx:Label id="pagingDelInfo4" text="You have selected 10 of 23,123." textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="normal" paddingTop="3"/>
-				<mx:Label id="pagingDelInfo5" text="Select all?" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3" paddingLeft="-4"/>
 			</mx:HBox>
 		</mx:Canvas>	
 		
