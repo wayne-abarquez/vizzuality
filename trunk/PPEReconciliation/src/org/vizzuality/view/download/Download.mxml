@@ -4,7 +4,8 @@
 	styleName="dataDownloadContainer" backgroundSize="100%" height="1000" currentState="Search"
 	addedToStage="initSWFAddress()"
     removedFromStage="destroySWFAddress()"
-    currentStateChange="setSWFAddress()" xmlns:view="org.vizzuality.view.*" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" xmlns:itemrenders="org.vizzuality.view.download.itemrenders.*" xmlns:download="org.vizzuality.view.download.*" xmlns:components="org.vizzuality.components.*">	
+    currentStateChange="setSWFAddress()" xmlns:view="org.vizzuality.view.*" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" 
+    xmlns:itemrenders="org.vizzuality.view.download.itemrenders.*" xmlns:download="org.vizzuality.view.download.*" xmlns:components="org.vizzuality.components.*">	
 	<mx:states>
 		<mx:State name="Search">
 			<mx:SetProperty target="{vs}" name="selectedIndex" value="0"/>
@@ -42,6 +43,13 @@
             
             private function setSWFAddress():void {
                 Helper.setSWFAddress(this, path, depth);
+                if (currentState=='Search') {
+                	parent.parent.height = 970;
+                	canvasShadow.height = 900;
+                } else {
+                	parent.parent.height = 590;
+                	canvasShadow.height = 520;
+                }
             }
             
             private function handleSWFAddress(event:SWFAddressEvent):void {
@@ -87,6 +95,6 @@
 
 	</mx:ViewStack>
 
-	<mx:Canvas x="648" y="53" width="18" height="900" styleName="shadow" backgroundSize="100%" />
+	<mx:Canvas x="648" y="53" width="18" height="900" styleName="shadow" backgroundSize="100%" id="canvasShadow"/>
 	
 </mx:Canvas>

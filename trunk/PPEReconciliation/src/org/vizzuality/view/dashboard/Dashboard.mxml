@@ -16,7 +16,7 @@
 			includeInLayout="{Application.application.pendingTasks}"
 			visible="{Application.application.pendingTasks}">
 			<mx:Image y="5" left="12" source="{Resource.UNFINISHED}"/>
-			<components:ShadowButton right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks/overview')"/>
+			<components:ShadowButton right="10" label="REVIEW NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks/overview')"/>
 			<mx:HBox left="65" top="11" horizontalGap="0" fontSize="14" fontFamily="Helvetica" width="662">
 				<mx:Label text="You have" fontSize="14" color="#414141" fontWeight="bold" fontFamily="Helvetica"/>
 				<components:LinkLabel text="{Application.application.pendingTasks + ' unfinished tasks'}"  color="#FF0000" fontWeight="bold" fontSize="14" default_color="0xFF0000" default_hover_color="0xFF0000" default_hover_decoration="underline" 
@@ -24,7 +24,7 @@
 			</mx:HBox>
 			<mx:HBox left="65" top="28" fontSize="14" fontFamily="Helvetica" horizontalGap="0" width="662">
 				<mx:Label text="If you have finished your edits on any of this datasets, please" color="#414141"/>
-				<components:LinkLabel text="upload it"  fontWeight="bold" color="#24578E" default_color="0x24578E" 
+				<components:LinkLabel text="review it"  fontWeight="bold" color="#24578E" default_color="0x24578E" 
 					default_hover_color="0x003366" default_hover_decoration="underline" 
 					text_decoration="none" default_weight="bold" default_hover_weight="bold" 
 					fontFamily="Helvetica" 
@@ -93,6 +93,6 @@
 				<dashboard:StepContainer num="3" expl="Upload your modified data&#xd;and commit your changes" height="59" imgsource="{Resource.STEP3}"/>-->
 			</mx:HBox>
 		</mx:Canvas>
-		<mx:Label text="{'Welcome back' + Application.application.username +'!'}" styleName="welcome" left="15" top="20" color="#666666"/>
+		<mx:Label text="{'Welcome back' + ' ' + Application.application.username +'!'}" styleName="welcome" left="15" top="20" color="#666666"/>
 	</mx:Canvas>
 </mx:Canvas>

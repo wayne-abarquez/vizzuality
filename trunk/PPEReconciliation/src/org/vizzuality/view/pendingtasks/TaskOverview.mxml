@@ -100,13 +100,16 @@
 			private function onGetTaskDeletionsResult(event:ResultEvent):void {
 				var res:Object = JSON.decode(event.result as String);
 				var tem:Array = [];
+				var ind:Number = 0;
 				for(var i:String in res.results as Array)  {
 					var pa:Pa = new Pa();
 					pa.id=res.results[i].id;
 					pa.name=res.results[i].name;
 					pa.country=res.results[i].country;
+					pa.ind=ind;
 					pa.status = review.getIfPaIdInReview(pa.id,ReviewProcess.DELETE);
-					tem.push(pa);			
+					tem.push(pa);	
+					ind++;		
 				}
 				deleted=new ArrayCollection(tem);
 				totalDeleted=res.total;
@@ -120,13 +123,16 @@
 			private function onGetTaskNewPasResult(event:ResultEvent):void {
 				var res:Object = JSON.decode(event.result as String);
 				var tem:Array = [];
+				var ind:Number = 0;
 				for(var i:String in res.results as Array)  {
 					var pa:Pa = new Pa();
 					pa.id=res.results[i].id;
 					pa.name=res.results[i].name;
 					pa.country=res.results[i].country;
+					pa.ind=ind;
 					pa.status = review.getIfPaIdInReview(pa.id,ReviewProcess.CREATE);
 					tem.push(pa);
+					ind++;
 				}
 				news=new ArrayCollection(tem);
 				totalNew=res.total;
@@ -140,14 +146,16 @@
 			private function onGetTaskUpdatesResult(event:ResultEvent):void {
 				var res:Object = JSON.decode(event.result as String);
 				var tem:Array = [];
+				var ind:Number = 0;
 				for(var i:String in res.results as Array)  {
 					var pa:Pa = new Pa();
 					pa.id=res.results[i].id;
 					pa.name=res.results[i].name;
 					pa.country=res.results[i].country;
+					pa.ind=ind;
 					pa.status = review.getIfPaIdInReview(pa.id,ReviewProcess.UPDATE);
 					tem.push(pa);
-				
+					ind++;
 				}
 				updates=new ArrayCollection(tem);
 				totalUpdated=res.total;

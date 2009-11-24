@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"  verticalGap="0" borderStyle="solid" borderThickness="0" 
 	cornerRadius="0" width="210" xmlns:itemrenders="org.vizzuality.view.download.itemrenders.*" verticalScrollPolicy="off"
-	 creationComplete="init()" xmlns:components="org.vizzuality.components.*">
+	 creationComplete="init()" xmlns:components="org.vizzuality.components.*" xmlns:view="org.vizzuality.view.*">
 <mx:Script>
 	<![CDATA[
+		import org.vizzuality.events.ConfirmationAlertEvent;
+		import org.vizzuality.view.confirmationAlert;
 		import org.vizzuality.model.SelectDataModel;
 		import org.vizzuality.model.Pa;
 		import com.asual.swfaddress.SWFAddress;
@@ -15,6 +17,7 @@
 		import org.vizzuality.events.DataSelectionEvent;
 		
 		[Bindable] public var selectDataModel:SelectDataModel;
+		private var confirmAlert:confirmationAlert = new confirmationAlert();
 		
 		private function init():void {
 			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_ADDED,onCountryAdded);
@@ -37,12 +40,31 @@
 		}
 		
 		private function onPaRemoved(event:DataSelectionEvent):void {
-/* 			var pos:Number =checkIfPaOnSelected(event.selectedPa)
-			
+			/*var pos:Number =checkIfPaOnSelected(event.selectedPa)
 			if (!isNaN(pos))
-			
 				selectedPas.removeItemAt(pos); */
-			
+		}
+		
+		private function onShowAlertConfirmation(ev:MouseEvent,mode:String):void {
+			confirmAlert.x = ev.stageX-50;
+			confirmAlert.y = ev.stageY-100;
+			Application.application.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue(ev,mode));
+			Application.application.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+			Application.application.addChild(confirmAlert);
+			/* onDownloadButtonClick('shp'); */
+		}
+		
+		private function onSelectedContinue(ev:MouseEvent,mode:String):void {
+			Application.application.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
+			Application.application.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+			Application.application.removeChild(confirmAlert);
+			onDownloadButtonClick(mode);
+		}
+		
+		private function onSelectedStop(ev:MouseEvent):void {
+			Application.application.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
+			Application.application.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+			Application.application.removeChild(confirmAlert);
 		}
 		
 		
@@ -65,8 +87,7 @@
 				params.has_shapefile=true;				
 			}
 			params["filters[]"]=["somekindofid"];
-			jsonService.send(params);
-							
+			jsonService.send(params);				
 		}
 		
 		private function onDownloadSentResult(event:ResultEvent):void {
@@ -81,6 +102,7 @@
 		
 	]]>
 </mx:Script>
+	
 	<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 		<mx:Label text="Current dataset" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 	</mx:Canvas>
@@ -98,7 +120,7 @@
 		backgroundColor="#EBEBEB" borderStyle="none"/>
 	<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
 		<mx:Label text="Download" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999" width="61"/>
-		<components:ShadowButton right="6" y="4" label="SHP" styleName="greenButton" click="onDownloadButtonClick('shp')" 
+		<components:ShadowButton right="6" y="4" label="SHP" styleName="greenButton" click="onShowAlertConfirmation(event,'shp')" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3" width="50"
 			visible="{(selectDataModel.selectedCountries.length > 0 || selectDataModel.selectedPas.length > 0)}"/>
 		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" 
