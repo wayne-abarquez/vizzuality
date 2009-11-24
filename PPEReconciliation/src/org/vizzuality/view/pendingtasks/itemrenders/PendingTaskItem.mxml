@@ -89,6 +89,10 @@
 							mustRollOver=true;
 							this.addEventListener(MouseEvent.CLICK,waitingForDownloadClicked,false,0,true);
 							actionButton.addEventListener(MouseEvent.CLICK,waitingForDownloadClicked,false,0,true);
+							
+							//implement the possibilit to remove
+							///reconciliation/exports/{:export_id}/destroy
+							
 							textAlpha = 1;
 							actionButton.label = "DOWNLOAD";
 							taskColor=0xff9900;
@@ -103,6 +107,10 @@
 							actionButton.addEventListener(MouseEvent.CLICK,waitingForUploadClicked,false,0,true);
 							textAlpha = 1;
 							actionButton.label = "UPLOAD";
+							
+							//implement the possibilit to remove
+							///reconciliation/exports/{:export_id}/destroy
+							
 							taskColor=0xff9900;
 							iconImage.source = Resource.ARROW_UP_SMALL;
 							iconImage.visible = true;
@@ -125,6 +133,10 @@
 							actionButton.addEventListener(MouseEvent.CLICK,errorInDataClicked,false,0,true);
 							textAlpha = 1;
 							actionButton.label = "REVIEW";
+							
+							//implement the possibilit to remove
+							///reconciliation/exports/{:export_id}/imports/{:import_id}/destroy					
+							
 							taskColor=0xff3300;
 							iconImage.includeInLayout = false;
 							iconImage.visible = false;
@@ -137,6 +149,10 @@
 							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							textAlpha = 1;
 							actionButton.label = "CONTINUE";
+							
+							//implement the possibilit to remove
+							///reconciliation/exports/{:export_id}/imports/{:import_id}/destroy									
+							
 							taskColor=0x339900;
 							statusPercenLabel.visible=true;
 							percentage.visible=true;
@@ -151,6 +167,10 @@
 							actionButton.addEventListener(MouseEvent.CLICK,reviewStartedClicked,false,0,true);
 							textAlpha = 1;
 							actionButton.label = "CONTINUE";
+							
+							//implement the possibilit to remove
+							///reconciliation/exports/{:export_id}/imports/{:import_id}/destroy								
+							
 							statusPercenLabel.visible=true;
 							percentage.visible=true;
 							taskColor=0x339900;
