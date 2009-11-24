@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:dashboard="org.vizzuality.view.content.dashboard.*" 
 	width="874" xmlns:ns1="org.vizzuality.view.*" xmlns:components="org.vizzuality.components.*"
-	addedToStage="initSWFAddress()"
+	addedToStage="initSWFAddress()" creationComplete="init()"
     removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()"
-     creationComplete="currentState='Dashboard'" xmlns:dashboard1="org.vizzuality.view.dashboard.*" xmlns:download="org.vizzuality.view.download.*" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" xmlns:previoustasks="org.vizzuality.view.previoustasks.*">
+    xmlns:dashboard1="org.vizzuality.view.dashboard.*" xmlns:download="org.vizzuality.view.download.*" 
+     xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" xmlns:previoustasks="org.vizzuality.view.previoustasks.*">
+
+
 	<mx:states>
 		<mx:State name="Dashboard">
 			<mx:SetProperty target="{myViewStack}" name="selectedIndex" value="0"/>
@@ -41,6 +44,9 @@
 			import com.asual.swfaddress.SWFAddress;
 			import com.asual.swfaddress.SWFAddressEvent;
 			import resource.*;
+			import mx.events.StateChangeEvent;
+			
+			
             public var path:String="rec";
             public var depth:int=1;			
 			
@@ -61,11 +67,35 @@
                 if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
                     Helper.handleSWFAddress(this, event, depth);
                 }
-            }			
+            }	
+                		
+    		private function init():void {
+    			currentState='Dashboard';
+    			this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE,onCurrentStateChange);
+    		}
+    		
+    		private function onCurrentStateChange(ev:StateChangeEvent):void {
+    			if (currentState=='Dashboard') {
+    				myViewStack.height = 450;
+    			}
+    			if (currentState=='Checkout') {
+    				if (download_data.currentState=='Search') {
+    					myViewStack.height = 970;
+    				} else {
+    					myViewStack.height = 590;
+    				}
+    			}
+    			if (currentState=='Pendingtasks') {
+    				myViewStack.height = 600;
+    			}
+    			if (currentState=='Previous') {
+    				myViewStack.height = 600;
+    			}
+    		}		
 			
 		]]>
 	</mx:Script>
-	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="1020">
+	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="450">
 		<dashboard1:Dashboard label="DASHBOARD" id="mydashboard"/>
 		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data" showEffect="{fadeIn}" hideEffect="{fadeOut}">
 			<download:Download top="0" left="0" right="0" height="100%" />

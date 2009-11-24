@@ -20,7 +20,6 @@
 			import org.vizzuality.events.CancelTaskEvent;
 			import org.vizzuality.events.MyEventDispatcher;
 			import org.vizzuality.events.MyEventDispatcher;
-			import org.vizzuality.events.DeleteAlertEvent;
 			import org.vizzuality.view.confirmationAlert;
 			import org.vizzuality.model.Task;
 			import mx.utils.ObjectProxy;
@@ -44,7 +43,6 @@
 			private function init():void {
 				getPendingTasks(1);
 				MyEventDispatcher.addEventListener(CancelTaskEvent.CANCEL_TASK,onTaskCanceled);
-				MyEventDispatcher.addEventListener(DeleteAlertEvent.DELETE_ITEM, showConfirmationAlert);
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_TASK_FOR_UPLOAD,onSelectedTaskForUpload);
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.TASK_UPLOADED,onTaskUploaded);
 				MyEventDispatcher.addEventListener(NotificationEvent.TASK_LIST_NOTIFICATION,onTaskListNotification);
@@ -67,11 +65,6 @@
 				Application.application.removeChild(ud);
 			}
 			
-			private function showConfirmationAlert(ev:DeleteAlertEvent):void {
-				alertConfirmation.x = ev.positionX;
-				alertConfirmation.y = ev.positionY;
-				Application.application.addChild(alertConfirmation);
-			}
 			
 			public function getPendingTasks(p:Number):void {
 				currentState="loading";

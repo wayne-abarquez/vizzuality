@@ -232,8 +232,12 @@
 				dataBbox.extend(m);
 			}
 			
-			/* map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox)); */
-        	
+			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+        	try {
+    			map.removeChild(selectionRectangle);
+    		}catch (erObject:Error) { 
+      			trace("There isn't rectangles");
+      		}
         }
         
         private function checkSelectArea():void {
@@ -384,7 +388,7 @@
 		<mx:Label text="If you want to download a complete country “country based tab”"  left="58" right="7" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
 		<mx:HBox id="hbox1" x="58" y="34"  horizontalGap="0">
 			<mx:Label text="Do you want to download a complete country data? Then"  fontSize="12" fontFamily="Helvetica" color="#414141"/>
-			<components:LinkLabel text="go to the “country tab”"  fontSize="12" fontFamily="Helvetica" color="#336699" fontWeight="bold"
+			<components:LinkLabel text="go to the “region based”"  fontSize="12" fontFamily="Helvetica" color="#336699" fontWeight="bold"
 				default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" 
 				text_decoration="none" default_weight="bold" default_hover_weight="bold"
 				click="{SWFAddress.setValue('/rec/checkout/countries/africa')}"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" backgroundColor="#FFFFFF"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" backgroundColor="#FFFFFF" creationComplete="init()"
 	rollOver="handleOver(event)" rollOut="handleOut(event)" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
@@ -9,10 +9,7 @@
 			import org.vizzuality.events.MyEventDispatcher;
 			import resource.Resource;
 			import gs.TweenMax;
-			
-			/*[Bindable] public var countryName:String;
-			[Bindable] public var paName:String;
-			[Bindable] public var status:String;*/
+	
 			[Bindable] public var textColor:uint;
 			[Bindable] public var statusColor:uint;
 			[Bindable] public var pa:Pa;
@@ -56,6 +53,14 @@
 	                	
 	                }
                 }
+            }
+            
+            private function init():void {
+				if ((pa.ind % 2) == 0) {
+					mamufas.setStyle('backgroundColor','0xFFFFFF');
+				} else {
+					mamufas.setStyle('backgroundColor','0xF5F5F5');
+				}
             }
 			
 			
@@ -123,10 +128,14 @@
 			
 		]]>
 	</mx:Script>
-	<mx:Label id="areaName" x="6" y="6" text="{pa.name}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-	<mx:Label id="country" x="7" y="22" text="{pa.country}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
-	<mx:Label id="statusText" color="{statusColor}" right="5" bottom="5" width="66" textAlign="right" fontFamily="Helvetica" fontSize="10" fontStyle="normal"/>
-	<mx:HRule left="5" right="5" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
+	
+	<mx:Canvas left="5" right="5" top="0" bottom="0" id="mamufas">
+		<mx:Label id="areaName" x="1" y="6" text="{pa.name}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
+		<mx:Label id="country" x="2" y="22" text="{pa.country}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
+		<mx:Label id="statusText" color="{statusColor}" right="0" bottom="5" width="66" textAlign="right" fontFamily="Helvetica" fontSize="10" fontStyle="normal"/>
+		<mx:HRule left="0" right="0" strokeColor="#CCCCCC" strokeWidth="1" bottom="1"/>
+	</mx:Canvas>
+	
 	
 	<mx:Canvas id="overCanvas" width="100%" height="100%" click="MyEventDispatcher.selectPaForOverview(data as Pa)" 
 		useHandCursor="true" mouseChildren="true" buttonMode="true" 
