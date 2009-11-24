@@ -34,7 +34,7 @@
                 sendVars.action = "upload";
                 var request:URLRequest = new URLRequest();
                 request.data = sendVars;
-                request.url = Application.application.serverUrl + "/imports";
+                request.url = Application.application.serverUrl + "/exports/"+task.id+"/imports";
                 request.method = URLRequestMethod.POST;
                 refFile.upload(request, "upload",false);             
 				

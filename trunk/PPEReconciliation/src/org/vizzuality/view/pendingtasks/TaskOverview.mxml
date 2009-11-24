@@ -76,20 +76,20 @@
 			
 			private function getTaskDeletions(p:Number):void {
 				deletedBox.currentState="loading";
-				jsonService1.url = Application.application.serverUrl + "/imports/"+_task.id+"/deleted?page="+p+"&per_page=12";
+				jsonService1.url = Application.application.serverUrl + "/exports/"+_task.id+"/imports/"+_task.importId+"/protected_areas?state=deleted&page="+p+"&per_page=12";
 				jsonService1.send();		
 				delPage=p;						
 			}
 			private function getTaskNewPas(p:Number):void {
 				newBox.currentState="loading";
-				jsonService2.url = Application.application.serverUrl + "/imports/"+_task.id+"/added?page="+p+"&per_page=12";
+				jsonService2.url = Application.application.serverUrl + "/exports/"+_task.id+"/imports/"+_task.importId+"/protected_areas?state=added&page="+p+"&per_page=12";
 				jsonService2.send();		
 				newPage=p;						
 				
 			}
 			private function getTaskUpdates(p:Number):void {
 				updatedBox.currentState="loading";
-				jsonService3.url = Application.application.serverUrl + "/imports/"+_task.id+"/changed?page="+p+"&per_page=12";
+				jsonService3.url = Application.application.serverUrl + "/exports/"+_task.id+"/imports/"+_task.importId+"/protected_areas?state=changed&page="+p+"&per_page=12";
 				jsonService3.send();		
 				updatePage=p;						
 				
@@ -160,7 +160,7 @@
 			
 			
 			private function commitChanges():void {
-				jsonServiceCommit.url = Application.application.serverUrl + "/imports/" + task.id +'/update';
+				jsonServiceCommit.url = Application.application.serverUrl + "/exports/"+task.id+"/imports/" + task.importId +'/protected_areas/update_all';
 				var params:Object={};
 				params.taskCode = task.code;
 				var dels:Array = [];
@@ -177,7 +177,7 @@
 				for each(var pa3:Pa in review.pasEditedReviewed) {
 					updated.push(pa3.id+","+pa3.status);
 				}
-				params["updated[]"]=updated;
+				params["changed[]"]=updated;
 				jsonServiceCommit.send(params);		
 
 				

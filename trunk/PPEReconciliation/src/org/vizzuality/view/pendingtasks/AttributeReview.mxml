@@ -50,7 +50,7 @@
 				_pa=val;
 				currentState="loading";
 				//Get the data for the pa
-				jsonService.url = Application.application.serverUrl + "/json.php/DumpServices.getPaAttributesComparision/"+task.code+"/"+_pa.id;
+				jsonService.url = Application.application.serverUrl + "/exports/"+task.id+"/imports/"+task.importId+"/protected_areas/"+_pa.id;
 				jsonService.send();
 				
 			}

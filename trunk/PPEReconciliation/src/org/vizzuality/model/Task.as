@@ -1,7 +1,6 @@
 package org.vizzuality.model
 {
 	import flash.events.EventDispatcher;
-	import flash.utils.Dictionary;
 	
 	[Bindable]
 	public class Task extends EventDispatcher
@@ -31,6 +30,7 @@ package org.vizzuality.model
 		
 		
 		public var id:Number;
+		public var importId:Number;
 		public var type:String;
 		public var code:String;
 		public var description:String;
