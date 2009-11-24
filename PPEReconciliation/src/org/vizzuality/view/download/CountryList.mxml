@@ -12,6 +12,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.SelectDataModel;
 			import mx.controls.Alert;
 			import org.vizzuality.view.download.itemrenders.CountryItem;
 			import org.vizzuality.events.MyEventDispatcher;
@@ -31,6 +32,9 @@
 			private var totalCountries:Number=0;
 			[Bindable] private var page:Number=1;
 			[Bindable] private var totalPages:Number=1;
+			
+			[Bindable] public var selectDataModel:SelectDataModel;
+			
 			
 			private function init():void {
 				MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_REMOVED,onCountryRemoved);
@@ -86,9 +90,9 @@
 					country.name=res.results[i].name;
 					country.numareas=res.results[i].numareas;
 					country.ind=ind;
+					country.isSelectedForDownload = selectDataModel.checkIfCountryInSelected(country.id);
 					ind++;
 					countriesArr.push(country);
-					//res.results[i] = new ObjectProxy(res.results[i]);
 				}
 				countries=new ArrayCollection(countriesArr);
 				totalCountries=res.total;

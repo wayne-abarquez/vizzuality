@@ -19,12 +19,13 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.SelectDataModel;
 			import mx.collections.ArrayCollection;
 			import com.asual.swfaddress.SWFAddress;
 			import com.asual.swfaddress.SWFAddressEvent;
 			import resource.Resource;
-	        
-	        
+			
+			[Bindable] public var selectDataModel:SelectDataModel = new SelectDataModel();
 	        
 	        public var path:String="rec/checkout";
             public var depth:int=2;	
@@ -63,14 +64,14 @@
     		click="currentState='Countries'"  id="button2" mouseChildren="false" buttonMode="true" useHandCursor="true"/>
     </mx:HBox>
 	
-	<download:SelectedDataForDownload top="80" right="17" />
+	<download:SelectedDataForDownload selectDataModel="{selectDataModel}" top="80" right="17" />
     
     <mx:ViewStack id="vs" height="909" left="0" right="225" top="62" backgroundColor="#ffffff" paddingLeft="15" paddingRight="15" paddingBottom="15" paddingTop="15">
 
 		<download:Search />
 	    
 	    <mx:VBox>
-				<download:RegionBrowser width="100%"  height="428"/>
+				<download:RegionBrowser width="100%"  height="428" selectDataModel="{selectDataModel}"/>
 				<mx:Canvas width="100%" height="66" borderStyle="solid" cornerRadius="4" styleName="ContainersInfo" id="canvas1">	
 					<mx:Image x="14" y="10" width="43" height="47" source="{resource.Resource.INFORMATION}"/>
 					<mx:Label text="Detail more your search with the “search based tab”"  left="58" right="7" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
