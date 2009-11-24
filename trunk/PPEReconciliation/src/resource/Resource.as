@@ -55,6 +55,10 @@ package resource{
         public static const ARROW_DOWN_SMALL:Class;
         [Embed (source="org/vizzuality/assets/arrowUpSmall.png" )]
         public static const ARROW_UP_SMALL:Class;
+        [Embed (source="org/vizzuality/assets/arrowCircleUp.png" )]
+        public static const ARROW_CIRCLE_UP:Class;
+        [Embed (source="org/vizzuality/assets/arrowCircleOver.png" )]
+        public static const ARROW_CIRCLE_OVER:Class;
         
 	}
 }

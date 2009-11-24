@@ -145,7 +145,7 @@
 			<mx:Label text="Pending tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
 			<mx:Label text="{'('+pendingTasks.length+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
 		</mx:HBox>
-		<mx:Button label="Refresh" right="4" top="10" click="getPendingTasks(page)"/>
+		<mx:Button right="18" top="21" click="getPendingTasks(page)" styleName="whiteButton" icon="{Resource.ARROW_CIRCLE_UP}" overIcon="{Resource.ARROW_CIRCLE_OVER}" paddingBottom="2" label="Refresh" labelPlacement="left"/>
 	</mx:Canvas>
 
     <mx:VBox left="0" right="0" top="62" backgroundColor="#FFFFFF" paddingLeft="14" paddingRight="15" bottom="0" paddingTop="15">
