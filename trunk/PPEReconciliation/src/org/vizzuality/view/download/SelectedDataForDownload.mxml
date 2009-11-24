@@ -4,6 +4,7 @@
 	 creationComplete="init()" xmlns:components="org.vizzuality.components.*">
 <mx:Script>
 	<![CDATA[
+		import org.vizzuality.model.SelectDataModel;
 		import org.vizzuality.model.Pa;
 		import com.asual.swfaddress.SWFAddress;
 		import mx.rpc.events.ResultEvent;
@@ -13,8 +14,7 @@
 		import mx.controls.Alert;
 		import org.vizzuality.events.DataSelectionEvent;
 		
-		[Bindable] private var selectedCountries:ArrayCollection=new ArrayCollection();
-		[Bindable] private var selectedPas:ArrayCollection=new ArrayCollection();
+		[Bindable] public var selectDataModel:SelectDataModel;
 		
 		private function init():void {
 			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_ADDED,onCountryAdded);
@@ -24,55 +24,25 @@
 		}
 		
 		private function onCountryAdded(event:DataSelectionEvent):void {
-			if (isNaN(checkIfCountryOnSelected(event.selectedCountry)))
-				selectedCountries.addItem(event.selectedCountry);
+			selectDataModel.addCountry(event.selectedCountry);
 		}
 		
 		private function onCountryRemoved(event:DataSelectionEvent):void {
-			var pos:Number =checkIfCountryOnSelected(event.selectedCountry)
-			
-			if (!isNaN(pos))
-			
-				selectedCountries.removeItemAt(pos);
-			
+			selectDataModel.removeCountry(event.selectedCountry);			
 		}
 		
 		private function onPaAdded(event:DataSelectionEvent):void {
-			if (isNaN(checkIfPaOnSelected(event.selectedPa)))
-				selectedPas.addItem(event.selectedPa);
+/* 			if (isNaN(checkIfPaOnSelected(event.selectedPa)))
+				selectedPas.addItem(event.selectedPa); */
 		}
 		
 		private function onPaRemoved(event:DataSelectionEvent):void {
-			var pos:Number =checkIfPaOnSelected(event.selectedPa)
+/* 			var pos:Number =checkIfPaOnSelected(event.selectedPa)
 			
 			if (!isNaN(pos))
 			
-				selectedPas.removeItemAt(pos);
+				selectedPas.removeItemAt(pos); */
 			
-		}
-		
-		private function checkIfCountryOnSelected(country:Object):Number {
-			var i:Number=0;
-			for each(var c:Object in selectedCountries) {
-				if(c.id==country.id) {
-					return i;				
-				}
-				i++;
-			}
-			return NaN;	
-					
-		}
-		
-		private function checkIfPaOnSelected(pa:Pa):Number {
-			var i:Number=0;
-			for each(var c:Pa in selectedPas) {
-				if(c.id==pa.id) {
-					return i;				
-				}
-				i++;
-			}
-			return NaN;	
-					
 		}
 		
 		
@@ -80,11 +50,11 @@
 			jsonService.url = Application.application.serverUrl + "/exports";
 			var params:Object = {};
 			var coun:Array = [];
-			for each(var c:Object in selectedCountries) {
+			for each(var c:Object in selectDataModel.selectedCountries) {
 				coun.push(c.id);
 			}	
 			var pas:Array = [];	
-			for each(var c2:Object in selectedPas) {
+			for each(var c2:Object in selectDataModel.selectedPas) {
 				pas.push(c2.id);
 			}		
 			params["countries[]"]=coun;
@@ -106,8 +76,7 @@
 			Application.application.pendingTasks++;
 			
 			//empty the list
-			selectedCountries=new ArrayCollection();
-			selectedPas=new ArrayCollection();
+			selectDataModel=new SelectDataModel();
 		}
 		
 	]]>
@@ -115,13 +84,13 @@
 	<mx:Canvas height="33" borderStyle="none" color="#FFFFFF" top="0" left="0" right="0" width="100%" styleName="darkHeader" backgroundSize="100%">
 		<mx:Label text="Current dataset" fontSize="16" fontWeight="bold" fontFamily="Helvetica" top="8" bottom="3" left="10"/>
 	</mx:Canvas>
-	<components:AutoSizingList width="100%" dataProvider="{selectedCountries}"
+	<components:AutoSizingList width="100%" dataProvider="{selectDataModel.selectedCountries}"
 		id="list" 
 		verticalScrollPolicy="off" horizontalScrollPolicy="off"
 		paddingTop="1" paddingBottom="0" focusAlpha="0" focusEnabled="false"
 		itemRenderer="org.vizzuality.view.download.itemrenders.CountrySelectedForDownloadItem"
 		backgroundColor="#EBEBEB" borderStyle="none"/>
-	<components:AutoSizingList width="100%" dataProvider="{selectedPas}"
+	<components:AutoSizingList width="100%" dataProvider="{selectDataModel.selectedPas}"
 		id="list2" 
 		verticalScrollPolicy="off" horizontalScrollPolicy="off"
 		paddingTop="1" paddingBottom="0" focusAlpha="0" focusEnabled="false"
@@ -131,11 +100,11 @@
 		<mx:Label text="Download" fontSize="11" fontWeight="bold" fontFamily="Helvetica" top="11" bottom="5" left="10" color="#999999" width="61"/>
 		<components:ShadowButton right="6" y="4" label="SHP" styleName="greenButton" click="onDownloadButtonClick('shp')" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3" width="50"
-			visible="{(selectedCountries.length > 0 || selectedPas.length > 0)}"/>
+			visible="{(selectDataModel.selectedCountries.length > 0 || selectDataModel.selectedPas.length > 0)}"/>
 		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" 
 			click="onDownloadButtonClick('csv')" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button0" width="50"
-			visible="{(selectedCountries.length > 0 || selectedPas.length > 0)}"/>
+			visible="{(selectDataModel.selectedCountries.length > 0 || selectDataModel.selectedPas.length > 0)}"/>
 	</mx:Canvas>	
 	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="onDownloadSentResult(event)" fault="Alert.show('onDownloadSentResult ERROR: Please contact administrator')" />	
 </mx:VBox>

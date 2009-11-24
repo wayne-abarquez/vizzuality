@@ -7,6 +7,7 @@
 	xmlns:download="org.vizzuality.view.download.*">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.model.SelectDataModel;
 			import org.vizzuality.model.Region;
 			import com.asual.swfaddress.SWFAddress;
 			import com.asual.swfaddress.SWFAddressEvent;
@@ -14,6 +15,9 @@
 			public var path:String="rec/checkout/countries";
             public var depth:int=3;	
 			private var totalCountries:Number=0;
+			
+			[Bindable] public var selectDataModel:SelectDataModel;
+			
 			[Bindable] private var page:Number=1;
 			[Bindable] private var totalPages:Number=1;            
             
@@ -120,6 +124,6 @@
 		    </mx:HBox>
 		</mx:Canvas>
 	    
-    	<download:CountryList id="countryList"  width="100%" height="100%"/>
+    	<download:CountryList selectDataModel="{selectDataModel}" id="countryList"  width="100%" height="100%"/>
     </mx:VBox>
 </mx:Canvas>
