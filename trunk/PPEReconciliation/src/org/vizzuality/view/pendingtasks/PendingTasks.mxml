@@ -75,13 +75,13 @@
 			
 			public function getPendingTasks(p:Number):void {
 				currentState="loading";
-				jsonService.url = Application.application.serverUrl + "/tasks?page="+p+"&per_page=8";
+				jsonService.url = Application.application.serverUrl + "/exports?page="+p+"&per_page=8";
 				jsonService.send();	
 				page=p;					
 			}
 			
 			private function onTaskCanceled(event:CancelTaskEvent):void {
-				cancelJsonService.url = Application.application.serverUrl + "/tasks/"+event.task.code+"/destroy";
+				cancelJsonService.url = Application.application.serverUrl + "/exports/"+event.task.code+"/destroy";
 				cancelJsonService.send();
 			}
 			
@@ -204,7 +204,7 @@
 		</mx:Canvas>
     </mx:VBox>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" fault="Alert.show('getPendingTasksResult ERROR: Please contact administrator')" result="getPendingTasksResult(event)" />
-	<mx:HTTPService id="cancelJsonService" resultFormat="text" method="GET" fault="Alert.show('cancelTaskResult ERROR: Please contact administrator')"  result="cancelTaskResult(event)" />
+	<mx:HTTPService id="cancelJsonService" resultFormat="text" method="POST" fault="Alert.show('cancelTaskResult ERROR: Please contact administrator')"  result="cancelTaskResult(event)" />
 
 	
 </mx:Canvas>
