@@ -304,15 +304,24 @@
 		private function getPas(p:Number):void {
 			currentState = "loading";	
 			//jsonService.url = Application.application.serverUrl + "/regions/"+_regionId+"/countries?page="+p+"&per_page=24";
-			var params:String = "";
+			var params:Object = {};
 			if (map!=null && map.isLoaded()) {
 				var bbox:LatLngBounds = map.getLatLngBounds();
-				params=bbox.getNorth()+"/"+bbox.getSouth()+"/"+bbox.getWest()+"/"+bbox.getEast()+"/"+p;
+				params.xmin=bbox.getWest();
+				params.ymin=bbox.getSouth();
+				params.xmax=bbox.getEast();
+				params.ymax=bbox.getNorth();
 			} else {
-				params="90/-90/-180/180/1";				
+				params.xmin=-180;
+				params.ymin=-90;
+				params.xmax=180;
+				params.ymax=90;			
 			}
-			jsonService.url = Application.application.serverUrl + "/search/"+params;
-			jsonService.send();		
+			params.page=p;
+			params.per_page=24;
+			
+			jsonService.url = Application.application.serverUrl + "/searches";
+			jsonService.send(params);		
 			page=p;
 		}
 		
@@ -381,6 +390,6 @@
 				click="{SWFAddress.setValue('/rec/checkout/countries/africa')}"/>
 		</mx:HBox>
 	</mx:Canvas>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getSearchResult(event)" fault="Alert.show('getSearchResult ERROR: Please contact administrator')" />
+	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="getSearchResult(event)" fault="Alert.show('getSearchResult ERROR: Please contact administrator')" />
 	
 </mx:VBox>
