@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="684" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="100%" 
 	styleName="dataDownloadContainer" backgroundSize="100%" 
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import com.asual.swfaddress.SWFAddress;
 			import mx.controls.Alert;
 			import org.vizzuality.model.Task;
 			import mx.utils.ObjectProxy;
@@ -23,21 +24,18 @@
 			
 			private function getErrorsResult(ev:ResultEvent):void {
 				var ob:Object = JSON.decode(ev.result as String);
-				
 				errors = new ArrayCollection(ob as Array);	
-				
 			}
-
-			
-			
-			
 		]]>
 	</mx:Script>
+	<mx:Label text="All tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" top="7"
+		 useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks')"/>
 	<mx:Canvas left="0" right="0" top="0" height="62" >
 		<mx:HBox left="13" top="20" horizontalGap="-3" verticalAlign="bottom" height="25" width="844">
 			<mx:Label text="Errors review" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
 			<mx:Label text="{'('+errors.length+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
 		</mx:HBox>
+		<mx:Button label="Return" right="10" top="10" click="SWFAddress.setValue('/rec/pendingtasks')"/>
 	</mx:Canvas>
 
     <mx:VBox left="0" right="0" top="62" backgroundColor="#FFFFFF" paddingLeft="15" paddingRight="15" bottom="0" paddingTop="15">

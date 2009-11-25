@@ -38,6 +38,9 @@
 			
 			private function init():void {
 				MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_REMOVED,onCountryRemoved);
+				MyEventDispatcher.addEventListener(DataSelectionEvent.DATA_DOWNLOADED,function(event:Event):void {
+					getCountries(1);
+				});
 			}
 			
 			private function onCountryRemoved(event:DataSelectionEvent):void {

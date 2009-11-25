@@ -214,9 +214,9 @@
             }
             
             
-            private function cancelTask(event:Event):void {
+            private function cancelTask(event:MouseEvent):void {
             	event.stopPropagation();
-            	MyEventDispatcher.cancelTask(task);
+            	MyEventDispatcher.cancelTask(task,event.stageX,event.stageY);
             }
             
             private function waitingForDownloadClicked(event:Event):void {

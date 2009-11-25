@@ -3,8 +3,11 @@
 
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.MyEventDispatcher;
 			import org.vizzuality.events.ConfirmationAlertEvent;
 			import resource.Resource;
+			
+			public var mode: String;
 		]]>
 	</mx:Script>
 <!--	<mx:Metadata>
@@ -16,12 +19,13 @@
 
 	<mx:Image top="0" left="0" right="0" bottom="0" source="{Resource.ALERT_BKG}" />
 	<components:ShadowButton mouseChildren="false" useHandCursor="true" buttonMode="true" styleName="greenButton" label="YES" paddingTop="5"
-		paddingLeft="2" paddingRight="2"  width="42" height="15" bottom="21" fontFamily="Helvetica" fontWeight="bold" fontSize="9" color="#FFFFFF" textAlign="center" horizontalCenter="23"/>
+		paddingLeft="2" paddingRight="2"  width="42" height="15" bottom="21" fontFamily="Helvetica" fontWeight="bold" fontSize="9" color="#FFFFFF" textAlign="center" horizontalCenter="23"
+		click="MyEventDispatcher.continueDownload()"/>
 	<components:ShadowButton mouseChildren="false" useHandCursor="true" buttonMode="true" styleName="redButton" label="NOT" paddingTop="5" 
-		click="dispatchEvent(new ConfirmationAlertEvent(ConfirmationAlertEvent.GO_ON))"
+		click="MyEventDispatcher.stopDownload()"
 		width="42" height="15" bottom="21" fontFamily="Helvetica" fontWeight="bold" fontSize="9" color="#FFFFFF" textAlign="center" paddingLeft="1" paddingRight="2" horizontalCenter="-23"/>
 	<mx:Label text="Are you sure?" horizontalCenter="0" verticalCenter="-12" textAlign="right" fontSize="13" fontFamily="Helvetica" fontWeight="bold" color="#333333"
-		click="dispatchEvent(new ConfirmationAlertEvent(ConfirmationAlertEvent.STOP_NOW))"/>
+		/>
 	
 			
 </mx:Canvas>

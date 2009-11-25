@@ -11,6 +11,8 @@ package org.vizzuality.events
 		public static const COUNTRY_REMOVED:String = "countryRemoved";
 		public static const PA_ADDED:String = "paAdded";
 		public static const PA_REMOVED:String = "paRemoved";
+		public static const DATA_DOWNLOADED:String = "dataDownloaded";
+		
 		public var selectedCountry:Country;
 		public var selectedPa:Pa;
 		
