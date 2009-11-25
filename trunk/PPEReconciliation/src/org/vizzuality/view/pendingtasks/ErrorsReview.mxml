@@ -36,7 +36,7 @@
 	<mx:Canvas left="0" right="0" top="0" height="62" >
 		<mx:HBox left="13" top="20" horizontalGap="-3" verticalAlign="bottom" height="25" width="844">
 			<mx:Label text="Errors review" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
-			<mx:Label text="(7)"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
+			<mx:Label text="{'('+errors.length+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
 		</mx:HBox>
 	</mx:Canvas>
 

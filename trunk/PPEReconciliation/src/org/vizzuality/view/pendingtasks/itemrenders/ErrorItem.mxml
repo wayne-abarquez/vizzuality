@@ -15,7 +15,7 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Label text="{data.error}" color="#FF0000" fontWeight="bold" 
+	<mx:Label text="{data.code + ': ' +data.message}" color="#FF0000" fontWeight="bold" 
 		fontFamily="Helvetica" fontSize="13" paddingLeft="10" height="22"/>
 	<!-- mx:VBox verticalGap="0" paddingTop="0" paddingBottom="10" paddingLeft="25">
 		<mx:Label text="Yosemite Natural Park" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="12" fontStyle="normal" />
