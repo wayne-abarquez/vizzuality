@@ -243,6 +243,7 @@
             private function waitingForUploadClicked(event:Event):void {
             	event.stopPropagation();
             	MyEventDispatcher.uploadTaskFile(task);
+            	Application.application.refFile.browse([Application.application.fileFilter]);
             	
             }
             private function errorInDataClicked(event:Event):void {

@@ -25,6 +25,10 @@
 			public var previousTasks:Number;
 			private var _mwSupport:ExternalMouseWheelSupport;
 			
+			public var refFile:FileReference;
+			public var fileFilter:FileFilter; 			
+			
+			
             private function initSWFAddress():void {
              	if (parameters.dataurl !=null && parameters.dataurl!='') {
              		//serverUrl=parameters.dataurl;
@@ -36,6 +40,14 @@
                 
                  _mwSupport= ExternalMouseWheelSupport.getInstance(stage);
 				currentState="Login";
+				
+				
+				
+				//init FileReference
+				refFile = new FileReference();
+				var filterExtensions:String = "*.zip";
+				fileFilter = new FileFilter("Zip files", filterExtensions);
+				
             }		
             
             private function setSWFAddress():void {

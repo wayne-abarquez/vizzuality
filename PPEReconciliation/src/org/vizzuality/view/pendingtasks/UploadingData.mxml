@@ -18,25 +18,31 @@
 			}
 			
 			public function selectFile():void {
-				refFile = new FileReference();
+				refFile = Application.application.refFile;
 				refFile.addEventListener(Event.SELECT, onSelectFile);
                 refFile.addEventListener(ProgressEvent.PROGRESS, onUploadProgress);
                 refFile.addEventListener(Event.COMPLETE, onUploadComplete);
                 refFile.addEventListener(IOErrorEvent.IO_ERROR, onUploadIoError);
-                refFile.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onUploadSecurityError);
-				refFile.browse();
+                refFile.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onUploadSecurityError); 
+                
+                
+				//
 			}
 			
 			private function onSelectFile(event:Event):void {
-				
-				//Start the upload
-				var sendVars:URLVariables = new URLVariables();
-                sendVars.action = "upload";
-                var request:URLRequest = new URLRequest();
-                request.data = sendVars;
-                request.url = Application.application.serverUrl + "/exports/"+task.id+"/imports";
-                request.method = URLRequestMethod.POST;
-                refFile.upload(request, "upload",false);             
+				try {
+					//Start the upload
+					var sendVars:URLVariables = new URLVariables();
+	                sendVars.action = "upload";
+	                var request:URLRequest = new URLRequest();
+	                request.data = sendVars;
+	                request.url = Application.application.serverUrl + "/exports/"+task.id+"/imports";
+	                request.method = URLRequestMethod.POST;
+	                refFile.upload(request, "upload",false);  
+				   } catch(err:Error) {
+				   		Alert.show("There is an error with the selected file. Please try again");
+				   		MyEventDispatcher.taskUploaded(task);
+				   }           
 				
 			}
 			
@@ -56,6 +62,7 @@
             // Called on upload complete
             private function onUploadComplete(event:Event):void {
 				MyEventDispatcher.taskUploaded(task);
+				cleanListeners();
             }      
             
             // Called on upload io error
@@ -64,21 +71,33 @@
                 //dispatchEvent(evt);
                 Alert.show('onUploadIoError: Please contact support');
 				MyEventDispatcher.taskUploaded(task);
+				
+				cleanListeners();
             }  
             
             private function cancelUpload():void {
             	refFile.cancel();
             	MyEventDispatcher.taskUploaded(task);
+				cleanListeners();
             }
             
             private function onUploadSecurityError(event:SecurityErrorEvent):void {
             	Alert.show('onUploadSecurityError: Please contact support');
             	MyEventDispatcher.taskUploaded(task);
+				cleanListeners();
             }                            		
             
             private function handleAdded(ev:Event):void{
             	TweenMax.to(this, 1, {autoAlpha: 1});
             }	
+            
+            private function cleanListeners():void {
+            	refFile.removeEventListener(Event.SELECT, onSelectFile);
+                refFile.removeEventListener(ProgressEvent.PROGRESS, onUploadProgress);
+                refFile.removeEventListener(Event.COMPLETE, onUploadComplete);
+                refFile.removeEventListener(IOErrorEvent.IO_ERROR, onUploadIoError);
+                refFile.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onUploadSecurityError); 
+            }
             
         ]]>
     </mx:Script>
