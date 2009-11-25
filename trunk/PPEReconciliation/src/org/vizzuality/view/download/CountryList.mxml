@@ -46,22 +46,12 @@
 			private function onCountryRemoved(event:DataSelectionEvent):void {
 				event.selectedCountry.isSelectedForDownload=false;
 				
-/* 				var find:Boolean = false;
-				var renderers_array : Array = country_tilelist.renderers;
-				for each(var renderer:Array in renderers_array) {
-					for each(var renderer_each:CountryItem in renderer) {
- 						if (find) {
-							return;
-						}
-						if (renderer_each.data.name == event.selectedCountry.name) {
-							CountryItem(renderer_each).addedItem = false;
-							find = true;
-						}
-                	}
-                 	if (find) {
-						return;	
+				for each(var c:Country in countries) {
+					if(c.id==event.selectedCountry.id) {
+						c.isSelectedForDownload=false;
+						break;
 					}
-                } */
+				}
 			}
 			
 			public function set regionId(regId:Number):void {

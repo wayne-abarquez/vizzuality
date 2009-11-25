@@ -26,6 +26,7 @@
 
 <mx:Script>
 	<![CDATA[
+		import org.vizzuality.model.SelectDataModel;
 		import gs.TweenLite;
 		import mx.controls.Alert;
 		import org.vizzuality.events.MyEventDispatcher;
@@ -78,9 +79,13 @@
 		private var totalAreas:Number=0;
 		[Bindable] private var page:Number=1;
 		[Bindable] private var totalPages:Number=1;
+		
+		[Bindable] public var selectedDataModel:SelectDataModel;
 
 	
         [Bindable] private var areasArr: ArrayCollection = new ArrayCollection();	
+        
+        private var isWorldMap:Boolean=true;
 		
 		private function loadingEnter():void {
 			if (map!=null && map.isLoaded()) {
@@ -119,6 +124,13 @@
 		
 		private function onPaRemoved(event:DataSelectionEvent):void {
 			event.selectedPa.isSelectedForDownload=false;
+			
+			for each(var ar:Pa in areasArr) {
+				if(ar.id==event.selectedPa.id) {
+					ar.isSelectedForDownload=false;
+					break;
+				}
+			}
 		}
 		
 		private function onScrollApplication(ev:ScrollEvent):void {
@@ -179,11 +191,19 @@
             //link when bbox of map changes
             map.addEventListener(MapZoomEvent.ZOOM_CHANGED,function(event:MapZoomEvent):void {
             	if(event.zoomLevel>2) {
-	            	getPas(1);
+            		isWorldMap=false;
+            		getPas(1);
+            	} else if (!isWorldMap) {            		
+            		isWorldMap=true;
+            		getPas(1);
             	}
             });
             map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
             	if(map.getZoom()>2) {
+            		isWorldMap=false;
+            		getPas(1);
+            	} else if (!isWorldMap) {            		
+            		isWorldMap=true;
             		getPas(1);
             	}
             });
@@ -328,7 +348,7 @@
 			currentState = "loading";	
 			//jsonService.url = Application.application.serverUrl + "/regions/"+_regionId+"/countries?page="+p+"&per_page=24";
 			var params:Object = {};
-			if (map!=null && map.isLoaded()) {
+			if (map!=null && map.isLoaded() && !isWorldMap) {
 				var bbox:LatLngBounds = map.getLatLngBounds();
 				params.xmin=bbox.getWest();
 				params.ymin=bbox.getSouth();
@@ -371,6 +391,9 @@
 					pa.id=res.results[i].id;
 					pa.name=res.results[i].name;
 					pa.country=res.results[i].country;
+					if (selectedDataModel.checkIfPaInSelected(pa.id)) {
+						pa.isSelectedForDownload=true;
+					}
 					pasArr.push(pa);
 					//res.results[i] = new ObjectProxy(res.results[i]);
 				}
