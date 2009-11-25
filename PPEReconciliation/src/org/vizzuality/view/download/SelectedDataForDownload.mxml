@@ -49,7 +49,6 @@
 			} else {
 				confirmAlert.y = pt.y-80;
 			}
-			trace(scrollPosition);
 			downloadMode = mode;
 			MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 			MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
