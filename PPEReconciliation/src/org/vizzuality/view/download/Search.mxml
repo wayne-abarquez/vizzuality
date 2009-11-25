@@ -26,6 +26,7 @@
 
 <mx:Script>
 	<![CDATA[
+		import gs.TweenLite;
 		import mx.controls.Alert;
 		import org.vizzuality.events.MyEventDispatcher;
 		import org.vizzuality.events.DataSelectionEvent;
@@ -205,8 +206,8 @@
 	        geocoder.addEventListener(
 	          GeocodingEvent.GEOCODING_FAILURE,
 	          function(event:GeocodingEvent):void {
-	            trace(event);
-	            trace(event.status);
+	            //trace(event);
+	            //trace(event.status);
 	          });
 	        geocoder.geocode(searchInput.text);
 	      }
@@ -331,11 +332,20 @@
 			params.per_page=24;
 			
 			jsonService.url = Application.application.serverUrl + "/searches";
-			jsonService.send(params);		
+			if(!queryPendingToRun) {
+				TweenLite.delayedCall(0.6,jsonService.send,[params]);	
+ 				queryPendingToRun=true;
+			} else {
+				TweenLite.killDelayedCallsTo(jsonService.send);
+				TweenLite.delayedCall(.6,jsonService.send,[params]);					
+			}	
 			page=p;
 		}
 		
+		private var queryPendingToRun:Boolean=false;				
+		
 		private function getSearchResult(event:ResultEvent):void {
+			queryPendingToRun=false;
 				var res:Object = JSON.decode(event.result as String);
 				var pasArr:Array = [];
 				for(var i:String in res.results as Array)  {
@@ -400,6 +410,6 @@
 				click="{SWFAddress.setValue('/rec/checkout/countries/africa')}"/>
 		</mx:HBox>
 	</mx:Canvas>
-	<mx:HTTPService id="jsonService" resultFormat="text" method="POST" result="getSearchResult(event)" fault="Alert.show('getSearchResult ERROR: Please contact administrator')" />
+	<mx:HTTPService id="jsonService" concurrency="last" resultFormat="text" method="POST" result="getSearchResult(event)" fault="Alert.show('getSearchResult ERROR: Please contact administrator')" />
 	
 </mx:VBox>
