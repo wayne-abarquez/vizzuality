@@ -35,9 +35,9 @@
 				
 				var result: String = (rendererPosition/3).toString().slice(0,1);
 				if ((Number(result) % 2) == 0) {
-					mamufas.setStyle('backgroundColor','0xFFFFFF');
-				} else {
 					mamufas.setStyle('backgroundColor','0xF5F5F5');
+				} else {
+					mamufas.setStyle('backgroundColor','0xFFFFFF');
 				}
 				
             }
