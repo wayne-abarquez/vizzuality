@@ -53,6 +53,7 @@
 			downloadMode = mode;
 			MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 			MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+			Application.application.mamufas.visible = true;
 			Application.application.addChild(confirmAlert);
 		}
 		
@@ -62,6 +63,7 @@
 			onDownloadButtonClick(downloadMode);
 			try {
 				Application.application.removeChild(confirmAlert);
+				Application.application.mamufas.visible = false;
 			} catch (e:Error) {}
 		}
 		
@@ -70,6 +72,7 @@
 			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
 			try {
 				Application.application.removeChild(confirmAlert);
+				Application.application.mamufas.visible = false;
 			} catch (e:Error) {}
 		}
 		

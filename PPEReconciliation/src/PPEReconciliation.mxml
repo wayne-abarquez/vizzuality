@@ -121,11 +121,15 @@
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
+	
+	
 
 	<ns1:header left="0" right="0" top="0" id="header1" />
 	<mx:VBox id="vBoxContainer" top="110" bottom="0" verticalScrollPolicy="off" width="100%" horizontalAlign="center">
 		<ns1:footer width="874" id="footer1"/>
 	</mx:VBox>
+	
+	<mx:Canvas id="mamufas" top="0" bottom="0" right="0" left="0" visible="false" backgroundColor="#000000" alpha="0.15" />
 	
 	 <analytics:FlexTracker
         xmlns:analytics="com.google.analytics.components.*"
