@@ -239,6 +239,13 @@
     		}catch (erObject:Error) { 
       			trace("There isn't rectangles");
       		}
+      		map.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+			map.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+			map.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+    		map.removeEventListener(MapMouseEvent.MOUSE_DOWN,onClickMapArea);
+    		map.removeEventListener(MapMouseEvent.MOUSE_UP,onMouseUpMapArea);
+    		map.removeEventListener(MouseEvent.ROLL_OVER, onMouseOverMap);
+    		map.removeEventListener(MouseEvent.ROLL_OUT, onMouseOutMap);
         }
         
         private function checkSelectArea():void {
@@ -297,6 +304,10 @@
 		
 		private function onMouseUp(e:MouseEvent):void {
 			map.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+			CursorManager.removeAllCursors();
+			checkArea.selected = false;
+			/* checkSelectArea(); */
+			
 			/* map.removeChild(selectionRectangle); */
 		}
 		
