@@ -8,10 +8,14 @@ package org.vizzuality.events
 	{
 		public static const CANCEL_TASK:String = "cancelTask";
 		public var task:Task;
-		public function CancelTaskEvent(type:String,_task:Task, bubbles:Boolean=false, cancelable:Boolean=false)
+		public var positionX: Number;
+		public var positionY: Number;
+		public function CancelTaskEvent(type:String,_task:Task,_positionX:Number,_positionY:Number, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
 			task=_task;
+			positionX = _positionX;
+			positionY = _positionY;
 		}
 		
 	}

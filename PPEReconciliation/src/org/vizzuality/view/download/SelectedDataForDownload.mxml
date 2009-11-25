@@ -4,6 +4,8 @@
 	 creationComplete="init()" xmlns:components="org.vizzuality.components.*" xmlns:view="org.vizzuality.view.*">
 <mx:Script>
 	<![CDATA[
+		import mx.events.ScrollEvent;
+		import org.vizzuality.model.Country;
 		import org.vizzuality.events.ConfirmationAlertEvent;
 		import org.vizzuality.view.confirmationAlert;
 		import org.vizzuality.model.SelectDataModel;
@@ -18,12 +20,15 @@
 		
 		[Bindable] public var selectDataModel:SelectDataModel;
 		private var confirmAlert:confirmationAlert = new confirmationAlert();
+		private var downloadMode: String = '';
+		private var scrollPosition: Number = 0;
 		
 		private function init():void {
 			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_ADDED,onCountryAdded);
 			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_REMOVED,onCountryRemoved);
-			MyEventDispatcher.addEventListener(DataSelectionEvent.PA_ADDED,onPaAdded);
-			MyEventDispatcher.addEventListener(DataSelectionEvent.PA_REMOVED,onPaRemoved);
+			Application.application.addEventListener(ScrollEvent.SCROLL,function (ev:ScrollEvent):void {
+				scrollPosition = ev.position;
+			});
 		}
 		
 		private function onCountryAdded(event:DataSelectionEvent):void {
@@ -33,50 +38,52 @@
 		private function onCountryRemoved(event:DataSelectionEvent):void {
 			selectDataModel.removeCountry(event.selectedCountry);			
 		}
-		
-		private function onPaAdded(event:DataSelectionEvent):void {
-/* 			if (isNaN(checkIfPaOnSelected(event.selectedPa)))
-				selectedPas.addItem(event.selectedPa); */
-		}
-		
-		private function onPaRemoved(event:DataSelectionEvent):void {
-			/*var pos:Number =checkIfPaOnSelected(event.selectedPa)
-			if (!isNaN(pos))
-				selectedPas.removeItemAt(pos); */
-		}
+
 		
 		private function onShowAlertConfirmation(ev:MouseEvent,mode:String):void {
-			confirmAlert.x = ev.stageX-50;
-			confirmAlert.y = ev.stageY-100;
-			Application.application.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue(ev,mode));
-			Application.application.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+			var pt:Point = new Point(ev.localX, ev.localY);
+            pt = ev.target.localToGlobal(pt);
+			confirmAlert.x = pt.x-70;
+			if (scrollPosition>0) {
+				confirmAlert.y = (pt.y-80)+(scrollPosition-15);
+			} else {
+				confirmAlert.y = pt.y-80;
+			}
+			trace(scrollPosition);
+			downloadMode = mode;
+			MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
+			MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
 			Application.application.addChild(confirmAlert);
-			/* onDownloadButtonClick('shp'); */
 		}
 		
-		private function onSelectedContinue(ev:MouseEvent,mode:String):void {
-			Application.application.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
-			Application.application.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
-			Application.application.removeChild(confirmAlert);
-			onDownloadButtonClick(mode);
+		private function onSelectedContinue(ev:ConfirmationAlertEvent):void {
+			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
+			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+			onDownloadButtonClick(downloadMode);
+			try {
+				Application.application.removeChild(confirmAlert);
+			} catch (e:Error) {}
 		}
 		
-		private function onSelectedStop(ev:MouseEvent):void {
-			Application.application.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
-			Application.application.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
-			Application.application.removeChild(confirmAlert);
+		private function onSelectedStop(ev:ConfirmationAlertEvent):void {
+			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
+			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+			try {
+				Application.application.removeChild(confirmAlert);
+			} catch (e:Error) {}
 		}
 		
 		
 		private function onDownloadButtonClick(type:String = "csv"):void {
+ 			
 			jsonService.url = Application.application.serverUrl + "/exports";
 			var params:Object = {};
 			var coun:Array = [];
-			for each(var c:Object in selectDataModel.selectedCountries) {
+			for each(var c:Country in selectDataModel.selectedCountries) {
 				coun.push(c.id);
 			}	
 			var pas:Array = [];	
-			for each(var c2:Object in selectDataModel.selectedPas) {
+			for each(var c2:Pa in selectDataModel.selectedPas) {
 				pas.push(c2.id);
 			}		
 			params["countries[]"]=coun;
@@ -97,7 +104,8 @@
 			Application.application.pendingTasks++;
 			
 			//empty the list
-			selectDataModel=new SelectDataModel();
+			(this.parent as Download).selectDataModel =new SelectDataModel();
+			MyEventDispatcher.dataDownloaded();
 		}
 		
 	]]>
@@ -123,8 +131,7 @@
 		<components:ShadowButton right="6" y="4" label="SHP" styleName="greenButton" click="onShowAlertConfirmation(event,'shp')" 
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button3" width="50"
 			visible="{(selectDataModel.selectedCountries.length > 0 || selectDataModel.selectedPas.length > 0)}"/>
-		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" 
-			click="onDownloadButtonClick('csv')" 
+		<components:ShadowButton right="60" y="4" label="CSV" styleName="greenButton" click="onShowAlertConfirmation(event,'csv')"
 			mouseChildren="false" buttonMode="true" useHandCursor="true" id="button0" width="50"
 			visible="{(selectDataModel.selectedCountries.length > 0 || selectDataModel.selectedPas.length > 0)}"/>
 	</mx:Canvas>	

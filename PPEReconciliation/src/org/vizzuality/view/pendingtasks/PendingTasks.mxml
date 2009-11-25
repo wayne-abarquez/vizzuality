@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="754" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="100%" 
 	styleName="dataDownloadContainer" backgroundSize="100%" 
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*" xmlns:ns1="org.vizzuality.view.pendingtasks.*">
 	<mx:states>
@@ -12,6 +12,8 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import mx.events.ScrollEvent;
+			import org.vizzuality.events.ConfirmationAlertEvent;
 			import mx.controls.Alert;
 			import org.vizzuality.events.NotificationEvent;
 			import com.asual.swfaddress.SWFAddress;
@@ -30,11 +32,13 @@
 			import resource.Resource;
 			
 			private var ud:UploadingData;
+			private var scrollPosition:Number = 0;
+			private var confirmAlert: confirmationAlert = new confirmationAlert();
+			private var taskItem: Task = new Task ();
 			
 			private var totalTasks:Number=0;
 			[Bindable] private var page:Number=1;
 			[Bindable] private var totalPages:Number=1;
-			private var alertConfirmation: confirmationAlert = new confirmationAlert(); 
 			[Bindable] public var warningMessage:String = "";
 
 			
@@ -42,10 +46,13 @@
 			
 			private function init():void {
 				getPendingTasks(1);
-				MyEventDispatcher.addEventListener(CancelTaskEvent.CANCEL_TASK,onTaskCanceled);
+				MyEventDispatcher.addEventListener(CancelTaskEvent.CANCEL_TASK,onShowAlertConfirmation);
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_TASK_FOR_UPLOAD,onSelectedTaskForUpload);
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.TASK_UPLOADED,onTaskUploaded);
 				MyEventDispatcher.addEventListener(NotificationEvent.TASK_LIST_NOTIFICATION,onTaskListNotification);
+				Application.application.addEventListener(ScrollEvent.SCROLL,function (ev:ScrollEvent):void {
+					scrollPosition = ev.position;
+				});
 			}
 			
 			private function onTaskListNotification(event:NotificationEvent):void {
@@ -58,6 +65,38 @@
 				Application.application.addChild(ud);				 
 				ud.selectFile();
 			}			
+			
+			
+			private function onShowAlertConfirmation(ev:CancelTaskEvent):void {
+				confirmAlert.x = ev.positionX-70;
+				if (scrollPosition>0) {
+					confirmAlert.y = (ev.positionY-80)+(scrollPosition-15);
+				} else {
+					confirmAlert.y = ev.positionY-80;
+				}
+				taskItem = ev.task;
+				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
+				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+				Application.application.addChild(confirmAlert);
+			}
+			
+			private function onSelectedContinue(ev:ConfirmationAlertEvent):void {
+				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
+				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+				onTaskCanceled();
+				try {
+					Application.application.removeChild(confirmAlert);
+				} catch (e:Error) {}
+			}
+			
+			private function onSelectedStop(ev:ConfirmationAlertEvent):void {
+				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
+				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+				try {
+					Application.application.removeChild(confirmAlert);
+				} catch (e:Error) {}
+			}
+			
 			
 			private function onTaskUploaded(ev:TaskSelectionEvent):void {
 				currentState='';
@@ -73,8 +112,8 @@
 				page=p;					
 			}
 			
-			private function onTaskCanceled(event:CancelTaskEvent):void {
-				cancelJsonService.url = Application.application.serverUrl + "/exports/"+event.task.id+"/destroy";
+			private function onTaskCanceled():void {
+				cancelJsonService.url = Application.application.serverUrl + "/exports/"+taskItem.id+"/destroy";
 				cancelJsonService.send();
 			}
 			

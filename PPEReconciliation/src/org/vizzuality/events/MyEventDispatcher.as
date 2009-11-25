@@ -54,8 +54,8 @@ package org.vizzuality.events
    		public static function confirmPa(pa:Pa,mode:String):void {
    			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.PA_CONFIRMED,null,pa,mode));
    		}
-   		public static function cancelTask(task:Task):void {
-   			dispatchEvent(new CancelTaskEvent(CancelTaskEvent.CANCEL_TASK,task));
+   		public static function cancelTask(task:Task,positionX:Number,positionY:Number):void {
+   			dispatchEvent(new CancelTaskEvent(CancelTaskEvent.CANCEL_TASK,task,positionX,positionY));
    		}
    		public static function uploadTaskFile(task:Task):void {
    			dispatchEvent(new TaskSelectionEvent(TaskSelectionEvent.SELECTED_TASK_FOR_UPLOAD,task));
@@ -66,6 +66,15 @@ package org.vizzuality.events
    		
    		public static function taskListNotification(message:String):void {
    			dispatchEvent(new NotificationEvent(NotificationEvent.TASK_LIST_NOTIFICATION,message));
+   		}
+   		public static function dataDownloaded():void {
+   			dispatchEvent(new DataSelectionEvent(DataSelectionEvent.DATA_DOWNLOADED));
+   		}
+   		public static function continueDownload():void {
+   			dispatchEvent(new ConfirmationAlertEvent(ConfirmationAlertEvent.GO_ON));
+   		}
+   		public static function stopDownload():void {
+   			dispatchEvent(new ConfirmationAlertEvent(ConfirmationAlertEvent.STOP_NOW));
    		}
    		
    		
