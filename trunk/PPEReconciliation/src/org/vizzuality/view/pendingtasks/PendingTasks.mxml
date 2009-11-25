@@ -130,7 +130,7 @@
 			
 			private function onTaskCanceled():void {
 				cancelJsonService.url = Application.application.serverUrl + "/exports/"+taskItem.id+"/destroy";
-				cancelJsonService.send();
+				cancelJsonService.send({iloveflex:""});
 			}
 			
 			private function cancelTaskResult(event:ResultEvent):void {
