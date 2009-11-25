@@ -16,6 +16,7 @@
 			
 			
 			[Bindable]private var errors: ArrayCollection = new ArrayCollection();
+			[Bindable]public var taskName: String = '';
 			
 			public function getErrors(task:Task):void {
 				jsonService.url = Application.application.serverUrl + "/exports/"+task.id+"/imports/"+task.importId+"?state=error";
@@ -28,14 +29,14 @@
 			}
 		]]>
 	</mx:Script>
-	<mx:Label text="All tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" top="7"
+	<mx:Label text="All tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" top="14"
 		 useHandCursor="true" mouseChildren="false" buttonMode="true" click="SWFAddress.setValue('/rec/pendingtasks')"/>
 	<mx:Canvas left="0" right="0" top="0" height="62" >
-		<mx:HBox left="13" top="20" horizontalGap="-3" verticalAlign="bottom" height="25" width="844">
-			<mx:Label text="Errors review" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
+		<mx:HBox left="13" top="28" horizontalGap="-3" verticalAlign="bottom" height="25" width="844">
+			<mx:Label text="{taskName} - Errors review" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
 			<mx:Label text="{'('+errors.length+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
 		</mx:HBox>
-		<mx:Button label="Return" right="10" top="10" click="SWFAddress.setValue('/rec/pendingtasks')"/>
+		<mx:Button label="RETURN" right="20" top="20" click="SWFAddress.setValue('/rec/pendingtasks')" color="#333333" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #EEEEEE, #EEEEEE, #FFFFFF]" fontFamily="Helvetica" height="20" paddingTop="6"/>
 	</mx:Canvas>
 
     <mx:VBox left="0" right="0" top="62" backgroundColor="#FFFFFF" paddingLeft="15" paddingRight="15" bottom="0" paddingTop="15">
