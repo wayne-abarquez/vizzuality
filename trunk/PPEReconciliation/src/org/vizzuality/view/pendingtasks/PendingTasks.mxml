@@ -12,6 +12,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.view.pendingtasks.itemrenders.PendingTaskItem;
 			import mx.events.ScrollEvent;
 			import org.vizzuality.events.ConfirmationAlertEvent;
 			import mx.controls.Alert;
@@ -77,6 +78,7 @@
 				taskItem = ev.task;
 				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+				Application.application.mamufas.visible = true;
 				Application.application.addChild(confirmAlert);
 			}
 			
@@ -84,16 +86,30 @@
 				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
 				onTaskCanceled();
+				for each (var ob:Array in itemList.renderers) {
+					if (!ob[0].mustRollOver) {
+						PendingTaskItem(ob[0]).handleAutomaticOut();
+						PendingTaskItem(ob[0]).mustRollOver = true;
+					}
+				}
 				try {
 					Application.application.removeChild(confirmAlert);
+					Application.application.mamufas.visible = false;
 				} catch (e:Error) {}
 			}
 			
 			private function onSelectedStop(ev:ConfirmationAlertEvent):void {
 				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+				for each (var ob:Array in itemList.renderers) {
+					if (!ob[0].mustRollOver) {
+						PendingTaskItem(ob[0]).handleAutomaticOut();
+						PendingTaskItem(ob[0]).mustRollOver = true;
+					}
+				}
 				try {
 					Application.application.removeChild(confirmAlert);
+					Application.application.mamufas.visible = false;
 				} catch (e:Error) {}
 			}
 			
@@ -196,7 +212,7 @@
 
 		</mx:Canvas>
 		
-		<mx:List id="itemList" height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.PendingTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
+		<components:CustomList id="itemList" height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.PendingTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
 			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0"  />
 		
 		<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">

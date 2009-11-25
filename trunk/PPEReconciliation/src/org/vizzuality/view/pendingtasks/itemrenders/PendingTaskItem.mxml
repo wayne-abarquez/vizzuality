@@ -25,7 +25,7 @@
 			
 			[Bindable] private var textAlpha:Number = 1;
 			
-			[Bindable] private var mustRollOver:Boolean=true;
+			[Bindable] public var mustRollOver:Boolean=true;
 			
 			override public function set data(value:Object):void {
             	if (value != null) {
@@ -216,6 +216,7 @@
             
             private function cancelTask(event:MouseEvent):void {
             	event.stopPropagation();
+            	this.mustRollOver = false;
             	MyEventDispatcher.cancelTask(task,event.stageX,event.stageY);
             }
             
@@ -260,6 +261,10 @@
  				if(mustRollOver) {
 					TweenMax.to(overCanvas, .3, {autoAlpha:0});
  				}
+			} 
+			
+			public function handleAutomaticOut():void{
+				TweenMax.to(overCanvas, .3, {autoAlpha:0});
 			} 		
 			
 			private function getDate (str:String):String {
