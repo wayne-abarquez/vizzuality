@@ -90,7 +90,6 @@
 				countries=new ArrayCollection(countriesArr);
 				totalCountries=res.total;
 				totalPages = Math.ceil(totalCountries/24);			
-				
 			}
 			
 		]]>
