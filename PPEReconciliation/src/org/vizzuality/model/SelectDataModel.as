@@ -27,16 +27,50 @@ package org.vizzuality.model
 		}
 		
 		public function removeCountry(c:Country):void {
-			var pos:Number = checkIfCountryOnSelected(c);
+			var pos:Number = checkIfCountryOnSelectedPos(c);
 			if(pos>=0) {
 				selectedCountries.removeItemAt(pos);
 			}
 		}
 		
-		private function checkIfCountryOnSelected(country:Country):Number {
+		public function checkIfCountryOnSelectedPos(country:Country):Number {
 			var i:Number=0;
 			for each(var c:Country in selectedCountries) {
 				if(c.id==country.id) {
+					return i;				
+				}
+				i++;
+			}
+			return -1;	
+					
+		}		
+		
+		public function checkIfPaInSelected(paId:String):Boolean {
+			for each(var item:Pa in selectedPas) {
+				if(item.id == paId) {
+					return true;
+				}
+			}
+			return false;	
+		}
+		
+		public function addPa(c:Pa):void {
+			if(!checkIfPaInSelected(c.id)) {
+				selectedPas.addItem(c);
+			}
+		}
+		
+		public function removePa(c:Pa):void {
+			var pos:Number = checkIfPaOnSelectedPos(c);
+			if(pos>=0) {
+				selectedPas.removeItemAt(pos);
+			}
+		}
+		
+		public function checkIfPaOnSelectedPos(pa:Pa):Number {
+			var i:Number=0;
+			for each(var c:Pa in selectedPas) {
+				if(c.id==pa.id) {
 					return i;				
 				}
 				i++;

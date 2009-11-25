@@ -76,7 +76,7 @@
     
     <mx:ViewStack id="vs" height="909" left="0" right="225" top="62" backgroundColor="#ffffff" paddingLeft="15" paddingRight="15" paddingBottom="15" paddingTop="15">
 
-		<download:Search />
+		<download:Search selectedDataModel="{selectDataModel}" />
 	    
 	    <mx:VBox>
 				<download:RegionBrowser width="100%"  height="428" selectDataModel="{selectDataModel}"/>

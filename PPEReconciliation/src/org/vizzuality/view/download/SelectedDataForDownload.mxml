@@ -26,6 +26,8 @@
 		private function init():void {
 			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_ADDED,onCountryAdded);
 			MyEventDispatcher.addEventListener(DataSelectionEvent.COUNTRY_REMOVED,onCountryRemoved);
+			MyEventDispatcher.addEventListener(DataSelectionEvent.PA_ADDED,onPaAdded);
+			MyEventDispatcher.addEventListener(DataSelectionEvent.PA_REMOVED,onPaRemoved);
 			Application.application.addEventListener(ScrollEvent.SCROLL,function (ev:ScrollEvent):void {
 				scrollPosition = ev.position;
 			});
@@ -39,6 +41,12 @@
 			selectDataModel.removeCountry(event.selectedCountry);			
 		}
 
+		private function onPaAdded(event:DataSelectionEvent):void {
+			selectDataModel.addPa(event.selectedPa);
+		}
+		private function onPaRemoved(event:DataSelectionEvent):void {
+			selectDataModel.removePa(event.selectedPa);			
+		}
 		
 		private function onShowAlertConfirmation(ev:MouseEvent,mode:String):void {
 			var pt:Point = new Point(ev.localX, ev.localY);

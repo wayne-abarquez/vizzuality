@@ -14,8 +14,6 @@
 			[Bindable] public var textColor:uint;
 			[Bindable] public var statusColor:uint;
 			
-			[Bindable] public var addedItem: Boolean = false;
-			
 			override public function set data(value:Object):void {
             	if (value != null) {
             		pa = value as Pa;
@@ -41,7 +39,7 @@
             }
 
 			private function handleOver(e:MouseEvent):void{
-				if (!addedItem && !pa.isSelectedForDownload){
+				if (!pa.isSelectedForDownload){
 					TweenMax.to(overCanvas, .3, {autoAlpha:1});
 				}
 			}
@@ -51,9 +49,9 @@
 			}		
 			
 			private function onAddedClick():void {
+				pa.isSelectedForDownload=true;
 				MyEventDispatcher.selectPaForDownload(pa);
 				TweenMax.to(overCanvas, .2, {autoAlpha:0});
-				addedItem = true;
 			}
 			
 		]]>

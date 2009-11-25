@@ -20,6 +20,10 @@
 				TweenMax.to(this, 1, {alpha: 1});
 			}
 			
+			private function onRemoveClick():void {
+				MyEventDispatcher.removePaForDownload(c);
+			}
+			
 		]]>
 	</mx:Script>
 	<mx:Label y="7" text="{c.name}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13" left="9" truncateToFit="true" width="160"/>
@@ -27,6 +31,6 @@
 	<mx:Button styleName="redButton" top="7" right="9" width="18" fontSize="12" 
 		icon="{Resource.CROSS_ICON_OVER}" paddingBottom="1" paddingLeft="-1" paddingRight="1" height="18" 
 		mouseChildren="false" buttonMode="true" useHandCursor="true" 
-		click="MyEventDispatcher.removePaForDownload(c)"/>
+		click="onRemoveClick()"/>
 	
 </mx:Canvas>
