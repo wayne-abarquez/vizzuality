@@ -178,10 +178,14 @@
             
             //link when bbox of map changes
             map.addEventListener(MapZoomEvent.ZOOM_CHANGED,function(event:MapZoomEvent):void {
-            	getPas(1);
+            	if(event.zoomLevel>2) {
+	            	getPas(1);
+            	}
             });
             map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
-            	getPas(1);
+            	if(map.getZoom()>2) {
+            		getPas(1);
+            	}
             });
             
             
@@ -343,14 +347,20 @@
 			params.per_page=24;
 			
 			jsonService.url = Application.application.serverUrl + "/searches";
-			if(!queryPendingToRun) {
-				TweenLite.delayedCall(0.6,jsonService.send,[params]);	
- 				queryPendingToRun=true;
+			callService(params);
+/* 			if(!queryPendingToRun) {
+				TweenLite.delayedCall(0.01,callService,[params]);	
 			} else {
-				TweenLite.killDelayedCallsTo(jsonService.send);
-				TweenLite.delayedCall(.6,jsonService.send,[params]);					
-			}	
+				TweenLite.killDelayedCallsTo(callService);
+				TweenLite.delayedCall(0.01,callService,[params]);					
+			} */	
+ 			queryPendingToRun=true;
 			page=p;
+		}
+		
+		private function callService(params:Object):void {
+			trace("call!");
+			jsonService.send(params);
 		}
 		
 		private var queryPendingToRun:Boolean=false;				
