@@ -217,7 +217,10 @@
             private function cancelTask(event:MouseEvent):void {
             	event.stopPropagation();
             	this.mustRollOver = false;
-            	MyEventDispatcher.cancelTask(task,event.stageX,event.stageY);
+            	var pt: Point = new Point(event.localX,event.localY);
+            	pt = event.target.localToGlobal(pt);
+            	
+            	MyEventDispatcher.cancelTask(task,pt.x,pt.y);
             }
             
             private function waitingForDownloadClicked(event:Event):void {
