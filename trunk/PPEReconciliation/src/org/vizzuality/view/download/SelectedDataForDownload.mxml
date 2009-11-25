@@ -65,13 +65,11 @@
 		}
 		
 		private function onSelectedContinue(ev:ConfirmationAlertEvent):void {
+			confirmAlert.currentState="Processing";
 			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
 			onDownloadButtonClick(downloadMode);
-			try {
-				Application.application.removeChild(confirmAlert);
-				Application.application.mamufas.visible = false;
-			} catch (e:Error) {}
+
 		}
 		
 		private function onSelectedStop(ev:ConfirmationAlertEvent):void {
@@ -108,14 +106,19 @@
 		}
 		
 		private function onDownloadSentResult(event:ResultEvent):void {
+			
 			//Move the application to the correct state
 			SWFAddress.setValue("/rec/pendingtasks");
 			MyEventDispatcher.taskListNotification("We are proccessing your data upload, please wait a few minutes");
 			Application.application.pendingTasks++;
 			
 			//empty the list
-			(this.parent as Download).selectDataModel =new SelectDataModel();
+			(this.parent as Download).selectDataModel = new SelectDataModel();
 			MyEventDispatcher.dataDownloaded();
+			try {
+				Application.application.removeChild(confirmAlert);
+			} catch (e:Error) {}			
+			Application.application.mamufas.visible = false;
 		}
 		
 	]]>

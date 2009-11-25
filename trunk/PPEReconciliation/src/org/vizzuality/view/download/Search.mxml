@@ -119,6 +119,9 @@
 			getPas(1);
 			
 			MyEventDispatcher.addEventListener(DataSelectionEvent.PA_REMOVED,onPaRemoved);
+			MyEventDispatcher.addEventListener(DataSelectionEvent.DATA_DOWNLOADED,function(event:Event):void {
+					getPas(1);
+			});
 			
 		}
 		

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="135" height="75" xmlns:components="org.vizzuality.components.*">
+	<mx:states>
+		<mx:State name="Processing">
+			<mx:RemoveChild target="{shadowbutton1}"/>
+			<mx:RemoveChild target="{shadowbutton2}"/>
+			<mx:SetProperty target="{label1}" name="text" value="Processing..."/>
+		</mx:State>
+	</mx:states>
 
 	<mx:Script>
 		<![CDATA[
@@ -20,12 +27,12 @@
 	<mx:Image top="0" left="0" right="0" bottom="0" source="{Resource.ALERT_BKG}" />
 	<components:ShadowButton mouseChildren="false" useHandCursor="true" buttonMode="true" styleName="greenButton" label="YES" paddingTop="5"
 		paddingLeft="2" paddingRight="2"  width="42" height="15" bottom="21" fontFamily="Helvetica" fontWeight="bold" fontSize="9" color="#FFFFFF" textAlign="center" horizontalCenter="23"
-		click="MyEventDispatcher.continueDownload()"/>
+		click="MyEventDispatcher.continueDownload()" id="shadowbutton1"/>
 	<components:ShadowButton mouseChildren="false" useHandCursor="true" buttonMode="true" styleName="redButton" label="NO" paddingTop="5" 
 		click="MyEventDispatcher.stopDownload()"
-		width="42" height="15" bottom="21" fontFamily="Helvetica" fontWeight="bold" fontSize="9" color="#FFFFFF" textAlign="center" paddingLeft="1" paddingRight="2" horizontalCenter="-23"/>
+		width="42" height="15" bottom="21" fontFamily="Helvetica" fontWeight="bold" fontSize="9" color="#FFFFFF" textAlign="center" paddingLeft="1" paddingRight="2" horizontalCenter="-23" id="shadowbutton2"/>
 	<mx:Label text="Are you sure?" horizontalCenter="0" verticalCenter="-12" textAlign="right" fontSize="13" fontFamily="Helvetica" fontWeight="bold" color="#333333"
-		/>
+		 id="label1"/>
 	
 			
 </mx:Canvas>
