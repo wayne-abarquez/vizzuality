@@ -220,7 +220,6 @@
         	try {
     			map.removeChild(selectionRectangle);
     		}catch (erObject:Error) { 
-      			trace("There isn't rectangles");
       		}
         }
         
@@ -241,7 +240,6 @@
         	try {
     			map.removeChild(selectionRectangle);
     		}catch (erObject:Error) { 
-      			trace("There isn't rectangles");
       		}
       		map.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
 			map.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
@@ -267,7 +265,6 @@
         		try {
         			map.removeChild(selectionRectangle);
         		}catch (erObject:Error) { 
-          			trace("There isn't rectangles");
           		}
         		map.removeEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
 				map.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
