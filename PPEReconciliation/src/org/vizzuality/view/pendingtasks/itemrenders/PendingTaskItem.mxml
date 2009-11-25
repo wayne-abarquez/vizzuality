@@ -329,7 +329,12 @@
 		</mx:HBox>
 		<mx:Label text="{task.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="21" left="8"/>
 		
-		<mx:Label text="{taskName}" color="#FFFFFF" fontSize="13" fontFamily="Helvetica" fontWeight="bold" left="404" top="5"/>
+		
+		<mx:HBox left="404" top="5" horizontalGap="-3">
+			<mx:Image source="{iconImage.source}" visible="{iconImage.visible}"/>
+			<mx:Label text="{taskName}" color="#FFFFFF" fontSize="13" 
+				fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
+		</mx:HBox>
 		<mx:Label id="statusPercenLabel" text="{'(' + task.statusPercen + '%)'}" color="#cccccc" fontWeight="normal" fontSize="11" fontStyle="normal" top="21" left="404" fontFamily="Helvetica"/>
 	
 		<mx:Label text="{date.text}" color="#FFFFFF"  left="619" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold" width="116" textAlign="left"/>
