@@ -115,6 +115,7 @@
 			//empty the list
 			(this.parent as Download).selectDataModel = new SelectDataModel();
 			MyEventDispatcher.dataDownloaded();
+			confirmAlert.currentState = '';
 			try {
 				Application.application.removeChild(confirmAlert);
 			} catch (e:Error) {}			
