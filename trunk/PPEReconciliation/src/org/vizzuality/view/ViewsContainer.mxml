@@ -115,13 +115,13 @@
 	</mx:Script>
 	<mx:ViewStack x="0" y="35" id="myViewStack" width="874" height="415">
 		<dashboard1:Dashboard label="DASHBOARD" id="mydashboard"/>
-		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data" showEffect="{fadeIn}" hideEffect="{fadeOut}">
+		<mx:Canvas label="DOWNLOAD DATA" width="874" height="100%" id="download_data" showEffect="{fadeIn}">
 			<download:Download top="0" left="0" right="0" height="100%" id="download_component" />
 		</mx:Canvas>
-		<mx:Canvas label="PENDING TASKS" width="874" height="100%" id="previous_downloads" showEffect="{fadeIn}" hideEffect="{fadeOut}">
+		<mx:Canvas label="PENDING TASKS" width="874" height="100%" id="previous_downloads" showEffect="{fadeIn}">
 			<pendingtasks:TasksContainer id="pending_task"/>
 		</mx:Canvas>
-		<mx:Canvas label="PREVIOUS TASKS" width="100%" height="100%" id="previous_uploads" showEffect="{fadeIn}" hideEffect="{fadeOut}">
+		<mx:Canvas label="PREVIOUS TASKS" width="100%" height="100%" id="previous_uploads" showEffect="{fadeIn}">
 			<previoustasks:PreviousTasksContainer />
 		</mx:Canvas>
 		<!--mx:Canvas label="" width="100%" height="100%" showEffect="{fadeIn}" hideEffect="{fadeOut}"
@@ -136,5 +136,5 @@
 		<mx:Button label="PREVIOUS TASKS" visible="{Application.application.previousTasks}" includeInLayout="{Application.application.previousTasks}" click="currentState='Previous'" styleName="mainMenuButton" height="35" id="button4" useHandCursor="true" mouseChildren="false" buttonMode="true" color="{(button4.selected)?0x333333:0x6686AE}"/>
 	</mx:HBox>
         <mx:Fade id="fadeIn" alphaFrom="0" alphaTo="1" duration="200"/>
-        <mx:Fade id="fadeOut" alphaFrom="1" alphaTo="0" duration="200"/>	
+        <!--mx:Fade id="fadeOut" alphaFrom="1" alphaTo="0" duration="1000"/ -->	
 </mx:Canvas>
