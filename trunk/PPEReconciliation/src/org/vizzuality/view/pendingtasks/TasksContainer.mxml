@@ -43,6 +43,7 @@
 			
 			private function onPaErrorsSelected(ev:TaskSelectionEvent):void {
 				currentState='Errors';
+				errorsReview.taskName = ev.task.description;
 				errorsReview.getErrors(ev.task);
 				//selectedPa=ev.pa;
 				
