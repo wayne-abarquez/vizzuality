@@ -102,7 +102,7 @@
 	    					myViewStack.height = 665;
 	    				}
     				} else {
-    					myViewStack.height = 640;
+	    				myViewStack.height = 1000;
     				}
     			}
     			

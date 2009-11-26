@@ -31,17 +31,6 @@
             	if (value != null) {
 					super.data = value;
 					task = value as Task;
-					/*task = new Task();
-					task.code = value.code;
-					task.date = new Date(Date.parse(value.date));
-					task.description = value.description;
-					task.id = value.id;
-					task.numareas = value.numareas;
-					task.status = value.status;
-					task.statusPercen = value.statusPercen;
-					task.type = value.type;
-					task.what = value.what;*/
-					
 					
 					taskName = Task.TASK_DESCRIPTIONS[task.status];
 					

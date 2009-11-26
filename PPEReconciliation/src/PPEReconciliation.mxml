@@ -129,7 +129,7 @@
 		</mx:State>
 		<mx:State name="Rec">
 			<mx:AddChild  relativeTo="{vBoxContainer}" position="firstChild">
-				<ns1:ViewsContainer id="contentcontainer1" width="874" horizontalScrollPolicy="off" horizontalCenter="0" />
+				<ns1:ViewsContainer id="viewsContainer" width="874" horizontalScrollPolicy="off" horizontalCenter="0" />
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
