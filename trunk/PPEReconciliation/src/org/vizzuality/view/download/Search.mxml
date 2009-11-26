@@ -387,25 +387,59 @@
 		
 		private function getSearchResult(event:ResultEvent):void {
 			queryPendingToRun=false;
-				var res:Object = JSON.decode(event.result as String);
-				var pasArr:Array = [];
-				for(var i:String in res.results as Array)  {
-					var pa:Pa = new Pa();
-					pa.id=res.results[i].id;
-					pa.name=res.results[i].name;
-					pa.country=res.results[i].country;
-					if (selectedDataModel.checkIfPaInSelected(pa.id)) {
-						pa.isSelectedForDownload=true;
-					}
-					pasArr.push(pa);
-					//res.results[i] = new ObjectProxy(res.results[i]);
+			var res:Object = JSON.decode(event.result as String);
+			var pasArr:Array = [];
+			for(var i:String in res.results as Array)  {
+				var pa:Pa = new Pa();
+				pa.id=res.results[i].id;
+				pa.name=res.results[i].name;
+				pa.country=res.results[i].country;
+				if (selectedDataModel.checkIfPaInSelected(pa.id)) {
+					pa.isSelectedForDownload=true;
 				}
-				areasArr=new ArrayCollection(pasArr);
-				totalAreas=res.total;
-				totalPages = Math.ceil(totalAreas/24);			
-				currentState = "";
+				pasArr.push(pa);
+				//res.results[i] = new ObjectProxy(res.results[i]);
+			}
+			areasArr=new ArrayCollection(pasArr);
+			totalAreas=res.total;
+			totalPages = Math.ceil(totalAreas/24);			
+			currentState = "";
+			adjustHeight();
 		}
 
+		public function adjustHeight():void {
+			if (areasArr.length<16) {
+				if (areasArr.length<4) {
+					canvas1.height = 45;
+					areasTilelist.height = 45;
+					Application.application.viewsContainer.myViewStack.height = 900 - (260-45);
+				}
+				if (areasArr.length<7 && areasArr.length>3) {
+					canvas1.height = 90;
+					areasTilelist.height = 90;
+					Application.application.viewsContainer.myViewStack.height = 900 - (260-90);
+				}
+				if (areasArr.length<10 && areasArr.length>6) {
+					canvas1.height = 135;
+					areasTilelist.height = 135;
+					Application.application.viewsContainer.myViewStack.height = 900 - (260-135);
+				}
+				if (areasArr.length<13 && areasArr.length>9) {
+					canvas1.height = 180;
+					areasTilelist.height = 180;
+					Application.application.viewsContainer.myViewStack.height = 900 - (260-180);
+				}
+				if (areasArr.length<16 && areasArr.length>12) {
+					canvas1.height = 225;
+					areasTilelist.height = 225;
+					Application.application.viewsContainer.myViewStack.height = 900 - (260-225);
+				}
+			} else {
+				canvas1.height = 260; 
+				areasTilelist.height = 260;
+			}
+			(parent.parent as Download).canvasShadow.height = Application.application.viewsContainer.myViewStack.height;
+		}
         
 	]]>
 </mx:Script>
@@ -431,9 +465,9 @@
 
 	</mx:Canvas>
 	
-	<mx:Canvas width="100%" height="100%" id="canvas1">
-		<mx:TileList dataProvider="{areasArr}"  width="100%" height="100%" itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaResultItem" 
-			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none">
+	<mx:Canvas width="100%" height="260" id="canvas1">
+		<mx:TileList dataProvider="{areasArr}"  width="100%" height="260" itemRenderer="org.vizzuality.view.download.itemrenders.ProtectedAreaResultItem" 
+			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" borderStyle="none" id="areasTilelist">
 		</mx:TileList>
 	</mx:Canvas>
 	

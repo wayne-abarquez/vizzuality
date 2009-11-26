@@ -84,7 +84,7 @@
     			if (currentState=='Checkout') {
     				if (download_component is Download) {
     					if (download_component.currentState=='Search') {
-	    					myViewStack.height = 970;
+    						download_component.search.adjustHeight();
 	    				} else {
 	    					myViewStack.height = 590;
 	    				}
