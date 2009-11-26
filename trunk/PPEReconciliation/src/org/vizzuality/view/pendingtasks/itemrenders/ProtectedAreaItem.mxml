@@ -88,7 +88,7 @@
 				statusText.text="Confirmed";	
 				statusOverText.text= statusText.text;	
 				statusColor = 0x339900;		
-				textColor = 0x999999;
+				textColor = 0xdddddd;
 				//greenFlashCanvas.visible = true;
 				//greenFlashCanvas.alpha = 1;
 				//TweenMax.to(greenFlashCanvas, 1, {autoAlpha:0});
@@ -107,7 +107,7 @@
 				statusText.text="Rejected";
 				statusOverText.text=statusText.text;
 				statusColor = 0xff3300;
-				textColor = 0x999999;
+				textColor = 0xdddddd;
 				//redFlashCanvas.visible = true;
 				//redFlashCanvas.alpha = 1;
 				//TweenMax.to(redFlashCanvas, 1, {autoAlpha:0});

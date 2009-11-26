@@ -112,14 +112,14 @@
 					ind++;		
 				}
 				
-				//CRAP CODE
+				//CRAP CODE  -- Deleted Reviewed
 				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
-					var pa:Pa = new Pa();
-					pa.id=numtemp.toString();
-					pa.name="test "+ numtemp;
-					pa.country="spain";
-					pa.status="";
-					tem.push(pa);
+					var pa1:Pa = new Pa();
+					pa1.id=numtemp.toString();
+					pa1.name="test "+ numtemp;
+					pa1.country="spain";
+					pa1.status="";
+					tem.push(pa1);
 				}	
 				//END CRAP CODE			
 				
@@ -154,14 +154,14 @@
 					ind++;
 				}
 				
-				//CRAP CODE
+				//CRAP CODE -- New Reviewed
 				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
-					var pa:Pa = new Pa();
-					pa.id=numtemp.toString();
-					pa.name="test "+ numtemp;
-					pa.country="spain";
-					pa.status="";
-					tem.push(pa);
+					var pa2:Pa = new Pa();
+					pa2.id=numtemp.toString();
+					pa2.name="test "+ numtemp;
+					pa2.country="spain";
+					pa2.status="";
+					tem.push(pa2);
 				}		
 				//END CRAP CODE				
 				
@@ -197,14 +197,14 @@
 					ind++;
 				}
 				
-				//CRAP CODE
+				//CRAP CODE  -- Edited Pending
 				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
-					var pa:Pa = new Pa();
-					pa.id=numtemp.toString();
-					pa.name="test "+ numtemp;
-					pa.country="spain";
-					pa.status="";
-					tem.push(pa);
+					var pa3:Pa = new Pa();
+					pa3.id=numtemp.toString();
+					pa3.name="test "+ numtemp;
+					pa3.country="spain";
+					pa3.status="";
+					tem.push(pa3);
 				}
 				//END CRAP CODE		
 				
