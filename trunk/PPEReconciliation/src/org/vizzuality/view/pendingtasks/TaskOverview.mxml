@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="950" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="276"
 	styleName="dataDownloadContainer" backgroundSize="100%"
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" horizontalScrollPolicy="off"
 	creationComplete="init()" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" xmlns:components="org.vizzuality.components.*">
@@ -111,6 +111,18 @@
 					tem.push(pa);	
 					ind++;		
 				}
+				
+				//CRAP CODE
+				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
+					var pa:Pa = new Pa();
+					pa.id=numtemp.toString();
+					pa.name="test "+ numtemp;
+					pa.country="spain";
+					pa.status="";
+					tem.push(pa);
+				}	
+				//END CRAP CODE			
+				
 				deleted=new ArrayCollection(tem);
 				totalDeleted=res.total;
 				totalDelPages = Math.ceil(totalDeleted/12);		
@@ -118,6 +130,13 @@
 				review.deletedPending = totalDeleted-review.deletedReviewed;
 				review.recalculatePendings();
 				deletedBox.currentState="";
+				
+				//Change the Size of the screen depending on this
+				if(tem.length>0) {
+					this.height=this.height +deletedBox.height;
+					Application.application.viewsContainer.myViewStack.height=
+						Application.application.viewsContainer.myViewStack.height +deletedBox.height;
+				}
 							
 			}
 			private function onGetTaskNewPasResult(event:ResultEvent):void {
@@ -134,6 +153,18 @@
 					tem.push(pa);
 					ind++;
 				}
+				
+				//CRAP CODE
+				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
+					var pa:Pa = new Pa();
+					pa.id=numtemp.toString();
+					pa.name="test "+ numtemp;
+					pa.country="spain";
+					pa.status="";
+					tem.push(pa);
+				}		
+				//END CRAP CODE				
+				
 				news=new ArrayCollection(tem);
 				totalNew=res.total;
 				totalNewPages = Math.ceil(totalNew/12);			
@@ -142,6 +173,14 @@
 				review.newPending = totalNew-review.newReviewed;
 				review.recalculatePendings();	
 				newBox.currentState="";
+				
+				//Change the Size of the screen depending on this
+				if(tem.length>0) {
+					Application.application.viewsContainer.myViewStack.height=
+						Application.application.viewsContainer.myViewStack.height +newBox.height;
+					this.height=this.height +newBox.height;		
+				}		
+				
 			}
 			private function onGetTaskUpdatesResult(event:ResultEvent):void {
 				var res:Object = JSON.decode(event.result as String);
@@ -157,6 +196,18 @@
 					tem.push(pa);
 					ind++;
 				}
+				
+				//CRAP CODE
+				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
+					var pa:Pa = new Pa();
+					pa.id=numtemp.toString();
+					pa.name="test "+ numtemp;
+					pa.country="spain";
+					pa.status="";
+					tem.push(pa);
+				}
+				//END CRAP CODE		
+				
 				updates=new ArrayCollection(tem);
 				totalUpdated=res.total;
 				totalUpdatesPages = Math.ceil(totalUpdated/12);						
@@ -164,6 +215,16 @@
 				review.editedPending = totalUpdated-review.editedReviewed;
 				review.recalculatePendings();	
 				updatedBox.currentState="";
+				
+				
+				//Change the Size of the screen depending on this
+				if(tem.length>0) {
+					Application.application.viewsContainer.myViewStack.height=
+						Application.application.viewsContainer.myViewStack.height +updatedBox.height;
+					this.height=this.height +updatedBox.height;			
+					//trace(this.height);		
+				}
+				
 			}
 			
 			
@@ -224,7 +285,7 @@
 		</mx:Canvas>		
 	</mx:VBox>
     
-	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10">
+	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="225" top="62" bottom="10" id="tasksOverviewCanvas">
 		<mx:VBox left="15" right="15" top="15">
 			<pendingtasks:EditUpdateNewBox id="deletedBox" includeInLayout="{deleted.length>0}" visible="{deleted.length>0}" 
 				getNewData="{getTaskDeletions}" total="{totalDeleted}" totalPages="{totalDelPages}" pendingItems="{review.deletedPending}"
