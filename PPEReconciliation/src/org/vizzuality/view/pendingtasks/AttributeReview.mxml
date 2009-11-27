@@ -123,7 +123,7 @@
 					na = new NewAttribute();
 					na.attName=prop;
 					na.attValue=addedAttributes[prop];
-					na.setStyle("backgroundColor",0xC1E1FF);
+					//na.setStyle("backgroundColor",0xC1E1FF);
 					newAttributes.addChildAt(na,0);									
 				}
 				//REMOVED AATRIBUTES
@@ -131,13 +131,13 @@
 					ha = new headAttribute();
 					ha.attName=prop2;
 					ha.attValue=deletedAttributes[prop2];	
-					ha.setStyle("backgroundColor",0xFFC1C1);
+					//ha.setStyle("backgroundColor",0xFFC1C1);
 					headAttributes.addChildAt(ha,0);
 					
 					na = new NewAttribute();
 					na.attName=prop2;
 					na.attValue='';
-					na.setStyle("backgroundColor",0xFFC1C1);
+					//na.setStyle("backgroundColor",0xFFC1C1);
 					newAttributes.addChildAt(na,0);									
 				}
 				//CHANGED AATRIBUTES
