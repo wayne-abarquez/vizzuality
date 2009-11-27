@@ -169,6 +169,7 @@
 			
 			private function calculateHeight():void{
 				this.itemList.height = pendingTasks.length * 43;
+ 				Application.application.viewsContainer.myViewStack.height = this.itemList.height + 320;	
 			}
 			
 			public static function createRendererWithProperties(renderer:Class,properties:Object ):IFactory {
