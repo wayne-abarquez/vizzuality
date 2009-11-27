@@ -43,6 +43,7 @@
 			
 			private var originalPa:Pa;
 			private var newPa:Pa;
+			[Bindable] private var newName:String="";
 			
 			[Bindable] public var task:Task;
 			
@@ -75,6 +76,7 @@
 				newPa.country=res.newPa.country;
 				newPa.id = res.newPa.id;
 				newPa.name = res.newPa.name;
+				newName=newPa.name;
 				
 				
 				
@@ -117,7 +119,7 @@
 					ha = new headAttribute();
 					ha.attName=prop;
 					ha.attValue='';	
-					ha.setStyle("backgroundColor",0xC1E1FF);
+					//ha.setStyle("backgroundColor",0xC1E1FF);
 					headAttributes.addChildAt(ha,0);
 					
 					na = new NewAttribute();
@@ -237,7 +239,7 @@
 		<mx:Spacer width="100%" />
 	</mx:HBox>
 	<mx:HBox left="13" top="32" verticalAlign="bottom" horizontalGap="0" right="373">
-		<mx:Label text="Pemba Channel National Park" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
+		<mx:Label text="{newName}" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="14" top="35" letterSpacing="-1"/>
 		<mx:Label text="- Merge your changes" color="#666666" fontFamily="Helvetica" fontWeight="normal" fontSize="15" fontStyle="italic" height="23"/>
 	</mx:HBox>
     
