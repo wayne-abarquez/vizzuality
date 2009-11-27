@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+	<HEAD>
+		<TITLE>Runnity.com - Próximas carreras y atletas</TITLE>
+		<script src="http://maps.google.com/maps?file=api&v=1&key=ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyO" type="text/javascript"></script>
+	</HEAD>
+	<BODY onload="initialize()" onunload="GUnload()">
+		<div>
+			<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="500" height="400" id="myFlashContent">
+				<param name="movie" value="../flash/RunnityRacesXdays.swf?days=5"/>
+				<!--[if !IE]>-->
+				<object type="application/x-shockwave-flash" data="../flash/RunnityRacesXdays.swf?days=5" width="500" height="400">
+				<!--<![endif]-->
+					<div id="map_canvas" style="width:500px; height:400px"></div>
+				<!--[if !IE]>-->
+				</object>
+				<!--<![endif]-->
+			</object>
+		</div>
+		
+		<script type="text/javascript">
+			function initialize() {
+			      if (GBrowserIsCompatible()) {
+			        var map = new GMap2(document.getElementById("map_canvas"));
+			        map.setCenter(new GLatLng(53.699958629657445, -2.51861572265625), 9);
+
+				      // ==== Create a KML Overlay ====
+
+				      var kml = new GGeoXml("http://www.cdbetissanisidro.com/gmap/example.kml");
+				      map.addOverlay(kml);
+
+			      }
+			    }
+	  </script>
+		
+	</BODY>
+</HTML>
