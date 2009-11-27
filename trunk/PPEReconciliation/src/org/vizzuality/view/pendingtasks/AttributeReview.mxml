@@ -194,7 +194,7 @@
 
 				var geoJsondata:Object = JSON.decode(geoJson);
 				var mp:Multipolygon= new Multipolygon();
-				mp.fromGeojsonMultiPolygon(geoJsondata,polOpt);						
+				mp.fromGeojsonMultiPolygon(geoJsondata.coordinates,polOpt);						
 				mp.addToMap(map);
 			
 				map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);	
