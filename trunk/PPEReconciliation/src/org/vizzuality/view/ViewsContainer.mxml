@@ -95,14 +95,15 @@
     			
     			if (currentState=='Pendingtasks') {
     				if (pending_task is TasksContainer) {
-    					if (pending_task.currentState=='Overview') {
-	    					myViewStack.height = 640;
-    					}
     					if (pending_task.currentState=='Errors') {
 	    					myViewStack.height = 665;
 	    				}
-    				} else {
-	    				myViewStack.height = 1000;
+ 	    				if (pending_task.currentState=='Task') {
+	    					myViewStack.height = 10;
+	    				}
+	    				if (pending_task.currentState=='Pa') {
+	    					myViewStack.height = 300;
+	    				}
     				}
     			}
     			
