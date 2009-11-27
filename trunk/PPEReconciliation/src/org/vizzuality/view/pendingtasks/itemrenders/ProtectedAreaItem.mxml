@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" backgroundColor="#FFFFFF" creationComplete="init()"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="205" height="43" backgroundColor="#FFFFFF"
 	rollOver="handleOver(event)" rollOut="handleOut(event)" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
@@ -12,6 +12,7 @@
 	
 			[Bindable] public var textColor:uint;
 			[Bindable] public var statusColor:uint;
+			[Bindable] private var mamufasColor: uint;
 			[Bindable] public var pa:Pa;
 			public var mode:String;
 			
@@ -22,8 +23,13 @@
             	if (value != null) {
                 	super.data = value;
                 	pa = value as Pa;
+					if ((pa.ind % 2) == 0) {
+						mamufasColor = 0xFFFFFF;
+					} else {
+						mamufasColor = 0xF5F5F5;
+					}
            			if (pa.status != null) {
-						textColor = 0x999999;
+						textColor = 0x666666;
            			} else {
 						textColor = 0x666666;
            			}
@@ -33,12 +39,14 @@
 						statusText.text="Rejected";
 						statusOverText.text= statusText.text;	
 						statusColor = 0xff3300;
+						textColor = 0xdddddd;
 	                } else if(pa.status==ReviewProcess.CONFIRMED) {
 	                	confirmButton.alpha=1;
 						rejectButton.alpha=0.2;
 						statusText.text="Confirmed";
 						statusOverText.text= statusText.text;	
 						statusColor = 0x339900;
+						textColor = 0xdddddd;
 	                } else {
 	                	if( confirmButton!=null)
 	                		confirmButton.alpha=1;
@@ -54,15 +62,7 @@
 	                }
                 }
             }
-            
-            private function init():void {
-				if ((pa.ind % 2) == 0) {
-					mamufas.setStyle('backgroundColor','0xFFFFFF');
-				} else {
-					mamufas.setStyle('backgroundColor','0xF5F5F5');
-				}
-            }
-			
+
 			
 			//EL Color grisecito para cuando la fila es par es el #f5f5f5, sólo habría que hacer un setStyle
 			
@@ -129,7 +129,7 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Canvas left="5" right="5" top="0" bottom="0" id="mamufas">
+	<mx:Canvas left="5" right="5" top="0" bottom="0" id="mamufas" backgroundColor="{mamufasColor}">
 		<mx:Label id="areaName" x="1" y="6" text="{pa.name}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
 		<mx:Label id="country" x="2" y="22" text="{pa.country}" color="{textColor}" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal"/>
 		<mx:Label id="statusText" color="{statusColor}" right="0" bottom="5" width="66" textAlign="right" fontFamily="Helvetica" fontSize="10" fontStyle="normal"/>
