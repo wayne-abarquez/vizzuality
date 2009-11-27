@@ -50,6 +50,10 @@
 			}
 			
 			public function refreshData():void {
+				
+				this.height = 276;
+				Application.application.viewsContainer.myViewStack.height = 300;
+				
 				getTaskDeletions(1);
 				getTaskNewPas(1);
 				getTaskUpdates(1);
@@ -111,6 +115,16 @@
 					tem.push(pa);	
 					ind++;		
 				}
+				
+/* 				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
+					var pa1:Pa = new Pa();
+					pa1.id=numtemp.toString();
+					pa1.name="test "+ numtemp;
+					pa1.country="spain";
+					pa1.ind = numtemp-1;
+					pa1.status="";
+					tem.push(pa1);
+				}	 */
 						
 				
 				deleted=new ArrayCollection(tem);
@@ -143,7 +157,17 @@
 					tem.push(pa);
 					ind++;
 				}
-						
+				
+/* 				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
+					var pa2:Pa = new Pa();
+					pa2.id=numtemp.toString();
+					pa2.name="test "+ numtemp;
+					pa2.country="spain";
+					pa2.status="";
+					pa2.ind = numtemp-1;
+					tem.push(pa2);
+				}		 */
+
 				
 				news=new ArrayCollection(tem);
 				totalNew=res.total;
@@ -156,11 +180,11 @@
 				
 				//Change the Size of the screen depending on this
 				if(tem.length>0) {
+					this.height=this.height + newBox.height;		
 					Application.application.viewsContainer.myViewStack.height=
 						Application.application.viewsContainer.myViewStack.height +newBox.height;
-					this.height=this.height +newBox.height;		
 				}		
-				
+								
 			}
 			private function onGetTaskUpdatesResult(event:ResultEvent):void {
 				var res:Object = JSON.decode(event.result as String);
@@ -177,6 +201,17 @@
 					ind++;
 				}
 				
+
+/* 				for(var numtemp:Number=1;numtemp<=11;numtemp++) {
+					var pa3:Pa = new Pa();
+					pa3.id=numtemp.toString();
+					pa3.name="test "+ numtemp;
+					pa3.country="spain";
+					pa3.status="";
+					pa3.ind = numtemp;
+					tem.push(pa3);
+				} */
+
 				
 				updates=new ArrayCollection(tem);
 				totalUpdated=res.total;
@@ -189,9 +224,9 @@
 				
 				//Change the Size of the screen depending on this
 				if(tem.length>0) {
+					this.height=this.height + updatedBox.height;			
 					Application.application.viewsContainer.myViewStack.height=
-						Application.application.viewsContainer.myViewStack.height +updatedBox.height;
-					this.height=this.height +updatedBox.height;			
+						Application.application.viewsContainer.myViewStack.height + updatedBox.height;
 					//trace(this.height);		
 				}
 				
@@ -266,7 +301,6 @@
 			<pendingtasks:EditUpdateNewBox id="updatedBox"  includeInLayout="{updates.length>0}" visible="{updates.length>0}"
 				getNewData="{getTaskUpdates}" total="{totalUpdated}" totalPages="{totalUpdatesPages}" pendingItems="{review.editedPending}"
 				typeBox="Modified" mode="{ReviewProcess.UPDATE}" page="{updatePage}" dataAc="{updates}" styleUp="softBlueUp" styleDown="softBlueBottom"  />
-
 	    </mx:VBox>
 	</mx:Canvas>
 	<mx:Canvas x="648" y="53" width="18" height="1107" styleName="shadow" backgroundSize="100%" />
