@@ -210,7 +210,7 @@ package {
 			var m:Object = iw[e.target];
 
 			infoWindowToOpen = new PAGeneralInfowindow(m);
- 			infoWindowToOpen.targetUrl="/protected_areas/4";
+ 			infoWindowToOpen.targetUrl="/sites/366165";
  			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
             var options:InfoWindowOptions = new InfoWindowOptions({
               customContent: infoWindowToOpen,

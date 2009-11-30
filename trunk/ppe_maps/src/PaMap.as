@@ -39,7 +39,7 @@ package {
 	import flash.system.Security;
 	import flash.utils.Dictionary;
 
-	[SWF(backgroundColor=0xEEEEEE, widthPercent=100, heightPercent=100)]
+	[SWF(backgroundColor=0xeeeeee, widthPercent=100, heightPercent=100)]
 	public class PaMap extends Sprite
 	{
 		private var map:Map;
@@ -124,6 +124,9 @@ package {
 			leftArrowBitmap.width=38;
 			leftArrowBitmap.height=34;
 			sp1 = new Sprite();
+			sp1.useHandCursor = true;
+			sp1.mouseChildren = false;
+			sp1.buttonMode = true;
 			sp1.addChild(leftArrowBitmap);
 			sp1.addEventListener(MouseEvent.CLICK,handleClickImage);
 			
@@ -131,6 +134,9 @@ package {
 			rightArrowBitmap.width=38;
 			rightArrowBitmap.height=34;
 			sp2 = new Sprite();
+			sp2.useHandCursor = true;
+			sp2.mouseChildren = false;
+			sp2.buttonMode = true;
 			sp2.addChild(rightArrowBitmap);
 			sp2.addEventListener(MouseEvent.CLICK,handleClickImage);			
 
@@ -158,10 +164,8 @@ package {
 			var paId:Number=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
 				paId=1;
-			} else {
-				paId=root.loaderInfo.parameters.id;
 			}
-			dsLoader.load(new URLRequest("http://localhost:3000/protected_areas/"+paId+"/json"));
+			dsLoader.load(new URLRequest("http://localhost:3000/sites/"+paId+"/json"));
 			
 		}
 		
@@ -212,11 +216,8 @@ package {
 			mp.addToMap(map);
 			
 			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);		
-			map.panBy(new Point(-310,0),false);
-			
-
-			map.panBy(new Point(-310,0),false);
-			
+			map.panBy(new Point(-320,0),false);
+					
 			
 			
 			//getPanoramioPics();		
@@ -243,7 +244,7 @@ package {
 			sp2.x=(picturesSquare.x+picturesSquare.width)-28;									
 			sp2.y=picturesSquare.y+178;	
 			butButtonsBitmap.x=picturesSquare.width	+picturesSquare.x +16;
-			butButtonsBitmap.y=	square.y+square.height+4;				
+			butButtonsBitmap.y=	sp2.y + 55;				
 		}
 		
  		private function stageResizeHandler(ev:Event):void {
