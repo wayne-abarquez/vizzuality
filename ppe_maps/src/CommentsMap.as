@@ -11,14 +11,12 @@ package {
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
 	import com.google.maps.overlays.Marker;
-	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.Polygon;
 	import com.google.maps.styles.FillStyle;
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.*;
 	import com.vizzuality.gmaps.Clusterer;
 	import com.vizzuality.markers.ClusterMarker;
-	import com.vizzuality.markers.GenericMarkerIcon;
 	import com.vizzuality.markers.PAGeneralInfowindow;
 	import com.vizzuality.markers.PAMarker;
 	import com.vizzuality.markers.SingleMarker;
@@ -130,7 +128,7 @@ package {
 			//json urle xample: "/protected_areas/"+this.root.loaderInfo.parameters.id+"/comments.json"
 			paPoint = new LatLng(this.root.loaderInfo.parameters.palat,this.root.loaderInfo.parameters.palon);
 			var paId:Number=root.loaderInfo.parameters.id;
-			var commentJson: URLRequest = new URLRequest("http://localhost:3000/protected_areas/"+(paId)+"/comments.json");
+			var commentJson: URLRequest = new URLRequest("http://localhost:3000/sites/"+(paId)+"/comments.json");
 
             var urlLdr: URLLoader = new URLLoader();
             urlLdr.addEventListener(Event.COMPLETE, onGetPAJson);
@@ -200,7 +198,7 @@ package {
 			var m:Object = iw[e.target];
 
 			infoWindowToOpen = new PAGeneralInfowindow(m);
- 			infoWindowToOpen.targetUrl="/protected_areas/4";
+ 			infoWindowToOpen.targetUrl="/sites/366165";
  			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
             var options:InfoWindowOptions = new InfoWindowOptions({
               customContent: infoWindowToOpen,
