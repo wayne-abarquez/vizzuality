@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] ."/webbiocase-config.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/config.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
 
@@ -16,22 +16,55 @@ class Services {
 		$_SESSION['db']='cormofitos';
 	}
 	
+	public function getAllGenus() {
+		$sql = "select distinct Genus from BIOCASE_IDENTIFIC where highertaxon is not null order by Genus";
+		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$result=array();
+		while ($row = mysql_fetch_assoc($query)){
+			$result[]=ucfirst($row['Genus']);
+		}
+		return $result;
+	}
+	
+	public function getAllFamilies() {
+		$sql = "select distinct highertaxon from BIOCASE_IDENTIFIC where highertaxon is not null order by highertaxon";
+		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$result=array();
+		while ($row = mysql_fetch_assoc($query)){
+			$result[]=ucfirst(strtolower($row['highertaxon']));
+		}
+		return $result;
+	}
+	
+	public function getAllCountries() {
+		$sql = "SELECT distinct countryname FROM BIOCASE_UNITS WHERE countryname is not null";
+		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$result=array();
+		while ($row = mysql_fetch_assoc($query)){
+			$result[]=ucfirst(strtolower($row['countryname']));
+		}
+		return $result;
+	}	
+	
+	
+	
+	
 	//index
-	public function GetNumberRegister() {
+	public function getTotalRecords() {
 		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS";
 		$result = mysql_query($query, $this->conn) or die(mysql_error());		
 		$row = mysql_fetch_assoc($result);
 		return $row['total'];
 	}
 	
-	public function GetNumberRegisterWithImage() {
+	public function getTotalRecordsWithImage() {
 		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS where has_images = True";
 		$result = mysql_query($query, $this->conn) or die(mysql_error());		
 		$row = mysql_fetch_assoc($result);
 		return $row['total'];
 	}
 	
-	public function GetNumberRegisterGeoreferenciados() {
+	public function getTotalGeoreferenceRecords() {
 		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS";
 		$result = mysql_query($query, $this->conn) or die(mysql_error());		
 		$row = mysql_fetch_assoc($result);
@@ -39,41 +72,16 @@ class Services {
 	}
 	
 	//queryForm
-	public function GetLastUpdate() {
+	public function getLastUpdate() {
 		$query = "SELECT source_update as lastupdate FROM BIOCASE_METADATA";
 		$result = mysql_query($query, $this->conn) or die(mysql_error());		
 		$row = mysql_fetch_assoc($result);
 		return $row['lastupdate'];
 	}
 	
-	public function GetGenus() {
-		$query = "select distinct Genus from BIOCASE_IDENTIFIC where highertaxon is not null order by Genus";
-		$result = mysql_query($query, $this->conn) or die(mysql_error());		
-		while ($row = mysql_fetch_assoc($result)){
-		   	$results[] = $row; 
-		}
-		return $results;
-	}
+
 	
-	public function GetHighertaxon() {
-		$query = "select distinct highertaxon from BIOCASE_IDENTIFIC where highertaxon is not null order by highertaxon";
-		$result = mysql_query($query, $this->conn) or die(mysql_error());		
-		while ($row = mysql_fetch_assoc($result)){
-		   	$results[] = $row; 
-		}
-		return $results;
-	}
-	
-	public function GetCountryname() {
-		$query = "SELECT distinct countryname FROM BIOCASE_UNITS WHERE countryname is not null";
-		$result = mysql_query($query, $this->conn) or die(mysql_error());		
-		while ($row = mysql_fetch_assoc($result)){
-		   	$results[] = $row; 
-		}
-		return $results;
-	}
-	
-	public function Search($pageNum_Runits,$nameauthoryearstring,$highertaxon,$genus,$localitytext,$countryname,$utmformula,$agenttext,$UnitID,$datetext,$datesearchtype) {
+	public function searchSheets ($pageNum_Runits, $nameauthoryearstring,$highertaxon, $genus,$localitytext, $countryname,$utmformula, $agenttext, $UnitID, $datetext, $datesearchtype) {
 		$maxRows_Runits = 20;
 		$pageNum_Runits = 0;
 		
@@ -136,7 +144,7 @@ if ($orderby) {
 //Limit and offset for Mysql!
 $sql_with_limit=$sql." limit ".$startRow_Runits.", ".$maxRows_Runits;
 
-//echo $sql_with_limit;
+return $sql_with_limit;
 
 	$rs_specimen = array();
 	$result = mysql_query($sql_with_limit, $this->conn) or die(mysql_error());		
@@ -146,6 +154,9 @@ $sql_with_limit=$sql." limit ".$startRow_Runits.", ".$maxRows_Runits;
 	return $rs_specimen;
 		
 	}
+		
+	
+	
 }
 
 ?>

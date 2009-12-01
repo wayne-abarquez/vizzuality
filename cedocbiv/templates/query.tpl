@@ -1,6 +1,5 @@
 {include file="header.tpl"}
 
-<!-- #BeginEditable "editable" --> 
 <div id="container"> 
   <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Base de dades 
 	de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</font></h3>
@@ -75,26 +74,24 @@
 	consulta ompliu el camp corresponent. Podeu fer servir l'asterisc (*) en qualsevol 
 	posici&oacute; d'una paraula. </font></p>
   <div id="queryForm"> 
-	<form action="bdresult2_cat.php" method="get" name="thisform" id="thisform">
+	<form action="sheetresult.php" method="get" name="thisform" id="thisform">
 	  <h2><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Consulta</font></h2>
 	  <div class="instruction"> 
 		<div> <font face="Verdana, Arial, Helvetica, sans-serif" size="2"><span class="search-1"> 
 		  <label for="search">Nom del tàxon:</label> (Acro*)<br />
 		  <input name="nameauthoryearstring" id="nameauthoryearstring" size="30" style="width: 15em;" type="text" />
 		  </span> <span class="search-1"><strong>Gènere:</strong> (Acant*) <br />
-		  <select name="genus">
-			<option value="">Tots</option>
-			{foreach key=id item=genus from=$GenusResults}
-				<option value="{$genus}"></option> 
-			{/foreach}
-		  </select>
+			
+			<select name="genus">
+				<option value="">Totes</option>
+				{html_options values=$genus output=$genus}
+			</select>	
+			
 		  </span> <span class="search-2"><strong>Família:</strong><br />
-		  <select name="highertaxon">
-			<option value="">Totes</option>
-			{foreach key=id item=highertaxon from=$HighertaxonResults}
-				<option value="{$highertaxon.highertaxon}"></option> 
-			{/foreach}
-		  </select>
+			<select name="highertaxon">
+				<option value="">Totes</option>
+				{html_options values=$families output=$families}
+			</select>			
 		  </span><br />
 		  <br />
 		  <br />
@@ -103,7 +100,7 @@
 		  </span> <span class="search-1"><strong>País:</strong><br />
 		  <select name="countryname">
 			<option value="">Tots</option>
-			
+			{html_options values=$countries output=$countries}
 		  </select>
 		  </span> <span class="search-2"><strong>UTM:</strong> (31TCG65) <br />
 		  <input name="utmformula" id="utmformula" size="8" style="width: 5em;" type="text" />
@@ -129,7 +126,7 @@
 		  <br />
 		  <br />
 		  <input name="submit" value="Cerca" type="submit" style="font-size:16px;"/>
-		  <input name="db" type="hidden" value="<?php echo($_REQUEST['db'])?>">
+		  <input name="db" type="hidden" value="{$BDSelected}">
 		  </font></div>
 	  </div>
 	</form>
