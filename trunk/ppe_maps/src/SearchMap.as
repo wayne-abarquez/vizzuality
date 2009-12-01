@@ -119,7 +119,7 @@ package {
 			
 			var areas:Array =[];
 			var bounds:LatLngBounds = new LatLngBounds();
-			for each(var area:Object in pas) {
+			for each(var areaJson:Object in pas) {
 				var area:Multipolygon = new Multipolygon();
 				area.data.name=areaJson.name;
 				area.fromGeojsonMultiPolygon(areaJson.geojson.coordinates,polOpt);
