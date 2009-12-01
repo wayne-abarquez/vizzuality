@@ -43,8 +43,10 @@ $smarty->assign('datesearchtype', $datesearchtype);
 //if ($_REQUEST['orderby']) 				{ $orderby = $_REQUEST['orderby']; }
 
 $smarty->assign('SearchResults',$services->Search($pageNum_Runits,$nameauthoryearstring,$highertaxon,$genus,$localitytext,$countryname,$utmformula,$agenttext,$UnitID,$datetext,$datesearchtype));
+$smarty->assign('families',$services->getAllFamilies());
+$smarty->assign('countries',$services->getAllCountries());
 
 $smarty->assign('section', 'bdresult_cat');
-$smarty->display('bdresult_cat.tpl');
+$smarty->display('sheetresult.tpl');
 
 ?>

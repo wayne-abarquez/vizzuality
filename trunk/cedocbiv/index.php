@@ -10,11 +10,11 @@ $services = new Services;
 
 
 
-$smarty->assign('Numregistros',$services->GetNumberRegister());
-$smarty->assign('NumRegistrosImagen',$services->GetNumberRegisterWithImage());
-$smarty->assign('NumRegistrosGeoreferenciados',$services->GetNumberRegisterGeoreferenciados());
+$smarty->assign('Numregistros',$services->getTotalRecords());
+$smarty->assign('NumRegistrosImagen',$services->getTotalRecordsWithImage());
+$smarty->assign('NumRegistrosGeoreferenciados',$services->getTotalGeoreferenceRecords());
 
-$smarty->assign('section', 'webbiocaseHome');
+$smarty->assign('section', 'home');
 $smarty->display('home.tpl');
 
 ?>

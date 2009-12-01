@@ -11,7 +11,7 @@
 		d'aquesta p&agrave;gina podeu accedir a les sis bases de dades de l'herbari 
 		BCN, que es corresponen a les respectives col&middot;leccions que allotja 
 		el centre. Cliqueu en la base de dades que volgueu consultar:</font></p>
-	   <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="queryForm_cat.php?db=cormofitos">Algues</a></font></h3>
+	   <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="query.php?db=cormofitos">Algues</a></font></h3>
 	  <p class="subheader"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">aprox. 
 		el <b>99 %</b> informatitzat | <b> 
 		{$Numregistros}
@@ -20,7 +20,7 @@
 		</b> imatges | <b> 
 		{$NumRegistrosGeoreferenciados}
 		</b> registres georeferenciats</font></p>
-	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="queryForm_cat.php?db=cormofitos">Bri&ograve;fits</a></font></h3>
+	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="query.php?db=cormofitos">Bri&ograve;fits</a></font></h3>
 	  <p class="subheader"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">aprox.el 
 		<b>3 %</b> informatitzat | <b> 
 		{$Numregistros}
@@ -29,7 +29,7 @@
 		</b> imatges | <b> 
 		{$NumRegistrosGeoreferenciados}
 		</b> registres georeferenciats </font></p>
-	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="queryForm_cat.php?db=cormofitos">Corm&ograve;fits 
+	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="query.php?db=cormofitos">Corm&ograve;fits 
 		</a></font></h3>
 	  <p class="subheader"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">aprox. 
 		<b>5 %</b> informatizado | <b> 
@@ -39,7 +39,7 @@
 		</b> imatges | <b> 
 		{$NumRegistrosGeoreferenciados}
 		</b> registres georeferenciats </font></p>
-	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="queryForm_cat.php?db=cormofitos">Col&middot;lecci&oacute; 
+	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="query.php?db=cormofitos">Col&middot;lecci&oacute; 
 		de fruits i llavors</a></font></h3>
 	  <p class="subheader"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">aprox 
 		el <b>98 %</b> informatitzat | <b> 
@@ -49,7 +49,7 @@
 		</b> imatges | <b> 
 		{$NumRegistrosGeoreferenciados}
 		</b> registres georeferenciats</font></p>
-	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="queryForm_cat.php?db=cormofitos">Fongs</a></font></h3>
+	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="query.php?db=cormofitos">Fongs</a></font></h3>
 	  <p class="subheader"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">aprox.l'<b>1 
 		%</b> informatitzat | <b> 
 		{$Numregistros}
@@ -58,7 +58,7 @@
 		</b> imatges | <b> 
 		{$NumRegistrosGeoreferenciados}
 		</b> registres georeferenciats</font></p>
-	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="queryForm_cat.php?db=cormofitos">L&iacute;quens</a></font></h3>
+	  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2"><a href="query.php?db=cormofitos">L&iacute;quens</a></font></h3>
 	  <p class="subheader"><font face="Verdana, Arial, Helvetica, sans-serif" size="2">aprox. 
 		l'<b>1 %</b> informatitzat | <b> 
 		{$Numregistros}
