@@ -9,6 +9,7 @@ package com.vizzuality.maps {
   import com.google.maps.LatLng;
   import com.google.maps.LatLngBounds;
   import com.google.maps.Map;
+  import com.google.maps.interfaces.IPane;
   import com.google.maps.overlays.EncodedPolylineData;
   import com.google.maps.overlays.Polygon;
   import com.google.maps.overlays.PolygonOptions;
@@ -114,6 +115,11 @@ package com.vizzuality.maps {
     public function addToMap(map:Map): void {
       for each(var p:Polygon in polygons) {
         map.addOverlay(p);
+      }
+    }
+    public function addToPane(pane:IPane): void {
+      for each(var p:Polygon in polygons) {
+        pane.addOverlay(p);
       }
     }
 

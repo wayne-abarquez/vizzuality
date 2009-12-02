@@ -158,7 +158,7 @@ package {
 			mp.addToMap(map);
 
 			//Set the center of the map to the bbox of the area			
-			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);		
+			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds()));		
 			
 			//If there is pictures then display the ImageCarrousel
 			if((data.pictures as Array).length>0) {

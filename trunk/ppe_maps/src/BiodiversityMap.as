@@ -1,10 +1,15 @@
 package {
 	import com.adobe.serialization.json.JSON;
 	import com.google.maps.Alpha;
+	import com.google.maps.Color;
 	import com.google.maps.Map;
 	import com.google.maps.MapEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
+	import com.google.maps.controls.ControlPosition;
+	import com.google.maps.controls.ZoomControl;
+	import com.google.maps.controls.ZoomControlOptions;
+	import com.google.maps.interfaces.IPane;
 	import com.google.maps.overlays.Polygon;
 	import com.google.maps.overlays.PolygonOptions;
 	import com.google.maps.overlays.TileLayerOverlay;
@@ -12,7 +17,6 @@ package {
 	import com.greensock.plugins.*;
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.tileoverlays.GbifTileLayer;
-	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -33,6 +37,8 @@ package {
 		private var pol:Polygon;
 		private var mapKey:String = "nokey";
 		private var gbifTileLayer:GbifTileLayer;	
+		private var polygonPane:IPane;
+		private var tilesPane:IPane;
 		
 										
 						
@@ -82,18 +88,18 @@ package {
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
 				    thickness: 2,
-				    color: 0xFF7600,
+				    color: Color.BLUE,
 				    alpha: 1
 				  },
 				  fillStyle: {
-				    color: 0xFF7600,
+				    color: Color.BLUE,
 				    alpha: 0.4
 				  }	
 			});
 			
 			var mp:Multipolygon= new Multipolygon();
-			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);						
-			mp.addToMap(map);
+			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);
+			mp.addToPane(polygonPane);
 			
 			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds()));		
 		}
@@ -132,23 +138,36 @@ package {
 		}		
 		
 		private function onMapReady(event:MapEvent):void {
+			tilesPane=map.getPaneManager().createPane();
+			polygonPane=map.getPaneManager().createPane();
+			
+			
+			var mzco:ZoomControlOptions = new ZoomControlOptions({
+				hasScrollTrack:false,
+				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10) 
+			});
+			var zc:ZoomControl= new ZoomControl(mzco);
+			map.addControl(zc);
+			
 			
 			if(dataLoaded && !dataAnalyzed) {
 				dataAnalyzed=true;
 				loadData();	
 			}
 			
-			var tl:GeoserverTileLayer = new GeoserverTileLayer();
-			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
+			//var tl:GeoserverTileLayer = new GeoserverTileLayer();
+			//var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
 			//tlo.foreground.alpha=1;
-			map.addOverlay(tlo);		
+			//map.addOverlay(tlo);		
 			
 			var animalia:GbifTileLayer = new GbifTileLayer(13140803);
 			var plantae:GbifTileLayer = new GbifTileLayer(13140804);
 			var gtlo:TileLayerOverlay = new TileLayerOverlay(animalia);
-			map.addOverlay(gtlo);
+			tilesPane.addOverlay(gtlo);
+			gtlo.foreground.alpha=0.7;
 			var gtlo2:TileLayerOverlay = new TileLayerOverlay(plantae);
-			map.addOverlay(gtlo2);
+			tilesPane.addOverlay(gtlo2);
+			gtlo2.foreground.alpha=0.7;
 
 		}	
 		
