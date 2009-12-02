@@ -57,7 +57,7 @@ package {
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			var paId:Number=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=2027;
+				paId=377207;
 			}
 			dsLoader.load(new URLRequest("http://localhost:3000/sites/"+paId+"/json"));
 			
@@ -95,7 +95,7 @@ package {
 			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);						
 			mp.addToMap(map);
 			
-			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);		
+			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds()));		
 		}
 		
 
@@ -143,9 +143,12 @@ package {
 			//tlo.foreground.alpha=1;
 			map.addOverlay(tlo);		
 			
-			gbifTileLayer = new GbifTileLayer(1);
-			var gtlo:TileLayerOverlay = new TileLayerOverlay(gbifTileLayer);
+			var animalia:GbifTileLayer = new GbifTileLayer(13140803);
+			var plantae:GbifTileLayer = new GbifTileLayer(13140804);
+			var gtlo:TileLayerOverlay = new TileLayerOverlay(animalia);
 			map.addOverlay(gtlo);
+			var gtlo2:TileLayerOverlay = new TileLayerOverlay(plantae);
+			map.addOverlay(gtlo2);
 
 		}	
 		
