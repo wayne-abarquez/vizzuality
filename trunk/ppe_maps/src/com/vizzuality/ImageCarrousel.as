@@ -53,7 +53,7 @@ package com.vizzuality
 			//we will mask it later.
  			var i:Number=0;
 			for each(var pic:Object in images) {
-				var img:ImageContainer = new ImageContainer("http://localhost:3000/images/paimages/377207_"+pic.id+"_m.jpg");
+				var img:ImageContainer = new ImageContainer(pic.url);
 				imagesContainerSprite.addChild(img);
 				img.x = i*310;
 				i++;
@@ -87,7 +87,7 @@ package com.vizzuality
 			sp1.addEventListener(MouseEvent.CLICK,handleClickImage);
 			sp1.x=picturesSquare.x - 10;	
 			sp1.y=picturesSquare.y + 40;
-			addChild(sp1);
+			//addChild(sp1);
 			
 			//craete and add the right button
 			var rightArrowBitmap:Bitmap = new rightArrow() as Bitmap;
@@ -101,7 +101,8 @@ package com.vizzuality
 			sp2.addEventListener(MouseEvent.CLICK,handleClickImage);						
 			sp2.x=(picturesSquare.x+picturesSquare.width)-28;									
 			sp2.y=picturesSquare.y+178;
-			addChild(sp2);
+			if(imgArray.length>2)
+				addChild(sp2);
 							
 				
 			
@@ -118,6 +119,25 @@ package com.vizzuality
 					position++;				
 				}
 			}
+			if(position==0) {
+				removeChild(sp1);
+			} else {
+				if (sp1!=null && sp1.parent!=null) {
+					removeChild(sp1);				
+				}
+			}
+			
+			if(position>0 && sp1.parent==null) {
+				addChild(sp1);
+			}
+			
+			if(position==images.length-2) {
+				removeChild(sp2);
+			} else{
+				if(sp2.parent==null)
+					addChild(sp2);
+			}			
+			
 		}		
 		
 	}
