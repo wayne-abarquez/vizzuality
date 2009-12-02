@@ -3,6 +3,7 @@ package {
 	import com.google.maps.Alpha;
 	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
+	import com.google.maps.LatLngBounds;
 	import com.google.maps.Map;
 	import com.google.maps.MapEvent;
 	import com.google.maps.MapMouseEvent;
@@ -13,6 +14,7 @@ package {
 	import com.google.maps.controls.ZoomControlOptions;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
+	import com.google.maps.overlays.Polygon;
 	import com.google.maps.overlays.PolygonOptions;
 	import com.google.maps.overlays.TileLayerOverlay;
 	import com.google.maps.styles.FillStyle;
@@ -46,7 +48,7 @@ package {
 		private var dataLoaded:Boolean=false;
 		private var dataAnalyzed:Boolean=false;
 		private var data:Object;
-		private var imageMarkers:Dictionary = new Dictionary(true);
+		private var panoramioMarkers:Dictionary = new Dictionary(true);
 		private var imageDict:Dictionary = new Dictionary(true);
 		public var picturesInfoWindows:Dictionary = new Dictionary(true);	
 
@@ -125,7 +127,7 @@ package {
 			//TALK TO SIMON TO ADD THIS IN THE JSON
 			data.pictures=[];
 			for (var im:Number=1;im<=4;im++) {
-				data.pictures.push({id:im,lat:(44.498121*(1+im/500)),lng:(-110.22743*(1+im/500))});
+				data.pictures.push({id:im,url:"http://localhost:3000/images/paimages/377207_"+im+"_m.jpg"});
 			}
 			//end of fake pictures
 			
@@ -154,22 +156,6 @@ package {
 			mp= new Multipolygon();
 			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);						
 			mp.addToMap(map);
-			
-			//Place images
-			for each(var pic:Object in data.pictures) {
-				var img:ImageData=new ImageData();
-				img.latlng = new LatLng(pic.lat,pic.lng);
-				img.imageUrl = "http://localhost:3000/images/paimages/"+paId+"_"+pic.id+"_m.jpg";
-				img.thumbnail = "http://localhost:3000/images/paimages/"+paId+"_"+pic.id+"_s.jpg";
-				img.id=pic.id;
-				img.height=293;
-				img.width=245;
-				var loader:Loader = new Loader();
-				//Load the images
-				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createImageMarker,false,0,true);
-				imageDict[loader]=img;
-				loader.load(new URLRequest(img.thumbnail));				
-			}
 
 			//Set the center of the map to the bbox of the area			
 			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);		
@@ -185,6 +171,9 @@ package {
 				positionElements();
 				
 			}
+			
+			//retrieve picture from panoramio
+			getPanoramioPictures();
 		}		
 		
 		private function preinit(ev:Event):void {
@@ -211,6 +200,57 @@ package {
 			map.addOverlay(tlo);				
 
 		}		
+		
+		private function getPanoramioPictures():void {		
+			var url:String= "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=20&size=mini_square";		
+	
+			panoramioMarkers = new Dictionary(true);		
+			var bboxAll:LatLngBounds=mp.getLatLngBounds();	
+			var bbox:LatLngBounds = new LatLngBounds(
+				new LatLng(bboxAll.getSouth()+(bboxAll.getSouth()*0.002),bboxAll.getWest()-(bboxAll.getWest()*0.001)),
+				new LatLng(bboxAll.getNorth()-(bboxAll.getNorth()*0.002),bboxAll.getEast()+(bboxAll.getEast()*0.001))
+				);
+		
+			var loader:URLLoader= new URLLoader();		
+			loader.addEventListener(Event.COMPLETE,onPanoramioResult);		
+			
+/* 			var pol:Polygon = new Polygon([new LatLng(bbox.getSouth(),bbox.getWest()),
+										   new LatLng(bbox.getNorth(),bbox.getWest()),
+										   new LatLng(bbox.getNorth(),bbox.getEast()),
+										   new LatLng(bbox.getSouth(),bbox.getEast()),
+										   new LatLng(bbox.getSouth(),bbox.getWest())]);
+			map.addOverlay(pol);	 */						   
+			loader.load(new URLRequest(url + "&minx="+bbox.getWest()+"&miny="+bbox.getSouth()+"&maxx="+bbox.getEast()+"&maxy="+bbox.getNorth()));		
+			}		
+			
+			private function onPanoramioResult(event:Event):void {		
+				var res:Object = JSON.decode(event.currentTarget.data as String);		
+				for each(var photo:Object in res.photos) {		
+					//if(pa.geometry.pointInPolygon(new LatLng(photo.latitude, photo.longitude)) && (!existingPoints.indexOf(photo.latitude+photo.longitude)>=0)) {		
+			
+						var img:ImageData=new ImageData();		
+						img.latlng = new LatLng(photo.latitude,photo.longitude);		
+						img.source="Panoramio";		
+						img.owner = photo.owner_name		
+						img.sourceUrl = photo.photo_url;		
+						img.title = photo.photo_title;		
+						img.imageUrl = (photo.photo_file_url as String).replace("mini_square","thumbnail");		
+						img.thumbnail = (photo.photo_file_url as String).replace("medium","mini_square");		
+						img.id=photo.photo_id;		
+						img.height=photo.height;		
+						img.width=photo.width;		
+			
+			
+						//pictures.addItem(img);		
+						var loader:Loader = new Loader();		
+						loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createImageMarker,false,0,true);		
+						imageDict[loader]=img;		
+						loader.load(new URLRequest(img.thumbnail));		
+			
+					//}		
+				}		
+			}		
+		
 		
 		private function createImageMarker(ev:Event):void {
 			var photo:ImageData=imageDict[ev.target.loader];
@@ -240,7 +280,7 @@ package {
 		   		s.addChild(infowindow);
 		   		s.buttonMode=true;
  		   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
-	                //customContent: loader.loader,
+	                customContent: loader.loader,
 	                strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
 	                cornerRadius:0,
 					hasShadow:false,
@@ -256,7 +296,7 @@ package {
 	        	map.addOverlay(marker);
         		
         	});
-	        imageMarkers[photo]=marker;
+	        panoramioMarkers[photo]=marker;
 		} 		
 
 		
