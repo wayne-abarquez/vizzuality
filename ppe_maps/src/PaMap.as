@@ -46,8 +46,8 @@ package {
 		private var dataLoaded:Boolean=false;
 		private var dataAnalyzed:Boolean=false;
 		private var data:Object;
-		private var panoramioMarkers:Dictionary = new Dictionary(true);
-		private var panoramioDict:Dictionary = new Dictionary(true);
+		private var imageMarkers:Dictionary = new Dictionary(true);
+		private var imageDict:Dictionary = new Dictionary(true);
 		public var picturesInfoWindows:Dictionary = new Dictionary(true);	
 
 		private var imgC:ImageCarrousel;
@@ -65,11 +65,13 @@ package {
 						
 		public function PaMap()
 		{ 
+			//Define stage properties
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;	
 			stage.addEventListener(Event.RESIZE, stageResizeHandler);
-			//this.height = 364;	
 
+
+			//This is to allow the access to the tiles for the mouse over
 			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080"];
 			for each(var dom:String in externalDomains) {
 			    Security.allowDomain(dom);
@@ -79,33 +81,33 @@ package {
 			    loader.load(request);				
 			}				
 			
+			//Draw the blue square around the map
 			square = new Sprite();
 			square.graphics.beginFill(0x275186);
 			square.graphics.drawRect(0,0,960, stage.stageHeight);
 			square.graphics.endFill();
+			addChild(square);
+			//addChildAt(square,0);
 			
-			
-			addChildAt(square,0);
-			
+			//poisition it
 			positionElements();	
 								
-								
-			map=new Map();
-			
+			//create the map					
+			map=new Map();			
 			var mk:String=root.loaderInfo.parameters.key;
 			if(mk!=null) {
 				map.key=root.loaderInfo.parameters.key;
 			} else {
 				map.key=mapKey;
-			}			
-				
-			map.y=3;
-			
+			}							
+			map.y=3;			
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(stage.stageWidth, stage.stageHeight-46));
-			addChildAt(map,1); 				
+			addChildAt(map,1); 			
+				
 
+			//get the PA data
 			var dsLoader:URLLoader = new URLLoader();
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			paId=root.loaderInfo.parameters.id;
@@ -118,27 +120,24 @@ package {
 		
 		private function onDataLoaded(event:Event):void {
 			dataLoaded=true;
-			data = JSON.decode(event.currentTarget.data as String);
-			
+			data = JSON.decode(event.currentTarget.data as String);			
 			//fake addition of pictures
+			//TALK TO SIMON TO ADD THIS IN THE JSON
 			data.pictures=[];
 			for (var im:Number=1;im<=4;im++) {
 				data.pictures.push({id:im,lat:(44.498121*(1+im/500)),lng:(-110.22743*(1+im/500))});
 			}
 			//end of fake pictures
 			
-			
+			//Only load the data if the map is ready or it will fail
 			if(map.isLoaded() && !dataAnalyzed) {
 				dataAnalyzed=true;
 				loadData();				
 			}
-				
 		}
 		
-		
 		private function loadData():void {
-			
-			
+			//Polygon options for the PA
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
 				    thickness: 2,
@@ -151,6 +150,7 @@ package {
 				  }	
 			});
 			
+			//the data will always be a MultiPolygon
 			mp= new Multipolygon();
 			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);						
 			mp.addToMap(map);
@@ -165,33 +165,27 @@ package {
 				img.height=293;
 				img.width=245;
 				var loader:Loader = new Loader();
-				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createPanoramioMarker,false,0,true);
-				panoramioDict[loader]=img;
+				//Load the images
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createImageMarker,false,0,true);
+				imageDict[loader]=img;
 				loader.load(new URLRequest(img.thumbnail));				
 			}
 
-			
-			
-			
+			//Set the center of the map to the bbox of the area			
 			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);		
 			
+			//If there is pictures then display the ImageCarrousel
 			if((data.pictures as Array).length>0) {
 				imgC = new ImageCarrousel();
 				imgC.init(data.pictures as Array);
 				addChild(imgC);
 				
+				//Because the carrusel stay in the middle we have to pan the map and reposition
 				map.panBy(new Point(-320,0),false);
 				positionElements();
 				
 			}
-			
-					
-			
-			
-			//getPanoramioPics();		
-				
 		}		
-			
 		
 		private function preinit(ev:Event):void {
 				var mo:MapOptions = new MapOptions();
@@ -211,18 +205,17 @@ package {
 				loadData();	
 			}
 			
+			//add the default PPE layer for visualizing the other Pas
 			var tl:GeoserverTileLayer = new GeoserverTileLayer();
 			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
-			//tlo.foreground.alpha=1;
 			map.addOverlay(tlo);				
 
 		}		
-			
-
 		
-		private function createPanoramioMarker(ev:Event):void {
+		private function createImageMarker(ev:Event):void {
+			var photo:ImageData=imageDict[ev.target.loader];
 			
-			var photo:ImageData=panoramioDict[ev.target.loader];
+			//Set the images thumbnail images to 25x25
 			(ev.target.loader as Loader).width=25;
 			(ev.target.loader as Loader).height=25;
 			
@@ -242,15 +235,12 @@ package {
         	});
         	
         	infowindow.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void {
-        				   		
 		   		var loader:LoaderInfo= event.currentTarget as LoaderInfo;
-		   		
 		   		var s:Sprite=new Sprite();
 		   		s.addChild(infowindow);
 		   		s.buttonMode=true;
-		   		
  		   		var optionsMark:InfoWindowOptions = new InfoWindowOptions({
-	                customContent: loader.loader,
+	                //customContent: loader.loader,
 	                strokeStyle: new StrokeStyle({thickness: 6, color:0xFFFFFF}),
 	                cornerRadius:0,
 					hasShadow:false,
@@ -259,16 +249,14 @@ package {
 	                drawDefaultFrame: true					
 				});  	 
 				picturesInfoWindows[marker]=optionsMark;
-				
 		        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
 		      		marker.openInfoWindow(optionsMark);  
 		      		//map.panTo(e.latLng);   
 		        });      
-		        
 	        	map.addOverlay(marker);
         		
         	});
-	        panoramioMarkers[photo]=marker;
+	        imageMarkers[photo]=marker;
 		} 		
 
 		
@@ -281,25 +269,6 @@ package {
 				imgC.x=square.x;
 				imgC.y= stage.stageHeight-imgC.height-20;
 			}
-			
-			
-			//picturesSquare.x = square.x ;
-			//picturesSquare.y = stage.stageHeight-picturesSquare.height-20;	
-			//imgContainer.x = picturesSquare.x+10;
-			//imgContainer.y = picturesSquare.y+10;	
-			//maskSprite.x = picturesSquare.x+9;
-			//maskSprite.y = picturesSquare.y+10;	
-/* 			imgLoading1.x = picturesSquare.x+10;
-			imgLoading1.y = picturesSquare.y+10;	
-			imgLoading2.x = picturesSquare.x+320;
-			imgLoading2.y = picturesSquare.y+10;	 */
-			
-/* 			sp1.x=picturesSquare.x - 10;									
-			sp1.y=picturesSquare.y + 40;								
-			sp2.x=(picturesSquare.x+picturesSquare.width)-28;									
-			sp2.y=picturesSquare.y+178;	 */
-			//butButtonsBitmap.x=picturesSquare.width	+picturesSquare.x +16;
-			//butButtonsBitmap.y=	sp2.y + 55;				
 		}
 		
  		private function stageResizeHandler(ev:Event):void {
@@ -307,9 +276,5 @@ package {
 			if(map!=null)
 				map.setSize(new Point(stage.stageWidth, stage.stageHeight-45));
 		}	
-		
-
-		
-				
 	}
 }
