@@ -13,6 +13,7 @@ package com.vizzuality.maps {
   import com.google.maps.overlays.EncodedPolylineData;
   import com.google.maps.overlays.Polygon;
   import com.google.maps.overlays.PolygonOptions;
+  import com.vizzuality.utils.MapUtils;
 
   /** 
   * MultiPolygonWithValue is a wrapper class for Flash Maps API polygons
@@ -139,6 +140,15 @@ package com.vizzuality.maps {
       }    	
       return bounds;
     }
+
+	public function pointInPolygon(latlng:LatLng):Boolean {
+		for each(var p:Polygon in polygons) {
+			if (MapUtils.pointInPolygon(latlng,p))
+				return true;
+		}		
+		return false;	
+	}    
+    
     
   }
 }
