@@ -205,11 +205,11 @@ package {
 			var url:String= "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=20&size=mini_square";		
 	
 			panoramioMarkers = new Dictionary(true);		
-			var bboxAll:LatLngBounds=mp.getLatLngBounds();	
-			var bbox:LatLngBounds = new LatLngBounds(
+			var bbox:LatLngBounds=mp.getLatLngBounds();	
+/* 			var bbox:LatLngBounds = new LatLngBounds(
 				new LatLng(bboxAll.getSouth()+(bboxAll.getSouth()*0.002),bboxAll.getWest()-(bboxAll.getWest()*0.001)),
 				new LatLng(bboxAll.getNorth()-(bboxAll.getNorth()*0.002),bboxAll.getEast()+(bboxAll.getEast()*0.001))
-				);
+				); */
 		
 			var loader:URLLoader= new URLLoader();		
 			loader.addEventListener(Event.COMPLETE,onPanoramioResult);		
@@ -226,7 +226,7 @@ package {
 			private function onPanoramioResult(event:Event):void {		
 				var res:Object = JSON.decode(event.currentTarget.data as String);		
 				for each(var photo:Object in res.photos) {		
-					//if(pa.geometry.pointInPolygon(new LatLng(photo.latitude, photo.longitude)) && (!existingPoints.indexOf(photo.latitude+photo.longitude)>=0)) {		
+					if(mp.pointInPolygon(new LatLng(photo.latitude, photo.longitude))) {		
 			
 						var img:ImageData=new ImageData();		
 						img.latlng = new LatLng(photo.latitude,photo.longitude);		
@@ -247,7 +247,7 @@ package {
 						imageDict[loader]=img;		
 						loader.load(new URLRequest(img.thumbnail));		
 			
-					//}		
+					}		
 				}		
 			}		
 		
