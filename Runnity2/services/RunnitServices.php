@@ -1150,8 +1150,7 @@ class RunnitServices {
         
         $sql="select rd.distance_name,rd.id,time_taken,
             (select count(ur2.id) +1 as position from users_records as ur2 where time_taken< ur.time_taken AND record_distance_fk=rd.id) as position
-            from users_records as ur inner join record_distance as rd on ur.record_distance_fk=rd.id where user_fk=$id
-            order by rd.id";
+            from users_records as ur inner join record_distance as rd on ur.record_distance_fk=rd.id where user_fk=$id order by rd.id";
             
         return pg_fetch_all(pg_query($this->conn, $sql));  
     }
