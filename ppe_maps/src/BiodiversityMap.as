@@ -11,6 +11,7 @@ package {
 	import com.google.maps.styles.FillStyle;
 	import com.greensock.plugins.*;
 	import com.vizzuality.maps.Multipolygon;
+	import com.vizzuality.tileoverlays.GbifTileLayer;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
 	import flash.display.Sprite;
@@ -31,6 +32,7 @@ package {
 		private var data:Object;
 		private var pol:Polygon;
 		private var mapKey:String = "nokey";
+		private var gbifTileLayer:GbifTileLayer;	
 		
 										
 						
@@ -139,7 +141,11 @@ package {
 			var tl:GeoserverTileLayer = new GeoserverTileLayer();
 			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
 			//tlo.foreground.alpha=1;
-			map.addOverlay(tlo);				
+			map.addOverlay(tlo);		
+			
+			gbifTileLayer = new GbifTileLayer(1);
+			var gtlo:TileLayerOverlay = new TileLayerOverlay(gbifTileLayer);
+			map.addOverlay(gtlo);
 
 		}	
 		
