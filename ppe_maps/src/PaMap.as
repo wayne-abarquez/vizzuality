@@ -9,12 +9,12 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
+	import com.google.maps.MapZoomEvent;
 	import com.google.maps.controls.ControlPosition;
 	import com.google.maps.controls.ZoomControl;
 	import com.google.maps.controls.ZoomControlOptions;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
-	import com.google.maps.overlays.Polygon;
 	import com.google.maps.overlays.PolygonOptions;
 	import com.google.maps.overlays.TileLayerOverlay;
 	import com.google.maps.styles.FillStyle;
@@ -184,6 +184,10 @@ package {
 		}		
 		
 		private function onMapReady(event:MapEvent):void {
+			
+			map.addEventListener(MapMouseEvent.DOUBLE_CLICK,onMapDoubleClick);
+			//map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);
+			
 			var zco:ZoomControlOptions= new ZoomControlOptions({
 				position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)
 			});
@@ -200,6 +204,23 @@ package {
 			map.addOverlay(tlo);				
 
 		}		
+		
+		
+		
+		private function onMapDoubleClick(event:MapMouseEvent):void {
+			//trace("onMapDoubleClick");			
+			if(imgC!=null) {
+				map.panBy(new Point(-320,0),false);
+			}
+		}
+		
+/* 		private function onZoomChange(event:MapZoomEvent):void {
+			trace("onZoomChange");			
+			if(imgC!=null) {
+				map.panBy(new Point(-320,0),false);
+			}
+		} */
+		
 		
 		private function getPanoramioPictures():void {		
 			var url:String= "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=20&size=mini_square";		
