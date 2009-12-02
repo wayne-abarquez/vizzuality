@@ -38,7 +38,7 @@ package com.vizzuality.tileoverlays
            	if (srvNum>3)
            		srvNum=0;
            	
-           var baseURL:String = "http://maps0.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_13140803";
+           var baseURL:String = "http://maps0.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxonId;
            
            //if (baseURL.indexOf("|N|")>0)
            //		baseURL = baseURL.replace("|N|",srvNum)
