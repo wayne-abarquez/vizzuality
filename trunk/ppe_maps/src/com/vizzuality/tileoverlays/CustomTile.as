@@ -1,6 +1,8 @@
 package com.vizzuality.tileoverlays
 {
 	
+	import com.vizzuality.maps.MapEventDispatcher;
+	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Loader;
@@ -14,6 +16,7 @@ package com.vizzuality.tileoverlays
 		public var loader:Loader;
         private var bm:Bitmap;
         private var bmd:BitmapData;
+        private var isOverArea:Boolean=false;
 		
 		
 		public function CustomTile()
@@ -22,7 +25,7 @@ package com.vizzuality.tileoverlays
 			loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loaded,false,0,true);		
 			
-			this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver);	
+			this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver,false,0,true);	
 		}
 		
 		
@@ -32,21 +35,23 @@ package com.vizzuality.tileoverlays
 		}
 		
 		private function onMouseOver(evt:MouseEvent):void {
-//			if(MapController.gi().mapClickCurrentAction!=null) {
-				bm = this.loader.content as Bitmap;
-				bmd = new BitmapData(256, 256);
-				bmd.draw(bm.bitmapData);
-				var color:int = bmd.getPixel(evt.localX, evt.localY);
-				if (color != 0xFFFFFF) {
+			bm = this.loader.content as Bitmap;
+			bmd = new BitmapData(256, 256);
+			bmd.draw(bm.bitmapData);
+			var color:int = bmd.getPixel(evt.localX, evt.localY);
+			if (color != 0xFFFFFF) {
+				if(!isOverArea) {
 					this.buttonMode=true;
-//					MapController.gi().enableClick();
-					
-				} else {
-					this.buttonMode=false;
-//					MapController.gi().disableClick();
-					
+					MapEventDispatcher.overAreaEvent();
+					isOverArea=true;
 				}
-//			}
+			} else {
+				if(isOverArea) {
+					MapEventDispatcher.overAreaOutEvent();
+					this.buttonMode=false;
+					isOverArea=false;			
+				}
+			}
 		}
 		
 		

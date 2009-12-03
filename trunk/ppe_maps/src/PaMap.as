@@ -9,7 +9,6 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
-	import com.google.maps.MapZoomEvent;
 	import com.google.maps.controls.ControlPosition;
 	import com.google.maps.controls.ZoomControl;
 	import com.google.maps.controls.ZoomControlOptions;
@@ -22,6 +21,8 @@ package {
 	import com.greensock.plugins.*;
 	import com.vizzuality.ImageCarrousel;
 	import com.vizzuality.data.ImageData;
+	import com.vizzuality.maps.CustomMapEvent;
+	import com.vizzuality.maps.MapEventDispatcher;
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
@@ -31,6 +32,7 @@ package {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.net.URLLoader;
@@ -53,6 +55,8 @@ package {
 		public var picturesInfoWindows:Dictionary = new Dictionary(true);	
 
 		private var imgC:ImageCarrousel;
+		
+		private var mouseOverPa:Boolean=false;
 
 
 		private var mapKey:String = "nokey";
@@ -201,10 +205,18 @@ package {
 			//add the default PPE layer for visualizing the other Pas
 			var tl:GeoserverTileLayer = new GeoserverTileLayer();
 			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
-			map.addOverlay(tlo);				
+			map.addOverlay(tlo);		
+			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OUT_AREA,function(event:CustomMapEvent):void {mouseOverPa=false;});
+			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OVER_AREA,function(event:CustomMapEvent):void {mouseOverPa=true;});
+			map.addEventListener(MapMouseEvent.CLICK,onMapClick);				
 
 		}		
-		
+		private function onMapClick(event:MapMouseEvent):void {
+			if(mouseOverPa && !mp.pointInPolygon(event.latLng)) {
+				map.addOverlay(new Marker(event.latLng));
+				trace("click");
+			}
+		}
 		
 		
 		private function onMapDoubleClick(event:MapMouseEvent):void {
@@ -233,7 +245,8 @@ package {
 				); */
 		
 			var loader:URLLoader= new URLLoader();		
-			loader.addEventListener(Event.COMPLETE,onPanoramioResult);		
+			loader.addEventListener(Event.COMPLETE,onPanoramioResult);	
+			loader.addEventListener(IOErrorEvent.IO_ERROR,function(event:IOErrorEvent):void{trace("error loading panoramio");});	
 			
 /* 			var pol:Polygon = new Polygon([new LatLng(bbox.getSouth(),bbox.getWest()),
 										   new LatLng(bbox.getNorth(),bbox.getWest()),
