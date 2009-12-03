@@ -87,12 +87,12 @@ package {
 			
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
-				    thickness: 2,
-				    color: Color.BLUE,
+				    thickness: 1,
+				    color: 0x999999,
 				    alpha: 1
 				  },
 				  fillStyle: {
-				    color: Color.BLUE,
+				    color: 0x999999,
 				    alpha: 0.4
 				  }	
 			});
