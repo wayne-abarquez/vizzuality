@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Vizzuality | {% block page_title %}Page title{% endblock %}</title>
+<title>{% block page_title %}Page title{% endblock %}</title>
+<meta name="description" content="{% block page_description %}{% endblock %}">
+
 <style type="text/css">
 @import url("/css/layout.css");
 </style>
@@ -29,9 +31,14 @@
       <ul>
         <li class="detail">
           <div class="col">
+              <img align="center" src="/images/team/jatorreOffice.jpg" />
             <div class="white_box">
-				<p class="titleWork">Javier de la Torre</p>
-				<p class="clientName">Lead developer - Co-Founder</p>				
+                
+				<p class="titleWork">Lead developer</p>
+				<p class="clientName">
+				    <a href="mailto:jatorre@vizzuality.com">jatorre@vizzuality.com</a><br>
+				    +34 689414420
+				    </p>				
 			</div>
           </div>
 		  <div class="desccol">
