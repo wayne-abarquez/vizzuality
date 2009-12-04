@@ -18,6 +18,7 @@ package {
 	import com.google.maps.overlays.TileLayerOverlay;
 	import com.google.maps.styles.FillStyle;
 	import com.google.maps.styles.StrokeStyle;
+	import com.greensock.TweenLite;
 	import com.greensock.plugins.*;
 	import com.vizzuality.ImageCarrousel;
 	import com.vizzuality.data.ImageData;
@@ -63,6 +64,12 @@ package {
 		private var mp:Multipolygon;
 		
 		private var paId:Number;
+		private var loadingSprite: Sprite = new Sprite();
+		private var infoWindowToOpen: Sprite;
+		
+
+/* 		[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
+	  	private var loading:Class; */
 		
 				
 			
@@ -127,13 +134,6 @@ package {
 		private function onDataLoaded(event:Event):void {
 			dataLoaded=true;
 			data = JSON.decode(event.currentTarget.data as String);			
-			//fake addition of pictures
-			//TALK TO SIMON TO ADD THIS IN THE JSON
-			data.pictures=[];
-			for (var im:Number=1;im<=4;im++) {
-				data.pictures.push({id:im,url:"http://localhost:3000/images/paimages/377207_"+im+"_m.jpg"});
-			}
-			//end of fake pictures
 			
 			//Only load the data if the map is ready or it will fail
 			if(map.isLoaded() && !dataAnalyzed) {
@@ -213,9 +213,42 @@ package {
 		}		
 		private function onMapClick(event:MapMouseEvent):void {
 			if(mouseOverPa && !mp.pointInPolygon(event.latLng)) {
-				map.addOverlay(new Marker(event.latLng));
-				trace("click");
+				map.closeInfoWindow();
+				loadingSprite.graphics.lineStyle(1,0x666666,1);
+				loadingSprite.graphics.beginFill(0xFFFFFF);
+				loadingSprite.graphics.drawRoundRect(0,0,30,30,5,5);
+				loadingSprite.graphics.endFill();
+				addChild(loadingSprite);
+				loadingSprite.x = (map.fromLatLngToViewport(event.latLng) as Point).x;
+				loadingSprite.y = (map.fromLatLngToViewport(event.latLng) as Point).y;
+				this.addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
+				TweenLite.delayedCall(3,onGetPaByCoordsResult,[{"name": "area", "point": event.latLng}]);
 			}
+		}
+		
+		private function onGetPaByCoordsResult(m:Object):void {
+			removeChild(loadingSprite);
+			infoWindowToOpen = new Sprite();
+			infoWindowToOpen.graphics.lineStyle(1,0x666666,1);
+			infoWindowToOpen.graphics.beginFill(0xFFFFFF);
+			infoWindowToOpen.graphics.drawRoundRect(0,0,100,50,5,5);
+			infoWindowToOpen.graphics.endFill();
+            var options:InfoWindowOptions = new InfoWindowOptions({
+              customContent: infoWindowToOpen,
+              padding: 10,
+              hasCloseButton: false,
+              pointOffset:new Point(0,0),
+              hasShadow: true
+            });
+            
+            infoWindowToOpen.alpha=0;
+            map.openInfoWindow((m.point as LatLng),options);
+            TweenLite.to(infoWindowToOpen,0.3,{alpha:1});
+		}
+		
+		private function onMoveCursorLoading(ev:MouseEvent):void {
+			loadingSprite.x = ev.stageX;
+			loadingSprite.y = ev.stageY;
 		}
 		
 		
