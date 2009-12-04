@@ -94,7 +94,7 @@ package com.vizzuality.tileoverlays
 				baseAnchor.y=pos.y;
 				data.addNode(baseAnchor);
 				
-		        var m2:SearchMarkerIcon=new SearchMarkerIcon("http://localhost:3000/images/thumbnails/thumb01.jpg",1,true);
+		        var m2:SearchMarkerIcon=new SearchMarkerIcon(m.image,1,true);
 		        //var m2:NodeSprite=data.addNode();
 		        data.addNode(m2);
 		        
