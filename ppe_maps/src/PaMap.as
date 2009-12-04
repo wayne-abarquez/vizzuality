@@ -25,6 +25,7 @@ package {
 	import com.vizzuality.maps.CustomMapEvent;
 	import com.vizzuality.maps.MapEventDispatcher;
 	import com.vizzuality.maps.Multipolygon;
+	import com.vizzuality.markers.PAInfoWindow;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
 	import flash.display.Loader;
@@ -65,7 +66,7 @@ package {
 		
 		private var paId:Number;
 		private var loadingSprite: Sprite = new Sprite();
-		private var infoWindowToOpen: Sprite;
+		private var infoWindowToOpen: PAInfoWindow;
 		
 
 /* 		[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
@@ -165,7 +166,7 @@ package {
 			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds()));		
 			
 			//If there is pictures then display the ImageCarrousel
-			if((data.pictures as Array).length>0) {
+			if((data.pictures as Array).length>1) {
 				imgC = new ImageCarrousel();
 				imgC.init(data.pictures as Array);
 				addChild(imgC);
@@ -222,17 +223,22 @@ package {
 				loadingSprite.x = (map.fromLatLngToViewport(event.latLng) as Point).x;
 				loadingSprite.y = (map.fromLatLngToViewport(event.latLng) as Point).y;
 				this.addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
-				TweenLite.delayedCall(3,onGetPaByCoordsResult,[{"name": "area", "point": event.latLng}]);
+				
+				//get PA clicked
+				var dsLoader:URLLoader = new URLLoader();
+				dsLoader.addEventListener(Event.COMPLETE,onGetPaByCoordsResult);
+				dsLoader.load(new URLRequest("http://localhost:3000/api/sites_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat()));
+				/* TweenLite.delayedCall(3,onGetPaByCoordsResult,[{"name": "area", "point": event.latLng}]); */
+				
 			}
 		}
 		
-		private function onGetPaByCoordsResult(m:Object):void {
-			removeChild(loadingSprite);
-			infoWindowToOpen = new Sprite();
-			infoWindowToOpen.graphics.lineStyle(1,0x666666,1);
-			infoWindowToOpen.graphics.beginFill(0xFFFFFF);
-			infoWindowToOpen.graphics.drawRoundRect(0,0,100,50,5,5);
-			infoWindowToOpen.graphics.endFill();
+		private function onGetPaByCoordsResult(ev:Event):void {
+			
+ 			removeChild(loadingSprite);
+			this.removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
+			
+			infoWindowToOpen = new PAInfoWindow(ev.target.data);
             var options:InfoWindowOptions = new InfoWindowOptions({
               customContent: infoWindowToOpen,
               padding: 10,
@@ -242,7 +248,7 @@ package {
             });
             
             infoWindowToOpen.alpha=0;
-            map.openInfoWindow((m.point as LatLng),options);
+            map.openInfoWindow(new LatLng(0,0),options);
             TweenLite.to(infoWindowToOpen,0.3,{alpha:1});
 		}
 		
