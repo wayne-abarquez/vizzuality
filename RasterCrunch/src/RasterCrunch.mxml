@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*">
+<mx:Script>
+	<![CDATA[
+		import com.google.maps.LatLng;
+		import com.google.maps.MapType;
+		import com.google.maps.controls.MapTypeControl;
+		import com.google.maps.controls.ZoomControl;
+		import com.google.maps.MapEvent;
+		import com.google.maps.overlays.TileLayerOverlay;
+		import com.vizzuality.layers.RasterSliderLayerOverlay;
+		import com.vizzuality.layers.RasterSliderLayer;
+	
+		private function onMapReady():void {
+			var raster:RasterSliderLayerOverlay= new RasterSliderLayerOverlay(
+				"http://downloads.wdpa.org/ArcGIS/rest/services/GID/DEM_Greyscale_reclass/MapServer",
+				map,slider);
+			map.setCenter(new LatLng(30,1),3,MapType.PHYSICAL_MAP_TYPE);	
+			map.addOverlay(raster);
+			map.addControl(new ZoomControl());
+			map.addControl(new MapTypeControl());
+				
+		}
+		
+	]]>
+</mx:Script>
+	<maps:Map id="map" key="nokey" mapevent_mapready="onMapReady()" width="100%" height="100%" />
+	<mx:HSlider left="10" right="10" height="32" id="slider" minimum="0" maximum="256" snapInterval="1" 
+		liveDragging="true" bottom="42" showDataTip="true" showTrackHighlight="true" labels="[0,10,20,30,40,50,60,70,80,90,100,120,
+		130,140,150,160,170,180,190,200,210,220,230,240,250,255]"/>
+</mx:Application>
