@@ -30,8 +30,8 @@ package com.vizzuality.tileoverlays
 		
 		
 		private function ioErrorHandler(event:IOErrorEvent):void {
-			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
+/* 			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			event.currentTarget.removeEventListener(Event.COMPLETE, loaded); */
 			geoserverTileLayer.numRunningRequest--;
             geoserverTileLayer.possiblyFireEvent();
 
@@ -59,8 +59,8 @@ package com.vizzuality.tileoverlays
 		
 		
 		private function loaded(event:Event):void { 
-			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
-			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+/* 			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
+			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler); */
 			
 			
 			//this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver,false,0,true);	

@@ -131,7 +131,7 @@
 				
 				if (!waitingForClicked) {
 					polygonsPane.clear();
-					jsonService.url="http://localhost/json.php/PPEServices.getAreasByLatLng/"+ev.latLng.lat()+"/"+ev.latLng.lng();
+					jsonService.url="http://localhost:3000/api/sites_by_point/"+ev.latLng.lng()+"/"+ev.latLng.lat();
 					jsonService.send();
 					waitingForClicked=true;
 					discretLoading.visible=true;
@@ -145,7 +145,7 @@
 
 			mo.clearOverlays();
 			var dataJ:Object = data = JSON.decode(ev.result as String);
-			if(!dataJ) {
+			if(!(dataJ is Array) || (dataJ as Array).length<1) {
 				
 				discretLoading.visible=false;
 				waitingForClicked=false;
@@ -170,16 +170,15 @@
 				});				
 				
 				
-				
-				o.geom = JSON.decode(o.geojson as String);
 				var mp:Multipolygon= new Multipolygon();
-				mp.fromGeojsonMultiPolygon(o.geom.coordinates,polOpt);				
+				mp.fromGeojsonMultiPolygon(o.geometry.coordinates,polOpt);				
 				mp.addToPane(polygonsPane);
 				
 				var mark:Object = {
-					latlng:new LatLng(o.center_lat,o.center_lng)
+					latlng:new LatLng(o.centre[1],o.centre[0])
 					
 				};
+				mark.image="http://localhost:3000" + o.image;
 				markers.push(mark);
 				
 				
