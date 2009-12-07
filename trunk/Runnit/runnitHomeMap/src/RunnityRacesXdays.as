@@ -263,7 +263,8 @@ package {
 		
 		private function goToRunPage(e:MapMouseEvent):void {
 			var m:Object = iw[e.target];
-			navigateToURL(new URLRequest("http://www.runnity.com/run/"+m.id+"/"+m.name.split(" ").join("/")),"_self");
+			navigateToURL(new URLRequest("http://www.runnity.com/run/"+m.id+"/"+m.name.split(" ").join("/")),"_blank"); 
+			
 		}
 		
 		private function attachMarkers():void
