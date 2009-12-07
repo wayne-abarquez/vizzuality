@@ -26,6 +26,7 @@ package {
 	import com.vizzuality.maps.MapEventDispatcher;
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.markers.PAInfoWindow;
+	import com.vizzuality.markers.PAMarker;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
 	import flash.display.Loader;
@@ -67,6 +68,8 @@ package {
 		private var paId:Number;
 		private var loadingSprite: Sprite = new Sprite();
 		private var infoWindowToOpen: PAInfoWindow;
+		private var paMarker: PAMarker;
+		private var paDictionary: Dictionary = new Dictionary();
 		
 
 /* 		[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
@@ -233,30 +236,6 @@ package {
 			}
 		}
 		
-		private function onGetPaByCoordsResult(ev:Event):void {
-			
- 			removeChild(loadingSprite);
-			this.removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
-			
-			infoWindowToOpen = new PAInfoWindow(ev.target.data);
-            var options:InfoWindowOptions = new InfoWindowOptions({
-              customContent: infoWindowToOpen,
-              padding: 10,
-              hasCloseButton: false,
-              pointOffset:new Point(0,0),
-              hasShadow: true
-            });
-            
-            infoWindowToOpen.alpha=0;
-            map.openInfoWindow(new LatLng(0,0),options);
-            TweenLite.to(infoWindowToOpen,0.3,{alpha:1});
-		}
-		
-		private function onMoveCursorLoading(ev:MouseEvent):void {
-			loadingSprite.x = ev.stageX;
-			loadingSprite.y = ev.stageY;
-		}
-		
 		
 		private function onMapDoubleClick(event:MapMouseEvent):void {
 			//trace("onMapDoubleClick");			
@@ -388,6 +367,63 @@ package {
 			positionElements();
 			if(map!=null)
 				map.setSize(new Point(stage.stageWidth, stage.stageHeight-45));
-		}	
+		}
+		
+		private function onGetPaByCoordsResult(ev:Event):void {
+			
+ 			removeChild(loadingSprite);
+			this.removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
+			try {
+				map.removeOverlay(paMarker);				
+			} catch (e:Error) {}
+			
+			paMarker = new PAMarker(ev.target.data as Object);
+			
+			paMarker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+	            if(!rollingOver) {
+	                openInfoWindow(e);     
+	            }
+	            rollingOver=true;                                                                
+            });	
+            
+            paDictionary[paMarker]=ev.target.data;
+                        
+			map.addOverlay(paMarker);
+		}
+		
+		private function onMoveCursorLoading(ev:MouseEvent):void {
+			loadingSprite.x = ev.stageX;
+			loadingSprite.y = ev.stageY;
+		} 
+		
+ 		private function openInfoWindow(e:MapMouseEvent):void {
+ 			
+ 			var m:Object = paDictionary[e.target];
+  			
+ 			infoWindowToOpen = new PAInfoWindow(m);
+ 			infoWindowToOpen.targetUrl="/sites/2027";
+ 			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
+            var options:InfoWindowOptions = new InfoWindowOptions({
+              customContent: infoWindowToOpen,
+              padding: 10,
+              hasCloseButton: false,
+              pointOffset:new Point(-25,-20),
+              hasShadow: false
+            });
+            
+            infoWindowToOpen.alpha=0;
+            map.openInfoWindow(new LatLng(0,0),options);
+            TweenLite.to(infoWindowToOpen,0.5,{alpha:1});
+                
+        }	 
+        
+ 		private var rollingOver:Boolean=false;
+		private function onInfowindowRollOut(e:Event ):void {
+			map.closeInfoWindow();
+			rollingOver=false;
+		}
+		
+		
+			
 	}
 }

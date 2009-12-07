@@ -33,10 +33,9 @@ package com.vizzuality.markers
 					this.useHandCursor = true;
 					this.mouseChildren = false; 					
  					
-					/* imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, displayImg);
-				
-					var fileRequest:URLRequest = new URLRequest(ob.imgURL);
-					imageLoader.load(fileRequest); */
+					imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, displayImg);
+					var fileRequest:URLRequest = new URLRequest('http://localhost:3000/images/thumbnails/thumb01.jpg');
+					imageLoader.load(fileRequest); 
  					
  					var linGrad:String = GradientType.LINEAR;  
 				   	var linMatrix:Matrix = new Matrix();
