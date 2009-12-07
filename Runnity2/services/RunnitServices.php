@@ -520,8 +520,19 @@ class RunnitServices {
 	}		
 	
 	//runnitHomeMap	    
-	public function getAllRuns() {
-		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, p.name as province_name,r.province_fk as province_id from run as r left join province as p on r.province_fk=p.id where published=true and start_point is not null";
+	public function getAllRuns($days=0,$runType=0) {
+	    
+		$sql="select x(start_point) as lon, y(start_point) as lat,r.id,r.name,event_date,event_location,distance_text, p.name as province_name,r.province_fk as province_id,run_type from run as r left join province as p on r.province_fk=p.id where published=true and start_point is not null";
+		
+		if ($days!=0) {
+		    $sql.=" AND event_date <= (now()::date +".$days .") AND event_date > now()::date";
+		}
+
+		if ($runType!=0) {
+		    $sql.=" AND run_type =".$runType;
+		}		
+		
+		
 		return pg_fetch_all(pg_query($this->conn, $sql));  
 	}
 	
