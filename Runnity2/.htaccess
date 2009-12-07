@@ -11,6 +11,7 @@ RewriteRule ^sobre about.php [L]
 RewriteRule ^registro_success registro_success.php [L]
 RewriteRule ^registro registro.php [L]
 RewriteRule ^sitemap.xml sitemap_xml.php [L]
+RewriteRule ^carreras.kml carrerasKml.php [L]
 RewriteRule js/site_([0-9]+).js combinejs.php?version=$1 [L]
 RewriteRule css/site_([0-9]+).css combinecss.php?version=$1 [L]
 
