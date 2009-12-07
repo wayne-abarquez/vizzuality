@@ -32,7 +32,7 @@ package {
 	import rosa.events.RosaEvent;
 	import rosa.services.ServiceProxy;
 
-	[SWF(backgroundColor=0x9FB4CB, width=895, height=364)]
+	[SWF(backgroundColor=0xFFFFFF, width=508, height=355)]
 	public class RunnityRacesXdays extends Sprite
 	{
 		
@@ -48,24 +48,46 @@ package {
 	
 		//Number of days for show races
 		private var Xdays: Number = 30;
+		private var runType: Number = 30;
 		
 		
 		[Embed('assets/cargandomapa1.png')] 
 		private var loadingImg:Class;		
 		private var imgLoading:Bitmap;
-		[Embed('assets/leyenda.png')] 
-		private var legend:Class;	
+		[Embed('assets/zoomminus.gif')] 
+		private var minus: Class;	
+		private var zoomminus:Bitmap;
+		[Embed('assets/zoomplus.gif')] 
+		private var plus: Class;	
+		private var zoomplus:Bitmap;
+		
 		
 		
 		public function RunnityRacesXdays()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP_LEFT;					
+			stage.align = StageAlign.TOP_LEFT;	
+			
+/* 			var bkg:Sprite = new Sprite();
+			bkg.graphics.beginFill(0xeeeeee);
+			bkg.graphics.drawRect(0,0,530,415);
+			bkg.graphics.endFill();
+			bkg.x = 0;
+			bkg.y = 0;
+			addChild(bkg);	 */				
 			
 			imgLoading= new loadingImg() as Bitmap;
-			imgLoading.x = 400;
-			imgLoading.y = 80;
-			mouseChildren = true;		
+			imgLoading.x = 180;
+			imgLoading.y = 120;
+			mouseChildren = true;	
+			
+			var bkg_blue:Sprite = new Sprite();
+			bkg_blue.graphics.beginFill(0x9FB4CB);
+			bkg_blue.graphics.drawRect(0,0,510,357);
+			bkg_blue.graphics.endFill();
+			bkg_blue.x = 0;
+			bkg_blue.y = 0;
+			addChild(bkg_blue);	
 			
 				
 			initMap();
@@ -73,11 +95,15 @@ package {
 		
 		
 		private function initMap():void {
-			
+/* 			
 			Xdays = root.loaderInfo.parameters.days; 
+			runType = root.loaderInfo.parameters.run_type;
 			if (!Xdays) {
 				Xdays = 30;
 			}
+			if (!runType) {
+				runType = 1;
+			} */
 			
 			
 			map=new Map();
@@ -90,14 +116,14 @@ package {
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.x=1;
 			map.y=1;
-			map.setSize(new Point(892, 362));
+			map.setSize(new Point(508, 355));
 			addChild(map);
 			square = new Sprite();
 			square.graphics.beginFill(0xFFFFFF);
-			square.graphics.drawRect(0,0,895,364);
+			square.graphics.drawRect(0,0,508,355);
 			square.graphics.endFill();
-			square.x = 0;
-			square.y = 0;			
+			square.x = 1;
+			square.y = 1;			
 			addChild(square); 
 			addChild(imgLoading);
 		}
@@ -129,13 +155,13 @@ package {
 		private function downloadData():void {
 			
 			with(RosaSettings) {
-				localTestGatewayURL="http://localhost:8888/amfphp/gateway.php";
-				gatewayURL = "http://localhost:8888/amfphp/gateway.php";
+				localTestGatewayURL="http://www.runnity.com/amfphp/gateway.php";
+				gatewayURL = "http://www.runnity.com/amfphp/gateway.php";
 				
 			}
 			service = new ServiceProxy("RunnitServices");
 			service.addEventListener("getAllRunsResult", getAllRunsResult);
-			service.getAllRuns();
+			service.getAllRuns(30);
 		}
 		
 		private function openInfoWindow(e:MapMouseEvent):void {
@@ -189,15 +215,15 @@ package {
 			for each(var m:Object in event.result as Array) {
 				var p:LatLng = new LatLng(m.lat,m.lon);
 				
-				var dateNow: Date = new Date();
+/* 				var dateNow: Date = new Date();
 				var raceDate: Date = new Date();
 				var datePlus15: Date = new Date();
 				datePlus15.setTime(datePlus15.time + (millisecondsPerDay*Xdays));
 				raceDate.setFullYear(Number(m.event_date.slice(0,4)),Number(m.event_date.slice(5,7))-1,Number(m.event_date.slice(8,10)));
-	 			raceDate.setHours(Number(m.event_date.slice(11,13)),Number(m.event_date.slice(14,16)),Number(m.event_date.slice(17,19)));
+	 			raceDate.setHours(Number(m.event_date.slice(11,13)),Number(m.event_date.slice(14,16)),Number(m.event_date.slice(17,19))); */
 	 			
-				if (raceDate>=dateNow && raceDate<datePlus15){
-					var marker:RunSingleMarkerHome=new RunSingleMarkerHome(p,m.name,m.id,m.event_date);
+/* 				if (raceDate>=dateNow && raceDate<datePlus15){
+ */					var marker:RunSingleMarkerHome=new RunSingleMarkerHome(p,m.name,m.id,m.event_date);
 					iw[marker]=m;
 					marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
 						
@@ -211,8 +237,8 @@ package {
 					});						
 					markers.push(marker);
 					dataBbox.extend(p);
-				}
-			}
+/* 				}
+ */			}
 			
 			
 			
@@ -222,7 +248,7 @@ package {
 			
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			
-			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
+			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox)-1);
 				
 			
 			
@@ -237,7 +263,7 @@ package {
 		
 		private function goToRunPage(e:MapMouseEvent):void {
 			var m:Object = iw[e.target];
-			navigateToURL(new URLRequest("run/"+m.id+"/"+m.name.split(" ").join("/")),"_self");
+			navigateToURL(new URLRequest("http://www.runnity.com/run/"+m.id+"/"+m.name.split(" ").join("/")),"_self");
 		}
 		
 		private function attachMarkers():void
