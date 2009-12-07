@@ -30,7 +30,7 @@
 {foreach key=id item=run from=$runs}
   <Placemark>
     <name>{$run.name}</name>
-    <description><![CDATA[<a href="/run/{$run.id}/{$run.name|seourl}">{$run.name} - {$run.event_location} - {$run.distance_text} - {$run.event_date}</a>]]></description>
+    <description><![CDATA[<a href="http://www.runnity.com/run/{$run.id}/{$run.name|seourl}">{$run.name} - {$run.event_location} - {$run.distance_text} - {$run.event_date}</a>]]></description>
 	<styleUrl>#exampleStyleMap</styleUrl>
     <Point>
       <coordinates>{$run.lon},{$run.lat},0</coordinates>
