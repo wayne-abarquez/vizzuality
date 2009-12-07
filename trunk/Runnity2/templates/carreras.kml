@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
+	<name>Próximas carreras en runnity.com</name>
+	<description>Carreras en los próximos 30 días publicadas en Runnity.com</description>
+	<Style id="highlightPlacemark">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/red-stars.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="normalPlacemark">
+      <IconStyle>
+        <Icon>
+          <href>http://maps.google.com/mapfiles/kml/paddle/wht-blank.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <StyleMap id="exampleStyleMap">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#normalPlacemark</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#highlightPlacemark</styleUrl>
+      </Pair>
+    </StyleMap>
 {foreach key=id item=run from=$runs}
   <Placemark>
     <name>{$run.name}</name>
     <description><![CDATA[<a href="/run/{$run.id}/{$run.name|seourl}">{$run.name} - {$run.event_location} - {$run.distance_text} - {$run.event_date}</a>]]></description>
+	<styleUrl>#exampleStyleMap</styleUrl>
     <Point>
       <coordinates>{$run.lon},{$run.lat},0</coordinates>
     </Point>
