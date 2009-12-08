@@ -1,0 +1,9 @@
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_0_year order by 1,2" -N starling > /tmp/z0.txt
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_1_year order by 1,2" -N starling > /tmp/z1.txt
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_2_year order by 1,2" -N starling > /tmp/z2.txt
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_3_year order by 1,2" -N starling > /tmp/z3.txt
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_4_year order by 1,2" -N starling > /tmp/z4.txt
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_5_year order by 1,2" -N starling > /tmp/z5.txt
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_6_year order by 1,2" -N starling > /tmp/z6.txt
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_7_year order by 1,2" -N starling > /tmp/z7.txt
+mysql -u tim -p*** -h mogo -e "select tile_orig_x, tile_orig_y, x, y, year from tile_8_year order by 1,2" -N starling > /tmp/z8.txt
