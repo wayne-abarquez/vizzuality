@@ -169,18 +169,21 @@ if ($datetext) {
 	$rs_specimen = array();
 	$res=array();
 	
-	return $sql;
-
+	$sqlcount="select count(*) as num_records from ($sql)  tot";	
 	//Limit and offset for Mysql!
-	$result = mysql_query($sql, $this->conn);
-	if($result) {
-		$res['count'] = mysql_num_rows($result);
+	$result = mysql_query($sqlcount, $this->conn);
+	$numrec = mysql_fetch_assoc($result);
+	if($numrec['num_records']>0) {		
+		$res['count'] = $numrec['num_records'];
     } else {
         $res['count'] =0;  
 		$res['datos']=array();
 		return $res;
     }		
 
+	if($offset=="") {
+		$offset=0;
+	}
 	$sql.=" order by u.UnitID ASC limit 10 offset $offset";
 
 	$result = mysql_query($sql, $this->conn);		
@@ -205,8 +208,7 @@ if ($datetext) {
 		//Prepare SQL statement from the query page
 
 		//selects
-		$sql="SELECT u.UnitID, highertaxon, nameauthoryearstring, localitytext from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID";
-
+		$sql="SELECT nameauthoryearstring, highertaxon,count(u.UnitID) as num_sheets, GROUP_CONCAT(localitytext SEPARATOR ', ') as locality from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID";
 
 		//create the filter part
 		$sql=$sql." where i.preferedflag=true";
@@ -220,29 +222,35 @@ if ($genus) 			    { $filter = $filter . " and i.genus like '". sql_safe($genus)
 
 	//set the filter and set the session for the after page
 	$sql= $sql . $filter;
+	
+	$sql.=" group by nameauthoryearstring, highertaxon";
 
 	$rs_specimen = array();
 	$res=array();
 
 	//Limit and offset for Mysql!
-	$result = mysql_query($sql, $this->conn);
-	if($result) {
-		$res['count'] = mysql_num_rows($result);
+	$sqlcount="select count(*) as num_records from ($sql)  tot";	
+	//Limit and offset for Mysql!
+	$result = mysql_query($sqlcount, $this->conn);
+	$numrec = mysql_fetch_assoc($result);
+	if($numrec['num_records']>0) {		
+		$res['count'] = $numrec['num_records'];
     } else {
         $res['count'] =0;  
 		$res['datos']=array();
 		return $res;
-    }		
-
-	$sql.=" order by u.UnitID ASC limit 10 offset $offset";
+    }	
+		
+	if($offset=="") {
+		$offset=0;
+	}
+	$sql.=" order by nameauthoryearstring ASC limit 10 offset $offset";
 
 	$result = mysql_query($sql, $this->conn);		
 	while ($row = mysql_fetch_assoc($result)){
 		$rs_specimen[] = $row; 
 	}	
-	$res['datos']=$rs_specimen;
-
-	
+	$res['datos']=$rs_specimen;	
 		
 	return $res;
 }	        
