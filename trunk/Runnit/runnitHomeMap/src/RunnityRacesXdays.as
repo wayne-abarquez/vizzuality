@@ -7,12 +7,10 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapZoomEvent;
-	import com.google.maps.controls.ControlPosition;
-	import com.google.maps.controls.ZoomControl;
-	import com.google.maps.controls.ZoomControlOptions;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.styles.FillStyle;
 	import com.kelvinluck.gmaps.Clusterer;
+	import com.vizzuality.VizzButton;
 	import com.vizzuality.gmaps.RunMarkerClusterHome;
 	import com.vizzuality.gmaps.RunSingleMarkerHome;
 	
@@ -21,6 +19,7 @@ package {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
@@ -66,15 +65,7 @@ package {
 		public function RunnityRacesXdays()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
-			stage.align = StageAlign.TOP_LEFT;	
-			
-/* 			var bkg:Sprite = new Sprite();
-			bkg.graphics.beginFill(0xeeeeee);
-			bkg.graphics.drawRect(0,0,530,415);
-			bkg.graphics.endFill();
-			bkg.x = 0;
-			bkg.y = 0;
-			addChild(bkg);	 */				
+			stage.align = StageAlign.TOP_LEFT;				
 			
 			imgLoading= new loadingImg() as Bitmap;
 			imgLoading.x = 180;
@@ -95,17 +86,7 @@ package {
 		
 		
 		private function initMap():void {
-/* 			
-			Xdays = root.loaderInfo.parameters.days; 
-			runType = root.loaderInfo.parameters.run_type;
-			if (!Xdays) {
-				Xdays = 30;
-			}
-			if (!runType) {
-				runType = 1;
-			} */
-			
-			
+
 			map=new Map();
 			if(this.root.loaderInfo.parameters.mapkey!=null) {
 				map.key=this.root.loaderInfo.parameters.mapkey;							
@@ -134,12 +115,18 @@ package {
 				map.setInitOptions(mo);
 		}
 		
-		private function onMapReady(event:MapEvent):void
-		{
-			var zco:ZoomControlOptions= new ZoomControlOptions({
-				position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)
-			});
-			map.addControl(new ZoomControl(zco));
+		private function onMapReady(event:MapEvent):void {
+			
+			var zoomPlus:VizzButton = new VizzButton(this,10,10,25,25,"+",18,6,2);
+			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+			var zoomMinus:VizzButton = new VizzButton(this,10,40,25,25,"-",18,8,1);
+			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 
+			
+
 			map.enableScrollWheelZoom();
 			downloadData();
 
@@ -214,16 +201,8 @@ package {
 			dataBbox=new LatLngBounds();
 			for each(var m:Object in event.result as Array) {
 				var p:LatLng = new LatLng(m.lat,m.lon);
-				
-/* 				var dateNow: Date = new Date();
-				var raceDate: Date = new Date();
-				var datePlus15: Date = new Date();
-				datePlus15.setTime(datePlus15.time + (millisecondsPerDay*Xdays));
-				raceDate.setFullYear(Number(m.event_date.slice(0,4)),Number(m.event_date.slice(5,7))-1,Number(m.event_date.slice(8,10)));
-	 			raceDate.setHours(Number(m.event_date.slice(11,13)),Number(m.event_date.slice(14,16)),Number(m.event_date.slice(17,19))); */
-	 			
-/* 				if (raceDate>=dateNow && raceDate<datePlus15){
- */					var marker:RunSingleMarkerHome=new RunSingleMarkerHome(p,m.name,m.id,m.event_date);
+
+					var marker:RunSingleMarkerHome=new RunSingleMarkerHome(p,m.name,m.id,m.event_date);
 					iw[marker]=m;
 					marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
 						
@@ -237,8 +216,7 @@ package {
 					});						
 					markers.push(marker);
 					dataBbox.extend(p);
-/* 				}
- */			}
+ 			}
 			
 			
 			
@@ -246,19 +224,11 @@ package {
 			attachedMarkers = [];
 			attachMarkers();	
 			
-			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
-			
+			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);	
 			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox)-1);
-				
-			
-			
+
 			removeChild(imgLoading);	
 			removeChild(square);
-/* 			var raceLegend: Sprite = new Sprite();
-			raceLegend.x = 750;
-			raceLegend.y = 5;	
-			raceLegend.addChild(new legend());
-			addChild(raceLegend); */
 		}
 		
 		private function goToRunPage(e:MapMouseEvent):void {
