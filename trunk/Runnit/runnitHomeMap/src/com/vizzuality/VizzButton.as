@@ -38,7 +38,6 @@ import flash.text.TextFormat;
          button.downState = creaSprite(1,0x3a5f83,0x3a5f83,widthBut,heightBut);
 
          button.hitTestState = button.upState;
-     	 button.useHandCursor = true;
 
          path.addChild(button);
 
