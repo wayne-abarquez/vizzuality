@@ -17,7 +17,7 @@ class Services {
 	
 	public function getAllGenus() {
 		$sql = "select distinct Genus from BIOCASE_IDENTIFIC where highertaxon is not null order by Genus";
-		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$query = mysql_query($sql, $this->conn);	
 		$result=array();
 		while ($row = mysql_fetch_assoc($query)){
 			$result[]=ucfirst($row['Genus']);
@@ -27,7 +27,7 @@ class Services {
 	
 	public function getAllFamilies() {
 		$sql = "select distinct highertaxon from BIOCASE_IDENTIFIC where highertaxon is not null order by highertaxon";
-		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$query = mysql_query($sql, $this->conn);	
 		$result=array();
 		while ($row = mysql_fetch_assoc($query)){
 			$result[]=ucfirst(strtolower($row['highertaxon']));
@@ -37,7 +37,7 @@ class Services {
 	
 	public function getAllCountries() {
 		$sql = "SELECT distinct countryname FROM BIOCASE_UNITS WHERE countryname is not null";
-		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$query = mysql_query($sql, $this->conn);	
 		$result=array();
 		while ($row = mysql_fetch_assoc($query)){
 			$result[]=ucfirst(strtolower($row['countryname']));
@@ -48,14 +48,14 @@ class Services {
 	//sheetResults
 	public function getAllUnitDetailsByUnitID($UnitID) {
 		$sql = "SELECT * FROM BIOCASE_UNITS where UnitID=$UnitID";
-		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$query = mysql_query($sql, $this->conn);	
 		$row = mysql_fetch_assoc($query);
 		return $row;
 	}
 	
 	public function getAllIdentificByUnitID($UnitID) {
 		$sql = "SELECT * FROM BIOCASE_IDENTIFIC where UnitID=$UnitID order by PreferedFlag DESC, LabelFlag DESC";
-		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$query = mysql_query($sql, $this->conn);	
 		$result=array();
 		while ($row = mysql_fetch_assoc($query)){
 			$result[]=$row;
@@ -65,7 +65,7 @@ class Services {
 	
 	public function getAllImagesByUnitID($UnitID) {
 		$sql = "SELECT ImageURI FROM BIOCASE_IMAGES where UnitID=$UnitID"; 
-		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$query = mysql_query($sql, $this->conn);	
 		$result=array();
 		while ($row = mysql_fetch_assoc($query)){
 			$result[]=$row;
@@ -75,14 +75,14 @@ class Services {
 	
 	public function getAllAgentsByUnitID($UnitID) {
 		$sql = "SELECT * FROM BIOCASE_GATHERING_AGENTS where UnitID=$UnitID";
-		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$query = mysql_query($sql, $this->conn);	
 		$row = mysql_fetch_assoc($query);
 		return $row;
 	}
 	
 	public function getAllAreasByUnitID($UnitID) {
 		$sql = "SELECT * FROM BIOCASE_UNIT_REGION where UnitID=$UnitID";
-		$query = mysql_query($sql, $this->conn) or die(mysql_error());	
+		$query = mysql_query($sql, $this->conn);	
 		$result=array();
 		while ($row = mysql_fetch_assoc($query)){
 			$result[]=$row;
@@ -93,21 +93,21 @@ class Services {
 	//index
 	public function getTotalRecords() {
 		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS";
-		$result = mysql_query($query, $this->conn) or die(mysql_error());		
+		$result = mysql_query($query, $this->conn);		
 		$row = mysql_fetch_assoc($result);
 		return $row['total'];
 	}
 	
 	public function getTotalRecordsWithImage() {
 		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS where has_images = True";
-		$result = mysql_query($query, $this->conn) or die(mysql_error());		
+		$result = mysql_query($query, $this->conn);		
 		$row = mysql_fetch_assoc($result);
 		return $row['total'];
 	}
 	
 	public function getTotalGeoreferenceRecords() {
 		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS";
-		$result = mysql_query($query, $this->conn) or die(mysql_error());		
+		$result = mysql_query($query, $this->conn);		
 		$row = mysql_fetch_assoc($result);
 		return $row['total'];
 	}
@@ -115,7 +115,7 @@ class Services {
 	//queryForm
 	public function getLastUpdate() {
 		$query = "SELECT source_update as lastupdate FROM BIOCASE_METADATA";
-		$result = mysql_query($query, $this->conn) or die(mysql_error());		
+		$result = mysql_query($query, $this->conn);		
 		$row = mysql_fetch_assoc($result);
 		return $row['lastupdate'];
 	}
@@ -167,24 +167,29 @@ if ($datetext) {
 	$sql= $sql . $filter;
 
 	$rs_specimen = array();
+	$res=array();
+	
+	return $sql;
 
 	//Limit and offset for Mysql!
-	$result = mysql_query($sql, $this->conn) or die(mysql_error());
+	$result = mysql_query($sql, $this->conn);
 	if($result) {
-		$rs_specimen['count'] = mysql_num_rows($result);
+		$res['count'] = mysql_num_rows($result);
     } else {
-        $rs_specimen['count'] =0;  
-		return $rs_specimen;
+        $res['count'] =0;  
+		$res['datos']=array();
+		return $res;
     }		
 
 	$sql.=" order by u.UnitID ASC limit 10 offset $offset";
 
-	$result = mysql_query($sql, $this->conn) or die(mysql_error());		
+	$result = mysql_query($sql, $this->conn);		
 	while ($row = mysql_fetch_assoc($result)){
 		$rs_specimen[] = $row; 
 	}
-		
-	return $rs_specimen;
+	$res['datos']=$rs_specimen;
+	
+	return $res;
 }
 	
 	public function searchTaxon ($nameauthoryearstring,$highertaxon,$genus,$offset) {
@@ -217,24 +222,29 @@ if ($genus) 			    { $filter = $filter . " and i.genus like '". sql_safe($genus)
 	$sql= $sql . $filter;
 
 	$rs_specimen = array();
+	$res=array();
 
 	//Limit and offset for Mysql!
-	$result = mysql_query($sql, $this->conn) or die(mysql_error());
+	$result = mysql_query($sql, $this->conn);
 	if($result) {
-		$rs_specimen['count'] = mysql_num_rows($result);
+		$res['count'] = mysql_num_rows($result);
     } else {
-        $rs_specimen['count'] =0;  
-		return $rs_specimen;
+        $res['count'] =0;  
+		$res['datos']=array();
+		return $res;
     }		
 
 	$sql.=" order by u.UnitID ASC limit 10 offset $offset";
 
-	$result = mysql_query($sql, $this->conn) or die(mysql_error());		
+	$result = mysql_query($sql, $this->conn);		
 	while ($row = mysql_fetch_assoc($result)){
 		$rs_specimen[] = $row; 
-	}
+	}	
+	$res['datos']=$rs_specimen;
+
+	
 		
-	return $rs_specimen;
+	return $res;
 }	        
     
 	
