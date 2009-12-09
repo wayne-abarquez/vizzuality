@@ -1,0 +1,212 @@
+/* HEADER */
+.header{
+	height: 100px;
+	background-color: #ccffcc;
+}
+
+.header div.logo{
+	background-image: url(/images/logo.gif);
+	background-repeat: no-repeat;
+	height: 49px;
+	width: 147px;
+	margin-left: 15px;
+}
+
+.header div.headerTitle{
+	width: 600px;
+}
+
+.header div.headerTitle p{
+	font-size: 21px;
+	font-family: Verdana;
+	font-weight: bold;
+	margin-left: 15px;
+}
+
+.color1{ color: #003300; }
+.color2{ color: #000000; }
+.color3{ color: #006600; }
+
+.comboIdioma{
+	float: right;
+	margin: 0;padding: 0;
+	margin-top: -76px;
+}
+
+/* FOOTER */
+.footer{
+	height: 50px;
+	margin-bottom: 0px;
+	margin-top: 20px;
+}
+
+.footer p{
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	color: #006600;
+}
+
+.footer a{
+	color: #669933;
+}
+
+/* CONTENT */
+
+.content{
+	padding: 0; margin: 0;
+	height: auto;
+}
+
+.content p{
+	padding: 0; margin: 0;
+}
+
+.titleIndex{
+	color: #006633;
+	font-size: 17px;
+	padding: 0; margin: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.news-body{
+	padding: 0; margin: 0;
+}
+
+.news-body p.texto_intro{
+	color: #666666;
+}
+
+.news-body p.info{
+	color: #006633;
+}
+
+.news-body p.texto_intro a{
+	color: #336699;
+	text-decoration: none;
+}
+
+.news-body p.texto_intro a:hover{
+	color: #006633;
+}
+
+.news-body p.subheader{
+	color: #999999;
+	margin-bottom: 6px;
+}
+
+.news-body p.subheader b{
+	color: #666666;
+}
+
+.news-body a.link_bd{
+	color: #336699;
+	font-size: 17px;
+	text-decoration: none;
+	font-weight: bold;
+
+}
+
+.news-body a.link_bd:hover{
+	color: #006633;
+}
+
+/* home */
+
+
+
+/* qeury */
+
+.search-1 {
+	display: block;
+	float: left;
+	margin-right: 2em;
+}
+
+.search-2 {
+	display: block;
+	float: left;
+}
+
+.buscador {
+	background: #EAF2FA;
+	padding: 1em;
+}
+
+.news-digg {
+	float: left;
+}
+
+.shade-1 { background: #FFF299; width: 75px; height: 50px; margin: 0; padding: 0; text-align: center;}
+.shade-1 p{margin-top: 3px;}
+.shade-1 a { color: #93883F; text-decoration: none; font-size: 15px; font-weight: bold;}
+.shade-1 strong { color: #A39A5D; }
+
+.trobats{
+	margin-top: 10px;
+}
+
+.trobats p{
+	font-size: 16px;
+	color: red;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/* sheet result */
+
+.result{
+ 	margin: 0; padding: 0;
+	width: 830px;
+	height: 100px;
+}
+
+.result a{
+ 	color: #003366;
+ 	text-decoration: none;
+ 	font-size: 17px;
+ 	font-weight: bold;
+}
+
+.result a:hover{
+ 	color: #006633;
+}
+
+.containerResult{
+	margin: 0; padding: 0;
+	margin-bottom: 10px;
+	height: 110px;
+}
+
+/* taxon result */
+
+.taxonMap{
+	width: 948px;
+	height: 300px;
+	background-color: #999999;
+	border: 1px solid #333333;
+}
+
+.resultTaxon{
+ 	margin: 0; padding: 0;
+	width: 830px;
+	height: 50px;
+}
+
+.resultTaxon a{
+ 	color: #003366;
+ 	text-decoration: none;
+ 	font-size: 17px;
+ 	font-weight: bold;
+}
+
+.resultTaxon a:hover{
+ 	color: #006633;
+}
+
+.containerResultTaxon{
+	margin: 0; padding: 0;
+	margin-bottom: 10px;
+	height: 60px;
+}
