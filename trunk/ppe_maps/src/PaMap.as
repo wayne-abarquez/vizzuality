@@ -325,7 +325,6 @@ package {
 	       	 icon: ev.target.loader}));
 	       	
 	       	marker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
-	       		trace('jasdfjasddfasd');
 	       		tooltip = new TooltipMarker(photo.title);
 				tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x;
 				tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y;
