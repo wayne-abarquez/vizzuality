@@ -90,6 +90,31 @@ class Services {
 		return $result;
 	}
 	
+	//TaxonResults
+	public function getAllPliegosByTaxon($nameauthoryearstring) {
+	
+		function sql_safe($string){
+        	$output = stripslashes($string);
+        	$output = str_replace('"','\"',$output);
+        	$output = str_replace("'","\'",$output);
+			$output = str_replace("*","%",$output);
+        	return $output;
+		}
+		$filter="";
+		$_SESSION['filter']="";
+		
+		$sql = "SELECT distinct u.UnitID, localitytext, (SELECT GatheringAgentsText FROM BIOCASE_GATHERING_AGENTS where UnitID=u.UnitID) as AgentText ,nameauthoryearstring, highertaxon from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID where ";
+		if ($nameauthoryearstring) 	{ $filter = $filter . " i.nameauthoryearstring like '". sql_safe($nameauthoryearstring) ."'"; }
+	    $sql= $sql . $filter;
+		$query = mysql_query($sql, $this->conn);	
+		$result=array();
+		while ($row = mysql_fetch_assoc($query)){
+			$result[]=$row;
+		}
+		return $result;
+	}
+
+	
 	//index
 	public function getTotalRecords() {
 		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS";
@@ -208,7 +233,7 @@ if ($datetext) {
 		//Prepare SQL statement from the query page
 
 		//selects
-		$sql="SELECT nameauthoryearstring, highertaxon,count(u.UnitID) as num_sheets, GROUP_CONCAT(localitytext SEPARATOR ', ') as locality from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID";
+		$sql="SELECT u.UnitID, nameauthoryearstring, highertaxon,count(u.UnitID) as num_sheets, GROUP_CONCAT(DISTINCT localitytext SEPARATOR ', ') as locality, GROUP_CONCAT(DISTINCT CountryName SEPARATOR ', ') as country, max(AltitudeUpperValue) as altitudUpper, min(AltitudeLowerValue) as altitudLower from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID";
 
 		//create the filter part
 		$sql=$sql." where i.preferedflag=true";
