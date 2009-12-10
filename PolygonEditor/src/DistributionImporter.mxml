@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.google.maps.controls.*"
+	>
+	<mx:states>
+		<mx:State name="selectImage">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas width="564" height="200" backgroundColor="#FFFFFF" cornerRadius="3" borderStyle="solid" borderColor="#5D5D5D" borderThickness="1" backgroundAlpha="0.89" horizontalCenter="0" verticalCenter="0" id="canvas1">
+					<mx:Label x="10" y="10" text="Enter a species range map image from Internet" fontFamily="Arial" fontSize="17" fontStyle="normal" color="#2D2D2D"/>
+					<mx:Label x="10" y="38" text="This prototype helps to demosntrate the digitaization of a range map in simple image to a SHP." fontFamily="Arial" fontSize="12" fontStyle="normal" color="#2D2D2D"/>
+					<mx:Label x="11" y="111" text="FILE:" fontFamily="Arial" fontSize="17" fontStyle="normal" color="#2D2D2D"/>
+					<mx:TextInput x="59" y="112" fontSize="12" width="493" id="rangeMapUrlInput">
+					</mx:TextInput>
+					<mx:Button x="484" y="145" label="Browse" click="onSelectedImageClick()" id="button1"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="loading" basedOn="selectImage">
+			<mx:SetProperty target="{rangeMapUrlInput}" name="enabled" value="false"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Label x="484" y="145" text="Loading..." fontSize="14" fontFamily="Arial"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{button1}"/>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import com.google.maps.overlays.TileLayerOverlay;
+		import com.google.maps.Color;
+		import com.google.maps.overlays.MarkerOptions;
+		import com.google.maps.overlays.Polygon;
+		import com.google.maps.overlays.Marker;
+		import com.google.maps.MapMouseEvent;
+		import com.senocular.display.TransformTool;
+		import mx.controls.Image;
+		import mx.core.UIComponent;
+		import mx.controls.Alert;
+		import com.google.maps.controls.MapTypeControl;
+		import com.google.maps.MapType;
+		import com.google.maps.LatLng;
+		import com.google.maps.controls.ZoomControlOptions;
+		import com.google.maps.controls.ControlPosition;
+		import com.google.maps.controls.ZoomControl;
+		import flash.net.FileReference;
+		import flash.net.FileFilter;
+		
+		public var isInLand:Boolean=false;
+		
+		private var fr:FileReference
+		private static const FILE_TYPES:Array = [new FileFilter("Image File", "*.jpg;*.jpeg;*.gif;*.png")];
+		
+		[Bindable] private var tool:TransformTool;
+		
+		private var pol:Polygon;
+		private var polVertexes:Array=[];
+		
+		private var ep:EditablePolygon;
+		
+		private function init():void {
+			var zco:ZoomControlOptions=new ZoomControlOptions({
+				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 12, 12)
+			});
+			var zc:ZoomControl = new ZoomControl(zco);
+			map.addControl(zc);
+			
+			map.addControl(new MapTypeControl());
+			
+			map.setCenter(new LatLng(30,0),2,MapType.PHYSICAL_MAP_TYPE);
+			//currentState='selectImage';
+			currentState='';
+			//map.addEventListener(MapMouseEvent.CLICK,onMapClick);
+			
+			
+			
+/* 			var tl:TileLayer = new TileLayer();
+			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
+			tlo.foreground.alpha=0;
+			map.addOverlay(tlo);
+			
+			map.addEventListener(MapMouseEvent.CLICK, function(event:MapMouseEvent):void {
+				Alert.show("CLICK in LAND? " +isInLand.toString());
+			}); */
+			
+			
+			
+			
+		}
+		
+		private function onMapClick(event:MapMouseEvent):void {
+			
+			var options:MarkerOptions = new MarkerOptions({
+			  icon: new CustomIconSprite(),
+			  hasShadow: false,
+			  clickable: true,
+			  draggable: true,
+			  gravity:0,
+			  iconOffset: new Point(-5,-5)
+			});			
+			
+			map.addOverlay(new Marker(event.latLng,options));
+			
+			polVertexes.push(event.latLng);
+			if(polVertexes.length>2) {
+				if(pol!=null)
+					map.removeOverlay(pol);	
+				var tempArr:Array=polVertexes.concat();
+				tempArr.push(polVertexes[0]);
+				pol = new Polygon(tempArr);
+				map.addOverlay(pol);
+			}
+		}
+		
+		
+		private function onSelectedImageClick():void {
+			currentState='loading';
+			
+			fr = new FileReference();
+			//listen for when they select a file
+			fr.addEventListener(Event.SELECT, onFileSelect);
+
+			//listen for when then cancel out of the browse dialog
+			fr.addEventListener(Event.CANCEL,onCancel);
+
+			//open a native browse dialog that filters for text files
+			fr.browse(FILE_TYPES);			
+			
+		}
+		
+		//called when the user selects a file from the browse dialog
+		private function onFileSelect(e:Event):void
+		{
+			//listen for when the file has loaded
+			fr.addEventListener(Event.COMPLETE, onLoadComplete);
+
+			//listen for any errors reading the file
+			fr.addEventListener(IOErrorEvent.IO_ERROR, onLoadError);
+
+			//load the content of the file
+			fr.load();
+		}
+
+		//called when the user cancels out of the browser dialog
+		private function onCancel(e:Event):void
+		{
+			trace("File Browse Canceled");
+			fr = null;
+		}		
+		
+		
+		//called when the file has completed loading
+		private function onLoadComplete(e:Event):void
+		{
+			//get the data from the file as a ByteArray
+			var data:ByteArray = fr.data;
+			var loader:Loader = new Loader();
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE,loaderCompleteHandler);
+			loader.loadBytes(data);
+
+			fr = null;
+		}
+
+		//called if an error occurs while loading the file contents
+		private function onLoadError(e:IOErrorEvent):void
+		{
+			trace("Error loading file : " + e.text);
+		}
+		
+		private function loaderCompleteHandler(event:Event):void {
+			var loader:LoaderInfo = event.currentTarget as LoaderInfo;
+			var bmp:Bitmap = Bitmap(loader.content);
+			
+			var img:Image = new Image();
+			img.width=300;
+			img.height=300;
+			img.alpha=0.8;
+			img.source = bmp;
+			this.addChild(img);
+			
+			
+			if(!tool)
+                {
+                    tool = new TransformTool();
+                    
+                    tool.target = img;
+                    tool.scaleWithRegistration = true;
+                    addChild(tool);
+                }
+			currentState='';
+		}
+		
+		
+	]]>
+</mx:Script>
+	<maps:Map id="map" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQ90078BGwgMQ1AXXdPNoLNuCNk4hQ4ed9_s377T8EfU8iTpdFjsz8dgA" mapevent_mapready="init()" width="100%" height="100%" />
+	<mx:Button label="stop" right="10" bottom="10" click="ep.stopEdit()"/>
+	<mx:Button label="start" right="69" bottom="10" click="ep.startEdit()"/>
+	<mx:Button label="new" right="131" bottom="10" click="ep.stopEdit();ep = new EditablePolygon(map);ep.startEdit()"/>
+	<mx:Button label="start drawing" bottom="33" click="ep = new EditablePolygon(map);ep.startDrawing()" left="10" width="102"/>
+	<mx:Button label="numPoints" right="10" top="33" click="Alert.show(ep.polVertexes.length.toString())"/>
+</mx:Application>
