@@ -9,9 +9,9 @@ class Services {
 		$this->conn = mysql_connect(DB_HOST, DB_USER, DB_PASSWORD);
 		mysql_select_db($_SESSION['db'], $this->conn);
 		if ($this->conn){
-			error_log("conexion ok");
+			//error_log("conexion ok");
 		}else{
-			error_log("conexion mal");
+			//error_log("conexion mal");
 		}
 	}
 	
@@ -52,6 +52,13 @@ class Services {
 		$row = mysql_fetch_assoc($query);
 		return $row;
 	}
+	
+	public function getUnitCoordinateDetailsByUnitID($UnitID) {
+		$sql = "SELECT B.UnitID,BiotopeText,LocalityText,UTMText,LatitudeDecimal,LongitudeDecimal,coords,NameAuthorYearString FROM BIOCASE_UNITS B left join BIOCASE_IDENTIFIC I on B.UnitID=I.UnitID left join utmcoords C on B.UTMText=C.utm WHERE B.UnitID=$UnitID AND PreferedFlag=true";
+		$query = mysql_query($sql, $this->conn);	
+		$row = mysql_fetch_assoc($query);
+		return $row;
+	}	
 	
 	public function getAllIdentificByUnitID($UnitID) {
 		$sql = "SELECT * FROM BIOCASE_IDENTIFIC where UnitID=$UnitID order by PreferedFlag DESC, LabelFlag DESC";
