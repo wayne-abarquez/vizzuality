@@ -1767,7 +1767,7 @@ p.tituloUserImage{
 }
 
 .columnLong{
-	width: 610px;
+	width: 300px;
 	margin: 0;
 	padding: 0;
 }
@@ -1797,6 +1797,12 @@ p.tituloUserImage{
 	width: 300px;
 }
 
+.columnCorrer {
+	float:left;
+	width:300px;
+	margin:0 10px 0 0;
+}
+
 .ColumnHome{
 	height: 110px;
 	width: 910px;
@@ -1808,6 +1814,10 @@ p.tituloUserImage{
 	margin-right: 0px;
 }
 
+img.socialNetworks {
+	width:65px;
+}
+
 .columnLonga{
 	width: 380px;
 }
@@ -1816,6 +1826,24 @@ p.tituloUserImage{
 	height: 50px;
 	width: 290px;
 	padding-left: 5px;
+}
+
+#correres {
+	color: #666666;
+	font-size: 15px;
+	line-height: 14px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#correres:hover {
+	color:#333333;
+	text-decoration:none;
+}
+
+#correrContent p {
+	color:#757575;
+	font-size:12px;
 }
 
 #tweets{

@@ -177,37 +177,36 @@
 	<div class="span-1 column ColumnHome">
 		<div class="span-1 last columnLong">
 			<p class="titulo">RUNNITY EN LA WEB</p>
-			<div class="column span-3 first">
 				<a href="http://www.tuenti.com/#m=Photo&amp;func=view_photo&amp;collection_key=1-66022443-567658561-66022443" target="_blank">
-					<img src="/img/tuenti.jpg" alt="socialNetworks">
+					<img src="/img/tuenti.jpg" alt="socialNetworks" class="socialNetworks">
 				</a>
-			</div>
-			<div class="column span-3">
 				<a href="http://www.facebook.com/home.php?#/group.php?gid=158141673184&amp;ref=ts" target="_blank">
-					<img src="/img/facebook.jpg" alt="socialNetworks">
+					<img src="/img/facebook.jpg" alt="socialNetworks" class="socialNetworks">
 				</a>
-			</div>
-			<div class="column span-4 last">
 				<a href="http://twitter.com/runnity" target="_blank">
-					<img src="/img/twitter.jpg" alt="socialNetworks">
+					<img src="/img/twitter.jpg" alt="socialNetworks" class="socialNetworks">
 				</a>
-			</div>
-			<div class="column span-3 last">
 				<a href="http://www.flickr.com/groups/1188628@N20/" target="_blank">
-					<img src="/img/flickr.jpg" alt="socialNetworks">
+					<img src="/img/flickr.jpg" alt="socialNetworks" class="socialNetworks">
 				</a>
-			</div>
 		</div>
+		<div class="span-1 columnCorrer">
+			<p class="titulo tituloRight">LO ÚLTIMO EN CORRER.ES</p>
+			<div class="twitterContent" id="correrContent">
+					<a id="correres" target="_blank"></a>
+       </div>
+		</div>
+		
 		<div class="span-1 last columnSort">
 			<p class="titulo tituloRight">RUNNITY EN TWITTER</p>
 			<div class="twitterContent">
-                <div class="column">
-                    <img id="twitterImage" alt="twitterImage" src="">
-                </div>
-                <div class="column tweetComment last">
-                	<a id="tweets" href="http://twitter.com/runnity" target="_blank"></a>
-                </div>
-            </div>
+           <div class="column">
+               <img id="twitterImage" alt="twitterImage" src="">
+           </div>
+           <div class="column tweetComment last">
+           	<a id="tweets" href="http://twitter.com/runnity" target="_blank"></a>
+           </div>
+       </div>
 		</div>
 	</div>
 
@@ -227,12 +226,25 @@
 			});
 			
 	    });
-	    
-/* 		$(".nameRaceLink").truncate( {max_length: 50} ); */
-/* 		$(".infoRace").truncate( {max_length: 30} ); */
-/* 		$(".nameRaceOrange").truncate( {max_length: 55} );			 */
-/* 		$(".placeRace").truncate( {max_length:30} );		 */
-		
+	
+			var url = "http://www.google.com/reader/public/javascript/feed/http://www.correr.es/feed/?callback=?";
+			$.getJSON(url,function(data) {
+        for(var i = 1; i < 2; i += 1) {
+	      	$('#correres').append(data.items[i].title);
+					$('#correres').attr("href",data.items[i].alternate.href)
+					$('#correrContent').append('<p id="summary">' + data.items[i].summary + '</p>');
+					var len = 100;
+					var x = document.getElementById('summary');
+					var trunc = x.innerHTML;
+					trunc = trunc.replace(/\t/g, "");
+					if (trunc.length > len) {	
+						trunc = trunc.substring(0, len);
+					  trunc += '...';
+					  x.innerHTML = trunc;
+					}
+				}
+      });
+
 		function twitter_callback (){
 			return true;
 		}
