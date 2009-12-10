@@ -9,6 +9,7 @@ $(document).ready(function(){
 	  Cufon.replace('.titleBoxRegister p');
 	  Cufon.replace('.nameUserProfile');
 	  Cufon.replace('.nameUserProfileNick');
+		Cufon.replace('#correres');
 
 
       $('#inputsearchFirst').emptyonclick(); 
