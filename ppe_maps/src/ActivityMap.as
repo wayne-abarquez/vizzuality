@@ -23,6 +23,7 @@ package {
 	import com.vizzuality.markers.PAGeneralInfowindow;
 	import com.vizzuality.markers.PAMarker;
 	import com.vizzuality.markers.SingleMarker;
+	import com.vizzuality.vizzButton;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -137,7 +138,16 @@ package {
 				    color: 0xFF7600,
 				    alpha: 0.4
 				  }	
-			});			
+			});		
+			
+			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",18,6,2);
+			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+			var zoomMinus:vizzButton = new vizzButton(this,10,40,25,25,"-",18,8,1);
+			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 	
 			
 			
 			var temp:String = '[{"name":"Yosemite National Park","geojson":{"type":"MultiPolygon","bbox":[130.666680,-25.416670,131.370590,-25.081670],"coordinates":[[[[130.74986,-25.16335],[130.74999,-25.26666],[130.75002,-25.26666],[130.83337,-25.26665],[130.92921,-25.26668],[130.92924,-25.26857],[131.00841,-25.26841],[131.00837,-25.26667],[131.08337,-25.26667],[131.1667,-25.26666],[131.25002,-25.26665],[131.33338,-25.26666],[131.37059,-25.26666],[131.37058,-25.33332],[131.37059,-25.41667],[131.33336,-25.41667],[131.25003,-25.41667],[131.16669,-25.41667],[131.08337,-25.41665],[131.00003,-25.41665],[130.91668,-25.41665],[130.83337,-25.41667],[130.75004,-25.41665],[130.66668,-25.41666],[130.66671,-25.33333],[130.66669,-25.08167],[130.75002,-25.12334],[130.74986,-25.16335]]]]} ,' + 

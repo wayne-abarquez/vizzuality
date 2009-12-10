@@ -101,6 +101,15 @@ package {
 		
 		private function onMapReady(event:MapEvent):void {
 			
+			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",18,6,2);
+			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+			var zoomMinus:vizzButton = new vizzButton(this,10,40,25,25,"-",18,8,1);
+			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 
+			
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
 				    thickness: 2,
