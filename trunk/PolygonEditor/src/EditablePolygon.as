@@ -12,8 +12,6 @@ package
 	
 	import flash.geom.Point;
 	import flash.utils.Dictionary;
-	
-	import mx.core.Application;
 
 	public class EditablePolygon
 	{
@@ -57,7 +55,7 @@ package
 				  gravity:0,
 				  iconOffset: new Point(-5,-5)
 				}));
-			m.addEventListener(MapMouseEvent.DRAG_STEP,onMarkerDragEnd);
+			m.addEventListener(MapMouseEvent.DRAG_END,onMarkerDragEnd);
 				
 			return m;	
 		}
@@ -83,9 +81,32 @@ package
 					map.removeOverlay(polygon);	
 				var tempArr:Array=polVertexes.concat();
 				tempArr.push(polVertexes[0]);
+				
 				polygon = createPolygon(tempArr);
 				map.addOverlay(polygon);
 			}			
+		}
+		
+ 		private function updatePolygonMediumPoints(geome:Array):void {
+			markersDictionary = new Dictionary();
+			var latitude: Number;
+			var longitude: Number;
+			
+			for (var i:Number=0; i<geome.length; i++) {
+				var marker1:Marker = createVertexMarker(geome[i]);
+				markersDictionary[marker1] =  geome[i];	
+				
+				//medium point			
+				if ((i+1)!=geome.length){
+					var medPoint: LatLng = new LatLng(((geome[i] as LatLng).lat() + (geome[i+1] as LatLng).lat())/2,((geome[i] as LatLng).lng() + (geome[i+1] as LatLng).lng())/2);
+					var marker:Marker = createVertexMarker(medPoint);
+					markersDictionary[marker] =  medPoint;					
+				} else {
+					var medPointLast: LatLng = new LatLng(((geome[i] as LatLng).lat() + (geome[0] as LatLng).lat())/2,((geome[i] as LatLng).lng() + (geome[0] as LatLng).lng())/2);
+					var marker2:Marker = createVertexMarker(medPointLast);
+					markersDictionary[marker2] =  medPointLast;
+				}
+			}
 		}
 		
 		private function createPolygon(vertex:Array):Polygon {
@@ -148,6 +169,7 @@ package
 				map.buttonMode=false;				
 				map.removeEventListener(MapMouseEvent.CLICK,onMapClick);
 				markersPane.clear();
+				updatePolygonMediumPoints(polVertexes);
 			}
 		}
 		

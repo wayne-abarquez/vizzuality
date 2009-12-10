@@ -194,6 +194,7 @@
 	<mx:Button label="stop" right="10" bottom="10" click="ep.stopEdit()"/>
 	<mx:Button label="start" right="69" bottom="10" click="ep.startEdit()"/>
 	<mx:Button label="new" right="131" bottom="10" click="ep.stopEdit();ep = new EditablePolygon(map);ep.startEdit()"/>
-	<mx:Button label="start drawing" bottom="33" click="ep = new EditablePolygon(map);ep.startDrawing()" left="10" width="102"/>
+	<mx:Button label="start drawing" bottom="39" click="ep = new EditablePolygon(map);ep.startDrawing()" left="10" width="102"/>
 	<mx:Button label="numPoints" right="10" top="33" click="Alert.show(ep.polVertexes.length.toString())"/>
+	<mx:Button label="clean map" width="87" click="map.clearOverlays();" right="10" top="63"/>
 </mx:Application>
