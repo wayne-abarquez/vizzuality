@@ -9,9 +9,6 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
-	import com.google.maps.controls.ControlPosition;
-	import com.google.maps.controls.ZoomControl;
-	import com.google.maps.controls.ZoomControlOptions;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.PolygonOptions;
@@ -28,6 +25,7 @@ package {
 	import com.vizzuality.markers.PAInfoWindow;
 	import com.vizzuality.markers.PAMarker;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
+	import com.vizzuality.vizzButton;
 	
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
@@ -196,10 +194,14 @@ package {
 			map.addEventListener(MapMouseEvent.DOUBLE_CLICK,onMapDoubleClick);
 			//map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);
 			
-			var zco:ZoomControlOptions= new ZoomControlOptions({
-				position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)
-			});
-			map.addControl(new ZoomControl(zco));
+			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",18,6,2);
+			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+			var zoomMinus:vizzButton = new vizzButton(this,10,40,25,25,"-",18,8,1);
+			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 
 			
 			if(dataLoaded && !dataAnalyzed) {
 				dataAnalyzed=true;

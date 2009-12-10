@@ -1,14 +1,10 @@
 package {
 	import com.adobe.serialization.json.JSON;
 	import com.google.maps.Alpha;
-	import com.google.maps.Color;
 	import com.google.maps.Map;
 	import com.google.maps.MapEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
-	import com.google.maps.controls.ControlPosition;
-	import com.google.maps.controls.ZoomControl;
-	import com.google.maps.controls.ZoomControlOptions;
 	import com.google.maps.interfaces.IPane;
 	import com.google.maps.overlays.Polygon;
 	import com.google.maps.overlays.PolygonOptions;
@@ -17,11 +13,13 @@ package {
 	import com.greensock.plugins.*;
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.tileoverlays.GbifTileLayer;
+	import com.vizzuality.vizzButton;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -88,12 +86,12 @@ package {
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
 				    thickness: 1,
-				    color: 0x999999,
-				    alpha: 1
+				    color: 0xFF7600,
+				    alpha: 0.7
 				  },
 				  fillStyle: {
-				    color: 0x999999,
-				    alpha: 0.4
+				    color: 0xFF7600,
+				    alpha: 0.35
 				  }	
 			});
 			
@@ -142,12 +140,14 @@ package {
 			polygonPane=map.getPaneManager().createPane();
 			
 			
-			var mzco:ZoomControlOptions = new ZoomControlOptions({
-				hasScrollTrack:false,
-				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10) 
-			});
-			var zc:ZoomControl= new ZoomControl(mzco);
-			map.addControl(zc);
+			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",18,6,2);
+			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+			var zoomMinus:vizzButton = new vizzButton(this,10,40,25,25,"-",18,8,1);
+			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 
 			
 			
 			if(dataLoaded && !dataAnalyzed) {

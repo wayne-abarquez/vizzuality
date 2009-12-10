@@ -20,6 +20,7 @@ package {
 	import com.vizzuality.markers.PAGeneralInfowindow;
 	import com.vizzuality.markers.PAMarker;
 	import com.vizzuality.markers.SingleMarker;
+	import com.vizzuality.vizzButton;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -125,6 +126,16 @@ package {
 		
 		private function onMapReady(event:MapEvent):void {
 			map.y= 3;
+			
+			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",18,6,2);
+			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+			var zoomMinus:vizzButton = new vizzButton(this,10,40,25,25,"-",18,8,1);
+			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 
+			
 			//json urle xample: "/protected_areas/"+this.root.loaderInfo.parameters.id+"/comments.json"
 			paPoint = new LatLng(this.root.loaderInfo.parameters.palat,this.root.loaderInfo.parameters.palon);
 			var paId:Number=root.loaderInfo.parameters.id;
