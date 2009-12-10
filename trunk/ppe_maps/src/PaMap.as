@@ -24,6 +24,7 @@ package {
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.markers.PAInfoWindow;
 	import com.vizzuality.markers.PAMarker;
+	import com.vizzuality.markers.TooltipMarker;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	import com.vizzuality.vizzButton;
 	
@@ -68,6 +69,7 @@ package {
 		private var infoWindowToOpen: PAInfoWindow;
 		private var paMarker: PAMarker;
 		private var paDictionary: Dictionary = new Dictionary();
+		private var tooltip: TooltipMarker;
 		
 
 /* 		[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
@@ -292,7 +294,7 @@ package {
 						img.thumbnail = (photo.photo_file_url as String).replace("medium","mini_square");		
 						img.id=photo.photo_id;		
 						img.height=photo.height;		
-						img.width=photo.width;		
+						img.width=photo.width;	
 			
 			
 						//pictures.addItem(img);		
@@ -317,10 +319,21 @@ package {
 	      	var photoUrl:String = photo.imageUrl;
 	      	
 	       var marker:Marker = new Marker(latlng, new MarkerOptions(
-	       	{tooltip: photo.title,
+	       	{/* tooltip: photo.title, */
 	       	 draggable:false,
 	       	 hasShadow:false,	        
-	       	 icon: ev.target.loader}));		        
+	       	 icon: ev.target.loader}));
+	       	
+	       	marker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
+	       		trace('jasdfjasddfasd');
+	       		tooltip = new TooltipMarker(photo.title);
+				tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x;
+				tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y;
+	       		addChild(tooltip);
+	       	});
+	       	marker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
+	       		removeChild(tooltip);
+	       	});  
               
         	var infowindow:Loader= new Loader();
         	infowindow.load(new URLRequest(photo.imageUrl));
