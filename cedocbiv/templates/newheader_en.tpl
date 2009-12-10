@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<title>CeDocBiV</title>
 	
 	<link rel="stylesheet" href="/css/blueprint/grid.css" type="text/css" media="screen, projection">
@@ -54,9 +54,12 @@
 <div class="container">
 
 <div class="header">
-	<div class="span-1 logo"></div>  
-	<div class="span-1 headerTitle"><p><span class="color1">Documentation Center</span><span class="color2"> of </span> <span class="color3">Plant Biodiversity</span></p></div>
-	<div class="span-1 comboIdioma">
+	<div>
+	<a href="index.php"><div class="logo"></div></a>
+	<div class="headerTitle"><p><span class="color1">Centre de Documentaci&oacute;</span><span class="color2"> de </span> <span class="color3">Biodiversitat Vegetal</span></p>
+	</div>
+	</div>
+	<div class="comboIdioma">
 		<form name="frmName">
 		<select id="idioma" onchange="idiomaload()">
 			<option value="cat" {if $smarty.session.lang eq "cat"}selected{/if}>Catalá</option>
@@ -65,6 +68,6 @@
 		</select>
 		</form>
 	</div>
-</div>		
+</div>			
 
 

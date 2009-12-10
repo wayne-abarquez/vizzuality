@@ -123,11 +123,10 @@
 		    <span class="search-1"><strong>Número d'herbari: </strong> (104*)<br />BCN 
 		    	<input name="UnitID" id="UnitID" size="30" style="width: 5em;" type="text" />
 		  	</span> 
-		  	<br />
-		  	<br />
-		  	<br />
-		  	<input name="submit" value="Cerca" type="submit"/>
+		  	<span class="search-1"><input name="submit" value="Cerca" type="submit" class="button topmargin"/></span>
 		  	<input name="db" type="hidden" value="{$BDSelected}">
+		  	<br />
+		  	<br />
 		  </div>
 	  </div>
 	</form>
@@ -153,18 +152,17 @@
 				{html_options values=$genus output=$genus}
 			</select>	
 		  </span> 
-		  <span class="search-2"><strong>Família:</strong><br />
+		  <span class="search-1"><strong>Família:</strong><br />
 			<select name="highertaxon">
 				<option value="">Totes</option>
 				{html_options values=$families output=$families}
 			</select>			
 		  </span>
 		  <br />
-		  <br />
-		  <br />
-		  <br />
-		  <input name="submit" value="Cerca" type="submit"/>
+		  <span class="search-1"><input name="submit" value="Cerca" type="submit" class="button"/></span>
 		  <input name="db" type="hidden" value="{$BDSelected}">
+		  <br />
+		  <br />
 		  </font></div>
 	  </div>
 	</form>

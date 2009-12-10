@@ -1,68 +1,49 @@
 {include file="newheader_cat.tpl"}
 
 <div class="content">
-  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Base de dades 
-	de {$BDSelected}</font></h3>
+	<div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
   
 	<div class="news-body">
-	  {section name=mostrar loop=$Ident}
+		<div class="MapResult" id="map"></div>
+		
 
-	  <h3> 
-	  {$Ident[0].NameAuthorYearString}		
-	  </h3>
+		<div class="resultPliego"> 
+			{foreach key=UnitID item=result from=$Pliegos}
 
-	  <p>Publicat el 22-08-2005 </p>
-	  
-	  <br />
-	  <span class="label">Fam&iacute;lia:</span> 
-		  {$Ident[0].HigherTaxon}		
-	  </h3>
-	  
-	  <br />
-	  	  <span class="label">Nom etiqueta:</span> 
-	  		  {$Ident[1].NameAuthorYearString}		
-	  <br />
+			<div class="resultPliegoContainer">
+				<div class="span-1 first shade-1" id="main0">
+					<p><a>{$result.UnitID}</a></p>
+				</div>
+				<div class="pliego">
+					<a href="sheetdetail.php?UnitID={$result.UnitID}&amp;db={$BDSelected}"><p class="title">{$result.nameauthoryearstring}</p></a>
+					<p>{$result.highertaxon} | {$result.TypeStatus}</p>
+					<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} ( <!--fecha-->	)</p>
+				</div>
+			</div>
+			{/foreach}
 
-	  <span class="label">Guardat com:</span> 
-	  {$Ident[0].NameAuthorYearString}	  
-	  <br />
-	  <br />
-	  <span class="label">Localitat: </span> 
-	  {$Units.LocalityText}
-	  <br />
-	  <span class="label">Pa’s: </span> 
-	  	  {$Units.CountryName}
-	  <br />
-	  <span class="label">Altitud: </span> 
-	  	  {$Units.AltitudeLowerValue} <!-- meter tb UpperValue -->
-	  <br />
-	  <br />
-	  <span class="label">Recol&middot;lectors:</span> 
-	  	  {$Agents.GatheringAgentsText} <!-- meter tb UpperValue --> 
-	  <br />
-	  	  <span class="label">H&agrave;bitat: </span> 
-	  {$Units.BiotopeText}	  <br />
-	  
-<!-- 	  meter CollectorNumber -->
-
-	  <span class="label">Data de recol&middot;lecci—:</span> 
-	  25-05-1985	  <br />
-	  <span class="label">Col&middot;lecci—:</span> 
-	  {$Units.ProjectTitle}	  <br />	  <br />
-	  <span class="label">Fenologia:</span> 
-	  {$Units.Phenology}	  	  <br />
-	  
-	  {if $Images}
-	  <div>
-	  <p>Imagenes</p>
-    	{section name=imagenes loop=$Images}
-    		<a href="{$Images[imagenes].ImageURI}">{$Images[imagenes].ImageURI}</a><br />
-    	{/section}
-	  </div>
-	  {/if}
-  	{/section}	  
-	 </div>
 	
-  </div>
+		</div>
+			  	 
+	</div>
+	
+</div>
+
+{literal}<script src="http://maps.google.com/maps?file=api&v=2&key=nokey" type="text/javascript"></script>{/literal}
+
+{literal}
+<script type="text/javascript">
+//<![CDATA[
+var map;
+if (GBrowserIsCompatible()) {
+map = new GMap(document.getElementById("map"));
+var point = new GLatLng(40.38051877130511, -3.7238287925720215);
+
+map.setCenter(point, 15);
+}
+
+//]]>
+</script>
+{/literal}
 
 {include file="newfooter_cat.tpl"}

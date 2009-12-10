@@ -1,68 +1,75 @@
 {include file="newheader_cat.tpl"}
 
 <div class="content">
-  <h3><font face="Verdana, Arial, Helvetica, sans-serif" size="2">Base de dades 
-	de {$BDSelected}</font></h3>
+	<div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
   
 	<div class="news-body">
-	  {section name=mostrar loop=$Ident}
+		<div class="MapResult" id="map"></div>
 
-	  <h3> 
-	  {$Ident[0].NameAuthorYearString}		
-	  </h3>
-
-	  <p>Publicat el 22-08-2005 </p>
-	  
-	  <br />
-	  <span class="label">Fam&iacute;lia:</span> 
-		  {$Ident[0].HigherTaxon}		
-	  </h3>
-	  
-	  <br />
-	  	  <span class="label">Nom etiqueta:</span> 
-	  		  {$Ident[1].NameAuthorYearString}		
-	  <br />
-
-	  <span class="label">Guardat com:</span> 
-	  {$Ident[0].NameAuthorYearString}	  
-	  <br />
-	  <br />
-	  <span class="label">Localitat: </span> 
-	  {$Units.LocalityText}
-	  <br />
-	  <span class="label">País: </span> 
-	  	  {$Units.CountryName}
-	  <br />
-	  <span class="label">Altitud: </span> 
-	  	  {$Units.AltitudeLowerValue} <!-- meter tb UpperValue -->
-	  <br />
-	  <br />
-	  <span class="label">Recol&middot;lectors:</span> 
-	  	  {$Agents.GatheringAgentsText} <!-- meter tb UpperValue --> 
-	  <br />
-	  	  <span class="label">H&agrave;bitat: </span> 
-	  {$Units.BiotopeText}	  <br />
-	  
-<!-- 	  meter CollectorNumber -->
-
-	  <span class="label">Data de recol&middot;lecció:</span> 
-	  25-05-1985	  <br />
-	  <span class="label">Col&middot;lecció:</span> 
-	  {$Units.ProjectTitle}	  <br />	  <br />
-	  <span class="label">Fenologia:</span> 
-	  {$Units.Phenology}	  	  <br />
-	  
-	  {if $Images}
-	  <div>
-	  <p>Imagenes</p>
-    	{section name=imagenes loop=$Images}
-    		<a href="{$Images[imagenes].ImageURI}">{$Images[imagenes].ImageURI}</a><br />
-    	{/section}
-	  </div>
-	  {/if}
-  	{/section}	  
-	 </div>
+		<div class="span-1 first shade-1" id="main0">
+			<p><a>{$Ident[0].UnitID}</a></p>
+		</div>
+		
+		<div class="pliego">
+		
+		  <p class="title"> {$Ident[0].NameAuthorYearString} </p>
 	
-  </div>
+		  <p>Publicat el {$Units.created_when}</p>
+		  
+		  <p><b>Família:</b> {$Ident[0].HigherTaxon}</p> 
+			  		
+	  	  <p><b>Nom etiqueta:</b> {$Ident[1].NameAuthorYearString}</p> 
+		  		  		
+		  <p><b>Guardat com:</b> {$Ident[0].NameAuthorYearString}</p> 
+		 	  
+		  <p><b>Localitat:</b> {$Units.LocalityText}</p> 
+		  
+		  <p><b>País:</b> {$Units.CountryName}</p> 
+		  	  
+		  <p><b>Altitud:</b> {$Units.AltitudeLowerValue} - {$Units.AltitudeUpperValue}</p> 
+		  	  
+		  <p><b>Recollectors:</b> {$Agents.GatheringAgentsText}</p> 
+		  	   
+		  <p><b>Hábitat:</b> {$Units.BiotopeText}</p> 
+		  
+	<!-- 	  meter CollectorNumber -->
+	
+		  <p><b>Data de recollecció:</b> 25-05-1985</p> 
+		  	  
+		  <p><b>Collecció:</b> {$Units.ProjectTitle}</p> 
+		  
+		  <p><b>Fenologia:</b> {$Units.Phenology}</p> 
+		  
+		  {if $Images}
+		  <div>
+		  <p>Imagenes</p>
+	    	{foreach key=UnitID item=Image from=$Images.imagenes}
+	    		<a href="{$Image.ImageURI}">{$Image.ImageURI}</a><br />
+	    	{/foreach}
+		  </div>
+		  {/if}
+
+		</div>
+	  	 
+	</div>
+	
+</div>
+
+{literal}<script src="http://maps.google.com/maps?file=api&v=2&key=nokey" type="text/javascript"></script>{/literal}
+
+{literal}
+<script type="text/javascript">
+//<![CDATA[
+var map;
+if (GBrowserIsCompatible()) {
+map = new GMap(document.getElementById("map"));
+var point = new GLatLng(40.38051877130511, -3.7238287925720215);
+
+map.setCenter(point, 15);
+}
+
+//]]>
+</script>
+{/literal}
 
 {include file="newfooter_cat.tpl"}

@@ -23,8 +23,8 @@
 	margin-left: 15px;
 }
 
-.color1{ color: #003300; }
-.color2{ color: #000000; }
+.color1{ color: #000000; }
+.color2{ color: #003300; }
 .color3{ color: #006600; }
 
 .comboIdioma{
@@ -76,6 +76,7 @@
 
 .news-body p.texto_intro{
 	color: #666666;
+	margin-bottom: 6px;
 }
 
 .news-body p.info{
@@ -130,7 +131,7 @@
 }
 
 .buscador {
-	background: #EAF2FA;
+	background: #a0fda0;
 	padding: 1em;
 }
 
@@ -138,8 +139,8 @@
 	float: left;
 }
 
-.shade-1 { background: #FFF299; width: 75px; height: 50px; margin: 0; padding: 0; text-align: center;}
-.shade-1 p{margin-top: 3px;}
+.shade-1 { background-image: url(/images/notification.gif); background-repeat: no-repeat; width: 87px; height: 87px; margin: 0; padding: 0; text-align: center;}
+.shade-1 p{margin-top: 16px;}
 .shade-1 a { color: #93883F; text-decoration: none; font-size: 15px; font-weight: bold;}
 .shade-1 strong { color: #A39A5D; }
 
@@ -162,6 +163,10 @@
 	height: 100px;
 }
 
+.result p{
+	color: #336699;
+}
+
 .result a{
  	color: #003366;
  	text-decoration: none;
@@ -173,6 +178,10 @@
  	color: #006633;
 }
 
+.news-details{
+	color: #666666;
+}
+
 .containerResult{
 	margin: 0; padding: 0;
 	margin-bottom: 10px;
@@ -181,17 +190,29 @@
 
 /* taxon result */
 
-.taxonMap{
+.shade-1Taxon { background-image: url(/images/notification2.gif); background-repeat: no-repeat; width: 160px; height: 60px; margin: 0; padding: 0; text-align: center;}
+.shade-1Taxon p{margin-top: 18px;}
+.shade-1Taxon a { color: #93883F; text-decoration: none; font-size: 13px; font-weight: bold;}
+.shade-1Taxon strong { color: #A39A5D; }
+
+.Map{
 	width: 948px;
 	height: 300px;
-	background-color: #999999;
-	border: 1px solid #333333;
+	border: 1px solid #999999;
+}
+
+.MapResult{
+	width: 500px;
+	height: 200px;
+	border: 1px solid #999999;
+	float: right;
 }
 
 .resultTaxon{
  	margin: 0; padding: 0;
-	width: 830px;
-	height: 50px;
+	width: 780px;
+	height: 100px;
+	margin-bottom: 10px;
 }
 
 .resultTaxon a{
@@ -207,6 +228,46 @@
 
 .containerResultTaxon{
 	margin: 0; padding: 0;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	height: 60px;
+}
+
+
+.button {
+    background-image: url('/images/button.gif') no-repeat scroll top left;
+    color: #444;
+    float: left;
+    display: block;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    width: 100px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.topmargin{
+	margin-top: 10px;
+	margin-left: 32px;
+}
+
+.pliego{
+	margin-left: 100px;
+}
+
+.pliego p{
+	color: #666666;
+	margin-bottom: 1px;
+}
+
+.pliego p.title{
+	color: #336699;
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 1px;
+}
+
+.resultPliegoContainer{
+	height: 100px;
 }
