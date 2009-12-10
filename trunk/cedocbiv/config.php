@@ -20,9 +20,12 @@ define('DB_NAME', $_SESSION['db']);
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'pepe');
+define('DB_PASSWORD', 'root');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
+
+//Internatilization
+require_once($_SERVER['DOCUMENT_ROOT'] ."/language_".$_SESSION['lang'].".php");
 
 ?>

@@ -4,8 +4,7 @@
 	<div class="titleIndex"><p>Bases de Dades de l'Herbari BCN</p></div>
 
 	<div class="news-body"> 
-	  <p class="texto_intro">Des d'aquesta pagina podeu accedir a les sis bases de dades de l'herbari 
-		BCN, que es corresponen a les respectives colleccions que allotja el centre. Cliqueu en la base de dades que volgueu consultar:</p>
+	  <p class="texto_intro">{$smarty.const.INTRO_TEXT}</p>
 	  
 	  <a class="link_bd" href="query.php?db=algas">Algues</a>
 	  <p class="subheader">aprox. <b>99%</b> informatitzat | <b> 
