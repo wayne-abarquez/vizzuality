@@ -36,10 +36,11 @@
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
 		<LineStyle>
-			<width>0.1</width>
+			<width>1</width>
 		</LineStyle>
 		<PolyStyle>
-			<fill>0</fill>
+			<fill>0.8</fill>
+			<color>7dff0000</color>
 		</PolyStyle>
 	</Style>
 	<StyleMap id="m_ylw-pushpin_copy0">
@@ -64,7 +65,7 @@
     		    </Point>    		
   
     		{else}
-  			    <styleUrl>#m_ylw-pushpin_copy0</styleUrl>
+  			    <styleUrl>#m_ylw-pushpin</styleUrl>
     			<Polygon>
     				<outerBoundaryIs>
     					<LinearRing>
