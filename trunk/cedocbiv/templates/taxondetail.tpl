@@ -4,8 +4,9 @@
 	<div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
   
 	<div class="news-body">
-		<div class="MapResult" id="map"></div>
-		
+	    {if $hasGeo}
+		    <div class="MapResult" id="map"></div>
+		{/if}
 
 		<div class="resultPliego"> 
 		    <h2>{$Pliegos.scientificname} | {$Pliegos.family}</h2>
@@ -30,6 +31,7 @@
 	
 </div>
 
+{if $hasGeo}
 {literal}<script src="http://maps.google.com/maps?file=api&v=2&key={/literal}{$smarty.const.MAPS_API_KEY}{literal}" type="text/javascript"></script>{/literal}
 
 {literal}
@@ -55,4 +57,5 @@ map.addOverlay(geoXml);
 </script>
 {/literal}
 
+{/if}
 {include file="newfooter.tpl"}

@@ -24,7 +24,6 @@ $smarty->assign('data',$data);
 header ("Content-Type: application/vnd.google-earth.kml+xml");
 header("Content-Disposition: attachment; filename=taxondetail.kml");
 
-
 $smarty->display('taxondetailKml.tpl');
 
 

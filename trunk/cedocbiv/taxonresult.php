@@ -18,9 +18,9 @@ if(isset($_REQUEST['offset'])) {
 
 $smarty->assign('offset', $offset);
 
-if ($_REQUEST['nameauthoryearstring']) 	{ $nameauthoryearstring = $_REQUEST['nameauthoryearstring']; } else {$nameauthoryearstring = "";}
-if ($_REQUEST['highertaxon']) 			{ $highertaxon = $_REQUEST['highertaxon']; } else {$highertaxon = "";}
-if ($_REQUEST['genus']) 				{ $genus = $_REQUEST['genus']; } else {$genus = "";}
+if (isset($_REQUEST['nameauthoryearstring'])) 	{ $nameauthoryearstring = $_REQUEST['nameauthoryearstring']; } else {$nameauthoryearstring = "";}
+if (isset($_REQUEST['highertaxon'])) 			{ $highertaxon = $_REQUEST['highertaxon']; } else {$highertaxon = "";}
+if (isset($_REQUEST['genus'])) 				{ $genus = $_REQUEST['genus']; } else {$genus = "";}
 
 $smarty->assign('nameauthoryearstring', $nameauthoryearstring);
 $smarty->assign('highertaxon', $highertaxon);
