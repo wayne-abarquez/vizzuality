@@ -45,6 +45,6 @@ $smarty->assign('families',$services->getAllFamilies());
 $smarty->assign('countries',$services->getAllCountries());
 
 $smarty->assign('section', 'sheetresult');
-$smarty->display('sheetresult_'.$_SESSION['lang'].'.tpl');
+$smarty->display('sheetresult.tpl');
 
 ?>

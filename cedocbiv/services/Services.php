@@ -118,6 +118,16 @@ class Services {
 		}
 		return $result;
 	}
+	
+	public function getUnitCoordinateDetailsByTaxon($nameauthoryearstring) {
+		$sql = "SELECT B.UnitID,BiotopeText,LocalityText,UTMText,LatitudeDecimal,LongitudeDecimal,coords,NameAuthorYearString FROM BIOCASE_UNITS B left join BIOCASE_IDENTIFIC I on B.UnitID=I.UnitID left join utmcoords C on B.UTMText=C.utm WHERE I.nameauthoryearstring='$nameauthoryearstring' AND PreferedFlag=true";
+		$query = mysql_query($sql, $this->conn);	
+		$result=array();
+		while ($row = mysql_fetch_assoc($query)){
+			$result[]=$row;
+		}
+		return $result;
+	}
 
 	
 	//index

@@ -3,9 +3,10 @@
 
 
 
-$conn = mysql_connect("localhost", "root", "root");
+$conn = mysql_connect("localhost", "root", "pepe");
 mysql_select_db('cormofitos', $conn);
 
+/*
 $sql="
 DROP TABLE IF EXISTS `cormofitos`.`utmcoords`;
 CREATE TABLE  `cormofitos`.`utmcoords` (
@@ -15,6 +16,7 @@ CREATE TABLE  `cormofitos`.`utmcoords` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 
 mysql_query($sql, $conn);
+*/
 
 $root = simplexml_load_file("http://localhost/allutm10.kml");
 //$data = get_object_vars($root);

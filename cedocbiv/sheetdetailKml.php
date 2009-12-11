@@ -21,6 +21,7 @@ if($data['LatitudeDecimal']!='') {
 }
 
 header ("Content-Type: application/vnd.google-earth.kml+xml");
+header("Content-Disposition: attachment; filename=sheetdetail".$UnitID.".kml");
 
 $smarty->display('sheetdetailKml.tpl');
 

@@ -20,6 +20,6 @@ $smarty->assign('Agents',$services->getAllAgentsByUnitID($UnitID));
 $smarty->assign('Areas',$services->getAllAreasByUnitID($UnitID));
 
 $smarty->assign('section', 'sheetdetail');
-$smarty->display('sheetdetail_'.$_SESSION['lang'].'.tpl');
+$smarty->display('sheetdetail.tpl');
 
 ?>

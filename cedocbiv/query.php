@@ -21,6 +21,6 @@ $smarty->assign('genus',$services->getAllGenus());
 $smarty->assign('families',$services->getAllFamilies());
 $smarty->assign('countries',$services->getAllCountries());
 
-$smarty->display('query_'.$_SESSION['lang'].'.tpl');
+$smarty->display('query.tpl');
 
 ?>
