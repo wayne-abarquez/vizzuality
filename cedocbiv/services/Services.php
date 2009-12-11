@@ -175,7 +175,7 @@ class Services {
 		//Prepare SQL statement from the query page
 
 		//selects
-		$sql="SELECT u.UnitID, (SELECT GatheringAgentsText FROM BIOCASE_GATHERING_AGENTS where UnitID=u.UnitID) as AgentText , TypeStatus, highertaxon, nameauthoryearstring, localitytext, UTMText as utmformula, u.datetext, has_images,created_when,created_who, ISODateTimeBegin from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID";
+		$sql="SELECT u.UnitID, (SELECT GatheringAgentsText FROM BIOCASE_GATHERING_AGENTS where UnitID=u.UnitID) as AgentText , TypeStatus, highertaxon, nameauthoryearstring, localitytext,BiotopeText, UTMText as utmformula, u.datetext, has_images,created_when,created_who, ISODateTimeBegin,LatitudeDecimal,LongitudeDecimal,coords from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID left join utmcoords C on u.UTMText=C.utm";
 
 
 		//create the filter part
@@ -217,6 +217,7 @@ class Services {
     		$res['count'] = $numrec['num_records'];
         } else {
             $res['count'] =0;  
+            $res['hascoords'] =false;  
     		$res['datos']=array();
     		return $res;
         }		
@@ -225,12 +226,17 @@ class Services {
     		$offset=0;
     	}
     	$sql.=" order by u.UnitID ASC limit 10 offset $offset";
-
+        
+        $hasCoords=false;
     	$result = mysql_query($sql, $this->conn);		
     	while ($row = mysql_fetch_assoc($result)){
+            if($row['coords']!="" || $row['LatitudeDecimal']!="") {
+                $hasCoords=true;
+            }    	    
     		$rs_specimen[] = $row; 
     	}
     	$res['datos']=$rs_specimen;
+    	$res['hascoords'] =$hasCoords; 
 	
     	return $res;
     }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="LATIN-1"?>
+<?xml version="1.0" encoding="UTF8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
 	<name>Multiple sheets from CeDocBiv</name>
@@ -53,25 +53,28 @@
 		</Pair>
 	</StyleMap>
 	{foreach key=UnitID item=result from=$SearchSheetsResults.datos}
+	    {if ($result.LatitudeDecimal != '' || $result.LongitudeDecimal != '') || $result.coords != ''}
     	<Placemark>
-    		<name>{$data.UnitID} - {$data.NameAuthorYearString}</name>
-    		<description>{$data.LocalityText} - {$data.BiotopeText}</description>
-    		{if $isUtm}
-    			<styleUrl>#m_ylw-pushpin_copy0</styleUrl>
+    		<name>{$result.UnitID} - {$result.nameauthoryearstring}</name>
+    		<description>{$result.localitytext} - {$result.BiotopeText}</description>
+    		{if ($result.LatitudeDecimal != '' || $result.LongitudeDecimal != '')}
+    			<styleUrl>#normalPlacemark</styleUrl>
+    		    <Point>
+    		      <coordinates>{$result.LongitudeDecimal},{$result.LatitudeDecimal},0</coordinates>
+    		    </Point>    		
+  
+    		{else}
+  			    <styleUrl>#m_ylw-pushpin_copy0</styleUrl>
     			<Polygon>
     				<outerBoundaryIs>
     					<LinearRing>
-    						<coordinates>{$data.coords|trim}</coordinates>
+    						<coordinates>{$result.coords}</coordinates>
     					</LinearRing>
     				</outerBoundaryIs>
-    			</Polygon>
-    		{else}
-    			<styleUrl>#normalPlacemark</styleUrl>
-    		    <Point>
-    		      <coordinates>{$data.LongitudeDecimal},{$data.LatitudeDecimal},0</coordinates>
-    		    </Point>			
+    			</Polygon>		
     		{/if}
 	</Placemark>
+	{/if}
 	{/foreach}
 </Document>
 </kml>
