@@ -25,6 +25,10 @@ define('DB_PASSWORD', 'runnit');
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
 
+define('MAPS_API_KEY', 'ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQRy8YepOF23kdRkT302wfDKzL13hSzHs7Y0PSzB-4OSF1KBovKXXo9xQ');
+
+define('SERVER_URL', 'http://79.125.6.201/cedocbiv/temp/');
+
 //Internatilization
 require_once("language_".$_SESSION['lang'].".php");
 
