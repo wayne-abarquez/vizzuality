@@ -56,7 +56,7 @@
 <div class="header">
 	<div>
 	<a href="index.php"><div class="logo"></div></a>
-	<div class="headerTitle"><p><span class="color1">Centre de Documentaci&oacute;</span><span class="color2"> de </span> <span class="color3">Biodiversitat Vegetal</span></p>
+	<div class="headerTitle"><p><span class="color1">{$smarty.const.TITLE_HEADER_1}</span><span class="color2"> {$smarty.const.TITLE_HEADER_2} </span> <span class="color3">{$smarty.const.TITLE_HEADER_3}</span></p>
 	</div>
 	</div>
 	<div class="comboIdioma">

@@ -9,82 +9,52 @@
   <div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
   <div class="TextBD">
   {if $BDSelected eq "cormofitos"}
-  <p class="texto_intro">La informatitzaci&oacute; de les mostres de plantes vasculars de l'herbari BCN es va iniciar abans de 
-	la fusi&oacute; dels herbaris de les facultats de Biologia i de Farmacia. 
-	Pel fet de ser la m&eacute;s gran de les col&middot;leccions de l'herbari, 
-	la seva completa informatitzaci&oacute; &eacute;s un projecte a llarg termini. 
-	Actualment aquesta base de dades recull b&agrave;sicament els registres corresponents 
-	a la fam&iacute;lia de las aster&agrave;cies, escrofulari&agrave;cies, lami&agrave;cies, 
-	boragin&agrave;cies i fab&agrave;cies. Si amb la vostra consulta no obteniu 
-	els resultats esperats o b&eacute; voleu cercar mostres d'altres grups, <a href="mailto:cedocbiv@pcb.ub.es">poseu-vos 
-	en contacte</a> amb el personal del centre i indiqueu clarament la informaci&oacute; 
-	que desitgeu localitzar.
-  </p>
+  <p class="texto_intro"> {$smarty.const.INTRO_TEXTBD3} <a href="mailto:cedocbiv@pcb.ub.es">{$smarty.const.INTRO_TEXTCONTACT}</a></p>
   {/if}
   
   {if $BDSelected eq "algas"} 
-  <p class="texto_intro">En aquesta base de dades es recullen pr&agrave;cticament totes les mostres d'algues de l'herbari. 
-	Si amb la vostra consulta no obteniu els resultats esperats <a href="mailto:cedocbiv@pcb.ub.es">poseu-vos 
-	en contacte</a> amb el personal del centre i indiqueu clarament la informaci&oacute; 
-	que desitgeu localitzar.
-  </p>
+  <p class="texto_intro"> {$smarty.const.INTRO_TEXTBD1} <a href="mailto:cedocbiv@pcb.ub.es">{$smarty.const.INTRO_TEXTCONTACT}</a></p></p>
   {/if}
   
   {if $BDSelected eq "briofitos"} 
-  <p class="texto_intro">La informatitzaci&oacute; dels bri&ograve;fits de l' herbari BCN s'ha iniciat recentment i de moment 
-	el nombre de registres que cont&eacute; aquesta base de dades &eacute;s molt 
-	baix. Si amb la vostra consulta no obteniu els resultats esperats <a href="mailto:cedocbiv@pcb.ub.es">poseu-vos 
-	en contacte</a> amb el personal del centre i indiqueu clarament la informaci&oacute; 
-	que desitgeu localitzar.
-  </p>
+  <p class="texto_intro"> {$smarty.const.INTRO_TEXTBD2} <a href="mailto:cedocbiv@pcb.ub.es">{$smarty.const.INTRO_TEXTCONTACT}</a></p>
   {/if}
   
   {if $BDSelected eq "carpoteca"} 
-  <p class="texto_intro">La col&middot;lecci&oacute; de fruits i llavors de l'herbari BCN actualment est&agrave; pr&agrave;ctiament 
-	informatitzada en la seva totalitat. Si desitgeu consultar nom&eacute;s els 
-	registres que inclouen imatges podeu consultar directament l'apartat de la 
-	carpoteca de l'<a href="http://www.ub.es/cedocbiv/indexcar.htm">herbari virtual</a>
+  <p class="texto_intro"> {$smarty.const.INTRO_TEXTBD4} <a href="http://www.ub.es/cedocbiv/indexcar.htm">{$smarty.const.INTRO_TEXTHERBARI}</a>
   </p>
   {/if}
   
   {if $BDSelected eq "hongos"} 
-  <p class="texto_intro">La informatitzaci&oacute; de la col&middot;lecci&oacute; de fongs de l' herbari BCN s'ha iniciat recentment 
-	i de moment el nombre de registres que cont&eacute; aquesta base de dades 
-	&eacute;s molt baix. Si amb la vostra consulta no obteniu els resultats esperats 
-	<a href="mailto:cedocbiv@pcb.ub.es">poseu-vos en contacte</a> amb el personal 
-	del centre i indiqueu clarament la informaci&oacute; que desitgeu localitzar.
-  </p>
+  <p class="texto_intro">{$smarty.const.INTRO_TEXTBD5} <a href="mailto:cedocbiv@pcb.ub.es">{$smarty.const.INTRO_TEXTCONTACT}</a></p>
   {/if}
   
   {if $BDSelected eq "liquenes"} 
-  <p class="texto_intro">La informatitzaci&oacute; de la col&middot;lecci&oacute; de l&iacute;quens s'ha iniciat pels exemplars 
-	tipus que es conserven a l'herbari. Si no obteniu els resultats esperats <a href="mailto:cedocbiv@pcb.ub.es">poseu-vos 
-	en contacte</a> amb el personal del centre i indiqueu clarament les mostres 
-	que desitgeu localitzar.</p>
+  <p class="texto_intro">{$smarty.const.INTRO_TEXTBD6} <a href="mailto:cedocbiv@pcb.ub.es">{$smarty.const.INTRO_TEXTCONTACT}</a></p>
   {/if}
-  <p class="info">&Uacute;ltima actualitzaci&oacute;: <b>{$LastUpdate}</b> | Registres: <b>{$Numregistros}</b> | Per a fer una consulta ompliu el camp corresponent. Podeu fer servir l'asterisc (*) en qualsevol posici&oacute; d'una paraula.</p>
+  <p class="info">{$smarty.const.ACTUAL} <b>{$LastUpdate}</b> | {$smarty.const.REG} <b>{$Numregistros}</b> | {$smarty.const.INTRO_TEXTAST}</p>
   </div>
   
 <div class="tabber">
    <div class="tabbertab">
 	  <div id="queryForm" class="buscador"> 
 	     <form action="sheetresult.php" method="get" name="thisform" id="thisform">
-	     <h2>Buscar Pliego</h2>
+	     <h2>{$smarty.const.TITLE_TABPLIEGO}</h2>
 	     <div class="instruction"> 
 		    <div>
 		    <span class="search-1"> 
-		  		<label for="search">Nom del tàxon:</label> (Acro*)<br />
+		  		<label for="search">{$smarty.const.NOMTAXON} </label> (Acro*)<br />
 		 		<input name="nameauthoryearstring" id="nameauthoryearstring" size="30" style="width: 15em;" type="text" />
 		  	</span>
-		  	<span class="search-1"><strong>Gènere:</strong> (Acant*) <br />
+		  	<span class="search-1"><strong>{$smarty.const.GEN} </strong> (Acant*) <br />
 			<select name="genus">
-				<option value="">Totes</option>
+				<option value="">{$smarty.const.TODOS}</option>
 				{html_options values=$genus output=$genus}
 			</select>	
 		    </span> 
-		    <span class="search-2"><strong>Família:</strong><br />
+		    <span class="search-2"><strong>{$smarty.const.FAM}</strong><br />
 			<select name="highertaxon">
-				<option value="">Totes</option>
+				<option value="">{$smarty.const.TODOS}</option>
 				{html_options values=$families output=$families}
 			</select>			
 		    </span><br />
@@ -96,7 +66,7 @@
 		    </span> 
 		    <span class="search-1"><strong>País:</strong><br />
 		       <select name="countryname">
-			   <option value="">Tots</option>
+			   <option value="">{$smarty.const.TODOS}</option>
 			   {html_options values=$countries output=$countries}
 		       </select>
 		    </span> 
@@ -139,22 +109,22 @@
 	  
 	<div id="queryForm2" class="buscador"> 
 	<form action="taxonresult.php" method="get" name="thisform" id="thisform">
-	  <h2>Buscar Taxon</h2>
+	  <h2>{$smarty.const.TITLE_TABTAXON}</h2>
 	  <div class="instruction"> 
 		<div>
 		  <span class="search-1"> 
-		     <label for="search">Nom del tàxon:</label> (Acro*)<br />
+		     <label for="search">{$smarty.const.NOMTAXON} </label> (Acro*)<br />
 		     <input name="nameauthoryearstring" id="nameauthoryearstring" size="30" style="width: 15em;" type="text" />
 		  </span> 
-		  <span class="search-1"><strong>Gènere:</strong> (Acant*) <br />
+		  <span class="search-1"><strong>{$smarty.const.GEN} </strong> (Acant*) <br />
 			<select name="genus">
-				<option value="">Totes</option>
+				<option value="">{$smarty.const.TODOS}</option>
 				{html_options values=$genus output=$genus}
 			</select>	
 		  </span> 
-		  <span class="search-1"><strong>Família:</strong><br />
+		  <span class="search-1"><strong>{$smarty.const.FAM}</strong><br />
 			<select name="highertaxon">
-				<option value="">Totes</option>
+				<option value="">{$smarty.const.TODOS}</option>
 				{html_options values=$families output=$families}
 			</select>			
 		  </span>
