@@ -16,6 +16,10 @@ package com.vizzuality.layers
         private var bmd:BitmapData;
         public var onScreenBitmapData:BitmapData;
         public var offScreenBitmapData:BitmapData;
+        public var tileX:Number;
+        public var tileY:Number;
+        public var tileZ:Number;
+        
 		
 		
 		public function CustomTile()

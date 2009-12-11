@@ -10,6 +10,7 @@
   </compiler>
   <applications>
     <application path="RasterCrunch.mxml"/>
+    <application path="SeaLevel.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

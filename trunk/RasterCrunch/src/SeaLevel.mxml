@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" creationComplete="init()" xmlns:ns1="com.dougmccune.controls.*" xmlns:code="http://code.google.com/p/flexlib/">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" creationComplete="init()" xmlns:controls="com.dougmccune.controls.*" xmlns:code="http://code.google.com/p/flexlib/">
 <mx:Script>
 	<![CDATA[
 		import com.google.maps.controls.ControlPosition;
@@ -17,13 +17,13 @@
 		
 		private var raster:RasterSliderLayerOverlay;
 		private var crossdomainLoaded:Boolean=false;
-		//private var rasterUrl:String = "http://downloads.wdpa.org/ArcGIS/rest/services/GID/DEM_Greyscale_reclass/MapServer/tile/|Z|/|Y|/|X|.png";
-		private var rasterUrl:String = "http://vizzuality.s3.amazonaws.com/raster/tiles/|Z|/|X|/|Y|.png";
+		private var rasterUrl:String = "http://downloads.wdpa.org/ArcGIS/rest/services/GID/DEM_Greyscale_reclass/MapServer/tile/|Z|/|Y|/|X|.png";
+		//private var rasterUrl:String = "http://vizzuality.s3.amazonaws.com/raster/tiles/|Z|/|X|/|Y|.png";
 	
 		private function init():void {
 			//This is to allow the access to the tiles for the mouse over
-			//var externalDomains:Array=["downloads.wdpa.org","vizzuality.s3.amazonaws.com"];
-			var externalDomains:Array=["vizzuality.s3.amazonaws.com"];
+			var externalDomains:Array=["downloads.wdpa.org"];
+			//var externalDomains:Array=["vizzuality.s3.amazonaws.com"];
 			for each(var dom:String in externalDomains) {
 			    Security.allowDomain(dom);
 			    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
@@ -62,11 +62,7 @@
 		}
 		
 		private function onSliderChange():void {
-			var firstYear:Number = Math.round((slider.values[0]/1.5) + 1841);
-			var secondYear:Number = Math.round((slider.values[1]/1.5) + 1841);
-			if (secondYear>2010)
-				secondYear=2010;
-			yearDisplayed.text = firstYear.toString()+ '-'+ secondYear.toString();
+			yearDisplayed.text=slider.value.toString() +' m.';
 		}
 		
 		
@@ -74,14 +70,13 @@
 </mx:Script>
 	<maps:Map id="map" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" mapevent_mapready="onMapReady()" width="100%" height="100%" />
 	<mx:Canvas left="10" right="20" bottom="40" backgroundColor="#FFFFFF" backgroundAlpha="0.5" height="54">
-		<code:HSlider height="32" id="slider" values="[0,239]" minimum="0" maximum="255" snapInterval="1" 
-			 thumbCount="1"
-			allowTrackClick="true" allowThumbOverlap="true"
-			liveDragging="true" change="onSliderChange()" showDataTip="false" showTrackHighlight="true" 
-			labels="[1841,1850,1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2009]" 
-			fillColors="[#0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A]" verticalCenter="0" left="10" right="10"/>
+		<code:HSlider height="32" id="slider" value="0" minimum="0" maximum="255" snapInterval="1" 
+			liveDragging="true" change="onSliderChange()" showDataTip="false" showTrackHighlight="true" labels="[0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250]" fillColors="[#0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A]" verticalCenter="0" left="10" right="10"/>
 		
 	</mx:Canvas>
-	<mx:Text text="1841-2000" right="20" bottom="102" fontSize="28" id="yearDisplayed"/>
-	<mx:Label text="Drag the slider to see the cumulative count of records (by date recorded) for European Starling on the GBIF network" left="10" bottom="103" fontStyle="italic"/>
+	<mx:Text text="0 m." right="20" bottom="102" fontSize="28" id="yearDisplayed"/>
+	<mx:Label text="Drag the slider to see what areas will get flooded when sea level increase" left="10" bottom="103" fontStyle="italic"/>
+	<mx:Canvas width="200" height="203" top="47" right="10" backgroundColor="#000000" backgroundAlpha="0.47">
+		<mx:TextArea x="10" y="10" width="180" height="183" backgroundAlpha="0.0" text="This application is just a small test on the use of raster images together with Google Maps for Flash. It is developed as an excercise for the moment. The base code was developed by Andrew Cottam (WCMC) and the raster is hosted at WCMC.&#xd;&#xd;Javier de la Torre &#xd;jatore@vizzuality.com" borderStyle="none" color="#FFFFFF"/>
+	</mx:Canvas>
 </mx:Application>
