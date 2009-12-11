@@ -3,43 +3,42 @@
 <div class="content">
 <form action="sheetresult.php" method="get">
 
-	<div class="titleIndex"><p>Cerca a la base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
+	<div class="titleIndex"><p>{$smarty.const.INTRO_TITLE} {$BDSelected}</p></div>
 	
    <div class="news-body">
 	  <div class="buscador">
 	  <form action="sheetresult.php" method="get" name="thisform" id="thisform">
-	  	<span class="search-1">Nom del tàxon:<br />
+	  	<span class="search-1">{$smarty.const.NOMTAXON} <br />
 		<input name="nameauthoryearstring" id="nameauthoryearstring" value="" size="30" style="width: 15em;" type="text">
 		</span> 
-		<span class="search-1">Família:<br />
+		<span class="search-1">{$smarty.const.FAM}<br />
 		<select name="highertaxon">
-		  <option value="">Totes</option>
+		  <option value="">{$smarty.const.TODOS}</option>
 			{html_options values=$families output=$families}
 		 </select>
 		</span> 
-		<span class="search-1">País:<br />
+		<span class="search-1">{$smarty.const.PAIS}<br />
 		<select name="countryname">
-		  <option value="">Tots</option>
+		  <option value="">{$smarty.const.TODOS}</option>
 		  {html_options values=$countries output=$countries}
 		</select>
 		</span> 
-		<span class="search-1">Recol·lectors:<br />
+		<span class="search-1">{$smarty.const.RECOL}<br />
 		<input name="agenttext" id="agenttext" value="" size="30" style="width: 10em;" type="text">
 		</span> 
-		<span class="search-1">UTM:<br />
+		<span class="search-1">{$smarty.const.UTM}<br />
 		<input name="utmformula" id="utmformula" value="" size="8" style="width: 5em;" type="text">
 		</span> 
-		<span class="search-1">Ordenat per:<br />
+		<span class="search-1">{$smarty.const.ORD}<br />
 		<select name="orderby">
-		  <option value="nameauthoryearstring" >Nom 
-		  tàxon</option>
-		  <option value="highertaxon" >Família</option>
-		  <option value="countryname" >País</option>
-		  <option value="utmformula" >UTM</option>
+		  <option value="nameauthoryearstring" >{$smarty.const.NOMTAXON}</option>
+		  <option value="highertaxon" >{$smarty.const.FAM}</option>
+		  <option value="countryname" >{$smarty.const.PAIS}</option>
+		  <option value="utmformula" >{$smarty.const.UTM}</option>
 		</select>
 		</span> <br>
 		<span class="search-1">
-		<input name="submit" value="Cerca" type="submit" class="button">
+		<input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit" class="button">
 		<input name="db" type="hidden" value="cormofitos">
 		</span> 
 		<br><br>
@@ -49,11 +48,11 @@
 
 	<div class="trobats">
 	{if !$SearchSheetsResults}
-	<p>0 Resultats trobats</p><a href="#" onClick="javascript:window.history.back();">Torna</a> 
+	<p>0 {$smarty.const.RESULTADOS}</p><a href="#" onClick="javascript:window.history.back();">{$smarty.const.VOLVER}</a> 
 	{else}
 	<div class="paginator">
 	{if $SearchSheetsResults.count > 10}
-		<p>Viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$SearchSheetsResults.count}</b> de <b>{$SearchSheetsResults.count}</b> Resultats trobats
+		<p>{$smarty.const.VIENDO} <b>{math equation="x+1" x=$offset} {$smarty.const.AL} {math equation="min(x2 +10,c)" x2=$offset c=$SearchSheetsResults.count}</b> {$smarty.const.DE} <b>{$SearchSheetsResults.count}</b> {$smarty.const.RESULTADOS}
 			{if $offset > 0}
 			<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;localitytext={$smarty.request.localitytext}&amp;countryname={$smarty.request.countryname}&amp;utmformula={$smarty.request.utmformula}&amp;agenttext={$smarty.request.agenttext}&amp;datesearchtype={$smarty.request.datesearchtype}&amp;datetext={$smarty.request.datetext}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="button" value="Anterior"></a></span>
 			{/if}
@@ -80,9 +79,9 @@
 			<a href="sheetdetail.php?UnitID={$result.UnitID}&amp;db={$BDSelected}"> 
 			{$result.nameauthoryearstring}</a>
 			<p>{$result.highertaxon} | {$result.TypeStatus}</p>
-			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} ( <!--fecha-->	)</p>
+			<p><b>{$smarty.const.LOCALITAT} </b>{$result.localitytext}<b> {$smarty.const.RECOL}</b> {$result.AgentText} ( <!--fecha-->	)</p>
 		    <div class="news-details">  
-	  		    <span>{if $result.has_images eq 0} 0 fotos {else} {$result.has_images} fotos {/if}</span> 
+	  		    <span>{if $result.has_images eq 0} 0 {$smarty.const.FOTOS} {else} {$result.has_images} {$smarty.const.FOTOS} {/if}</span> 
 	  		    <span>No georeferenciat</span> 
 		    </div>
 	    </div>
@@ -99,7 +98,7 @@
 	{else}
 	<div class="paginator">
 	{if $SearchSheetsResults.count > 10}
-		<p>Viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$SearchSheetsResults.count}</b> de <b>{$SearchSheetsResults.count}</b> Resultats trobats
+		<p>{$smarty.const.VIENDO} <b>{math equation="x+1" x=$offset} {$smarty.const.AL} {math equation="min(x2 +10,c)" x2=$offset c=$SearchSheetsResults.count}</b> {$smarty.const.DE} <b>{$SearchSheetsResults.count}</b> {$smarty.const.RESULTADOS}
 			{if $offset > 0}
 			<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;localitytext={$smarty.request.localitytext}&amp;countryname={$smarty.request.countryname}&amp;utmformula={$smarty.request.utmformula}&amp;agenttext={$smarty.request.agenttext}&amp;datesearchtype={$smarty.request.datesearchtype}&amp;datetext={$smarty.request.datetext}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="button" value="Anterior"></a></span>
 			{/if}
