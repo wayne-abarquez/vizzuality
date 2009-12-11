@@ -12,6 +12,10 @@ $services = new Services;
 $UnitID = $_REQUEST['UnitID'];
 
 $data =$services->getUnitCoordinateDetailsByUnitID($UnitID);
+$data['LocalityText']= utf8_encode($data['LocalityText']);
+$data['BiotopeText']= utf8_encode($data['BiotopeText']);
+$data['NameAuthorYearString']= utf8_encode($data['NameAuthorYearString']);
+
 $smarty->assign('data',$data);
 
 if($data['LatitudeDecimal']!='') {
