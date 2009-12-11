@@ -1,7 +1,7 @@
 {include file="newheader.tpl"}
 						
 {literal}
-<script type="text/javascript" src="/js/tabber.js"></script>
+<script type="text/javascript" src="js/tabber.js"></script>
 {/literal}
 
 <div class="content">

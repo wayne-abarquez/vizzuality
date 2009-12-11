@@ -57,7 +57,7 @@
 	
 </div>
 
-{literal}<script src="http://maps.google.com/maps?file=api&v=2&key=nokey" type="text/javascript"></script>{/literal}
+{literal}<script src="http://maps.google.com/maps?file=api&v=2&key={/literal}{$smarty.const.MAPS_API_KEY}{literal}" type="text/javascript"></script>{/literal}
 
 {literal}
 <script type="text/javascript">
@@ -66,7 +66,7 @@ var map;
 if (GBrowserIsCompatible()) {
 map = new GMap(document.getElementById("map"));
 map.setCenter(new GLatLng(39,-3), 4);
-geoXml = new GGeoXml("http://localhost/sheetdetailKml.php?UnitID={/literal}{$Ident[0].UnitID}{literal}", function() {
+geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}{literal}sheetdetailKml.php?UnitID={/literal}{$Ident[0].UnitID}{literal}", function() {
 		if (geoXml.loadedCorrectly()) {
 			geoXml.gotoDefaultViewport(map);
 		}
