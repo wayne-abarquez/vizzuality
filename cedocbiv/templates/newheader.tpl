@@ -4,13 +4,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<title>CeDocBiV</title>
 	
-	<link rel="stylesheet" href="/css/blueprint/grid.css" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
-	<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
-    <link rel="stylesheet" href="/css/newstyle.css" type="text/css">
+	<link rel="stylesheet" href="css/blueprint/grid.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
+    <link rel="stylesheet" href="css/newstyle.css" type="text/css">
     
     <!-- tabs -->
-    <link rel="stylesheet" href="/css/example.css" TYPE="text/css" MEDIA="screen">
+    <link rel="stylesheet" href="css/example.css" TYPE="text/css" MEDIA="screen">
 	
 	{literal}
 	<script type="text/javascript">
