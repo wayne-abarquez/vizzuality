@@ -5,7 +5,7 @@
 }
 
 .header div.logo{
-	background-image: url(/images/logo.gif);
+	background-image: url(images/logo.gif);
 	background-repeat: no-repeat;
 	height: 49px;
 	width: 147px;
@@ -139,7 +139,7 @@
 	float: left;
 }
 
-.shade-1 { background-image: url(/images/notification.gif); background-repeat: no-repeat; width: 87px; height: 87px; margin: 0; padding: 0; text-align: center;}
+.shade-1 { background-image: url(images/notification.gif); background-repeat: no-repeat; width: 87px; height: 87px; margin: 0; padding: 0; text-align: center;}
 .shade-1 p{margin-top: 16px;}
 .shade-1 a { color: #93883F; text-decoration: none; font-size: 15px; font-weight: bold;}
 .shade-1 strong { color: #A39A5D; }
@@ -190,7 +190,7 @@
 
 /* taxon result */
 
-.shade-1Taxon { background-image: url(/images/notification2.gif); background-repeat: no-repeat; width: 160px; height: 60px; margin: 0; padding: 0; text-align: center;}
+.shade-1Taxon { background-image: url(images/notification2.gif); background-repeat: no-repeat; width: 160px; height: 60px; margin: 0; padding: 0; text-align: center;}
 .shade-1Taxon p{margin-top: 18px;}
 .shade-1Taxon a { color: #93883F; text-decoration: none; font-size: 13px; font-weight: bold;}
 .shade-1Taxon strong { color: #A39A5D; }
@@ -234,7 +234,7 @@
 
 
 .button {
-    background-image: url('/images/button.gif') no-repeat scroll top left;
+    background-image: url('images/button.gif') no-repeat scroll top left;
     color: #444;
     float: left;
     display: block;
