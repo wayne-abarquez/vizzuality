@@ -86,6 +86,14 @@ define('FOTOS', " fotos ");
 
 define('RESULTADOS', "Resultats trobats");
 
-// Pliego
+// Pliego 
+
+define('PUBLICAT', "Publicat el: ");
+define('ETIQUETA', "Nom etiqueta: ");
+define('GUARDAT', "Guardat com: ");
+define('ALTITUD', "Altitud: ");
+define('HABITAT', "Hábitat: ");
+define('COL', "Collecció: ");
+define('FEN', "Fenologia: ");
 
 ?>
