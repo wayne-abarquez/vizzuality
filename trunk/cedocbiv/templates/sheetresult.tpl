@@ -9,7 +9,7 @@
 	  <div class="buscador">
 	  <form action="sheetresult.php" method="get" name="thisform" id="thisform">
 	  	<span class="search-1">{$smarty.const.NOMTAXON} <br />
-		<input name="nameauthoryearstring" id="nameauthoryearstring" value="" size="30" style="width: 15em;" type="text">
+		<input name="nameauthoryearstring" id="nameauthoryearstring" value="{$smarty.request.nameauthoryearstring}" size="30" style="width: 15em;" type="text">
 		</span> 
 		<span class="search-1">{$smarty.const.FAM}<br />
 		<select name="highertaxon">
@@ -24,10 +24,10 @@
 		</select>
 		</span> 
 		<span class="search-1">{$smarty.const.RECOL}<br />
-		<input name="agenttext" id="agenttext" value="" size="30" style="width: 10em;" type="text">
+		<input name="agenttext" id="agenttext" value="{$smarty.request.agenttext}" size="30" style="width: 10em;" type="text">
 		</span> 
 		<span class="search-1">{$smarty.const.UTM}<br />
-		<input name="utmformula" id="utmformula" value="" size="8" style="width: 5em;" type="text">
+		<input name="utmformula" id="utmformula" value="{$smarty.request.utmformula}" size="8" style="width: 5em;" type="text">
 		</span> 
 		<span class="search-1">{$smarty.const.ORD}<br />
 		<select name="orderby">
@@ -44,10 +44,11 @@
 		<br><br>
 	  </form>
 	  </div>
+	  {if $SearchSheetsResults.hascoords}
 	  <div class="Map" id="map"></div>
-
+      {/if}
 	<div class="trobats">
-	{if !$SearchSheetsResults}
+	{if !$SearchSheetsResults.datos}
 	<p>0 {$smarty.const.RESULTADOS}</p><a href="#" onClick="javascript:window.history.back();">{$smarty.const.VOLVER}</a> 
 	{else}
 	<div class="paginator">
@@ -123,9 +124,12 @@
 //<![CDATA[
 var map;
 if (GBrowserIsCompatible()) {
-map = new GMap(document.getElementById("map"));
+map = new GMap2(document.getElementById("map"));
+map.setMapType(G_PHYSICAL_MAP);
+map.addControl(new GSmallMapControl());
+//map.addControl(new GMapTypeControl());
 map.setCenter(new GLatLng(39,-3), 4);
-geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}{literal}taxondetailKml.php?nameauthoryearstring={/literal}{$result.nameauthoryearstring}{literal}", function() {
+geoXml = new GGeoXml("{/literal}{$kmlurl}{literal}", function() {
 		if (geoXml.loadedCorrectly()) {
 			geoXml.gotoDefaultViewport(map);
 		}
