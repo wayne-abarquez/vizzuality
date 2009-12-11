@@ -54,14 +54,39 @@ define('INTRO_TEXTAST', "Per a fer una consulta ompliu el camp corresponent. Pod
 define('TITLE_TABPLIEGO', "Buscar pliego");
 define('TITLE_TABTAXON', "Buscar Taxon");
 
-define('NOMTAXON', "Nom del tàxon: ");
-define('GEN', "Gènere: ");
-define('FAM', "Família: ");
+define('NOMTAXON', "Nom del tàxon");
+define('GEN', "Gènere");
+define('FAM', "Família");
 define('TODOS', "totes");
 define('NOMTAXON', "Nom del tàxon: ");
 
-define('NUMHERB', "Número d'herbari: ");
-define('DATAREC', "Data recol·lecció:");
-define('RECOL', "Recol·lectors: ");
+define('NUMHERB', "Número d'herbari");
+define('DATAREC', "Data recollecció");
+define('UTM', "UTM");
+define('RECOL', "Recollectors");
+define('PAIS', "País");
+define('LOCALITAT', "Localitat");
+
+define('ABANS', "Abans de");
+define('DESPRES', "Després de");
+define('IGUAL', "Igual que (amb *)");
+
+define('BUTTONSEARCH', "Cerca");
+
+define('ORD', "Ordenat per: ");
+
+// Resultado de pliego
+
+define('VOLVER', "Torna");
+
+
+define('VIENDO', "Viendo del ");
+define('AL', " al ");
+define('DE', " de ");
+define('FOTOS', " fotos ");
+
+define('RESULTADOS', "Resultats trobats");
+
+// Pliego
 
 ?>
