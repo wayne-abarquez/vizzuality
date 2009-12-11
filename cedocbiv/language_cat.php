@@ -58,7 +58,6 @@ define('NOMTAXON', "Nom del tàxon");
 define('GEN', "Gènere");
 define('FAM', "Família");
 define('TODOS', "totes");
-define('NOMTAXON', "Nom del tàxon: ");
 
 define('NUMHERB', "Número d'herbari");
 define('DATAREC', "Data recollecció");
