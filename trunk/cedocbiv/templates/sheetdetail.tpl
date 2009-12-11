@@ -16,35 +16,35 @@
 		
 		  <p class="title"> {$Ident[0].NameAuthorYearString} </p>
 	
-		  <p>Publicat el {$Units.created_when}</p>
+		  <p><b>{$smarty.const.PUBLICAT}</b> {$Units.created_when}</p>
 		  
-		  <p><b>Família:</b> {$Ident[0].HigherTaxon}</p> 
+		  <p><b>{$smarty.const.FAM}</b> {$Ident[0].HigherTaxon}</p> 
 			  		
-	  	  <p><b>Nom etiqueta:</b> {$Ident[1].NameAuthorYearString}</p> 
+	  	  <p><b>{$smarty.const.ETIQUETA}</b> {$Ident[1].NameAuthorYearString}</p> 
 		  		  		
-		  <p><b>Guardat com:</b> {$Ident[0].NameAuthorYearString}</p> 
+		  <p><b>{$smarty.const.GUARDAT}</b> {$Ident[0].NameAuthorYearString}</p> 
 		 	  
-		  <p><b>Localitat:</b> {$Units.LocalityText}</p> 
+		  <p><b>{$smarty.const.LOCALITAT}</b> {$Units.LocalityText}</p> 
 		  
-		  <p><b>País:</b> {$Units.CountryName}</p> 
+		  <p><b>{$smarty.const.PAIS}</b> {$Units.CountryName}</p> 
 		  	  
-		  <p><b>Altitud:</b> {$Units.AltitudeLowerValue} - {$Units.AltitudeUpperValue}</p> 
+		  <p><b>{$smarty.const.ALTITUD}</b> {$Units.AltitudeLowerValue} - {$Units.AltitudeUpperValue}</p> 
 		  	  
-		  <p><b>Recollectors:</b> {$Agents.GatheringAgentsText}</p> 
+		  <p><b>{$smarty.const.RECOL}</b> {$Agents.GatheringAgentsText}</p> 
 		  	   
-		  <p><b>Hábitat:</b> {$Units.BiotopeText}</p> 
+		  <p><b>{$smarty.const.HABITAT}</b> {$Units.BiotopeText}</p> 
 		  
 	<!-- 	  meter CollectorNumber -->
 	
-		  <p><b>Data de recollecció:</b> 25-05-1985</p> 
+		  <p><b>{$smarty.const.DATAREC}</b> 25-05-1985</p> 
 		  	  
-		  <p><b>Collecció:</b> {$Units.ProjectTitle}</p> 
+		  <p><b>{$smarty.const.COL}</b> {$Units.ProjectTitle}</p> 
 		  
-		  <p><b>Fenologia:</b> {$Units.Phenology}</p> 
+		  <p><b>{$smarty.const.FEN}</b> {$Units.Phenology}</p> 
 		  
 		  {if $Images}
 		  <div>
-		  <p>Imagenes</p>
+		  <p>{$smarty.const.IMG}</p>
 	    	{foreach key=UnitID item=Image from=$Images.imagenes}
 	    		<a href="{$Image.ImageURI}">{$Image.ImageURI}</a><br />
 	    	{/foreach}
