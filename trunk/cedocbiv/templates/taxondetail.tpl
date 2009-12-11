@@ -8,15 +8,16 @@
 		
 
 		<div class="resultPliego"> 
-			{foreach key=UnitID item=result from=$Pliegos}
+		    <h2>{$Pliegos.scientificname} | {$Pliegos.family}</h2>
+		    					
+			{foreach key=UnitID item=result from=$Pliegos.datos}
 
 			<div class="resultPliegoContainer">
 				<div class="span-1 first shade-1" id="main0">
-					<p><a>{$result.UnitID}</a></p>
+					<p><a href="sheetdetail.php?UnitID={$result.UnitID}&db={$smarty.session.db}">{$result.UnitID}</a></p>
 				</div>
 				<div class="pliego">
-					<a href="sheetdetail.php?UnitID={$result.UnitID}&amp;db={$BDSelected}"><p class="title">{$result.nameauthoryearstring}</p></a>
-					<p>{$result.highertaxon} | {$result.TypeStatus}</p>
+					<p>{$result.TypeStatus}</p>
 					<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} ( <!--fecha-->	)</p>
 				</div>
 			</div>

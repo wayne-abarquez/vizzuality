@@ -14,6 +14,7 @@ $nameauthoryearstring = $_REQUEST['nameauthoryearstring'];
 
 $smarty->assign('Pliegos',$services->getAllPliegosByTaxon($nameauthoryearstring));
 
+
 $smarty->assign('section', 'taxondetail');
 $smarty->display('taxondetail.tpl');
 

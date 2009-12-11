@@ -112,11 +112,20 @@ class Services {
 		if ($nameauthoryearstring) 	{ $filter = $filter . " i.nameauthoryearstring like '". sql_safe($nameauthoryearstring) ."'"; }
 	    $sql= $sql . $filter;
 		$query = mysql_query($sql, $this->conn);	
+		
+		$res=array();
 		$result=array();
+		$scientificname="";
+		$family="";
 		while ($row = mysql_fetch_assoc($query)){
 			$result[]=$row;
+			$scientificname=$row['nameauthoryearstring'];
+			$family=$row['highertaxon'];
 		}
-		return $result;
+		$res['datos']=$result;
+		$res['scientificname']=$scientificname;
+		$res['family']=$family;
+		return $res;
 	}
 	
 	public function getUnitCoordinateDetailsByTaxon($nameauthoryearstring) {
