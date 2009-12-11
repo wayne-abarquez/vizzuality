@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF8"?>
+<?xml version="1.0" encoding="LATIN-1"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
 <Document>
-	<name>Location of {$data.UnitID}</name>
+	<name>Multiple sheets from CeDocBiv</name>
 	<open>1</open>
 	<Style>
 	</Style>
@@ -52,24 +52,26 @@
 			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
 		</Pair>
 	</StyleMap>
-	<Placemark>
-		<name>{$data.UnitID} - {$data.NameAuthorYearString}</name>
-		<description>{$data.LocalityText} - {$data.BiotopeText}</description>
-		{if $isUtm}
-			<styleUrl>#m_ylw-pushpin_copy0</styleUrl>
-			<Polygon>
-				<outerBoundaryIs>
-					<LinearRing>
-						<coordinates>{$data.coords|trim}</coordinates>
-					</LinearRing>
-				</outerBoundaryIs>
-			</Polygon>
-		{else}
-			<styleUrl>#normalPlacemark</styleUrl>
-		    <Point>
-		      <coordinates>{$data.LongitudeDecimal},{$data.LatitudeDecimal},0</coordinates>
-		    </Point>			
-		{/if}
+	{foreach key=UnitID item=result from=$SearchSheetsResults.datos}
+    	<Placemark>
+    		<name>{$data.UnitID} - {$data.NameAuthorYearString}</name>
+    		<description>{$data.LocalityText} - {$data.BiotopeText}</description>
+    		{if $isUtm}
+    			<styleUrl>#m_ylw-pushpin_copy0</styleUrl>
+    			<Polygon>
+    				<outerBoundaryIs>
+    					<LinearRing>
+    						<coordinates>{$data.coords|trim}</coordinates>
+    					</LinearRing>
+    				</outerBoundaryIs>
+    			</Polygon>
+    		{else}
+    			<styleUrl>#normalPlacemark</styleUrl>
+    		    <Point>
+    		      <coordinates>{$data.LongitudeDecimal},{$data.LatitudeDecimal},0</coordinates>
+    		    </Point>			
+    		{/if}
 	</Placemark>
+	{/foreach}
 </Document>
 </kml>

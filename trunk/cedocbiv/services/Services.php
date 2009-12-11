@@ -45,7 +45,7 @@ class Services {
 	
 	//sheetResults
 	public function getAllUnitDetailsByUnitID($UnitID) {
-		$sql = "SELECT * FROM BIOCASE_UNITS where UnitID=$UnitID";
+		$sql = "SELECT * FROM BIOCASE_UNITS B left join utmcoords C on B.UTMText=C.utm where UnitID=$UnitID";
 		$query = mysql_query($sql, $this->conn);	
 		$row = mysql_fetch_assoc($query);
 		return $row;
@@ -184,56 +184,56 @@ class Services {
 		$_SESSION['filter']="";
 		//filtro
 
-if ($nameauthoryearstring) 	{ $filter = $filter . " and i.nameauthoryearstring like '". sql_safe($nameauthoryearstring) ."'"; }
-if ($highertaxon) 			{ $filter = $filter . " and i.highertaxon like '". sql_safe($highertaxon) ."'"; }
-if ($genus) 			    { $filter = $filter . " and i.genus like '". sql_safe($genus) ."'"; }
-if ($localitytext)		 	{ $filter = $filter . " and localitytext like '". sql_safe($localitytext) ."'"; }
-if ($countryname) 			{ $filter = $filter . " and countryname like '". sql_safe($countryname) ."'"; }
-if ($utmformula) 			{ $filter = $filter . " and UTMText like '". sql_safe($utmformula) ."'"; }
-if ($agenttext) 			{ $filter = $filter . " and u.unitid in (select UnitID from BIOCASE_GATHERING_AGENTS where GatheringAgentsText like '". sql_safe($agenttext) ."')" ; }
-if ($UnitID) 				{ $filter = $filter . " and u.UnitID = ". sql_safe($UnitID) ."" ; }
+        if ($nameauthoryearstring) 	{ $filter = $filter . " and i.nameauthoryearstring like '". sql_safe($nameauthoryearstring) ."%'"; }
+        if ($highertaxon) 			{ $filter = $filter . " and i.highertaxon like '". sql_safe($highertaxon) ."'"; }
+        if ($genus) 			    { $filter = $filter . " and i.genus like '". sql_safe($genus) ."'"; }
+        if ($localitytext)		 	{ $filter = $filter . " and localitytext like '". sql_safe($localitytext) ."'"; }
+        if ($countryname) 			{ $filter = $filter . " and countryname like '". sql_safe($countryname) ."'"; }
+        if ($utmformula) 			{ $filter = $filter . " and UTMText like '". sql_safe($utmformula) ."%'"; }
+        if ($agenttext) 			{ $filter = $filter . " and u.unitid in (select UnitID from BIOCASE_GATHERING_AGENTS where GatheringAgentsText like '". sql_safe($agenttext) ."%')" ; }
+        if ($UnitID) 				{ $filter = $filter . " and u.UnitID = ". sql_safe($UnitID) ."" ; }
 
-if ($datetext) {
-	if  ($datesearchtype=="greaterthan") {
-		$filter = $filter . " and u.ISODateTimeBegin < '". sql_safe($datetext) ."'"; 
-	} elseif($datesearchtype=="lessthan") {
-		$filter = $filter . " and u.ISODateTimeBegin > '". sql_safe($datetext) ."'"; 
-	} elseif($datesearchtype=="equal") {
-		$filter = $filter . " and u.ISODateTimeBegin like '". sql_safe($datetext) ."'"; 
-	}
-}
+        if ($datetext) {
+        	if  ($datesearchtype=="greaterthan") {
+        		$filter = $filter . " and u.ISODateTimeBegin < '". sql_safe($datetext) ."'"; 
+        	} elseif($datesearchtype=="lessthan") {
+        		$filter = $filter . " and u.ISODateTimeBegin > '". sql_safe($datetext) ."'"; 
+        	} elseif($datesearchtype=="equal") {
+        		$filter = $filter . " and u.ISODateTimeBegin like '". sql_safe($datetext) ."'"; 
+        	}
+        }
 
-	//set the filter and set the session for the after page
-	$sql= $sql . $filter;
+    	//set the filter and set the session for the after page
+    	$sql= $sql . $filter;
 
-	$rs_specimen = array();
-	$res=array();
+    	$rs_specimen = array();
+    	$res=array();
 	
-	$sqlcount="select count(*) as num_records from ($sql)  tot";	
-	//Limit and offset for Mysql!
-	$result = mysql_query($sqlcount, $this->conn);
-	$numrec = mysql_fetch_assoc($result);
-	if($numrec['num_records']>0) {		
-		$res['count'] = $numrec['num_records'];
-    } else {
-        $res['count'] =0;  
-		$res['datos']=array();
-		return $res;
-    }		
+    	$sqlcount="select count(*) as num_records from ($sql)  tot";	
+    	//Limit and offset for Mysql!
+    	$result = mysql_query($sqlcount, $this->conn);
+    	$numrec = mysql_fetch_assoc($result);
+    	if($numrec['num_records']>0) {		
+    		$res['count'] = $numrec['num_records'];
+        } else {
+            $res['count'] =0;  
+    		$res['datos']=array();
+    		return $res;
+        }		
 
-	if($offset=="") {
-		$offset=0;
-	}
-	$sql.=" order by u.UnitID ASC limit 10 offset $offset";
+    	if($offset=="") {
+    		$offset=0;
+    	}
+    	$sql.=" order by u.UnitID ASC limit 10 offset $offset";
 
-	$result = mysql_query($sql, $this->conn);		
-	while ($row = mysql_fetch_assoc($result)){
-		$rs_specimen[] = $row; 
-	}
-	$res['datos']=$rs_specimen;
+    	$result = mysql_query($sql, $this->conn);		
+    	while ($row = mysql_fetch_assoc($result)){
+    		$rs_specimen[] = $row; 
+    	}
+    	$res['datos']=$rs_specimen;
 	
-	return $res;
-}
+    	return $res;
+    }
 	
 	public function searchTaxon ($nameauthoryearstring,$highertaxon,$genus,$offset) {
 		
