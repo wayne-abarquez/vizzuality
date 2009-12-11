@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] ."/config.php");
+require_once(dirname(__FILE__) ."/config.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/class.smtp.php");
 require_once($_SERVER['DOCUMENT_ROOT'] ."/libs/Smarty.class.php");
 
