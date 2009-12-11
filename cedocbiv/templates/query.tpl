@@ -1,4 +1,4 @@
-{include file="newheader_en.tpl"}
+{include file="newheader.tpl"}
 						
 {literal}
 <script type="text/javascript" src="/js/tabber.js"></script>
@@ -73,16 +73,16 @@
 	     <div class="instruction"> 
 		    <div>
 		    <span class="search-1"> 
-		  		<label for="search">Nom del tÃ xon:</label> (Acro*)<br />
+		  		<label for="search">Nom del tàxon:</label> (Acro*)<br />
 		 		<input name="nameauthoryearstring" id="nameauthoryearstring" size="30" style="width: 15em;" type="text" />
 		  	</span>
-		  	<span class="search-1"><strong>GÃ¨nere:</strong> (Acant*) <br />
+		  	<span class="search-1"><strong>Gènere:</strong> (Acant*) <br />
 			<select name="genus">
 				<option value="">Totes</option>
 				{html_options values=$genus output=$genus}
 			</select>	
 		    </span> 
-		    <span class="search-2"><strong>FamÃ­lia:</strong><br />
+		    <span class="search-2"><strong>Família:</strong><br />
 			<select name="highertaxon">
 				<option value="">Totes</option>
 				{html_options values=$families output=$families}
@@ -94,7 +94,7 @@
 		       <label for="search">Localitat:</label> (*Balagu*)<br />
 		       <input name="localitytext" id="localitytext" size="30" style="width: 15em;" type="text" />
 		    </span> 
-		    <span class="search-1"><strong>PaÃ­s:</strong><br />
+		    <span class="search-1"><strong>País:</strong><br />
 		       <select name="countryname">
 			   <option value="">Tots</option>
 			   {html_options values=$countries output=$countries}
@@ -106,13 +106,13 @@
 		    <br />
 		  	<br />
 		  	<br />
-		    <span class="search-1"><strong>RecolÂ·lectors:</strong> (*Sennen*)<br />
+		    <span class="search-1"><strong>Recol·lectors:</strong> (*Sennen*)<br />
 		       <input name="agenttext" id="agenttext" size="30" style="width: 15em;" type="text" />
 		    </span> 
-		    <span class="search-2"><strong>Data recolÂ·lecciÃ³:</strong> (1984-05-14)<br />
+		    <span class="search-2"><strong>Data recol·lecció:</strong> (1984-05-14)<br />
 		        <select name="datesearchtype" size="1" id="datesearchtype">
 			    <option value="greaterthan">Abans de</option>
-			    <option value="lessthan">DesprÃ©s de</option>
+			    <option value="lessthan">Després de</option>
 			    <option value="equal">Igual que (amb *)</option>
 		        </select>
 		  		<input name="datetext" id="datetext" size="8" style="width: 5em;">
@@ -120,7 +120,7 @@
 		  	<br />
 		    <br />
 		    <br />
-		    <span class="search-1"><strong>NÃºmero d'herbari: </strong> (104*)<br />BCN 
+		    <span class="search-1"><strong>Número d'herbari: </strong> (104*)<br />BCN 
 		    	<input name="UnitID" id="UnitID" size="30" style="width: 5em;" type="text" />
 		  	</span> 
 		  	<span class="search-1"><input name="submit" value="Cerca" type="submit" class="button topmargin"/></span>
@@ -143,16 +143,16 @@
 	  <div class="instruction"> 
 		<div>
 		  <span class="search-1"> 
-		     <label for="search">Nom del tÃ xon:</label> (Acro*)<br />
+		     <label for="search">Nom del tàxon:</label> (Acro*)<br />
 		     <input name="nameauthoryearstring" id="nameauthoryearstring" size="30" style="width: 15em;" type="text" />
 		  </span> 
-		  <span class="search-1"><strong>GÃ¨nere:</strong> (Acant*) <br />
+		  <span class="search-1"><strong>Gènere:</strong> (Acant*) <br />
 			<select name="genus">
 				<option value="">Totes</option>
 				{html_options values=$genus output=$genus}
 			</select>	
 		  </span> 
-		  <span class="search-1"><strong>FamÃ­lia:</strong><br />
+		  <span class="search-1"><strong>Família:</strong><br />
 			<select name="highertaxon">
 				<option value="">Totes</option>
 				{html_options values=$families output=$families}
@@ -171,4 +171,4 @@
 </div>
 
 						
-{include file="newfooter_en.tpl"} 
+{include file="newfooter.tpl"} 

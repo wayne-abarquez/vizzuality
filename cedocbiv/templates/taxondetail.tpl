@@ -1,4 +1,4 @@
-{include file="newheader_es.tpl"}
+{include file="newheader.tpl"}
 
 <div class="content">
 	<div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
@@ -37,13 +37,18 @@
 var map;
 if (GBrowserIsCompatible()) {
 map = new GMap(document.getElementById("map"));
-var point = new GLatLng(40.38051877130511, -3.7238287925720215);
-
-map.setCenter(point, 15);
+map.setCenter(new GLatLng(39,-3), 4);
+geoXml = new GGeoXml("http://localhost/taxondetailKml.php?nameauthoryearstring={/literal}{$result.nameauthoryearstring}{literal}", function() {
+		if (geoXml.loadedCorrectly()) {
+			geoXml.gotoDefaultViewport(map);
+		}
+	}
+);
+map.addOverlay(geoXml);
 }
 
 //]]>
 </script>
 {/literal}
 
-{include file="newfooter_es.tpl"}
+{include file="newfooter.tpl"}

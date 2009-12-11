@@ -1,11 +1,13 @@
-{include file="newheader_en.tpl"}
+{include file="newheader.tpl"}
 
 <div class="content">
 	<div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
   
 	<div class="news-body">
+		{if ($Units.LatitudeDecimal != '' || $Units.LongitudeDecimal != '') || $Units.UTMText != ''}
 		<div class="MapResult" id="map"></div>
-
+		{/if}
+		
 		<div class="span-1 first shade-1" id="main0">
 			<p><a>{$Ident[0].UnitID}</a></p>
 		</div>
@@ -16,7 +18,7 @@
 	
 		  <p>Publicat el {$Units.created_when}</p>
 		  
-		  <p><b>FamÃ­lia:</b> {$Ident[0].HigherTaxon}</p> 
+		  <p><b>Família:</b> {$Ident[0].HigherTaxon}</p> 
 			  		
 	  	  <p><b>Nom etiqueta:</b> {$Ident[1].NameAuthorYearString}</p> 
 		  		  		
@@ -24,19 +26,19 @@
 		 	  
 		  <p><b>Localitat:</b> {$Units.LocalityText}</p> 
 		  
-		  <p><b>PaÃ­s:</b> {$Units.CountryName}</p> 
+		  <p><b>País:</b> {$Units.CountryName}</p> 
 		  	  
 		  <p><b>Altitud:</b> {$Units.AltitudeLowerValue} - {$Units.AltitudeUpperValue}</p> 
 		  	  
 		  <p><b>Recollectors:</b> {$Agents.GatheringAgentsText}</p> 
 		  	   
-		  <p><b>HÃ¡bitat:</b> {$Units.BiotopeText}</p> 
+		  <p><b>Hábitat:</b> {$Units.BiotopeText}</p> 
 		  
 	<!-- 	  meter CollectorNumber -->
 	
-		  <p><b>Data de recollecciÃ³:</b> 25-05-1985</p> 
+		  <p><b>Data de recollecció:</b> 25-05-1985</p> 
 		  	  
-		  <p><b>CollecciÃ³:</b> {$Units.ProjectTitle}</p> 
+		  <p><b>Collecció:</b> {$Units.ProjectTitle}</p> 
 		  
 		  <p><b>Fenologia:</b> {$Units.Phenology}</p> 
 		  
@@ -63,13 +65,18 @@
 var map;
 if (GBrowserIsCompatible()) {
 map = new GMap(document.getElementById("map"));
-var point = new GLatLng(40.38051877130511, -3.7238287925720215);
-
-map.setCenter(point, 15);
+map.setCenter(new GLatLng(39,-3), 4);
+geoXml = new GGeoXml("http://localhost/sheetdetailKml.php?UnitID={/literal}{$Ident[0].UnitID}{literal}", function() {
+		if (geoXml.loadedCorrectly()) {
+			geoXml.gotoDefaultViewport(map);
+		}
+	}
+);
+map.addOverlay(geoXml);
 }
 
 //]]>
 </script>
 {/literal}
 
-{include file="newfooter_en.tpl"}
+{include file="newfooter.tpl"}
