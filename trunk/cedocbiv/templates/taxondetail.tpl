@@ -36,9 +36,12 @@
 //<![CDATA[
 var map;
 if (GBrowserIsCompatible()) {
-map = new GMap(document.getElementById("map"));
+map = new GMap2(document.getElementById("map"));
+map.setMapType(G_PHYSICAL_MAP);
+map.addControl(new GSmallMapControl());
+//map.addControl(new GMapTypeControl());
 map.setCenter(new GLatLng(39,-3), 4);
-geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}{literal}taxondetailKml.php?nameauthoryearstring={/literal}{$result.nameauthoryearstring}{literal}", function() {
+geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}taxondetailKml.php?nameauthoryearstring={$smarty.request.nameauthoryearstring}{literal}", function() {
 		if (geoXml.loadedCorrectly()) {
 			geoXml.gotoDefaultViewport(map);
 		}

@@ -12,10 +12,16 @@ $services = new Services;
 $nameauthoryearstring = $_REQUEST['nameauthoryearstring'];
 
 $data =$services->getUnitCoordinateDetailsByTaxon($nameauthoryearstring);
+
+foreach($data as &$res) {
+    $res['LocalityText']= utf8_encode($res['LocalityText']);
+    $res['BiotopeText']= utf8_encode($res['BiotopeText']);
+    $res['NameAuthorYearString']= utf8_encode($res['NameAuthorYearString']);
+}
+
 $smarty->assign('data',$data);
 
 header ("Content-Type: application/vnd.google-earth.kml+xml");
-/* header("Content-Disposition: attachment; filename=taxondetail".$nameauthoryearstring.".kml"); */
 header("Content-Disposition: attachment; filename=taxondetail.kml");
 
 

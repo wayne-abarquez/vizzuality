@@ -21,10 +21,11 @@
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
 		<LineStyle>
-			<width>0.6</width>
+			<width>1</width>
 		</LineStyle>
 		<PolyStyle>
-			<fill>0</fill>
+			<fill>0.8</fill>
+			<color>7dff0000</color>
 		</PolyStyle>
 	</Style>
 	<Style id="s_ylw-pushpin_hl">
@@ -36,10 +37,11 @@
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
 		<LineStyle>
-			<width>0.1</width>
+			<width>1</width>
 		</LineStyle>
 		<PolyStyle>
-			<fill>0</fill>
+			<fill>0.8</fill>
+			<color>7dff0000</color>
 		</PolyStyle>
 	</Style>
 	<StyleMap id="m_ylw-pushpin_copy0">
@@ -52,26 +54,29 @@
 			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
 		</Pair>
 	</StyleMap>
-	{foreach key=id from=$data item=taxon}
-	<Placemark>
-		<name>{$taxon.UnitID} - {$taxon.NameAuthorYearString}</name>
-		<description>{$taxon.LocalityText} - {$taxon.BiotopeText}</description>
-		{if $taxon.LatitudeDecimal}
-			<styleUrl>#m_ylw-pushpin_copy0</styleUrl>
-			<Polygon>
-				<outerBoundaryIs>
-					<LinearRing>
-						<coordinates>{$taxon.coords|trim}</coordinates>
-					</LinearRing>
-				</outerBoundaryIs>
-			</Polygon>
-		{else}
-			<styleUrl>#normalPlacemark</styleUrl>
-		    <Point>
-		      <coordinates>{$taxon.LongitudeDecimal},{$taxon.LatitudeDecimal},0</coordinates>
-		    </Point>			
-		{/if}
+	{foreach key=UnitID item=result from=$data}
+	    {if ($result.LatitudeDecimal != '' || $result.LongitudeDecimal != '') || $result.coords != ''}
+    	<Placemark>
+    		<name>{$result.UnitID} - {$result.NameAuthorYearString}</name>
+    		<description>{$result.LocalityText} - {$result.BiotopeText}</description>
+    		{if ($result.LatitudeDecimal != '' || $result.LongitudeDecimal != '')}
+    			<styleUrl>#normalPlacemark</styleUrl>
+    		    <Point>
+    		      <coordinates>{$result.LongitudeDecimal},{$result.LatitudeDecimal},0</coordinates>
+    		    </Point>    		
+  
+    		{else}
+  			    <styleUrl>#m_ylw-pushpin</styleUrl>
+    			<Polygon>
+    				<outerBoundaryIs>
+    					<LinearRing>
+    						<coordinates>{$result.coords}</coordinates>
+    					</LinearRing>
+    				</outerBoundaryIs>
+    			</Polygon>		
+    		{/if}
 	</Placemark>
+	{/if}
 	{/foreach}
 </Document>
 </kml>
