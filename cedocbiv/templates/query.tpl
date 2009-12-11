@@ -6,7 +6,7 @@
 
 <div class="content">
 <div class="news-body">
-  <div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
+  <div class="titleIndex"><p>{$smarty.const.INTRO_TITLE} {$BDSelected}</p></div>
   <div class="TextBD">
   {if $BDSelected eq "cormofitos"}
   <p class="texto_intro"> {$smarty.const.INTRO_TEXTBD3} <a href="mailto:cedocbiv@pcb.ub.es">{$smarty.const.INTRO_TEXTCONTACT}</a></p>
@@ -61,39 +61,39 @@
 		    <br />
 		    <br />
 		    <span class="search-1"> 
-		       <label for="search">Localitat:</label> (*Balagu*)<br />
+		       <label for="search">{$smarty.const.LOCALITAT}</label> (*Balagu*)<br />
 		       <input name="localitytext" id="localitytext" size="30" style="width: 15em;" type="text" />
 		    </span> 
-		    <span class="search-1"><strong>País:</strong><br />
+		    <span class="search-1"><strong>{$smarty.const.PAIS}</strong><br />
 		       <select name="countryname">
 			   <option value="">{$smarty.const.TODOS}</option>
 			   {html_options values=$countries output=$countries}
 		       </select>
 		    </span> 
-		    <span class="search-2"><strong>UTM:</strong> (31TCG65) <br />
+		    <span class="search-2"><strong>{$smarty.const.UTM}</strong> (31TCG65) <br />
 		       <input name="utmformula" id="utmformula" size="8" style="width: 5em;" type="text" />
 		    </span>
 		    <br />
 		  	<br />
 		  	<br />
-		    <span class="search-1"><strong>Recol·lectors:</strong> (*Sennen*)<br />
+		    <span class="search-1"><strong>{$smarty.const.RECOL}</strong> (*Sennen*)<br />
 		       <input name="agenttext" id="agenttext" size="30" style="width: 15em;" type="text" />
 		    </span> 
-		    <span class="search-2"><strong>Data recol·lecció:</strong> (1984-05-14)<br />
+		    <span class="search-2"><strong>{$smarty.const.DATAREC}</strong> (1984-05-14)<br />
 		        <select name="datesearchtype" size="1" id="datesearchtype">
-			    <option value="greaterthan">Abans de</option>
-			    <option value="lessthan">Després de</option>
-			    <option value="equal">Igual que (amb *)</option>
+			    <option value="greaterthan">{$smarty.const.ABANS}</option>
+			    <option value="lessthan">{$smarty.const.DESPRES}</option>
+			    <option value="equal">{$smarty.const.IGUAL}</option>
 		        </select>
 		  		<input name="datetext" id="datetext" size="8" style="width: 5em;">
 		  	</span> 
 		  	<br />
 		    <br />
 		    <br />
-		    <span class="search-1"><strong>Número d'herbari: </strong> (104*)<br />BCN 
+		    <span class="search-1"><strong>{$smarty.const.NUMHERB} </strong> (104*)<br />BCN 
 		    	<input name="UnitID" id="UnitID" size="30" style="width: 5em;" type="text" />
 		  	</span> 
-		  	<span class="search-1"><input name="submit" value="Cerca" type="submit" class="button topmargin"/></span>
+		  	<span class="search-1"><input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit" class="button topmargin"/></span>
 		  	<input name="db" type="hidden" value="{$BDSelected}">
 		  	<br />
 		  	<br />
@@ -129,7 +129,7 @@
 			</select>			
 		  </span>
 		  <br />
-		  <span class="search-1"><input name="submit" value="Cerca" type="submit" class="button"/></span>
+		  <span class="search-1"><input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit" class="button"/></span>
 		  <input name="db" type="hidden" value="{$BDSelected}">
 		  <br />
 		  <br />
