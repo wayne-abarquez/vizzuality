@@ -7,7 +7,6 @@
 	<div class="titleIndex"><p>Cerca a la base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
 	
 <div class="news-body">
-	<div class="Map" id="map"></div>
 
 	<div class="trobats">
 	{if !$SearchTaxonResults}
@@ -79,22 +78,5 @@
 
 </form>
 </div>
-
-{literal}<script src="http://maps.google.com/maps?file=api&v=2&key={/literal}{$smarty.const.MAPS_API_KEY}{literal}" type="text/javascript"></script>{/literal}
-
-{literal}
-<script type="text/javascript">
-//<![CDATA[
-var map;
-if (GBrowserIsCompatible()) {
-map = new GMap(document.getElementById("map"));
-var point = new GLatLng(40.38051877130511, -3.7238287925720215);
-
-map.setCenter(point, 15);
-}
-
-//]]>
-</script>
-{/literal}
 
 {include file="newfooter.tpl"} 
