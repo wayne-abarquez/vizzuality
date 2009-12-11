@@ -129,7 +129,7 @@ map.setMapType(G_PHYSICAL_MAP);
 map.addControl(new GSmallMapControl());
 //map.addControl(new GMapTypeControl());
 map.setCenter(new GLatLng(39,-3), 4);
-geoXml = new GGeoXml("{/literal}{$kmlurl}{literal}", function() {
+geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}sheetresultKml.php{$kmlurl}{literal}", function() {
 		if (geoXml.loadedCorrectly()) {
 			geoXml.gotoDefaultViewport(map);
 		}
