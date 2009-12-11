@@ -4,7 +4,7 @@
 	<div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
   
 	<div class="news-body">
-		{if ($Units.LatitudeDecimal != '' || $Units.LongitudeDecimal != '') || $Units.UTMText != ''}
+		{if ($Units.LatitudeDecimal != '' || $Units.LongitudeDecimal != '') || $Units.coords != ''}
 		<div class="MapResult" id="map"></div>
 		{/if}
 		
@@ -57,6 +57,9 @@
 	
 </div>
 
+{if ($Units.LatitudeDecimal != '' || $Units.LongitudeDecimal != '') || $Units.coords != ''}
+
+
 {literal}<script src="http://maps.google.com/maps?file=api&v=2&key={/literal}{$smarty.const.MAPS_API_KEY}{literal}" type="text/javascript"></script>{/literal}
 
 {literal}
@@ -64,12 +67,22 @@
 //<![CDATA[
 var map;
 if (GBrowserIsCompatible()) {
-map = new GMap(document.getElementById("map"));
+map = new GMap2(document.getElementById("map"));
+map.setMapType(G_PHYSICAL_MAP);
+map.addControl(new GSmallMapControl());
+//map.addControl(new GMapTypeControl());
 map.setCenter(new GLatLng(39,-3), 4);
 geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}{literal}sheetdetailKml.php?UnitID={/literal}{$Ident[0].UnitID}{literal}", function() {
+		
+		
 		if (geoXml.loadedCorrectly()) {
+		    
 			geoXml.gotoDefaultViewport(map);
+			{/literal}{if $isUtm eq false}{literal}
+			    map.setZoom(map.getZoom()-6);
+			{/literal}{/if}{literal}
 		}
+		
 	}
 );
 map.addOverlay(geoXml);
@@ -78,5 +91,7 @@ map.addOverlay(geoXml);
 //]]>
 </script>
 {/literal}
+
+{/if}
 
 {include file="newfooter.tpl"}

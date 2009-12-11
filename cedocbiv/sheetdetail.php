@@ -12,12 +12,20 @@ $services = new Services;
 $smarty->assign('BDSelected', $_REQUEST['db']);
 $UnitID = $_REQUEST['UnitID'];
 
-$smarty->assign('Units',$services->getAllUnitDetailsByUnitID($UnitID));
+$data=$services->getAllUnitDetailsByUnitID($UnitID);
+$smarty->assign('Units',$data);
 
 $smarty->assign('Ident',$services->getAllIdentificByUnitID($UnitID));
 $smarty->assign('Images',$services->getAllImagesByUnitID($UnitID));
 $smarty->assign('Agents',$services->getAllAgentsByUnitID($UnitID));
 $smarty->assign('Areas',$services->getAllAreasByUnitID($UnitID));
+
+
+if($data['LatitudeDecimal']!='') {
+	$smarty->assign('isUtm',false);
+} else {
+	$smarty->assign('isUtm',true);
+}
 
 $smarty->assign('section', 'sheetdetail');
 $smarty->display('sheetdetail.tpl');

@@ -124,9 +124,14 @@
 var map;
 if (GBrowserIsCompatible()) {
 map = new GMap(document.getElementById("map"));
-var point = new GLatLng(40.38051877130511, -3.7238287925720215);
-
-map.setCenter(point, 15);
+map.setCenter(new GLatLng(39,-3), 4);
+geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}{literal}taxondetailKml.php?nameauthoryearstring={/literal}{$result.nameauthoryearstring}{literal}", function() {
+		if (geoXml.loadedCorrectly()) {
+			geoXml.gotoDefaultViewport(map);
+		}
+	}
+);
+map.addOverlay(geoXml);
 }
 
 //]]>
