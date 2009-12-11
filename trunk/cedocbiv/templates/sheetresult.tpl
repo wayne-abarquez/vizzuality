@@ -1,4 +1,4 @@
-{include file="newheader_cat.tpl"}
+{include file="newheader.tpl"}
 
 <div class="content">
 <form action="sheetresult.php" method="get">
@@ -8,22 +8,22 @@
    <div class="news-body">
 	  <div class="buscador">
 	  <form action="sheetresult.php" method="get" name="thisform" id="thisform">
-	  	<span class="search-1">Nom del t√†xon:<br />
+	  	<span class="search-1">Nom del t‡xon:<br />
 		<input name="nameauthoryearstring" id="nameauthoryearstring" value="" size="30" style="width: 15em;" type="text">
 		</span> 
-		<span class="search-1">Fam√≠lia:<br />
+		<span class="search-1">FamÌlia:<br />
 		<select name="highertaxon">
 		  <option value="">Totes</option>
 			{html_options values=$families output=$families}
 		 </select>
 		</span> 
-		<span class="search-1">Pa√≠s:<br />
+		<span class="search-1">PaÌs:<br />
 		<select name="countryname">
 		  <option value="">Tots</option>
 		  {html_options values=$countries output=$countries}
 		</select>
 		</span> 
-		<span class="search-1">Recol¬∑lectors:<br />
+		<span class="search-1">Recol∑lectors:<br />
 		<input name="agenttext" id="agenttext" value="" size="30" style="width: 10em;" type="text">
 		</span> 
 		<span class="search-1">UTM:<br />
@@ -32,9 +32,9 @@
 		<span class="search-1">Ordenat per:<br />
 		<select name="orderby">
 		  <option value="nameauthoryearstring" >Nom 
-		  t√†xon</option>
-		  <option value="highertaxon" >Fam√≠lia</option>
-		  <option value="countryname" >Pa√≠s</option>
+		  t‡xon</option>
+		  <option value="highertaxon" >FamÌlia</option>
+		  <option value="countryname" >PaÌs</option>
 		  <option value="utmformula" >UTM</option>
 		</select>
 		</span> <br>
@@ -134,4 +134,4 @@ map.setCenter(point, 15);
 </script>
 {/literal}
 
-{include file="newfooter_cat.tpl"} 
+{include file="newfooter.tpl"} 

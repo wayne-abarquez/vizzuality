@@ -62,8 +62,8 @@
 	<div class="comboIdioma">
 		<form name="frmName">
 		<select id="idioma" onchange="idiomaload()">
-			<option value="cat" {if $smarty.session.lang eq "cat"}selected{/if}>CatalÃ¡</option>
-			<option value="es" {if $smarty.session.lang eq "es"}selected{/if}>EspaÃ±ol</option>
+			<option value="cat" {if $smarty.session.lang eq "cat"}selected{/if}>Catalá</option>
+			<option value="es" {if $smarty.session.lang eq "es"}selected{/if}>Español</option>
 			<option value="en" {if $smarty.session.lang eq "en"}selected{/if}>English</option>
 		</select>
 		</form>

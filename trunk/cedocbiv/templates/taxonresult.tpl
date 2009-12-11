@@ -1,4 +1,4 @@
-{include file="newheader_es.tpl"}
+{include file="newheader.tpl"}
 
 
 <div class="content">
@@ -46,7 +46,7 @@
 				<p>{$result.TypeStatus}</p>
 				<p><b>Localitats: </b>{$result.locality|truncate:100:"..."}</p>
 				<p><b>Paises: </b>{$result.country|truncate:100:"..."}</p>
-				<p><b>Nœm. Pliegos: </b>{$result.num_sheets}</p>
+				<p><b>Núm. Pliegos: </b>{$result.num_sheets}</p>
 				<p><b>Altitud: </b>{$result.altitudUpper} - {$result.altitudLower}</p>
 			</div>
 		</div>
@@ -97,4 +97,4 @@ map.setCenter(point, 15);
 </script>
 {/literal}
 
-{include file="newfooter_es.tpl"} 
+{include file="newfooter.tpl"} 
