@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" creationComplete="init()" xmlns:ns1="com.dougmccune.controls.*" xmlns:code="http://code.google.com/p/flexlib/">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" creationComplete="init()" xmlns:ns1="com.dougmccune.controls.*" xmlns:code="http://code.google.com/p/flexlib/" xmlns:ns2="com.vizzuality.view.*">
+
+	<mx:Style source="com/vizzuality/skin/style.css" />
+	<mx:Style source="com/vizzuality/skin/Fonts.css" />
+
 <mx:Script>
 	<![CDATA[
+		import mx.events.ResizeEvent;
 		import com.google.maps.controls.ControlPosition;
 		import com.google.maps.controls.PositionControl;
 		import com.google.maps.controls.ZoomControlOptions;
@@ -24,6 +29,8 @@
 			//This is to allow the access to the tiles for the mouse over
 			//var externalDomains:Array=["downloads.wdpa.org","vizzuality.s3.amazonaws.com"];
 			var externalDomains:Array=["vizzuality.s3.amazonaws.com"];
+			this.addEventListener(ResizeEvent.RESIZE,handleResize);
+			
 			for each(var dom:String in externalDomains) {
 			    Security.allowDomain(dom);
 			    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
@@ -40,7 +47,7 @@
 				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,10,10)
 			});
 			map.addControl(new ZoomControl(zco));
-			map.addControl(new MapTypeControl());
+			//map.addControl(new MapTypeControl());
 				
 			if(raster==null && crossdomainLoaded) {
 				raster= new RasterSliderLayerOverlay(
@@ -61,27 +68,26 @@
 			}
 		}
 		
-		private function onSliderChange():void {
-			var firstYear:Number = Math.round((slider.values[0]/1.5) + 1841);
-			var secondYear:Number = Math.round((slider.values[1]/1.5) + 1841);
-			if (secondYear>2010)
-				secondYear=2010;
-			yearDisplayed.text = firstYear.toString()+ '-'+ secondYear.toString();
+ 		private function onSliderChange():void{
+ 			this.ct.val = Math.round((slider.value/1.5) + 1841);
+ 			var interval:Number = slider.width / 205;
+ 			ct.x = (slider.value - 50) * (interval-0.14) + 10;
 		}
-		
+
+ 		private function handleResize(e:ResizeEvent):void{
+ 			var interval:Number = slider.width / 205;
+ 			ct.x = (slider.value - 50) * (interval-0.14) + 10;
+		}
 		
 	]]>
 </mx:Script>
 	<maps:Map id="map" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" mapevent_mapready="onMapReady()" width="100%" height="100%" />
-	<mx:Canvas left="10" right="20" bottom="40" backgroundColor="#FFFFFF" backgroundAlpha="0.5" height="54">
-		<code:HSlider height="32" id="slider" values="[0,239]" minimum="0" maximum="255" snapInterval="1" 
-			 thumbCount="1"
-			allowTrackClick="true" allowThumbOverlap="true"
-			liveDragging="true" change="onSliderChange()" showDataTip="false" showTrackHighlight="true" 
-			labels="[1841,1850,1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2009]" 
-			fillColors="[#0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A]" verticalCenter="0" left="10" right="10"/>
-		
+	<mx:Canvas left="20" right="20" bottom="40" height="74" styleName="sliderContainer" backgroundSize="100%">
+		<mx:HSlider height="50" id="slider" minimum="50" maximum="255" snapInterval="1" thumbCount="1" change="{onSliderChange()}" 
+			allowTrackClick="true" allowThumbOverlap="true"	liveDragging="true" showDataTip="false" showTrackHighlight="true"
+			labels="[1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2009]" verticalCenter="-6" left="12" right="12" tickInterval="15.78" slideDuration="0"/>
+			<mx:Label text="Drag the slider to see the cumulative count of records (by date recorded) for European Starling on the GBIF network" right="23" bottom="10" fontFamily="Helvetica" fontSize="11" color="#7D7D61"/>
 	</mx:Canvas>
-	<mx:Text text="1841-2000" right="20" bottom="102" fontSize="28" id="yearDisplayed"/>
-	<mx:Label text="Drag the slider to see the cumulative count of records (by date recorded) for European Starling on the GBIF network" left="10" bottom="103" fontStyle="italic"/>
+	<ns2:TitleContainer right="20" top="20"/>
+	<ns2:CustomDataTip x="10" id="ct"  bottom="83"/>
 </mx:Application>

@@ -5,7 +5,8 @@ package com.vizzuality.layers
 	import com.google.maps.MapZoomEvent;
 	import com.google.maps.overlays.TileLayerOverlay;
 	
-	import flexlib.controls.HSlider;
+	import mx.controls.HSlider;
+	
 	
 	public class RasterSliderLayerOverlay extends TileLayerOverlay
 	{

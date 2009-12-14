@@ -1,0 +1,41 @@
+/* CSS file */
+
+TitleContainer{
+	background-color: #336699;
+	corner-radius: 4;
+	border-color: #336699;
+	border-style: solid;	
+}
+
+.sliderContainer{
+	background-image: Embed(source="skin.swf", symbol="bkg");
+}
+
+
+HSlider{
+	thumb-skin: Embed(source="skin.swf", symbol="SliderThumb_overSkin");
+	thumb-down-skin: Embed(source="skin.swf", symbol="SliderThumb_overSkin");
+	thumbOverSkin: Embed(source="skin.swf", symbol="SliderThumb_overSkin");
+	thumbUpSkin: Embed(source="skin.swf", symbol="SliderThumb_upSkin");
+	trackHighlightSkin: Embed(source="skin.swf", symbol="SliderHighlight_Skin"); 
+	trackSkin: Embed(source="skin.swf", symbol="SliderTrack_Skin"); 
+ 	tickColor:#aeae82;
+	tickWidth:1;
+	tick-length: 6;
+	tickOffset:0;
+	tickInterval:1;
+	tickThickness:1;
+	label-offset: -5;
+	labelStyleName: "hSliderLabel";
+	data-tip-style-name: "datatip";
+}
+
+.hSliderLabel{
+	font-family: "Helvetica";
+	color: #bfbf91;
+	font-weight: bold;
+}
+
+.datatip{
+	background-image: Embed(source="skin.swf", symbol="datatipbkg");
+}

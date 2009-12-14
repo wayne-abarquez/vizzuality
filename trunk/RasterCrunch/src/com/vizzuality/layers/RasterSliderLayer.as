@@ -17,8 +17,7 @@ package com.vizzuality.layers
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
 	
-	import flexlib.controls.HSlider;
-	
+	import mx.controls.HSlider;
 	import mx.core.Application;
 	import mx.events.SliderEvent;
 
@@ -111,7 +110,7 @@ package com.vizzuality.layers
 	        } */
 	        ct.onScreenBitmapData.threshold(ct.offScreenBitmapData,new Rectangle(0, 0, 256,256), new Point(0, 0),"<",val2,0xddD33432,0x000000ff,false); //if we want to see the DEM then the copysource parameter is true	        	
 	        
-	        getHighlightedAreas(ct);
+	        //getHighlightedAreas(ct);
 	        
 	        //var _filter:BlurFilter = new BlurFilter(1,1);
 	        //onScreenBitmap.applyFilter(onScreenBitmap,new Rectangle(0, 0, 256,256),new Point(0, 0),_filter);
