@@ -27,6 +27,7 @@
 	
 		private var s1:Sound;
 		private var s2:Sound;
+		private var sc:SoundChannel;
 	
 		private function init():void {
 			//This is to allow the access to the tiles for the mouse over
@@ -44,6 +45,7 @@
 			}
 			this.ct.val = 1874;
 			
+/* 			sc = new SoundChannel();
 			s1 = new Sound();
 			var req1:URLRequest = new URLRequest("com/vizzuality/sounds/525.mp3");
 			var context1:SoundLoaderContext = new SoundLoaderContext();
@@ -56,6 +58,8 @@
 			s2.load(req2,context2);
 			s2.play();
 			
+			var st:SoundTransform = new SoundTransform(0);
+			sc.soundTransform = st; */
 			
 		}
 	
@@ -90,7 +94,8 @@
  			this.ct.val = Math.round((slider.value/1.5) + 1841);
  			var interval:Number = slider.width / 205;
  			ct.x = (slider.value - 50) * (interval-0.14) + 10;
- 			
+ 			var st:SoundTransform = new SoundTransform(slider.value / 255);
+ 			sc.soundTransform = st;
 		}
 
  		private function handleResize(e:ResizeEvent):void{
