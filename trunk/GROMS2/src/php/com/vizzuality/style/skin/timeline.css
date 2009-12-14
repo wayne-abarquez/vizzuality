@@ -1,0 +1,93 @@
+/* CSS file */
+
+Canvas.s00{
+	background-image: Embed(source="timelineStyles.swf",symbol="s0_0");		
+}
+Canvas.s1gbif{
+	background-image: Embed(source="timelineStyles.swf",symbol="s0_0");		
+}
+
+
+Canvas.s11{
+	background-image: Embed(source="timelineStyles.swf",symbol="s1_1");		
+}
+Canvas.s12{
+	background-image: Embed(source="timelineStyles.swf",symbol="s1_2");		
+}
+Canvas.s13{
+	background-image: Embed(source="timelineStyles.swf",symbol="s1_3");		
+}
+Canvas.s14{
+	background-image: Embed(source="timelineStyles.swf",symbol="s1_4");		
+}
+
+
+Canvas.s21{
+	background-image: Embed(source="timelineStyles.swf",symbol="s2_1");		
+}
+Canvas.s22{
+	background-image: Embed(source="timelineStyles.swf",symbol="s2_2");		
+}
+Canvas.s23{
+	background-image: Embed(source="timelineStyles.swf",symbol="s2_3");		
+}
+Canvas.s24{
+	background-image: Embed(source="timelineStyles.swf",symbol="s2_4");		
+}
+
+
+Canvas.s31{
+	background-image: Embed(source="timelineStyles.swf",symbol="s3_1");		
+}
+Canvas.s32{
+	background-image: Embed(source="timelineStyles.swf",symbol="s3_2");		
+}
+Canvas.s33{
+	background-image: Embed(source="timelineStyles.swf",symbol="s3_3");		
+}
+Canvas.s34{
+	background-image: Embed(source="timelineStyles.swf",symbol="s3_4");		
+}
+
+Canvas.sgbif{
+	background-image: Embed(source="timelineStyles.swf",symbol="sgbif");		
+}
+
+Box.bkgBox{
+	background-image: Embed(source="timelineStyles.swf",symbol="bkgBox");
+}
+
+Canvas.bkgTotal{
+	background-image: Embed(source="timelineStyles.swf",symbol="bkgTotal");
+}
+
+
+Button.btnDelete{
+	up-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_up");	
+	over-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");	
+	down-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");	
+	selected-up-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");	
+	selected-over-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");	
+	selected-down-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_over");
+	disabled-skin: Embed(source="timelineStyles.swf",symbol="btnDelete_disabled");		
+}
+
+Button.btnGbif{
+	up-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_up");	
+	over-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_over");	
+	down-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_over");	
+	selected-up-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_over");	
+	selected-over-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_over");	
+	selected-down-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_over");	
+	disabled-skin: Embed(source="timelineStyles.swf",symbol="btnGbif_disabled");		
+}
+
+Button.btnInfo{
+	up-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_up");	
+	over-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_over");	
+	down-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_over");	
+	selected-up-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_over");	
+	selected-over-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_over");	
+	selected-down-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_over");	
+	disabled-skin: Embed(source="timelineStyles.swf",symbol="btnInfo_disabled");		
+}
