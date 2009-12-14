@@ -24,6 +24,8 @@
 	</mx:states>
 <mx:Script>
 	<![CDATA[
+		import com.adobe.serialization.json.JSON;
+		import com.google.maps.overlays.PolygonOptions;
 		import com.google.maps.overlays.TileLayerOverlay;
 		import com.google.maps.Color;
 		import com.google.maps.overlays.MarkerOptions;
@@ -47,6 +49,10 @@
 		
 		private var fr:FileReference
 		private static const FILE_TYPES:Array = [new FileFilter("Image File", "*.jpg;*.jpeg;*.gif;*.png")];
+		private var paId:Number;
+		private var paData:Object;
+		private var dataLoaded:Boolean=false;
+		private var dataAnalyzed:Boolean=false;
 		
 		[Bindable] private var tool:TransformTool;
 		
@@ -69,7 +75,14 @@
 			currentState='';
 			//map.addEventListener(MapMouseEvent.CLICK,onMapClick);
 			
-			
+			//get the PA data
+			var dsLoader:URLLoader = new URLLoader();
+			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
+			paId=root.loaderInfo.parameters.id;
+			if(isNaN(paId)) {
+				paId=2027;
+			}
+			dsLoader.load(new URLRequest("http://localhost:3000/sites/"+paId+"/json"));
 			
 /* 			var tl:TileLayer = new TileLayer();
 			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
@@ -79,15 +92,60 @@
 			map.addEventListener(MapMouseEvent.CLICK, function(event:MapMouseEvent):void {
 				Alert.show("CLICK in LAND? " +isInLand.toString());
 			}); */
-			
-			
-			
-			
 		}
 		
-		private function onMapClick(event:MapMouseEvent):void {
+		private function onDataLoaded(event:Event):void {
+			dataLoaded=true;
+			paData = JSON.decode(event.currentTarget.data as String);			
 			
-			var options:MarkerOptions = new MarkerOptions({
+			//Only load the data if the map is ready or it will fail
+			if(map.isLoaded() && !dataAnalyzed) {
+				dataAnalyzed=true;
+				loadData();				
+			}
+		}
+		
+		private function loadData():void {
+			//Polygon options for the PA
+			var polOpt:PolygonOptions=new PolygonOptions({
+				  strokeStyle: {
+				    thickness: 5,
+				    color: 0xFF7600,
+				    alpha: 1
+				  },
+				  fillStyle: {
+				    color: 0xFF7600,
+				    alpha: 1
+				  }	
+			});
+			
+ 			  //EACH POLYGON
+		      for each(var geojsonPolygon:Array in paData.coordinates) {
+		        //EACH LINE
+		        var encodedLines:Array = [];
+		        for each(var geojsonPoints:Array in geojsonPolygon) {
+		          var vertices:Array = [];
+		          //EACH VERTICE
+		          for each (var geojsonPoint:Array in geojsonPoints) {
+		            vertices.push(new LatLng(geojsonPoint[1], geojsonPoint[0]));
+		          }
+		          ep = new EditablePolygon(map,vertices);
+		          /* var verticesEncoded:Object = p.dpEncode(vertices);
+		          encodedLines.push(new EncodedPolylineData(verticesEncoded.encodedPoints, 2, verticesEncoded.encodedLevels, 18)); */
+		        }
+		      }
+			
+/* 			//the data will always be a MultiPolygon
+ 			var mp:Multipolygon= new Multipolygon(this.map);
+			mp.fromGeojsonMultiPolygon(paData.coordinates,polOpt);						
+			mp.addToMap(map);
+
+			//Set the center of the map to the bbox of the area			
+			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds()));	 */
+		}	
+		
+		private function onMapClick(event:MapMouseEvent):void {	
+/* 			var options:MarkerOptions = new MarkerOptions({
 			  icon: new CustomIconSprite(),
 			  hasShadow: false,
 			  clickable: true,
@@ -106,7 +164,7 @@
 				tempArr.push(polVertexes[0]);
 				pol = new Polygon(tempArr);
 				map.addOverlay(pol);
-			}
+			} */
 		}
 		
 		
