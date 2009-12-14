@@ -22,16 +22,12 @@ define('GEOSERVER_URL', 'http://localhost:8080/geoserver/');
 /** GEOSERVER URL */
 define('DATA_URL', 'http://localhost/amfphp/gateway.php');
 
-/** Caching folder */
-define('CACHE_FOLDER', '/tmp/sdr/cache/');
-
 /** Google API Key */
 define('GMAP_KEY', 'ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTb-vLQlFZmc2N8bgWI8YDPp5FEVBTeJc72_716EfYqx-s8UGt88XqC9w');
 
 
 /** WMS proxies */
 define('WMS_PROXY', 'http://localhost/wmsproxy.php');
-define('WMS_BIG_PROXY', 'http://localhost/wmsbig.php');
 
 
 
