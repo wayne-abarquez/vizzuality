@@ -11,6 +11,8 @@ package com.vizzuality.view.map.overlays
 	import flash.events.IOErrorEvent;
 	import flash.geom.Point;
 	import flash.net.URLRequest;
+	
+	import mx.core.Application;
 
 	public class CustomWMSTileLayer extends TileLayerBase
 	{
@@ -67,7 +69,7 @@ package com.vizzuality.view.map.overlays
            	var UR:LatLng = new LatLng(YToL(zoomLevel,tileIndexUR.y),XToL(zoomLevel,tileIndexUR.x));
            	bbox =  dd2MercMetersLng(LL.lngRadians())+","+dd2MercMetersLat(LL.latRadians()) + "," + dd2MercMetersLng(UR.lngRadians())+","+dd2MercMetersLat(UR.latRadians());
           	
-           	tileUrl = "http://ec2-67-202-26-58.compute-1.amazonaws.com/groms/wmsproxy.php?species_id="+speciesId+"&x=|X|&y=|Y|&z=|Z|&bbox=" + bbox;
+           	tileUrl = Application.application.parameters.wmsProxy + "?species_id="+speciesId+"&x=|X|&y=|Y|&z=|Z|&bbox=" + bbox;
            	
            	tileUrl = tileUrl.replace("|X|",tile.x);	
            	tileUrl = tileUrl.replace("|Y|",tile.y);	

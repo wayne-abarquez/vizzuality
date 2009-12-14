@@ -94,7 +94,7 @@
 	<mx:VBox width="100%" height="100%" verticalGap="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 		<header:MapHeader id="mapHeader" map="{map}" />
 		<mx:Canvas width="100%" height="100%" id="canvas1" verticalScrollPolicy="off" horizontalScrollPolicy="off">
-			<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRSMhkig1Gd5B_2j4H1Xz7hsATFBFhR-0p1pzKNnQNC5NFHIaSiCY6Tc4g" width="100%" height="100%"/>
+			<maps:Map top="0" left="0" id="map" mapevent_mappreinitialize="onMapPreInitialize(event)" mapevent_mapready="onMapReady(event)" key="{Application.application.parameters.gmap_key}" width="100%" height="100%"/>
 			<!--map:BreadCrumb id="breadcrumb" top="3" left="7" / -->
 			<ns2:DiscretLoading left="10" top="21" id="discretLoading" visible="false"/>
 			<ns2:MapWarning id="alertCanvas" visible="false"/>
