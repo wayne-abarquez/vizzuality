@@ -70,7 +70,7 @@
 </mx:Script>
 	<maps:Map id="map" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" mapevent_mapready="onMapReady()" width="100%" height="100%" />
 	<mx:Canvas left="10" right="20" bottom="40" backgroundColor="#FFFFFF" backgroundAlpha="0.5" height="54">
-		<code:HSlider height="32" id="slider" value="0" minimum="0" maximum="255" snapInterval="1" 
+		<mx:HSlider height="32" id="slider" value="0" minimum="0" maximum="255" snapInterval="1" 
 			liveDragging="true" change="onSliderChange()" showDataTip="false" showTrackHighlight="true" labels="[0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250]" fillColors="[#0A0A0A, #0A0A0A, #0A0A0A, #0A0A0A]" verticalCenter="0" left="10" right="10"/>
 		
 	</mx:Canvas>

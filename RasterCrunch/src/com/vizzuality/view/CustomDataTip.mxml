@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="71" height="45" styleName="datatip" backgroundSize="100%">
+
+	<mx:Script>
+		<![CDATA[
+			[Bindable] public var val:Number;
+		]]>
+	</mx:Script>
+
+	<mx:Label text="{val.toString()}" horizontalCenter="0" verticalCenter="0" fontFamily="Helvetica" fontSize="21" fontWeight="bold" color="#FFFFFF"/>
+	
+</mx:Canvas>

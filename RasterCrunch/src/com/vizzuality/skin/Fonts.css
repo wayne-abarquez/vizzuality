@@ -1,0 +1,14 @@
+/* CSS file */
+
+
+@font-face {
+    src:url("typo/Helvetica.swf");
+    fontFamily: "Helvetica";
+    font-weight: normal;
+}
+
+@font-face {
+    src:url("typo/Helvetica.swf");
+    fontFamily: "Helvetica";
+    fontWeight: bold;
+}
