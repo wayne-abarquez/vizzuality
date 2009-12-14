@@ -25,6 +25,9 @@
 		//private var rasterUrl:String = "http://downloads.wdpa.org/ArcGIS/rest/services/GID/DEM_Greyscale_reclass/MapServer/tile/|Z|/|Y|/|X|.png";
 		private var rasterUrl:String = "http://vizzuality.s3.amazonaws.com/raster/tiles/|Z|/|X|/|Y|.png";
 	
+		private var s1:Sound;
+		private var s2:Sound;
+	
 		private function init():void {
 			//This is to allow the access to the tiles for the mouse over
 			//var externalDomains:Array=["downloads.wdpa.org","vizzuality.s3.amazonaws.com"];
@@ -39,14 +42,29 @@
 			    loader.addEventListener(Event.COMPLETE,onCrossDomainDownload);
 			    loader.load(request);				
 			}
+			this.ct.val = 1874;
+			
+			s1 = new Sound();
+			var req1:URLRequest = new URLRequest("com/vizzuality/sounds/525.mp3");
+			var context1:SoundLoaderContext = new SoundLoaderContext();
+			s1.load(req1,context1);
+			s1.play();
+			
+			s2 = new Sound();
+			var req2:URLRequest = new URLRequest("com/vizzuality/sounds/European_Starling4.mp3");
+			var context2:SoundLoaderContext = new SoundLoaderContext();
+			s2.load(req2,context2);
+			s2.play();
+			
+			
 		}
 	
 		private function onMapReady():void {
 			map.setCenter(new LatLng(10,-50),2,MapType.PHYSICAL_MAP_TYPE);	
-			var zco:ZoomControlOptions = new ZoomControlOptions({
+			/*var zco:ZoomControlOptions = new ZoomControlOptions({
 				position: new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,10,10)
-			});
-			map.addControl(new ZoomControl(zco));
+			});*/
+			//map.addControl(new ZoomControl(zco));
 			//map.addControl(new MapTypeControl());
 				
 			if(raster==null && crossdomainLoaded) {
@@ -72,6 +90,7 @@
  			this.ct.val = Math.round((slider.value/1.5) + 1841);
  			var interval:Number = slider.width / 205;
  			ct.x = (slider.value - 50) * (interval-0.14) + 10;
+ 			
 		}
 
  		private function handleResize(e:ResizeEvent):void{
@@ -90,4 +109,6 @@
 	</mx:Canvas>
 	<ns2:TitleContainer right="20" top="20"/>
 	<ns2:CustomDataTip x="10" id="ct"  bottom="83"/>
+	<mx:Button width="29" height="29" styleName="zoomInButton" left="20" top="20" useHandCursor="true" buttonMode="true" mouseChildren="false" click="{map.setZoom(map.getZoom() + 1)}"/>
+	<mx:Button width="29" height="29" styleName="zoomOutButton" left="20" top="52" useHandCursor="true" buttonMode="true" mouseChildren="false" click="{map.setZoom(map.getZoom() - 1)}"/>
 </mx:Application>
