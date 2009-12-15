@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="270" height="73"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="340" height="73"
 	verticalScrollPolicy="off" horizontalScrollPolicy="off">
-	<mx:Label y="9" text="expansion of the" right="10" fontFamily="Helvetica" fontWeight="bold" color="#7196BD" fontSize="21" letterSpacing="-1"/>
-	<mx:Label y="28" text="european starling" right="10" fontSize="31" fontFamily="Helvetica" color="#FFFFFF" fontWeight="bold" letterSpacing="-1"/>
+	<mx:Label y="9" text="expansion of the" right="79" fontFamily="Helvetica" fontWeight="bold" color="#7196BD" fontSize="21" letterSpacing="-1"/>
+	<mx:Label y="28" text="european starling" right="79" fontSize="31" fontFamily="Helvetica" color="#FFFFFF" fontWeight="bold" letterSpacing="-1"/>
+	<mx:Image y="5" source="@Embed('com/vizzuality/assets/bird.png')" left="262"/>
 	
 </mx:Canvas>
