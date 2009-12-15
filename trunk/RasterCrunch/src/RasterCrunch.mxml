@@ -6,6 +6,8 @@
 
 <mx:Script>
 	<![CDATA[
+		import gs.TweenMax;
+		import flash.net.navigateToURL;
 		import mx.events.ResizeEvent;
 		import com.google.maps.controls.ControlPosition;
 		import com.google.maps.controls.PositionControl;
@@ -72,6 +74,7 @@
 			sc2.addEventListener(Event.SOUND_COMPLETE,replaySound2);
 			
 			arrQuotes =[q1,q2,q3,q4,q5,q6];
+			q1.startTimer();
 			
 		}
 		
@@ -131,16 +134,26 @@
 			var auxval:Number = Math.ceil((((slider.value*164)/255) + 1846));
  			for each(var o:QuoteTip in arrQuotes){
 				if((auxval >= (o.year - 5)) && (auxval <= o.year + 5)){
-					o.alpha = 1;
+					TweenMax.to(o,0.5,{alpha:1});	
 					o.startTimer();
 				}
 			}
 		}
 		
+		public function quitAbout(e:MouseEvent):void{
+			if(e.target == about){
+				TweenMax.to(about,1,{autoAlpha:0});
+			}
+		}
+		
+		private function showAbout():void{
+			TweenMax.to(about,1,{autoAlpha:1});
+		}
 		
 	]]>
 </mx:Script>
 	<maps:Map id="map" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" mapevent_mapready="onMapReady()" width="100%" height="100%" />
+	<mx:Image source="@Embed('com/vizzuality/assets/logoMapVizz.png')" left="65" bottom="5" click="navigateToURL(new URLRequest('http://www.vizzuality.com'))"/>
 	<mx:Canvas left="20" right="20" bottom="40" height="74" styleName="sliderContainer" backgroundSize="100%">
 		<mx:HSlider height="50" id="slider" minimum="50" maximum="255" snapInterval="1" thumbCount="1" change="{onSliderChange()}" 
 			allowTrackClick="true" allowThumbOverlap="true"	liveDragging="true" showDataTip="false" showTrackHighlight="true"
@@ -148,19 +161,22 @@
 			<mx:Label text="Drag the slider to see the cumulative count of records (by date recorded) for European Starling on the GBIF network" right="23" bottom="10" fontFamily="Helvetica" fontSize="11" color="#7D7D61"/>
 	</mx:Canvas>
 	<ns2:TitleContainer right="20" top="20"/>
-	<ns2:QuoteTip id="q1" bottom="113" year="1874" alpha="1" 
-		text="First records of Eropean Starling appear near Malmo, Sweeden" x="2"/>
-	<ns2:QuoteTip id="q2" bottom="113" year="1892" alpha="0" x="{((1892-1880)*slider.width / (2010-1880))+40}"
-		text="In 1890 60 birds are released in Central Park (NY) by Eugene Schieffelin when trying to introduce every bird species mentioned in the works of William Shakespeare in North America."/>
-	<ns2:QuoteTip id="q3" bottom="113" year="1938" alpha="0" x="{((1938-1880)*slider.width / (2010-1880))+40}"
+	<ns2:QuoteTip id="q1" bottom="103" year="1874" alpha="1" 
+		text="First records of Eropean Starling appear near Malmo, Sweeden" x="12"/>
+	<ns2:QuoteTip id="q2" bottom="103" year="1892" alpha="0" x="{((1892-1880)*slider.width / (2010-1880))+40}"
+		text="In 1890 60 birds are released in Central Park (NY) by Eugene Schieffelin"/>
+	<ns2:QuoteTip id="q3" bottom="103" year="1938" alpha="0" x="{((1938-1880)*slider.width / (2010-1880))+40}"
 		text="First records start to appear near the west cost in USA."/>
-	<ns2:QuoteTip id="q4" bottom="113" year="1952" alpha="0" x="{((1952-1880)*slider.width / (2010-1880))+40}"
+	<ns2:QuoteTip id="q4" bottom="103" year="1952" alpha="0" x="{((1952-1880)*slider.width / (2010-1880))+40}"
 		text="There is observations already on the west coast of USA."/>
-	<ns2:QuoteTip id="q5" bottom="113" year="1966" alpha="0" x="{((1966-1880)*slider.width / (2010-1880))+40}"
+	<ns2:QuoteTip id="q5" bottom="103" year="1966" alpha="0" x="{((1966-1880)*slider.width / (2010-1880))+40}"
 		text="The UK population starts declining massively." />
-	<ns2:QuoteTip id="q6" bottom="113" year="2004" alpha="0" x="{((2004-1880)*slider.width / (2010-1880))-40}"
-		text="Major declines, up to 80%, in populations in UK,Sweeden,Finland,Russia and smaller declines on northern and central Europe." />
+	<ns2:QuoteTip id="q6" bottom="103" year="2004" alpha="0" x="{((2004-1880)*slider.width / (2010-1880))-40}"
+		text="Major declines, up to 80%, in populations in UK,Sweeden,Finland and Russia" />
 	<ns2:CustomDataTip x="10" id="ct"  bottom="83"/>
 	<mx:Button width="29" height="29" styleName="zoomInButton" left="20" top="20" useHandCursor="true" buttonMode="true" mouseChildren="false" click="{map.setZoom(map.getZoom() + 1)}"/>
 	<mx:Button width="29" height="29" styleName="zoomOutButton" left="20" top="52" useHandCursor="true" buttonMode="true" mouseChildren="false" click="{map.setZoom(map.getZoom() - 1)}"/>
+	<mx:Button label="about this mashup" fontFamily="Helvetica" fontSize="11" color="#336699" right="9" top="93" styleName="neutralButton"
+		useHandCursor="true" buttonMode="true" mouseChildren="false" click="showAbout()"/>
+	<ns2:aboutOverlay id="about" visible="false" alpha="0"/>
 </mx:Application>

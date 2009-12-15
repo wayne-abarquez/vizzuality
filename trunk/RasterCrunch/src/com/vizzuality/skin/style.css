@@ -55,3 +55,7 @@ HSlider{
 	over-skin: Embed(source="skin.swf", symbol="zoomOutButton_over");
 	down-skin: Embed(source="skin.swf", symbol="zoomOutButton_over");
 }
+
+.neutralButton{
+	skin: ClassReference(null);	
+}
