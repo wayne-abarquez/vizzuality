@@ -61,17 +61,17 @@
 			s2.load(req2,context2); 
 			
  			sc1 = new SoundChannel();
-			sc1 = s1.play() ;
+			sc1 = s1.play(0,int.MAX_VALUE);
 			
  			sc2 = new SoundChannel();
-			sc2 = s2.play();
+			sc2 = s2.play(0,int.MAX_VALUE);
 			
 			var st:SoundTransform = new SoundTransform(0);
 			sc1.soundTransform = st; 
 			sc2.soundTransform = st;
 			
-			sc1.addEventListener(Event.SOUND_COMPLETE,replaySound1);			 
-			sc2.addEventListener(Event.SOUND_COMPLETE,replaySound2);
+			//sc1.addEventListener(Event.SOUND_COMPLETE,replaySound1);			 
+			//sc2.addEventListener(Event.SOUND_COMPLETE,replaySound2);
 			
 			arrQuotes =[q1,q2,q3,q4,q5,q6];
 			q1.startTimer();
