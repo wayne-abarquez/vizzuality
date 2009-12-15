@@ -21,10 +21,11 @@
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
 		<LineStyle>
-			<width>0.6</width>
+			<color>ff4dc0ff</color>
+			<width>2</width>
 		</LineStyle>
 		<PolyStyle>
-			<fill>0</fill>
+			<color>804dc0ff</color>
 		</PolyStyle>
 	</Style>
 	<Style id="s_ylw-pushpin_hl">
@@ -36,11 +37,11 @@
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
 		<LineStyle>
-			<width>1</width>
+			<color>ff4dc0ff</color>
+			<width>2</width>
 		</LineStyle>
 		<PolyStyle>
-			<fill>0.8</fill>
-			<color>7dff0000</color>
+			<color>804dc0ff</color>
 		</PolyStyle>
 	</Style>
 	<StyleMap id="m_ylw-pushpin_copy0">
