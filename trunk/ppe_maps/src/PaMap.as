@@ -72,7 +72,7 @@ package {
 		private var tooltip: TooltipMarker;
 		
 
-/* 		[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
+		/*[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
 	  	private var loading:Class; */
 		
 				
@@ -129,7 +129,7 @@ package {
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			paId=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=377207;
+				paId=2027;
 			}
 			dsLoader.load(new URLRequest("http://localhost:3000/sites/"+paId+"/json"));
 			
@@ -324,15 +324,17 @@ package {
 	       	 hasShadow:false,	        
 	       	 icon: ev.target.loader}));
 	       	
-	       	marker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
-	       		tooltip = new TooltipMarker(photo.title);
-				tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x;
-				tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y;
-	       		addChild(tooltip);
-	       	});
-	       	marker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
-	       		removeChild(tooltip);
-	       	});  
+	       	if (photo.title !='') {
+		       	marker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
+		       		tooltip = new TooltipMarker(photo.title);
+					tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
+					tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
+		       		addChild(tooltip);
+		       	});
+		       	marker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
+		       		removeChild(tooltip);
+		       	});  	       		
+	       	}
               
         	var infowindow:Loader= new Loader();
         	infowindow.load(new URLRequest(photo.imageUrl));
