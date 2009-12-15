@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) ."/../config.php");
+require_once(dirname(__FILE__) ."/config.php");
 
 
 $savefile = $_REQUEST['x'] . "_" . $_REQUEST['y'] . "_". $_REQUEST['z'] . "_". $_REQUEST['species_id'] . ".png";
