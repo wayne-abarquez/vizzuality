@@ -107,7 +107,6 @@
 		// (Math.ceil((((slider.value*164)/255) + 1846)) ) * (slider.width -10)
 		
  		private function onSliderChange():void{
-			trace(Math.ceil((((250*164)/255) + 1846)));
  			this.ct.val = Math.ceil((((slider.value*164)/255) + 1846));
  			var interval:Number = slider.width / 205;
  			ct.x = (slider.value - 50) * (interval-0.14) + 10;
@@ -131,7 +130,7 @@
 		private function calculateAlpha():void{
 			var auxval:Number = Math.ceil((((slider.value*164)/255) + 1846));
  			for each(var o:QuoteTip in arrQuotes){
-				if((auxval >= (o.year - 1)) && (auxval <= o.year + 1)){
+				if((auxval >= (o.year - 5)) && (auxval <= o.year + 5)){
 					o.alpha = 1;
 					o.startTimer();
 				}

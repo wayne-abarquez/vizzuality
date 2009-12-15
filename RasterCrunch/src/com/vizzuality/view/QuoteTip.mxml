@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="111" height="85" styleName="qoutetip" backgroundSize="100%"> 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="111" height="85" styleName="qoutetip" backgroundSize="100%" creationComplete="init()"> 
 	
 	<mx:Script>
 		<![CDATA[
 			
 			[Bindable] public var text:String;
 			[Bindable] public var year:Number;
+			private var t:Timer;
 			
+			
+			private function init():void {
+				t = new Timer(3000);
+				t.addEventListener(TimerEvent.TIMER,onTimerFinished);				
+			}
 			public function startTimer():void{
-				var t:Timer = new Timer(3000);
-				t.addEventListener(TimerEvent.TIMER,function ():void{this.alpha = 0});
 				t.start();
+			}
+			
+			private function onTimerFinished(evnt:TimerEvent):void {
+				t.stop();
+				this.alpha = 0;	
 			}
 			
 		]]>
