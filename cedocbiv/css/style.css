@@ -247,7 +247,7 @@ body{
 }
 
 .arrowList{
-	background-image: url(/images/arrowList.gif);
+	background-image: url(../images/arrowList.gif);
 	background-repeat: no-repeat;
 	background-position: right 12px;
 	height: 6px;
@@ -267,7 +267,7 @@ body{
 
 input.leftPaginator{
 	width:25px; 
-	background-image: url(/images/pagButtonLeft.gif); 
+	background-image: url(../images/pagButtonLeft.gif); 
 	height:25px; 
 	font-size: 12px; 
 	font-weight: bold; 
@@ -279,12 +279,12 @@ input.leftPaginator{
 }
 
 input.leftPaginator:hover{
-	background-image: url(/images/pagButtonLeftHover.gif); 
+	background-image: url(../images/pagButtonLeftHover.gif); 
 }
 
 .rightPaginator{
 	width:25px; 
-	background:url(/images/pagButtonRight.gif) no-repeat; 
+	background:url(../images/pagButtonRight.gif) no-repeat; 
 	height:25px; 
 	font-size: 12px; 
 	font-weight: bold; 
@@ -296,7 +296,7 @@ input.leftPaginator:hover{
 }
 
 .rightPaginator:hover{
-	background-image: url(/images/pagButtonRightHover.gif); 
+	background-image: url(../images/pagButtonRightHover.gif); 
 }
 
 
@@ -366,7 +366,7 @@ input.leftPaginator:hover{
 	height: 20px;
 	width: 950px;
 	color: #ffffff;
-	background-image: url(/images/arrowUpDown.gif);
+	background-image: url(../images/arrowUpDown.gif);
 	background-repeat: no-repeat;
 	background-position: 6px;
 }
@@ -395,7 +395,7 @@ input.leftPaginator:hover{
 /* inputs */
 
 .inputDataLong {
-	background:url(/images/inputDataLong.gif) no-repeat 0 0;
+	background:url(../images/inputDataLong.gif) no-repeat 0 0;
 	padding: 0;
 	height: 26px;
 	width: 372px;
@@ -406,7 +406,7 @@ input.leftPaginator:hover{
 }
 
 .inputDataSmall {
-	background:url(/images/inputDataSmall.gif) no-repeat 0 0;
+	background:url(../images/inputDataSmall.gif) no-repeat 0 0;
 	padding: 0;
 	height: 26px;
 	width: 134px;
