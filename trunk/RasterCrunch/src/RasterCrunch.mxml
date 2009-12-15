@@ -104,8 +104,11 @@
 			}
 		}
 		
+		// (Math.ceil((((slider.value*164)/255) + 1846)) ) * (slider.width -10)
+		
  		private function onSliderChange():void{
- 			this.ct.val = Math.round((slider.value/1.5) + 1841);
+			trace(Math.ceil((((250*164)/255) + 1846)));
+ 			this.ct.val = Math.ceil((((slider.value*164)/255) + 1846));
  			var interval:Number = slider.width / 205;
  			ct.x = (slider.value - 50) * (interval-0.14) + 10;
 	  		var st1:SoundTransform = new SoundTransform(slider.value / 500);
@@ -126,7 +129,7 @@
 		}
 		
 		private function calculateAlpha():void{
-			var auxval:Number = Math.round((slider.value/1.5) + 1841);
+			var auxval:Number = Math.ceil((((slider.value*164)/255) + 1846));
  			for each(var o:QuoteTip in arrQuotes){
 				if((auxval >= (o.year - 1)) && (auxval <= o.year + 1)){
 					o.alpha = 1;
@@ -135,28 +138,29 @@
 			}
 		}
 		
+		
 	]]>
 </mx:Script>
 	<maps:Map id="map" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" mapevent_mapready="onMapReady()" width="100%" height="100%" />
 	<mx:Canvas left="20" right="20" bottom="40" height="74" styleName="sliderContainer" backgroundSize="100%">
 		<mx:HSlider height="50" id="slider" minimum="50" maximum="255" snapInterval="1" thumbCount="1" change="{onSliderChange()}" 
 			allowTrackClick="true" allowThumbOverlap="true"	liveDragging="true" showDataTip="false" showTrackHighlight="true"
-			labels="[1874,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2009]" verticalCenter="-6" left="12" right="12" tickInterval="15.78" slideDuration="0"/>
+			labels="[1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010]" verticalCenter="-6" left="12" right="12" tickInterval="15.78" slideDuration="0"/>
 			<mx:Label text="Drag the slider to see the cumulative count of records (by date recorded) for European Starling on the GBIF network" right="23" bottom="10" fontFamily="Helvetica" fontSize="11" color="#7D7D61"/>
 	</mx:Canvas>
 	<ns2:TitleContainer right="20" top="20"/>
-	<ns2:QuoteTip id="q1" bottom="99" year="1874" alpha="0" 
-		text="First records of Eropean Starling appear near Malmo, Sweeden" x="1"/>
-	<ns2:QuoteTip id="q2" bottom="99" year="1892" alpha="0" 
-		text="In 1890 60 birds are released in Central Park (NY) by Eugene Schieffelin when trying to introduce every bird species mentioned in the works of William Shakespeare in North America." x="85"/>
-	<ns2:QuoteTip id="q3" bottom="99" year="1938" alpha="0" 
-		text="First records start to appear near the west cost in USA." x="438"/>
-	<ns2:QuoteTip id="q4" bottom="99" year="1952" alpha="0" 
-		text="There is observations already on the west coast of USA."  x="554"/>
-	<ns2:QuoteTip id="q5" bottom="99" year="1965" alpha="0" 
-		text="The UK population starts declining massively."  x="654"/>
-	<ns2:QuoteTip id="q6" bottom="99" year="2004" alpha="0"
-		text="Major declines, up to 80%, in populations in UK,Sweeden,Finland,Russia and smaller declines on northern and central Europe." x="380"/>
+	<ns2:QuoteTip id="q1" bottom="113" year="1874" alpha="1" 
+		text="First records of Eropean Starling appear near Malmo, Sweeden" x="2"/>
+	<ns2:QuoteTip id="q2" bottom="113" year="1892" alpha="0" x="{((1892-1880)*slider.width / (2010-1880))+40}"
+		text="In 1890 60 birds are released in Central Park (NY) by Eugene Schieffelin when trying to introduce every bird species mentioned in the works of William Shakespeare in North America."/>
+	<ns2:QuoteTip id="q3" bottom="113" year="1938" alpha="0" x="{((1938-1880)*slider.width / (2010-1880))+40}"
+		text="First records start to appear near the west cost in USA."/>
+	<ns2:QuoteTip id="q4" bottom="113" year="1952" alpha="0" x="{((1952-1880)*slider.width / (2010-1880))+40}"
+		text="There is observations already on the west coast of USA."/>
+	<ns2:QuoteTip id="q5" bottom="113" year="1966" alpha="0" x="{((1966-1880)*slider.width / (2010-1880))+40}"
+		text="The UK population starts declining massively." />
+	<ns2:QuoteTip id="q6" bottom="113" year="2004" alpha="0" x="{((2004-1880)*slider.width / (2010-1880))-40}"
+		text="Major declines, up to 80%, in populations in UK,Sweeden,Finland,Russia and smaller declines on northern and central Europe." />
 	<ns2:CustomDataTip x="10" id="ct"  bottom="83"/>
 	<mx:Button width="29" height="29" styleName="zoomInButton" left="20" top="20" useHandCursor="true" buttonMode="true" mouseChildren="false" click="{map.setZoom(map.getZoom() + 1)}"/>
 	<mx:Button width="29" height="29" styleName="zoomOutButton" left="20" top="52" useHandCursor="true" buttonMode="true" mouseChildren="false" click="{map.setZoom(map.getZoom() - 1)}"/>
