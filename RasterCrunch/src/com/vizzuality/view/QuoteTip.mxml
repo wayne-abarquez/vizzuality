@@ -3,6 +3,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import gs.TweenMax;
 			
 			[Bindable] public var text:String;
 			[Bindable] public var year:Number;
@@ -10,7 +11,7 @@
 			
 			
 			private function init():void {
-				t = new Timer(3000);
+				t = new Timer(2500);
 				t.addEventListener(TimerEvent.TIMER,onTimerFinished);				
 			}
 			public function startTimer():void{
@@ -19,7 +20,7 @@
 			
 			private function onTimerFinished(evnt:TimerEvent):void {
 				t.stop();
-				this.alpha = 0;	
+				TweenMax.to(this,1,{alpha:0});	
 			}
 			
 		]]>
