@@ -46,7 +46,7 @@
 			<color>8000ff00</color>
 		</PolyStyle>
 	</Style>
-	<StyleMap id="m_ylw-pushpin_copy0">
+	<StyleMap id="m_ylw-pushpin">
 		<Pair>
 			<key>normal</key>
 			<styleUrl>#s_ylw-pushpin</styleUrl>
