@@ -9,7 +9,8 @@
 			
 			public function startTimer():void{
 				var t:Timer = new Timer(3000);
-				t.addEventListener(TimerEvent.TIMER,function ():void{this.alpha = 0})
+				t.addEventListener(TimerEvent.TIMER,function ():void{this.alpha = 0});
+				t.start();
 			}
 			
 		]]>
