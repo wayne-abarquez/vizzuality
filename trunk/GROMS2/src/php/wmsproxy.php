@@ -11,8 +11,8 @@ if (file_exists("cache/".$savefile)) {
 	$ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + $offset) . " GMT";
 	Header($ExpStr);
 	header('Content-type: image/png');
-	ob_clean();
-	flush();	
+	//ob_clean();
+	//flush();	
 	readfile("cache/".$savefile);
 	exit;		
 }
