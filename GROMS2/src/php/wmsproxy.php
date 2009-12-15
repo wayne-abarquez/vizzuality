@@ -17,7 +17,7 @@ if (file_exists("cache/".$savefile)) {
 	exit;		
 }
 
-$url=GEOSERVER_URL . "wms?transparent=true&WIDTH=256&SRS=EPSG%3A900913&LAYERS=groms%3Adistributions&HEIGHT=256&STYLES=&FORMAT=image%2Fpng&TILED=
+$url=GEOSERVER_URL . "wms?transparent=true&WIDTH=256&SRS=EPSG%3A900913&LAYERS=groms%3AgromsDistributions&HEIGHT=256&STYLES=&FORMAT=image%2Fpng&TILED=
 true&TILESORIGIN=-180%2C-90&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&EXCEPTIONS=
 application%2Fvnd.ogc.se_inimage";
 
