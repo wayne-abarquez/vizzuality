@@ -40,6 +40,9 @@ HSlider{
 	background-image: Embed(source="skin.swf", symbol="datatipbkg");
 }
 
+.qoutetip{
+	background-image: Embed(source="skin.swf", symbol="quotetipbkg");
+}
 
 .zoomInButton{
 	up-skin: Embed(source="skin.swf", symbol="zoomInButton");
