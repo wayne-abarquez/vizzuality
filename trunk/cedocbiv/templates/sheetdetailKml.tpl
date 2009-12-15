@@ -8,7 +8,7 @@
     <Style id="normalPlacemark">
       <IconStyle>
         <Icon>
-          <href>http://localhost/images/bigmarker.png</href>
+          <href>{$smarty.const.SERVER_URL}images/bigmarker.png</href>
         </Icon>
       </IconStyle>
     </Style>		
