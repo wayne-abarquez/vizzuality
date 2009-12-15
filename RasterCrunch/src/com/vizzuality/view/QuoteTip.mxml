@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="111" height="85" styleName="qoutetip" backgroundSize="100%"> 
+	
+	<mx:Script>
+		<![CDATA[
+			
+			[Bindable] public var text:String;
+			[Bindable] public var year:Number;
+			
+			public function startTimer():void{
+				var t:Timer = new Timer(3000);
+				t.addEventListener(TimerEvent.TIMER,function ():void{this.alpha = 0})
+			}
+			
+		]]>
+	</mx:Script>
+	<mx:Text x="5" y="7" width="100" fontFamily="Helvetica" fontSize="11" color="#336699" height="69" text="{text}"/>
+	
+</mx:Canvas>
