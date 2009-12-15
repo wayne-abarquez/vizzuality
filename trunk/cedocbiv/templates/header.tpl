@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 	<title>CeDocBiV</title>
 	
-	<link rel="stylesheet" href="css/blueprint/grid.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="css/blueprint/src/grid.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
     <link rel="stylesheet" href="css/style.css" type="text/css">
