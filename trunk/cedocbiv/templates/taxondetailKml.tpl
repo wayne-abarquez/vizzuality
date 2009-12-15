@@ -8,7 +8,7 @@
     <Style id="normalPlacemark">
       <IconStyle>
         <Icon>
-          <href>http://www.runnity.com/Widgets/bigmarker_up.png</href>
+          <href>http://localhost/images/bigmarker.png</href>
         </Icon>
       </IconStyle>
     </Style>		
@@ -22,10 +22,11 @@
 		</IconStyle>
 		<LineStyle>
 			<width>1</width>
+			<color>ff00ff00</color>
 		</LineStyle>
 		<PolyStyle>
 			<fill>0.8</fill>
-			<color>7dff0000</color>
+			<color>8000ff00</color>
 		</PolyStyle>
 	</Style>
 	<Style id="s_ylw-pushpin_hl">
@@ -38,10 +39,11 @@
 		</IconStyle>
 		<LineStyle>
 			<width>1</width>
+			<color>ff00ff00</color>
 		</LineStyle>
 		<PolyStyle>
 			<fill>0.8</fill>
-			<color>7dff0000</color>
+			<color>8000ff00</color>
 		</PolyStyle>
 	</Style>
 	<StyleMap id="m_ylw-pushpin_copy0">

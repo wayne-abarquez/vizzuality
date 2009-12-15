@@ -28,6 +28,6 @@ if($data['LatitudeDecimal']!='') {
 }
 
 $smarty->assign('section', 'sheetdetail');
-$smarty->display('sheetdetail.tpl');
+$smarty->display('sheetdetail2.tpl');
 
 ?>

@@ -54,6 +54,6 @@ $smarty->assign('NumRegistrosGeoreferenciadosLiquenes',$services->getTotalGeoref
 
 
 $smarty->assign('section', 'home');
-$smarty->display('home.tpl');
+$smarty->display('home2.tpl');
 
 ?>

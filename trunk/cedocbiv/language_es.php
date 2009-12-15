@@ -21,7 +21,7 @@ define('INTRO_TEXT', "Desde esta página puedes acceder a las seis bases de datos
 define('BD1', "Algas");
 define('BD2', "Briófitos");
 define('BD3', "Cormófitos");
-define('BD4', "Collección de frutos y semillas");
+define('BD4', "Frutos y semillas");
 define('BD5', "Hongos");
 define('BD6', "Líquenes");
 
