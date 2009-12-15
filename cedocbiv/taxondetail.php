@@ -26,6 +26,6 @@ if(count($data)>0) {
 
 
 $smarty->assign('section', 'taxondetail');
-$smarty->display('taxondetail.tpl');
+$smarty->display('taxondetail2.tpl');
 
 ?>

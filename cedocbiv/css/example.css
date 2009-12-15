@@ -14,6 +14,7 @@
   --------------------------------------------------*/
 .tabber {
 }
+
 .tabberlive {
  margin-top:1em;
 }
@@ -26,8 +27,9 @@ ul.tabbernav
 {
  margin:0;
  padding: 3px 0;
- border-bottom: 1px solid #778;
+ border-bottom: 1px solid #f1f1f1;
  font: bold 12px Verdana, sans-serif;
+ padding-left: 16px;
 }
 
 ul.tabbernav li
@@ -41,26 +43,27 @@ ul.tabbernav li a
 {
  padding: 3px 0.5em;
  margin-left: 3px;
- border: 1px solid #778;
+ border: 1px solid #f1f1f1;
  border-bottom: none;
- background: #DDE;
+ background: #ffffff;
  text-decoration: none;
 }
 
-ul.tabbernav li a:link { color: #448; }
+ul.tabbernav li a:link { color: #99cc99; }
 ul.tabbernav li a:visited { color: #667; }
 
 ul.tabbernav li a:hover
 {
  color: #000;
- background: #AAE;
- border-color: #227;
+ background: #99cc99;
+ border-color: #f1f1f1;
 }
 
 ul.tabbernav li.tabberactive a
 {
  background-color: #fff;
- border-bottom: 1px solid #fff;
+ border-bottom: 1px solid #ffffff;
+ color: green;
 }
 
 ul.tabbernav li.tabberactive a:hover
@@ -76,8 +79,13 @@ ul.tabbernav li.tabberactive a:hover
   --------------------------------------------------*/
 .tabberlive .tabbertab {
  padding:5px;
- border:1px solid #aaa;
+ border-top: 1px solid #f1f1f1;
+ border-bottom: 1px solid #f1f1f1;
  border-top:0;
+ padding-bottom: 24px;
+/*
+ height: 240px;
+*/
 
  /* If you don't want the tab size changing whenever a tab is changed
     you can set a fixed height */

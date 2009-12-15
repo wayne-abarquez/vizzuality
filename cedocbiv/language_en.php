@@ -21,7 +21,7 @@ define('INTRO_TEXT', "Des d'aquesta pagina podeu accedir a les sis bases de dade
 define('BD1', "Algues");
 define('BD2', "Briófits");
 define('BD3', "Cormófits");
-define('BD4', "Collecció de fruits i llavors");
+define('BD4', "Fruits i llavors");
 define('BD5', "Fongs");
 define('BD6', "Líquens");
 

@@ -8,7 +8,7 @@
     <Style id="normalPlacemark">
       <IconStyle>
         <Icon>
-          <href>http://www.runnity.com/Widgets/bigmarker_up.png</href>
+          <href>http://localhost/images/bigmarker.png</href>
         </Icon>
       </IconStyle>
     </Style>		

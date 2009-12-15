@@ -1,4 +1,4 @@
-{include file="newheader.tpl"}
+{include file="header.tpl"}
 
 <div class="content">
 	<div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
@@ -94,4 +94,4 @@ map.addOverlay(geoXml);
 
 {/if}
 
-{include file="newfooter.tpl"}
+{include file="footer.tpl"}
