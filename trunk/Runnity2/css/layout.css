@@ -1767,6 +1767,12 @@ p.tituloUserImage{
 }
 
 .columnLong{
+	width: 610px;
+	margin: 0;
+	padding: 0;
+}
+
+.columnHomeLong{
 	width: 300px;
 	margin: 0;
 	padding: 0;
