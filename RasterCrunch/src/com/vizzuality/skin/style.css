@@ -1,6 +1,6 @@
 /* CSS file */
 
-TitleContainer{
+TitleContainer, TitleContainerSeaLevel{
 	background-color: #336699;
 	corner-radius: 4;
 	border-color: #336699;
@@ -12,7 +12,7 @@ TitleContainer{
 }
 
 
-HSlider{
+HSlider, VSlider{
 	thumb-skin: Embed(source="skin.swf", symbol="SliderThumb_overSkin");
 	thumb-down-skin: Embed(source="skin.swf", symbol="SliderThumb_overSkin");
 	thumbOverSkin: Embed(source="skin.swf", symbol="SliderThumb_overSkin");

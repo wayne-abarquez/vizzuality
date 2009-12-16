@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="240" height="73"
+	verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:Label y="10" text="evolution" fontFamily="Helvetica" fontWeight="bold" color="#7196BD" fontSize="21" letterSpacing="-1" left="11" textAlign="left"/>
+	<mx:Label y="29" text="of the sea level" fontSize="31" fontFamily="Helvetica" color="#FFFFFF" fontWeight="bold" letterSpacing="-1" left="11" textAlign="left"/>
+</mx:Canvas>
