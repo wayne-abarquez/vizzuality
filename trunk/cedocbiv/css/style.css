@@ -124,6 +124,15 @@ body{
 	font-weight: bold;
 }
 
+.titleIndexDetail{
+	font-size: 20px;
+	color: #666666;
+	margin: 0; padding: 0;
+	margin-left: 20px;
+	font-weight: bold;
+	height: 20px;
+}
+
 .texto_intro{
 	font-size: 14px;
 	color: #666666;
@@ -141,14 +150,69 @@ body{
 
 .containerBox{
 	width: 950px;
-	height: 116px;
+	height: 206px;
 	border-top: 1px solid #f5f5f5;
 	border-bottom: 1px solid #f5f5f5;
-	padding-left: 2px;
+	padding-left: 1px;
+}
+
+.imageLinkAlgas{
+	background-image: url(/images/algas.jpg);
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 150px;
+	margin-left: 4px;
+	margin-top: 3px;
+}
+
+.imageLinkBriofitos{
+	background-image: url(/images/briofitos.jpg);
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 149px;
+	margin-left: 4px;
+	margin-top: 3px;
+}
+
+.imageLinkCormofitos{
+	background-image: url(/images/cormofitos.jpg);
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 149px;
+	margin-left: 4px;
+	margin-top: 3px;
+}
+
+.imageLinkSemillas{
+	background-image: url(/images/semillas.jpg);
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 149px;
+	margin-left: 4px;
+	margin-top: 3px;
+}
+
+.imageLinkHongos{
+	background-image: url(/images/hongos.jpg);
+	background-repeat: no-repeat;
+	height: 100px;
+	width: 149px;
+	margin-left: 4px;
+	margin-top: 3px;
+}
+
+.imageLinkLiquenes{
+		background-image: url(/images/liquenes.jpg);
+		background-repeat: no-repeat;
+/*		background-color: yellow;*/		
+		height: 100px;
+		width: 149px;
+		margin-left: 4px;
+		margin-top: 3px;
 }
 
 .boxBD{
-	height: 116px;
+	height: 206px;
 	width: 157px;
 	border-left: 1px solid #f5f5f5;
 	margin: 0; padding: 0;

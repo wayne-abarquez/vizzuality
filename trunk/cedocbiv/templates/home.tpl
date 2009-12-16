@@ -7,6 +7,7 @@
 	  <div><p class="texto_intro">{$smarty.const.INTRO_TEXT}</p></div>
 	  <div class="containerBox">
 	     <div class="span-1 last boxBD noborder" onmouseover="this.className='span-1 last boxBD activo noborder'" onmouseout="this.className='span-1 last boxBD inactivo noborder'" onclick="location.href='query.php?db=algas';">
+			 <div class="imageLinkAlgas"></div>
 	     	 <a class="link_bd" href="query.php?db=algas">{$smarty.const.BD1}</a>
 	     	 <p class="subheader"> {$smarty.const.APROX} <b>99%</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
@@ -21,6 +22,7 @@
 	     	 </div>
 	     </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=briofitos';">
+			 <div class="imageLinkBriofitos"></div>
 	 	 	 <a class="link_bd" href="query.php?db=briofitos">{$smarty.const.BD2}</a>
 	 	     <p class="subheader2"> {$smarty.const.APROX} <b>3%</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
@@ -35,6 +37,7 @@
 	     	 </div>
 		 </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=cormofitos';">
+			 <div class="imageLinkCormofitos"></div>
 	 	  	 <a class="link_bd" href="query.php?db=cormofitos">{$smarty.const.BD3}</a>
 	 	     <p class="subheader2"> {$smarty.const.APROX} <b>5%</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
@@ -49,6 +52,7 @@
 	     	 </div>
 	     </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=carpoteca';">
+			 <div class="imageLinkSemillas"></div>
 	 	  	 <a class="link_bd" href="query.php?db=carpoteca">{$smarty.const.BD4}</a>
 	 	  	 <p class="subheader"> {$smarty.const.APROX} <b>98%</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
@@ -63,6 +67,7 @@
 	     	 </div>
 	     </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=hongos';">
+			 <div class="imageLinkHongos"></div>
 	 	  	 <a class="link_bd" href="query.php?db=hongos">{$smarty.const.BD5}</a>
 	 	  	 <p class="subheader2"> {$smarty.const.APROX} <b>1%</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
@@ -77,6 +82,7 @@
 	     	 </div>
 	     </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=liquenes';">
+			 <div class="imageLinkLiquenes"></div>
 	 	 	 <a class="link_bd" href="query.php?db=liquenes">{$smarty.const.BD6}</a>
 	 	 	 <p class="subheader2"> {$smarty.const.APROX} <b>1%</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
