@@ -60,12 +60,13 @@
 			downloadMode = mode;
 			MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 			MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
-			Application.application.mamufas.height = stage.fullScreenHeight;
+			Application.application.verticalScrollPolicy = 'off';
 			Application.application.mamufas.visible = true;
 			Application.application.addChild(confirmAlert);
 		}
 		
 		private function onSelectedContinue(ev:ConfirmationAlertEvent):void {
+			Application.application.verticalScrollPolicy = 'auto';
 			confirmAlert.currentState="Processing";
 			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
@@ -79,6 +80,7 @@
 			try {
 				Application.application.removeChild(confirmAlert);
 				Application.application.mamufas.visible = false;
+				Application.application.verticalScrollPolicy = 'auto';
 			} catch (e:Error) {}
 		}
 		

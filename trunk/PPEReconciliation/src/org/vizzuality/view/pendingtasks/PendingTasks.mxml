@@ -78,7 +78,7 @@
 				taskItem = ev.task;
 				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
-				Application.application.mamufas.height = stage.fullScreenHeight;
+				Application.application.verticalScrollPolicy = 'off';
 				Application.application.mamufas.visible = true;
 				Application.application.addChild(confirmAlert);
 			}
@@ -95,6 +95,7 @@
 				}
 				try {
 					Application.application.removeChild(confirmAlert);
+					Application.application.verticalScrollPolicy = 'auto';
 					Application.application.mamufas.visible = false;
 				} catch (e:Error) {}
 			}
@@ -110,6 +111,7 @@
 				}
 				try {
 					Application.application.removeChild(confirmAlert);
+					Application.application.verticalScrollPolicy = 'auto';
 					Application.application.mamufas.visible = false;
 				} catch (e:Error) {}
 			}
