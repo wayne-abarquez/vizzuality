@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init()" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.core.UIComponent;
+			import mx.controls.Alert;
+		
+			private var imageLoader: Loader = new Loader();
+			private var imageOriginalLoader: Loader = new Loader();
+			
+			private var bitmapData: BitmapData;
+			private var bitmapStart: BitmapData; 
+			private var bitmap: Bitmap;
+			private var matrix:Matrix = new Matrix();
+			
+						
+			private function init():void {
+				imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,onCompleteImage);
+				imageLoader.load(new URLRequest('http://maps2.eol.org/php/map/getEolTile.php?tile=1_0_1_13140803'));
+ 				imageOriginalLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,onCompleteOriginalImage);
+				imageOriginalLoader.load(new URLRequest('http://maps2.eol.org/php/map/getEolTile.php?tile=1_0_1_13140803'));
+				saturation.addEventListener(Event.CHANGE,onChangeOptions);
+				brightness.addEventListener(Event.CHANGE,onChangeOptions);
+				contrast.addEventListener(Event.CHANGE,onChangeOptions);
+				alph.addEventListener(Event.CHANGE,onChangeOptions);
+				hue.addEventListener(Event.CHANGE,onChangeOptions);
+				threshold.addEventListener(Event.CHANGE,onChangeOptions);
+			}
+			
+			private function onCompleteImage (ev:Event):void {
+				bitmapData = Bitmap(ev.currentTarget.content).bitmapData;
+				image.source = new Bitmap(bitmapData);
+				image.width = ev.currentTarget.width;
+				image.height = ev.currentTarget.height;
+			}
+			
+ 			private function onCompleteOriginalImage (ev:Event):void {
+				bitmapStart = (ev.currentTarget.content as Bitmap).bitmapData;
+				imageOrig.source = new Bitmap(bitmapStart);
+				imageOrig.width = ev.currentTarget.width;
+				imageOrig.height = ev.currentTarget.height;
+			}
+			
+			private function onChangeOptions(ev:Event):void {
+				changeImageOptions();
+			}
+			
+			private function changeImageOptions():void {
+					
+					imageOrig.source = new Bitmap(bitmapStart);
+					
+					bitmapData.draw(bitmapStart);
+					
+					var mat:ColorMatrix = new ColorMatrix();
+				
+					mat.adjustHue(hue.value);
+					
+					mat.adjustSaturation(saturation.value/100);
+				
+					
+					
+					mat.adjustContrast(contrast.value/100);
+				    
+					mat.adjustBrightness(255*brightness.value/100);
+					
+					mat.setAlpha(alph.value/100);
+					
+					if (check.selected) {
+						mat.threshold(threshold.value);					
+					}
+				
+					var cr:Number = (grid1.selected ? 1:0) | (grid2.selected ? 2:0) | (grid3.selected ? 4:0) | (grid4.selected ? 8:0);
+					var cg:Number = (grid5.selected ? 1:0) | (grid6.selected ? 2:0) | (grid7.selected ? 4:0) | (grid8.selected ? 8:0);
+					var cb:Number = (grid9.selected ? 1:0) | (grid10.selected ? 2:0) | (grid11.selected ? 4:0) | (grid12.selected ? 8:0);
+					var ca:Number = (grid14.selected ? 1:0) | (grid14.selected ? 2:0) | (grid15.selected ? 4:0) | (grid16.selected ? 8:0);
+					
+					mat.setChannels(cr,cg,cb,ca);
+					
+					var cm:ColorMatrixFilter = new ColorMatrixFilter(mat.matrix);
+					bitmapData.applyFilter(bitmapData,bitmapData.rect,new Point(0,0),cm);
+					image.source = new Bitmap(bitmapData);
+			}
+		]]>
+	</mx:Script>
+	<mx:Image id="image" y="50" height="239" visible="true" left="201" width="336"/>
+	<mx:Image id="imageOrig" y="50" width="336" height="239" visible="true" left="555"/>
+	<mx:NumericStepper x="340" y="333" width="78" id="brightness"/>
+	<mx:NumericStepper x="433" y="333" width="69" value="100" maximum="100" stepSize="1" id="saturation"/>
+	<mx:NumericStepper x="340" y="372" width="78" id="contrast"/>
+	<mx:NumericStepper x="433" y="372" width="69" id="hue"/>
+	<mx:NumericStepper x="555" y="333" value="100" width="58" stepSize="1" maximum="100" minimum="0" enabled="true" id="alph"/>
+	<mx:CheckBox x="632" y="328" selected="true" id="grid1" click="changeImageOptions()"/>
+	<mx:CheckBox x="654" y="328" id="grid2" click="changeImageOptions()"/>
+	<mx:CheckBox x="676" y="328" id="grid3" click="changeImageOptions()"/>
+	<mx:CheckBox x="632" y="354" id="grid5" click="changeImageOptions()"/>
+	<mx:CheckBox x="654" y="354" selected="true" id="grid6" click="changeImageOptions()"/>
+	<mx:CheckBox x="676" y="354" id="grid7" click="changeImageOptions()"/>
+	<mx:CheckBox x="632" y="380" id="grid9" click="changeImageOptions()"/>
+	<mx:CheckBox x="654" y="380" id="grid10" click="changeImageOptions()"/>
+	<mx:CheckBox x="676" y="380" selected="true" id="grid11" click="changeImageOptions()"/>
+	<mx:CheckBox x="697" y="328" id="grid4" click="changeImageOptions()"/>
+	<mx:CheckBox x="697" y="354" id="grid8" click="changeImageOptions()"/>
+	<mx:CheckBox x="697" y="380" id="grid12" click="changeImageOptions()"/>
+	<mx:NumericStepper x="555" y="372" enabled="false" id="threshold" value="128" stepSize="1" maximum="1000" width="58"/>
+	<mx:Label x="340" y="308" text="Brightness" width="78" color="#000000"/>
+	<mx:Label x="555" y="308" text="Alpha" width="58" color="#000000"/>
+	<mx:Label x="433" y="308" text="Saturation" width="69" color="#000000"/>
+	<mx:Label x="340" y="402" text="Contrast" width="78" color="#000000"/>
+	<mx:Label x="555" y="402" text="Threshold" width="58" color="#000000"/>
+	<mx:Label x="433" y="402" text="Hue" width="58" color="#000000"/>
+	<mx:Label x="631" y="308" text="R" width="15" color="#000000"/>
+	<mx:Label x="653" y="308" text="G" width="15" color="#000000"/>
+	<mx:Label x="719" y="354" text="G" width="15" color="#000000"/>
+	<mx:Label x="675" y="308" text="B" width="15" color="#000000"/>
+	<mx:Label x="696" y="308" text="A" width="15" color="#000000"/>
+	<mx:Label x="719" y="406" text="A" width="15" color="#000000"/>
+	<mx:Label x="719" y="328" text="R" width="15" color="#000000"/>
+	<mx:CheckBox x="632" y="406" id="grid13" click="changeImageOptions()"/>
+	<mx:CheckBox x="654" y="406" id="grid14" click="changeImageOptions()"/>
+	<mx:CheckBox x="676" y="406" id="grid15" click="changeImageOptions()"/>
+	<mx:CheckBox x="697" y="406" selected="true" id="grid16" click="changeImageOptions()"/>
+	<mx:Label x="719" y="380" text="B" width="15" color="#000000"/>
+	<mx:Label x="473" y="24" text="Now image"/>
+	<mx:Label x="555" y="24" text="Original"/>
+	<mx:CheckBox x="533" y="374" id="check" click="{(check.selected)? threshold.enabled =true : threshold.enabled =false }"/>
+	
+	
+	
+</mx:Application>
