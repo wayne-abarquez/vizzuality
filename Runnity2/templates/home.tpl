@@ -175,7 +175,7 @@
 
 <div class="container">
 	<div class="span-1 column ColumnHome">
-		<div class="span-1 last columnLong">
+		<div class="span-1 last columnHomeLong">
 			<p class="titulo">RUNNITY EN LA WEB</p>
 				<a href="http://www.tuenti.com/#m=Photo&amp;func=view_photo&amp;collection_key=1-66022443-567658561-66022443" target="_blank">
 					<img src="/img/tuenti.jpg" alt="socialNetworks" class="socialNetworks">
