@@ -15,19 +15,85 @@
 			{if ($Units.LatitudeDecimal != '' || $Units.LongitudeDecimal != '') || $Units.coords != ''}
 				<div class="MapResult" id="map"></div>
 			{/if}
-<!-- 			<p class="detailTaxon">{$Ident[0].HigherTaxon}</p> -->
-			{if $Units.created_when}<p class="detailInfo"><b>{$smarty.const.PUBLICAT}</b> {$Units.created_when}</p>{/if}
-			{if $Ident[1].NameAuthorYearString}<p class="detailInfo"><b>{$smarty.const.ETIQUETA}</b> {$Ident[1].NameAuthorYearString}</p>{/if}
-			{if $Ident[0].NameAuthorYearString}<p class="detailInfo"><b>{$smarty.const.GUARDAT}</b> {$Ident[0].NameAuthorYearString}</p>{/if}
-			{if $Units.LocalityText}<p class="detailInfo"><b>{$smarty.const.LOCALITAT}</b> {$Units.LocalityText}</p>{/if}
-			{if $Units.CountryName}<p class="detailInfo"><b>{$smarty.const.PAIS}</b> {$Units.CountryName}</p>{/if} 
-			<p class="detailInfo"><b>{$smarty.const.ALTITUD}</b> {$Units.AltitudeLowerValue} - {$Units.AltitudeUpperValue}</p>
-			{if $Agents.GatheringAgentsText}<p class="detailInfo"><b>{$smarty.const.RECOL}</b> {$Agents.GatheringAgentsText}</p>{/if} 
-			{if $Units.BiotopeText}<p class="detailInfo"><b>{$smarty.const.HABITAT}</b> {$Units.BiotopeText}</p>{/if} 
+			{if $Units.created_when}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.PUBLICAT}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.created_when}</p></div>
+			</div>
+			{/if}
+			
+			{if $Ident[1].NameAuthorYearString}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.ETIQUETA}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Ident[1].NameAuthorYearString}</p></div>
+			</div>
+			{/if}
+			
+			{if $Ident[0].NameAuthorYearString}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.GUARDAT}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Ident[0].NameAuthorYearString}</p></div>
+			</div>
+			{/if}
+			 
+			{if $Units.LocalityText}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.LOCALITAT}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.LocalityText}</p></div>
+			</div>
+			{/if}
+			
+			{if $Units.CountryName}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.PAIS}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.CountryName}</p></div>
+			</div>
+			{/if}
+			
+			{if $isAlt}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.ALTITUD}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{if $Units.AltitudeLowerValue}{$Units.AltitudeLowerValue} {/if}{if $Units.AltitudeUpperValue} - {$Units.AltitudeUpperValue}{/if}</p></div>
+			</div>
+			{/if}
+			
+			{if $Agents.GatheringAgentsText}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.RECOL}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Agents.GatheringAgentsText}</p></div>
+			</div>
+			{/if}
+			
+			{if $Units.BiotopeText}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.HABITAT}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.BiotopeText}</p></div>
+			</div>
+			{/if}
+			
 			<!-- 	  meter CollectorNumber -->
-			<p class="detailInfo"><b>{$smarty.const.DATAREC}</b> 25-05-1985</p>
-			{if $Units.ProjectTitle}<p class="detailInfo"><b>{$smarty.const.COL}</b> {$Units.ProjectTitle}</p>{/if} 
-			{if $Units.Phenology}<p class="detailInfo"><b>{$smarty.const.FEN}</b> {$Units.Phenology}</p>{/if} 
+			
+			{if $Units.BiotopeText}  <!-- revisar fecha -->
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.DATAREC}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">25-05-1985</p></div>
+			</div>
+			{/if}
+			
+			{if $Units.ProjectTitle}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.COL}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.ProjectTitle}</p></div>
+			</div>
+			{/if}
+			
+			{if $Units.Phenology}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.FEN}</b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.Phenology}</p></div>
+			</div>
+			{/if}
+			
 			{if $Images}
 			<div>
 			<p class="detailInfo">{$smarty.const.IMG}</p>
