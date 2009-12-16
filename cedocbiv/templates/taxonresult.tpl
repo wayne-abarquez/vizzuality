@@ -1,82 +1,51 @@
-{include file="newheader.tpl"}
-
+{include file="header.tpl"}
 
 <div class="content">
-<form action="sheetresult.php" method="get">
-
-	<div class="titleIndex"><p>Cerca a la base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
-	
-<div class="news-body">
-
-	<div class="trobats">
-	{if !$SearchTaxonResults}
-	<p>0 Resultats trobats</p><a href="#" onClick="javascript:window.history.back();">Torna</a> 
-	{else}
-	<div class="paginator">
-	{if $SearchTaxonResults.count > 10}
-		<p>Viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$SearchTaxonResults.count}</b> de <b>{$SearchTaxonResults.count}</b> resultats trobats
-			{if $offset > 0}
-			<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="button" value="Anterior"></a></span>
-			{/if}
-			{if $offset < $SearchTaxonResults.count-10}
-			<span><a href="?offset={$offset+10}&amp;&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="button" value="Siguiente"></a></span>
-		    {/if}	
-		</p>	
-	{/if}
-	</div>
-	{/if}
-	</div>
-	
-	
-	
-	
-	<div class="results"> 
-	{foreach key=UnitID item=result from=$SearchTaxonResults.datos}
-
-	
-		<div class="containerResultTaxon">
-			<div class="span-1 first shade-1Taxon" id="main0">
-				<p><a href="#">{$result.highertaxon}<br></a></p>
+	<div class="news-body">
+		<div class="navigator">
+			<div class="span-1 last breadCrumb">
+				<ul>
+					<li class="arrowList">{$BDSelected}</li>
+					<li>{$smarty.request.submit}</li>
+				</ul>
 			</div>
-	
-			<div class="span-1 last resultTaxon">
-				<a href="taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring}&amp;db={$BDSelected}"> 
-				{$result.nameauthoryearstring}</a>
-				<p>{$result.TypeStatus}</p>
-				<p><b>Localitats: </b>{$result.locality|truncate:100:"..."}</p>
-				<p><b>Paises: </b>{$result.country|truncate:100:"..."}</p>
-				<p><b>Núm. Pliegos: </b>{$result.num_sheets}</p>
-				<p><b>Altitud: </b>{$result.altitudUpper} - {$result.altitudLower}</p>
-			</div>
+			
+			{if !$SearchTaxonResults.datos}
+			<p>0 {$smarty.const.RESULTADOS}</p><a href="#" onClick="javascript:window.history.back();">{$smarty.const.VOLVER}</a> 
+			{else}
+				<div class="last paginator">
+				{if $SearchTaxonResults.count > 10}
+				<p>{$smarty.const.VIENDO} <b>{math equation="x+1" x=$offset} {$smarty.const.AL} {math equation="min(x2 +10,c)" x2=$offset c=$SearchTaxonResults.count}</b> {$smarty.const.DE} <b>{$SearchTaxonResults.count}</b> {$smarty.const.RESULTADOS}
+				{if $offset > 0}
+				<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="leftPaginator"></a></span>
+				{/if}
+				{if $offset < $SearchTaxonResults.count-10}
+				<span><a href="?offset={$offset+10}&amp;&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="rightPaginator"></a></span>
+		    	{/if}	
+				</p>	
+				{/if}
+				</div>
+			{/if}		
 		</div>
+		{if $SearchTaxonResults.hascoords}
+  			<div class="Map" id="map"></div>
+    		<div class="slide"><p><a href="#" class="btn-slide">Visualizar mapa</a></p></div>	
+  		{/if}
+	      	
+	  	<div class="containerResult">
+			{foreach key=UnitID item=result from=$SearchTaxonResults.datos}
+      		<div class="result" onmouseover="this.className='result activo'" onmouseout="this.className='result inactivo'" onclick="location.href='taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring}&amp;db={$BDSelected}';">
+      			<p class="resultTitle"><a href="taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring}&amp;db={$BDSelected}"> 
+				{$result.UnitID}. {$result.nameauthoryearstring}</a></p>
+      			<p class="resultTaxon">{$result.highertaxon} {$result.TypeStatus}</p>
+      			<p class="resultLocal">{$result.locality|truncate:100:"..."}</p>
+      			<p class="resultFotos">{$result.num_sheets} pliegos | Altitud: {$result.altitudUpper} - {$result.altitudLower} | {$result.has_images} fotos</p>
+      		</div>
+			{/foreach}
+      	</div>
+      	
+	</div> <!-- news-body -->
 	
-	{/foreach}
-	</div>
-	
-</div>
+</div> <!-- content -->
 
-<div class="trobats">
-	{if !$SearchTaxonResults}
-	<p>0 Resultats trobats</p><a href="#" onClick="javascript:window.history.back();">Torna</a> 
-	{else}
-	<div class="paginator">
-	{if $SearchTaxonResults.count > 10}
-		<p>Viendo del <b>{math equation="x+1" x=$offset} al {math equation="min(x2 +10,c)" x2=$offset c=$SearchTaxonResults.count}</b> de {$SearchTaxonResults.count} resultats trobats
-			{if $offset > 0}
-			<span><a href="?offset={math equation="max(x-10,0)" x=$offset}&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="button" value="Anterior"></a></span>
-			{/if}
-			{if $offset < $SearchTaxonResults.count-10}
-			<span><a href="?offset={$offset+10}&amp;&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="button" value="Siguiente"></a></span>
-		    {/if}	
-		</p>	
-	{/if}
-	</div>
-	{/if}
-	</div>
-
-</div> <!-- news -->
-
-</form>
-</div>
-
-{include file="newfooter.tpl"} 
+{include file="footer.tpl"} 

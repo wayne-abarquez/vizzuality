@@ -1,32 +1,26 @@
-{include file="newheader.tpl"}
+{include file="header.tpl"}
 
 <div class="content">
-	<div class="titleIndex"><p>Base de dades de {$BDSelected} de l'Herbari de la Universitat de Barcelona (BCN)</p></div>
-  
 	<div class="news-body">
-	    {if $hasGeo}
-		    <div class="MapResult" id="map"></div>
-		{/if}
-
-		<div class="resultPliego"> 
-		    <h2>{$Pliegos.scientificname} | {$Pliegos.family}</h2>
-		    					
-			{foreach key=UnitID item=result from=$Pliegos.datos}
-
-			<div class="resultPliegoContainer">
-				<div class="span-1 first shade-1" id="main0">
-					<p><a href="sheetdetail.php?UnitID={$result.UnitID}&db={$smarty.session.db}">{$result.UnitID}</a></p>
-				</div>
-				<div class="pliego">
-					<p>{$result.TypeStatus}</p>
-					<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} ( <!--fecha-->	)</p>
-				</div>
+		
+		<div class="titleID">
+			<div class="detailTitleTaxon">
+				<p>{$Pliegos.scientificname}</p>
+				<p class="family">{$Pliegos.family}</p>
 			</div>
-			{/foreach}
-
-	
 		</div>
-			  	 
+		
+		<div class="containerDetails">
+    	{if $hasGeo}
+			<div class="MapResultTaxon" id="map"></div>
+		{/if}
+		<div class="resultPliegoContainer">
+		{foreach key=UnitID item=result from=$Pliegos.datos}
+			<p><a href="sheetdetail.php?UnitID={$result.UnitID}&db={$smarty.session.db}">{$result.UnitID}</a></p>
+			<p>{$result.TypeStatus}</p>
+			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} ( <!--fecha-->	)</p>
+		{/foreach}
+		</div>
 	</div>
 	
 </div>
@@ -56,6 +50,6 @@ map.addOverlay(geoXml);
 //]]>
 </script>
 {/literal}
-
 {/if}
-{include file="newfooter.tpl"}
+
+{include file="footer.tpl"}
