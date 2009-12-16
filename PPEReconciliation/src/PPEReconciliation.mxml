@@ -15,7 +15,7 @@
 			import mx.controls.Alert;
 			import mx.rpc.events.ResultEvent;
 		
-			public var serverUrl:String="http://localhost:3000/reconciliation";
+			public var serverUrl:String="http://localhost:3001";
 			[Bindable]
 			public var username:String="";
 			public var userId:Number;
@@ -141,7 +141,7 @@
 		<ns1:footer width="874" id="footer1"/>
 	</mx:VBox>
 	
-	<mx:Canvas id="mamufas" visible="false" backgroundColor="#000000" alpha="0.25"  left="0" top="0" right="0" bottom="0"/>
+	<mx:Canvas id="mamufas" visible="false" backgroundColor="#000000" alpha="0.25"  left="0" top="0" right="0" height="100%"/>
 	
 	 <analytics:FlexTracker
         xmlns:analytics="com.google.analytics.components.*"
