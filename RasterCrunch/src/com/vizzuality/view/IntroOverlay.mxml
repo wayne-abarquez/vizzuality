@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#000000" backgroundAlpha=".6"
+	click="{TweenMax.to(this,.5,{autoAlpha:0})}">
+	<mx:Script>
+		<![CDATA[
+			import gs.TweenMax;
+			import mx.core.Application;
+			import flash.net.navigateToURL;
+		]]>
+	</mx:Script>
+	<mx:Canvas width="450" height="100" backgroundColor="#000000" backgroundAlpha="0.5" horizontalCenter="0" verticalCenter="0"
+	useHandCursor="true" buttonMode="true" mouseChildren="false" click="navigateToURL(new URLRequest('http://biodivertido.blogspot.com'))">
+		<mx:SWFLoader source="@Embed('com/vizzuality/flas/intro.swf')" horizontalCenter="0" verticalCenter="-7"/>
+	</mx:Canvas>
+	
+</mx:Canvas>
