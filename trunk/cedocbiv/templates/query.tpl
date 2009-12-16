@@ -104,10 +104,10 @@
 			    		<div class="span-1 last inputContainer">
 				       		<p>{$smarty.const.NUMHERB} <b>(104*)</b></p> 
 				    		<input name="UnitID" id="UnitID" class="inputDataSmall" type="text" />
-				    		<input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit"/>
 				  			<input name="db" type="hidden" value="{$BDSelected}">
 			    		</div>
 			    	</div>
+					<div class="buttonContainer"><input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit" class="buttonSearch"/></div>
 			    	</form>
 		  	  	</div>
 			
@@ -140,9 +140,9 @@
 							{html_options values=$families output=$families}
 						</select>	
 		    		</div>
-		    		<input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit"/>
 				  	<input name="db" type="hidden" value="{$BDSelected}">
 		    	</div>
+				<div class="buttonContainer"><input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit" class="buttonSearch buttonTaxon"/></div>
 		   	    </form>
 			  	</div> 
 		  

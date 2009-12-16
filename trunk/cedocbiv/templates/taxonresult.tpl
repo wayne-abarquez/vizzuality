@@ -39,7 +39,7 @@
 				{$result.UnitID}. {$result.nameauthoryearstring}</a></p>
       			<p class="resultTaxon">{$result.highertaxon} {$result.TypeStatus}</p>
       			<p class="resultLocal">{$result.locality|truncate:100:"..."}</p>
-      			<p class="resultFotos">{$result.num_sheets} pliegos | Altitud: {$result.altitudUpper} - {$result.altitudLower} | {$result.has_images} fotos</p>
+      			<p class="resultFotos">{$result.num_sheets} pliegos | Altitud: {if $result.altitudUpper}{$result.altitudUpper} m{else}0 m{/if} - {if $result.altitudLower}{$result.altitudLower} m{else}0 m{/if} | {if $result.has_images}{$result.has_images} fotos{else} 0 fotos{/if}</p>
       		</div>
 			{/foreach}
       	</div>

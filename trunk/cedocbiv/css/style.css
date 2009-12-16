@@ -270,6 +270,27 @@ body{
 	padding-right: 10px;
 }
 
+input.buttonSearch{
+	width: 50px; 
+	background-image: url(../images/buttonSearch.gif); 
+	background-repeat: no-repeat;
+	height:25px; 
+	padding:0; margin: 0; 
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+input.buttonSearch:hover{
+	background-image: url(../images/buttonSearchHover.gif); 
+}
+
+.buttonContainer{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
 input.leftPaginator{
 	width: 26px; 
 	background-image: url(../images/pagButtonLeft.gif); 
@@ -349,6 +370,10 @@ input.rightPaginator:hover{
 .activo{
 	background-color:#eeeeee;
 	cursor: pointer;
+}
+
+.activo a{
+	color: #333333;
 }
 
 .inactivo {
@@ -533,6 +558,7 @@ input.rightPaginator:hover{
 	margin: 0; padding: 0;
 	margin-left: 26px;
 	font-size: 14px;
+	color: #999999;
 }
 
 .detailTitleTaxon{

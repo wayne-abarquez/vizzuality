@@ -53,7 +53,7 @@
 			{if $isAlt}
 			<div class="span-1 infoContainer">
 				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.ALTITUD}</b></p></div>
-				<div class="span-1 last infoRight"><p class="detailInfo">{if $Units.AltitudeLowerValue}{$Units.AltitudeLowerValue} {/if}{if $Units.AltitudeUpperValue} - {$Units.AltitudeUpperValue}{/if}</p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{if $Units.AltitudeLowerValue}{$Units.AltitudeLowerValue} m{/if}{if $Units.AltitudeUpperValue} - {$Units.AltitudeUpperValue} m{/if}</p></div>
 			</div>
 			{/if}
 			
@@ -73,10 +73,10 @@
 			
 			<!-- 	  meter CollectorNumber -->
 			
-			{if $Units.BiotopeText}  <!-- revisar fecha -->
+			{if $Units.ISODateTimeBegin}
 			<div class="span-1 infoContainer">
 				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.DATAREC}</b></p></div>
-				<div class="span-1 last infoRight"><p class="detailInfo">25-05-1985</p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.ISODateTimeBegin}</p></div>
 			</div>
 			{/if}
 			
