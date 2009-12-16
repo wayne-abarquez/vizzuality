@@ -27,6 +27,12 @@ if($data['LatitudeDecimal']!='') {
 	$smarty->assign('isUtm',true);
 }
 
+if(($data['AltitudeLowerValue']=='') && ($data['AltitudeUpperValue']=='')) {
+	$smarty->assign('isAlt',false);
+} else {
+	$smarty->assign('isAlt',true);
+}
+
 $smarty->assign('section', 'sheetdetail');
 $smarty->display('sheetdetail2.tpl');
 

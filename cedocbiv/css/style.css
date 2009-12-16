@@ -86,6 +86,7 @@ body{
 .footer p{
 	margin: 0; padding: 0;
 	bottom: 0;
+	color: #666666;
 }
 
 .footer a{
@@ -162,7 +163,7 @@ body{
 	height: 38px;
 	width: 75px;
 	margin: 0; padding: 0;
-	border-right: 1px solid #999999;
+	border-right: 1px solid #f1f1f1;
 }
 
 .boxRight{
@@ -545,7 +546,6 @@ input.rightPaginator:hover{
 	margin: 0; padding: 0;
 	line-height: 22px;
 	padding-top: 6px;
-	width: 480px;
 	margin-left: 10px;
 }
 
@@ -557,4 +557,16 @@ input.rightPaginator:hover{
 .detailTitle p.family{
 	color: #99cc99;
 	font-size: 16px;
+}
+
+.infoContainer{
+	width: 480px;
+}
+
+.infoLeft{
+	width: 140px;
+}
+
+.infoRight{
+	width: 300px;
 }
