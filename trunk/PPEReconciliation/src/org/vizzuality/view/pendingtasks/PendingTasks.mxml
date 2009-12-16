@@ -78,6 +78,7 @@
 				taskItem = ev.task;
 				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+				Application.application.mamufas.height = stage.fullScreenHeight;
 				Application.application.mamufas.visible = true;
 				Application.application.addChild(confirmAlert);
 			}
