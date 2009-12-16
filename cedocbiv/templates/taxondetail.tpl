@@ -1,6 +1,8 @@
 {include file="header.tpl"}
 
 <div class="content">
+	<div class="titleIndexDetail"><p>{$smarty.const.INTRO_TITLE} {$BDSelected}</p></div>
+	
 	<div class="news-body">
 		
 		<div class="titleID">
