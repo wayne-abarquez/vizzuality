@@ -140,6 +140,7 @@ body{
 	height: 116px;
 	border-top: 1px solid #f5f5f5;
 	border-bottom: 1px solid #f5f5f5;
+	padding-left: 2px;
 }
 
 .boxBD{
@@ -161,7 +162,7 @@ body{
 	height: 38px;
 	width: 75px;
 	margin: 0; padding: 0;
-	border-right: 1px solid #f5f5f5;
+	border-right: 1px solid #999999;
 }
 
 .boxRight{
@@ -266,13 +267,10 @@ body{
 }
 
 input.leftPaginator{
-	width:25px; 
+	width: 26px; 
 	background-image: url(../images/pagButtonLeft.gif); 
+	background-repeat: no-repeat;
 	height:25px; 
-	font-size: 12px; 
-	font-weight: bold; 
-	color:#ffffff; 
-	text-decoration:none; 
 	padding:0; margin: 0; 
 	border: none;
 	cursor: pointer;
@@ -282,20 +280,17 @@ input.leftPaginator:hover{
 	background-image: url(../images/pagButtonLeftHover.gif); 
 }
 
-.rightPaginator{
-	width:25px; 
-	background:url(../images/pagButtonRight.gif) no-repeat; 
-	height:25px; 
-	font-size: 12px; 
-	font-weight: bold; 
-	color:#ffffff; 
-	text-decoration:none; 
+input.rightPaginator{
+	width: 26px; 
+	background:url(../images/pagButtonRight.gif);
+	background-repeat: no-repeat; 
+	height: 25px; 
 	padding:0; margin: 0; 
 	border: none;
 	cursor: pointer;
 }
 
-.rightPaginator:hover{
+input.rightPaginator:hover{
 	background-image: url(../images/pagButtonRightHover.gif); 
 }
 
@@ -349,15 +344,11 @@ input.leftPaginator:hover{
 
 .activo{
 	background-color:#eeeeee;
-	color: black;
 	cursor: pointer;
-	border: 1px solid #f1f1f1;
 }
 
 .inactivo {
 	background-color:#ffffff;
-	border-left: 1px solid #f1f1f1;
-	margin-left: -1px;
 }
 
 .slide{
@@ -462,10 +453,10 @@ input.leftPaginator:hover{
 .MapResultTaxon{
 	width: 400px;
 	height: 500px;
-	border: 3px solid #aee6ae;
+	border: 3px solid #333333;
 	float: right;
 	margin-right: 22px;
-	margin-top: -73px;
+	margin-top: -76px;
 }
 
 .containerDetails{
@@ -543,7 +534,7 @@ input.leftPaginator:hover{
 .detailTitleTaxon{
 	margin: 0; padding: 0;
 	margin-left: 19px;
-	background-color: #aee6ae;
+	background-color: #333333;
 	height: 90px;
 }
 
@@ -559,6 +550,11 @@ input.leftPaginator:hover{
 }
 
 .detailTitleTaxon p.family{
+	color: #99cc99;
+	font-size: 16px;
+}
+
+.detailTitle p.family{
 	color: #99cc99;
 	font-size: 16px;
 }
