@@ -448,7 +448,7 @@ input.rightPaginator:hover{
 .MapResult{
 	width: 400px;
 	height: 500px;
-	border: 3px solid #aee6ae;
+	border: 3px solid #ffffff;
 	float: right;
 	margin-right: 22px;
 	margin-top: -65px;
@@ -457,7 +457,7 @@ input.rightPaginator:hover{
 .MapResultTaxon{
 	width: 400px;
 	height: 500px;
-	border: 3px solid #333333;
+	border: 3px solid #ffffff;
 	float: right;
 	margin-right: 22px;
 	margin-top: -76px;
@@ -476,14 +476,14 @@ input.rightPaginator:hover{
 .detailTitle{
 	margin: 0; padding: 0;
 	margin-left: 19px;
-	background-color: #aee6ae;
+	background-color: #999999;
 	height: 80px;
 }
 
 .detailTitle p{
 	font-size: 23px;
 	font-weight: bold;
-	color: #ffffff;
+	color: #333333;
 	margin: 0; padding: 0;
 	line-height: 22px;
 	padding-top: 6px;
@@ -510,7 +510,7 @@ input.rightPaginator:hover{
 
 .detailTitleID{
 	height: 80px;
-	background-color: #99cc99;
+	background-color: #333333;
 	font-size: 23px;
 	font-weight: bold;
 	margin-left: 19px;
