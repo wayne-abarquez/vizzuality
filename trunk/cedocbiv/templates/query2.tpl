@@ -117,7 +117,7 @@
 		    <div class="tabbertab">
 			  	<div id="queryForm2" class="buscador"> 
 		    	<form action="taxonresult.php" method="get" name="thisform" id="thisform">
-		    	<h2>{$smarty.const.TITLE_TABPLIEGO}</h2>
+		    	<h2>{$smarty.const.TITLE_TABTAXON}</h2>
 		    
 		    	<div class="fila"> 
 		    		<div class="span-1 last inputContainer">

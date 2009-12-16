@@ -5,14 +5,17 @@
 		
 		<div class="titleID">
 			<div class="span-1 detailTitleID">{$Ident[0].UnitID}</div> 
-			<div class="detailTitle"><p>{$Ident[0].NameAuthorYearString}</p></div>
+			<div class="detailTitle">
+				<p>{$Ident[0].NameAuthorYearString}</p>			
+				<p class="family">{$Ident[0].HigherTaxon}</p>
+			</div>
 		</div>
 		
 		<div class="containerDetails">
 			{if ($Units.LatitudeDecimal != '' || $Units.LongitudeDecimal != '') || $Units.coords != ''}
 				<div class="MapResult" id="map"></div>
 			{/if}
-			<p class="detailTaxon">{$Ident[0].HigherTaxon}</p>
+<!-- 			<p class="detailTaxon">{$Ident[0].HigherTaxon}</p> -->
 			{if $Units.created_when}<p class="detailInfo"><b>{$smarty.const.PUBLICAT}</b> {$Units.created_when}</p>{/if}
 			{if $Ident[1].NameAuthorYearString}<p class="detailInfo"><b>{$smarty.const.ETIQUETA}</b> {$Ident[1].NameAuthorYearString}</p>{/if}
 			{if $Ident[0].NameAuthorYearString}<p class="detailInfo"><b>{$smarty.const.GUARDAT}</b> {$Ident[0].NameAuthorYearString}</p>{/if}
