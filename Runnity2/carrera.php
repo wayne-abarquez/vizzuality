@@ -22,16 +22,22 @@ if(!isset($data['name'])) {
 
 $smarty->assign('section', 'carrera');
 
-$data['description'] = nl2br($data['description']);
-$smarty->assign('titulo_pagina', $data['name'] . ' - Runnity.com');
 
-$smarty->assign('meta_keywords', $data['name'] . ',' . $data['event_location'] . ',' . 'running,popular,carrera popular,carrera, atletismo,correr,runner,fotos,comentarios');
+$smarty->assign('titulo_pagina', $data['name'] . ' - Runnity.com');
+$meta_keywords=$data['name'] . ',' . $data['event_location'] . ',' . 'running,popular,carrera popular,carrera, atletismo,correr,runner,fotos,comentarios';
+$meta_keywords=ereg_replace('"',",",$meta_keywords); //reemplaza las comillas dobles por un espacio en blanco
+$meta_keywords=ereg_replace(',,',",",$meta_keywords); //reemplaza dos comas por una
+$meta_keywords=htmlentities($meta_keywords);
+$smarty->assign('meta_keywords',$meta_keywords);
 
 if($data['description']) {
-	$smarty->assign('meta_description', $data['event_date'] . ' ' . $data['name'] . ',' . $data['event_location'] . ',' . $data['description']);
+	$metaDescription=myTruncate(($data['event_location'] . ',' . $data['description']),66);
+	$smarty->assign('meta_description',$metaDescription );
 }else{
 	$smarty->assign('meta_description', 'Información, fotos y comentarios sobre ' . $data['name'] . ',' . $data['event_location'] . ',' .$data['event_date']);
 }
+
+$data['description'] = nl2br($data['description']);
 
 $smarty->assign('data',$data);
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id']));
@@ -43,5 +49,23 @@ $smarty->assign('runsInSameDates',$services->getRunsInSimilarDates($_REQUEST['id
 $smarty->assign('pictures',$mediaServices->getObjectPictures('run',$_REQUEST['id']));
 
 $smarty->display('carrera.tpl');
+
+function myTruncate($string, $limit, $break=".", $pad="...")
+{
+	$string=ereg_replace(chr(10)," ",$string);
+	$string=ereg_replace(chr(13)," ",$string);
+	$string=htmlentities($string);
+  // return with no change if string is shorter than $limit
+  if(strlen($string) <= $limit) return $string;
+
+  // is $break present between $limit and the end of the string?
+  if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+    if($breakpoint < strlen($string) - 1) {
+      $string = substr($string, 0, $breakpoint) . $pad;
+    }
+  }
+    
+  return $string;
+}
 
 ?>
