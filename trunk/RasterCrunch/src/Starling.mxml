@@ -179,7 +179,7 @@
 	<mx:Button label="about this mashup" fontFamily="Helvetica" fontSize="11" color="#336699" right="9" top="93" styleName="neutralButton"
 		useHandCursor="true" buttonMode="true" mouseChildren="false" click="showAbout()"/>
 	<ns2:aboutOverlay id="about" visible="false" alpha="0"/>
-	
+	<ns2:IntroOverlay id="intro" />
 	 <analytics:FlexTracker
         xmlns:analytics="com.google.analytics.components.*"
         id="tracker"

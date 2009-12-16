@@ -9,7 +9,7 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="RasterCrunch.mxml"/>
+    <application path="Starling.mxml"/>
     <application path="SeaLevel.mxml"/>
   </applications>
   <modules/>
