@@ -34,6 +34,6 @@ if(($data['AltitudeLowerValue']=='') && ($data['AltitudeUpperValue']=='')) {
 }
 
 $smarty->assign('section', 'sheetdetail');
-$smarty->display('sheetdetail2.tpl');
+$smarty->display('sheetdetail.tpl');
 
 ?>

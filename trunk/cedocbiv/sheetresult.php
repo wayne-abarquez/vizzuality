@@ -50,7 +50,7 @@ $smarty->assign('kmlurl',add_or_change_parameter("iskml","true"));
 
 
 $smarty->assign('section', 'sheetresult');
-$smarty->display('sheetresult2.tpl');
+$smarty->display('sheetresult.tpl');
 
 
 

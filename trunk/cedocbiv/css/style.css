@@ -41,6 +41,7 @@ body{
 	width: 16px;
 	margin: 0; padding: 0; margin-left: 2px;
 	float: right;
+	cursor: pointer;
 }
 .header div.idioma span div.banderaEs{
 	background-image: url(../images/bandera_es.gif);
@@ -48,6 +49,7 @@ body{
 	width: 16px;
 	margin: 0; padding: 0; margin-left: 2px;
 	float: right;
+	cursor: pointer;
 }
 .header div.idioma span div.banderaCat{
 	background-image: url(../images/bandera_cat.gif);
@@ -55,6 +57,7 @@ body{
 	width: 16px;
 	margin: 0; padding: 0; margin-left: 2px;
 	float: right;
+	cursor: pointer;
 }
 
 .header div.bandera{

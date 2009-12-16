@@ -29,6 +29,6 @@ $smarty->assign('genus', $genus);
 $smarty->assign('SearchTaxonResults',$services->searchTaxon($nameauthoryearstring,$highertaxon,$genus,$offset));
 
 $smarty->assign('section', 'taxonresult');
-$smarty->display('taxonresult2.tpl');
+$smarty->display('taxonresult.tpl');
 
 ?>
