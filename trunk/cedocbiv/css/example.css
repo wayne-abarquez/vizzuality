@@ -55,22 +55,22 @@ ul.tabbernav li a:visited { color: #667; }
 ul.tabbernav li a:hover
 {
  color: #000;
- background: #99cc99;
+ background: #ffffff;
  border-color: #f1f1f1;
 }
 
 ul.tabbernav li.tabberactive a
 {
- background-color: #fff;
- border-bottom: 1px solid #ffffff;
+ background-color: #f9f9fa;
+ border-bottom: 1px solid #f9f9fa;
  color: green;
 }
 
 ul.tabbernav li.tabberactive a:hover
 {
  color: #000;
- background: white;
- border-bottom: 1px solid white;
+ background: #f9f9fa;
+ border-bottom: 1px solid #f9f9fa;
 }
 
 /*--------------------------------------------------
@@ -83,6 +83,7 @@ ul.tabbernav li.tabberactive a:hover
  border-bottom: 1px solid #f1f1f1;
  border-top:0;
  padding-bottom: 24px;
+ background-color: #f9f9fa;
 /*
  height: 240px;
 */

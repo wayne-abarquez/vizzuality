@@ -270,6 +270,10 @@ body{
 	padding-right: 10px;
 }
 
+.paginatorA{
+	text-decoration: none;
+}
+
 input.buttonSearch{
 	width: 50px; 
 	background-image: url(../images/buttonSearch.gif); 
@@ -292,7 +296,7 @@ input.buttonSearch:hover{
 }
 
 input.leftPaginator{
-	width: 26px; 
+	width: 25px; 
 	background-image: url(../images/pagButtonLeft.gif); 
 	background-repeat: no-repeat;
 	height:25px; 
@@ -306,7 +310,7 @@ input.leftPaginator:hover{
 }
 
 input.rightPaginator{
-	width: 26px; 
+	width: 25px; 
 	background:url(../images/pagButtonRight.gif);
 	background-repeat: no-repeat; 
 	height: 25px; 
@@ -318,7 +322,6 @@ input.rightPaginator{
 input.rightPaginator:hover{
 	background-image: url(../images/pagButtonRightHover.gif); 
 }
-
 
 .containerResult{
 	border-top: 1px solid #f1f1f1;
