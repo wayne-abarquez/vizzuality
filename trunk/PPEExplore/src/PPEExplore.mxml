@@ -32,6 +32,7 @@
 		private	var tlo:TileLayerOverlay;	
 		private var waitingForClicked:Boolean=false;
 		private var mo:MarkersOverlay;
+		private var domain:String;
 		
 		
 		private function onCreationComplete():void {
@@ -44,7 +45,7 @@
 			jsonService.addEventListener(FaultEvent.FAULT,function(ev:FaultEvent):void{trace(ev.fault)});
 			jsonService.showBusyCursor=true;
 			
-			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080"];
+			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080","ppe.tinypla.net"];
 			for each(var dom:String in externalDomains) {
 			    Security.allowDomain(dom);
 			    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
@@ -55,6 +56,12 @@
 			    });
 			    loader.load(request);				
 			}
+			
+			domain=root.loaderInfo.parameters.domain;
+			if (domain=='') {
+				domain = 'http://localhost:3000';
+			}
+			
 		}
 		
 		private function onMapPreinit():void {
@@ -110,11 +117,10 @@
 			mo= new MarkersOverlay();
 			map.addOverlay(mo);
 			
-			
-			
-			
 			//trace clicks
-			map.addEventListener(MapMouseEvent.CLICK,function(ev:MapMouseEvent):void{TweenLite.delayedCall(0.1,onMapClick,[ev]);});
+			map.addEventListener(MapMouseEvent.CLICK,function(ev:MapMouseEvent):void{
+				TweenLite.delayedCall(0.1,onMapClick,[ev]);
+			});
 			map.addEventListener(MapMouseEvent.DOUBLE_CLICK,checkDoubleClick);
 			
 			
@@ -131,7 +137,7 @@
 				
 				if (!waitingForClicked) {
 					polygonsPane.clear();
-					jsonService.url="http://localhost:3000/api/sites_by_point/"+ev.latLng.lng()+"/"+ev.latLng.lat();
+					jsonService.url=domain + "/api/sites_by_point/"+ev.latLng.lng()+"/"+ev.latLng.lat();
 					jsonService.send();
 					waitingForClicked=true;
 					discretLoading.visible=true;
@@ -178,7 +184,7 @@
 					latlng:new LatLng(o.centre[1],o.centre[0])
 					
 				};
-				mark.image="http://localhost:3000" + o.image;
+				mark.image=domain + o.image;
 				markers.push(mark);
 				
 				
@@ -197,7 +203,7 @@
 			
 /* 			var extendZoom:Number = map.getBoundsZoomLevel(extend);
 			if (extendZoom <= (map.getZoom()+1)) {
-				map.setCenter(extend.getCenter(),extendZoom);				
+				map.setCenter(extend.getCenter(),extendZoom);				1
 			} else {
 				map.setCenter(extend.getCenter(),map.getZoom()+1);
 			} */	
@@ -216,6 +222,6 @@
 	<maps:Map id="map" key="noKey" width="100%" height="100%" mapevent_mapready="onMapReady()" mapevent_mappreinitialize="onMapPreinit()" />
 	<ns1:DiscretLoading id="discretLoading" left="10" top="10" />
 	
-	<mx:Style source="/skin/ui.css"/>
-	<mx:Style source="/skin/fonts.css"/>
+<!--<mx:Style source="/skin/ui.css"/>
+	<mx:Style source="/skin/fonts.css"/>-->
 </mx:Application>
