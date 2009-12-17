@@ -29,7 +29,7 @@ define('APROX', "aprox.");
 define('INFOR', "informatizado");
 define('REG', "registros");
 define('IMG', "imágenes");
-define('REGGEO', "registros georeferenciados");
+define('REGGEO', "georeferenciados");
 
 //query
 define('INTRO_TEXTBD1', "En esta base de datos se recogen prácticamente todas las muestras de algas dl Herbario. Si no obtienes los resultados esperados en tu consulta, ponte en contacto con el personal del centro e indica claramente la información que deseas localizar: ");
