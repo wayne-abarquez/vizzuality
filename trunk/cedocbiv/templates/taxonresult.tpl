@@ -11,7 +11,9 @@
 			</div>
 			
 			{if !$SearchTaxonResults.datos}
-			<p>0 {$smarty.const.RESULTADOS}</p><a href="#" onClick="javascript:window.history.back();">{$smarty.const.VOLVER}</a> 
+			<div class="last paginator noresults">
+			<p class="torna">0 {$smarty.const.RESULTADOS}...  <a class="tornaLink" href="#" onClick="javascript:window.history.back();">{$smarty.const.VOLVER}</a></p>
+			</div>
 			{else}
 				<div class="last paginator">
 				{if $SearchTaxonResults.count > 10}
