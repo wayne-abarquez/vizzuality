@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="120" height="20" styleName="softYellowContainerRounded">
-	<mx:SWFLoader x="4" y="1" source="@Embed('assets/tinyLoading.swf')" width="12" height="12"/>
-	<mx:Label y="-1" text="Transfering data" color="#5E5E5E" fontSize="11" fontFamily="DINOT-Medium" left="20"/>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="106" height="20" styleName="softYellowContainerRounded" backgroundColor="#FEF7D2">
+	<mx:SWFLoader x="4" y="2" source="@Embed('assets/tinyLoading.swf')" width="12" height="12"/>
+	<mx:Label y="4" text="Transfering data" color="#333333" fontSize="11" fontFamily="DINOT-Medium" left="20" fontWeight="bold"/>
 </mx:Canvas>

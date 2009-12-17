@@ -1,7 +1,7 @@
 package com.vizzuality.tileoverlays
 {
-	import com.google.maps.Color;
 	import com.google.maps.MapEvent;
+	import com.google.maps.MapMouseEvent;
 	import com.google.maps.PaneId;
 	import com.google.maps.interfaces.IMap;
 	import com.google.maps.interfaces.IPane;
@@ -20,12 +20,15 @@ package com.vizzuality.tileoverlays
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.utils.Dictionary;
 
 	public class MarkersOverlay extends OverlayBase
 	{		
 		
 		private var data:Data;
 		private var vis:Visualization;
+		
+		
 				
 		public function MarkersOverlay() {
 			super();
@@ -94,12 +97,15 @@ package com.vizzuality.tileoverlays
 				baseAnchor.y=pos.y;
 				data.addNode(baseAnchor);
 				
-		        var m2:SearchMarkerIcon=new SearchMarkerIcon(m.image,1,true);
+		        var m2:SearchMarkerIcon=new SearchMarkerIcon(m.image,1,true); 
+		        
+
 		        //var m2:NodeSprite=data.addNode();
 		        data.addNode(m2);
 		        
 		        //mDict[baseAnchor]=m2;
 		        var ed:CustomEdgeSprite = new CustomEdgeSprite(baseAnchor,m2);
+		        
 		        ed.lineWidth=3;
 		        ed.lineColor=0xffffffff * Math.random();
 		       	var res:EdgeSprite = data.addEdge(ed);
@@ -133,10 +139,5 @@ package com.vizzuality.tileoverlays
             addChild(vis);
 	        
 		}	
-		
-		
-	
-	
-		
 	}
 }
