@@ -184,11 +184,11 @@ class Services {
 		//Prepare SQL statement from the query page
 
 		//selects
-		$sql="SELECT u.UnitID, (SELECT GatheringAgentsText FROM BIOCASE_GATHERING_AGENTS where UnitID=u.UnitID) as AgentText , TypeStatus, highertaxon, nameauthoryearstring, localitytext,BiotopeText, UTMText as utmformula, u.datetext, has_images,created_when,created_who, ISODateTimeBegin,LatitudeDecimal,LongitudeDecimal,coords from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID left join utmcoords C on u.UTMText=C.utm";
+		$sql="SELECT nameauthoryearstring, highertaxon,count(u.UnitID) as num_sheets, count(imageURI) as num_images,count(LENGTH(UTMText)>0 OR LENGTH(LatitudeDecimal)>0 ) as num_georef from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID left join BIOCASE_IMAGES I on u.UnitID=I.UnitID left join utmcoords C on u.UTMText=C.utm";
 
 
 		//create the filter part
-		$sql=$sql." where i.preferedflag=true";
+		$sql=$sql." where i.preferedflag=true and nameauthoryearstring !=''";
 		$filter="";
 		$_SESSION['filter']="";
 		//filtro
@@ -214,6 +214,9 @@ class Services {
 
     	//set the filter and set the session for the after page
     	$sql= $sql . $filter;
+    	
+    	//group by
+    	$sql= $sql . " group by nameauthoryearstring, highertaxon";
 
     	$rs_specimen = array();
     	$res=array();
@@ -234,18 +237,19 @@ class Services {
     	if($offset=="") {
     		$offset=0;
     	}
-    	$sql.=" order by u.UnitID ASC limit 10 offset $offset";
+    	$sql.=" order by nameauthoryearstring ASC limit 10 offset $offset";
         
-        $hasCoords=false;
+        //$hasCoords=false;
     	$result = mysql_query($sql, $this->conn);		
     	while ($row = mysql_fetch_assoc($result)){
-            if($row['coords']!="" || $row['LatitudeDecimal']!="") {
+            /*if($row['coords']!="" || $row['LatitudeDecimal']!="") {
                 $hasCoords=true;
-            }    	    
+            } */   	    
     		$rs_specimen[] = $row; 
     	}
+    	//$res['hascoords'] =$hasCoords;
     	$res['datos']=$rs_specimen;
-    	$res['hascoords'] =$hasCoords; 
+    	
 	
     	return $res;
     }
