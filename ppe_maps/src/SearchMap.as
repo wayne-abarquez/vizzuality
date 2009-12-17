@@ -36,6 +36,7 @@ package {
 		private var map:Map;
 		private var mapKey:String = "nokey";
 		private var iw:Dictionary=new Dictionary();
+		private var domain: String;
 							
 						
 		public function SearchMap()

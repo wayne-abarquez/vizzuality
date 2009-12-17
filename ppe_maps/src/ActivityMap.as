@@ -51,6 +51,7 @@ package {
 		private var attachedMarkers:Array;
 		private var mapKey:String = "nokey";
 		private var iw:Dictionary=new Dictionary();	
+		private var domain:String;
 		
 		
 					
