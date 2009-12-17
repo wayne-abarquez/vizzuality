@@ -6,7 +6,7 @@
 
 <div class="content">
 	<div class="news-body">
-		<div class="titleIndex"><p>{$smarty.const.INTRO_TITLE} {$BDSelected}</p></div>
+		<div class="titleIndex"><p>{$BDSelected}</p></div>
 		<div class="TextBD">
 		{if $BDSelected eq "algas"} 
 		<p class="texto_intro"> {$smarty.const.INTRO_TEXTBD1} <a href="mailto:cedocbiv@pcb.ub.es">{$smarty.const.INTRO_TEXTCONTACT}</a> {$smarty.const.INTRO_TEXTCONTACTE}</p>

@@ -16,13 +16,13 @@ body{
 	width: 950px;
 }
 
-.header div.logo{
+/*.header div.logo{
 	background-image: url(../images/logo2.jpg);
 	background-repeat: no-repeat;
 	height: 49px;
 	width: 147px;
 	margin-left: 15px;
-}
+}*/
 
 .header div.idioma{
 	float: right;
@@ -117,20 +117,23 @@ body{
 }
 
 .titleIndex{
-	font-size: 20px;
+	font-size: 25px;
 	color: #666666;
 	margin: 0; padding: 0;
 	margin-left: 20px;
+	padding-top: 10px;
 	font-weight: bold;
+	height: 62px;
 }
 
 .titleIndexDetail{
-	font-size: 20px;
+	font-size: 25px;
 	color: #666666;
 	margin: 0; padding: 0;
 	margin-left: 20px;
+	padding-top: 10px;
 	font-weight: bold;
-	height: 20px;
+	height: 32px;
 }
 
 .texto_intro{
