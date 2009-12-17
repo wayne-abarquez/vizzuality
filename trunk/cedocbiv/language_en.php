@@ -29,7 +29,7 @@ define('APROX', "aprox.");
 define('INFOR', "informatitzat");
 define('REG', "registres");
 define('IMG', "imatges");
-define('REGGEO', "registres georeferenciats");
+define('REGGEO', "georeferenciats");
 
 //query
 define('INTRO_TEXTBD1', "En aquesta base de dades es recullen pr&agrave;cticament totes les mostres d'algues de l'herbari. Si amb la vostra consulta no obteniu els resultats esperats, poseu-vos en contacte amb el personal del centre i indiqueu clarament la informaci&oacute; que desitgeu localitzar: ");
