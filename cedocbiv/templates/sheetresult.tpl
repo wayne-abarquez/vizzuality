@@ -54,11 +54,10 @@
 	      	
 	  	<div class="containerResult">
 	  		{foreach key=UnitID item=result from=$SearchSheetsResults.datos}
-      		<div class="result" onmouseover="this.className='result activo'" onmouseout="this.className='result inactivo'" onclick="location.href='sheetdetail.php?UnitID={$result.UnitID}&amp;db={$BDSelected}';">
-      			<p class="resultTitle"><a href="sheetdetail.php?UnitID={$result.UnitID}&amp;db={$BDSelected}">{$result.UnitID}. {$result.nameauthoryearstring}</a></p>
-      			<p class="resultTaxon">{$result.highertaxon} {$result.TypeStatus}</p>
-      			<p class="resultLocal">{$result.localitytext}</p>
-      			<p class="resultFotos">{$result.has_images} fotos</p>
+      		<div class="result" onmouseover="this.className='result activo'" onmouseout="this.className='result inactivo'" onclick="location.href='taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring}&amp;db={$BDSelected}';">
+      			<p class="resultTitle"><a href="taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring}&amp;db={$BDSelected}">{$result.nameauthoryearstring}</a></p>
+      			<p class="resultTaxon">{$result.highertaxon}</p>
+      			<p class="resultLocal">{$result.num_sheets} pliego(s) | {$result.num_georef} georef.  | {$result.num_images} foto(s)</p>
       		</div>
 			{/foreach}
       	</div>
