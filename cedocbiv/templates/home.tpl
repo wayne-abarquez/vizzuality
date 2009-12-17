@@ -20,7 +20,7 @@
 	     	 		<p class="reg">{$smarty.const.IMG}</p>
 	     	 	</div>
 	     	 </div>
-			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosAlgas}</b> georeferenciats</p></div>
+			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosAlgas}</b> {$smarty.const.REGGEO}</p></div>
 	     </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=briofitos';">
 			 <div class="imageLinkBriofitos"></div>
@@ -36,7 +36,7 @@
 	     	 		<p class="reg">{$smarty.const.IMG}</p>
 	     	 	</div>
 	     	 </div>
-			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosBriofitos}</b> georeferenciats</p></div>
+			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosBriofitos}</b> {$smarty.const.REGGEO}</p></div>
 		 </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=cormofitos';">
 			 <div class="imageLinkCormofitos"></div>
@@ -52,7 +52,7 @@
 	     	 		<p class="reg">{$smarty.const.IMG}</p>
 	     	 	</div>
 	     	 </div>
-			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosCormofitos}</b> georeferenciats</p></div>
+			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosCormofitos}</b> {$smarty.const.REGGEO}</p></div>
 	     </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=carpoteca';">
 			 <div class="imageLinkSemillas"></div>
@@ -68,7 +68,7 @@
 	     	 		<p class="reg">{$smarty.const.IMG}</p>
 	     	 	</div>
 	     	 </div>
-			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosCarpoteca}</b> georeferenciats</p></div>
+			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosCarpoteca}</b> {$smarty.const.REGGEO}</p></div>
 	     </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=hongos';">
 			 <div class="imageLinkHongos"></div>
@@ -84,7 +84,7 @@
 	     	 		<p class="reg">{$smarty.const.IMG}</p>
 	     	 	</div>
 	     	 </div>
-			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosHongos}</b> georeferenciats</p></div>
+			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosHongos}</b> {$smarty.const.REGGEO}</p></div>
 	     </div>
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=liquenes';">
 			 <div class="imageLinkLiquenes"></div>
@@ -100,7 +100,7 @@
 	     	 		<p class="reg">{$smarty.const.IMG}</p>
 	     	 	</div>
 	     	 </div>
-			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosLiquenes}</b> georeferenciats</p></div>
+			 <div class="span-1 georef"><p><b>{$NumRegistrosGeoreferenciadosLiquenes}</b> {$smarty.const.REGGEO}</p></div>
 	     </div>
 	  
 	  </div> <!-- containerBox -->

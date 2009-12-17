@@ -679,3 +679,24 @@ input.rightPaginator:hover{
 .infoRight{
 	width: 300px;
 }
+
+/*.taxonresult*/
+
+.torna{
+	color: #99cc99;
+	margin: 0; padding: 0;
+	font-size: 21px;
+	font-weight: bold;	
+	margin-right: 10px;
+	padding-top: 10px;
+}
+
+.tornaLink{
+	color: green;	
+	text-decoration: none;
+}
+
+.noresults{
+	margin-right: 20px;
+	margin-top: 0px;
+}
