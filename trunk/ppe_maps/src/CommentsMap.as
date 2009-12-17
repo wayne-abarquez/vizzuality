@@ -49,6 +49,7 @@ package {
 		private var mapKey:String = "nokey";
 		private var iw:Dictionary=new Dictionary();	
 		private var paPoint: LatLng;
+		private var domain:String;
 		
 		
 					
@@ -93,6 +94,11 @@ package {
 		private function initMap():void {
 			
 			map=new Map();
+			
+			domain=root.loaderInfo.parameters.domain;
+			if (domain=='') {
+				domain = 'http://localhost:3000';
+			}
 			
 			var mk:String=root.loaderInfo.parameters.key;
 			if(mk!=null) {
@@ -139,7 +145,7 @@ package {
 			//json urle xample: "/protected_areas/"+this.root.loaderInfo.parameters.id+"/comments.json"
 			paPoint = new LatLng(this.root.loaderInfo.parameters.palat,this.root.loaderInfo.parameters.palon);
 			var paId:Number=root.loaderInfo.parameters.id;
-			var commentJson: URLRequest = new URLRequest("http://localhost:3000/sites/"+(paId)+"/comments.json");
+			var commentJson: URLRequest = new URLRequest(domain + "/sites/"+(paId)+"/comments.json");
 
             var urlLdr: URLLoader = new URLLoader();
             urlLdr.addEventListener(Event.COMPLETE, onGetPAJson);

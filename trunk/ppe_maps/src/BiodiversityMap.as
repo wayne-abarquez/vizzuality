@@ -37,6 +37,7 @@ package {
 		private var gbifTileLayer:GbifTileLayer;	
 		private var polygonPane:IPane;
 		private var tilesPane:IPane;
+		private var domain:String;
 		
 										
 						
@@ -56,14 +57,19 @@ package {
 			}				
 				
 			initMap();			
-
+			
+			domain=root.loaderInfo.parameters.domain;
+			if (domain=='') {
+				domain = 'http://localhost:3000';
+			}
+			
 			var dsLoader:URLLoader = new URLLoader();
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			var paId:Number=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
 				paId=377207;
 			}
-			dsLoader.load(new URLRequest("http://localhost:3000/sites/"+paId+"/json"));
+			dsLoader.load(new URLRequest(domain + "/sites/"+paId+"/json"));
 			
 		}
 

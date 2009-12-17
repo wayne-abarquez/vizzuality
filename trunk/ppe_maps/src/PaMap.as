@@ -63,6 +63,7 @@ package {
 
 		private var mapKey:String = "nokey";
 		private var mp:Multipolygon;
+		private var domain: String;
 		
 		private var paId:Number;
 		private var loadingSprite: Sprite = new Sprite();
@@ -125,13 +126,18 @@ package {
 				
 
 			//get the PA data
+			domain=root.loaderInfo.parameters.domain;
+			if (domain=='') {
+				domain = 'http://localhost:3000';
+			}
+			
 			var dsLoader:URLLoader = new URLLoader();
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			paId=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
 				paId=2027;
 			}
-			dsLoader.load(new URLRequest("http://localhost:3000/sites/"+paId+"/json"));
+			dsLoader.load(new URLRequest(domain + "/sites/"+paId+"/json"));
 			
 		}
 		
@@ -234,7 +240,7 @@ package {
 				//get PA clicked
 				var dsLoader:URLLoader = new URLLoader();
 				dsLoader.addEventListener(Event.COMPLETE,onGetPaByCoordsResult);
-				dsLoader.load(new URLRequest("http://localhost:3000/api/sites_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat()));
+				dsLoader.load(new URLRequest(domain + "/api/sites_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat()));
 				/* TweenLite.delayedCall(3,onGetPaByCoordsResult,[{"name": "area", "point": event.latLng}]); */
 				
 			}
