@@ -155,7 +155,7 @@ class Services {
 	}
 	
 	public function getTotalGeoreferenceRecords() {
-		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS";
+		$query = "SELECT count(UnitID) as total FROM BIOCASE_UNITS where UTMText is not null";
 		$result = mysql_query($query, $this->conn);		
 		$row = mysql_fetch_assoc($result);
 		return $row['total'];
