@@ -53,7 +53,7 @@
 
 <div class="header">
 	<div class="containerHeader">
-		<a href="index.php"><div class="span-1 last logo"></div></a>
+		<!-- <a href="index.php"><div class="span-1 last logo"></div></a> -->
 		<div class="span-1 last idioma">
 			<span>
 				<div class="span-1 banderaEn" onclick="idiomaload('en')"></div>
