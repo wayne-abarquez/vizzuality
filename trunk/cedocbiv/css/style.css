@@ -160,7 +160,7 @@ body{
 }
 
 .imageLinkAlgas{
-	background-image: url(../images/algas.jpg);
+	background-image: url(../images/home/algas.jpg);
 	background-repeat: no-repeat;
 	height: 100px;
 	width: 150px;
@@ -169,7 +169,7 @@ body{
 }
 
 .imageLinkBriofitos{
-	background-image: url(../images/briofitos.jpg);
+	background-image: url(../images/home/briofitos.jpg);
 	background-repeat: no-repeat;
 	height: 100px;
 	width: 149px;
@@ -178,7 +178,7 @@ body{
 }
 
 .imageLinkCormofitos{
-	background-image: url(../images/cormofitos.jpg);
+	background-image: url(../images/home/cormofitos.jpg);
 	background-repeat: no-repeat;
 	height: 100px;
 	width: 149px;
@@ -187,7 +187,7 @@ body{
 }
 
 .imageLinkSemillas{
-	background-image: url(../images/semillas.jpg);
+	background-image: url(../images/home/semillas.jpg);
 	background-repeat: no-repeat;
 	height: 100px;
 	width: 149px;
@@ -196,7 +196,7 @@ body{
 }
 
 .imageLinkHongos{
-	background-image: url(../images/hongos.jpg);
+	background-image: url(../images/home/hongos.jpg);
 	background-repeat: no-repeat;
 	height: 100px;
 	width: 149px;
@@ -205,7 +205,7 @@ body{
 }
 
 .imageLinkLiquenes{
-	background-image: url(../images/liquenes.jpg);
+	background-image: url(../images/home/liquenes.jpg);
 	background-repeat: no-repeat;
 	height: 100px;
 	width: 149px;
@@ -283,7 +283,7 @@ body{
 
 .georef{
 	margin: 0; padding: 0;
-	width: 130px;
+	width: 157px;
 	height: 20px;
 	margin-top: 10px;
 }
