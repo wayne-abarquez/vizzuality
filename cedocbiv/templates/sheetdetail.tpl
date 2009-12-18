@@ -8,23 +8,23 @@
 		<div class="titleID">
 			<div class="span-1 detailTitleID">
 				{if $BDSelected eq 'algas'}
-					<p>BCN-Alg</p>
+					<p>BCN-Phyc</p>
 					<p>{$Ident[0].UnitID}</p>
 				{/if}
 				{if $BDSelected eq 'briofitos'}
-					<p>BCN-Brio</p>
+					<p>BCN-Bryo</p>
 					<p>{$Ident[0].UnitID}</p>
 				{/if}
 				{if $BDSelected eq 'cormofitos'}
-					<p>BCN*</p>
+					<p>BCN</p>
 					<p>{$Ident[0].UnitID}</p>
 				{/if}
 				{if $BDSelected eq 'carpoteca'}
-					<p>BCN-Carp</p>
+					<p>BCN-S</p>
 					<p>{$Ident[0].UnitID}</p>
 				{/if}
 				{if $BDSelected eq 'hongos'}
-					<p>BCN-Hong</p>
+					<p>BCN-Myc</p>
 					<p>{$Ident[0].UnitID}</p>
 				{/if}
 				{if $BDSelected eq 'liquenes'}
