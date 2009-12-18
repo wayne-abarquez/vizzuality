@@ -151,6 +151,11 @@ body{
 	color: green;
 }
 
+.texto_intro a:hover{
+	font-size: 14px;
+	color: #333333;
+}
+
 .containerBox{
 	width: 950px;
 	height: 236px;
@@ -645,6 +650,10 @@ input.rightPaginator:hover{
 	text-decoration: none;
 	color: #99cc99;
 	font-weight: bold;
+}
+
+.resultPliegoContainer a:hover{
+	color: #333333;
 }
 
 .resultPliegoContainer p{
