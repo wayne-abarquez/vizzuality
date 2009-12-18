@@ -161,7 +161,7 @@ package {
 			markers = [];	
 			dataBbox=new LatLngBounds();
 							
-			var paMarker:PAMarker = new PAMarker(paPoint);
+			var paMarker:PAMarker = new PAMarker(new Object(),paPoint);
 			 
 			dataBbox.extend(paMarker.getLatLng());
 			map.addOverlay(paMarker);                

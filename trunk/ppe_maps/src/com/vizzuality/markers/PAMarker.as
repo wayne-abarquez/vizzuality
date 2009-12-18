@@ -10,7 +10,7 @@ package com.vizzuality.markers
         public class PAMarker extends Marker
         {
 
-                public function PAMarker(ob:Object)
+                public function PAMarker(ob:Object,point:LatLng)
                 {
                         var options:MarkerOptions = new MarkerOptions();
                         options.iconOffset = new Point(0,0);
@@ -18,7 +18,7 @@ package com.vizzuality.markers
                         options.draggable = false;
                         options.icon = new PAMarkerIcon('http://localhost:3000/images/thumbnails/thumb01.jpg');
                         /* super(ob.location as LatLng, options); */
-                        super(new LatLng(0,0), options);
+                        super(point, options);
                 }
         }
 }

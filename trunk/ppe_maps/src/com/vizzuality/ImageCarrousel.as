@@ -4,6 +4,7 @@ package com.vizzuality
 	import com.greensock.TweenLite;
 	
 	import flash.display.Bitmap;
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 
@@ -38,15 +39,15 @@ package com.vizzuality
  			//Create the outer gray square.
  			var picturesSquare:Sprite = new Sprite();
 			picturesSquare.graphics.beginFill(0xEEEEEE);
-			picturesSquare.graphics.drawRoundRect(0,0,630, 250,4,4);
+			picturesSquare.graphics.drawRoundRect(0,0,632, 250,4,4);
 			picturesSquare.graphics.endFill();		
 			addChild(picturesSquare);
 			
 			
 			//all images will be contained in a Sprite
 			imagesContainerSprite = new Sprite();		
-			imagesContainerSprite.x=9;
-			imagesContainerSprite.y=9;
+			imagesContainerSprite.x=11;
+			imagesContainerSprite.y=11;
 
 			//Loop through the array of images and create ImageContainer objects for them
 			//this creates a bigger sprite than what actually we want to be shown.
@@ -54,6 +55,8 @@ package com.vizzuality
  			var i:Number=0;
 			for each(var pic:Object in images) {
 				var img:ImageContainer = new ImageContainer(pic.url);
+				img.width = 300;
+				img.height = 250;
 				imagesContainerSprite.addChild(img);
 				img.x = i*310;
 				i++;
@@ -65,7 +68,7 @@ package com.vizzuality
 			//Create mask
  			var maskSprite:Sprite = new Sprite();
 			maskSprite.graphics.beginFill(Color.RED);
-			maskSprite.graphics.drawRect(0,0,612, 254);
+			maskSprite.graphics.drawRect(0,0,620, 254);
 			maskSprite.graphics.endFill();
 			maskSprite.x=9;
 			maskSprite.y=9;			
@@ -119,25 +122,40 @@ package com.vizzuality
 					position++;				
 				}
 			}
+			
+			
 			if(position==0) {
-				removeChild(sp1);
+				sp1.alpha = 1;
+				TweenLite.to(sp1,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp1]});
+				/* removeChild(sp1); */
 			} else {
 				if (sp1!=null && sp1.parent!=null) {
-					removeChild(sp1);				
+					sp1.alpha = 1;
+					TweenLite.to(sp1,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp1]});			
 				}
 			}
 			
 			if(position>0 && sp1.parent==null) {
+				sp1.alpha=0;
 				addChild(sp1);
+				TweenLite.to(sp1,0.7,{alpha:1});
 			}
 			
 			if(position==images.length-2) {
-				removeChild(sp2);
+				sp2.alpha=1;
+				TweenLite.to(sp2,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp2]});
 			} else{
-				if(sp2.parent==null)
+				if(sp2.parent==null) {
+					sp2.alpha=0;
 					addChild(sp2);
+					TweenLite.to(sp2,0.7,{alpha:1});
+				}
 			}			
 			
+		}
+		
+		private function onFinishedTween(obj:Sprite):void {
+			removeChild(obj);
 		}		
 		
 	}
