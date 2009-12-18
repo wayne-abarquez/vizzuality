@@ -669,6 +669,7 @@ input.rightPaginator:hover{
 	line-height: 22px;
 	padding-top: 6px;
 	margin-left: 10px;
+	width: 480px;
 }
 
 .detailTitleTaxon p.family{
