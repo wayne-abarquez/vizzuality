@@ -98,6 +98,18 @@ class Services {
 	//TaxonResults
 	public function getAllPliegosByTaxon($nameauthoryearstring) {
 	
+		
+		
+		
+		if( mb_check_encoding($nameauthoryearstring,'UTF-8')!=true) {
+			$nameauthoryearstring = utf8_encode($nameauthoryearstring);
+		}
+		
+		$accents = '/&([A-Za-z]{1,2})(grave|acute|circ|cedil|uml|lig);/';
+		$string_encoded = htmlentities($nameauthoryearstring,ENT_NOQUOTES,'UTF-8');
+		$nameauthoryearstring = html_entity_decode(preg_replace($accents,'$1',$string_encoded));
+		
+
 		function sql_safe($string){
         	$output = stripslashes($string);
         	$output = str_replace('"','\"',$output);
@@ -108,9 +120,13 @@ class Services {
 		$filter="";
 		$_SESSION['filter']="";
 		
-		$sql = "SELECT distinct u.UnitID, localitytext, (SELECT GatheringAgentsText FROM BIOCASE_GATHERING_AGENTS where UnitID=u.UnitID) as AgentText ,nameauthoryearstring, highertaxon from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID where ";
+		
+		
+		$sql = "SELECT u.UnitID, u.LatitudeDecimal, u.LongitudeDecimal, C.coords, localitytext, count(imageURI) as num_images ,(SELECT GatheringAgentsText FROM BIOCASE_GATHERING_AGENTS where UnitID=u.UnitID) as AgentText ,nameauthoryearstring, highertaxon from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID left join utmcoords C on u.UTMText=C.utm left join BIOCASE_IMAGES Im on u.UnitID=Im.UnitID where ";
+		
 		if ($nameauthoryearstring) 	{ $filter = $filter . " i.nameauthoryearstring like '". sql_safe($nameauthoryearstring) ."'"; }
 	    $sql= $sql . $filter;
+		$sql= $sql . " group by UnitID  order by u.UnitID";
 		$query = mysql_query($sql, $this->conn);	
 		
 		$res=array();
@@ -125,6 +141,10 @@ class Services {
 		$res['datos']=$result;
 		$res['scientificname']=$scientificname;
 		$res['family']=$family;
+		
+		//echo $sql;
+		//die();
+
 		return $res;
 	}
 	

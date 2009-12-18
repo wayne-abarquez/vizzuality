@@ -33,7 +33,7 @@
 	  	<div class="containerResult">
 	  		{foreach key=UnitID item=result from=$SearchSheetsResults.datos}
       		<div class="result" onmouseover="this.className='result activo'" onmouseout="this.className='result inactivo'" onclick="location.href='taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring|escape:'url'}&amp;db={$BDSelected}';">
-      			<p class="resultTitle"><a href="taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring}&amp;db={$BDSelected}">{$result.nameauthoryearstring}</a></p>
+      			<p class="resultTitle"><a href="taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring|escape:'url'}&amp;db={$BDSelected}">{$result.nameauthoryearstring}</a></p>
       			<p class="resultTaxon">{$result.highertaxon}</p>
       			<p class="resultLocal">{$result.num_sheets} pliego(s) | {$result.num_georef} georef.  | {$result.num_images} foto(s)</p>
       		</div>

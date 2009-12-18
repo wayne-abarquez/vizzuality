@@ -20,26 +20,26 @@
 		{foreach key=UnitID item=result from=$Pliegos.datos}
 			<p><a href="sheetdetail.php?UnitID={$result.UnitID}&db={$smarty.session.db}">
 				{if $BDSelected eq 'algas'}
-					BCN-Alg {$result.UnitID}
+					BCN-Alg {$result.UnitID} 
 				{/if}
-				{if $BDSelected eq 'briofitos'}
+				{if $BDSelected eq 'briofitos'} 
 					BCN-Brio {$result.UnitID}
 				{/if}
-				{if $BDSelected eq 'cormofitos'}
+				{if $BDSelected eq 'cormofitos'} 
 					BCN* {$result.UnitID}
 				{/if}
-				{if $BDSelected eq 'carpoteca'}
+				{if $BDSelected eq 'carpoteca'} 
 					BCN-Carp {$result.UnitID}
 				{/if}
-				{if $BDSelected eq 'hongos'}
+				{if $BDSelected eq 'hongos'} 
 					BCN-Hong {$result.UnitID}
 				{/if}
-				{if $BDSelected eq 'liquenes'}
+				{if $BDSelected eq 'liquenes'} 
 					BCN-Lich {$result.UnitID}
 				{/if}
 			</a></p>
 			<p>{$result.TypeStatus}</p>
-			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} ( <!--fecha-->	)</p>
+			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} {if $result.photo}<img class="camera" src="../images/camera.png">{/if} {if $result.coords!=''} <img class="icon" src="../images/map.png"> {/if}</p>
 		{/foreach}
 		</div>
 	</div>

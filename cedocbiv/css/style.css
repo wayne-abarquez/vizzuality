@@ -714,3 +714,7 @@ input.rightPaginator:hover{
 	margin-right: 20px;
 	margin-top: 0px;
 }
+
+.icon{
+	display: inline;
+}
