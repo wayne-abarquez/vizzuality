@@ -98,6 +98,13 @@
 				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.BiotopeText}</p></div>
 			</div>
 			{/if}
+			
+			{if $Units.UTMText}
+			<div class="span-1 infoContainer">
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>{$smarty.const.UTM}: </b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.UTMText}</p></div>
+			</div>
+			{/if}
 						
 			<div class="span-4 titleGroup"></div>
 			{if $Agents.GatheringAgentsText}

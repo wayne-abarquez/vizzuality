@@ -62,6 +62,7 @@ map.setCenter(new GLatLng(39,-3), 4);
 geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}taxondetailKml.php?nameauthoryearstring={$smarty.request.nameauthoryearstring|urlencode}{literal}", function() {
 		if (geoXml.loadedCorrectly()) {
 			geoXml.gotoDefaultViewport(map);
+			map.setZoom(map.getZoom()-1);
 		}
 	}
 );
