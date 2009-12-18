@@ -26,7 +26,6 @@ package {
 	import com.vizzuality.markers.PAMarker;
 	import com.vizzuality.markers.TooltipMarker;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
-	import com.vizzuality.vizzButton;
 	
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
@@ -66,12 +65,30 @@ package {
 		private var domain: String;
 		
 		private var paId:Number;
-		private var loadingSprite: Sprite = new Sprite();
+		private var loadingSprite: TooltipMarker = new TooltipMarker('Click to go to this PA');;
 		private var infoWindowToOpen: PAInfoWindow;
 		private var paMarker: PAMarker;
 		private var paDictionary: Dictionary = new Dictionary();
 		private var tooltip: TooltipMarker;
 		private var clickPoint: LatLng;
+		private var onPAFlag: Boolean = false;
+		
+		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
+        private var ZoomInButton:Class;
+        
+        		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        private var ZoomInButton_over:Class;
+ 
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
+        private var ZoomOutButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
+        private var ZoomOutButton_over:Class;
+        
+ /*
+        [Embed(source="library.swf", symbol="circle")]
+        private var Circle:Class; */
+		
 		
 
 		/*[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
@@ -169,7 +186,19 @@ package {
 			
 			//the data will always be a MultiPolygon
 			mp= new Multipolygon();
-			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);						
+			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);	
+			mp.addEventListener(MapMouseEvent.ROLL_OVER,function():void {
+				onPAFlag = true;
+				if (loadingSprite.parent != null) {
+					loadingSprite.visible = false;
+				}
+			});
+			mp.addEventListener(MapMouseEvent.ROLL_OUT,function():void {
+				onPAFlag = false;
+				if (loadingSprite.parent != null) {
+					loadingSprite.visible = true;
+				}
+			});					
 			mp.addToMap(map);
 
 			//Set the center of the map to the bbox of the area			
@@ -203,26 +232,75 @@ package {
 			map.addEventListener(MapMouseEvent.DOUBLE_CLICK,onMapDoubleClick);
 			//map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);
 			
-			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",18,6,2);
-			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+			
+			var zoomIn:Sprite = new ZoomInButton();			
+			var zoomIn_over: Sprite = new ZoomInButton_over();
+            addChild(zoomIn);
+            zoomIn.x = 10;
+            zoomIn.y = 10;
+            zoomIn_over.x = 0;
+            zoomIn_over.y = 0;
+            zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomIn.addChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true;
+
+			}); 
+            zoomIn.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomIn.removeChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true; 
+			}); 
+			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
 				map.setZoom(map.getZoom()+1);
 			}); 
-			var zoomMinus:vizzButton = new vizzButton(this,10,40,25,25,"-",18,8,1);
-			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+		
+			
+			var zoomOut:Sprite = new ZoomOutButton();			
+			var zoomOut_over: Sprite = new ZoomOutButton_over();
+            addChild(zoomOut);
+            zoomOut.x = 10;
+            zoomOut.y = 45;
+            zoomOut_over.x = 0;
+            zoomOut_over.y = 0;
+            zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomOut.addChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true;
+
+			}); 
+            zoomOut.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomOut.removeChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true; 
+			});  
+			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
 				map.setZoom(map.getZoom()-1);
 			}); 
-			
-			if(dataLoaded && !dataAnalyzed) {
-				dataAnalyzed=true;
-				loadData();	
-			}
+
 			
 			//add the default PPE layer for visualizing the other Pas
 			var tl:GeoserverTileLayer = new GeoserverTileLayer();
 			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
 			map.addOverlay(tlo);		
-			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OUT_AREA,function(event:CustomMapEvent):void {mouseOverPa=false;});
-			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OVER_AREA,function(event:CustomMapEvent):void {mouseOverPa=true;});
+			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OUT_AREA,function(event:CustomMapEvent):void {
+					mouseOverPa=false; 
+					removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
+					try {removeChild(loadingSprite);}
+					catch (e:Error){}
+				});
+			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OVER_AREA,function(event:CustomMapEvent):void {
+					mouseOverPa=true; 
+					if (loadingSprite.parent==null) {
+						/* loadingSprite = new TooltipMarker('Click to go to this PA'); */
+						addChild(loadingSprite);
+					}
+
+					loadingSprite.x = event._local_x + 15;
+					loadingSprite.y = event._local_y + 15;
+					
+					addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
+				});
 			map.addEventListener(MapMouseEvent.CLICK,onMapClick);				
 
 		}		
@@ -230,14 +308,14 @@ package {
 			if(mouseOverPa && !mp.pointInPolygon(event.latLng)) {
 				map.closeInfoWindow();
 				clickPoint = event.latLng;
-				loadingSprite.graphics.lineStyle(1,0x666666,1);
+/* 				loadingSprite.graphics.lineStyle(1,0x666666,1);
 				loadingSprite.graphics.beginFill(0xFFFFFF);
 				loadingSprite.graphics.drawRoundRect(0,0,30,30,5,5);
 				loadingSprite.graphics.endFill();
 				addChild(loadingSprite);
 				loadingSprite.x = (map.fromLatLngToViewport(event.latLng) as Point).x;
 				loadingSprite.y = (map.fromLatLngToViewport(event.latLng) as Point).y;
-				this.addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
+				this.addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading); */
 				
 				//get PA clicked
 				var dsLoader:URLLoader = new URLLoader();
@@ -375,7 +453,21 @@ package {
 		        marker.addEventListener(MapMouseEvent.CLICK, function(e:MapMouseEvent):void {
 		      		marker.openInfoWindow(optionsMark);  
 		      		//map.panTo(e.latLng);   
-		        });      
+		        });  
+		        marker.addEventListener(MapMouseEvent.ROLL_OVER,function():void {
+					if (loadingSprite.parent != null) {
+						loadingSprite.visible = false;
+					}
+				});
+				marker.addEventListener(MapMouseEvent.ROLL_OUT,function():void {
+					if (loadingSprite.parent != null) {
+						if (onPAFlag == true) {
+							loadingSprite.visible = false;
+						} else {
+							loadingSprite.visible = true;						
+						}
+					}
+				});    
 	        	map.addOverlay(marker);
         		
         	});
@@ -402,11 +494,15 @@ package {
 		
 		private function onGetPaByCoordsResult(ev:Event):void {
 			
- 			removeChild(loadingSprite);
- 			var dataBlueZone: Object = new Object();
- 			dataBlueZone = ev.target.data;
+			var res:Object = JSON.decode(ev.target.data as String);
+
+			if ((res as Array).length != 0) {
+				removeChild(loadingSprite);
+				navigateToURL(new URLRequest(domain + '/sites/' + res[0].id));
+			}
+
  			
-			this.removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
+			/* this.removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
 			try {
 				map.removeOverlay(paMarker);				
 			} catch (e:Error) {}
@@ -422,16 +518,17 @@ package {
             
             paDictionary[paMarker]=ev.target.data;
                         
-			map.addOverlay(paMarker);
+			map.addOverlay(paMarker); */
 		}
 		
+		
 		private function onMoveCursorLoading(ev:MouseEvent):void {
-			loadingSprite.x = ev.stageX;
-			loadingSprite.y = ev.stageY;
+			loadingSprite.x = ev.stageX + 15;
+			loadingSprite.y = ev.stageY + 15;
 		} 
 		
+		
  		private function openInfoWindow(e:MapMouseEvent):void {
- 			
  			var m:Array = new Array(paDictionary[e.target]);
   			
  			infoWindowToOpen = new PAInfoWindow(m);

@@ -18,13 +18,11 @@ package com.vizzuality.maps
       		}
     		
   		// Public API that dispatches an event
-  		public static function overAreaEvent():void {
-   			dispatchEvent(new CustomMapEvent(CustomMapEvent.MOUSE_OVER_AREA));
-   			trace("over");
+  		public static function overAreaEvent(local_x:Number,local_y:Number):void {
+   			dispatchEvent(new CustomMapEvent(CustomMapEvent.MOUSE_OVER_AREA,local_x,local_y));
    		}
   		public static function overAreaOutEvent():void {
-   			dispatchEvent(new CustomMapEvent(CustomMapEvent.MOUSE_OUT_AREA));
-   			trace("out");
+   			dispatchEvent(new CustomMapEvent(CustomMapEvent.MOUSE_OUT_AREA,0,0));
    		}
    		
    		

@@ -42,7 +42,7 @@ package com.vizzuality.tileoverlays
 			if (color != 0xFFFFFF) {
 				if(!isOverArea) {
 					this.buttonMode=true;
-					MapEventDispatcher.overAreaEvent();
+					MapEventDispatcher.overAreaEvent(evt.localX,evt.localY);
 					isOverArea=true;
 				}
 			} else {
