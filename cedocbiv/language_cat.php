@@ -90,13 +90,13 @@ define('RESULTADOS', "Resultats trobats");
 
 // Pliego 
 
-define('PUBLICAT', "Publicat el: ");
-define('ETIQUETA', "Nom etiqueta: ");
-define('GUARDAT', "Guardat com: ");
-define('ALTITUD', "Altitud: ");
-define('HABITAT', "Hábitat: ");
-define('COL', "Collecció: ");
-define('FEN', "Fenologia: ");
+define('PUBLICAT', "Publicat el");
+define('ETIQUETA', "Nom etiqueta");
+define('GUARDAT', "Guardat com");
+define('ALTITUD', "Altitud");
+define('HABITAT', "Hábitat");
+define('COL', "Collecció");
+define('FEN', "Fenologia");
 
 //resultado de taxon
 define('VISSUALMAP', "Visualizar mapa");
