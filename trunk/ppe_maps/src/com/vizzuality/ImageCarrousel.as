@@ -68,7 +68,7 @@ package com.vizzuality
 			//Create mask
  			var maskSprite:Sprite = new Sprite();
 			maskSprite.graphics.beginFill(Color.RED);
-			maskSprite.graphics.drawRect(0,0,620, 254);
+			maskSprite.graphics.drawRect(0,0,612, 254);
 			maskSprite.graphics.endFill();
 			maskSprite.x=9;
 			maskSprite.y=9;			
@@ -117,7 +117,7 @@ package com.vizzuality
 				if (e.currentTarget == sp1 && position > 0){
 					TweenLite.to(imagesContainerSprite,0.7,{x:imagesContainerSprite.x + 310});
 					position--;
-				}else if(e.currentTarget == sp2 && position < 3){
+				}else if(e.currentTarget == sp2 && position < images.length-2){
 					TweenLite.to(imagesContainerSprite,0.7,{x:imagesContainerSprite.x - 310});
 					position++;				
 				}
@@ -127,9 +127,8 @@ package com.vizzuality
 			if(position==0) {
 				sp1.alpha = 1;
 				TweenLite.to(sp1,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp1]});
-				/* removeChild(sp1); */
 			} else {
-				if (sp1!=null && sp1.parent!=null) {
+				if (sp1==null && sp1.parent==null) {
 					sp1.alpha = 1;
 					TweenLite.to(sp1,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp1]});			
 				}
@@ -141,6 +140,7 @@ package com.vizzuality
 				TweenLite.to(sp1,0.7,{alpha:1});
 			}
 			
+
 			if(position==images.length-2) {
 				sp2.alpha=1;
 				TweenLite.to(sp2,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp2]});
@@ -150,7 +150,7 @@ package com.vizzuality
 					addChild(sp2);
 					TweenLite.to(sp2,0.7,{alpha:1});
 				}
-			}			
+			} 
 			
 		}
 		
