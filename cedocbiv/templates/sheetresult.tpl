@@ -1,7 +1,6 @@
 {include file="header.tpl"}
 
-{literal}
-<script type="text/javascript" >
+<!-- <script type="text/javascript" >
 	$(document).ready(function(){
 	var visibilidad = false;
 	cargarmapa();
@@ -16,9 +15,7 @@
 	});
 });
 
-</script>
-{/literal}
-
+</script> -->
 
 <div class="content">
 	<div class="news-body">
@@ -66,9 +63,8 @@
 	
 </div> <!-- content -->
 
-{literal}<script src="http://maps.google.com/maps?file=api&v=2&key={/literal}{$smarty.const.MAPS_API_KEY}{literal}" type="text/javascript"></script>{/literal}
-
-{literal}
+<!-- 
+<script src="http://maps.google.com/maps?file=api&v=2&key={/literal}{$smarty.const.MAPS_API_KEY}{literal}" type="text/javascript"></script>{/literal}
 
 <script type="text/javascript">
 	function cargarmapa(){
@@ -80,7 +76,7 @@
 		map.addControl(new GSmallMapControl());
 		//map.addControl(new GMapTypeControl());
 		map.setCenter(new GLatLng(39,-3), 4);
-		geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}sheetresultKml.php{$kmlurl}{literal}", function() {
+		geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}sheetresultKml.php{$kmlurl}", function() {
 		if (geoXml.loadedCorrectly()) {
 			geoXml.gotoDefaultViewport(map);
 		}
@@ -92,6 +88,6 @@ map.addOverlay(geoXml);
 //]]>
 }
 </script>
-{/literal}
+ -->
 
 {include file="footer.tpl"} 
