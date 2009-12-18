@@ -20,19 +20,19 @@
 		{foreach key=UnitID item=result from=$Pliegos.datos}
 			<p><a href="sheetdetail.php?UnitID={$result.UnitID}&db={$smarty.session.db}">
 				{if $BDSelected eq 'algas'}
-					BCN-Alg {$result.UnitID} 
+					BCN-Phyc {$result.UnitID} 
 				{/if}
 				{if $BDSelected eq 'briofitos'} 
-					BCN-Brio {$result.UnitID}
+					BCN-Bryo {$result.UnitID}
 				{/if}
 				{if $BDSelected eq 'cormofitos'} 
-					BCN* {$result.UnitID}
+					BCN {$result.UnitID}
 				{/if}
 				{if $BDSelected eq 'carpoteca'} 
-					BCN-Carp {$result.UnitID}
+					BCN-S {$result.UnitID}
 				{/if}
 				{if $BDSelected eq 'hongos'} 
-					BCN-Hong {$result.UnitID}
+					BCN-Myc {$result.UnitID}
 				{/if}
 				{if $BDSelected eq 'liquenes'} 
 					BCN-Lich {$result.UnitID}
