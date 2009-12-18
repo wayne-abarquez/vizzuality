@@ -10,6 +10,7 @@ package com.vizzuality
 		
 		private var _imgUrl:String;
 		private var loader:Loader;
+		private var imageMask: Sprite = new Sprite();
 		
 		public function ImageContainer(imgUrl:String)
 		{
@@ -23,6 +24,7 @@ package com.vizzuality
 			picturesSquare.graphics.endFill();		
 			
 			this.addChild(picturesSquare);
+
 			
 			loader = new Loader();
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onImageDownload);	
@@ -30,6 +32,13 @@ package com.vizzuality
 		}
 		
 		private function onImageDownload(event:Event):void {
+	   		imageMask.graphics.beginFill(0x330000,1);
+	  		imageMask.graphics.drawRect(3,3,294,246);
+	  		imageMask.graphics.endFill();
+	  		
+	  		this.addChild(imageMask);
+	  		loader.mask = imageMask;
+
 			this.addChild(loader);
 			loader.x=4;
 			loader.y=4;

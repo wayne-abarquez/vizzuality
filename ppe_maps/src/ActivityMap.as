@@ -173,10 +173,10 @@ package {
                 markerData.coordenates = area.getLatLngBounds().getCenter();
                 markerData.area = area.data.name;
                 				
-				var paMarker:PAMarker = new PAMarker(area.getLatLngBounds().getCenter());
+/* 				var paMarker:PAMarker = new PAMarker(area.getLatLngBounds().getCenter()); */
 				
 				dataBbox.extend(bounds.getCenter());
-				map.addOverlay(paMarker);                
+/* 				map.addOverlay(paMarker); */                
 			}
 			
 			

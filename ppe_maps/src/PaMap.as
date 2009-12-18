@@ -71,6 +71,7 @@ package {
 		private var paMarker: PAMarker;
 		private var paDictionary: Dictionary = new Dictionary();
 		private var tooltip: TooltipMarker;
+		private var clickPoint: LatLng;
 		
 
 		/*[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
@@ -127,15 +128,15 @@ package {
 
 			//get the PA data
 			domain=root.loaderInfo.parameters.domain;
-			if (domain=='') {
-				domain = 'http://localhost:3000';
+			if (domain==null) {
+				domain = 'http://ppe.tinypla.net';
 			}
 			
 			var dsLoader:URLLoader = new URLLoader();
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			paId=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=2027;
+				paId=916;
 			}
 			dsLoader.load(new URLRequest(domain + "/sites/"+paId+"/json"));
 			
@@ -228,6 +229,7 @@ package {
 		private function onMapClick(event:MapMouseEvent):void {
 			if(mouseOverPa && !mp.pointInPolygon(event.latLng)) {
 				map.closeInfoWindow();
+				clickPoint = event.latLng;
 				loadingSprite.graphics.lineStyle(1,0x666666,1);
 				loadingSprite.graphics.beginFill(0xFFFFFF);
 				loadingSprite.graphics.drawRoundRect(0,0,30,30,5,5);
@@ -240,6 +242,13 @@ package {
 				//get PA clicked
 				var dsLoader:URLLoader = new URLLoader();
 				dsLoader.addEventListener(Event.COMPLETE,onGetPaByCoordsResult);
+				dsLoader.addEventListener(IOErrorEvent.IO_ERROR, function (ev:IOErrorEvent):void {
+						trace('empty data'); 
+						try {
+							map.removeOverlay(paMarker);					
+						} catch (er:Error) {} 
+						removeChild(loadingSprite); 
+						});
 				dsLoader.load(new URLRequest(domain + "/api/sites_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat()));
 				/* TweenLite.delayedCall(3,onGetPaByCoordsResult,[{"name": "area", "point": event.latLng}]); */
 				
@@ -381,7 +390,7 @@ package {
 			
 			if(imgC!=null) {
 				imgC.x=square.x;
-				imgC.y= stage.stageHeight-imgC.height-20;
+				imgC.y= stage.stageHeight-imgC.height-5;
 			}
 		}
 		
@@ -394,12 +403,15 @@ package {
 		private function onGetPaByCoordsResult(ev:Event):void {
 			
  			removeChild(loadingSprite);
+ 			var dataBlueZone: Object = new Object();
+ 			dataBlueZone = ev.target.data;
+ 			
 			this.removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
 			try {
 				map.removeOverlay(paMarker);				
 			} catch (e:Error) {}
 			
-			paMarker = new PAMarker(ev.target.data as Object);
+			paMarker = new PAMarker(ev.target.data as Object,clickPoint);
 			
 			paMarker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
 	            if(!rollingOver) {
@@ -420,7 +432,7 @@ package {
 		
  		private function openInfoWindow(e:MapMouseEvent):void {
  			
- 			var m:Object = paDictionary[e.target];
+ 			var m:Array = new Array(paDictionary[e.target]);
   			
  			infoWindowToOpen = new PAInfoWindow(m);
  			infoWindowToOpen.targetUrl="/sites/2027";
@@ -434,7 +446,7 @@ package {
             });
             
             infoWindowToOpen.alpha=0;
-            map.openInfoWindow(new LatLng(0,0),options);
+            map.openInfoWindow(clickPoint,options);
             TweenLite.to(infoWindowToOpen,0.5,{alpha:1});
                 
         }	 
