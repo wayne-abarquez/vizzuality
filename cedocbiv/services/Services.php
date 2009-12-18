@@ -184,7 +184,7 @@ class Services {
 		//Prepare SQL statement from the query page
 
 		//selects
-		$sql="SELECT nameauthoryearstring, highertaxon,count(u.UnitID) as num_sheets, count(imageURI) as num_images,count(LENGTH(UTMText)>0 OR LENGTH(LatitudeDecimal)>0 ) as num_georef from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID left join BIOCASE_IMAGES I on u.UnitID=I.UnitID left join utmcoords C on u.UTMText=C.utm";
+		$sql="SELECT nameauthoryearstring, highertaxon,count(u.UnitID) as num_sheets, count(imageURI) as num_images,count(LENGTH(UTMText)>0 OR LENGTH(LatitudeDecimal)>0 ) as num_georef from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID left join BIOCASE_IMAGES Im on u.UnitID=Im.UnitID left join utmcoords C on u.UTMText=C.utm";
 
 
 		//create the filter part
@@ -220,6 +220,8 @@ class Services {
 
     	$rs_specimen = array();
     	$res=array();
+
+			
 	
     	$sqlcount="select count(*) as num_records from ($sql)  tot";	
     	//Limit and offset for Mysql!
