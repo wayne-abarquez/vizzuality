@@ -98,4 +98,7 @@ define('HABITAT', "Hábitat: ");
 define('COL', "Collecció: ");
 define('FEN', "Fenologia: ");
 
+//resultado de taxon
+define('VISSUALMAP', "Visualizar mapa");
+
 ?>
