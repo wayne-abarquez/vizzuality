@@ -1,22 +1,5 @@
 {include file="header.tpl"}
 
-<!-- <script type="text/javascript" >
-	$(document).ready(function(){
-	var visibilidad = false;
-	cargarmapa();
-	
-	$(".btn-slide").click(function(){
-
-	  if (!visibilidad){
-	     $("#map").slideDown('Slow',function(){visibilidad=true; })
-	  } else {
-	     $("#map").slideUp('Slow',function(){visibilidad=false; })
-	  }
-	});
-});
-
-</script> -->
-
 <div class="content">
 	<div class="news-body">
 		<div class="navigator">
@@ -44,10 +27,6 @@
 				</div>
 			{/if}		
 		</div>
-		{if $SearchSheetsResults.hascoords}
-  			<div class="Map" id="map"></div>
-    		<div class="slide"><p><a href="#" class="btn-slide">Visualizar mapa</a></p></div>	
-  		{/if}
 	      	
 	  	<div class="containerResult">
 	  		{foreach key=UnitID item=result from=$SearchSheetsResults.datos}
@@ -62,32 +41,5 @@
 	</div> <!-- news-body -->
 	
 </div> <!-- content -->
-
-<!-- 
-<script src="http://maps.google.com/maps?file=api&v=2&key={/literal}{$smarty.const.MAPS_API_KEY}{literal}" type="text/javascript"></script>{/literal}
-
-<script type="text/javascript">
-	function cargarmapa(){
-		//<![CDATA[
-		var map;
-		if (GBrowserIsCompatible()) {
-		map = new GMap2(document.getElementById("map"),{size:new GSize (950,300)});
-		map.setMapType(G_PHYSICAL_MAP);
-		map.addControl(new GSmallMapControl());
-		//map.addControl(new GMapTypeControl());
-		map.setCenter(new GLatLng(39,-3), 4);
-		geoXml = new GGeoXml("{/literal}{$smarty.const.SERVER_URL}sheetresultKml.php{$kmlurl}", function() {
-		if (geoXml.loadedCorrectly()) {
-			geoXml.gotoDefaultViewport(map);
-		}
-	}
-);
-map.addOverlay(geoXml);
-}
-
-//]]>
-}
-</script>
- -->
 
 {include file="footer.tpl"} 
