@@ -39,7 +39,7 @@
 		<div class="tabber">
 			<div class="tabbertab">
 			  	<div id="queryForm" class="buscador"> 
-			    	<form action="taxonresult.php" method="get" name="thisform" id="thisform">
+			    	<form action="sheetresult.php" method="get" name="thisform" id="thisform">
 			    	<h2>{$smarty.const.TITLE_TABTAXON}</h2>
 			    
 			    	<div class="fila"> 
