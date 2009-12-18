@@ -572,7 +572,8 @@ input.rightPaginator:hover{
 }
 
 .containerDetails{
-	height: 500px;
+	min-height: 500px;
+	height: auto;
 	padding-top: 10px;
 }
 
@@ -611,6 +612,11 @@ input.rightPaginator:hover{
 	margin: 0; padding: 0;
 }
 
+.titleGroup{
+	width: 480px;
+	height: 20px;
+}
+
 .titleID{
 	padding-top: 20px;
 	margin-left: 6px;
@@ -627,6 +633,10 @@ input.rightPaginator:hover{
 	text-align: center;
 	padding-left: 4px;
 	padding-right: 4px;
+}
+
+.detailTitleID p{
+	margin: 0; padding: 0;
 }
 
 .resultPliegoContainer a{

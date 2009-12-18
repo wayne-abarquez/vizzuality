@@ -18,7 +18,26 @@
 		{/if}
 		<div class="resultPliegoContainer">
 		{foreach key=UnitID item=result from=$Pliegos.datos}
-			<p><a href="sheetdetail.php?UnitID={$result.UnitID}&db={$smarty.session.db}">{$result.UnitID}</a></p>
+			<p><a href="sheetdetail.php?UnitID={$result.UnitID}&db={$smarty.session.db}">
+				{if $BDSelected eq 'algas'}
+					BCN-Alg {$result.UnitID}
+				{/if}
+				{if $BDSelected eq 'briofitos'}
+					BCN-Brio {$result.UnitID}
+				{/if}
+				{if $BDSelected eq 'cormofitos'}
+					BCN* {$result.UnitID}
+				{/if}
+				{if $BDSelected eq 'carpoteca'}
+					BCN-Carp {$result.UnitID}
+				{/if}
+				{if $BDSelected eq 'hongos'}
+					BCN-Hong {$result.UnitID}
+				{/if}
+				{if $BDSelected eq 'liquenes'}
+					BCN-Lich {$result.UnitID}
+				{/if}
+			</a></p>
 			<p>{$result.TypeStatus}</p>
 			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} ( <!--fecha-->	)</p>
 		{/foreach}
