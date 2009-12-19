@@ -39,7 +39,7 @@
 				{/if}
 			</a></p>
 			<p>{$result.TypeStatus}</p>
-			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} {if $result.photo}<img class="camera" src="/images/camera.png">{/if} {if $result.coords!=''} <img class="icon" src="/images/map.png"> {/if}</p>
+			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} {if $result.photo}<img class="camera" src="images/camera.png">{/if} {if $result.coords!=''} <img class="icon" src="images/map.png"> {/if}</p>
 		{/foreach}
 		</div>
 	</div>
