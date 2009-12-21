@@ -301,7 +301,12 @@ package {
 					
 					addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
 				});
-			map.addEventListener(MapMouseEvent.CLICK,onMapClick);				
+			map.addEventListener(MapMouseEvent.CLICK,onMapClick);	
+			
+			if (dataLoaded && !dataAnalyzed) {
+				dataAnalyzed = true;
+				loadData();
+			}			
 
 		}		
 		private function onMapClick(event:MapMouseEvent):void {
