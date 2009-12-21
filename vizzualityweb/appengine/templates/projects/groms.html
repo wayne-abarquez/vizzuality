@@ -1,0 +1,27 @@
+{% extends "../project_detail_base.html" %}
+
+{% block page_title %}Works · GBIF-Global Registry of Migratory Species{% endblock %}
+{% block big_title %}Visualizing Range Maps for the Global Registry of Migratory Species{% endblock %}
+
+{% block description %}
+<p class="titleWork">GROMS Range Maps visulization</p>
+<p class="clientName">GBIF-GROMS</p>
+<p class="description"><span class="title">Challenge</span>
+
+The Global Registry of Migratory Species summarize Knowledge about Migratory Species for Conservation. The old database was developed in Access and had the geospatial information attached as a set of shapefiles. In order to provide an engaging visualization of the data we first had to transform the old system with a new system. On interaction we wanted to provide a useful taxonomic browser and let users compare multiple species ranges at the same time.
+
+</p>
+ <p class="description"><span class="title">Solution</span>
+	
+All data was moved to a Postgis database and made public using Geoserver and a set of services for handling metadata. By mixing together data from GBIF, Google Maps and Flickr we developed an application to help people discover the richness of data behind the GROMS project.
+
+In order to provide quick tiles for the maps we needed to cache most of them. But considering that those tiles would had to be presented in different color scales, depending on how many other species are visualize at the same time, we had to developed ways to dynamically color those tiles on the client. Using Flash allowed us to do those pixel manipulation on the client and left the server side scalable without complicate code.
+
+<p class="projectLink"><a href="http://groms.gbif.org" target= "blank_">View online &raquo;</a></p>
+{% endblock %}
+
+{% block pictures %}
+<img src="/projects_media/groms/1.png" />
+<img src="/projects_media/groms/2.png" />
+<img src="/projects_media/groms/3.png" />
+{% endblock %}
