@@ -89,7 +89,7 @@ package com.vizzuality.markers
 	                    addChild(tf);
 	    			}
                     
-                    var percent:Sprite = new Sprite();
+/*                     var percent:Sprite = new Sprite();
 		            percent.graphics.beginFill(0xff6600,1);
 		            percent.graphics.drawCircle(40,28,7);
 		            percent.graphics.endFill();
@@ -116,7 +116,7 @@ package com.vizzuality.markers
 	                    tf1.y = 21;
 	                    percent.addChild(tf1);
 	                    addChild(percent);
-	                }
+	                } */
                     
                    
                     var mainNameSprite: Sprite = new Sprite();
