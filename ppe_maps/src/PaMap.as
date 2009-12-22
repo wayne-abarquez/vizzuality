@@ -35,6 +35,7 @@ package {
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
+	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -54,6 +55,7 @@ package {
 		private var panoramioMarkers:Dictionary = new Dictionary(true);
 		private var imageDict:Dictionary = new Dictionary(true);
 		public var picturesInfoWindows:Dictionary = new Dictionary(true);	
+		private var mamufas: Sprite;
 
 		private var imgC:ImageCarrousel;
 		
@@ -123,7 +125,6 @@ package {
 			square.graphics.drawRect(0,0,960, stage.stageHeight);
 			square.graphics.endFill();
 			addChild(square);
-			//addChildAt(square,0);
 			
 			//poisition it
 			positionElements();	
@@ -140,7 +141,15 @@ package {
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(stage.stageWidth, stage.stageHeight-46));
-			addChildAt(map,1); 			
+			addChildAt(map,1);
+			
+			mamufas = new Sprite();
+			mamufas.x = 0;
+			mamufas.y = 3;
+			mamufas.graphics.beginFill(0x000000,0.5);
+			mamufas.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight-46);
+			mamufas.graphics.endFill();
+			addChild(mamufas);	
 				
 
 			//get the PA data
@@ -218,6 +227,7 @@ package {
 			
 			//retrieve picture from panoramio
 			getPanoramioPictures();
+			mamufas.visible = false;
 		}		
 		
 		private function preinit(ev:Event):void {
@@ -332,7 +342,9 @@ package {
 						} catch (er:Error) {} 
 						removeChild(loadingSprite); 
 						});
-				dsLoader.load(new URLRequest(domain + "/api/sites_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat()));
+						
+				dsLoader.load(new URLRequest(domain + "/api/site_atts_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat()));
+				/* dsLoader.load(new URLRequest(domain + "/api/sites_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat())); */
 				/* TweenLite.delayedCall(3,onGetPaByCoordsResult,[{"name": "area", "point": event.latLng}]); */
 				
 			}
@@ -487,7 +499,7 @@ package {
 			
 			if(imgC!=null) {
 				imgC.x=square.x;
-				imgC.y= stage.stageHeight-imgC.height-5;
+				imgC.y= stage.stageHeight-275;
 			}
 		}
 		
@@ -503,7 +515,7 @@ package {
 
 			if ((res as Array).length != 0) {
 				removeChild(loadingSprite);
-				navigateToURL(new URLRequest(domain + '/sites/' + res[0].id));
+				navigateToURL(new URLRequest(domain + '/sites/' + res[0].id),"_self");
 			}
 
  			

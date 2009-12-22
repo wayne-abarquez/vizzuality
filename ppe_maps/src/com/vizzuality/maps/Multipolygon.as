@@ -61,12 +61,15 @@ package com.vizzuality.maps {
     * @param geojsonMultiPolygon A geojson object
     * @param options PolygonOptions 
     */  
-    public function fromGeojsonMultiPolygon(
-        geojsonMultiPolygon:Object, options:PolygonOptions = null):void {
+    
+
+    public function fromGeojsonMultiPolygon(geojsonMultiPolygon:Object, options:PolygonOptions = null):void {
+        
         
       var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
+
         	
-      //EACH POLYGON
+       //EACH POLYGON
       for each(var geojsonPolygon:Array in geojsonMultiPolygon) {
         //EACH LINE
         var encodedLines:Array = [];
@@ -80,8 +83,68 @@ package com.vizzuality.maps {
           encodedLines.push(new EncodedPolylineData(verticesEncoded.encodedPoints, 2, verticesEncoded.encodedLevels, 18));
         }
         addPolygonFromEncoded(encodedLines,options);
-      }
+      } 
     }
+    
+    
+    
+    /*private var encodedLines:Array = [];
+    private var vertices: Array = [];
+    private var i: Number = 0;
+    private var j: Number = 0;
+    private var k: Number = 0;
+    private var _geojsonMultiPolygon: Object = new Object();
+    private var _options: PolygonOptions = new PolygonOptions();
+    private var firstTime:Boolean = true; */
+    
+/*     public function fromGeojsonMultiPolygon(geojsonMultiPolygon:Object, options:PolygonOptions = null):void {
+ */        
+/*         if (firstTime) {
+        	this.addEventListener(Event.ENTER_FRAME,onEnterFrame);
+        	_geojsonMultiPolygon = geojsonMultiPolygon;
+        	_options = options;
+        	firstTime = false;
+        }
+        
+      	var p:PolylineEncoder = new PolylineEncoder(18,2,0.00001,true);
+		for (i; i<(geojsonMultiPolygon as Array).length; i++) {
+			for (j; j<((geojsonMultiPolygon[i] as Array)).length; j++) {
+				for (k; k<(geojsonMultiPolygon[i][j] as Array).length;k++) {
+					vertices.push(new LatLng((geojsonMultiPolygon[i][j] as Array)[1] as Number, (geojsonMultiPolygon[i][j] as Array)[0] as Number));
+				}
+			    var verticesEncoded:Object = p.dpEncode(vertices);
+          		encodedLines.push(new EncodedPolylineData(verticesEncoded.encodedPoints, 2, verticesEncoded.encodedLevels, 18));
+          		vertices = [];
+			}
+			addPolygonFromEncoded(encodedLines,options);
+			encodedLines = [];
+		}     */    
+        
+        	
+/*        //EACH POLYGON
+      for each(var geojsonPolygon:Array in geojsonMultiPolygon) {
+        //EACH LINE
+        var encodedLines:Array = [];
+        for each(var geojsonPoints:Array in geojsonPolygon) {
+          var vertices:Array = [];
+          //EACH VERTICE
+          for each (var geojsonPoint:Array in geojsonPoints) {
+            vertices.push(new LatLng(geojsonPoint[1], geojsonPoint[0]));
+          }
+          var verticesEncoded:Object = p.dpEncode(vertices);
+          encodedLines.push(new EncodedPolylineData(verticesEncoded.encodedPoints, 2, verticesEncoded.encodedLevels, 18));
+        }
+        addPolygonFromEncoded(encodedLines,options);
+      } 
+    }
+    
+    
+    private function onEnterFrame(ev:Event):void {
+    	
+    } */
+    
+    
+    
 
     /** 
     * Change polygon options on all constituent polygons
