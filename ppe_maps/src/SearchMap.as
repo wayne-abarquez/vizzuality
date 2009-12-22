@@ -140,9 +140,11 @@ package {
                 markerData.coordenates = areaCoords;
                 markerData.area = areaJson.name;
                 //TODO: CONNECT THIS WITH THE JSON SERVICE
-                markerData.sites = 7;
+                markerData.sites = areaJson.pois;
                 markerData.isNeeded = true;	
                 markerData.imgURL = areaJson.image;
+                markerData.paId = areaJson.id;
+                
                 				
 				var m:SearchMarker = new SearchMarker(areaCoords,markerData.imgURL,markerData.sites,markerData.isNeeded);
 				m.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
@@ -165,7 +167,7 @@ package {
  			var m:Object = iw[e.target];
  			
  			infoWindowToOpen = new SearchInfowindow(m);
- 			infoWindowToOpen.targetUrl="/sites/366165";
+ 			infoWindowToOpen.targetUrl="/sites/"+m.paId;
  			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
             var options:InfoWindowOptions = new InfoWindowOptions({
               customContent: infoWindowToOpen,
