@@ -1,4 +1,5 @@
 package {
+	import com.adobe.serialization.json.JSON;
 	import com.google.maps.Alpha;
 	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
@@ -14,7 +15,6 @@ package {
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.*;
 	import com.vizzuality.*;
-	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.markers.SearchInfowindow;
 	import com.vizzuality.markers.SearchMarker;
 	
@@ -125,30 +125,26 @@ package {
 			
 			//parse the Flashvar
 			var varsdata:String = this.root.loaderInfo.parameters.pas;
-			var pas:Array = varsdata.split("|");
+			var paJson:Object = JSON.decode(varsdata);
 			
 			var areas:Array =[];
 			var bounds:LatLngBounds = new LatLngBounds();
-			for each(var areaJson:Object in pas) {
-				var area:Multipolygon = new Multipolygon();
-				area.data.name=areaJson.name;
-				area.fromGeojsonMultiPolygon(areaJson.geojson.coordinates,polOpt);
-				areas.push(area);
-				//area.addToMap(map);
-				bounds.union(area.getLatLngBounds());
+			for each(var areaJson:Object in paJson as Array) {
+				var areaCoords:LatLng = new LatLng(areaJson.y,areaJson.x);
+				bounds.extend(areaCoords);
 				var markerOpt:MarkerOptions=new MarkerOptions({
 				
 				});
 				
                 var markerData: Object = new Object();	
-                markerData.coordenates = area.getLatLngBounds().getCenter();
-                markerData.area = area.data.name;
+                markerData.coordenates = areaCoords;
+                markerData.area = areaJson.name;
                 //TODO: CONNECT THIS WITH THE JSON SERVICE
                 markerData.sites = 7;
                 markerData.isNeeded = true;	
-                markerData.imgURL = "/images/thumbnails/thumb01.jpg";
+                markerData.imgURL = areaJson.image;
                 				
-				var m:SearchMarker = new SearchMarker(area.getLatLngBounds().getCenter(),markerData.imgURL,markerData.sites,markerData.isNeeded);
+				var m:SearchMarker = new SearchMarker(areaCoords,markerData.imgURL,markerData.sites,markerData.isNeeded);
 				m.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
                         if(!rollingOver) {
 	                        openInfoWindow(e);     
