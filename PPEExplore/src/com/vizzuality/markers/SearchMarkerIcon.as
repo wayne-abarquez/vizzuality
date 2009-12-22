@@ -209,19 +209,27 @@ package com.vizzuality.markers{
         }
         
         private function onMouseOver(event:MouseEvent):void {
- 			this.addChild(overSprite);		
+ 			this.addChild(overSprite);	
+ 			this.removeChild(imageLoader);
+ 			imageLoader.x = 5;
+  			imageLoader.y = 0;
+ 			overSprite.addChild(imageLoader);	
       	
         }
   		
-  		private function onMouseOut(event:MouseEvent ) {
+  		private function onMouseOut(event:MouseEvent ):void {
+ 			overSprite.removeChild(imageLoader);
+ 			this.addChild(imageLoader);	
  			this.removeChild(overSprite);		  			
+ 			imageLoader.x = -20;
+  			imageLoader.y = -20;
   		}
   		
   		
   		private function displayImg(e:Event):void{
-  			var loader:Loader = Loader(e.target.loader);
+/*   			var loader:Loader = Loader(e.target.loader);
             var original:Bitmap = Bitmap(loader.content);
-            var duplicate:Bitmap = new Bitmap(original.bitmapData.clone());
+            var duplicate:Bitmap = new Bitmap(original.bitmapData.clone()); */
   			
   			
   			
@@ -229,22 +237,22 @@ package com.vizzuality.markers{
   			imageMask.graphics.drawCircle(15,8,25);
   			imageMask.graphics.endFill();
   			
-  			imageMask2.graphics.beginFill(0x330000,1);
+/*   			imageMask2.graphics.beginFill(0x330000,1);
   			imageMask2.graphics.drawCircle(15,8,25);
   			imageMask2.graphics.endFill();
   			imageMask2.x=25;
-  			imageMask2.y=20;
+  			imageMask2.y=20; */
   			
-  			original.x = -20;
-  			original.y = -20;
-  			duplicate.x = 5;
-  			duplicate.y = 0;
+  			imageLoader.x = -20;
+  			imageLoader.y = -20;
+/*   			duplicate.x = 5;
+  			duplicate.y = 0; */
   			addChild(imageMask);
-  			overSprite.addChild(imageMask2);
-  			original.mask = imageMask; 
-  			duplicate.mask = imageMask2;
-  			addChild(original);
-  			overSprite.addChild(duplicate);
+  			//overSprite.addChild(imageMask2);
+  			imageLoader.mask = imageMask; 
+  			//duplicate.mask = imageMask2;
+  			addChild(imageLoader);
+  			//overSprite.addChild(duplicate);
   			
   		}
   		
