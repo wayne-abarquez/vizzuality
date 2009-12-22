@@ -55,13 +55,7 @@
 			    	trace("error");
 			    });
 			    loader.load(request);				
-			}
-			
-			domain=root.loaderInfo.parameters.domain;
-			if (domain=='') {
-				domain = 'http://localhost:3000';
-			}
-			
+			}	
 		}
 		
 		private function onMapPreinit():void {
@@ -87,6 +81,12 @@
 		
 		private function onMapReady():void {
 			//initialize controls
+			
+			domain=root.loaderInfo.parameters.domain;
+			if (domain==null) {
+				domain = 'http://ppe.tinypla.net';
+			}
+			
 			map.addControl(new ZoomControl());
 			
 			polygonsPane = map.getPaneManager().createPane();
