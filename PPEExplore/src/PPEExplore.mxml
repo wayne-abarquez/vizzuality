@@ -184,7 +184,11 @@
 					latlng:new LatLng(o.centre[1],o.centre[0])
 					
 				};
-				mark.image=domain + o.image;
+				mark.image= o.image;
+				mark.name=o.name;
+				mark.designation=o.desig_eng;
+				mark.id=o.id;
+				mark.sites=0;
 				markers.push(mark);
 				
 				
