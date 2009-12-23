@@ -139,10 +139,11 @@
 			<div class="titleGroup"></div>
 			{if $Images}
 			<div>
-			<p class="span-1 detailInfo">{$smarty.const.IMG}</p>
+			<p class="span-1 detailInfo"><b>{$smarty.const.IMG}</b></p>
 			{foreach key=UnitID item=Image from=$Images}
-				<div class="infoLeft"><p class="detailInfo"><a href="{$Image.ImageURI}">{$Image.ImageURI}</a></p></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$Image.ImageURI}"><img src="{$Image.ImageURI|replace:'.htm':'.jpg'}" /></a><br>
 			{/foreach}
+			Es prohibeix l'ús, comercial o científic, d'aquestes imatges sense sol·licitar permís explícit al Director del CeDocBiV i citar-ne sempre el seu origen.
 			</div>
 			{/if}
 		</div>
