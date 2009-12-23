@@ -42,6 +42,14 @@ $smarty->assign('datesearchtype', $datesearchtype);
 
 $resultados = $services->searchSheets($nameauthoryearstring, $highertaxon,$genus,$localitytext, $countryname, $utmformula, $agenttext, $UnitID, $datetext,$datesearchtype,$offset);
 
+if($resultados['singleId']) {
+	header('Location: /sheetdetail.php?UnitID='.$resultados['singleId'].'&db='.$_REQUEST['db']);
+}
+
+if($resultados['singleName']) {
+	header('Location: /taxondetail.php?nameauthoryearstring='.urlencode($resultados['singleName']).'&db='.$_REQUEST['db']);
+}
+
 $smarty->assign('SearchSheetsResults',$resultados);
 $smarty->assign('families',$services->getAllFamilies());
 $smarty->assign('countries',$services->getAllCountries());
