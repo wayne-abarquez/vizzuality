@@ -254,6 +254,8 @@ class Services {
             $res['count'] =0;  
             $res['hascoords'] =false;  
     		$res['datos']=array();
+			$res['singleId']='';
+			$res['singleName']='';
     		return $res;
         }		
 
@@ -264,10 +266,7 @@ class Services {
         
         //$hasCoords=false;
     	$result = mysql_query($sql, $this->conn);		
-    	while ($row = mysql_fetch_assoc($result)){
-            /*if($row['coords']!="" || $row['LatitudeDecimal']!="") {
-                $hasCoords=true;
-            } */   	    
+    	while ($row = mysql_fetch_assoc($result)){	    
     		$rs_specimen[] = $row; 
     	}
     	//$res['hascoords'] =$hasCoords;
@@ -276,13 +275,13 @@ class Services {
 		if(count($res['datos'])==1 && strpos($res['datos'][0]['unitIds'],",")===false ) {
 			$res['singleId']=$res['datos'][0]['unitIds'];
 		} else {
-			$res['singleId']=null;
+			$res['singleId']='';
 		}
 		
 		if(count($res['datos'])==1) {
 			$res['singleName']=$res['datos'][0]['nameauthoryearstring'];
 		} else {
-			$res['singleName']=null;
+			$res['singleName']='';
 		}		
     	
 	

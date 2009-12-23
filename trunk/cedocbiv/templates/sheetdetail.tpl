@@ -39,7 +39,7 @@
 		
 		<div class="containerDetails">
 			{if ($Units.LatitudeDecimal != '' || $Units.LongitudeDecimal != '') || $Units.coords != ''}
-				<div class="MapResult" id="map"></div>
+				<div class="MapResult" id="map"></div><a href="{$smarty.const.SERVER_URL}sheetdetailKml.php?UnitID={$Ident[0].UnitID}">Ver en Google Earth</a>
 			{/if}
 			{if $Units.created_when}
 			<div class="span-1 infoContainer">
