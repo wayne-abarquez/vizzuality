@@ -14,7 +14,7 @@
 		
 		<div class="containerDetails">
     	{if $hasGeo}
-			<div class="MapResultTaxon" id="map"></div>
+			<div class="MapResultTaxon" id="map"></div><a href="{$smarty.const.SERVER_URL}taxondetailKml.php?nameauthoryearstring={$smarty.request.nameauthoryearstring|urlencode}">Ver en Google Earth</a>
 		{/if}
 		<div class="resultPliegoContainer">
 		{foreach key=UnitID item=result from=$Pliegos.datos}
