@@ -244,6 +244,7 @@ class Services {
 			
 	
     	$sqlcount="select count(*) as num_records from ($sql)  tot";	
+
     	//Limit and offset for Mysql!
     	$result = mysql_query($sqlcount, $this->conn);
     	$numrec = mysql_fetch_assoc($result);
