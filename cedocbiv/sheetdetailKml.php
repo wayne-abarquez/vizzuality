@@ -12,9 +12,9 @@ $services = new Services;
 $UnitID = $_REQUEST['UnitID'];
 
 $data =$services->getUnitCoordinateDetailsByUnitID($UnitID);
-$data['LocalityText']= htmlentities(utf8_encode($data['LocalityText']));
-$data['BiotopeText']= htmlentities(utf8_encode($data['BiotopeText']));
-$data['NameAuthorYearString']= htmlentities(utf8_encode($data['NameAuthorYearString']));
+$data['LocalityText']= htmlspecialchars(utf8_encode($data['LocalityText']));
+$data['BiotopeText']= htmlspecialchars(utf8_encode($data['BiotopeText']));
+$data['NameAuthorYearString']= htmlspecialchars(utf8_encode($data['NameAuthorYearString']));
 
 $smarty->assign('data',$data);
 
