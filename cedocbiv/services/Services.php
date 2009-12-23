@@ -204,7 +204,7 @@ class Services {
 		//Prepare SQL statement from the query page
 
 		//selects
-		$sql="SELECT nameauthoryearstring, highertaxon,count(u.UnitID) as num_sheets, count(imageURI) as num_images,count(LENGTH(UTMText)>0 OR LENGTH(LatitudeDecimal)>0 ) as num_georef from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID left join BIOCASE_IMAGES Im on u.UnitID=Im.UnitID left join utmcoords C on u.UTMText=C.utm";
+		$sql="SELECT nameauthoryearstring, highertaxon,count(u.UnitID) as num_sheets, GROUP_CONCAT(DISTINCT u.UnitID SEPARATOR ',') as unitIds, count(imageURI) as num_images,count(LENGTH(UTMText)>0 OR LENGTH(LatitudeDecimal)>0 ) as num_georef from BIOCASE_UNITS u left join BIOCASE_IDENTIFIC i on u.UnitID = i.UnitID left join BIOCASE_IMAGES Im on u.UnitID=Im.UnitID left join utmcoords C on u.UTMText=C.utm";
 
 
 		//create the filter part
@@ -272,6 +272,18 @@ class Services {
     	}
     	//$res['hascoords'] =$hasCoords;
     	$res['datos']=$rs_specimen;
+
+		if(count($res['datos'])==1 && strpos($res['datos'][0]['unitIds'],",")===false ) {
+			$res['singleId']=$res['datos'][0]['unitIds'];
+		} else {
+			$res['singleId']=null;
+		}
+		
+		if(count($res['datos'])==1) {
+			$res['singleName']=$res['datos'][0]['nameauthoryearstring'];
+		} else {
+			$res['singleName']=null;
+		}		
     	
 	
     	return $res;

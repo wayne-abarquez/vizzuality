@@ -108,8 +108,8 @@
 			
 			{if $Units.LatitudeDecimal}
 			<div class="span-1 infoContainer">
-				<div class="span-1 last infoLeft"><p class="detailInfo"><b>Lat/Lon (decimal): </b></p></div>
-				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.LatitudeDecimal}/{$Units.LongitudeDecimal}</p></div>
+				<div class="span-1 last infoLeft"><p class="detailInfo"><b>Lat/Lon: </b></p></div>
+				<div class="span-1 last infoRight"><p class="detailInfo">{$Units.LatitudeDecimal} / {$Units.LongitudeDecimal}</p></div>
 			</div>
 			{/if}			
 						
