@@ -14,9 +14,9 @@ $nameauthoryearstring = $_REQUEST['nameauthoryearstring'];
 $data =$services->getUnitCoordinateDetailsByTaxon($nameauthoryearstring);
 
 foreach($data as &$res) {
-    $res['LocalityText']= utf8_encode($res['LocalityText']);
-    $res['BiotopeText']= utf8_encode($res['BiotopeText']);
-    $res['NameAuthorYearString']= utf8_encode($res['NameAuthorYearString']);
+    $res['LocalityText']= htmlentities(utf8_encode($res['LocalityText']));
+    $res['BiotopeText']= htmlentities(utf8_encode($res['BiotopeText']));
+    $res['NameAuthorYearString']= htmlentities(utf8_encode($res['NameAuthorYearString']));
 }
 
 $smarty->assign('data',$data);
