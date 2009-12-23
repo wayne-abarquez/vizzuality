@@ -20,14 +20,14 @@ define('DB_NAME', $_SESSION['db']);
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'pepe');
+define('DB_PASSWORD', '');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
 
-define('MAPS_API_KEY', 'ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQRy8YepOF23kdRkT302wfDKzL13hSzHs7Y0PSzB-4OSF1KBovKXXo9xQ');
+define('MAPS_API_KEY', 'ABQIAAAAtDJGVn6RztUmxjnX5hMzjRStOuMBmHmR5ElafcCO2SePBXcFUxR-22Bxm_LIdksrEJtJh-M7LqJycw');
 
-define('SERVER_URL', 'http://79.125.6.201/cedocbiv/temp/');
+define('SERVER_URL', 'http://herbaribcn.ub.es/');
 
 //Internatilization
 require_once("language_".$_SESSION['lang'].".php");
