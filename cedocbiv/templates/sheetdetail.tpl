@@ -172,7 +172,7 @@
 		{/literal}{if $isUtm eq false}{literal}
 		    map.setZoom(map.getZoom()-6);
 		{/literal}{else}{literal}
-	    	map.setZoom(map.getZoom()-1);
+	    	map.setZoom(map.getZoom()-3);
 		{/literal}{/if}{literal}
 	}
 		
