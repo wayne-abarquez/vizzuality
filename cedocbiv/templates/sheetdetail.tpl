@@ -136,12 +136,12 @@
 			</div>
 			{/if}
 
-			<div class="span-4 titleGroup"></div>
+			<div class="titleGroup"></div>
 			{if $Images}
 			<div>
-			<p class="detailInfo">{$smarty.const.IMG}</p>
-			{foreach key=UnitID item=Image from=$Images.imagenes}
-				<a href="{$Image.ImageURI}">{$Image.ImageURI}</a><br />
+			<p class="span-1 detailInfo">{$smarty.const.IMG}</p>
+			{foreach key=UnitID item=Image from=$Images}
+				<div class="infoLeft"><p class="detailInfo"><a href="{$Image.ImageURI}">{$Image.ImageURI}</a></p></div>
 			{/foreach}
 			</div>
 			{/if}
