@@ -1,7 +1,16 @@
 {include file="header.tpl"}
 
 <div class="content">
-	<div class="titleIndexDetail"><p>{$BDSelected}</p></div>
+	<div class="span-1 last breadCrumb">
+		<ul>
+			<li class="arrowList"><a href="index.php">Bases de dades</a></li>
+			<li class="arrowList"><a href="query.php?db={$BDSelected}">{$BDSelected}</a></li>
+			<li>{$smarty.request.submit}</li>
+		</ul>
+	</div>
+	<div class="last paginator noresults">
+	<p class="torna"><input value="Volver" type="button" class="buttonSearch"/ onClick="javascript:window.history.back();"></p>
+	</div>
 	
 	<div class="news-body">
 		
@@ -39,7 +48,7 @@
 		
 		<div class="containerDetails">
 			{if ($Units.LatitudeDecimal != '' || $Units.LongitudeDecimal != '') || $Units.coords != ''}
-				<div class="MapResult" id="map"></div><a href="{$smarty.const.SERVER_URL}sheetdetailKml.php?UnitID={$Ident[0].UnitID}">Ver en Google Earth</a>
+				<div class="MapResult" id="map"></div><a class="googleEarth" href="{$smarty.const.SERVER_URL}sheetdetailKml.php?UnitID={$Ident[0].UnitID}">Ver en Google Earth</a>
 			{/if}
 			{if $Units.created_when}
 			<div class="span-1 infoContainer">

@@ -9,7 +9,7 @@
 	     <div class="span-1 last boxBD noborder" onmouseover="this.className='span-1 last boxBD activo noborder'" onmouseout="this.className='span-1 last boxBD inactivo noborder'" onclick="location.href='query.php?db=algas';">
 			 <div class="imageLinkAlgas"></div>
 	     	 <a class="link_bd" href="query.php?db=algas">{$smarty.const.BD1}</a>
-	     	 <p class="subheader"> {$smarty.const.APROX} <b>99%</b> {$smarty.const.INFOR}</p>
+	     	 <p class="subheader"> {$smarty.const.APROX} <b>{$smarty.const.APROXALGAS}</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
 	     	 	<div class="span-1 last boxLeft">
 	     	 		<p class="numeroReg">{$NumregistrosAlgas}</p>
@@ -25,7 +25,7 @@
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=briofitos';">
 			 <div class="imageLinkBriofitos"></div>
 	 	 	 <a class="link_bd" href="query.php?db=briofitos">{$smarty.const.BD2}</a>
-	 	     <p class="subheader2"> {$smarty.const.APROX} <b>3%</b> {$smarty.const.INFOR}</p>
+	 	     <p class="subheader2"> {$smarty.const.APROX} <b>{$smarty.const.APROXBRIOFITOS}</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
 	     	 	<div class="span-1 last boxLeft">
 	     	 		<p class="numeroReg">{$NumregistrosBriofitos}</p>
@@ -41,7 +41,7 @@
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=cormofitos';">
 			 <div class="imageLinkCormofitos"></div>
 	 	  	 <a class="link_bd" href="query.php?db=cormofitos">{$smarty.const.BD3}</a>
-	 	     <p class="subheader2"> {$smarty.const.APROX} <b>5%</b> {$smarty.const.INFOR}</p>
+	 	     <p class="subheader2"> {$smarty.const.APROX} <b>{$smarty.const.APROXCORMOFITOS}</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
 	     	 	<div class="span-1 last boxLeft">
 	     	 		<p class="numeroReg">{$NumregistrosCormofitos}</p>
@@ -57,7 +57,7 @@
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=carpoteca';">
 			 <div class="imageLinkSemillas"></div>
 	 	  	 <a class="link_bd" href="query.php?db=carpoteca">{$smarty.const.BD4}</a>
-	 	  	 <p class="subheader"> {$smarty.const.APROX} <b>98%</b> {$smarty.const.INFOR}</p>
+	 	  	 <p class="subheader"> {$smarty.const.APROX} <b>{$smarty.const.APROXFRUITSLLAV}</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
 	     	 	<div class="span-1 last boxLeft">
 	     	 		<p class="numeroReg">{$NumregistrosCarpoteca}</p>
@@ -73,7 +73,7 @@
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=hongos';">
 			 <div class="imageLinkHongos"></div>
 	 	  	 <a class="link_bd" href="query.php?db=hongos">{$smarty.const.BD5}</a>
-	 	  	 <p class="subheader2"> {$smarty.const.APROX} <b>1%</b> {$smarty.const.INFOR}</p>
+	 	  	 <p class="subheader2"> {$smarty.const.APROX} <b>{$smarty.const.APROXHONGOS}</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
 	     	 	<div class="span-1 last boxLeft">
 	     	 		<p class="numeroReg">{$NumregistrosHongos}</p>
@@ -89,7 +89,7 @@
 	     <div class="span-1 last boxBD" onmouseover="this.className='span-1 last boxBD activo'" onmouseout="this.className='span-1 last boxBD inactivo'" onclick="location.href='query.php?db=liquenes';">
 			 <div class="imageLinkLiquenes"></div>
 	 	 	 <a class="link_bd" href="query.php?db=liquenes">{$smarty.const.BD6}</a>
-	 	 	 <p class="subheader2"> {$smarty.const.APROX} <b>1%</b> {$smarty.const.INFOR}</p>
+	 	 	 <p class="subheader2"> {$smarty.const.APROX} <b>{$smarty.const.APROXLIQUENES}</b> {$smarty.const.INFOR}</p>
 	 	     <div class="containerReg">
 	     	 	<div class="span-1 last boxLeft">
 	     	 		<p class="numeroReg">{$NumregistrosLiquenes}</p>

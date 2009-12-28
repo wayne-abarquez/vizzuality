@@ -117,13 +117,26 @@ body{
 }
 
 .titleIndex{
-	font-size: 25px;
 	color: #666666;
+	font-size: 21px;
 	margin: 0; padding: 0;
 	margin-left: 20px;
 	padding-top: 10px;
 	font-weight: bold;
 	height: 62px;
+}
+
+.titleIndex ul{
+	margin: 0; padding: 0;
+}
+
+.titleIndex li{
+	text-decoration: none;
+	list-style: none;
+	display: inline;
+	color: #666666;
+	font-size: 21px;
+	font-weight: bold;	
 }
 
 .titleIndexDetail{
@@ -346,6 +359,15 @@ body{
 	margin-right: 2px;
 }
 
+.arrowList a{
+	text-decoration: none;
+	color: #999999;
+}
+
+.arrowList a:hover{
+	color: green;
+}
+
 .paginator{
 	float: right;
 	margin: 0; padding: 0;
@@ -415,6 +437,7 @@ input.rightPaginator:hover{
 .result{
 	height: 92px;
 	border-bottom: 1px solid #f1f1f1;
+	width: 800px;
 }
 
 .resultTitle{
@@ -430,6 +453,7 @@ input.rightPaginator:hover{
 	margin: 0; padding: 0;
 	margin-left: 19px;
 	text-decoration: none;
+	width: 800px;
 }
 
 .resultTaxon{
@@ -494,9 +518,15 @@ input.rightPaginator:hover{
 
 /* query */
 
+.TextBD{
+	width: 950px;
+	float: left;
+}
+
 .info{
 	margin: 0; padding: 0;
 	margin-left: 20px;
+	margin-bottom: 10px;
 	color: green;
 }
 
@@ -576,6 +606,14 @@ input.rightPaginator:hover{
 	margin-top: -76px;
 }
 
+.googleEarth{
+	text-decoration: none;
+	float: right;
+	margin-right: 10px;
+	color: green; 
+	font-size: 13px;
+}
+
 .containerDetails{
 	min-height: 500px;
 	height: auto;
@@ -623,8 +661,8 @@ input.rightPaginator:hover{
 }
 
 .titleID{
-	padding-top: 20px;
-	margin-left: 6px;
+	padding-top: 50px;
+	margin-left: 2px;
 }
 
 .detailTitleID{
@@ -666,7 +704,7 @@ input.rightPaginator:hover{
 .detailTitleTaxon{
 	margin: 0; padding: 0;
 	margin-left: 19px;
-	background-color: #333333;
+	background-color: #999999;
 	height: 90px;
 }
 
@@ -708,10 +746,9 @@ input.rightPaginator:hover{
 .torna{
 	color: #99cc99;
 	margin: 0; padding: 0;
-	font-size: 21px;
 	font-weight: bold;	
-	margin-right: 10px;
-	padding-top: 10px;
+	margin-top: 12px;
+	font-size: 14px;
 }
 
 .tornaLink{
