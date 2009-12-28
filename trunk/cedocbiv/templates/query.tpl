@@ -5,8 +5,19 @@
 {/literal}
 
 <div class="content">
+	<div class="span-1 last breadCrumb">
+		<ul>
+			<li class="arrowList"><a href="index.php">Bases de dades</a></li>
+			<li>{$BDSelected}</li>
+		</ul>
+	</div>
+	<div class="last paginator noresults">
+	<p class="torna"><input value="Volver" type="button" class="buttonSearch"/ onClick="javascript:window.history.back();"></p>
+	</div>
 	<div class="news-body">
-		<div class="titleIndex"><p>{$BDSelected}</p></div>
+		<div class="titleIndex">
+
+		</div>
 		<div class="TextBD">
 		{if $BDSelected eq "algas"} 
 		<p class="texto_intro"> {$smarty.const.INTRO_TEXTBD1} <a href="mailto:cedocbiv@pcb.ub.es">{$smarty.const.INTRO_TEXTCONTACT}</a> {$smarty.const.INTRO_TEXTCONTACTE}</p>
@@ -21,7 +32,7 @@
 		{/if}
 		
 		{if $BDSelected eq "carpoteca"} 
-		<p class="texto_intro"> {$smarty.const.INTRO_TEXTBD4} <a href="http://www.ub.es/cedocbiv/indexcar.htm">{$smarty.const.INTRO_TEXTHERBARI}</a>
+		<p class="texto_intro"> {$smarty.const.INTRO_TEXTBD4} <a href="http://herbaribcn.ub.es/herbvirt/carpoteca/indexca.htm">{$smarty.const.INTRO_TEXTHERBARI}</a>
 		</p>
 		{/if}
 		
@@ -108,7 +119,9 @@
 				  			<input name="db" type="hidden" value="{$BDSelected}">
 			    		</div>
 			    	</div>
-					<div class="buttonContainer"><input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit" class="buttonSearch"/></div>
+					<div class="buttonContainer"><input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit" class="buttonSearch"/>
+						<input value="Volver" type="button" class="buttonSearch"/ onclick="location.href='index.php'">
+					</div>
 			    	</form>
 		  	  	</div>
 			

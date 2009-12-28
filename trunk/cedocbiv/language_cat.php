@@ -26,6 +26,14 @@ define('BD5', "Fongs");
 define('BD6', "Líquens");
 
 define('APROX', "aprox.");
+
+define('APROXALGAS', "99%");
+define('APROXBRIOFITOS', "3%");
+define('APROXCORMOFITOS', "5%");
+define('APROXFRUITSLLAV', "98%");
+define('APROXHONGOS', "1%");
+define('APROXLIQUENES', "1%");
+
 define('INFOR', "informatitzat");
 define('REG', "registres");
 define('IMG', "imatges");
@@ -99,6 +107,5 @@ define('COL', "Collecció");
 define('FEN', "Fenologia");
 
 //resultado de taxon
-define('VISSUALMAP', "Visualizar mapa");
-
+define('VEREN', "Ver en");
 ?>
