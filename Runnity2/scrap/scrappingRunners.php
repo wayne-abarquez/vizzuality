@@ -53,7 +53,7 @@ foreach ($provinceslist as $key => $value) {
 			$ca['email']=utf8_encode(trim($td->find('a',1)->plaintext));
 			//echo(trim(substr($td->plaintext,0,10))."\n");
 			$tmp=explode("/",trim(substr($td->plaintext,0,10)));
-			$ca['fecha'] = "2009-".$tmp[1]."-".$tmp[0];
+			$ca['fecha'] = "2010-".$tmp[1]."-".$tmp[0];
 			$ca['url'] = "http://www.runners.es/Calendario/". $ca['url'];
 			$ca['description_not_parsed']=utf8_encode($td->plaintext);
 
@@ -86,7 +86,7 @@ foreach ($provinceslist as $key => $value) {
 				@$ca['localidad']=$data['Localidad'];
 				@$ca['provincia']=$data['Provincia'];
 				$tmp=explode("/",$data['Fecha']);
-				$ca['fecha'] = "2009-".$tmp[1]."-".$tmp[0];	
+				$ca['fecha'] = "2010-".$tmp[1]."-".$tmp[0];	
 				if($data['Hora salida']!="") {
 					$ca['fecha'].=" ".$data['Hora salida'];	
 				}
@@ -172,7 +172,7 @@ function createsql($ca) {
 	$description=pg_escape_string($ca['description']);
 	$inscription_email=pg_escape_string($ca['inscription_email']);
 	$awards=pg_escape_string($ca['awards']);
-	$province_fk=$ca['province_fk'];
+	$province_id=$ca['province_id'];
 
 	$sql="insert into run(name,event_location,event_date,descripcion_no_parseada,imported_from,start_point,cautonoma_fk,distance_text,category,tlf_informacion,inscription_website,description,inscription_email,awards,province_fk) VALUES (";
 	
@@ -245,7 +245,7 @@ function createsql($ca) {
 		$sql.=",null";
 	}
 	if($province_id!="") {
-		$sql.=",$province_fk";
+		$sql.=",$province_id)";
 	} else {
 		$sql.=",null)";
 	}
