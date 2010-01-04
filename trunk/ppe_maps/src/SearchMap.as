@@ -1,12 +1,10 @@
 package {
 	import com.adobe.serialization.json.JSON;
 	import com.google.maps.Alpha;
-	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.Map;
 	import com.google.maps.MapEvent;
-	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
 	import com.google.maps.overlays.MarkerOptions;
@@ -15,8 +13,7 @@ package {
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.*;
 	import com.vizzuality.*;
-	import com.vizzuality.markers.SearchInfowindow;
-	import com.vizzuality.markers.SearchMarker;
+	import com.vizzuality.tileoverlays.MarkersOverlay;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -33,10 +30,27 @@ package {
 	[SWF(backgroundColor=0xEEEEEE, widthPercent=100, heightPercent=100)]
 	public class SearchMap extends Sprite
 	{
+		
+		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
+        private var ZoomInButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        private var ZoomInButton_over:Class;
+ 
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
+        private var ZoomOutButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
+        private var ZoomOutButton_over:Class;		
+		
+		
 		private var map:Map;
 		private var mapKey:String = "nokey";
 		private var iw:Dictionary=new Dictionary();
 		private var domain: String;
+		
+		private var mo:MarkersOverlay;
+		private var markersArray: Array;
 							
 						
 		public function SearchMap()
@@ -101,15 +115,56 @@ package {
 		}		
 		
 		private function onMapReady(event:MapEvent):void {
-			
-			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",18,6,2);
-			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+			mo= new MarkersOverlay();
+			map.addOverlay(mo);
+			markersArray = new Array();
+		 	
+		 				//zoom buttons
+			var zoomIn:Sprite = new ZoomInButton();			
+			var zoomIn_over: Sprite = new ZoomInButton_over();
+            addChild(zoomIn);
+            zoomIn.x = 10;
+            zoomIn.y = 10;
+            zoomIn_over.x = 0;
+            zoomIn_over.y = 0;
+            zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomIn.addChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true;
+
+			}); 
+            zoomIn.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomIn.removeChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true; 
+			}); 
+			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
 				map.setZoom(map.getZoom()+1);
 			}); 
-			var zoomMinus:vizzButton = new vizzButton(this,10,40,25,25,"-",18,8,1);
-			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setZoom(map.getZoom()-1);
+		
+			
+			var zoomOut:Sprite = new ZoomOutButton();			
+			var zoomOut_over: Sprite = new ZoomOutButton_over();
+            addChild(zoomOut);
+            zoomOut.x = 10;
+            zoomOut.y = 45;
+            zoomOut_over.x = 0;
+            zoomOut_over.y = 0;
+            zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomOut.addChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true;
+
 			}); 
+            zoomOut.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomOut.removeChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true; 
+			});  
+			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			});
+			//end zoom buttons
 			
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
@@ -145,50 +200,19 @@ package {
                 markerData.imgURL = areaJson.image;
                 markerData.paId = areaJson.id;
                 
-                				
-				var m:SearchMarker = new SearchMarker(areaCoords,markerData.imgURL,markerData.sites,markerData.isNeeded);
-				m.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
-                        if(!rollingOver) {
-	                        openInfoWindow(e);     
-                        }
-                        rollingOver=true;                                                                
-                });	
-                
-                iw[m]=markerData;
-                
-				map.addOverlay(m);                
+                markersArray.push(markerData);              
                 
 			}
-			map.setCenter(bounds.getCenter(),map.getBoundsZoomLevel(bounds));		
-	 	}			
-	 	
-		private function openInfoWindow(e:MapMouseEvent):void {
- 
- 			var m:Object = iw[e.target];
- 			
- 			infoWindowToOpen = new SearchInfowindow(m);
- 			infoWindowToOpen.targetUrl="/sites/"+m.paId;
- 			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
-            var options:InfoWindowOptions = new InfoWindowOptions({
-              customContent: infoWindowToOpen,
-              padding: 10,
-              hasCloseButton: false,
-              pointOffset:new Point(-25,-20),
-              hasShadow: false
-            });
-            
-            infoWindowToOpen.alpha=0;
-            map.openInfoWindow(new LatLng(m.coordenates.lat(),m.coordenates.lng()),options);
-            TweenLite.to(infoWindowToOpen,0.5,{alpha:1});
-                
-        }	 
-        
- 		private var rollingOver:Boolean=false;
-		private var infoWindowToOpen:SearchInfowindow;       
-		private function onInfowindowRollOut(e:Event ):void {
-			map.closeInfoWindow();
-			rollingOver=false;
-		}        	
-	 			
+			if (markersArray.length<5 && markersArray.length>0) {
+				map.setCenter(bounds.getCenter(),map.getBoundsZoomLevel(bounds)-5);
+			} else {
+				map.setCenter(bounds.getCenter(),map.getBoundsZoomLevel(bounds));
+			}
+			TweenLite.delayedCall(0.6,delayedMarkersAddition,[markersArray]);	
+		}
+		
+		private function delayedMarkersAddition(markers:Array):void {
+			mo.addMarkerCluster(markers);
+		}		     			
 	}
 }
