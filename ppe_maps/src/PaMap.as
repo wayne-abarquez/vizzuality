@@ -4,7 +4,7 @@ package {
 	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
-	import com.google.maps.Map;
+	import com.google.maps.Map; 
 	import com.google.maps.MapEvent;
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
@@ -78,7 +78,7 @@ package {
 		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
         private var ZoomInButton:Class;
         
-        		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        [Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
         private var ZoomInButton_over:Class;
  
         [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
