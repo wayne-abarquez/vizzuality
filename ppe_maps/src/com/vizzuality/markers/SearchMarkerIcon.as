@@ -56,34 +56,6 @@ package com.vizzuality.markers{
 	            image.graphics.drawCircle(15,8,25);
 	            image.graphics.endFill();
 	            addChild(image);
-	            
-	            var count:Sprite = new Sprite();
-	            count.graphics.beginFill(0xff3300,1);
-	            count.graphics.drawCircle(15,8,7);
-	            count.graphics.endFill();
-	            count.x=20;
-	            count.y=-20;
-	            
-                if(paData.sites >0){
-                	var tf:TextField = new TextField();
-                    var format:TextFormat = tf.getTextFormat();
-                    format.font = "Arial";
-                    format.size = 8;
-                    format.bold=true;
-					format.align = TextFormatAlign.CENTER;               
-                    tf.defaultTextFormat = format;
-                    tf.text = paData.sites.toString();
-                    tf.textColor = 0xffffff;
-                    tf.mouseEnabled = false;
-					tf.autoSize = "none";
-                    tf.width = 14;
-                    tf.height = 15;
-                    tf.x = 8;
-                    tf.y = 2;
-                    mouseChildren = false;
-                    count.addChild(tf);
-                    addChild(count);
-                }
                 
                 overSprite=createOverSprite();
                 overSprite.x=-25;
@@ -115,42 +87,7 @@ package com.vizzuality.markers{
 		            background.graphics.drawCircle(40,28,28);
 		            background.graphics.endFill();
 		            sp.addChild(background);
-		            
-		            var count:Sprite = new Sprite();
-		            count.graphics.beginFill(0xff3300,1);
-		            count.graphics.drawCircle(40,28,7);
-		            count.graphics.endFill();
-		            count.x=20;
-		            count.y=-20;
-
                     
-					var imgcls: Bitmap = new imgcls();
-			        imgcls.y = 22;
-			        imgcls.x = 5;
-			        sp.addChild(imgcls);                    
-                    
- 					if(paData.sites >0){
-						sp.addChild(count);
-	                    var tf:TextField = new TextField();
-	                    var format:TextFormat = tf.getTextFormat();
-	                    format.font = "Arial";
-	                    format.size = 8;
-	                    format.bold=true;
-						format.align = TextFormatAlign.CENTER;	                    
-	                    tf.defaultTextFormat = format;
-	                    tf.text = paData.sites.toString();
-	                    tf.textColor = 0xffffff;
-	                    tf.mouseEnabled = false;
-						tf.autoSize = "none";
-	                    tf.width = 14;
-	                    tf.height = 15;
-	                    tf.x = 53;
-	                    tf.y = 2;
-	                    mouseChildren = false;
-	                    sp.addChild(tf);
-	    			}
-                    
-
                     var mainNameSprite: Sprite = new Sprite();
 		            var nameText: TextField = new TextField();
 		            nameText.text =  paData.area;
@@ -202,18 +139,45 @@ package com.vizzuality.markers{
 		            sp.addChild(exampleSprite2);
 		            this.addEventListener(MouseEvent.CLICK,function(event:Event):void {
 		            	navigateToURL(new URLRequest( "http://ppe.tinypla.net/sites/" + paData.paId),"_self");
-		            });    
-		        
-		            
+		            });
+
 		     return sp;       	
         }
         
         private function onMouseOver(event:MouseEvent):void {
  			this.addChild(overSprite);	
  			this.removeChild(imageLoader);
- 			imageLoader.x = 5;
-  			imageLoader.y = 0;
+ 			imageLoader.x = 11;
+  			imageLoader.y = 3;
  			overSprite.addChild(imageLoader);	
+ 			
+ 			var count:Sprite = new Sprite();
+            count.graphics.beginFill(0xff3300,1);
+            count.graphics.drawCircle(15,8,7);
+            count.graphics.endFill();
+            count.x=20;
+            count.y=-20;
+            
+            if(paData.sites >0){
+            	var tf:TextField = new TextField();
+                var format:TextFormat = tf.getTextFormat();
+                format.font = "Arial";
+                format.size = 8;
+                format.bold=true;
+				format.align = TextFormatAlign.CENTER;               
+                tf.defaultTextFormat = format;
+                tf.text = paData.sites.toString();
+                tf.textColor = 0xffffff;
+                tf.mouseEnabled = false;
+				tf.autoSize = "none";
+                tf.width = 14;
+                tf.height = 15;
+                tf.x = 8;
+                tf.y = 2;
+                mouseChildren = false;
+                count.addChild(tf);
+                addChild(count);
+            }
       	
         }
   		
@@ -221,8 +185,36 @@ package com.vizzuality.markers{
  			overSprite.removeChild(imageLoader);
  			this.addChild(imageLoader);	
  			this.removeChild(overSprite);		  			
- 			imageLoader.x = -20;
-  			imageLoader.y = -20;
+ 			imageLoader.x = -14;
+  			imageLoader.y = -17;
+  			
+  			var count:Sprite = new Sprite();
+            count.graphics.beginFill(0xff3300,1);
+            count.graphics.drawCircle(15,8,7);
+            count.graphics.endFill();
+            count.x=20;
+            count.y=-20;
+            
+            if(paData.sites >0){
+            	var tf:TextField = new TextField();
+                var format:TextFormat = tf.getTextFormat();
+                format.font = "Arial";
+                format.size = 8;
+                format.bold=true;
+				format.align = TextFormatAlign.CENTER;               
+                tf.defaultTextFormat = format;
+                tf.text = paData.sites.toString();
+                tf.textColor = 0xffffff;
+                tf.mouseEnabled = false;
+				tf.autoSize = "none";
+                tf.width = 14;
+                tf.height = 15;
+                tf.x = 8;
+                tf.y = 2;
+                mouseChildren = false;
+                count.addChild(tf);
+                addChild(count);
+            }
   		}
   		
   		
@@ -243,8 +235,8 @@ package com.vizzuality.markers{
   			imageMask2.x=25;
   			imageMask2.y=20; */
   			
-  			imageLoader.x = -20;
-  			imageLoader.y = -20;
+  			imageLoader.x = -14;
+  			imageLoader.y = -17;
 /*   			duplicate.x = 5;
   			duplicate.y = 0; */
   			addChild(imageMask);
@@ -254,6 +246,34 @@ package com.vizzuality.markers{
   			addChild(imageLoader);
   			//overSprite.addChild(duplicate);
   			
+  			var count:Sprite = new Sprite();
+            count.graphics.beginFill(0xff3300,1);
+            count.graphics.drawCircle(15,8,7);
+            count.graphics.endFill();
+            count.x=20;
+            count.y=-20;
+            
+            if(paData.sites >0){
+            	var tf:TextField = new TextField();
+                var format:TextFormat = tf.getTextFormat();
+                format.font = "Arial";
+                format.size = 8;
+                format.bold=true;
+				format.align = TextFormatAlign.CENTER;               
+                tf.defaultTextFormat = format;
+                tf.text = paData.sites.toString();
+                tf.textColor = 0xffffff;
+                tf.mouseEnabled = false;
+				tf.autoSize = "none";
+                tf.width = 14;
+                tf.height = 15;
+                tf.x = 8;
+                tf.y = 2;
+                mouseChildren = false;
+                count.addChild(tf);
+                addChild(count);
+            }
+          
   		}
   		
   		
