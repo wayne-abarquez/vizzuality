@@ -13,7 +13,6 @@ package {
 	import com.greensock.plugins.*;
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.tileoverlays.GbifTileLayer;
-	import com.vizzuality.vizzButton;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -28,6 +27,20 @@ package {
 	[SWF(backgroundColor=0xeeeeee, widthPercent=100, heightPercent=100)]
 	public class BiodiversityMap extends Sprite
 	{
+
+		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
+        private var ZoomInButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        private var ZoomInButton_over:Class;
+ 
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
+        private var ZoomOutButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
+        private var ZoomOutButton_over:Class;		
+		
+		
 		private var map:Map;	
 		private var dataLoaded:Boolean=false;
 		private var dataAnalyzed:Boolean=false;
@@ -146,12 +159,48 @@ package {
 			polygonPane=map.getPaneManager().createPane();
 			
 			
-			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",18,6,2);
-			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+			var zoomIn:Sprite = new ZoomInButton();			
+			var zoomIn_over: Sprite = new ZoomInButton_over();
+            addChild(zoomIn);
+            zoomIn.x = 10;
+            zoomIn.y = 10;
+            zoomIn_over.x = 0;
+            zoomIn_over.y = 0;
+            zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomIn.addChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true;
+
+			}); 
+            zoomIn.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomIn.removeChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true; 
+			}); 
+			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
 				map.setZoom(map.getZoom()+1);
 			}); 
-			var zoomMinus:vizzButton = new vizzButton(this,10,40,25,25,"-",18,8,1);
-			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+		
+			
+			var zoomOut:Sprite = new ZoomOutButton();			
+			var zoomOut_over: Sprite = new ZoomOutButton_over();
+            addChild(zoomOut);
+            zoomOut.x = 10;
+            zoomOut.y = 45;
+            zoomOut_over.x = 0;
+            zoomOut_over.y = 0;
+            zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomOut.addChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true;
+
+			}); 
+            zoomOut.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomOut.removeChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true; 
+			});  
+			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
 				map.setZoom(map.getZoom()-1);
 			}); 
 			
