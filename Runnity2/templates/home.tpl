@@ -230,7 +230,7 @@
 			var url = "http://www.google.com/reader/public/javascript/feed/http://www.correr.es/feed/?callback=?";
 			$.getJSON(url,function(data) {
         for(var i = 0; i < 1; i += 1) {
-	      	$('#correres').append(data.items[i].title);
+	      	$('#correres').append("\"" + data.items[i].title + "\"");
 					$('#correres').attr("href",data.items[i].alternate.href);
 					if (data.items[i].summary != null) {
 						$('#correrContent').append('<p id="summary">' + data.items[i].summary + '</p>');
