@@ -119,7 +119,13 @@ package {
 			map.addOverlay(mo);
 			markersArray = new Array();
 		 	
-		 				//zoom buttons
+		 	//map type dropdown
+
+		 	//end map type dropdown
+		 	
+		 	
+		 	
+		 	//zoom buttons
 			var zoomIn:Sprite = new ZoomInButton();			
 			var zoomIn_over: Sprite = new ZoomInButton_over();
             addChild(zoomIn);
@@ -199,6 +205,7 @@ package {
                 markerData.isNeeded = true;	
                 markerData.imgURL = areaJson.image;
                 markerData.paId = areaJson.id;
+                markerData.local_name = areaJson.local_name;
                 
                 markersArray.push(markerData);              
                 

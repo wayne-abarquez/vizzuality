@@ -118,7 +118,11 @@ package com.vizzuality.markers{
 		            
 		            var exampleSprite2: Sprite = new Sprite();
 		            var countryText2: TextField = new TextField();
-		            countryText2.text =  "Local area PPE";
+		            if (paData.local_name == "" || paData.local_name == null) {
+		            	countryText2.text = "";
+		            } else {
+			            countryText2.text =  paData.local_name as String;		            	
+		            }
 		            var newFormat2:TextFormat = new TextFormat(); 
 		   			newFormat2.size = 10; 
 		   			newFormat2.color = 0xFFFFFF;
@@ -157,10 +161,12 @@ package com.vizzuality.markers{
         
         private function displaySites():void {
         	if (count.parent == null) {
-        		addChild(count);
+        		if (paData.sites>0)
+        			addChild(count);
         	} else {
         		removeChild(count);
-        		addChild(count);
+        		if (paData.sites>0)
+        			addChild(count);
         	}
         	
         }
