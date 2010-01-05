@@ -203,7 +203,7 @@ package {
                 markersArray.push(markerData);              
                 
 			}
-			if (markersArray.length<5 && markersArray.length>0) {
+			if (markersArray.length==1) {
 				map.setCenter(bounds.getCenter(),map.getBoundsZoomLevel(bounds)-5);
 			} else {
 				map.setCenter(bounds.getCenter(),map.getBoundsZoomLevel(bounds));

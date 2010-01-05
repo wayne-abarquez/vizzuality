@@ -1,8 +1,9 @@
 package com.vizzuality.markers{
 	
+	import com.vizzuality.utils.StringUtils;
+	
 	import flare.vis.data.NodeSprite;
 	
-	import flash.display.Bitmap;
 	import flash.display.GradientType;
 	import flash.display.Loader;
 	import flash.display.Shape;
@@ -23,6 +24,7 @@ package com.vizzuality.markers{
 		private var imageMask:Sprite = new Sprite();
 		private var imageMask2:Sprite = new Sprite();
 		private var paData:Object;
+		private var count:Sprite;
 		
 		private var overSprite:Sprite;
 		
@@ -90,7 +92,7 @@ package com.vizzuality.markers{
                     
                     var mainNameSprite: Sprite = new Sprite();
 		            var nameText: TextField = new TextField();
-		            nameText.text =  paData.area;
+		            nameText.text = StringUtils.truncate(paData.area,29);
 		            var newFormat:TextFormat = new TextFormat(); 
 		   			newFormat.size = 12; 
 		   			newFormat.color = 0xFFFFFF;
@@ -99,14 +101,14 @@ package com.vizzuality.markers{
 					newFormat.font = "Helvetica";
 		    		nameText.setTextFormat(newFormat); 
 		            nameText.wordWrap = true;
-		            nameText.width = 150;
+		            nameText.width = 175;
 		            nameText.height = 30;
 		            nameText.x = 0;
 		            nameText.y = 0;
 		            mainNameSprite.x = 73;
 		            mainNameSprite.y = 16;
 		            mainNameSprite.addChild(nameText);
-		            mainNameSprite.width = 150;
+		            mainNameSprite.width = 175;
 		            mainNameSprite.height = 30;
 		            mainNameSprite.mouseChildren=false;
 		            mainNameSprite.buttonMode=true;
@@ -150,35 +152,17 @@ package com.vizzuality.markers{
  			imageLoader.x = 11;
   			imageLoader.y = 3;
  			overSprite.addChild(imageLoader);	
- 			
- 			var count:Sprite = new Sprite();
-            count.graphics.beginFill(0xff3300,1);
-            count.graphics.drawCircle(15,8,7);
-            count.graphics.endFill();
-            count.x=20;
-            count.y=-20;
-            
-            if(paData.sites >0){
-            	var tf:TextField = new TextField();
-                var format:TextFormat = tf.getTextFormat();
-                format.font = "Arial";
-                format.size = 8;
-                format.bold=true;
-				format.align = TextFormatAlign.CENTER;               
-                tf.defaultTextFormat = format;
-                tf.text = paData.sites.toString();
-                tf.textColor = 0xffffff;
-                tf.mouseEnabled = false;
-				tf.autoSize = "none";
-                tf.width = 14;
-                tf.height = 15;
-                tf.x = 8;
-                tf.y = 2;
-                mouseChildren = false;
-                count.addChild(tf);
-                addChild(count);
-            }
-      	
+ 			displaySites();    	
+        }
+        
+        private function displaySites():void {
+        	if (count.parent == null) {
+        		addChild(count);
+        	} else {
+        		removeChild(count);
+        		addChild(count);
+        	}
+        	
         }
   		
   		private function onMouseOut(event:MouseEvent ):void {
@@ -187,34 +171,7 @@ package com.vizzuality.markers{
  			this.removeChild(overSprite);		  			
  			imageLoader.x = -14;
   			imageLoader.y = -17;
-  			
-  			var count:Sprite = new Sprite();
-            count.graphics.beginFill(0xff3300,1);
-            count.graphics.drawCircle(15,8,7);
-            count.graphics.endFill();
-            count.x=20;
-            count.y=-20;
-            
-            if(paData.sites >0){
-            	var tf:TextField = new TextField();
-                var format:TextFormat = tf.getTextFormat();
-                format.font = "Arial";
-                format.size = 8;
-                format.bold=true;
-				format.align = TextFormatAlign.CENTER;               
-                tf.defaultTextFormat = format;
-                tf.text = paData.sites.toString();
-                tf.textColor = 0xffffff;
-                tf.mouseEnabled = false;
-				tf.autoSize = "none";
-                tf.width = 14;
-                tf.height = 15;
-                tf.x = 8;
-                tf.y = 2;
-                mouseChildren = false;
-                count.addChild(tf);
-                addChild(count);
-            }
+  			displaySites();
   		}
   		
   		
@@ -246,7 +203,7 @@ package com.vizzuality.markers{
   			addChild(imageLoader);
   			//overSprite.addChild(duplicate);
   			
-  			var count:Sprite = new Sprite();
+  			count = new Sprite();
             count.graphics.beginFill(0xff3300,1);
             count.graphics.drawCircle(15,8,7);
             count.graphics.endFill();
