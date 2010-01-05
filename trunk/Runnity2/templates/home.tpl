@@ -229,18 +229,20 @@
 	
 			var url = "http://www.google.com/reader/public/javascript/feed/http://www.correr.es/feed/?callback=?";
 			$.getJSON(url,function(data) {
-        for(var i = 1; i < 2; i += 1) {
+        for(var i = 0; i < 1; i += 1) {
 	      	$('#correres').append(data.items[i].title);
-					$('#correres').attr("href",data.items[i].alternate.href)
-					$('#correrContent').append('<p id="summary">' + data.items[i].summary + '</p>');
-					var len = 100;
-					var x = document.getElementById('summary');
-					var trunc = x.innerHTML;
-					trunc = trunc.replace(/\t/g, "");
-					if (trunc.length > len) {	
-						trunc = trunc.substring(0, len);
-					  trunc += '...';
-					  x.innerHTML = trunc;
+					$('#correres').attr("href",data.items[i].alternate.href);
+					if (data.items[i].summary != null) {
+						$('#correrContent').append('<p id="summary">' + data.items[i].summary + '</p>');
+						var len = 100;
+						var x = document.getElementById('summary');
+						var trunc = x.innerHTML;
+						trunc = trunc.replace(/\t/g, "");
+						if (trunc.length > len) {	
+							trunc = trunc.substring(0, len);
+						  trunc += '...';
+						  x.innerHTML = trunc;
+						}
 					}
 				}
       });
