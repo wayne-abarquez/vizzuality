@@ -33,7 +33,7 @@ package com.vizzuality
 		
 		private function onImageDownload(event:Event):void {
 	   		imageMask.graphics.beginFill(0x330000,1);
-	  		imageMask.graphics.drawRect(3,3,295,247);
+	  		imageMask.graphics.drawRect(3,3,294,246);
 	  		imageMask.graphics.endFill();
 	  		
 	  		this.addChild(imageMask);
