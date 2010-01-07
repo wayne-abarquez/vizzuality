@@ -1,4 +1,20 @@
 /* CSS file */
+Button.mapButtonPlus{
+	up-skin: Embed(source="btnsMap.swf",symbol="zoomInButton");	
+	over-skin: Embed(source="btnsMap.swf",symbol="zoomInButton_over");	
+	down-skin: Embed(source="btnsMap.swf",symbol="zoomInButton_over");		
+}
+
+Button.mapButtonMinus{
+	up-skin: Embed(source="btnsMap.swf",symbol="zoomOutButton");	
+	over-skin: Embed(source="btnsMap.swf",symbol="zoomOutButton_over");	
+	down-skin: Embed(source="btnsMap.swf",symbol="zoomOutButton_over");		
+}
+
+
+
+
+/* 
 
 
 Canvas.headerCanvas{
@@ -330,3 +346,4 @@ ProgressBar {
    trackHeight: 10;
 }
 
+ */

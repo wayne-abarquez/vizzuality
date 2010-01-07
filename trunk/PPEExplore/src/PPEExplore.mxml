@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.vizzuality.visualcomponents.*" creationComplete="onCreationComplete()">
+
+<mx:Style source="skin/ui.css"/>
+
 <mx:Script>
 	<![CDATA[
 		import com.greensock.TweenLite;
@@ -86,9 +89,7 @@
 			if (domain==null) {
 				domain = 'http://ppe.tinypla.net';
 			}
-			
-			map.addControl(new ZoomControl());
-			
+						
 			polygonsPane = map.getPaneManager().createPane();
 			tilesPane = map.getPaneManager().createPane();
 			tl = new GeoserverTileLayer(map);
@@ -148,7 +149,6 @@
 		}
 		
 		private function onDataLoaded(ev:ResultEvent):void{
-
 			mo.clearOverlays();
 			var dataJ:Object = data = JSON.decode(ev.result as String);
 			if(!(dataJ is Array) || (dataJ as Array).length<1) {
@@ -225,6 +225,8 @@
 	
 	<maps:Map id="map" key="noKey" width="100%" height="100%" mapevent_mapready="onMapReady()" mapevent_mappreinitialize="onMapPreinit()" />
 	<ns1:DiscretLoading id="discretLoading" left="10" top="10" />
+	<mx:Button x="10" y="38" id="zoomPlus" click="map.setZoom(map.getZoom()+1)" styleName="mapButtonPlus" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+	<mx:Button x="10" y="70" id="zoomMinus" click="map.setZoom(map.getZoom()-1)" styleName="mapButtonMinus" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 	
 <!--<mx:Style source="/skin/ui.css"/>
 	<mx:Style source="/skin/fonts.css"/>-->
