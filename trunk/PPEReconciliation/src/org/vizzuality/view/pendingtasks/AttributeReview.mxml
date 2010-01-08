@@ -66,6 +66,17 @@
 			
 			private function onGetPaAttributesComparisionResult(event:ResultEvent):void {
 				var res:Object = JSON.decode(event.result as String);
+				
+				var typeOperation:String="";
+				if (res.originalPa==null) {
+					typeOperation="insert";
+				} if (res.newPa==null) {
+					typeOperation="delete";					
+				} else {
+					typeOperation="update";										
+				}
+				
+				
 				originalPa=new Pa();
 				originalPa.country=res.originalPa.country;
 				originalPa.id = res.originalPa.id;
@@ -163,6 +174,9 @@
 			}
 			
 			private function map2Ready():void {
+				if (newPa==null) {
+					return;
+				}
 				map2.clearOverlays();
 				if (newPa!=null) {
 					addGeoJsonToMap((newPa.data.geom as String),map2);

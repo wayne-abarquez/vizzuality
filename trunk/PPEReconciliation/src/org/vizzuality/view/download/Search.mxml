@@ -186,7 +186,8 @@
 				discretLoading.visible=false;
 			});
 			tl.addEventListener("GEOSERVER_TILE_LAYER_LOADING",function(ev:Event):void {
-				discretLoading.visible=true;
+				if (discretLoading!=null)
+					discretLoading.visible=true;
 			});
 			tilesPane.addOverlay(tlo);	
 			tlo.foreground.alpha=1;            
