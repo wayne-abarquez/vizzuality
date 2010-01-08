@@ -27,6 +27,10 @@
 			
 			[Bindable] public var mustRollOver:Boolean=true;
 			
+			[Bindable] private var imageVisible: Boolean = false;
+			
+			[Bindable] private var imageSource: Class;
+			
 			override public function set data(value:Object):void {
             	if (value != null) {
 					super.data = value;
@@ -69,8 +73,8 @@
 							mustRollOver=false;
 							taskColor=0xff9900;
 							textAlpha = 0.5;
-							iconImage.source = Resource.CLOCK_SMALL;
-							iconImage.visible = true;
+							imageSource = Resource.CLOCK_SMALL;
+							imageVisible = true;
 							break;
 						case Task.WAITING_FOR_DOWNLOAD:
 							actionButton.visible=true;
@@ -85,8 +89,8 @@
 							textAlpha = 1;
 							actionButton.label = "DOWNLOAD";
 							taskColor=0xff9900;
-							iconImage.source = Resource.ARROW_DOWN_SMALL;
-							iconImage.visible = true;							
+							imageSource = Resource.ARROW_DOWN_SMALL;
+							imageVisible = true;							
 							break;
 						case Task.WAITING_FOR_UPLOAD:
 							actionButton.visible=true;
@@ -101,8 +105,8 @@
 							///reconciliation/exports/{:export_id}/destroy
 							
 							taskColor=0xff9900;
-							iconImage.source = Resource.ARROW_UP_SMALL;
-							iconImage.visible = true;
+							imageSource = Resource.ARROW_UP_SMALL;
+							imageVisible = true;
 							break;
 						case Task.UPLOAD_PROCESSING:
 							actionButton.visible=false;
@@ -111,8 +115,8 @@
 							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0xff9900;
-							iconImage.source = Resource.CLOCK_SMALL;
-							iconImage.visible = true;
+							imageSource = Resource.CLOCK_SMALL;
+							imageVisible = true;
 							break;
 						case Task.ERROR_IN_DATA:
 							actionButton.visible=true;
@@ -127,8 +131,8 @@
 							///reconciliation/exports/{:export_id}/imports/{:import_id}/destroy					
 							
 							taskColor=0xff3300;
-							iconImage.includeInLayout = false;
-							iconImage.visible = false;
+							/* iconImage.includeInLayout = false; */
+							imageVisible = false;
 							break;
 						case Task.TASK_READY_FOR_REVIEW:
 							actionButton.visible=true;
@@ -145,8 +149,8 @@
 							taskColor=0x339900;
 							statusPercenLabel.visible=true;
 							percentage.visible=true;
-							iconImage.includeInLayout = false;
-							iconImage.visible = false;
+							/* iconImage.includeInLayout = false; */
+							imageVisible = false;
 							break;
 						case Task.REVIEW_STARTED:
 							actionButton.visible=true;
@@ -163,8 +167,8 @@
 							statusPercenLabel.visible=true;
 							percentage.visible=true;
 							taskColor=0x339900;
-							iconImage.includeInLayout = false;
-							iconImage.visible = false;
+							/* iconImage.includeInLayout = false; */
+							imageVisible = false;
 							break;
 						case Task.REVIEW_PROCESSING:
 							actionButton.visible=false;
@@ -173,8 +177,8 @@
 							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0xff9900;
-							iconImage.source = Resource.CLOCK_SMALL;
-							iconImage.visible = true;
+							imageSource = Resource.CLOCK_SMALL;
+							imageVisible = true;
 							break;
 						case Task.TASK_FINISHED:
 							actionButton.visible=false;
@@ -183,8 +187,8 @@
 							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0x339900;
-							iconImage.includeInLayout = false;
-							iconImage.visible = false;
+							/* iconImage.includeInLayout = false; */
+							imageVisible = false;
 							break;
 							
 						case Task.TASK_CANCEL:
@@ -194,8 +198,8 @@
 							textAlpha = 0.5;
 							actionButton.label = "";
 							taskColor=0x339900;
-							iconImage.includeInLayout = false;
-							iconImage.visible = false;
+							/* iconImage.includeInLayout = false; */
+							imageVisible = false;
 							break;
 							
 					}
@@ -294,7 +298,7 @@
 			fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11" alpha="{textAlpha}"/>
 		
 		<mx:HBox left="404" top="5" horizontalGap="-3">
-			<mx:Image id="iconImage"/>
+			<mx:Image source="{imageSource}" width="{(imageVisible)?15:0}"/>
 			<mx:Label text="{taskName}" color="{taskColor}" fontSize="13" 
 				fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
 		</mx:HBox>
@@ -315,8 +319,6 @@
 		useHandCursor="true" mouseChildren="true" buttonMode="true" >
 		
 		<mx:HBox horizontalGap="0" top="5" left="8">
-			<!--mx:Label text="{task.what}" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-			<mx:Label text="-" color="#FFFFFF" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/ -->
 			<mx:Label text="{task.description}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>
 			<mx:Label text="(re-download) " color="#FFFFFF" fontFamily="Helvetica" fontSize="12"/>	
 		</mx:HBox>
@@ -324,7 +326,7 @@
 		
 		
 		<mx:HBox left="404" top="5" horizontalGap="-3">
-			<mx:Image source="{iconImage.source}" visible="{iconImage.visible}"/>
+			<mx:Image source="{imageSource}" width="{(imageVisible)?15:0}"/>
 			<mx:Label text="{taskName}" color="#FFFFFF" fontSize="13" 
 				fontFamily="Helvetica" fontWeight="bold" alpha="{textAlpha}"/>
 		</mx:HBox>
