@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="100%" 
-	styleName="dataDownloadContainer" backgroundSize="100%" 
+	styleName="dataDownloadContainer" backgroundSize="100%" addedToStage="init()"
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
@@ -18,6 +18,15 @@
 			[Bindable]private var errors: ArrayCollection = new ArrayCollection();
 			[Bindable]public var taskName: String = '';
 			
+			private function init():void {
+				var emptyArray : ArrayCollection = new ArrayCollection();
+				if (errorsList != null) {
+					errorsList.dataProvider = emptyArray;
+					errorsList.height = 5;					
+				}
+				Application.application.viewsContainer.myViewStack.height = 250;
+			}
+			
 			public function getErrors(task:Task):void {
 				jsonService.url = Application.application.serverUrl + "/exports/"+task.id+"/imports/"+task.importId+"?state=error";
 				jsonService.send();				
@@ -27,7 +36,8 @@
 				var ob:Object = JSON.decode(ev.result as String);
 				errors = new ArrayCollection(ob as Array);
 				//Change height Errors Window
-				Application.application.viewsContainer.myViewStack.height = 400 + errors.length*25;
+				Application.application.viewsContainer.myViewStack.height = 240 + errors.length*35;
+				errorsList.height = errors.length*35;
 			}
 		]]>
 	</mx:Script>
@@ -36,7 +46,7 @@
 	<mx:Canvas left="0" right="0" top="0" height="62" >
 		<mx:HBox left="13" top="28" horizontalGap="-3" verticalAlign="bottom" height="25" width="844">
 			<mx:Label text="{taskName} - Errors review" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
-			<mx:Label text="{'('+errors.length+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="22"/>			
+			<mx:Label text="{'('+(errors.length==0)?0:errors.length-2+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="30"/>			
 		</mx:HBox>
 		<mx:Button label="RETURN" right="20" top="20" click="SWFAddress.setValue('/rec/pendingtasks')" color="#333333" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #EEEEEE, #EEEEEE, #FFFFFF]" fontFamily="Helvetica" height="20" paddingTop="6"/>
 	</mx:Canvas>
@@ -48,7 +58,7 @@
 
 		</mx:Canvas>
 		
-		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ErrorItem" dataProvider="{errors}" borderStyle="none"
+		<mx:List id="errorsList" width="100%" itemRenderer="org.vizzuality.view.pendingtasks.itemrenders.ErrorItem" dataProvider="{errors}" borderStyle="none"
 			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" />
 		
 		<mx:Spacer height="12" />

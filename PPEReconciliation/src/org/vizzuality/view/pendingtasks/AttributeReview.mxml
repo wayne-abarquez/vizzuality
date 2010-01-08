@@ -2,8 +2,8 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" 
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off"
 	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:itemrenderes="org.vizzuality.view.itemrenderes.*" 
-	xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*"
-	 creationComplete="init()" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" height="100%" xmlns:components="org.vizzuality.components.*">
+	xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*" addedToStage="addedToStage()"
+	xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" height="100%" xmlns:components="org.vizzuality.components.*">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:RemoveChild target="{headPa}"/>
@@ -59,8 +59,9 @@
 				return _pa;
 			}
 			
-			private function init():void {
-				//MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_PA_FOR_REVIEW,on
+			
+			private function addedToStage():void {
+				Application.application.viewsContainer.myViewStack.height = 1150;
 			}
 			
 			private function onGetPaAttributesComparisionResult(event:ResultEvent):void {
@@ -163,7 +164,7 @@
 			
 			private function map2Ready():void {
 				map2.clearOverlays();
-				if (newPa.data.geom!=null) {
+				if (newPa!=null) {
 					addGeoJsonToMap((newPa.data.geom as String),map2);
 				}
 				var zco:ZoomControlOptions = new ZoomControlOptions({hasScrollTrack:false,position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,5,5)});
@@ -196,9 +197,11 @@
 
 				var geoJsondata:Object = JSON.decode(geoJson);
 				var mp:Multipolygon= new Multipolygon();
-				mp.fromGeojsonMultiPolygon(geoJsondata.coordinates,polOpt);						
-				mp.addToMap(map);
-			
+				//empty pa polygons ?? 
+				if (geoJsondata != null) {
+					mp.fromGeojsonMultiPolygon(geoJsondata.coordinates as Array,polOpt);						
+					mp.addToMap(map);
+				}
 				map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);	
 			}
 			
@@ -304,7 +307,7 @@
 				<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
 				<mx:Button label="back to the overview" styleName="noSkinButton" 
 					fontFamily="Helvetica" fontWeight="bold" icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12"
-					click="SWFAddress.setValue('/rec/pendingtasks')"/>
+					click="SWFAddress.setValue('/rec/pendingtasks')" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 				<mx:Spacer width="100%" />
 				<components:ShadowButton label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}"/>
 				<components:ShadowButton label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}"/>
