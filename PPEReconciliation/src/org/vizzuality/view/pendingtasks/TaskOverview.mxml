@@ -96,7 +96,6 @@
 				jsonService3.url = Application.application.serverUrl + "/exports/"+_task.id+"/imports/"+_task.importId+"/protected_areas?state=changed&page="+p+"&per_page=12";
 				jsonService3.send();		
 				updatePage=p;						
-				
 			}
 
 			

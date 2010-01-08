@@ -25,7 +25,9 @@
 			
 			private function getErrorsResult(ev:ResultEvent):void {
 				var ob:Object = JSON.decode(ev.result as String);
-				errors = new ArrayCollection(ob as Array);	
+				errors = new ArrayCollection(ob as Array);
+				//Change height Errors Window
+				Application.application.viewsContainer.myViewStack.height = 400 + errors.length*25;
 			}
 		]]>
 	</mx:Script>
