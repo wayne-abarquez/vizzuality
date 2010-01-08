@@ -4,6 +4,7 @@
 	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.MyEventDispatcher;
 			import com.asual.swfaddress.SWFAddress;
 			import mx.controls.Alert;
 			import org.vizzuality.model.Task;
@@ -17,6 +18,7 @@
 			
 			[Bindable]private var errors: ArrayCollection = new ArrayCollection();
 			[Bindable]public var taskName: String = '';
+			private var _task:Task;
 			
 			private function init():void {
 				var emptyArray : ArrayCollection = new ArrayCollection();
@@ -28,6 +30,7 @@
 			}
 			
 			public function getErrors(task:Task):void {
+				_task = task;
 				jsonService.url = Application.application.serverUrl + "/exports/"+task.id+"/imports/"+task.importId+"?state=error";
 				jsonService.send();				
 			}
@@ -39,6 +42,12 @@
 				Application.application.viewsContainer.myViewStack.height = 240 + errors.length*35;
 				errorsList.height = errors.length*35;
 			}
+			
+			private function reUploadPa():void {
+				SWFAddress.setValue('/rec/pendingtasks');
+				MyEventDispatcher.uploadTaskFile(_task);
+				Application.application.refFile.browse([Application.application.fileFilter]);
+			}
 		]]>
 	</mx:Script>
 	<mx:Label text="All tasks" fontFamily="Helvetica" fontWeight="bold" fontSize="12" color="#336699" left="14" top="14"
@@ -46,7 +55,7 @@
 	<mx:Canvas left="0" right="0" top="0" height="62" >
 		<mx:HBox left="13" top="28" horizontalGap="-3" verticalAlign="bottom" height="25" width="844">
 			<mx:Label text="{taskName} - Errors review" fontFamily="Helvetica" fontWeight="bold" fontSize="20" color="#666666" left="10" top="10" letterSpacing="-1" height="25" right="10" textAlign="left"/>		
-			<mx:Label text="{'('+(errors.length==0)?0:errors.length-2+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="30"/>			
+			<mx:Label text="{'('+errors.length+')'}"  textAlign="left" height="20" color="#FF3300" fontWeight="bold" letterSpacing="-1" width="30"/>			
 		</mx:HBox>
 		<mx:Button label="RETURN" right="20" top="20" click="SWFAddress.setValue('/rec/pendingtasks')" color="#333333" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #EEEEEE, #EEEEEE, #FFFFFF]" fontFamily="Helvetica" height="20" paddingTop="6"/>
 	</mx:Canvas>
@@ -67,7 +76,8 @@
 			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP4}"/>
 			<mx:Label text="Retry your upload"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
 			<mx:Label x="65" y="34" text="Have you already changed your data? Then upload it" width="542" fontSize="12" fontFamily="Helvetica" color="#414141"/>
-			<components:ShadowButton right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+			<components:ShadowButton right="10" label="UPLOAD NOW" bottom="10" styleName="greenButton" height="23" useHandCursor="true" mouseChildren="false" buttonMode="true"
+				click="reUploadPa()"/>
 		</mx:Canvas>
     </mx:VBox>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getErrorsResult(event)" fault="Alert.show('getErrorsResult ERROR: Please contact administrator')" />
