@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="100%" 
-	styleName="dataDownloadContainer" backgroundSize="100%" 
-	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*" xmlns:ns1="org.vizzuality.view.pendingtasks.*">
+	styleName="dataDownloadContainer" backgroundSize="100%" xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" 
+	creationComplete="init()" xmlns:components="org.vizzuality.components.*" xmlns:ns1="org.vizzuality.view.pendingtasks.*">
 	<mx:states>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
@@ -167,13 +167,15 @@
 				
 				(page<totalPages)?nextPageButton.enabled=true:nextPageButton.enabled=false;
 				(page>1)?previousPageButton.enabled=true:previousPageButton.enabled=false;
-					
-				
 			}
 			
 			private function calculateHeight():void{
 				this.itemList.height = pendingTasks.length * 43;
- 				Application.application.viewsContainer.myViewStack.height = this.itemList.height + 280;	
+				if (Application.application.previousTasks>0) {
+	 				Application.application.viewsContainer.myViewStack.height = this.itemList.height + 340;
+				} else {
+					Application.application.viewsContainer.myViewStack.height = this.itemList.height + 310;
+				}
 			}
 			
 			public static function createRendererWithProperties(renderer:Class,properties:Object ):IFactory {
