@@ -77,24 +77,30 @@
 			}
 			
 			
+			private var getTaskDeletionsRunning:Boolean=false;
+			private var getTaskNewPasRunning:Boolean=false;
+			private var getTaskUpdatesRunning:Boolean=false;
 			
 			private function getTaskDeletions(p:Number):void {
 				deletedBox.currentState="loading";
 				jsonService1.url = Application.application.serverUrl + "/exports/"+_task.id+"/imports/"+_task.importId+"/protected_areas?state=deleted&page="+p+"&per_page=12";
-				jsonService1.send();		
+				jsonService1.send();
+				getTaskDeletionsRunning=true;		
 				delPage=p;						
 			}
 			private function getTaskNewPas(p:Number):void {
 				newBox.currentState="loading";
 				jsonService2.url = Application.application.serverUrl + "/exports/"+_task.id+"/imports/"+_task.importId+"/protected_areas?state=added&page="+p+"&per_page=12";
-				jsonService2.send();		
+				jsonService2.send();	
+				getTaskNewPasRunning=true;	
 				newPage=p;						
 				
 			}
 			private function getTaskUpdates(p:Number):void {
 				updatedBox.currentState="loading";
 				jsonService3.url = Application.application.serverUrl + "/exports/"+_task.id+"/imports/"+_task.importId+"/protected_areas?state=changed&page="+p+"&per_page=12";
-				jsonService3.send();		
+				jsonService3.send();
+				getTaskUpdatesRunning=true;	
 				updatePage=p;						
 			}
 
@@ -131,6 +137,16 @@
 					Application.application.viewsContainer.myViewStack.height=
 						Application.application.viewsContainer.myViewStack.height +deletedBox.height;
 				}
+				
+				
+				getTaskDeletionsRunning=false;
+				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
+					//the list is empty, this task must be finished.
+					if(deleted.length==0 && news.length==0 && updates.length==0 && SWFAddress.getValue()=="/rec/pendingtasks/overview") {
+						SWFAddress.setValue('/rec/pendingtasks');
+					}
+				}				
+				
 							
 			}
 			private function onGetTaskNewPasResult(event:ResultEvent):void {
@@ -165,6 +181,15 @@
 					Application.application.viewsContainer.myViewStack.height=
 						Application.application.viewsContainer.myViewStack.height +newBox.height;
 				}		
+				
+				
+				getTaskNewPasRunning=false;
+				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
+					//the list is empty, this task must be finished.
+					if(deleted.length==0 && news.length==0 && updates.length==0 && SWFAddress.getValue()=="/rec/pendingtasks/overview") {
+						SWFAddress.setValue('/rec/pendingtasks');
+					}
+				}				
 								
 			}
 			private function onGetTaskUpdatesResult(event:ResultEvent):void {
@@ -199,6 +224,14 @@
 					Application.application.viewsContainer.myViewStack.height=
 						Application.application.viewsContainer.myViewStack.height + updatedBox.height;
 					//trace(this.height);		
+				}
+				
+				getTaskUpdatesRunning=false;
+				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
+					//the list is empty, this task must be finished.
+					if(deleted.length==0 && news.length==0 && updates.length==0 && SWFAddress.getValue()=="/rec/pendingtasks/overview") {
+						SWFAddress.setValue('/rec/pendingtasks');
+					}
 				}
 				
 			}
