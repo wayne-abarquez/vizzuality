@@ -71,7 +71,7 @@
 			private function onShowAlertConfirmation(ev:CancelTaskEvent):void {
 				confirmAlert.x = ev.positionX-70;
 				if (scrollPosition>0) {
-					confirmAlert.y = (ev.positionY-80)+(scrollPosition-15);
+					confirmAlert.y = (ev.positionY-80)+(scrollPosition);
 				} else {
 					confirmAlert.y = ev.positionY-80;
 				}
@@ -81,6 +81,7 @@
 				Application.application.verticalScrollPolicy = 'off';
 				Application.application.mamufas.visible = true;
 				Application.application.addChild(confirmAlert);
+				scrollPosition = 0;
 			}
 			
 			private function onSelectedContinue(ev:ConfirmationAlertEvent):void {
