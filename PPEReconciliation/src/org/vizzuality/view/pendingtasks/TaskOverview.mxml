@@ -114,16 +114,7 @@
 					tem.push(pa);	
 					ind++;		
 				}
-				
-/* 				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
-					var pa1:Pa = new Pa();
-					pa1.id=numtemp.toString();
-					pa1.name="test "+ numtemp;
-					pa1.country="spain";
-					pa1.ind = numtemp-1;
-					pa1.status="";
-					tem.push(pa1);
-				}	 */
+			
 						
 				
 				deleted=new ArrayCollection(tem);
@@ -157,15 +148,6 @@
 					ind++;
 				}
 				
-/* 				for(var numtemp:Number=1;numtemp<=12;numtemp++) {
-					var pa2:Pa = new Pa();
-					pa2.id=numtemp.toString();
-					pa2.name="test "+ numtemp;
-					pa2.country="spain";
-					pa2.status="";
-					pa2.ind = numtemp-1;
-					tem.push(pa2);
-				}		 */
 
 				
 				news=new ArrayCollection(tem);
@@ -199,17 +181,7 @@
 					tem.push(pa);
 					ind++;
 				}
-				
-
-/* 				for(var numtemp:Number=1;numtemp<=11;numtemp++) {
-					var pa3:Pa = new Pa();
-					pa3.id=numtemp.toString();
-					pa3.name="test "+ numtemp;
-					pa3.country="spain";
-					pa3.status="";
-					pa3.ind = numtemp;
-					tem.push(pa3);
-				} */
+			
 
 				
 				updates=new ArrayCollection(tem);

@@ -53,7 +53,7 @@
             pt = ev.target.localToGlobal(pt);
 			confirmAlert.x = pt.x-70;
 			if (scrollPosition>0) {
-				confirmAlert.y = (pt.y-80)+(scrollPosition-15);
+				confirmAlert.y = (pt.y-90)+(scrollPosition);
 			} else {
 				confirmAlert.y = pt.y-80;
 			}
@@ -63,6 +63,7 @@
 			Application.application.verticalScrollPolicy = 'off';
 			Application.application.mamufas.visible = true;
 			Application.application.addChild(confirmAlert);
+			scrollPosition = 0;
 		}
 		
 		private function onSelectedContinue(ev:ConfirmationAlertEvent):void {
