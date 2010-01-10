@@ -29,9 +29,31 @@
 			<mx:SetProperty target="{label1}" name="text" value="Your are about to update this Protected Area"/>
 			<mx:SetProperty target="{canvas1}" name="visible" value="true"/>
 		</mx:State>
+		<mx:State name="deleteNoGeom" basedOn="delete">
+			<mx:RemoveChild target="{headGeomCanvas}"/>
+			<mx:RemoveChild target="{headGeomLabel}"/>
+			<mx:SetProperty target="{headAttributes}" name="y" value="70"/>
+		</mx:State>
+		<mx:State name="insertNoGeom" basedOn="insert">
+			<mx:RemoveChild target="{newGeomCanvas}"/>
+			<mx:RemoveChild target="{newGeomLabel}"/>
+			<mx:SetProperty target="{newAttributes}" name="y" value="70"/>
+		</mx:State>
+		<mx:State name="updateNoGeom" basedOn="update">
+			<mx:RemoveChild target="{headGeomCanvas}"/>
+			<mx:RemoveChild target="{newGeomLabel}"/>
+			<mx:RemoveChild target="{headGeomLabel}"/>
+			<mx:RemoveChild target="{newGeomCanvas}"/>
+			<mx:SetProperty target="{headAttributes}" name="y" value="70"/>
+			<mx:SetProperty target="{newAttributes}" name="y" value="70"/>
+		</mx:State>
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.google.maps.MapType;
+			import com.google.maps.overlays.Marker;
+			import com.google.maps.LatLng;
+			import gs.TweenLite;
 			import mx.controls.Spacer;
 			import mx.controls.Alert;
 			import com.google.maps.controls.ControlPosition;
@@ -84,12 +106,27 @@
 				var res:Object = JSON.decode(event.result as String);
 				
 				var typeOperation:String="";
+				var appState:String="";
 				if (res.originalPa.name==null) {
 					typeOperation="insert";
+					appState="insert";
+					if(res.newPa.geom == null || res.newPa.geom == "") {
+						appState="insertNoGeom";
+					}
 				} else if (res.newPa.name==null) {
-					typeOperation="delete";					
+					typeOperation="delete";		
+					appState="delete";		
+					if(res.originalPa.geom == null || res.originalPa.geom == "") {
+						appState="deleteNoGeom";
+					}								
 				} else {
-					typeOperation="update";										
+					typeOperation="update";		
+					appState="update";		
+					if((res.originalPa.geom == null || res.originalPa.geom == "") 
+						&& (res.newPa.geom == null || res.newPa.geom == "")) {
+						appState="updateNoGeom";
+					}						
+													
 				}
 				
 				
@@ -105,7 +142,6 @@
 				newPa.id = res.newPa.id;
 				newPa.name = res.newPa.name;
 				newName=newPa.name;
-				
 				
 				
 				//the rest of the stuff is flexible
@@ -212,32 +248,49 @@
 				newAttributes.addChild(sp2);
 				
 				
-				currentState=typeOperation;
+				currentState=appState;
+				
+				if(appState.indexOf("NoGeom")<0) {
+					updateMaps();
+				}
 				
 				
 			}
 			
-			private function map2Ready():void {
-				if (newPa==null) {
+			private function updateMaps():void {
+				//If there is no geom data to visualize return
+				if (newPa.data.geom==null && originalPa.data.geom==null) {
 					return;
 				}
+				
+				//Check if the maps are initialized and if not wait for 1 sec.
+				if(!map2.isLoaded() || !map1.isLoaded()) {
+					TweenLite.delayedCall(1,updateMaps);
+					return;
+				}
+				
 				map2.clearOverlays();
-				if (newPa!=null) {
+				if (newPa.data.geom!=null && newPa.data.geom!="") {
 					addGeoJsonToMap((newPa.data.geom as String),map2);
 				}
-				var zco:ZoomControlOptions = new ZoomControlOptions({hasScrollTrack:false,position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,5,5)});
-				var zc:ZoomControl = new ZoomControl(zco);
-				map2.addControl(zc);				
-				syncMaps(map1,map2);
-			}
-			private function map1Ready():void {
 				map1.clearOverlays();
-				if (originalPa!=null && originalPa.data.geom!=null) {
+				if (originalPa.data.geom!=null && originalPa.data.geom!="") {
 					addGeoJsonToMap((originalPa.data.geom as String),map1);
 				}
+				syncMaps(map1,map2);				
+			}
+			
+			private function map2Ready():void {
+				var zco:ZoomControlOptions = new ZoomControlOptions({hasScrollTrack:false,position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,5,5)});
+				var zc:ZoomControl = new ZoomControl(zco);
+				map2.addControl(zc);			
+				map2.setMapType(MapType.PHYSICAL_MAP_TYPE);
+			}
+			private function map1Ready():void {
 				var zco:ZoomControlOptions = new ZoomControlOptions({hasScrollTrack:false,position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT,5,5)});
 				var zc:ZoomControl = new ZoomControl(zco);
 				map1.addControl(zc);
+				map1.setMapType(MapType.PHYSICAL_MAP_TYPE);
 			}
 			
 			private function addGeoJsonToMap(geoJson:String,map:Map):void {
@@ -254,16 +307,28 @@
 				});
 
 				var geoJsondata:Object = JSON.decode(geoJson);
-				var mp:Multipolygon= new Multipolygon();
 				//empty pa polygons ?? 
 				if (geoJsondata != null) {
-					mp.fromGeojsonMultiPolygon(geoJsondata.coordinates as Array,polOpt);						
-					mp.addToMap(map);
+					if(geoJsondata.type=="Point") {
+						var point:LatLng = new LatLng(geoJsondata.coordinates[1],geoJsondata.coordinates[0]);
+						map.addOverlay(new Marker(point));
+						map.setCenter(point,7);
+					} else {
+						var mp:Multipolygon= new Multipolygon();
+						mp.fromGeojsonMultiPolygon(geoJsondata.coordinates as Array,polOpt);						
+						mp.addToMap(map);
+						map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);							
+					}
+					
 				}
-				map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds())-1);	
 			}
 			
 			private function syncMaps(m1:Map,m2:Map):void {
+				if(m1.getZoom()<m2.getZoom())
+					m1.setZoom(m2.getZoom());
+				if(m2.getZoom()<m1.getZoom())
+					m2.setZoom(m1.getZoom());
+				
 				m1.addEventListener(MapMouseEvent.DRAG_STEP,function(event:MapMouseEvent):void {
 					m2.setCenter(event.latLng);
 				});
@@ -326,8 +391,8 @@
 						<mx:Label text="(09/11/2009)"  fontFamily="Helvetica" fontStyle="normal" fontSize="13" fontWeight="bold" color="#666666"  height="21"/>
 					</mx:HBox>
 					<mx:HRule height="1" left="15" right="0" top="63"/>
-					<mx:Label y="69" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="17"/>
-					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="85" height="218" left="20" right="17">
+					<mx:Label id="headGeomLabel" y="69" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="17"/>
+					<mx:Canvas id="headGeomCanvas" backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="85" height="218" left="20" right="17">
 						<maps:Map  id="map1" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ" left="3" right="3" top="3" bottom="3"
 							mapevent_mapready="map1Ready()"/>
 					</mx:Canvas>
@@ -342,8 +407,8 @@
 					</mx:HBox>
 
 					<mx:HRule height="1" left="0" right="17" top="64"/>
-					<mx:Label y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
-					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
+					<mx:Label  id="newGeomLabel" y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
+					<mx:Canvas id="newGeomCanvas" backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
 						<maps:Map  id="map2" key="ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ"
 							 mapevent_mapready="map2Ready()"
 							 left="3" right="3" top="3" bottom="3"/>
