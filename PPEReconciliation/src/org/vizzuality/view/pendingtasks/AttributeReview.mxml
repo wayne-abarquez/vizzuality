@@ -14,9 +14,25 @@
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
+		<mx:State name="delete">
+			<mx:RemoveChild target="{reviewPa}"/>
+			<mx:SetProperty target="{canvas1}" name="visible" value="true"/>
+		</mx:State>
+		<mx:State name="insert">
+			<mx:SetProperty target="{canvas1}" name="styleName" value="softGreenUp"/>
+			<mx:SetProperty target="{label1}" name="text" value="Your are about to add this Protected Area"/>
+			<mx:RemoveChild target="{headPa}"/>
+			<mx:SetProperty target="{canvas1}" name="visible" value="true"/>
+		</mx:State>
+		<mx:State name="update">
+			<mx:SetProperty target="{canvas1}" name="styleName" value="softBlueUp"/>
+			<mx:SetProperty target="{label1}" name="text" value="Your are about to update this Protected Area"/>
+			<mx:SetProperty target="{canvas1}" name="visible" value="true"/>
+		</mx:State>
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Spacer;
 			import mx.controls.Alert;
 			import com.google.maps.controls.ControlPosition;
 			import com.google.maps.controls.ZoomControlOptions;
@@ -68,9 +84,9 @@
 				var res:Object = JSON.decode(event.result as String);
 				
 				var typeOperation:String="";
-				if (res.originalPa==null) {
+				if (res.originalPa.name==null) {
 					typeOperation="insert";
-				} if (res.newPa==null) {
+				} else if (res.newPa.name==null) {
 					typeOperation="delete";					
 				} else {
 					typeOperation="update";										
@@ -101,22 +117,28 @@
 				
 				for (var atrib:String in newPa.data) {
 					if(atrib!='name' && atrib!='geom' && atrib!='country' && atrib!='id') {
+						//trace(atrib + ": " + String(originalPa.data[atrib]) + " / "+ String(newPa.data[atrib]));
+						
 						//ATTRIBUTES ADDED
-						if (originalPa.data[atrib]==null || originalPa.data[atrib]=='') {
+						if ((originalPa.data[atrib]==null || originalPa.data[atrib]=='') && originalPa.data[atrib]!=newPa.data[atrib]) {
 							addedAttributes[atrib]=newPa.data[atrib];
+							//trace("ADDED");
 						}
 						//ATTRIBUTES CHANGED
-						if (originalPa.data[atrib]!=newPa.data[atrib] && originalPa.data[atrib]!=null  && newPa.data[atrib]!='') {
+						else if (originalPa.data[atrib]!=newPa.data[atrib] && originalPa.data[atrib]!=null  && newPa.data[atrib]!='') {
 							changedAttributes[atrib]=newPa.data[atrib];
+							//trace("CHANGED");
 						}
 					}
 				}	
 				
 				for (var atrib2:String in originalPa.data) {
-					if(atrib!='name' && atrib!='geom' && atrib!='country' && atrib!='id') {
+					if(atrib2!='name' && atrib2!='geom' && atrib2!='country' && atrib2!='id') {
 						//ATTRIBUTES DELETED
-						if (newPa.data[atrib2]==null || newPa.data[atrib2]=='') {
+						if ((newPa.data[atrib2]==null || newPa.data[atrib2]=='')  && originalPa.data[atrib2]!=newPa.data[atrib2]) {
 							deletedAttributes[atrib2]=originalPa.data[atrib2];
+							//trace(atrib2 + ": " + String(originalPa.data[atrib2]) + " / "+ String(newPa.data[atrib2]));
+							//trace("DELETED");
 						}
 					}
 				}
@@ -126,49 +148,71 @@
 				headAttributes.removeAllChildren();
 				var ha:headAttribute;
 				var na:NewAttribute
-				//ADDED AATRIBUTES
-				for (var prop:String in addedAttributes) {
-					ha = new headAttribute();
-					ha.attName=prop;
-					ha.attValue='';	
-					//ha.setStyle("backgroundColor",0xC1E1FF);
-					headAttributes.addChildAt(ha,0);
-					
-					na = new NewAttribute();
-					na.attName=prop;
-					na.attValue=addedAttributes[prop];
-					//na.setStyle("backgroundColor",0xC1E1FF);
-					newAttributes.addChildAt(na,0);									
+				if(typeOperation=="insert" || typeOperation=="update") {
+					//ADDED AATRIBUTES
+					for (var prop:String in addedAttributes) {
+						ha = new headAttribute();
+						ha.attName=prop;
+						ha.attValue='';	
+						if(typeOperation=="update")
+							ha.setStyle("backgroundColor",0xC1E1FF);
+						headAttributes.addChildAt(ha,0);
+						
+						na = new NewAttribute();
+						na.attName=prop;
+						na.attValue=addedAttributes[prop];
+						if(typeOperation=="update")
+							na.setStyle("backgroundColor",0xC1E1FF);
+						newAttributes.addChildAt(na,0);									
+					}
 				}
-				//REMOVED AATRIBUTES
-				for (var prop2:String in deletedAttributes) {
-					ha = new headAttribute();
-					ha.attName=prop2;
-					ha.attValue=deletedAttributes[prop2];	
-					//ha.setStyle("backgroundColor",0xFFC1C1);
-					headAttributes.addChildAt(ha,0);
-					
-					na = new NewAttribute();
-					na.attName=prop2;
-					na.attValue='';
-					//na.setStyle("backgroundColor",0xFFC1C1);
-					newAttributes.addChildAt(na,0);									
+				if(typeOperation=="delete" || typeOperation=="update") {
+					//REMOVED AATRIBUTES
+					for (var prop2:String in deletedAttributes) {
+						ha = new headAttribute();
+						ha.attName=prop2;
+						ha.attValue=deletedAttributes[prop2];	
+						if(typeOperation=="update")
+							ha.setStyle("backgroundColor",0xFFC1C1);
+						headAttributes.addChildAt(ha,0);
+						
+						na = new NewAttribute();
+						na.attName=prop2;
+						na.attValue='';
+						if(typeOperation=="update")
+							na.setStyle("backgroundColor",0xFFC1C1);
+						newAttributes.addChildAt(na,0);									
+					}
 				}
-				//CHANGED AATRIBUTES
-				for (var prop3:String in changedAttributes) {
-					ha = new headAttribute();
-					ha.attName=prop3;
-					ha.attValue=originalPa.data[prop3];	
-					ha.setStyle("backgroundColor",0xCBFFC1);
-					headAttributes.addChildAt(ha,0);
-					
-					na = new NewAttribute();
-					na.attName=prop3;
-					na.attValue=changedAttributes[prop3];
-					na.setStyle("backgroundColor",0xCBFFC1);
-					newAttributes.addChildAt(na,0);									
+				if(typeOperation=="update") {
+					//CHANGED AATRIBUTES
+					for (var prop3:String in changedAttributes) {
+						ha = new headAttribute();
+						ha.attName=prop3;
+						ha.attValue=originalPa.data[prop3];	
+						if(typeOperation=="update")
+							ha.setStyle("backgroundColor",0xCBFFC1);
+						headAttributes.addChildAt(ha,0);
+						
+						na = new NewAttribute();
+						na.attName=prop3;
+						na.attValue=changedAttributes[prop3];
+						if(typeOperation=="update")
+							na.setStyle("backgroundColor",0xCBFFC1);
+						newAttributes.addChildAt(na,0);									
+					}
 				}
-				currentState="";
+				
+				var sp1:Spacer = new Spacer();
+				sp1.height=20;
+				headAttributes.addChild(sp1);
+				
+				var sp2:Spacer = new Spacer();
+				sp2.height=20;
+				newAttributes.addChild(sp2);
+				
+				
+				currentState=typeOperation;
 				
 				
 			}
@@ -263,9 +307,15 @@
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="0" top="62" bottom="10"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	    <mx:VBox left="15" right="15" top="15" bottom="15">
-			<mx:Canvas styleName="softRed" width="100%" height="30" backgroundSize="100%">
-				<mx:Label x="27" y="10" text="Your are about to delete this Protected Area" fontFamily="Helvetica" fontWeight="bold" fontSize="11" color="#666666"/>
+			<mx:Canvas styleName="softRed" width="100%" height="30" backgroundSize="100%" id="canvas1" visible="false">
+				<mx:Label x="27" y="10" text="Your are about to delete this Protected Area" fontFamily="Helvetica" fontWeight="bold" fontSize="11" color="#666666" id="label1"/>
 				<mx:Image x="9" y="7" source="{Resource.EXCLAMATION}"/>
+			    <mx:HBox horizontalGap="4" verticalAlign="bottom"  horizontalAlign="right" right="17" top="3">
+					<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
+					<mx:Spacer width="100%" />
+					<components:ShadowButton label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+					<components:ShadowButton label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+		    	</mx:HBox>				
 			</mx:Canvas>
 	    	<mx:HBox horizontalGap="0" width="100%">
 	    		<mx:Canvas width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off"
@@ -290,12 +340,7 @@
 					<mx:HBox horizontalGap="0" verticalAlign="bottom" left="15" right="15" top="15">
 						<mx:Label text="Your version"  fontFamily="Helvetica" fontStyle="normal" fontSize="20" fontWeight="bold" color="#666666"  letterSpacing="-1"/>
 					</mx:HBox>
-				    <mx:HBox horizontalGap="4" top="14" verticalAlign="bottom"  horizontalAlign="right" right="17">
-						<!-- El texto de este boton cambiaría si hay cambios a "save and exit"-->				
-						<mx:Spacer width="100%" />
-						<components:ShadowButton label="REJECT" styleName="redButton" icon="{Resource.CROSS_ICON_OVER}" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-						<components:ShadowButton label="CONFIRM" styleName="greenButton" icon="{Resource.TICK_ICON_OVER}" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
-			    	</mx:HBox>
+
 					<mx:HRule height="1" left="0" right="17" top="64"/>
 					<mx:Label y="70" text="GEOMETRY" color="#999999" fontFamily="Helvetica" fontWeight="bold" fontSize="10" left="16"/>
 					<mx:Canvas backgroundColor="#FFFFFF" borderStyle="solid" borderThickness="1" borderColor="#ccccccc" y="86" height="218" left="19" right="17">
@@ -305,12 +350,6 @@
 					</mx:Canvas>
 					<mx:VBox id="newAttributes" y="336" left="0" verticalGap="0"
 						verticalScrollPolicy="off" horizontalScrollPolicy="off" right="17">
-						<itemrenders:NewAttribute attName="attName" attValue="val"/>
-						<itemrenders:NewAttribute attName="attName" attValue="val" />
-						<itemrenders:NewAttribute attName="attName" attValue="val" />
-						<itemrenders:NewAttribute attName="attName" attValue="val" />
-						<itemrenders:NewAttribute attName="attName" attValue="val" />
-						<itemrenders:NewAttribute attName="attName" attValue="val" />
 						<mx:HRule height="1" width="100%"/>
 					</mx:VBox>
 				</mx:Canvas>						
@@ -329,14 +368,14 @@
 	    </mx:VBox>
 
 	</mx:Canvas>
-	<mx:HBox right="15" horizontalAlign="right" horizontalGap="3" verticalAlign="middle" top="32">
+	<!--mx:HBox right="15" horizontalAlign="right" horizontalGap="3" verticalAlign="middle" top="32">
 		<mx:Label id="pagingDelInfo"  right="70" verticalCenter="0" text="1 of 534" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
 		<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
 			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"
 			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
-	</mx:HBox>
-	<mx:Button label="back to the overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" buttonMode="true" mouseChildren="false" useHandCursor="true"
+	</mx:HBox -->
+	<mx:Button label="back to overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" buttonMode="true" mouseChildren="false" useHandCursor="true"
 		icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" x="732" y="16" click="SWFAddress.setValue('/rec/pendingtasks')"/>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="onGetPaAttributesComparisionResult(event)" fault="Alert.show('onGetPaAttributesComparisionResult ERROR: Please contact administrator')" />
 </mx:Canvas>
