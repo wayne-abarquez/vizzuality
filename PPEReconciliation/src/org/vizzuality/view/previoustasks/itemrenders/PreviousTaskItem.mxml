@@ -44,8 +44,6 @@
 	</mx:Script>
 	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0" backgroundColor="{bkg_color}">
 		<mx:HBox horizontalGap="0" top="5" left="11">
-			<mx:Label text="{data.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13"/>
-			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9"/>
 			<mx:Label text="{data.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>	
 		</mx:HBox>
 		<mx:Label id="number" text="{data.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11"/>

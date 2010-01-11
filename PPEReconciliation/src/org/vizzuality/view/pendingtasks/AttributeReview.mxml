@@ -433,13 +433,13 @@
 	    </mx:VBox>
 
 	</mx:Canvas>
-	<!--mx:HBox right="15" horizontalAlign="right" horizontalGap="3" verticalAlign="middle" top="32">
+	<mx:HBox right="15" horizontalAlign="right" horizontalGap="3" verticalAlign="middle" top="32">
 		<mx:Label id="pagingDelInfo"  right="70" verticalCenter="0" text="1 of 534" textAlign="right" fontSize="11" fontFamily="Helvetica" color="#414141" fontWeight="bold" paddingTop="3"/>
 		<mx:Button right="39" verticalCenter="0" styleName="whitePaginationLeft" 
 			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		<mx:Button right="8" verticalCenter="0" styleName="whitePaginationRight"
 			width="27" height="24" useHandCursor="true" mouseChildren="false" buttonMode="true"/>						
-	</mx:HBox -->
+	</mx:HBox>
 	<mx:Button label="back to overview" styleName="noSkinButton" fontFamily="Helvetica" fontWeight="bold" buttonMode="true" mouseChildren="false" useHandCursor="true"
 		icon="{Resource.GO_BACK_MINI_ARROW}" fontSize="12" x="732" y="16" click="SWFAddress.setValue('/rec/pendingtasks')"/>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="onGetPaAttributesComparisionResult(event)" fault="Alert.show('onGetPaAttributesComparisionResult ERROR: Please contact administrator')" />
