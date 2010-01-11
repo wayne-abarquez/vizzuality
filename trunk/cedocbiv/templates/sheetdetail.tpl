@@ -159,7 +159,7 @@
 			{foreach key=UnitID item=Image from=$Images}
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$Image.ImageURI}"><img src="{$Image.ImageURI|replace:'.htm':'.jpg'}" /></a><br>
 			{/foreach}
-			Es prohibeix l'ús, comercial o científic, d'aquestes imatges sense sol·licitar permís explícit al Director del CeDocBiV i citar-ne sempre el seu origen.
+			<p class="span-12 detailInfo">Es prohibeix l'ús, comercial o científic, d'aquestes imatges sense sol·licitar permís explícit al Director del CeDocBiV i citar-ne sempre el seu origen.</p>
 			</div>
 			{/if}
 		</div>
