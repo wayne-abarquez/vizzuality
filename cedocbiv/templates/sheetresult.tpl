@@ -7,13 +7,13 @@
 				<ul>
 					<li class="arrowList"><a href="index.php">Bases de dades</a></li>
 					<li class="arrowList"><a href="query.php?db={$BDSelected}">{$BDSelected}</a></li>
-					<li>{$smarty.request.submit}</li>
 				</ul>
 			</div>
 			
 			{if !$SearchSheetsResults.datos}
 			<div class="last paginator noresults">
-			<p class="torna">0 {$smarty.const.RESULTADOS}... <input value="Volver" type="button" class="buttonSearch"/ onClick="javascript:window.history.back();"></p>
+			<p class="torna">0 {$smarty.const.RESULTADOS}... 	<input value="{$smarty.const.BUTTONNEWSEARCH}" type="button" class="buttonLong" onClick="javascript:window.history.back();"/>
+			</p>
 			</div>
 			{else}
 				<div class="last paginator">
@@ -25,7 +25,7 @@
 				{if $offset < $SearchSheetsResults.count-10}
 				<span><a class="paginatorA"  href="?offset={$offset+10}&amp;&amp;nameauthoryearstring={$smarty.request.nameauthoryearstring}&amp;genus={$smarty.request.genus}&amp;highertaxon={$smarty.request.highertaxon}&amp;localitytext={$smarty.request.localitytext}&amp;countryname={$smarty.request.countryname}&amp;utmformula={$smarty.request.utmformula}&amp;agenttext={$smarty.request.agenttext}&amp;datesearchtype={$smarty.request.datesearchtype}&amp;datetext={$smarty.request.datetext}&amp;UnitID={$smarty.request.UnitID}&amp;submit={$smarty.request.submit}&amp;db={$smarty.request.db}"><input type="button" class="rightPaginator"></a></span>
 		    	{/if}	
-				<input value="Volver" type="button" class="buttonSearch"/ onClick="javascript:window.history.back();">
+				<input value="{$smarty.const.BUTTONNEWSEARCH}" type="button" class="buttonLong" onClick="javascript:window.history.back();"/>
 				</p>	
 				{/if}
 				</div>

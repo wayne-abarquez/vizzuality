@@ -81,6 +81,7 @@ define('DESPRES', "Després de");
 define('IGUAL', "Igual que (amb *)");
 
 define('BUTTONSEARCH', "Cerca");
+define('BUTTONNEWSEARCH', "Nova Cerca");
 
 define('ORD', "Ordenat per: ");
 

@@ -64,7 +64,7 @@
 	</div>
 
 	<div class="headerTitle">
-		<p><span class="color1">{$smarty.const.TITLE_HEADER_1}</span><span class="color2"> {$smarty.const.TITLE_HEADER_2} </span> <span class="color3">{$smarty.const.TITLE_HEADER_3}</span></p>
+		<a href="http://www.bib.ub.edu/cedocbiv/"><p><span class="color1">{$smarty.const.TITLE_HEADER_1}</span><span class="color2"> {$smarty.const.TITLE_HEADER_2} </span> <span class="color3">{$smarty.const.TITLE_HEADER_3}</span></p></a>
 	</div>
 </div>			
 
