@@ -331,7 +331,7 @@ body{
 
 .breadCrumb{
 	height: 50px;
-	width: 550px;
+	width: 450px;
 }
 
 .breadCrumb ul{
@@ -397,6 +397,22 @@ input.buttonSearch:hover{
 	background-image: url(../images/buttonSearchHover.gif); 
 }
 
+input.buttonLong{
+	width: 100px; 
+	background-image: url(../images/buttonLong.gif); 
+	background-repeat: no-repeat;
+	height:25px; 
+	padding:0; margin: 0; 
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+input.buttonLong:hover{
+	background-image: url(../images/buttonLongHover.gif); 
+}
+
 .buttonContainer{
 	margin-top: 20px;
 	margin-left: 20px;
@@ -452,7 +468,6 @@ input.rightPaginator:hover{
 	margin: 0; padding: 0;
 	margin-left: 19px;
 	text-decoration: none;
-	width: 800px;
 }
 
 .resultTaxon{

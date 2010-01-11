@@ -11,9 +11,7 @@
 			<li>{$BDSelected}</li>
 		</ul>
 	</div>
-	<div class="last paginator noresults">
-	<p class="torna"><input value="Volver" type="button" class="buttonSearch"/ onClick="javascript:window.history.back();"></p>
-	</div>
+	
 	<div class="news-body">
 		<div class="titleIndex">
 
