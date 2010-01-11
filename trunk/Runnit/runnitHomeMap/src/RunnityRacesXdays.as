@@ -53,11 +53,18 @@ package {
 		[Embed('assets/cargandomapa1.png')] 
 		private var loadingImg:Class;		
 		private var imgLoading:Bitmap;
-		[Embed('assets/zoomminus.gif')] 
-		private var minus: Class;	
-		private var zoomminus:Bitmap;
-		[Embed('assets/zoomplus.gif')] 
-		private var plus: Class;	
+
+		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
+        private var ZoomInButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        private var ZoomInButton_over:Class;
+ 
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
+        private var ZoomOutButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
+        private var ZoomOutButton_over:Class;	
 		private var zoomplus:Bitmap;
 		
 		
@@ -116,20 +123,8 @@ package {
 		}
 		
 		private function onMapReady(event:MapEvent):void {
-			
-			var zoomPlus:VizzButton = new VizzButton(this,10,10,25,25,"+",18,6,2);
-			zoomPlus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setZoom(map.getZoom()+1);
-			}); 
-			var zoomMinus:VizzButton = new VizzButton(this,10,40,25,25,"-",18,8,1);
-			zoomMinus.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setZoom(map.getZoom()-1);
-			}); 
-			
-
 			map.enableScrollWheelZoom();
 			downloadData();
-
 		}	
 		
 		private function onMapZoomChanged(event:MapZoomEvent):void
@@ -225,10 +220,56 @@ package {
 			attachMarkers();	
 			
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);	
-			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox)-1);
+			map.setCenter(dataBbox.getCenter(),map.getBoundsZoomLevel(dataBbox));
 
 			removeChild(imgLoading);	
 			removeChild(square);
+			
+			var zoomIn:Sprite = new ZoomInButton();			
+			var zoomIn_over: Sprite = new ZoomInButton_over();
+            addChild(zoomIn);
+            zoomIn.x = 10;
+            zoomIn.y = 10;
+            zoomIn_over.x = 0;
+            zoomIn_over.y = 0;
+            zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomIn.addChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true;
+
+			}); 
+            zoomIn.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomIn.removeChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true; 
+			}); 
+			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+		
+			
+			var zoomOut:Sprite = new ZoomOutButton();			
+			var zoomOut_over: Sprite = new ZoomOutButton_over();
+            addChild(zoomOut);
+            zoomOut.x = 10;
+            zoomOut.y = 45;
+            zoomOut_over.x = 0;
+            zoomOut_over.y = 0;
+            zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomOut.addChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true;
+
+			}); 
+            zoomOut.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomOut.removeChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true; 
+			});  
+			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 
+
 		}
 		
 		private function goToRunPage(e:MapMouseEvent):void {
