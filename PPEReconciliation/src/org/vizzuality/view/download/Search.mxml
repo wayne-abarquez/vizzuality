@@ -216,28 +216,32 @@
         }	
         
 	      private function doGeocode():void {
-	        // Geocoding example
-	        var geocoder:ClientGeocoder = new ClientGeocoder();
-	        
-	        geocoder.addEventListener(
-	          GeocodingEvent.GEOCODING_SUCCESS,
-	          function(event:GeocodingEvent):void {
-	          var placemarks:Array = event.response.placemarks;
-	          if (placemarks.length > 0) {
-	          	var bbox:LatLngBounds =  new LatLngBounds(
-	          		new LatLng(placemarks[0].ExtendedData.LatLonBox.north,placemarks[0].ExtendedData.LatLonBox.west),
-	          		new LatLng(placemarks[0].ExtendedData.LatLonBox.south,placemarks[0].ExtendedData.LatLonBox.east));	
-	          		
-	            map.setCenter(placemarks[0].point,map.getBoundsZoomLevel(bbox));
-	          }
-	        });
-	        geocoder.addEventListener(
-	          GeocodingEvent.GEOCODING_FAILURE,
-	          function(event:GeocodingEvent):void {
-	            //trace(event);
-	            //trace(event.status);
-	          });
-	        geocoder.geocode(searchInput.text);
+	      	if (searchInput.text!='') {
+		        // Geocoding example
+		        var geocoder:ClientGeocoder = new ClientGeocoder();
+		        
+		        geocoder.addEventListener(
+		          GeocodingEvent.GEOCODING_SUCCESS,
+		          function(event:GeocodingEvent):void {
+		          var placemarks:Array = event.response.placemarks;
+		          if (placemarks.length > 0) {
+		          	var bbox:LatLngBounds =  new LatLngBounds(
+		          		new LatLng(placemarks[0].ExtendedData.LatLonBox.north,placemarks[0].ExtendedData.LatLonBox.west),
+		          		new LatLng(placemarks[0].ExtendedData.LatLonBox.south,placemarks[0].ExtendedData.LatLonBox.east));	
+		          		
+		            map.setCenter(placemarks[0].point,map.getBoundsZoomLevel(bbox));
+		          }
+		        });
+		        geocoder.addEventListener(
+		          GeocodingEvent.GEOCODING_FAILURE,
+		          function(event:GeocodingEvent):void {
+		            //trace(event);
+		            //trace(event.status);
+		          });
+		        geocoder.geocode(searchInput.text);	      		
+	      	} else {
+	      		map.setZoom(1);
+	      	}
 	      }
         
         private function deleteRectangle (ev: MapZoomEvent):void {
@@ -449,10 +453,9 @@
 		<mx:HBox left="10" right="10" top="34" horizontalAlign="right" verticalAlign="middle" horizontalGap="4">
 			<mx:Label text="search"  fontFamily="Helvetica" fontSize="12" color="#666666" height="13"/>
 			<mx:TextInput id="searchInput" 
-				focusIn="changeStyle()" focusOut="changeStyle()"
-				fontStyle="italic" paddingTop="5" paddingLeft="5" paddingRight="5" fontSize="11" 
+				fontStyle="italic" paddingTop="5" paddingLeft="5" paddingRight="35" fontSize="11" 
 				fontFamily="Helvetica" color="#999999" width="341" styleName="searchTextInput" 
-				backgroundSize="100%" borderStyle="none" height="25" enter="doGeocode()"/>
+				backgroundSize="100%" borderStyle="none" enter="doGeocode()"/>
 			<mx:Button id="checkArea" width="29" styleName="boundingBoxButton" height="25" useHandCursor="true" 
 				toggle="true" mouseChildren="false" buttonMode="true" click="checkSelectArea()"/>
 		</mx:HBox>

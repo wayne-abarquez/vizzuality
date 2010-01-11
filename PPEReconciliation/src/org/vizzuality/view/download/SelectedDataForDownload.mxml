@@ -72,7 +72,6 @@
 			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 			MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
 			onDownloadButtonClick(downloadMode);
-
 		}
 		
 		private function onSelectedStop(ev:ConfirmationAlertEvent):void {

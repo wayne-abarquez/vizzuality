@@ -5,6 +5,9 @@
 	creationComplete="init()" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import org.vizzuality.events.ConfirmationAlertEvent;
+			import org.vizzuality.view.confirmationAlert;
+			import mx.events.ScrollEvent;
 			import mx.controls.Alert;
 			import org.vizzuality.view.pendingtasks.itemrenders.ProtectedAreaItem;
 			import org.vizzuality.events.TaskSelectionEvent;
@@ -29,6 +32,9 @@
 			[Bindable] private var totalDeleted:Number=0;
 			[Bindable] private var totalUpdated:Number=0;
 			[Bindable] private var totalNew:Number=0;
+			
+			private var confirmAlert:confirmationAlert = new confirmationAlert();
+			private var scrollPosition: Number = 0;
 			
 			[Bindable]private var deleted: ArrayCollection = new ArrayCollection();
 			[Bindable]private var news: ArrayCollection = new ArrayCollection();
@@ -58,6 +64,7 @@
 				getTaskNewPas(1);
 				getTaskUpdates(1);
 				
+				
 			}
 			
 			public function get task():Task {
@@ -67,6 +74,9 @@
 			private function init():void {
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.PA_CONFIRMED,onPaConfirmed);
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.PA_REJECTED,onPaRejected);
+				Application.application.addEventListener(ScrollEvent.SCROLL,function (ev:ScrollEvent):void {
+					scrollPosition = ev.position;
+				});
 			}
 			
 			private function onPaConfirmed(event:TaskSelectionEvent):void {
@@ -142,7 +152,7 @@
 				getTaskDeletionsRunning=false;
 				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
 					//the list is empty, this task must be finished.
-					if(deleted.length==0 && news.length==0 && updates.length==0 && SWFAddress.getValue()=="/rec/pendingtasks/overview") {
+					if(deleted.length==0 && news.length==0 && updates.length==0 ) {
 						SWFAddress.setValue('/rec/pendingtasks');
 					}
 				}				
@@ -186,7 +196,7 @@
 				getTaskNewPasRunning=false;
 				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
 					//the list is empty, this task must be finished.
-					if(deleted.length==0 && news.length==0 && updates.length==0 && SWFAddress.getValue()=="/rec/pendingtasks/overview") {
+					if(deleted.length==0 && news.length==0 && updates.length==0) {
 						SWFAddress.setValue('/rec/pendingtasks');
 					}
 				}				
@@ -229,7 +239,7 @@
 				getTaskUpdatesRunning=false;
 				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
 					//the list is empty, this task must be finished.
-					if(deleted.length==0 && news.length==0 && updates.length==0 && SWFAddress.getValue()=="/rec/pendingtasks/overview") {
+					if(deleted.length==0 && news.length==0 && updates.length==0) {
 						SWFAddress.setValue('/rec/pendingtasks');
 					}
 				}
@@ -237,7 +247,39 @@
 			}
 			
 			
+			
+			private function confirmationCommitChanges(ev:MouseEvent):void {
+				var pt:Point = new Point(ev.localX, ev.localY);
+	            pt = ev.target.localToGlobal(pt);
+				confirmAlert.x = pt.x-70;
+				if (scrollPosition>0) {
+					confirmAlert.y = (pt.y-90)+(scrollPosition);
+				} else {
+					confirmAlert.y = pt.y-80;
+				}
+				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.GO_ON,function onContinueEvent():void {commitChanges();});
+				MyEventDispatcher.addEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+				Application.application.verticalScrollPolicy = 'off';
+				Application.application.mamufas.visible = true;
+				Application.application.addChild(confirmAlert);
+				scrollPosition = 0;
+            }
+            
+    		private function onSelectedStop(ev:ConfirmationAlertEvent):void {
+				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,function onContinueEvent():void {commitChanges();});
+				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
+				try {
+					Application.application.removeChild(confirmAlert);
+					Application.application.mamufas.visible = false;
+					Application.application.verticalScrollPolicy = 'auto';
+				} catch (e:Error) {}
+			}
+			
+			
 			private function commitChanges():void {
+				confirmAlert.currentState="Processing";
+				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,function onContinueEvent():void {commitChanges();});
+				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);				
 				jsonServiceCommit.url = Application.application.serverUrl + "/exports/"+task.id+"/imports/" + task.importId +'/protected_areas/update_all';
 				var params:Object={};
 				params.taskCode = task.code;
@@ -257,12 +299,13 @@
 				}
 				params["changed[]"]=updated;
 				jsonServiceCommit.send(params);		
-
-				
 			}
 			
 			
 			private function onCommitResult(event:ResultEvent):void {
+				Application.application.mamufas.visible = false;
+				confirmAlert.currentState = '';
+				Application.application.removeChild(confirmAlert);
 				//Create a new ReviewProcess
 				review=new ReviewProcess();
 				refreshData();
@@ -289,7 +332,7 @@
 			<itemrenders:MergeOverviewItem type="Modified" total="{totalUpdated}" color="#336699" pending="{review.editedPending}" />
 		</mx:VBox>
 		<mx:Canvas height="33" borderStyle="none" color="#333333" top="0" left="0" right="0" width="100%" styleName="softGreyBottom" backgroundSize="100%">
-			<components:ShadowButton label="COMMIT CHANGES" click="commitChanges()" enabled="{review.totalReviewed>0}" 
+			<components:ShadowButton label="COMMIT CHANGES" click="confirmationCommitChanges(event)" enabled="{review.totalReviewed>0}" 
 				verticalCenter="-1" right="5" width="128" letterSpacing="0" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="greenButton"/>
 		</mx:Canvas>		
 	</mx:VBox>
