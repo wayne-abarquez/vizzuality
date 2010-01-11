@@ -7,14 +7,10 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapZoomEvent;
-	import com.google.maps.controls.ControlPosition;
-	import com.google.maps.controls.ZoomControl;
-	import com.google.maps.controls.ZoomControlOptions;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.styles.FillStyle;
 	import com.kelvinluck.gmaps.Clusterer;
 	import com.vizzuality.gmaps.RunMarkerClusterHome;
-	import com.vizzuality.gmaps.RunSingleMarker;
 	import com.vizzuality.gmaps.RunSingleMarkerHome;
 	
 	import flash.display.Bitmap;
@@ -22,6 +18,7 @@ package {
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
@@ -50,8 +47,20 @@ package {
 		[Embed('assets/cargandomapa1.png')] 
 		private var loadingImg:Class;		
 		private var imgLoading:Bitmap;
-		[Embed('assets/leyenda.png')] 
-		private var legend:Class;	
+/* 		[Embed('assets/leyenda.png')] 
+		private var legend:Class; */
+		
+		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
+        private var ZoomInButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        private var ZoomInButton_over:Class;
+ 
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
+        private var ZoomOutButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
+        private var ZoomOutButton_over:Class;	
 		
 		
 		public function runnitHomeMap()
@@ -60,7 +69,7 @@ package {
 			stage.align = StageAlign.TOP_LEFT;					
 			
 			imgLoading= new loadingImg() as Bitmap;
-			imgLoading.x = 400;
+			imgLoading.x = 368;
 			imgLoading.y = 80;
 			mouseChildren = true;		
 			
@@ -101,10 +110,7 @@ package {
 		
 		private function onMapReady(event:MapEvent):void
 		{
-			var zco:ZoomControlOptions= new ZoomControlOptions({
-				position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)
-			});
-			map.addControl(new ZoomControl(zco));
+			
 			map.enableScrollWheelZoom();
 			downloadData();
 
@@ -175,23 +181,28 @@ package {
 		private var iw:Dictionary=new Dictionary();
 		private function getAllRunsResult(event:RosaEvent):void {
 			markers = [];	
+			var now: Date = new Date();
 			dataBbox=new LatLngBounds();
 			for each(var m:Object in event.result as Array) {
-				var p:LatLng = new LatLng(m.lat,m.lon);
-				var marker:RunSingleMarkerHome=new RunSingleMarkerHome(p,m.name,m.id,m.event_date)
-				iw[marker]=m;
-				marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
-					
-					goToRunPage(e);
-				});
-				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
-					openInfoWindow(e);									
-				});
-				marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
-					map.closeInfoWindow();
-				});						
-				markers.push(marker);
-				dataBbox.extend(p);
+				var raceDate: Date = new Date();
+				raceDate.setFullYear(Number(m.event_date.slice(0,4)),Number(m.event_date.slice(5,7))-1,Number(m.event_date.slice(8,10)));
+ 				raceDate.setHours(Number(m.event_date.slice(11,13)),Number(m.event_date.slice(14,16)),Number(m.event_date.slice(17,19)));
+				if (raceDate>now) {
+					var p:LatLng = new LatLng(m.lat,m.lon);
+					var marker:RunSingleMarkerHome=new RunSingleMarkerHome(p,m.name,m.id,m.event_date)
+					iw[marker]=m;
+					marker.addEventListener(MapMouseEvent.CLICK,function(e:MapMouseEvent):void {
+						goToRunPage(e);
+					});
+					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+						openInfoWindow(e);									
+					});
+					marker.addEventListener(MapMouseEvent.ROLL_OUT, function(e:MapMouseEvent):void {
+						map.closeInfoWindow();
+					});						
+					markers.push(marker);
+					dataBbox.extend(p);
+				}
 			}
 			
 			
@@ -208,11 +219,55 @@ package {
 			
 			removeChild(imgLoading);	
 			removeChild(square);
-			var raceLegend: Sprite = new Sprite();
+			var zoomIn:Sprite = new ZoomInButton();			
+			var zoomIn_over: Sprite = new ZoomInButton_over();
+            addChild(zoomIn);
+            zoomIn.x = 10;
+            zoomIn.y = 10;
+            zoomIn_over.x = 0;
+            zoomIn_over.y = 0;
+            zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomIn.addChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true;
+
+			}); 
+            zoomIn.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomIn.removeChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true; 
+			}); 
+			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+		
+			
+			var zoomOut:Sprite = new ZoomOutButton();			
+			var zoomOut_over: Sprite = new ZoomOutButton_over();
+            addChild(zoomOut);
+            zoomOut.x = 10;
+            zoomOut.y = 45;
+            zoomOut_over.x = 0;
+            zoomOut_over.y = 0;
+            zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomOut.addChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true;
+
+			}); 
+            zoomOut.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomOut.removeChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true; 
+			});  
+			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 
+/* 			var raceLegend: Sprite = new Sprite();
 			raceLegend.x = 750;
 			raceLegend.y = 5;	
 			raceLegend.addChild(new legend());
-			addChild(raceLegend);
+			addChild(raceLegend); */
 		}
 		
 		private function goToRunPage(e:MapMouseEvent):void {
