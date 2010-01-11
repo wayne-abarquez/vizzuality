@@ -6,8 +6,11 @@
 			import resource.Resource;
             import flash.events.TextEvent; 
 
+            private var getDate: Date;
             
             private function init():void {
+            	getDate = new Date();
+            	rights.text =  "  /   All rights reserved. "+ (getDate.fullYear) + "   / ";
             }            
 
 		]]>
@@ -16,7 +19,7 @@
 	<mx:HBox horizontalGap="0" verticalAlign="middle" left="0" verticalCenter="0">
 		<components:LinkLabel id="protect" text="Protect Planet Earth" url="http://www.protectplanetearth.org" fontSize="11" fontFamily="Arial" target="_blank" color="#999999" fontWeight="bold"
 			default_color="0x999999" default_hover_color="0x333333" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>  
-		<mx:Label x="10" y="81" text=" /  All rights reserved. 2009   / " color="#999999" fontSize="11" fontFamily="Arial"/>
+		<mx:Label id="rights" x="10" y="81" color="#999999" fontSize="11" fontFamily="Arial"/>
 		<components:LinkLabel text="Contact us" url="mailto:craigmmills@unep-wcmc.org" fontSize="11" fontFamily="Arial" target="_blank" color="#999999" fontWeight="bold"
 			default_color="0x999999" default_hover_color="0x333333" default_hover_decoration="none" text_decoration="none" default_weight="bold" default_hover_weight="bold"/>  
 	</mx:HBox>

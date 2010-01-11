@@ -289,10 +289,8 @@
 		]]>
 	</mx:Script>
 	<mx:Canvas id="mamufas" left="0" top="0" bottom="0" right="0" backgroundColor="{bkg_color}">
-		<mx:HBox horizontalGap="0" top="5" left="11">
-			<!--mx:Label text="{task.what}" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" alpha="{textAlpha}"/>
-			<mx:Label text="-" color="#666666" fontWeight="normal" fontFamily="Helvetica" fontSize="13" width="9" alpha="{textAlpha}"/ -->
-			<mx:Label text="{task.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13" alpha="{textAlpha}"/>	
+		<mx:HBox horizontalGap="0" top="3" left="8">
+			<mx:Label text="{task.description}" color="#666666" fontWeight="bold" fontFamily="Helvetica" fontSize="13" alpha="{textAlpha}" paddingTop="3"/>	
 		</mx:HBox>
 		<mx:Label id="number" text="{task.numareas + ' Protected Areas'}" color="#999999" fontWeight="normal" 
 			fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="20" left="11" alpha="{textAlpha}"/>
@@ -318,9 +316,11 @@
 		backgroundColor="#333333" borderStyle="solid" borderColor="#000000" cornerRadius="2" visible="false" alpha="0"
 		useHandCursor="true" mouseChildren="true" buttonMode="true" >
 		
-		<mx:HBox horizontalGap="0" top="5" left="8">
-			<mx:Label text="{task.description}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13"/>
-			<mx:Label text="(re-download) " color="#FFFFFF" fontFamily="Helvetica" fontSize="12"/>	
+		<mx:HBox horizontalGap="6" top="3" left="8">
+			<mx:Label text="{task.description}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13" paddingTop="3"/>
+			<components:ShadowButton id="redownload" label="RE-DOWNLOAD" styleName="greenButton"
+			top="4" right="24" fontSize="10" paddingRight="2" paddingLeft="2" paddingTop="3" paddingBottom="3" height="18" 
+			mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(taskName=='Task ready for review')?false:true}" click="waitingForDownloadClicked(event)"/>
 		</mx:HBox>
 		<mx:Label text="{task.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="21" left="8"/>
 		

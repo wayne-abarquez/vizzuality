@@ -72,7 +72,7 @@ GradientCanvas.header{
 
 TextInput.searchTextInput{
 	background-image: Embed(source="general.swf",symbol="searchTextInputBkg");
-	focus-alpha: 0;	
+	focus-alpha: 0;
 }
 
 ProgressBar {

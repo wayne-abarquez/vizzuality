@@ -99,7 +99,7 @@
 			
 			
 			private function addedToStage():void {
-				Application.application.viewsContainer.myViewStack.height = 1150;
+				/* Application.application.viewsContainer.myViewStack.height = 1150; */
 			}
 			
 			private function onGetPaAttributesComparisionResult(event:ResultEvent):void {
@@ -250,11 +250,13 @@
 				
 				currentState=appState;
 				
+				var numChildre:Number = headAttributes.numChildren;
 				if(appState.indexOf("NoGeom")<0) {
 					updateMaps();
+					Application.application.viewsContainer.myViewStack.height = 700 + headAttributes.numChildren*30;
+				} else {
+					Application.application.viewsContainer.myViewStack.height = 400 + headAttributes.numChildren*30;
 				}
-				
-				
 			}
 			
 			private function updateMaps():void {
@@ -371,7 +373,7 @@
     
 	<mx:Canvas backgroundColor="#FFFFFF" left="0" right="0" top="62" bottom="10"
 		verticalScrollPolicy="off" horizontalScrollPolicy="off">
-	    <mx:VBox left="15" right="15" top="15" bottom="15">
+	    <mx:VBox id="mergeSpace" left="15" right="15" top="15" >
 			<mx:Canvas styleName="softRed" width="100%" height="30" backgroundSize="100%" id="canvas1" visible="false">
 				<mx:Label x="27" y="10" text="Your are about to delete this Protected Area" fontFamily="Helvetica" fontWeight="bold" fontSize="11" color="#666666" id="label1"/>
 				<mx:Image x="9" y="7" source="{Resource.EXCLAMATION}"/>
