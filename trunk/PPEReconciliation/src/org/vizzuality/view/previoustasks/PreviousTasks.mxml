@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="684" 
-	styleName="dataDownloadContainer" backgroundSize="100%" 
-	xmlns:maps="com.google.maps.*" verticalScrollPolicy="off" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="874" height="100%" 
+	styleName="dataDownloadContainer" backgroundSize="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	xmlns:maps="com.google.maps.*" creationComplete="init()" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
 			import mx.controls.Alert;
@@ -45,12 +45,18 @@
 				}
 				pendingTasks=new ArrayCollection(resArr);
 				totalTasks=res.total;
-				totalPages = Math.ceil(totalTasks/8);		
-				
+				totalPages = Math.ceil(totalTasks/8);
+				calculateHeight();
 			}
-
 			
-			
+			private function calculateHeight():void{
+				completedTask.height = pendingTasks.length * 43;
+				if (Application.application.previousTasks>0) {
+	 				Application.application.viewsContainer.myViewStack.height = completedTask.height + 285;
+				} else {
+					Application.application.viewsContainer.myViewStack.height = completedTask.height + 310;
+				}
+			}
 			
 		]]>
 	</mx:Script>
@@ -70,7 +76,7 @@
 		</mx:Canvas>
 		
 		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.previoustasks.itemrenders.PreviousTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
-			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" />
+			paddingLeft="0" paddingRight="0" paddingTop="0" paddingBottom="0" id="completedTask"/>
 		
 		<mx:Canvas width="100%" height="34" styleName="softBlueBottom" backgroundSize="100%">
 			<mx:Label  right="75" verticalCenter="-1" width="211" text="{'page '+page+' of '+totalPages}" textAlign="right" fontFamily="Helvetica" fontSize="11" color="#333333" fontWeight="bold" height="15"/>
@@ -82,14 +88,14 @@
 		
 		<mx:Spacer height="12" />
 		
-		<mx:Canvas width="100%" height="66" styleName="ContainersInfo">	
+		<mx:Canvas width="100%" height="66" styleName="ContainersInfo" horizontalScrollPolicy="off" verticalScrollPolicy="off">	
 			<mx:Image x="10" y="10" width="43" height="47" source="{resource.Resource.STEP4}"/>
 			<mx:Label text="Download new data"  left="65" right="0" top="19" fontFamily="Helvetica" fontWeight="bold" fontSize="13" color="#414141"/>
 			<mx:HBox id="hbox1" x="65" y="34"  horizontalGap="0" width="542">
 				<mx:Label  text="Use our" fontSize="12" fontFamily="Helvetica" color="#414141"/>
 				<components:LinkLabel text="search tools"  fontSize="12" fontFamily="Helvetica" color="#336699" fontWeight="bold"
 				default_color="0x336699" default_hover_color="0x003366" default_hover_decoration="none" 
-				text_decoration="none" default_weight="bold" default_hover_weight="bold"
+				text_decoration="none" default_weight="bold" default_hover_weight="bold" 
 				click="{SWFAddress.setValue('/rec/checkout')}"/>
 				<mx:Label text="to get some new data, and stat a new proccess"  fontSize="12" fontFamily="Helvetica" color="#414141"/>
 			</mx:HBox>

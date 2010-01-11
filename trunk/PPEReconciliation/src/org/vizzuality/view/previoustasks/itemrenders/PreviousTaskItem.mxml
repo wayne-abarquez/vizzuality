@@ -11,6 +11,7 @@
 			import gs.TweenMax;
 			
 			[Bindable] private var bkg_color: uint;
+			private var timeAgo: ReturnTimeAgo = new ReturnTimeAgo();
 			
 			override public function set data(value:Object):void {
             	if (value != null) {
@@ -28,8 +29,6 @@
                 } 
             }
 			
-			private var timeAgo: ReturnTimeAgo = new ReturnTimeAgo();		
-			
 			private function getDate (str:String):String {
 				return timeAgo.parseDate(str);
 			}
@@ -37,6 +36,18 @@
 			private function getAgo (str:String):String {
 				return timeAgo.returnTimeAgo(str);
 			}
+			
+			public static const millisecondsPerDay:int = 1000 * 60 * 60 * 24; 
+			private function getDaysDifference(minDate:Date, maxDate:Date):String { 
+				var d:Number = Math.ceil(( minDate.getTime() - maxDate.getTime()) / millisecondsPerDay);
+				if(d < 1) {
+					return "today";					
+				}
+				if(d == 1) {
+					return "yesterday";					
+				}				
+				return d + " days ago"; 
+			} 
 			
 			
 			
@@ -51,7 +62,7 @@
 		<mx:Label text="Done at 2 November, 2008" color="#46B000"  left="444" top="5" fontSize="13" fontFamily="Helvetica" fontWeight="bold"/>
 	
 		<mx:Label id="date" text="{getDate(data.date)}" color="#666666"  left="659" top="5" fontSize="12" fontFamily="Helvetica" fontWeight="bold"/>
-		<mx:Label id="ago" text="{getAgo(data.date)}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="659" fontFamily="Helvetica"/>
+		<mx:Label id="ago" text="{getDaysDifference(data.date,new Date())}" color="#999999" fontWeight="normal" fontSize="11" fontStyle="normal" top="20" left="659" fontFamily="Helvetica"/>
 		
 		<mx:HRule left="0" right="0" strokeColor="#e3e3e3" strokeWidth="1" bottom="0"/>
 	</mx:Canvas>
