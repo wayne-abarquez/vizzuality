@@ -320,7 +320,7 @@
 			<mx:Label text="{task.description}" color="#FFFFFF" fontWeight="bold" fontFamily="Helvetica" fontSize="13" paddingTop="3"/>
 			<components:ShadowButton id="redownload" label="RE-DOWNLOAD" styleName="greenButton"
 			top="4" right="24" fontSize="10" paddingRight="2" paddingLeft="2" paddingTop="3" paddingBottom="3" height="18" 
-			mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(taskName=='Task ready for review')?false:true}" click="waitingForDownloadClicked(event)"/>
+			mouseChildren="false" buttonMode="true" useHandCursor="true" visible="{(taskName=='Errors in data'||taskName=='Waiting for Upload')?true:false}" click="waitingForDownloadClicked(event)"/>
 		</mx:HBox>
 		<mx:Label text="{task.numareas + ' Protected Areas'}" color="#cccccc" fontWeight="normal" fontFamily="Helvetica" fontSize="11" fontStyle="normal" top="21" left="8"/>
 		
