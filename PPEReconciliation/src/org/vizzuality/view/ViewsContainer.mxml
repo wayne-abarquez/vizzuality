@@ -104,6 +104,9 @@
 	    				if (pending_task.currentState=='Pa') {
 	    					myViewStack.height = 300;
 	    				}
+	    				if (pending_task.currentState=='Overview') {
+	    					myViewStack.height = 625;
+	    				}
     				}
     			}
     			
