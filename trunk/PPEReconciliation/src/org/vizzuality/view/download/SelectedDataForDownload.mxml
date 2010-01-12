@@ -124,6 +124,7 @@
 				Application.application.removeChild(confirmAlert);
 			} catch (e:Error) {}			
 			Application.application.mamufas.visible = false;
+			
 		}
 		
 	]]>

@@ -46,6 +46,7 @@
 			[Bindable]private var pendingTasks: ArrayCollection = new ArrayCollection();
 			
 			private function init():void {
+				Application.application.viewsContainer.myViewStack.height = 630;
 				getPendingTasks(1);
 				MyEventDispatcher.addEventListener(CancelTaskEvent.CANCEL_TASK,onShowAlertConfirmation);
 				MyEventDispatcher.addEventListener(TaskSelectionEvent.SELECTED_TASK_FOR_UPLOAD,onSelectedTaskForUpload);
