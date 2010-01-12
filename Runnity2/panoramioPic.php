@@ -32,7 +32,7 @@ if($photo) {
 
     file_put_contents($targetPicture, $pic);
 
-    if(filesize($targetPicture)==2900) {
+    if(filesize($targetPicture)<4000) {
         header("Content-Type: image/jpeg");
         header('Content-Length: '.filesize($defaultPicture));    
         header('Expires: Thu, 15 Apr 2015 20:00:00 GMT');
