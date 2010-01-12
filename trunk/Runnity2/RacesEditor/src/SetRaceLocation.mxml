@@ -15,6 +15,7 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import mx.collections.ArrayCollection;
 	    	import mx.events.FlexEvent;
 	    	import mx.messaging.SubscriptionInfo;
 	    	import mx.core.Application;
@@ -262,7 +263,7 @@
 		    		altimetry.push(0);
 		    	} else {
 		    		altimetry.push(ev.result.height.meters);
-		    	}
+		    	}	
 
 		    	aux++;
 		    	
@@ -280,6 +281,7 @@
 		    	undoPoint.enabled = false;
 		    	saveButton.enabled = false;
 		    	createAltimetry.label = "Creando...";
+		    	altimetry = new Array();
 		    	
 		    	var maxNodes:Number = Math.round (Number ((distance.text as String).substr(0,7)) / 0.1);
 		    	for(var i:Number=0;i<maxNodes;i++) {
