@@ -72,7 +72,6 @@
 			<mx:Label text="What" top="36" left="10" fontFamily="Helvetica" fontSize="11" color="#336699"/>
 			<mx:Label text="Done date" left="444" top="36" fontFamily="Helvetica" fontSize="11" color="#336699"/>
 			<mx:Label text="Start Date" left="659" top="36" fontFamily="Helvetica" fontSize="11" color="#336699"/>
-
 		</mx:Canvas>
 		
 		<mx:List height="350" width="100%" itemRenderer="org.vizzuality.view.previoustasks.itemrenders.PreviousTaskItem" dataProvider="{pendingTasks}" borderStyle="none"
@@ -103,5 +102,4 @@
     </mx:VBox>
 	<mx:HTTPService id="jsonService" resultFormat="text" method="GET" result="getPendingTasksResult(event)" fault="Alert.show('getPendingTasksResult ERROR: Please contact administrator')" />
 
-	
 </mx:Canvas>
