@@ -3,11 +3,11 @@ include($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
 require "libs/imageTransforms.php";
 require_once("libs/phpFlickr.php");
 $basePath = ABSPATH;
-$targetPicture=$basePath."media/run/".$_REQUEST['id']."_small.jpg";
+@$targetPicture=$basePath."media/run/".$_REQUEST['id']."_small.jpg";
 $defaultPicture=$basePath."media/run/generic/1_small.jpg";
 
 
-$id=$_REQUEST['id'];
+@$id=$_REQUEST['id'];
 
 
 if (file_exists($targetPicture)) {

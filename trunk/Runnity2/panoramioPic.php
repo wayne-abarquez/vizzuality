@@ -3,8 +3,8 @@ include($_SERVER['DOCUMENT_ROOT'] ."/runnit-config.php");
 require "libs/imageTransforms.php";
 require_once("libs/phpFlickr.php");
 $basePath = ABSPATH;
-$targetPicture=$basePath."media/run/".$_REQUEST['id']."_big.jpg";
-$defaultPicture=$basePath."media/run/generic/1_big.jpg";
+@$targetPicture=$basePath."media/run/".$_REQUEST['id']."_big.jpg";
+@$defaultPicture=$basePath."media/run/generic/1_big.jpg";
 
 
 $id=$_REQUEST['id'];
