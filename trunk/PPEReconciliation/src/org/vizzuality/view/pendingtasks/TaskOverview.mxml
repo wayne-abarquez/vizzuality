@@ -5,6 +5,7 @@
 	creationComplete="init()" xmlns:itemrenders="org.vizzuality.view.pendingtasks.itemrenders.*" xmlns:pendingtasks="org.vizzuality.view.pendingtasks.*" xmlns:components="org.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Button;
 			import org.vizzuality.events.ConfirmationAlertEvent;
 			import org.vizzuality.view.confirmationAlert;
 			import mx.events.ScrollEvent;
@@ -153,6 +154,11 @@
 				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
 					//the list is empty, this task must be finished.
 					if(deleted.length==0 && news.length==0 && updates.length==0 ) {
+
+						if ((Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).includeInLayout == false) {
+							(Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).visible = true;
+							(Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).includeInLayout = true;
+						}
 						SWFAddress.setValue('/rec/pendingtasks');
 					}
 				}				
@@ -197,6 +203,11 @@
 				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
 					//the list is empty, this task must be finished.
 					if(deleted.length==0 && news.length==0 && updates.length==0) {
+							
+						if ((Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).includeInLayout == false) {
+							(Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).visible = true;
+							(Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).includeInLayout = true;
+						}
 						SWFAddress.setValue('/rec/pendingtasks');
 					}
 				}				
@@ -240,6 +251,11 @@
 				if(!getTaskDeletionsRunning && !getTaskNewPasRunning && !getTaskUpdatesRunning) {
 					//the list is empty, this task must be finished.
 					if(deleted.length==0 && news.length==0 && updates.length==0) {
+						
+						if ((Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).includeInLayout == false) {
+							(Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).visible = true;
+							(Application.application.viewsContainer.hbox_buttons.getChildAt(3) as Button).includeInLayout = true;
+						}
 						SWFAddress.setValue('/rec/pendingtasks');
 					}
 				}

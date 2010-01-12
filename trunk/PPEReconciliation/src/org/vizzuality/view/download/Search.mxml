@@ -384,7 +384,6 @@
 		}
 		
 		private function callService(params:Object):void {
-			trace("call!");
 			jsonService.send(params);
 		}
 		
