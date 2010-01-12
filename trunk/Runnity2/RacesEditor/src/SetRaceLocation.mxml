@@ -258,7 +258,11 @@
 		    }
 		    
 		    private function onResult(ev: ResultEvent):void {
-		    	altimetry.push(ev.result.height.meters);
+		    	if (ev.result.height.meters<0) {
+		    		altimetry.push(0);
+		    	} else {
+		    		altimetry.push(ev.result.height.meters);
+		    	}		    	
 		    	aux++;
 		    	
 		    	getAltitudes();
