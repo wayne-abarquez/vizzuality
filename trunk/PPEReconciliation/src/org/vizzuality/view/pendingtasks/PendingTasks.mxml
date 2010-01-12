@@ -89,6 +89,7 @@
 				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.GO_ON,onSelectedContinue);
 				MyEventDispatcher.removeEventListener(ConfirmationAlertEvent.STOP_NOW,onSelectedStop);
 				onTaskCanceled();
+				Application.application.pendingTasks--;
 				for each (var ob:Array in itemList.renderers) {
 					if (!ob[0].mustRollOver) {
 						PendingTaskItem(ob[0]).handleAutomaticOut();
