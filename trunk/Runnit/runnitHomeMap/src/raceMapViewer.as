@@ -189,12 +189,23 @@ package
 				
 				trackLength=track.getLength();
 			
-				//add 10% around
-
- 				//var diff:Number = Math.round((maxAltitude-minAltitude)*.3);
-				url+="&chxr=0,0," + trackLength.toString() +
-					 "|1," + Math.floor(minAltitude*0.7) +","+Math.ceil(maxAltitude*1.3) +
-					 "&chds=" + Math.floor(minAltitude*0.7) +","+Math.ceil(maxAltitude*1.3);
+			
+			
+			
+				if(maxAltitude==0 && minAltitude==0) {
+					url+="&chxr=0,0," + trackLength.toString() +
+					 "|1,-50,50" +
+					 "&chds=-50,50";					
+				} else if(maxAltitude-minAltitude<100) {								
+					url+="&chxr=0,0," + trackLength.toString() +
+						 "|1," + Math.floor(minAltitude*0.7) +","+Math.ceil(maxAltitude*1.8) +
+						 "&chds=" + Math.floor(minAltitude*0.7) +","+Math.ceil(maxAltitude*1.8);
+				} else {
+					url+="&chxr=0,0," + trackLength.toString() +
+						 "|1," + Math.floor(minAltitude*0.7) +","+Math.ceil(maxAltitude*1.3) +
+						 "&chds=" + Math.floor(minAltitude*0.7) +","+Math.ceil(maxAltitude*1.3);
+				}
+			
 
 				url+="&chd=t:" + event.result.altimetria;
 				var imgLoader:Loader = new Loader();
