@@ -50,14 +50,29 @@ package
 		private var distanceText:TextField;
 		private var markerRunnerOpt:MarkerOptions;
 		
+		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
+        private var ZoomInButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        private var ZoomInButton_over:Class;
+ 
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
+        private var ZoomOutButton:Class;
+        
+        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
+        private var ZoomOutButton_over:Class;			
+		
+		
+		
+		
 		public function raceMapViewer()
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;					
 			
 			imgLoading= new loadingImg() as Bitmap;
-			imgLoading.x = 200;
-			imgLoading.y = 150;
+			imgLoading.x = 220;
+			imgLoading.y = 110;
 			mouseChildren = true;		
 			
 				
@@ -131,10 +146,7 @@ package
 		
 		private function onMapReady(event:MapEvent):void
 		{
-			var zco:ZoomControlOptions= new ZoomControlOptions({
-				position:new ControlPosition(ControlPosition.ANCHOR_TOP_LEFT, 10, 10)
-			});
-			map.addControl(new ZoomControl(zco));
+
 			map.enableScrollWheelZoom();
 			//downloadData();
 			
@@ -288,7 +300,53 @@ package
 			}
 			
 			removeChild(imgLoading);	
-			removeChild(square);				
+			removeChild(square);	
+			
+			var zoomIn:Sprite = new ZoomInButton();			
+			var zoomIn_over: Sprite = new ZoomInButton_over();
+            addChild(zoomIn);
+            zoomIn.x = 10;
+            zoomIn.y = 10;
+            zoomIn_over.x = 0;
+            zoomIn_over.y = 0;
+            zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomIn.addChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true;
+
+			}); 
+            zoomIn.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomIn.removeChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true; 
+			}); 
+			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+		
+			
+			var zoomOut:Sprite = new ZoomOutButton();			
+			var zoomOut_over: Sprite = new ZoomOutButton_over();
+            addChild(zoomOut);
+            zoomOut.x = 10;
+            zoomOut.y = 45;
+            zoomOut_over.x = 0;
+            zoomOut_over.y = 0;
+            zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomOut.addChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true;
+
+			}); 
+            zoomOut.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomOut.removeChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true; 
+			});  
+			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			}); 
+						
 			
 		}
 		
