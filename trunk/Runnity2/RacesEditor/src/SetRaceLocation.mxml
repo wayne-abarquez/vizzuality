@@ -262,7 +262,8 @@
 		    		altimetry.push(0);
 		    	} else {
 		    		altimetry.push(ev.result.height.meters);
-		    	}		    	
+		    	}
+
 		    	aux++;
 		    	
 		    	getAltitudes();
