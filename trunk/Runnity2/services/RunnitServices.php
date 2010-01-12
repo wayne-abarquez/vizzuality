@@ -1072,6 +1072,7 @@ class RunnitServices {
         	    
         	    //Update the activity table
                 
+                $activity_description="";
                 //1)Look if the run was already published
                 $sql="SELECT published from run WHERE id=$id";
                 $res=pg_fetch_assoc(pg_query($this->conn, $sql));
@@ -1091,11 +1092,11 @@ class RunnitServices {
                         
                     }
                 }
-                $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
-                $result= pg_query($this->conn, $sql);
-
-                            
-        	        	    
+                if($activity_description!="") {
+                    $sql="UPDATE activity SET run3_fk = run2_fk, run3_description=run2_description,run2_fk = run1_fk, run2_description=run1_description, run1_fk=$id, run1_description='".$activity_description."'";
+                    $result= pg_query($this->conn, $sql);                    
+                }
+      	    
                 
         	        $sql="UPDATE run SET name='$name',event_location='$event_location', distance_meters=$distance_meters, distance_text='$distance_text',event_date='$event_date',category='$category',awards='$awards', description='$description', inscription_price='$inscription_price',inscription_location='$inscription_location',inscription_email='$inscription_email',inscription_website='$inscription_website',province_fk=$province_id,is_displayed_in_home=$is_selected,run_type=$run_type,published=$published,tlf_informacion='$tlf_informacion',flickr_url='$flickr_url',flickr_img_id=$idflick";
         	        
