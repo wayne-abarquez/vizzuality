@@ -111,7 +111,8 @@
 		private function onDownloadSentResult(event:ResultEvent):void {
 			
 			//Move the application to the correct state
-			SWFAddress.setValue("/rec/pendingtasks");
+			Application.application.viewsContainer.currentState = 'Pendingtasks';
+			/* SWFAddress.setValue("/rec/pendingtasks"); */
 			MyEventDispatcher.taskListNotification("We are proccessing your data upload, please wait a few minutes");
 			Application.application.pendingTasks++;
 			
