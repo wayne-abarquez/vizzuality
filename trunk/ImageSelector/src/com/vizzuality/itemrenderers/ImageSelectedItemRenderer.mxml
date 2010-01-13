@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100" height="93" backgroundColor="#e7ebe0" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="CanvasStyle">
+	<mx:Canvas width="92" height="93" backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+		<mx:Image useHandCursor="true" buttonMode="true" source="{data.photo_file_url}" scaleContent="true" maintainAspectRatio="false" top="3" bottom="3" left="3" right="3"/>
+	</mx:Canvas>
+</mx:Canvas>

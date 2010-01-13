@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	backgroundGradientAlphas="[1.0, 1.0]" 
+	backgroundGradientColors="[#E7EBE0, #E7EBE0]"
+	creationComplete="init()"
+ 	>
+	<mx:states>
+		<mx:State name="Final">
+			<mx:RemoveChild target="{canvas3}"/>
+			<mx:RemoveChild target="{canvas2}"/>
+			<mx:RemoveChild target="{canvas1}"/>
+			<mx:RemoveChild target="{hbox2}"/>
+			<mx:RemoveChild target="{canvasResult}"/>
+			<mx:RemoveChild target="{button1}"/>
+			<mx:RemoveChild target="{canvas4}"/>
+			<mx:RemoveChild target="{canvas5}"/>
+			<mx:RemoveChild target="{button2}"/>
+			<mx:AddChild position="lastChild">
+				<mx:Label text="Photos saved OK!" fontFamily="Arial" fontSize="30" horizontalCenter="0" verticalCenter="0"/>
+			</mx:AddChild>
+			<mx:SetProperty target="{label1}" name="text" value="EXIT"/>
+		</mx:State>
+	</mx:states>
+
+<mx:Script>
+        <![CDATA[
+        
+        	import mx.core.Container;
+        
+        	import mx.managers.DragManager;
+            import mx.core.DragSource;
+            import mx.events.DragEvent;
+            import flash.events.MouseEvent;
+            
+            import mx.collections.ArrayCollection;
+            import mx.rpc.events.ResultEvent;
+            import mx.rpc.events.FaultEvent;
+            import mx.controls.Alert;
+            
+            import flash.display.Loader;
+			import flash.events.Event;
+			import flash.net.URLRequest;
+			import mx.core.UIComponent;
+			
+			import flash.utils.describeType;
+            import mx.utils.ObjectUtil;
+            import com.adobe.serialization.json.JSON;
+			
+			
+			private var loader:Loader;
+			private var request:URLRequest;
+			
+        	//var para elegir el tamaño de nuestras imágenes
+			private var varHeight: int;
+            private var varWidth : int;
+            private var dimensions: String="";
+            private var bBox: String="";
+            [Bindable] private var paId:String="";
+            private var paName: String="";
+            
+            //Array donde guardamos los resultados xml de la búsqueda en Flickr          
+            [Bindable] private var photoFeed:ArrayCollection;
+            [Bindable] private var photoSelected:ArrayCollection = new ArrayCollection();
+            private var numberPagging:int = 0;
+            
+            //Security.loadPolicyFile("http://www.panoramio.com/crossdomain.xml");
+            
+            private function PageUp(photoFeed: ArrayCollection):void {
+            	var limite: int = photoFeed.length / 3;
+            	if (photoFeed.length == 0) {
+            	    Alert("array vacio");	
+            	} else {
+            		if (numberPagging < limite-1){
+	        			numberPagging++;
+	        			processPhoto(photoFeed[numberPagging*3].photo_file_url);
+						processPhoto(photoFeed[numberPagging*3+1].photo_file_url);
+						processPhoto(photoFeed[numberPagging*3+2].photo_file_url);
+	            		//imageLoader(photoFeed.getItemAt(numberPagging*3) as String);
+            			//imageLoader(photoFeed.getItemAt(numberPagging*3+1) as String);
+            			//imageLoader(photoFeed.getItemAt(numberPagging*3+2) as String);
+            		}
+            	}
+            }  
+            
+            private function PageDown(photoFeed: ArrayCollection):void {
+                
+                if (photoFeed.length == 0) {
+            	    Alert("array vacio");	
+            	} else {
+            		if (numberPagging > 0){
+	            		numberPagging--;
+	            		processPhoto(photoFeed[numberPagging*3].photo_file_url);
+						processPhoto(photoFeed[numberPagging*3+1].photo_file_url);
+						processPhoto(photoFeed[numberPagging*3+2].photo_file_url);
+	            		//imageLoader(photoFeed.getItemAt(numberPagging*3) as String);
+            			//imageLoader(photoFeed.getItemAt(numberPagging*3+1) as String);
+            			//imageLoader(photoFeed.getItemAt(numberPagging*3+2) as String);
+            		}
+            	}
+            } 
+            
+            private function init():void {
+            	
+            	try {
+	            	paId = getParameterValue("ID");
+	            	name = getParameterValue("Name");
+	            	dimensions = getParameterValue("Dimensions");
+	                bBox = getParameterValue("BBox");
+            	} catch(e:Error) {
+            		
+            	}
+            	
+            	if (paId=="" || paId==null) {
+            		paId="975";
+            	}
+            	if (name=="" || name==null) {
+            		name="Yosemite";
+            	}
+            	if (dimensions=="" || dimensions==null) {
+            		dimensions="300x300";
+            	}
+            	if (bBox=="" || bBox==null) {
+            		bBox="-7.75634765625,37.483576550426996,-7.44873046875,37.900865092570065";
+            	}
+            	
+            	
+                var dimensionsArray:Array = dimensions.split("x");
+                varHeight = dimensionsArray[0];
+            	varWidth = dimensionsArray[1];
+            	
+                var bboxArray:Array = bBox.split(",");
+                
+                //var panoramioURL:String = "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=6&minx=-180&miny=-90&maxx=180&maxy=90&size=medium";
+				var panoramioURL:String = "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=100&minx="+bboxArray[0]+"&miny="+bboxArray[1]+"&maxx="+bboxArray[2]+"&maxy="+bboxArray[3]+"&size=medium";
+				var request:URLRequest = new URLRequest(panoramioURL);
+				var loader:URLLoader = new URLLoader(request);
+				loader.addEventListener(Event.COMPLETE, loaderComplete);
+				loader.addEventListener(
+					IOErrorEvent.IO_ERROR, 
+					function(event:Event):void
+					{
+						Alert.show("There was an IO error contacting Panoramio");
+					}
+				); 
+				loader.addEventListener(
+					SecurityErrorEvent.SECURITY_ERROR, 
+					function(event:Event):void
+					{
+						Alert.show("There was a security error contacting Panoramio");
+					}
+				);
+				
+            	//requestPhotos();
+            	
+/*             	canvasFirst.addEventListener(DragEvent.DRAG_ENTER,dragEnterHandler);
+                canvasFirst.addEventListener(DragEvent.DRAG_OVER,dragOverHandler);
+                canvasFirst.addEventListener(DragEvent.DRAG_DROP,dragDropHandler); */
+            	
+            	//dimensionamos los canvas exteriores que contienen la imagen
+            	canvas1.height = varHeight + 3*2;
+            	canvas1.width = varWidth + 3*2;
+            	canvas2.height = varHeight + 3*2;
+            	canvas2.width = varWidth + 3*2;
+            	canvas3.height = varHeight + 3*2;
+            	canvas3.width = varWidth + 3*2;
+            	
+            	//dimensionamos los canvas interiores que contienen la imagen (máscara)
+            	canvasContainer1.height = varHeight;
+            	canvasContainer1.width = varWidth;
+            	canvasContainer2.height = varHeight;
+            	canvasContainer2.width = varWidth;
+            	canvasContainer3.height = varHeight;
+            	canvasContainer3.width = varWidth;
+            }
+						
+			private function loaderComplete(event:Event):void
+			{
+				var response:URLLoader = URLLoader(event.target);
+				var responseData:Object = JSON.decode(response.data);
+				
+				this.photoFeed = new ArrayCollection();
+				
+				for each (var image:Object in responseData.photos)
+				{
+					this.photoFeed.addItem(image);	
+				}
+				
+				processPhoto(photoFeed[0].photo_file_url);
+				processPhoto(photoFeed[1].photo_file_url);
+				processPhoto(photoFeed[2].photo_file_url);
+			}
+			
+			private function processPhoto(url:String):void{
+				var i: int;
+				var position: int;
+				var position_aux: int;
+				for (i=0;i<(photoFeed as ArrayCollection).length;i++){
+					if (url == photoFeed[i].photo_file_url){
+						position = i;
+						position_aux = i;
+						break;
+					}
+				}
+				
+				while(position>2){
+					position = position - 3;
+				}
+				position = position+1;
+				
+				switch(position)
+					{
+				    case 1:
+				        trace("image1");
+				        image1.source = url;
+				        break;
+				    case 2:
+				        trace("image2");
+				        image2.source = url;
+				        break;
+				    case 3:
+				        trace("image3");
+				        image3.source = url;
+				        break;
+				    default:
+				        trace("Out of range");
+				        break;
+					}
+
+				//var escalado: Number;
+				trace("Tu ancho elegido es: "+ varWidth);
+				trace("Tu alto elegido es: "+ varHeight);
+					
+				if (photoFeed[position_aux].height < photoFeed[position_aux].width){
+					trace("La foto es mas ancha que alta");
+					image1.height = varHeight;
+				} 
+				
+				if (photoFeed[position_aux].height > photoFeed[position_aux].width){
+					trace("La foto es mas alta que ancha");
+					image1.width = varWidth;
+				} 
+			}
+            
+            private function sendData():void {
+				var resObject:Object = new Object();
+				resObject.panoramio = photoSelected.source as Array;
+				var json:String = JSON.encode(resObject);
+				
+				imgService.send({json_data:json});
+				
+				currentState="Final";
+			}
+			
+			//Para extraer un parametro especificado por nombre
+			public static function getParameterValue(key:String):String
+	    	{ 
+		    	var value:String;
+		    	var uparam:String = ExternalInterface.call("window.location.search.toString");
+
+		    	if(uparam==null)
+		    	{
+			    	return null;
+			    }
+			    var paramArray:ArrayCollection = new ArrayCollection(uparam.split('&'));
+			    for(var x:int=0; x<paramArray.length; x++)
+			    {
+			    	var p:String = paramArray.getItemAt(x) as String;
+			    	if(p.indexOf(key + '=')>-1)
+			    	{
+			    		value = (p.replace((key + '='), '')).replace('?','');
+			    		x=paramArray.length;
+			    	}
+			    }
+			    
+			    return value;
+		    }
+			
+			// The mouseMove event handler for the Image control
+            // functioning as the drag initiator.
+            private function mouseOverHandler(event:MouseEvent):void 
+            {                
+                var dragInitiator:Image=Image(event.currentTarget);
+                var ds:DragSource = new DragSource();
+                ds.addData(dragInitiator, "img");               
+
+                // The drag manager uses the image as the drag proxy
+                // and sets the alpha to 1.0 (opaque),
+                // so it appears to be dragged across the canvas.
+                var imageProxy:Image = new Image();
+                //imageProxy.source = globeImage;
+                imageProxy.height=10;
+                imageProxy.width=10;                
+                DragManager.doDrag(dragInitiator, ds, event, 
+                    imageProxy, -15, -15, 1.00);
+            }
+            
+            // The dragEnter event handler for the Canvas container
+            // functioning as the drop target.
+            private function dragEnterHandler(event:DragEvent):void {
+              if (event.dragSource.hasFormat("img"))
+                DragManager.acceptDragDrop(Canvas(event.currentTarget));
+            }
+            
+            // The dragOver event handler for the Canvas container
+            // sets the type of drag-and-drop
+            // operation as either copy or move. 
+            // This information is then used in the 
+            // dragComplete event handler for the source Canvas container.
+            private function dragOverHandler(event:DragEvent):void
+            {
+                if (event.dragSource.hasFormat("img")) {
+                    if (event.ctrlKey) {                    
+                        DragManager.showFeedback(DragManager.COPY);
+                        return;
+                    }
+                    else {
+                        DragManager.showFeedback(DragManager.MOVE);
+                        return;
+                    }
+                }
+                DragManager.showFeedback(DragManager.NONE);
+            }
+            
+
+            private function dragDropHandler(event:DragEvent):void {
+              if (event.dragSource.hasFormat("img")) {
+              	
+              	if (photoSelected.length>10){
+              		Alert("MAX 10 photos");
+              		return;
+              	}
+              	
+              	//Comprobar que la imagen no esta ya en la lista
+             	for each( var pic:Object in photoSelected) {
+             		if((event.dragInitiator as Image).source == pic.photo_file_url) {
+             			return;
+             		}
+             	}	
+             	
+             	//lo metemos dentro del photoSelected al final
+             	for each( var pic2:Object in photoFeed) {
+             		if((event.dragInitiator as Image).source == pic2.photo_file_url) {
+             			photoSelected.addItem(pic2);
+             			break;
+             		}
+             	}	 	  
+              	  
+              }
+            }
+            
+            // The dragComplete event handler for the source Canvas container
+            // determines if this was a copy or move.
+            // If a move, remove the dragged image from the Canvas.
+            private function dragCompleteHandler(event:DragEvent):void {
+                var draggedImage:Image = 
+                    event.dragInitiator as Image;
+                var dragInitCanvas:Canvas = 
+                    event.dragInitiator.parent as Canvas;
+
+                //if (event.action == DragManager.MOVE)
+                    //dragInitCanvas.removeChild(draggedImage);
+            }
+			 
+			/* private function imageLoader(url:String):void{
+				loader=new Loader();
+				request=new URLRequest(url);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE,onComplete);
+				loader.load(request);
+			} */
+			
+/* 			private function onComplete(event:Event):void {
+				var i: int;
+				var position: int;
+				for (i=0;i<(photoFeed as ArrayCollection).length;i++){
+					if (event.currentTarget.url == photoFeed.getItemAt(i) as String){
+						position = i;
+						break;
+					}
+				}
+				
+				while(position>2){
+					position = position - 3;
+				}
+				position = position+1;
+				
+				switch(position)
+					{
+				    case 1:
+				        trace("image1");
+				        image1.source = event.currentTarget.url;
+				        break;
+				    case 2:
+				        trace("image2");
+				        image2.source = event.currentTarget.url;
+				        break;
+				    case 3:
+				        trace("image3");
+				        image3.source = event.currentTarget.url;
+				        break;
+				    default:
+				        trace("Out of range");
+				        break;
+					}
+
+				//var escalado: Number;
+				trace("Tu ancho elegido es: "+ varWidth);
+				trace("Tu alto elegido es: "+ varHeight);
+					
+				if (event.currentTarget.height as int < event.currentTarget.width){
+					trace("La foto es mas ancha que alta");
+					image1.height = varHeight;
+				} 
+				
+				if (event.currentTarget.height as int > event.currentTarget.width){
+					trace("La foto es mas alta que ancha");
+					image1.width = varWidth;
+				} 
+			} */
+			
+            /* private function requestPhotos():void {
+            	photoService.cancel();  // cancel any pending service calls
+                var params:Object = new Object();
+                params.api_key = "79114d0814681c890c47248bb1cd1b18";
+                params.tags = searchTerms;
+                photoService.send(params);
+            } */
+            
+            /* private function photoHandler(event:ResultEvent):void {
+            	// get xml data for search term(s)
+            	var url: String;
+            	var i: int;
+            	for (i=0;i<(event.result.rsp.photos.photo as ArrayCollection).length;i++){
+            		url = "http://farm" + (event.result.rsp.photos.photo as ArrayCollection)[i].farm +
+            		".static.flickr.com/" + (event.result.rsp.photos.photo as ArrayCollection)[i].server + 
+            		"/" + (event.result.rsp.photos.photo as ArrayCollection)[i].id + 
+            		"_" +(event.result.rsp.photos.photo as ArrayCollection)[i].secret + ".jpg";
+            		photoFeed.addItem(url);
+            	}
+            	//hacemos peticion de las tres primeras fotos
+            	imageLoader(photoFeed.getItemAt(0) as String);
+            	imageLoader(photoFeed.getItemAt(1) as String);
+            	imageLoader(photoFeed.getItemAt(2) as String);
+            } */
+            
+            /* private function photoFaultHandler(event:FaultEvent):void {
+            	// error occurred
+                 Alert.show("Cannot load or reach photos from Flickr.","Error");
+            } */ 
+            
+         ]]>
+    </mx:Script>
+	
+	<!--paginadores-->
+	<mx:Button label="&lt;" width="42" left="10" verticalCenter="2" click="PageDown(photoFeed)" id="button1"/>
+	<mx:Button label="&gt;" right="10" verticalCenter="2" click="PageUp(photoFeed)" id="button2"/>
+	
+	<mx:Canvas left="60" right="60" bottom="120" top="100" id="canvasResult">
+		<mx:HBox width="95%" horizontalCenter="0" verticalCenter="0" height="95%" horizontalAlign="center" verticalAlign="middle" id="hbox2">
+			<mx:Canvas id="canvas1" width="200" height="200" backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+				<mx:Canvas id="canvasContainer1" x="3" y="3" backgroundColor="#666666" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+					<mx:Image id="image1" scaleContent="false" horizontalCenter="0" verticalCenter="0" mouseMove="mouseOverHandler(event);"
+            dragComplete="dragCompleteHandler(event);">
+					</mx:Image>
+				</mx:Canvas>
+			</mx:Canvas>
+			<mx:Canvas id="canvas2" width="200" height="200" backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+				<mx:Canvas id="canvasContainer2" x="3" y="3" backgroundColor="#666666" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+					<mx:Image id="image2" scaleContent="false" horizontalCenter="0" verticalCenter="0" mouseMove="mouseOverHandler(event);"
+            dragComplete="dragCompleteHandler(event);">
+					</mx:Image>
+				</mx:Canvas>
+			</mx:Canvas>
+			<mx:Canvas id="canvas3" width="200" height="200" backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+				<mx:Canvas id="canvasContainer3" x="3" y="3" backgroundColor="#666666" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+					<mx:Image id="image3" scaleContent="false" horizontalCenter="0" verticalCenter="0" mouseMove="mouseOverHandler(event);"
+            dragComplete="dragCompleteHandler(event);">
+					</mx:Image>
+				</mx:Canvas>
+			</mx:Canvas>
+		</mx:HBox>
+	</mx:Canvas>
+	<mx:Canvas id="canvasImagesSelected" height="92" bottom="20" left="60" right="60">
+		<mx:HBox width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+			<mx:HorizontalList itemRenderer="com.vizzuality.itemrenderers.ImageSelectedItemRenderer"
+				dataProvider="{photoSelected}" height="100%"
+				dragEnabled="true" 
+				dropEnabled="true" 
+				dragMoveEnabled="true" 
+				backgroundColor="#E7EBE0"
+				useRollOver="false"
+				dropShadowEnabled="false"
+				borderStyle="none" focusThickness="0" width="100%">
+			</mx:HorizontalList>
+			<mx:Canvas width="82" height="100%" backgroundColor="#FFFFFF" dragDrop="dragDropHandler(event)" dragEnter="dragEnterHandler(event)" id="canvas4">
+				<mx:Label text="Add Here" horizontalCenter="0" verticalCenter="0"/>
+			</mx:Canvas>
+			<mx:Canvas width="82" height="100%" backgroundColor="#FFFFFF" dragDrop="dragDropHandler(event)" dragEnter="dragEnterHandler(event)" id="canvas5">
+				<mx:Label text="Trash here" horizontalCenter="0" verticalCenter="0"/>
+			</mx:Canvas>
+			<mx:Canvas width="93" height="92" backgroundColor="#333333" id="canvasOK" useHandCursor="true" buttonMode="true" mouseChildren="false" click="sendData()">
+				<mx:Label text="OK!" horizontalCenter="0" verticalCenter="0" color="#B8D431" fontSize="18" fontWeight="bold" id="label1"/>
+			</mx:Canvas>
+		</mx:HBox>
+	
+	<!--	<mx:HBox width="100%" height="100%" horizontalAlign="left" verticalAlign="middle" top="0" id="hbox1">
+			<mx:Canvas id="canvasFirst" width="93" height="92" backgroundColor="#FFFFFF"
+				verticalScrollPolicy="off" horizontalScrollPolicy="off">
+			</mx:Canvas>
+			<mx:Canvas width="93" height="92" backgroundColor="#333333" id="canvasOK">
+				<mx:Label text="OK!" horizontalCenter="0" verticalCenter="0" color="#B8D431" fontSize="18" fontWeight="bold"/>
+			</mx:Canvas>
+		</mx:HBox>-->
+	</mx:Canvas>
+	
+	<mx:HTTPService method="POST" id="imgService" url="{'http://ppe.tinypla.net/api/site/'+paId+'/images'}" />
+	
+	
+	<!--<mx:HTTPService id="photoService" showBusyCursor="true"
+        url="http://api.flickr.com/services/rest/?method=flickr.photos.search"
+        result="photoHandler(event)" fault="photoFaultHandler(event)" />-->
+	
+</mx:Application>
