@@ -732,11 +732,11 @@ class imageTransform {
 	function imageDefine () {
 		switch ($this->data[2]) {
 			case 1:
-				return imageCreateFromGIF($this->image);
+				return imagecreatefromgif($this->image);
 			case 2:
-				return imageCreateFromJPEG($this->image);
+				return imagecreatefromjpeg($this->image);
 			case 3:
-				return imageCreateFromPNG($this->image);
+				return imagecreatefrompng($this->image);
 			default:
 				return false;
 		}
