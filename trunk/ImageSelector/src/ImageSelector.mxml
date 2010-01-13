@@ -14,7 +14,6 @@
 			<mx:RemoveChild target="{canvasResult}"/>
 			<mx:RemoveChild target="{button1}"/>
 			<mx:RemoveChild target="{canvas4}"/>
-			<mx:RemoveChild target="{canvas5}"/>
 			<mx:RemoveChild target="{button2}"/>
 			<mx:AddChild position="lastChild">
 				<mx:Label text="Photos saved OK!" fontFamily="Arial" fontSize="30" horizontalCenter="0" verticalCenter="0"/>
@@ -252,6 +251,10 @@
 				currentState="Final";
 			}
 			
+			private function deleteSelection():void {
+				photoSelected.removeAll();
+			}
+			
 			//Para extraer un parametro especificado por nombre
 			public static function getParameterValue(key:String):String
 	    	{ 
@@ -326,8 +329,7 @@
             private function dragDropHandler(event:DragEvent):void {
               if (event.dragSource.hasFormat("img")) {
               	
-              	if (photoSelected.length>10){
-              		Alert("MAX 10 photos");
+              	if (photoSelected.length>8){
               		return;
               	}
               	
@@ -495,8 +497,8 @@
 			<mx:Canvas width="82" height="100%" backgroundColor="#FFFFFF" dragDrop="dragDropHandler(event)" dragEnter="dragEnterHandler(event)" id="canvas4">
 				<mx:Label text="Add Here" horizontalCenter="0" verticalCenter="0"/>
 			</mx:Canvas>
-			<mx:Canvas width="82" height="100%" backgroundColor="#FFFFFF" dragDrop="dragDropHandler(event)" dragEnter="dragEnterHandler(event)" id="canvas5">
-				<mx:Label text="Trash here" horizontalCenter="0" verticalCenter="0"/>
+			<mx:Canvas width="93" height="92" backgroundColor="#333333" id="canvasDelete" useHandCursor="true" buttonMode="true" mouseChildren="false" click="deleteSelection()">
+				<mx:Label text="DELETE!" horizontalCenter="0" verticalCenter="0" color="#B8D431" fontSize="18" fontWeight="bold" id="label2"/>
 			</mx:Canvas>
 			<mx:Canvas width="93" height="92" backgroundColor="#333333" id="canvasOK" useHandCursor="true" buttonMode="true" mouseChildren="false" click="sendData()">
 				<mx:Label text="OK!" horizontalCenter="0" verticalCenter="0" color="#B8D431" fontSize="18" fontWeight="bold" id="label1"/>
