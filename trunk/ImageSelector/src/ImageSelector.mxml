@@ -3,8 +3,7 @@
 	layout="absolute" 
 	backgroundGradientAlphas="[1.0, 1.0]" 
 	backgroundGradientColors="[#E7EBE0, #E7EBE0]"
-	creationComplete="init()"
- 	>
+	creationComplete="init()">
 	<mx:states>
 		<mx:State name="Final">
 			<mx:RemoveChild target="{canvas3}"/>
@@ -16,9 +15,15 @@
 			<mx:RemoveChild target="{canvas4}"/>
 			<mx:RemoveChild target="{button2}"/>
 			<mx:AddChild position="lastChild">
-				<mx:Label text="Photos saved OK!" fontFamily="Arial" fontSize="30" horizontalCenter="0" verticalCenter="0"/>
+				<mx:Label text="Photos saved OK!" fontFamily="Arial" fontSize="50" horizontalCenter="0" verticalCenter="0" fontWeight="bold"/>
 			</mx:AddChild>
-			<mx:SetProperty target="{label1}" name="text" value="EXIT"/>
+			<mx:RemoveChild target="{horizontallist1}"/>
+			<mx:RemoveChild target="{label2}"/>
+			<mx:RemoveChild target="{canvasDelete}"/>
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{canvasOK}"/>
+			<mx:RemoveChild target="{hbox3}"/>
+			<mx:RemoveChild target="{canvasImagesSelected}"/>
 		</mx:State>
 	</mx:states>
 
@@ -60,7 +65,7 @@
             
             //Array donde guardamos los resultados xml de la búsqueda en Flickr          
             [Bindable] private var photoFeed:ArrayCollection;
-            [Bindable] private var photoSelected:ArrayCollection = new ArrayCollection();
+            [Bindable] public var photoSelected:ArrayCollection = new ArrayCollection();
             private var numberPagging:int = 0;
             
             //Security.loadPolicyFile("http://www.panoramio.com/crossdomain.xml");
@@ -245,14 +250,13 @@
 				var resObject:Object = new Object();
 				resObject.panoramio = photoSelected.source as Array;
 				var json:String = JSON.encode(resObject);
-				
 				imgService.send({json_data:json});
-				
 				currentState="Final";
+				trace(json);
 			}
 			
 			private function deleteSelection():void {
-				photoSelected.removeAll();
+				photoSelected = new ArrayCollection;
 			}
 			
 			//Para extraer un parametro especificado por nombre
@@ -482,8 +486,8 @@
 			</mx:Canvas>
 		</mx:HBox>
 	</mx:Canvas>
-	<mx:Canvas id="canvasImagesSelected" height="92" bottom="20" left="60" right="60">
-		<mx:HBox width="100%" height="100%" horizontalAlign="center" verticalAlign="middle">
+	<mx:Canvas id="canvasImagesSelected" height="112" bottom="12" left="60" right="60">
+		<mx:HBox width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" id="hbox3">
 			<mx:HorizontalList itemRenderer="com.vizzuality.itemrenderers.ImageSelectedItemRenderer"
 				dataProvider="{photoSelected}" height="100%"
 				dragEnabled="true" 
@@ -491,14 +495,17 @@
 				dragMoveEnabled="true" 
 				backgroundColor="#E7EBE0"
 				useRollOver="false"
-				dropShadowEnabled="false"
-				borderStyle="none" focusThickness="0" width="100%">
+				focusThickness="0"
+				selectionColor="#E7EBE0"
+				dropShadowColor="#E7EBE0"
+				borderStyle="none" width="100%" id="horizontallist1">
 			</mx:HorizontalList>
-			<mx:Canvas width="82" height="100%" backgroundColor="#FFFFFF" dragDrop="dragDropHandler(event)" dragEnter="dragEnterHandler(event)" id="canvas4">
-				<mx:Label text="Add Here" horizontalCenter="0" verticalCenter="0"/>
+			<mx:Canvas width="93" height="92" backgroundColor="#FFFFFF" dragDrop="dragDropHandler(event)" dragEnter="dragEnterHandler(event)" id="canvas4">
+				<mx:Label text="ADD" horizontalCenter="0" verticalCenter="0" color="#B8D431" fontSize="18" fontWeight="bold" id="label0"/>
 			</mx:Canvas>
 			<mx:Canvas width="93" height="92" backgroundColor="#333333" id="canvasDelete" useHandCursor="true" buttonMode="true" mouseChildren="false" click="deleteSelection()">
-				<mx:Label text="DELETE!" horizontalCenter="0" verticalCenter="0" color="#B8D431" fontSize="18" fontWeight="bold" id="label2"/>
+				<mx:Label text="DELETE" horizontalCenter="0" verticalCenter="-7" color="#B8D431" fontSize="18" fontWeight="bold" id="label2"/>
+				<mx:Label text="ALL" horizontalCenter="0" verticalCenter="13" color="#B8D431" fontSize="18" fontWeight="bold" id="label3"/>
 			</mx:Canvas>
 			<mx:Canvas width="93" height="92" backgroundColor="#333333" id="canvasOK" useHandCursor="true" buttonMode="true" mouseChildren="false" click="sendData()">
 				<mx:Label text="OK!" horizontalCenter="0" verticalCenter="0" color="#B8D431" fontSize="18" fontWeight="bold" id="label1"/>

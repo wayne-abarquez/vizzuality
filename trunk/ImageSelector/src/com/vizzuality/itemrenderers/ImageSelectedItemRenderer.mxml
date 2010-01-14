@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100" height="93" backgroundColor="#e7ebe0" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="CanvasStyle">
-	<mx:Canvas width="92" height="93" backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="111" height="111" backgroundColor="#e7ebe0" verticalScrollPolicy="off" horizontalScrollPolicy="off" styleName="CanvasStyle">
+		<mx:Script>
+			<![CDATA[
+				import mx.collections.ArrayCollection;
+				import mx.core.Application;
+	  		
+		  		private function deleteItem():void{
+					var i:int;
+					for (i=0;i<(Application.application.photoSelected as ArrayCollection).length;i++){
+						 if (data.photo_file_url == Application.application.photoSelected[i].photo_file_url){
+						 	Application.application.photoSelected.removeItemAt(i);
+							break;
+						} 
+					}
+		  		}
+			]]>
+		</mx:Script>
+	<mx:Image source="file:////Users/vizzuality/Desktop/cancel.png" id="cancelImage" right="5" y="2" useHandCursor="true" buttonMode="true" click="deleteItem()"/>
+	<mx:Canvas id="generalCanvas" width="92" height="93" backgroundColor="#FFFFFF" verticalScrollPolicy="off" horizontalScrollPolicy="off" left="0" top="15">
 		<mx:Image useHandCursor="true" buttonMode="true" source="{data.photo_file_url}" scaleContent="true" maintainAspectRatio="false" top="3" bottom="6" left="3" right="3"/>
 	</mx:Canvas>
 </mx:Canvas>
