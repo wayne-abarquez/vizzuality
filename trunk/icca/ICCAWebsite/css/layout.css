@@ -76,8 +76,8 @@ div.menu{
 }
 
 .widget2{
-	background-image: url(../img/widget2.jpg);
-	background-repeat: no-repeat;
+	/*background-image: url(../img/widget2.jpg);
+		background-repeat: no-repeat;*/
 	margin-top: 6px;
 	margin-left: 6px;
 	width: 938px;
@@ -85,8 +85,8 @@ div.menu{
 }
 
 .widget3{
-	background-image: url(../img/widget3.jpg);
-	background-repeat: no-repeat;
+	/*background-image: url(../img/widget3.jpg);
+		background-repeat: no-repeat;*/
 	margin-top: 6px;
 	margin-left: 6px;
 	width: 938px;
