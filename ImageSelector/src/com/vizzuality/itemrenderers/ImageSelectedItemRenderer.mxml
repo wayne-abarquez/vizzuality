@@ -9,6 +9,7 @@
 					var i:int;
 					for (i=0;i<(Application.application.photoSelected as ArrayCollection).length;i++){
 						 if (data.photo_file_url == Application.application.photoSelected[i].photo_file_url){
+						 	Application.application.photoFeed.addItem(Application.application.photoSelected[i]);
 						 	Application.application.photoSelected.removeItemAt(i);
 							break;
 						} 
