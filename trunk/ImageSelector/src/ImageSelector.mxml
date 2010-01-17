@@ -129,7 +129,7 @@
                 var bboxArray:Array = bBox.split(",");
                 
                 //var panoramioURL:String = "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=6&minx=-180&miny=-90&maxx=180&maxy=90&size=medium";
-				var panoramioURL:String = "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=6&minx="+bboxArray[0]+"&miny="+bboxArray[1]+"&maxx="+bboxArray[2]+"&maxy="+bboxArray[3]+"&size=medium";
+				var panoramioURL:String = "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=50&minx="+bboxArray[0]+"&miny="+bboxArray[1]+"&maxx="+bboxArray[2]+"&maxy="+bboxArray[3]+"&size=medium";
 				var request:URLRequest = new URLRequest(panoramioURL);
 				var loader:URLLoader = new URLLoader(request);
 				loader.addEventListener(Event.COMPLETE, loaderComplete);
