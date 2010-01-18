@@ -1,6 +1,11 @@
 
 $(document).ready(function() {
 	$("#infinite").scrollable({size: 3}).circular();
+	
+	Cufon.replace('.flash-Bigtitle',{hover: true});
+	Cufon.replace('.menu',{hover: true});
+	Cufon.replace('.flash-h2',{hover: true});
+
 });
 
 function showImage() {

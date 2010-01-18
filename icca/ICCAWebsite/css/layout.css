@@ -22,6 +22,23 @@ div.headerInfoInf{
 	height: 111px;
 }
 
+div.headerInfoInf p{
+	margin: 0; padding: 0;
+	margin-top: 22px;
+	color: #FFFFFF;
+	font-size: 40px;
+	letter-spacing: -2px;
+}
+
+div.headerInfoInf em{
+	font-style: normal; 
+	color: #9cc342;
+}
+
+div.headerInfoInf a:hover;{
+	color: #ffffff;
+}
+
 div.menu{
 	height: 32px;
 	width: 494px;
