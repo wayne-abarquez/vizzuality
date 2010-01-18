@@ -17,6 +17,8 @@
 	<script src="js/init.js" type="text/javascript"></script>
 	<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 	<script type='text/javascript' src='js/basic.js'></script>	
+	<script type='text/javascript' src='js/scripts.js'></script>	
+	
 	
 	<!-- Contact Form CSS files -->
 	<link type='text/css' href='css/basic.css' rel='stylesheet' media='screen' />
@@ -48,6 +50,14 @@
 		
 	</script>	
 	
+	<script type="text/javascript">
+	if(!window.slider) var slider={};slider.data=[
+	{"id":"slide-img-1","client":"San Cristiano, Mexico","desc":""},
+	{"id":"slide-img-2","client":"San Cristiano, Mexico","desc":""},
+	{"id":"slide-img-3","client":"San Cristiano, Mexico","desc":""},
+	{"id":"slide-img-4","client":"San Cristiano, Mexico","desc":""}];
+	</script>	
+	
 </head>
 
 <body>
@@ -69,7 +79,20 @@
 		</div>
 	</div>
 	<div class="span-24 column widgetContainer">
-		<div class="widget"></div>
+		<div class="widget">
+			<div id="slide-holder">
+				<div id="slide-runner">
+					<a href=""><img id="slide-img-1" src="/img/widget.jpg" class="slide" alt="" /></a>
+					<a href=""><img id="slide-img-2" src="/img/widget.jpg" class="slide" alt="" /></a>
+					<a href=""><img id="slide-img-3" src="/img/widget.jpg" class="slide" alt="" /></a>
+					<a href=""><img id="slide-img-4" src="/img/widget.jpg" class="slide" alt="" /></a>
+					<div id="slide-controls">
+						<p id="slide-client" class="text"><strong></strong><span></span></p>
+						<p id="slide-nav"></p>
+					</div>
+			</div>
+			</div>
+		</div>
 	</div>
 	<div class="span-24 last contentContainer">
 		<div class="span-15 first articles">
