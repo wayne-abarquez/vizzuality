@@ -98,7 +98,21 @@
 		<div class="span-15 first articles">
 			<div class="span-15 last article">
 				<h2 class="flash-h2">Explore the ICCA world map</h2>
-				<div class="worldmap"></div>
+				<div class="worldmap">
+					<object id="flashMovie" width="589" height="305">
+						<param name="wmode" value="opaque">
+						<param name="flashvars" value="mapkey={$smarty.const.GMAPS_KEY}">
+						<param name="movie" value="/flash/dottedWMap.swf?8">
+						<!--[if !IE]>-->
+						<object type="application/x-shockwave-flash" data="/flash/dottedWMap.swf?8" width="589" height="305" flashvars="mapkey={$smarty.const.GMAPS_KEY}">
+						<!--<![endif]-->
+						<h1>Necesitas Flash para poder ver el mapa</h1>
+						<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"></a></p>
+						<!--[if !IE]>-->
+						</object>
+						<!--<![endif]-->
+				    </object>
+				</div>
 			</div>
 			<div class="span-15 last article articleborder">
 			<h2 class="flash-h2">About ICCAs</h2>
