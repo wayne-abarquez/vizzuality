@@ -11,7 +11,7 @@ $(function(){
  $('a').focus(function(){this.blur();});
  SI.Files.stylizeAll();
  slider.init();
- //mc.init();
+ mc.init();
 
  $('input.text-default').each(function(){
   $(this).attr('default',$(this).val());
@@ -44,14 +44,14 @@ $(function(){
  });
  $('p.images img').click(function(){
   var newbg=$(this).attr('src').split('bg/bg')[1].split('-thumb')[0];
-  $(document.body).css('backgroundImage','url('+_siteRoot+'images/bg/bg'+newbg+'.jpg)');
+  $(document.body).css('backgroundImage','url('+_siteRoot+'img/bg/bg'+newbg+'.jpg)');
  
   $(this).parent().find('img').removeClass('on');
   $(this).addClass('on');
   return false;
  });
  $(window).load(function(){
-  $.each(css_ims,function(){(new Image()).src=_siteRoot+'css/images/'+this;});
+  $.each(css_ims,function(){(new Image()).src=_siteRoot+'css/img/'+this;});
   $.each(css_cims,function(){
    var css_im=this;
    $.each(['blue','purple','pink','red','grey','green','yellow','orange'],function(){
