@@ -18,7 +18,6 @@ package {
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	import flash.text.Font;
-	import flash.text.StyleSheet;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
@@ -50,8 +49,14 @@ package {
 			var font: LoadFont = new LoadFont("TitilliumText14L.swf",["TitilliumText14L"]);
  	 	 	font.addEventListener(LoadFont.COMPLETE, successLoadFont);
  	 	 	
+ 	 	 	
  	 	 	var mapKey:String =root.loaderInfo.parameters.mapkey;
+ 	 	 	
 	 	  	map.key = mapKey;
+	 	 
+	 	  	if (mapKey==null) {
+ 	 	 		map.key = "ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ";
+ 	 	 	}
  	 	 	
 			map.language = "es";
 			map.setSize(new Point(943,397));
@@ -60,8 +65,7 @@ package {
 			
  	  	}
  	  	
- 	  	
- 	  	
+
 		private function onMapReady(event:MapEvent):void {
 			
 			var band: Bitmap = new bandClass();
@@ -96,7 +100,7 @@ package {
     		title2.setTextFormat(newFormatValue2); 
   	 		title2.embedFonts = true;		
             title2.x = 60;
-            title2.width = 120;
+            title2.width = 125;
             title2.y = 30;
             addChild(title2);
             
@@ -282,7 +286,7 @@ package {
 		}
 		
 		private var rollingOver:Boolean=false;
-		private var infoWindowToOpen:ICCAInfoWindow;
+		private var infoWindowToOpen:ICCACountriesInfoWindow;
 		private function onInfowindowRollOut(e:Event ):void {
 			map.closeInfoWindow();
 			rollingOver=false;
@@ -301,7 +305,7 @@ package {
  
  			var m:Object = iw[e.target];
  			
- 			infoWindowToOpen = new ICCAInfoWindow(m);
+ 			infoWindowToOpen = new ICCACountriesInfoWindow(m);
  			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
             var options:InfoWindowOptions = new InfoWindowOptions({
 
