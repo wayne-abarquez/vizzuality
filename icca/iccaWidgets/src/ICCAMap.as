@@ -100,7 +100,6 @@ package {
             title2.y = 30;
             addChild(title2);
             
-			
 
 			var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",20,5,-1);		
 			var zoomMinus:vizzButton = new vizzButton(this,10,36,25,25,"-",20,7,-2);
@@ -112,7 +111,7 @@ package {
 			satellite.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeSatellite);
 			terrain.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeTerrain);
 						
-			request.url = "iccaCountryDetails.json" ;
+			request.url = "/iccaCountryDetails.json" ;
 			loader.addEventListener(Event.COMPLETE, decodeJSON) ;
 			loader.load(request);
 
