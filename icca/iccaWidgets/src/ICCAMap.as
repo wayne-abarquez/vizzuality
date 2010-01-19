@@ -50,7 +50,9 @@ package {
 			var font: LoadFont = new LoadFont("TitilliumText14L.swf",["TitilliumText14L"]);
  	 	 	font.addEventListener(LoadFont.COMPLETE, successLoadFont);
  	 	 	
- 	  		map.key = "ABQIAAAAsIunaSEq-72JsQD5i92_2RSBAjOOhu3AGseSip9oOKv69lUsGxQJJZ1BfzmSIDX0FfGUGpci0uokEA";
+ 	 	 	var mapKey:String =root.loaderInfo.parameters.mapkey;
+	 	  	map.key = mapKey;
+ 	 	 	
 			map.language = "es";
 			map.setSize(new Point(943,397));
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
@@ -110,7 +112,7 @@ package {
 			satellite.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeSatellite);
 			terrain.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeTerrain);
 						
-			request.url = "icca.json" ;
+			request.url = "iccaCountryDetails.json" ;
 			loader.addEventListener(Event.COMPLETE, decodeJSON) ;
 			loader.load(request);
 
