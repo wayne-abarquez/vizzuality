@@ -111,7 +111,7 @@ package {
 			satellite.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeSatellite);
 			terrain.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeTerrain);
 						
-			request.url = "/iccaCountryDetails.json" ;
+			request.url = "iccaCountryDetails.json" ;
 			loader.addEventListener(Event.COMPLETE, decodeJSON) ;
 			loader.load(request);
 
