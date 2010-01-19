@@ -11,7 +11,7 @@ $(function(){
  $('a').focus(function(){this.blur();});
  SI.Files.stylizeAll();
  slider.init();
- mc.init();
+ //mc.init();
 
  $('input.text-default').each(function(){
   $(this).attr('default',$(this).val());
