@@ -68,7 +68,7 @@ package {
 			satellite.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeSatellite);
 			terrain.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeTerrain);
 						
-			request.url = "/areas.json" ;
+			request.url = "areas.json" ;
 			loader.addEventListener(Event.COMPLETE, decodeJSON) ;
 			loader.load(request);
 
