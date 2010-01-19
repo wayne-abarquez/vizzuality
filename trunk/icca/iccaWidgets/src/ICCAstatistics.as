@@ -37,7 +37,7 @@ package {
  	 	 	f.font=embeddedFonts[0].fontName;
  	 	 	t.embedFonts = true;
  	 	 			
-			request.url = "icca.json" ;
+			request.url = "/countryStats.json" ;
 			loader.addEventListener(Event.COMPLETE, decodeJSON) ;
 			loader.load(request);
  	 	}
