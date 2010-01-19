@@ -44,7 +44,7 @@ package {
 			var font: LoadFont = new LoadFont("TitilliumText14L.swf",["TitilliumText14L"]);
  	 	 	font.addEventListener(LoadFont.COMPLETE, successLoadFont);
  	 	 	
- 	  		map.key = "ABQIAAAAtDJGVn6RztUmxjnX5hMzjRSMhkig1Gd5B_2j4H1Xz7hsATFBFhR-0p1pzKNnQNC5NFHIaSiCY6Tc4g";
+ 	  		map.key = "ABQIAAAAsIunaSEq-72JsQD5i92_2RSBAjOOhu3AGseSip9oOKv69lUsGxQJJZ1BfzmSIDX0FfGUGpci0uokEA";
 			map.language = "es";
 			map.setSize(new Point(943,397));
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
