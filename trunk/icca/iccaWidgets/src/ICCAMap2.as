@@ -45,7 +45,12 @@ package {
  	 	 	font.addEventListener(LoadFont.COMPLETE, successLoadFont);
  	 	 	
  	 	 	var mapKey:String =root.loaderInfo.parameters.mapkey;
+ 	 	 	
 	 	  	map.key = mapKey;
+	 	 
+	 	  	if (mapKey==null) {
+ 	 	 		map.key = "ABQIAAAAsIunaSEq-72JsQD5i92_2RTb-vLQlFZmc2N8bgWI8YDPp5FEVBSSShDhDbHNKr3tTC6UaCKqvYjyOQ";
+ 	 	 	}
 	 	 
 			map.language = "es";
 			map.setSize(new Point(943,397));
