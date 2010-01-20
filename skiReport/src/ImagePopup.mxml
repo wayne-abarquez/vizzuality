@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:ns1="com.vizzuality.view.overlay.*"
+	 creationComplete="init()" currentState="loading"
+	 creationPolicy="all" xmlns:ns2="com.vizzuality.view.loader.*" cornerRadius="4" borderColor="#F6F6F6" borderStyle="solid" xmlns:local="*">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:AddChild position="lastChild">
+				<local:GenericLoader x="0" y="0" width="400">
+				</local:GenericLoader>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+	<mx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+			import mx.managers.PopUpManager;
+			
+			[Bindable] public var imageSource:String;
+			[Bindable] public var copyrightText:String;
+			[Bindable] public var imageUrl:String;
+			
+			private function init():void {
+				image.addEventListener(Event.COMPLETE,function(event:Event):void {
+					currentState='';
+				});
+			}
+			
+		]]>
+	</mx:Script>
+	<mx:Image id="image" x="0" y="0" source="{imageSource}"  click="PopUpManager.removePopUp(this);" height="500"/>
+	<mx:Button
+		  toolTip="Close this image"
+		  click="PopUpManager.removePopUp(this);"
+		 id="del" width="14" height="14" right="3" styleName="btnDelete" mouseChildren="false" buttonMode="true" useHandCursor="true" data="3" top="5"/>
+	<mx:Canvas  right="0" bottom="0" backgroundColor="#FFFFFF" backgroundAlpha="0.7">
+	
+		<mx:Label x="0" y="0"
+			 click="navigateToURL(new URLRequest(imageUrl))" useHandCursor="true" buttonMode="true" mouseChildren="false"
+			id="copyright" text="{copyrightText}" fontFamily="DINOT-Medium" textDecoration="underline" color="#23406D" fontWeight="normal"/>
+	</mx:Canvas>
+</mx:Canvas>

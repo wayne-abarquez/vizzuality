@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:maps="com.google.maps.*" xmlns:ns1="com.google.maps.controls.*" currentState="loadingInput">
+	<mx:states>
+		<mx:State name="loading">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas x="0" y="0" width="100%" height="100%" backgroundColor="#000000" backgroundAlpha="0.44" id="canvas1">
+					<mx:Label text="Cargando estaciones...." horizontalCenter="0" verticalCenter="0" fontSize="20" fontStyle="italic" color="#FFFFFF" id="label1"/>
+				</mx:Canvas>
+			</mx:AddChild>
+			<mx:SetProperty target="{canvas2}" name="visible" value="false"/>
+			<mx:SetProperty target="{canvas3}" name="visible" value="false"/>
+			<mx:SetProperty target="{canvas4}" name="visible" value="false"/>
+			<mx:SetProperty target="{canvas5}" name="visible" value="false"/>
+		</mx:State>
+		<mx:State name="loadingInput" basedOn="loading">
+			<mx:RemoveChild target="{label1}"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:TextInput id="whereInputField" horizontalCenter="-30" verticalCenter="0" enter="onTextInput()" width="306"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Label text="Desde donde?" color="#FFFFFF" fontSize="18" horizontalCenter="-118" verticalCenter="-20"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Button label="Enviar" horizontalCenter="155" verticalCenter="0" click="onTextInput()" id="button1" width="62"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:HBox width="362" horizontalCenter="0" verticalCenter="60" backgroundColor="#FFFFFF">
+					<mx:RadioButtonGroup id="whenGroup" itemClick="handleWhen(event);"/>
+					<mx:RadioButton group="{whenGroup}" label="Manana" value="1" selected="true"/>
+					<mx:RadioButton group="{whenGroup}" label="Pasado" value="2"/>
+					<mx:RadioButton group="{whenGroup}" label="3dias" value="3"/>
+					<mx:RadioButton group="{whenGroup}" label="4dias" value="4"/>
+					<mx:RadioButton group="{whenGroup}" label="5dias" value="5"/>
+				</mx:HBox>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{button1}" position="before">
+				<mx:Label text="Cuando?" color="#FFFFFF" fontSize="18" horizontalCenter="-138" verticalCenter="40"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+<mx:Script>
+	<![CDATA[
+		import com.google.maps.styles.StrokeStyle;
+		import com.google.maps.InfoWindowOptions;
+		import mx.events.ItemClickEvent;
+		import mx.managers.PopUpManager;
+		import com.google.maps.MapMouseEvent;
+		import com.google.maps.interfaces.IPolyline;
+		import com.google.maps.overlays.Polyline;
+		import com.greensock.TweenLite;
+		import com.google.maps.services.DirectionsEvent;
+		import com.google.maps.services.Directions;
+		import com.google.maps.overlays.Marker;
+		import com.google.maps.overlays.MarkerOptions;
+		import com.adobe.serialization.json.JSON;
+		import com.google.maps.LatLngBounds;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.http.HTTPService;
+		import mx.controls.Alert;
+		import com.google.maps.controls.NavigationControl;
+		import com.google.maps.MapType;
+		import com.google.maps.LatLng;
+		import com.google.maps.geom.Attitude;
+		import com.google.maps.MapEvent;
+		import com.google.maps.View;
+		import com.google.maps.MapOptions;
+		
+		private var skiResorts:Array = [];
+		
+		private var whenSelected:Number=1;
+		
+        private function map_onMapPreInitialize():void{
+            map.setInitOptions(new MapOptions({
+                //viewMode : View.VIEWMODE_PERSPECTIVE,
+                //attitude : new Attitude(0, 0, 0)
+            })); 
+        }            
+        
+        private function handleWhen(event:ItemClickEvent):void {
+        	whenSelected = event.currentTarget.selectedValue;
+        }
+        
+        private var numRequest:Number=0;
+        private function map_onMapReady():void {
+            map.enableScrollWheelZoom();
+            map.enableContinuousZoom();
+            
+            //doBWMap(map, false);
+
+            //map.setCenter(new LatLng(39.93308206465979, -3.9825657022677374), 6.44, MapType.PHYSICAL_MAP_TYPE);
+            map.setCenter(new LatLng(39.93308206465979, -3.9825657022677374), 6, MapType.PHYSICAL_MAP_TYPE);
+            map.addControl(new NavigationControl());
+            
+            //map.addEventListener(MapEvent.TILES_LOADED, flyMap);
+
+
+              
+        } 
+        
+        private function flyMap():void {
+        	//map.removeEventListener(MapEvent.TILES_LOADED, flyMap);
+			//map.flyTo(new LatLng(41.52825457703832, -3.1569440658832004), 7.34, new Attitude(2.2, 20.25, 0), 3);    
+        }
+        
+        
+		private function onSrvResultJSON(event:ResultEvent):void {
+			
+			var jsonObj:Object =  JSON.decode(event.result as String);
+			
+			var delay:Number =0;
+			for each (var item:Object in jsonObj.value.items as Array) {
+				numRequest++;
+				item.tiempo=JSON.decode(item.prediccion);
+				
+				if ( (item.tiempo as Array).length>0) {
+		  			item.weatherConditions = getWeatherMeasure(item.tiempo[whenSelected].weathercode);
+		  		}
+				
+				skiResorts.push(item);
+				
+			      if (item["lat"]!=null && item["lon"]!=null && item["lat"]!="" && item["lat"]!="") {
+				      resortsDic[item.codename]=item;
+				      //create markers
+				      var latlng:LatLng=new LatLng(item["lat"],item["lon"]);
+				      
+				      delay=delay+0.3;
+				      var m:Marker = new Marker(latlng);
+				      TweenLite.delayedCall(delay,geocodeSkiArea,[m,latlng]);
+				      markersDic[m]=item;
+			      }									
+			}			
+			
+		}
+		
+		private function getWeatherMeasure(code:String):Number {
+				/*
+				CODE FOR item.tiempo.weathercode
+					we might want get smarter here
+				
+				Weather condition code (between d000 and n440)
+				The weather code is constructed of:
+				- letter (d for day, n for night)
+				- integer (cloud coverage, 0 to 4)
+				- integer (amount of rain/snow, 0 to 4. 4 means thunder)
+				- integer (snowing, 0 for no snow, 1 for sleet, 2 for snow)
+				+     *
+				Examples:
+				- d000: sunny
+				- d400: full cloud coverage
+				- n432: full cloud coverage and snowing hard
+				*/		
+				
+			return (Number(code.charAt(1))-4)*-1;
+						
+		}
+
+        private var direcDic:Dictionary = new Dictionary();
+        private var routesDic:Dictionary = new Dictionary();
+        private var resortsDic:Dictionary = new Dictionary();
+        private var markersDic:Dictionary = new Dictionary();		
+		
+		
+		private function geocodeSkiArea(marker:Marker,latlng:LatLng):void {
+			var dir:Directions = new Directions();
+			dir.addEventListener(DirectionsEvent.DIRECTIONS_SUCCESS, onDirLoad);
+			dir.addEventListener(DirectionsEvent.DIRECTIONS_FAILURE, onDirFail);
+			
+			var dirQuery:String ="from: "+fromWhere+" to: "+latlng.lat()+","+latlng.lng();
+			direcDic[dirQuery]=marker;
+			dir.load(dirQuery);			
+			//dir.load("from: madrid to: barcelona");			
+		}
+		
+		private function onDirFail(event:DirectionsEvent):void {
+		  // Process failure, perhaps by showing an alert
+		}
+		
+		
+		private function onDirLoad(event:DirectionsEvent):void {
+		  var dir:Directions = event.directions;
+		  
+		  var marker:Marker = direcDic[event.name] as Marker;		  
+		  var item:Object = markersDic[marker];
+		  item.distance=dir.distance;
+		  item.duration=dir.duration;
+		  item.inMap=true;
+		  
+		  //piste map when clicked
+		  marker.addEventListener(MapMouseEvent.CLICK,function(event:MapMouseEvent):void {
+		  		var m:Marker = event.currentTarget as Marker;
+		  		var item:Object = markersDic[m];
+		  		
+		  		var infoWindow:InfoWindowCanvas = new InfoWindowCanvas();
+		  		infoWindow.item = item;
+		  		var options:InfoWindowOptions = new InfoWindowOptions({
+	                customContent: infoWindow,
+	                strokeStyle: new StrokeStyle({thickness: 0}),
+	                customOffset: new Point(0, 10),
+	                cornerRadius:0,
+	                width: 397,
+	                drawDefaultFrame: true					
+				});
+		  		map.openInfoWindow(m.getLatLng(),options);
+		  		map.panTo(m.getLatLng());
+		  });
+		  
+		  var mo:MarkerOptions = marker.getOptions();
+		  mo.tooltip = item.name + " - " + Math.round(dir.distance/1000) + " km. " + Math.round((dir.duration/60/60)*100)/100 +"h." + " \n" + item.maxsnow + " cm. de nieve" + " / " + item.openkm + " km. de pistas abiertas de nieve " + item.snowtype ;
+		  
+		  if ( (item.tiempo as Array).length>0) {
+		  	mo.tooltip = mo.tooltip + "\nTiempo: " +item.tiempo[0].prediccion;
+		  }
+		  
+		  marker.setOptions(mo);
+		  
+		  map.addOverlay(marker);
+		  var polyLine:IPolyline = dir.createPolyline();
+		  routesDic[marker]=polyLine;
+		  map.addOverlay(polyLine);     
+		  
+		  
+		  numRequest--;
+		  if(numRequest==0) {
+		  	currentState='';
+		  	flyMap();
+		  }         
+		}		
+		
+		private function onSliderChange():void {
+			for (var marker:Object in markersDic) {
+				var item:Object = markersDic[marker];		
+				if(item.duration > travelTimeSlider.value
+				||	item.maxsnow < snowSlider.value
+				||  item.openkm < kmSlider.value
+				||  item.weatherConditions < weatherSlider.value
+				) {
+					map.removeOverlay(marker as Marker);
+					map.removeOverlay(routesDic[marker]);
+					item.inMap=false;
+				} else if(!item.inMap) {
+					map.addOverlay(marker as Marker);
+					map.addOverlay(routesDic[marker]);
+					item.inMap=true;					
+				}
+			}
+		}
+		
+		[Bindable] public var fromWhere:String="Madrid";
+		private function onTextInput():void {
+			fromWhere = whereInputField.text;
+			currentState="loading";
+			var srv:HTTPService =  new HTTPService();
+			srv.url = "http://pipes.yahooapis.com/pipes/pipe.run?_id=9871da8307f4b456bfe8ff06d946a6e2&_render=json&v1&r=" +Math.random().toFixed(2);
+			srv.addEventListener(ResultEvent.RESULT,onSrvResultJSON);
+			//srv.addEventListener(FaultEvent.FAULT,onSrvFault);
+			srv.send();			
+			
+		}
+		        
+            		
+	]]>
+</mx:Script>	
+	<!--maps:Map3D id="map" key="ABQIAAAAwZG5Tk3XmQjBsSYWpMhjDRTYPii5jV_hkpAdDjO7FC1qk2ixWRR_xPwZI95Ly56xE1GpS_00Whcbeg"
+                     mapevent_mappreinitialize="map_onMapPreInitialize()" 
+                     mapevent_mapready="map_onMapReady()" top="0" bottom="0" left="0" right="0"/ -->
+	<maps:Map id="map" key="ABQIAAAAwZG5Tk3XmQjBsSYWpMhjDRTYPii5jV_hkpAdDjO7FC1qk2ixWRR_xPwZI95Ly56xE1GpS_00Whcbeg"
+                     mapevent_mappreinitialize="map_onMapPreInitialize()" 
+                     mapevent_mapready="map_onMapReady()" top="0" bottom="0" left="0" right="0"/>
+	<mx:Canvas width="251" height="85" backgroundColor="#FFFFFF" backgroundAlpha="0.55" right="10" bottom="300" id="canvas5">
+		<mx:Label x="10" y="10" text="Tiempo en la estacion  para manana"/>
+		<mx:HSlider id="weatherSlider" liveDragging="true" y="39" minimum="-1" maximum="3" labels="{['Me da igual','Excelente']}" value="-1" snapInterval="1" change="onSliderChange()" left="10" right="10"/>
+	</mx:Canvas>
+	<mx:Canvas width="251" height="85" backgroundColor="#FFFFFF" backgroundAlpha="0.55" right="10" bottom="208" id="canvas4">
+		<mx:Label x="10" y="10" text="Km pistas abiertos"/>
+		<mx:HSlider id="kmSlider" liveDragging="true" y="39" minimum="0" maximum="115" labels="{[0,15,30,45,60,75,90,115]}" value="0" snapInterval="5" change="onSliderChange()" left="10" right="10"/>
+	</mx:Canvas>
+	<mx:Canvas width="251" height="85" backgroundColor="#FFFFFF" backgroundAlpha="0.55" right="10" bottom="118" id="canvas3">
+		<mx:Label x="10" y="10" text="Cm de nieve minimos"/>
+		<mx:HSlider id="snowSlider" liveDragging="true" y="39" minimum="0" maximum="200" labels="{[0,30,60,90,120,150,180,200]}" value="0" snapInterval="10" change="onSliderChange()" left="10" right="10"/>
+	</mx:Canvas>
+	<ns1:ZoomControl id="zc" x="10" y="10"/>
+	<mx:Canvas width="251" height="85" backgroundColor="#FFFFFF" backgroundAlpha="0.55" right="10" bottom="28" id="canvas2">
+		<mx:Label x="10" y="10" text="Horas de viaje en coche"/>
+		<mx:HSlider id="travelTimeSlider" liveDragging="true" y="39" minimum="0" maximum="36000" labels="{[0,1,2,3,4,5,6,7,8,9,10]}" value="36000" snapInterval="900" change="onSliderChange()" left="10" right="10"/>
+	</mx:Canvas>
+</mx:Application>
