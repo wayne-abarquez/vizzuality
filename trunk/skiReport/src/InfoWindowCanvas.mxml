@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="545" 
+	horizontalScrollPolicy="off" verticalScrollPolicy="off"
+	styleName="bkgInfoWindow" backgroundSize="100%"
+	 creationComplete="init()"
+	xmlns:components="org.gbif.components.*" height="186" backgroundColor="#FFFFFF">
+<mx:Script>
+	<![CDATA[
+		import flash.net.navigateToURL;
+		import mx.core.Application;
+		import mx.managers.PopUpManager;
+		
+		private var _item:Object;		
+		
+		private function init():void {
+			nameLabel.text = _item.name;
+			espesorNieve.text = _item.minsnow +"/"+_item.maxsnow +" cm.";
+			kmAbiertos.text = _item.openkm + "/" + _item.totalkm + " km.";
+			distanceText.text =  Math.round(_item.distance/1000) + " km. / "+ (Math.round((_item.duration/3600)*100))/100 +"h.";
+			tipoNieve.text = _item.snowtype;
+			
+			weather1.source = "http://www.eltiempo.es/img/icons/big_"+_item.tiempo[0].weathercode+".gif";
+			weather2.source = "http://www.eltiempo.es/img/icons/big_"+_item.tiempo[1].weathercode+".gif";
+			weather3.source = "http://www.eltiempo.es/img/icons/big_"+_item.tiempo[2].weathercode+".gif";
+			weather4.source = "http://www.eltiempo.es/img/icons/big_"+_item.tiempo[3].weathercode+".gif";
+			weather5.source = "http://www.eltiempo.es/img/icons/big_"+_item.tiempo[4].weathercode+".gif";
+			temp1.text = _item.tiempo[0].temperatura + "°";
+			temp2.text = _item.tiempo[1].temperatura + "°";
+			temp3.text = _item.tiempo[2].temperatura + "°";
+			temp4.text = _item.tiempo[3].temperatura + "°";
+			temp5.text = _item.tiempo[4].temperatura + "°";
+			remontesAbiertos.text = _item.openlifts + "/" + _item.totallifts;
+		}
+		
+		public function set item(val:Object):void {
+			_item=val;
+		}
+		
+		private function openSkiMap():void {
+		  	var tw:ImagePopup=new ImagePopup();
+		  	tw.imageSource="http://www.eltiempo.es/img/ski_resorts/maps/"+_item.weathername+".jpg"
+    		PopUpManager.addPopUp(tw,Application.application.zc,true);
+    		PopUpManager.centerPopUp(tw);		  	
+		}
+		
+		private function closeInfoWindow():void {
+			Application.application.map.closeInfoWindow();
+		}
+			
+	]]>
+</mx:Script>
+<mx:VBox verticalGap="2" height="100%" horizontalAlign="left" top="4" left="5" right="5">
+	<mx:Spacer height="2" />
+	<mx:Label id="nameLabel" color="#575E41" fontSize="16" fontFamily="Verdana"/>
+	<mx:HRule strokeColor="#575E41" width="100%" strokeWidth="1" alpha=".6"/>
+	<mx:Canvas width="100%" height="100%">
+		<mx:HBox y="30" left="10" right="10">
+			<mx:Image id="weather1" width="39" height="32"/>
+			<mx:Label id="temp1" text="-1°" fontSize="18" color="#575E41"/>
+			<mx:Image id="weather2" width="39" height="32"/>
+			<mx:Label id="temp2" text="-1°" fontSize="18" color="#575E41"/>
+			<mx:Image id="weather3" width="39" height="32"/>
+			<mx:Label id="temp3" text="-1°" fontSize="18" color="#575E41"/>
+			<mx:Image id="weather4" width="39" height="32"/>
+			<mx:Label id="temp4" text="-1°" fontSize="18" color="#575E41"/>
+			<mx:Image id="weather5" width="39" height="32"/>
+			<mx:Label id="temp5" text="-1°" fontSize="18" color="#575E41"/>
+		</mx:HBox>
+		<mx:Label text="Espesor nieve:" color="#575E41" fontSize="13" fontFamily="Verdana" y="70" x="10"/>
+		<mx:Label text="Hoy" color="#575E41" fontSize="15" fontFamily="Verdana" y="7" x="9"/>
+		<mx:Label text="Manana" color="#575E41" fontSize="15" fontFamily="Verdana" y="7" x="98"/>
+		<mx:Label text="2dias" color="#575E41" fontSize="15" fontFamily="Verdana" y="7" x="188"/>
+		<mx:Label text="3dias" color="#575E41" fontSize="15" fontFamily="Verdana" y="7" x="276"/>
+		<mx:Label text="4dias" color="#575E41" fontSize="15" fontFamily="Verdana" y="7" x="366"/>
+		<mx:Label id="espesorNieve" color="#0042D9" fontSize="13" fontFamily="Verdana" y="70" x="110"/>
+		<mx:Label id="kmAbiertos" color="#0042D9" fontSize="13" fontFamily="Verdana" y="90" x="110"/>
+		<mx:Label id="remontesAbiertos" color="#0042D9" fontSize="13" fontFamily="Verdana" y="90" x="357"/>
+		<mx:Label text="remontes abiertos:" color="#575E41" fontSize="13" fontFamily="Verdana" y="91" x="230"/>
+		<mx:Label id="tipoNieve" color="#0042D9" fontSize="13" fontFamily="Verdana" y="110" x="110"/>
+		<mx:Label text="Km abiertos:" color="#575E41" fontSize="13" fontFamily="Verdana" y="90" x="23"/>
+		<mx:Label text="Tipo de nieve:" color="#575E41" fontSize="13" fontFamily="Verdana" y="110" x="12"/>
+		<mx:Button y="116" label="Ver mapa de pistas" right="5" click="openSkiMap()"/>
+		<mx:HBox y="70" width="295" x="230">
+			<mx:Label text="{'Distancia desde '+Application.application.fromWhere+':'}" color="#575E41" fontSize="13" fontFamily="Verdana"/>
+			<mx:Label id="distanceText" color="#0042D9" fontSize="13" fontFamily="Verdana"/>
+		</mx:HBox>
+		<!--mx:Image x="345" y="10" source="{'http://www.eltiempo.es/img/icons/big_'+weatherCode+'.gif'}" width="39" height="32"/ -->
+	</mx:Canvas>
+</mx:VBox>
+	<mx:Canvas backgroundColor="#B4BB94" left="6" right="6" top="0" height="3"/>
+	<mx:Button right="6" width="60" styleName="invisibleButton" height="15" label="close"
+		 click="closeInfoWindow()"
+		useHandCursor="true" mouseChildren="false" buttonMode="true" color="#575E41" top="14" textAlign="right"/>
+	
+</mx:Canvas>
