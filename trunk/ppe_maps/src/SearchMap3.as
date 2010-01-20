@@ -16,9 +16,9 @@ package {
 	import com.greensock.plugins.*;
 	import com.vizzuality.*;
 	import com.vizzuality.gmaps.Clusterer;
+	import com.vizzuality.tests.MarkersOverlaySearch3;
 	import com.vizzuality.tests.SearchClusterMarker;
 	import com.vizzuality.tests.SearchMarker2;
-	import com.vizzuality.tileoverlays.MarkersOverlay;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -54,11 +54,13 @@ package {
 		private var iw:Dictionary=new Dictionary();
 		private var domain: String;
 		
-		private var mo:MarkersOverlay;
+		private var mo:MarkersOverlaySearch3;
 		
 		private var markers:Array;
 		private var clusterer:Clusterer;
 		private var attachedMarkers:Array;
+		
+		private var lastCluster: SearchClusterMarker;
 							
 						
 		public function SearchMap3()
@@ -124,7 +126,7 @@ package {
 		
 		private var iw2:Dictionary=new Dictionary();
 		private function onMapReady(event:MapEvent):void {
-			mo= new MarkersOverlay();
+			mo= new MarkersOverlaySearch3();
 			map.addOverlay(mo);
 			markers = new Array();
 		 	
@@ -223,7 +225,7 @@ package {
 				map.setCenter(bounds.getCenter(),map.getBoundsZoomLevel(bounds));
 			}
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
-			clusterer = new Clusterer(markers, map.getZoom(),80);
+			clusterer = new Clusterer(markers, map.getZoom(),30);
 			attachedMarkers = [];
 			attachMarkers();			
 		}
@@ -231,7 +233,11 @@ package {
 		
 		private function onMapZoomChanged(event:MapZoomEvent):void{
 			clusterer.zoom = map.getZoom();
+			map.removeOverlay(mo);	
+			mo= new MarkersOverlaySearch3();
+			map.addOverlay(mo);
 			attachMarkers();
+			lastCluster = null;
 		}	
 		
 		
@@ -255,8 +261,16 @@ package {
 			}
 		}
 		
-		private function showClusterPAs(event:MapMouseEvent): void {		
-			mo.addMarkerCluster((event.currentTarget as SearchClusterMarker).clusterArray);
+		private function showClusterPAs(event:MapMouseEvent): void {
+			if (lastCluster!= null) {
+				map.addOverlay(lastCluster);				
+			}
+			map.removeOverlay(mo);	
+			mo= new MarkersOverlaySearch3();
+			map.addOverlay(mo);
+			lastCluster = event.currentTarget as SearchClusterMarker;
+			map.removeOverlay(event.currentTarget as SearchClusterMarker);
+			mo.addMarkerCluster((event.currentTarget as SearchClusterMarker).clusterArray,(event.currentTarget as SearchClusterMarker).getLatLng());
 		}	 			
 	}
 }
