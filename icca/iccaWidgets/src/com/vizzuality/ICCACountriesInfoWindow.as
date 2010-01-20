@@ -14,13 +14,13 @@ package com.vizzuality
         	
             public function ICCACountriesInfoWindow(ob:Object) {
             	
-            		useHandCursor = true;
+/*             		useHandCursor = true;
             	 	mouseChildren = false;
-            	 	buttonMode = true;
+            	 	buttonMode = true; */
  
             		var labelBackground2:Sprite = new Sprite();
-		            labelBackground2.graphics.beginFill(0x000000,0.6);
- 		            labelBackground2.graphics.drawRoundRect(0,0,200,60,7,7);
+		            labelBackground2.graphics.beginFill(0x000000,0.8);
+ 		            labelBackground2.graphics.drawRoundRect(0,0,200,60+ob.sites*23,7,7);
 		            labelBackground2.graphics.endFill();
 		            labelBackground2.mouseChildren=false;
 		            addChild(labelBackground2);  
@@ -56,8 +56,6 @@ package com.vizzuality
                     shape.addChild(tf);
                     addChild(shape);
 
-     	
-
 					var shape1: VizzualityShape = new VizzualityShape(ob.url);
                     var tf2:TextField = new TextField();
                     var format2:TextFormat = tf2.getTextFormat();
@@ -75,7 +73,7 @@ package com.vizzuality
                     tf2.y=0;
                     tf2.multiline = true;
                     shape1.x=((10+2*ob.sites+15)*2)
-                    shape1.y= 16;
+                    shape1.y= 12;
                     shape1.addChild(tf2);
                     shape1.width = 130;
                     shape1.height = 22;
@@ -83,14 +81,73 @@ package com.vizzuality
                     shape1.buttonMode=true;
                     shape1.useHandCursor=true;
                     addChild(shape1);
-                    shape1.addEventListener(MouseEvent.CLICK,clicked); 
+                    shape1.addEventListener(MouseEvent.CLICK,clicked);
                     
+                    
+                    var shape2: Sprite = new Sprite();
+                    var iccaText:TextField = new TextField();
+                    var numICCAFormat:TextFormat = new TextFormat();
+                    numICCAFormat.align = "left";
+                    numICCAFormat.font = "DINOT-Medium";
+                    numICCAFormat.size = 12;
+                    iccaText.defaultTextFormat = numICCAFormat;
+                    if (ob.sites==1) {
+                    	iccaText.text = ob.sites + " ICCA SITE";
+                    } else {
+                    	iccaText.text = ob.sites + " ICCA SITES";
+                    }
+                    iccaText.textColor = 0x9cc342;
+                    iccaText.embedFonts = true;
+                    iccaText.width = 130;
+                    iccaText.height=22;
+                    iccaText.x=0;
+                    iccaText.y=0;
+                    iccaText.multiline = true;
+                    shape2.x=((10+2*ob.sites+15)*2)
+                    shape2.y= 31;
+                    shape2.addChild(iccaText);
+                    shape2.width = 130;
+                    shape2.height = 22;
+                    shape2.mouseChildren=false;
+                    shape2.buttonMode=true;
+                    shape2.useHandCursor=true;
+                    addChild(shape2);
+                    shape1.addEventListener(MouseEvent.CLICK,clicked);
+                    
+                    for(var i:Number=0;i< (ob.textSites as Array).length;i++) {
+						var siteShape: VizzualityShape = new VizzualityShape((ob.textSites as Array)[i].url);
+	                    var textField:TextField = new TextField();
+	                    var textFormat:TextFormat = new TextFormat();
+	                    textFormat.align = "left";
+	                    textFormat.font = "DINOT-Medium";
+	                    textFormat.size = 16;
+	                    textFormat.letterSpacing = -1;
+	                    textField.defaultTextFormat = textFormat;
+	                    textField.text = (ob.textSites as Array)[i].name;
+	                    textField.textColor = 0xffffff;
+	                    textField.embedFonts = true;
+	                    textField.width = 130;
+	                    textField.height=22;
+	                    textField.x=0;
+	                    textField.y=0;
+	                    textField.multiline = true;
+	                    siteShape.x=((15+2*ob.sites+15)*2);
+	                    siteShape.y= ((50+20*i));
+	                    siteShape.addChild(textField);
+	                    siteShape.width = 130;
+	                    siteShape.height = 22;
+	                    siteShape.mouseChildren=false;
+	                    siteShape.buttonMode=true;
+	                    siteShape.useHandCursor=true;
+	                    addChild(siteShape);
+	                    siteShape.addEventListener(MouseEvent.CLICK,clicked);
+                    }
+
                     this.x = 0;
                     this.y = 0;
                     this.width = 200;
+                    /* this.height = 60+ob.sites*25; */
                     
-                    //TODO: Proper height for each country and his lists
-                    this.height = 60;
             }
             
           	private function clicked(event:MouseEvent):void {
