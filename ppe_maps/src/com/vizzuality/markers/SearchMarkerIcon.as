@@ -89,7 +89,7 @@ package com.vizzuality.markers{
             
             var mainNameSprite: Sprite = new Sprite();
             var nameText: TextField = new TextField();
-            nameText.text = StringUtils.truncate(paData.area,29);
+            nameText.text = StringUtils.truncate(paData.area,25);
             var newFormat:TextFormat = new TextFormat(); 
    			newFormat.size = 12; 
    			newFormat.color = 0xFFFFFF;
@@ -118,7 +118,7 @@ package com.vizzuality.markers{
             if (paData.local_name == "" || paData.local_name == null) {
             	countryText2.text = "";
             } else {
-	            countryText2.text =  paData.local_name as String;		            	
+	            countryText2.text = StringUtils.truncate(paData.local_name,35);	            	
             }
             var newFormat2:TextFormat = new TextFormat(); 
    			newFormat2.size = 10; 

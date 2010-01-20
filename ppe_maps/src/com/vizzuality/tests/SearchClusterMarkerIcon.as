@@ -25,7 +25,7 @@ package com.vizzuality.tests{
     		addEventListener(MouseEvent.CLICK,onClickCluster);
             var background:Shape = new Shape();
             background.graphics.beginFill(Color.RED,1);
-            background.graphics.drawCircle(0,0,30);
+            background.graphics.drawCircle(0,0,20);
             background.graphics.endFill();
             addChild(background);   
             
