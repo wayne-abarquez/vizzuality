@@ -23,6 +23,7 @@ package com.vizzuality.lastTest
                         }
 
                         options.draggable = false;
+                        options.hasShadow = false
                         options.icon = new SearchTypeMarkersIcon(ob,type); 
                         super(location, options);
                 }
