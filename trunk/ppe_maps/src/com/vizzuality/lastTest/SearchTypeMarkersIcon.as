@@ -44,14 +44,30 @@ package com.vizzuality.lastTest{
 			var background:Shape = new Shape();
 			var triangleShape:Shape = new Shape();
 			
+			var shadow: Shape = new Shape();
+			var triangleShadow: Shape = new Shape();
+			
 			
 			switch (type) {
-				case 1: background.graphics.beginFill(0xFFFFFF,1);
+				case 1: shadow.graphics.beginFill(0x000000,0.06);
+			            shadow.graphics.drawRoundRect(-3,-3,34,34,3,3);
+			            shadow.graphics.endFill();
+			            addChild(shadow);
+			            
+						triangleShadow.graphics.beginFill(0x000000,0.06);
+						triangleShadow.graphics.moveTo(0,0);
+						triangleShadow.graphics.lineTo(22, 0);
+						triangleShadow.graphics.lineTo(11, 9);
+						triangleShadow.graphics.lineTo(0,0);		
+						triangleShadow.x = 3;
+						triangleShadow.y = 27;
+						addChild(triangleShadow);
+				
+						background.graphics.beginFill(0xFFFFFF,1);
 			            background.graphics.drawRect(0,0,28,28);
 			            background.graphics.endFill();
 			            addChild(background);
-			            
-						
+
 						triangleShape.graphics.beginFill(0xFFFFFF);
 						triangleShape.graphics.moveTo(0,0);
 						triangleShape.graphics.lineTo(22, 0);
@@ -62,7 +78,21 @@ package com.vizzuality.lastTest{
 						addChild(triangleShape);
 						break;
 				
-				case 2: background.graphics.beginFill(0xFFFFFF,1);
+				case 2: shadow.graphics.beginFill(0x000000,0.06);
+			            shadow.graphics.drawRoundRect(-3,-3,42,42,3,3);
+			            shadow.graphics.endFill();
+			            addChild(shadow);
+			            
+						triangleShadow.graphics.beginFill(0x000000,0.06);
+						triangleShadow.graphics.moveTo(0,0);
+						triangleShadow.graphics.lineTo(22, 0);
+						triangleShadow.graphics.lineTo(11, 9);
+						triangleShadow.graphics.lineTo(0,0);		
+						triangleShadow.x = 8;
+						triangleShadow.y = 37;
+						addChild(triangleShadow); 
+				
+						background.graphics.beginFill(0xFFFFFF,1);
 			            background.graphics.drawRect(0,0,37,37);
 			            background.graphics.endFill();
 			            addChild(background);
@@ -78,7 +108,21 @@ package com.vizzuality.lastTest{
 			            
 						break;
 						
-				case 3: background.graphics.beginFill(0xFFFFFF,1);
+				case 3: shadow.graphics.beginFill(0x000000,0.06);
+			            shadow.graphics.drawRoundRect(-3,-3,60,60,3,3);
+			            shadow.graphics.endFill();
+			            addChild(shadow);
+			            
+						triangleShadow.graphics.beginFill(0x000000,0.06);
+						triangleShadow.graphics.moveTo(0,0);
+						triangleShadow.graphics.lineTo(22, 0);
+						triangleShadow.graphics.lineTo(11, 9);
+						triangleShadow.graphics.lineTo(0,0);		
+						triangleShadow.x = 16;
+						triangleShadow.y = 56;
+						addChild(triangleShadow);
+				
+						background.graphics.beginFill(0xFFFFFF,1);
 			            background.graphics.drawRect(0,0,54,54);
 			            background.graphics.endFill();
 			            addChild(background);

@@ -58,10 +58,8 @@ package {
 		private var markers:Array;
 		private var clusterer:Clusterer;
 		private var attachedMarkers:Array;
-		
-		private var lastCluster: SearchClusterMarker;
-							
-						
+									
+														
 		public function SearchMap4()
 		{ 
 			stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -228,7 +226,6 @@ package {
 		private function onMapZoomChanged(event:MapZoomEvent):void{
 			clusterer.zoom = map.getZoom();
 			attachMarkers();
-			lastCluster = null;
 		}	
 		
 		
@@ -252,7 +249,6 @@ package {
 						
 						var typeMarker: Number = distanceBetweenMarkers(map.fromLatLngToPoint(mar.getLatLng()),i,cluster);
 						
-						//Create an object
 						var obj: Object = new Object();
 						obj.imgURL = mar.markerData.imgURL;
 						obj.coordenates = mar.markerData.coordenates;
