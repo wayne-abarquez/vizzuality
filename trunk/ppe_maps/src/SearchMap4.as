@@ -217,7 +217,7 @@ package {
 			}
 			map.panBy(new Point(0,-45),false);
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
-			clusterer = new Clusterer(markers, map.getZoom(),50);
+			clusterer = new Clusterer(markers, map.getZoom(),70);
 			attachedMarkers = [];
 			attachMarkers();			
 		}
@@ -242,8 +242,7 @@ package {
 					marker = cluster[0];
 					map.addOverlay(marker);
 					attachedMarkers.push(marker);
-				} else {
-					
+				} else {					
 					var i:Number = 0;
 					for each(var mar:SearchTypeMarkers in cluster) {
 						
