@@ -206,6 +206,33 @@ div.menu{
 	height: 1100px;
 }
 
+.newshome{
+	width: 348px;
+	height: 100%;
+	background-color: white;
+	border: 1px silver solid;
+	margin-top: 12px;
+	height: 950px;
+}
+
+.newsabout{
+	width: 348px;
+	height: 100%;
+	background-color: white;
+	border: 1px silver solid;
+	margin-top: 12px;
+	height: 830px;
+}
+
+.newsfaq{
+	width: 348px;
+	height: 100%;
+	background-color: white;
+	border: 1px silver solid;
+	margin-top: 12px;
+	height: 1230px;
+}
+
 .news2{
 	width: 348px;
 	height: 100%;
