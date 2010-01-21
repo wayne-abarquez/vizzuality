@@ -16,9 +16,9 @@ package com.vizzuality.lastTest
                 		markerData = ob;
                         var options:MarkerOptions = new MarkerOptions();
                          switch (type) {
-                        	case 1: options.iconOffset = new Point(-14,-18);
-                        	case 2: options.iconOffset = new Point(-19,-43);
-                        	case 3: options.iconOffset = new Point(-23,-60);
+                        	case 1: options.iconOffset = new Point(-14,-33); break;
+                        	case 2: options.iconOffset = new Point(-19,-42); break;
+                        	case 3: options.iconOffset = new Point(-23,-60);  break;
                         	default: break;
                         }
                         options.hasShadow = false;
