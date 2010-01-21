@@ -13,19 +13,20 @@ package com.vizzuality.lastTest
 
                 public function SearchTypeMarkers(location:LatLng,ob:Object,type:Number)
                 {
-                		markerData = ob;
-                        var options:MarkerOptions = new MarkerOptions();
-                         switch (type) {
-                        	case 1: options.iconOffset = new Point(-14,-33); break;
-                        	case 2: options.iconOffset = new Point(-19,-42); break;
-                        	case 3: options.iconOffset = new Point(-23,-60);  break;
-                        	default: break;
-                        }
+            		markerData = ob;
+                    var options:MarkerOptions = new MarkerOptions();
+                    
+                    switch (type) {
+                    	case 1: options.iconOffset = new Point(-14,-33); break;
+                    	case 2: options.iconOffset = new Point(-19,-42); break;
+                    	case 3: options.iconOffset = new Point(-23,-60);  break;
+                    	default: break;
+                    }
 
-                        options.draggable = false;
-                        options.hasShadow = false
-                        options.icon = new SearchTypeMarkersIcon(ob,type); 
-                        super(location, options);
+                    options.draggable = false;
+                    options.hasShadow = false
+                    options.icon = new SearchTypeMarkersIcon(ob,type); 
+                    super(location, options);
                 }
         }
 }
