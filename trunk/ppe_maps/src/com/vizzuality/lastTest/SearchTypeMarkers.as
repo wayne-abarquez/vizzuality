@@ -21,7 +21,7 @@ package com.vizzuality.lastTest
                         	case 3: options.iconOffset = new Point(-23,-60);  break;
                         	default: break;
                         }
-                        options.hasShadow = false;
+
                         options.draggable = false;
                         options.icon = new SearchTypeMarkersIcon(ob,type); 
                         super(location, options);
