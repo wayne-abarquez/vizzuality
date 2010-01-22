@@ -15,10 +15,12 @@ package com.vizzuality.tileoverlays
     {  
         private var srvNum:Number=0;   
         private var customTile:CustomTile;	
+        private var addMouseOverListener:Boolean;
      
-        public function GeoserverTileLayer()
-        {
+        public function GeoserverTileLayer(_addMouseOverListener:Boolean=true)
+        { 
             
+            addMouseOverListener=_addMouseOverListener;
             var copyrightCollection:CopyrightCollection = new CopyrightCollection();
             copyrightCollection.addCopyright(new Copyright("ennefox", new LatLngBounds(new LatLng(-180, 90), new LatLng(180, -90)), 21,"ennefox"));            
             super(copyrightCollection, 0, 23,0.7);
@@ -28,7 +30,7 @@ package com.vizzuality.tileoverlays
         public override function loadTile(tile:Point,zoom:Number):DisplayObject {
             
             if (!isNaN(tile.x) && !isNaN(tile.y) && zoom >= 0) {
-                customTile = new CustomTile();
+                customTile = new CustomTile(addMouseOverListener);
                 customTile.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
                 
                 if(zoom>8) {

@@ -24,7 +24,8 @@ package com.vizzuality.lastTest
                     }
 
                     options.draggable = false;
-                    options.hasShadow = false
+                    options.hasShadow = false;
+                    options.tooltip = ob.name as String;
                     options.icon = new SearchTypeMarkersIcon(ob,type); 
                     super(location, options);
                 }

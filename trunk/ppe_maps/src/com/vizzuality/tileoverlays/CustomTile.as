@@ -19,13 +19,15 @@ package com.vizzuality.tileoverlays
         private var isOverArea:Boolean=false;
 		
 		
-		public function CustomTile()
+		public function CustomTile(addMouseOverListener:Boolean=true)
 		{
 			loader = new Loader();
 			loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loaded,false,0,true);		
 			
-			this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver,false,0,true);	
+			if(addMouseOverListener) {
+				this.addEventListener(MouseEvent.MOUSE_MOVE,onMouseOver,false,0,true);	
+			}
 		}
 		
 		

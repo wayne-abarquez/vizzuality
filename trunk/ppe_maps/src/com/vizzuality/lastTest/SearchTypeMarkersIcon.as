@@ -5,7 +5,9 @@ package com.vizzuality.lastTest{
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	public class SearchTypeMarkersIcon extends Sprite {	
 
@@ -33,9 +35,7 @@ package com.vizzuality.lastTest{
 			
 			paData= m;
 			type= _type;
-			
 
-			
 			imageLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, displayImg);
 			
 			var fileRequest:URLRequest = new URLRequest(m.imgURL);
@@ -137,6 +137,10 @@ package com.vizzuality.lastTest{
 						addChild(triangleShape);
 						break;
 			}
+			
+			this.addEventListener(MouseEvent.CLICK,function(event:Event):void {
+            	navigateToURL(new URLRequest( "http://ppe.tinypla.net/sites/" + paData.paId),"_self");
+            });
 
         }
   		

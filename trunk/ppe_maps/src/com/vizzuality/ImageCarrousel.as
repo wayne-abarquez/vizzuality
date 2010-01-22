@@ -126,16 +126,19 @@ package com.vizzuality
 			
 			if(position==0) {
 				sp1.alpha = 1;
+				sp1.removeEventListener(MouseEvent.CLICK,handleClickImage);
 				TweenLite.to(sp1,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp1]});
 			} else {
 				if (sp1==null && sp1.parent==null) {
 					sp1.alpha = 1;
+					sp1.removeEventListener(MouseEvent.CLICK,handleClickImage);
 					TweenLite.to(sp1,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp1]});			
 				}
 			}
 			
 			if(position>0 && sp1.parent==null) {
 				sp1.alpha=0;
+				sp1.addEventListener(MouseEvent.CLICK,handleClickImage);
 				addChild(sp1);
 				TweenLite.to(sp1,0.7,{alpha:1});
 			}
@@ -144,9 +147,11 @@ package com.vizzuality
 			if(position==images.length-2) {
 				sp2.alpha=1;
 				TweenLite.to(sp2,0.7,{alpha:0,onComplete: onFinishedTween, onCompleteParams:[sp2]});
+				sp2.removeEventListener(MouseEvent.CLICK,handleClickImage);
 			} else{
 				if(sp2.parent==null) {
 					sp2.alpha=0;
+					sp2.addEventListener(MouseEvent.CLICK,handleClickImage);
 					addChild(sp2);
 					TweenLite.to(sp2,0.7,{alpha:1});
 				}
