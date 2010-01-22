@@ -43,14 +43,14 @@ package com.vizzuality
 	    		nameText.setTextFormat(newFormat); 
 	            nameText.wordWrap = true;
 	            nameText.width = 190;
-	            nameText.height = 120;
+	            nameText.height = 70;
 	            nameText.x = 0;
 	            nameText.y = 0;
 	            mainNameSprite.x = 63;
 	            mainNameSprite.y = 90;
 	            mainNameSprite.addChild(nameText);
 	            mainNameSprite.width = 190;
-	            mainNameSprite.height = 120;
+	            mainNameSprite.height = 70;
 	            mainNameSprite.mouseChildren=false;
 	            mainNameSprite.buttonMode=true;
 	            mainNameSprite.useHandCursor=true;
