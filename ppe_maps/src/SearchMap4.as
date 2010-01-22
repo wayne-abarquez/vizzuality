@@ -1,6 +1,7 @@
 package {
 	import com.adobe.serialization.json.JSON;
 	import com.google.maps.Alpha;
+	import com.google.maps.Color;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.Map;
@@ -8,19 +9,25 @@ package {
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
+	import com.google.maps.controls.ControlPosition;
+	import com.google.maps.controls.MapTypeControl;
+	import com.google.maps.controls.MapTypeControlOptions;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.PolygonOptions;
+	import com.google.maps.overlays.TileLayerOverlay;
 	import com.google.maps.styles.FillStyle;
 	import com.greensock.plugins.*;
 	import com.vizzuality.*;
 	import com.vizzuality.gmaps.Clusterer;
 	import com.vizzuality.lastTest.SearchTypeMarkers;
+	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.tests.MarkersOverlaySearch3;
-	import com.vizzuality.tests.SearchClusterMarker;
+	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
+	import flash.display.StageDisplayState;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -28,6 +35,8 @@ package {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.system.Security;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
 
@@ -58,6 +67,13 @@ package {
 		private var markers:Array;
 		private var clusterer:Clusterer;
 		private var attachedMarkers:Array;
+		private var mp:Multipolygon;
+		private var paJson:Object;
+		
+
+		
+		private var dataLoaded: Boolean = false;
+		private var dataAnalyzed: Boolean = false;
 									
 														
 		public function SearchMap4()
@@ -122,7 +138,61 @@ package {
 		}		
 		
 		private var iw2:Dictionary=new Dictionary();
+		private var tl:GeoserverTileLayer;
+		private var tlo:TileLayerOverlay;
 		private function onMapReady(event:MapEvent):void {
+			
+			var fullScreenButton: Sprite = new Sprite ();
+			fullScreenButton.graphics.beginFill(Color.BLUE,0.7);
+			fullScreenButton.graphics.drawRoundRect(0,0,29,29,5);
+			fullScreenButton.graphics.endFill();
+			fullScreenButton.x = 10;
+			fullScreenButton.y = 80;
+			
+			var exampleSprite2: Sprite = new Sprite();
+            var countryText2: TextField = new TextField();
+            countryText2.text = "FS";
+            var newFormat2:TextFormat = new TextFormat(); 
+   			newFormat2.size = 16; 
+   			newFormat2.color = 0xFFFFFF;
+   			newFormat2.italic = false;
+   			newFormat2.letterSpacing = 0;
+			newFormat2.font = "Helvetica";
+    		countryText2.setTextFormat(newFormat2); 
+            countryText2.width = 29;
+            countryText2.height = 29;
+            countryText2.x = 3;
+            countryText2.y = 7;
+
+            fullScreenButton.mouseChildren=false;
+            fullScreenButton.buttonMode=true;
+            fullScreenButton.useHandCursor=true;
+            fullScreenButton.addChild(countryText2);
+            
+            fullScreenButton.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void { 
+            		if (stage.displayState== "normal") {
+						stage.displayState="fullScreen";
+						stage.scaleMode = StageScaleMode.NO_SCALE;
+					} else {
+						stage.displayState="normal";
+					} } );
+
+			
+			addChild(fullScreenButton);
+			
+			var optionsTypeControl: MapTypeControlOptions = new MapTypeControlOptions(
+				{ buttonSize: new Point(67, 19),
+				  buttonSpacing: new Point(0, 0),
+				  buttonAlignment: MapTypeControlOptions.ALIGN_VERTICALLY,
+				  position: new ControlPosition(ControlPosition.ANCHOR_TOP_RIGHT, 10)
+				});
+			var typeControl: MapTypeControl = new MapTypeControl(optionsTypeControl);
+			map.addControl(typeControl);
+			
+			tl = new GeoserverTileLayer(false);
+			tlo = new TileLayerOverlay(tl);
+			map.addOverlay(tlo);		
+			
 			markers = new Array();
 		 	
 		 	//zoom buttons
@@ -147,7 +217,8 @@ package {
 			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
 				map.setZoom(map.getZoom()+1);
 			}); 
-		
+					
+
 			
 			var zoomOut:Sprite = new ZoomOutButton();			
 			var zoomOut_over: Sprite = new ZoomOutButton_over();
@@ -171,6 +242,10 @@ package {
 				map.setZoom(map.getZoom()-1);
 			});
 			//end zoom buttons
+		
+
+
+
 			
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
@@ -186,7 +261,7 @@ package {
 			
 			//parse the Flashvar
 			var varsdata:String = this.root.loaderInfo.parameters.pas;
-			var paJson:Object = JSON.decode(varsdata);
+			paJson = JSON.decode(varsdata);
 			
 			markers = [];	
 			
@@ -215,6 +290,10 @@ package {
 			} else {
 				map.setCenter(bounds.getCenter(),map.getBoundsZoomLevel(bounds));
 			}
+			
+			dataLoaded=true;
+
+			
 			map.panBy(new Point(0,-45),false);
 			map.addEventListener(MapZoomEvent.ZOOM_CHANGED, onMapZoomChanged);
 			clusterer = new Clusterer(markers, map.getZoom(),70);
@@ -264,6 +343,8 @@ package {
 					}
 				}
 			}
+			
+
 		}	
 		
 		
@@ -279,6 +360,7 @@ package {
 			}
 			return 2;
 		}
+
 		
 		
 	}
