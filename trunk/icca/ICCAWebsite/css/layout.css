@@ -135,6 +135,10 @@ div.menu{
 	font-weight: bold;
 }
 
+.titlesTables{
+	margin: 0; padding: 0;
+}
+
 .tableContainer{
 	
 /* 	border-bottom: 1px black solid; */
@@ -199,7 +203,6 @@ div.menu{
 
 .news{
 	width: 348px;
-	height: 100%;
 	background-color: white;
 	border: 1px silver solid;
 	margin-top: 12px;
@@ -208,7 +211,6 @@ div.menu{
 
 .newshome{
 	width: 348px;
-	height: 100%;
 	background-color: white;
 	border: 1px silver solid;
 	margin-top: 12px;
@@ -217,7 +219,6 @@ div.menu{
 
 .newsabout{
 	width: 348px;
-	height: 100%;
 	background-color: white;
 	border: 1px silver solid;
 	margin-top: 12px;
@@ -226,18 +227,25 @@ div.menu{
 
 .newsfaq{
 	width: 348px;
-	height: 100%;
 	background-color: white;
 	border: 1px silver solid;
 	margin-top: 12px;
 	height: 1230px;
 }
 
-.news2{
+.newscountry{
 	width: 348px;
-	height: 100%;
 	background-color: white;
 	border: 1px silver solid;
+	margin-top: 12px;
+	height: 3400px;
+}
+
+.newsicca{
+	width: 348px;
+	background-color: white;
+	border: 1px silver solid;
+	height: 2300px;
 }
 
 .new{
