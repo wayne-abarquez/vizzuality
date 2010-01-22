@@ -139,6 +139,10 @@ div.menu{
 	margin: 0; padding: 0;
 }
 
+.superIndice{
+	vertical-align: super;
+}
+
 .tableContainer{
 	
 /* 	border-bottom: 1px black solid; */
@@ -207,6 +211,14 @@ div.menu{
 	border: 1px silver solid;
 	margin-top: 12px;
 	height: 1100px;
+}
+
+.newscontact{
+	width: 348px;
+	background-color: white;
+	border: 1px silver solid;
+	margin-top: 12px;
+	height: 400px;
 }
 
 .newshome{
