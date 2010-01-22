@@ -61,6 +61,18 @@ package com.vizzuality
 				img.x = i*310;
 				i++;
 			}
+			
+			if (images.length==1) {
+				var img2:ImageContainer = new ImageContainer("",true);
+				img2.width = 300;
+				img2.height = 250;
+				imagesContainerSprite.addChild(img2);
+				img2.x = i*310;
+			}
+			
+			
+			
+			
 			//Add it
 			addChild(imagesContainerSprite);
 

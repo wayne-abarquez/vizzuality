@@ -4,7 +4,7 @@ package {
 	import com.google.maps.InfoWindowOptions;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
-	import com.google.maps.Map; 
+	import com.google.maps.Map;
 	import com.google.maps.MapEvent;
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
@@ -27,6 +27,7 @@ package {
 	import com.vizzuality.markers.TooltipMarker;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
+	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
 	import flash.display.Sprite;
@@ -35,7 +36,6 @@ package {
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
-	import flash.geom.PerspectiveProjection;
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -58,6 +58,7 @@ package {
 		private var mamufas: Sprite;
 
 		private var imgC:ImageCarrousel;
+		private var sp2: Sprite;
 		
 		private var mouseOverPa:Boolean=false;
 
@@ -86,6 +87,9 @@ package {
         
         [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
         private var ZoomOutButton_over:Class;
+        
+        [Embed(source="assets/imageButton.png")]
+        private var imageButton:Class;
         
  /*
         [Embed(source="library.swf", symbol="circle")]
@@ -162,7 +166,7 @@ package {
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			paId=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=916;
+				paId=147133;
 			}
 			dsLoader.load(new URLRequest(domain + "/sites/"+paId+"/json"));
 			
@@ -209,12 +213,26 @@ package {
 				}
 			});					
 			mp.addToMap(map);
+			
+			//craete and add the right button
+			var imageButtonBitmap:Bitmap = new imageButton() as Bitmap;
+			imageButtonBitmap.width=124;
+			imageButtonBitmap.height=27;
+			sp2 = new Sprite();
+			sp2.useHandCursor = true;
+			sp2.mouseChildren = false;
+			sp2.buttonMode = true;
+			sp2.addChild(imageButtonBitmap);
+			sp2.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {navigateToURL(new URLRequest("http://vizzuality.com"),"_self");});					
+			sp2.x= 0;									
+			sp2.y= 0;
+			addChild(sp2);
 
 			//Set the center of the map to the bbox of the area			
 			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds()));		
 			
 			//If there is pictures then display the ImageCarrousel
-			if((data.pictures as Array).length>1) {
+			if((data.pictures as Array).length>0) {
 				imgC = new ImageCarrousel();
 				imgC.init(data.pictures as Array);
 				addChild(imgC);
@@ -500,6 +518,8 @@ package {
 			if(imgC!=null) {
 				imgC.x=square.x;
 				imgC.y= stage.stageHeight-275;
+				sp2.x = 648 + imgC.x;
+				sp2.y = imgC.y + imgC.height - 21; 
 			}
 		}
 		
