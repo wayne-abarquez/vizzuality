@@ -11,12 +11,16 @@ package com.vizzuality
         	
         	[Embed(source='DINOT-Medium.swf',fontName='DINOT-Medium',fontWeight='normal')]
         	public var f4:Class;
+        	private var url:String ='';
         	
             public function ICCAInfoWindow(ob:Object) {
             	
             		useHandCursor = true;
             	 	mouseChildren = false;
             	 	buttonMode = true;
+            	 	
+            	 	url = ob.url as String;
+            	 	addEventListener(MouseEvent.CLICK,clicked); 
  
             		var labelBackground2:Sprite = new Sprite();
 		            labelBackground2.graphics.beginFill(0x000000,0.6);
@@ -81,7 +85,7 @@ package com.vizzuality
                     shape1.buttonMode=true;
                     shape1.useHandCursor=true;
                     addChild(shape1);
-                    shape1.addEventListener(MouseEvent.CLICK,clicked); 
+                    
                     
                     this.x = 0;
                     this.y = 0;
@@ -90,7 +94,7 @@ package com.vizzuality
             }
             
           	private function clicked(event:MouseEvent):void {
-			    navigateToURL(new URLRequest(event.target.url));
+			    navigateToURL(new URLRequest(url));
 			}
       }
 }
