@@ -139,7 +139,7 @@ package {
 			}
 
         	if (countriesData.length == 1 ) {
-				map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds) - 6); 	
+				map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds) - 12); 	
         	} else {
 				map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds) - 1); 
         	}
