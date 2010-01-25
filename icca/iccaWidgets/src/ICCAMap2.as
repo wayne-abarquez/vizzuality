@@ -138,8 +138,11 @@ package {
 				directionsBounds.extend(marker.getLatLng());
 			}
 
-        	
-			map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds) - 1); 
+        	if (countriesData.length == 1 ) {
+				map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds) - 6); 	
+        	} else {
+				map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds) - 1); 
+        	}
 			
 		}
 		
