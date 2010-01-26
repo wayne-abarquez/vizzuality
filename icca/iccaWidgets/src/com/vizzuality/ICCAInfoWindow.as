@@ -68,7 +68,7 @@ package com.vizzuality
                     format2.size = 18;
                     format2.letterSpacing = -1;
                     tf2.defaultTextFormat = format2;
-                    tf2.text = "- " + ob.name;
+                    tf2.text = ob.name;
                     tf2.textColor = 0xffffff;
                     tf2.embedFonts = true;
                     tf2.width = 130;
