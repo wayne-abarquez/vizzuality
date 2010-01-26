@@ -6,10 +6,10 @@ package com.vizzuality.markers
 	
 	import flash.geom.Point;
 
-	public class SingleMarker extends Marker 
+	public class InfoMarker extends Marker 
 	{
-
-		public function SingleMarker(location:LatLng,type:String)
+		public var color: String;
+		public function InfoMarker(location:LatLng,city:String,precio:String,type:String)
 			{
 			var options:MarkerOptions = new MarkerOptions();
 			options.iconOffset = new Point(0,0);
@@ -18,16 +18,20 @@ package com.vizzuality.markers
 			switch(type)
 			{
 			    case 'muypoco':
-			        options.icon = new GenericMarkerIcon('yellow');
+			    	color = "yellow";
+			        options.icon = new GenericMarkerInfoIcon(color,city,precio);
 			        break;
 			    case 'poco':
-			        options.icon = new GenericMarkerIcon('orange');
+			    	color = "orange";
+			        options.icon = new GenericMarkerInfoIcon(color,city,precio);
 			        break;
 			    case 'algo':
-			        options.icon = new GenericMarkerIcon('darkorange');
+			    	color = "darkorange";
+			        options.icon = new GenericMarkerInfoIcon(color,city,precio);
 			        break;
 			    case 'mucho':
-			        options.icon = new GenericMarkerIcon('red');
+			    	color = "red";
+			        options.icon = new GenericMarkerInfoIcon(color,city,precio);
 			        break;
 			}
 			
