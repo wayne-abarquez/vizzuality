@@ -84,24 +84,6 @@
 			        			  ]
 			    },
 			    {
-			        "name": "NIGERIA",
-			        "url": "",
-			        "value": "",
-			        "lat": 9.081999, 
-			        "lng": 8.675277,
-			        "short": "NIG",
-			        "sites": 2,
-			        "textSites": [ {
-			        					"name": "",
-			        					"url": ""
-			        				},
-			        			    {
-			        					"name": "",
-			        					"url": ""
-			        				}
-			        			  ]
-			    },
-			    {
 			        "name": "PHILIPHINES",
 			        "url": "",
 			        "value": "",
