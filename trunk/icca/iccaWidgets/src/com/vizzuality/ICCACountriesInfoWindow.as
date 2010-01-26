@@ -73,7 +73,7 @@ package com.vizzuality
                     tf2.y=0;
                     tf2.multiline = true;
                     shape1.x=((10+2*ob.sites+15)*2)
-                    shape1.y= 12;
+                    shape1.y= 5;
                     shape1.addChild(tf2);
                     shape1.width = 130;
                     shape1.height = 22;
@@ -104,7 +104,7 @@ package com.vizzuality
                     iccaText.y=0;
                     iccaText.multiline = true;
                     shape2.x=((10+2*ob.sites+15)*2)
-                    shape2.y= 31;
+                    shape2.y= 24;
                     shape2.addChild(iccaText);
                     shape2.width = 130;
                     shape2.height = 22;
@@ -128,7 +128,7 @@ package com.vizzuality
 	                    textField.embedFonts = true;
 	                    textField.width = 130;
 	                    textField.height=22;
-	                    textField.x=0;
+	                    textField.x=-10;
 	                    textField.y=0;
 	                    textField.multiline = true;
 	                    siteShape.x=((15+2*ob.sites+15)*2);

@@ -99,9 +99,9 @@ package {
    			newFormatValue2.letterSpacing = 0;
     		title2.setTextFormat(newFormatValue2); 
   	 		title2.embedFonts = true;		
-            title2.x = 60;
+            title2.x = 59;
             title2.width = 125;
-            title2.y = 30;
+            title2.y = 25;
             addChild(title2);
             
 
@@ -229,7 +229,11 @@ package {
 		            countryText.x = 0;
 		            countryText.y = 0;
 		            vizzSprite.x = 60;
-		            vizzSprite.y = 70+(posCont)*63;
+		            if (i==0){
+		            	vizzSprite.y = 75+(posCont)*63;
+		            } else {
+		            	vizzSprite.y = 70+(posCont)*63;
+		            }
 		            vizzSprite.addChild(countryText);
 		            vizzSprite.width = 130;
 		            vizzSprite.height = 30; 
@@ -241,7 +245,7 @@ package {
 		            
 		            
 		            var countryValue: TextField = new TextField();
-		            countryValue.text ="+ " + countriesData[i].value;
+		            countryValue.text = countriesData[i].value;
 		            var newFormatValue:TextFormat = new TextFormat(); 
 	       			newFormatValue.size = 11; 
 	       			newFormatValue.bold = true;
@@ -260,18 +264,20 @@ package {
 		
 					var s:Shape = new DottedLine(135, 1, 0xFFFFFF,0.5,1,1);
 					s.x = 55;
-					s.y = 123+(posCont)*63;
+					s.y = 113+(posCont)*63;
 					addChild(s);
 					
 					countriesObjectsArray.push(vizzSprite,countryValue,s);
 					
 					var marker: ICCAMarker = new ICCAMarker(new LatLng(countriesData[i].lat,countriesData[i].lng),countriesData[i].short,countriesData[i].sites);
-					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+					if(countriesData[i].sites > 0){
+						marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
 	                        if(!rollingOver) {
-		                        openInfoWindow(e);     
-	                        }
-	                        rollingOver=true;                                                                 
-	                });
+		                        openInfoWindow(e); 
+		                    } 
+	                        rollingOver=true;
+		                });
+	    			}
 	                
 	                iw[marker]=countriesData[i];
 					
@@ -342,12 +348,16 @@ package {
 					countriesObjectsArray.push(vizzSprite,countryValue,s);
 					
 					var marker: ICCAMarker = new ICCAMarker(new LatLng(countriesData[i-1].lat,countriesData[i-1].lng),countriesData[i-1].short,countriesData[i-1].sites);
-					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
-	                        if(!rollingOver) {
-		                        openInfoWindow(e);     
-	                        }
-	                        rollingOver=true;                                                                 
-	                });
+					if(countriesData[i].sites > 0){
+						marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+		                    if(countriesData[i-1].sites != 0){
+		                        if(!rollingOver) {
+			                        openInfoWindow(e);
+		                        }
+		                        rollingOver=true; 
+		                    }                                                                
+		                });
+		   			}
 	                
 	                iw[marker]=countriesData[i-1];
 					
@@ -386,19 +396,19 @@ package {
  			
  			infoWindowToOpen = new ICCACountriesInfoWindow(m);
  			infoWindowToOpen.addEventListener(MouseEvent.ROLL_OUT,onInfowindowRollOut);
-            var options:InfoWindowOptions = new InfoWindowOptions({
+        	var options:InfoWindowOptions = new InfoWindowOptions({
 
-              customContent: infoWindowToOpen,
-              padding: 10,
-              hasCloseButton: false,
-              pointOffset:new Point(-10-2*m.sites,-15-2*m.sites),
-              hasShadow: false
-            });
-            
-            infoWindowToOpen.alpha=0;
-            map.openInfoWindow(new LatLng(m.lat,m.lng),options);
-            TweenLite.to(infoWindowToOpen,0.5,{alpha:1});
-                
+          	customContent: infoWindowToOpen,
+          	padding: 10,
+          	hasCloseButton: false,
+          	pointOffset:new Point(-10-2*m.sites,-15-2*m.sites),
+          	hasShadow: false
+        	});
+        
+        	infoWindowToOpen.alpha=0;
+        	map.openInfoWindow(new LatLng(m.lat,m.lng),options);
+        	TweenLite.to(infoWindowToOpen,0.5,{alpha:1});
+
         }
         
         private function clicked(event:MouseEvent):void {
