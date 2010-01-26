@@ -5,6 +5,7 @@ $(document).ready(function() {
 	Cufon.replace('.flash-Bigtitle',{hover: true});
 	Cufon.replace('.menu',{hover: true});
 	Cufon.replace('.flash-h2',{hover: true});
+	Cufon.replace('.flash-h2-special',{hover: true});
 
 });
 
