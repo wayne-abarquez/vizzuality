@@ -3,22 +3,14 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
 <maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)"
   width="100%" key="ABQIAAAAaigC1giQPYMDEquY7dUK4BT2yXp_ZAY8_ufC3CFXhHIE1NvwkxT-xGQb-JBb0LVY2FvevUjSt0so0A" top="27" bottom="96"/>
-	<mx:Canvas width="50" height="50" backgroundColor="#333333" borderStyle="none" borderColor="#333333" alpha="1.0" top="50" right="200">
-		<mx:Label x="5" y="10" text="ida" color="#999999"/>
-	</mx:Canvas>
-	<mx:Canvas width="50" height="50" backgroundColor="#333333" borderStyle="none" borderColor="#333333" alpha="1.0" top="50" right="80">
-		<mx:Label x="5" y="10" text="desde" color="#999999"/>
-	</mx:Canvas>
 <mx:Script>
     <![CDATA[
+    	import com.google.maps.interfaces.IOverlay;
+    	import com.google.maps.overlays.Marker;
     	import com.google.maps.overlays.PolylineOptions;
     	import com.google.maps.overlays.Polyline;
     	import com.google.maps.overlays.MarkerOptions;
     	import mx.collections.ArrayCollection;
-/* 		import com.google.maps.overlays.Marker;
-		import com.google.maps.overlays.MarkerOptions;
-		import com.google.maps.overlays.PolygonOptions;
-		import com.google.maps.overlays.TileLayerOverlay; */
     	import mx.controls.Alert;
     	import mx.rpc.events.ResultEvent;
     	import mx.rpc.events.FaultEvent;
@@ -30,12 +22,18 @@
 	    import com.google.maps.controls.ZoomControl;
 	    
 	    import com.adobe.serialization.json.JSON;
+	    
 	    import com.vizzuality.markers.SingleMarker;
 	    import com.vizzuality.markers.GenericMarkerIcon;
+	    import com.vizzuality.markers.InfoMarker;
+	    import com.vizzuality.markers.GenericMarkerInfoIcon;
+	    import com.vizzuality.markers.OriginMarker;
+	    import com.vizzuality.markers.OriginMarkerIcon;
 	    
 	    import com.greensock.TweenLite;
 	    
 	    private var myMarket: SingleMarker; 
+	    private var myInfoMarket : InfoMarker;
 	    
 	    [Bindable] private var citiesMinubeFlights: String;
 		[Bindable] private var citiesRequest: String = "http://ws.geonames.org/citiesJSON?formatted=true&north=90&south=-90&east=180&west=-180&lang=es&maxRows=20";
@@ -75,6 +73,7 @@
 			
 			//SendRequesToMinube("Buenos Aires");
 			DibujaPolylines();
+			drawCircles();
 		}
 		
 		private function SendRequesToMinube(city: String):void
@@ -89,14 +88,27 @@
 			//decodifico JSON
 			//var responseData: Object = JSON.decode(re.result as String);
 			//trace(responseData);
+			var markerMadrid: OriginMarker;
+			var pointMadrid: LatLng = new LatLng(40.420088,-3.688810);
+			markerMadrid = new OriginMarker(pointMadrid);
+		    this.map.addOverlay(markerMadrid);
 						
 			var i:int;
 			for (i=0; i<ciudades.length; i++){
 				var point: LatLng = new LatLng(ciudades[i].lat,ciudades[i].lon);
-				var marker:SingleMarker;
+				//var middlePoint: LatLng = new LatLng((40.420088 + int(ciudades[i].lat))/2,(-3.688810 + int(ciudades[i].lon))/2);
+				
+				var marker: SingleMarker;
+				var markerInfo: InfoMarker;
 	
-		        marker = new SingleMarker(point,"mucho");
-		        this.map.addOverlay(marker);
+		        marker = new SingleMarker(point,"algo");
+		        this.map.addOverlay(marker as IOverlay);
+		        
+		        var city: String = ciudades[i].destino;
+		        var precio: String = "500€"
+		        markerInfo = new InfoMarker(point,city,precio,"algo");
+		        this.map.addOverlay(markerInfo as IOverlay);
+		        
 		        var options:PolylineOptions = new PolylineOptions({
 				  strokeStyle: {
 				    thickness: 1,
@@ -110,9 +122,45 @@
 				}
 		} 
 		 
-		private function fault(fe:FaultEvent):void
+		private function Fault(fe:FaultEvent):void
 		{
 			Alert.show(fe.fault.message);
+		}
+		
+		private function ResizeCanvas(numCanvas:int):void
+		{
+			switch(numCanvas){
+			    case 1:
+			    	TweenLite.to(canvas1,0.1,{height: 124});
+					break;
+			    case 2:
+			    	TweenLite.to(canvas2,0.1,{height: 124});
+			        break;
+			    case 3:
+			    	TweenLite.to(canvas3,0.1,{height: 124});
+			        break;
+			    case 4:
+			    	TweenLite.to(canvas4,0.1,{height: 124});
+			        break;
+			}
+		}
+		
+		private function ResizeCanvasOut(numCanvas:int):void
+		{
+			switch(numCanvas){
+			    case 1:
+			    	TweenLite.to(canvas1,0.1,{height: 94});
+					break;
+			    case 2:
+			    	TweenLite.to(canvas2,0.1,{height: 94});
+			        break;
+			    case 3:
+			    	TweenLite.to(canvas3,0.1,{height: 94});
+			        break;
+			    case 4:
+			    	TweenLite.to(canvas4,0.1,{height: 94});
+			        break;
+			}		
 		}
             
         private function changeColorMap(myMap:Map):void 
@@ -127,40 +175,55 @@
             matrix = matrix.concat([0,0,0,0.9,0]);   // alpha
             targetObject.filters = [new ColorMatrixFilter(matrix)];    
         }
+        
+        private function drawCircles():void{
+        	var circle:Sprite = new Sprite();
+        	circle.graphics.beginFill(0x333333);
+        	var pointx: int = Application.application.width * 0.80;
+        	circle.graphics.drawCircle(pointx,51,27);
+        	circle.graphics.drawCircle(pointx+59,50,27);
+        	circle.graphics.drawRoundRect(pointx+90,21,85,56,60);
+        	circle.graphics.drawCircle(pointx+206,50,27);
+            circle.graphics.endFill();
+            map.addChild(circle);
+        }
 
     ]]>
 </mx:Script>
-	<mx:Canvas x="0" width="100%" height="96" bottom="0" backgroundColor="#FFFFFF">
-		<mx:Canvas width="100%" height="94" left="0" top="0" backgroundColor="#FFCC00">
+<!--	<mx:Canvas x="0" width="100%" height="96" bottom="0" backgroundColor="#FFFFFF">
+-->		
+	<mx:Canvas id="canvas1" x="0" width="{Application.application.width*0.25}" height="94" backgroundColor="#FFCC00" bottom="0" rollOver="ResizeCanvas(1)" rollOut="ResizeCanvasOut(1)">
 			<mx:Label x="10" y="10" text="CON MUY POCO"/>
 			<mx:Label x="10" y="26" text="0€-60€"/>
 		</mx:Canvas>
-		<mx:Canvas width="100%" height="94" top="0" left="194" backgroundColor="#FF9900">
+		<mx:Canvas id="canvas2" width="{Application.application.width*0.25}" x="{canvas1.x+Application.application.width*0.25}" height="94" backgroundColor="#FF9900" bottom="0" rollOver="ResizeCanvas(2)" rollOut="ResizeCanvasOut(2)">
 			<mx:Label x="10" y="10" text="CON POCO"/>
 			<mx:Label x="10" y="26" text="60€-150€"/>
 		</mx:Canvas>
-		<mx:Canvas x="388" width="100%" height="94" backgroundColor="#FF6600" top="0">
+		<mx:Canvas id="canvas3" width="{Application.application.width*0.25}" x="{canvas2.x+Application.application.width*0.25}" height="94" backgroundColor="#FF6600" bottom="0" rollOver="ResizeCanvas(3)" rollOut="ResizeCanvasOut(3)">
 			<mx:Label x="10" y="10" text="CON ALGO"/>
 			<mx:Label x="10" y="26" text="150€-350€"/>
 		</mx:Canvas>
-		<mx:Canvas x="583" width="100%" height="94" top="0" backgroundColor="#FF3300">
+		<mx:Canvas id="canvas4" width="{Application.application.width*0.25}" x="{canvas3.x+Application.application.width*0.25}" height="94" backgroundColor="#FF3300" bottom="0" rollOver="ResizeCanvas(4)" rollOut="ResizeCanvasOut(4)">
 			<mx:Label x="10" y="10" text="CON MUCHO"/>
 			<mx:Label x="10" y="26" text="&gt;350€..."/>
 		</mx:Canvas>
+<!--	</mx:Canvas>
+-->	<mx:Canvas width="100%" height="27" top="0" x="0" backgroundColor="#333333">
+		<mx:Canvas height="100%" x="0" width="10" backgroundColor="#FFCC00"></mx:Canvas>
+		<mx:Canvas height="100%" x="10" width="10" backgroundColor="#FF9900"></mx:Canvas>
+		<mx:Canvas height="100%" x="20" width="15" backgroundColor="#FF6600"></mx:Canvas>
+		<mx:Canvas height="100%" x="35" width="160" backgroundColor="#FF3300">
+			<mx:Label height="16" width="150" fontSize="10" y="6" x="9" text="¿DÓNDE Y POR CUANTO?" color="#ffffff"/>
+		</mx:Canvas>
+		<mx:Label y="6" text="EDITA TU VIAJE" color="#999999" right="190"/>
 	</mx:Canvas>
-	<mx:Canvas width="100%" height="27" top="0" x="0" backgroundColor="#333333">
-		<mx:Label y="6" text="EDITA TU VIAJE" color="#999999" right="160"/>
-	</mx:Canvas>
-	<mx:Canvas width="50" height="50" backgroundColor="#333333" borderStyle="none" borderColor="#333333" alpha="1.0" top="50" right="140">
-		<mx:Label x="5" y="10" text="vuelta" color="#999999"/>
-	</mx:Canvas>
-	<mx:Button label="ok!" right="30" top="50"/>
 		
 	<mx:HTTPService 
 		id="citiesGeonames" 
 		url="{citiesRequest}"
 		resultFormat="object"
-		result="SearchResult(event)" fault="fault(event)"/>
+		result="SearchResult(event)" fault="Fault(event)"/>
 		
 	<!--	<mx:HTTPService 
 		id="minubeFlightsService" 

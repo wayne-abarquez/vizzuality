@@ -22,9 +22,6 @@ package com.vizzuality.markers
 			    case 'red':
 			        Circle.graphics.beginFill(0xff3300);
 			        break;
-			    case 'special':
-			        Circle.graphics.beginFill(0x000000);
-			        break;
 			}
             Circle.graphics.drawCircle(0,0,6);
             Circle.graphics.endFill();
