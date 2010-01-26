@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:mycontrols="com.vizzuality.components.*">
 <maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)"
-  width="100%" key="ABQIAAAAaigC1giQPYMDEquY7dUK4BT2yXp_ZAY8_ufC3CFXhHIE1NvwkxT-xGQb-JBb0LVY2FvevUjSt0so0A" top="27" bottom="96"/>
+  width="100%" key="ABQIAAAAaigC1giQPYMDEquY7dUK4BT2yXp_ZAY8_ufC3CFXhHIE1NvwkxT-xGQb-JBb0LVY2FvevUjSt0so0A" top="27" bottom="96">
+</maps:Map>
+
+
+<mycontrols:MyCircle y="68" radius="27" right="245"/>
+<mycontrols:MyCircle y="68" radius="27" right="187"/>
+<mycontrols:MyElipse y="40" radius="60" heightElipse="56" widthElipse="85" right="156"/>
+<mycontrols:MyCircle y="68" radius="27" right="40"/>
+<mx:Label text="ida" y="54" right="245" color="#999999" fontFamily="calibri" fontSize="12"/>
+<mx:Label text="vuelta" y="54" right="172" color="#999999" fontFamily="calibri" fontSize="12"/>
+<mx:Label text="desde" y="54" right="118" color="#999999" fontFamily="calibri" fontSize="12"/>
+<mx:Label text="OK!" y="60" right="22" color="#d9b009" fontFamily="calibri" fontSize="16" fontWeight="bold"/>
+
 <mx:Script>
     <![CDATA[
-    	import com.google.maps.interfaces.IOverlay;
+	   	import com.google.maps.interfaces.IOverlay;
     	import com.google.maps.overlays.Marker;
     	import com.google.maps.overlays.PolylineOptions;
     	import com.google.maps.overlays.Polyline;
@@ -73,7 +85,6 @@
 			
 			//SendRequesToMinube("Buenos Aires");
 			DibujaPolylines();
-			drawCircles();
 		}
 		
 		private function SendRequesToMinube(city: String):void
@@ -176,7 +187,7 @@
             targetObject.filters = [new ColorMatrixFilter(matrix)];    
         }
         
-        private function drawCircles():void{
+        /* private function drawCircles():void{
         	var circle:Sprite = new Sprite();
         	circle.graphics.beginFill(0x333333);
         	var pointx: int = Application.application.width * 0.80;
@@ -186,7 +197,7 @@
         	circle.graphics.drawCircle(pointx+206,50,27);
             circle.graphics.endFill();
             map.addChild(circle);
-        }
+        } */
 
     ]]>
 </mx:Script>
