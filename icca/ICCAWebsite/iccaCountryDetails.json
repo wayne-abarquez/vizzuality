@@ -10,7 +10,7 @@
 			        "lat": 23.634501,
 			        "lng": -102.552784,
 			        "short": "MEX",
-			        "sites": 2,
+			        "sites": 1,
 			        "textSites": [ {
 			        					"name": "San Crisanto",
 			        					"url": "icca.html"
@@ -28,7 +28,7 @@
 			        "lat": -16.578193,
 			        "lng": 179.414413,
 			        "short": "FIJ",
-			        "sites": 1,
+			        "sites": 0,
 			        "textSites": [ {
 			        					"name": "",
 			        					"url": ""
@@ -42,34 +42,8 @@
 			        "lat": -0.023559,
 			        "lng":  37.906193,
 			        "short": "KEN",
-			        "sites": 3,
+			        "sites": 0,
 			        "textSites": [ {
-			        					"name": "",
-			        					"url": ""
-			        				},
-			        			    {
-			        					"name": "",
-			        					"url": ""
-			        				},
-			        			    {
-			        					"name": "",
-			        					"url": ""
-			        				}
-			        			  ]
-			    },
-			    {
-			        "name": "HAITI",
-			        "url": "",
-			        "value": "",
-			        "lat": 18.971187,
-			        "lng":  -72.285215,
-			        "short": "HAI",
-			        "sites": 4,
-			        "textSites": [ {
-			        					"name": "",
-			        					"url": ""
-			        				},
-			        			    {
 			        					"name": "",
 			        					"url": ""
 			        				},
@@ -90,7 +64,7 @@
 			        "lat": 12.879721, 
 			        "lng": 121.774017,
 			        "short": "PHI",
-			        "sites": 1,
+			        "sites": 0,
 			        "textSites": [ {
 			        					"name": "",
 			        					"url": ""
