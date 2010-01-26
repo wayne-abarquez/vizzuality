@@ -207,82 +207,161 @@ package {
 			removeBeforeData();
 			
 			var posCont: int = 0;
-			
-			for (var i:int = actualPage*4+1; i < actualPage*4+1+limit; i++) {
+			if (countriesData.length <= 4 ){
+				trace(countriesData.length);
+				for (var i:int = 0; i < countriesData.length; i++) {
 				
-				var vizzSprite: VizzualityShape = new VizzualityShape(countriesData[i-1].url);
-	            var countryText: TextField = new TextField();
-	            countryText.text =  "IN " + countriesData[i-1].name;
-	            var newFormat:TextFormat = new TextFormat(); 
-       			newFormat.size = 15; 
-       			newFormat.color = 0xFFFFFF;
-       			newFormat.bold = true;
-       			newFormat.letterSpacing = 0;
-       			newFormat.font=embeddedFonts[0].fontName;
-        		countryText.setTextFormat(newFormat); 
- 	 	 		countryText.embedFonts = true;
-	            countryText.multiline = true;
-	            countryText.wordWrap = true;
-	            countryText.width = 130;
-	            countryText.height = 30;
-	            countryText.x = 0;
-	            countryText.y = 0;
-	            vizzSprite.x = 60;
-	            vizzSprite.y = 70+(posCont)*63;
-	            vizzSprite.addChild(countryText);
-	            vizzSprite.width = 130;
-	            vizzSprite.height = 30; 
-	            vizzSprite.mouseChildren=false;
-                vizzSprite.buttonMode=true;
-                vizzSprite.useHandCursor=true;
-	            addChild(vizzSprite);
-	            vizzSprite.addEventListener(MouseEvent.CLICK,clicked);
-	            
-	            
-	            var countryValue: TextField = new TextField();
-	            countryValue.text ="+ " + countriesData[i-1].value;
-	            var newFormatValue:TextFormat = new TextFormat(); 
-       			newFormatValue.size = 11; 
-       			newFormatValue.bold = true;
-       			newFormatValue.color = 0xFFFFFF; 
-       			newFormatValue.font=embeddedFonts[0].fontName;
-       			newFormatValue.letterSpacing = 0;
-        		countryValue.setTextFormat(newFormatValue); 
- 	 	 		countryValue.embedFonts = true;		
-	            countryValue.x = 60;
-	            countryValue.multiline = true;
-	            countryValue.wordWrap = true;
-	            countryValue.width = 140;
-	            countryValue.height = 30;
-	            countryValue.y = 90+(posCont)*63;
-	            addChild(countryValue);
-	
-				var s:Shape = new DottedLine(135, 1, 0xFFFFFF,0.5,1,1);
-				s.x = 55;
-				s.y = 123+(posCont)*63;
-				addChild(s);
-				
-				countriesObjectsArray.push(vizzSprite,countryValue,s);
-				
-				var marker: ICCAMarker = new ICCAMarker(new LatLng(countriesData[i-1].lat,countriesData[i-1].lng),countriesData[i-1].short,countriesData[i-1].sites);
-				marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
-                        if(!rollingOver) {
-	                        openInfoWindow(e);     
-                        }
-                        rollingOver=true;                                                                 
-                });
-                
-                iw[marker]=countriesData[i-1];
-				
-				
-				//add the marker with fade in
-				marker.foreground.alpha=0;
-				map.addOverlay(marker);
-				TweenLite.to(marker.foreground,1,{alpha:1});
-				
-				posCont++;
+					var vizzSprite: VizzualityShape = new VizzualityShape(countriesData[i].url);
+		            var countryText: TextField = new TextField();
+		            countryText.text =  "IN " + countriesData[i].name;
+		            var newFormat:TextFormat = new TextFormat(); 
+	       			newFormat.size = 15; 
+	       			newFormat.color = 0xFFFFFF;
+	       			newFormat.bold = true;
+	       			newFormat.letterSpacing = 0;
+	       			newFormat.font=embeddedFonts[0].fontName;
+	        		countryText.setTextFormat(newFormat); 
+	 	 	 		countryText.embedFonts = true;
+		            countryText.multiline = true;
+		            countryText.wordWrap = true;
+		            countryText.width = 130;
+		            countryText.height = 30;
+		            countryText.x = 0;
+		            countryText.y = 0;
+		            vizzSprite.x = 60;
+		            vizzSprite.y = 70+(posCont)*63;
+		            vizzSprite.addChild(countryText);
+		            vizzSprite.width = 130;
+		            vizzSprite.height = 30; 
+		            vizzSprite.mouseChildren=false;
+	                vizzSprite.buttonMode=true;
+	                vizzSprite.useHandCursor=true;
+		            addChild(vizzSprite);
+		            vizzSprite.addEventListener(MouseEvent.CLICK,clicked);
+		            
+		            
+		            var countryValue: TextField = new TextField();
+		            countryValue.text ="+ " + countriesData[i].value;
+		            var newFormatValue:TextFormat = new TextFormat(); 
+	       			newFormatValue.size = 11; 
+	       			newFormatValue.bold = true;
+	       			newFormatValue.color = 0xFFFFFF; 
+	       			newFormatValue.font=embeddedFonts[0].fontName;
+	       			newFormatValue.letterSpacing = 0;
+	        		countryValue.setTextFormat(newFormatValue); 
+	 	 	 		countryValue.embedFonts = true;		
+		            countryValue.x = 60;
+		            countryValue.multiline = true;
+		            countryValue.wordWrap = true;
+		            countryValue.width = 140;
+		            countryValue.height = 30;
+		            countryValue.y = 90+(posCont)*63;
+		            addChild(countryValue);
+		
+					var s:Shape = new DottedLine(135, 1, 0xFFFFFF,0.5,1,1);
+					s.x = 55;
+					s.y = 123+(posCont)*63;
+					addChild(s);
+					
+					countriesObjectsArray.push(vizzSprite,countryValue,s);
+					
+					var marker: ICCAMarker = new ICCAMarker(new LatLng(countriesData[i].lat,countriesData[i].lng),countriesData[i].short,countriesData[i].sites);
+					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+	                        if(!rollingOver) {
+		                        openInfoWindow(e);     
+	                        }
+	                        rollingOver=true;                                                                 
+	                });
+	                
+	                iw[marker]=countriesData[i];
+					
+					
+					//add the marker with fade in
+					marker.foreground.alpha=0;
+					map.addOverlay(marker);
+					TweenLite.to(marker.foreground,1,{alpha:1});
+					
+					posCont++;
 
+				}
+			} else {
+				for (var i:int = actualPage*4+1; i < actualPage*4+1+limit; i++) {
+				
+					var vizzSprite: VizzualityShape = new VizzualityShape(countriesData[i-1].url);
+		            var countryText: TextField = new TextField();
+		            countryText.text =  "IN " + countriesData[i-1].name;
+		            var newFormat:TextFormat = new TextFormat(); 
+	       			newFormat.size = 15; 
+	       			newFormat.color = 0xFFFFFF;
+	       			newFormat.bold = true;
+	       			newFormat.letterSpacing = 0;
+	       			newFormat.font=embeddedFonts[0].fontName;
+	        		countryText.setTextFormat(newFormat); 
+	 	 	 		countryText.embedFonts = true;
+		            countryText.multiline = true;
+		            countryText.wordWrap = true;
+		            countryText.width = 130;
+		            countryText.height = 30;
+		            countryText.x = 0;
+		            countryText.y = 0;
+		            vizzSprite.x = 60;
+		            vizzSprite.y = 70+(posCont)*63;
+		            vizzSprite.addChild(countryText);
+		            vizzSprite.width = 130;
+		            vizzSprite.height = 30; 
+		            vizzSprite.mouseChildren=false;
+	                vizzSprite.buttonMode=true;
+	                vizzSprite.useHandCursor=true;
+		            addChild(vizzSprite);
+		            vizzSprite.addEventListener(MouseEvent.CLICK,clicked);
+		            
+		            
+		            var countryValue: TextField = new TextField();
+		            countryValue.text ="+ " + countriesData[i-1].value;
+		            var newFormatValue:TextFormat = new TextFormat(); 
+	       			newFormatValue.size = 11; 
+	       			newFormatValue.bold = true;
+	       			newFormatValue.color = 0xFFFFFF; 
+	       			newFormatValue.font=embeddedFonts[0].fontName;
+	       			newFormatValue.letterSpacing = 0;
+	        		countryValue.setTextFormat(newFormatValue); 
+	 	 	 		countryValue.embedFonts = true;		
+		            countryValue.x = 60;
+		            countryValue.multiline = true;
+		            countryValue.wordWrap = true;
+		            countryValue.width = 140;
+		            countryValue.height = 30;
+		            countryValue.y = 90+(posCont)*63;
+		            addChild(countryValue);
+		
+					var s:Shape = new DottedLine(135, 1, 0xFFFFFF,0.5,1,1);
+					s.x = 55;
+					s.y = 123+(posCont)*63;
+					addChild(s);
+					
+					countriesObjectsArray.push(vizzSprite,countryValue,s);
+					
+					var marker: ICCAMarker = new ICCAMarker(new LatLng(countriesData[i-1].lat,countriesData[i-1].lng),countriesData[i-1].short,countriesData[i-1].sites);
+					marker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
+	                        if(!rollingOver) {
+		                        openInfoWindow(e);     
+	                        }
+	                        rollingOver=true;                                                                 
+	                });
+	                
+	                iw[marker]=countriesData[i-1];
+					
+					
+					//add the marker with fade in
+					marker.foreground.alpha=0;
+					map.addOverlay(marker);
+					TweenLite.to(marker.foreground,1,{alpha:1});
+					
+					posCont++;
+
+				}
 			}
+			
 		}
 		
 		private var rollingOver:Boolean=false;
