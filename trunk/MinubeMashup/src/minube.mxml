@@ -50,7 +50,6 @@
 	    [Bindable] private var citiesMinubeFlights: String;
 		[Bindable] private var citiesRequest: String = "http://ws.geonames.org/citiesJSON?formatted=true&north=90&south=-90&east=180&west=-180&lang=es&maxRows=20";
 		private var key_minube: String = "0a5c57a854d261d6c2a7d6e227e182e0";
-		private var responseGeonamesCities: Object;
 	
 		private var ciudades: ArrayCollection = new ArrayCollection([
 		{destino:"Buenos Aires", origen:"Madrid", lat:"-34.688", lon:"-58.461"},
@@ -60,8 +59,10 @@
 		{destino:"Nueva York", origen:"Madrid", lat:"40.711", lon:"-74.027"},
 		{destino:"Ciudad de Mexico", origen:"Madrid", lat:"19.300", lon:"-99.147"}]);
 				
+		private var destinosDic:Dictionary = new Dictionary();
+				
 	    private function onMapReady(event:Event):void {
-		    //this.map.setCenter(new LatLng(40.736072,-73.992062), 14, MapType.NORMAL_MAP_TYPE);
+		    this.map.setCenter(new LatLng(40.736072,-3.992062), 14, MapType.NORMAL_MAP_TYPE);
 		    var a:Sprite = map.getChildAt(1) as Sprite;
 			var b:Sprite = a.getChildAt(0) as Sprite;
 		    this.map.filters
@@ -71,67 +72,76 @@
 			changeColorMap(this.map);
 	    }
     
+    	private function SearchResultMinube(re:ResultEvent):void{
+    		
+    	  var jsonObjMinube:Object =  JSON.decode(re.result as String);
+    		
+    	  var marker: SingleMarker;
+	      var markerInfo: InfoMarker;
+	      for each (var item:Object in destinosDic as Dictionary) {
+		     if (jsonObjMinube.response.flights[0].destination_city.name == item.name){
+				var x: int = item.lat;
+				var y: int = item.lng;
+				var latlng:LatLng=new LatLng(x,y);
+	      		var precio: String = jsonObjMinube.response.flights[0].best_price;
+				if (jsonObjMinube.response.flights[0].best_price<61){
+					marker = new SingleMarker(latlng,"muypoco");
+		    		markerInfo = new InfoMarker(latlng,jsonObjMinube.response.flights[0].destination_city.name,precio,"muypoco");
+				} else if (jsonObjMinube.response.flights[0].best_price>100 && jsonObjMinube.response.flights[0].best_price<200){
+					marker = new SingleMarker(latlng,"poco");
+		    		markerInfo = new InfoMarker(latlng,jsonObjMinube.response.flights[0].destination_city.name,precio,"poco");
+				} else if (jsonObjMinube.response.flights[0].best_price>201 && jsonObjMinube.response.flights[0].best_price<450) {
+					marker = new SingleMarker(latlng,"algo");
+		    		markerInfo = new InfoMarker(latlng,jsonObjMinube.response.flights[0].destination_city.name,precio,"algo");
+				} else if (jsonObjMinube.response.flights[0].best_price>450){
+					marker = new SingleMarker(latlng,"mucho");
+			    	markerInfo = new InfoMarker(latlng,jsonObjMinube.response.flights[0].destination_city.name,precio,"mucho");
+				}
+
+		  		this.map.addOverlay(marker as IOverlay);
+		        this.map.addOverlay(markerInfo as IOverlay);
+		      
+		        var markerMadrid: OriginMarker;
+			    var pointMadrid: LatLng = new LatLng(40.420088,-3.688810);
+			    markerMadrid = new OriginMarker(pointMadrid);
+			    this.map.addOverlay(markerMadrid);
+			  
+			    var options:PolylineOptions = new PolylineOptions({
+		        strokeStyle: {
+		         thickness: 1,
+		         color: 0xff3300,
+		         pixelHinting: true
+		        },
+		        geodesic:true
+		        });
+		        var polyline :Polyline = new Polyline([new LatLng(40.420088, -3.688810),new LatLng(item.lat,item.lng)],options);
+	  		    map.addOverlay(polyline);
+		     }									
+		  }
+    	}
+    
 		private function SearchResult(re:ResultEvent):void
-		{
-			//decodifico JSON
-			responseGeonamesCities = JSON.decode(re.result as String);
-			trace(responseGeonamesCities);
-			var i:int;
-			//var delay:Number =0;
-			//for (i = 0; i < (responseData.geonames as Array).length; i++) {
-			//	delay=delay+0.3;
-				//TweenLite.delayedCall(delay,SendRequesToMinube,[responseData.geonames[i].name]);
-			//}
+		{	
+			var jsonObj:Object =  JSON.decode(re.result as String);
 			
-			//SendRequesToMinube("Buenos Aires");
-			DibujaPolylines();
+			var delay:Number =0;
+			for each (var item:Object in jsonObj.geonames as Array) {
+				//numRequest++;
+								
+			      if (item.lat!=null && item.lng!=null && item.lat!="" && item.lng!="") {
+				      destinosDic[item]=item;
+				      //create markers
+				      delay=delay+0.3;						
+				      TweenLite.delayedCall(delay,SendRequesToMinube,[item.name]);
+			      }									
+			}
 		}
 		
 		private function SendRequesToMinube(city: String):void
 		{
 			citiesMinubeFlights = "http://api.minube.com/buzz/flights.json?api_key=0a5c57a854d261d6c2a7d6e227e182e0&source_country=espana&source_city=madrid&destination_city="+city;
-			//minubeFlightsService.send();
+			minubeFlightsService.send();
 		}
-		
-		private function DibujaPolylines():void
-		//private function SearchResultMinube(re:ResultEvent):void
-		{
-			//decodifico JSON
-			//var responseData: Object = JSON.decode(re.result as String);
-			//trace(responseData);
-			var markerMadrid: OriginMarker;
-			var pointMadrid: LatLng = new LatLng(40.420088,-3.688810);
-			markerMadrid = new OriginMarker(pointMadrid);
-		    this.map.addOverlay(markerMadrid);
-						
-			var i:int;
-			for (i=0; i<ciudades.length; i++){
-				var point: LatLng = new LatLng(ciudades[i].lat,ciudades[i].lon);
-				//var middlePoint: LatLng = new LatLng((40.420088 + int(ciudades[i].lat))/2,(-3.688810 + int(ciudades[i].lon))/2);
-				
-				var marker: SingleMarker;
-				var markerInfo: InfoMarker;
-	
-		        marker = new SingleMarker(point,"algo");
-		        this.map.addOverlay(marker as IOverlay);
-		        
-		        var city: String = ciudades[i].destino;
-		        var precio: String = "500€"
-		        markerInfo = new InfoMarker(point,city,precio,"algo");
-		        this.map.addOverlay(markerInfo as IOverlay);
-		        
-		        var options:PolylineOptions = new PolylineOptions({
-				  strokeStyle: {
-				    thickness: 1,
-				    color: 0xff3300,
-				    pixelHinting: true
-				  },
-				  geodesic:true
-				});
-				var polyline :Polyline = new Polyline([new LatLng(40.420088, -3.688810),new LatLng(ciudades[i].lat,ciudades[i].lon)],options);
-	  			map.addOverlay(polyline);  					
-				}
-		} 
 		 
 		private function Fault(fe:FaultEvent):void
 		{
@@ -236,9 +246,9 @@
 		resultFormat="object"
 		result="SearchResult(event)" fault="Fault(event)"/>
 		
-	<!--	<mx:HTTPService 
+		<mx:HTTPService 
 		id="minubeFlightsService" 
 		url="{citiesMinubeFlights}"
 		resultFormat="object"
-		result="SearchResultMinube(event)" fault="fault(event)"/>-->
+		result="SearchResultMinube(event)" fault="Fault(event)"/>
 </mx:Application>
