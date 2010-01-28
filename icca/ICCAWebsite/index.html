@@ -25,44 +25,10 @@
 		];
 	</script>	
 	
-	<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAnPVS9gfCDZmPaJl7VvCx7RS8GTV3BWTkl7K3P6jvmc0NebMi9xQGl8mahCbM8G-aEJseenPMH8JehA"></script>
-	
-	<script language="javaScript" type="text/javascript">
-		$(document).ready( function() {
-
-			var url = "http://www.google.com/reader/public/javascript/feed/http://www.correr.es/feed/?callback=?";
-				$.getJSON(url,function(data) {
-	        for(var i = 0; i < 5; i += 1) {
-		      	$('#correres').append("\"" + data.items[i].title + "\"");
-						$('#correres').attr("href",data.items[i].alternate.href);
-						if (data.items[i].summary != null) {
-							$('#correrContent').append('<p id="summary">' + data.items[i].summary + '</p>');
-							var len = 100;
-							var x = document.getElementById('summary');
-							var trunc = x.innerHTML;
-							trunc = trunc.replace(/\t/g, "");
-							if (trunc.length > len) {	
-								trunc = trunc.substring(0, len);
-							  trunc += '...';
-							  x.innerHTML = trunc;
-							}
-						}
-					}
-	      });
-
-			function twitter_callback (){
-				return true;
-			}
-
-			String.prototype.linkify = function() {
-				return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
-					return m.link(m);
-				});
-			}; 	
-
-		});
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+	     google.load("elements", "1", {packages : ["newsshow"]});
 	</script>
-	
 </head>
 
 <body>
@@ -191,8 +157,11 @@
 			
 			<div class="new">
 				<h2 class="newsColumn flash-h2">Latest news<div class="rss"></div></h2>
-				<p class="latestNewDate">05/06/2009</p>
-				<p class="latestNew"><a href="" id="correres"></a></p>
+				<div class="iframeNews">
+					<iframe frameborder="0" width="300" height="250" marginwidth="0" marginheight="0"
+					        src="http://www.google.com/uds/modules/elements/newsshow/iframe.html?q=indigenous%20and%20community%20conservation%20areas%2Cindigenous%20and%20conservation%2Cbiodiversity%20and%20community-based%20conservation&topic=h,w&ned=us&rsz=small&hl=en&format=300x250">
+					</iframe>
+				</div>
 			</div>
 			<div class="new">
 				<div class="twitterContent" id="correrContent">
