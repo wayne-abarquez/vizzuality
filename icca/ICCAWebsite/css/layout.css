@@ -149,9 +149,24 @@ div.menu{
 .contentContainer a.textLink{
 	color: #9cc342;
 }
+.new ul li{
+	list-style: none;
+}
+
+.new ul li.listICCA{
+	margin-left: 10px;
+}
+
+.new ul li.listICCA a{
+	color: #666666;
+}
+
+.new ul li.listICCA a:hover{
+	color: #000000;
+}
 
 .new a.textLinkRight{
-	margin-left: 30px;
+	margin: 0;
 	color: #9cc342;
 }
 

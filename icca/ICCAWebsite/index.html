@@ -25,6 +25,44 @@
 		];
 	</script>	
 	
+	<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAnPVS9gfCDZmPaJl7VvCx7RS8GTV3BWTkl7K3P6jvmc0NebMi9xQGl8mahCbM8G-aEJseenPMH8JehA"></script>
+	
+	<script language="javaScript" type="text/javascript">
+		$(document).ready( function() {
+
+			var url = "http://www.google.com/reader/public/javascript/feed/http://www.correr.es/feed/?callback=?";
+				$.getJSON(url,function(data) {
+	        for(var i = 0; i < 5; i += 1) {
+		      	$('#correres').append("\"" + data.items[i].title + "\"");
+						$('#correres').attr("href",data.items[i].alternate.href);
+						if (data.items[i].summary != null) {
+							$('#correrContent').append('<p id="summary">' + data.items[i].summary + '</p>');
+							var len = 100;
+							var x = document.getElementById('summary');
+							var trunc = x.innerHTML;
+							trunc = trunc.replace(/\t/g, "");
+							if (trunc.length > len) {	
+								trunc = trunc.substring(0, len);
+							  trunc += '...';
+							  x.innerHTML = trunc;
+							}
+						}
+					}
+	      });
+
+			function twitter_callback (){
+				return true;
+			}
+
+			String.prototype.linkify = function() {
+				return this.replace(/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/, function(m) {
+					return m.link(m);
+				});
+			}; 	
+
+		});
+	</script>
+	
 </head>
 
 <body>
@@ -154,16 +192,20 @@
 			<div class="new">
 				<h2 class="newsColumn flash-h2">Latest news<div class="rss"></div></h2>
 				<p class="latestNewDate">05/06/2009</p>
-				<p class="latestNew"><a href="">Lorem ipsum dolor sit amen dolor tura fermi ulla</a></p>
-			
-				<p class="latestNewDate">05/06/2009</p>
-				<p class="latestNew"><a href="">Lorem ipsum dolor sit amen dolor tura fermi ulorem ipsum dolor sit amen dolor tura fermi ulla</a></p>
-			
-				<p class="latestNewDate">05/06/2009</p>
-				<p class="latestNew"><a href="">Tura fermi ulorem ipsum sit amen dolor tura fermi ulla</a></p>
-			
-				<p class="latestNewDate">05/06/2009</p>
-				<p class="latestNew"><a href="">Lorem ipsum dolor sit amen dolor tura fermi ulorem ipsum dolor sit amen dolor tura fermi ulla</a></p>
+				<p class="latestNew"><a href="" id="correres"></a></p>
+			</div>
+			<div class="new">
+				<div class="twitterContent" id="correrContent">
+					<p><a class="textLinkRight" id="correres" target="_blank"></a></p>
+	       		</div>
+			</div>
+			<div class="new">
+				<h2 class="newsColumn flash-h2">Important Links</h2>
+				<ul>
+					<li><a class="textLinkRight" href="http://www.unep-wcmc.org/protected_areas/docs/WDPA%20ICCA%20info%20sheet,%20Jan%2010.doc">ICCA Registry Information Sheet</a></li>
+					<li><a class="textLinkRight" href="http://www.unep-wcmc.org/protected_areas/docs/WDPA%20ICCA%20consent%20form,%20Jan%2010.doc">ICCA Registry Free Prior Informed Consent Form</a></li>
+					<li><a class="textLinkRight" href="http://www.unep-wcmc.org/protected_areas/docs/ICCA%20Brochure%20v9.pdf">A handbook for the Indigenous and Community Conserved Areas Registry</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
