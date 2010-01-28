@@ -150,6 +150,15 @@ div.menu{
 	color: #9cc342;
 }
 
+.new a.textLinkRight{
+	margin-left: 30px;
+	color: #9cc342;
+}
+
+.new a.textLinkRight:hover{
+	color: #000000;
+}
+
 .contentContainer a.textLink:hover{
 	color: #000000;
 }
