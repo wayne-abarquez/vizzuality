@@ -36,13 +36,13 @@ package
 				
 				var zoomPlus:vizzButton = new vizzButton(this,10,10,25,25,"+",20,5,-1);		
 				var zoomMinus:vizzButton = new vizzButton(this,10,36,25,25,"-",20,7,-2);
-				var satellite:vizzButton = new vizzButton(this,150,10,90,25,"SATELLITE",12,12,4);
-				var terrain:vizzButton = new vizzButton(this,241,10,90,25,"TERRAIN",12,17,4);
+				var satellite:vizzButton = new vizzButton(this,148,10,90,25,"SATELLITE",12,12,4);
+				var terrain:vizzButton = new vizzButton(this,239,10,90,25,"TERRAIN",12,17,4);
 				var lat: Number = root.loaderInfo.parameters.lat;
 	 	 	 	var lon: Number = root.loaderInfo.parameters.lon;
 	 	 	 	
 	 	 	 	var latlon:LatLng = new LatLng(lat,lon);
-                map.setCenter(latlon, 10, MapType.PHYSICAL_MAP_TYPE);
+                map.setCenter(latlon, 5, MapType.PHYSICAL_MAP_TYPE);
 				zoomPlus.addEventListener(MouseEvent.CLICK,onZoomMap);
 				zoomMinus.addEventListener(MouseEvent.CLICK,onUnZoomMap);
 				satellite.addEventListener(MouseEvent.MOUSE_UP,onChangeMapTypeSatellite);
