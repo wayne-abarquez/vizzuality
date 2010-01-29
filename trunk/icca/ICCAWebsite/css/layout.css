@@ -149,8 +149,13 @@ div.menu{
 .contentContainer a.textLink{
 	color: #9cc342;
 }
+.new ul{
+	margin:0;
+	margin-left: 16px;
+}
 .new ul li{
 	list-style: none;
+	margin-top: 4px;
 }
 
 .new ul li.listICCA{
@@ -159,6 +164,7 @@ div.menu{
 
 .new ul li.listICCA a{
 	color: #666666;
+	font-weight: bold;
 }
 
 .new ul li.listICCA a:hover{
@@ -166,6 +172,7 @@ div.menu{
 }
 
 .new a.textLinkRight{
+	font-weight: bold;
 	margin: 0;
 	color: #9cc342;
 }
@@ -433,7 +440,6 @@ div.gallery {
 	cursor:pointer;
 	width:106px;
 	height:80px;
-
 }
 
 /* active item */
@@ -596,3 +602,13 @@ div#slide-holder div#slide-controls p#slide-nav a{background-image:url(../img/sl
 #simplemodal-container a {color:#ddd;}
 #simplemodal-container a.modalCloseImg {background:url(../img/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
 
+.banner{
+	background-image: url(../img/banner.png);
+	background-repeat: no-repeat;
+	height:126px;
+	width:468px;
+	position: absolute;
+	z-index: 1;
+	margin-top: 110px;
+	margin-left: 240px;
+}
