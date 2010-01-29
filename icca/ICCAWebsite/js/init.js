@@ -9,7 +9,7 @@ $(document).ready(function() {
 
 });
 
-function showImage() {
+function showImage(idPhoto,srcPhoto) {
     $("#basic-modal-content").modal({onOpen: function (dialog) {
 		dialog.overlay.fadeIn('slow', function () {
 			dialog.container.slideDown('slow', function () {
@@ -17,6 +17,22 @@ function showImage() {
 			});
 		});
 	}});
+	newImage = new Image();
+	newImage.src = srcPhoto;
+	var widthPhoto = newImage.width;
+	var heightPhoto = newImage.height;
+	$("#simplemodal-container").css("width", widthPhoto +'px');
+	$("#simplemodal-container").css("height", heightPhoto +'px');
+	$("#basic-modal-content").html('<img src="'+ srcPhoto +'"/>');
 	
-	$("#basic-modal-content").html('<img src="http://farm4.static.flickr.com/3089/2796719087_c3ee89a730.jpg"/>')
+	var wscr = $(window).width();
+	var hscr = $(window).height();
+
+	// obtener posicion central
+	var mleft = ( wscr - widthPhoto) / 2;
+    var mtop = ( hscr - heightPhoto ) / 2;
+
+	// estableciendo ventana modal en el centro
+	$('#simplemodal-container').css("left", mleft+'px');
+	$('#simplemodal-container').css("top", mtop+'px')
 };
