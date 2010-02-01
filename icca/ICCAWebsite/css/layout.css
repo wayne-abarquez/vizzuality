@@ -169,7 +169,33 @@ div.menu{
 	text-decoration: none;
 }
 
-.new ul li.listICCA{
+.new ul.newsList li{
+	margin-left: -4px;
+}
+
+.new ul.newsList li p.newsTitular {
+	color: #666666;
+	margin: 0;
+	text-align: left;
+	font-size: 13px;
+	line-height: 16px;
+}
+
+.new ul.newsList li p.newsTitular a{
+	color: #9cc342;
+	text-decoration: none;
+}
+
+.new ul.newsList li p.newsTitular a:hover{
+	color: green;
+	text-decoration: none;
+}
+
+.new ul.newsList li p.newsTitular span{
+	color: #999999;
+}
+
+/*.new ul li.listICCA{
 	margin-left: 10px;
 }
 
@@ -180,7 +206,7 @@ div.menu{
 
 .new ul li.listICCA a:hover{
 	color: #000000;
-}
+}*/
 
 .new a.textLinkRight{
 	font-weight: bold;
