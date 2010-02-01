@@ -228,8 +228,13 @@ package {
 			sp2.y= 0;
 			addChild(sp2);
 
-			//Set the center of the map to the bbox of the area			
-			map.setCenter(mp.getLatLngBounds().getCenter(),map.getBoundsZoomLevel(mp.getLatLngBounds()));		
+			//Set the center of the map to the bbox of the area		
+			var z:Number = 	map.getBoundsZoomLevel(mp.getLatLngBounds());
+			if(z > 13){
+				map.setCenter(mp.getLatLngBounds().getCenter(),15);		
+			} else {
+				map.setCenter(mp.getLatLngBounds().getCenter(),z);		
+			}
 			
 			//If there is pictures then display the ImageCarrousel
 			if((data.pictures as Array).length>0) {
