@@ -252,6 +252,12 @@ package {
 			//retrieve picture from panoramio
 			getPanoramioPictures();
 			mamufas.visible = false;
+			
+			//add the default PPE layer for visualizing the other Pas
+			var tl:GeoserverTileLayer = new GeoserverTileLayer();
+			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
+			map.addOverlay(tlo);					
+			
 		}		
 		
 		private function preinit(ev:Event):void {
@@ -313,10 +319,7 @@ package {
 			}); 
 
 			
-			//add the default PPE layer for visualizing the other Pas
-			var tl:GeoserverTileLayer = new GeoserverTileLayer();
-			var tlo:TileLayerOverlay = new TileLayerOverlay(tl);
-			map.addOverlay(tlo);		
+
 			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OUT_AREA,function(event:CustomMapEvent):void {
 					mouseOverPa=false; 
 					removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);

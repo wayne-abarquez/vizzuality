@@ -34,7 +34,7 @@ package com.vizzuality.tileoverlays
                 customTile.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
                 
                 if(zoom>8) {
-	                var tileUrl:String = "http://ppe.tinypla.net:8080/geowebcache/service/gmaps?layers=ppe:v_pa_denormalized&zoom=|Z|&x=|X|&y=|Y|";                    
+	                var tileUrl:String = "http://ppe.tinypla.net:8080/geoserver/gwc/service/gmaps?layers=ppe:v_pa_denormalized&zoom=|Z|&x=|X|&y=|Y|";                    
                     srvNum++;
                    if (srvNum>3)
                        srvNum=0;        
