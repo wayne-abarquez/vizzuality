@@ -127,7 +127,7 @@ package {
 			//Draw the blue square around the map
 			square = new Sprite();
 			square.graphics.beginFill(0x275186);
-			square.graphics.drawRect(0,0,960, stage.stageHeight);
+			square.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight);
 			square.graphics.endFill();
 			addChild(square);
 			
@@ -520,7 +520,7 @@ package {
 
 		
 		private function positionElements():void {
- 			square.x = (stage.stageWidth/2) - (960/2);
+ 			square.x = 0;
 			square.y = 0;	
 			square.height=stage.stageHeight-40;
 			
