@@ -231,8 +231,8 @@ package {
 
 			//Set the center of the map to the bbox of the area		
 			var z:Number = 	map.getBoundsZoomLevel(mp.getLatLngBounds());
-			if(z > 13){
-				map.setCenter(mp.getLatLngBounds().getCenter(),15);		
+			if(z > 11){
+				map.setCenter(mp.getLatLngBounds().getCenter(),11);		
 			} else {
 				map.setCenter(mp.getLatLngBounds().getCenter(),z);		
 			}
