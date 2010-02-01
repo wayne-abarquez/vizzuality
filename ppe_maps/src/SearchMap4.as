@@ -142,12 +142,12 @@ package {
 		private var tlo:TileLayerOverlay;
 		private function onMapReady(event:MapEvent):void {
 			
-			var fullScreenButton: Sprite = new Sprite ();
+			/* var fullScreenButton: Sprite = new Sprite ();
 			fullScreenButton.graphics.beginFill(Color.BLUE,0.7);
 			fullScreenButton.graphics.drawRoundRect(0,0,29,29,5);
 			fullScreenButton.graphics.endFill();
 			fullScreenButton.x = 10;
-			fullScreenButton.y = 80;
+			fullScreenButton.y = 80; */
 			
 			var exampleSprite2: Sprite = new Sprite();
             var countryText2: TextField = new TextField();
@@ -164,22 +164,22 @@ package {
             countryText2.x = 3;
             countryText2.y = 7;
 
-            fullScreenButton.mouseChildren=false;
+           /*  fullScreenButton.mouseChildren=false;
             fullScreenButton.buttonMode=true;
             fullScreenButton.useHandCursor=true;
-            fullScreenButton.addChild(countryText2);
+            fullScreenButton.addChild(countryText2); */
             
-            fullScreenButton.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void { 
+            /* fullScreenButton.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void { 
             		if (stage.displayState== "normal") {
 						stage.displayState="fullScreen";
 						stage.scaleMode = StageScaleMode.NO_SCALE;
 					} else {
 						stage.displayState="normal";
-					} } );
+					} } ); */
 
 			
-			addChild(fullScreenButton);
-			
+/* 			addChild(fullScreenButton);
+ */			
 			var optionsTypeControl: MapTypeControlOptions = new MapTypeControlOptions(
 				{ buttonSize: new Point(67, 19),
 				  buttonSpacing: new Point(0, 0),
