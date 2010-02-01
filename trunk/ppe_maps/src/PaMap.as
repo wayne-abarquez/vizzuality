@@ -525,7 +525,7 @@ package {
 			square.height=stage.stageHeight-40;
 			
 			if(imgC!=null) {
-				imgC.x=square.x;
+				imgC.x=(stage.stageWidth/2) - (960/2);
 				imgC.y= stage.stageHeight-275;
 				sp2.x = 648 + imgC.x;
 				sp2.y = imgC.y + imgC.height - 21; 
