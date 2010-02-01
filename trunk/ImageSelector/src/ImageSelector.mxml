@@ -65,7 +65,7 @@
             [Bindable] public var photoFeed:ArrayCollection;
             [Bindable] public var photoSelected:ArrayCollection = new ArrayCollection();
             private var numberPagging:int = 0;
-            
+                    
             private function PageUp(photoFeed: ArrayCollection):void {
             	var limite: int = photoFeed.length;
             	if (photoFeed.length == 0) {
