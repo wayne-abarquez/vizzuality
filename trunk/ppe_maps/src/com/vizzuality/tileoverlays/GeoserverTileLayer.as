@@ -34,7 +34,7 @@ package com.vizzuality.tileoverlays
                 customTile.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
                 
                 if(zoom>8) {
-	                var tileUrl:String = "http://174.129.214.28:8080/geowebcache/service/gmaps?layers=ppe:ppeblue&zoom=|Z|&x=|X|&y=|Y|";                    
+	                var tileUrl:String = "http://ppe.tinypla.net:8080/geowebcache/service/gmaps?layers=ppe:v_pa_denormalized&zoom=|Z|&x=|X|&y=|Y|";                    
                     srvNum++;
                    if (srvNum>3)
                        srvNum=0;        
@@ -47,7 +47,7 @@ package com.vizzuality.tileoverlays
                    tileUrl = tileUrl.replace("|Z|",zoom);  
                 } else {
             		tileUrl = getTilesURLforS3("http://ppe.org.tiles.s3.amazonaws.com",
-            			"ppe_ppeblue",tile,zoom,"EPSG_900913")                	
+            			"ppe_v_pa_denormalized",tile,zoom,"EPSG_900913")                	
                 }            
     
                 customTile.loader.load(new URLRequest(tileUrl));

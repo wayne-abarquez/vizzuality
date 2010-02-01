@@ -9,6 +9,7 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
+	import com.google.maps.controls.MapTypeControl;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.PolygonOptions;
@@ -264,7 +265,7 @@ package {
 			
 			map.addEventListener(MapMouseEvent.DOUBLE_CLICK,onMapDoubleClick);
 			//map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);
-			
+			map.addControl(new MapTypeControl);
 			
 			var zoomIn:Sprite = new ZoomInButton();			
 			var zoomIn_over: Sprite = new ZoomInButton_over();
