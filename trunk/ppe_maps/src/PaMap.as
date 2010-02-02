@@ -225,9 +225,7 @@ package {
 			sp2.buttonMode = true;
 			sp2.addChild(imageButtonBitmap);
 			sp2.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {navigateToURL(new URLRequest("http://vizzuality.com"),"_self");});					
-			sp2.x= 0;									
-			sp2.y= 0;
-			addChild(sp2);
+
 
 			//Set the center of the map to the bbox of the area		
 			var z:Number = 	map.getBoundsZoomLevel(mp.getLatLngBounds());
@@ -238,7 +236,7 @@ package {
 			}
 			
 			//If there is pictures then display the ImageCarrousel
-			if((data.pictures as Array).length>0) {
+			if(data.pictures!=null && (data.pictures as Array).length>0) {
 				imgC = new ImageCarrousel();
 				imgC.init(data.pictures as Array);
 				addChild(imgC);
@@ -527,9 +525,12 @@ package {
 			if(imgC!=null) {
 				imgC.x=(stage.stageWidth/2) - (960/2);
 				imgC.y= stage.stageHeight-275;
-				sp2.x = 648 + imgC.x;
-				sp2.y = imgC.y + imgC.height - 21; 
+				addChild(sp2);
+				sp2.x = 648 + (stage.stageWidth/2) - (960/2);
+				sp2.y = stage.stageHeight-275 + stage.stageHeight-275 - 21; 
+				
 			}
+			
 		}
 		
  		private function stageResizeHandler(ev:Event):void {
