@@ -167,7 +167,7 @@ package {
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			paId=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=147133;
+				paId=2027;
 			}
 			dsLoader.load(new URLRequest(domain + "/sites/"+paId+"/json"));
 			
@@ -527,8 +527,7 @@ package {
 				imgC.y= stage.stageHeight-275;
 				addChild(sp2);
 				sp2.x = 648 + (stage.stageWidth/2) - (960/2);
-				sp2.y = stage.stageHeight-275 + stage.stageHeight-275 - 21; 
-				
+				sp2.y = stage.stageHeight-31; 
 			}
 			
 		}
