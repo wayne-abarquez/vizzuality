@@ -14,6 +14,7 @@ package {
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.tileoverlays.GbifTileLayer;
 	
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -22,23 +23,29 @@ package {
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.system.Security;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
 
-	[SWF(backgroundColor=0xeeeeee, widthPercent=100, heightPercent=100)]
+	[SWF(backgroundColor=0x666666, width=312, height=175)]
 	public class BiodiversityMap extends Sprite
 	{
 
-		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
+		[Embed(source="assets/buttons.swf", symbol="zoomMore_up")]
         private var ZoomInButton:Class;
         
-        [Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        [Embed(source="assets/buttons.swf", symbol="zoomMore_over")]
         private var ZoomInButton_over:Class;
  
-        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
+        [Embed(source="assets/buttons.swf", symbol="zoomLess_up")]
         private var ZoomOutButton:Class;
         
-        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
-        private var ZoomOutButton_over:Class;		
+        [Embed(source="assets/buttons.swf", symbol="zoomLess_over")]
+        private var ZoomOutButton_over:Class;	
+        
+        [Embed(source="assets/biodiversityMap.png")]
+        private var biodiversitySprite:Class;	
 		
 		
 		private var map:Map;	
@@ -51,23 +58,31 @@ package {
 		private var polygonPane:IPane;
 		private var tilesPane:IPane;
 		private var domain:String;
+		private var paId:Number;
 		
-										
-						
-		public function BiodiversityMap()
+		
+		private var textSpriteGBIFOver:TextField = new TextField();
+	    private var formatTextSpriteGBIFOver:TextFormat = textSpriteGBIFOver.getTextFormat();								
+ 		private	var textSpriteGBIF:TextField = new TextField();
+	    private var formatTextSpriteGBIF:TextFormat = textSpriteGBIF.getTextFormat();
+		
+		private var BitmapMap: Bitmap = new biodiversitySprite(); 
+		private var spriteMap: Sprite = new Sprite(); 
+
+	 	public function BiodiversityMap()
 		{ 
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;	
 			stage.addEventListener(Event.RESIZE, stageResizeHandler);	
 
-			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080","ppe.tinypla.net"];
+/* 			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080","ppe.tinypla.net"];
 			for each(var dom:String in externalDomains) {
 			    Security.allowDomain(dom);
 			    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
 			    var request:URLRequest = new URLRequest("http://"+dom+"/crossdomain.xml");
 			    var loader:URLLoader = new URLLoader();
 			    loader.load(request);				
-			}				
+			}	 */			
 				
 			initMap();			
 			
@@ -77,8 +92,8 @@ package {
 			}
 			
 			var dsLoader:URLLoader = new URLLoader();
+			paId=root.loaderInfo.parameters.id;
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
-			var paId:Number=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
 				paId=377207;
 			}
@@ -137,15 +152,75 @@ package {
 				
 			map.y=0;
 			map.x=0;
-			map.setSize(new Point(stage.stageWidth, stage.stageHeight));
+			map.setSize(new Point(312, 125));
 			
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			
-			addChild(map); 				
+			addChild(map);
+		    
+			BitmapMap.x = 0;
+		    BitmapMap.y = 117;
+			this.addChild(BitmapMap);			
 			
+			spriteMap.x=268;
+			spriteMap.y=150;
 			
-		}		
+			spriteMap.useHandCursor = true;
+  			spriteMap.mouseChildren = false;
+  			spriteMap.buttonMode = true;
+  			
+			this.addChild(spriteMap);	
+			
+			var textSprite:TextField = new TextField();
+	        var formatTextSprite:TextFormat = textSprite.getTextFormat();	
+	  		formatTextSprite.size = 12;
+	  		formatTextSprite.font = "Arial";
+			textSprite.defaultTextFormat = formatTextSprite;
+            textSprite.text = "information provided by";
+            textSprite.textColor = 0xffffff;
+            textSprite.width = 132;
+            textSprite.height = 20;
+  			textSprite.y = 150;
+  			textSprite.x = 137;
+            this.addChild(textSprite); 
+ 	
+	  		formatTextSpriteGBIF.size = 12;
+	  		formatTextSpriteGBIF.font = "Arial";
+			textSpriteGBIF.defaultTextFormat = formatTextSpriteGBIF;
+            textSpriteGBIF.text = "GBIF";
+            textSpriteGBIF.textColor = 0x669900;
+            textSpriteGBIF.width = 32;
+            textSpriteGBIF.height = 16;
+  			textSpriteGBIF.y = 0;
+  			textSpriteGBIF.x = 0;
+            spriteMap.addChild(textSpriteGBIF);
+	
+	  		formatTextSpriteGBIFOver.size = 12;
+	  		formatTextSpriteGBIFOver.font = "Arial";
+			textSpriteGBIFOver.defaultTextFormat = formatTextSpriteGBIFOver;
+            textSpriteGBIFOver.text = "GBIF";
+            textSpriteGBIFOver.textColor = 0xff6600;
+            textSpriteGBIFOver.width = 32;
+            textSpriteGBIFOver.height = 16;
+  			textSpriteGBIFOver.y = 0;
+  			textSpriteGBIFOver.x = 0; 
+  			
+ 			spriteMap.addEventListener(MouseEvent.ROLL_OVER, biodiversityRollOver);
+ 			spriteMap.addEventListener(MouseEvent.ROLL_OUT, biodiversityRollOut);
+ 			spriteMap.addEventListener(MouseEvent.CLICK, biodiversityClick); 
+ 			
+		}	
+		
+		private function biodiversityClick(ev:MouseEvent):void {
+ 			navigateToURL(new URLRequest("http://widgets.gbif.org/pa/#/area/"+paId));
+		}
+		private function biodiversityRollOver(ev:MouseEvent):void {
+ 			spriteMap.addChild(textSpriteGBIFOver);
+		}
+		private	function biodiversityRollOut(ev:MouseEvent):void {
+ 			spriteMap.removeChild(textSpriteGBIFOver);
+		}	
 		
 		private function preinit(ev:Event):void {
 				var mo:MapOptions = new MapOptions();
@@ -162,8 +237,8 @@ package {
 			var zoomIn:Sprite = new ZoomInButton();			
 			var zoomIn_over: Sprite = new ZoomInButton_over();
             addChild(zoomIn);
-            zoomIn.x = 10;
-            zoomIn.y = 10;
+            zoomIn.x = 13;
+            zoomIn.y = 135;
             zoomIn_over.x = 0;
             zoomIn_over.y = 0;
             zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
@@ -185,8 +260,8 @@ package {
 			var zoomOut:Sprite = new ZoomOutButton();			
 			var zoomOut_over: Sprite = new ZoomOutButton_over();
             addChild(zoomOut);
-            zoomOut.x = 10;
-            zoomOut.y = 45;
+            zoomOut.x = 13;
+            zoomOut.y = 151;
             zoomOut_over.x = 0;
             zoomOut_over.y = 0;
             zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
@@ -228,7 +303,7 @@ package {
 		
 		private function stageResizeHandler(ev:Event):void {
 			if(map!=null)
-				map.setSize(new Point(stage.stageWidth, stage.stageHeight));
+				map.setSize(new Point(312, 125));
 		}		
 		
 	}
