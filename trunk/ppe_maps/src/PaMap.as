@@ -25,6 +25,7 @@ package {
 	import com.vizzuality.maps.Multipolygon;
 	import com.vizzuality.markers.PAInfoWindow;
 	import com.vizzuality.markers.PAMarker;
+	import com.vizzuality.markers.PredefinedPaPageMarker;
 	import com.vizzuality.markers.TooltipMarker;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
@@ -77,20 +78,30 @@ package {
 		private var clickPoint: LatLng;
 		private var onPAFlag: Boolean = false;
 		
-		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
+		[Embed(source="assets/mapButtons.swf", symbol="zoomMore_up")]
         private var ZoomInButton:Class;
         
-        [Embed(source="assets/btnsMap.swf", symbol="zoomInButton_over")]
+        [Embed(source="assets/mapButtons.swf", symbol="zoomMore_over")]
         private var ZoomInButton_over:Class;
  
-        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton")]
+        [Embed(source="assets/mapButtons.swf", symbol="zoomLess_up")]
         private var ZoomOutButton:Class;
         
-        [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
+        [Embed(source="assets/mapButtons.swf", symbol="typeMap_up")]
+        private var TypeMap_up:Class;
+        [Embed(source="assets/mapButtons.swf", symbol="typeMap_selected")]
+        private var TypeMap_selected:Class;
+        [Embed(source="assets/mapButtons.swf", symbol="typeMap_over")]
+        private var TypeMap_over:Class;
+                
+        
+        [Embed(source="assets/mapButtons.swf", symbol="zoomLess_over")]
         private var ZoomOutButton_over:Class;
         
         [Embed(source="assets/imageButton.png")]
         private var imageButton:Class;
+        
+
         
  /*
         [Embed(source="library.swf", symbol="circle")]
@@ -145,6 +156,7 @@ package {
 			map.y=3;			
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
+			map.addEventListener(MapEvent.MAPTYPE_CHANGED,onMapTypeChange);
 			map.setSize(new Point(stage.stageWidth, stage.stageHeight-46));
 			addChildAt(map,1);
 			
@@ -160,7 +172,7 @@ package {
 			//get the PA data
 			domain=root.loaderInfo.parameters.domain;
 			if (domain==null) {
-				domain = 'http://ppe.tinypla.net';
+				domain = 'http://localhost:3000';
 			}
 			
 			var dsLoader:URLLoader = new URLLoader();
@@ -169,7 +181,7 @@ package {
 			if(isNaN(paId)) {
 				paId=2027;
 			}
-			dsLoader.load(new URLRequest(domain + "/sites/"+paId+"/json"));
+			dsLoader.load(new URLRequest(domain + "/api/site/"+paId+"/json"));
 			
 		}
 		
@@ -183,6 +195,8 @@ package {
 				loadData();				
 			}
 		}
+		
+		private var urlOfPredefinedPicture:String;
 		
 		private function loadData():void {
 			//Polygon options for the PA
@@ -215,6 +229,16 @@ package {
 			});					
 			mp.addToMap(map);
 			
+			
+			//add the important image
+			var coords:LatLng= new LatLng(
+				data.pictures[0].y,
+				data.pictures[0].x);
+			urlOfPredefinedPicture = data.pictures[0].url;
+			var marker:PredefinedPaPageMarker = new PredefinedPaPageMarker(coords,urlOfPredefinedPicture);
+			map.addOverlay(marker);
+			
+			
 			//craete and add the right button
 			var imageButtonBitmap:Bitmap = new imageButton() as Bitmap;
 			imageButtonBitmap.width=124;
@@ -235,7 +259,7 @@ package {
 				map.setCenter(mp.getLatLngBounds().getCenter(),z);		
 			}
 			
-			//If there is pictures then display the ImageCarrousel
+/* 			//If there is pictures then display the ImageCarrousel
 			if(data.pictures!=null && (data.pictures as Array).length>0) {
 				imgC = new ImageCarrousel();
 				imgC.init(data.pictures as Array);
@@ -245,7 +269,7 @@ package {
 				map.panBy(new Point(-320,0),false);
 				positionElements();
 				
-			}
+			} */
 			
 			//retrieve picture from panoramio
 			getPanoramioPictures();
@@ -258,6 +282,39 @@ package {
 			
 		}		
 		
+		private function onMapTypeChange(event:MapEvent):void {
+
+			var polOptOrange:PolygonOptions=new PolygonOptions({
+				  strokeStyle: {
+				    thickness: 2,
+				    color: 0xFF7600,
+				    alpha: 1
+				  },
+				  fillStyle: {
+				    color: 0xFF7600,
+				    alpha: 0.4
+				  }	
+			});
+			var polOptBlue:PolygonOptions=new PolygonOptions({
+				  strokeStyle: {
+				    thickness: 2,
+				    color: 0x006699,
+				    alpha: 1
+				  },
+				  fillStyle: {
+				    color: 0xFF7600,
+				    alpha: 0
+				  }	
+			});
+
+			if(map.getCurrentMapType()==MapType.PHYSICAL_MAP_TYPE) {
+				mp.setOptions(polOptOrange);
+			}
+			if(map.getCurrentMapType()==MapType.SATELLITE_MAP_TYPE) {
+				mp.setOptions(polOptBlue);				
+			}
+		}
+		
 		private function preinit(ev:Event):void {
 				var mo:MapOptions = new MapOptions();
 				mo.backgroundFillStyle = new FillStyle({color:0xE9E9E9,alpha: Alpha.OPAQUE});
@@ -265,16 +322,21 @@ package {
 				map.setInitOptions(mo);
 		}		
 		
+		private var zoomIn:Sprite;
+		private var zoomOut:Sprite;
+		private var typeMapSatellite_up:Sprite;
+		private var typeMapTerrain_up:Sprite;
+		
 		private function onMapReady(event:MapEvent):void {
 			
 			map.addEventListener(MapMouseEvent.DOUBLE_CLICK,onMapDoubleClick);
 			//map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);
-			map.addControl(new MapTypeControl);
+			//map.addControl(new MapTypeControl);
 			
-			var zoomIn:Sprite = new ZoomInButton();			
+			zoomIn = new ZoomInButton();			
 			var zoomIn_over: Sprite = new ZoomInButton_over();
             addChild(zoomIn);
-            zoomIn.x = 10;
+            zoomIn.x = (stage.stageWidth/2) - 464;
             zoomIn.y = 10;
             zoomIn_over.x = 0;
             zoomIn_over.y = 0;
@@ -294,11 +356,11 @@ package {
 			}); 
 		
 			
-			var zoomOut:Sprite = new ZoomOutButton();			
-			var zoomOut_over: Sprite = new ZoomOutButton_over();
+			zoomOut = new ZoomOutButton();			
             addChild(zoomOut);
-            zoomOut.x = 10;
-            zoomOut.y = 45;
+			var zoomOut_over: Sprite = new ZoomOutButton_over();
+            zoomOut.x = (stage.stageWidth/2) - 434;
+            zoomOut.y = 10;
             zoomOut_over.x = 0;
             zoomOut_over.y = 0;
             zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
@@ -315,6 +377,51 @@ package {
 			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
 				map.setZoom(map.getZoom()-1);
 			}); 
+			
+			
+			//add the maptypes button
+			
+			typeMapSatellite_up = new TypeMap_up();			
+			addChild(typeMapSatellite_up);
+			typeMapSatellite_up.x = (this.width/2) + 402;
+			typeMapSatellite_up.y = 10;
+			var typeMapSatellite_over:Sprite = new TypeMap_over();
+			typeMapSatellite_up.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				typeMapSatellite_up.addChild(typeMapSatellite_over);
+				typeMapSatellite_over.mouseChildren = false;
+				typeMapSatellite_over.buttonMode = true;
+
+			}); 
+            typeMapSatellite_up.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				typeMapSatellite_up.removeChild(typeMapSatellite_over);
+				typeMapSatellite_over.mouseChildren = false;
+				typeMapSatellite_over.buttonMode = true; 
+			});  		
+			typeMapSatellite_up.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setMapType(MapType.SATELLITE_MAP_TYPE);
+			}); 				
+			
+			
+			typeMapTerrain_up = new TypeMap_up();			
+			addChild(typeMapTerrain_up);
+			typeMapTerrain_up.x = (this.width/2) + 322;
+			typeMapTerrain_up.y = 10;
+			var typeMapTerrain_over:Sprite = new TypeMap_over();
+			typeMapTerrain_up.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				typeMapTerrain_up.addChild(typeMapTerrain_over);
+				typeMapTerrain_over.mouseChildren = false;
+				typeMapTerrain_over.buttonMode = true;
+
+			}); 
+            typeMapTerrain_up.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				typeMapTerrain_up.removeChild(typeMapTerrain_over);
+				typeMapTerrain_over.mouseChildren = false;
+				typeMapTerrain_over.buttonMode = true; 
+			});  						
+			typeMapTerrain_up.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setMapType(MapType.PHYSICAL_MAP_TYPE);
+			}); 				
+			
 
 			
 
@@ -383,12 +490,6 @@ package {
 			}
 		}
 		
-/* 		private function onZoomChange(event:MapZoomEvent):void {
-			trace("onZoomChange");			
-			if(imgC!=null) {
-				map.panBy(new Point(-320,0),false);
-			}
-		} */
 		
 		
 		private function getPanoramioPictures():void {		
@@ -419,24 +520,26 @@ package {
 				for each(var photo:Object in res.photos) {		
 					if(mp.pointInPolygon(new LatLng(photo.latitude, photo.longitude))) {		
 			
-						var img:ImageData=new ImageData();		
-						img.latlng = new LatLng(photo.latitude,photo.longitude);		
-						img.source="Panoramio";		
-						img.owner = photo.owner_name		
-						img.sourceUrl = photo.photo_url;		
-						img.title = photo.photo_title;		
-						img.imageUrl = (photo.photo_file_url as String).replace("mini_square","thumbnail");		
-						img.thumbnail = (photo.photo_file_url as String).replace("medium","mini_square");		
-						img.id=photo.photo_id;		
-						img.height=photo.height;		
-						img.width=photo.width;	
-			
-			
-						//pictures.addItem(img);		
-						var loader:Loader = new Loader();		
-						loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createImageMarker,false,0,true);		
-						imageDict[loader]=img;		
-						loader.load(new URLRequest(img.thumbnail));		
+						if((photo.photo_file_url as String).replace("mini_square","medium") !=urlOfPredefinedPicture) {
+							var img:ImageData=new ImageData();		
+							img.latlng = new LatLng(photo.latitude,photo.longitude);		
+							img.source="Panoramio";		
+							img.owner = photo.owner_name		
+							img.sourceUrl = photo.photo_url;		
+							img.title = photo.photo_title;		
+							img.imageUrl = (photo.photo_file_url as String).replace("mini_square","thumbnail");		
+							img.thumbnail = (photo.photo_file_url as String).replace("medium","mini_square");		
+							img.id=photo.photo_id;		
+							img.height=photo.height;		
+							img.width=photo.width;	
+				
+				
+							//pictures.addItem(img);		
+							var loader:Loader = new Loader();		
+							loader.contentLoaderInfo.addEventListener(Event.COMPLETE, createImageMarker,false,0,true);		
+							imageDict[loader]=img;		
+							loader.load(new URLRequest(img.thumbnail));		
+						}
 			
 					}		
 				}		
@@ -529,6 +632,15 @@ package {
 				sp2.x = 648 + (stage.stageWidth/2) - (960/2);
 				sp2.y = stage.stageHeight-31; 
 			}
+			
+			if(typeMapSatellite_up!=null)
+				typeMapSatellite_up.x = (stage.stageWidth/2) + 402;
+			if(typeMapTerrain_up!=null)
+				typeMapTerrain_up.x = (stage.stageWidth/2) + 322;
+			if(zoomIn!=null)
+				zoomIn.x = (stage.stageWidth/2) - 464;
+			if(zoomOut!=null)
+				zoomOut.x = (stage.stageWidth/2) - 434;
 			
 		}
 		
