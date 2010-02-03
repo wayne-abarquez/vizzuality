@@ -9,7 +9,6 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
-	import com.google.maps.controls.MapTypeControl;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.PolygonOptions;
@@ -18,7 +17,6 @@ package {
 	import com.google.maps.styles.StrokeStyle;
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.*;
-	import com.vizzuality.ImageCarrousel;
 	import com.vizzuality.data.ImageData;
 	import com.vizzuality.maps.CustomMapEvent;
 	import com.vizzuality.maps.MapEventDispatcher;
@@ -59,7 +57,6 @@ package {
 		public var picturesInfoWindows:Dictionary = new Dictionary(true);	
 		private var mamufas: Sprite;
 
-		private var imgC:ImageCarrousel;
 		private var sp2: Sprite;
 		
 		private var mouseOverPa:Boolean=false;
@@ -87,20 +84,27 @@ package {
         [Embed(source="assets/mapButtons.swf", symbol="zoomLess_up")]
         private var ZoomOutButton:Class;
         
-        [Embed(source="assets/mapButtons.swf", symbol="typeMap_up")]
-        private var TypeMap_up:Class;
-        [Embed(source="assets/mapButtons.swf", symbol="typeMap_selected")]
-        private var TypeMap_selected:Class;
-        [Embed(source="assets/mapButtons.swf", symbol="typeMap_over")]
-        private var TypeMap_over:Class;
-                
-        
         [Embed(source="assets/mapButtons.swf", symbol="zoomLess_over")]
         private var ZoomOutButton_over:Class;
         
+        
+        
+        [Embed(source="assets/PAsatelliteButton.png")]
+        private var PAsatelliteButton:Class;
+		[Embed(source="assets/PAsatelliteOverButton.png")]
+        private var PAsatelliteOverButton:Class;  
+        [Embed(source="assets/PAsatelliteSelectedButton.png")]
+        private var PAsatelliteSelectedButton:Class;
+              
+        [Embed(source="assets/PAterrainButton.png")]
+        private var PAterrainButton:Class;
+        [Embed(source="assets/PAterrainOverButton.png")]
+        private var PAterrainOverButton:Class;
+        [Embed(source="assets/PAterrainSelectedButton.png")]
+        private var PAterrainSelectedButton:Class;
+        
         [Embed(source="assets/imageButton.png")]
         private var imageButton:Class;
-        
 
         
  /*
@@ -172,7 +176,7 @@ package {
 			//get the PA data
 			domain=root.loaderInfo.parameters.domain;
 			if (domain==null) {
-				domain = 'http://localhost:3000';
+				domain = 'http://ppe.tinypla.net';
 			}
 			
 			var dsLoader:URLLoader = new URLLoader();
@@ -247,8 +251,15 @@ package {
 			sp2.useHandCursor = true;
 			sp2.mouseChildren = false;
 			sp2.buttonMode = true;
+			sp2.x = 648 + (stage.stageWidth/2) - (960/2);
+			sp2.y = stage.stageHeight-31;
+			trace();
 			sp2.addChild(imageButtonBitmap);
-			sp2.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {navigateToURL(new URLRequest("http://vizzuality.com"),"_self");});					
+			sp2.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {
+				var bbox:String = data.bbox[0]+","+data.bbox[1]+","+data.bbox[2]+","+data.bbox[3];
+				navigateToURL(new URLRequest("http://localhost:3000/flash/ImageSelector.swf?ID="+paId+"&Name=Null&BBox="+bbox+"&Dimensions=300x300"));
+			});				
+			addChild(sp2);	
 
 
 			//Set the center of the map to the bbox of the area		
@@ -381,7 +392,7 @@ package {
 			
 			//add the maptypes button
 			
-			typeMapSatellite_up = new TypeMap_up();			
+			/* typeMapSatellite_up = new TypeMap_up();			
 			addChild(typeMapSatellite_up);
 			typeMapSatellite_up.x = (this.width/2) + 402;
 			typeMapSatellite_up.y = 10;
@@ -420,7 +431,7 @@ package {
 			});  						
 			typeMapTerrain_up.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
 				map.setMapType(MapType.PHYSICAL_MAP_TYPE);
-			}); 				
+			}); */ 				
 			
 
 			
@@ -485,9 +496,7 @@ package {
 		
 		private function onMapDoubleClick(event:MapMouseEvent):void {
 			//trace("onMapDoubleClick");			
-			if(imgC!=null) {
 				map.panBy(new Point(-320,0),false);
-			}
 		}
 		
 		
@@ -625,10 +634,7 @@ package {
 			square.y = 0;	
 			square.height=stage.stageHeight-40;
 			
-			if(imgC!=null) {
-				imgC.x=(stage.stageWidth/2) - (960/2);
-				imgC.y= stage.stageHeight-275;
-				addChild(sp2);
+			if(sp2) {
 				sp2.x = 648 + (stage.stageWidth/2) - (960/2);
 				sp2.y = stage.stageHeight-31; 
 			}
