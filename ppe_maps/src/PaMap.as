@@ -235,12 +235,16 @@ package {
 			
 			
 			//add the important image
-			var coords:LatLng= new LatLng(
-				data.pictures[0].y,
-				data.pictures[0].x);
-			urlOfPredefinedPicture = data.pictures[0].url;
-			var marker:PredefinedPaPageMarker = new PredefinedPaPageMarker(coords,urlOfPredefinedPicture);
-			map.addOverlay(marker);
+			if(data.pictures!=null) {
+				var coords:LatLng= new LatLng(
+					data.pictures[0].y,
+					data.pictures[0].x);
+				urlOfPredefinedPicture = data.pictures[0].url;
+				var marker:PredefinedPaPageMarker = new PredefinedPaPageMarker(coords,urlOfPredefinedPicture);
+				map.addOverlay(marker);
+			} else {
+				urlOfPredefinedPicture=null;
+			}
 			
 			
 			//craete and add the right button

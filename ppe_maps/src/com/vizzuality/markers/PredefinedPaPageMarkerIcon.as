@@ -46,7 +46,7 @@ package com.vizzuality.markers {
 			
 			var background:Bitmap;
 			var triangleShape:Shape = new Shape();
-			
+		 	
 			var shadow: Shape = new Shape();
 			var triangleShadow: Shape = new Shape();
 			
