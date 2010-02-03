@@ -127,10 +127,10 @@ package {
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;	
 			stage.addEventListener(Event.RESIZE, stageResizeHandler);
-
+ 
 
 			//This is to allow the access to the tiles for the mouse over
-			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","174.129.214.28:8080","ppe.tinypla.net"];
+			var externalDomains:Array=["ppe.org.tiles.s3.amazonaws.com","ppe.tinypla.net:8080","ppe.tinypla.net"];
 			for each(var dom:String in externalDomains) {
 			    Security.allowDomain(dom);
 			    Security.loadPolicyFile("http://"+dom+"/crossdomain.xml");
