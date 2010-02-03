@@ -106,7 +106,17 @@ package {
         [Embed(source="assets/imageButton.png")]
         private var imageButton:Class;
 
-        
+		private var terrainButtonBitmap:Bitmap = new PAterrainButton();
+		private	var terrainOverButtonBitmap:Bitmap = new PAterrainOverButton();
+		private	var terrainSelectedButtonBitmap:Bitmap = new PAterrainSelectedButton();
+		
+		private	var satelliteButtonBitmap:Bitmap = new PAsatelliteButton();
+		private	var satelliteOverButtonBitmap:Bitmap = new PAsatelliteOverButton();
+		private	var satelliteSelectedButtonBitmap:Bitmap = new PAsatelliteSelectedButton();
+		
+		private var satelliteButtonSprite: Sprite = new Sprite();
+		private var terrainButtonSprite: Sprite = new Sprite();
+		
  /*
         [Embed(source="library.swf", symbol="circle")]
         private var Circle:Class; */
@@ -396,6 +406,64 @@ package {
 			
 			//add the maptypes button
 			
+			//terrain button
+			terrainButtonSprite.x = (stage.stageWidth/2 + 322);
+			terrainButtonSprite.y =	10;
+			terrainButtonSprite.mouseChildren = false;
+			terrainButtonSprite.buttonMode = true;
+			terrainButtonSprite.useHandCursor = true;
+			addChild(terrainButtonSprite);
+			terrainButtonSprite.addChild(terrainButtonBitmap);
+			terrainButtonSprite.addChild(terrainSelectedButtonBitmap)
+	
+			terrainButtonSprite.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				if(!terrainButtonSprite.contains(terrainSelectedButtonBitmap)){
+					terrainButtonSprite.addChild(terrainOverButtonBitmap);
+				}
+			}); 
+            terrainButtonSprite.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+            	if(!terrainButtonSprite.contains(terrainSelectedButtonBitmap)){
+					terrainButtonSprite.removeChild(terrainOverButtonBitmap);
+            	}
+			});
+			terrainButtonSprite.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				if(satelliteButtonSprite.contains(satelliteSelectedButtonBitmap)){
+					satelliteButtonSprite.removeChild(satelliteSelectedButtonBitmap);
+				}
+				terrainButtonSprite.addChild(terrainSelectedButtonBitmap);
+				map.setMapType(MapType.PHYSICAL_MAP_TYPE);
+			});
+			
+			//satellite button
+			satelliteButtonSprite.x = (stage.stageWidth/2) + 402;
+			satelliteButtonSprite.y = 10;
+			satelliteButtonSprite.mouseChildren = false;
+			satelliteButtonSprite.buttonMode = true;	
+			satelliteButtonSprite.useHandCursor = true;
+			addChild(satelliteButtonSprite);
+			
+			satelliteButtonBitmap.x=0;
+			satelliteButtonBitmap.y=0;
+			satelliteButtonSprite.addChild(satelliteButtonBitmap);
+				
+			satelliteButtonSprite.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				if(!satelliteButtonSprite.contains(satelliteSelectedButtonBitmap)){
+					satelliteButtonSprite.addChild(satelliteOverButtonBitmap);
+				}
+			}); 
+            satelliteButtonSprite.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				if(!satelliteButtonSprite.contains(satelliteSelectedButtonBitmap)){
+					satelliteButtonSprite.removeChild(satelliteOverButtonBitmap);
+				}
+			});
+			satelliteButtonSprite.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				if(terrainButtonSprite.contains(terrainSelectedButtonBitmap)){
+					terrainButtonSprite.removeChild(terrainSelectedButtonBitmap);
+				}
+				satelliteButtonSprite.addChild(satelliteSelectedButtonBitmap);
+				map.setMapType(MapType.SATELLITE_MAP_TYPE);
+			});
+						
 			/* typeMapSatellite_up = new TypeMap_up();			
 			addChild(typeMapSatellite_up);
 			typeMapSatellite_up.x = (this.width/2) + 402;
