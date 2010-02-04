@@ -180,14 +180,14 @@ package {
 			
 /* 			addChild(fullScreenButton);
  */			
-			var optionsTypeControl: MapTypeControlOptions = new MapTypeControlOptions(
+			/* var optionsTypeControl: MapTypeControlOptions = new MapTypeControlOptions(
 				{ buttonSize: new Point(67, 19),
 				  buttonSpacing: new Point(0, 0),
 				  buttonAlignment: MapTypeControlOptions.ALIGN_VERTICALLY,
 				  position: new ControlPosition(ControlPosition.ANCHOR_TOP_RIGHT, 10)
 				});
 			var typeControl: MapTypeControl = new MapTypeControl(optionsTypeControl);
-			map.addControl(typeControl);
+			map.addControl(typeControl); */
 			
 			tl = new GeoserverTileLayer(false);
 			tlo = new TileLayerOverlay(tl);
