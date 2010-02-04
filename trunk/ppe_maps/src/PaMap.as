@@ -271,7 +271,7 @@ package {
 			sp2.addChild(imageButtonBitmap);
 			sp2.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {
 				var bbox:String = data.bbox[0]+","+data.bbox[1]+","+data.bbox[2]+","+data.bbox[3];
-				navigateToURL(new URLRequest("http://localhost:3000/flash/ImageSelector.swf?ID="+paId+"&Name=Null&BBox="+bbox+"&Dimensions=300x300"));
+				navigateToURL(new URLRequest(domain+"/flash/ImageSelector.swf?ID="+paId+"&Name=Null&BBox="+bbox+"&Dimensions=300x300"));
 			});				
 			addChild(sp2);	
 
