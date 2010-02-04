@@ -9,6 +9,7 @@ package {
 	import com.google.maps.MapMouseEvent;
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
+	import com.google.maps.interfaces.IPane;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.PolygonOptions;
@@ -116,6 +117,9 @@ package {
 		
 		private var satelliteButtonSprite: Sprite = new Sprite();
 		private var terrainButtonSprite: Sprite = new Sprite();
+		
+		private var predfinedMarker:PredefinedPaPageMarker;
+		private var panoramioPane:IPane;
 		
  /*
         [Embed(source="library.swf", symbol="circle")]
@@ -240,18 +244,21 @@ package {
 				if (loadingSprite.parent != null) {
 					loadingSprite.visible = true;
 				}
-			});					
-			mp.addToMap(map);
+			});		
+			var polPane:IPane = map.getPaneManager().createPane(1);			
+			mp.addToPane(polPane);
 			
+			panoramioPane = map.getPaneManager().createPane(2);		
 			
+			var bigMarkerPane:IPane = map.getPaneManager().createPane(3);
 			//add the important image
 			if(data.pictures!=null && (data.pictures as Array).length>0) {
 				var coords:LatLng= new LatLng(
 					data.pictures[0].y,
 					data.pictures[0].x);
 				urlOfPredefinedPicture = data.pictures[0].url;
-				var marker:PredefinedPaPageMarker = new PredefinedPaPageMarker(coords,urlOfPredefinedPicture);
-				map.addOverlay(marker);
+				predfinedMarker = new PredefinedPaPageMarker(coords,urlOfPredefinedPicture);
+				bigMarkerPane.addOverlay(predfinedMarker);
 			} else {
 				urlOfPredefinedPicture=null;
 			}
@@ -694,7 +701,7 @@ package {
 						}
 					}
 				});    
-	        	map.addOverlay(marker);
+	        	panoramioPane.addOverlay(marker);
         		
         	});
 	        panoramioMarkers[photo]=marker;
