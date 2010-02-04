@@ -245,7 +245,7 @@ package {
 			
 			
 			//add the important image
-			if(data.pictures!=null) {
+			if(data.pictures!=null && (data.pictures as Array).length>0) {
 				var coords:LatLng= new LatLng(
 					data.pictures[0].y,
 					data.pictures[0].x);
