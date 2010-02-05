@@ -298,7 +298,7 @@ package {
 			//var gtlo2:TileLayerOverlay = new TileLayerOverlay(plantae);
 			//tilesPane.addOverlay(gtlo2);
 			//gtlo2.foreground.alpha=0.7;
-
+ 
 		}	
 		
 		private function stageResizeHandler(ev:Event):void {
