@@ -712,6 +712,7 @@ package {
  			square.x = 0;
 			square.y = 0;	
 			square.height=stage.stageHeight-40;
+			square.width=stage.stageWidth;
 			
 /* 			if(sp2) {
 				sp2.x = 648 + (stage.stageWidth/2) - (960/2);
