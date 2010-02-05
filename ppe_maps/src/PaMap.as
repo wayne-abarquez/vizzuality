@@ -368,7 +368,7 @@ package {
 			zoomIn = new ZoomInButton();			
 			var zoomIn_over: Sprite = new ZoomInButton_over();
             addChild(zoomIn);
-            zoomIn.x = (stage.stageWidth/2) - 471;
+            zoomIn.x = (stage.stageWidth/2) - 441;
             zoomIn.y = 10;
             zoomIn_over.x = 0;
             zoomIn_over.y = 0;
@@ -391,7 +391,7 @@ package {
 			zoomOut = new ZoomOutButton();			
             addChild(zoomOut);
 			var zoomOut_over: Sprite = new ZoomOutButton_over();
-            zoomOut.x = (stage.stageWidth/2) - 440;
+            zoomOut.x = (stage.stageWidth/2) - 471;
             zoomOut.y = 10;
             zoomOut_over.x = 0;
             zoomOut_over.y = 0;
@@ -724,9 +724,9 @@ package {
 			if(terrainButtonSprite!=null)
 				terrainButtonSprite.x = (stage.stageWidth/2) + 322;
 			if(zoomIn!=null)
-				zoomIn.x = (stage.stageWidth/2) - 464;
+				zoomIn.x = (stage.stageWidth/2) - 441;
 			if(zoomOut!=null)
-				zoomOut.x = (stage.stageWidth/2) - 434;
+				zoomOut.x = (stage.stageWidth/2) - 471;
 			
 		}
 		
