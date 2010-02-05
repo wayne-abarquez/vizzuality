@@ -444,7 +444,7 @@ package {
 				zoomOut_over.buttonMode = true; 
 			});  
 			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setZoom(map.getZoom());
+				map.setZoom(map.getZoom()-1);
 			}); 
 			
 			
