@@ -31,6 +31,7 @@ package {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -637,9 +638,31 @@ package {
 		private function createImageMarker(ev:Event):void {
 			var photo:ImageData=imageDict[ev.target.loader];
 			
+			var ms:Sprite = new Sprite();
+			//ms.width=30;
+			//ms.height=30;
+	        var background:Shape = new Shape();
+	        background.graphics.beginFill(0xFFFFFF,1);
+	        background.graphics.drawCircle(15,8,15);
+	        background.graphics.endFill();
+	        ms.addChild(background);
+	        
+	        var image:Shape = new Shape();
+	        image.graphics.beginFill(0x000000,0.6);
+	        image.graphics.drawCircle(15,8,13);
+	        image.graphics.endFill();
+	        ms.addChild(image);
+  			
+  			ev.target.loader.x = -3;
+  			ev.target.loader.y = -6;
+  			ev.target.loader.mask = image; 
+	        ms.addChild(ev.target.loader);
+			
+			
+			
 			//Set the images thumbnail images to 25x25
-			(ev.target.loader as Loader).width=25;
-			(ev.target.loader as Loader).height=25;
+			//(ev.target.loader as Loader).width=30;
+			//(ev.target.loader as Loader).height=30;
 			
 			var latlng:LatLng = photo.latlng;
 	      	var photoUrl:String = photo.imageUrl;
@@ -648,7 +671,7 @@ package {
 	       	{/* tooltip: photo.title, */
 	       	 draggable:false,
 	       	 hasShadow:false,	        
-	       	 icon: ev.target.loader}));
+	       	 icon: ms}));
 	       	
 	       	if (photo.title !='') {
 		       	marker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
