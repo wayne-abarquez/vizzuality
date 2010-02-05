@@ -180,7 +180,7 @@ package {
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.addEventListener(MapEvent.MAPTYPE_CHANGED,onMapTypeChange);
-			map.setSize(new Point(stage.stageWidth, stage.stageHeight-46));
+			map.setSize(new Point(stage.stageWidth, stage.stageHeight-30));
 			addChildAt(map,1);
 			
 			mamufas = new Sprite();
@@ -444,7 +444,7 @@ package {
 				zoomOut_over.buttonMode = true; 
 			});  
 			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setZoom(map.getZoom()-1);
+				map.setZoom(map.getZoom());
 			}); 
 			
 			
@@ -770,7 +770,7 @@ package {
 		private function positionElements():void {
  			square.x = 0;
 			square.y = 0;	
-			square.height=stage.stageHeight-40;
+			square.height=stage.stageHeight-30;
 			square.width=stage.stageWidth;
 			
 /* 			if(sp2) {
