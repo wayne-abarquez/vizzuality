@@ -105,6 +105,9 @@ package {
         [Embed(source="assets/PAterrainSelectedButton.png")]
         private var PAterrainSelectedButton:Class;
         
+        [Embed(source="assets/poiMarker.png")]
+        private var PoiMarkerAsset:Class;
+        
 /*         [Embed(source="assets/imageButton.png")]
         private var imageButton:Class; */
 
@@ -121,6 +124,7 @@ package {
 		
 		private var predfinedMarker:PredefinedPaPageMarker;
 		private var panoramioPane:IPane;
+		private var poisPane:IPane;
 		
  /*
         [Embed(source="library.swf", symbol="circle")]
@@ -250,8 +254,9 @@ package {
 			mp.addToPane(polPane);
 			
 			panoramioPane = map.getPaneManager().createPane(2);		
+			poisPane = map.getPaneManager().createPane(3);		
 			
-			var bigMarkerPane:IPane = map.getPaneManager().createPane(3);
+			var bigMarkerPane:IPane = map.getPaneManager().createPane(4);
 			//add the important image
 			if(data.pictures!=null && (data.pictures as Array).length>0) {
 				var coords:LatLng= new LatLng(
@@ -263,6 +268,37 @@ package {
 			} else {
 				urlOfPredefinedPicture=null;
 			}
+			
+			//Add POIS to the map    poiMarker
+			for each(var poi:Object in data.pois) {
+				
+				var icobm:Bitmap = new PoiMarkerAsset();
+				//var icosp:Sprite = new Sprite();
+				//isoc
+				var poiMarker:Marker = new Marker(
+					new LatLng(poi.y,poi.x)
+					, new MarkerOptions(
+		       	{
+		       	 draggable:false,
+		       	 hasShadow:false,	        
+		       	 icon: icobm}));
+		       	 
+		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
+		       		tooltip = new TooltipMarker(poi.name);
+					tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
+					tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
+		       		addChild(tooltip);
+		       	});
+		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
+		       		removeChild(tooltip);
+		       	});  		       	 
+		       	 
+		       	 
+				poisPane.addOverlay(poiMarker);
+			}
+			
+			
+			
 			
 			
 			//craete and add the right button
