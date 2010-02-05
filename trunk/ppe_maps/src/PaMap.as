@@ -104,8 +104,8 @@ package {
         [Embed(source="assets/PAterrainSelectedButton.png")]
         private var PAterrainSelectedButton:Class;
         
-        [Embed(source="assets/imageButton.png")]
-        private var imageButton:Class;
+/*         [Embed(source="assets/imageButton.png")]
+        private var imageButton:Class; */
 
 		private var terrainButtonBitmap:Bitmap = new PAterrainButton();
 		private	var terrainOverButtonBitmap:Bitmap = new PAterrainOverButton();
@@ -155,7 +155,7 @@ package {
 			
 			//Draw the blue square around the map
 			square = new Sprite();
-			square.graphics.beginFill(0x275186);
+			square.graphics.beginFill(0x336699);
 			square.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight);
 			square.graphics.endFill();
 			addChild(square);
@@ -265,7 +265,7 @@ package {
 			
 			
 			//craete and add the right button
-			var imageButtonBitmap:Bitmap = new imageButton() as Bitmap;
+/* 			var imageButtonBitmap:Bitmap = new imageButton() as Bitmap;
 			imageButtonBitmap.width=124;
 			imageButtonBitmap.height=27;
 			sp2 = new Sprite();
@@ -280,7 +280,7 @@ package {
 				var bbox:String = data.bbox[0]+","+data.bbox[1]+","+data.bbox[2]+","+data.bbox[3];
 				navigateToURL(new URLRequest(domain+"/flash/ImageSelector.swf?ID="+paId+"&Name=Null&BBox="+bbox+"&Dimensions=300x300"));
 			});				
-			addChild(sp2);	
+			addChild(sp2);	 */
 
 
 			//Set the center of the map to the bbox of the area		
@@ -368,7 +368,7 @@ package {
 			zoomIn = new ZoomInButton();			
 			var zoomIn_over: Sprite = new ZoomInButton_over();
             addChild(zoomIn);
-            zoomIn.x = (stage.stageWidth/2) - 464;
+            zoomIn.x = (stage.stageWidth/2) - 471;
             zoomIn.y = 10;
             zoomIn_over.x = 0;
             zoomIn_over.y = 0;
@@ -391,7 +391,7 @@ package {
 			zoomOut = new ZoomOutButton();			
             addChild(zoomOut);
 			var zoomOut_over: Sprite = new ZoomOutButton_over();
-            zoomOut.x = (stage.stageWidth/2) - 434;
+            zoomOut.x = (stage.stageWidth/2) - 440;
             zoomOut.y = 10;
             zoomOut_over.x = 0;
             zoomOut_over.y = 0;
@@ -442,7 +442,7 @@ package {
 			});
 			
 			//satellite button
-			satelliteButtonSprite.x = (stage.stageWidth/2) + 402;
+			satelliteButtonSprite.x = (stage.stageWidth/2) + 405;
 			satelliteButtonSprite.y = 10;
 			satelliteButtonSprite.mouseChildren = false;
 			satelliteButtonSprite.buttonMode = true;	
@@ -713,15 +713,15 @@ package {
 			square.y = 0;	
 			square.height=stage.stageHeight-40;
 			
-			if(sp2) {
+/* 			if(sp2) {
 				sp2.x = 648 + (stage.stageWidth/2) - (960/2);
 				sp2.y = stage.stageHeight-31; 
-			}
+			} */
 			
-			if(typeMapSatellite_up!=null)
-				typeMapSatellite_up.x = (stage.stageWidth/2) + 402;
-			if(typeMapTerrain_up!=null)
-				typeMapTerrain_up.x = (stage.stageWidth/2) + 322;
+			if(satelliteButtonSprite!=null)
+				satelliteButtonSprite.x = (stage.stageWidth/2) + 405;
+			if(terrainButtonSprite!=null)
+				terrainButtonSprite.x = (stage.stageWidth/2) + 322;
 			if(zoomIn!=null)
 				zoomIn.x = (stage.stageWidth/2) - 464;
 			if(zoomOut!=null)
