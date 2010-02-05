@@ -291,13 +291,13 @@ package {
 			//map.addOverlay(tlo);		
 			
 			var animalia:GbifTileLayer = new GbifTileLayer(13140803);
-			var plantae:GbifTileLayer = new GbifTileLayer(13140804);
+			//var plantae:GbifTileLayer = new GbifTileLayer(13140804);
 			var gtlo:TileLayerOverlay = new TileLayerOverlay(animalia);
 			tilesPane.addOverlay(gtlo);
 			gtlo.foreground.alpha=0.7;
-			var gtlo2:TileLayerOverlay = new TileLayerOverlay(plantae);
-			tilesPane.addOverlay(gtlo2);
-			gtlo2.foreground.alpha=0.7;
+			//var gtlo2:TileLayerOverlay = new TileLayerOverlay(plantae);
+			//tilesPane.addOverlay(gtlo2);
+			//gtlo2.foreground.alpha=0.7;
 
 		}	
 		
