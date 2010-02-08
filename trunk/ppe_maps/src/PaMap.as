@@ -57,6 +57,7 @@ package {
 		private var panoramioMarkers:Dictionary = new Dictionary(true);
 		private var imageDict:Dictionary = new Dictionary(true);
 		private var poisDict:Dictionary = new Dictionary(true);
+		private var poisTooltip:Dictionary = new Dictionary(true);
 		public var picturesInfoWindows:Dictionary = new Dictionary(true);	
 		private var mamufas: Sprite;
 
@@ -283,42 +284,25 @@ package {
 		       	 draggable:false,
 		       	 hasShadow:false,	        
 		       	 icon: icobm}));
+		       	 poisDict[poiMarker]=poi;
 		       	 
 		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
-		       		var tooltipPoi:TooltipMarker = new TooltipMarker(poi.name);
+		       		var tooltipPoi:TooltipMarker = new TooltipMarker(poisDict[ev.currentTarget].name);
 					tooltipPoi.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
 					tooltipPoi.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
 		       		addChild(tooltipPoi);
-		       		poisDict[poiMarker]= tooltipPoi;
+	       			poisTooltip[ev.currentTarget] = tooltipPoi;
 		       	});
 		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
-		       		removeChild(poisDict[poiMarker] as TooltipMarker);
+		       		if (poisTooltip[ev.currentTarget] !=null && (poisTooltip[ev.currentTarget] as TooltipMarker).parent!=null) {
+			       		removeChild(poisTooltip[ev.currentTarget] as TooltipMarker);
+		       		}
 		       	});  	
-		       	poisDict[poiMarker]=	       	 
 		       	 
 		       	 
 				poisPane.addOverlay(poiMarker);
 			}
 			
-			//craete and add the right button
-/* 			var imageButtonBitmap:Bitmap = new imageButton() as Bitmap;
-			imageButtonBitmap.width=124;
-			imageButtonBitmap.height=27;
-			sp2 = new Sprite();
-			sp2.useHandCursor = true;
-			sp2.mouseChildren = false;
-			sp2.buttonMode = true;
-			sp2.x = 648 + (stage.stageWidth/2) - (960/2);
-			sp2.y = stage.stageHeight-31;
-			trace();
-			sp2.addChild(imageButtonBitmap);
-			sp2.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {
-				var bbox:String = data.bbox[0]+","+data.bbox[1]+","+data.bbox[2]+","+data.bbox[3];
-				navigateToURL(new URLRequest(domain+"/flash/ImageSelector.swf?ID="+paId+"&Name=Null&BBox="+bbox+"&Dimensions=300x300"));
-			});				
-			addChild(sp2);	 */
-
-
 			//Set the center of the map to the bbox of the area		
 			var z:Number = 	map.getBoundsZoomLevel(mp.getLatLngBounds());
 			if(z > 13){
