@@ -201,12 +201,12 @@ package {
 	  		formatTextSpriteGBIFOver.size = 12;
 	  		formatTextSpriteGBIFOver.font = "Arial";
 			textSpriteGBIFOver.defaultTextFormat = formatTextSpriteGBIFOver;
-            textSpriteGBIFOver.text = "GBIF";
+            textSpriteGBIFOver.text = "GBIF network";
             textSpriteGBIFOver.textColor = 0xff6600;
-            textSpriteGBIFOver.width = 32;
+            textSpriteGBIFOver.width = 95;
             textSpriteGBIFOver.height = 16;
-  			textSpriteGBIFOver.y = 0;
-  			textSpriteGBIFOver.x = 0; 
+  			textSpriteGBIFOver.y = 6;
+  			textSpriteGBIFOver.x = -50; 
   			
  			spriteMap.addEventListener(MouseEvent.ROLL_OVER, biodiversityRollOver);
  			spriteMap.addEventListener(MouseEvent.ROLL_OUT, biodiversityRollOut);
@@ -214,7 +214,7 @@ package {
  			
  			var logoGBIF_: Bitmap = new logoGbif();
  			logoGBIF_.x = 268;
- 			logoGBIF_.y = 132;
+ 			logoGBIF_.y = 131;
  			this.addChild(logoGBIF_);
  			
 		}	
