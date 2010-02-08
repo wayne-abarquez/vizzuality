@@ -197,7 +197,7 @@ package {
 			//get the PA data
 			domain=root.loaderInfo.parameters.domain;
 			if (domain==null) {
-				domain = 'http://ppe.tinypla.net';
+				domain = 'http://protectedplanet.net';
 			}
 			
 			var dsLoader:URLLoader = new URLLoader();

@@ -78,7 +78,7 @@ package com.vizzuality.lastTest{
 			}
 			
 			 this.addEventListener(MouseEvent.CLICK,function(event:Event):void {
-            	navigateToURL(new URLRequest( "http://ppe.tinypla.net/sites/" + paData.paId),"_self");
+            	navigateToURL(new URLRequest( "/sites/" + paData.paId),"_self");
             });
 
             overSprite=createOverSprite();
@@ -204,7 +204,7 @@ package com.vizzuality.lastTest{
  			sp.addChild(border_blue);
             
             this.addEventListener(MouseEvent.CLICK,function(event:Event):void {
-            	navigateToURL(new URLRequest( "http://ppe.tinypla.net/sites/" + paData.paId),"_self");
+            	navigateToURL(new URLRequest( "/sites/" + paData.paId),"_self");
             });
 
 		    return sp;       	
