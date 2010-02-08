@@ -56,6 +56,7 @@ package {
 		private var data:Object;
 		private var panoramioMarkers:Dictionary = new Dictionary(true);
 		private var imageDict:Dictionary = new Dictionary(true);
+		private var poisDict:Dictionary = new Dictionary(true);
 		public var picturesInfoWindows:Dictionary = new Dictionary(true);	
 		private var mamufas: Sprite;
 
@@ -284,14 +285,16 @@ package {
 		       	 icon: icobm}));
 		       	 
 		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
-		       		tooltip = new TooltipMarker(poi.name);
-					tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
-					tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
-		       		addChild(tooltip);
+		       		var tooltipPoi:TooltipMarker = new TooltipMarker(poi.name);
+					tooltipPoi.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
+					tooltipPoi.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
+		       		addChild(tooltipPoi);
+		       		poisDict[poiMarker]= tooltipPoi;
 		       	});
 		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
-		       		removeChild(tooltip);
-		       	});  		       	 
+		       		removeChild(poisDict[poiMarker] as TooltipMarker);
+		       	});  	
+		       	poisDict[poiMarker]=	       	 
 		       	 
 		       	 
 				poisPane.addOverlay(poiMarker);
