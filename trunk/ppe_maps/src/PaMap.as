@@ -31,6 +31,7 @@ package {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -104,6 +105,9 @@ package {
         [Embed(source="assets/PAterrainSelectedButton.png")]
         private var PAterrainSelectedButton:Class;
         
+        [Embed(source="assets/poiMarker.png")]
+        private var PoiMarkerAsset:Class;
+        
 /*         [Embed(source="assets/imageButton.png")]
         private var imageButton:Class; */
 
@@ -120,6 +124,7 @@ package {
 		
 		private var predfinedMarker:PredefinedPaPageMarker;
 		private var panoramioPane:IPane;
+		private var poisPane:IPane;
 		
  /*
         [Embed(source="library.swf", symbol="circle")]
@@ -249,8 +254,9 @@ package {
 			mp.addToPane(polPane);
 			
 			panoramioPane = map.getPaneManager().createPane(2);		
+			poisPane = map.getPaneManager().createPane(3);		
 			
-			var bigMarkerPane:IPane = map.getPaneManager().createPane(3);
+			var bigMarkerPane:IPane = map.getPaneManager().createPane(4);
 			//add the important image
 			if(data.pictures!=null && (data.pictures as Array).length>0) {
 				var coords:LatLng= new LatLng(
@@ -263,6 +269,33 @@ package {
 				urlOfPredefinedPicture=null;
 			}
 			
+			//Add POIS to the map    poiMarker
+			for each(var poi:Object in data.pois) {
+				
+				var icobm:Bitmap = new PoiMarkerAsset();
+				//var icosp:Sprite = new Sprite();
+				//isoc
+				var poiMarker:Marker = new Marker(
+					new LatLng(poi.y,poi.x)
+					, new MarkerOptions(
+		       	{
+		       	 draggable:false,
+		       	 hasShadow:false,	        
+		       	 icon: icobm}));
+		       	 
+		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
+		       		tooltip = new TooltipMarker(poi.name);
+					tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
+					tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
+		       		addChild(tooltip);
+		       	});
+		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
+		       		removeChild(tooltip);
+		       	});  		       	 
+		       	 
+		       	 
+				poisPane.addOverlay(poiMarker);
+			}
 			
 			//craete and add the right button
 /* 			var imageButtonBitmap:Bitmap = new imageButton() as Bitmap;
@@ -285,8 +318,8 @@ package {
 
 			//Set the center of the map to the bbox of the area		
 			var z:Number = 	map.getBoundsZoomLevel(mp.getLatLngBounds());
-			if(z > 11){
-				map.setCenter(mp.getLatLngBounds().getCenter(),11);		
+			if(z > 13){
+				map.setCenter(mp.getLatLngBounds().getCenter(),13);		
 			} else {
 				map.setCenter(mp.getLatLngBounds().getCenter(),z);		
 			}
@@ -584,9 +617,31 @@ package {
 		private function createImageMarker(ev:Event):void {
 			var photo:ImageData=imageDict[ev.target.loader];
 			
+			var ms:Sprite = new Sprite();
+			//ms.width=30;
+			//ms.height=30;
+	        var background:Shape = new Shape();
+	        background.graphics.beginFill(0xFFFFFF,1);
+	        background.graphics.drawCircle(15,8,15);
+	        background.graphics.endFill();
+	        ms.addChild(background);
+	        
+	        var image:Shape = new Shape();
+	        image.graphics.beginFill(0x000000,0.6);
+	        image.graphics.drawCircle(15,8,13);
+	        image.graphics.endFill();
+	        ms.addChild(image);
+  			
+  			ev.target.loader.x = -3;
+  			ev.target.loader.y = -6;
+  			ev.target.loader.mask = image; 
+	        ms.addChild(ev.target.loader);
+			
+			
+			
 			//Set the images thumbnail images to 25x25
-			(ev.target.loader as Loader).width=25;
-			(ev.target.loader as Loader).height=25;
+			//(ev.target.loader as Loader).width=30;
+			//(ev.target.loader as Loader).height=30;
 			
 			var latlng:LatLng = photo.latlng;
 	      	var photoUrl:String = photo.imageUrl;
@@ -595,7 +650,7 @@ package {
 	       	{/* tooltip: photo.title, */
 	       	 draggable:false,
 	       	 hasShadow:false,	        
-	       	 icon: ev.target.loader}));
+	       	 icon: ms}));
 	       	
 	       	if (photo.title !='') {
 		       	marker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
