@@ -141,7 +141,7 @@ package com.vizzuality.markers{
             exampleSprite2.useHandCursor=true;
             sp.addChild(exampleSprite2);
             this.addEventListener(MouseEvent.CLICK,function(event:Event):void {
-            	navigateToURL(new URLRequest( "http://ppe.tinypla.net/sites/" + paData.paId),"_self");
+            	navigateToURL(new URLRequest( "/sites/" + paData.paId),"_self");
             });
 
 		    return sp;       	
