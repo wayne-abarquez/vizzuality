@@ -31,7 +31,6 @@ package {
 	import flash.display.Bitmap;
 	import flash.display.Loader;
 	import flash.display.LoaderInfo;
-	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -105,9 +104,6 @@ package {
         [Embed(source="assets/PAterrainSelectedButton.png")]
         private var PAterrainSelectedButton:Class;
         
-        [Embed(source="assets/poiMarker.png")]
-        private var PoiMarkerAsset:Class;
-        
 /*         [Embed(source="assets/imageButton.png")]
         private var imageButton:Class; */
 
@@ -124,7 +120,6 @@ package {
 		
 		private var predfinedMarker:PredefinedPaPageMarker;
 		private var panoramioPane:IPane;
-		private var poisPane:IPane;
 		
  /*
         [Embed(source="library.swf", symbol="circle")]
@@ -180,14 +175,14 @@ package {
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.addEventListener(MapEvent.MAPTYPE_CHANGED,onMapTypeChange);
-			map.setSize(new Point(stage.stageWidth, stage.stageHeight-30));
+			map.setSize(new Point(stage.stageWidth, stage.stageHeight-5));
 			addChildAt(map,1);
 			
 			mamufas = new Sprite();
 			mamufas.x = 0;
 			mamufas.y = 3;
 			mamufas.graphics.beginFill(0x000000,0.5);
-			mamufas.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight-46);
+			mamufas.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight-5);
 			mamufas.graphics.endFill();
 			addChild(mamufas);	
 				
@@ -254,9 +249,8 @@ package {
 			mp.addToPane(polPane);
 			
 			panoramioPane = map.getPaneManager().createPane(2);		
-			poisPane = map.getPaneManager().createPane(3);		
 			
-			var bigMarkerPane:IPane = map.getPaneManager().createPane(4);
+			var bigMarkerPane:IPane = map.getPaneManager().createPane(3);
 			//add the important image
 			if(data.pictures!=null && (data.pictures as Array).length>0) {
 				var coords:LatLng= new LatLng(
@@ -268,37 +262,6 @@ package {
 			} else {
 				urlOfPredefinedPicture=null;
 			}
-			
-			//Add POIS to the map    poiMarker
-			for each(var poi:Object in data.pois) {
-				
-				var icobm:Bitmap = new PoiMarkerAsset();
-				//var icosp:Sprite = new Sprite();
-				//isoc
-				var poiMarker:Marker = new Marker(
-					new LatLng(poi.y,poi.x)
-					, new MarkerOptions(
-		       	{
-		       	 draggable:false,
-		       	 hasShadow:false,	        
-		       	 icon: icobm}));
-		       	 
-		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
-		       		tooltip = new TooltipMarker(poi.name);
-					tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
-					tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
-		       		addChild(tooltip);
-		       	});
-		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
-		       		removeChild(tooltip);
-		       	});  		       	 
-		       	 
-		       	 
-				poisPane.addOverlay(poiMarker);
-			}
-			
-			
-			
 			
 			
 			//craete and add the right button
@@ -322,23 +285,12 @@ package {
 
 			//Set the center of the map to the bbox of the area		
 			var z:Number = 	map.getBoundsZoomLevel(mp.getLatLngBounds());
-			if(z > 13){
-				map.setCenter(mp.getLatLngBounds().getCenter(),13);		
+			if(z > 11){
+				map.setCenter(mp.getLatLngBounds().getCenter(),11);		
 			} else {
 				map.setCenter(mp.getLatLngBounds().getCenter(),z);		
 			}
 			
-/* 			//If there is pictures then display the ImageCarrousel
-			if(data.pictures!=null && (data.pictures as Array).length>0) {
-				imgC = new ImageCarrousel();
-				imgC.init(data.pictures as Array);
-				addChild(imgC);
-				
-				//Because the carrusel stay in the middle we have to pan the map and reposition
-				map.panBy(new Point(-320,0),false);
-				positionElements();
-				
-			} */
 			
 			//retrieve picture from panoramio
 			getPanoramioPictures();
@@ -405,7 +357,7 @@ package {
 			zoomIn = new ZoomInButton();			
 			var zoomIn_over: Sprite = new ZoomInButton_over();
             addChild(zoomIn);
-            zoomIn.x = (stage.stageWidth/2) - 441;
+            zoomIn.x = (stage.stageWidth/2) - 471;
             zoomIn.y = 10;
             zoomIn_over.x = 0;
             zoomIn_over.y = 0;
@@ -428,7 +380,7 @@ package {
 			zoomOut = new ZoomOutButton();			
             addChild(zoomOut);
 			var zoomOut_over: Sprite = new ZoomOutButton_over();
-            zoomOut.x = (stage.stageWidth/2) - 471;
+            zoomOut.x = (stage.stageWidth/2) - 440;
             zoomOut.y = 10;
             zoomOut_over.x = 0;
             zoomOut_over.y = 0;
@@ -507,48 +459,6 @@ package {
 				satelliteButtonSprite.addChild(satelliteSelectedButtonBitmap);
 				map.setMapType(MapType.SATELLITE_MAP_TYPE);
 			});
-						
-			/* typeMapSatellite_up = new TypeMap_up();			
-			addChild(typeMapSatellite_up);
-			typeMapSatellite_up.x = (this.width/2) + 402;
-			typeMapSatellite_up.y = 10;
-			var typeMapSatellite_over:Sprite = new TypeMap_over();
-			typeMapSatellite_up.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
-				typeMapSatellite_up.addChild(typeMapSatellite_over);
-				typeMapSatellite_over.mouseChildren = false;
-				typeMapSatellite_over.buttonMode = true;
-
-			}); 
-            typeMapSatellite_up.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
-				typeMapSatellite_up.removeChild(typeMapSatellite_over);
-				typeMapSatellite_over.mouseChildren = false;
-				typeMapSatellite_over.buttonMode = true; 
-			});  		
-			typeMapSatellite_up.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setMapType(MapType.SATELLITE_MAP_TYPE);
-			}); 				
-			
-			
-			typeMapTerrain_up = new TypeMap_up();			
-			addChild(typeMapTerrain_up);
-			typeMapTerrain_up.x = (this.width/2) + 322;
-			typeMapTerrain_up.y = 10;
-			var typeMapTerrain_over:Sprite = new TypeMap_over();
-			typeMapTerrain_up.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
-				typeMapTerrain_up.addChild(typeMapTerrain_over);
-				typeMapTerrain_over.mouseChildren = false;
-				typeMapTerrain_over.buttonMode = true;
-
-			}); 
-            typeMapTerrain_up.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
-				typeMapTerrain_up.removeChild(typeMapTerrain_over);
-				typeMapTerrain_over.mouseChildren = false;
-				typeMapTerrain_over.buttonMode = true; 
-			});  						
-			typeMapTerrain_up.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setMapType(MapType.PHYSICAL_MAP_TYPE);
-			}); */ 				
-			
 
 			
 
@@ -674,31 +584,9 @@ package {
 		private function createImageMarker(ev:Event):void {
 			var photo:ImageData=imageDict[ev.target.loader];
 			
-			var ms:Sprite = new Sprite();
-			//ms.width=30;
-			//ms.height=30;
-	        var background:Shape = new Shape();
-	        background.graphics.beginFill(0xFFFFFF,1);
-	        background.graphics.drawCircle(15,8,15);
-	        background.graphics.endFill();
-	        ms.addChild(background);
-	        
-	        var image:Shape = new Shape();
-	        image.graphics.beginFill(0x000000,0.6);
-	        image.graphics.drawCircle(15,8,13);
-	        image.graphics.endFill();
-	        ms.addChild(image);
-  			
-  			ev.target.loader.x = -3;
-  			ev.target.loader.y = -6;
-  			ev.target.loader.mask = image; 
-	        ms.addChild(ev.target.loader);
-			
-			
-			
 			//Set the images thumbnail images to 25x25
-			//(ev.target.loader as Loader).width=30;
-			//(ev.target.loader as Loader).height=30;
+			(ev.target.loader as Loader).width=25;
+			(ev.target.loader as Loader).height=25;
 			
 			var latlng:LatLng = photo.latlng;
 	      	var photoUrl:String = photo.imageUrl;
@@ -707,7 +595,7 @@ package {
 	       	{/* tooltip: photo.title, */
 	       	 draggable:false,
 	       	 hasShadow:false,	        
-	       	 icon: ms}));
+	       	 icon: ev.target.loader}));
 	       	
 	       	if (photo.title !='') {
 		       	marker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
@@ -770,8 +658,8 @@ package {
 		private function positionElements():void {
  			square.x = 0;
 			square.y = 0;	
-			square.height=stage.stageHeight-30;
-			square.width=stage.stageWidth;
+			square.height = stage.stageHeight;
+			square.width = stage.stageWidth;
 			
 /* 			if(sp2) {
 				sp2.x = 648 + (stage.stageWidth/2) - (960/2);
@@ -783,16 +671,16 @@ package {
 			if(terrainButtonSprite!=null)
 				terrainButtonSprite.x = (stage.stageWidth/2) + 322;
 			if(zoomIn!=null)
-				zoomIn.x = (stage.stageWidth/2) - 441;
+				zoomIn.x = (stage.stageWidth/2) - 464;
 			if(zoomOut!=null)
-				zoomOut.x = (stage.stageWidth/2) - 471;
+				zoomOut.x = (stage.stageWidth/2) - 434;
 			
 		}
 		
  		private function stageResizeHandler(ev:Event):void {
 			positionElements();
 			if(map!=null)
-				map.setSize(new Point(stage.stageWidth, stage.stageHeight-45));
+				map.setSize(new Point(stage.stageWidth, stage.stageHeight-5));
 		}
 		
 		private function onGetPaByCoordsResult(ev:Event):void {
