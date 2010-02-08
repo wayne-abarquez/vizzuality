@@ -24,7 +24,6 @@ package {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
-	import flash.system.Security;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 
@@ -46,6 +45,9 @@ package {
         
         [Embed(source="assets/biodiversityMap.png")]
         private var biodiversitySprite:Class;	
+        
+        [Embed(source="assets/gbif.png")]
+        private var logoGbif:Class;
 		
 		
 		private var map:Map;	
@@ -163,8 +165,8 @@ package {
 		    BitmapMap.y = 117;
 			this.addChild(BitmapMap);			
 			
-			spriteMap.x=268;
-			spriteMap.y=150;
+			spriteMap.x=235;
+			spriteMap.y=140;
 			
 			spriteMap.useHandCursor = true;
   			spriteMap.mouseChildren = false;
@@ -181,8 +183,8 @@ package {
             textSprite.textColor = 0xffffff;
             textSprite.width = 132;
             textSprite.height = 20;
-  			textSprite.y = 150;
-  			textSprite.x = 137;
+  			textSprite.y = 140;
+  			textSprite.x = 102;
             this.addChild(textSprite); 
  	
 	  		formatTextSpriteGBIF.size = 12;
@@ -209,6 +211,11 @@ package {
  			spriteMap.addEventListener(MouseEvent.ROLL_OVER, biodiversityRollOver);
  			spriteMap.addEventListener(MouseEvent.ROLL_OUT, biodiversityRollOut);
  			spriteMap.addEventListener(MouseEvent.CLICK, biodiversityClick); 
+ 			
+ 			var logoGBIF_: Bitmap = new logoGbif();
+ 			logoGBIF_.x = 268;
+ 			logoGBIF_.y = 132;
+ 			this.addChild(logoGBIF_);
  			
 		}	
 		
