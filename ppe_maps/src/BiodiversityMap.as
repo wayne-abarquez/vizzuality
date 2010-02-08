@@ -179,23 +179,23 @@ package {
 	  		formatTextSprite.size = 12;
 	  		formatTextSprite.font = "Arial";
 			textSprite.defaultTextFormat = formatTextSprite;
-            textSprite.text = "information provided by";
+            textSprite.text = "explore biodiversity data on ";
             textSprite.textColor = 0xffffff;
-            textSprite.width = 132;
+            textSprite.width = 172;
             textSprite.height = 20;
-  			textSprite.y = 140;
-  			textSprite.x = 102;
+  			textSprite.y = 132;
+  			textSprite.x = 110;
             this.addChild(textSprite); 
  	
 	  		formatTextSpriteGBIF.size = 12;
 	  		formatTextSpriteGBIF.font = "Arial";
 			textSpriteGBIF.defaultTextFormat = formatTextSpriteGBIF;
-            textSpriteGBIF.text = "GBIF";
+            textSpriteGBIF.text = "GBIF network";
             textSpriteGBIF.textColor = 0x669900;
-            textSpriteGBIF.width = 32;
+            textSpriteGBIF.width = 95;
             textSpriteGBIF.height = 16;
-  			textSpriteGBIF.y = 0;
-  			textSpriteGBIF.x = 0;
+  			textSpriteGBIF.y = 6;
+  			textSpriteGBIF.x = -50;
             spriteMap.addChild(textSpriteGBIF);
 	
 	  		formatTextSpriteGBIFOver.size = 12;
