@@ -275,6 +275,10 @@ package {
 			for each(var poi:Object in data.pois) {
 				
 				var icobm:Bitmap = new PoiMarkerAsset();
+				var iconbmsp:Sprite = new Sprite();
+				iconbmsp.mouseChildren=false;
+				iconbmsp.addChild(icobm);
+			
 				//var icosp:Sprite = new Sprite();
 				//isoc
 				var poiMarker:Marker = new Marker(
@@ -283,7 +287,7 @@ package {
 		       	{
 		       	 draggable:false,
 		       	 hasShadow:false,	        
-		       	 icon: icobm}));
+		       	 icon: iconbmsp}));
 		       	 poisDict[poiMarker]=poi;
 		       	 
 		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
