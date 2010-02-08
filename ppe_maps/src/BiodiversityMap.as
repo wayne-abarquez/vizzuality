@@ -99,7 +99,7 @@ package {
 			if(isNaN(paId)) {
 				paId=377207;
 			}
-			dsLoader.load(new URLRequest(domain + "/api/sites/"+paId+"/json"));
+			dsLoader.load(new URLRequest(domain + "/api/site/"+paId+"/json"));
 			
 		}
 
