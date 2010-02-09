@@ -733,8 +733,8 @@ package {
 			
 			var res:Object = JSON.decode(ev.target.data as String);
 
-			if ((res as Array).length != 0) {
-				removeChild(loadingSprite);
+			removeChild(loadingSprite);
+			if ((res as Array).length != 0 && res[0].id!=paId) {
 				navigateToURL(new URLRequest(domain + '/sites/' + res[0].id),"_self");
 			}
 

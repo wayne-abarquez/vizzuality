@@ -237,8 +237,8 @@ package {
 		}		
 		
 		private function onMapReady(event:MapEvent):void {
-			tilesPane=map.getPaneManager().createPane();
 			polygonPane=map.getPaneManager().createPane();
+			tilesPane=map.getPaneManager().createPane();
 			
 			
 			var zoomIn:Sprite = new ZoomInButton();			
