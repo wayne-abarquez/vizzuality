@@ -64,7 +64,26 @@
 					</mx:Canvas>
 					<mx:CheckBox x="409" y="306" label="I accept the terms of service"/>
 					<mx:Button x="74.5" y="348" label="Go Back" click="{currentState='bbox'}"/>
-					<mx:Button x="170.5" y="348" label="Download" click="{currentState=''}"/>
+					<mx:Button x="170.5" y="348" label="Download" click="{currentState='downloading'}"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="downloading">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas width="1003" height="387" horizontalCenter="0" verticalCenter="0" backgroundColor="#9B8888">
+					<mx:Label text="We are preparing your download. This could take up to 5min." width="657" horizontalCenter="0" verticalCenter="0"/>
+					<mx:Button x="349" y="265" label="Download" click="{currentState='finished'}"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="finished">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas x="36" y="55" width="948" height="428" backgroundColor="#D1F7A1">
+					<mx:Label x="46" y="47" text="Thanks for using the service!" color="#000000" fontSize="30"/>
+					<mx:Label x="46" y="110" text="Give us feedback"/>
+					<mx:TextArea x="46" y="136" width="393" height="66"/>
+					<mx:Button x="74.5" y="348" label="Submit" click="{currentState=''}"/>
+					<mx:Button x="170.5" y="348" label="start again" click="{currentState=''}"/>
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
