@@ -1,6 +1,7 @@
 package com.vizzuality.markers
 {
-	import com.greensock.easing.Back;
+	import com.google.maps.Color;
+	import com.vizzuality.utils.StringUtils;
 	
 	import flash.display.Sprite;
 	import flash.text.TextField;
@@ -12,27 +13,46 @@ package com.vizzuality.markers
 	{
 		public function TooltipMarker(name:String) {
 			
-
-			
+			var background: Sprite = new Sprite();
+			var arrow: Sprite = new Sprite();
 			var tf:TextField = new TextField();
             var format:TextFormat = tf.getTextFormat();
             format.font = "Arial";
-            format.size = 10;
+            format.size = 11;
             format.bold=true;
 			format.align = TextFormatAlign.CENTER;	                    
-           	format.leftMargin = 6;
-           	format.rightMargin = 6;
+           	format.leftMargin = 5;
+           	if (name == "Click to go to this PA") {
+           		format.rightMargin = 15;
+           	} else {
+	           	format.rightMargin = 5;
+           	}
+           	format.align = "center";
            	
             tf.defaultTextFormat = format;
-            tf.background = true;
-            tf.backgroundColor = 0x333333;
-
-            tf.text = name;
+            tf.text = StringUtils.truncate(name,30);
             tf.textColor = 0xffffff;
 			tf.autoSize = TextFieldAutoSize.LEFT;
             tf.x = 0;
-            tf.y = 0;
-            addChild(tf);
+            tf.y = 4;
+            
+            background.addChild(tf);
+            background.graphics.beginFill(0x000000,0.8);
+            background.graphics.drawRoundRect(0,0,tf.width,24,5);
+            background.x = -tf.width/2;
+            background.y = 0;
+            addChild(background);
+            
+            arrow.graphics.lineStyle(0.1,0x000000,0.27);
+            arrow.graphics.beginFill(0x000000,0.8);
+            arrow.graphics.moveTo(0,0);
+			arrow.graphics.lineTo(16, 0);
+			arrow.graphics.lineTo(8, 8);
+			arrow.graphics.lineTo(0, 0);
+			arrow.x = -8;
+			arrow.y = 24;
+			addChild(arrow);     
+            
 			super();
 		}
 		
