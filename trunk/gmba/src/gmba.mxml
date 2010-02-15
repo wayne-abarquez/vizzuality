@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+	<mx:states>
+		<mx:State name="taxon">
+			<mx:SetProperty target="{label1}" name="x" value="268"/>
+			<mx:SetProperty target="{hslider1}" name="x" value="268"/>
+			<mx:SetProperty target="{label2}" name="x" value="268"/>
+			<mx:SetProperty target="{label3}" name="x" value="400"/>
+			<mx:SetProperty target="{button1}" name="width" value="242"/>
+			<mx:AddChild position="lastChild">
+				<mx:Canvas width="936" height="435" horizontalCenter="0" verticalCenter="0">
+					<mx:Canvas width="798" height="303" backgroundColor="#FBA3A3" y="44" x="69">
+						<mx:Label x="206" y="130" text="Taxonomy browser" width="408" height="53" fontSize="36"/>
+					</mx:Canvas>
+					<mx:Button x="69" y="379" label="Go Back" click="{currentState=''}"/>
+					<mx:Button x="165" y="379" label="Continue" click="{currentState='bbox'}"/>
+					<mx:Label x="10" y="10" text="Select a taxon group to further filter the result" width="493" fontSize="20"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="bbox">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas width="916" height="399" horizontalCenter="0" verticalCenter="0">
+					<mx:Label x="10" y="10" text="Select the geographical extent of your query" fontSize="20"/>
+					<mx:Canvas x="74.5" y="120" width="342" height="200" backgroundColor="#FBE2E2">
+					</mx:Canvas>
+					<mx:Canvas x="499.5" y="120" width="342" height="200" backgroundColor="#FBE2E2">
+					</mx:Canvas>
+					<mx:Label x="74" y="79" text="Just what is in the current map" fontSize="14"/>
+					<mx:Label x="499" y="79" text="The whole world" fontSize="14"/>
+					<mx:Button x="74.5" y="348" label="Go Back" click="{currentState='taxon'}"/>
+					<mx:Button x="170.5" y="348" label="Continue" click="{currentState='processing'}"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="processing">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas width="1003" height="391" backgroundColor="#DCD3D3" horizontalCenter="0" verticalCenter="0">
+					<mx:Label text="processing data" fontSize="30" horizontalCenter="-369" verticalCenter="-172"/>
+					<mx:Label text="We are analyzing your query and in short seconds we will give you some stats" fontSize="20" horizontalCenter="0" verticalCenter="0"/>
+					<mx:Button x="469" y="324" label="continue" click="{currentState='stats'}"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="stats">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas width="955" height="380" horizontalCenter="0" verticalCenter="0">
+					<mx:Canvas x="28" y="37" width="239" height="243" backgroundColor="#E2F7C0">
+						<mx:Label x="20" y="21" text="Your query is:"/>
+						<mx:Label x="20" y="60" text="Altitude: 2000 - 4000 m."/>
+						<mx:Label x="20" y="86" text="Roughness: 100 - 200"/>
+						<mx:Label x="20" y="112" text="Bioclimatic zones: All"/>
+						<mx:Label x="20" y="138" text="Taxon group: Animalia"/>
+						<mx:Label x="20" y="164" text="Taxon group: Animalia"/>
+					</mx:Canvas>
+					<mx:Canvas x="409" y="37" width="365" height="243" backgroundColor="#E2F7C0">
+						<mx:Label x="19" y="20" text="The data you are about to download is:"/>
+						<mx:Label x="20" y="60" text="Size: 200MB"/>
+						<mx:Label x="20" y="86" text="Number occurrence: 23"/>
+						<mx:Label x="20" y="112" text="Number of observations: 12"/>
+						<mx:Label x="20" y="138" text="Taxon group: Animalia"/>
+						<mx:Label x="20" y="164" text="Number of specimens: 3445"/>
+						<mx:Label x="20" y="190" text="Number of providers:  69"/>
+					</mx:Canvas>
+					<mx:CheckBox x="409" y="306" label="I accept the terms of service"/>
+					<mx:Button x="74.5" y="348" label="Go Back" click="{currentState='bbox'}"/>
+					<mx:Button x="170.5" y="348" label="Download" click="{currentState=''}"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+
+<mx:Script>
+    <![CDATA[
+    	import com.google.maps.styles.FillStyle;
+    	import mx.states.SetStyle;
+    
+	   	import com.google.maps.interfaces.IOverlay;
+    	import com.google.maps.overlays.Marker;
+    	import com.google.maps.overlays.PolylineOptions;
+    	import com.google.maps.overlays.Polyline;
+    	import com.google.maps.overlays.MarkerOptions;
+    	import mx.collections.ArrayCollection;
+    	import mx.controls.Alert;
+    	import mx.rpc.events.ResultEvent;
+    	import mx.rpc.events.FaultEvent;
+   
+	    import com.google.maps.LatLng;
+	    import com.google.maps.Map;
+	    import com.google.maps.MapEvent;
+	    import com.google.maps.MapType;
+	    import com.google.maps.controls.ZoomControl;
+	    
+	    private function onMapReady(event:Event):void {
+		    this.map.setCenter(new LatLng(40.736072,-3.992062), 14, MapType.NORMAL_MAP_TYPE);
+		    this.map.addControl(new ZoomControl());
+			this.map.setZoom(3);
+	    }
+
+    ]]>
+</mx:Script>
+
+	<mx:Canvas width="100%" height="27" top="0" x="0" backgroundColor="#333333">
+		<mx:Canvas height="100%" x="0" width="160" backgroundColor="#FF3300">
+			<mx:Label height="16" width="150" fontSize="10" y="6" x="9" text="LOGO" color="#ffffff"/>
+		</mx:Canvas>
+		<mx:Label y="6" text="help | contact | about" color="#999999" right="190"/>
+	</mx:Canvas>
+
+	<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)"
+  width="100%" key="ABQIAAAAaigC1giQPYMDEquY7dUK4BT2yXp_ZAY8_ufC3CFXhHIE1NvwkxT-xGQb-JBb0LVY2FvevUjSt0so0A" top="27" bottom="93">
+	</maps:Map>
+	
+	<mx:Canvas id="canvas1" x="0" width="100%" height="94" backgroundColor="#333333" bottom="0">
+		<mx:HSlider x="74" y="40"/>
+		<mx:HSlider x="268" y="40" id="hslider1"/>
+		<mx:Label x="74" y="11" text="Altitude" color="#FBFDFD"/>
+		<mx:Label x="74" y="60" text="0" color="#FBFDFD"/>
+		<mx:Label x="201" y="60" text="900" color="#FBFDFD" width="28"/>
+		<mx:Label x="268" y="11" text="Roughness" color="#FBFDFD" id="label1"/>
+		<mx:Label x="268" y="60" text="0" color="#FBFDFD" id="label2"/>
+		<mx:Label x="400" y="60" text="800" color="#FBFDFD" id="label3"/>
+		<mx:Label x="462" y="9" text="Veg Codes" color="#FBFDFD"/>
+		<mx:CheckBox x="463" y="26" label="Type 1" color="#FFFFFF"/>
+		<mx:CheckBox x="463" y="45" label="Type 2" color="#FFFFFF"/>
+		<mx:CheckBox x="463" y="64" label="Type 3" color="#FFFFFF"/>
+		<mx:CheckBox x="534" y="26" label="Type 4" color="#FFFFFF"/>
+		<mx:CheckBox x="534" y="45" label="Type 5" color="#FFFFFF"/>
+		<mx:CheckBox x="534" y="64" label="Type 6" color="#FFFFFF"/>
+		<mx:CheckBox x="605" y="26" label="Type 7" color="#FFFFFF"/>
+		<mx:CheckBox x="605" y="45" label="Type 8" color="#FFFFFF"/>
+		<mx:CheckBox x="605" y="64" label="Type 9" color="#FFFFFF"/>
+		<mx:Button x="734" y="40" label="Download biodiversity data" id="button1" click="{currentState='taxon'}"/>
+	</mx:Canvas>
+	
+</mx:Application>
