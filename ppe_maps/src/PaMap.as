@@ -71,7 +71,7 @@ package {
 		private var domain: String;
 		
 		private var paId:Number;
-		private var loadingSprite: TooltipMarker = new TooltipMarker('Click to go to this PA');;
+		private var loadingSprite: TooltipMarker = new TooltipMarker('Click to go to this PA');
 		private var infoWindowToOpen: PAInfoWindow;
 		private var paMarker: PAMarker;
 		private var paDictionary: Dictionary = new Dictionary();
@@ -110,7 +110,7 @@ package {
         [Embed(source="assets/poiMarker.png")]
         private var PoiMarkerAsset:Class;
         
-/*         [Embed(source="assets/imageButton.png")]
+/*      [Embed(source="assets/imageButton.png")]
         private var imageButton:Class; */
 
 		private var terrainButtonBitmap:Bitmap = new PAterrainButton();
@@ -276,7 +276,9 @@ package {
 				
 				var icobm:Bitmap = new PoiMarkerAsset();
 				var iconbmsp:Sprite = new Sprite();
-				iconbmsp.mouseChildren=false;
+/* 				iconbmsp.mouseChildren=false;
+				iconbmsp.buttonMode = true;
+				iconbmsp.mouseEnabled = true; */
 				iconbmsp.addChild(icobm);
 			
 				//var icosp:Sprite = new Sprite();
@@ -291,9 +293,11 @@ package {
 		       	 poisDict[poiMarker]=poi;
 		       	 
 		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
+		       		try {removeChild(loadingSprite);}
+					catch (e:Error){}
 		       		var tooltipPoi:TooltipMarker = new TooltipMarker(poisDict[ev.currentTarget].name);
-					tooltipPoi.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
-					tooltipPoi.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
+					tooltipPoi.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 19;
+					tooltipPoi.y = (map.fromLatLngToViewport(ev.latLng) as Point).y - 29;
 		       		addChild(tooltipPoi);
 	       			poisTooltip[ev.currentTarget] = tooltipPoi;
 		       	});
@@ -301,6 +305,7 @@ package {
 		       		if (poisTooltip[ev.currentTarget] !=null && (poisTooltip[ev.currentTarget] as TooltipMarker).parent!=null) {
 			       		removeChild(poisTooltip[ev.currentTarget] as TooltipMarker);
 		       		}
+		       		addChild(loadingSprite);
 		       	});  	
 		       	 
 		       	 
@@ -495,12 +500,11 @@ package {
 			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OVER_AREA,function(event:CustomMapEvent):void {
 					mouseOverPa=true; 
 					if (loadingSprite.parent==null) {
-						/* loadingSprite = new TooltipMarker('Click to go to this PA'); */
 						addChild(loadingSprite);
 					}
 
-					loadingSprite.x = event._local_x + 15;
-					loadingSprite.y = event._local_y + 15;
+					/* loadingSprite.x = event._local_x + 15;
+					loadingSprite.y = event._local_y - 15; */
 					
 					addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
 				});
@@ -516,14 +520,6 @@ package {
 			if(mouseOverPa && !mp.pointInPolygon(event.latLng)) {
 				map.closeInfoWindow();
 				clickPoint = event.latLng;
-/* 				loadingSprite.graphics.lineStyle(1,0x666666,1);
-				loadingSprite.graphics.beginFill(0xFFFFFF);
-				loadingSprite.graphics.drawRoundRect(0,0,30,30,5,5);
-				loadingSprite.graphics.endFill();
-				addChild(loadingSprite);
-				loadingSprite.x = (map.fromLatLngToViewport(event.latLng) as Point).x;
-				loadingSprite.y = (map.fromLatLngToViewport(event.latLng) as Point).y;
-				this.addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading); */
 				
 				//get PA clicked
 				var dsLoader:URLLoader = new URLLoader();
@@ -646,8 +642,8 @@ package {
 	       	if (photo.title !='') {
 		       	marker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
 		       		tooltip = new TooltipMarker(photo.title);
-					tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 28;
-					tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y + 28;
+					tooltip.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 15;
+					tooltip.y = (map.fromLatLngToViewport(ev.latLng) as Point).y - 38;
 		       		addChild(tooltip);
 		       	});
 		       	marker.addEventListener(MapMouseEvent.ROLL_OUT, function(ev:MapMouseEvent):void {
@@ -659,6 +655,15 @@ package {
         	infowindow.load(new URLRequest(photo.imageUrl));
         	infowindow.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void {
         		navigateToURL(new URLRequest(photo.sourceUrl));
+        	});
+        	
+        	infowindow.addEventListener(MouseEvent.MOUSE_OVER, function(event:MouseEvent):void {
+        		try {removeChild(loadingSprite);}
+					catch (e:Error){}
+        	});
+        	
+        	infowindow.addEventListener(MouseEvent.MOUSE_OUT, function(event:MouseEvent):void {
+        		addChild(loadingSprite);
         	});
         	
         	infowindow.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void {
@@ -760,8 +765,8 @@ package {
 		
 		
 		private function onMoveCursorLoading(ev:MouseEvent):void {
-			loadingSprite.x = ev.stageX + 15;
-			loadingSprite.y = ev.stageY + 15;
+			loadingSprite.x = ev.stageX;
+			loadingSprite.y = ev.stageY - 35;
 		} 
 		
 		
