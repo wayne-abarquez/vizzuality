@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+
+	<mx:Script>
+		<![CDATA[
+			[Bindable] public var minValue: String = "0";
+			[Bindable] public var maxValue: String = "1000";
+		]]>
+	</mx:Script>
+
+	<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
+	<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
+	<mx:Label text="{minValue}" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
+	<mx:Label text="{maxValue}" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
+	<mx:HSlider  enabled="true" top="0" left="5" right="20" minimum="{Number(minValue)}" maximum="{Number(maxValue)}" width="100%" thumbCount="2"/>
+</mx:Canvas>
