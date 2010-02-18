@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="234" height="620" xmlns:GMBAMap="org.vizzuality.view.GMBAMap.*" xmlns:components="org.vizzuality.view.GMBAMap.components.*" 
-	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="234" height="620"
+	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components1="com.vizzuality.view.components.*">
 	<mx:VBox height="100%" width="100%" verticalGap="0">
-		<components:Logo x="0" y="0" borderThickness="0"/>
-		<components:GMBASlider title="ALTITUDE"/>
-		<components:GMBASlider title="ROUGHNESS"/>
-		<components:VegetationType />
-		<components:Taxon />
+		<components1:Logo x="0" y="0" borderThickness="0"/>
+		<components1:GMBASlider title="ALTITUDE"/>
+		<components1:GMBASlider title="ROUGHNESS"/>
+		<components1:VegetationType />
+		<components1:Taxon />
 	</mx:VBox>
 </mx:Canvas>	
 	

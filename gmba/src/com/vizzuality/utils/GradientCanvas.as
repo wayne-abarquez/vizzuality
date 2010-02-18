@@ -1,4 +1,4 @@
-﻿package org.vizzuality.components {
+﻿package com.vizzuality.utils {
 	
 	/**
 	 * @author Arnaud FOUCAL - http://afoucal.free.fr - afoucal@free.fr

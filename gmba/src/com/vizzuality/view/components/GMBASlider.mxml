@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="81" xmlns:components="org.vizzuality.view.GMBAMap.components.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="81" xmlns:components="com.vizzuality.view.components.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 
 	<mx:Script>
 		<![CDATA[

@@ -1,4 +1,4 @@
-package org.vizzuality.utils {
+package com.vizzuality.utils {
     
     import mx.core.UIComponent;
     

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<components:GradientCanvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="org.vizzuality.components.*"
+<components:GradientCanvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="com.vizzuality.utils.*"
 	colorsConfiguration="[2]" fillColors="[#333333, #242527]" fillAlphas="[1,1]" gradientRatio="[0,255]" gradientType="linear" angle="90" borderStyle="none" borderThickness="0" addedToStage="initSWFAddress()"
-    removedFromStage="destroySWFAddress()" currentStateChange="setSWFAddress()" xmlns:GMBAMap="org.vizzuality.view.GMBAMap.*">
+    removedFromStage="destroySWFAddress()" currentStateChange="setSWFAddress()" xmlns:view="com.vizzuality.view.*">
 
 
 
 <mx:Script>
     <![CDATA[
-    	import org.vizzuality.resources.Resource;
-    	import org.vizzuality.utils.Helper;
+    	import com.vizzuality.utils.Resource;
+    	import com.vizzuality.utils.Helper;
     	import swf.SWFAddressEvent;
     	import swf.SWFAddress;
     	import com.google.maps.LatLng;
@@ -51,7 +51,7 @@
 </mx:Script>
 	
 	<mx:VBox verticalGap="0" height="100%" width="100%">
-		<GMBAMap:Toolbar/>
+		<view:Toolbar />
 		<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
 			<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 			<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
