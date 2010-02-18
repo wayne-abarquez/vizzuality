@@ -1,10 +1,10 @@
-package org.vizzuality.events
+package com.vizzuality.events
 {
   	import flash.events.Event;
   	import flash.events.EventDispatcher;
   	
-  	public class EventDispatcher {
-    	protected static var disp:EventDispatcher;
+  	public class MyEventDispatcher extends EventDispatcher {
+    	protected static var disp:MyEventDispatcher;
     	
     	
     	public static function addEventListener(p_type:String, p_listener:Function, p_useCapture:Boolean=false, p_priority:int=0, p_useWeakReference:Boolean=false):void {
@@ -22,13 +22,10 @@ package org.vizzuality.events
     		
     		
     		
-    		
   		// Public API that dispatches an event
-  		public static function selectCountryForDownload(country:Country):void {
-   			dispatchEvent(new DataSelectionEvent(DataSelectionEvent.COUNTRY_ADDED,country));
-   		}
-   		
-   		
-   		
+    	public static function updatedSliders(type:String,minVal:Number=NaN,maxVal:Number=NaN,vegtypes:Array=null):void {
+   			dispatchEvent(new SliderChangeEvent(type,minVal,maxVal,vegtypes));
+    	}	
+
     }
 }

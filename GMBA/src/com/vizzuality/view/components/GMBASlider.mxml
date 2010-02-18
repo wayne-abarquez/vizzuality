@@ -6,13 +6,17 @@
 			[Bindable] public var title: String = "UNDEFINED";
 			[Bindable] public var maxValue: Number = 1000;
 			[Bindable] public var minValue: Number = 0;
+			
+			[Bindable] public var typeSlider:String;
+			
+			
 		]]>
 	</mx:Script>
 	
 
 	<mx:VBox verticalGap="0" left="20" top="15">
 		<mx:Label text="{title}" color="#FFFFFF" fontWeight="normal" fontSize="13" />
-		<components:VizzHSlider width="215"/>
+		<components:VizzHSlider width="215" typeSlider="{typeSlider}"/>
 	</mx:VBox>
 	<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
 	<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
