@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="97" xmlns:components="org.vizzuality.components.*" borderStyle="none">
+	<mx:Script>
+		<![CDATA[
+			import org.vizzuality.resources.Resource;
+		]]>
+	</mx:Script>
+
+	<mx:Image source="{Resource.LOGO}" width="139" height="55" left="25" top="25"/>
+	<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+</mx:Canvas>
