@@ -12,6 +12,9 @@ package com.vizzuality.utils
         
         [Embed (source="assets/downArrow.png" )]
         public static const DOWN_ARROW:Class;
+        
+        [Embed (source="assets/magnifier.png" )]
+        public static const MAGNIFIER:Class;
 		
 	}
 }

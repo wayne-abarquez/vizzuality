@@ -46,7 +46,7 @@
 			<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 			<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
 			<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="21"/>
-			<mx:Button left="20" top="30" label="Download data" color="#FFFFFF"/>
+			<mx:Button left="20" top="30" width="190" height="30" label="Download data" color="#FFFFFF" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 		</mx:Canvas>
 	</mx:VBox>
 	
