@@ -5,10 +5,11 @@
 			import org.vizzuality.resources.Resource;
 		]]>
 	</mx:Script>
+	
 	<mx:VBox verticalGap="0" left="20" top="15">
 		<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 		<mx:Spacer height="5"/>
-		<mx:TextInput />
+		<mx:TextInput  text="All taxons" styleName="taxon" verticalCenter="0"/>
 		<mx:Label text="explore the taxonomic tree"  fontSize="11" color="#FFCC00" textDecoration="underline"/>
 	</mx:VBox>
 	<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />

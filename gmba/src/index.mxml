@@ -3,6 +3,9 @@
 	xmlns:ns1="com.google.maps.*" xmlns:ns2="org.vizzuality.view.GMBAMap.*" applicationComplete="initSWFAddress()"
     currentStateChange="setSWFAddress()" >
 	
+	
+	<mx:Style source="org/vizzuality/skin/style.css"/>
+	
 	<mx:states>
 		<mx:State name="Map">
 			<mx:RemoveChild target="{home}"/>
