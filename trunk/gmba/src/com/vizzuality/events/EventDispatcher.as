@@ -1,4 +1,4 @@
-package org.vizzuality.events
+package com.vizzuality.events
 {
 	public class EventDispatcher
 	{

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="255" xmlns:components="org.vizzuality.view.GMBAMap.components.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="255" xmlns:components="com.vizzuality.view.components.*">
 	<mx:VBox verticalGap="0" left="20" top="15">
 		<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 		<mx:VBox verticalGap="1">

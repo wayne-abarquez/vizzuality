@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="97" xmlns:components="org.vizzuality.components.*" borderStyle="none">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="97" xmlns:components="com.vizzuality.components.*" borderStyle="none">
 	<mx:Script>
 		<![CDATA[
-			import org.vizzuality.resources.Resource;
+			import com.vizzuality.utils.Resource;
 		]]>
 	</mx:Script>
 

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:components="org.vizzuality.components.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" 
-	xmlns:ns1="com.google.maps.*" xmlns:ns2="org.vizzuality.view.GMBAMap.*" applicationComplete="initSWFAddress()"
-    currentStateChange="setSWFAddress()" >
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:components="com.vizzuality.components.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" 
+	xmlns:ns1="com.google.maps.*" xmlns:ns2="com.vizzuality.view.GMBAMap.*" applicationComplete="initSWFAddress()"
+    currentStateChange="setSWFAddress()" xmlns:view="com.vizzuality.view.*">
 	
 	
-	<mx:Style source="org/vizzuality/skin/style.css"/>
+	<mx:Style source="com/vizzuality/skin/style.css"/>
 	
 	<mx:states>
 		<mx:State name="Map">
 			<mx:RemoveChild target="{home}"/>
 			<mx:SetStyle target="{vbox}" name="backgroundColor" value="#FFFFFF"/>
 			<mx:AddChild relativeTo="{vbox}" position="lastChild">
-				<ns2:GMBAMap>
-				</ns2:GMBAMap>
+				<view:GMBAMap />
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Home"/>
@@ -20,7 +19,7 @@
 	
 	<mx:Script>
 		<![CDATA[
-			import org.vizzuality.utils.Helper;
+			import com.vizzuality.utils.Helper;
 			import swf.SWFAddressEvent;
 			import swf.SWFAddress;
 
