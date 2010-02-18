@@ -22,9 +22,8 @@
         public var depth:int=1;	
 	    
 	    private function onMapReady(event:Event):void {
-		    this.map.setCenter(new LatLng(40.736072,-3.992062), 14, MapType.NORMAL_MAP_TYPE);
+		    this.map.setCenter(new LatLng(40.736072,-3.992062), 2, MapType.PHYSICAL_MAP_TYPE);
 		    this.map.addControl(new ZoomControl());
-			this.map.setZoom(3);
 	    }
 		
         private function initSWFAddress():void {
