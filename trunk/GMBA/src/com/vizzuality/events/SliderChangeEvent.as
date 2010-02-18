@@ -11,12 +11,12 @@ package com.vizzuality.events
 		
 		public var minVal:Number;
 		public var maxVal:Number;
-		public var vegTypes:Array;
+		public var vegtypes:Array;
 		
 		public function SliderChangeEvent(type:String,_minVal:Number=NaN,_maxVal:Number=NaN,_vegtypes:Array=null, bubbles:Boolean=false, cancelable:Boolean=false) {
 			minVal=_minVal;
 			maxVal=_maxVal;
-			vegTypes=_vegTypes;
+			vegtypes=_vegtypes;
 
 			super(type, bubbles, cancelable);
 		}
