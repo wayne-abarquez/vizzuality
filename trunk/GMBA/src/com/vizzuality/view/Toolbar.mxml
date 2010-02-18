@@ -1,12 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="234" height="620"
-	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components1="com.vizzuality.view.components.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="620"
+	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
 	<mx:VBox height="100%" width="100%" verticalGap="0">
-		<components1:Logo x="0" y="0" borderThickness="0"/>
-		<components1:GMBASlider title="ALTITUDE"/>
-		<components1:GMBASlider title="ROUGHNESS"/>
-		<components1:VegetationType />
-		<components1:Taxon />
+	
+		<!--LOGO-->
+		<components:Logo x="0" y="0" borderThickness="0"/>
+		
+		<!--ALTITUDE-->
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
+			<mx:VBox verticalGap="0" left="20" top="15">
+				<mx:Label text="ALTITUDE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
+				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
+					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
+					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
+					<mx:Label text="8000" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
+					<mx:HSlider id="sliderAltitude" enabled="true" top="0" left="5" right="20" minimum="0" maximum="8000" 
+						width="100%" thumbCount="2" liveDragging="true" />
+				</mx:Canvas>
+			</mx:VBox>
+			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
+			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+		</mx:Canvas>
+		
+		<!--ROUGHNESS-->
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
+			<mx:VBox verticalGap="0" left="20" top="15">
+				<mx:Label text="ROUGHNESS" color="#FFFFFF" fontWeight="normal" fontSize="13" />
+				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
+					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
+					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
+					<mx:Label text="8000" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
+					<mx:HSlider id="sliderRoughness" enabled="true" top="0" left="5" right="20" minimum="0" maximum="8000" 
+						width="100%" thumbCount="2" liveDragging="true" />
+				</mx:Canvas>
+			</mx:VBox>
+			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
+			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+		</mx:Canvas>
+		
+		<!--VEGETATION-->
+		<mx:Canvas width="100%" height="255">
+			<mx:VBox verticalGap="0" left="20" top="15">
+				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
+				<mx:VBox verticalGap="1">
+					<mx:Spacer height="5" />
+					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}"/>
+					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{(type2.selected)? type2.selected=false: type2.selected=true}"/>
+					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Adjacent above" click="{(type3.selected)? type3.selected=false: type3.selected=true}"/>
+					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Adjacent below" click="{(type4.selected)? type4.selected=false: type4.selected=true}"/>
+					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Below" click="{(type5.selected)? type5.selected=false: type5.selected=true}"/>
+					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Dry desert" click="{(type6.selected)? type6.selected=false: type6.selected=true}"/>
+					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Arid grassland" click="{(type7.selected)? type7.selected=false: type7.selected=true}"/>
+					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Above - Arid" click="{(type8.selected)? type8.selected=false: type8.selected=true}"/>
+					<components:ChooseVegetableType id="type9" selectedColor="#915659" unselectedColor="#492B2D" textType="Below - Arid" click="{(type9.selected)? type9.selected=false: type9.selected=true}"/>
+				</mx:VBox>
+			</mx:VBox>
+			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
+			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+		</mx:Canvas>
+			
+			
+		<!--TAXON-->
+		<components:Taxon />
+		
+		
+		<!--<components:GMBASlider title="ALTITUDE"/>
+		<components:GMBASlider title="ROUGHNESS"/>-->
+		<!--<components:VegetationType />-->		
+		
+		
 	</mx:VBox>
 </mx:Canvas>	
 	

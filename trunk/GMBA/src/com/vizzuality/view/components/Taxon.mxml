@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="110">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="110" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
 	<mx:Script>
 		<![CDATA[
+			import com.adobe.serialization.json.JSON;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.collections.ArrayCollection;
 			import com.vizzuality.utils.Resource;
+			
+			[Bindable] private var taxonProvider: ArrayCollection = new ArrayCollection();
+			
+			private function onChangeText():void {
+				/* list.visible = false;
+				if (searchText.text.length>1) {
+					taxonRequest.url="http://ecat-dev.gbif.org/ws/usage?rkey=1&q=" + searchText.text;
+					taxonRequest.send();
+				} */
+			}
+			
+			/* private function onResultTaxon(event:ResultEvent):void {
+				var res:Array = JSON.decode(event.result as String);
+				taxonProvider = new ArrayCollection(res);
+				list.visible = true;
+			}
+			
+			private function onFaultTaxon(event:FaultEvent):void {
+			} */
+			
+			
 		]]>
 	</mx:Script>
 	
 	<mx:VBox verticalGap="0" left="20" top="15">
 		<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 		<mx:Spacer height="5"/>
-		<mx:TextInput  text="All taxons" styleName="taxon" verticalCenter="0" />
+		<!--<components:SearchComponent bottom="68"  right="20"/>--> <!--listPosition="up"-->
+		<mx:TextInput  text="All taxons" styleName="taxon" verticalCenter="0" id="searchText" change="onChangeText()"/>
 		<mx:Label text="explore the taxonomic tree"  fontSize="11" color="#FFCC00" textDecoration="underline" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
 	</mx:VBox>
+
+	
+	<!--<mx:HTTPService  method="GET" id="taxonRequest" result="onResultTaxon(event)" fault="onFaultTaxon(event)" resultFormat="text" concurrency="last"/>-->
+
+	
+	
 	<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
 </mx:Canvas>

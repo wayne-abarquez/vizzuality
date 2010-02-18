@@ -14,7 +14,7 @@
 			[Bindable] public var minValue: String = "0";
 			[Bindable] public var maxValue: String = "1000";
 			
-			private function onSliderChange(event:Event) {
+			private function onSliderChange(event:Event):void {
 				if(typeSlider==ALTITUDE) {
 					MyEventDispatcher.updatedSliders(SliderChangeEvent.ALTITUDE_RANGE_CHANGED,slider.values[0],slider.values[1]);
 				}
@@ -22,8 +22,6 @@
 				if(typeSlider==RELIEF) {
 					//MyEventDispatcher.updateAltitudeRange()
 				}
-				
-				
 			}
 			
 		]]>
