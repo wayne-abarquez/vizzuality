@@ -23,8 +23,6 @@
 	    import com.google.maps.controls.ZoomControl;
 	    
 	    	    
-        public var path:String="Map";
-        public var depth:int=1;	
         public var loadedTiles:Array=[];
         private var rasterLayer:RasterLayer;
 	    
