@@ -7,6 +7,9 @@
 
 <mx:Script>
     <![CDATA[
+    	import com.google.maps.MapTypeOptions;
+    	import com.google.maps.MapOptions;
+    	import com.google.maps.interfaces.IMapType;
     	import com.google.maps.overlays.TileLayerOverlay;
     	import com.vizzuality.maps.RasterLayer;
     	import com.vizzuality.utils.Resource;
@@ -25,8 +28,20 @@
         public var loadedTiles:Array=[];
         private var rasterLayer:RasterLayer;
 	    
+       private function onMapPreinitialize(event:Event):void {
+           var opts:MapOptions = new MapOptions();
+           var limitedZoomMapType:IMapType = new MapType(MapType.PHYSICAL_MAP_TYPE.getTileLayers(),
+                                                MapType.PHYSICAL_MAP_TYPE.getProjection(),
+                                                "TerrainLimited",
+                                                new MapTypeOptions({maxResolution: 6, minResolution: 2}));
+           opts.mapTypes = [limitedZoomMapType];
+           opts.center=new LatLng(40.736072,-3.992062);
+           opts.zoom=2;
+           map.setInitOptions(opts);
+       }
+	    
+	    
 	    private function onMapReady(event:Event):void {
-		    this.map.setCenter(new LatLng(40.736072,-3.992062), 2, MapType.PHYSICAL_MAP_TYPE);
 		    this.map.addControl(new ZoomControl());
 		    
 		    rasterLayer = new RasterLayer("http://192.168.1.131:8080/geoserver/gwc/service/gmaps?layers=cite:raster&zoom=|Z|&x=|X|&y=|Y|",loadedTiles);
@@ -51,7 +66,7 @@
 	</mx:VBox>
 	
 	<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" left="234">
-		<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)" key="no-key" top="5" bottom="5" right="5" left="5"/>
+		<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="no-key" top="5" bottom="5" right="5" left="5"/>
 		<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="0" top="24"/>
 	</mx:Canvas>
 </components:GradientCanvas>
