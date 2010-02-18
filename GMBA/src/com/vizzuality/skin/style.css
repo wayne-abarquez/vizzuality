@@ -1,0 +1,12 @@
+/* CSS file */
+TextInput.taxon {
+		backgroundSize: auto;
+		color: #8D8D8D;
+		fontSize: 13;
+		backgroundColor: #1A1A1A;
+		cornerRadius: 3;
+		borderStyle: solid;
+		paddingLeft: 5;
+		paddingRight: 18;
+		borderThickness: 0;
+}
