@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundColor="#333333" addedToStage="initSWFAddress()" creationComplete="init()"
-    removedFromStage="destroySWFAddress()" currentStateChange="setSWFAddress()">
+<components:GradientCanvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="org.vizzuality.components.*"
+	colorsConfiguration="[2]" fillColors="[#333333, #242527]" fillAlphas="[1,1]" gradientRatio="[0,255]" gradientType="linear" angle="90" borderStyle="none" borderThickness="0" addedToStage="initSWFAddress()"
+    removedFromStage="destroySWFAddress()" currentStateChange="setSWFAddress()" xmlns:GMBAMap="org.vizzuality.view.GMBAMap.*">
+
 
 
 <mx:Script>
     <![CDATA[
+    	import org.vizzuality.resources.Resource;
     	import org.vizzuality.utils.Helper;
     	import swf.SWFAddressEvent;
     	import swf.SWFAddress;
@@ -34,24 +37,31 @@
         }
         
         private function setSWFAddress():void {
-            Helper.setSWFAddress(this, path, depth);
+            SWFAddress.setTitle('GMBA - Map');
+            SWFAddress.setValue('/Map');
         }
         
         private function handleSWFAddress(event:SWFAddressEvent):void {
-            if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
-                Helper.handleSWFAddress(this, event, depth);
-            }
+			//TODO: when about will be created, we must to change/check the status
+            SWFAddress.setTitle('GMBA - Map');
+            SWFAddress.setValue('/Map');
         }
         
-        private function init():void {
-			currentState='';
-		}
-
-
     ]]>
 </mx:Script>
-
+	
+	<mx:VBox verticalGap="0" height="100%" width="100%">
+		<GMBAMap:Toolbar/>
+		<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
+			<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
+			<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
+			<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="21"/>
+			<mx:Button left="20" top="30" label="Download data" color="#FFFFFF"/>
+		</mx:Canvas>
+	</mx:VBox>
+	
 	<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" left="234">
 		<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)" key="no-key" top="5" bottom="5" right="5" left="5"/>
+		<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="0" top="24"/>
 	</mx:Canvas>
-</mx:Canvas>
+</components:GradientCanvas>

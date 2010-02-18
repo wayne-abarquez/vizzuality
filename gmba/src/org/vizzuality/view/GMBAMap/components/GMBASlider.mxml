@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="81" xmlns:components="org.vizzuality.view.GMBAMap.components.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+
+	<mx:Script>
+		<![CDATA[
+			[Bindable] public var title: String = "UNDEFINED";
+			[Bindable] public var maxValue: Number = 1000;
+			[Bindable] public var minValue: Number = 0;
+		]]>
+	</mx:Script>
+	
+
+	<mx:VBox verticalGap="0" left="20" top="15">
+		<mx:Label text="{title}" color="#FFFFFF" fontWeight="normal" fontSize="13" />
+		<components:VizzHSlider width="215"/>
+	</mx:VBox>
+	<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
+	<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+	
+</mx:Canvas>
