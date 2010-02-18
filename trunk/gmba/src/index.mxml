@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:components="org.vizzuality.components.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" 
+	xmlns:ns1="com.google.maps.*" xmlns:ns2="org.vizzuality.view.GMBAMap.*" applicationComplete="initSWFAddress()"
+    currentStateChange="setSWFAddress()" >
+	
+	<mx:states>
+		<mx:State name="Map">
+			<mx:RemoveChild target="{home}"/>
+			<mx:SetStyle target="{vbox}" name="backgroundColor" value="#FFFFFF"/>
+			<mx:AddChild relativeTo="{vbox}" position="lastChild">
+				<ns2:GMBAMap>
+				</ns2:GMBAMap>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Home"/>
+	</mx:states>
+	
+	<mx:Script>
+		<![CDATA[
+			import org.vizzuality.utils.Helper;
+			import swf.SWFAddressEvent;
+			import swf.SWFAddress;
+
+            private function initSWFAddress():void {
+                handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
+                SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+            }
+
+            private function setSWFAddress():void {
+                Helper.setSWFAddress(this);
+            }
+            
+            private function handleSWFAddress(event:SWFAddressEvent):void {
+                //Helper.handleSWFAddress(this, event);
+                //var value:String = event.pathNames;
+                
+                
+            }
+		    
+
+		]]>
+	</mx:Script>
+	
+
+
+	<mx:VBox height="100%" width="100%" id="vbox">
+		<mx:Canvas height="100%" width="100%" id="home" backgroundColor="#333333">
+			<mx:Button click="{currentState='Map'}" horizontalCenter="0" verticalCenter="0" width="132" label="Change state"/>
+		</mx:Canvas>
+	</mx:VBox>
+</mx:Application>
