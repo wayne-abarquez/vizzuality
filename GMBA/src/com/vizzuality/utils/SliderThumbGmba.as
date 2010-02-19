@@ -30,8 +30,8 @@ package com.vizzuality.utils
             addEventListener(MouseEvent.MOUSE_MOVE, myMouseMoveHandler);
             addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
             addEventListener(MouseEvent.MOUSE_OUT, mouseOut);
-            addEventListener(Event.CHANGE, change);
-        }
+            /* addEventListener(Event.CHANGE, change);
+ */        }
         
         
         
