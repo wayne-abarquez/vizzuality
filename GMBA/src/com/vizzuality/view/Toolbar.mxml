@@ -64,13 +64,7 @@
 			
 		<!--TAXON-->
 		<components:Taxon />
-		
-		
-		<!--<components:GMBASlider title="ALTITUDE"/>
-		<components:GMBASlider title="ROUGHNESS"/>-->
-		<!--<components:VegetationType />-->		
-		
-		
+
 	</mx:VBox>
 </mx:Canvas>	
 	
