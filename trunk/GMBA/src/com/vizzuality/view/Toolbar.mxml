@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="620" minWidth="230"
 	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.events.SliderChangeEvent;
+			import mx.controls.sliderClasses.Slider;
+			import com.vizzuality.events.MyEventDispatcher;
+			
+			
+			private function onSliderChange(vent:Event):void {
+				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,[]);
+			}
+		]]>
+	</mx:Script>
 	<mx:VBox height="100%" width="100%" verticalGap="0" right="20" left="0">
 	
 		<!--LOGO-->
@@ -15,7 +27,7 @@
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
 					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
 					<mx:Label text="8000" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
-					<mx:HSlider id="sliderAltitude" enabled="true" top="0" left="5" right="20" minimum="0" maximum="8000" 
+					<mx:HSlider id="sliderAltitude" enabled="true" top="0" left="5" right="20" minimum="0" maximum="8000" values="{[0,8000]}" 
 						width="100%" thumbCount="2" liveDragging="true" />
 				</mx:Canvas>
 			</mx:VBox>
@@ -32,7 +44,7 @@
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
 					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
 					<mx:Label text="8000" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
-					<mx:HSlider id="sliderRoughness" enabled="true" top="0" left="5" right="20" minimum="0" maximum="8000" 
+					<mx:HSlider id="sliderRoughness" enabled="true" top="0" left="5" right="20" minimum="0" maximum="400"  values="{[0,400]}" 
 						width="100%" thumbCount="2" liveDragging="true" />
 				</mx:Canvas>
 			</mx:VBox>

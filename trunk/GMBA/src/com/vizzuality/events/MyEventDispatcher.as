@@ -23,8 +23,8 @@ package com.vizzuality.events
     		
     		
   		// Public API that dispatches an event
-    	public static function updatedSliders(type:String,minVal:Number=NaN,maxVal:Number=NaN,vegtypes:Array=null):void {
-   			dispatchEvent(new SliderChangeEvent(type,minVal,maxVal,vegtypes));
+    	public static function updatedSliders(altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
+   			dispatchEvent(new SliderChangeEvent(altitudeRange,reliefRange,vegtypes));
     	}	
 
     }
