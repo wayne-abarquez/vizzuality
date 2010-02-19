@@ -11,7 +11,7 @@ package com.vizzuality.events
 		public var reliefRange:Array;
 		public var vegtypes:Array;
 		
-		public function SliderChangeEvent(altitudeRange:Array,reliefRange:Array,vegtypes:Array, bubbles:Boolean=false, cancelable:Boolean=false) {
+		public function SliderChangeEvent(type:String,altitudeRange:Array,reliefRange:Array,vegtypes:Array, bubbles:Boolean=false, cancelable:Boolean=false) {
 			this.altitudeRange=altitudeRange;
 			this.reliefRange=reliefRange;
 			this.vegtypes=vegtypes;
