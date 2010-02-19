@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="255" xmlns:components="com.vizzuality.view.components.*">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="255" xmlns:components="com.vizzuality.view.components.*" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	<mx:VBox verticalGap="0" left="20" top="15">
 		<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
-		<mx:VBox verticalGap="1">
+		<mx:VBox verticalGap="1" width="100%">
 			<mx:Spacer height="5" />
 			<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}"/>
 			<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{(type2.selected)? type2.selected=false: type2.selected=true}"/>

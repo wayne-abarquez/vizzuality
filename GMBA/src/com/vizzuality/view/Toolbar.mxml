@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="620"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="620" minWidth="230"
 	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
-	<mx:VBox height="100%" width="100%" verticalGap="0">
+	<mx:VBox height="100%" width="100%" verticalGap="0" right="20" left="0">
 	
 		<!--LOGO-->
 		<components:Logo x="0" y="0" borderThickness="0"/>
 		
 		<!--ALTITUDE-->
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
-			<mx:VBox verticalGap="0" left="20" top="15">
+			<mx:VBox verticalGap="0" left="20" top="15" width="100%">
 				<mx:Label text="ALTITUDE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
@@ -25,7 +25,7 @@
 		
 		<!--ROUGHNESS-->
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
-			<mx:VBox verticalGap="0" left="20" top="15">
+			<mx:VBox verticalGap="0" left="20" top="15" width="100%">
 				<mx:Label text="ROUGHNESS" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
@@ -42,9 +42,9 @@
 		
 		<!--VEGETATION-->
 		<mx:Canvas width="100%" height="255">
-			<mx:VBox verticalGap="0" left="20" top="15">
+			<mx:VBox verticalGap="0" left="20" top="15" width="100%">
 				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
-				<mx:VBox verticalGap="1">
+				<mx:VBox verticalGap="1" width="100%">
 					<mx:Spacer height="5" />
 					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}"/>
 					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{(type2.selected)? type2.selected=false: type2.selected=true}"/>
