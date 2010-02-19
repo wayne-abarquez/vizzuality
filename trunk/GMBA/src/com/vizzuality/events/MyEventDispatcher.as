@@ -24,7 +24,7 @@ package com.vizzuality.events
     		
   		// Public API that dispatches an event
     	public static function updatedSliders(altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
-   			dispatchEvent(new SliderChangeEvent(altitudeRange,reliefRange,vegtypes));
+   			dispatchEvent(new SliderChangeEvent(SliderChangeEvent.SLIDER_CHANGED,altitudeRange,reliefRange,vegtypes));
     	}	
 
     }
