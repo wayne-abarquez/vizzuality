@@ -38,9 +38,9 @@
 		    private function onMapReady(event:Event):void {
 			    this.map.addControl(new ZoomControl());
 			    
-			    /* rasterLayer = new RasterLayer("http://192.168.1.131:8080/geoserver/gwc/service/gmaps?layers=cite:raster&zoom=|Z|&x=|X|&y=|Y|",loadedTiles);
-			    var tlo:TileLayerOverlay = new TileLayerOverlay(rasterLayer);
-			    map.addOverlay(tlo); */
+				rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png",loadedTiles);
+				var tlo:TileLayerOverlay = new TileLayerOverlay(rasterLayer);
+				map.addOverlay(tlo);
 		    }
 	    ]]>
 	</mx:Script>
