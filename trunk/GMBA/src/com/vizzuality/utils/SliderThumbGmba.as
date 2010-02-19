@@ -1,0 +1,117 @@
+package com.vizzuality.utils
+{
+	import mx.controls.sliderClasses.SliderThumb;
+  
+    import flash.events.MouseEvent;
+    import flash.filters.DropShadowFilter;
+    
+    import mx.controls.sliderClasses.Slider;
+    import mx.controls.sliderClasses.SliderThumb;
+
+    public class SliderThumbGmba extends SliderThumb {
+
+/*      public var isMoving:Boolean = false;
+        public var spr:DataTipeSlider;
+        public var gfxFade:FadeEffect;
+        public var isDisplayed:Boolean = false; */
+        
+            public function SliderThumbGmba()
+            {
+                super();
+/*             initListeners();
+            initSprite();
+            var shadow:DropShadowFilter = new DropShadowFilter();
+                shadow.distance = 3;
+                shadow.angle = 45;
+                spr.filters = [shadow];
+            gfxFade = new FadeEffect(spr);
+            spr.alpha = 0;    
+            addChild(spr);
+            useHandCursor = true; */
+            
+            
+            
+        }
+        
+ /*        private function initListeners():void{
+            addEventListener(MouseEvent.MOUSE_MOVE, myMouseMoveHandler);
+            addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
+            addEventListener(MouseEvent.MOUSE_OUT, mouseOut);
+        }
+        
+        
+        
+        
+        private function myMouseMoveHandler(event:MouseEvent):void
+            {    
+                if (isMoving)
+                {
+                    spr.setValue(String(Slider(owner).values[Slider(owner).value]));
+                }
+            }
+            
+            
+        private function mouseOver(evt:MouseEvent):void {
+            if(!isDisplayed){
+                    isDisplayed = true;
+                    gfxFade.show = true;
+                    spr.setValue(String(Slider(owner).values[Slider(owner).value]));
+                    gfxFade.play();
+            }
+                
+        }
+        
+        private function mouseOut(evt:MouseEvent):void {
+            if(isDisplayed && !isMoving){
+                    isDisplayed = false;
+                    gfxFade.show = false;
+                    spr.setValue(String(Slider(owner).values[Slider(owner).value]));
+                    gfxFade.play();
+            }
+                
+        }
+        
+        override protected function mouseDownHandler(event:MouseEvent):void
+            {
+                super.mouseDownHandler(event);
+                isMoving = true;
+                
+                
+                
+            }
+            
+        override protected function mouseUpHandler(event:MouseEvent):void
+            {
+                super.mouseUpHandler(event);
+                isMoving = false;
+                
+            
+            }
+            
+        
+        private function initSprite():void{
+            spr = new DataTipeSlider();
+            spr.x = -(spr.width/2)+4;
+            spr.y = 9;
+        }
+        
+        override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void{
+            super.updateDisplayList(unscaledWidth,unscaledHeight);
+            this.graphics.beginFill(0x000000,1);
+            this.graphics.drawCircle(2,-8,4);
+               this.graphics.endFill();
+        }
+       
+        
+        override protected function measure():void{
+            super.measure();
+            measuredWidth = 4;
+            measuredHeight = 4;
+            measuredMinHeight = 0;
+            measuredMinWidth = 0;
+        } */
+        
+       
+        
+    }
+}

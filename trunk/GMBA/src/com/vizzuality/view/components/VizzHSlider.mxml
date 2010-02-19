@@ -32,5 +32,5 @@
 	<mx:Label text="{minValue}" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
 	<mx:Label text="{maxValue}" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
 	<mx:HSlider id="slider" enabled="true" top="0" left="5" right="20" minimum="{Number(minValue)}" maximum="{Number(maxValue)}" 
-		width="100%" thumbCount="2" liveDragging="true" change="onSliderChange(event)"/>
+		width="100%" thumbCount="2" liveDragging="true" change="onSliderChange(event)" styleName="gmbaSlider"/>
 </mx:Canvas>

@@ -3,6 +3,8 @@
 	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
 	<mx:Script>
 		<![CDATA[
+
+			import com.vizzuality.utils.SliderThumbGmba;
 			import com.vizzuality.events.SliderChangeEvent;
 			import mx.controls.sliderClasses.Slider;
 			import com.vizzuality.events.MyEventDispatcher;
@@ -13,6 +15,7 @@
 			}
 		]]>
 	</mx:Script>
+
 	<mx:VBox height="100%" width="100%" verticalGap="0" right="20" left="0">
 	
 		<!--LOGO-->
@@ -27,9 +30,9 @@
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
 					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
 					<mx:Label text="8000" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
-					<mx:HSlider id="sliderAltitude" enabled="true" top="0" left="5" right="20" minimum="0" maximum="7889" values="{[0,8000]}" 
-						 change="onSliderChange(event)"
-						width="100%" thumbCount="2" liveDragging="true"  snapInterval="30"/>
+					<mx:HSlider id="sliderAltitude" enabled="true" top="0" left="5" right="20" minimum="0" maximum="8000" values="{[0,8000]}" showDataTip="false" width="100%" 
+						thumbCount="2"  liveDragging="true" sliderThumbClass="{SliderThumbGmba}" change="onSliderChange(event)" snapInterval="30"/>
+
 				</mx:Canvas>
 			</mx:VBox>
 			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
@@ -60,7 +63,7 @@
 				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 				<mx:VBox verticalGap="1" width="100%">
 					<mx:Spacer height="5" />
-					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}"/>
+					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}" selected="true"/>
 					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{(type2.selected)? type2.selected=false: type2.selected=true}"/>
 					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Adjacent above" click="{(type3.selected)? type3.selected=false: type3.selected=true}"/>
 					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Adjacent below" click="{(type4.selected)? type4.selected=false: type4.selected=true}"/>
