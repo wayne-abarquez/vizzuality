@@ -1,117 +1,109 @@
 package com.vizzuality.utils
 {
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	
+	import mx.controls.sliderClasses.Slider;
 	import mx.controls.sliderClasses.SliderThumb;
-  
-    import flash.events.MouseEvent;
-    import flash.filters.DropShadowFilter;
-    
-    import mx.controls.sliderClasses.Slider;
-    import mx.controls.sliderClasses.SliderThumb;
+	import mx.core.mx_internal;
+	use namespace mx_internal;
+
 
     public class SliderThumbGmba extends SliderThumb {
 
-/*      public var isMoving:Boolean = false;
+		public var isMoving:Boolean = false;
         public var spr:DataTipeSlider;
-        public var gfxFade:FadeEffect;
-        public var isDisplayed:Boolean = false; */
+        public var isDisplayed:Boolean = false;
         
-            public function SliderThumbGmba()
-            {
-                super();
-/*             initListeners();
+        public function SliderThumbGmba() {
+        	super();
+            initListeners();
             initSprite();
-            var shadow:DropShadowFilter = new DropShadowFilter();
-                shadow.distance = 3;
-                shadow.angle = 45;
-                spr.filters = [shadow];
-            gfxFade = new FadeEffect(spr);
-            spr.alpha = 0;    
+            spr.visible = false    
             addChild(spr);
-            useHandCursor = true; */
-            
-            
-            
+            useHandCursor = true;
+            buttonMode = true;
+            mouseChildren = false;
         }
         
- /*        private function initListeners():void{
+         private function initListeners():void{
             addEventListener(MouseEvent.MOUSE_MOVE, myMouseMoveHandler);
             addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
             addEventListener(MouseEvent.MOUSE_OUT, mouseOut);
+            addEventListener(Event.CHANGE, change);
         }
         
         
         
         
-        private function myMouseMoveHandler(event:MouseEvent):void
-            {    
-                if (isMoving)
-                {
-                    spr.setValue(String(Slider(owner).values[Slider(owner).value]));
+        private function myMouseMoveHandler(event:MouseEvent):void {   
+        	trace('jamon mueve raton'); 
+            if (isMoving) {
+            	if (thumbNumber()==1) {
+                	spr.setValue(String(Slider(owner).values[1]));
+                } else {
+                	spr.setValue(String(Slider(owner).values[0]));
                 }
+            	spr.x = (spr.width/2) - 10;
+            	spr.y = 20;
             }
+        }
             
             
         private function mouseOver(evt:MouseEvent):void {
             if(!isDisplayed){
-                    isDisplayed = true;
-                    gfxFade.show = true;
-                    spr.setValue(String(Slider(owner).values[Slider(owner).value]));
-                    gfxFade.play();
+                isDisplayed = true;
+                if (thumbNumber()==1) {
+                	spr.setValue(String(Slider(owner).values[1]));
+                } else {
+                	spr.setValue(String(Slider(owner).values[0]));
+                }
+                spr.visible = true;
+                spr.x = (spr.width/2) - 10;
+            	spr.y = 20;
             }
                 
         }
         
         private function mouseOut(evt:MouseEvent):void {
-            if(isDisplayed && !isMoving){
-                    isDisplayed = false;
-                    gfxFade.show = false;
-                    spr.setValue(String(Slider(owner).values[Slider(owner).value]));
-                    gfxFade.play();
+            if(!isMoving){
+                 isDisplayed = false;
+                 spr.visible = false;
+            } else {
+            	
+				if (thumbNumber()==1) {
+	            	spr.setValue(String(Slider(owner).values[1]));
+	            	trace(String(Slider(owner).values[1]));
+	            } else {
+	            	spr.setValue(String(Slider(owner).values[0]));
+	            	trace(String(Slider(owner).values[1]));
+	            }
             }
                 
         }
         
-        override protected function mouseDownHandler(event:MouseEvent):void
-            {
-                super.mouseDownHandler(event);
-                isMoving = true;
-                
-                
-                
-            }
-            
-        override protected function mouseUpHandler(event:MouseEvent):void
-            {
-                super.mouseUpHandler(event);
-                isMoving = false;
-                
-            
-            }
-            
+        override protected function mouseDownHandler(event:MouseEvent):void {
+        	trace('jamon');
+            super.mouseDownHandler(event);
+            isMoving = true;
+        }
         
+  
+        override protected function mouseUpHandler(event:MouseEvent):void {
+            super.mouseUpHandler(event);
+            isMoving = false;
+            
+         }
+
         private function initSprite():void{
             spr = new DataTipeSlider();
-            spr.x = -(spr.width/2)+4;
-            spr.y = 9;
+            spr.x = (spr.width/2);
+            spr.y = 20;
         }
         
-        override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void{
-            super.updateDisplayList(unscaledWidth,unscaledHeight);
-            this.graphics.beginFill(0x000000,1);
-            this.graphics.drawCircle(2,-8,4);
-               this.graphics.endFill();
+        private function thumbNumber():Number {
+        	return mx_internal::thumbIndex;
         }
-       
-        
-        override protected function measure():void{
-            super.measure();
-            measuredWidth = 4;
-            measuredHeight = 4;
-            measuredMinHeight = 0;
-            measuredMinWidth = 0;
-        } */
-        
-       
-        
+
     }
 }
