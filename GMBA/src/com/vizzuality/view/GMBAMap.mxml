@@ -1,64 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="com.vizzuality.utils.*" xmlns:view="com.vizzuality.view.*" backgroundColor="#D5E8EC" horizontalScrollPolicy="off">
 	
-	<components:GradientCanvas colorsConfiguration="[2]" fillColors="[#000000,#000000]" fillAlphas="[0.6,0.05]" gradientType="radial" gradientRatio="[0,255]" top="20" bottom="20" left="45" 
-		right="45" topLeftRadius="5" topRightRadius="5" bottomLeftRadius="5" bottomRightRadius="5" borderThickness="0" horizontalScrollPolicy="off">
-		
+	<mx:Script>
+	    <![CDATA[
+	    	import com.google.maps.MapTypeOptions;
+	    	import com.google.maps.MapOptions;
+	    	import com.google.maps.interfaces.IMapType;
+	    	import com.google.maps.overlays.TileLayerOverlay;
+	    	import com.vizzuality.maps.RasterLayer;
+	    	import com.vizzuality.utils.Resource;
+	    	import com.vizzuality.utils.Helper;
+	    	import swf.SWFAddressEvent;
+	    	import swf.SWFAddress;
+	    	import com.google.maps.LatLng;
+	    	import com.google.maps.Map;
+		    import com.google.maps.MapEvent;
+		    import com.google.maps.MapType;
+		    import com.google.maps.controls.ZoomControl;
+		    
+		    	    
+	        public var loadedTiles:Array=[];
+	        private var rasterLayer:RasterLayer;
+		    
+	       private function onMapPreinitialize(event:Event):void {
+	           var opts:MapOptions = new MapOptions();
+	           var limitedZoomMapType:IMapType = new MapType(MapType.PHYSICAL_MAP_TYPE.getTileLayers(),
+	                                                MapType.PHYSICAL_MAP_TYPE.getProjection(),
+	                                                "TerrainLimited",
+	                                                new MapTypeOptions({maxResolution: 6, minResolution: 2}));
+	           opts.mapTypes = [limitedZoomMapType];
+	           opts.center=new LatLng(40.736072,-3.992062);
+	           opts.zoom=2;
+	           map.setInitOptions(opts);
+	       }
+		    
+		    
+		    private function onMapReady(event:Event):void {
+			    this.map.addControl(new ZoomControl());
+			    
+			    /* rasterLayer = new RasterLayer("http://192.168.1.131:8080/geoserver/gwc/service/gmaps?layers=cite:raster&zoom=|Z|&x=|X|&y=|Y|",loadedTiles);
+			    var tlo:TileLayerOverlay = new TileLayerOverlay(rasterLayer);
+			    map.addOverlay(tlo); */
+		    }
+	    ]]>
+	</mx:Script>
+	
+	
+	
+	<mx:GlowFilter id="sh" alpha="0.3" color="#000000" blurX="20" blurY="20" />
+	
+	<mx:Canvas top="20" bottom="20" left="45" right="45"  horizontalScrollPolicy="off" filters="{[sh]}">
 		<components:GradientCanvas colorsConfiguration="[2]" fillColors="[#333333, #242527]" fillAlphas="[1,1]" gradientRatio="[0,255]" gradientType="linear" angle="90" borderStyle="none" 
-			borderThickness="0" top="10" left="10" right="10" bottom="10" topLeftRadius="2" topRightRadius="2" horizontalScrollPolicy="off">
-		
-			<mx:Script>
-			    <![CDATA[
-			    	import com.google.maps.MapTypeOptions;
-			    	import com.google.maps.MapOptions;
-			    	import com.google.maps.interfaces.IMapType;
-			    	import com.google.maps.overlays.TileLayerOverlay;
-			    	import com.vizzuality.maps.RasterLayer;
-			    	import com.vizzuality.utils.Resource;
-			    	import com.vizzuality.utils.Helper;
-			    	import swf.SWFAddressEvent;
-			    	import swf.SWFAddress;
-			    	import com.google.maps.LatLng;
-			    	import com.google.maps.Map;
-				    import com.google.maps.MapEvent;
-				    import com.google.maps.MapType;
-				    import com.google.maps.controls.ZoomControl;
-				    
-				    	    
-			        public var loadedTiles:Array=[];
-			        private var rasterLayer:RasterLayer;
-				    
-			       private function onMapPreinitialize(event:Event):void {
-			           var opts:MapOptions = new MapOptions();
-			           var limitedZoomMapType:IMapType = new MapType(MapType.PHYSICAL_MAP_TYPE.getTileLayers(),
-			                                                MapType.PHYSICAL_MAP_TYPE.getProjection(),
-			                                                "TerrainLimited",
-			                                                new MapTypeOptions({maxResolution: 6, minResolution: 2}));
-			           opts.mapTypes = [limitedZoomMapType];
-			           opts.center=new LatLng(40.736072,-3.992062);
-			           opts.zoom=2;
-			           map.setInitOptions(opts);
-			       }
-				    
-				    
-				    private function onMapReady(event:Event):void {
-					    this.map.addControl(new ZoomControl());
-					    
-					    /* rasterLayer = new RasterLayer("http://192.168.1.131:8080/geoserver/gwc/service/gmaps?layers=cite:raster&zoom=|Z|&x=|X|&y=|Y|",loadedTiles);
-					    var tlo:TileLayerOverlay = new TileLayerOverlay(rasterLayer);
-					    map.addOverlay(tlo); */
-				    }
-			    ]]>
-			</mx:Script>
-			
+			borderThickness="0" top="10" left="10" right="10" bottom="10" topLeftRadius="5" topRightRadius="5" horizontalScrollPolicy="off">
+
 			<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 				<view:Toolbar width="20%"/>
 				<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
 					<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 					<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
 					<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="21"/>
-					<mx:Button left="20" top="25" width="200" height="30" label="Download data" color="#FFFFFF" useHandCursor="true" mouseChildren="false" buttonMode="true"/>
+					<mx:Button left="20" top="25" width="200" height="30" label="Download data" color="#FFFFFF" useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"/>
 				</mx:Canvas>
 			</mx:VBox>
 			
@@ -67,5 +68,5 @@
 				<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
 			</mx:Canvas>
 		</components:GradientCanvas>
-	</components:GradientCanvas>
+	</mx:Canvas>
 </mx:Canvas>
