@@ -15,9 +15,11 @@ package com.vizzuality.maps
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
+	import flash.display.Shader;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
+	import flash.filters.ShaderFilter;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
@@ -29,6 +31,9 @@ package com.vizzuality.maps
         public static const MASK_R:uint = 0xFF0000;
         public static const MASK_G:uint = 0x00FF00;
         public static const MASK_B:uint = 0x0000FF;
+ 
+ 		private var shader:Shader;
+ 		private var shadeFilter:ShaderFilter;
  
  		private var tileRect256:Rectangle=new Rectangle(0,0,256,256);
  		private var centerPoint:Point = new Point(0,0);        
@@ -48,6 +53,11 @@ package com.vizzuality.maps
             
             
             MyEventDispatcher.addEventListener(SliderChangeEvent.SLIDER_CHANGED,onSlidersChange,false,0,true);
+            
+            [Embed(source="threshold.pbj", mimeType="application/octet-stream")]
+            var Filter:Class;
+            shader = new Shader(new Filter());   
+            shader.byteCode = new Filter();         
             
             super(copyrightCollection, 0, 6,0.7);
 		}
@@ -71,7 +81,8 @@ package com.vizzuality.maps
             
             return null;			
 		}
-		
+
+
 		private function onLoadedComplete(event:Event):void {
 			
 			var gi:StateSingletonModel=StateSingletonModel.gi();
@@ -95,6 +106,9 @@ package com.vizzuality.maps
  			var sourceBitmapData:BitmapData = (sourceTile.content as Bitmap).bitmapData;
  			//Aplicar el threshold aal sourceBitmapData en un nuevo Bitmap
  
+ 			
+ 			
+ 			
  			var bitMapDataRed:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);
         	//var bitMapDataGreen:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);
         	//var bitMapDataBlue:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);			
@@ -114,8 +128,11 @@ package com.vizzuality.maps
  			if (reliefMax==3397) reliefMax=3383;
  			
  			
- 			bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((altitudeMin*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
- 			bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((altitudeMax*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
+ 			//bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((altitudeMin*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
+ 			//bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((altitudeMax*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
+			shader.data.threshold.value=[0.75];
+			bitMapDataRed.applyFilter(sourceBitmapData,tileRect256,centerPoint, new ShaderFilter(shader));
+
 
  			//bitMapDataGreen.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((reliefMax*256/3397)/256)*0xFFFFFF, 0xFF000000, MASK_G, false);
  			//bitMapDataGreen.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((reliefMin*256/3397)/256)*0xFFFFFF, 0xFF000000, MASK_G, false);
