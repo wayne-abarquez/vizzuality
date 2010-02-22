@@ -4,10 +4,17 @@
 	horizontalScrollPolicy="off" 
 	addedToStage="initSWFAddress()" 
 	removedFromStage="destroySWFAddress()"
-    currentStateChange="setSWFAddress()">
+    currentStateChange="setSWFAddress()" xmlns:components1="com.vizzuality.view.components.*">
+	<mx:states>
+		<mx:State name="Help">
+			<mx:SetProperty target="{help1}" name="visible" value="true"/>
+		</mx:State>
+	</mx:states>
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.google.maps.MapZoomEvent;
+	    	import com.google.maps.MapMoveEvent;
 	    	import com.vizzuality.utils.Helper;
 	    	import mx.core.Application;
 	    	import com.google.maps.MapTypeOptions;
@@ -25,10 +32,18 @@
 		    import com.google.maps.MapType;
 		    import com.google.maps.controls.ZoomControl;
 		    
+		    //variables of GMBA-Map
 	        private var rasterLayer:RasterLayer;
-	        
-            public var path:String="Map";
-            public var depth:int=1;			
+	        private var zoom: Number = 2;
+	        private var lat: Number = 40.73;
+	        private var lon: Number = -3.99;
+	        private var elevationValues: Array = new Array ();
+	        private var reliefValues: Array = new Array();
+            
+            //variables of SWFAddress
+            public var path:String = 'Map';
+            public var depth:int = 1;
+                        	
 			
             private function initSWFAddress():void {
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
@@ -40,14 +55,38 @@
             }
             
             private function setSWFAddress():void {
-                Helper.setSWFAddress(this, path, depth);
+	            Helper.setSWFAddress(this, path, depth);        		
             }
             
             private function handleSWFAddress(event:SWFAddressEvent):void {
                 if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
                     Helper.handleSWFAddress(this, event, depth);
+                 } else { 
+                	// Get parameters from URL
+                	// First check if is Help page -> NOT YET
+                	// if not, get all the parameters relative to the map
+                	var mapPoint:Object = new Object();
+                	var elevationParams: Object = new Object();
+                	var reliefParams: Object = new Object();
+                	
+                    mapPoint = Helper.getPoint(event.pathNames[1] as String);
+                    if (mapPoint.lat!=null) {
+                    	zoom = mapPoint.zoom;
+                    	lat = mapPoint.lat;
+                    	lon = mapPoint.lon;
+                    } else {
+                    	SWFAddress.setValue('/map');
+                    }
+                    
+                    
+                    
+                    	
                 }
-            }	
+            }
+            
+            /* private function ():void {
+            	
+            } */
 	        
 		    
 	        private function onMapPreinitialize(event:Event):void {
@@ -59,12 +98,13 @@
 	                                                new MapTypeOptions({maxResolution: 6, minResolution: 2}));*/
 	                                                
 	           opts.mapType = MapType.PHYSICAL_MAP_TYPE;
-	           opts.center=new LatLng(40.736072,-3.992062);
-	           opts.zoom=2;
+           	   opts.center=new LatLng(lat,lon);
+	       	   opts.zoom=zoom;
 	           map.setInitOptions(opts);
+	           map.addEventListener(MapMoveEvent.MOVE_END,onChangeMap);
+	           map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);           	
 	        }
-		    
-		    
+
 		    private function onMapReady(event:Event):void {
 			    this.map.addControl(new ZoomControl());
 			    
@@ -78,6 +118,24 @@
 				})
 				map.addOverlay(tlo);
 		    }
+		    
+		    
+		    private function onChangeMap(event:MapMoveEvent):void {
+		    	lat = Number(event.latLng.lat().toFixed(2));
+		    	lon = Number(event.latLng.lng().toFixed(2));
+		    	makeNewURL();
+		    }
+		    
+		    private function onZoomChange(event:MapZoomEvent):void {
+		    	zoom = event.zoomLevel;
+		    	makeNewURL();
+		    }
+		    
+		    private function makeNewURL():void {
+		    	SWFAddress.setValue('/map/' + zoom + '_' + lat + '_' + lon + '/');
+		    }
+		    
+		    
 	    ]]>
 	</mx:Script>
 	
@@ -100,8 +158,9 @@
 				</mx:Canvas>
 			</mx:VBox>
 			
-			<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="80%">
+			<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="80%" id="canvas1">
 				<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="no-key" top="5" bottom="5" right="5" left="5"/>
+				<components1:Help backgroundColor="#000000" top="5" bottom="5" right="5" left="5" visible="false" id="help1"/>	
 				<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
 				<mx:Canvas width="95" height="31" borderColor="#FFFFFF" backgroundColor="#FFFFFF" right="10" top="10" id="loadingMessage" visible="true">
 					<mx:Label x="20" y="6" text="Loading..."/>

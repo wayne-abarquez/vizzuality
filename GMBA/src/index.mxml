@@ -11,7 +11,7 @@
 			<mx:RemoveChild target="{home}"/>
 			<mx:SetStyle target="{vbox}" name="backgroundColor" value="#FFFFFF"/>
 			<mx:AddChild relativeTo="{vbox}" position="lastChild">
-				<view:GMBAMap />
+				<view:GMBAMap id="gmbaMap"/>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Home"/>
@@ -24,24 +24,29 @@
 			import swf.SWFAddress;
 			
 
-            private function initSWFAddress():void {
+			private var firstLoad: Boolean = true;
 
+            private function initSWFAddress():void {
+            	
 			    Security.allowDomain("http://vizzuality.tiles.s3.amazonaws.com/");
 				Security.loadPolicyFile("http://vizzuality.tiles.s3.amazonaws.com/crossdomain.xml");
 			    /*var loader:URLLoader = new URLLoader();
 				loader.load(new URLRequest("http://vizzuality.tiles.s3.amazonaws.com/crossdomain.xml")); */  	
-            	
+
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
-                
             }
 	
             
             private function setSWFAddress():void {
-                Helper.setSWFAddress(this);
+            	if (firstLoad) {
+            		firstLoad = false;
+            	} else {
+	                Helper.setSWFAddress(this);            		
+            	}
             }
             
-            private function handleSWFAddress(event:SWFAddressEvent):void {
+            private function handleSWFAddress(event:SWFAddressEvent):void {         	
                 Helper.handleSWFAddress(this, event);
             } 
             

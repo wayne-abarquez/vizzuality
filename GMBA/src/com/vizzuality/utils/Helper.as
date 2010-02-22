@@ -19,21 +19,22 @@ package com.vizzuality.utils {
                 scope.currentState = value;
             }
             var title:String = 'GMBA';
-            if (event.pathNames.length != 0) {
+             if (event.pathNames.length > 0) {
             	title += ' > ' + toTitleCase(event.pathNames[0]);
+            	if (event.pathNames[1] == 'help')
+            		title += ' > ' + toTitleCase(event.pathNames[1]);
             } else {
-            	scope.currentState = 'Home';
-            }
-            /* for (var i:int = 0; i < event.pathNames.length; i++) {
+            	  scope.currentState = 'Home';
+            } 
+            /*  for (var i:int = 0; i < event.pathNames.length; i++) {
                 title += ' » ' + toTitleCase(event.pathNames[i]);
-            } */
+            }  */
             SWFAddress.setTitle(title);
         }
         
         public static function setSWFAddress(scope:UIComponent, path:String='', depth:int=0):void {
             if (path!='') {
 	            Application.application.tracker.trackPageview( path );
-            	
             }
             var value:String = '';
             if (scope.currentState != '' && scope.currentState != null) {
@@ -45,6 +46,30 @@ package com.vizzuality.utils {
                 if (value != '') parts.push(value);
                 SWFAddress.setValue('/' + parts.join('/'));
             }
+        }
+        
+        
+        
+        //Other operations with URL
+        
+        public static function getPoint(str: String):Object {
+        	var a:Array = str.split('_');
+        	var obj: Object = new Object();
+        	if (checkIfNumbers(a) && a.length==3) {
+        		obj.zoom = Number(a[0]).toFixed(2);
+        		obj.lat = Number(a[1]).toFixed(2);
+        		obj.lon = Number(a[2]).toFixed(2);        		
+        	}
+        	return obj;
+        }
+        
+        private static function checkIfNumbers(array:Array):Boolean {
+        	for (var i:Number = 0; i < array.length; i++) {
+        		var ext:Number = Number(array[i]);
+        		if (ext == false) 
+        			return false;
+        	}
+        	return true;
         }
     }
 }

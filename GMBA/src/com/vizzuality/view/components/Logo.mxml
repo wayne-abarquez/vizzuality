@@ -2,10 +2,16 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="97" xmlns:components="com.vizzuality.components.*" borderStyle="none">
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
 			import com.vizzuality.utils.Resource;
 		]]>
 	</mx:Script>
 
 	<mx:Image source="{Resource.LOGO}" width="139" height="55" left="25" top="25"/>
 	<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+	<mx:VBox right="10" top="10" bottom="10" verticalAlign="middle" horizontalAlign="center">
+		<!--TODO: Use events handlers for the principal buttons, not Application.application...-->
+		<mx:Button label="i" buttonMode="true" mouseChildren="false" useHandCursor="true" click="{/* Application.application.gmbaMap.currentState='Help' */}"/>
+		<mx:Button label="h" buttonMode="true" mouseChildren="false" useHandCursor="true" click="Application.application.currentState='Home'"/>
+	</mx:VBox>
 </mx:Canvas>
