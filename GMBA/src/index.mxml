@@ -22,6 +22,7 @@
 			import com.vizzuality.utils.Helper;
 			import swf.SWFAddressEvent;
 			import swf.SWFAddress;
+			
 
             private function initSWFAddress():void {
 

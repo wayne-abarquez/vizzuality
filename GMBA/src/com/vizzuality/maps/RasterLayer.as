@@ -7,10 +7,10 @@ package com.vizzuality.maps
 	import com.google.maps.TileLayerBase;
 	import com.vizzuality.events.MyEventDispatcher;
 	import com.vizzuality.events.SliderChangeEvent;
+	import com.vizzuality.model.StateSingletonModel;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.display.BitmapDataChannel;
 	import flash.display.DisplayObject;
 	import flash.display.Loader;
 	import flash.display.Sprite;
@@ -25,11 +25,15 @@ package com.vizzuality.maps
 	{
         private var customTile:CustomTile;	
         private var rasterUrl:String;	
-    	private var tileVisible:Array=[];
-    	private var tileSources:Array=[];
-    	private var tilesDic:Dictionary = new Dictionary(true);
-    	private var numTilesLoaded:uint=0;
         private var zoomLevel:Number;
+        public static const MASK_R:uint = 0xFF0000;
+        public static const MASK_G:uint = 0x00FF00;
+        public static const MASK_B:uint = 0x0000FF;
+ 
+ 		private var tileRect256:Rectangle=new Rectangle(0,0,256,256);
+ 		private var centerPoint:Point = new Point(0,0);        
+ 		private var tilesDic:Dictionary=new Dictionary();
+        
 		
 		public function RasterLayer(_rasterUrl:String) {
 			
@@ -49,20 +53,12 @@ package com.vizzuality.maps
                 tileUrl = tileUrl.replace("|X|",tile.x);    
                 tileUrl = tileUrl.replace("|Y|",tile.y);    
                 tileUrl = tileUrl.replace("|Z|",zoom); 
-
-/*                 customTile = new CustomTile();
-                customTile.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler,false,0,true);
-                customTile.loader.contentLoaderInfo.addEventListener(Event.COMPLETE,loadTileComplete);
-                customTile.tileX = tile.x;
-                customTile.tileY = tile.y;
-                customTile.tileZ = zoom; */
                 
 				var tileLoader:Loader = new Loader();
-                tileSources.push(tileLoader);     
-                numTilesLoaded++; 
+				tileLoader.contentLoaderInfo.addEventListener(Event.COMPLETE,onLoadedComplete,false,0,true);
 				tileLoader.load(new URLRequest(tileUrl)); 
 				var tileSprite:Sprite=new Sprite();
-				tileVisible.push(tileSprite);    
+				//tileSprite.blendMode = BlendMode.NORMAL;
 				tilesDic[tileLoader]=tileSprite;   
                              
                 return tileSprite;    
@@ -71,11 +67,19 @@ package com.vizzuality.maps
             return null;			
 		}
 		
-	    private function loadTileComplete(event:Event):void {
-	    	var ct:CustomTile=event.target.loader.parent;
-	        
-
-	    }		
+		private function onLoadedComplete(event:Event):void {
+			
+			var gi:StateSingletonModel=StateSingletonModel.gi();
+			
+			applyThresholdToTile(
+				event.currentTarget.loader as Loader,
+				tilesDic[event.currentTarget.loader] as Sprite,
+				gi.altitudeRange,
+				gi.reliefRange,
+				gi.vegtypeRange);
+				
+		}
+		
 		
 		
         private function ioErrorHandler(event:IOErrorEvent):void {
@@ -84,27 +88,54 @@ package com.vizzuality.maps
         
  		private function applyThresholdToTile(sourceTile:Loader,targetTile:Sprite,altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
  			var sourceBitmapData:BitmapData = (sourceTile.content as Bitmap).bitmapData;
- 			var redChannel:BitmapData = new BitmapData(256,256);
- 			redChannel.copyChannel(sourceBitmapData,new Rectangle(0,0,256,256),new Point(0,0),BitmapDataChannel.RED,BitmapDataChannel.RED);
+ 			//Aplicar el threshold aal sourceBitmapData en un nuevo Bitmap
+ 
+ 			var bitMapDataRed:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);
+        	var bitMapDataGreen:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);
+        	var bitMapDataBlue:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);			
+ 			
+/* 			bitMapRed.copyChannel(sourceBitmapData,tileRect256,centerPoint,BitmapDataChannel.RED,BitmapDataChannel.RED);
+			bitMapGreen.copyChannel(sourceBitmapData,tileRect256,centerPoint,BitmapDataChannel.GREEN,BitmapDataChannel.GREEN);
+			bitMapBlue.copyChannel(sourceBitmapData,tileRect256,centerPoint,BitmapDataChannel.BLUE,BitmapDataChannel.BLUE); 	 */		
+ 			
+ 			var altitudeMin:Number =altitudeRange[0];
+ 			if (altitudeMin<=1) altitudeMin=31;
+ 			var altitudeMax:Number =altitudeRange[1];
+ 			if (altitudeMax==7889) altitudeMax=7869;
+ 			
+ 			
+ 			bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((altitudeMin*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
+ 			bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((altitudeMax*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
+
+ 			bitMapDataGreen.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((reliefRange[0]*256/3397)/255)*0xFFFFFF, 0xFF000000, MASK_G, false);
+ 			bitMapDataGreen.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((reliefRange[1]*256/3397)/255)*0xFFFFFF, 0xFF000000, MASK_G, false);
+ 			
+ 			var outputRedBitmap:Bitmap = new Bitmap(bitMapDataRed);
+ 			var outputGreenBitmap:Bitmap = new Bitmap(bitMapDataGreen);
+ 			//var outputGreenBitmap:Bitmap;
+ 			
+ 			//-------
  			
  			//remove all childs
  			while(targetTile.numChildren > 0){
 				targetTile.removeChildAt(0);
 			}
 			
-			targetTile.addChild(new Bitmap(redChannel));
+			targetTile.addChild(outputRedBitmap);
+			//targetTile.addChild(outputGreenBitmap);
+			//targetTile.addChild(outputGreenBitmap);
 			
 			
  		}
         
         
         private function onSlidersChange(event:SliderChangeEvent):void {
-        	trace(event.altitudeRange.toString() +"  "+event.reliefRange.toString() + "   " + event.vegtypes.toString());
+        	//trace(event.altitudeRange.toString() +"  "+event.reliefRange.toString() + "   " + event.vegtypes.toString());
         	
         	//apply to all tiles in 
-         	for(var tid:uint =0;tid<=numTilesLoaded;tid++) {
-        		applyThresholdToTile(tileSources[tid],tilesDic[tileSources[tid]],event.altitudeRange,event.reliefRange,event.vegtypes);        		
-        	}
+        	for (var tileSource:Object in tilesDic) {
+        		applyThresholdToTile(tileSource as Loader,tilesDic[tileSource],event.altitudeRange,event.reliefRange,event.vegtypes);        		
+			}
         }
         
         
