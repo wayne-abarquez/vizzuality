@@ -21,6 +21,8 @@ package com.vizzuality.utils {
             var title:String = 'GMBA';
             if (event.pathNames.length != 0) {
             	title += ' - ' + toTitleCase(event.pathNames[0]);
+            } else {
+            	scope.currentState = 'Home';
             }
             /* for (var i:int = 0; i < event.pathNames.length; i++) {
                 title += ' » ' + toTitleCase(event.pathNames[i]);
