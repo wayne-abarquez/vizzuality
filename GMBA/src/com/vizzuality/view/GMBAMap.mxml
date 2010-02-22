@@ -37,7 +37,7 @@
 	        private var zoom: Number = 2;
 	        private var lat: Number = 40.73;
 	        private var lon: Number = -3.99;
-	        private var elevationValues: Array = new Array ();
+	        private var elevationValues: Array = new Array();
 	        private var reliefValues: Array = new Array();
             
             //variables of SWFAddress
@@ -74,10 +74,27 @@
                     	zoom = mapPoint.zoom;
                     	lat = mapPoint.lat;
                     	lon = mapPoint.lon;
-                    } else {
-                    	SWFAddress.setValue('/map');
+                    /* } else {
+                    	SWFAddress.setValue('/map'); */
                     }
                     
+/*                     if (event.pathNames.length>1) {
+                    	mapPoint = Helper.getPoint(event.pathNames[1] as String);
+	                    if (mapPoint.lat!=null) {
+	                    	zoom = mapPoint.zoom;
+	                    	lat = mapPoint.lat;
+	                    	lon = mapPoint.lon;
+	                    }
+                    }
+                    
+                    if (event.pathNames.length>2) {
+                    	mapPoint = Helper.getPoint(event.pathNames[1] as String);
+	                    if (mapPoint.lat!=null) {
+	                    	zoom = mapPoint.zoom;
+	                    	lat = mapPoint.lat;
+	                    	lon = mapPoint.lon;
+	                    }
+                    } */
                     
                     
                     	
