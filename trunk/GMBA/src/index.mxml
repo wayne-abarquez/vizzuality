@@ -24,7 +24,7 @@
 			import swf.SWFAddress;
 
             private function initSWFAddress():void {
-            	
+
 			    Security.allowDomain("http://vizzuality.tiles.s3.amazonaws.com/");
 				Security.loadPolicyFile("http://vizzuality.tiles.s3.amazonaws.com/crossdomain.xml");
 			    /*var loader:URLLoader = new URLLoader();
@@ -32,6 +32,7 @@
             	
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+                
             }
 	
             
