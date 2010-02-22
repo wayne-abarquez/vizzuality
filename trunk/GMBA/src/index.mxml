@@ -30,8 +30,6 @@
 			    /*var loader:URLLoader = new URLLoader();
 				loader.load(new URLRequest("http://vizzuality.tiles.s3.amazonaws.com/crossdomain.xml")); */  	
             	
-            	
-            	
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
             }

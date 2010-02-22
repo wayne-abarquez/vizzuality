@@ -19,9 +19,12 @@ package com.vizzuality.utils {
                 scope.currentState = value;
             }
             var title:String = 'GMBA';
-            for (var i:int = 0; i < event.pathNames.length; i++) {
-                title += ' » ' + toTitleCase(event.pathNames[i]);
+            if (event.pathNames.length != 0) {
+            	title += ' » ' + toTitleCase(event.pathNames[0]);
             }
+            /* for (var i:int = 0; i < event.pathNames.length; i++) {
+                title += ' » ' + toTitleCase(event.pathNames[i]);
+            } */
             SWFAddress.setTitle(title);
         }
         
