@@ -35,26 +35,19 @@
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
             }
-
+	
+            
             private function setSWFAddress():void {
                 Helper.setSWFAddress(this);
             }
             
             private function handleSWFAddress(event:SWFAddressEvent):void {
-               var path:String = event.path;
-               
-                switch (path) {
-               		case "/": 		SWFAddress.setTitle('GMBA - Home');
-               						break;
-               		case "/Map": 	currentState = 'Map';
-               						break;
-               		case "/About":  currentState = 'Map';
-               						break;
-               		default: 		SWFAddress.setTitle('GMBA - Home');
-               						SWFAddress.setValue('/');
-               	}
-                
-            }
+                Helper.handleSWFAddress(this, event);
+            } 
+            
+            
+            
+            
 		]]>
 	</mx:Script>
 	
@@ -62,7 +55,7 @@
 
 	<mx:VBox height="100%" width="100%" id="vbox">
 		<mx:Canvas height="100%" width="100%" id="home" backgroundColor="#333333">
-			<mx:Button click="SWFAddress.setValue('Map')" horizontalCenter="0" verticalCenter="0" width="132" label="Change state"/>
+			<mx:Button click="{currentState='Map'}" horizontalCenter="0" verticalCenter="0" width="132" label="Change state"/>
 		</mx:Canvas>
 	</mx:VBox>
 </mx:Application>

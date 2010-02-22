@@ -30,7 +30,7 @@ package com.vizzuality.utils
             
             background.addChild(tf);
             background.graphics.beginFill(0x000000,0.8);
-            background.graphics.drawRoundRect(0,0,tf.width,24,5);
+            background.graphics.drawRoundRect(0,0,tf.width,18,5);
             background.x = -tf.width/2;
             background.y = 0;
             
