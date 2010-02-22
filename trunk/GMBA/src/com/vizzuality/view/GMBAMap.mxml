@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="com.vizzuality.utils.*" xmlns:view="com.vizzuality.view.*" backgroundColor="#D5E8EC" horizontalScrollPolicy="off">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="com.vizzuality.utils.*" xmlns:view="com.vizzuality.view.*" 
+	backgroundColor="#D5E8EC" 
+	horizontalScrollPolicy="off" 
+	addedToStage="initSWFAddress()" 
+	removedFromStage="destroySWFAddress()"
+    currentStateChange="setSWFAddress()">
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.vizzuality.utils.Helper;
+	    	import mx.core.Application;
 	    	import com.google.maps.MapTypeOptions;
 	    	import com.google.maps.MapOptions;
 	    	import com.google.maps.interfaces.IMapType;
 	    	import com.google.maps.overlays.TileLayerOverlay;
 	    	import com.vizzuality.maps.RasterLayer;
 	    	import com.vizzuality.utils.Resource;
-	    	import com.vizzuality.utils.Helper;
+
 	    	import swf.SWFAddressEvent;
 	    	import swf.SWFAddress;
 	    	import com.google.maps.LatLng;
@@ -18,23 +25,44 @@
 		    import com.google.maps.MapType;
 		    import com.google.maps.controls.ZoomControl;
 		    
-		    	    
 	        private var rasterLayer:RasterLayer;
+	        
+            public var path:String="Map";
+            public var depth:int=1;			
+			
+            private function initSWFAddress():void {
+                handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
+                SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+            }
+            
+            private function destroySWFAddress():void {
+                SWFAddress.removeEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+            }
+            
+            private function setSWFAddress():void {
+                Helper.setSWFAddress(this, path, depth);
+            }
+            
+            private function handleSWFAddress(event:SWFAddressEvent):void {
+                if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
+                    Helper.handleSWFAddress(this, event, depth);
+                }
+            }	
+	        
 		    
-	       private function onMapPreinitialize(event:Event):void {
+	        private function onMapPreinitialize(event:Event):void {
 	           var opts:MapOptions = new MapOptions();
 	           
 	           /*var limitedZoomMapType:IMapType = new MapType(MapType.PHYSICAL_MAP_TYPE.getTileLayers(),
 	                                                MapType.PHYSICAL_MAP_TYPE.getProjection(),
 	                                                "TerrainLimited",
-	                                                new MapTypeOptions({maxResolution: 6, minResolution: 2}));
-	            */
+	                                                new MapTypeOptions({maxResolution: 6, minResolution: 2}));*/
+	                                                
 	           opts.mapType = MapType.PHYSICAL_MAP_TYPE;
-	           
 	           opts.center=new LatLng(40.736072,-3.992062);
 	           opts.zoom=2;
 	           map.setInitOptions(opts);
-	       }
+	        }
 		    
 		    
 		    private function onMapReady(event:Event):void {

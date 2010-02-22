@@ -1,5 +1,6 @@
 package com.vizzuality.utils {
     
+    import mx.core.Application;
     import mx.core.UIComponent;
     
     import swf.SWFAddress;
@@ -14,7 +15,7 @@ package com.vizzuality.utils {
         
         public static function handleSWFAddress(scope:UIComponent, event:SWFAddressEvent, depth:int=0):void {
             var value:String = toTitleCase(event.pathNames.length > depth ? event.pathNames[depth] : '');
-            if (scope.currentState != value) {
+            if (scope.currentState != value && value!='') {
                 scope.currentState = value;
             }
             var title:String = 'GMBA';
@@ -25,6 +26,10 @@ package com.vizzuality.utils {
         }
         
         public static function setSWFAddress(scope:UIComponent, path:String='', depth:int=0):void {
+            if (path!='') {
+	            Application.application.tracker.trackPageview( path );
+            	
+            }
             var value:String = '';
             if (scope.currentState != '' && scope.currentState != null) {
                 value += scope.currentState.toLowerCase();
