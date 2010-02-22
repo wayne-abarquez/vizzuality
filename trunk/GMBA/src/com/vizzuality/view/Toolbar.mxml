@@ -48,7 +48,7 @@
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
 					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
 					<mx:Label text="400" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
-					<mx:HSlider id="sliderRoughness" enabled="true" top="0" left="5" right="20" minimum="0" maximum="400"  values="{[0,400]}" 
+					<mx:HSlider id="sliderRoughness" showDataTip="false" top="0" left="5" right="20" minimum="0" maximum="400"  values="{[0,400]}" 
 						 change="onSliderChange(event)" sliderThumbClass="{SliderThumbGmba}"
 						width="100%" thumbCount="2" liveDragging="true" snapInterval="14" />
 				</mx:Canvas>
