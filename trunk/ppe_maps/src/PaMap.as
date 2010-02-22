@@ -71,7 +71,7 @@ package {
 		private var domain: String;
 		
 		private var paId:Number;
-		private var loadingSprite: TooltipMarker = new TooltipMarker('Click to go to this PA');
+		private var clickToGoTooltip: TooltipMarker = new TooltipMarker('Click to go to this PA');
 		private var infoWindowToOpen: PAInfoWindow;
 		private var paMarker: PAMarker;
 		private var paDictionary: Dictionary = new Dictionary();
@@ -127,20 +127,10 @@ package {
 		private var predfinedMarker:PredefinedPaPageMarker;
 		private var panoramioPane:IPane;
 		private var poisPane:IPane;
-		
- /*
-        [Embed(source="library.swf", symbol="circle")]
-        private var Circle:Class; */
+		private var urlOfPredefinedPicture:String;
 		
 		
-
-		/*[Embed(source='assets/loadAnimation.swf', symbol="loadAnimation")] 
-	  	private var loading:Class; */
-		
-				
-			
-		/*[Embed('assets/bottom_buttons.png')] 
-		private var butButtons:Class;	*/						
+					
 						
 		public function PaMap()
 		{ 
@@ -148,6 +138,10 @@ package {
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;	
 			stage.addEventListener(Event.RESIZE, stageResizeHandler);
+			stage.addEventListener(MouseEvent.MOUSE_OUT, function(event:MouseEvent):void {
+				try{removeChild(clickToGoTooltip);}
+					catch (e:Error) {}
+			});
  
 
 			//This is to allow the access to the tiles for the mouse over
@@ -204,7 +198,7 @@ package {
 			dsLoader.addEventListener(Event.COMPLETE,onDataLoaded);
 			paId=root.loaderInfo.parameters.id;
 			if(isNaN(paId)) {
-				paId=2027;
+				paId=6259;
 			}
 			dsLoader.load(new URLRequest(domain + "/api/site/"+paId+"/json"));
 			
@@ -221,7 +215,6 @@ package {
 			}
 		}
 		
-		private var urlOfPredefinedPicture:String;
 		
 		private function loadData():void {
 			//Polygon options for the PA
@@ -241,17 +234,10 @@ package {
 			mp= new Multipolygon();
 			mp.fromGeojsonMultiPolygon(data.coordinates,polOpt);	
 			mp.addEventListener(MapMouseEvent.ROLL_OVER,function():void {
-				onPAFlag = true;
-				if (loadingSprite.parent != null) {
-					loadingSprite.visible = false;
-				}
+				try {removeChild(clickToGoTooltip);}
+				catch (e:Error){}
 			});
-			mp.addEventListener(MapMouseEvent.ROLL_OUT,function():void {
-				onPAFlag = false;
-				if (loadingSprite.parent != null) {
-					loadingSprite.visible = true;
-				}
-			});		
+			/* mp.addEventListener(MapMouseEvent.ROLL_OUT,function():void {}); */		
 			var polPane:IPane = map.getPaneManager().createPane(1);			
 			mp.addToPane(polPane);
 			
@@ -266,6 +252,18 @@ package {
 					data.pictures[0].x);
 				urlOfPredefinedPicture = data.pictures[0].url;
 				predfinedMarker = new PredefinedPaPageMarker(coords,urlOfPredefinedPicture);
+				/* predfinedMarker.addEventListener(MapMouseEvent.ROLL_OVER,function (ev:MapMouseEvent):void {
+						try {removeChild(clickToGoTooltip);}
+						catch (e:Error){}
+					}
+				);
+				
+				predfinedMarker.addEventListener(MapMouseEvent.ROLL_OUT,function (ev:MapMouseEvent):void {
+						addChild(clickToGoTooltip);
+					}
+				); */
+				
+				//ROOLLOVER!!!!
 				bigMarkerPane.addOverlay(predfinedMarker);
 			} else {
 				urlOfPredefinedPicture=null;
@@ -293,8 +291,8 @@ package {
 		       	 poisDict[poiMarker]=poi;
 		       	 
 		       	poiMarker.addEventListener(MapMouseEvent.ROLL_OVER, function (ev:MapMouseEvent):void {
-		       		try {removeChild(loadingSprite);}
-					catch (e:Error){}
+		       		/* try {removeChild(clickToGoTooltip);}
+					catch (e:Error){} */
 		       		var tooltipPoi:TooltipMarker = new TooltipMarker(poisDict[ev.currentTarget].name);
 					tooltipPoi.x = (map.fromLatLngToViewport(ev.latLng) as Point).x + 19;
 					tooltipPoi.y = (map.fromLatLngToViewport(ev.latLng) as Point).y - 29;
@@ -305,7 +303,7 @@ package {
 		       		if (poisTooltip[ev.currentTarget] !=null && (poisTooltip[ev.currentTarget] as TooltipMarker).parent!=null) {
 			       		removeChild(poisTooltip[ev.currentTarget] as TooltipMarker);
 		       		}
-		       		addChild(loadingSprite);
+		       		addChild(clickToGoTooltip);
 		       	});  	
 		       	 
 		       	 
@@ -379,7 +377,7 @@ package {
 		
 		private function onMapReady(event:MapEvent):void {
 			
-			map.addEventListener(MapMouseEvent.DOUBLE_CLICK,onMapDoubleClick);
+			//map.addEventListener(MapMouseEvent.DOUBLE_CLICK,onMapDoubleClick);
 			//map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);
 			//map.addControl(new MapTypeControl);
 			
@@ -494,17 +492,17 @@ package {
 			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OUT_AREA,function(event:CustomMapEvent):void {
 					mouseOverPa=false; 
 					removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
-					try {removeChild(loadingSprite);}
+					try {removeChild(clickToGoTooltip);}
 					catch (e:Error){}
 				});
 			MapEventDispatcher.addEventListener(CustomMapEvent.MOUSE_OVER_AREA,function(event:CustomMapEvent):void {
 					mouseOverPa=true; 
-					if (loadingSprite.parent==null) {
-						addChild(loadingSprite);
-					}
+					/* if (clickToGoTooltip.parent==null) { */
+						addChild(clickToGoTooltip);
+					/* } */
 
-					/* loadingSprite.x = event._local_x + 15;
-					loadingSprite.y = event._local_y - 15; */
+					/* clickToGoTooltip.x = event._local_x + 15;
+					clickToGoTooltip.y = event._local_y - 15; */
 					
 					addEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
 				});
@@ -524,49 +522,27 @@ package {
 				//get PA clicked
 				var dsLoader:URLLoader = new URLLoader();
 				dsLoader.addEventListener(Event.COMPLETE,onGetPaByCoordsResult);
-				dsLoader.addEventListener(IOErrorEvent.IO_ERROR, function (ev:IOErrorEvent):void {
-						trace('empty data'); 
-						try {
-							map.removeOverlay(paMarker);					
-						} catch (er:Error) {} 
-						removeChild(loadingSprite); 
-						});
-						
 				dsLoader.load(new URLRequest(domain + "/api/site_atts_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat()));
-				/* dsLoader.load(new URLRequest(domain + "/api/sites_by_point/"+(event.latLng as LatLng).lng()+"/"+ (event.latLng as LatLng).lat())); */
-				/* TweenLite.delayedCall(3,onGetPaByCoordsResult,[{"name": "area", "point": event.latLng}]); */
-				
 			}
 		}
 		
 		
-		private function onMapDoubleClick(event:MapMouseEvent):void {
-			//trace("onMapDoubleClick");			
+/* 		private function onMapDoubleClick(event:MapMouseEvent):void {
 				map.panBy(new Point(-320,0),false);
 		}
 		
-		
+		 */
 		
 		private function getPanoramioPictures():void {		
 			var url:String= "http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=public&from=0&to=20&size=mini_square";		
 	
 			panoramioMarkers = new Dictionary(true);		
 			var bbox:LatLngBounds=mp.getLatLngBounds();	
-/* 			var bbox:LatLngBounds = new LatLngBounds(
-				new LatLng(bboxAll.getSouth()+(bboxAll.getSouth()*0.002),bboxAll.getWest()-(bboxAll.getWest()*0.001)),
-				new LatLng(bboxAll.getNorth()-(bboxAll.getNorth()*0.002),bboxAll.getEast()+(bboxAll.getEast()*0.001))
-				); */
 		
 			var loader:URLLoader= new URLLoader();		
 			loader.addEventListener(Event.COMPLETE,onPanoramioResult);	
 			loader.addEventListener(IOErrorEvent.IO_ERROR,function(event:IOErrorEvent):void{trace("error loading panoramio");});	
-			
-/* 			var pol:Polygon = new Polygon([new LatLng(bbox.getSouth(),bbox.getWest()),
-										   new LatLng(bbox.getNorth(),bbox.getWest()),
-										   new LatLng(bbox.getNorth(),bbox.getEast()),
-										   new LatLng(bbox.getSouth(),bbox.getEast()),
-										   new LatLng(bbox.getSouth(),bbox.getWest())]);
-			map.addOverlay(pol);	 */						   
+							   
 			loader.load(new URLRequest(url + "&minx="+bbox.getWest()+"&miny="+bbox.getSouth()+"&maxx="+bbox.getEast()+"&maxy="+bbox.getNorth()));		
 			}		
 			
@@ -605,8 +581,6 @@ package {
 			var photo:ImageData=imageDict[ev.target.loader];
 			
 			var ms:Sprite = new Sprite();
-			//ms.width=30;
-			//ms.height=30;
 	        var background:Shape = new Shape();
 	        background.graphics.beginFill(0xFFFFFF,1);
 	        background.graphics.drawCircle(15,8,15);
@@ -624,11 +598,6 @@ package {
   			ev.target.loader.mask = image; 
 	        ms.addChild(ev.target.loader);
 			
-			
-			
-			//Set the images thumbnail images to 25x25
-			//(ev.target.loader as Loader).width=30;
-			//(ev.target.loader as Loader).height=30;
 			
 			var latlng:LatLng = photo.latlng;
 	      	var photoUrl:String = photo.imageUrl;
@@ -657,14 +626,11 @@ package {
         		navigateToURL(new URLRequest(photo.sourceUrl));
         	});
         	
-        	infowindow.addEventListener(MouseEvent.MOUSE_OVER, function(event:MouseEvent):void {
-        		try {removeChild(loadingSprite);}
+        	/* infowindow.addEventListener(MouseEvent.MOUSE_OVER, function(event:MouseEvent):void {
+        		try {removeChild(clickToGoTooltip);}
 					catch (e:Error){}
-        	});
-        	
-        	infowindow.addEventListener(MouseEvent.MOUSE_OUT, function(event:MouseEvent):void {
-        		addChild(loadingSprite);
-        	});
+        	}); */
+
         	
         	infowindow.contentLoaderInfo.addEventListener(Event.COMPLETE,function(event:Event):void {
 		   		var loader:LoaderInfo= event.currentTarget as LoaderInfo;
@@ -686,16 +652,16 @@ package {
 		      		//map.panTo(e.latLng);   
 		        });  
 		        marker.addEventListener(MapMouseEvent.ROLL_OVER,function():void {
-					if (loadingSprite.parent != null) {
-						loadingSprite.visible = false;
+					if (clickToGoTooltip.parent != null) {
+						clickToGoTooltip.visible = false;
 					}
 				});
 				marker.addEventListener(MapMouseEvent.ROLL_OUT,function():void {
-					if (loadingSprite.parent != null) {
+					if (clickToGoTooltip.parent != null) {
 						if (onPAFlag == true) {
-							loadingSprite.visible = false;
+							clickToGoTooltip.visible = false;
 						} else {
-							loadingSprite.visible = true;						
+							clickToGoTooltip.visible = true;						
 						}
 					}
 				});    
@@ -712,7 +678,7 @@ package {
 			square.height = stage.stageHeight;
 			square.width = stage.stageWidth;
 			
-/* 			if(sp2) {
+			/* if(sp2) {
 				sp2.x = 648 + (stage.stageWidth/2) - (960/2);
 				sp2.y = stage.stageHeight-31; 
 			} */
@@ -738,35 +704,17 @@ package {
 			
 			var res:Object = JSON.decode(ev.target.data as String);
 
-			removeChild(loadingSprite);
+			removeChild(clickToGoTooltip);
 			if ((res as Array).length != 0 && res[0].id!=paId) {
 				navigateToURL(new URLRequest(domain + '/sites/' + res[0].id),"_self");
 			}
 
- 			
-			/* this.removeEventListener(MouseEvent.MOUSE_MOVE,onMoveCursorLoading);
-			try {
-				map.removeOverlay(paMarker);				
-			} catch (e:Error) {}
-			
-			paMarker = new PAMarker(ev.target.data as Object,clickPoint);
-			
-			paMarker.addEventListener(MapMouseEvent.ROLL_OVER, function(e:MapMouseEvent):void {
-	            if(!rollingOver) {
-	                openInfoWindow(e);     
-	            }
-	            rollingOver=true;                                                                
-            });	
-            
-            paDictionary[paMarker]=ev.target.data;
-                        
-			map.addOverlay(paMarker); */
 		}
 		
 		
 		private function onMoveCursorLoading(ev:MouseEvent):void {
-			loadingSprite.x = ev.stageX;
-			loadingSprite.y = ev.stageY - 35;
+			clickToGoTooltip.x = ev.stageX;
+			clickToGoTooltip.y = ev.stageY - 35;
 		} 
 		
 		
