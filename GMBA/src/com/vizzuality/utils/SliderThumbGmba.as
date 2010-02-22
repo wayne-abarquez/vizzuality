@@ -29,23 +29,19 @@ package com.vizzuality.utils
          private function initListeners():void{
             addEventListener(MouseEvent.MOUSE_MOVE, myMouseMoveHandler);
             addEventListener(MouseEvent.MOUSE_OVER, mouseOver);
-            addEventListener(MouseEvent.MOUSE_OUT, mouseOut);
-            /* addEventListener(Event.CHANGE, change);
- */        }
+            addEventListener(MouseEvent.MOUSE_OUT, mouseOut);            
+         }
         
         
         
         
         private function myMouseMoveHandler(event:MouseEvent):void {   
-        	trace('jamon mueve raton'); 
             if (isMoving) {
             	if (thumbNumber()==1) {
                 	spr.setValue(String(Slider(owner).values[1]));
                 } else {
                 	spr.setValue(String(Slider(owner).values[0]));
                 }
-            	spr.x = (spr.width/2) - 10;
-            	spr.y = 20;
             }
         }
             
@@ -59,10 +55,7 @@ package com.vizzuality.utils
                 	spr.setValue(String(Slider(owner).values[0]));
                 }
                 spr.visible = true;
-                spr.x = (spr.width/2) - 10;
-            	spr.y = 20;
-            }
-                
+            }    
         }
         
         private function mouseOut(evt:MouseEvent):void {
@@ -73,17 +66,14 @@ package com.vizzuality.utils
             	
 				if (thumbNumber()==1) {
 	            	spr.setValue(String(Slider(owner).values[1]));
-	            	trace(String(Slider(owner).values[1]));
 	            } else {
 	            	spr.setValue(String(Slider(owner).values[0]));
-	            	trace(String(Slider(owner).values[1]));
 	            }
             }
                 
         }
         
         override protected function mouseDownHandler(event:MouseEvent):void {
-        	trace('jamon');
             super.mouseDownHandler(event);
             isMoving = true;
         }
@@ -97,8 +87,8 @@ package com.vizzuality.utils
 
         private function initSprite():void{
             spr = new DataTipeSlider();
-            spr.x = (spr.width/2);
-            spr.y = 20;
+            spr.x = (spr.width/2) - 14;
+            spr.y = 18;
         }
         
         private function thumbNumber():Number {
