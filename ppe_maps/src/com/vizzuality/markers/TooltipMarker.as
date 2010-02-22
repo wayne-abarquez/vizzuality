@@ -22,11 +22,7 @@ package com.vizzuality.markers
             format.bold=true;
 			format.align = TextFormatAlign.CENTER;	                    
            	format.leftMargin = 5;
-           	if (name == "Click to go to this PA") {
-           		format.rightMargin = 15;
-           	} else {
-	           	format.rightMargin = 5;
-           	}
+	        format.rightMargin = 5;
            	format.align = "center";
            	
             tf.defaultTextFormat = format;
@@ -43,7 +39,7 @@ package com.vizzuality.markers
             background.y = 0;
             addChild(background);
             
-            arrow.graphics.lineStyle(0.1,0x000000,0.27);
+            arrow.graphics.lineStyle(0.8,0x000000,0.3);
             arrow.graphics.beginFill(0x000000,0.8);
             arrow.graphics.moveTo(0,0);
 			arrow.graphics.lineTo(16, 0);
