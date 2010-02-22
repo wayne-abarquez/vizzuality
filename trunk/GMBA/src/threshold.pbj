@@ -1,0 +1,29 @@
+<languageVersion: 1.0;>
+kernel BrightnessThreshold
+<
+    namespace : "CuriousCreature";
+    vendor : "Romain Guy";
+    version : 1;
+    description : "brightness threshold";
+>
+{
+    parameter float threshold
+    <
+        minValue: float(0.0);
+        maxValue: float(1.0);
+        defaultValue: float(0.5);
+    >;
+
+    input image4 image;
+    output pixel4 outputPixel;
+
+    void evaluatePixel()
+    {
+        outputPixel = sampleNearest(image, outCoord());
+
+        float3 luminanceVector = float3(0.2125, 0.7154, 0.0721);
+        float luminance = dot(luminanceVector, outputPixel.rgb);
+        luminance = max(0.0, luminance - threshold);
+        outputPixel.rgb *= sign(luminance);
+    }
+}
