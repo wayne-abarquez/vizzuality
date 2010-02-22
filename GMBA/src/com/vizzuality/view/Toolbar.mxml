@@ -73,7 +73,7 @@
 					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Above - Arid" click="{(type8.selected)? type8.selected=false: type8.selected=true}"/>
 					<components:ChooseVegetableType id="type9" selectedColor="#915659" unselectedColor="#492B2D" textType="Below - Arid" click="{(type9.selected)? type9.selected=false: type9.selected=true}"/>
 				</mx:VBox>
-			</mx:VBox>
+			</mx:VBox> 
 			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
 			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
 		</mx:Canvas>
