@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="20"  buttonMode="true" useHandCursor="true">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="20"  buttonMode="{(!mamufa)?true:false}" useHandCursor="{(!mamufa)?true:false}" mouseChildren="{(!mamufa)?true:false}">
 	<mx:Script>
 		<![CDATA[
 			[Bindable] public var selectedColor: uint;
 			[Bindable] public var unselectedColor: uint;
 			[Bindable] public var textType: String;
-			[Bindable] private var selected: Boolean = false;
+			[Bindable] public var selected: Boolean = false;
+			[Bindable] public var mamufa: Boolean = false;
 			
 			public override function set data(value:Object):void {
 				if (value != null) {
@@ -17,7 +18,10 @@
 	</mx:Script>
 	
 	<mx:Canvas left="3" width="6" top="0" bottom="0" backgroundColor="{(selected)?selectedColor:unselectedColor}" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
-	<mx:Label text="{textType}" color="{(selected)?0xFFFFFF:0x666666}" verticalCenter="0" left="13" fontSize="12" fontFamily="{(selected)?'DINOT-Bold':'DINOT-Medium'}" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
-	<mx:Button label="deselect" verticalCenter="0" right="4" mouseChildren="false" useHandCursor="true" visible="{(selected)?true:false}" styleName="nullButton" buttonMode="true"/>
+	<mx:Label text="{textType}" color="{(selected)?0xFFFFFF:0x666666}" verticalCenter="0" left="13" fontSize="12" fontFamily="{(selected)?'DINOT-Bold':'DINOT-Medium'}" buttonMode="true" 
+		useHandCursor="true" mouseChildren="false"/>
+	<mx:Canvas id="mamufas" visible="{(!mamufa)?true:false}" verticalCenter="0" right="4">
+		<mx:Button label="deselect"  mouseChildren="false" useHandCursor="true" visible="{(selected)?true:false}" styleName="nullButton" buttonMode="true" />
+	</mx:Canvas>
 	
 </mx:Canvas>

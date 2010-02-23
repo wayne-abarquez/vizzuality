@@ -79,13 +79,13 @@ package com.vizzuality.utils {
         	var vegeValues: ArrayCollection = new ArrayCollection();
         	if (checkIfNumbers(a)) {
         		for (var i:Number = 0; i<a.length;i++) {
-        			if (Number(a[i])!=0) {
+        			/* if (Number(a[i])!=0) { */
 	        			vegeValues.addItem(Number(a[i]));
-        			} else {
+        			/* } else {
         				vegeValues = new ArrayCollection();
         				vegeValues.addItem(Number(a[i]));
         				break;
-        			}
+        			} */
         		}	    		
         	}
         	return vegeValues;
