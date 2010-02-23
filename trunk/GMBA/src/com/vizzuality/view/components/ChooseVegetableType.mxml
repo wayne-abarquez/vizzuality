@@ -18,6 +18,7 @@
 	
 	<mx:Canvas left="0" width="6" top="0" bottom="0" backgroundColor="{(selected)?selectedColor:unselectedColor}" />
 	<mx:Label text="{textType}" color="{(selected)?0xFFFFFF:0x666666}" verticalCenter="0" left="10" fontSize="12" letterSpacing="{(selected)?-1:0}" fontWeight="{(selected)?'bold':'normal'}"/>
-	<mx:Label text="deselect" fontSize="9" color="#FF3300"  textDecoration="underline" verticalCenter="0" right="4" buttonMode="true" 
-		mouseChildren="false" useHandCursor="true" letterSpacing="-1" visible="{(selected)?true:false}"/>
+	<mx:Button label="deselect" verticalCenter="0" right="4" buttonMode="true" 
+		mouseChildren="false" useHandCursor="true" letterSpacing="-1" visible="{(selected)?true:false}" styleName="nullButton"/>
+	
 </mx:Canvas>
