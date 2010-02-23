@@ -9,8 +9,8 @@
 			import mx.controls.sliderClasses.Slider;
 			import com.vizzuality.events.MyEventDispatcher;
 			
-			[Bindable] public var rangeAltitude: Array = new Array([0,7889]);
-			[Bindable] public var rangeRelief: Array = new Array([0,3889]);
+			[Bindable] public var rangeAltitude: Array = new Array(0,7889);
+			[Bindable] public var rangeRelief: Array = new Array(0,3889);
 			
 			private function onSliderChange(vent:Event):void {
 				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,[]);
