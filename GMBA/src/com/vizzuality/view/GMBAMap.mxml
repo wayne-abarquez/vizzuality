@@ -163,7 +163,7 @@
 		    private function onMapReady(event:Event):void {
 			    this.map.addControl(new ZoomControl());
 			    
-				/* rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png",map);
+				rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png",map);
 				var tlo:TileLayerOverlay = new TileLayerOverlay(rasterLayer);
 				tlo.addEventListener(MapEvent.TILES_LOADED,function(ev:Event):void {
 					loadingMessage.visible=false;
@@ -171,7 +171,7 @@
 				tlo.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:Event):void {
 					loadingMessage.visible=true;
 				})
-				map.addOverlay(tlo); */
+				map.addOverlay(tlo);
 		    }
 		    
 		    

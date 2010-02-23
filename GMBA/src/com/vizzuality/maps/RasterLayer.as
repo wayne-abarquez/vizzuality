@@ -19,7 +19,8 @@ package com.vizzuality.maps
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
-	import flash.filters.ShaderFilter;
+	import flash.events.ShaderEvent;
+	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
@@ -28,17 +29,15 @@ package com.vizzuality.maps
 	public class RasterLayer extends TileLayerBase
 	{
         private var rasterUrl:String;	
-        public static const MASK_R:uint = 0xFF0000;
-        public static const MASK_G:uint = 0x00FF00;
-        public static const MASK_B:uint = 0x0000FF;
- 
- 		private var shader:Shader;
- 		private var shadeFilter:ShaderFilter;
  
  		private var tileRect256:Rectangle=new Rectangle(0,0,256,256);
  		private var centerPoint:Point = new Point(0,0);        
  		private var tilesDic:Dictionary=new Dictionary();
  		private var map:IMap;
+        
+        [Embed(source="threshold.pbj", mimeType="application/octet-stream")]
+        private var DynamicFilteringOfBands:Class;
+        private var shader:Shader = new Shader( new DynamicFilteringOfBands() );
         
 		
 		public function RasterLayer(_rasterUrl:String,_map:IMap) {
@@ -54,10 +53,6 @@ package com.vizzuality.maps
             
             MyEventDispatcher.addEventListener(SliderChangeEvent.SLIDER_CHANGED,onSlidersChange,false,0,true);
             
-            [Embed(source="threshold.pbj", mimeType="application/octet-stream")]
-            var Filter:Class;
-            /* shader = new Shader(new Filter());   
-            shader.byteCode = new Filter(); */       
             
             super(copyrightCollection, 0, 6,0.7); 
 		}
@@ -103,61 +98,29 @@ package com.vizzuality.maps
         }
         
  		private function applyThresholdToTile(sourceTile:Loader,targetTile:Sprite,altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
- 			/* var sourceBitmapData:BitmapData = (sourceTile.content as Bitmap).bitmapData; */
- 			//Aplicar el threshold aal sourceBitmapData en un nuevo Bitmap
- 
  			
- 			
- 			
- 			/* var bitMapDataRed:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF); */
-        	//var bitMapDataGreen:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);
-        	//var bitMapDataBlue:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);			
- 			
- 			//bitMapRed.copyChannel(sourceBitmapData,tileRect256,centerPoint,BitmapDataChannel.RED,BitmapDataChannel.RED);
-			//bitMapDataGreen.copyChannel(sourceBitmapData,tileRect256,centerPoint,BitmapDataChannel.GREEN,BitmapDataChannel.GREEN);
-			//bitMapBlue.copyChannel(sourceBitmapData,tileRect256,centerPoint,BitmapDataChannel.BLUE,BitmapDataChannel.BLUE); 	
- 			
- 			/* var altitudeMin:Number =altitudeRange[0];
- 			if (altitudeMin<=1) altitudeMin=31;
- 			var altitudeMax:Number =altitudeRange[1];
- 			if (altitudeMax==7889) altitudeMax=7869;
- 			
- 			var reliefMin:Number =reliefRange[0];
- 			if (reliefMin<=1) reliefMin=15;
- 			var reliefMax:Number =reliefRange[1];
- 			if (reliefMax==3397) reliefMax=3383; */
- 			
- 			
- 			//bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((altitudeMin*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
- 			//bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((altitudeMax*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
-			/* shader.data.threshold.value=[0.75];
-			bitMapDataRed.applyFilter(sourceBitmapData,tileRect256,centerPoint, new ShaderFilter(shader)); */
+ 			var sourceBitmapData:BitmapData = (sourceTile.content as Bitmap).bitmapData;
+ 			shader.data.inputImage.input=sourceBitmapData;
+  			shader.data.minR.value = [altitudeRange[0]/7889];
+ 			shader.data.maxR.value = [altitudeRange[1]/7889];
+ 			shader.data.minG.value = [reliefRange[0]/3397];
+ 			shader.data.maxG.value = [reliefRange[1]/3397]; 
+ 			shader.data.minB.value = [0.0];
+ 			shader.data.maxB.value = [1.0];
 
+			//clear the tile before drawing again
+ 			targetTile.graphics.clear();
+ 			
+ 			targetTile.graphics.beginShaderFill(shader);
+ 			targetTile.graphics.drawRect(0,0,256,256);
+ 			targetTile.graphics.endFill();
 
- 			//bitMapDataGreen.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((reliefMax*256/3397)/256)*0xFFFFFF, 0xFF000000, MASK_G, false);
- 			//bitMapDataGreen.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((reliefMin*256/3397)/256)*0xFFFFFF, 0xFF000000, MASK_G, false);
- 			
- 			/* var outputRedBitmap:Bitmap = new Bitmap(bitMapDataRed); */
- 			//var outputGreenBitmap:Bitmap = new Bitmap(bitMapDataGreen);
- 			//var outputGreenBitmap:Bitmap;
- 			
- 			//-------
- 			
- 			//remove all childs
- 			/* while(targetTile.numChildren > 0){
-				targetTile.removeChildAt(0);
-			} */
-			
-			/* targetTile.addChild(outputRedBitmap); */
-			//targetTile.addChild(outputGreenBitmap);
-			//targetTile.addChild(outputGreenBitmap);
-			
 			
  		}
+ 		
         
         
         private function onSlidersChange(event:SliderChangeEvent):void {
-        	//trace(event.altitudeRange.toString() +"  "+event.reliefRange.toString() + "   " + event.vegtypes.toString());
         	
         	//apply to all tiles in 
         	for (var tileSource:Object in tilesDic) {
