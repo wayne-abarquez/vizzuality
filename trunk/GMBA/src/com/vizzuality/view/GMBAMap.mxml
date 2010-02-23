@@ -37,11 +37,12 @@
 	        private var zoom: Number = 2;
 	        private var lat: Number = 40.73;
 	        private var lon: Number = -3.99;
-	        private var elevationValues: Array = new Array();
-	        private var reliefValues: Array = new Array();
+	        
+	        [Bindable] private var elevationValues: Array = new Array([0,8000]);
+	        [Bindable] private var reliefValues: Array = new Array([0,4000]);
             
             //variables of SWFAddress
-            public var path:String = 'Map';
+            public var path:String = "Map";
             public var depth:int = 1;
                         	
 			
@@ -59,6 +60,7 @@
             }
             
             private function handleSWFAddress(event:SWFAddressEvent):void {
+
                 if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
                     Helper.handleSWFAddress(this, event, depth);
                  } else { 
@@ -69,41 +71,41 @@
                 	var elevationParams: Object = new Object();
                 	var reliefParams: Object = new Object();
                 	
-                    mapPoint = Helper.getPoint(event.pathNames[1] as String);
-                    if (mapPoint.lat!=null) {
-                    	zoom = mapPoint.zoom;
-                    	lat = mapPoint.lat;
-                    	lon = mapPoint.lon;
-                    /* } else {
-                    	SWFAddress.setValue('/map'); */
-                    }
-                    
-/*                     if (event.pathNames.length>1) {
-                    	mapPoint = Helper.getPoint(event.pathNames[1] as String);
+                	if (event.pathNames.length>1) {
+						mapPoint = Helper.getPoint(event.pathNames[1] as String);
 	                    if (mapPoint.lat!=null) {
 	                    	zoom = mapPoint.zoom;
 	                    	lat = mapPoint.lat;
 	                    	lon = mapPoint.lon;
+	                    } else {
+	                    	SWFAddress.setValue('/map');
+	                    	return;
 	                    }
-                    }
-                    
-                    if (event.pathNames.length>2) {
-                    	mapPoint = Helper.getPoint(event.pathNames[1] as String);
-	                    if (mapPoint.lat!=null) {
-	                    	zoom = mapPoint.zoom;
-	                    	lat = mapPoint.lat;
-	                    	lon = mapPoint.lon;
+	                    
+						if (event.pathNames.length>2) {
+	                    	elevationParams = Helper.getSliderParams(event.pathNames[2] as String);
+		                    if (elevationParams.min!=null) {
+		                    	elevationValues = new Array([Number(elevationParams.min),Number(elevationParams.max)]);
+							} else {
+	                    		SWFAddress.setValue('/map');
+	                    		return;
+	                    	} 
 	                    }
-                    } */
-                    
-                    
-                    	
+	                    
+		    			
+		    			if (event.pathNames.length>3) {
+	                    	reliefParams = Helper.getSliderParams(event.pathNames[3] as String);
+		                   	if (reliefParams.min!=null) {
+		                    	reliefValues = new Array([Number(reliefParams.min),Number(reliefParams.max)]);
+							} else {
+	                    		SWFAddress.setValue('/map');
+	                    		return;
+	                    	}
+	                    }
+                	}	
                 }
             }
             
-            /* private function ():void {
-            	
-            } */
 	        
 		    
 	        private function onMapPreinitialize(event:Event):void {
@@ -113,10 +115,14 @@
 	                                                MapType.PHYSICAL_MAP_TYPE.getProjection(),
 	                                                "TerrainLimited",
 	                                                new MapTypeOptions({maxResolution: 6, minResolution: 2}));*/
-	                                                
+	           
+	           //Changes values thanks to URL params                                
 	           opts.mapType = MapType.PHYSICAL_MAP_TYPE;
            	   opts.center=new LatLng(lat,lon);
 	       	   opts.zoom=zoom;
+	       	   
+	       	   
+	       	   
 	           map.setInitOptions(opts);
 	           map.addEventListener(MapMoveEvent.MOVE_END,onChangeMap);
 	           map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);           	
@@ -165,7 +171,7 @@
 			borderThickness="0" top="10" left="10" right="10" bottom="10" topLeftRadius="5" topRightRadius="5" horizontalScrollPolicy="off">
 
 			<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
-				<view:Toolbar width="20%"/>
+				<view:Toolbar width="20%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" />
 				<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
 					<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 					<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />

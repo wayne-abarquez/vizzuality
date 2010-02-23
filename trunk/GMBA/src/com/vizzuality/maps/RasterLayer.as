@@ -56,10 +56,10 @@ package com.vizzuality.maps
             
             [Embed(source="threshold.pbj", mimeType="application/octet-stream")]
             var Filter:Class;
-            shader = new Shader(new Filter());   
-            shader.byteCode = new Filter();         
+            /* shader = new Shader(new Filter());   
+            shader.byteCode = new Filter(); */       
             
-            super(copyrightCollection, 0, 6,0.7);
+            super(copyrightCollection, 0, 6,0.7); 
 		}
 		
 		public override function loadTile(tile:Point, zoom:Number):DisplayObject {
@@ -103,13 +103,13 @@ package com.vizzuality.maps
         }
         
  		private function applyThresholdToTile(sourceTile:Loader,targetTile:Sprite,altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
- 			var sourceBitmapData:BitmapData = (sourceTile.content as Bitmap).bitmapData;
+ 			/* var sourceBitmapData:BitmapData = (sourceTile.content as Bitmap).bitmapData; */
  			//Aplicar el threshold aal sourceBitmapData en un nuevo Bitmap
  
  			
  			
  			
- 			var bitMapDataRed:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);
+ 			/* var bitMapDataRed:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF); */
         	//var bitMapDataGreen:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);
         	//var bitMapDataBlue:BitmapData = new BitmapData(256,256,true, 0x00FFFFFF);			
  			
@@ -117,7 +117,7 @@ package com.vizzuality.maps
 			//bitMapDataGreen.copyChannel(sourceBitmapData,tileRect256,centerPoint,BitmapDataChannel.GREEN,BitmapDataChannel.GREEN);
 			//bitMapBlue.copyChannel(sourceBitmapData,tileRect256,centerPoint,BitmapDataChannel.BLUE,BitmapDataChannel.BLUE); 	
  			
- 			var altitudeMin:Number =altitudeRange[0];
+ 			/* var altitudeMin:Number =altitudeRange[0];
  			if (altitudeMin<=1) altitudeMin=31;
  			var altitudeMax:Number =altitudeRange[1];
  			if (altitudeMax==7889) altitudeMax=7869;
@@ -125,30 +125,30 @@ package com.vizzuality.maps
  			var reliefMin:Number =reliefRange[0];
  			if (reliefMin<=1) reliefMin=15;
  			var reliefMax:Number =reliefRange[1];
- 			if (reliefMax==3397) reliefMax=3383;
+ 			if (reliefMax==3397) reliefMax=3383; */
  			
  			
  			//bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((altitudeMin*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
  			//bitMapDataRed.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((altitudeMax*256/7889)/256)*0xFFFFFF, 0xFF000000, MASK_R, false);
-			shader.data.threshold.value=[0.75];
-			bitMapDataRed.applyFilter(sourceBitmapData,tileRect256,centerPoint, new ShaderFilter(shader));
+			/* shader.data.threshold.value=[0.75];
+			bitMapDataRed.applyFilter(sourceBitmapData,tileRect256,centerPoint, new ShaderFilter(shader)); */
 
 
  			//bitMapDataGreen.threshold(sourceBitmapData, tileRect256, centerPoint, "<", ((reliefMax*256/3397)/256)*0xFFFFFF, 0xFF000000, MASK_G, false);
  			//bitMapDataGreen.threshold(sourceBitmapData, tileRect256, centerPoint, ">", ((reliefMin*256/3397)/256)*0xFFFFFF, 0xFF000000, MASK_G, false);
  			
- 			var outputRedBitmap:Bitmap = new Bitmap(bitMapDataRed);
+ 			/* var outputRedBitmap:Bitmap = new Bitmap(bitMapDataRed); */
  			//var outputGreenBitmap:Bitmap = new Bitmap(bitMapDataGreen);
  			//var outputGreenBitmap:Bitmap;
  			
  			//-------
  			
  			//remove all childs
- 			while(targetTile.numChildren > 0){
+ 			/* while(targetTile.numChildren > 0){
 				targetTile.removeChildAt(0);
-			}
+			} */
 			
-			targetTile.addChild(outputRedBitmap);
+			/* targetTile.addChild(outputRedBitmap); */
 			//targetTile.addChild(outputGreenBitmap);
 			//targetTile.addChild(outputGreenBitmap);
 			
