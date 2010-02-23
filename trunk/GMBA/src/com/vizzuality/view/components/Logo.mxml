@@ -11,7 +11,7 @@
 	<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
 	<mx:VBox right="10" top="10" bottom="10" verticalAlign="middle" horizontalAlign="center">
 		<!--TODO: Use events handlers for the principal buttons, not Application.application...-->
-		<mx:Button label="i" buttonMode="true" mouseChildren="false" useHandCursor="true" click="{/* Application.application.gmbaMap.currentState='Help' */}"/>
-		<mx:Button label="h" buttonMode="true" mouseChildren="false" useHandCursor="true" click="Application.application.currentState='Home'"/>
+		<!--<mx:Button label="i" buttonMode="true" mouseChildren="false" useHandCursor="true" click="{Application.application.gmbaMap.currentState='Help'}"/>
+		<mx:Button label="h" buttonMode="true" mouseChildren="false" useHandCursor="true" click="Application.application.currentState='Home'"/>-->
 	</mx:VBox>
 </mx:Canvas>
