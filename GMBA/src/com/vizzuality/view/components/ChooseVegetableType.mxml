@@ -5,10 +5,12 @@
 			[Bindable] public var selectedColor: uint;
 			[Bindable] public var unselectedColor: uint;
 			[Bindable] public var textType: String;
-			[Bindable] public var selected: Boolean = false;
+			[Bindable] private var selected: Boolean = false;
 			
 			public override function set data(value:Object):void {
-				
+				if (value != null) {
+					selected = value;
+				}
 			}
 			
 		]]>

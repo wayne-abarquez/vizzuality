@@ -18,16 +18,22 @@
 
 			
 			private function changeAltitudeValues(ev:SliderEvent):void {
-				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,[]);
+				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
 			}
 			
 			private function changeReliefValues(ev:SliderEvent):void {
-				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,[]);
-				
+				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
 			}
 			
-			private function onChangeVegetationValues(event: CollectionEvent):void {
-				trace('changes in vegetation params');
+			private function onChangeVegeValue(obj:ChooseVegetableType, num:Number):void {
+				if ((vegetationValues[num] as Boolean) == true) {
+					vegetationValues[num] = false;
+					obj.data = false;
+				} else {
+					vegetationValues[num] = true;
+					obj.data = true;
+				}
+				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
 			}
 			
 			private function onSliderChange(vent:Event):void {
@@ -85,24 +91,24 @@
 				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 				<mx:VBox verticalGap="1" width="100%">
 					<mx:Spacer height="5" />
-					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}" 
-						selected="{vegetationValues.getItemAt(0)}"/>
-					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{(type2.selected)? type2.selected=false: type2.selected=true}"
-						selected="{vegetationValues.getItemAt(1)}" />
-					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Adjacent above" click="{(type3.selected)? type3.selected=false: type3.selected=true}"
-						selected="{vegetationValues.getItemAt(2)}" />
-					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Adjacent below" click="{(type4.selected)? type4.selected=false: type4.selected=true}"
-						selected="{vegetationValues.getItemAt(3)}"/>
-					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Below" click="{(type5.selected)? type5.selected=false: type5.selected=true}"
-						selected="{vegetationValues.getItemAt(4)}"/>
-					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Dry desert" click="{(type6.selected)? type6.selected=false: type6.selected=true}"
-						selected="{vegetationValues.getItemAt(5)}"/>
-					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Arid grassland" click="{(type7.selected)? type7.selected=false: type7.selected=true}"
-						selected="{vegetationValues.getItemAt(6)}"/>
-					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Above - Arid" click="{(type8.selected)? type8.selected=false: type8.selected=true}"
-						selected="{vegetationValues.getItemAt(7)}"/>
-					<components:ChooseVegetableType id="type9" selectedColor="#915659" unselectedColor="#492B2D" textType="Below - Arid" click="{(type9.selected)? type9.selected=false: type9.selected=true}"
-						selected="{vegetationValues.getItemAt(8)}"/>
+					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{onChangeVegeValue(type1,0)}" 
+						data="{vegetationValues.getItemAt(0)}"/>
+					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{onChangeVegeValue(type2,1)}"
+						data="{vegetationValues.getItemAt(1)}" />
+					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Adjacent above" click="{onChangeVegeValue(type3,2)}"
+						data="{vegetationValues.getItemAt(2)}" />
+					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Adjacent below" click="{onChangeVegeValue(type4,3)}"
+						data="{vegetationValues.getItemAt(3)}"/>
+					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Below" click="{onChangeVegeValue(type5,4)}"
+						data="{vegetationValues.getItemAt(4)}"/>
+					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Dry desert" click="{onChangeVegeValue(type6,5)}"
+						data="{vegetationValues.getItemAt(5)}"/>
+					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Arid grassland" click="{onChangeVegeValue(type7,6)}"
+						data="{vegetationValues.getItemAt(6)}"/>
+					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Above - Arid" click="{onChangeVegeValue(type8,7)}"
+						data="{vegetationValues.getItemAt(7)}"/>
+					<components:ChooseVegetableType id="type9" selectedColor="#915659" unselectedColor="#492B2D" textType="Below - Arid" click="{onChangeVegeValue(type9,8)}"
+						data="{vegetationValues.getItemAt(8)}"/>
 				</mx:VBox>
 			</mx:VBox> 
 			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
