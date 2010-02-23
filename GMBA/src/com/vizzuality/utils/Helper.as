@@ -63,6 +63,16 @@ package com.vizzuality.utils {
         	return obj;
         }
         
+        public static function getSliderParams(str: String):Object {
+        	var a:Array = str.split('_');
+        	var obj: Object = new Object();
+        	if (checkIfNumbers(a) && a.length==2 && Number(a[0])<Number(a[1])) {
+        		obj.min = Number(a[0]);
+        		obj.max = Number(a[1]);      		
+        	}
+        	return obj;
+        }
+            
         private static function checkIfNumbers(array:Array):Boolean {
         	for (var i:Number = 0; i < array.length; i++) {
         		var ext:Number = Number(array[i]);
