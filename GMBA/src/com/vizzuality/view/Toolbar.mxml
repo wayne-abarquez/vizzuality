@@ -3,18 +3,37 @@
 	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
 	<mx:Script>
 		<![CDATA[
+			import mx.events.SliderEvent;
+			import mx.events.CollectionEvent;
+			import mx.collections.ArrayCollection;
 
 			import com.vizzuality.utils.SliderThumbGmba;
 			import com.vizzuality.events.SliderChangeEvent;
 			import mx.controls.sliderClasses.Slider;
 			import com.vizzuality.events.MyEventDispatcher;
 			
-			[Bindable] public var rangeAltitude: Array = new Array(0,7889);
-			[Bindable] public var rangeRelief: Array = new Array(0,3889);
+			[Bindable] public var rangeAltitude: ArrayCollection = new ArrayCollection([0,7889]);
+			[Bindable] public var rangeRelief: ArrayCollection = new ArrayCollection([0,3889]);
+			[Bindable] public var vegetationValues: ArrayCollection = new ArrayCollection([true,false,false,false,false,false,false,false,false]);
+
+			
+			private function changeAltitudeValues(ev:SliderEvent):void {
+				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,[]);
+			}
+			
+			private function changeReliefValues(ev:SliderEvent):void {
+				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,[]);
+				
+			}
+			
+			private function onChangeVegetationValues(event: CollectionEvent):void {
+				trace('changes in vegetation params');
+			}
 			
 			private function onSliderChange(vent:Event):void {
 				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,[]);
 				trace(sliderAltitude.values.toString()+ "   "+sliderRoughness.values.toString());
+			
 			}
 		]]>
 	</mx:Script>
@@ -32,9 +51,9 @@
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
 					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
-					<mx:Label text="8000" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
-					<mx:HSlider id="sliderAltitude" enabled="true" top="0" left="5" right="20" minimum="0" maximum="7889" values="{rangeAltitude}" showDataTip="false" width="100%" 
-						thumbCount="2" change="onSliderChange(event)" liveDragging="true" sliderThumbClass="{SliderThumbGmba}"  snapInterval="30"/>
+					<mx:Label text="7889" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
+					<mx:HSlider id="sliderAltitude" enabled="true" top="0" left="5" right="20" minimum="0" maximum="7889" values="{rangeAltitude.source}" showDataTip="false" width="100%" 
+						thumbCount="2" change="onSliderChange(event)"  liveDragging="true" sliderThumbClass="{SliderThumbGmba}" thumbRelease="changeAltitudeValues(event)"  snapInterval="30"/>
 
 				</mx:Canvas>
 			</mx:VBox>
@@ -50,9 +69,9 @@
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
 					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
-					<mx:Label text="400" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
-					<mx:HSlider id="sliderRoughness" showDataTip="false" top="0" left="5" right="20" minimum="0" maximum="3397"  values="{rangeRelief}" 
-						 change="onSliderChange(event)" sliderThumbClass="{SliderThumbGmba}"
+					<mx:Label text="3397" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
+					<mx:HSlider id="sliderRoughness" showDataTip="false" top="0" left="5" right="20" minimum="0" maximum="3397"  values="{rangeRelief.source}" 
+						 change="onSliderChange(event)" sliderThumbClass="{SliderThumbGmba}" thumbRelease="changeReliefValues(event)"
 						width="100%" thumbCount="2" liveDragging="true" snapInterval="14" />
 				</mx:Canvas>
 			</mx:VBox>
@@ -66,15 +85,24 @@
 				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 				<mx:VBox verticalGap="1" width="100%">
 					<mx:Spacer height="5" />
-					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}" selected="true"/>
-					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{(type2.selected)? type2.selected=false: type2.selected=true}"/>
-					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Adjacent above" click="{(type3.selected)? type3.selected=false: type3.selected=true}"/>
-					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Adjacent below" click="{(type4.selected)? type4.selected=false: type4.selected=true}"/>
-					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Below" click="{(type5.selected)? type5.selected=false: type5.selected=true}"/>
-					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Dry desert" click="{(type6.selected)? type6.selected=false: type6.selected=true}"/>
-					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Arid grassland" click="{(type7.selected)? type7.selected=false: type7.selected=true}"/>
-					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Above - Arid" click="{(type8.selected)? type8.selected=false: type8.selected=true}"/>
-					<components:ChooseVegetableType id="type9" selectedColor="#915659" unselectedColor="#492B2D" textType="Below - Arid" click="{(type9.selected)? type9.selected=false: type9.selected=true}"/>
+					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}" 
+						selected="{vegetationValues.getItemAt(0)}"/>
+					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{(type2.selected)? type2.selected=false: type2.selected=true}"
+						selected="{vegetationValues.getItemAt(1)}" />
+					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Adjacent above" click="{(type3.selected)? type3.selected=false: type3.selected=true}"
+						selected="{vegetationValues.getItemAt(2)}" />
+					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Adjacent below" click="{(type4.selected)? type4.selected=false: type4.selected=true}"
+						selected="{vegetationValues.getItemAt(3)}"/>
+					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Below" click="{(type5.selected)? type5.selected=false: type5.selected=true}"
+						selected="{vegetationValues.getItemAt(4)}"/>
+					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Dry desert" click="{(type6.selected)? type6.selected=false: type6.selected=true}"
+						selected="{vegetationValues.getItemAt(5)}"/>
+					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Arid grassland" click="{(type7.selected)? type7.selected=false: type7.selected=true}"
+						selected="{vegetationValues.getItemAt(6)}"/>
+					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Above - Arid" click="{(type8.selected)? type8.selected=false: type8.selected=true}"
+						selected="{vegetationValues.getItemAt(7)}"/>
+					<components:ChooseVegetableType id="type9" selectedColor="#915659" unselectedColor="#492B2D" textType="Below - Arid" click="{(type9.selected)? type9.selected=false: type9.selected=true}"
+						selected="{vegetationValues.getItemAt(8)}"/>
 				</mx:VBox>
 			</mx:VBox> 
 			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />

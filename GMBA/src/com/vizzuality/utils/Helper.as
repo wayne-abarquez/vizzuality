@@ -1,5 +1,6 @@
 package com.vizzuality.utils {
     
+    import mx.collections.ArrayCollection;
     import mx.core.Application;
     import mx.core.UIComponent;
     
@@ -72,11 +73,29 @@ package com.vizzuality.utils {
         	}
         	return obj;
         }
-            
+        
+        public static function getVegetationParams(str:String):ArrayCollection {
+        	var a:Array = str.split('_');
+        	var vegeValues: ArrayCollection = new ArrayCollection();
+        	if (checkIfNumbers(a)) {
+        		for (var i:Number = 0; i<a.length;i++) {
+        			if (Number(a[i])!=0) {
+	        			vegeValues.addItem(Number(a[i]));
+        			} else {
+        				vegeValues = new ArrayCollection();
+        				vegeValues.addItem(Number(a[i]));
+        				break;
+        			}
+        		}	    		
+        	}
+        	return vegeValues;
+        }
+        
+          
         private static function checkIfNumbers(array:Array):Boolean {
         	for (var i:Number = 0; i < array.length; i++) {
         		var ext:Number = Number(array[i]);
-        		if (ext == false) 
+        		if (ext!= 0 && ext == false) 
         			return false;
         	}
         	return true;

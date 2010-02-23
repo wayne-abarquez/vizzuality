@@ -13,6 +13,11 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.vizzuality.events.SliderThumbRelease;
+	    	import com.vizzuality.events.SliderChangeEvent;
+	    	import com.vizzuality.events.MyEventDispatcher;
+	    	import mx.events.CollectionEvent;
+	    	import mx.collections.ArrayCollection;
 	    	import com.google.maps.MapZoomEvent;
 	    	import com.google.maps.MapMoveEvent;
 	    	import com.vizzuality.utils.Helper;
@@ -38,17 +43,25 @@
 	        private var lat: Number = 40.73;
 	        private var lon: Number = -3.99;
 	        
-	        [Bindable] private var elevationValues: Array = new Array(0,7889);
-	        [Bindable] private var reliefValues: Array = new Array(0,3889);
+	        [Bindable] private var elevationValues: ArrayCollection = new ArrayCollection([0,7889]);
+	        [Bindable] private var reliefValues: ArrayCollection = new ArrayCollection([0,3889]);
+	        [Bindable] private var vegetationValues: ArrayCollection = new ArrayCollection([true,false,false,false,false,false,false,false,false]);
             
             //variables of SWFAddress
             public var path:String = "Map";
             public var depth:int = 1;
                         	
 			
-            private function initSWFAddress():void {
+            private function initSWFAddress():void {        	
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+                MyEventDispatcher.addEventListener(SliderThumbRelease.SLIDER_CHANGED, onChangeSliderValues);              
+            }
+            
+            private function onChangeSliderValues(event:SliderChangeEvent):void {
+            	elevationValues = new ArrayCollection (event.altitudeRange);
+            	reliefValues = new ArrayCollection(event.reliefRange);
+            	makeNewURL();
             }
             
             private function destroySWFAddress():void {
@@ -70,6 +83,7 @@
                 	var mapPoint:Object = new Object();
                 	var elevationParams: Object = new Object();
                 	var reliefParams: Object = new Object();
+                	var vegetationParams: ArrayCollection = new ArrayCollection();
                 	
                 	if (event.pathNames.length>1) {
 						mapPoint = Helper.getPoint(event.pathNames[1] as String);
@@ -85,7 +99,7 @@
 						if (event.pathNames.length>2) {
 	                    	elevationParams = Helper.getSliderParams(event.pathNames[2] as String);
 		                    if (elevationParams.min!=null) {
-		                    	elevationValues = new Array(Number(elevationParams.min),Number(elevationParams.max));
+		                    	elevationValues = new ArrayCollection([Number(elevationParams.min),Number(elevationParams.max)]);
 							} else {
 	                    		SWFAddress.setValue('/map');
 	                    		return;
@@ -96,12 +110,25 @@
 		    			if (event.pathNames.length>3) {
 	                    	reliefParams = Helper.getSliderParams(event.pathNames[3] as String);
 		                   	if (reliefParams.min!=null) {
-		                    	reliefValues = new Array(Number(reliefParams.min),Number(reliefParams.max));
+		                    	reliefValues = new ArrayCollection([Number(reliefParams.min),Number(reliefParams.max)]);
 							} else {
 	                    		SWFAddress.setValue('/map');
 	                    		return;
 	                    	}
 	                    }
+	                    
+	                    if (event.pathNames.length>4) {
+							vegetationParams = Helper.getVegetationParams(event.pathNames[4] as String);
+		                   	if (vegetationParams.length!=0) {
+		                   		vegetationValues = new ArrayCollection([false,false,false,false,false,false,false,false,false]);
+		                   		for (var i:Number = 0; i< vegetationParams.length; i++) {
+		                   			vegetationValues[Number(vegetationParams[i])] = true;
+		                   		}
+							} else {
+	                    		SWFAddress.setValue('/map');
+	                    		return;
+	                    	}	                    
+	                    } 
                 	}	
                 }
             }
@@ -155,10 +182,19 @@
 		    }
 		    
 		    private function makeNewURL():void {
-		    	SWFAddress.setValue('/map/' + zoom + '_' + lat + '_' + lon + '/');
+		    	var url: String = '/map/' + zoom + '_' + lat + '_' + lon + '/' + elevationValues[0] + '_' + elevationValues[1] + '/' + reliefValues[0] + '_' + reliefValues[1] + '/';
+		    	for (var i:Number=0; i<vegetationValues.length;i++) {
+		    		if (vegetationValues[i]) {
+		    			if (i==0) {
+		    				url+= i;
+		    			} else {
+		    				url+= '_' + i;
+		    			}
+		    		}
+		    	}
+		    	url+='/';
+		    	SWFAddress.setValue(url);
 		    }
-		    
-		    
 	    ]]>
 	</mx:Script>
 	
@@ -171,7 +207,7 @@
 			borderThickness="0" top="10" left="10" right="10" bottom="10" topLeftRadius="5" topRightRadius="5" horizontalScrollPolicy="off">
 
 			<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
-				<view:Toolbar width="20%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" />
+				<view:Toolbar width="20%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}"/>
 				<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
 					<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 					<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />

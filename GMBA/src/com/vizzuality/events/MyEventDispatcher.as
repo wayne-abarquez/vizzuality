@@ -25,7 +25,11 @@ package com.vizzuality.events
   		// Public API that dispatches an event
     	public static function updatedSliders(altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
    			dispatchEvent(new SliderChangeEvent(SliderChangeEvent.SLIDER_CHANGED,altitudeRange,reliefRange,vegtypes));
-    	}	
+    	}
+    	
+    	public static function onChangeThumbRelease(altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
+   			dispatchEvent(new SliderThumbRelease(SliderThumbRelease.SLIDER_CHANGED,altitudeRange,reliefRange,vegtypes));
+    	}
 
     }
 }
