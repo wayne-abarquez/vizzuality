@@ -1,4 +1,24 @@
 /* CSS file */
+
+@font-face {
+    src:url("fonts/DINOT.swf");
+    fontFamily: "DINOT-Medium";
+}
+
+@font-face {
+    src:url("fonts/DINOT.swf");
+    fontFamily: "DINOT-Bold";
+}
+
+@font-face {
+    src:url("fonts/roses.swf");
+    fontFamily: "Roses are FF0000_8pt_st";
+}
+
+Canvas.bkgBigCanvas{
+	background-image: Embed(source='skin.swf',symbol='bkgBigCanvas');
+}
+
 TextInput.taxon {
 	backgroundSize: auto;
 	color: #8D8D8D;
@@ -12,13 +32,38 @@ TextInput.taxon {
 }
 
 Button.download {
-	fillAlphas: 0.83, 0.8, 0.83, 0.83;
-	fillColors: #DFB201, #A48303, #A48303, #DFB201;
+	up-skin: Embed(source='skin.swf',symbol='yellowButton_up');
+	over-skin: Embed(source='skin.swf',symbol='yellowButton_over');
+	down-skin: Embed(source='skin.swf',symbol='yellowButton_up');
 	color: #FFFFFF;
-	borderColor: #FFE680;
-	themeColor: #DFB201;
 	textRollOverColor: #FFFFFF;
-	disabledColor: #CFCFCF;
-	textSelectedColor: #000000;
+	text-selected-color: #FFFFFF;
+	font-family: "DINOT-Medium";
+	font-size: 19;
 	
+}
+
+HSlider{
+	thumbDisabledSkin: Embed(source="skin.swf", symbol="SliderThumb_disabledSkin");
+	thumbDownSkin: Embed(source="skin.swf", symbol="SliderThumb_downSkin");
+	thumbOverSkin: Embed(source="skin.swf", symbol="SliderThumb_overSkin");
+	thumbUpSkin: Embed(source="skin.swf", symbol="SliderThumb_upSkin");
+	trackHighlightSkin: Embed(source="skin.swf", symbol="SliderHighlight_Skin");
+	trackSkin: Embed(source="skin.swf", symbol="SliderTrack_Skin");
+	tickColor:#262626;
+	tickWidth:3;
+	tickOffset:-1;
+	tickInterval:1;
+	tickThickness:1;
+}
+
+Button.nullButton{
+	skin: ClassReference(null);
+	skin: Embed(source="skin.swf", symbol="nullButton");
+	color: #FF3300;
+	textRollOverColor: #FFFFFF;
+	text-selected-color: #FFFFFF;
+	font-family: "DINOT-Medium";
+	font-size: 10;
+	text-decoration: underline;
 }
