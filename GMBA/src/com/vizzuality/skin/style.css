@@ -19,6 +19,10 @@ Canvas.bkgBigCanvas{
 	background-image: Embed(source='skin.swf',symbol='bkgBigCanvas');
 }
 
+Label {
+	font-family: 'DINOT-Medium';
+}
+
 TextInput.taxon {
 	backgroundSize: auto;
 	color: #8D8D8D;
@@ -40,8 +44,11 @@ Button.download {
 	text-selected-color: #FFFFFF;
 	font-family: "DINOT-Medium";
 	font-size: 19;
-	
+	shadowColor: #8B6F02;
+	shadowAngle: 90;
+	shadowDistance: 1;
 }
+
 
 HSlider{
 	thumbDisabledSkin: Embed(source="skin.swf", symbol="SliderThumb_disabledSkin");
@@ -63,7 +70,20 @@ Button.nullButton{
 	color: #FF3300;
 	textRollOverColor: #FFFFFF;
 	text-selected-color: #FFFFFF;
-	font-family: "DINOT-Medium";
+	font-family: "Arial";
 	font-size: 10;
 	text-decoration: underline;
+	letter-spacing:0;
+}
+
+Button.explore {
+	skin: ClassReference(null);
+	skin: Embed(source="skin.swf", symbol="nullButton");
+	color: #FFCC00;
+	textRollOverColor: #FFCC22;
+	text-selected-color: #FFCC55;
+	font-family: "Arial";
+	font-size: 11;
+	text-decoration: underline;
+	padding-left:0;
 }

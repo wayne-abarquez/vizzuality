@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="20">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="20"  buttonMode="true" useHandCursor="true">
 	<mx:Script>
 		<![CDATA[
 			[Bindable] public var selectedColor: uint;
@@ -16,9 +16,8 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Canvas left="0" width="6" top="0" bottom="0" backgroundColor="{(selected)?selectedColor:unselectedColor}" />
-	<mx:Label text="{textType}" color="{(selected)?0xFFFFFF:0x666666}" verticalCenter="0" left="10" fontSize="12" letterSpacing="{(selected)?-1:0}" fontWeight="{(selected)?'bold':'normal'}"/>
-	<mx:Button label="deselect" verticalCenter="0" right="4" buttonMode="true" 
-		mouseChildren="false" useHandCursor="true" letterSpacing="-1" visible="{(selected)?true:false}" styleName="nullButton"/>
+	<mx:Canvas left="3" width="6" top="0" bottom="0" backgroundColor="{(selected)?selectedColor:unselectedColor}" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+	<mx:Label text="{textType}" color="{(selected)?0xFFFFFF:0x666666}" verticalCenter="0" left="13" fontSize="12" fontFamily="{(selected)?'DINOT-Bold':'DINOT-Medium'}" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+	<mx:Button label="deselect" verticalCenter="0" right="4" mouseChildren="false" useHandCursor="true" visible="{(selected)?true:false}" styleName="nullButton" buttonMode="true"/>
 	
 </mx:Canvas>

@@ -84,7 +84,7 @@ package com.vizzuality.utils
 
         private function initSprite():void{
             spr = new DataTipeSlider();
-            spr.x = (spr.width/2) - 14;
+            spr.x = (spr.width/2) - 13;
             spr.y = 18;
         }
         
@@ -98,6 +98,12 @@ package com.vizzuality.utils
         
         private function thumbNumber():Number {
         	return mx_internal::thumbIndex;
+        }
+        
+		override protected function measure():void {
+            super.measure();
+            measuredWidth = currentSkin.measuredWidth;
+            measuredHeight = currentSkin.measuredHeight;
         }
 
     }

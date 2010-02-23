@@ -7,9 +7,13 @@ package com.vizzuality.utils
 	import flash.text.TextFormatAlign;
 
 	public class DataTipeSlider extends Sprite {
+		
 		public var tf: TextField;
 		public var background: Sprite = new Sprite();
 		public var arrow: Sprite = new Sprite();
+		
+		/* [Embed(source='/com/vizzuality/skin/fonts/roses.swf',fontName='',fontWeight='normal')]
+       	public var ROSES:Class; */
 
 		public function DataTipeSlider() {
 			tf= new TextField();
