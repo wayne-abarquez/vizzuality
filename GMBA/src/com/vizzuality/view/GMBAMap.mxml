@@ -45,7 +45,7 @@
 	        
 	        [Bindable] private var elevationValues: ArrayCollection = new ArrayCollection([0,7889]);
 	        [Bindable] private var reliefValues: ArrayCollection = new ArrayCollection([0,3889]);
-	        [Bindable] private var vegetationValues: ArrayCollection = new ArrayCollection([true,false,false,false,false,false,false,false,false]);
+	        [Bindable] private var vegetationValues: ArrayCollection = new ArrayCollection();
             
             //variables of SWFAddress
             public var path:String = "Map";
@@ -97,6 +97,7 @@
 	                    	return;
 	                    }
 	                    
+	                    //GETTING ELEVATION RANGE
 						if (event.pathNames.length>2) {
 	                    	elevationParams = Helper.getSliderParams(event.pathNames[2] as String);
 		                    if (elevationParams.min!=null) {
@@ -107,7 +108,7 @@
 	                    	} 
 	                    }
 	                    
-		    			
+		    			//GETTING RELIEF RANGE
 		    			if (event.pathNames.length>3) {
 	                    	reliefParams = Helper.getSliderParams(event.pathNames[3] as String);
 		                   	if (reliefParams.min!=null) {
@@ -117,7 +118,8 @@
 	                    		return;
 	                    	}
 	                    }
-	                    
+
+	                    //GETTING VEGETATION PARAMS
 	                    if (event.pathNames.length>4) {
 							vegetationParams = Helper.getVegetationParams(event.pathNames[4] as String);
 		                   	if (vegetationParams.length!=0) {
@@ -129,7 +131,9 @@
 	                    		SWFAddress.setValue('/map');
 	                    		return;
 	                    	}	                    
-	                    } 
+	                    } else {
+	                    	vegetationValues = new ArrayCollection([true,false,false,false,false,false,false,false,false]);
+	                    }
                 	}	
                 }
             }
@@ -185,19 +189,17 @@
 		    private function makeNewURL():void {
 		    	var url: String = '/map/' + zoom + '_' + lat + '_' + lon + '/' + elevationValues[0] + '_' + elevationValues[1] + '/' + reliefValues[0] + '_' + reliefValues[1] + '/';
 		    	var first:Boolean = true;
-		    	if (vegetationValues.length>0) {
-			    	for (var i:Number=0; i<vegetationValues.length;i++) {
-			    		if (vegetationValues[i]) {
-			    			if (first) {
-			    				first = false;
-			    				url+= i;
-			    			} else {
-			    				url+= '_' + i;
-			    			}
-			    		}
-			    	}
-			    	url+='/';
+		    	for (var i:Number=0; i<vegetationValues.length;i++) {
+		    		if (vegetationValues[i]) {
+		    			if (first) {
+		    				first = false;
+		    				url+= i;
+		    			} else {
+		    				url+= '_' + i;
+		    			}
+		    		}
 		    	}
+		    	url+='/';
 		    	SWFAddress.setValue(url);
 		    }
 	    ]]>
