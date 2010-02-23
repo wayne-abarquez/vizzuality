@@ -38,8 +38,8 @@
 	        private var lat: Number = 40.73;
 	        private var lon: Number = -3.99;
 	        
-	        [Bindable] private var elevationValues: Array = new Array([0,8000]);
-	        [Bindable] private var reliefValues: Array = new Array([0,4000]);
+	        [Bindable] private var elevationValues: Array = new Array(0,7889);
+	        [Bindable] private var reliefValues: Array = new Array(0,3889);
             
             //variables of SWFAddress
             public var path:String = "Map";
@@ -85,7 +85,7 @@
 						if (event.pathNames.length>2) {
 	                    	elevationParams = Helper.getSliderParams(event.pathNames[2] as String);
 		                    if (elevationParams.min!=null) {
-		                    	elevationValues = new Array([Number(elevationParams.min),Number(elevationParams.max)]);
+		                    	elevationValues = new Array(Number(elevationParams.min),Number(elevationParams.max));
 							} else {
 	                    		SWFAddress.setValue('/map');
 	                    		return;
@@ -96,7 +96,7 @@
 		    			if (event.pathNames.length>3) {
 	                    	reliefParams = Helper.getSliderParams(event.pathNames[3] as String);
 		                   	if (reliefParams.min!=null) {
-		                    	reliefValues = new Array([Number(reliefParams.min),Number(reliefParams.max)]);
+		                    	reliefValues = new Array(Number(reliefParams.min),Number(reliefParams.max));
 							} else {
 	                    		SWFAddress.setValue('/map');
 	                    		return;
