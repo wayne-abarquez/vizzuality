@@ -6,8 +6,8 @@ package com.vizzuality.model
 	{
 		private static var instance:StateSingletonModel = new StateSingletonModel();
 		
-		public var altitudeRange:Array=[1,7889];
-		public var reliefRange:Array=[1,3397];
+		public var altitudeRange:Array=[0,7889];
+		public var reliefRange:Array=[0,3397];
 		public var vegtypeRange:Array=[0,0];
 		
 		
