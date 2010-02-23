@@ -3,6 +3,8 @@ package com.vizzuality.events
   	import flash.events.Event;
   	import flash.events.EventDispatcher;
   	
+  	import mx.collections.ArrayCollection;
+  	
   	public class MyEventDispatcher extends EventDispatcher {
     	protected static var disp:MyEventDispatcher;
     	
@@ -27,8 +29,8 @@ package com.vizzuality.events
    			dispatchEvent(new SliderChangeEvent(SliderChangeEvent.SLIDER_CHANGED,altitudeRange,reliefRange,vegtypes));
     	}
     	
-    	public static function onChangeThumbRelease(altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
-   			dispatchEvent(new SliderThumbRelease(SliderThumbRelease.SLIDER_CHANGED,altitudeRange,reliefRange,vegtypes));
+    	public static function onChangeThumbRelease(altitudeRange:Array,reliefRange:Array,vegtypes:ArrayCollection):void {
+   			dispatchEvent(new SliderThumbRelease(SliderThumbRelease.SLIDER_VALUE_CHANGED,altitudeRange,reliefRange,vegtypes));
     	}
 
     }
