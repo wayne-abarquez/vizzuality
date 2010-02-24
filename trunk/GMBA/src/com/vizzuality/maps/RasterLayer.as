@@ -19,8 +19,6 @@ package com.vizzuality.maps
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
-	import flash.events.ShaderEvent;
-	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLRequest;
@@ -99,14 +97,21 @@ package com.vizzuality.maps
         
  		private function applyThresholdToTile(sourceTile:Loader,targetTile:Sprite,altitudeRange:Array,reliefRange:Array,vegtypes:Array):void {
  			
+ 			var min_r:Number = altitudeRange[0]/7889;
+			var min_g:Number = reliefRange[0]/3397;
+			if(min_r==0) min_r=0.12345678;
+			if(min_g==0) min_g=0.12345678;
+
+			trace(min_r); 
+			
  			var sourceBitmapData:BitmapData = (sourceTile.content as Bitmap).bitmapData;
- 			shader.data.inputImage.input=sourceBitmapData;
-  			shader.data.minR.value = [altitudeRange[0]/7889];
+ 			/*shader.data.inputImage.input=sourceBitmapData;
+  			shader.data.minR.value = [min_r];
  			shader.data.maxR.value = [altitudeRange[1]/7889];
- 			shader.data.minG.value = [reliefRange[0]/3397];
+ 			shader.data.minG.value = [min_g];
  			shader.data.maxG.value = [reliefRange[1]/3397]; 
  			shader.data.minB.value = [0.0];
- 			shader.data.maxB.value = [1.0];
+ 			shader.data.maxB.value = [1.0]; */
 
 			//clear the tile before drawing again
  			targetTile.graphics.clear();
@@ -124,7 +129,9 @@ package com.vizzuality.maps
         	
         	//apply to all tiles in 
         	for (var tileSource:Object in tilesDic) {
-        		applyThresholdToTile(tileSource as Loader,tilesDic[tileSource],event.altitudeRange,event.reliefRange,event.vegtypes);        		
+        		if(tileSource!=null) {
+	        		applyThresholdToTile(tileSource as Loader,tilesDic[tileSource],event.altitudeRange,event.reliefRange,event.vegtypes);        		
+        		}
 			}
         }
         
