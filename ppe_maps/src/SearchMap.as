@@ -20,6 +20,7 @@ package {
 	import com.vizzuality.markers.SearchTypeMarkers;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -28,6 +29,7 @@ package {
 	import flash.geom.Point;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	import flash.system.Security;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -49,6 +51,9 @@ package {
         
         [Embed(source="assets/btnsMap.swf", symbol="zoomOutButton_over")]
         private var ZoomOutButton_over:Class;		
+        
+        [Embed(source="assets/logoMapVizz.png")]
+        private var VIZZUALITY:Class;
 		
 		
 		private var map:Map;
@@ -66,6 +71,7 @@ package {
 		
 		private var dataLoaded: Boolean = false;
 		private var dataAnalyzed: Boolean = false;
+		private var vizzSprite: Sprite = new Sprite();
 									
 														
 		public function SearchMap()
@@ -100,6 +106,7 @@ package {
 				//});
 				//timerResizing.start();
 			}
+			vizzSprite.y = stage.stageHeight - 46;
 		}	
 		
 		private function initMap():void {
@@ -134,6 +141,21 @@ package {
 		private var tlo:TileLayerOverlay;
 		private function onMapReady(event:MapEvent):void {
 			
+			var vizzualityLogo:Bitmap = new VIZZUALITY();
+			vizzualityLogo.x = 0;
+			vizzualityLogo.y = 0;
+			vizzualityLogo.height = 40;
+			vizzualityLogo.width = 79;
+			vizzSprite.addChild(vizzualityLogo);
+			vizzSprite.height = 40;
+			vizzSprite.width = 79;
+			vizzSprite.x = 75;
+			vizzSprite.y = stage.stageHeight - 46;
+			vizzSprite.mouseChildren = false;
+			vizzSprite.buttonMode = true;
+			vizzSprite.useHandCursor = true;
+			vizzSprite.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void{ navigateToURL(new URLRequest("http://www.vizzuality.com"),'_blank'); });
+			addChild(vizzSprite);
 			
 			var exampleSprite2: Sprite = new Sprite();
             var countryText2: TextField = new TextField();
@@ -150,7 +172,6 @@ package {
             countryText2.x = 3;
             countryText2.y = 7;
 
-			
 			tl = new GeoserverTileLayer(false);
 			tlo = new TileLayerOverlay(tl);
 			map.addOverlay(tlo);		
