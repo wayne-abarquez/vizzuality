@@ -46,7 +46,7 @@ package {
         [Embed(source="assets/biodiversityMap.png")]
         private var biodiversitySprite:Class;	
         
-        [Embed(source="assets/gbif.png")]
+        [Embed(source="assets/logogbif.png")]
         private var logoGbif:Class;
 		
 		
@@ -191,7 +191,7 @@ package {
 	  		formatTextSpriteGBIF.font = "Arial";
 			textSpriteGBIF.defaultTextFormat = formatTextSpriteGBIF;
             textSpriteGBIF.text = "GBIF network";
-            textSpriteGBIF.textColor = 0x669900;
+            textSpriteGBIF.textColor = 0x39B553;
             textSpriteGBIF.width = 95;
             textSpriteGBIF.height = 16;
   			textSpriteGBIF.y = 6;

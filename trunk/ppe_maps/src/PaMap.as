@@ -78,6 +78,10 @@ package {
 		private var tooltip: TooltipMarker;
 		private var clickPoint: LatLng;
 		private var onPAFlag: Boolean = false;
+		private var vizzSprite: Sprite = new Sprite();
+		
+		[Embed(source="assets/logoMapVizz.png")]
+        private var VIZZUALITY:Class;
 		
 		[Embed(source="assets/mapButtons.swf", symbol="zoomMore_up")]
         private var ZoomInButton:Class;
@@ -377,9 +381,21 @@ package {
 		
 		private function onMapReady(event:MapEvent):void {
 			
-			//map.addEventListener(MapMouseEvent.DOUBLE_CLICK,onMapDoubleClick);
-			//map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);
-			//map.addControl(new MapTypeControl);
+			var vizzualityLogo:Bitmap = new VIZZUALITY();
+			vizzualityLogo.x = 0;
+			vizzualityLogo.y = 0;
+			vizzualityLogo.height = 40;
+			vizzualityLogo.width = 79;
+			vizzSprite.addChild(vizzualityLogo);
+			vizzSprite.height = 40;
+			vizzSprite.width = 79;
+			vizzSprite.x = 75;
+			vizzSprite.y = stage.stageHeight - 46;
+			vizzSprite.mouseChildren = false;
+			vizzSprite.buttonMode = true;
+			vizzSprite.useHandCursor = true;
+			vizzSprite.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void{ navigateToURL(new URLRequest("http://www.vizzuality.com"),'_blank'); });
+			addChild(vizzSprite);
 			
 			zoomIn = new ZoomInButton();			
 			var zoomIn_over: Sprite = new ZoomInButton_over();
@@ -691,6 +707,8 @@ package {
 				zoomIn.x = (stage.stageWidth/2) - 464;
 			if(zoomOut!=null)
 				zoomOut.x = (stage.stageWidth/2) - 434;
+				
+			vizzSprite.x = 75;
 			
 		}
 		
