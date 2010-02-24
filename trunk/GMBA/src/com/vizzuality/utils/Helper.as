@@ -79,13 +79,7 @@ package com.vizzuality.utils {
         	var vegeValues: ArrayCollection = new ArrayCollection();
         	if (checkIfNumbers(a)) {
         		for (var i:Number = 0; i<a.length;i++) {
-        			/* if (Number(a[i])!=0) { */
-	        			vegeValues.addItem(Number(a[i]));
-        			/* } else {
-        				vegeValues = new ArrayCollection();
-        				vegeValues.addItem(Number(a[i]));
-        				break;
-        			} */
+	        		vegeValues.addItem(Number(a[i]));
         		}	    		
         	}
         	return vegeValues;
@@ -95,7 +89,7 @@ package com.vizzuality.utils {
         private static function checkIfNumbers(array:Array):Boolean {
         	for (var i:Number = 0; i < array.length; i++) {
         		var ext:Number = Number(array[i]);
-        		if (ext!= 0 && ext == false) 
+        		if (isNaN(ext)) 
         			return false;
         	}
         	return true;

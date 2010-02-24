@@ -29,6 +29,10 @@ package com.vizzuality.events
    			dispatchEvent(new SliderChangeEvent(SliderChangeEvent.SLIDER_CHANGED,altitudeRange,reliefRange,vegtypes));
     	}
     	
+    	public static function onCloseDownloadWindow():void {
+    		dispatchEvent(new CloseDownloadWindowEvent(CloseDownloadWindowEvent.CLOSE_WINDOW));
+    	}
+    	
     	public static function onChangeThumbRelease(altitudeRange:Array,reliefRange:Array,vegtypes:ArrayCollection):void {
    			dispatchEvent(new SliderThumbRelease(SliderThumbRelease.SLIDER_VALUE_CHANGED,altitudeRange,reliefRange,vegtypes));
     	}

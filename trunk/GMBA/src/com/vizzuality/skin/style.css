@@ -33,6 +33,7 @@ TextInput.taxon {
 	paddingLeft: 5;
 	paddingRight: 18;
 	borderThickness: 0;
+	font-family: "DINOT-Medium";
 }
 
 Button.download {

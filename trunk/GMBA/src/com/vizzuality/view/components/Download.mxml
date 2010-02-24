@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" verticalCenter="0" horizontalCenter="0" height="407" width="634" backgroundColor="#1A1A1B" backgroundAlpha="1">
+	
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.events.MyEventDispatcher;
+			
+			private function onClose():void {
+				MyEventDispatcher.onCloseDownloadWindow();
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:Button  label="X" color="#FFFFFF" styleName="nullButton" textDecoration="normal" width="30" right="3" top="6" toolTip="Close" useHandCursor="true" 
+		buttonMode="true" mouseChildren="false" click="onClose()"/>
+</mx:Canvas>
