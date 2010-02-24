@@ -1,4 +1,4 @@
-package com.vizzuality.lastTest{
+package com.vizzuality.markers{
 	
 	
 	import com.google.maps.Color;
