@@ -47,6 +47,7 @@
 				}
 			}
 			
+			
 			private function lastTrueValue(num:Number):Boolean {
 				for (var i:Number=0; i<vegetationValues.length; i++) {
 					if (vegetationValues[i] && i!=num && i!=0) 
