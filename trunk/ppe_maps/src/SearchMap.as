@@ -295,8 +295,6 @@ package {
 				map.setZoom(map.getZoom()+1);
 			}); 
 					
-
-			
 			var zoomOut:Sprite = new ZoomOutButton();			
 			var zoomOut_over: Sprite = new ZoomOutButton_over();
             addChild(zoomOut);
