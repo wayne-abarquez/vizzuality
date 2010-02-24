@@ -1,7 +1,6 @@
 package {
 	import com.adobe.serialization.json.JSON;
 	import com.google.maps.Alpha;
-	import com.google.maps.Color;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.Map;
@@ -9,9 +8,6 @@ package {
 	import com.google.maps.MapOptions;
 	import com.google.maps.MapType;
 	import com.google.maps.MapZoomEvent;
-	import com.google.maps.controls.ControlPosition;
-	import com.google.maps.controls.MapTypeControl;
-	import com.google.maps.controls.MapTypeControlOptions;
 	import com.google.maps.overlays.Marker;
 	import com.google.maps.overlays.MarkerOptions;
 	import com.google.maps.overlays.PolygonOptions;
@@ -20,14 +16,12 @@ package {
 	import com.greensock.plugins.*;
 	import com.vizzuality.*;
 	import com.vizzuality.gmaps.Clusterer;
-	import com.vizzuality.lastTest.SearchTypeMarkers;
 	import com.vizzuality.maps.Multipolygon;
-	import com.vizzuality.tests.MarkersOverlaySearch3;
+	import com.vizzuality.markers.SearchTypeMarkers;
 	import com.vizzuality.tileoverlays.GeoserverTileLayer;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
-	import flash.display.StageDisplayState;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -41,7 +35,7 @@ package {
 	import flash.utils.Timer;
 
 	[SWF(backgroundColor=0xEEEEEE, widthPercent=100, heightPercent=100)]
-	public class SearchMap4 extends Sprite
+	public class SearchMap extends Sprite
 	{
 		
 		[Embed(source="assets/btnsMap.swf", symbol="zoomInButton")]
@@ -62,8 +56,6 @@ package {
 		private var iw:Dictionary=new Dictionary();
 		private var domain: String;
 		
-		private var mo:MarkersOverlaySearch3;
-		
 		private var markers:Array;
 		private var clusterer:Clusterer;
 		private var attachedMarkers:Array;
@@ -76,7 +68,7 @@ package {
 		private var dataAnalyzed: Boolean = false;
 									
 														
-		public function SearchMap4()
+		public function SearchMap()
 		{ 
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;	
@@ -142,12 +134,6 @@ package {
 		private var tlo:TileLayerOverlay;
 		private function onMapReady(event:MapEvent):void {
 			
-			/* var fullScreenButton: Sprite = new Sprite ();
-			fullScreenButton.graphics.beginFill(Color.BLUE,0.7);
-			fullScreenButton.graphics.drawRoundRect(0,0,29,29,5);
-			fullScreenButton.graphics.endFill();
-			fullScreenButton.x = 10;
-			fullScreenButton.y = 80; */
 			
 			var exampleSprite2: Sprite = new Sprite();
             var countryText2: TextField = new TextField();
@@ -164,89 +150,14 @@ package {
             countryText2.x = 3;
             countryText2.y = 7;
 
-           /*  fullScreenButton.mouseChildren=false;
-            fullScreenButton.buttonMode=true;
-            fullScreenButton.useHandCursor=true;
-            fullScreenButton.addChild(countryText2); */
-            
-            /* fullScreenButton.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void { 
-            		if (stage.displayState== "normal") {
-						stage.displayState="fullScreen";
-						stage.scaleMode = StageScaleMode.NO_SCALE;
-					} else {
-						stage.displayState="normal";
-					} } ); */
-
-			
-/* 			addChild(fullScreenButton);
- */			
-			/* var optionsTypeControl: MapTypeControlOptions = new MapTypeControlOptions(
-				{ buttonSize: new Point(67, 19),
-				  buttonSpacing: new Point(0, 0),
-				  buttonAlignment: MapTypeControlOptions.ALIGN_VERTICALLY,
-				  position: new ControlPosition(ControlPosition.ANCHOR_TOP_RIGHT, 10)
-				});
-			var typeControl: MapTypeControl = new MapTypeControl(optionsTypeControl);
-			map.addControl(typeControl); */
 			
 			tl = new GeoserverTileLayer(false);
 			tlo = new TileLayerOverlay(tl);
 			map.addOverlay(tlo);		
 			
 			markers = new Array();
-		 	
-		 	//zoom buttons
-			var zoomIn:Sprite = new ZoomInButton();			
-			var zoomIn_over: Sprite = new ZoomInButton_over();
-            addChild(zoomIn);
-            zoomIn.x = 10;
-            zoomIn.y = 10;
-            zoomIn_over.x = 0;
-            zoomIn_over.y = 0;
-            zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
-				zoomIn.addChild(zoomIn_over);
-				zoomIn_over.mouseChildren = false;
-				zoomIn_over.buttonMode = true;
-
-			}); 
-            zoomIn.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
-				zoomIn.removeChild(zoomIn_over);
-				zoomIn_over.mouseChildren = false;
-				zoomIn_over.buttonMode = true; 
-			}); 
-			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setZoom(map.getZoom()+1);
-			}); 
-					
-
-			
-			var zoomOut:Sprite = new ZoomOutButton();			
-			var zoomOut_over: Sprite = new ZoomOutButton_over();
-            addChild(zoomOut);
-            zoomOut.x = 10;
-            zoomOut.y = 45;
-            zoomOut_over.x = 0;
-            zoomOut_over.y = 0;
-            zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
-				zoomOut.addChild(zoomOut_over);
-				zoomOut_over.mouseChildren = false;
-				zoomOut_over.buttonMode = true;
-
-			}); 
-            zoomOut.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
-				zoomOut.removeChild(zoomOut_over);
-				zoomOut_over.mouseChildren = false;
-				zoomOut_over.buttonMode = true; 
-			});  
-			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
-				map.setZoom(map.getZoom()-1);
-			});
-			//end zoom buttons
-		
-
-
-
-			
+		 	addZoomButtons();
+				
 			var polOpt:PolygonOptions=new PolygonOptions({
 				  strokeStyle: {
 				    thickness: 2,
@@ -360,8 +271,53 @@ package {
 			}
 			return 2;
 		}
+		
+		private function addZoomButtons():void {
+			var zoomIn:Sprite = new ZoomInButton();			
+			var zoomIn_over: Sprite = new ZoomInButton_over();
+            addChild(zoomIn);
+            zoomIn.x = 10;
+            zoomIn.y = 10;
+            zoomIn_over.x = 0;
+            zoomIn_over.y = 0;
+            zoomIn.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomIn.addChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true;
 
-		
-		
+			}); 
+            zoomIn.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomIn.removeChild(zoomIn_over);
+				zoomIn_over.mouseChildren = false;
+				zoomIn_over.buttonMode = true; 
+			}); 
+			zoomIn.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()+1);
+			}); 
+					
+
+			
+			var zoomOut:Sprite = new ZoomOutButton();			
+			var zoomOut_over: Sprite = new ZoomOutButton_over();
+            addChild(zoomOut);
+            zoomOut.x = 10;
+            zoomOut.y = 45;
+            zoomOut_over.x = 0;
+            zoomOut_over.y = 0;
+            zoomOut.addEventListener(MouseEvent.ROLL_OVER,function (ev:MouseEvent):void {
+				zoomOut.addChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true;
+
+			}); 
+            zoomOut.addEventListener(MouseEvent.ROLL_OUT,function (ev:MouseEvent):void {
+				zoomOut.removeChild(zoomOut_over);
+				zoomOut_over.mouseChildren = false;
+				zoomOut_over.buttonMode = true; 
+			});  
+			zoomOut.addEventListener(MouseEvent.CLICK, function (ev:MouseEvent):void {
+				map.setZoom(map.getZoom()-1);
+			});
+		}
 	}
 }
