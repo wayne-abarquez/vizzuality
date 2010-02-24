@@ -23,11 +23,7 @@ package com.vizzuality.markers{
 		private var paData:Object;
 		private var type: Number;
 		private var overSprite:Sprite;
-/* 		private var count:Sprite; */
-		
-/* 		private var overSprite:Sprite; */
-		
-		
+
 		
   		[Embed(source="/assets/backgroundMarker.png")]
 		public var overImage:Class;
@@ -218,20 +214,19 @@ package com.vizzuality.markers{
   			
 
  			switch (type) {
-            	case 1: //DONE
-            			overSprite.x = -24;
+            	case 1: overSprite.x = -24;
             			overSprite.y = -39;
             			imageLoader.x = 20;
   						imageLoader.y = 19;
             			break;
             			
-            	case 2: //TODO!!!
-            			imageLoader.x = 43;
-  						imageLoader.y = 43;
+            	case 2: overSprite.x = -20;
+            			overSprite.y = -30;
+            			imageLoader.x = 20;
+  						imageLoader.y = 19;
             			break;
             			
-            	case 3: //DONE
-            			overSprite.x=-11;
+            	case 3: overSprite.x=-11;
             			overSprite.y=-10;
             			imageLoader.x = 19;
   						imageLoader.y = 18;
@@ -253,15 +248,13 @@ package com.vizzuality.markers{
  			this.addChild(imageLoader);	
   			
   			switch (type) {
-            	case 1: //DONE
-            			imageLoader.x = 7; imageLoader.y = 8; 
+            	case 1: imageLoader.x = 7; imageLoader.y = 8; 
             			imageLoader.width = 26; imageLoader.height = 26; 
             			break;
-            	case 2: //TODO!!!
-            			imageLoader.width = 33; imageLoader.height = 33;
+            	case 2: imageLoader.x = 7; imageLoader.y = 8;
+            			imageLoader.width = 34; imageLoader.height = 34;
             			break;
-            	case 3: //DONE
-            			imageLoader.x = 8; imageLoader.y = 8;
+            	case 3: imageLoader.x = 8; imageLoader.y = 8;
             			imageLoader.width = 50; imageLoader.height = 50;
             			break;
             	default: break;
@@ -305,10 +298,6 @@ package com.vizzuality.markers{
             	default: break;
 			}
 			
-/*   			imageLoader.x = 8;
-  			imageLoader.y = 8;
-  			imageMask.x = 8;
-  			imageMask.y = 8; */
   			addChild(imageMask);
   			imageLoader.mask = imageMask; 
   			addChild(imageLoader); 
