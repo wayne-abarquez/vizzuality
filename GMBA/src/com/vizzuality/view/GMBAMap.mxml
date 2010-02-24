@@ -13,6 +13,7 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.vizzuality.events.CloseDownloadWindowEvent;
 	    	import com.vizzuality.events.SliderThumbRelease;
 	    	import com.vizzuality.events.SliderChangeEvent;
 	    	import com.vizzuality.events.MyEventDispatcher;
@@ -55,7 +56,8 @@
             private function initSWFAddress():void {        	
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
-                MyEventDispatcher.addEventListener(SliderThumbRelease.SLIDER_VALUE_CHANGED, onChangeSliderValues);              
+                MyEventDispatcher.addEventListener(SliderThumbRelease.SLIDER_VALUE_CHANGED, onChangeSliderValues);
+                MyEventDispatcher.addEventListener(CloseDownloadWindowEvent.CLOSE_WINDOW, function (event:CloseDownloadWindowEvent):void { mamufas.visible=false; download.visible = false; });          
             }
             
             private function onChangeSliderValues(event:SliderThumbRelease):void {
@@ -163,7 +165,7 @@
 		    private function onMapReady(event:Event):void {
 			    this.map.addControl(new ZoomControl());
 			    
-				rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png",map);
+				/* rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png",map);
 				var tlo:TileLayerOverlay = new TileLayerOverlay(rasterLayer);
 				tlo.addEventListener(MapEvent.TILES_LOADED,function(ev:Event):void {
 					loadingMessage.visible=false;
@@ -171,7 +173,7 @@
 				tlo.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:Event):void {
 					loadingMessage.visible=true;
 				})
-				map.addOverlay(tlo);
+				map.addOverlay(tlo); */
 		    }
 		    
 		    
@@ -217,9 +219,10 @@
 				<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
 				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="21"/>
 				<components:ShadowButton left="20" top="25" width="200"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
-					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"/>
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="{mamufas.visible=true; download.visible=true;}"/>
 			</mx:Canvas>
 		</mx:VBox>
+		
 		
 		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="80%" id="canvas1">
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="no-key" top="5" bottom="5" right="5" left="5"/>
@@ -229,6 +232,8 @@
 				<mx:Label x="20" y="6" text="Loading..."/>
 			</mx:Canvas>
 		</mx:Canvas>
+		
+		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas"/>
+		<components1:Download visible="true" id="download" /> <!--Make top corners round thought Flash-->
 	</mx:Canvas>
-
 </mx:Canvas>
