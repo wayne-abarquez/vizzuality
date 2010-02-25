@@ -2,6 +2,14 @@
 
 
 {literal}
+
+<script>
+var RecaptchaOptions = {
+   theme : 'white',
+   lang : 'es'
+};
+</script>
+
 	<script type="text/javascript">
 
 	$().ready(function() {
@@ -168,6 +176,12 @@
 			    				<div class="span-1 checkBoxAlerts"><input type="checkbox" id="quiero" name="quiero" value="true"/></div>
 			    				<div class="span-1 last checkTitle"><p class="checkTitle">Quiero recibir alertas con las próximas carreras cerca de mi</p></div>
 			    			</div>
+		    			</div>
+		    			<br><br><br><br>
+		    			<div class="register_name_column">
+		    			    <p>Eres un robot?</p>
+		    			    {$recaptcha}
+		    			    
 		    			</div>
 		    		</div>
 	    			<div class="span-1 column last rightRegister">
