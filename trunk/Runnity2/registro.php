@@ -2,6 +2,10 @@
 
 require 'libs/Smarty.class.php';
 require 'services/RunnitServices.php';
+require_once('libs/recaptchalib.php');
+
+$privatekey = "6LcFcwsAAAAAABxYi14mAiaDE7mj93ysM13wre5j";
+$publickey = "6LcFcwsAAAAAAAUGuKwHPeodqpJXRIYgjWqTK95T";
 
 session_start();
 
@@ -17,6 +21,14 @@ $services = new RunnitServices;
 
 
 if(isset($_REQUEST['action'])) {
+    
+    
+    $resp = recaptcha_check_answer ($privatekey,
+                                    $_SERVER["REMOTE_ADDR"],
+                                    $_REQUEST["recaptcha_challenge_field"],
+                                    $_REQUEST["recaptcha_response_field"]);
+                                        
+    
     $error_msg="";
     $email_register     =$_REQUEST['email_register'];
     $password_register  =$_REQUEST['password_register'];
@@ -31,6 +43,11 @@ if(isset($_REQUEST['action'])) {
     $lon                =$_REQUEST['lon'];
     
     $error_msg="";
+    
+    if (!$resp->is_valid) {
+        $error_msg.="El recaptcha introducido es incorrecto<br>";
+    }
+    
     if($email_register=="") {
         $error_msg.="El email introducido es invalido<br>";
     }
@@ -87,6 +104,9 @@ $error_msg="";
 
 $smarty->assign('section', 'registro');
 $smarty->assign('php_errors', $error_msg);
+
+
+$smarty->assign('recaptcha', recaptcha_get_html($publickey));
 
 $smarty->display('registro.tpl');
 ?>

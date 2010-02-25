@@ -204,13 +204,13 @@ class RunnitServices {
 		}			
 		
    		//Tweet!!!
-		$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
+		/*$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
 		$tweetMessage="Tenemos un nuevo usuario! Mira su perfil en www.runnity.com/user/".ereg_replace(" ","%20",$username);
         $success = $tweet->update($tweetMessage);
 		if (!$success) {
 			error_log("TWITTER PROBLEM: ".$tweet->error);
 		}		
-		
+		*/
 		
         $_SESSION['logged']=true;
         $_SESSION['user']['id']=$user['id'];
