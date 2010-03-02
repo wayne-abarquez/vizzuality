@@ -51,6 +51,12 @@
             //variables of SWFAddress
             public var path:String = "Map";
             public var depth:int = 1;
+            
+			[Embed("threshold.pbj", mimeType="application/octet-stream")]
+			private var TestFilter:Class;		
+			private var shader:Shader; 
+			private var filter:ShaderFilter;    
+			private var tlo:TileLayerOverlay;        
                         	
 			
             private function initSWFAddress():void {        	
@@ -165,15 +171,53 @@
 		    private function onMapReady(event:Event):void {
 			    this.map.addControl(new ZoomControl());
 			    
-				/* rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png",map);
-				var tlo:TileLayerOverlay = new TileLayerOverlay(rasterLayer);
+				rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png");
+				tlo = new TileLayerOverlay(rasterLayer);
 				tlo.addEventListener(MapEvent.TILES_LOADED,function(ev:Event):void {
 					loadingMessage.visible=false;
 				})
 				tlo.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:Event):void {
 					loadingMessage.visible=true;
 				})
-				map.addOverlay(tlo); */
+				map.addEventListener(MapMoveEvent.MOVE_START,function(event:MapMoveEvent):void {
+					loadingMessage.visible=true;
+					tlo.foreground.filters=[];
+					tlo.foreground.alpha=0;
+				});
+				map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
+					tlo.foreground.filters=[filter];
+					tlo.foreground.alpha=0.8;
+					loadingMessage.visible=false;
+				});
+				map.addOverlay(tlo);
+				
+				//test adding a filter.
+	            shader = new Shader(new TestFilter() as ByteArray);
+				filter = new ShaderFilter(shader);
+				shader.data.maxColor.value = [1.0,1.0,1.0];
+				shader.data.minColor.value = [0.0,0.0,0.0];				
+				
+				//a.filters = [filter];
+				tlo.foreground.cacheAsBitmap=true;
+				tlo.foreground.filters=[filter];
+				
+				MyEventDispatcher.addEventListener(SliderChangeEvent.SLIDER_CHANGED,onSlidersChange,false,0,true);
+				
+		    }
+		    
+		    private function onSlidersChange(event:SliderChangeEvent):void {
+		    	
+			   	var rMin:Number = event.altitudeRange[0]/7889;
+	 			var rMax:Number = event.altitudeRange[1]/7889;
+	 			var gMin:Number  = event.reliefRange[0]/3397; 
+	 			var gMax:Number  = event.reliefRange[1]/3397; 
+	 			var bMin:Number  = 0.0;
+	 			var bMax:Number  = 1.0; 
+	 			
+				shader.data.maxColor.value = [rMax,gMax,bMax];
+				shader.data.minColor.value = [rMin,gMin,bMin];
+				tlo.foreground.filters = [filter];
+		    	
 		    }
 		    
 		    
