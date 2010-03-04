@@ -5,96 +5,102 @@ define('TITLE_HEADER_1', "Centre de Documentació");
 define('TITLE_HEADER_2', "de");
 define('TITLE_HEADER_3', "Biodiversitat Vegetal");
 
-// define('IDIOMA1', "Catalá");
-// define('IDIOMA2', "Español");
+// define('IDIOMA1', "Català");
+// define('IDIOMA2', "Castellano");
 // define('IDIOMA3', "English");
 
 //footer
 
-define('COMMENT', "Comentaris:");
-define('ACTUAL', "Última actualització:");
+define('COMMENT', "Comments:");
+define('ACTUAL', "Last update:");
 
 //home
-define('INTRO_TITLE', "Bases de Dades de l'Herbari BCN");
-define('INTRO_TEXT', "Des d'aquesta pagina podeu accedir a les sis bases de dades de l'herbari BCN, que es corresponen a les respectives colleccions que allotja el centre. Cliqueu en la base de dades que volgueu consultar:");
+define('INTRO_TITLE', "Databases of the BCN Herbarium");
+define('INTRO_TEXT', "You can acces to the six databases of the herbarium BCN, which correspond to the six collections  holded in the CeDocBiV. Select the database you want to search:");
 
-define('BD1', "Algues");
-define('BD2', "Briófits");
-define('BD3', "Cormófits");
-define('BD4', "Fruits i llavors");
-define('BD5', "Fongs");
-define('BD6', "Líquens");
+define('BD1', "Algae");
+define('BD2', "Bryophyta");
+define('BD3', "Cormophyta");
+define('BD4', "Collection of Seeds and Fruits");
+define('BD5', "Fungi");
+define('BD6', "Líchens");
 
 define('APROX', "aprox.");
-define('INFOR', "informatitzat");
-define('REG', "registres");
-define('IMG', "imatges");
-define('REGGEO', "georeferenciats");
+define('INFOR', "data recorded");
+define('REG', "records");
+define('IMG', "images");
+define('REGGEO', "georeferenced records");
 
 //query
-define('INTRO_TEXTBD1', "En aquesta base de dades es recullen pr&agrave;cticament totes les mostres d'algues de l'herbari. Si amb la vostra consulta no obteniu els resultats esperats, poseu-vos en contacte amb el personal del centre i indiqueu clarament la informaci&oacute; que desitgeu localitzar: ");
+define('INTRO_TEXTBD1', "This database comprises almost all the algae collection. If 
+you don't find the information you need, please contact with us and indicate as precise as possible the records that you are looking for. ");
 
-define('INTRO_TEXTBD2', "La informatitzaci&oacute; dels bri&ograve;fits de l' herbari BCN s'ha iniciat recentment i de moment el nombre de registres que cont&eacute; aquesta base de dades &eacute;s molt baix. Si amb la vostra consulta no obteniu els resultats esperats, poseu-vos en contacte amb el personal del centre i indiqueu clarament la informaci&oacute; que desitgeu localitzar:");
+define('INTRO_TEXTBD2', "The digitisation of the Bryophyta collection has started recently and this database only cover a low percentage of bryophyta specimens. If 
+you don't find the information you need, please contact with us and indicate as precise as possible the records that you are looking for.");
 
-define('INTRO_TEXTBD3', "La informatitzaci&oacute; de les mostres de plantes vasculars de l'herbari BCN es va iniciar abans de la fusi&oacute; dels herbaris de les facultats de Biologia i de Farmacia. Pel fet de ser la m&eacute;s gran de les col&middot;leccions de l'herbari, la seva completa informatitzaci&oacute; &eacute;s un projecte a llarg termini. Actualment aquesta base de dades recull b&agrave;sicament els registres corresponents a la fam&iacute;lia de las aster&agrave;cies, escrofulari&agrave;cies, lami&agrave;cies, boragin&agrave;cies i fab&agrave;cies. Si amb la vostra consulta no obteniu els resultats esperats, poseu-vos en contacte amb el personal del centre i indiqueu clarament la informaci&oacute; que desitgeu localitzar:");
+define('INTRO_TEXTBD3', "The digitisation of the Cormophyta collection has been the first we star. Nevertheless, as this collection is the big one (more than 250.000 specimens), this database only cover approximately 20 % of the total specimens. The records mainly belong to the following families: Asteraceae, Boraginaceae, Escrofulariaceae, Euforbiaceae and Lammiaceae. If 
+you don't find the information you need, please contact with us and indicate as precise as possible the records that you are looking for.");
+ 
+define('INTRO_TEXTBD4', "The digitisation of the \"Seed and Fruit collection\" is almost completed. If you look for the specimens with images, you can search directly the virtual herbarium section");
 
-define('INTRO_TEXTBD4', "La col&middot;lecci&oacute; de fruits i llavors de l'herbari BCN actualment est&agrave; pr&agrave;ctiament informatitzada en la seva totalitat. Si desitgeu consultar nom&eacute;s els registres que inclouen imatges podeu consultar directament l'apartat de la carpoteca de ");
+define('INTRO_TEXTBD5', "The digitisation of the Fungi collection has started recently and this database only cover a low percentage of fungi specimens. If you don't find the information you need, please contact with us and indicate as precise as possible the records that you are looking for.");
 
-define('INTRO_TEXTBD5', "La informatitzaci&oacute; de la col&middot;lecci&oacute; de fongs de l' herbari BCN s'ha iniciat recentment i de moment el nombre de registres que cont&eacute; aquesta base de dades &eacute;s molt baix. Si amb la vostra consulta no obteniu els resultats esperats, poseu-vos en contacte amb el personal del centre i indiqueu clarament la informaci&oacute; que desitgeu localitzar:");
 
-define('INTRO_TEXTBD6', "La informatitzaci&oacute; de la col&middot;lecci&oacute; de l&iacute;quens s'ha iniciat pels exemplars tipus que es conserven a l'herbari. Si amb la vostra consulta no obteniu els resultats esperats, poseu-vos en contacte amb el personal del centre i indiqueu clarament la informaci&oacute; que desitgeu localitzar:");
+define('INTRO_TEXTBD6', "The digitisation of the Lichens collection has started with  the type specimens. If you don't find the information you need, please contact with us and indicate as precise as possible the records that you are looking for.");
 
-define('INTRO_TEXTCONTACT', "poseu-vos en contacte");
-define('INTRO_TEXTHERBARI', "l'herbari virtual");
+define('INTRO_TEXTCONTACT', "contact with us");
+define('INTRO_TEXTHERBARI', "virtual herbarium");
 
-define('INTRO_TEXTAST', "Per a fer una consulta ompliu el camp corresponent. Podeu fer servir l'asterisc (*) en qualsevol posici&oacute; d'una paraula.");
+define('INTRO_TEXTAST', "Enter the details of the specimens you are trying to locate in the appropriate fields. Use * in any position of the word as a wildcard.");
 
 //formulario de busqueda
 
-define('TITLE_TABPLIEGO', "Buscar pliego");
-define('TITLE_TABTAXON', "Buscar Taxon");
+define('TITLE_TABPLIEGO', "Search specimen");
+define('TITLE_TABTAXON', "Search Taxon");
 
-define('NOMTAXON', "Nom del tàxon");
-define('GEN', "Gènere");
-define('FAM', "Família");
-define('TODOS', "totes");
+define('NOMTAXON', "Scientific name");
+define('GEN', "Genus");
+define('FAM', "Family");
+define('TODOS', "all");
 
-define('NUMHERB', "Número d'herbari");
-define('DATAREC', "Data recollecció");
+define('NUMHERB', "Herbarium number");
+define('DATAREC', "Data collection");
 define('UTM', "UTM");
-define('RECOL', "Recollectors");
-define('PAIS', "País");
-define('LOCALITAT', "Localitat");
+define('RECOL', "Collectors");
+define('PAIS', "Country");
+define('LOCALITAT', "Location");
 
-define('ABANS', "Abans de");
-define('DESPRES', "Després de");
-define('IGUAL', "Igual que (amb *)");
+define('ABANS', "Before of");
+define('DESPRES', "After of");
+define('IGUAL', "Equal to (with *)");
 
-define('BUTTONSEARCH', "Cerca");
+define('BUTTONSEARCH', "New query");
 define('BUTTONNEWSEARCH', "New Search");
 
-define('ORD', "Ordenat per: ");
+define('ORD', "Order results by: ");
 
 // Resultado de pliego
 
-define('VOLVER', "Torna");
+define('VOLVER', "Return to previous page");
 
 
-define('VIENDO', "Viendo del ");
-define('AL', " al ");
-define('DE', " de ");
-define('FOTOS', " fotos ");
+define('VIENDO', "Hits from ");
+define('AL', " to ");
+define('DE', " of ");
+define('FOTOS', " images ");
 
-define('RESULTADOS', "Resultats trobats");
+define('RESULTADOS', "Matching records");
 
 // Pliego 
 
-define('PUBLICAT', "Publicat el: ");
-define('ETIQUETA', "Nom etiqueta: ");
-define('GUARDAT', "Guardat com: ");
-define('ALTITUD', "Altitud: ");
-define('HABITAT', "Hábitat: ");
-define('COL', "Collecció: ");
-define('FEN', "Fenologia: ");
+define('PUBLICAT', "Published at: ");
+define('ETIQUETA', "Scientific name label: ");
+define('GUARDAT', "Submitted as: ");
+define('ALTITUD', "Altitude: ");
+define('HABITAT', "Habitat: ");
+define('COL', "Collection: ");
+define('FEN', "Phenology: ");
+
+
 
 ?>
