@@ -155,7 +155,7 @@ package {
 			vizzSprite.buttonMode = true;
 			vizzSprite.useHandCursor = true;
 			vizzSprite.addEventListener(MouseEvent.CLICK,function(event:MouseEvent):void{ navigateToURL(new URLRequest("http://www.vizzuality.com"),'_blank'); });
-			addChild(vizzSprite);
+			/* addChild(vizzSprite); */
 			
 			var exampleSprite2: Sprite = new Sprite();
             var countryText2: TextField = new TextField();
