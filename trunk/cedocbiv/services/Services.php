@@ -240,8 +240,6 @@ class Services {
 
     	$rs_specimen = array();
     	$res=array();
-
-			
 	
     	$sqlcount="select count(*) as num_records from ($sql)  tot";	
 
@@ -320,6 +318,7 @@ if ($genus) 			    { $filter = $filter . " and i.genus like '". sql_safe($genus)
 
 	$rs_specimen = array();
 	$res=array();
+	
 
 	//Limit and offset for Mysql!
 	$sqlcount="select count(*) as num_records from ($sql)  tot";	

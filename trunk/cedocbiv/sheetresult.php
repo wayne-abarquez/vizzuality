@@ -44,10 +44,12 @@ $resultados = $services->searchSheets($nameauthoryearstring, $highertaxon,$genus
 
 if($resultados['singleId']!='') {
 	header('Location: /sheetdetail.php?UnitID='.$resultados['singleId'].'&db='.$_REQUEST['db']);
+	end();
 }
 
 if($resultados['singleName']!='') {
 	header('Location: /taxondetail.php?nameauthoryearstring='.urlencode($resultados['singleName']).'&db='.$_REQUEST['db']);
+	end();
 }
 
 $smarty->assign('SearchSheetsResults',$resultados);
