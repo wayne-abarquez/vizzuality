@@ -3,6 +3,7 @@
  creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="authChecking">
 	<mx:Script>
 		<![CDATA[
+			import com.adobe.serialization.json.JSON;
 			import com.adobe.webapis.flickr.AuthResult;
 			import com.greensock.easing.Expo;
 			import com.greensock.TweenLite;
@@ -145,28 +146,30 @@
 				        checkUserPicturesInBbox();
 				        
 				        //send ProtectedPlanet the user credentials.
-				        //TODO...
-				        
+				        ppApiService.url="http://www.protectedplanet.net/api/users/" + user_id + "/flickr/credentials";
+				        ppApiService.send({
+				        		flickr_token:user_token,
+				        		flickr_user_id:user_flickr_id
+				        });
+				        				        
 				        
 			        }
 			}			
 			
 			private var numCallsForFlickr:Number=0;
+			private var picturesToBeSent:Array;
 			private function sendSelectedPhotos():void{
 				 currentState="loading";
+				 picturesToBeSent=[];
 				 var tim:uint=0;
 				 flickrService.addEventListener(FlickrResultEvent.PHOTOS_ADD_TAGS,onAddTagComplete);
 				 for (var ph:Object in selectedPhotos){
 				 	var photo:Photo = ph as Photo;
 				 	if (selectedPhotos[photo]) {
-						 //attach tags to the pictures and notify ProtectedPlanet API
-						
+						picturesToBeSent.push(photo);
+						 //attach tags to the pictures
 						TweenLite.delayedCall(tim,flickrService.photos.addTags,[photo.id,'"protectedarea:siteid='+site_id+'"']);
 						numCallsForFlickr++;
-						
-						
-						// send the photo to PP
-						//TODO
 				 	}
 				 	
 				 	tim=tim+100;
@@ -179,8 +182,15 @@
 				if(numCallsForFlickr==0) {
 					//finished tagging
 					flickrService.removeEventListener(FlickrResultEvent.PHOTOS_ADD_TAGS,onAddTagComplete);
+										
+					//Call the PPE service
+					var jsonMessage:String=JSON.encode(picturesToBeSent);
+					ppApiService.url="http://www.protectedplanet.net/api/users/"+user_id+"/flickr/images";
+					ppApiService.send({
+						site_id:site_id,
+						pictures: jsonMessage
+					});					
 					
-					currentState="completed";
 				}
 				
 			}
@@ -441,6 +451,8 @@
 			 }
 		]]>
 	</mx:Script>
+	<mx:HTTPService id="ppApiService" method="POST" resultFormat="text" />
+	
 	<mx:states>
 		<!-- Initial state -->	
 		<mx:State name="authorization">
