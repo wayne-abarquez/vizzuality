@@ -2,18 +2,22 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="82" height="82" 
 	rollOver="activateRollOver(event)" rollOut="desactivateRollOver(event)" click="selectPhoto(event)" creationComplete="setBackgroundColor()"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off" useHandCursor="true" buttonMode="true">
-	<mx:Canvas width="74" height="74" x="4" y="4" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-		<mx:Image id="image" source="{sourceImage}"/>
-	</mx:Canvas>
+	<mx:Canvas id="canvasContainer" width="74" height="74" x="4" y="4" horizontalScrollPolicy="off" verticalScrollPolicy="off" />
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.Image;
+			import mx.core.Application;
 			import com.adobe.webapis.flickr.Photo;
 			import com.vizzuality.events.ClickPhotoFrameEvent;
-			[Bindable] public var flickrPhoto:Photo = new Photo();
-			[Bindable] public var sourceImage:String = new String("");
-			[Bindable] public var selected:Boolean = false;
+			public var flickrPhoto:Photo = new Photo();
+			public var selected:Boolean = false;
+			
+			private var _img:Image;
 			
 			private function setBackgroundColor():void{
+				canvasContainer.addChild(_img);
+				
+				
 				if (selected) setStyle("backgroundColor","#FF9900");
 				else setStyle("backgroundColor","#FFFFFF");
 			}
@@ -21,7 +25,7 @@
 				setStyle("backgroundColor","#FF9900");
 			}
 			
-			private function desactivateRollOver(event:MouseEvent):void{
+			private function desactivateRollOver(event:MouseEvent):void{0
 				if (!selected) setStyle("backgroundColor","#FFFFFF");
 			}
 			
@@ -34,7 +38,13 @@
 					setStyle("backgroundColor","#FF9900");
 				}
 				
+				//Application.application.photoSelected(flickrPhoto);
 				dispatchEvent(new ClickPhotoFrameEvent(ClickPhotoFrameEvent.PHOTOFRAME_CLICKED,flickrPhoto,selected,true));
+			}
+			
+			public function createImage(source:String):void {
+				_img= new Image();
+				_img.source=source;
 			}
 		]]>
 	</mx:Script>

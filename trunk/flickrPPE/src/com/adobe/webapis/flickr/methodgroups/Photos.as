@@ -467,7 +467,7 @@ package com.adobe.webapis.flickr.methodgroups {
 			// Let the Helper do the work to invoke the method			
 			MethodGroupHelper.invokeMethod( _service, addTags_result, 
 								   "flickr.photos.addTags", 
-								   false,
+								   true,
 								   new NameValuePair( "photo_id", photo_id ),
 								   new NameValuePair( "tags", tags ) );
 		}
@@ -1175,7 +1175,12 @@ package com.adobe.webapis.flickr.methodgroups {
 								   false,
 								   new NameValuePair( "user_id", user_id ),
 								   new NameValuePair( "sort", sort ), 
-								   new NameValuePair ( "bbox", bbox)
+								   new NameValuePair ( "bbox", bbox),
+								   new NameValuePair ( "privacy_filter", "1"),
+								   new NameValuePair ( "safe_search", "1"),								   
+								   new NameValuePair ( "content_type", "1"),								   
+								   new NameValuePair ( "per_page", "100"),								   
+								   new NameValuePair ( "accuracy", "4")
 								   );
 		}
 		
