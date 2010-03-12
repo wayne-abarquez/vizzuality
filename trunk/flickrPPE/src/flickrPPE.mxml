@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
+	currentState="authorization" creationComplete="init()" xmlns:components="com.vizzuality.components.*">
+	<mx:Script>
+		<![CDATA[
+			import gs.easing.Expo;
+			import gs.TweenLite;
+			import mx.controls.Alert;
+			import com.vizzuality.events.ClickPhotoFrameEvent;
+			import com.vizzuality.components.PhotoFrame;
+			import mx.collections.SortField;
+			import mx.collections.Sort;
+			import mx.binding.utils.BindingUtils;
+			import flash.events.Event;
+			import flash.events.TimerEvent;
+			import flash.net.URLRequest;
+			import mx.collections.ArrayCollection;
+			import mx.controls.Image;
+			import mx.core.Application;
+			import com.adobe.webapis.flickr.Photo;
+			import com.adobe.webapis.flickr.methodgroups.Photos;
+			import com.adobe.webapis.flickr.PagedPhotoList;
+			import com.adobe.webapis.flickr.AuthPerm;
+			import com.adobe.webapis.flickr.FlickrService;
+			import com.adobe.webapis.flickr.events.FlickrResultEvent;
+			
+			[Bindable] private var flickrSets:ArrayCollection;
+			
+			private var timer:Timer;
+			private var flagTweenActive:Boolean = false;
+			
+			private var tamCanvas:Number = 82;
+			private var paddingCanvas:Number = 8;
+			
+			private var initalAlpha:Number = 0.3;
+			
+			// Flickr
+			private var flickrService : FlickrService = new FlickrService("5588b10ffe3d588600e76db38e9cd55e");
+			private var flickrFrob:String;
+			private var nsid:String = new String ("30720887@N03");
+			private var selectedPhotos:Dictionary = new Dictionary();
+			private var userAllPhotos:ArrayCollection;
+			
+			private var actualPage:int = 1;
+			private var maxPages:int = 1;
+			
+			// Method onCreationComplete	
+			private function init():void{
+			}
+			
+			private function sendSelectedPhotos (event:MouseEvent):void{
+				var photosToSend:ArrayCollection = new ArrayCollection();
+				 for (var photo:Object in selectedPhotos){
+				 	if (selectedPhotos[photo]) 
+				 	  photosToSend.addItem(photo);
+				 }				 
+				 Alert.show("Se han seleccionado "+photosToSend.length+" fotos");
+				 //removeEventListener(ClickPhotoFrameEvent.PHOTOFRAME_CLICKED,onPhotoClicked);
+			}
+			
+			// Begin de authentication process
+			private function connectToFlickr(event:Event):void {
+				
+				// API KEY from Flickr
+		        flickrService.secret = "e8345cb79db113f7";
+				flickrService.addEventListener (FlickrResultEvent.AUTH_GET_FROB, onGetFrob);
+				
+ 				// Starts the Flickr login process
+				flickrService.auth.getFrob ();
+			 } 
+		
+			private function onPhotoClicked ( event : ClickPhotoFrameEvent ):void{
+
+				selectedPhotos[event.flickrPhoto] = event.selected;
+				
+			}
+			// Authentication process
+			private function onGetFrob (event : FlickrResultEvent) : void
+			{
+				// The user wants to connect to our Flickr Application
+			    if (event.success)
+			    {
+			        flickrFrob = event.data.frob as String;
+			        var authURL : String = flickrService.getLoginURL (flickrFrob, AuthPerm.WRITE);
+			
+					// Loading...
+					labelCarga.visible = true;
+					
+					// TODO: Comentar la siguiente línea cuando venga un Token ya especificado
+					flickrService.token = "72157623534482544-87a16c7e2e06a192";					
+					
+					 if ((flickrService.token == null) || (flickrService.token == "")) { 
+					    navigateToURL (new URLRequest (authURL), "_blank");
+						flickrService.addEventListener(FlickrResultEvent.AUTH_GET_TOKEN, onGetToken);
+						
+						// Waiting the Token
+						// TODO PONERLE FIN, en el caso de que no acepten la autorización				
+						timer = new Timer(2000,0);
+						timer.addEventListener(TimerEvent.TIMER,onGetAuthorization);
+						timer.start();
+					 }
+					 else{ // De prueba
+						 navigateNextState();
+					 }
+			    }
+			}  
+			
+			// Listening for the Token
+			private function onGetAuthorization (event:TimerEvent):void {				
+				flickrService.auth.getToken(flickrFrob);
+			}
+			
+			// Get the Token?
+			private function onGetToken (event:FlickrResultEvent):void{
+				
+					trace("CHECK AUTH:" + event.success.toString());
+					
+					// Check and see if token was returned
+			        if(event.success)
+			        {
+			        	trace ("Flickr Token: " + flickrService.token);
+						timer.stop();
+						timer.removeEventListener(TimerEvent.TIMER,onGetAuthorization);
+						flickrService.removeEventListener(FlickrResultEvent.AUTH_GET_TOKEN, onGetToken);
+						timer = null;
+				        flickrService.token = event.data.auth.token;
+				        
+				        navigateNextState();
+				        
+			        }
+			}
+			
+			private function navigateNextState():void{
+				addEventListener(ClickPhotoFrameEvent.PHOTOFRAME_CLICKED,onPhotoClicked);
+						
+				flickrService.addEventListener(FlickrResultEvent.PHOTOS_SEARCH, onResultSearchFlickr);
+				flickrService.photos.searchAllPhotos(nsid,"date-posted-desc","-180,-90,180,90");
+			}
+			
+			 //////////////////////////////// PHOTOS GEOLOCATED
+			 private function navigateToGeolocatedPhotos():void{
+			 	
+			 	currentState = 'navigationPhotosGeolocated';	
+			 	// Initialize the photos's array
+			 	actualPage = 1;
+			 	
+			 	maxPages = (userAllPhotos.length % 4 == 0) ? (userAllPhotos.length/4):((userAllPhotos.length/4)+1) 
+			    buttonNextPhotos.visible = (userAllPhotos.length > 4) ? true:false;
+			 	canvasPhotos.alpha = initalAlpha;
+			 	drawPhotos (userAllPhotos);
+			 	TweenLite.to(canvasPhotos,1.0,{alpha:1}); 
+			 	
+			 }
+			 
+			 private function onResultSearchFlickr( event:FlickrResultEvent ):void {
+			 	 
+				 userAllPhotos = new ArrayCollection(event.data.photos.photos);
+				  
+				if (userAllPhotos.length > 0){
+			    	navigateToGeolocatedPhotos();
+				}
+				else{
+		         	removeEventListener(FlickrResultEvent.PHOTOS_SEARCH, onResultSearchFlickr);
+		        	navigateToOtherPhotos();
+		         }
+			 }
+			//////////////////////////////// ALL PHOTOS
+			 // Init the another state
+			 private function navigateToOtherPhotos():void {
+			 	
+			 	// Initialize the photos's array
+			 	actualPage = 1;
+			 	if (userAllPhotos != null) userAllPhotos.removeAll();
+			 	
+				flickrService.addEventListener(FlickrResultEvent.PHOTOSETS_GET_LIST,onResultGetSetsList);
+				flickrService.photosets.getList(nsid);		
+				currentState = 'navigationOtherPhotos';	
+			 }
+			 
+			 // Update the ArrayCollection  
+			 private function onResultGetSetsList(event:FlickrResultEvent):void {
+			 	
+			 	flickrSets = new ArrayCollection (event.data.photoSets);
+			 	
+			    var sort:Sort = new Sort();
+			    // Sort by Title
+			    sort.fields = [new SortField("title", false)];
+			    flickrSets.sort = sort;
+			    flickrSets.refresh();
+			 	
+                flickrService.addEventListener(FlickrResultEvent.PHOTOSETS_GET_PHOTOS,onResultGetPhotosBySet);
+                
+                
+			 	// Busco por el primer valor del combo
+			 	canvasPhotos.removeAllChildren();
+			 	buttonPrevPhotos.visible = false;
+			 	flickrService.photosets.getAllPhotos(flickrSets[0].id);
+			 }
+			 
+			 // Return the title of each flickr set
+			 private function getTitleFlickrSets (item:Object):String {
+			 	return item.title;
+			 }
+			 
+			 // Show the photos by set
+			 private function onResultGetPhotosBySet (event:FlickrResultEvent):void{
+			 	 userAllPhotos = new ArrayCollection(event.data.photoSet.photos);
+			 	 maxPages = (userAllPhotos.length % 4 == 0) ? (userAllPhotos.length/4):((userAllPhotos.length/4)+1) 
+			 	 buttonNextPhotos.visible = (userAllPhotos.length > 4) ? true:false;
+			 	 canvasPhotos.alpha = initalAlpha;
+			 	 drawPhotos (userAllPhotos);
+			 	 TweenLite.to(canvasPhotos,1.0,{alpha:1}); 
+			 }
+			 
+			 // Draw the photos 
+			 private function drawPhotos (userPhotos:ArrayCollection):void{
+			 	var limitArray:int = (userPhotos.length < 12) ? userPhotos.length:12; 
+			 	//canvasPhotos.removeAllChildren();
+			 	for (var count:int = 0; count < limitArray; count++){
+			 		var phot:Photo = new Photo();
+			 		phot = userPhotos[count]
+			 		var framePhoto:PhotoFrame = new PhotoFrame();
+					framePhoto.sourceImage = "http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg";
+					framePhoto.flickrPhoto = phot;
+					framePhoto.selected = selectedPhotos[phot];
+					framePhoto.x = (tamCanvas + paddingCanvas) * count;
+					canvasPhotos.addChild(framePhoto);
+			 	}
+			 }
+			 
+			 // OnChange ComboBox 
+			 private function updatePhotosBySet (event:Event): void{
+			 	actualPage = 1;
+			 	buttonPrevPhotos.visible = false;
+			 	canvasPhotos.removeAllChildren();
+			 	userAllPhotos.removeAll();
+			 	
+			 	flickrService.photosets.getAllPhotos(event.currentTarget.selectedItem.id);
+			 	/* flickrService.photosets.getPhotos(event.currentTarget.selectedItem.id, 4,1); */
+			 }
+			 
+			 // Move the photos to Left
+			 private function movePhotosToLeft ():void{
+			 	if (!flagTweenActive){
+				 	flagTweenActive = true;
+				 	actualPage--;
+				 	for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
+				 		
+						TweenLite.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToLeft()});
+						if(canvasPhotos.getChildAt(i) is PhotoFrame){
+							TweenLite.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,ease:Expo.easeOut});	
+						}
+					}
+				 	
+				 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
+				 	buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;
+				 	
+			 	}
+			 }
+			 
+			 // Move the photos to Right
+			 private function movePhotosToRight ():void{
+				if (!flagTweenActive){
+					flagTweenActive = true;
+					actualPage++;
+					
+					for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
+						TweenLite.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToRight()});
+						if(canvasPhotos.getChildAt(i) is PhotoFrame){
+							TweenLite.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,ease:Expo.easeOut});	
+						}
+					}
+				 	
+				 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
+				 	buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;  
+				 	
+			 	}
+			 }
+			 
+			 private function onTweenerCompleteToRight():void{
+			  	if(flagTweenActive){
+			 	 	
+				 	if ((actualPage >= 3)&&(actualPage != maxPages)) {
+				 		canvasPhotos.removeChildAt(3);
+				 		canvasPhotos.removeChildAt(2);
+				 		canvasPhotos.removeChildAt(1);
+				 		canvasPhotos.removeChildAt(0);
+				 		
+				 		var index:int = actualPage * 4;
+				 		
+				 		// Veo si aún quedan  
+				 		var posFramePhoto:Number = 720;
+				 		
+					 	var limitArray:int = ((index+4) <= userAllPhotos.length) ? (index+4):userAllPhotos.length; 
+					 	for (var count:int = index; count < limitArray; count++){
+					 		var phot:Photo = new Photo();
+					 		phot = userAllPhotos[count]
+					 		var framePhoto:PhotoFrame = new PhotoFrame();
+							framePhoto.sourceImage = "http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg";
+							framePhoto.flickrPhoto = phot;
+							framePhoto.selected = selectedPhotos[phot];
+							framePhoto.x = posFramePhoto;
+							posFramePhoto += (tamCanvas+paddingCanvas);
+							//framePhoto.x = (tamCanvas+paddingCanvas) * (count - 1);
+							canvasPhotos.addChild(framePhoto);
+					 	}
+					 	
+				 	}
+				 }
+			 	flagTweenActive = false;
+				  
+			 }
+			 
+			 private function onTweenerCompleteToLeft():void{
+			 	if(flagTweenActive){
+			 		
+				 	if ((actualPage >= 2)&&((actualPage+1) != maxPages)) {
+				 		 if ((actualPage + 2) < (maxPages)){
+					 		canvasPhotos.removeChildAt(11);
+					 		canvasPhotos.removeChildAt(10);
+					 		canvasPhotos.removeChildAt(9);
+					 		canvasPhotos.removeChildAt(8);
+				 		}else{
+				 			// Como puede que no sean 4 los hijos a borrar a la derecha, los calculo
+				 			var numChildsToDelete:int = ((userAllPhotos.length % 4) == 0) ?	4 : (userAllPhotos.length % 4);
+				 			for (var countChild:int = numChildsToDelete; countChild > 0; countChild--){
+				 				canvasPhotos.removeChildAt(7+countChild);
+				 			} 
+				 		} 
+				 		var index:int = (actualPage * 4) - 8;
+				 		var posFramePhoto:Number = -720;
+				 		
+						var indexChild:int = 0;			 	
+					 	for (var count:int = index; count < (index + 4); count++){
+					 		var phot:Photo = new Photo();
+					 		phot = userAllPhotos[count]
+					 		var framePhoto:PhotoFrame = new PhotoFrame();
+							framePhoto.sourceImage = "http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg";
+							framePhoto.flickrPhoto = phot;
+							framePhoto.selected = selectedPhotos[phot];
+							framePhoto.x = posFramePhoto;
+							posFramePhoto += (tamCanvas+paddingCanvas);
+							//framePhoto.x = ((tamCanvas +paddingCanvas) * count)* -1;
+							canvasPhotos.addChildAt(framePhoto,indexChild);
+							indexChild++;	
+					 	}
+				 	}
+				 	
+			 	}
+			 	flagTweenActive = false;
+			 }
+			 
+			 private function movePhotosToLeftQuickly():void{
+			 	trace("Double click to left");
+			 }
+			 
+			 private function movePhotosToRightQuickly():void{
+			 	trace("Double click to right");
+			 }
+		]]>
+	</mx:Script>
+	<mx:states>
+		<!-- Initial state -->	
+		<mx:State name="authorization">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas x="0" y="0" width="509" height="168" borderColor="#E0E0E0" themeColor="#E0E0E0" alpha="1.0" backgroundColor="#E0E0E0" id="canvasAuthorization">
+					<mx:Label x="128" y="29" text="You need to connect your flickr account with " width="253" height="20" textAlign="left"/>
+					<mx:Button x="262" y="90" label="connect account" id="buttonConnectFlickr" click="connectToFlickr(event)">
+						<!--click="navigateToURL(new URLRequest('http://flickr.com/services/auth/?api_key=[flickrAdminKey]&perms=[read]&api_sig=[api_sig]'))">-->
+						
+					</mx:Button>
+					<mx:Label x="89" y="41" text="ProtectedPlanet to start contributing with your images" fontSize="12"/>
+					<mx:Label id="labelCarga"  x="450" y="140" text="Loading" visible="false"/>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		
+		<!-- Visualize the photos geolocated -->
+		<mx:State name="navigationPhotosGeolocated">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas x="0" y="0" width="509" height="233" borderColor="#E0E0E0" themeColor="#E0E0E0" alpha="1.0" backgroundColor="#E0E0E0" id="canvasNavGeolocatedPhotos">
+					<mx:Label x="29.5" y="10" text="These are the photos in your flickr account geolocated near this Protected Area," id="label1"/>
+					<mx:Label x="116" y="26" text="select one to submit or " fontWeight="bold" id="label2"/>
+					<mx:Label x="251" y="26" text="view your other photos" fontWeight="bold" color="#125FFB" id="buttonViewOtherPhotos" buttonMode="true" useHandCursor="true" 
+						mouseChildren="false" click="navigateToOtherPhotos()"/>
+					<mx:Button x="193" y="182" label="Submit selected" id="buttonSubmitSelectedPhotos" click="sendSelectedPhotos(event)"/>
+					<mx:Label x="210" y="205" text="Skip this step"/>
+					<mx:Button x="10.5" y="97" label="p" id="buttonPrevPhotos" click="movePhotosToLeft()" visible="false"/>
+					<mx:Button x="447" y="97" label="n" id="buttonNextPhotos" click="movePhotosToRight()" visible="false"/>
+					<mx:Canvas x="68" y="68" width="360" height="113" id="canvasPhotos" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+					</mx:Canvas>
+				</mx:Canvas>
+			</mx:AddChild>
+		</mx:State>
+		
+		<!--Visualize all the flickr photos by user-->
+		<mx:State name="navigationOtherPhotos" basedOn="navigationPhotosGeolocated">
+			<mx:AddChild relativeTo="{canvasNavGeolocatedPhotos}" position="lastChild">
+				<mx:ComboBox x="309" y="10" id="comboFlickrSets" editable="false" width="190" 
+					dataProvider="{flickrSets}" labelFunction="getTitleFlickrSets" 
+					change="updatePhotosBySet(event)"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{label1}"/>
+			<mx:RemoveChild target="{label2}"/>
+			<mx:RemoveChild target="{buttonViewOtherPhotos}"/>
+			<mx:AddChild relativeTo="{canvasNavGeolocatedPhotos}" position="lastChild">
+				<mx:Label x="13" y="15" text="Select one photo from the list below or filter by set"/>
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>	
+</mx:Application>
