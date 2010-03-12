@@ -39,7 +39,7 @@
 			private var tamCanvas:Number = 82;
 			private var paddingCanvas:Number = 8;
 			
-			private var initalAlpha:Number = 0.3;
+			private var initialAlpha:Number = 0.3;
 			
 			// Flickr
 			private var flickrService : FlickrService = new FlickrService("5588b10ffe3d588600e76db38e9cd55e");
@@ -236,7 +236,7 @@
 			 	
 			 	maxPages = (userAllPhotos.length % 4 == 0) ? (userAllPhotos.length/4):((userAllPhotos.length/4)+1) 
 			    buttonNextPhotos.visible = (userAllPhotos.length > 4) ? true:false;
-			 	canvasPhotos.alpha = initalAlpha;
+			 	canvasPhotos.alpha = initialAlpha;
 			 	drawPhotos (userAllPhotos);
 			 	TweenLite.to(canvasPhotos,1.0,{alpha:1}); 
 			 	
@@ -286,7 +286,7 @@
 			 	 userAllPhotos = new ArrayCollection(event.data.photoSet.photos);
 			 	 maxPages = (userAllPhotos.length % 4 == 0) ? (userAllPhotos.length/4):((userAllPhotos.length/4)+1) 
 			 	 buttonNextPhotos.visible = (userAllPhotos.length > 4) ? true:false;
-			 	 canvasPhotos.alpha = initalAlpha;
+			 	 canvasPhotos.alpha = initialAlpha;
 			 	 drawPhotos (userAllPhotos);
 			 	 TweenLite.to(canvasPhotos,1.0,{alpha:1}); 
 			 }
@@ -460,7 +460,7 @@
 		<!-- Initial state -->	
 		<mx:State name="authorization">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" width="511" height="170" borderColor="#E0E0E0" themeColor="#E0E0E0" alpha="1.0" backgroundColor="#E0E0E0" id="canvasAuthorization" styleName="bgCanvas170">
+				<mx:Canvas x="0" y="0" width="511" height="170" borderColor="#E0E0E0" themeColor="#E0E0E0" alpha="1.0" backgroundColor="#E0E0E0" id="canvasAuthorization" styleName="bgCanvas170" backgroundSize="100%">
 					<mx:Label x="100.35" y="26.7" text="You need to connect your flickr account with " styleName="infoBold"/>
 					<mx:Button x="78" y="80" id="buttonConnectFlickr" click="getAuthUrl()" styleName="connectToFlickr" width="324" height="45">
 						<!--click="navigateToURL(new URLRequest('http://flickr.com/services/auth/?api_key=[flickrAdminKey]&perms=[read]&api_sig=[api_sig]'))">-->
@@ -475,7 +475,7 @@
 		<!-- Visualize the photos geolocated -->
 		<mx:State name="navigationPhotosGeolocated">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" width="511" height="234" borderColor="#E0E0E0" themeColor="#E0E0E0" alpha="1.0" styleName="bgCanvas234" backgroundColor="#E0E0E0" id="canvasNavGeolocatedPhotos">
+				<mx:Canvas x="0" y="0" width="511" height="234" borderColor="#E0E0E0" themeColor="#E0E0E0" alpha="1.0" styleName="bgCanvas234" backgroundColor="#E0E0E0" id="canvasNavGeolocatedPhotos" backgroundSize="100%">
 					<mx:Label x="23.5" y="10" text="These are the photos in your flickr account geolocated near this Protected Area," id="infoPhotosGeolocated" styleName="info"/>
 					<mx:Label x="104" y="26" text="select one to submit or " id="label2" styleName="infoBold"/>
 					<mx:Label x="253" y="26" text="view your other photos" id="buttonViewOtherPhotos" buttonMode="true" useHandCursor="true" 
