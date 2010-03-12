@@ -3,8 +3,8 @@
 	currentState="authorization" creationComplete="init()" xmlns:components="com.vizzuality.components.*">
 	<mx:Script>
 		<![CDATA[
-			import gs.easing.Expo;
-			import gs.TweenLite;
+			import com.greensock.easing.Expo;
+			import com.greensock.TweenLite;
 			import mx.controls.Alert;
 			import com.vizzuality.events.ClickPhotoFrameEvent;
 			import com.vizzuality.components.PhotoFrame;
@@ -28,6 +28,8 @@
 			
 			private var timer:Timer;
 			private var flagTweenActive:Boolean = false;
+			
+		//	private var timeline:TimelineLite = new TimelineLite();
 			
 			private var tamCanvas:Number = 82;
 			private var paddingCanvas:Number = 8;
@@ -239,6 +241,14 @@
 			 	/* flickrService.photosets.getPhotos(event.currentTarget.selectedItem.id, 4,1); */
 			 }
 			 
+			 private function onTweeningStart():void{
+			 	flagTweenActive = true;
+			 }
+			 
+			 private function onTweeningStop():void{
+			 	flagTweenActive = false;
+			 }
+			 
 			 // Move the photos to Left
 			 private function movePhotosToLeft ():void{
 			 	if (!flagTweenActive){
@@ -258,16 +268,22 @@
 			 	}
 			 }
 			 
+			 
+			 
+			 
 			 // Move the photos to Right
 			 private function movePhotosToRight ():void{
-				if (!flagTweenActive){
+				if (flagTweenActive == false){
 					flagTweenActive = true;
 					actualPage++;
 					
 					for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
+						
 						TweenLite.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToRight()});
+						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
-							TweenLite.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,ease:Expo.easeOut});	
+							// The last children, close the door
+								TweenLite.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,ease:Expo.easeOut});
 						}
 					}
 				 	
