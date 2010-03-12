@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
-	currentState="authorization" creationComplete="init()" xmlns:components="com.vizzuality.components.*">
+ creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="authChecking">
 	<mx:Script>
 		<![CDATA[
+			import com.adobe.webapis.flickr.AuthResult;
 			import com.greensock.easing.Expo;
 			import com.greensock.TweenLite;
 			import mx.controls.Alert;
@@ -39,71 +40,84 @@
 			// Flickr
 			private var flickrService : FlickrService = new FlickrService("5588b10ffe3d588600e76db38e9cd55e");
 			private var flickrFrob:String;
-			private var nsid:String = new String ("30720887@N03");
+			private var nsid:String;
 			private var selectedPhotos:Dictionary = new Dictionary();
 			private var userAllPhotos:ArrayCollection;
+			
+			public var site_id:Number;
+			public var user_id:Number;
+			public var user_flickr_id:String;
+			public var pa_bbox:String;
+			public var user_token:String;
 			
 			private var actualPage:int = 1;
 			private var maxPages:int = 1;
 			
 			// Method onCreationComplete	
 			private function init():void{
+				//init params
+				pa_bbox="-180,-90,180,90";
+				site_id=975;
+				user_id=2;
+				user_token="72157623534482544-87a16c7e2e06a192";
+				user_flickr_id="30720887@N03";
+
+				// API KEY from Flickr
+		        flickrService.secret = "e8345cb79db113f7";				
+				
+				
+				checkUserToken();
 			}
 			
-			private function sendSelectedPhotos (event:MouseEvent):void{
-				var photosToSend:ArrayCollection = new ArrayCollection();
-				 for (var photo:Object in selectedPhotos){
-				 	if (selectedPhotos[photo]) 
-				 	  photosToSend.addItem(photo);
-				 }				 
-				 Alert.show("Se han seleccionado "+photosToSend.length+" fotos");
-				 //removeEventListener(ClickPhotoFrameEvent.PHOTOFRAME_CLICKED,onPhotoClicked);
+			private function checkUserToken():void {
+				//if the token exist (sent as param) check if it is valid
+				if(user_token!=null) {
+					//check if the token is valid
+					flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
+					flickrService.auth.checkToken(user_token);
+					
+				} else {
+					currentState="authorization";
+				}
+				
+				//if it does not exist send the user to the authentication screen
+			}
+			
+			private function onCheckToken(event:FlickrResultEvent):void {
+				flickrService.removeEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
+				if(event.success) {
+					checkUserPicturesInBbox();
+				} else {
+					currentState="authorization";
+				}
 			}
 			
 			// Begin de authentication process
-			private function connectToFlickr(event:Event):void {
-				
-				// API KEY from Flickr
-		        flickrService.secret = "e8345cb79db113f7";
-				flickrService.addEventListener (FlickrResultEvent.AUTH_GET_FROB, onGetFrob);
-				
+			private function getAuthUrl():void {
+				currentState="authChecking";
+				flickrService.addEventListener (FlickrResultEvent.AUTH_GET_FROB, onGetFrob);				
  				// Starts the Flickr login process
-				flickrService.auth.getFrob ();
-			 } 
-		
-			private function onPhotoClicked ( event : ClickPhotoFrameEvent ):void{
-
-				selectedPhotos[event.flickrPhoto] = event.selected;
-				
-			}
+				flickrService.auth.getFrob();
+			 } 		
+			
 			// Authentication process
 			private function onGetFrob (event : FlickrResultEvent) : void
 			{
 				// The user wants to connect to our Flickr Application
-			    if (event.success)
-			    {
+			    if (event.success) {
 			        flickrFrob = event.data.frob as String;
-			        var authURL : String = flickrService.getLoginURL (flickrFrob, AuthPerm.WRITE);
+			        var authURL : String = flickrService.getLoginURL(flickrFrob, AuthPerm.WRITE);
 			
-					// Loading...
-					labelCarga.visible = true;
-					
-					// TODO: Comentar la siguiente línea cuando venga un Token ya especificado
-					flickrService.token = "72157623534482544-87a16c7e2e06a192";					
-					
-					 if ((flickrService.token == null) || (flickrService.token == "")) { 
-					    navigateToURL (new URLRequest (authURL), "_blank");
-						flickrService.addEventListener(FlickrResultEvent.AUTH_GET_TOKEN, onGetToken);
+					navigateToURL (new URLRequest (authURL), "_blank");
+					flickrService.addEventListener(FlickrResultEvent.AUTH_GET_TOKEN, onGetToken);
 						
-						// Waiting the Token
-						// TODO PONERLE FIN, en el caso de que no acepten la autorización				
-						timer = new Timer(2000,0);
-						timer.addEventListener(TimerEvent.TIMER,onGetAuthorization);
-						timer.start();
-					 }
-					 else{ // De prueba
-						 navigateNextState();
-					 }
+					// Waiting the Token
+					// TODO PONERLE FIN, en el caso de que no acepten la autorización				
+					timer = new Timer(2000,0);
+					timer.addEventListener(TimerEvent.TIMER,onGetAuthorization);
+					timer.start();
+			    } else {
+			    	currentState="error";
 			    }
 			}  
 			
@@ -111,33 +125,94 @@
 			private function onGetAuthorization (event:TimerEvent):void {				
 				flickrService.auth.getToken(flickrFrob);
 			}
-			
-			// Get the Token?
+
 			private function onGetToken (event:FlickrResultEvent):void{
 				
-					trace("CHECK AUTH:" + event.success.toString());
 					
 					// Check and see if token was returned
 			        if(event.success)
 			        {
-			        	trace ("Flickr Token: " + flickrService.token);
+			        	var authRes:AuthResult = event.data.auth as AuthResult;
+			        	
+			        	user_flickr_id = authRes.user.nsid;
 						timer.stop();
 						timer.removeEventListener(TimerEvent.TIMER,onGetAuthorization);
 						flickrService.removeEventListener(FlickrResultEvent.AUTH_GET_TOKEN, onGetToken);
 						timer = null;
-				        flickrService.token = event.data.auth.token;
+				        flickrService.token = authRes.token;
+				        flickrService.permission = AuthPerm.WRITE;
+			        	user_token=flickrService.token;				        
+				        checkUserPicturesInBbox();
 				        
-				        navigateNextState();
+				        //send ProtectedPlanet the user credentials.
+				        //TODO...
+				        
 				        
 			        }
+			}			
+			
+			private var numCallsForFlickr:Number=0;
+			private function sendSelectedPhotos():void{
+				 currentState="loading";
+				 var tim:uint=0;
+				 flickrService.addEventListener(FlickrResultEvent.PHOTOS_ADD_TAGS,onAddTagComplete);
+				 for (var ph:Object in selectedPhotos){
+				 	var photo:Photo = ph as Photo;
+				 	if (selectedPhotos[photo]) {
+						 //attach tags to the pictures and notify ProtectedPlanet API
+						
+						TweenLite.delayedCall(tim,flickrService.photos.addTags,[photo.id,'"protectedarea:siteid='+site_id+'"']);
+						numCallsForFlickr++;
+						
+						
+						// send the photo to PP
+						//TODO
+				 	}
+				 	
+				 	tim=tim+100;
+				 }				 
+				 
+			}
+
+			private function onAddTagComplete(event:FlickrResultEvent):void {
+				numCallsForFlickr--;
+				if(numCallsForFlickr==0) {
+					//finished tagging
+					flickrService.removeEventListener(FlickrResultEvent.PHOTOS_ADD_TAGS,onAddTagComplete);
+					
+					currentState="completed";
+				}
+				
+			}
+
+			
+			private function onPhotoClicked ( event : ClickPhotoFrameEvent ):void{
+
+				selectedPhotos[event.flickrPhoto] = event.selected;
+				
 			}
 			
-			private function navigateNextState():void{
-				addEventListener(ClickPhotoFrameEvent.PHOTOFRAME_CLICKED,onPhotoClicked);
+
+			
+			private function checkUserPicturesInBbox():void{
+				addEventListener(ClickPhotoFrameEvent.PHOTOFRAME_CLICKED,onPhotoClicked,false,0,true);
 						
 				flickrService.addEventListener(FlickrResultEvent.PHOTOS_SEARCH, onResultSearchFlickr);
-				flickrService.photos.searchAllPhotos(nsid,"date-posted-desc","-180,-90,180,90");
+				flickrService.photos.searchAllPhotos(user_flickr_id,"date-posted-desc",pa_bbox);
 			}
+
+			private function onResultSearchFlickr( event:FlickrResultEvent ):void {
+			 	 
+				 userAllPhotos = new ArrayCollection(event.data.photos.photos);
+				  
+				if (userAllPhotos.length > 0){
+			    	navigateToGeolocatedPhotos();
+				}
+				else{
+		         	removeEventListener(FlickrResultEvent.PHOTOS_SEARCH, onResultSearchFlickr);
+		        	navigateToOtherPhotos();
+		         }
+			 }
 			
 			 //////////////////////////////// PHOTOS GEOLOCATED
 			 private function navigateToGeolocatedPhotos():void{
@@ -154,18 +229,7 @@
 			 	
 			 }
 			 
-			 private function onResultSearchFlickr( event:FlickrResultEvent ):void {
-			 	 
-				 userAllPhotos = new ArrayCollection(event.data.photos.photos);
-				  
-				if (userAllPhotos.length > 0){
-			    	navigateToGeolocatedPhotos();
-				}
-				else{
-		         	removeEventListener(FlickrResultEvent.PHOTOS_SEARCH, onResultSearchFlickr);
-		        	navigateToOtherPhotos();
-		         }
-			 }
+
 			//////////////////////////////// ALL PHOTOS
 			 // Init the another state
 			 private function navigateToOtherPhotos():void {
@@ -218,15 +282,17 @@
 			 private function drawPhotos (userPhotos:ArrayCollection):void{
 			 	var limitArray:int = (userPhotos.length < 12) ? userPhotos.length:12; 
 			 	//canvasPhotos.removeAllChildren();
-			 	for (var count:int = 0; count < limitArray; count++){
-			 		var phot:Photo = new Photo();
-			 		phot = userPhotos[count]
+			 	var count:uint=0;
+			 	for each(var phot:Photo in userPhotos) {
 			 		var framePhoto:PhotoFrame = new PhotoFrame();
-					framePhoto.sourceImage = "http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg";
+					framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
 					framePhoto.flickrPhoto = phot;
 					framePhoto.selected = selectedPhotos[phot];
 					framePhoto.x = (tamCanvas + paddingCanvas) * count;
 					canvasPhotos.addChild(framePhoto);
+			 		count++;
+			 		if(count==limitArray)
+			 			break;
 			 	}
 			 }
 			 
@@ -312,7 +378,7 @@
 					 		var phot:Photo = new Photo();
 					 		phot = userAllPhotos[count]
 					 		var framePhoto:PhotoFrame = new PhotoFrame();
-							framePhoto.sourceImage = "http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg";
+							framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
 							framePhoto.flickrPhoto = phot;
 							framePhoto.selected = selectedPhotos[phot];
 							framePhoto.x = posFramePhoto;
@@ -351,7 +417,7 @@
 					 		var phot:Photo = new Photo();
 					 		phot = userAllPhotos[count]
 					 		var framePhoto:PhotoFrame = new PhotoFrame();
-							framePhoto.sourceImage = "http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg";
+							framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
 							framePhoto.flickrPhoto = phot;
 							framePhoto.selected = selectedPhotos[phot];
 							framePhoto.x = posFramePhoto;
@@ -381,7 +447,7 @@
 			<mx:AddChild position="lastChild">
 				<mx:Canvas x="0" y="0" width="509" height="168" borderColor="#E0E0E0" themeColor="#E0E0E0" alpha="1.0" backgroundColor="#E0E0E0" id="canvasAuthorization">
 					<mx:Label x="128" y="29" text="You need to connect your flickr account with " width="253" height="20" textAlign="left"/>
-					<mx:Button x="262" y="90" label="connect account" id="buttonConnectFlickr" click="connectToFlickr(event)">
+					<mx:Button x="262" y="90" label="connect account" id="buttonConnectFlickr" click="getAuthUrl()">
 						<!--click="navigateToURL(new URLRequest('http://flickr.com/services/auth/?api_key=[flickrAdminKey]&perms=[read]&api_sig=[api_sig]'))">-->
 						
 					</mx:Button>
@@ -399,7 +465,7 @@
 					<mx:Label x="116" y="26" text="select one to submit or " fontWeight="bold" id="label2"/>
 					<mx:Label x="251" y="26" text="view your other photos" fontWeight="bold" color="#125FFB" id="buttonViewOtherPhotos" buttonMode="true" useHandCursor="true" 
 						mouseChildren="false" click="navigateToOtherPhotos()"/>
-					<mx:Button x="193" y="182" label="Submit selected" id="buttonSubmitSelectedPhotos" click="sendSelectedPhotos(event)"/>
+					<mx:Button x="193" y="182" label="Submit selected" id="buttonSubmitSelectedPhotos" click="sendSelectedPhotos()"/>
 					<mx:Label x="210" y="205" text="Skip this step"/>
 					<mx:Button x="10.5" y="97" label="p" id="buttonPrevPhotos" click="movePhotosToLeft()" visible="false"/>
 					<mx:Button x="447" y="97" label="n" id="buttonNextPhotos" click="movePhotosToRight()" visible="false"/>
@@ -421,6 +487,27 @@
 			<mx:RemoveChild target="{buttonViewOtherPhotos}"/>
 			<mx:AddChild relativeTo="{canvasNavGeolocatedPhotos}" position="lastChild">
 				<mx:Label x="13" y="15" text="Select one photo from the list below or filter by set"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="loading">
+			<mx:AddChild position="lastChild">
+				<mx:Label x="70" y="26" text="Loading...."/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="error">
+			<mx:AddChild position="lastChild">
+				<mx:Label x="46" y="47" text="There has been an error, plese refresh page"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="authChecking" basedOn="authorization">
+			<mx:SetProperty target="{buttonConnectFlickr}" name="enabled" value="false"/>
+			<mx:AddChild relativeTo="{canvasAuthorization}" position="lastChild">
+				<mx:Label x="193" y="92" text="Loading..."/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="completed">
+			<mx:AddChild position="lastChild">
+				<mx:Label x="68" y="38" text="Thanks!!"/>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>	
