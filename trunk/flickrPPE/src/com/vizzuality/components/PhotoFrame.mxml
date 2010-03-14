@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="82" height="82" 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="82" height="82" styleName="bkgPhoto" backgroundSize="100%"
 	rollOver="activateRollOver(event)" rollOut="desactivateRollOver(event)" click="selectPhoto(event)" creationComplete="setBackgroundColor()"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off" useHandCursor="true" buttonMode="true">
 	<mx:Canvas id="canvasContainer" width="74" height="74" x="4" y="4" horizontalScrollPolicy="off" verticalScrollPolicy="off" />
@@ -18,24 +18,27 @@
 				canvasContainer.addChild(_img);
 				
 				
-				if (selected) setStyle("backgroundColor","#FF9900");
-				else setStyle("backgroundColor","#FFFFFF");
+				if (selected) styleName = "bkgPhotoSelected";//setStyle("backgroundColor","#FF9900");
+				else styleName = "bkgPhoto";//setStyle("backgroundColor","#FFFFFF");
 			}
 			private function activateRollOver(event:MouseEvent):void{
-				setStyle("backgroundColor","#FF9900");
+				//setStyle("backgroundColor","#FF9900");
+				styleName = "bkgPhotoSelected";
 			}
 			
 			private function desactivateRollOver(event:MouseEvent):void{0
-				if (!selected) setStyle("backgroundColor","#FFFFFF");
+				if (!selected) styleName = "bkgPhoto";//setStyle("backgroundColor","#FFFFFF");
 			}
 			
 			private function selectPhoto(event:MouseEvent):void{
 				if (selected){
 					selected = false;
-					setStyle("backgroundColor","#FFFFFF");
+					//setStyle("backgroundColor","#FFFFFF");
+					styleName = "bkgPhoto";
 				} else{
 					selected = true;
-					setStyle("backgroundColor","#FF9900");
+					//setStyle("backgroundColor","#FF9900");
+					styleName = "bkgPhotoSelected";
 				}
 				
 				//Application.application.photoSelected(flickrPhoto);

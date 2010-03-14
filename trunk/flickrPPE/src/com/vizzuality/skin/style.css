@@ -30,26 +30,26 @@ Label.skip{
 
 Button.before {
 	up-skin: Embed(source='skin.swf',symbol='grayButtonBefore_upSkin');
-	over-skin: Embed(source='skin.swf',symbol='grayButtonBefore_upSkin');
+	over-skin: Embed(source='skin.swf',symbol='grayButtonBefore_overSkin');
 	down-skin: Embed(source='skin.swf',symbol='grayButtonBefore_upSkin');
 }
 
 Button.after {
 	up-skin: Embed(source='skin.swf',symbol='grayButtonAfter_upSkin');
-	over-skin: Embed(source='skin.swf',symbol='grayButtonAfter_upSkin');
+	over-skin: Embed(source='skin.swf',symbol='grayButtonAfter_overSkin');
 	down-skin: Embed(source='skin.swf',symbol='grayButtonAfter_upSkin');
 }
 
 
 Button.submitPhotos {
 	up-skin: Embed(source='skin.swf',symbol='graySubmitSelectedButton_upSkin');
-	over-skin: Embed(source='skin.swf',symbol='graySubmitSelectedButton_upSkin');
+	over-skin: Embed(source='skin.swf',symbol='graySubmitSelectedButton_overSkin');
 	down-skin: Embed(source='skin.swf',symbol='graySubmitSelectedButton_upSkin');
 	font-family: "Arial";
 	font-weight: bold;
 	font-size: 15;
-	textRollOverColor: #666666;
-	text-selected-color: #666666;
+	textRollOverColor: #222222;
+	color: #333333;
 }
 
 Button.connectToFlickr {
@@ -67,15 +67,17 @@ Combo.flickrSets {
 	color: #999999;	
 }
 
-Canvas.bgCanvas170{
-	background-image: Embed(source='skin.swf',symbol='bgCanvas170');
+Canvas.bkgPhoto{
+	background-image: Embed(source='skin.swf',symbol='bkgPhoto');
 }
 
-Canvas.bgCanvas235{
-	background-image: Embed(source='skin.swf',symbol='bgCanvas235');
+Canvas.bkgPhotoSelected{
+	background-image: Embed(source='skin.swf',symbol='bkgPhoto_selected');
 }
 
-
+Canvas.bkg{
+	background-image: Embed(source='skin.swf',symbol='bkg');
+}
 
 
 
