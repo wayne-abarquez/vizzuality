@@ -26,8 +26,6 @@ Button.nullButtonBlue{
 }
 
 
-
-
 Button.before {
 	up-skin: Embed(source='skin.swf',symbol='grayButtonBefore_upSkin');
 	over-skin: Embed(source='skin.swf',symbol='grayButtonBefore_overSkin');
@@ -60,8 +58,8 @@ Button.connectToFlickr {
 
 Combo.flickrSets {
 	up-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_upSkin');
-	over-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_upSkin');
-	down-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_upSkin');
+	over-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_overSkin');
+	down-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_overSkin');
 	font-family: "Arial";
 	font-weight: bold;
 	color: #999999;	
