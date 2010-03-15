@@ -83,8 +83,6 @@
 				} else {
 					user_flickr_id="30720887@N03";
 				}
-				
-
 				// API KEY from Flickr
 		        flickrService.secret = "e8345cb79db113f7";				
 				
@@ -371,7 +369,6 @@
 					
 					for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
 						
-						
 						TweenMax.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToRight()});
 						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
@@ -412,7 +409,6 @@
 							canvasPhotos.addChild(framePhoto);
 					 	}
 				 	}
-				 	
 				}
 				flagTweenActive = false;	
 			 }
