@@ -153,7 +153,7 @@
 				        ppApiService.send({
 				        		flickr_token:user_token,
 				        		flickr_user_id:user_flickr_id
-				        });
+				        }); 
 				        				        
 				        
 			        }
@@ -252,7 +252,8 @@
 			 	if (userAllPhotos != null) userAllPhotos.removeAll();
 			 	
 				flickrService.addEventListener(FlickrResultEvent.PHOTOSETS_GET_LIST,onResultGetSetsList);
-				flickrService.photosets.getList(nsid);		
+				
+				flickrService.photosets.getList(user_flickr_id);		
 				currentState = 'navigationOtherPhotos';	
 			 }
 			 
