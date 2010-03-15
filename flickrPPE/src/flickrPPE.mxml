@@ -6,10 +6,10 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.greensock.TweenMax;
 			import com.adobe.serialization.json.JSON;
 			import com.adobe.webapis.flickr.AuthResult;
 			import com.greensock.easing.Expo;
-			import com.greensock.TweenLite;
 			import mx.controls.Alert;
 			import com.vizzuality.events.ClickPhotoFrameEvent;
 			import com.vizzuality.components.PhotoFrame;
@@ -32,7 +32,6 @@
 			[Bindable] private var flickrSets:ArrayCollection;
 			
 			private var timer:Timer;
-			private var flagTweenActive:Boolean = false;
 			
 		//	private var timeline:TimelineLite = new TimelineLite();
 			
@@ -168,7 +167,7 @@
 				 	if (selectedPhotos[photo]) {
 						picturesToBeSent.push(photo);
 						 //attach tags to the pictures
-						TweenLite.delayedCall(tim,flickrService.photos.addTags,[photo.id,'"protectedarea:siteid='+site_id+'"']);
+						TweenMax.delayedCall(tim,flickrService.photos.addTags,[photo.id,'"protectedarea:siteid='+site_id+'"']);
 						numCallsForFlickr++;
 				 	}
 				 	
@@ -314,24 +313,15 @@
 			 	/* flickrService.photosets.getPhotos(event.currentTarget.selectedItem.id, 4,1); */
 			 }
 			 
-			 private function onTweeningStart():void{
-			 	flagTweenActive = true;
-			 }
-			 
-			 private function onTweeningStop():void{
-			 	flagTweenActive = false;
-			 }
-			 
 			 // Move the photos to Left
 			 private function movePhotosToLeft ():void{
-			 	if (!flagTweenActive){
-				 	flagTweenActive = true;
+			 	if (!(TweenMax.isTweening(canvasPhotos.getChildAt(1)))){
 				 	actualPage--;
 				 	for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
 				 		
-						TweenLite.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToLeft()});
+						TweenMax.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToLeft()});
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
-							TweenLite.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,ease:Expo.easeOut});	
+							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,ease:Expo.easeOut});	
 						}
 					}
 				 	
@@ -346,97 +336,83 @@
 			 
 			 // Move the photos to Right
 			 private function movePhotosToRight ():void{
-				if (!flagTweenActive){
-					flagTweenActive = true;
+				if (!(TweenMax.isTweening(canvasPhotos.getChildAt(1)))){
 					actualPage++;
 					
 					for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
 						
-						TweenLite.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToRight()});
+						TweenMax.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToRight()});
 						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
 							// The last children, close the door
-							TweenLite.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,ease:Expo.easeOut});
+							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,ease:Expo.easeOut});
 						}
 					}
-				 	
 				 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
 				 	buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;  
-				 	
 			 	}
 			 }
 			 
 			 private function onTweenerCompleteToRight():void{
-			  	if(flagTweenActive){
-			 	 	
-				 	if ((actualPage >= 3)&&(actualPage != maxPages)) {
-				 		canvasPhotos.removeChildAt(3);
-				 		canvasPhotos.removeChildAt(2);
-				 		canvasPhotos.removeChildAt(1);
-				 		canvasPhotos.removeChildAt(0);
-				 		
-				 		var index:int = actualPage * 4;
-				 		
-				 		// Veo si aún quedan  
-				 		var posFramePhoto:Number = 720;
-				 		
-					 	var limitArray:int = ((index+4) <= userAllPhotos.length) ? (index+4):userAllPhotos.length; 
-					 	for (var count:int = index; count < limitArray; count++){
-					 		var phot:Photo = new Photo();
-					 		phot = userAllPhotos[count]
-					 		var framePhoto:PhotoFrame = new PhotoFrame();
-							framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
-							framePhoto.flickrPhoto = phot;
-							framePhoto.selected = selectedPhotos[phot];
-							framePhoto.x = posFramePhoto;
-							posFramePhoto += (tamCanvas+paddingCanvas);
-							//framePhoto.x = (tamCanvas+paddingCanvas) * (count - 1);
-							canvasPhotos.addChild(framePhoto);
-					 	}
-					 	
+			 	if ((actualPage >= 3)&&(actualPage != maxPages)) {
+			 		canvasPhotos.removeChildAt(3);
+			 		canvasPhotos.removeChildAt(2);
+			 		canvasPhotos.removeChildAt(1);
+			 		canvasPhotos.removeChildAt(0);
+			 		
+			 		var index:int = actualPage * 4;
+			 		
+			 		// Veo si aún quedan  
+			 		var posFramePhoto:Number = 720;
+			 		
+				 	var limitArray:int = ((index+4) <= userAllPhotos.length) ? (index+4):userAllPhotos.length; 
+				 	for (var count:int = index; count < limitArray; count++){
+				 		var phot:Photo = new Photo();
+				 		phot = userAllPhotos[count]
+				 		var framePhoto:PhotoFrame = new PhotoFrame();
+						framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
+						framePhoto.flickrPhoto = phot;
+						framePhoto.selected = selectedPhotos[phot];
+						framePhoto.x = posFramePhoto;
+						posFramePhoto += (tamCanvas+paddingCanvas);
+						//framePhoto.x = (tamCanvas+paddingCanvas) * (count - 1);
+						canvasPhotos.addChild(framePhoto);
 				 	}
-				 }
-			 	flagTweenActive = false;
-				  
+			 	}
 			 }
 			 
 			 private function onTweenerCompleteToLeft():void{
-			 	if(flagTweenActive){
+			 	if ((actualPage >= 2)&&((actualPage+1) != maxPages)) {
+			 		 if ((actualPage + 2) < (maxPages)){
+				 		canvasPhotos.removeChildAt(11);
+				 		canvasPhotos.removeChildAt(10);
+				 		canvasPhotos.removeChildAt(9);
+				 		canvasPhotos.removeChildAt(8);
+			 		}else{
+			 			// Como puede que no sean 4 los hijos a borrar a la derecha, los calculo
+			 			var numChildsToDelete:int = ((userAllPhotos.length % 4) == 0) ?	4 : (userAllPhotos.length % 4);
+			 			for (var countChild:int = numChildsToDelete; countChild > 0; countChild--){
+			 				canvasPhotos.removeChildAt(7+countChild);
+			 			} 
+			 		} 
+			 		var index:int = (actualPage * 4) - 8;
+			 		var posFramePhoto:Number = -720;
 			 		
-				 	if ((actualPage >= 2)&&((actualPage+1) != maxPages)) {
-				 		 if ((actualPage + 2) < (maxPages)){
-					 		canvasPhotos.removeChildAt(11);
-					 		canvasPhotos.removeChildAt(10);
-					 		canvasPhotos.removeChildAt(9);
-					 		canvasPhotos.removeChildAt(8);
-				 		}else{
-				 			// Como puede que no sean 4 los hijos a borrar a la derecha, los calculo
-				 			var numChildsToDelete:int = ((userAllPhotos.length % 4) == 0) ?	4 : (userAllPhotos.length % 4);
-				 			for (var countChild:int = numChildsToDelete; countChild > 0; countChild--){
-				 				canvasPhotos.removeChildAt(7+countChild);
-				 			} 
-				 		} 
-				 		var index:int = (actualPage * 4) - 8;
-				 		var posFramePhoto:Number = -720;
-				 		
-						var indexChild:int = 0;			 	
-					 	for (var count:int = index; count < (index + 4); count++){
-					 		var phot:Photo = new Photo();
-					 		phot = userAllPhotos[count]
-					 		var framePhoto:PhotoFrame = new PhotoFrame();
-							framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
-							framePhoto.flickrPhoto = phot;
-							framePhoto.selected = selectedPhotos[phot];
-							framePhoto.x = posFramePhoto;
-							posFramePhoto += (tamCanvas+paddingCanvas);
-							//framePhoto.x = ((tamCanvas +paddingCanvas) * count)* -1;
-							canvasPhotos.addChildAt(framePhoto,indexChild);
-							indexChild++;	
-					 	}
+					var indexChild:int = 0;			 	
+				 	for (var count:int = index; count < (index + 4); count++){
+				 		var phot:Photo = new Photo();
+				 		phot = userAllPhotos[count]
+				 		var framePhoto:PhotoFrame = new PhotoFrame();
+						framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
+						framePhoto.flickrPhoto = phot;
+						framePhoto.selected = selectedPhotos[phot];
+						framePhoto.x = posFramePhoto;
+						posFramePhoto += (tamCanvas+paddingCanvas);
+						//framePhoto.x = ((tamCanvas +paddingCanvas) * count)* -1;
+						canvasPhotos.addChildAt(framePhoto,indexChild);
+						indexChild++;	
 				 	}
-				 	
 			 	}
-			 	flagTweenActive = false;
 			 }
 			 
 			 private function movePhotosToLeftQuickly():void{
