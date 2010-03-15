@@ -176,7 +176,7 @@ package {
         }
         
         private function clicked(event:MouseEvent):void {
-			navigateToURL(new URLRequest(event.target.url));
+			navigateToURL(new URLRequest(event.target.url),"_self");
 		}
 		
 	}
