@@ -39,12 +39,9 @@
 			private var tamCanvas:Number = 82;
 			private var paddingCanvas:Number = 8;
 			
-			private var initialAlpha:Number = 0.3;
-			
 			// Flickr
 			private var flickrService : FlickrService = new FlickrService("5588b10ffe3d588600e76db38e9cd55e");
 			private var flickrFrob:String;
-			private var nsid:String;
 			private var selectedPhotos:Dictionary = new Dictionary();
 			private var userAllPhotos:ArrayCollection;
 			
@@ -236,9 +233,7 @@
 			 	
 			 	maxPages = (userAllPhotos.length % 4 == 0) ? (userAllPhotos.length/4):((userAllPhotos.length/4)+1) 
 			    buttonNextPhotos.visible = (userAllPhotos.length > 4) ? true:false;
-			 	canvasPhotos.alpha = initialAlpha;
 			 	drawPhotos (userAllPhotos);
-			 	TweenLite.to(canvasPhotos,1.0,{alpha:1}); 
 			 	
 			 }
 			 
@@ -287,9 +282,7 @@
 			 	 userAllPhotos = new ArrayCollection(event.data.photoSet.photos);
 			 	 maxPages = (userAllPhotos.length % 4 == 0) ? (userAllPhotos.length/4):((userAllPhotos.length/4)+1) 
 			 	 buttonNextPhotos.visible = (userAllPhotos.length > 4) ? true:false;
-			 	 canvasPhotos.alpha = initialAlpha;
 			 	 drawPhotos (userAllPhotos);
-			 	 TweenLite.to(canvasPhotos,1.0,{alpha:1}); 
 			 }
 			 
 			 // Draw the photos 
@@ -353,7 +346,7 @@
 			 
 			 // Move the photos to Right
 			 private function movePhotosToRight ():void{
-				if (flagTweenActive == false){
+				if (!flagTweenActive){
 					flagTweenActive = true;
 					actualPage++;
 					
@@ -363,7 +356,7 @@
 						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
 							// The last children, close the door
-								TweenLite.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,ease:Expo.easeOut});
+							TweenLite.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,ease:Expo.easeOut});
 						}
 					}
 				 	
@@ -461,13 +454,13 @@
 		<!-- Initial state -->	
 		<mx:State name="authorization">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" width="511" height="170"  id="canvasAuthorization" styleName="bkg" backgroundSize="100%">
-					<mx:Label x="100.35" y="26.7" text="You need to connect your flickr account with " styleName="infoBold"/>
-					<mx:Button x="78" y="80" id="buttonConnectFlickr" click="getAuthUrl()" styleName="connectToFlickr" width="324" height="45" useHandCursor= "true" buttonMode = "true" mouseChildren = "false">
+				<mx:Canvas x="0" y="0" width="511" height="234"  id="canvasAuthorization" styleName="bkg" backgroundSize="100%">
+					<mx:Label x="100.35" y="51.7" text="You need to connect your flickr account with " styleName="infoBold"/>
+					<mx:Button x="81.35" y="122" id="buttonConnectFlickr" click="getAuthUrl()" styleName="connectToFlickr" width="324" height="45" useHandCursor= "true" buttonMode = "true" mouseChildren = "false">
 						<!--click="navigateToURL(new URLRequest('http://flickr.com/services/auth/?api_key=[flickrAdminKey]&perms=[read]&api_sig=[api_sig]'))">-->
 						
 					</mx:Button>
-					<mx:Label x="68.35" y="39.95" text="ProtectedPlanet to start contributing with your images" styleName="infoBold" width="352"/>
+					<mx:Label x="68.35" y="64.95" text="ProtectedPlanet to start contributing with your images" styleName="infoBold" width="352"/>
 					<mx:Label id="labelCarga"  x="450" y="140" text="Loading" visible="false"/>
 				</mx:Canvas>
 			</mx:AddChild>
