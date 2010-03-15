@@ -13,20 +13,20 @@ Label.infoBold{
 	color: #666666;
 }
 
-label.infoBoldBlue {
+Button.nullButtonBlue{
+	skin: ClassReference(null);
+	skin: Embed(source="skin.swf", symbol="nullButton");
+	color: #006699;
+	textRollOverColor: #254C72;
+	text-selected-color: #254C72;
 	font-family: "Arial";
 	font-size: 13;
-	font-weight:bold;
-	color: #006699;	
+	text-decoration: none;
+	letter-spacing:0;
 }
 
 
-Label.skip{
-	font-family: "Arial";
-	font-size: 13;
-	font-weight: bold;
-	color: #006699;	
-}
+
 
 Button.before {
 	up-skin: Embed(source='skin.swf',symbol='grayButtonBefore_upSkin');
