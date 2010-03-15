@@ -2,7 +2,9 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="82" height="82" styleName="bkgPhoto" backgroundSize="100%"
 	rollOver="activateRollOver(event)" rollOut="desactivateRollOver(event)" click="selectPhoto(event)" creationComplete="init()"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off" useHandCursor="true" buttonMode="true">
-	<mx:Canvas id="canvasContainer" width="74" height="74" x="4" y="4" horizontalScrollPolicy="off" verticalScrollPolicy="off" />
+	<mx:Canvas id="canvasContainer" width="74" height="74" x="4" y="4" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:SWFLoader id="loader" source="@Embed('../../../assets/loadAnimation.swf')"  y="23" x="23" /> 
+	</mx:Canvas>
 	<mx:Script>
 		<![CDATA[
 			import com.greensock.TweenLite;
@@ -16,8 +18,8 @@
 			private var _img:Image;
 			
 			private function init():void{
-				canvasContainer.addChild(_img);
 				
+				canvasContainer.addChild(_img);
 				setBackgroundColor();
 				
 			}
@@ -52,10 +54,11 @@
 			}
 			
 			public function createImage(source:String):void {
+				
 				_img= new Image();
 				_img.alpha = 0.3;
 				_img.source=source;
-				TweenLite.to(_img,1.5,{alpha:1}); 
+				TweenLite.to(_img,1.5,{alpha:1});
 				
 			}
 		]]>
