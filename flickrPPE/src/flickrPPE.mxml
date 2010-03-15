@@ -431,12 +431,12 @@
 		<mx:State name="authorization">
 			<mx:AddChild position="lastChild">
 				<mx:Canvas x="0" y="0" width="511" height="234"  id="canvasAuthorization" styleName="bkg" backgroundSize="100%">
-					<mx:Label x="100.35" y="51.7" text="You need to connect your flickr account with " styleName="infoBold"/>
+					<mx:Label y="51.7" text="You need to connect your flickr account with " styleName="infoBold" id="label4" textAlign="center" horizontalCenter="0"/>
 					<mx:Button x="81.35" y="122" id="buttonConnectFlickr" click="getAuthUrl()" styleName="connectToFlickr" width="324" height="45" useHandCursor= "true" buttonMode = "true" mouseChildren = "false">
 						<!--click="navigateToURL(new URLRequest('http://flickr.com/services/auth/?api_key=[flickrAdminKey]&perms=[read]&api_sig=[api_sig]'))">-->
 						
 					</mx:Button>
-					<mx:Label x="68.35" y="64.95" text="ProtectedPlanet to start contributing with your images" styleName="infoBold" width="352"/>
+					<mx:Label y="65.95" text="ProtectedPlanet to start contributing with your images" styleName="infoBold" width="352" id="label3" textAlign="center" horizontalCenter="0"/>
 					<mx:Label id="labelCarga"  x="450" y="140" text="Loading" visible="false"/>
 				</mx:Canvas>
 			</mx:AddChild>
@@ -487,10 +487,18 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="authChecking" basedOn="authorization">
-			<mx:SetProperty target="{buttonConnectFlickr}" name="enabled" value="false"/>
-			<mx:AddChild relativeTo="{canvasAuthorization}" position="lastChild">
-				<mx:Label x="193" y="92" text="Loading..."/>
-			</mx:AddChild>
+			<mx:RemoveChild target="{buttonConnectFlickr}"/>
+			<mx:SetProperty target="{label3}" name="y" value="65.95"/>
+			<mx:SetProperty target="{label4}" name="text" value="A new window may be just opened."/>
+			<mx:SetProperty target="{label3}" name="text" value="Please follow the instructions and come back when you finish"/>
+			<mx:SetStyle target="{label4}" name="textAlign" value="center"/>
+			<mx:SetStyle target="{label3}" name="textAlign" value="center"/>
+			<mx:SetProperty target="{label4}" name="x"/>
+			<mx:SetStyle target="{label4}" name="horizontalCenter" value="0"/>
+			<mx:SetProperty target="{label3}" name="x"/>
+			<mx:SetStyle target="{label3}" name="horizontalCenter" value="0"/>
+			<mx:SetProperty target="{label3}" name="width" value="490"/>
+			<mx:SetStyle target="{label3}" name="fontWeight" value="normal"/>
 		</mx:State>
 		<mx:State name="completed">
 			<mx:AddChild position="lastChild">
