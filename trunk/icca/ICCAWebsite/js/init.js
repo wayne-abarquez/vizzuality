@@ -6,6 +6,14 @@ $(document).ready(function() {
 	Cufon.replace('.menu',{hover: true});
 	Cufon.replace('.flash-h2',{hover: true});
 	Cufon.replace('.flash-h2-special',{hover: true});
+	
+	
+    $('#worldmap').flash({
+        src: 'flash/dottedWMap.swf',
+        width: 590,
+        height: 305        
+    });
+	
 
 });
 
