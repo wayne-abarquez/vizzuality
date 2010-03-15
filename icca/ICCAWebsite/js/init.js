@@ -14,6 +14,24 @@ $(document).ready(function() {
         height: 305        
     });
 	
+    $('#countrymap').flash({
+        src: 'flash/ICCAMap2.swf',
+        width: 938,
+        height: 346
+    });	
+	
+    $('#mapmap').flash({
+        src: 'flash/ICCAMap.swf',
+        width: 938,
+        height: 346
+    });	
+
+    $('#widgetnews').flash({
+        src: 'flash/smallMap.swf',
+        width: 337,
+        height: 203
+    });	
+
 
 });
 
