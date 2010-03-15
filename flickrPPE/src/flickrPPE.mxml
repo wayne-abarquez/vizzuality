@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="511" height="234"
-	creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="authChecking">
+	creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="authorization">
  
 	<mx:Style source="com/vizzuality/skin/style.css"/>
 	
@@ -94,18 +94,17 @@
 				if(user_token!=null) {
 					//check if the token is valid
 					
-					// REMOVE THIS COMMENT
+					// REMOVE THIS COMMENT. IT'S ONLY TO TEST
 					/* flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
 					flickrService.auth.checkToken(user_token); */
 					
 					checkUserPicturesInBbox();
 					
-					
 				} else {
+					//if it does not exist send the user to the authentication screen
 					currentState="authorization";
 				}
 				
-				//if it does not exist send the user to the authentication screen
 			}
 			
 			private function onCheckToken(event:FlickrResultEvent):void {
@@ -153,7 +152,6 @@
 
 			private function onGetToken (event:FlickrResultEvent):void{
 				
-					
 					// Check and see if token was returned
 			        if(event.success)
 			        {
@@ -175,8 +173,6 @@
 				        		flickr_token:user_token,
 				        		flickr_user_id:user_flickr_id
 				        }); 
-				        				        
-				        
 			        }
 			}			
 			
@@ -207,26 +203,21 @@
 					//finished tagging
 					flickrService.removeEventListener(FlickrResultEvent.PHOTOS_ADD_TAGS,onAddTagComplete);
 										
-					//Call the PPE service
+					// Call the PPE service
 					var jsonMessage:String=JSON.encode(picturesToBeSent);
 					ppApiService.url="http://www.protectedplanet.net/api/users/"+user_id+"/flickr/images";
 					ppApiService.send({
 						site_id:site_id,
 						pictures: jsonMessage
-					});					
+					});	
 					
+					currentState="completed";				
 				}
-				
 			}
 
-			
 			private function onPhotoClicked ( event : ClickPhotoFrameEvent ):void{
-
 				selectedPhotos[event.flickrPhoto] = event.selected;
-				
 			}
-			
-
 			
 			private function checkUserPicturesInBbox():void{
 				addEventListener(ClickPhotoFrameEvent.PHOTOFRAME_CLICKED,onPhotoClicked,false,0,true);
@@ -516,12 +507,16 @@
 		</mx:State>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
-				<mx:Label x="70" y="26" text="Loading...."/>
+				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasLoading" backgroundSize="100%" width="511" height="234">
+					<mx:Label x="145.5" y="90" text="Please while the pictures are sent..." styleName="infoBold"/>
+				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="error">
 			<mx:AddChild position="lastChild">
-				<mx:Label x="46" y="47" text="There has been an error, plese refresh page"/>
+				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasError" backgroundSize="100%" width="511" height="234">
+					<mx:Label x="113" y="97" text="There has been an error, plese refresh page" styleName="infoBold"/>
+				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="authChecking" basedOn="authorization">
@@ -540,7 +535,9 @@
 		</mx:State>
 		<mx:State name="completed">
 			<mx:AddChild position="lastChild">
-				<mx:Label x="68" y="38" text="Thanks!!"/>
+				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasCompleted" backgroundSize="100%" width="511" height="234">
+					<mx:Label x="68" y="38" text="Thanks!!" styleName="infoBold"/>
+				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>	
