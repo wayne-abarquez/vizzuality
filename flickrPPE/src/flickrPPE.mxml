@@ -294,7 +294,9 @@
 			 	var count:uint=0;
 			 	for each(var phot:Photo in userPhotos) {
 			 		var framePhoto:PhotoFrame = new PhotoFrame();
+					
 					framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
+
 					framePhoto.flickrPhoto = phot;
 					framePhoto.selected = selectedPhotos[phot];
 					framePhoto.x = (tamCanvas + paddingCanvas) * count;
@@ -333,8 +335,6 @@
 				 	
 			 	}
 			 }
-			 
-			 
 			 
 			 
 			 // Move the photos to Right
