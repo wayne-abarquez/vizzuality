@@ -296,7 +296,7 @@
 			 		var framePhoto:PhotoFrame = new PhotoFrame();
 					
 					framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
-
+					//framePhoto.loader = null;
 					framePhoto.flickrPhoto = phot;
 					framePhoto.selected = selectedPhotos[phot];
 					framePhoto.x = (tamCanvas + paddingCanvas) * count;
@@ -454,8 +454,8 @@
 					<mx:Button x="240" y="32" label="view your other photos" id="buttonViewOtherPhotos" click="navigateToOtherPhotos()" styleName="nullButtonBlue" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
 					<mx:Button x="173" y="163" label="Submit selected" id="buttonSubmitSelectedPhotos" click="sendSelectedPhotos()" styleName="submitPhotos" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
 					<mx:Button x="184" y="197" label="skip this step" styleName="nullButtonBlue" width="118" height="21" id="infoBoldBlue" click="navigateToOtherPhotos()" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Button x="40" y="97" styleName="before" id="buttonPrevPhotos" click="movePhotosToLeft()" visible="true" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Button x="438" y="97" styleName="after" id="buttonNextPhotos" click="movePhotosToRight()" visible="true" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Button x="40" y="97" styleName="before" id="buttonPrevPhotos" click="movePhotosToLeft()" visible="false" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Button x="438" y="97" styleName="after" id="buttonNextPhotos" click="movePhotosToRight()" visible="false" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
 					<mx:Canvas x="72" y="69" width="360" height="113" id="canvasPhotos" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 					</mx:Canvas>
 				</mx:Canvas>
