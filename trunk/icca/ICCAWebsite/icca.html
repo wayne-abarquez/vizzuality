@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="css/typo.css" type="text/css" media="screen, projection">	
 	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print">
 
-	<script src="js/jquery.tools.min.js" type="text/javascript"></script>
+	<script src="http://cdn.jquerytools.org/1.1.2/full/jquery.tools.min.js" type="text/javascript"></script>
+	<script type='text/javascript' src='js/jquery.flash.js'></script>
 	<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 	<script src="js/init.js" type="text/javascript"></script>
 	<script type='text/javascript' src='js/scripts.js'></script>
@@ -97,22 +98,7 @@
 
 		<div class="span-8 last newsicca">
 			<div class="new">
-				<div class="widgetnews">
-					<object id="flashMovie" width="337" height="203">
-						<param name="wmode" value="opaque">
-						<param name="flashvars" value="mapkey=ABQIAAAAsIunaSEq-72JsQD5i92_2RSBAjOOhu3AGseSip9oOKv69lUsGxQJJZ1BfzmSIDX0FfGUGpci0uokEA">
-						<param name="movie" value="flash/smallMap.swf">
-						<!--[if !IE]>-->
-						<object type="application/x-shockwave-flash" data="flash/smallMap.swf" width="337" height="203" flashvars="mapkey=ABQIAAAAsIunaSEq-72JsQD5i92_2RSBAjOOhu3AGseSip9oOKv69lUsGxQJJZ1BfzmSIDX0FfGUGpci0uokEA&lat=20.980578&lon=-89.61087">
-							<param name="wmode" value="opaque">
-							
-						<!--<![endif]-->
-						<h1>Necesitas Flash para poder ver el mapa</h1>
-						<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"></a></p>
-						<!--[if !IE]>-->
-						</object>
-						<!--<![endif]-->
-				    </object>
+				<div class="widgetnews" id="widgetnews">
 				</div>
 			</div>
 			<div class="new">
