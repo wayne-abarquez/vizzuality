@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute"
- creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="authChecking">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="511" height="234"
+	creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="authChecking">
  
 	<mx:Style source="com/vizzuality/skin/style.css"/>
 	
@@ -433,9 +433,9 @@
 		<!-- Initial state -->	
 		<mx:State name="authorization">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" width="511" height="234"  id="canvasAuthorization" styleName="bkg" backgroundSize="100%">
-					<mx:Label y="51.7" text="You need to connect your flickr account with " styleName="infoBold" id="label4" textAlign="center" horizontalCenter="0"/>
-					<mx:Button x="81.35" y="122" id="buttonConnectFlickr" click="getAuthUrl()" styleName="connectToFlickr" width="324" height="45" useHandCursor= "true" buttonMode = "true" mouseChildren = "false">
+				<mx:Canvas x="0" y="0" id="canvasAuthorization" styleName="bkg" backgroundSize="100%" width="511" height="234">
+					<mx:Label y="51.7" text="You need to connect your flickr account with " styleName="infoBold" id="label4" textAlign="center" horizontalCenter="0" width="317.66666" height="21"/>
+					<mx:Button x="94.35" y="122" id="buttonConnectFlickr" click="getAuthUrl()" styleName="connectToFlickr" width="324" height="45" useHandCursor= "true" buttonMode = "true" mouseChildren = "false">
 						<!--click="navigateToURL(new URLRequest('http://flickr.com/services/auth/?api_key=[flickrAdminKey]&perms=[read]&api_sig=[api_sig]'))">-->
 						
 					</mx:Button>
@@ -448,15 +448,15 @@
 		<!-- Visualize the photos geolocated -->
 		<mx:State name="navigationPhotosGeolocated">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" width="511" height="234" styleName="bkg" id="canvasNavGeolocatedPhotos" backgroundSize="100%">
-					<mx:Label x="23.5" y="10" text="These are the photos in your flickr account geolocated near this Protected Area," id="infoPhotosGeolocated" styleName="info"/>
-					<mx:Label x="104" y="26" text="select one to submit or " id="label2" styleName="infoBold"/>
-					<mx:Button x="243" y="24" label="view your other photos" id="buttonViewOtherPhotos" click="navigateToOtherPhotos()" styleName="nullButtonBlue" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Button x="178" y="173" label="Submit selected" id="buttonSubmitSelectedPhotos" click="sendSelectedPhotos()" styleName="submitPhotos" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Button x="193" y="207" label="skip this step" styleName="nullButtonBlue" width="118" height="21" id="infoBoldBlue" click="navigateToOtherPhotos()" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Button x="10.5" y="97" styleName="before" id="buttonPrevPhotos" click="movePhotosToLeft()" visible="false" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Button x="447" y="97" styleName="after" id="buttonNextPhotos" click="movePhotosToRight()" visible="false" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Canvas x="68" y="68" width="360" height="113" id="canvasPhotos" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasNavGeolocatedPhotos" backgroundSize="100%" width="511" height="234">
+					<mx:Label x="18" y="17" text="These are the photos in your flickr account geolocated near this Protected Area," id="infoPhotosGeolocated" styleName="info" width="480.5" height="21"/>
+					<mx:Label x="103" y="34" text="select one to submit or " id="label2" styleName="infoBold" width="163" height="21"/>
+					<mx:Button x="240" y="32" label="view your other photos" id="buttonViewOtherPhotos" click="navigateToOtherPhotos()" styleName="nullButtonBlue" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Button x="173" y="163" label="Submit selected" id="buttonSubmitSelectedPhotos" click="sendSelectedPhotos()" styleName="submitPhotos" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Button x="184" y="197" label="skip this step" styleName="nullButtonBlue" width="118" height="21" id="infoBoldBlue" click="navigateToOtherPhotos()" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Button x="40" y="97" styleName="before" id="buttonPrevPhotos" click="movePhotosToLeft()" visible="true" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Button x="438" y="97" styleName="after" id="buttonNextPhotos" click="movePhotosToRight()" visible="true" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Canvas x="72" y="69" width="360" height="113" id="canvasPhotos" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 					</mx:Canvas>
 				</mx:Canvas>
 			</mx:AddChild>
@@ -465,15 +465,15 @@
 		<!--Visualize all the flickr photos by user-->
 		<mx:State name="navigationOtherPhotos" basedOn="navigationPhotosGeolocated">
 			<mx:AddChild relativeTo="{canvasNavGeolocatedPhotos}" position="lastChild">
-				<mx:ComboBox x="357" y="15" id="comboFlickrSets" editable="false" width="133" styleName="flickrSets" useHandCursor= "true" buttonMode = "true"
+				<mx:ComboBox x="350" y="17" id="comboFlickrSets" editable="false" width="125" styleName="flickrSets" useHandCursor= "true" buttonMode = "true"
 					dataProvider="{flickrSets}" labelFunction="getTitleFlickrSets" 
-					change="updatePhotosBySet(event)"/>
+					change="updatePhotosBySet(event)" height="27"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{infoPhotosGeolocated}"/>
 			<mx:RemoveChild target="{label2}"/>
 			<mx:RemoveChild target="{buttonViewOtherPhotos}"/>
 			<mx:AddChild relativeTo="{canvasNavGeolocatedPhotos}" position="lastChild">
-				<mx:Label x="14" y="17" text="Select one photo from the list below or filter by set" styleName="infoBold"/>
+				<mx:Label x="19" y="20" text="Select one photo from the list below or filter by set" styleName="infoBold"/>
 			</mx:AddChild>
 			<mx:SetProperty target="{buttonSubmitSelectedPhotos}" name="width" value="148"/>
 			<mx:SetProperty target="{buttonSubmitSelectedPhotos}" name="height" value="34"/>
