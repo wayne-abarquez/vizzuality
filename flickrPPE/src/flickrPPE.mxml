@@ -58,11 +58,32 @@
 			// Method onCreationComplete	
 			private function init():void{
 				//init params
-				pa_bbox="-180,-90,180,90";
-				site_id=975;
-				user_id=2;
-				user_token="72157623534482544-87a16c7e2e06a192";
-				user_flickr_id="30720887@N03";
+				if(this.parameters.pa_bbox!=null) {
+					pa_bbox=this.parameters.pa_bbox;
+				} else {
+					pa_bbox="-180,-90,180,90";
+				}
+				if(this.parameters.site_id!=null) {
+					site_id=this.parameters.site_id;
+				} else {
+					site_id=975;
+				}
+				if(this.parameters.user_id!=null) {
+					user_id=this.parameters.user_id;
+				} else {
+					user_id=2;
+				}
+				if(this.parameters.user_token!=null) {
+					user_token=this.parameters.user_token;
+				} else {
+					user_token="72157623534482544-87a16c7e2e06a192";
+				}
+				if(this.parameters.user_flickr_id!=null) {
+					user_flickr_id=this.parameters.user_flickr_id;
+				} else {
+					user_flickr_id="30720887@N03";
+				}
+				
 
 				// API KEY from Flickr
 		        flickrService.secret = "e8345cb79db113f7";				
