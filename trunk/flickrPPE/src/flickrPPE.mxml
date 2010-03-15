@@ -94,6 +94,7 @@
 				if(user_token!=null) {
 					//check if the token is valid
 					
+					// REMOVE THIS COMMENT
 					/* flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
 					flickrService.auth.checkToken(user_token); */
 					
