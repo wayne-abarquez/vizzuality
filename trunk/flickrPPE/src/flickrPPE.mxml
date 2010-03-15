@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="511" height="234"
-	creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="authorization">
+	creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="">
  
 	<mx:Style source="com/vizzuality/skin/style.css"/>
 	
@@ -33,7 +33,7 @@
 			
 			private var timer:Timer;
 			
-		//	private var timeline:TimelineLite = new TimelineLite();
+			// private var timeline:TimelineLite = new TimelineLite();
 			
 			private var tamCanvas:Number = 82;
 			private var paddingCanvas:Number = 8;
@@ -374,6 +374,7 @@
 			 }
 			 
 			 private function onTweenerCompleteToRight():void{
+			 	
 			 	if (flagTweenActive) {
 			 						 	
 				 		if ((actualPage >= 3)&&(actualPage != maxPages)) {
@@ -403,9 +404,11 @@
 				 	}
 				}
 				flagTweenActive = false;	
+				
 			 }
 			 
 			 private function onTweenerCompleteToLeft():void{
+			 	
 			 	if (flagTweenActive){
 				 	
 				 	if ((actualPage >= 2)&&((actualPage+1) != maxPages)) {
@@ -442,6 +445,7 @@
 				 	
 			 	}
 				flagTweenActive = false;
+				
 			 }
 			 
 			 private function movePhotosToLeftQuickly():void{
@@ -453,7 +457,7 @@
 			 }
 		]]>
 	</mx:Script>
-	<mx:HTTPService id="ppApiService" method="POST" resultFormat="text" />
+	<mx:HTTPService id="ppApiService" method="POST" resultFormat="text" fault="trace('error')" />
 	
 	<mx:states>
 		<!-- Initial state -->	
@@ -509,6 +513,7 @@
 			<mx:AddChild position="lastChild">
 				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasLoading" backgroundSize="100%" width="511" height="234">
 					<mx:Label x="145.5" y="90" text="Please while the pictures are sent..." styleName="infoBold"/>
+					<mx:SWFLoader id="loader" source="@Embed('assets/loadAnimation.swf')" y="129" x="241.5" /> 
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
