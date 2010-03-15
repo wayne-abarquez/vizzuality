@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="82" height="82" styleName="bkgPhoto" backgroundSize="100%"
-	rollOver="activateRollOver(event)" rollOut="desactivateRollOver(event)" click="selectPhoto(event)" creationComplete="setBackgroundColor()"
+	rollOver="activateRollOver(event)" rollOut="desactivateRollOver(event)" click="selectPhoto(event)" creationComplete="init()"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off" useHandCursor="true" buttonMode="true">
 	<mx:Canvas id="canvasContainer" width="74" height="74" x="4" y="4" horizontalScrollPolicy="off" verticalScrollPolicy="off" />
 	<mx:Script>
 		<![CDATA[
+			import com.greensock.TweenLite;
 			import mx.controls.Image;
 			import mx.core.Application;
 			import com.adobe.webapis.flickr.Photo;
@@ -14,9 +15,14 @@
 			
 			private var _img:Image;
 			
-			private function setBackgroundColor():void{
+			private function init():void{
 				canvasContainer.addChild(_img);
 				
+				setBackgroundColor();
+				
+			}
+			
+			private function setBackgroundColor():void{
 				
 				if (selected) styleName = "bkgPhotoSelected";//setStyle("backgroundColor","#FF9900");
 				else styleName = "bkgPhoto";//setStyle("backgroundColor","#FFFFFF");
@@ -47,7 +53,10 @@
 			
 			public function createImage(source:String):void {
 				_img= new Image();
+				_img.alpha = 0.3;
 				_img.source=source;
+				TweenLite.to(_img,1.5,{alpha:1}); 
+				
 			}
 		]]>
 	</mx:Script>
