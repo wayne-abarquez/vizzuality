@@ -54,7 +54,7 @@ Button.submitPhotos {
 
 Button.connectToFlickr {
 	up-skin: Embed(source='skin.swf',symbol='connectAccountButton_upSkin');
-	over-skin: Embed(source='skin.swf',symbol='connectAccountButton_upSkin');
+	over-skin: Embed(source='skin.swf',symbol='connectAccountButton_overSkin');
 	down-skin: Embed(source='skin.swf',symbol='connectAccountButton_upSkin');
 }
 
