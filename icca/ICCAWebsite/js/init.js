@@ -10,24 +10,28 @@ $(document).ready(function() {
 	
     $('#worldmap').flash({
         src: 'flash/dottedWMap.swf',
+        flashvars: { mapkey: 'ABQIAAAAsIunaSEq-72JsQD5i92_2RSBAjOOhu3AGseSip9oOKv69lUsGxQJJZ1BfzmSIDX0FfGUGpci0uokEA'},        
         width: 590,
         height: 305        
     });
 	
     $('#countrymap').flash({
         src: 'flash/ICCAMap2.swf',
+        flashvars: { mapkey: 'ABQIAAAAsIunaSEq-72JsQD5i92_2RSBAjOOhu3AGseSip9oOKv69lUsGxQJJZ1BfzmSIDX0FfGUGpci0uokEA'},
         width: 938,
         height: 346
     });	
 	
     $('#mapmap').flash({
         src: 'flash/ICCAMap.swf',
+        flashvars: { mapkey: 'ABQIAAAAsIunaSEq-72JsQD5i92_2RSBAjOOhu3AGseSip9oOKv69lUsGxQJJZ1BfzmSIDX0FfGUGpci0uokEA'},        
         width: 938,
         height: 346
     });	
 
     $('#widgetnews').flash({
         src: 'flash/smallMap.swf',
+        flashvars: { mapkey: 'ABQIAAAAsIunaSEq-72JsQD5i92_2RSBAjOOhu3AGseSip9oOKv69lUsGxQJJZ1BfzmSIDX0FfGUGpci0uokEA'},        
         width: 337,
         height: 203
     });	
