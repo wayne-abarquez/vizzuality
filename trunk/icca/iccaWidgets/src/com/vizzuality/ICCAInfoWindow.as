@@ -94,7 +94,7 @@ package com.vizzuality
             }
             
           	private function clicked(event:MouseEvent):void {
-			    navigateToURL(new URLRequest(url));
+			    navigateToURL(new URLRequest(url),"_self");
 			}
       }
 }
