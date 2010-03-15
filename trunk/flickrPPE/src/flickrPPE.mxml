@@ -65,7 +65,6 @@
 				// API KEY from Flickr
 		        flickrService.secret = "e8345cb79db113f7";				
 				
-				
 				checkUserToken();
 			}
 			
@@ -73,8 +72,12 @@
 				//if the token exist (sent as param) check if it is valid
 				if(user_token!=null) {
 					//check if the token is valid
-					flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
-					flickrService.auth.checkToken(user_token);
+					
+					/* flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
+					flickrService.auth.checkToken(user_token); */
+					
+					checkUserPicturesInBbox();
+					
 					
 				} else {
 					currentState="authorization";
@@ -448,9 +451,9 @@
 				<mx:Canvas x="0" y="0" width="511" height="234" styleName="bkg" id="canvasNavGeolocatedPhotos" backgroundSize="100%">
 					<mx:Label x="23.5" y="10" text="These are the photos in your flickr account geolocated near this Protected Area," id="infoPhotosGeolocated" styleName="info"/>
 					<mx:Label x="104" y="26" text="select one to submit or " id="label2" styleName="infoBold"/>
-					<mx:Label x="253" y="26" text="view your other photos" id="buttonViewOtherPhotos" useHandCursor= "true" buttonMode = "true" mouseChildren = "false" click="navigateToOtherPhotos()" styleName="infoBoldBlue"/>
+					<mx:Button x="243" y="24" label="view your other photos" id="buttonViewOtherPhotos" useHandCursor= "true" mouseChildren = "false" click="navigateToOtherPhotos()" styleName="nullButtonBlue"/>
 					<mx:Button x="178" y="173" label="Submit selected" id="buttonSubmitSelectedPhotos" click="sendSelectedPhotos()" styleName="submitPhotos" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Label x="208" y="207" text="skip this step" styleName="skip" width="93.29999" height="21" id="skip" click="navigateToOtherPhotos()" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Button x="193" y="207" label="skip this step" styleName="nullButtonBlue" width="118" height="21" id="infoBoldBlue" click="navigateToOtherPhotos()" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
 					<mx:Button x="10.5" y="97" styleName="before" id="buttonPrevPhotos" click="movePhotosToLeft()" visible="false" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
 					<mx:Button x="447" y="97" styleName="after" id="buttonNextPhotos" click="movePhotosToRight()" visible="false" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
 					<mx:Canvas x="68" y="68" width="360" height="113" id="canvasPhotos" horizontalScrollPolicy="off" verticalScrollPolicy="off">
@@ -474,7 +477,7 @@
 			</mx:AddChild>
 			<mx:SetProperty target="{buttonSubmitSelectedPhotos}" name="width" value="148"/>
 			<mx:SetProperty target="{buttonSubmitSelectedPhotos}" name="height" value="34"/>
-			<mx:RemoveChild target="{skip}"/>
+			<mx:RemoveChild target="{infoBoldBlue}"/>
 		</mx:State>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
