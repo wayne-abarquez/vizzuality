@@ -244,9 +244,10 @@
 			 	
 			 	currentState = 'navigationPhotosGeolocated';	
 			 	
-			 	// Initialize the photos's array
 			 	actualPage = 1;
+			 	pageToLoad = 1;
 			 	
+			 	// Initialize the photos's array
 			 	maxPages = (userAllPhotos.length % 4 == 0) ? (userAllPhotos.length/4):((userAllPhotos.length/4)+1) 
 			    buttonNextPhotos.visible = (userAllPhotos.length > 4) ? true:false;
 			 	drawPhotos (userAllPhotos);
@@ -260,6 +261,7 @@
 			 	
 			 	// Initialize the photos's array
 			 	actualPage = 1;
+			 	pageToLoad = 1;
 			 	if (userAllPhotos != null) userAllPhotos.removeAll();
 			 	
 				flickrService.addEventListener(FlickrResultEvent.PHOTOSETS_GET_LIST,onResultGetSetsList);
@@ -323,6 +325,7 @@
 			 // OnChange ComboBox 
 			 private function updatePhotosBySet (event:Event): void{
 			 	actualPage = 1;
+			 	pageToLoad = 1;
 			 	buttonPrevPhotos.visible = false;
 			 	canvasPhotos.removeAllChildren();
 			 	userAllPhotos.removeAll();
@@ -341,23 +344,21 @@
 			 	buttonPrevPhotos.visible = (pageToLoad > 1) ? true:false;
 				buttonNextPhotos.visible = (pageToLoad == maxPages) ? false:true;
 				
-				var maxNumMoves:int = (actualPage - 1);
-				
-				 	if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
-						TweenMax.killAll(true);
-					}													 	
+			 	if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
+					TweenMax.killAll(true);
+				}													 	
 					
-					for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
+				for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
+					
+					if(canvasPhotos.getChildAt(i) is PhotoFrame){
 						
-						if(canvasPhotos.getChildAt(i) is PhotoFrame){
-							
-						if (i == canvasPhotos.numChildren - 1) 
-							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,onComplete:onTweenerCompleteToLeft});
-							
-							else
-								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360});	
-						}
+					if (i == canvasPhotos.numChildren - 1) 
+						TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,onComplete:onTweenerCompleteToLeft});
+						
+						else
+							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360});	
 					}
+				}
 					
 			 }
 			 
