@@ -333,8 +333,6 @@
 			 // Move the photos to Left
 			 private function movePhotosToLeft (movingUnresolved:Boolean=false):void{
 			 	
-			 	actualPage--;
-			 	
 			 	if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
 					TweenMax.killAll(true);
 				}													 	
@@ -351,65 +349,11 @@
 					}
 				}
 				 	
-				buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
-				buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;
-			 
-			}
-			 
-			 // Move the photos to Right
-			 private function movePhotosToRight ():void{
- 			 	
- 			 	actualPage++;
-			 	
-				if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
-					TweenMax.killAll(true);
-				}
-					
-					for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
-						
-						if(canvasPhotos.getChildAt(i) is PhotoFrame){
-							 if (i == canvasPhotos.numChildren - 1) 
- 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,onComplete:onTweenerCompleteToRight});
- 							
- 							 else
- 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360});
-						}
-					}
-					
-				 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
-				 	buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;  
-			 }
-			 
-			 private function onTweenerCompleteToRight():void{
-			 	
-			 	if ((actualPage >= 3)&&(actualPage != maxPages)) {
-			 		canvasPhotos.removeChildAt(3);
-			 		canvasPhotos.removeChildAt(2);
-					canvasPhotos.removeChildAt(1);
-					canvasPhotos.removeChildAt(0);
-				 		
-				 	var index:int = actualPage * 4;
-				 		
-				 	// Veo si aún quedan  
-				 	var posFramePhoto:Number = 360;
-				 		
-					var limitArray:int = ((index+4) <= userAllPhotos.length) ? (index+4):userAllPhotos.length; 
-					for (var count:int = index; count < limitArray; count++){
-						var phot:Photo = new Photo();
-						phot = userAllPhotos[count]
-						var framePhoto:PhotoFrame = new PhotoFrame();
-						framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
-						framePhoto.flickrPhoto = phot;
-						framePhoto.selected = selectedPhotos[phot];
-						framePhoto.x = posFramePhoto;
-						posFramePhoto += (tamCanvas+paddingCanvas);
-							canvasPhotos.addChild(framePhoto);
-					}
-			 	}
-				
 			 }
 			 
 			 private function onTweenerCompleteToLeft():void{
+			 	
+			 	actualPage--;
 			 	
 			 	if ((actualPage >= 2)&&((actualPage+1) != maxPages)) {
 					if ((actualPage + 2) < (maxPages)){
@@ -441,6 +385,62 @@
 						indexChild++;	
 				 	}
 			 	}
+			 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
+				buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;
+			 }
+			 
+			 // Move the photos to Right
+			 private function movePhotosToRight ():void{
+			 	
+				if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
+					TweenMax.killAll(true);
+				}
+					
+					for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
+						
+						if(canvasPhotos.getChildAt(i) is PhotoFrame){
+							 if (i == canvasPhotos.numChildren - 1) 
+ 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,onComplete:onTweenerCompleteToRight});
+ 							
+ 							 else
+ 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360});
+						}
+					}
+					
+			 }
+			 
+			 private function onTweenerCompleteToRight():void{
+			 	
+			 	actualPage++;
+			 	
+			 	if ((actualPage >= 3)&&(actualPage != maxPages)) {
+			 		canvasPhotos.removeChildAt(3);
+			 		canvasPhotos.removeChildAt(2);
+					canvasPhotos.removeChildAt(1);
+					canvasPhotos.removeChildAt(0);
+				 		
+				 	var index:int = actualPage * 4;
+				 		
+				 	// Veo si aún quedan  
+				 	var posFramePhoto:Number = 360;
+				 		
+					var limitArray:int = ((index+4) <= userAllPhotos.length) ? (index+4):userAllPhotos.length; 
+					for (var count:int = index; count < limitArray; count++){
+						var phot:Photo = new Photo();
+						phot = userAllPhotos[count]
+						var framePhoto:PhotoFrame = new PhotoFrame();
+						framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
+						framePhoto.flickrPhoto = phot;
+						framePhoto.selected = selectedPhotos[phot];
+						framePhoto.x = posFramePhoto;
+						posFramePhoto += (tamCanvas+paddingCanvas);
+							canvasPhotos.addChild(framePhoto);
+					}
+			 	}
+			 	
+			 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
+				buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;  
+				
 			 }
 			 
 			 private function movePhotosToLeftQuickly():void{
