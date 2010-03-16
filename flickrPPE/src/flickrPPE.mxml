@@ -6,6 +6,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.greensock.easing.Linear;
 			import com.greensock.TweenMax;
 			import com.adobe.serialization.json.JSON;
 			import com.adobe.webapis.flickr.AuthResult;
@@ -33,8 +34,6 @@
 			
 			private var timer:Timer;
 			
-			// private var timeline:TimelineLite = new TimelineLite();
-			
 			private var tamCanvas:Number = 82;
 			private var paddingCanvas:Number = 8;
 			
@@ -43,8 +42,6 @@
 			private var flickrFrob:String;
 			private var selectedPhotos:Dictionary = new Dictionary();
 			private var userAllPhotos:ArrayCollection;
-			
-			private var flagTweenActive:Boolean = false;
 			
 			// PPE parameters 
 			public var site_id:Number;
@@ -56,8 +53,6 @@
 			// Variables of control
 			private var actualPage:int = 1;
 			private var maxPages:int = 1;
-			private var unresolvedMovement:int = 0;	// If the user click to the right or left button and the photos are moving
-			
 			
 			// Method onCreationComplete	
 			private function init():void{
@@ -156,28 +151,28 @@
 
 			private function onGetToken (event:FlickrResultEvent):void{
 				
-					// Check and see if token was returned
-			        if(event.success)
-			        {
-			        	var authRes:AuthResult = event.data.auth as AuthResult;
+				// Check and see if token was returned
+			    if(event.success)
+			    {
+			    	var authRes:AuthResult = event.data.auth as AuthResult;
 			        	
-			        	user_flickr_id = authRes.user.nsid;
-						timer.stop();
-						timer.removeEventListener(TimerEvent.TIMER,onGetAuthorization);
-						flickrService.removeEventListener(FlickrResultEvent.AUTH_GET_TOKEN, onGetToken);
-						timer = null;
-				        flickrService.token = authRes.token;
-				        flickrService.permission = AuthPerm.WRITE;
-			        	user_token=flickrService.token;				        
-				        checkUserPicturesInBbox();
-				        
-				        //send ProtectedPlanet the user credentials.
-				        ppApiService.url="http://www.protectedplanet.net/api/users/" + user_id + "/flickr/credentials";
-				        ppApiService.send({
-				        		flickr_token:user_token,
-				        		flickr_user_id:user_flickr_id
-				        }); 
-			        }
+			        user_flickr_id = authRes.user.nsid;
+					timer.stop();
+					timer.removeEventListener(TimerEvent.TIMER,onGetAuthorization);
+					flickrService.removeEventListener(FlickrResultEvent.AUTH_GET_TOKEN, onGetToken);
+					timer = null;
+				    flickrService.token = authRes.token;
+				    flickrService.permission = AuthPerm.WRITE;
+			        user_token=flickrService.token;				        
+				    checkUserPicturesInBbox();
+				       
+				    //send ProtectedPlanet the user credentials.
+				    ppApiService.url="http://www.protectedplanet.net/api/users/" + user_id + "/flickr/credentials";
+				    ppApiService.send({
+				    flickr_token:user_token,
+				    flickr_user_id:user_flickr_id
+				    }); 
+				}
 			}			
 			
 			private var numCallsForFlickr:Number=0;
@@ -247,6 +242,7 @@
 			 private function navigateToGeolocatedPhotos():void{
 			 	
 			 	currentState = 'navigationPhotosGeolocated';	
+			 	
 			 	// Initialize the photos's array
 			 	actualPage = 1;
 			 	
@@ -284,10 +280,9 @@
 			 	
                 flickrService.addEventListener(FlickrResultEvent.PHOTOSETS_GET_PHOTOS,onResultGetPhotosBySet);
                 
-                
-			 	// Busco por el primer valor del combo
 			 	canvasPhotos.removeAllChildren();
 			 	buttonPrevPhotos.visible = false;
+			 	// Busco por el primer valor del combo
 			 	flickrService.photosets.getAllPhotos(flickrSets[0].id);
 			 }
 			 
@@ -307,7 +302,6 @@
 			 // Draw the photos 
 			 private function drawPhotos (userPhotos:ArrayCollection):void{
 			 	var limitArray:int = (userPhotos.length < 12) ? userPhotos.length:12; 
-			 	//canvasPhotos.removeAllChildren();
 			 	var count:uint=0;
 			 	for each(var phot:Photo in userPhotos) {
 			 		var framePhoto:PhotoFrame = new PhotoFrame();
@@ -338,156 +332,115 @@
 			 
 			 // Move the photos to Left
 			 private function movePhotosToLeft (movingUnresolved:Boolean=false):void{
-			 	if (!(TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1)))){
-			 		
-					flagTweenActive = true;
-				 	actualPage--;
-				 	
-				 	for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
-				 		
-				 		
-						TweenMax.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToLeft()});
-						
-						if(canvasPhotos.getChildAt(i) is PhotoFrame){
-							
-							if (i == (canvasPhotos.numChildren - 1))
-								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,onComplete:resolveMovesToLeft});
-							
-							else
-								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360});	
-						}
-					}
-				 	
-				 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
-				 	buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;
-				 	
-			 	}
-			 	else {
-			 		if(!movingUnresolved)
-			 			unresolvedMovement++;
-			 	}
-			 }
-			 
-			 private function resolveMovesToLeft():void{
-			 	if (unresolvedMovement>0) {
-					unresolvedMovement--;
+			 	
+			 	actualPage--;
+			 	
+			 	if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
+					TweenMax.killAll(true);
+				}													 	
+				
+				for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
 					
-					if (actualPage > 1)
-						movePhotosToLeft(true);	
-				}		
-			 }
+					if(canvasPhotos.getChildAt(i) is PhotoFrame){
+						
+					if (i == canvasPhotos.numChildren - 1) 
+							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,onComplete:onTweenerCompleteToLeft});
+						
+						else
+							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360});	
+					}
+				}
+				 	
+				buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
+				buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;
+			 
+			}
 			 
 			 // Move the photos to Right
-			 private function movePhotosToRight (movingUnresolved:Boolean=false):void{
-				if (!(TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1)))){
-					
-					flagTweenActive = true;
-					actualPage++;
+			 private function movePhotosToRight ():void{
+ 			 	
+ 			 	actualPage++;
+			 	
+				if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
+					TweenMax.killAll(true);
+				}
 					
 					for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
 						
-						TweenMax.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToRight()});
-						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
-							if (i == (canvasPhotos.numChildren - 1))
- 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,onComplete:resolveMovesToRight});
+							 if (i == canvasPhotos.numChildren - 1) 
+ 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,onComplete:onTweenerCompleteToRight});
  							
- 							else
+ 							 else
  								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360});
 						}
 					}
+					
 				 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
 				 	buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;  
-				 	
-			 	}
-			 	else {
-			 		if(!movingUnresolved)
-			 			unresolvedMovement++;
-			 	}
-			 }
-			 
-			 private function resolveMovesToRight():void{
-				if (unresolvedMovement>0) {
-					unresolvedMovement--;
-					
-					if (actualPage > 1)
-						movePhotosToRight(true);	
-				}								
 			 }
 			 
 			 private function onTweenerCompleteToRight():void{
 			 	
-			 	if (flagTweenActive) {
-			 						 	
-				 		if ((actualPage >= 3)&&(actualPage != maxPages)) {
-				 		canvasPhotos.removeChildAt(3);
-				 		canvasPhotos.removeChildAt(2);
-				 		canvasPhotos.removeChildAt(1);
-				 		canvasPhotos.removeChildAt(0);
+			 	if ((actualPage >= 3)&&(actualPage != maxPages)) {
+			 		canvasPhotos.removeChildAt(3);
+			 		canvasPhotos.removeChildAt(2);
+					canvasPhotos.removeChildAt(1);
+					canvasPhotos.removeChildAt(0);
 				 		
-				 		var index:int = actualPage * 4;
+				 	var index:int = actualPage * 4;
 				 		
-				 		// Veo si aún quedan  
-				 		var posFramePhoto:Number = 720;
+				 	// Veo si aún quedan  
+				 	var posFramePhoto:Number = 360;
 				 		
-					 	var limitArray:int = ((index+4) <= userAllPhotos.length) ? (index+4):userAllPhotos.length; 
-					 	for (var count:int = index; count < limitArray; count++){
-					 		var phot:Photo = new Photo();
-					 		phot = userAllPhotos[count]
-					 		var framePhoto:PhotoFrame = new PhotoFrame();
-							framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
-							framePhoto.flickrPhoto = phot;
-							framePhoto.selected = selectedPhotos[phot];
-							framePhoto.x = posFramePhoto;
-							posFramePhoto += (tamCanvas+paddingCanvas);
-							//framePhoto.x = (tamCanvas+paddingCanvas) * (count - 1);
+					var limitArray:int = ((index+4) <= userAllPhotos.length) ? (index+4):userAllPhotos.length; 
+					for (var count:int = index; count < limitArray; count++){
+						var phot:Photo = new Photo();
+						phot = userAllPhotos[count]
+						var framePhoto:PhotoFrame = new PhotoFrame();
+						framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
+						framePhoto.flickrPhoto = phot;
+						framePhoto.selected = selectedPhotos[phot];
+						framePhoto.x = posFramePhoto;
+						posFramePhoto += (tamCanvas+paddingCanvas);
 							canvasPhotos.addChild(framePhoto);
-					 	}
-				 	}
-				}
-				flagTweenActive = false;	
+					}
+			 	}
 				
 			 }
 			 
 			 private function onTweenerCompleteToLeft():void{
 			 	
-			 	if (flagTweenActive){
-				 	
-				 	if ((actualPage >= 2)&&((actualPage+1) != maxPages)) {
-				 		 if ((actualPage + 2) < (maxPages)){
-					 		canvasPhotos.removeChildAt(11);
-					 		canvasPhotos.removeChildAt(10);
-					 		canvasPhotos.removeChildAt(9);
-					 		canvasPhotos.removeChildAt(8);
-				 		}else{
-				 			// Como puede que no sean 4 los hijos a borrar a la derecha, los calculo
-				 			var numChildsToDelete:int = ((userAllPhotos.length % 4) == 0) ?	4 : (userAllPhotos.length % 4);
-				 			for (var countChild:int = numChildsToDelete; countChild > 0; countChild--){
-				 				canvasPhotos.removeChildAt(7+countChild);
-				 			} 
+			 	if ((actualPage >= 2)&&((actualPage+1) != maxPages)) {
+					if ((actualPage + 2) < (maxPages)){
+						canvasPhotos.removeChildAt(11);
+					 	canvasPhotos.removeChildAt(10);
+					 	canvasPhotos.removeChildAt(9);
+					 	canvasPhotos.removeChildAt(8);
+				 	}else{
+				 		// Como puede que no sean 4 los hijos a borrar a la derecha, los calculo
+				 		var numChildsToDelete:int = ((userAllPhotos.length % 4) == 0) ?	4 : (userAllPhotos.length % 4);
+				 		for (var countChild:int = numChildsToDelete; countChild > 0; countChild--){
+				 			canvasPhotos.removeChildAt(7+countChild);
 				 		} 
-				 		var index:int = (actualPage * 4) - 8;
-				 		var posFramePhoto:Number = -720;
+				 	} 
+				 	var index:int = (actualPage * 4) - 8;
+				 	var posFramePhoto:Number = -360;
 				 		
-						var indexChild:int = 0;			 	
-					 	for (var count:int = index; count < (index + 4); count++){
-					 		var phot:Photo = new Photo();
-					 		phot = userAllPhotos[count]
-					 		var framePhoto:PhotoFrame = new PhotoFrame();
-							framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
-							framePhoto.flickrPhoto = phot;
-							framePhoto.selected = selectedPhotos[phot];
-							framePhoto.x = posFramePhoto;
-							posFramePhoto += (tamCanvas+paddingCanvas);
-							//framePhoto.x = ((tamCanvas +paddingCanvas) * count)* -1;
-							canvasPhotos.addChildAt(framePhoto,indexChild);
-							indexChild++;	
-					 	}
+					var indexChild:int = 0;			 	
+				 	for (var count:int = index; count < (index + 4); count++){
+				 		var phot:Photo = new Photo();
+				 		phot = userAllPhotos[count]
+				 		var framePhoto:PhotoFrame = new PhotoFrame();
+						framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
+						framePhoto.flickrPhoto = phot;
+						framePhoto.selected = selectedPhotos[phot];
+						framePhoto.x = posFramePhoto;
+						posFramePhoto += (tamCanvas+paddingCanvas);
+						canvasPhotos.addChildAt(framePhoto,indexChild);
+						indexChild++;	
 				 	}
-				 	
 			 	}
-				flagTweenActive = false;
-				
 			 }
 			 
 			 private function movePhotosToLeftQuickly():void{
