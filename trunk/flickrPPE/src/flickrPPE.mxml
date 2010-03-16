@@ -333,6 +333,9 @@
 			 // Move the photos to Left
 			 private function movePhotosToLeft (movingUnresolved:Boolean=false):void{
 			 	
+			 	buttonPrevPhotos.visible = (actualPage-1 > 1) ? true:false;
+				buttonNextPhotos.visible = (actualPage+1 == maxPages) ? false:true;
+				
 			 	if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
 					TweenMax.killAll(true);
 				}													 	
@@ -385,13 +388,14 @@
 						indexChild++;	
 				 	}
 			 	}
-			 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
-				buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;
 			 }
 			 
 			 // Move the photos to Right
 			 private function movePhotosToRight ():void{
 			 	
+			 	buttonPrevPhotos.visible = (actualPage+1 > 1) ? true:false;
+				buttonNextPhotos.visible = (actualPage+1 == maxPages) ? false:true;  
+				
 				if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
 					TweenMax.killAll(true);
 				}
@@ -437,10 +441,6 @@
 							canvasPhotos.addChild(framePhoto);
 					}
 			 	}
-			 	
-			 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
-				buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;  
-				
 			 }
 			 
 			 private function movePhotosToLeftQuickly():void{
