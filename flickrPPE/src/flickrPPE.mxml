@@ -46,14 +46,18 @@
 			
 			private var flagTweenActive:Boolean = false;
 			
+			// PPE parameters 
 			public var site_id:Number;
 			public var user_id:Number;
 			public var user_flickr_id:String;
 			public var pa_bbox:String;
 			public var user_token:String;
 			
+			// Variables of control
 			private var actualPage:int = 1;
 			private var maxPages:int = 1;
+			private var unresolvedMovement:int = 0;	// If the user click to the right or left button and the photos are moving
+			
 			
 			// Method onCreationComplete	
 			private function init():void{
@@ -307,10 +311,11 @@
 			 	var count:uint=0;
 			 	for each(var phot:Photo in userPhotos) {
 			 		var framePhoto:PhotoFrame = new PhotoFrame();
-					
 					framePhoto.createImage("http://farm"+ phot.farm+".static.flickr.com/"+phot.server+"/"+phot.id+"_"+phot.secret+"_s.jpg");
 					//framePhoto.loader = null;
+					
 					framePhoto.flickrPhoto = phot;
+					framePhoto.selected = false;
 					framePhoto.selected = selectedPhotos[phot];
 					framePhoto.x = (tamCanvas + paddingCanvas) * count;
 					canvasPhotos.addChild(framePhoto);
@@ -332,17 +337,24 @@
 			 }
 			 
 			 // Move the photos to Left
-			 private function movePhotosToLeft ():void{
-			 	if (!(TweenMax.isTweening(canvasPhotos.getChildAt(0)))){
+			 private function movePhotosToLeft (movingUnresolved:Boolean=false):void{
+			 	if (!(TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1)))){
+			 		
 					flagTweenActive = true;
 				 	actualPage--;
+				 	
 				 	for(var i:Number = 0; i<canvasPhotos.numChildren; i++){
 				 		
 				 		
 						TweenMax.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToLeft()});
 						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
-							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,ease:Expo.easeOut});	
+							
+							if (i == (canvasPhotos.numChildren - 1))
+								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,onComplete:resolveMovesToLeft});
+							
+							else
+								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360});	
 						}
 					}
 				 	
@@ -350,12 +362,25 @@
 				 	buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;
 				 	
 			 	}
+			 	else {
+			 		if(!movingUnresolved)
+			 			unresolvedMovement++;
+			 	}
 			 }
 			 
+			 private function resolveMovesToLeft():void{
+			 	if (unresolvedMovement>0) {
+					unresolvedMovement--;
+					
+					if (actualPage > 1)
+						movePhotosToLeft(true);	
+				}		
+			 }
 			 
 			 // Move the photos to Right
-			 private function movePhotosToRight ():void{
-				if (!(TweenMax.isTweening(canvasPhotos.getChildAt(0)))){
+			 private function movePhotosToRight (movingUnresolved:Boolean=false):void{
+				if (!(TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1)))){
+					
 					flagTweenActive = true;
 					actualPage++;
 					
@@ -364,13 +389,30 @@
 						TweenMax.to(canvasPhotos.getChildAt(i),1,{onComplete:onTweenerCompleteToRight()});
 						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
-							// The last children, close the door
-							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,ease:Expo.easeOut});
+							if (i == (canvasPhotos.numChildren - 1))
+ 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,onComplete:resolveMovesToRight});
+ 							
+ 							else
+ 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360});
 						}
 					}
 				 	buttonPrevPhotos.visible = (actualPage > 1) ? true:false;
 				 	buttonNextPhotos.visible = (actualPage == maxPages) ? false:true;  
+				 	
 			 	}
+			 	else {
+			 		if(!movingUnresolved)
+			 			unresolvedMovement++;
+			 	}
+			 }
+			 
+			 private function resolveMovesToRight():void{
+				if (unresolvedMovement>0) {
+					unresolvedMovement--;
+					
+					if (actualPage > 1)
+						movePhotosToRight(true);	
+				}								
 			 }
 			 
 			 private function onTweenerCompleteToRight():void{
