@@ -1,16 +1,27 @@
 /* CSS file */
 
-Label.info {
-	font-family: "Arial";
-	font-size: 13;
-	color: #666666;	
+
+Canvas.bkgPhoto{
+	background-image: Embed(source='skin.swf',symbol='bkgPhoto');
 }
 
-Label.infoBold{
+Canvas.bkgPhotoSelected{
+	background-image: Embed(source='skin.swf',symbol='bkgPhoto_selected');
+}
+
+Canvas.bkg{
+	background-image: Embed(source='skin.swf',symbol='bkg');
+}
+
+Combo.flickrSets {
+	up-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_upSkin');
+	over-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_overSkin');
+	down-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_overSkin');
 	font-family: "Arial";
-	font-size: 13;
-	font-weight:bold;
+	font-weight: bold;
+	font-color: #666666;
 	color: #666666;
+	
 }
 
 Button.nullButtonBlue{
@@ -56,25 +67,17 @@ Button.connectToFlickr {
 	down-skin: Embed(source='skin.swf',symbol='connectAccountButton_upSkin');
 }
 
-Combo.flickrSets {
-	up-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_upSkin');
-	over-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_overSkin');
-	down-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_overSkin');
+Label.info {
 	font-family: "Arial";
-	font-weight: bold;
-	color: #999999;	
+	font-size: 13;
+	color: #666666;	
 }
 
-Canvas.bkgPhoto{
-	background-image: Embed(source='skin.swf',symbol='bkgPhoto');
-}
-
-Canvas.bkgPhotoSelected{
-	background-image: Embed(source='skin.swf',symbol='bkgPhoto_selected');
-}
-
-Canvas.bkg{
-	background-image: Embed(source='skin.swf',symbol='bkg');
+Label.infoBold{
+	font-family: "Arial";
+	font-size: 13;
+	font-weight:bold;
+	color: #666666;
 }
 
 
