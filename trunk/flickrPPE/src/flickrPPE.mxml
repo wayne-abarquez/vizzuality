@@ -52,8 +52,8 @@
 			
 			// Variables of control
 			private var actualPage:int = 1;
+			private var pageToLoad:int = 1;
 			private var maxPages:int = 1;
-			private var numMoves:int = 0;
 			
 			// Method onCreationComplete	
 			private function init():void{
@@ -336,15 +336,13 @@
 			 // Move the photos to Left
 			 private function movePhotosToLeft ():void{
 			 	
-			 	buttonPrevPhotos.visible = (actualPage-1 > 1) ? true:false;
-				buttonNextPhotos.visible = (actualPage-1 == maxPages) ? false:true;
+			 	pageToLoad--;
+			 	
+			 	buttonPrevPhotos.visible = (pageToLoad > 1) ? true:false;
+				buttonNextPhotos.visible = (pageToLoad == maxPages) ? false:true;
 				
 				var maxNumMoves:int = (actualPage - 1);
 				
-				if (numMoves < maxNumMoves){
-						
-					numMoves++;
-					
 				 	if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
 						TweenMax.killAll(true);
 					}													 	
@@ -360,9 +358,6 @@
 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360});	
 						}
 					}
-					if (numMoves>0)
-						numMoves--;
-				}
 					
 			 }
 			 
@@ -406,15 +401,13 @@
 			 // Move the photos to Right
 			 private function movePhotosToRight ():void{
 			 	
-			 	buttonPrevPhotos.visible = (actualPage+1 > 1) ? true:false;
-				buttonNextPhotos.visible = (actualPage+1 == maxPages) ? false:true;  
+			 	pageToLoad++;
+			 	
+			 	buttonPrevPhotos.visible = (pageToLoad > 1) ? true:false;
+				buttonNextPhotos.visible = (pageToLoad == maxPages) ? false:true;  
 				
 				var maxNumMoves:int = (maxPages - actualPage);
 				
-				if (numMoves < maxNumMoves){	
-					
-					numMoves++;
-								
 					if (TweenMax.isTweening(canvasPhotos.getChildAt(canvasPhotos.numChildren - 1))){
 						TweenMax.killAll(true);
 					}
@@ -431,16 +424,12 @@
  						
 						}
 					}
-					if (numMoves>0)
-						numMoves--;
-				}
 					
 			 }
 			 
 			 private function onTweenerCompleteToRight():void{
 			 	actualPage++;
-			 	numMoves--;
-			 	
+			 				 	
 			 	if ((actualPage >= 3)&&(actualPage != maxPages)) {
 			 		canvasPhotos.removeChildAt(3);
 			 		canvasPhotos.removeChildAt(2);
