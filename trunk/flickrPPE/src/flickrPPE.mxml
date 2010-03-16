@@ -352,7 +352,7 @@
 					
 					if(canvasPhotos.getChildAt(i) is PhotoFrame){
 						
-					if (i == canvasPhotos.numChildren - 1) 
+					if (i == 0) 
 						TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x + 360,onComplete:onTweenerCompleteToLeft});
 						
 						else
@@ -417,7 +417,7 @@
 						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
 						
-								 if (i == canvasPhotos.numChildren - 1) 
+								 if (i == 0) 
 	 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,onComplete:onTweenerCompleteToRight});
 	 							
 	 							 else
@@ -456,16 +456,8 @@
 					}
 			 	}
 			 	
-			 	
 			 }
 			 
-			 private function movePhotosToLeftQuickly():void{
-			 	trace("Double click to left");
-			 }
-			 
-			 private function movePhotosToRightQuickly():void{
-			 	trace("Double click to right");
-			 }
 		]]>
 	</mx:Script>
 	<mx:HTTPService id="ppApiService" method="POST" resultFormat="text" fault="trace('error')" />
@@ -497,8 +489,7 @@
 					<mx:Button x="184" y="197" label="skip this step" styleName="nullButtonBlue" width="118" height="21" id="infoBoldBlue" click="navigateToOtherPhotos()" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
 					<mx:Button x="40" y="97" styleName="before" id="buttonPrevPhotos" click="movePhotosToLeft()" visible="false" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
 					<mx:Button x="438" y="97" styleName="after" id="buttonNextPhotos" click="movePhotosToRight()" visible="false" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
-					<mx:Canvas x="72" y="69" width="360" height="113" id="canvasPhotos" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-					</mx:Canvas>
+					<mx:Canvas x="72" y="69" width="360" height="113" id="canvasPhotos" horizontalScrollPolicy="off" verticalScrollPolicy="off"/>
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
