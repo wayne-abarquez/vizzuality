@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="82" height="82" styleName="bkgPhoto" backgroundSize="100%"
-	rollOver="activateRollOver()" rollOut="desactivateRollOver()" click="selectPhoto()" creationComplete="init()"
+	rollOver="activateRollOver()" rollOut="desactivateRollOver()" click="selectPhoto()" creationComplete="init()" enabled="false"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off" useHandCursor="true" buttonMode="true">
 	<mx:Canvas id="canvasContainer" width="74" height="74" x="4" y="4" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 		<mx:SWFLoader id="loader" source="@Embed('../../../assets/loadAnimation.swf')"  y="23" x="23" /> 
@@ -21,6 +21,7 @@
 				
 				canvasContainer.addChild(_img);
 				setBackgroundColor();
+				enabled=true;
 				
 			}
 			
