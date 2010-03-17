@@ -419,11 +419,11 @@
 						
 						if(canvasPhotos.getChildAt(i) is PhotoFrame){
 						
-								 if (i == 0) 
-	 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,onComplete:onTweenerCompleteToRight});
+							if (i == 0) 
+	 							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360,onComplete:onTweenerCompleteToRight});
 	 							
-	 							 else
-	 								TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360});
+	 						 else
+	 							TweenMax.to(canvasPhotos.getChildAt(i),1,{x:canvasPhotos.getChildAt(i).x - 360});
  						
 						}
 					}
@@ -545,7 +545,9 @@
 		<mx:State name="completed">
 			<mx:AddChild position="lastChild">
 				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasCompleted" backgroundSize="100%" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-					<mx:Label x="68" y="38" text="Thanks!!" styleName="infoBold"/>
+					<mx:Label x="164" y="107" text="Thanks for your contribution!" styleName="infoBold"/>
+					<mx:Button x="182" y="158" label="Close window" styleName="closeWindow" width="148" height="34" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
+					<mx:Label x="240.4" y="39.4" text=";)" styleName="emoticon" />
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>

@@ -62,6 +62,17 @@ Button.submitPhotos {
 	color: #333333;
 }
 
+Button.closeWindow {
+	up-skin: Embed(source='skin.swf',symbol='graySubmitSelectedButton_upSkin');
+	over-skin: Embed(source='skin.swf',symbol='graySubmitSelectedButton_overSkin');
+	down-skin: Embed(source='skin.swf',symbol='graySubmitSelectedButton_upSkin');
+	font-family: "Arial";
+	font-weight: bold;
+	font-size: 15;
+	textRollOverColor: #666666;
+	color: #666666;
+}
+
 Button.connectToFlickr {
 	up-skin: Embed(source='skin.swf',symbol='connectAccountButton_upSkin');
 	over-skin: Embed(source='skin.swf',symbol='connectAccountButton_overSkin');
@@ -77,6 +88,13 @@ Label.info {
 Label.infoBold{
 	font-family: "Arial";
 	font-size: 13;
+	font-weight:bold;
+	color: #666666;
+}
+
+Label.emoticon{
+	font-family: "Arial";
+	font-size: 51;
 	font-weight:bold;
 	color: #666666;
 }
