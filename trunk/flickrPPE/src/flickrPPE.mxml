@@ -52,11 +52,12 @@
 			
 			// Variables of control
 			private var actualPage:int = 1;
-			private var pageToLoad:int = 1;
+			private var pageToLoad:int = 1;	// When the user navigates quickly to both sides
 			private var maxPages:int = 1;
 			
 			// Method onCreationComplete	
 			private function init():void{
+				
 				//init params
 				if(this.parameters.pa_bbox!=null) {
 					pa_bbox=this.parameters.pa_bbox;
@@ -94,9 +95,9 @@
 				if(user_token!=null) {
 					//check if the token is valid
 					
-					// REMOVE THIS COMMENT. IT'S ONLY TO TEST
-					/* flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
-					flickrService.auth.checkToken(user_token); */
+					// COMMENT THIS ONLY TO TEST
+					flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
+					flickrService.auth.checkToken(user_token);
 					
 					checkUserPicturesInBbox();
 					
