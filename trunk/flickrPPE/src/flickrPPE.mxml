@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="510" height="234"
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="508" height="230"
 	creationComplete="init()" xmlns:components="com.vizzuality.components.*" currentState="">
  
 	<mx:Style source="com/vizzuality/skin/style.css"/>
