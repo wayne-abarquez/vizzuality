@@ -95,7 +95,6 @@
 				if(user_token!=null) {
 					//check if the token is valid
 					
-					// COMMENT THIS ONLY TO TEST
 					flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
 					flickrService.auth.checkToken(user_token);
 					
@@ -137,10 +136,12 @@
 					flickrService.addEventListener(FlickrResultEvent.AUTH_GET_TOKEN, onGetToken);
 						
 					// Waiting the Token
-					// TODO PONERLE FIN, en el caso de que no acepten la autorización				
 					timer = new Timer(2000,0);
 					timer.addEventListener(TimerEvent.TIMER,onGetAuthorization);
 					timer.start();
+					
+					// Prepare to finished if doesn't accept
+										
 			    } else {
 			    	currentState="error";
 			    }

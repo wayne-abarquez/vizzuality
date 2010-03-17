@@ -3,7 +3,7 @@
 	rollOver="activateRollOver()" rollOut="desactivateRollOver()" click="selectPhoto()" creationComplete="init()" enabled="false"
 	horizontalScrollPolicy="off" verticalScrollPolicy="off" useHandCursor="true" buttonMode="true">
 	<mx:Canvas id="canvasContainer" width="74" height="74" x="4" y="4" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-		<mx:SWFLoader id="loader" source="@Embed('../../../assets/loadAnimation.swf')"  y="23" x="23" /> 
+		<mx:SWFLoader id="loader" source="@Embed('../../../assets/loadAnimation.swf')"  y="23" x="23"/> 
 	</mx:Canvas>
 	<mx:Script>
 		<![CDATA[
