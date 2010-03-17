@@ -17,11 +17,12 @@ Combo.flickrSets {
 	up-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_upSkin');
 	over-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_overSkin');
 	down-skin: Embed(source='skin.swf',symbol='comboSetsFlickr_overSkin');
+	selection-color: #B5B5B5;
+	roll-over-color: #E1E1E1;
 	font-family: "Arial";
+	font-size: 12;
 	font-weight: bold;
-	font-color: #666666;
 	color: #666666;
-	
 }
 
 Button.nullButtonBlue{
