@@ -544,7 +544,7 @@
 		</mx:State>
 		<mx:State name="completed">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasCompleted" backgroundSize="100%" width="511" height="234">
+				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasCompleted" backgroundSize="100%" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 					<mx:Label x="68" y="38" text="Thanks!!" styleName="infoBold"/>
 				</mx:Canvas>
 			</mx:AddChild>
