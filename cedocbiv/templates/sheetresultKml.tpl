@@ -3,8 +3,6 @@
 <Document>
 	<name>Multiple sheets from CeDocBiv</name>
 	<open>1</open>
-	<Style>
-	</Style>
     <Style id="normalPlacemark">
       <IconStyle>
         <Icon>

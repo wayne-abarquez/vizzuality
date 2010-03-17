@@ -3,8 +3,6 @@
 <Document>
 	<name>Location of {$taxon[0].NameAuthorYearString}</name>
 	<open>1</open>
-	<Style>
-	</Style>
     <Style id="normalPlacemark">
       <IconStyle>
         <Icon>

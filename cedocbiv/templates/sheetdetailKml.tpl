@@ -3,8 +3,6 @@
 <Document>
 	<name>Location of {$data.UnitID}</name>
 	<open>1</open>
-	<Style>
-	</Style>
     <Style id="normalPlacemark">
       <IconStyle>
         <Icon>
