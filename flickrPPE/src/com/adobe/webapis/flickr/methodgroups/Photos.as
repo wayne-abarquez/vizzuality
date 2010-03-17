@@ -1166,7 +1166,7 @@ package com.adobe.webapis.flickr.methodgroups {
 								   );
 		}
 		
-		public function searchAllPhotos ( user_id:String = "", sort:String = "date-posted-desc", bbox:String = ""):void {
+		public function searchAllPhotos ( user_id:String = "", sort:String = "date-posted-desc", bbox:String = "", per_page:Number = 100, page:Number = 1):void {
 			
 			
 			// Let the Helper do the work to invoke the method			
@@ -1179,7 +1179,8 @@ package com.adobe.webapis.flickr.methodgroups {
 								   new NameValuePair ( "privacy_filter", "1"),
 								   new NameValuePair ( "safe_search", "1"),								   
 								   new NameValuePair ( "content_type", "1"),								   
-								   new NameValuePair ( "per_page", "100"),								   
+								   new NameValuePair ( "per_page", per_page.toString()),
+								   new NameValuePair ( "page", page.toString() ),								   
 								   new NameValuePair ( "accuracy", "4")
 								   );
 		}
