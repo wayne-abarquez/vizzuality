@@ -468,7 +468,7 @@
 		<!-- Initial state -->	
 		<mx:State name="authorization">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" id="canvasAuthorization" styleName="bkg" backgroundSize="100%" width="100%" height="100%">
+				<mx:Canvas x="0" y="0" id="canvasAuthorization" styleName="bkg" backgroundSize="100%" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 					<mx:Label y="51.7" text="You need to connect your flickr account with " styleName="infoBold" id="label4" textAlign="center" horizontalCenter="0" width="317.66666" height="21"/>
 					<mx:Button x="94.35" y="122" id="buttonConnectFlickr" click="getAuthUrl()" styleName="connectToFlickr" width="324" height="45" useHandCursor= "true" buttonMode = "true" mouseChildren = "false">
 						<!--click="navigateToURL(new URLRequest('http://flickr.com/services/auth/?api_key=[flickrAdminKey]&perms=[read]&api_sig=[api_sig]'))">-->
@@ -483,7 +483,7 @@
 		<!-- Visualize the photos geolocated -->
 		<mx:State name="navigationPhotosGeolocated">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasNavGeolocatedPhotos" backgroundSize="100%" width="100%" height="100%">
+				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasNavGeolocatedPhotos" backgroundSize="100%" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 					<mx:Label x="18" y="17" text="These are the photos in your flickr account geolocated near this Protected Area," id="infoPhotosGeolocated" styleName="info" width="480.5" height="21"/>
 					<mx:Label x="103" y="34" text="select one to submit or " id="label2" styleName="infoBold" width="163" height="21"/>
 					<mx:Button x="240" y="32" label="view your other photos" id="buttonViewOtherPhotos" click="navigateToOtherPhotos()" styleName="nullButtonBlue" useHandCursor= "true" buttonMode = "true" mouseChildren = "false"/>
@@ -515,7 +515,7 @@
 		</mx:State>
 		<mx:State name="loading">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasLoading" backgroundSize="100%" width="511" height="234">
+				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasLoading" backgroundSize="100%" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 					<mx:Label x="145.5" y="90" text="Please while the pictures are sent..." styleName="infoBold"/>
 					<mx:SWFLoader id="loader" source="@Embed('assets/loadAnimation.swf')" y="129" x="241.5" /> 
 				</mx:Canvas>
@@ -523,7 +523,7 @@
 		</mx:State>
 		<mx:State name="error">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasError" backgroundSize="100%" width="511" height="234">
+				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasError" backgroundSize="100%" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 					<mx:Label x="113" y="97" text="There has been an error, plese refresh page" styleName="infoBold"/>
 				</mx:Canvas>
 			</mx:AddChild>
