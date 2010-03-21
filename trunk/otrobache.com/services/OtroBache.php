@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] ."/lib/fusiontableslib.php");
+require_once("../lib/fusiontableslib.php");
 
 class OtroBache {
     function __construct() {
