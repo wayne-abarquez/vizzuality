@@ -34,25 +34,53 @@ class OtroBache {
         $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,scale,pedestrian,address) VALUES ($lat,$lon,'$reportedDate','$reportedBy',$scale,$pedestrian,'$address')";
         //return $sql;
         $newId= $ft->query($sql);
+        
+        //remove cache
+        unlink('cache/getNumBaches.txt');
+        unlink('cache/getLastBaches.txt');
         return $address;
 
     }
     
-    public function getNumBaches() {
-        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
-        $ft = new FusionTable($this->fusionTablesToken); 
-        $sql="SELECT COUNT() FROM .$this->table";
-        $res = $ft->query($sql);        
-        $resnum=number_format($res[0]['count()'],0,",",".");
+    public function getNumBaches() {        
+        //cache
+        if(!file_exists( 'cache/getNumBaches.txt' )) {
+            $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
+            $ft = new FusionTable($this->fusionTablesToken); 
+            $sql="SELECT COUNT() FROM .$this->table";
+            $res = $ft->query($sql);        
+            $resnum=number_format($res[0]['count()'],0,",",".");
+            $fp = fopen('cache/getNumBaches.txt', 'w');
+            fwrite($fp, $resnum);
+            fclose($fp);
+        } else {
+            $filename = "cache/getNumBaches.txt";
+            $fp = fopen($filename, "r");
+            $resnum = fread($fp, filesize($filename));
+            fclose($fp);
+        }       
+        
         return $resnum;
     }
     
     public function getLastBaches() {
-        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
-        $ft = new FusionTable($this->fusionTablesToken); 
-        $sql="SELECT COUNT(),address FROM .$this->table GROUP BY address ORDER BY reported_date DESC";
-        $res = $ft->query($sql);
-        return $res;        
+        if(!file_exists( 'cache/getLastBaches.txt' )) {
+            $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
+            $ft = new FusionTable($this->fusionTablesToken); 
+            $sql="SELECT COUNT(),address FROM .$this->table GROUP BY address ORDER BY reported_date DESC";
+            $res = $ft->query($sql);    
+            $fp = fopen('cache/getLastBaches.txt', 'w');
+            fwrite($fp, serialize($res));
+            fclose($fp);
+        } else {
+            $filename = "cache/getLastBaches.txt";
+            $fp = fopen($filename, "r");
+            $res = fread($fp, filesize($filename));
+            $res = unserialize($res);
+            fclose($fp);
+        }       
+        
+        return $res;              
     }
     
     
