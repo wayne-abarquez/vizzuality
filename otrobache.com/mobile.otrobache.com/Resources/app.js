@@ -97,16 +97,10 @@ captureButton.addEventListener('click', function()
     {
         statusLabel.text="disculpa,ha ocurrido un error.";
     };    
-    req.open("POST","http://otrobache.com/api/report");
-    req.send({
-        "latitude":latitude,
-        "longitude":longitude,
-        "altitude":altitude,
-        "accuracy":accuracy,
-        "timestamp":timestamp,
-        "address":address
-        });    
-    
+    var url="http://www.otrobache.com.check.geekisp.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
+    req.open("GET",url); 
+    req.send();
+    Titanium.API.debug(url);
 });
 
 
