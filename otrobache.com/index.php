@@ -1,3 +1,13 @@
+<?php
+
+require_once($_SERVER['DOCUMENT_ROOT'] ."/services/OtroBache.php");
+
+$serv = new OtroBache();
+$numBaches = $serv->getNumBaches();
+
+$lastbaches = $serv->getLastBaches();
+
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
 <html>
 	<head>
@@ -83,7 +93,7 @@
 		<div id="content">
 			<div id="map_canvas"></div>
 			<img class="otrobache" src="../images/otrobache.png" />
-			<p><span>más de 567.123 baches reportados, <a href="#">reporta uno</a></span></p>
+			<p><span>más de <?php echo($numBaches)?> baches reportados, <a href="#">reporta uno</a></span></p>
 		</div>
 		
 		<div id="container">

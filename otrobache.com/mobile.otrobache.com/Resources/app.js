@@ -182,12 +182,12 @@ xhr.onload = function()
     loadingNumBaches.hide();
     home.add(statusLabel);
     
-    var resp =  eval('('+this.responseText+')');
-    if(resp.length==0) {
-        numBachesLabel.text=0;
-    } else {
-        numBachesLabel.text=resp[0]['count()'];
-    }    
+    //var resp =  eval('('+this.responseText+')');
+    //if(resp.length==0) {
+    //    numBachesLabel.text=0;
+    //} else {
+    numBachesLabel.text=resp;
+    //}    
     home.add(numBachesLabel);
     subtextNumBachesLabel.text="baches ya reportados";
     captureButton.text="+";
@@ -199,10 +199,10 @@ xhr.onload = function()
 xhr.onerror = function()
 {
     loadingNumBaches.hide();
-	numBachesLabel.text="Desconocido";
+	numBachesLabel.text="???";
 	home.add(numBachesLabel);
 };
-xhr.open("GET","http://www.otrobache.com.check.geekisp.com/amfphp/json.php/OtroBache.getNumBaches");
+xhr.open("GET","http://otrobache.com/amfphp/json.php/OtroBache.getNumBaches");
 xhr.send();
 
 //open the app
@@ -233,7 +233,7 @@ function addCaptureEvent() {
         captureButton.addEventListener('click', addCaptureEvent);        
         
     };    
-    var url="http://www.otrobache.com.check.geekisp.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
+    var url="http://otrobache.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
     req.open("GET",url); 
     captureButton.text="";
     //captureButton.enabled=false;
