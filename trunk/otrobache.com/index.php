@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="keywords" content="bache,carretera, arreglar, ayuntamiento, socabón">	
+		<meta name="keywords" content="bache, carretera, arreglar, ayuntamiento, socabón">	
 		<meta name="description" content="OtroBache.com">	
 		<meta name="author" content="otrobache.com">
 	
@@ -26,7 +26,11 @@
           };      
 
         var map = new GMap2(document.getElementById("map_canvas"),{googleBarOptions: options});
+				var map2 = new GMap2(document.getElementById("second_map"));
+				
         map.setCenter(new google.maps.LatLng(40.4392758681028,-3.7121450901031494),12);
+				map2.setCenter(new google.maps.LatLng(40.4392758681028,-3.7121450901031494),12);
+				
         var l = new GLayer("ft:136993");
         l.setParameter("h", "true");
         l.setParameter("s", "select+address+from+136993");
@@ -61,6 +65,18 @@
 			<div class="title">
 				<h3>últimos baches reportados</h3>
 				<a href="#">reportar un bache</a>
+			</div>
+			<div class="report_map">
+				<a id="plus"></a>
+				<a id="minus"></a>
+				<span class="add">
+					<input type="text" value="calle, número, localidad,..."/>
+					<a class="add_new"></a>
+				</span>
+				<h2>Introduce la dirección en texto ó situa el bache de manera manual en el mapa</h2>
+				<div id="second_map"></div>
+				<p>Si tu bache ya ha sido reportardo, no te preocupes, actualizaremos su estado</p>
+				<a class="report_button"></a>
 			</div>
 			<p>
 				<a class="view_more" href="#">ver más baches</a>
