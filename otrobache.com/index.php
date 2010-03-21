@@ -15,8 +15,33 @@
         <script type="text/javascript" src="http://maps.google.com/maps?gwt=1&amp;file=api&amp;sensor=false&amp;v=2.x&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQbotjeVUwZe96Bn7L2MEyZ6pftAxRtcuen6T4sYnXsSUQ0C78UJslfeA">
     <script type="text/javascript" src="/javascript/init.js"></script>	
     <script type="text/javascript">
-    function initialize() {
-      if (GBrowserIsCompatible()) {
+		
+		
+		function initialize() {
+			var second_map_height = $('div#container div.report_map').height();
+			$('div#container div.report_map').height(0);
+			$('#open_report').click (function(ev) {
+				ev.preventDefault();
+				ev.stopPropagation();
+				if ($(this).html()=='reportar un bache') {
+					$(this).html('ocultar reporte');
+					$('div#container div.report_map').css('padding-bottom','17px');
+					$('div#container div.report_map').css('border-bottom','1px solid #c2c2c2');
+					$('div#container div.report_map').stop().animate({
+					    height: second_map_height
+					  }, 500);
+				} else {
+					$(this).html('reportar un bache');
+					$('div#container div.report_map').stop().animate({
+					    height: 0
+					  }, 500,function() {
+							$('div#container div.report_map').css('padding-bottom','0');
+							$('div#container div.report_map').css('border-bottom','none');
+					});
+				}
+			});
+			      
+			if (GBrowserIsCompatible()) {
 
           var options = {
 
@@ -64,7 +89,7 @@
 		<div id="container">
 			<div class="title">
 				<h3>últimos baches reportados</h3>
-				<a href="#">reportar un bache</a>
+				<a href="#" id="open_report">reportar un bache</a>
 			</div>
 			<div class="report_map">
 				<a id="plus"></a>
