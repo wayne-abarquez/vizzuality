@@ -12,7 +12,7 @@
 	  <link rel="stylesheet" href="/stylesheets/layout.css" type="text/css">
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-        <script type="text/javascript" src="http://maps.google.com/maps?gwt=1&amp;file=api&amp;sensor=false&amp;v=2.x&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQbotjeVUwZe96Bn7L2MEyZ6pftAxRtcuen6T4sYnXsSUQ0C78UJslfeA">
+        <script type="text/javascript" src="http://maps.google.com/maps?gwt=1&amp;file=api&amp;sensor=false&amp;v=2.x&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRw3KWZ-x9A2HylNheByWtToULKzxSlnf4JpCGuPalF_xWQj_zXFJuCfw">
     <script type="text/javascript" src="/javascript/init.js"></script>	
     <script type="text/javascript">
 		
