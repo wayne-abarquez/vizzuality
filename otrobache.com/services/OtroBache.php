@@ -36,8 +36,15 @@ class OtroBache {
         $newId= $ft->query($sql);
         
         //remove cache
-        unlink('cache/getNumBaches.txt');
-        unlink('cache/getLastBaches.txt');
+        try {
+            unlink('cache/getNumBaches.txt');
+            unlink('cache/getLastBaches.txt');      
+        }catch (Exception $e) {}
+        try {
+            unlink('../cache/getNumBaches.txt');
+            unlink('../cache/getLastBaches.txt');        
+        }catch (Exception $e) {}
+                
         return $address;
 
     }
@@ -64,10 +71,10 @@ class OtroBache {
     }
     
     public function getLastBaches() {
-        if(!file_exists( 'cache/getLastBaches.txt' )) {
+        if(!file_exists( 'cache/getLastBaches.txt' ) || 1==1) {
             $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
             $ft = new FusionTable($this->fusionTablesToken); 
-            $sql="SELECT COUNT(),address FROM .$this->table GROUP BY address ORDER BY reported_date DESC";
+            $sql="SELECT lat,lon,address,reported_date,reported_by,address FROM .$this->table ORDER BY reported_date DESC";
             $res = $ft->query($sql);    
             $fp = fopen('cache/getLastBaches.txt', 'w');
             fwrite($fp, serialize($res));
