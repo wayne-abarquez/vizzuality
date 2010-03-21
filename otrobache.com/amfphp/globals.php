@@ -12,7 +12,7 @@
 	$servicesPath = "../services/";
 	$voPath = "services/vo/";
 	
-	error_reporting(0);
+	//error_reporting(0);
 	
 	//As an example of what you might want to do here, consider:
 	
