@@ -183,7 +183,11 @@ xhr.onload = function()
     home.add(statusLabel);
     
     var resp =  eval('('+this.responseText+')');
-    numBachesLabel.text=resp[0]['count()'];
+    if(resp.length==0) {
+        numBachesLabel.text=0;
+    } else {
+        numBachesLabel.text=resp[0]['count()'];
+    }    
     home.add(numBachesLabel);
     subtextNumBachesLabel.text="baches ya reportados";
     captureButton.text="+";
@@ -219,7 +223,7 @@ function addCaptureEvent() {
         statusLabel.text="gracias! Si quieres puedes enviar mas.";
         numBachesLabel.text = (parseInt(numBachesLabel.text) + 1);
         captureButton.addEventListener('click', addCaptureEvent);
-        captureButton.enabled=true;
+        //captureButton.enabled=true;
     };
     req.onerror = function()
     {
@@ -232,7 +236,7 @@ function addCaptureEvent() {
     var url="http://www.otrobache.com.check.geekisp.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
     req.open("GET",url); 
     captureButton.text="";
-    captureButton.enabled=false;
+    //captureButton.enabled=false;
     sendingBache.show();
     req.send();
     captureButton.removeEventListener('click', addCaptureEvent);
