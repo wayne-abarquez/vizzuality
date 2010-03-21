@@ -4,7 +4,7 @@ require_once("config.php");
 
 class OtroBache {
     function __construct() {
-        $this->fusionTablesToken = GoogleClientLogin($gmailUser, $gmailPass, "fusiontables"); 
+        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
         
         $this->table="136993";
         $this->api_key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRw3KWZ-x9A2HylNheByWtToULKzxSlnf4JpCGuPalF_xWQj_zXFJuCfw";

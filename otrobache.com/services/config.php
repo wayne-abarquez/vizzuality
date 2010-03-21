@@ -1,6 +1,6 @@
 <?php
 
-$gmailUser="user";
-$gmailPass="password";
+define('GMAIL_USER', 'user');
+define('GMAIL_PASS', 'pass');
 
 ?>
