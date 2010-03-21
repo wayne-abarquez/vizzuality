@@ -30,8 +30,7 @@ class OtroBache {
         // parse the json response
         $jsondata = json_decode($data,true);
         $address =  $jsondata['Placemark'][0]['address'];
-        $today = getdate();
-        $reportedDate=$today['mon']."/".$today['mday']."/".$today['year'];
+        $reportedDate=date("m/d/y h:i:s A");
         
         $ft = new FusionTable($this->fusionTablesToken); 
         $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,scale,pedestrian,address) VALUES ($lat,$lon,'$reportedDate','$reportedBy',$scale,$pedestrian,'$address')";
