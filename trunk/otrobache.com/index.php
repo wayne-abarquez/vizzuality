@@ -81,6 +81,15 @@ $lastbaches = $serv->getLastBaches();
 
       }
     }
+    
+    
+    function confirmBache(lat,lon,id) {
+        //http://localhost/
+        $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web/1/1/null", context: document.body, success: function(){
+                //$("#rep"+id).text("reportado");
+                $("#rep"+id).addClass("done");
+              }});
+    }
     </script>	
 	</head>
 
@@ -115,195 +124,31 @@ $lastbaches = $serv->getLastBaches();
 			
 			<div class="baches">
 				<ul>
-					<li class="first">
+				    <?php
+				    $count=0;
+				    foreach($lastbaches as $bache) {
+				        $addr=explode("|",$bache['address']);
+				        if($count%3 ==1) {
+				            $cl='class="first"';
+				        }
+				        if($count%3 ==0) {
+				            $cl='class="last"';
+				        }				        
+				    ?>
+					<li <?php echo($cl)?>>
 						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+							<p class="ago">reportado el <?php echo($bache['reported_date'])?> desde <?php echo($bache['reported_by'])?></p>
+							<p class="location"><?php echo($addr[0])?></p>
+							<p class="number">cerca del <?php echo($addr[1])?></p>
+							<p class="city"><span><?php echo($addr[2])?></span></p>
 						</div>
-						<a></a>
+						<a id="rep<?php echo($count)?>" onClick="confirmBache(<?php echo($bache['lat'])?>,<?php echo($bache['lon'])?>,<?php echo($count)?>)"></a>
 					</li>
-					<li>
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="last">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="first">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li>
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="last">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="first">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li>
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="last">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="first">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li>
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="last">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="first">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li>
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="last">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="first">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li>
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="last">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="first">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li>
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
-					<li class="last">
-						<div>
-							<p class="ago">1 de Marzo de 2009</p>
-							<p class="location">c/Arroyo de los combos</p>
-							<p class="number">cerca del nº49</p>
-							<p class="city"><span>Arroyomolinos, Madrid</span></p>
-						</div>
-						<a></a>
-					</li>
+					<?php
+				        $count++;
+			        }
+				    
+				    ?>
 				</ul>
 			</div>
 
