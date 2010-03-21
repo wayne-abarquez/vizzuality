@@ -78,6 +78,202 @@
 				<p>Si tu bache ya ha sido reportardo, no te preocupes, actualizaremos su estado</p>
 				<a class="report_button"></a>
 			</div>
+			
+			<div class="baches">
+				<ul>
+					<li class="first">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li>
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="last">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="first">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li>
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="last">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="first">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li>
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="last">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="first">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li>
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="last">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="first">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li>
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="last">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="first">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li>
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="last">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="first">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li>
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+					<li class="last">
+						<div>
+							<p class="ago">1 de Marzo de 2009</p>
+							<p class="location">c/Arroyo de los combos</p>
+							<p class="number">cerca del nº49</p>
+							<p class="city"><span>Arroyomolinos, Madrid</span></p>
+						</div>
+						<a></a>
+					</li>
+				</ul>
+			</div>
+
+			
 			<p>
 				<a class="view_more" href="#">ver más baches</a>
 			</p>
