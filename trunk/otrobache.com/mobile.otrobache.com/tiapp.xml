@@ -12,6 +12,6 @@
     <prerendered-icon>false</prerendered-icon>
     <statusbar-style>default</statusbar-style>
     <statusbar-hidden>false</statusbar-hidden>
-    <analytics>true</analytics>
+    <analytics>false</analytics>
 <guid>ea34ab7b-1833-46c2-b671-b616d2ce1162</guid>
 </ti:app>

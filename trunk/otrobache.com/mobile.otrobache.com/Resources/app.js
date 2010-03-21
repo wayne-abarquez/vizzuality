@@ -137,7 +137,7 @@ xhr.onload = function()
 {
     loadingNumBaches.hide();
     var resp =  eval('('+this.responseText+')');
-    numBachesLabel.text=resp.length;
+    numBachesLabel.text=resp[0]['count()'];
     home.add(numBachesLabel);
     home.add(subtextNumBachesLabel);
 };
@@ -147,7 +147,7 @@ xhr.onerror = function()
 	numBachesLabel.text="Desconocido";
 	home.add(numBachesLabel);
 };
-xhr.open("GET","http://sdr.gbif.org/amfphp/json.php/NARServices.getReferences");
+xhr.open("GET","http://www.otrobache.com.check.geekisp.com/amfphp/json.php/OtroBache.getNumBaches");
 xhr.send();
 
 
