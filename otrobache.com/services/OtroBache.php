@@ -3,7 +3,8 @@ require_once("../lib/fusiontableslib.php");
 
 class OtroBache {
     function __construct() {
-        $this->fusionTablesToken = "DQAAAJcAAABhZZfqLhIV5OddvbErrBTtnUte2EHF47e-4j9W4Td8dqp3toKCrFdoZJO1uJYKupcPSiPbldB4nd-YDBmCZqj0Wcn1Iwel3VBCoAcYa_jaAPkqe9TRoy7l2KIt6TeDehq8YMXCa84dhKWBCiZomzsJQ7Wnbn8B0F-oJDy1nShXgEh74GCxEtzPLWCGM2NJ-7xWIrqDh036TymFpmWwF6Ok";
+        $this->fusionTablesToken = GoogleClientLogin("user", "pass", "fusiontables"); 
+        
         $this->table="136993";
         $this->api_key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRw3KWZ-x9A2HylNheByWtToULKzxSlnf4JpCGuPalF_xWQj_zXFJuCfw";
     }
