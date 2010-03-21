@@ -1,0 +1,41 @@
+<html><head><script type="text/javascript" src="http://maps.google.com/maps?gwt=1&amp;file=api&amp;client=google-fusiontables&amp;sensor=false&amp;v=2.x&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRw3KWZ-x9A2HylNheByWtToULKzxSlnf4JpCGuPalF_xWQj_zXFJuCfw">
+
+</script>
+<script type="text/javascript">
+function initialize() {
+  if (GBrowserIsCompatible()) {
+      
+      var options = {
+
+      onIdleCallback : function() { alert("search control is idle");},
+      onGenerateMarkerHtmlCallback : function(marker, div, result) { div.innerHTML = "<input type='button' value='Anadir este bache' />"; return div; },
+      searchFormHint : "busca direccion"
+      };      
+      
+    var map = new GMap2(document.getElementById("map_canvas"),{googleBarOptions: options});
+    map.setCenter(new google.maps.LatLng(40.4392758681028,-3.7121450901031494),12);
+    var l = new GLayer("ft:136993");
+    l.setParameter("h", "true");
+    l.setParameter("s", "select+address+from+136993");
+    
+    map.addOverlay(l);
+    //map.setUIToDefault();
+    map.enableScrollWheelZoom();
+    map.addControl(new GMapTypeControl());
+    map.addControl(new GLargeMapControl());
+    map.setUIToDefault();
+
+
+    map.enableGoogleBar();
+
+  }
+}
+
+function removeAllMarkers() {
+    
+}
+
+</script></head>
+<body onload="initialize()" onunload="GUnload()"><div id="map_canvas" style="width: 100%; height: 100%"></div>
+
+    </body></html>
