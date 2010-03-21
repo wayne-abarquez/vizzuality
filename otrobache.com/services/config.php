@@ -1,6 +1,6 @@
 <?php
 
-define('GMAIL_USER', 'user');
-define('GMAIL_PASS', 'pass');
+define('GMAIL_USER', 'jatorre');
+define('GMAIL_PASS', 'steivos555');
 
 ?>
