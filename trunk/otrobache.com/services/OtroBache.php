@@ -32,6 +32,12 @@ class OtroBache {
 
     }
     
+    public function getNumBaches() {
+        $ft = new FusionTable($this->fusionTablesToken);
+        $sql="SELECT COUNT() FROM .$this->table";
+        return $ft->query($sql);
+    }
+    
     
 }
 
