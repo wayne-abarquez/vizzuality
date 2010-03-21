@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] ."/services/OtroBache.php");
+require_once("services/OtroBache.php");
 
 $serv = new OtroBache();
 $numBaches = $serv->getNumBaches();
