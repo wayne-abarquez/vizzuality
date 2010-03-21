@@ -52,9 +52,8 @@
 		</div>
 		
 		<div id="content">
-			<div id="map_canvas" style="width:699px; height:372px;">
-			</div>
-			<img src="../images/otrobache.png" />
+			<div id="map_canvas"></div>
+			<img class="otrobache" src="../images/otrobache.png" />
 			<p><span>más de 567.123 baches reportados, <a href="#">reporta uno</a></span></p>
 		</div>
 		
@@ -81,7 +80,7 @@
 					<a href="#"></a>
 				</div>
 			</div>
-			<p><u>otrobache.com</u> es un proyecto de <a href="http://www.vizzuality.com" target="_self">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos</p>
+			<p><u>otrobache.com</u> es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos</p>
 		</div>
 	</body>
 </html>
