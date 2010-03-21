@@ -1,12 +1,9 @@
 <?php
-
-require_once("../lib/fusiontableslib.php");
+require_once($_SERVER['DOCUMENT_ROOT'] ."/lib/fusiontableslib.php");
 require_once("config.php");
 
 class OtroBache {
-    function __construct() {
-        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
-        
+    function __construct() {        
         $this->table="136993";
         $this->api_key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRw3KWZ-x9A2HylNheByWtToULKzxSlnf4JpCGuPalF_xWQj_zXFJuCfw";
     }
@@ -14,6 +11,7 @@ class OtroBache {
     
     //API
     public function reportBache($lat,$lon,$reportedBy,$scale,$pedestrian,$address) {
+        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
                
         // format this string with the appropriate latitude longitude
         $url = 'http://maps.google.com/maps/geo?q='.$lat.','.$lon.'&output=json&sensor=true_or_false&key=' . $this->api_key;
@@ -29,7 +27,7 @@ class OtroBache {
 
         // parse the json response
         $jsondata = json_decode($data,true);
-        $address =  $jsondata['Placemark'][0]['address'];
+        $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
         $reportedDate=date("m/d/y h:i:s A");
         
         $ft = new FusionTable($this->fusionTablesToken); 
@@ -41,9 +39,20 @@ class OtroBache {
     }
     
     public function getNumBaches() {
-        $ft = new FusionTable($this->fusionTablesToken);
+        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
+        $ft = new FusionTable($this->fusionTablesToken); 
         $sql="SELECT COUNT() FROM .$this->table";
-        return $ft->query($sql);
+        $res = $ft->query($sql);        
+        $resnum=number_format($res[0]['count()'],0,",",".");
+        return $resnum;
+    }
+    
+    public function getLastBaches() {
+        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
+        $ft = new FusionTable($this->fusionTablesToken); 
+        $sql="SELECT COUNT(),address FROM .$this->table GROUP BY address ORDER BY reported_date DESC";
+        $res = $ft->query($sql);
+        return $res;        
     }
     
     

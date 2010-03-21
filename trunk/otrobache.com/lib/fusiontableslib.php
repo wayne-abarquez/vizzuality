@@ -26,13 +26,14 @@ function GoogleClientLogin($username, $password, $service) {
 
 class FusionTable { 
         var $token; 
-        function FusionTable($token) { 
-                if (!$token) { 
+        function FusionTable($token=null) { 
+                /*if (!$token) { 
                         throw new Exception("You must provide a token when creating a new FusionTable."); 
-                } 
+                } */
                 $this->token = $token; 
         } 
         function query($query) { 
+            error_log($query);
                 if(!$query) { 
                         throw new Exception("query method requires a query."); 
                 } 
@@ -40,7 +41,9 @@ class FusionTable {
                 if(preg_match("/^select|^show tables|^describe/i", $query)) { 
                         $request_url = "http://tables.googlelabs.com/api/query?sql=" . urlencode($query); 
                         $c = curl_init ($request_url); 
-                        curl_setopt($c, CURLOPT_HTTPHEADER, array("Authorization: GoogleLogin auth=" . $this->token)); 
+                        if(strlen($this->token)>0) {
+                            curl_setopt($c, CURLOPT_HTTPHEADER, array("Authorization: GoogleLogin auth=" . $this->token));                           
+                        }
                         curl_setopt($c, CURLOPT_RETURNTRANSFER, true); 
                         // Place the lines of the output into an array 
                         $results = preg_split("/\n/", curl_exec ($c)); 
