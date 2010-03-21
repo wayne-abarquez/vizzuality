@@ -8,13 +8,13 @@
 #define STRING(x) _QUOTEME(x)
 
 NSString * const TI_APPLICATION_DEPLOYTYPE = @"development";
-NSString * const TI_APPLICATION_ID = @"com.vizzuality.otrobache.mobile";
-NSString * const TI_APPLICATION_PUBLISHER = @"not specified";
-NSString * const TI_APPLICATION_URL = @"not specified";
+NSString * const TI_APPLICATION_ID = @"com.vizzuality.otrobache";
+NSString * const TI_APPLICATION_PUBLISHER = @"Vizzuality";
+NSString * const TI_APPLICATION_URL = @"http://www.vizzuality.com";
 NSString * const TI_APPLICATION_NAME = @"mobile.otrobache.com";
 NSString * const TI_APPLICATION_VERSION = @"1.0";
-NSString * const TI_APPLICATION_DESCRIPTION = @"not specified";
-NSString * const TI_APPLICATION_COPYRIGHT = @"not specified";
+NSString * const TI_APPLICATION_DESCRIPTION = @"otrobache.com report app";
+NSString * const TI_APPLICATION_COPYRIGHT = @"2010 Vizzuality";
 NSString * const TI_APPLICATION_GUID = @"ea34ab7b-1833-46c2-b671-b616d2ce1162";
 BOOL const TI_APPLICATION_ANALYTICS = false;
 

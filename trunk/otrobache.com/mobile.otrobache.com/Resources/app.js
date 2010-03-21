@@ -21,8 +21,16 @@ var loadingNumBaches = Titanium.UI.createActivityIndicator({
 	width:10,
 	style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
 });
+
+var sendingBache = Titanium.UI.createActivityIndicator({
+	top:350,
+	height:50,
+	width:10,
+	style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
+});
+
 var numBachesLabel = Titanium.UI.createLabel({
-    text:'n',
+    text:'',
 	top:50,
     height:'auto',
     width:'auto',
@@ -34,7 +42,7 @@ var numBachesLabel = Titanium.UI.createLabel({
 });
 
 var subtextNumBachesLabel = Titanium.UI.createLabel({
-    text:'baches ya reportados',
+    text:'cargando datos...',
 	top:120,
     height:'auto',
     width:'auto',
@@ -42,7 +50,7 @@ var subtextNumBachesLabel = Titanium.UI.createLabel({
     font:{fontFamily:'Arial',fontSize:15,fontWeight:'bold'},
     textAlign:'center'
 });
-
+home.add(subtextNumBachesLabel);
 
 //INFO BUTTON
 var infoButton = Titanium.UI.createButton({
@@ -65,16 +73,15 @@ infoButton.addEventListener('click', function()
 		w.close({transition:Ti.UI.iPhone.AnimationStyle.CURL_UP});
 	})
 	w.add(b);
-	
 	// open window and transiton with tab group
-	w.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});	
-	
+	w.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});		
 });
+home.add(infoButton);
 
 
 //CAPTURE BUTTON
 var captureButton = Titanium.UI.createButton({
-	title:'+',
+	title:'',
 	top:235,
 	height:170,
 	width:170,
@@ -85,26 +92,9 @@ var captureButton = Titanium.UI.createButton({
     font:{fontFamily:'Arial',fontSize:140,fontColor:'#FFD015'},	
 	borderRadius:85
 });
-captureButton.addEventListener('click', function()
-{
-    statusLabel.text="enviando bache...";
-    var req = Titanium.Network.createHTTPClient();
-    req.onload = function()
-    {
-        statusLabel.text="gracias! Si quieres puedes enviar mas.";
-    };
-    req.onerror = function()
-    {
-        statusLabel.text="disculpa,ha ocurrido un error.";
-    };    
-    var url="http://www.otrobache.com.check.geekisp.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
-    req.open("GET",url); 
-    req.send();
-    Titanium.API.debug(url);
-});
+home.add(captureButton);
 
-
-
+//under the capture button text
 var statusLabel = Titanium.UI.createLabel({
     text:'pulsa para reportar un bache aqui',
 	bottom:25,
@@ -117,23 +107,22 @@ var statusLabel = Titanium.UI.createLabel({
 
 
 
-//add the loading indicator on the number of baches
-home.add(loadingNumBaches);
-home.add(infoButton);
-home.add(captureButton);
-home.add(statusLabel);
-home.open();
-
-
 //retrieve the number of baches
 var xhr = Titanium.Network.createHTTPClient();
 xhr.onload = function()
 {
     loadingNumBaches.hide();
+    home.add(statusLabel);
+    
     var resp =  eval('('+this.responseText+')');
     numBachesLabel.text=resp[0]['count()'];
     home.add(numBachesLabel);
-    home.add(subtextNumBachesLabel);
+    subtextNumBachesLabel.text="baches ya reportados";
+    captureButton.text="+";
+    home.add(statusLabel);
+    captureButton.addEventListener('click', addCaptureEvent);
+    
+    
 };
 xhr.onerror = function()
 {
@@ -144,7 +133,49 @@ xhr.onerror = function()
 xhr.open("GET","http://www.otrobache.com.check.geekisp.com/amfphp/json.php/OtroBache.getNumBaches");
 xhr.send();
 
+//open the app
+home.open();
+loadingNumBaches.show();
 
+
+
+
+
+function addCaptureEvent() {
+    statusLabel.text="enviando bache...";
+    var req = Titanium.Network.createHTTPClient();
+    req.onload = function()
+    {
+        captureButton.text="+";
+        sendingBache.hide();        
+        statusLabel.text="gracias! Si quieres puedes enviar mas.";
+        numBachesLabel.text = (parseInt(numBachesLabel.text) + 1);
+        captureButton.addEventListener('click', addCaptureEvent);
+    };
+    req.onerror = function()
+    {
+        statusLabel.text="disculpa,ha ocurrido un error.";
+        captureButton.text="+";
+        sendingBache.hide();        
+        captureButton.addEventListener('click', addCaptureEvent);        
+        
+    };    
+    var url="http://www.otrobache.com.check.geekisp.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
+    req.open("GET",url); 
+    req.send();
+    captureButton.text="";
+    sendingBache.show();
+    captureButton.removeEventListener('click', addCaptureEvent);
+}
+
+
+
+
+
+
+
+
+//init the Geocoding...
 if (Titanium.Geolocation.locationServicesEnabled==false)
 {
 	Titanium.UI.createAlertDialog({title:'OtroBache.com', message:'Debes tener el GPS activado.'}).show();

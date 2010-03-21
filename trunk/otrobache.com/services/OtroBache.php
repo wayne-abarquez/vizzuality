@@ -18,7 +18,15 @@ class OtroBache {
         // format this string with the appropriate latitude longitude
         $url = 'http://maps.google.com/maps/geo?q='.$lat.','.$lon.'&output=json&sensor=true_or_false&key=' . $this->api_key;
         // make the HTTP request
-        $data = @file_get_contents($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);        
+        ob_start();
+        curl_exec ($ch);
+        curl_close ($ch);
+        $data = ob_get_contents();
+        ob_end_clean();
+
         // parse the json response
         $jsondata = json_decode($data,true);
         $address =  $jsondata['Placemark'][0]['address'];
@@ -28,7 +36,8 @@ class OtroBache {
         $ft = new FusionTable($this->fusionTablesToken); 
         $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,scale,pedestrian,address) VALUES ($lat,$lon,'$reportedDate','$reportedBy',$scale,$pedestrian,'$address')";
         //return $sql;
-        return $ft->query($sql);
+        $newId= $ft->query($sql);
+        return $address;
 
     }
     
