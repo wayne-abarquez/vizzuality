@@ -1,0 +1,53 @@
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
+img,fieldset{border:none; padding:0; margin:0;}
+body{font:normal 12px Arial; color:#FFFFFF; background:#ECECEC}
+span.clear{clear:both;}
+div.left{float:left; width:auto;}
+div.right{float:right; width:auto;}
+a:focus{outline:none}
+img.left_curve{float:left;}
+img.right_curve{float:right;}
+
+div#outer_layout{float:left; width:100%;}
+div#layout{margin:0 auto; width:699px;}
+
+
+div#header {width:100%; height:118px; background:#333333; color:#FFFFFF;}
+div#header p {margin:0 auto; padding:35px 0 0 0; width:699px; font:normal 15px Arial; color:#cccccc; line-height:18px;}
+div#header p a {text-decoration:none; color:#FFFFFF; border-bottom:1px solid #cccccc;}
+div#header p a:hover {border-bottom:1px dotted #ffffff;}
+
+div#content {margin:50px auto 0; width:699px; position:relative;}
+div#content div#map {float:left; width:699px; border:1px solid #cccccc; border-right:none; border-left:none; height:372px; margin:0;}
+div#content img {position:absolute; top:70px; left:-42px; width:191px; height:47px; margin:0; padding:0;}
+div#content p {position:absolute; text-align:left; top:70px; left:185px; background:url(../images/left_blank.png) no-repeat 0 0; padding:13px 0 13px 5px; font:normal 18px Arial; color:#333333;}
+div#content p span {background:url(../images/right_blank.png) no-repeat right 0; padding:13px 13px 13px 8px;}
+div#content p span a {font-weight:normal; text-decoration:underline; color:#FF9900;}
+div#content p span a:hover {color:#FF6633;}
+
+div#container {margin:0 auto; width:699px;}
+div#container div.title {float:left; margin:50px 0 0 0; width:699px; padding:0 0 9px 0; border-bottom:1px solid #999999;}
+div#container div.title h3 {float:left; font:bold 20px Arial; color:#333333;}
+div#container div.title a {float:right; font:bold 13px Arial; color:#FF9900; padding:8px 0 0 15px; text-decoration:none; background:url(../images/plus.png) no-repeat 0 11px;}
+div#container div.title a:hover {color:#FF6633; background-position: 0 -24px;}
+
+div#container p {width:699px; text-align:center; float:left; padding:0; margin:30px 0 0 0;}
+div#container p.report {margin:13px 0 0 0;}
+div#container p a.view_more { width: 182px; height:21px; text-decoration:none; font:normal 18px Arial; color:#FFFFFF; text-align:center; background:url(../images/view_more.png) no-repeat 0 0; text-align:center; padding:8px 28px;}
+div#container p a.view_more:hover { background-position: 0 -37px;}
+
+div#container p a.report {margin:0; text-decoration:none; font:bold 13px Arial; color:#FF9900; text-align:center; background:none; padding:0;}
+div#container p a.report:hover {color:#FF6633;}
+
+
+
+div#footer {margin:0 auto; width:755px;}
+div#footer div.iphone {float:left; margin:50px 0 0 0; padding:23px 20px; width:715px; background:url(../images/footer.png) no-repeat 0 0; height:134px;}
+div#footer div.iphone div.data {float:left; padding:0; margin:0; width:414px;}
+div#footer div.iphone div.data h2 {float:left; font:bold 22px Arial; color:#333333; width:409px; text-align:left; padding:0 0 0 5px;}
+div#footer div.iphone div.data p {float:left; margin:5px 0 0 0; font:normal 17px Arial; color:#666666; width:409px; text-align:left; padding:0 0 0 5px;}
+div#footer div.iphone div.data a {float:left; width:132px; height:38px; text-align:center; background:url(../images/iphone_download.png) no-repeat 0 0; margin:7px 0 0 4px;}
+div#footer div.iphone div.data a:hover {background-position: 0 -38px;}
+div#footer p {float:left; width:755px; text-align:center; margin:50px 0 0 0; padding:0; font:normal 13px Arial; color:#999999; padding:0 0 50px 0;}
+div#footer p a {text-decoration:none; font-weight:bold; color:#6fa200;}
+div#footer p a:hover {text-decoration:underline;}
