@@ -51,7 +51,7 @@ function initialize() {
 			ev.preventDefault();
 			ev.stopPropagation();
 			if ($('div#container div.report_map').height() < second_map_height) {
-				$('#open_report').html('ocultar reporte');
+				$('#open_report').html('cancelar');
 				$('div#container div.report_map').css('padding-bottom','17px');
 				$('div#container div.report_map').css('border-bottom','1px solid #c2c2c2');
 				$('div#container div.report_map').stop().animate({
@@ -65,7 +65,7 @@ function initialize() {
 			ev.preventDefault();
 			ev.stopPropagation();
 			if ($('div#container div.report_map').height() < second_map_height) {
-				$('#open_report').html('ocultar reporte');
+				$('#open_report').html('cancelar');
 				$('div#container div.report_map').css('padding-bottom','17px');
 				$('div#container div.report_map').css('border-bottom','1px solid #c2c2c2');
 				$('div#container div.report_map').stop().animate({
@@ -105,7 +105,7 @@ function initialize() {
 					});
 					createNewBache(marker.getPoint().lat(),marker.getPoint().lng());
 				} else {
-					alert ('Debes marcar un sitio para reportar el bache.');
+					$('#error_map').modal();
 				}
 			}
 		});
@@ -203,7 +203,7 @@ function initialize() {
          address,
          function(point) {
            if (!point) {
-             alert(address + " - No hemos encontrado esa dirección. Lo sentimos.");
+             $('#error_map').modal();
            } else {
 						 if (marker) {
 							map2.removeOverlay(marker); 
