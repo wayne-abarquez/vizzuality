@@ -114,7 +114,7 @@ class OtroBache {
         if(!file_exists( 'cache/getLastBaches.txt' ) || 1==1) {
             $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
             $ft = new FusionTable($this->fusionTablesToken); 
-            $sql="SELECT count(),lat,lon,address,address FROM .$this->table GROUP BY lat,lon,address ORDER BY reported_date DESC LIMIT 15";
+            $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table GROUP BY lat,lon,address,address,addressline,zip,city ORDER BY reported_date DESC LIMIT 15";
             $res = $ft->query($sql);    
             $fp = fopen('cache/getLastBaches.txt', 'w');
             fwrite($fp, serialize($res));
@@ -130,6 +130,19 @@ class OtroBache {
         return $res;              
     }
     
+    /*
+    public function deleteAllDB() {
+        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
+        $ft = new FusionTable($this->fusionTablesToken); 
+        for($i=0;$i<110;$i++) {
+            $sql="SELECT ROWID FROM .$this->table LIMIT 1";
+            $res = $ft->query($sql);
+            $sql="DELETE FROM .$this->table WHERE ROWID='".$res[0]['rowid']."'";
+            $res = $ft->query($sql);
+        }
+        return null;
+    }
+    */
     
 }
 
