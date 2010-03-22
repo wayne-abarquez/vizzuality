@@ -6,6 +6,19 @@ $serv = new OtroBache();
 $numBaches = $serv->getNumBaches();
 $lastbaches = $serv->getLastBaches();
 
+
+function shortenText($text) { 
+    if(strlen($text)>28) {
+       // Change to the number of characters you want to display 
+       $chars = 28; 
+       $text = $text." "; 
+       $text = substr($text,0,$chars); 
+       $text = substr($text,0,strrpos($text,' ')); 
+       $text = $text."...";        
+    }
+    return $text; 
+}
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
 <html>
@@ -103,8 +116,8 @@ $lastbaches = $serv->getLastBaches();
 					<li <?php echo($cl)?> id="item<?php echo($count)?>">
 						<div>
 							<p class="ago">reportado <strong id="num<?php echo($count)?>"><?php echo($bache['count()'])?></strong> veces</p>
-							<p class="location"><?php echo($addr[0])?></p>
-							<p class="number">cerca del <?php echo($addr[1])?></p>
+							<p class="location"><?php echo(shortenText($addr[0]))?></p>
+							<p class="number">cerca del <?php echo(shortenText($addr[1]))?></p>
 							<p class="city"><span><?php echo($addr[2])?></span></p>
 						</div>
 						<a id="rep<?php echo($count)?>" href="javascript: void getConfirmation(<?php echo($bache['lat'])?>,<?php echo($bache['lon'])?>,<?php echo($count)?>)"></a>
