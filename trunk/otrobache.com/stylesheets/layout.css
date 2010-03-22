@@ -99,7 +99,7 @@ div#container div.baches ul li div p {float:left; text-align:left; width:100%; m
 div#container div.baches ul li div p.ago {font:normal 11px Arial; color:#999999; padding:0 0 0 2px;}
 div#container div.baches ul li div p.location {font:bold 15px Arial; color:#333333; padding:7px 0 0 2px;}
 div#container div.baches ul li div p.number {font:normal 15px Arial; color:#333333; padding:2px 0 0 2px;}
-div#container div.baches ul li div p.city {float:left; width:auto; background:url(../images/left_location.png) no-repeat 0 0; padding:0 0 0 3px; margin:2px 0 0 0; height:23px; font:bold 13px Arial; color:#333333;}
+div#container div.baches ul li div p.city {float:left; width:auto; background:url(../images/left_location.png) no-repeat 0 0; padding:0 0 0 3px; margin:3px 0 0 0; height:23px; font:bold 13px Arial; color:#333333;}
 div#container div.baches ul li div p.city span {float:left; background:url(../images/right_location.png) no-repeat right 0; padding:4px 5px 5px 2px; height:14px;}
 div#container div.baches ul li a {float:right; width:74px; height:22px; margin:0; padding:0; background:url(../images/confirm.png) no-repeat 0 0;}
 div#container div.baches ul li p.loading {float:right; width:auto; height:20px; margin:0; padding:2px 20px 0 0; background:url(../images/ajax-loader-mini.gif) no-repeat right 0; color:#999999;}
