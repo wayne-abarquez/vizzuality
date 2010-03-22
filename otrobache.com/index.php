@@ -122,7 +122,7 @@ function shortenText($text) {
 				        if(count($addr)>1) {
 				            $num="cerca del ".$addr[1];
 				        } else {
-				            $num="";
+				            $num="&nbsp;";
 				        }
 				        
 				        if($count%3 ==1) {
