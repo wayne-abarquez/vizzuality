@@ -42,7 +42,12 @@ $lastbaches = $serv->getLastBaches();
 			<p class="thanks">Gracias!</p>
 		</div>
 		
-		
+		<div id="error_map">
+			<h4>Ha ocurrido un error</h4>
+			<p>Comprueba que la dirección que has introducido es correcta, <br>
+				parece que no hemos encontrado nada en ese punto. </p>
+			<p class="cerrar">Para cerrar esta ventana pulsa <i>Esc</i></p>
+		</div>
 		
 		<div id="header">
 			<div>

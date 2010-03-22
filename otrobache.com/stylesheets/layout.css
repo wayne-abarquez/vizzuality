@@ -21,6 +21,12 @@ div#layout{margin:0 auto; width:699px;}
 #download_modal p.distribute a:hover {border-bottom:1px solid #FF9900;}
 #download_modal p.thanks {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
 
+#error_map {display:none;}
+#error_map h4 {font:bold 21px Arial; color:#333333;}
+#error_map p {font:normal 15px Arial; color:#333333; padding:22px 0 0 0;}
+#error_map p.cerrar {font:normal 12px Arial; color:#666666; padding:22px 0 0 0;}
+
+
 #simplemodal-overlay {background-color:#fff;}
 
 #simplemodal-container {height:151px; width:574px; background:url(../images/modal_bkg.png) no-repeat 0 0; border:none; padding:30px; color:#666666;}
