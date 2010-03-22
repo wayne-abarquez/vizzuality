@@ -88,6 +88,7 @@ $lastbaches = $serv->getLastBaches();
         $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web/1/1/null", context: document.body, success: function(){
                 //$("#rep"+id).text("reportado");
                 $("#rep"+id).addClass("done");
+                $("#num"+id).text(parseInt($("#num"+id).text())+1);
               }});
     }
     </script>	
@@ -125,7 +126,7 @@ $lastbaches = $serv->getLastBaches();
 			<div class="baches">
 				<ul>
 				    <?php
-				    $count=0;
+				    $count=1;
 				    foreach($lastbaches as $bache) {
 				        $addr=explode("|",$bache['address']);
 				        if($count%3 ==1) {
@@ -133,11 +134,14 @@ $lastbaches = $serv->getLastBaches();
 				        }
 				        if($count%3 ==0) {
 				            $cl='class="last"';
-				        }				        
+				        }			
+				        if($count%3 ==2) {
+				            $cl='';
+				        }				        	        
 				    ?>
 					<li <?php echo($cl)?>>
 						<div>
-							<p class="ago">reportado el <?php echo($bache['reported_date'])?> desde <?php echo($bache['reported_by'])?></p>
+							<p class="ago">reportado <strong id="num<?php echo($count)?>"><?php echo($bache['count()'])?></strong> veces</p>
 							<p class="location"><?php echo($addr[0])?></p>
 							<p class="number">cerca del <?php echo($addr[1])?></p>
 							<p class="city"><span><?php echo($addr[2])?></span></p>
