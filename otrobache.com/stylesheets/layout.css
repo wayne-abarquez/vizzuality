@@ -11,8 +11,14 @@ img.right_curve{float:right;}
 div#outer_layout{float:left; width:100%;}
 div#layout{margin:0 auto; width:699px;}
 
+/* SIMPLEMODAL WiNDOW PREFS */
+#simplemodal-overlay {background-color:#fff;}
+#simplemodal-container {height:151px; width:574px; background:url(../images/modal_bkg.png) no-repeat 0 0; border:none; padding:30px; color:#666666;}
+#simplemodal-container #basic-modal-content {padding:0;}
+#simplemodal-container a.modalCloseImg {background:url(../images/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-10px; right:-11px; cursor:pointer;}
 
-/*MODAL*/
+
+/*MODAL WINDOWS*/
 #download_modal {display:none;}
 #download_modal h4 {font:bold 21px Arial; color:#333333;}
 #download_modal p {font:normal 15px Arial; color:#333333; padding:22px 0 0 0;}
@@ -26,12 +32,6 @@ div#layout{margin:0 auto; width:699px;}
 #error_map p {font:normal 15px Arial; color:#333333; padding:22px 0 0 0;}
 #error_map p.cerrar {font:normal 12px Arial; color:#666666; padding:22px 0 0 0;}
 
-
-#simplemodal-overlay {background-color:#fff;}
-
-#simplemodal-container {height:151px; width:574px; background:url(../images/modal_bkg.png) no-repeat 0 0; border:none; padding:30px; color:#666666;}
-#simplemodal-container #basic-modal-content {padding:0;}
-#simplemodal-container a.modalCloseImg {background:url(../images/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-10px; right:-11px; cursor:pointer;}
 
 
 div#header {width:100%; height:118px; background:#333333; color:#FFFFFF;}
@@ -88,9 +88,9 @@ div#container div.baches ul li.last {background:none;}
 div#container div.baches ul li.first {float:left; padding:0 19px 13px 0; width:214px; background:url(../images/list_bkg.png) no-repeat right 0;}
 div#container div.baches ul li div {float:left; margin:0 0 12px 0; padding:6px 0 0 0; width:100%;}
 div#container div.baches ul li div p {float:left; text-align:left; width:100%; margin:0; padding:0;}
-div#container div.baches ul li div p.ago {font:normal 11px Arial; color:#999999;}
-div#container div.baches ul li div p.location {font:bold 15px Arial; color:#333333; padding:7px 0 0 0;}
-div#container div.baches ul li div p.number {font:normal 15px Arial; color:#333333; padding:2px 0 0 0;}
+div#container div.baches ul li div p.ago {font:normal 11px Arial; color:#999999; padding:0 0 0 2px;}
+div#container div.baches ul li div p.location {font:bold 15px Arial; color:#333333; padding:7px 0 0 2px;}
+div#container div.baches ul li div p.number {font:normal 15px Arial; color:#333333; padding:2px 0 0 2px;}
 div#container div.baches ul li div p.city {float:left; width:auto; background:url(../images/left_location.png) no-repeat 0 0; padding:0 0 0 3px; margin:2px 0 0 0; height:23px; font:bold 13px Arial; color:#333333;}
 div#container div.baches ul li div p.city span {float:left; background:url(../images/right_location.png) no-repeat right 0; padding:4px 5px 5px 2px; height:14px;}
 div#container div.baches ul li a {float:right; width:74px; height:22px; margin:0; padding:0; background:url(../images/confirm.png) no-repeat 0 0;}
