@@ -155,7 +155,7 @@ function shortenText($text) {
 			
 			<p class="visualize">
 				<!-- <a class="view_more" href="#">ver más baches</a> -->
-				Se visualizarán las últimos 15 baches
+				Se visualizarán los últimos 15 baches
 			</p>
 			<p class="report">
 				<a class="report" href="#" id="report_bache_button">reporta un nuevo bache</a>
