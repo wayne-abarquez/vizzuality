@@ -11,9 +11,9 @@ class OtroBache {
     
     
     //API
-    public function reportBache($lat,$lon,$reportedBy,$scale,$pedestrian,$address) {
-        $latf=round($lat,4);
-        $lonf=round($lon,4);
+    public function reportBache($lat,$lon,$reportedBy) {
+        $latf=round($lat,5);
+        $lonf=round($lon,5);
         
         $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
                
@@ -33,6 +33,18 @@ class OtroBache {
         $jsondata = json_decode($data,true);
         $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
         
+        $city= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName'];
+        
+        $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
+        
+        $addressline="";
+        $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
+        
+        if($addressline=="") {
+            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['Thoroughfare']['ThoroughfareName'];
+        }
+        $addressline=str_replace(",","|",$addressline);
+        
         if(SERVER=="production") {
             $timestamp = strtotime("+6 hours");
         } else {
@@ -40,11 +52,10 @@ class OtroBache {
         }
         
         $reportedDate=date("m/d/y H:i:s",$timestamp);
-        return $reportedDate;
         
         
         $ft = new FusionTable($this->fusionTablesToken); 
-        $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,scale,pedestrian,address) VALUES ($latf,$lonf,'$reportedDate','$reportedBy',$scale,$pedestrian,'$address')";
+        $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,address,city,zip,addressline) VALUES ($latf,$lonf,'$reportedDate','$reportedBy','$address','$city','$zip','$addressline')";
         //return $sql;
         $newId= $ft->query($sql);
         
@@ -60,8 +71,8 @@ class OtroBache {
         
         
         //recache calling the services again
-        $foo = $this->getNumBaches();
-        $foo = $this->getLastBaches();
+        //$foo = $this->getNumBaches();
+        //$foo = $this->getLastBaches();
         
         //Tweet!!!
 		$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
