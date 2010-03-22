@@ -99,6 +99,7 @@ div#container div.baches ul li a:hover {background-position: 0 -22px; cursor:poi
 
 div#footer {margin:0 auto; width:755px;}
 div#footer div.iphone {float:left; margin:50px 0 0 0; padding:23px 17px 0 17px; width:715px; background:url(../images/footer.png) no-repeat 0 0; height:157px;}
+
 div#footer div.iphone div.data {float:left; padding:0; margin:0; width:414px;}
 div#footer div.iphone div.data h2 {float:left; font:bold 22px Arial; color:#333333; width:600px; text-align:left; padding:0 0 0 8px;}
 div#footer div.iphone div.data p {float:left; margin:5px 0 0 0; font:normal 17px Arial; color:#666666; width:409px; text-align:left; padding:0 0 0 8px; line-height:19px;}
@@ -107,6 +108,18 @@ div#footer div.iphone div.data a.iphone {background:url(../images/iphone_button.
 div#footer div.iphone div.data a.iphone:hover {background-position: 0 -38px;}
 div#footer div.iphone div.data a.android {background:url(../images/android_button.png) no-repeat 0 0; padding:0;}
 div#footer div.iphone div.data a.android:hover {background-position: 0 -38px;}
-div#footer p {float:left; width:755px; text-align:center; margin:50px 0 0 0; padding:0; font:normal 13px Arial; color:#999999; padding:0 0 50px 0;}
+
+
+div#footer p {float:left; margin:50px 0 0 0; padding:0; font:normal 13px Arial; color:#999999; padding:0 5px 50px 20px;}
 div#footer p a {text-decoration:none; color:#999999;}
 div#footer p a:hover {text-decoration:underline;}
+
+div#footer div.share a {float:left; width:16px; height:16px; padding:0 2px; margin:50px 0 0 0;}
+div#footer div.share a.twitter {background:url(../images/twitter.png) no-repeat 0 0;}
+div#footer div.share a.twitter:hover {background-position: 0 -16px;}
+div#footer div.share a.facebook {background:url(../images/facebook.png) no-repeat 0 0;}
+div#footer div.share a.facebook:hover {background-position: 0 -16px;}
+div#footer div.share a.del {background:url(../images/del.png) no-repeat 0 0;}
+div#footer div.share a.del:hover {background-position: 0 -16px;}
+div#footer div.share a.digg {background:url(../images/digg.png) no-repeat 0 0;}
+div#footer div.share a.digg:hover {background-position: 0 -16px;}
