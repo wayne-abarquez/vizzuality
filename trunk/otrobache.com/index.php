@@ -63,18 +63,20 @@ $lastbaches = $serv->getLastBaches();
 				<a href="#" id="open_report">reportar un bache</a>
 			</div>
 			<div class="report_map">
-				<a id="plus"></a>
-				<a id="minus"></a>
-				<span class="add">
-					<form action="#" onsubmit="showAddress(this.address.value); return false">
-						<input type="text" value="calle, número, localidad,..." name="address"/>
-						<input type="submit" value="" />
-					</form>
-				</span>
-				<h2>Introduce la dirección en texto ó situa el bache de manera manual en el mapa</h2>
-				<div id="second_map"></div>
-				<p>Si tu bache ya ha sido reportardo, no te preocupes, actualizaremos su estado</p>
-				<a class="report_button" id="report_bache_a"></a>
+				<div class="first_launch">
+					<a id="plus"></a>
+					<a id="minus"></a>
+					<span class="add">
+						<form action="#" onsubmit="showAddress(this.address.value); return false">
+							<input type="text" value="calle, número, localidad,..." name="address"/>
+							<input type="submit" value="" />
+						</form>
+					</span>
+					<h2>Introduce la dirección en texto ó situa el bache de manera manual en el mapa</h2>
+					<div id="second_map"></div>
+					<p>Si tu bache ya ha sido reportardo, no te preocupes, actualizaremos su estado</p>
+					<a class="report_button" id="report_bache_a"></a>
+				</div>
 			</div>
 			
 			<div class="baches">
@@ -111,11 +113,11 @@ $lastbaches = $serv->getLastBaches();
 			</div>
 
 			
-			<p>
-				<a class="view_more" href="#">ver más baches</a>
-			</p>
+			<!-- <p>
+							<a class="view_more" href="#">ver más baches</a>
+						</p> -->
 			<p class="report">
-				<a class="report" href="#" id="report_bache_button">o reporta uno nuevo</a>
+				<a class="report" href="#" id="report_bache_button">reporta un nuevo bache</a>
 			</p>
 		</div>
 		

@@ -48,7 +48,9 @@ div#container div.title h3 {float:left; font:bold 20px Arial; color:#333333;}
 div#container div.title a {float:right; font:bold 13px Arial; color:#FF9900; padding:8px 0 0 15px; text-decoration:none; background:url(../images/plus.png) no-repeat 0 11px;}
 div#container div.title a:hover {color:#FF6633; background-position: 0 -24px;}
 div#container div.report_map {position:relative; float:left; margin:0; padding:0 18px; background:white; width:663px; border-bottom:none; overflow:hidden;}
-div#container div.report_map h2 {float:left; width:100%; font:normal 16px Arial; color:#666666; text-align:center; padding:18px 0;}
+div#container div.report_map a {font-weight:bold; color:#FF9900; text-decoration:none;}
+div#container div.report_map a:hover {color:#FF6633;}
+div#container div.report_map h2 {float:left; width:100%; font:normal 16px Arial; color:#666666; text-align:left; padding:18px 0;}
 div#container div.report_map div#second_map { z-index:1; float:left; width:661px; height:248px; border:1px solid #cccccc; margin:0; padding:0;}
 div#container div.report_map a#plus {position:absolute; width:30px; height:30px; padding:0; margin:0; top:73px; left:34px; z-index:100; background:url(../images/zoom_plus.png) no-repeat 0 0;}
 div#container div.report_map a#plus:hover { background-position: 0 -30px; cursor:pointer;}
@@ -60,11 +62,11 @@ div#container div.report_map span.add input[type="text"]:focus {outline:none;}
 div#container div.report_map span.add input[type="submit"] {float:left; width:79px; height:35px; background:url(../images/add_button.png) no-repeat 0 0; margin:0; padding:0; border:0;}
 div#container div.report_map span.add input[type="submit"]:hover {background-position: 0 -35px; cursor:pointer;}
 div#container div.report_map p {float:left; color:#999999; font:normal 13px Arial; padding:28px 0 0 0; margin:0; text-align:left; width:auto;}
-div#container div.report_map a.report_button {float:right; width:180px; height:34px; margin:15px 0 0 0; background:url(../images/report_button.png) no-repeat 0 0; display:none;}
+div#container div.report_map a.report_button {float:right; width:180px; height:34px; margin:15px 0 0 0; background:url(../images/report_button.png) no-repeat 0 0;}
 div#container div.report_map a.report_button:hover {background-position: 0 -34px; cursor:pointer;}
 div#container div.report_map a.report_button .loading {background-position:0 -68px;}
 div#container div.report_map a.report_button:hover .loading {background-position:0 -68px;}
-div#container p {width:699px; text-align:center; float:left; padding:0; margin:30px 0 0 0;}
+div#container p {width:699px; text-align:center; float:left; padding:10px 0 0 0; margin:30px 0 0 0;}
 div#container p.report {margin:5px 0 0 0;}
 div#container p a.view_more {float:left; margin:0 0 0 257px; width:182px; height:21px; text-decoration:none; font:normal 18px Arial; color:#FFFFFF; text-align:center; background:url(../images/view_more.png) no-repeat 0 0; text-align:center; padding:8px 0;}
 div#container p a.view_more:hover { background-position: 0 -37px;}

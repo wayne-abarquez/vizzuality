@@ -3,11 +3,13 @@ var map = null;
 var map2 = null;
 var marker;
 var busy = false;
+var change_html = false;
+var second_map_height;
 
 function initialize() {
 	
 		//JQUERY EFFECTS
-		var second_map_height = $('div#container div.report_map').height();
+		second_map_height = $('div#container div.report_map').height();
 		$('div#container div.report_map').height(0);
 		if ($('span.add input').attr('value')=='calle, número, localidad,...') {
 			$('div#container div.report_map span.add input[type="text"]').css('color','#999999');
@@ -18,21 +20,30 @@ function initialize() {
 		$('#open_report').click (function(ev) {
 			ev.preventDefault();
 			ev.stopPropagation();
-			if ($(this).html()=='reportar un bache') {
-				$(this).html('ocultar reporte');
-				$('div#container div.report_map').css('padding-bottom','17px');
-				$('div#container div.report_map').css('border-bottom','1px solid #c2c2c2');
-				$('div#container div.report_map').stop().animate({
-				    height: second_map_height
-				  }, 500);
-			} else {
-				$(this).html('reportar un bache');
-				$('div#container div.report_map').stop().animate({
-				    height: 0
-				  }, 500,function() {
-						$('div#container div.report_map').css('padding-bottom','0');
-						$('div#container div.report_map').css('border-bottom','none');
-				});
+			if (!busy) {
+				if ($(this).html()=='reportar un bache') {
+					$(this).html('cancelar');
+					$('div#container div.report_map').css('padding-bottom','17px');
+					$('div#container div.report_map').css('border-bottom','1px solid #c2c2c2');
+					$('div#container div.report_map').stop().animate({
+					    height: second_map_height
+					  }, 500);
+				} else {
+					$(this).html('reportar un bache');
+					$('div#container div.report_map').stop().animate({
+					    height: 0
+					  }, 500,function() {
+							$('div#container div.report_map').css('padding-bottom','0');
+							$('div#container div.report_map').css('border-bottom','none');
+							if (change_html) {
+								change_html = false;
+								$('div#container div.report_map div.first_launch').show();
+								$('span.add input[type="text"]').attr('value','calle, número, localidad,...');
+								$('span.add input[type="text"]').css('color','#999999');
+								$('div#container div.report_map div.loading2').remove();
+							}
+					});
+				}
 			}
 		});
 		
@@ -81,18 +92,28 @@ function initialize() {
 			if (!busy) {
 				if (marker) {
 					busy = true;
-					$('#report_bache_a').css('background-position','0 -68px');
-					$('#report_bache_a:hover').css('background-position','0 -68px');
+					change_html = true;
+					$('div#container div.report_map').animate({
+					    height: 0
+					  }, 300,function() {
+							var loading_html = "<div class='loading1'><img style='margin:56px 0 10px 315px;' src='../images/ajax-loader.gif'/><p style='width:100%; text-align:center; margin:0; padding:0'>Estamos reportando tu bache, gracias!</p></div>";
+							$('div#container div.report_map div.first_launch').hide();
+							$('div#container div.report_map').append(loading_html);
+							$('div#container div.report_map').animate({
+							    height: 150
+							  }, 300);
+					});
 					createNewBache(marker.getPoint().lat(),marker.getPoint().lng());
 				} else {
 					alert ('Debes marcar un sitio para reportar el bache.');
 				}
 			}
 		});
+		
+		
 		   
 		
 		//LOAD MAP
-		
 		if (GBrowserIsCompatible()) {
 				geocoder = new GClientGeocoder();
         var options = {
@@ -138,12 +159,34 @@ function initialize() {
 				map2.clearOverlays();
 				marker = null;
 				busy = false;
-				$('div.report_map a.report_button').fadeOut('fast');
-				$('#report_bache_a').css('background-position','0 0');
-				$('#report_bache_a:hover').css('background-position','0 -34px');
-				$('span.add input[type="text"]').attr('value','calle, número, localidad,...');
-				$('span.add input[type="text"]').css('color','#999999');
-				alert('Gracias por reportar un bache nuevo. :D');
+				
+				$('div#container div.report_map').animate({
+				    height: 0
+				  }, 300,function() {
+						var loading_html = "<div class='loading2'><img style='margin:40px 0 10px 315px;' src='../images/smile.png'/><p style='width:100%; text-align:center; margin:0; padding:0'>El bache ha sido reportado correctamente.<br>Si quieres, puedes <a href='#' id='new_report'>reportar otro</a></p></div>";					
+						$('div#container div.report_map div.loading1').remove();
+						$('div#container div.report_map').append(loading_html);
+						$('a#new_report').click( function(ev){
+							ev.preventDefault();
+							ev.stopPropagation();
+							change_html = false;
+							$('div#container div.report_map').animate({
+							    height: 0
+							  }, 300,function() {
+									$('div#container div.report_map div.first_launch').show();
+									$('div#container div.report_map div.loading2').remove();
+									$('span.add input[type="text"]').attr('value','calle, número, localidad,...');
+									$('span.add input[type="text"]').css('color','#999999');
+									$('div#container div.report_map').animate({
+									    height: second_map_height
+									  }, 300);
+							});
+						});
+
+						$('div#container div.report_map').animate({
+						    height: 150
+						  }, 300);
+				});
 			}});
   }
 
