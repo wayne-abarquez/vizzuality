@@ -36,8 +36,9 @@ function shortenText($text) {
 	
 		<title>Otrobache.com - Reporta el tuyo!</title>
 	
-		<link rel="shortcut icon" href="/images/favicon.ico">
-	  <link rel="stylesheet" href="/stylesheets/layout.css" type="text/css">
+		<link rel="shortcut icon" href="/images/favicon.ico" >
+	  <link rel="stylesheet" href="/stylesheets/layout.css" type="text/css" />
+		
 	
 		<!-- IE 6 "fixes" -->
 		<!--[if lt IE 7]>
@@ -158,34 +159,35 @@ function shortenText($text) {
 			</div>
 			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | </p>
 			<div class="share">	
-				<a class="twitter" href="http://twitter.com/home?status=http://otrobache.com"></a>
-				<a class="facebook" href="http://www.facebook.com/share.php?u=http://otrobache.com"></a>
-				<a class="del" href="http://del.icio.us/post?title=&url=http://otrobache.com"></a>					
-				<a class="digg" href="http://digg.com/submit?phase=2&url=http://otrobache.com"></a>
+				<a class="twitter" href="http://twitter.com/home?status=http://otrobache.com" target="_blank"></a>
+				<a class="facebook" href="http://www.facebook.com/share.php?u=http://otrobache.com" target="_blank"></a>
+				<a class="del" href="http://del.icio.us/post?title=&url=http://otrobache.com" target="_blank"></a>					
+				<a class="digg" href="http://digg.com/submit?phase=2&url=http://otrobache.com" target="_blank"></a>
 			</div>
 
 
 		</div>
-        <script type="text/javascript">
-          var uservoiceOptions = {
-            key: 'otrobache.com',
-            host: 'otrobache.uservoice.com', 
-            forum: '47195',
-            alignment: 'left',
-            background_color:'#333333', 
-            text_color: 'white',
-            hover_color: '#ff9900',
-            lang: 'en',
-            showTab: true
-          };
-          function _loadUserVoice() {
-            var s = document.createElement('script');
-            s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "uservoice.com/javascripts/widgets/tab.js";
-            document.getElementsByTagName('head')[0].appendChild(s);
-          }
-          _loadSuper = window.onload;
-          window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
-        </script>
+		<script type="text/javascript">
+		  var uservoiceOptions = {
+		    key: 'otrobache',
+		    host: 'otrobache.uservoice.com', 
+		    forum: '47265',
+		    alignment: 'left',
+		    background_color:'#333333', 
+		    text_color: 'white',
+		    hover_color: '#ff9900',
+		    lang: 'es',
+		    showTab: true
+		  };
+		  function _loadUserVoice() {
+		    var s = document.createElement('script');
+		    s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "uservoice.com/javascripts/widgets/tab.js";
+		    document.getElementsByTagName('head')[0].appendChild(s);
+		  }
+		  _loadSuper = window.onload;
+		  window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+		</script>
+
 		
 	</body>
 	
