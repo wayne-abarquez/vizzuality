@@ -19,13 +19,21 @@ div#layout{margin:0 auto; width:699px;}
 
 
 /*MODAL WINDOWS*/
-#download_modal {display:none;}
-#download_modal h4 {font:bold 21px Arial; color:#333333;}
-#download_modal p {font:normal 15px Arial; color:#333333; padding:22px 0 0 0;}
-#download_modal p.distribute {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
-#download_modal p.distribute a {text-decoration:none; color:#FF9900; font-weight:bold;}
-#download_modal p.distribute a:hover {border-bottom:1px solid #FF9900;}
-#download_modal p.thanks {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
+#iphone_modal {display:none;}
+#iphone_modal h4 {font:bold 21px Arial; color:#333333;}
+#iphone_modal p {font:normal 15px Arial; color:#333333; padding:22px 0 0 0;}
+#iphone_modal p.distribute {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
+#iphone_modal p.distribute a {text-decoration:none; color:#FF9900; font-weight:bold;}
+#iphone_modal p.distribute a:hover {border-bottom:1px solid #FF9900;}
+#iphone_modal p.thanks {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
+
+#android_modal {display:none;}
+#android_modal h4 {font:bold 21px Arial; color:#333333;}
+#android_modal p {font:normal 15px Arial; color:#333333; padding:22px 0 0 0;}
+#android_modal p.distribute {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
+#android_modal p.distribute a {text-decoration:none; color:#FF9900; font-weight:bold;}
+#android_modal p.distribute a:hover {border-bottom:1px solid #FF9900;}
+#android_modal p.thanks {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
 
 #error_map {display:none;}
 #error_map h4 {font:bold 21px Arial; color:#333333;}
