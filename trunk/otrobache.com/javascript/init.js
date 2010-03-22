@@ -133,7 +133,7 @@ function initialize() {
       map = new GMap2(document.getElementById("map_canvas"),{googleBarOptions: options});
 			map2 = new GMap2(document.getElementById("second_map"));
 			
-      map.setCenter(new google.maps.LatLng(40.4392758681028,-3.7121450901031494),12);
+      map.setCenter(new google.maps.LatLng(42.032974332441405, -3.5595703125),5);
 			map2.setCenter(new google.maps.LatLng(40.4392758681028,-3.7121450901031494),12);
 			
       var l = new GLayer("ft:136993");
@@ -146,7 +146,6 @@ function initialize() {
       map.addControl(new GMapTypeControl());
       //map.addControl(new GLargeMapControl());
       //map.setUIToDefault();
-
 
       //map.enableGoogleBar();
 
