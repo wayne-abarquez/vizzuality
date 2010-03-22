@@ -146,12 +146,19 @@ function initialize() {
     }
   }
   
+	function getConfirmation(lat,lon,id) {
+		$("div#container div.baches ul li #rep"+id).hide();
+		$("div#container div.baches ul li#item"+ id).append('<p class="loading">enviando</p>');
+		confirmBache(lat,lon,id);
+	}
+
   
   function confirmBache(lat,lon,id) {
-      $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web/1/1/null", context: document.body, success: function(){
-              $("#rep"+id).addClass("done");
-              $("#num"+id).text(parseInt($("#num"+id).text())+1);
-            }});
+	  $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web/1/1/null", context: document.body, success: function(){
+	    $("#num"+id).text(parseInt($("#num"+id).text())+1);
+			$("div#container div.baches ul li#item"+ id + " p.loading").hide();
+			$("div#container div.baches ul li#item"+ id).append('<p class="done">ya reportado por tí</p>');
+	  }});
   }
 
   function createNewBache(lat,lon) {
@@ -211,6 +218,8 @@ function initialize() {
        );
      }
    }
+
+
 
 
 

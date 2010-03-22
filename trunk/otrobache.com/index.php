@@ -95,14 +95,14 @@ $lastbaches = $serv->getLastBaches();
 				            $cl='';
 				        }				        	        
 				    ?>
-					<li <?php echo($cl)?>>
+					<li <?php echo($cl)?> id="item<?php echo($count)?>">
 						<div>
 							<p class="ago">reportado <strong id="num<?php echo($count)?>"><?php echo($bache['count()'])?></strong> veces</p>
 							<p class="location"><?php echo($addr[0])?></p>
 							<p class="number">cerca del <?php echo($addr[1])?></p>
 							<p class="city"><span><?php echo($addr[2])?></span></p>
 						</div>
-						<a id="rep<?php echo($count)?>" onClick="confirmBache(<?php echo($bache['lat'])?>,<?php echo($bache['lon'])?>,<?php echo($count)?>)"></a>
+						<a id="rep<?php echo($count)?>" href="javascript: void getConfirmation(<?php echo($bache['lat'])?>,<?php echo($bache['lon'])?>,<?php echo($count)?>)"></a>
 					</li>
 					<?php
 				        $count++;
