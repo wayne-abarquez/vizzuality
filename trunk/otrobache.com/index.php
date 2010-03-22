@@ -156,7 +156,15 @@ function shortenText($text) {
 					<a href="javascript: void $('#download_modal').modal()" class="iphone"></a>
 				</div>
 			</div>
-			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos</p>
+			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | </p>
+			<div class="share">	
+				<a class="twitter" href="http://twitter.com/home?status=http://otrobache.com"></a>
+				<a class="facebook" href="http://www.facebook.com/share.php?u=http://otrobache.com"></a>
+				<a class="del" href="http://del.icio.us/post?title=&url=http://otrobache.com"></a>					
+				<a class="digg" href="http://digg.com/submit?phase=2&url=http://otrobache.com"></a>
+			</div>
+
+
 		</div>
         <script type="text/javascript">
           var uservoiceOptions = {
