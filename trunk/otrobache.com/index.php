@@ -54,10 +54,18 @@ function shortenText($text) {
 
 	<body onload="initialize()" onunload="GUnload()">
 		
-		<div id="download_modal">
+		<div id="iphone_modal">
 			<h4>Estamos en fase beta</h4>
 			<p>Estamos probando nuestra aplicación iphone. Hasta que podamos lanzarla, sólo <br>
 			podremos distribuir 100 copias para 100 usuarios únicos.</p>
+			<p class="distribute">Pidenos tu copia haciendo <a href="mailto:otrobache@gmail.com">click aquí</a>.</p>
+			<p class="thanks">Gracias!</p>
+		</div>
+		
+		<div id="android_modal">
+			<h4>Estamos en fase beta</h4>
+			<p>Estamos probando nuestra aplicación android. Hasta que podamos lanzarla, sólo <br>
+			nos gustaría distribuir 100 copias para 100 usuarios únicos.</p>
 			<p class="distribute">Pidenos tu copia haciendo <a href="mailto:otrobache@gmail.com">click aquí</a>.</p>
 			<p class="thanks">Gracias!</p>
 		</div>
@@ -160,8 +168,8 @@ function shortenText($text) {
 					<p>Estamos probando nuestras aplicaciones para móviles.
 					Si eres usuario de iphone/android descarga aquí 
 					el reporta baches.</p>
-					<a href="#" class="android"></a>
-					<a href="javascript: void $('#download_modal').modal()" class="iphone"></a>
+					<a href="javascript: void $('#android_modal').modal()" class="android"></a>
+					<a href="javascript: void $('#iphone_modal').modal()" class="iphone"></a>
 				</div>
 			</div>
 			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | </p>
