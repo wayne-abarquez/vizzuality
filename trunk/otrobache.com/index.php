@@ -57,7 +57,7 @@ function shortenText($text) {
 			<h4>Estamos en fase beta</h4>
 			<p>Estamos probando nuestra aplicación iphone. Hasta que podamos lanzarla, sólo <br>
 			podremos distribuir 100 copias para 100 usuarios únicos.</p>
-			<p class="distribute">Pidenos tu copia haciendo <a href="#">click aquí</a>.</p>
+			<p class="distribute">Pidenos tu copia haciendo <a href="mailto:otrobache@gmail.com">click aquí</a>.</p>
 			<p class="thanks">Gracias!</p>
 		</div>
 		
