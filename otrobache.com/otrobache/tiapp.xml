@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+<id>com.vizzuality.otrobache</id>
+<name>otrobache</name>
+<version>1.0</version>
+<publisher>Vizzuality</publisher>
+<url>http://www.vizzuality.com</url>
+<description>Reporta baches de OtroBache.com</description>
+<copyright>2010 by Vizzuality</copyright>
+<icon>default_app_logo.png</icon>
+    <persistent-wifi>false</persistent-wifi>
+    <prerendered-icon>false</prerendered-icon>
+    <statusbar-style>default</statusbar-style>
+    <statusbar-hidden>false</statusbar-hidden>
+    <analytics>true</analytics>
+<guid>70d07ccc-1d9b-4d0b-9bf6-75b51875aba3</guid>
+</ti:app>
