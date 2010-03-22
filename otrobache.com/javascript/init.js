@@ -5,6 +5,7 @@ var marker;
 var busy = false;
 var change_html = false;
 var second_map_height;
+var address;
 
 function initialize() {
 	
@@ -56,7 +57,10 @@ function initialize() {
 				$('div#container div.report_map').css('border-bottom','1px solid #c2c2c2');
 				$('div#container div.report_map').stop().animate({
 				    height: second_map_height
-				  }, 500);
+				  }, 500, function(){
+						$('div#container div.report_map input[type=text]').focus();
+				});
+				
 			}
 			$.scrollTo('div.report_map',500);
 		});
@@ -70,7 +74,10 @@ function initialize() {
 				$('div#container div.report_map').css('border-bottom','1px solid #c2c2c2');
 				$('div#container div.report_map').stop().animate({
 				    height: second_map_height
-				  }, 500);
+				  }, 500, function(){
+						$('div#container div.report_map input[type=text]').focus();
+				});
+				
 			}
 			$.scrollTo('div.report_map',500);
 		});
@@ -78,7 +85,7 @@ function initialize() {
 		$('#plus').click(function(ev){map2.setZoom(map2.getZoom()+1)});
 		$('#minus').click(function(ev){map2.setZoom(map2.getZoom()-1)});
 		
-		$('span.add input').click( function(ev){
+		$('span.add input[type=text]').focus( function(ev){
 			if ($(this).attr('value') == 'calle, número, localidad,...') {
 				$(this).attr('value','');
 				$(this).css('color','#333333');
@@ -157,7 +164,7 @@ function initialize() {
 	  $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web/1/1/null", context: document.body, success: function(){
 	    $("#num"+id).text(parseInt($("#num"+id).text())+1);
 			$("div#container div.baches ul li#item"+ id + " p.loading").hide();
-			$("div#container div.baches ul li#item"+ id).append('<p class="done">ya reportado por tí</p>');
+			$("div#container div.baches ul li#item"+ id).append('<p class="done">Ya reportado</p>');
 	  }});
   }
 
@@ -172,7 +179,7 @@ function initialize() {
 				    height: 0
 				  }, 300,function() {
 						var addressInput= $("input[name=address]").val() +",Madrid";
-						var loading_html = "<div class='loading2'><img style='margin:40px 0 10px 315px;' src='../images/smile.png'/><p style='width:100%; text-align:center; margin:0; padding:0'>El bache ha sido reportado correctamente.<br>Si quieres, puedes <a href='http://www.facebook.com/sharer.php?t="+escape('Otro bache en '+addressInput )+"&u=" + escape('http://otrobache.com?address='+addressInput) +"' class='facebook'>compartirlo en facebook</a> y darle mas visibilidad. </p><a href='#' id='new_report'>reportar otro bache</a></div>";					
+						var loading_html = "<div class='loading2'><img style='margin:40px 0 10px 315px;' src='../images/smile.png'/><p style='width:100%; text-align:center; margin:0; padding:0'>El bache ha sido reportado correctamente.<br>Si quieres, puedes <a href='http://www.facebook.com/sharer.php?t="+escape('Otro bache en '+addressInput )+"&u=" + escape('http://otrobache.com?address='+addressInput) +"' class='facebook' target='_blank'>compartirlo en facebook</a> y darle mas visibilidad. </p><a href='#' id='new_report'>reportar otro bache</a></div>";					
 						$('div#container div.report_map div.loading1').remove();
 						$('div#container div.report_map').append(loading_html);
 						$('a#new_report').click( function(ev){
@@ -209,18 +216,36 @@ function initialize() {
              $('#error_map').modal();
            } else {
 						 if (marker) {
-							map2.removeOverlay(marker); 
+							 map2.removeOverlay(marker); 
 						 } else {
-							$('#report_bache_a ').fadeIn('fast');
-						}
+							 $('#report_bache_a ').fadeIn('fast');
+						 }
              map2.setCenter(point, 13);
              marker = new GMarker(point,{draggable: true});
+						 GEvent.addListener(marker, "dragend", function(ev){
+								
+								if (marker.getLatLng() != null) {
+								    address = marker.getLatLng();
+								    geocoder.getLocations(marker.getLatLng(), getAddress);
+								}
+						 });
+						
              map2.addOverlay(marker);
            }
          }
        );
      }
    }
+
+	function getAddress(response) {
+	  if (!response || response.Status.code != 200) {
+	    alert("Status Code:" + response.Status.code);
+	  } else {
+	    place = response.Placemark[0];
+			$('span.add input[type=text]').attr('value',place.address);
+	  }
+
+  }
 
 
 
