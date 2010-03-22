@@ -32,7 +32,16 @@ class OtroBache {
         // parse the json response
         $jsondata = json_decode($data,true);
         $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
-        $reportedDate=date("m/d/y h:i:s A");
+        
+        if(SERVER=="production") {
+            $timestamp = strtotime("+6 hours");
+        } else {
+            $timestamp = strtotime("now");
+        }
+        
+        $reportedDate=date("m/d/y H:i:s",$timestamp);
+        return $reportedDate;
+        
         
         $ft = new FusionTable($this->fusionTablesToken); 
         $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,scale,pedestrian,address) VALUES ($latf,$lonf,'$reportedDate','$reportedBy',$scale,$pedestrian,'$address')";
@@ -91,7 +100,7 @@ class OtroBache {
     }
     
     public function getLastBaches() {
-        if(!file_exists( 'cache/getLastBaches.txt' )) {
+        if(!file_exists( 'cache/getLastBaches.txt' ) || 1==1) {
             $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
             $ft = new FusionTable($this->fusionTablesToken); 
             $sql="SELECT count(),lat,lon,address,address FROM .$this->table GROUP BY lat,lon,address ORDER BY reported_date DESC LIMIT 15";
