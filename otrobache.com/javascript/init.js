@@ -15,8 +15,6 @@ function initialize() {
 			$('div#container div.report_map span.add input[type="text"]').css('color','#333333');
 		}
 		
-
-		
 		$('#open_report').click (function(ev) {
 			ev.preventDefault();
 			ev.stopPropagation();
