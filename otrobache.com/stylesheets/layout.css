@@ -70,8 +70,9 @@ div#container div.report_map span.add input[type="submit"]:hover {background-pos
 div#container div.report_map p {float:left; color:#999999; font:normal 13px Arial; padding:28px 0 0 0; margin:0; text-align:left; width:auto;}
 div#container div.report_map a.report_button {float:right; width:180px; height:34px; margin:15px 0 0 0; background:url(../images/report_button.png) no-repeat 0 0;}
 div#container div.report_map a.report_button:hover {background-position: 0 -34px; cursor:pointer;}
-div#container div.report_map a.report_button .loading {background-position:0 -68px;}
-div#container div.report_map a.report_button:hover .loading {background-position:0 -68px;}
+div#container div.report_map a#new_report {position:absolute; bottom:10px; right:15px; padding:0; margin:0;}
+div#container div.report_map a.facebook {color:#003399; text-decoration:none;}
+div#container div.report_map a.facebook:hover {border-bottom:1px solid #003399;}
 div#container p {width:699px; text-align:center; float:left; padding:10px 0 0 0; margin:30px 0 0 0;}
 div#container p.report {margin:5px 0 0 0;}
 div#container p a.view_more {float:left; margin:0 0 0 257px; width:182px; height:21px; text-decoration:none; font:normal 18px Arial; color:#FFFFFF; text-align:center; background:url(../images/view_more.png) no-repeat 0 0; text-align:center; padding:8px 0;}

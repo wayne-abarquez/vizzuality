@@ -170,7 +170,7 @@ function initialize() {
 				$('div#container div.report_map').animate({
 				    height: 0
 				  }, 300,function() {
-						var loading_html = "<div class='loading2'><img style='margin:40px 0 10px 315px;' src='../images/smile.png'/><p style='width:100%; text-align:center; margin:0; padding:0'>El bache ha sido reportado correctamente.<br>Si quieres, puedes <a href='#' id='new_report'>reportar otro</a></p></div>";					
+						var loading_html = "<div class='loading2'><img style='margin:40px 0 10px 315px;' src='../images/smile.png'/><p style='width:100%; text-align:center; margin:0; padding:0'>El bache ha sido reportado correctamente.<br>Si quieres, puedes <a href='#' class='facebook'>compartirlo en facebook</a> y darle mas visibilidad. </p><a href='#' id='new_report'>reportar otro bache</a></div>";					
 						$('div#container div.report_map div.loading1').remove();
 						$('div#container div.report_map').append(loading_html);
 						$('a#new_report').click( function(ev){
@@ -199,6 +199,7 @@ function initialize() {
 
 	function showAddress(address) {
      if (geocoder) {
+			address += ', Madrid';
        geocoder.getLatLng(
          address,
          function(point) {
