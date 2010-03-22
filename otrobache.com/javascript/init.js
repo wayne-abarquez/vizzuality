@@ -200,7 +200,7 @@ function initialize() {
 						});
 
 						$('div#container div.report_map').animate({
-						    height: 150
+						    height: 180
 						  }, 300);
 				});
 			}});
