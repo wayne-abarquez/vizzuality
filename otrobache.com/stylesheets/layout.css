@@ -97,14 +97,14 @@ div#container div.baches ul li p.done {float:right; width:auto; height:20px; mar
 div#container div.baches ul li a:hover {background-position: 0 -22px; cursor:pointer;}
 
 div#footer {margin:0 auto; width:755px;}
-div#footer div.iphone {float:left; margin:50px 0 0 0; padding:23px 20px; width:715px; background:url(../images/footer.png) no-repeat 0 0; height:134px;}
+div#footer div.iphone {float:left; margin:50px 0 0 0; padding:23px 17px 0 17px; width:715px; background:url(../images/footer.png) no-repeat 0 0; height:157px;}
 div#footer div.iphone div.data {float:left; padding:0; margin:0; width:414px;}
-div#footer div.iphone div.data h2 {float:left; font:bold 22px Arial; color:#333333; width:600px; text-align:left; padding:0 0 0 5px;}
-div#footer div.iphone div.data p {float:left; margin:5px 0 0 0; font:normal 17px Arial; color:#666666; width:409px; text-align:left; padding:0 0 0 5px;}
-div#footer div.iphone div.data a {float:left; width:164px; height:38px; text-align:center; background:url(../images/iphone_download.png) no-repeat 0 0; margin:7px 0 0 4px;}
-div#footer div.iphone div.data a.iphone {background:url(../images/iphone_button.png) no-repeat 0 0;}
+div#footer div.iphone div.data h2 {float:left; font:bold 22px Arial; color:#333333; width:600px; text-align:left; padding:0 0 0 8px;}
+div#footer div.iphone div.data p {float:left; margin:5px 0 0 0; font:normal 17px Arial; color:#666666; width:409px; text-align:left; padding:0 0 0 8px; line-height:19px;}
+div#footer div.iphone div.data a {float:left; width:164px; height:38px; text-align:center; background:url(../images/iphone_download.png) no-repeat 0 0; margin:14px 0 0 4px;}
+div#footer div.iphone div.data a.iphone {background:url(../images/iphone_button.png) no-repeat 0 0; padding:0;}
 div#footer div.iphone div.data a.iphone:hover {background-position: 0 -38px;}
-div#footer div.iphone div.data a.android {background:url(../images/android_button.png) no-repeat 0 0;}
+div#footer div.iphone div.data a.android {background:url(../images/android_button.png) no-repeat 0 0; padding:0;}
 div#footer div.iphone div.data a.android:hover {background-position: 0 -38px;}
 div#footer p {float:left; width:755px; text-align:center; margin:50px 0 0 0; padding:0; font:normal 13px Arial; color:#999999; padding:0 0 50px 0;}
 div#footer p a {text-decoration:none; color:#999999;}
