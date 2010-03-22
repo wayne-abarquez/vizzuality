@@ -27,6 +27,12 @@ function shortenText($text) {
 		<meta name="keywords" content="bache, carretera, arreglar, ayuntamiento, socabón">	
 		<meta name="description" content="OtroBache.com">	
 		<meta name="author" content="otrobache.com">
+		
+		<?php if(isset($_REQUEST['address'])) {?>
+		<meta name="title" content="Nuevo bache en <?php echo($_REQUEST['address']) ?>" />
+        <meta name="description" content="¿No estas harto de los baches en tu ciudad? Mira este en <?php echo($_REQUEST['address']) ?> y reporta el tuyo." />
+        <link rel="image_src" href="http://maps.google.com/maps/api/staticmap?size=130x110&sensor=false&markers=size:mid|color:red|<?php echo(urlencode($_REQUEST['address'])) ?>" />
+        <?php } ?>
 	
 		<title>Otrobache.com - Reporta el tuyo!</title>
 	
