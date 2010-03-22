@@ -107,6 +107,8 @@ var loadingNumBaches = Titanium.UI.createActivityIndicator({
 	width:10,
 	style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
 });
+w.add(loadingNumBaches);
+loadingNumBaches.show();
 
 var sendingBache = Titanium.UI.createActivityIndicator({
 	top:350,
@@ -207,7 +209,7 @@ function testInternetConnection() {
 testInternetConnection();
 xhr.onload = function()
 {
-    loadingNumBaches.hide();
+    //loadingNumBaches.hide();
     home.add(statusLabel);
     
     //var resp =  eval('('+this.responseText+')');

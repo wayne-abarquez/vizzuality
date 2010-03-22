@@ -1,5 +1,6 @@
 <?php
 require_once("fusiontableslib.php");
+require_once("Twitter.class.php");
 require_once("config.php");
 
 class OtroBache {
@@ -52,6 +53,16 @@ class OtroBache {
         //recache calling the services again
         $foo = $this->getNumBaches();
         $foo = $this->getLastBaches();
+        
+        //Tweet!!!
+		$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
+		$tweetMessage="Otro bache en $address Mas en otrobache.com";
+        $success = $tweet->update($tweetMessage);
+		if (!$success) {
+			error_log("TWITTER PROBLEM: ".$tweet->error);
+		}		
+		
+        
                 
         return $address;
 
