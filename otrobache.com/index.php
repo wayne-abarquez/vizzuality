@@ -109,7 +109,14 @@ function shortenText($text) {
 				    <?php
 				    $count=1;
 				    foreach($lastbaches as $bache) {
-				        $addr=explode("|",$bache['address']);
+				        $addr=explode("|",$bache['addressline']);
+				        $calle=$addr[0];
+				        if(count($addr)>1) {
+				            $num="cerca del ".$addr[1];
+				        } else {
+				            $num="";
+				        }
+				        
 				        if($count%3 ==1) {
 				            $cl='class="first"';
 				        }
@@ -123,9 +130,9 @@ function shortenText($text) {
 					<li <?php echo($cl)?> id="item<?php echo($count)?>">
 						<div>
 							<p class="ago">reportado <strong id="num<?php echo($count)?>"><?php echo($bache['count()'])?></strong> veces</p>
-							<p class="location"><?php echo(shortenText($addr[0]))?></p>
-							<p class="number">cerca del <?php echo(shortenText($addr[1]))?></p>
-							<p class="city"><span><?php echo($addr[2])?></span></p>
+							<p class="location"><?php echo(shortenText($calle))?></p>
+							<p class="number"><?php echo(shortenText($num))?></p>
+							<p class="city"><span><?php echo($bache['zip'])?> <?php echo($bache['city'])?></span></p>
 						</div>
 						<a id="rep<?php echo($count)?>" href="javascript: void getConfirmation(<?php echo($bache['lat'])?>,<?php echo($bache['lon'])?>,<?php echo($count)?>)" onclick="pageTracker._trackEvent('Confirmar', 'Click');"></a>
 					</li>

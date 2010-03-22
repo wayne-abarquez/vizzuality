@@ -161,7 +161,7 @@ function initialize() {
 
   
   function confirmBache(lat,lon,id) {
-	  $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web/1/1/null", context: document.body, success: function(){
+	  $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web", context: document.body, success: function(){
 	    $("#num"+id).text(parseInt($("#num"+id).text())+1);
 			$("div#container div.baches ul li#item"+ id + " p.loading").hide();
 			$("div#container div.baches ul li#item"+ id).append('<p class="done">Ya reportado</p>');
@@ -169,7 +169,7 @@ function initialize() {
   }
 
   function createNewBache(lat,lon) {
-      $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web/1/1/null", context: document.body, success: function(){
+      $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web", context: document.body, success: function(){
 				map2.clearOverlays();
 				marker = null;
 				busy = false;
