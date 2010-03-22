@@ -19,22 +19,42 @@ $lastbaches = $serv->getLastBaches();
 	
 		<link rel="shortcut icon" href="/images/favicon.ico">
 	  <link rel="stylesheet" href="/stylesheets/layout.css" type="text/css">
+	
+		<!-- IE 6 "fixes" -->
+		<!--[if lt IE 7]>
+		<link type='text/css' href='css/layout_ie.css' rel='stylesheet' media='screen' />
+		<![endif]-->	
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps?gwt=1&amp;file=api&amp;sensor=false&amp;v=2.x&amp;key=ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRw3KWZ-x9A2HylNheByWtToULKzxSlnf4JpCGuPalF_xWQj_zXFJuCfw"></script>
     <script type="text/javascript" src="/javascript/jquery.scrollTo.js"></script>
+		<script type="text/javascript" src="/javascript/jquery.simplemodal.js"></script>
 		<script type="text/javascript" src="/javascript/init.js"></script>	
 	</head>
 
 	<body onload="initialize()" onunload="GUnload()">
+		
+		<div id="download_modal">
+			<h4>Estamos en fase beta</h4>
+			<p>Estamos probando nuestra aplicación iphone. Hasta que podamos lanzarla, sólo <br>
+			podremos distribuir 100 copias para 100 usuarios únicos.</p>
+			<p class="distribute">Pidenos tu copia haciendo <a href="#">click aquí</a>.</p>
+			<p class="thanks">Gracias!</p>
+		</div>
+		
+		
+		
 		<div id="header">
-			<p><a href="http://www.elpais.com/articulo/madrid/capital/bache/elpepiespmad/20100227elpmad_1/Tes" target="_blank">Un artículo de El País</a> nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncia al día, sobre los socabones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay</p>
+			<div>
+				<p><a href="http://www.elpais.com/articulo/madrid/capital/bache/elpepiespmad/20100227elpmad_1/Tes" target="_blank">Un artículo de El País</a> nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncias al día, sobre los socabones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay</p>
+				<img src="../images/header_arrow.png" class="header_arrow" />
+			</div>
 		</div>
 		
 		<div id="content">
 			<div id="map_canvas"></div>
 			<img class="otrobache" src="../images/otrobache.png" />
-			<p><span>más de <?php echo($numBaches)?> baches reportados, <a href="#" id="report_bache_map">reporta otro</a></span></p>
+			<p><span><?php echo($numBaches)?> baches reportados, <a href="#" id="report_bache_map">reporta otro</a></span></p>
 		</div>
 		
 		<div id="container">
@@ -47,8 +67,9 @@ $lastbaches = $serv->getLastBaches();
 				<a id="minus"></a>
 				<span class="add">
 					<form action="#" onsubmit="showAddress(this.address.value); return false">
-					<input type="text" value="calle, número, localidad,..." name="address"/>
-					<input type="submit" value="" />
+						<input type="text" value="calle, número, localidad,..." name="address"/>
+						<input type="submit" value="" />
+					</form>
 				</span>
 				<h2>Introduce la dirección en texto ó situa el bache de manera manual en el mapa</h2>
 				<div id="second_map"></div>
@@ -101,14 +122,15 @@ $lastbaches = $serv->getLastBaches();
 		<div id="footer">
 			<div class="iphone">
 					<div class="data">
-					<h2>¿Has visto nuestra aplicación iPhone?</h2>
-					<p>Descarga nuestra aplicación gratuita en tu iPhone para
-						reportar los baches de madrid a medida que los vas
-						descubriendo.</p>
-					<a href="#"></a>
+					<h2>¿Has visto nuestras aplicaciones para móviles?</h2>
+					<p>Estamos probando nuestras aplicaciones para móviles.
+					Si eres usuario de iphone/android descarga aquí 
+					el reporta baches.</p>
+					<a href="#" class="android"></a>
+					<a href="javascript: void $('#download_modal').modal()" class="iphone"></a>
 				</div>
 			</div>
-			<p><u>otrobache.com</u> es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos</p>
+			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos</p>
 		</div>
         <script type="text/javascript">
           var uservoiceOptions = {
@@ -132,4 +154,16 @@ $lastbaches = $serv->getLastBaches();
         </script>
 		
 	</body>
+	
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA-15393779-1");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
+	
+
 </html>

@@ -12,10 +12,27 @@ div#outer_layout{float:left; width:100%;}
 div#layout{margin:0 auto; width:699px;}
 
 
+/*MODAL*/
+#download_modal {display:none;}
+#download_modal h4 {font:bold 21px Arial; color:#333333;}
+#download_modal p {font:normal 15px Arial; color:#333333; padding:22px 0 0 0;}
+#download_modal p.distribute {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
+#download_modal p.distribute a {text-decoration:none; color:#FF9900; font-weight:bold;}
+#download_modal p.distribute a:hover {border-bottom:1px solid #FF9900;}
+#download_modal p.thanks {font:normal 15px Arial; color:#333333; padding:10px 0 0 0;}
+
+#simplemodal-overlay {background-color:#fff;}
+
+#simplemodal-container {height:151px; width:574px; background:url(../images/modal_bkg.png) no-repeat 0 0; border:none; padding:30px; color:#666666;}
+#simplemodal-container #basic-modal-content {padding:0;}
+
+
 div#header {width:100%; height:118px; background:#333333; color:#FFFFFF;}
-div#header p {margin:0 auto; padding:35px 0 0 0; width:699px; font:normal 15px Arial; color:#cccccc; line-height:18px;}
-div#header p a {text-decoration:none; color:#FFFFFF; border-bottom:1px solid #cccccc;}
-div#header p a:hover {border-bottom:1px dotted #ffffff;}
+div#header div {position:relative; margin:0 auto; width:699px; padding:0; height:118px;}
+div#header div p {position:relative; margin:0 auto; padding:35px 0 0 0; width:699px; font:normal 15px Arial; color:#cccccc; line-height:18px;}
+div#header div p a {text-decoration:none; color:#FFFFFF; border-bottom:1px solid #cccccc;}
+div#header div p a:hover {border-bottom:1px dotted #ffffff;}
+div#header div img.header_arrow {position:absolute; left:-14px; bottom:0; width:28px; height:14px;}
 
 div#content {margin:50px auto 0; width:699px; position:relative;}
 div#content div#map_canvas {position:relative; float:left; width:699px; border:1px solid #cccccc; border-right:none; border-left:none; padding:0; height:372px; margin:0;}
@@ -32,7 +49,7 @@ div#container div.title a {float:right; font:bold 13px Arial; color:#FF9900; pad
 div#container div.title a:hover {color:#FF6633; background-position: 0 -24px;}
 div#container div.report_map {position:relative; float:left; margin:0; padding:0 18px; background:white; width:663px; border-bottom:none; overflow:hidden;}
 div#container div.report_map h2 {float:left; width:100%; font:normal 16px Arial; color:#666666; text-align:center; padding:18px 0;}
-div#container div.report_map div#second_map {position:relative; z-index:1; float:left; width:661px; height:248px; border:1px solid #cccccc; margin:0; padding:0;}
+div#container div.report_map div#second_map { z-index:1; float:left; width:661px; height:248px; border:1px solid #cccccc; margin:0; padding:0;}
 div#container div.report_map a#plus {position:absolute; width:30px; height:30px; padding:0; margin:0; top:73px; left:34px; z-index:100; background:url(../images/zoom_plus.png) no-repeat 0 0;}
 div#container div.report_map a#plus:hover { background-position: 0 -30px; cursor:pointer;}
 div#container div.report_map a#minus {position:absolute; width:30px; height:30px; padding:0; margin:0; top:108px; left:34px; z-index:100; background:url(../images/zoom_minus.png) no-repeat 0 0;}
@@ -69,18 +86,16 @@ div#container div.baches ul li div p.city span {float:left; background:url(../im
 div#container div.baches ul li a {float:right; width:74px; height:22px; margin:0; padding:0; background:url(../images/confirm.png) no-repeat 0 0;}
 div#container div.baches ul li a:hover {background-position: 0 -22px; cursor:pointer;}
 
-
-
-
-
-
 div#footer {margin:0 auto; width:755px;}
 div#footer div.iphone {float:left; margin:50px 0 0 0; padding:23px 20px; width:715px; background:url(../images/footer.png) no-repeat 0 0; height:134px;}
 div#footer div.iphone div.data {float:left; padding:0; margin:0; width:414px;}
-div#footer div.iphone div.data h2 {float:left; font:bold 22px Arial; color:#333333; width:409px; text-align:left; padding:0 0 0 5px;}
+div#footer div.iphone div.data h2 {float:left; font:bold 22px Arial; color:#333333; width:600px; text-align:left; padding:0 0 0 5px;}
 div#footer div.iphone div.data p {float:left; margin:5px 0 0 0; font:normal 17px Arial; color:#666666; width:409px; text-align:left; padding:0 0 0 5px;}
-div#footer div.iphone div.data a {float:left; width:132px; height:38px; text-align:center; background:url(../images/iphone_download.png) no-repeat 0 0; margin:7px 0 0 4px;}
-div#footer div.iphone div.data a:hover {background-position: 0 -38px;}
+div#footer div.iphone div.data a {float:left; width:164px; height:38px; text-align:center; background:url(../images/iphone_download.png) no-repeat 0 0; margin:7px 0 0 4px;}
+div#footer div.iphone div.data a.iphone {background:url(../images/iphone_button.png) no-repeat 0 0;}
+div#footer div.iphone div.data a.iphone:hover {background-position: 0 -38px;}
+div#footer div.iphone div.data a.android {background:url(../images/android_button.png) no-repeat 0 0;}
+div#footer div.iphone div.data a.android:hover {background-position: 0 -38px;}
 div#footer p {float:left; width:755px; text-align:center; margin:50px 0 0 0; padding:0; font:normal 13px Arial; color:#999999; padding:0 0 50px 0;}
-div#footer p a {text-decoration:none; font-weight:bold; color:#6fa200;}
+div#footer p a {text-decoration:none; color:#999999;}
 div#footer p a:hover {text-decoration:underline;}
