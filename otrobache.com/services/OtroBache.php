@@ -111,7 +111,7 @@ class OtroBache {
     }
     
     public function getLastBaches() {
-        if(!file_exists( 'cache/getLastBaches.txt' ) || 1==1) {
+        if(!file_exists( 'cache/getLastBaches.txt' )) {
             $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
             $ft = new FusionTable($this->fusionTablesToken); 
             $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table GROUP BY lat,lon,address,address,addressline,zip,city ORDER BY reported_date DESC LIMIT 15";
