@@ -79,7 +79,7 @@ function shortenText($text) {
 		
 		<div id="header">
 			<div>
-				<p><a href="http://www.elpais.com/articulo/madrid/capital/bache/elpepiespmad/20100227elpmad_1/Tes" target="_blank">Un artículo de El País</a> nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncias al día, sobre los socabones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay</p>
+				<p><a href="http://www.elpais.com/articulo/madrid/capital/bache/elpepiespmad/20100227elpmad_1/Tes" target="_blank">Un artículo de El País</a> nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncias al día, sobre los socabones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay... <a href="/faq.php">leer más sobre el proyecto</a></p>
 				<img src="../images/header_arrow.png" class="header_arrow" />
 			</div>
 		</div>
@@ -173,7 +173,7 @@ function shortenText($text) {
 					<a href="javascript: void $('#iphone_modal').modal()" class="iphone"></a>
 				</div>
 			</div>
-			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | </p>
+			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | <a href="/faq.php" class="faq">FAQ</a> |</p>
 			<div class="share">	
 				<a class="twitter" href="http://twitter.com/home?status=http://otrobache.com" target="_blank"></a>
 				<a class="facebook" href="http://www.facebook.com/share.php?u=http://otrobache.com" target="_blank"></a>
