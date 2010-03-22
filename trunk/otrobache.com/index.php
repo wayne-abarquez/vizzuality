@@ -110,5 +110,26 @@ $lastbaches = $serv->getLastBaches();
 			</div>
 			<p><u>otrobache.com</u> es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos</p>
 		</div>
+        <script type="text/javascript">
+          var uservoiceOptions = {
+            key: 'otrobache.com',
+            host: 'otrobache.uservoice.com', 
+            forum: '47195',
+            alignment: 'left',
+            background_color:'#333333', 
+            text_color: 'white',
+            hover_color: '#ff9900',
+            lang: 'en',
+            showTab: true
+          };
+          function _loadUserVoice() {
+            var s = document.createElement('script');
+            s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "uservoice.com/javascripts/widgets/tab.js";
+            document.getElementsByTagName('head')[0].appendChild(s);
+          }
+          _loadSuper = window.onload;
+          window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+        </script>
+		
 	</body>
 </html>
