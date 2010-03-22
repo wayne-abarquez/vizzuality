@@ -11,10 +11,13 @@ class OtroBache {
     
     //API
     public function reportBache($lat,$lon,$reportedBy,$scale,$pedestrian,$address) {
+        $latf=round($lat,4);
+        $lonf=round($lon,4);
+        
         $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
                
         // format this string with the appropriate latitude longitude
-        $url = 'http://maps.google.com/maps/geo?q='.$lat.','.$lon.'&output=json&sensor=true_or_false&key=' . $this->api_key;
+        $url = 'http://maps.google.com/maps/geo?q='.$latf.','.$lonf.'&output=json&sensor=true_or_false&key=' . $this->api_key;
         // make the HTTP request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -31,7 +34,7 @@ class OtroBache {
         $reportedDate=date("m/d/y h:i:s A");
         
         $ft = new FusionTable($this->fusionTablesToken); 
-        $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,scale,pedestrian,address) VALUES ($lat,$lon,'$reportedDate','$reportedBy',$scale,$pedestrian,'$address')";
+        $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,scale,pedestrian,address) VALUES ($latf,$lonf,'$reportedDate','$reportedBy',$scale,$pedestrian,'$address')";
         //return $sql;
         $newId= $ft->query($sql);
         
