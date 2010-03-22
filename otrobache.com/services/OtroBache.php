@@ -47,6 +47,11 @@ class OtroBache {
             unlink('../cache/getNumBaches.txt');
             unlink('../cache/getLastBaches.txt');        
         }catch (Exception $e) {}
+        
+        
+        //recache calling the services again
+        $foo = $this->getNumBaches();
+        $foo = $this->getLastBaches();
                 
         return $address;
 

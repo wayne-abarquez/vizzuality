@@ -84,7 +84,7 @@ var b = Ti.UI.createButton({title:'Close',bottom:15,width:200,height:40});
 b.addEventListener('click',function()
 {
 	w.close({transition:Ti.UI.iPhone.AnimationStyle.CURL_UP});
-})
+});
 w.add(b);
 
 //
@@ -143,8 +143,8 @@ var infoButton = Titanium.UI.createButton({
 	title:'i',
 	top:10,
 	right:10,
-	height:19,
-	width:19
+	height:25,
+	width:25
 });
 infoButton.addEventListener('click', function()
 {
@@ -182,10 +182,29 @@ var statusLabel = Titanium.UI.createLabel({
     textAlign:'center'
 });
 
+var startNumRequests=2;
+var xhr = Titanium.Network.createHTTPClient();
+function testInternetConnection() {
+    if(!Titanium.Network.online) {
+        var alertNoConnection = Titanium.UI.createAlertDialog({
+            title:'Sin conexión',
+            message: 'Necesitas tener conexión a Internet para usar esta aplicación',
+            buttonNames: ['Reintentar']
+        });
+        alertNoConnection.addEventListener('click',function(e){
+            testInternetConnection();
+        });
+        alertNoConnection.show();
+    } else {
+        xhr.open("GET","http://otrobache.com/amfphp/json.php/OtroBache.getNumBaches");
+        xhr.send();        
+    }
+}
+
 
 
 //retrieve the number of baches
-var xhr = Titanium.Network.createHTTPClient();
+testInternetConnection();
 xhr.onload = function()
 {
     loadingNumBaches.hide();
@@ -202,17 +221,19 @@ xhr.onload = function()
     captureButton.text="+";
     home.add(statusLabel);
     captureButton.addEventListener('click', addCaptureEvent);
-    
-    
 };
 xhr.onerror = function()
 {
-    loadingNumBaches.hide();
-	numBachesLabel.text="???";
-	home.add(numBachesLabel);
+    if(startNumRequests>0) {
+        xhr.open("GET","http://otrobache.com/amfphp/json.php/OtroBache.getNumBaches");
+        xhr.send();    
+        startNumRequests--;    
+    } else {
+        testInternetConnection();        
+    }
+
 };
-xhr.open("GET","http://otrobache.com/amfphp/json.php/OtroBache.getNumBaches");
-xhr.send();
+
 
 //open the app
 home.open();
@@ -220,38 +241,62 @@ loadingNumBaches.show();
 
 
 
+var req = Titanium.Network.createHTTPClient();
+req.onload = function()
+{
+    captureButton.text="+";
+    sendingBache.hide();        
+    statusLabel.text="gracias! Si quieres puedes enviar mas.";
+    numBachesLabel.text = (parseInt(numBachesLabel.text) + 1);
+    captureButton.addEventListener('click', addCaptureEvent);
+    //captureButton.enabled=true;
+};
+req.onerror = function()
+{
+    statusLabel.text="disculpa,ha ocurrido un error. Vuelve a intentarlo";
+    statusLabel.color = "#9D2C2A";
+    captureButton.text="+";
+    sendingBache.hide();        
+    captureButton.addEventListener('click', addCaptureEvent);        
+    
+};
 
 
 function addCaptureEvent() {
     statusLabel.text="enviando bache...";
-    var req = Titanium.Network.createHTTPClient();
-    req.onload = function()
-    {
-        captureButton.text="+";
-        sendingBache.hide();        
-        statusLabel.text="gracias! Si quieres puedes enviar mas.";
-        numBachesLabel.text = (parseInt(numBachesLabel.text) + 1);
-        captureButton.addEventListener('click', addCaptureEvent);
-        //captureButton.enabled=true;
-    };
-    req.onerror = function()
-    {
-        statusLabel.text="disculpa,ha ocurrido un error.";
-        captureButton.text="+";
-        sendingBache.hide();        
-        captureButton.addEventListener('click', addCaptureEvent);        
-        
-    };    
-    var url="http://otrobache.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
-    req.open("GET",url); 
-    captureButton.text="";
+    
     //captureButton.enabled=false;
+    captureButton.text=""; 
     sendingBache.show();
-    req.send();
     captureButton.removeEventListener('click', addCaptureEvent);
+    confirmBache();
 }
 
-
+function confirmBache() {
+    Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt) {
+        
+        var addr = evt.places[0].address;
+        var confirmAlert = Titanium.UI.createAlertDialog({
+            title:'Vas a enviar un bache para:',
+            message: addr,
+            buttonNames: ['OK','Cancelar']
+        });        
+    
+        confirmAlert.addEventListener('click',function(e){
+            if(e.index==0) {
+                var url="http://otrobache.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
+                req.open("GET",url);      
+                req.send();                 
+            } else {
+                Titanium.UI.createAlertDialog({title:'OtroBache.com', message:'Pronto podrás introducir tu propia dirección manualmente, por el momento espera a que el GPS te de una dirección mas exacta.'}).show();
+                statusLabel.text="Cancelado, vuelve a intentarlo.";
+                statusLabel.color = "#9D2C2A";
+                captureButton.addEventListener('click', addCaptureEvent);
+            }
+        });
+        confirmAlert.show();
+    });
+}
 
 
 
@@ -261,7 +306,7 @@ function addCaptureEvent() {
 //init the Geocoding...
 if (Titanium.Geolocation.locationServicesEnabled==false)
 {
-	Titanium.UI.createAlertDialog({title:'OtroBache.com', message:'Debes tener el GPS activado.'}).show();
+	Titanium.UI.createAlertDialog({title:'OtroBache.com', message:'Debes tener los servicios de Geolocalización activados.'}).show();
 }
 else
 {
