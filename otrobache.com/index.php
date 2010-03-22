@@ -93,7 +93,7 @@ function shortenText($text) {
 					<h2>Introduce la dirección en texto ó situa el bache de manera manual en el mapa</h2>
 					<div id="second_map"></div>
 					<p>Si tu bache ya ha sido reportardo, no te preocupes, actualizaremos su estado</p>
-					<a class="report_button" id="report_bache_a"></a>
+					<a class="report_button" id="report_bache_a" onclick="pageTracker._trackEvent('Crear', 'Click');"></a>
 				</div>
 			</div>
 			
@@ -120,7 +120,7 @@ function shortenText($text) {
 							<p class="number">cerca del <?php echo(shortenText($addr[1]))?></p>
 							<p class="city"><span><?php echo($addr[2])?></span></p>
 						</div>
-						<a id="rep<?php echo($count)?>" href="javascript: void getConfirmation(<?php echo($bache['lat'])?>,<?php echo($bache['lon'])?>,<?php echo($count)?>)"></a>
+						<a id="rep<?php echo($count)?>" href="javascript: void getConfirmation(<?php echo($bache['lat'])?>,<?php echo($bache['lon'])?>,<?php echo($count)?>)" onclick="pageTracker._trackEvent('Confirmar', 'Click');"></a>
 					</li>
 					<?php
 				        $count++;
