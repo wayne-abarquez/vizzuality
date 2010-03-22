@@ -35,7 +35,7 @@ package {
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
 	import flash.utils.Timer;
-
+	
 	[SWF(backgroundColor=0xEEEEEE, widthPercent=100, heightPercent=100)]
 	public class SearchMap extends Sprite
 	{
@@ -72,7 +72,12 @@ package {
 		private var dataLoaded: Boolean = false;
 		private var dataAnalyzed: Boolean = false;
 		private var vizzSprite: Sprite = new Sprite();
-									
+		
+		// Zoom Buttons
+		private var zoomIn:Sprite = new ZoomInButton();			
+		private var zoomIn_over: Sprite = new ZoomInButton_over();							
+		private var zoomOut:Sprite = new ZoomOutButton();			
+		private var zoomOut_over: Sprite = new ZoomOutButton_over();
 														
 		public function SearchMap()
 		{ 
@@ -97,16 +102,38 @@ package {
 		private var timerResizing:Timer;
 		private var isResizing:Boolean=false;
  		private function stageResizeHandler(ev:Event):void {
-			if(map!=null && !isResizing) {
+			if(map!=null) {
+				
 				map.setSize(new Point(stage.stageWidth, stage.stageHeight));
-				//isResizing=true;
-				//timerResizing.addEventListener(TimerEvent.TIMER,function(e:Event):void {
-					//isResizing=false;	
-					//timerResizing.stop();			
-				//});
-				//timerResizing.start();
-			}
+				
+				if(!isResizing) {
+					// Remove zoom buttons
+					zoomIn.visible = false;
+					zoomIn_over.visible = false;							
+					zoomOut.visible = false;			
+					zoomOut_over.visible = false;
+					
+					isResizing=true;
+					//timerResizing.addEventListener(TimerEvent.TIMER,function(e:Event):void {
+						//isResizing=false;	
+						//timerResizing.stop();			
+					//});
+					//timerResizing.start();
+				}
+				else {
+					isResizing=false;
+					
+					// zoom buttons visible
+				 	zoomIn.visible = true;
+					zoomIn_over.visible = true;							
+					zoomOut.visible = true;			
+					zoomOut_over.visible = true; 
+				}
+				
+			} 
+			
 			vizzSprite.y = stage.stageHeight - 46;
+			
 		}	
 		
 		private function initMap():void {
@@ -294,8 +321,7 @@ package {
 		}
 		
 		private function addZoomButtons():void {
-			var zoomIn:Sprite = new ZoomInButton();			
-			var zoomIn_over: Sprite = new ZoomInButton_over();
+			
             addChild(zoomIn);
             zoomIn.x = 10;
             zoomIn.y = 10;
@@ -316,8 +342,7 @@ package {
 				map.setZoom(map.getZoom()+1);
 			}); 
 					
-			var zoomOut:Sprite = new ZoomOutButton();			
-			var zoomOut_over: Sprite = new ZoomOutButton_over();
+			
             addChild(zoomOut);
             zoomOut.x = 10;
             zoomOut.y = 45;
