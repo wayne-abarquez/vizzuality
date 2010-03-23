@@ -139,13 +139,16 @@ function initialize(swLat,swLon,neLat,neLon,localityName) {
 	  var center = bounds.getCenter();
 	  var zoom = map.getBoundsZoomLevel(bounds);
 	  
+	  var d = new Date();
+      d.setDate(d.getDate()-60);
+      var monthsago= escape(d.getMonth()+1+"/"+d.getDate()+"/"+d.getFullYear());
 	  
       map.setCenter(center,zoom);
 			map2.setCenter(center,zoom);
 			
       var l = new GLayer("ft:136993");
       l.setParameter("h", "true");
-      l.setParameter("s", "select+address+from+136993");
+      l.setParameter("s", "select+reported_date,reported_by,city,zip,addressline+from+136993+where+reported_date%2520%253E%3D%2520%27"+monthsago+"%27");
 
       map.addOverlay(l);
       //map.setUIToDefault();
