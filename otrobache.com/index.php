@@ -19,6 +19,7 @@ if(isset($_REQUEST['locality'])) {
     //$numBachesLocality = $serv->getNumBaches(strtolower($locality));
     $lastbaches = $serv->getLastBaches(strtolower($localityName));
     $cities = array();
+    $url="http://otrobache.com/en/".$locality;
 } else {
     $swLat=35.639441068973916;
     $swLon=-18.9404296875;
@@ -29,6 +30,7 @@ if(isset($_REQUEST['locality'])) {
     $numBaches = $serv->getNumBaches();
     $lastbaches = $serv->getLastBaches();    
     $cities = $serv->getCities();
+    $url="http://otrobache.com/";
 }
 
 function shortenText($text) { 
@@ -214,10 +216,10 @@ function shortenText($text) {
 			   
 			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | <a href="/sobre" class="faq">FAQ</a> |</p>
 			<div class="share">	
-				<a class="twitter" href="http://twitter.com/home?status=http://otrobache.com" target="_blank"></a>
-				<a class="facebook" href="http://www.facebook.com/share.php?u=http://otrobache.com" target="_blank"></a>
-				<a class="del" href="http://del.icio.us/post?title=&url=http://otrobache.com" target="_blank"></a>					
-				<a class="digg" href="http://digg.com/submit?phase=2&url=http://otrobache.com" target="_blank"></a>
+				<a class="twitter" href="http://twitter.com/home?status=<?php echo($url) ?>" target="_blank"></a>
+				<a class="facebook" href="http://www.facebook.com/share.php?u=<?php echo($url) ?>" target="_blank"></a>
+				<a class="del" href="http://del.icio.us/post?title=&url=<?php echo($url) ?>" target="_blank"></a>					
+				<a class="digg" href="http://digg.com/submit?phase=2&url=<?php echo($url) ?>" target="_blank"></a>
 			</div>
 
 
