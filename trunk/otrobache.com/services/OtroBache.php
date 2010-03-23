@@ -63,6 +63,7 @@ class OtroBache {
         $res=array();
         $res['bbox'] = $jsondata['Placemark'][0]['ExtendedData']['LatLonBox'];
         $res['center'] = $jsondata['Placemark'][0]['Point']['coordinates'];
+        $res['name'] = $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName'];
         return $res;
     }
     
