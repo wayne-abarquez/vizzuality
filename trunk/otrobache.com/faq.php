@@ -64,7 +64,7 @@
 					</div>
 					<div class="answer">
 						<p>Constituir una fuente de datos transparente y actualizada sobre el estado actual de la vía pública y ser el germen del posible <a href="http://open311.org/">open311.org</a> español.</p>
-						<p>Con suerte además conseguiremos que las administraciones locales sean un poco más trasparente y permitan que les ayudemos en la gestión de la ciudad y podamos ver que tal lo hacen. Ya de paso lo mismo sonseguimos políticos en España con ganas de hacer cosas innovadoras, <a href="http://www.youtube.com/watch?v=S-QQ7kCjIGE&feature=player_embedded">como ya pasa en otros sitios</a>.</p>
+						<p>Con suerte además conseguiremos que las administraciones locales sean un poco más trasparentes y permitan que les ayudemos en la gestión de la ciudad y podamos ver que tal lo hacen. Ya de paso lo mismo sonseguimos políticos en España con ganas de hacer cosas innovadoras, <a href="http://www.youtube.com/watch?v=S-QQ7kCjIGE&feature=player_embedded">como ya pasa en otros sitios</a>.</p>
 					</div>
 			</div>
 			
