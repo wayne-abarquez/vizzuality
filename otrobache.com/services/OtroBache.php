@@ -7,16 +7,70 @@ class OtroBache {
     function __construct() {        
         $this->table="136993";
         $this->api_key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRw3KWZ-x9A2HylNheByWtToULKzxSlnf4JpCGuPalF_xWQj_zXFJuCfw";
+        $this->checkToken();
     }
     
+    
+    public function getLocalityCoords($locality) {
+        if(file_exists( 'cache/localities.txt' )) {
+            $filename = "cache/localities.txt";
+            $fp = fopen($filename, "r");
+            $res = fread($fp, filesize($filename));
+            $res = unserialize($res);    
+            if(isset($res[strtolower($locality)])) {
+                return $res[strtolower($locality)];
+            }
+        } else {
+            $res=array();
+        }
+        $geo = $this->georeferenceLocality($locality);
+        $res[strtolower($locality)] = $geo;          
+        $fp = fopen('cache/localities.txt', 'w');
+        fwrite($fp, serialize($res));
+        fclose($fp);  
+        return $geo;
+        
+    }
+    
+    public function checkToken($forceRecreate=false) {
+        if(file_exists( 'cache/token.txt' ) && !$forceRecreate) {
+            $filename = "cache/token.txt";
+            $fp = fopen($filename, "r");
+            $res = fread($fp, filesize($filename));
+            $this->fusionTablesToken = unserialize($res);
+            return ;
+        } else {
+            $token = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables");        
+            $fp = fopen('cache/token.txt', 'w');
+            fwrite($fp, serialize($token));
+            fclose($fp);    
+            $this->fusionTablesToken = $token;
+        }
+    }
+    
+    public function georeferenceLocality($locality) {
+        $url = 'http://maps.google.com/maps/geo?q='.urlencode($locality).'&output=json&sensor=true_or_false&key=' . $this->api_key;
+        // make the HTTP request
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);        
+        ob_start();
+        curl_exec ($ch);
+        curl_close ($ch);
+        $data = ob_get_contents();
+        ob_end_clean();      
+        $jsondata = json_decode($data,true);
+        $res=array();
+        $res['bbox'] = $jsondata['Placemark'][0]['ExtendedData']['LatLonBox'];
+        $res['center'] = $jsondata['Placemark'][0]['Point']['coordinates'];
+        return $res;
+    }
     
     //API
     public function reportBache($lat,$lon,$reportedBy) {
         $latf=round($lat,5);
         $lonf=round($lon,5);
-        
-        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
-               
+                       
         // format this string with the appropriate latitude longitude
         $url = 'http://maps.google.com/maps/geo?q='.$latf.','.$lonf.'&output=json&sensor=true_or_false&key=' . $this->api_key;
         // make the HTTP request
@@ -33,7 +87,7 @@ class OtroBache {
         $jsondata = json_decode($data,true);
         $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
         
-        $city= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName'];
+        $city=strtolower( $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName']);
         
         $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
         
@@ -58,21 +112,10 @@ class OtroBache {
         $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,address,city,zip,addressline) VALUES ($latf,$lonf,'$reportedDate','$reportedBy','$address','$city','$zip','$addressline')";
         //return $sql;
         $newId= $ft->query($sql);
-        
-        //remove cache
-        try {
-            unlink('cache/getNumBaches.txt');
-            unlink('cache/getLastBaches.txt');      
-        }catch (Exception $e) {}
-        try {
-            unlink('../cache/getNumBaches.txt');
-            unlink('../cache/getLastBaches.txt');        
-        }catch (Exception $e) {}
-        
-        
-        //recache calling the services again
-        //$foo = $this->getNumBaches();
-        //$foo = $this->getLastBaches();
+        if($res=="User is not authorized to access the table"){
+            $this->checkToken(true);
+            return $this->getNumBaches($lat,$lon,$reportedBy);
+        }        
         
         //Tweet!!!
 		$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
@@ -82,53 +125,60 @@ class OtroBache {
 		if (!$success) {
 			error_log("TWITTER PROBLEM: ".$tweet->error);
 		}		
-		
-        
                 
         return $address;
 
     }
     
-    public function getNumBaches() {        
-        //cache
-        if(!file_exists( 'cache/getNumBaches.txt' )) {
-            $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
-            $ft = new FusionTable($this->fusionTablesToken); 
-            $sql="SELECT COUNT() FROM .$this->table";
-            $res = $ft->query($sql);        
-            $resnum=number_format($res[0]['count()'],0,",",".");
-            $fp = fopen('cache/getNumBaches.txt', 'w');
-            fwrite($fp, $resnum);
-            fclose($fp);
+    public function getNumBaches($locality=null) {        
+        $ft = new FusionTable($this->fusionTablesToken); 
+        if($locality!=null && $locality!="") {
+            $sql="SELECT COUNT() FROM .$this->table WHERE city='$locality'";
         } else {
-            $filename = "cache/getNumBaches.txt";
-            $fp = fopen($filename, "r");
-            $resnum = fread($fp, filesize($filename));
-            fclose($fp);
-        }       
+            $sql="SELECT COUNT() FROM .$this->table";
+        }
         
+        $res = $ft->query($sql);        
+        if($res=="User is not authorized to access the table"){
+            $this->checkToken(true);
+            return $this->reportBache($locality);
+        }        
+        if(count($res)>0) {
+            $resnum=number_format($res[0]['count()'],0,",",".");
+        } else {
+            $resnum=0;
+        }     
+    
         return $resnum;
     }
     
-    public function getLastBaches() {
-        if(!file_exists( 'cache/getLastBaches.txt' )) {
-            $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
-            $ft = new FusionTable($this->fusionTablesToken); 
-            $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table GROUP BY lat,lon,address,address,addressline,zip,city ORDER BY reported_date DESC LIMIT 15";
-            $res = $ft->query($sql);    
-            $fp = fopen('cache/getLastBaches.txt', 'w');
-            fwrite($fp, serialize($res));
-            fclose($fp);
+    public function getLastBaches($locality=null) {
+        $ft = new FusionTable($this->fusionTablesToken); 
+        if($locality!=null && $locality!="") {
+            $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table WHERE city='$locality' GROUP BY lat,lon,address,address,addressline,zip,city  ORDER BY reported_date DESC LIMIT 15";
         } else {
-            $filename = "cache/getLastBaches.txt";
-            $fp = fopen($filename, "r");
-            $res = fread($fp, filesize($filename));
-            $res = unserialize($res);
-            fclose($fp);
-        }       
-        
+            $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table GROUP BY lat,lon,address,address,addressline,zip,city ORDER BY reported_date DESC LIMIT 15";
+        }            
+
+        $res = $ft->query($sql);
+        if($res=="User is not authorized to access the table"){
+            $this->checkToken(true);
+            return $this->getLastBaches($locality);
+        }            
         return $res;              
     }
+    
+    public function getCities() {
+        $ft = new FusionTable($this->fusionTablesToken); 
+        $sql="SELECT count(),city FROM .$this->table GROUP BY city ORDER BY count() LIMIT 50";           
+
+        $res = $ft->query($sql);
+        if($res=="User is not authorized to access the table"){
+            $this->checkToken(true);
+            return $this->getCities();
+        }            
+        return $res;              
+    }    
     
     /*
     public function deleteAllDB() {
