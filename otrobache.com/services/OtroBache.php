@@ -171,7 +171,7 @@ class OtroBache {
     
     public function getCities() {
         $ft = new FusionTable($this->fusionTablesToken); 
-        $sql="SELECT count(),city FROM .$this->table GROUP BY city ORDER BY count() LIMIT 50";           
+        $sql="SELECT count(),city FROM .$this->table GROUP BY city ORDER BY count() DESC LIMIT 50";           
 
         $res = $ft->query($sql);
         if($res=="User is not authorized to access the table"){
