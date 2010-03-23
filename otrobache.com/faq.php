@@ -89,13 +89,12 @@ $lastbaches = $serv->getLastBaches();
 		
 		<div id="footer">
 				
-			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | <a href="/" class="faq">HOME</a> |</p>
-			<div class="share">	
+			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | <a href="/" class="faq">HOME</a> |
 				<a class="twitter" href="http://twitter.com/home?status=http://otrobache.com"></a>
 				<a class="facebook" href="http://www.facebook.com/share.php?u=http://otrobache.com"></a>
 				<a class="del" href="http://del.icio.us/post?title=&url=http://otrobache.com"></a>					
 				<a class="digg" href="http://digg.com/submit?phase=2&url=http://otrobache.com"></a>
-			</div>
+			</p>
 					
 		</div>
 		<script type="text/javascript">

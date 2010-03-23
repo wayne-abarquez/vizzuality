@@ -207,21 +207,24 @@ function shortenText($text) {
 				</div>
 			</div>
 			<?php if(count($cities)>0) {?>
-			    <p>
+			    <p class="title">Otrosbaches en:</p>
+					<p class="cities">
+							<?php $cities_count = count($cities) ?>
+							<?php $cities_ext = 0 ?>
 			        <?php foreach($cities as $city) {?>
-			        <a href="/en/<?php echo($city['city'])?>"><?php echo($city['city']." (".$city['count()'].")")?></a>
-			        <?php }?>
+			        	<a href="/en/<?php echo($city['city'])?>"><?php echo($city['city']." (".$city['count()'].")")?></a>
+			 					<?php if ($cities_count-1!=$cities_ext) {?>| <?php } ?>
+			        	<?php $cities_ext++ ?>
+							<?php }?>
 			    </p> 
 			<?php }?>
 			   
-			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | <a href="/sobre" class="faq">FAQ</a> |</p>
-			<div class="share">	
+			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | <a href="/sobre" class="faq">FAQ</a> |
 				<a class="twitter" href="http://twitter.com/home?status=<?php echo($url) ?>" target="_blank"></a>
 				<a class="facebook" href="http://www.facebook.com/share.php?u=<?php echo($url) ?>" target="_blank"></a>
 				<a class="del" href="http://del.icio.us/post?title=&url=<?php echo($url) ?>" target="_blank"></a>					
 				<a class="digg" href="http://digg.com/submit?phase=2&url=<?php echo($url) ?>" target="_blank"></a>
-			</div>
-
+			</p>
 
 		</div>
 		<script type="text/javascript">
