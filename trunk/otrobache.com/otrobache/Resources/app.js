@@ -227,7 +227,7 @@ xhr.onload = function()
 xhr.onerror = function()
 {
     if(startNumRequests>0) {
-        xhr.open("GET","http://otrobache.com/amfphp/json.php/OtroBache.getNumBaches");
+        xhr.open("GET","http://otrobache.com/api/OtroBache.getNumBaches");
         xhr.send();    
         startNumRequests--;    
     } else {
@@ -286,7 +286,7 @@ function confirmBache() {
     
         confirmAlert.addEventListener('click',function(e){
             if(e.index==0) {
-                var url="http://otrobache.com/amfphp/json.php/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone/1/0/null";
+                var url="http://otrobache.com/api/OtroBache.reportBache/"+latitude+"/"+longitude+"/iphone";
                 req.open("GET",url);      
                 req.send();                 
             } else {
