@@ -33,6 +33,7 @@ if(isset($_REQUEST['locality'])) {
     $url=urlencode("http://otrobache.com/");
 }
 
+
 function shortenText($text,$num=28) { 
     if(strlen($text)>$num) {
        // Change to the number of characters you want to display 
@@ -144,7 +145,7 @@ function shortenText($text,$num=28) {
 			</div>
 			
 			<div class="baches">
-			    <?php if(count($lastbaches)>1) {?>
+			    <?php if(count($lastbaches)>0) {?>
 				<ul>
 				    <?php
 				    $count=1;
