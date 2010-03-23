@@ -121,7 +121,7 @@ class OtroBache {
         //Tweet!!!
 		$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
 		$addressf=str_replace("|",",",$address);
-		$tweetMessage="Otro bache en $addressf Mas en http://otrobache.com";
+		$tweetMessage="Otro bache en $addressf Más en http://otrobache.com";
         $success = $tweet->update($tweetMessage);
 		if (!$success) {
 			error_log("TWITTER PROBLEM: ".$tweet->error);
