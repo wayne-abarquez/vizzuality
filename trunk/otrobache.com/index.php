@@ -120,7 +120,7 @@ function shortenText($text,$num=28) {
 		
 		<div id="container">
 			<div class="title">
-			    <?php if(count($lastbaches)>1) {?>
+			    <?php if(count($lastbaches)>0) {?>
 				<h3>últimos baches reportados <?php if($locality!=null){echo("en $localityName");} ?></h3>
 				<?php } else {?>
 				<h3>No hay baches reportados <?php if($locality!=null){echo("en $localityName");} ?></h3>
