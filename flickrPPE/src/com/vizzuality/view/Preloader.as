@@ -25,6 +25,7 @@ package com.vizzuality.view
         [Embed(source="../../../assets/loadAnimation.swf")]
         private var PreloaderSymbol:Class;
         
+        
         /**
         * @private
         * @property Reference to your preloader MovieClip.
