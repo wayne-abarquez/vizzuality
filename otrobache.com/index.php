@@ -9,14 +9,15 @@ $serv = new OtroBache();
 if(isset($_REQUEST['locality'])) {
     $locality=$_REQUEST['locality'];
     $coords = $serv->getLocalityCoords($locality);
+    $localityName=$coords["name"];
     $bbox=$coords['bbox'];
     $swLat=$bbox['south'];
     $swLon=$bbox['west'];
     $neLat=$bbox['north'];
     $neLon=$bbox['east'];    
-    $numBaches = $serv->getNumBaches();
+    $numBaches = $serv->getNumBaches(strtolower($localityName));
     //$numBachesLocality = $serv->getNumBaches(strtolower($locality));
-    $lastbaches = $serv->getLastBaches(strtolower($locality));
+    $lastbaches = $serv->getLastBaches(strtolower($localityName));
     $cities = array();
 } else {
     $swLat=35.639441068973916;
@@ -56,7 +57,7 @@ function shortenText($text) {
         <link rel="image_src" href="http://maps.google.com/maps/api/staticmap?size=130x110&sensor=false&markers=size:mid|color:red|<?php echo(urlencode($_REQUEST['address'])) ?>" />
         <?php } ?>
 	
-		<title>Otrobache.com - Reporta el tuyo!</title>
+		<title>Otrobache.com - Reporta baches en <?php if($locality!=null) {echo($localityName);}else{echo("España");}?></title>
 	
 		<link rel="shortcut icon" href="/images/favicon.ico" >
 	  <link rel="stylesheet" href="/stylesheets/layout.css" type="text/css" />
@@ -116,9 +117,9 @@ function shortenText($text) {
 		<div id="container">
 			<div class="title">
 			    <?php if(count($lastbaches)>1) {?>
-				<h3>últimos baches reportados <?php if($locality!=null){echo("en $locality");} ?></h3>
+				<h3>últimos baches reportados <?php if($locality!=null){echo("en $localityName");} ?></h3>
 				<?php } else {?>
-				<h3>No hay baches reportados <?php if($locality!=null){echo("en $locality");} ?></h3>
+				<h3>No hay baches reportados <?php if($locality!=null){echo("en $localityName");} ?></h3>
 				<?php }?>    
 				<a href="#" id="open_report">reportar un bache</a>
 			</div>
