@@ -15,6 +15,9 @@ class Gateway extends BasicGateway
 		
 		$uri = __setUri();
 		$elements = explode('/json.php', $uri);
+		if(count($elements)==1) {
+		    $elements = explode('/api', $uri);
+		}
 		
 		if(strlen($elements[1]) == 0)
 		{

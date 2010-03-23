@@ -3,9 +3,31 @@
 require_once("services/OtroBache.php");
 
 $serv = new OtroBache();
-$numBaches = $serv->getNumBaches();
-$lastbaches = $serv->getLastBaches();
 
+
+
+if(isset($_REQUEST['locality'])) {
+    $locality=$_REQUEST['locality'];
+    $coords = $serv->getLocalityCoords($locality);
+    $bbox=$coords['bbox'];
+    $swLat=$bbox['south'];
+    $swLon=$bbox['west'];
+    $neLat=$bbox['north'];
+    $neLon=$bbox['east'];    
+    $numBaches = $serv->getNumBaches();
+    //$numBachesLocality = $serv->getNumBaches(strtolower($locality));
+    $lastbaches = $serv->getLastBaches(strtolower($locality));
+    $cities = array();
+} else {
+    $swLat=35.639441068973916;
+    $swLon=-18.9404296875;
+    $neLat=47.84265762816538;
+    $neLon=11.77734375;
+    $locality=null;
+    $numBaches = $serv->getNumBaches();
+    $lastbaches = $serv->getLastBaches();    
+    $cities = $serv->getCities();
+}
 
 function shortenText($text) { 
     if(strlen($text)>28) {
@@ -52,7 +74,8 @@ function shortenText($text) {
 		<script type="text/javascript" src="/javascript/init.js"></script>	
 	</head>
 
-	<body onload="initialize()" onunload="GUnload()">
+
+	<body onload="initialize(<?php echo("$swLat,$swLon,$neLat,$neLon") ?>)" onunload="GUnload()">
 		
 		<div id="iphone_modal">
 			<h4>Estamos en fase beta</h4>
@@ -79,7 +102,7 @@ function shortenText($text) {
 		
 		<div id="header">
 			<div>
-				<p><a href="http://www.elpais.com/articulo/madrid/capital/bache/elpepiespmad/20100227elpmad_1/Tes" target="_blank">Un artículo de El País</a> nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncias al día, sobre los socabones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay... <a href="/faq.php">leer más sobre el proyecto</a></p>
+				<p><a href="http://www.elpais.com/articulo/madrid/capital/bache/elpepiespmad/20100227elpmad_1/Tes" target="_blank">Un artículo de El País</a> nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncias al día, sobre los socabones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay... <a href="/sobre">leer más sobre el proyecto</a></p>
 				<img src="../images/header_arrow.png" class="header_arrow" />
 			</div>
 		</div>
@@ -92,7 +115,11 @@ function shortenText($text) {
 		
 		<div id="container">
 			<div class="title">
-				<h3>últimos baches reportados</h3>
+			    <?php if(count($lastbaches)>1) {?>
+				<h3>últimos baches reportados <?php if($locality!=null){echo("en $locality");} ?></h3>
+				<?php } else {?>
+				<h3>No hay baches reportados <?php if($locality!=null){echo("en $locality");} ?></h3>
+				<?php }?>    
 				<a href="#" id="open_report">reportar un bache</a>
 			</div>
 			<div class="report_map">
@@ -113,6 +140,7 @@ function shortenText($text) {
 			</div>
 			
 			<div class="baches">
+			    <?php if(count($lastbaches)>1) {?>
 				<ul>
 				    <?php
 				    $count=1;
@@ -150,6 +178,7 @@ function shortenText($text) {
 				    
 				    ?>
 				</ul>
+				<?php }?>    
 			</div>
 
 			
@@ -173,7 +202,15 @@ function shortenText($text) {
 					<a href="javascript: void $('#iphone_modal').modal()" class="iphone"></a>
 				</div>
 			</div>
-			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | <a href="/faq.php" class="faq">FAQ</a> |</p>
+			<?php if(count($cities)>0) {?>
+			    <p>
+			        <?php foreach($cities as $city) {?>
+			        <a href="/en/<?php echo($city['city'])?>"><?php echo($city['city']." (".$city['count()'].")")?></a>
+			        <?php }?>
+			    </p> 
+			<?php }?>
+			   
+			<p>otrobache.com es un proyecto de <a href="http://www.vizzuality.com" target="_blank">vizzuality</a>. No nos hacemos responsables de la veracidad de los datos | <a href="/sobre" class="faq">FAQ</a> |</p>
 			<div class="share">	
 				<a class="twitter" href="http://twitter.com/home?status=http://otrobache.com" target="_blank"></a>
 				<a class="facebook" href="http://www.facebook.com/share.php?u=http://otrobache.com" target="_blank"></a>

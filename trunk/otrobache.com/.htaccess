@@ -1,0 +1,15 @@
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /
+
+
+RewriteRule javascript/(.+) javascript/$1 [L]
+RewriteRule stylesheets/(.+) stylesheets/$1 [L]
+RewriteRule images/(.+) images/$1 [L]
+RewriteRule sobre faq.php [L]
+RewriteRule api/(.+) amfphp/json.php/$1 [L]
+
+RewriteRule ^en/(.*)$ index.php?locality=$1 [L]
+
+
+
