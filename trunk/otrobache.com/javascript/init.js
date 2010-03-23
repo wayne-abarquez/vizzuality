@@ -151,6 +151,7 @@ function initialize(swLat,swLon,neLat,neLon,localityName) {
       //map.setUIToDefault();
       map.enableScrollWheelZoom();
       map.addControl(new GMapTypeControl());
+      map.addControl(new GSmallZoomControl());
       //map.addControl(new GLargeMapControl());
       //map.setUIToDefault();
 
