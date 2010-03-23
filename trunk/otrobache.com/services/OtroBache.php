@@ -98,6 +98,9 @@ class OtroBache {
         if($addressline=="") {
             $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['Thoroughfare']['ThoroughfareName'];
         }
+        if($addressline=="") {
+            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['DependentLocalityName'];
+        }        
         $addressline=str_replace(",","|",$addressline);
         
         if(SERVER=="production") {
