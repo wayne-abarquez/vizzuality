@@ -19,7 +19,7 @@ if(isset($_REQUEST['locality'])) {
     //$numBachesLocality = $serv->getNumBaches(strtolower($locality));
     $lastbaches = $serv->getLastBaches(strtolower($localityName));
     $cities = array();
-    $url="http://otrobache.com/en/".$locality;
+    $url=urlencode("http://otrobache.com/en/".$locality);
 } else {
     $swLat=35.639441068973916;
     $swLon=-18.9404296875;
@@ -30,13 +30,13 @@ if(isset($_REQUEST['locality'])) {
     $numBaches = $serv->getNumBaches();
     $lastbaches = $serv->getLastBaches();    
     $cities = $serv->getCities();
-    $url="http://otrobache.com/";
+    $url=urlencode("http://otrobache.com/");
 }
 
-function shortenText($text) { 
-    if(strlen($text)>28) {
+function shortenText($text,$num=28) { 
+    if(strlen($text)>$num) {
        // Change to the number of characters you want to display 
-       $chars = 28; 
+       $chars = $num; 
        $text = $text." "; 
        $text = substr($text,0,$chars); 
        $text = substr($text,0,strrpos($text,' ')); 
@@ -172,7 +172,7 @@ function shortenText($text) {
 							<p class="ago">reportado <strong id="num<?php echo($count)?>"><?php echo($bache['count()'])?></strong> veces</p>
 							<p class="location"><?php echo(shortenText($calle))?></p>
 							<p class="number"><?php echo(shortenText($num))?></p>
-							<p class="city"><span><?php echo($bache['zip'])?> <?php echo($bache['city'])?></span></p>
+							<p class="city"><span><?php echo($bache['zip'])?> <?php echo(shortenText($bache['city'],24))?></span></p>
 						</div>
 						<a id="rep<?php echo($count)?>" href="javascript: void getConfirmation(<?php echo($bache['lat'])?>,<?php echo($bache['lon'])?>,<?php echo($count)?>)" onclick="pageTracker._trackEvent('Confirmar', 'Click');"></a>
 					</li>
