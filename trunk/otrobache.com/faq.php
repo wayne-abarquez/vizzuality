@@ -1,12 +1,3 @@
-<?php
-
-require_once("services/OtroBache.php");
-
-$serv = new OtroBache();
-$numBaches = $serv->getNumBaches();
-$lastbaches = $serv->getLastBaches();
-
-?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
 <html>
 	<head>
@@ -30,7 +21,7 @@ $lastbaches = $serv->getLastBaches();
 		
 		<div id="header">
 			<div>
-				<p><a href="http://www.elpais.com/articulo/madrid/capital/bache/elpepiespmad/20100227elpmad_1/Tes" target="_blank">Un artículo de El País</a> nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncias al día, sobre los socabones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay</p>
+				<p><a href="http://www.elpais.com/articulo/madrid/capital/bache/elpepiespmad/20100227elpmad_1/Tes" target="_blank">Un artículo de El País</a> nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncias al día, sobre los socavones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay</p>
 				<img src="../images/header_arrow.png" class="header_arrow" />
 			</div>
 		</div>
@@ -41,8 +32,8 @@ $lastbaches = $serv->getLastBaches();
 					<p>¿Cómo nace otrobache.com?</p>
 				</div>
 				<div class="answer">
-					<p>Nos gusta experimentar y llevar ideas a cabo. Nos interesa el e-government y el movimiento opendata. Nos gusta utilizar lo que internet ofrece y hacer pequeñas aplicaciones y mashups que implementen nuevas tecnologías.</p>
-					<p>Así nace el proyecto.</p>
+					<p>Con tantos baches por las ciudades es difícil no reparar en ellos! De ahí que desde hace unos días no paramos de decir, otro bache!. En Madrid se puede llamar al 012 para reportarlos, te dan un número y adiós muy buenas. ¿Y dónde hay más baches? ¿Por qué no es pública esta información?</p>
+                    <p>Ya que el ayto. no los publica hemos creado otrobache.com para que todo el mundo pueda reportar los que vea.</p>
 				</div>
 			</div>
 			
@@ -53,16 +44,27 @@ $lastbaches = $serv->getLastBaches();
 				<div class="answer">
 					<p>Para nosotros un bache es cualquier irregularidad en el terreno, que se supone, debe ser llano, y no lo es.</p>
 					<p>	
-					Guardamos los baches en la base de datos hasta <b>3 meses</b> (tiempo medio que el Ayto. de Madrid asegura tardar en arreglarlos) <b>desde la última vez que se reporta.</b> Si se reportan varios baches en un radio menor a 15 metros, los agruparemos en uno mismo - por simplificación</p>
+					Guardamos los baches en la base de datos hasta <b>2 meses</b> (tiempo medio que consideramos que se arreglan) <b>desde la última vez que se reporta</b>. Si se reportan varios baches en un radio menor a 15 metros (la precisión del GPS más o menos), los agruparemos en uno mismo. Si el bache es reportado varias veces los 2 meses empiezan desde el último.</p>
 				</div>
 			</div>	
+			
+			<div class="faq">
+				<div class="question">
+					<p>¿Se pueden reportar baches de cualquier ciudad?</p>
+				</div>
+				<div class="answer">
+					<p>Sí. La web luego los agrupa por localidades para que puedan ser vistos independientemente, como por ejemplo en <a href="http://otrobache.com/en/Barcelona">otrobache.com/en/Barcelona</a> o <a href="http://otrobache.com/en/Mostoles">otrobache.com/en/Mostoles</a></p>
+
+				</div>
+			</div>			
 
 			<div class="faq">
 					<div class="question">
 						<p>¿Qué aspiraciones tiene el proyecto?</p>
 					</div>
 					<div class="answer">
-						<p>Constituir una fuente de datos transparente y actualizada sobre el estado actual de la vía pública y ser el germen del posible open311.org español.</p>
+						<p>Constituir una fuente de datos transparente y actualizada sobre el estado actual de la vía pública y ser el germen del posible <a href="http://open311.org/">open311.org</a> español.</p>
+						<p>Con suerte además conseguiremos que las administraciones locales sean un poco más trasparente y permitan que les ayudemos en la gestión de la ciudad y podamos ver que tal lo hacen. Ya de paso lo mismo sonseguimos políticos en España con ganas de hacer cosas innovadoras, <a href="http://www.youtube.com/watch?v=S-QQ7kCjIGE&feature=player_embedded">como ya pasa en otros sitios</a>.</p>
 					</div>
 			</div>
 			
@@ -71,7 +73,10 @@ $lastbaches = $serv->getLastBaches();
 						<p>Y...¿Qué tiene de nuevo?</p>
 					</div>
 					<div class="answer">
-						<p>La utilización de <a href="http://tables.googlelabs.com/">google Fusion Tables</a>  y la creación de una API (será accesible en breve) para posibilitar la utilización de los datos desde aplicaciones de terceros. Además, la creación de aplicaciones para Android, iPhone y Blackberry para facilitar el crecimiento y la mejora de los datos sobre baches.</p>
+						<p>Esperamos que la facilidad de uso de la web y las distintas aplicaciones para reportar baches lo hagan lo suficientemente atractivo para que colaborativamente identifiquemos todos los baches en todas las ciudades.
+                        </p>
+                        <p>El proyecto no está creado sobre una base de datos normal, sino sobre <a href="http://tables.googlelabs.com/DataSource?dsrcid=136993">Google Fusion Tables</a>. La ventaja que tiene esto es que todos los datos son públicos directamente, pueden ser comentados a través de su interfaz, reutilizados en otras aplicaciones, mezclados, etc. Invitamos a todos los desarrolladores a crear aplicaciones para enviar o para analizar los baches que ya se han enviado.</p>
+                        <p>Y por supuesto, no podía faltar el crear una aplicación para Iphone y para Android para pdoer reportar baches! Si llevamos un GPS en el bolsillo, que sirva para algo! Versión para Blackberry y otras plataformas está por venir tambien. Para participar de beta tester vuelve a la home.</p>
 					</div>
 			</div>
 			<div class="faq">
@@ -79,7 +84,7 @@ $lastbaches = $serv->getLastBaches();
 						<p>¿Quién esta detrás del proyecto?</p>
 					</div>
 					<div class="answer">
-						<p>otrobache.com es un proyecto creado por <a href="http://www.vizzuality.com" target="_blank">vizzuality.</a></p>
+						<p>otrobache.com es un proyecto creado por <a href="http://www.vizzuality.com" target="_blank">vizzuality.</a> Sigue el proyecto con los enlaces de abajo! Y por supuesto estaremos encantados de recibir tus sugerencias usando el botón de la izquierda.</p>
 					</div>
 			</div>
 						
