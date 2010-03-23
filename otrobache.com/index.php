@@ -25,6 +25,7 @@ if(isset($_REQUEST['locality'])) {
     $neLat=47.84265762816538;
     $neLon=11.77734375;
     $locality=null;
+    $localityName="España";
     $numBaches = $serv->getNumBaches();
     $lastbaches = $serv->getLastBaches();    
     $cities = $serv->getCities();
@@ -76,7 +77,7 @@ function shortenText($text) {
 	</head>
 
 
-	<body onload="initialize(<?php echo("$swLat,$swLon,$neLat,$neLon") ?>)" onunload="GUnload()">
+	<body onload="initialize(<?php echo("$swLat,$swLon,$neLat,$neLon,'$localityName'") ?>)" onunload="GUnload()">
 		
 		<div id="iphone_modal">
 			<h4>Estamos en fase beta</h4>
