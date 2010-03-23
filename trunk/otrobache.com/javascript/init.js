@@ -6,9 +6,10 @@ var busy = false;
 var change_html = false;
 var second_map_height;
 var address;
+var locality;
 
-function initialize(swLat,swLon,neLat,neLon) {
-	
+function initialize(swLat,swLon,neLat,neLon,localityName) {
+	    locality=localityName;
 		//JQUERY EFFECTS
 		second_map_height = $('div#container div.report_map').height();
 		$('div#container div.report_map').height(0);
@@ -166,7 +167,7 @@ function initialize(swLat,swLon,neLat,neLon) {
 
   
   function confirmBache(lat,lon,id) {
-	  $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web", context: document.body, success: function(){
+	  $.ajax({ url: "/api/OtroBache.reportBache/"+lat+"/"+lon+"/web", context: document.body, success: function(){
 	    $("#num"+id).text(parseInt($("#num"+id).text())+1);
 			$("div#container div.baches ul li#item"+ id + " p.loading").hide();
 			$("div#container div.baches ul li#item"+ id).append('<p class="done">Ya reportado</p>');
@@ -174,7 +175,7 @@ function initialize(swLat,swLon,neLat,neLon) {
   }
 
   function createNewBache(lat,lon) {
-      $.ajax({ url: "amfphp/json.php/OtroBache.reportBache/"+lat+"/"+lon+"/web", context: document.body, success: function(){
+      $.ajax({ url: "/api/OtroBache.reportBache/"+lat+"/"+lon+"/web", context: document.body, success: function(){
 				map2.clearOverlays();
 				marker = null;
 				busy = false;
@@ -213,7 +214,7 @@ function initialize(swLat,swLon,neLat,neLon) {
 
 	function showAddress(address) {
      if (geocoder) {
-			address += ', Madrid';
+			address += ', '+locality;
        geocoder.getLatLng(
          address,
          function(point) {
