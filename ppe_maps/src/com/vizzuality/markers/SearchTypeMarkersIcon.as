@@ -164,9 +164,11 @@ package com.vizzuality.markers{
             
             var exampleSprite3: Sprite = new Sprite();
             var countryText3: TextField = new TextField();
-            /* if (paData.sites==0 || paData.sites == null) { */
-            	countryText3.text = paData.sites + " Points of interest";            	
-           /*  } */
+            if (paData.sites==0 || paData.sites == null) {
+            	countryText3.text = "";            	
+            } else {
+            	countryText3.text = paData.sites + " Points of interest";     
+            }
             var newFormat3:TextFormat = new TextFormat(); 
    			newFormat3.size = 10; 
    			newFormat3.color = 0x333333;
