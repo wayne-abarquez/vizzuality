@@ -64,7 +64,7 @@
 					</div>
 					<div class="answer">
 						<p>Constituir una fuente de datos transparente y actualizada sobre el estado actual de la vía pública y ser el germen del posible <a href="http://open311.org/">open311.org</a> español.</p>
-						<p>Con suerte además conseguiremos que las administraciones locales sean un poco más trasparentes y permitan que les ayudemos en la gestión de la ciudad y podamos ver que tal lo hacen. Ya de paso lo mismo sonseguimos políticos en España con ganas de hacer cosas innovadoras, <a href="http://www.youtube.com/watch?v=S-QQ7kCjIGE&feature=player_embedded">como ya pasa en otros sitios</a>.</p>
+						<p>Con suerte además conseguiremos que las administraciones locales sean un poco más trasparentes y permitan que les ayudemos en la gestión de la ciudad y podamos ver que tal lo hacen. Ya de paso lo mismo conseguimos políticos en España con ganas de hacer cosas innovadoras, <a href="http://www.youtube.com/watch?v=S-QQ7kCjIGE&feature=player_embedded">como ya pasa en otros sitios</a>.</p>
 					</div>
 			</div>
 			
@@ -76,7 +76,7 @@
 						<p>Esperamos que la facilidad de uso de la web y las distintas aplicaciones para reportar baches lo hagan lo suficientemente atractivo para que colaborativamente identifiquemos todos los baches en todas las ciudades.
                         </p>
                         <p>El proyecto no está creado sobre una base de datos normal, sino sobre <a href="http://tables.googlelabs.com/DataSource?dsrcid=136993">Google Fusion Tables</a>. La ventaja que tiene esto es que todos los datos son públicos directamente, pueden ser comentados a través de su interfaz, reutilizados en otras aplicaciones, mezclados, etc. Invitamos a todos los desarrolladores a crear aplicaciones para enviar o para analizar los baches que ya se han enviado.</p>
-                        <p>Y por supuesto, no podía faltar el crear una aplicación para Iphone y para Android para pdoer reportar baches! Si llevamos un GPS en el bolsillo, que sirva para algo! Versión para Blackberry y otras plataformas está por venir tambien. Para participar de beta tester vuelve a la home.</p>
+                        <p>Y por supuesto, no podía faltar el crear una aplicación para Iphone y para Android para pdoer reportar baches! Si llevamos un GPS en el bolsillo, que sirva para algo! Versión para Blackberry y otras plataformas está por venir también. Para participar de beta tester vuelve a la home.</p>
 					</div>
 			</div>
 			<div class="faq">
