@@ -171,6 +171,7 @@ function initialize(swLat,swLon,neLat,neLon,localityName) {
 
   
   function confirmBache(lat,lon,id) {
+      pageTracker._trackPageview("/confirmBache");
 	  $.ajax({ url: "/api/OtroBache.reportBache/"+lat+"/"+lon+"/web", context: document.body, success: function(){
 	    $("#num"+id).text(parseInt($("#num"+id).text())+1);
 			$("div#container div.baches ul li#item"+ id + " p.loading").hide();
@@ -179,6 +180,7 @@ function initialize(swLat,swLon,neLat,neLon,localityName) {
   }
 
   function createNewBache(lat,lon) {
+      pageTracker._trackPageview("/createNewBache");
       $.ajax({ url: "/api/OtroBache.reportBache/"+lat+"/"+lon+"/web", context: document.body, success: function(){
 				map2.clearOverlays();
 				marker = null;
