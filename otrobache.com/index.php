@@ -52,13 +52,16 @@ function shortenText($text,$num=28) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="keywords" content="bache, carretera, arreglar, ayuntamiento, socabón">	
-		<meta name="description" content="OtroBache.com">	
+		
+		
 		<meta name="author" content="otrobache.com">
 		
 		<?php if(isset($_REQUEST['address'])) {?>
 		<meta name="title" content="Nuevo bache en <?php echo($_REQUEST['address']) ?>" />
         <meta name="description" content="¿No estas harto de los baches en tu ciudad? Mira este en <?php echo($_REQUEST['address']) ?> y reporta el tuyo." />
         <link rel="image_src" href="http://maps.google.com/maps/api/staticmap?size=130x110&sensor=false&markers=size:mid|color:red|<?php echo(urlencode($_REQUEST['address'])) ?>" />
+        <?php } else { ?>
+    		<meta name="description" content="OtroBache es una iniciativa para reportar los baches en tu ciudad. Busca en el mapa la direccion y envia el bache. Pronto podras realizar a traves de tu Iphone, Android o Blackberry.">            
         <?php } ?>
 	
 		<title>Otrobache.com - Reporta baches en <?php if($locality!=null) {echo($localityName);}else{echo("España");}?></title>
