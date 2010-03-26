@@ -36,6 +36,10 @@ package com.vizzuality.events
     	public static function onChangeThumbRelease(altitudeRange:Array,reliefRange:Array,vegtypes:ArrayCollection):void {
    			dispatchEvent(new SliderThumbRelease(SliderThumbRelease.SLIDER_VALUE_CHANGED,altitudeRange,reliefRange,vegtypes));
     	}
+    	
+		public static function onOpenTaxonomic():void {
+   			dispatchEvent(new OpenTaxonomicEvent(OpenTaxonomicEvent.OPEN));
+    	}
 
     }
 }

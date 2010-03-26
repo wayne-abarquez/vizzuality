@@ -4,13 +4,9 @@
 	<mx:Script>
 		<![CDATA[
 			import com.vizzuality.events.MyEventDispatcher;
-			
-			private function onClose():void {
-				MyEventDispatcher.onCloseDownloadWindow();
-			}
 		]]>
 	</mx:Script>
 	
 	<mx:Button  label="X" color="#FFFFFF" styleName="nullButton" textDecoration="normal" width="30" right="3" top="6" toolTip="Close" useHandCursor="true" 
-		buttonMode="true" mouseChildren="false" click="onClose()"/>
+		buttonMode="true" mouseChildren="false" click="MyEventDispatcher.onCloseDownloadWindow();"/>
 </mx:Canvas>

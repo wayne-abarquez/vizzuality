@@ -13,6 +13,7 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.vizzuality.events.OpenTaxonomicEvent;
 	    	import com.vizzuality.events.CloseDownloadWindowEvent;
 	    	import com.vizzuality.events.SliderThumbRelease;
 	    	import com.vizzuality.events.SliderChangeEvent;
@@ -54,8 +55,8 @@
             
 			[Embed("threshold.pbj", mimeType="application/octet-stream")]
 			private var TestFilter:Class;		
-			private var shader:Shader; 
-			private var filter:ShaderFilter;    
+			/* private var shader:Shader; 
+			private var filter:ShaderFilter;  */   
 			private var tlo:TileLayerOverlay;        
                         	
 			
@@ -63,7 +64,14 @@
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
                 MyEventDispatcher.addEventListener(SliderThumbRelease.SLIDER_VALUE_CHANGED, onChangeSliderValues);
-                MyEventDispatcher.addEventListener(CloseDownloadWindowEvent.CLOSE_WINDOW, function (event:CloseDownloadWindowEvent):void { mamufas.visible=false; download.visible = false; });          
+                MyEventDispatcher.addEventListener(CloseDownloadWindowEvent.CLOSE_WINDOW, 
+	                function (event:CloseDownloadWindowEvent):void { 
+	                	mamufas.visible=false; download.visible = false; taxonomic.visible = false;
+	                });       
+            	MyEventDispatcher.addEventListener(OpenTaxonomicEvent.OPEN, 
+	            	function (event:OpenTaxonomicEvent):void { 
+	            		mamufas.visible=true; taxonomic.visible = true;
+	            	});
             }
             
             private function onChangeSliderValues(event:SliderThumbRelease):void {
@@ -171,7 +179,7 @@
 		    private function onMapReady(event:Event):void {
 			    this.map.addControl(new ZoomControl());
 			    
-				rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png");
+				/* rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png");
 				tlo = new TileLayerOverlay(rasterLayer);
 				tlo.addEventListener(MapEvent.TILES_LOADED,function(ev:Event):void {
 					loadingMessage.visible=false;
@@ -201,13 +209,13 @@
 				tlo.foreground.cacheAsBitmap=true;
 				tlo.foreground.filters=[filter];
 				
-				MyEventDispatcher.addEventListener(SliderChangeEvent.SLIDER_CHANGED,onSlidersChange,false,0,true);
+				MyEventDispatcher.addEventListener(SliderChangeEvent.SLIDER_CHANGED,onSlidersChange,false,0,true); */
 				
 		    }
 		    
 		    private function onSlidersChange(event:SliderChangeEvent):void {
 		    	
-			   	var rMin:Number = event.altitudeRange[0]/7889;
+			   	/* var rMin:Number = event.altitudeRange[0]/7889;
 	 			var rMax:Number = event.altitudeRange[1]/7889;
 	 			var gMin:Number  = event.reliefRange[0]/3397; 
 	 			var gMax:Number  = event.reliefRange[1]/3397; 
@@ -216,7 +224,7 @@
 	 			
 				shader.data.maxColor.value = [rMax,gMax,bMax];
 				shader.data.minColor.value = [rMin,gMin,bMin];
-				tlo.foreground.filters = [filter];
+				tlo.foreground.filters = [filter]; */
 		    	
 		    }
 		    
@@ -277,7 +285,8 @@
 			</mx:Canvas>
 		</mx:Canvas>
 		
-		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas"/>
-		<components1:Download visible="true" id="download" /> <!--Make top corners round thought Flash-->
+		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas" visible="false"/>
+		<components1:TaxonomicBrowser visible="false" id="taxonomic"  horizontalCenter="0" verticalCenter="0"/> <!--Make top corners round thought Flash-->
+		<components1:Download visible="false" id="download"  horizontalCenter="0" verticalCenter="0"/>
 	</mx:Canvas>
 </mx:Canvas>
