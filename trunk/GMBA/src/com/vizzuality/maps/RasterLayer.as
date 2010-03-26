@@ -14,7 +14,7 @@ package com.vizzuality.maps
 	import flash.display.Loader;
 	import flash.display.Shader;
 	import flash.events.IOErrorEvent;
-	import flash.filters.ShaderFilter;
+	/* import flash.filters.ShaderFilter; */
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 
