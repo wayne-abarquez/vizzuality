@@ -89,7 +89,7 @@
 			</div>
 			
 			<div class="faq">			
-            <div id="disqus_thread"></div>
+            <div id="disqus_thread" style="color:black;"></div>
             <script type="text/javascript">
               (function() {
                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
