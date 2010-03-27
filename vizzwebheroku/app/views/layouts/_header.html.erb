@@ -1,9 +1,0 @@
-  <div id="header"> <%= link_to image_tag("logo.gif", :border => "0", :class => "left"), root_path %>
-    <ul>
-      <li><%= link_to "Home", root_path, :class => "#{current_page?(:controller => 'main', :action => 'index') ? 'current' : '' }"%></li>
-      <li><%= link_to "Our Work", works_path, :class => "#{current_page?(:controller => 'main', :action => 'works') || current_controller?('projects') ? 'current' : '' }"%></li>
-      <li><%= link_to "About us", company_path, :class => "#{current_page?(:controller => 'main', :action => 'company') || current_controller?('employees') ? 'current' : '' }"%></li>
-      <li class="last"><%= link_to "Blog", "http://biodivertido.blogspot.com/", :target => "_blank"%></li>
-    </ul>
-    <h1><%= yield :big_title %></h1>
-  </div>
