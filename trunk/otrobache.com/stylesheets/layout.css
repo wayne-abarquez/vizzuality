@@ -140,3 +140,11 @@ div#footer a.del {background:url(../images/del.png) no-repeat 0 0; float:none;  
 div#footer a.del:hover {background-position: 0 -16px;}
 div#footer a.digg {background:url(../images/digg.png) no-repeat 0 0; float:none;  padding:0 8px 1px; margin:0 0 0 1px;}
 div#footer a.digg:hover {background-position: 0 -16px;}
+
+
+
+#dsq-content {
+color:black;
+font-size:12px;
+line-height:1.5;
+}
