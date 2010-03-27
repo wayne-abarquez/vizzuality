@@ -87,22 +87,23 @@
 						<p>otrobache.com es un proyecto creado por <a href="http://www.vizzuality.com" target="_blank">vizzuality.</a> Sigue el proyecto con los enlaces de abajo! Y por supuesto estaremos encantados de recibir tus sugerencias usando el botón de la izquierda.</p>
 					</div>
 			</div>
-						
 			
+			<div class="faq">			
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+              (function() {
+               var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+               dsq.src = 'http://otrobache.disqus.com/embed.js';
+               (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=otrobache">comments powered by Disqus.</a></noscript>
+            <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+			</div>
 		
 		</div>
 		
-        <div id="disqus_thread"></div>
-        <script type="text/javascript">
-          (function() {
-           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-           dsq.src = 'http://otrobache.disqus.com/embed.js';
-           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=otrobache">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-		
+
 		
 		<div id="footer">
 				
