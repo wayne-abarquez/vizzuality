@@ -22,9 +22,11 @@ if(isset($_REQUEST['locality'])) {
     $url=urlencode("http://otrobache.com/en/".$locality);
 } else {
     $loc=$serv->visitorLocation();
+
     
     //redirect to the city
-    header( 'Location: http://otrobache.com/en/'+$loc['city'] ) ;
+    header( 'Location: http://otrobache.com/en/'.$loc['city'] ) ;
+    die();
     
     $latCenter = $loc['lat'];
     $lonCenter = $loc['lon']; 
