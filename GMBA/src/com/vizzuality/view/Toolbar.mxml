@@ -120,7 +120,7 @@
 				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 				<mx:VBox verticalGap="1" width="100%">
 					<mx:Spacer height="5" />
-					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="onChangeVegeValue(0)" 
+					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknown" click="onChangeVegeValue(0)" 
 						data="{vegetationValues.getItemAt(0)}" mamufa="true"/>
 					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="onChangeVegeValue(1)"
 						data="{vegetationValues.getItemAt(1)}" />

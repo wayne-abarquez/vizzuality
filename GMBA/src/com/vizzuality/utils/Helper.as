@@ -25,7 +25,7 @@ package com.vizzuality.utils {
             	if (event.pathNames[1] == 'help')
             		title += ' > ' + toTitleCase(event.pathNames[1]);
             } else {
-            	  scope.currentState = 'Home';
+            	  scope.currentState = 'Map';
             } 
             /*  for (var i:int = 0; i < event.pathNames.length; i++) {
                 title += ' » ' + toTitleCase(event.pathNames[i]);
