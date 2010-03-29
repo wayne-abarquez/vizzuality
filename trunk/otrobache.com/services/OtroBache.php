@@ -198,6 +198,45 @@ class OtroBache {
     }
     */
     
+    function visitorLocation(){
+        $location = array();
+        $location['lat'] = "40.4";
+    	$location['lon'] = "-3.6833";
+    	$location['city'] = "Madrid";
+    	$location['country'] = "Spain";
+
+        @$link = mysql_connect('db.geekisp.com', 'jatorre_viz', 'otrobache');
+        if (!$link) {
+        	return $location;
+        }
+
+
+
+        @$db_selected = mysql_select_db("geoip");
+        if (!$db_selected) {
+            return $location;
+        }
+
+    	$ip = $_SERVER['REMOTE_ADDR'];
+
+        $sql="SELECT city,country_code,latitude,longitude FROM ip_group_city inner join locations on ip_group_city.location=locations.id where ip_start <= INET_ATON('$ip') order by ip_start desc limit 1";
+
+        @$query=mysql_query($sql);
+        if (!$query) {
+            return $location;
+        }
+
+        @$result = mysql_fetch_assoc($query);
+        if($result){
+            $location['lat'] = $result['latitude'];
+        	$location['lon'] =  $result['longitude'];
+        	$location['city'] =  $result['city'];
+        	$location['country'] =  $result['country_code'];        
+        } 
+
+    	return $location;
+    }    
+    
 }
 
 ?>
