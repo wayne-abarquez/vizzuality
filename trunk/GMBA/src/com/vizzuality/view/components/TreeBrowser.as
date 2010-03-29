@@ -404,12 +404,14 @@ package com.vizzuality.view.components
 			} else {
 				page = ((columnActive.dataProvider as ArrayCollection).length / 25) + 1;
 			}
-			httpsrv2 = new HTTPService();
-			httpsrv2.concurrency="last";
-			httpsrv2.resultFormat = "text";
-			httpsrv2.url = Application.application.ecatServices+"nav/?pagesize=25&page=" + page.toString() + "&ranks=kpcofg&image=true&id="+((columnActive.dataProvider as ArrayCollection)[0].parent).toString();
-			httpsrv2.addEventListener(ResultEvent.RESULT,checkMoreItems);
-			httpsrv2.send();
+			if (index!=1) {
+				httpsrv2 = new HTTPService();
+				httpsrv2.concurrency="last";
+				httpsrv2.resultFormat = "text";
+				httpsrv2.url = (parent as TaxonomicBrowser).ecatServices+"nav/?pagesize=25&page=" + page.toString() + "&ranks=kpcofg&image=true&id="+((columnActive.dataProvider as ArrayCollection)[0].parent).toString();			
+				httpsrv2.addEventListener(ResultEvent.RESULT,checkMoreItems);
+				httpsrv2.send();
+			} 
  		}
  		
  		private function checkMoreItems(ev: ResultEvent):void {
@@ -527,7 +529,7 @@ package com.vizzuality.view.components
 			} 
 
 			//upper Canvas buttons
-			var button: Button = new Button();
+/* 			var button: Button = new Button();
 			button.data = index;
 			button.addEventListener(MouseEvent.CLICK, onClickTopButton);
 			button.y = 0;
@@ -536,7 +538,7 @@ package com.vizzuality.view.components
 			button.buttonMode = true;
 			if (index == 0) {
 				buttonsArray = new Array();
-				Application.application.click_canvas.removeAllChildren();
+				pplication.application.click_canvas.removeAllChildren();
 				button.x = 10;
 				button.y = 7;
 				button.height = 31;
@@ -568,13 +570,17 @@ package com.vizzuality.view.components
 				Application.application.click_canvas.addChildAt(button,0);
 				
 				buttonsArray.push(button);
-			}
+			} */
 			
 			if(_selectedItem!=null) {
 				var httpsrv:HTTPService = new HTTPService();
 				httpsrv.resultFormat = "text";
 				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
-				httpsrv.url = Application.application.ecatServices +"nav/?pagesize=25&ranks=kpcofg&page=1&image=true&id="+(_selectedItem.id).toString();
+				if (index==0) {
+					httpsrv.url = (parent as TaxonomicBrowser).ecatServices +'nav?image=true&ranks=k&ranks=kpcofg';
+				} else {
+					httpsrv.url = (parent as TaxonomicBrowser).ecatServices +"nav/?pagesize=25&ranks=kpcofg&page=1&image=true&id="+(_selectedItem.id).toString();
+				}
 				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
 				httpsrv.send();
 			}
