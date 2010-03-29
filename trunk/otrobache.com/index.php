@@ -21,6 +21,13 @@ if(isset($_REQUEST['locality'])) {
     $cities = array();
     $url=urlencode("http://otrobache.com/en/".$locality);
 } else {
+    $loc=$serv->visitorLocation();
+    
+    //redirect to the city
+    header( 'Location: http://otrobache.com/en/'+$loc['city'] ) ;
+    
+    $latCenter = $loc['lat'];
+    $lonCenter = $loc['lon']; 
     $swLat=35.639441068973916;
     $swLon=-18.9404296875;
     $neLat=47.84265762816538;
