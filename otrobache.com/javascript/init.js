@@ -147,7 +147,7 @@ function initialize(swLat,swLon,neLat,neLon,localityName) {
 			map2.setCenter(center,zoom);
 			
       var l = new GLayer("ft:136993");
-      l.setParameter("h", "true");
+      l.setParameter("h", "false");
       l.setParameter("s", "select+reported_date,reported_by,city,zip,addressline+from+136993+where+reported_date%2520%253E%3D%2520%27"+monthsago+"%27");
 
       map.addOverlay(l);
