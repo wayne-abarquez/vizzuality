@@ -13,7 +13,6 @@
 				<view:GMBAMap id="gmbaMap"/>
 			</mx:AddChild>
 		</mx:State>
-		<mx:State name="Home"/>
 	</mx:states>
 	
 	<mx:Script>
