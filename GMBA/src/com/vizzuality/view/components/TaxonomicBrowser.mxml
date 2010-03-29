@@ -21,14 +21,10 @@
 			[Bindable]
 			public var gbifTaxonomy : ArrayCollection = new ArrayCollection();
 			
-			public var ecatServices:String ="http://ecat-dev.gbif.org/ws/";
+			public var ecatServices:String ="http://names.gbif.org/ws/";
 			
 			private function onCreationComplete():void {
-				/* ExternalInterface.call("s = function() {document.getElementById('"+this.id+"').focus(); }");
 
-				if(parameters.ecatServices!=null) {
-					ecatServices=parameters.ecatServices;
-				} */
 				
 				this.stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 				
