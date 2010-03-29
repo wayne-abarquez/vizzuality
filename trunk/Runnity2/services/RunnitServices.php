@@ -10,6 +10,8 @@ class RunnitServices {
 	
 	function __construct() {
 	    $this->conn = pg_pconnect ("host=".DB_HOST." dbname=".DB_NAME." user=".DB_USER." password=".DB_PASSWORD);
+	    //$mc = new Memcache;
+	    //$this->memcache =$mc->connect('localhost', 11211);
 	
 		$this->emailPassword=EMAILPASSWORD;
 		$this->basePath=ABSPATH;
@@ -1632,6 +1634,46 @@ SQL;
 
         return $results;  
 	}
+	
+    public function visitorLocation(){
+        $location = array();
+        $location['lat'] = "40.4";
+    	$location['lon'] = "-3.6833";
+    	$location['city'] = "Madrid";
+    	$location['country'] = "Spain";
+
+        @$link = mysql_connect('localhost', 'root', 'runnit');
+        if (!$link) {
+        	return $location;
+        }
+
+
+
+        @$db_selected = mysql_select_db("ipcity");
+        if (!$db_selected) {
+            return $location;
+        }
+
+    	$ip = $_SERVER['REMOTE_ADDR'];
+
+        $sql="SELECT region_name,country_name,latitude,longitude 
+            FROM ip_group_city where ip_start <= INET_ATON('$ip') order by ip_start desc limit";
+
+        @$query=mysql_query($sql);
+        if (!$query) {
+            return $location;
+        }
+
+        @$result = mysql_fetch_assoc($query);
+        if($result){
+            $location['lat'] = $result['latitude'];
+        	$location['lon'] =  $result['longitude'];
+        	$location['city'] =  $result['region_name'];
+        	$location['country'] =  $result['country_name'];        
+        } 
+
+    	return $location;
+    }	
 	
 
 }
