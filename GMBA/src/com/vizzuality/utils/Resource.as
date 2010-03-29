@@ -15,6 +15,15 @@ package com.vizzuality.utils
         
         [Embed (source="assets/magnifier.png" )]
         public static const MAGNIFIER:Class;
+        
+		[Embed (source="assets/world.png" )]
+        public static const WORLD:Class;
+        
+		[Embed (source="assets/bound.png" )]
+        public static const BOUND:Class;
+        
+		[Embed (source="assets/download_arrow.png" )]
+	    public static const DOWNLOAD_ARROW:Class;
 		
 	}
 }

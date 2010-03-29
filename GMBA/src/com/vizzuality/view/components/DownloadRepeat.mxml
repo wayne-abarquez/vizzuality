@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="111" height="50" horizontalScrollPolicy="off" verticalScrollPolicy="off" >
+
+	<mx:Script>
+		<![CDATA[
+			
+			[Bindable] public var label_text: String;
+			[Bindable] public var label_number:String;
+			[Bindable] public var bar:Boolean = true;
+			
+		]]>
+	</mx:Script>
+
+	<mx:Label y="27" text="{label_text}" fontSize="11" color="#4D4D4D" textAlign="left" left="18"/>
+	<mx:Label y="9.35" text="{label_number}" color="#B8B8B9" height="23.25" fontSize="17" width="91" textAlign="left" left="18"/>
+	<mx:VRule y="0" width="1" height="50" right="0"  strokeColor="#414142" visible="{(!bar) ? false : true}"/>
+</mx:Canvas>
