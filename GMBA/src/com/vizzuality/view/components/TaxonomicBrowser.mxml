@@ -40,21 +40,29 @@
 		            var loader:URLLoader = new URLLoader();
 		            loader.load(request);                               
 		        }                                       
-  
+  				
+  				var auxDP: ArrayCollection = new ArrayCollection();
+				var clasOb:Object= new Object();
+				clasOb.description ="";
+				clasOb.imageURL ="";
+				clasOb.labelField = 'All taxa';
+				auxDP.addItem(clasOb);
+				treeB.dataProvider = auxDP;
 				
-				var httpsrv:HTTPService = new HTTPService();
+				
+				/* var httpsrv:HTTPService = new HTTPService();
 				httpsrv.resultFormat = "text";
 				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
 				httpsrv.url = ecatServices+"nav?image=true&ranks=k&ranks=kpcofg";
 				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
-				httpsrv.send();			
+				httpsrv.send();	 */		
 			}
 			
-			private function onResultGbif(ev: ResultEvent):void {
+			/* private function onResultGbif(ev: ResultEvent):void {
 				var resultObj:Object = JSON.decode(String(ev.result));				
 				var resultAc:ArrayCollection = new ArrayCollection();
 				var resultAc2: ArrayCollection = new ArrayCollection();
-				var auxDP:ArrayCollection = new ArrayCollection()
+				var auxDP:ArrayCollection = new ArrayCollection();
 				
 				for each(var co:Object in resultObj) {
 					if (co.taxonID != this.id) {
@@ -80,7 +88,7 @@
 				}
 				auxDP.addItem(resultAc);
 				treeB.dataProvider = auxDP;
-			}
+			} */
 
 			private function handleKeyDown(event:KeyboardEvent):void {
 				//down and right
