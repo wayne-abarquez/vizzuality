@@ -88,3 +88,14 @@ Button.explore {
 	text-decoration: underline;
 	padding-left:0;
 }
+
+Button.linkButton {
+	skin: ClassReference(null);
+	skin: Embed(source="skin.swf", symbol="nullButton");
+	color: #F3C400;
+	textRollOverColor: #FFFFFF;
+	text-selected-color: #FFFFFF;
+	font-family: "Arial";
+	font-size: 11;
+	text-decoration: underline;
+}

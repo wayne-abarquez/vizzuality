@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="260" height="90" backgroundColor="#191919" mouseOver="onMouseOver(event)" mouseOut="onMouseOut(event)" 
+	useHandCursor="true" mouseChildren="false" buttonMode="true">
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.utils.Resource;
+			
+			[Bindable] public var world_type: String = "World";
+			
+			private function onMouseOver(event:MouseEvent):void {
+				this.setStyle('backgroundColor','#F8C600');
+				secondary.setStyle('color','#2F3030');
+				title.setStyle('color','#2F3030');
+			}
+			
+			private function onMouseOut(event:MouseEvent):void {
+				this.setStyle('backgroundColor','#191919');
+				secondary.setStyle('color','#FFFFFF');
+				title.setStyle('color','#F8C600');
+			}
+			
+		]]>
+	</mx:Script>
+	<mx:Image left="10" top="10" height="70" width="70" source="{(world_type == 'World')? Resource.WORLD : Resource.BOUND}"/>
+	<mx:Label  color="#F8C600" fontSize="14" left="88" top="18" id="title" text="{(world_type == 'World')? 'World scale' : 'Bounding box' }"/>
+	<mx:Text  color="#FFFFFF" left="88" top="39" id="secondary" text="{(world_type == 'World')? 'Download data for the whole world' : 'Download only the area that you are visualizing' }" fontSize="12" height="38" width="150"/>
+	
+</mx:Canvas>
