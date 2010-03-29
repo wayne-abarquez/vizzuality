@@ -7,6 +7,9 @@
 			<mx:RemoveChild target="{downloadsize1}"/>
 			<mx:RemoveChild target="{downloadrepeat1}"/>
 			<mx:RemoveChild target="{hbox1}"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Image horizontalCenter="0" verticalCenter="0" source="{Resource.DOWNLOAD_LOADER}"  width="32" height="32"/>
+			</mx:AddChild>
 		</mx:State>
 		<mx:State name="processing">
 			<mx:RemoveChild target="{label1}"/>
@@ -66,7 +69,7 @@
 				<components:DownloadType world_type="Bound" />
 			</mx:HBox>
 		</mx:Canvas>
-		<mx:Canvas width="574" height="118" backgroundColor="#121213" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+		<mx:Canvas width="574" height="118" backgroundColor="#121213" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
 			<mx:HRule width="100%" height="1"  strokeWidth="1" strokeColor="#19191A"/>
 			<mx:Image width="30" height="15" source="{Resource.DOWNLOAD_ARROW}" top="0" left="17"/>
 			<mx:HBox horizontalGap="0" right="20" left="20" top="30" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="hbox1">
