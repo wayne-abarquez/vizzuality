@@ -10,6 +10,7 @@ $defaultPicture=$basePath."media/run/generic/1_small.jpg";
 @$id=$_REQUEST['id'];
 
 
+
 if (file_exists($targetPicture)) {
     header("Content-Type: image/jpeg");
     header('Content-Length: '.filesize($targetPicture));
@@ -17,6 +18,8 @@ if (file_exists($targetPicture)) {
     print file_get_contents($targetPicture);
     die();
 }
+
+
 
 if(isset($_REQUEST['photo_id'])) {
     $photo_id=$_REQUEST['photo_id'];
@@ -26,10 +29,11 @@ if(isset($_REQUEST['photo_id'])) {
 $f = new phpFlickr("8e4f99b9bb3c602984421a253d71f322");
 $photo = $f->photos_getInfo($photo_id);
 
+print_r($f);
+die();
 
 if($photo) {
     $pic = file_get_contents("http://farm" . $photo['farm'] .".static.flickr.com/" . $photo['server'] ."/" . $photo['id'] ."_" . $photo['secret'] ."_t.jpg");
-
     file_put_contents($targetPicture, $pic);
 
     if(filesize($targetPicture)==2900) {
