@@ -14,7 +14,9 @@ if(isset($_REQUEST['locality'])) {
     $swLat=$bbox['south'];
     $swLon=$bbox['west'];
     $neLat=$bbox['north'];
-    $neLon=$bbox['east'];    
+    $neLon=$bbox['east'];   
+ 		$centerLat="0";
+		$centerLon="0";
     $numBaches = $serv->getNumBaches(strtolower($localityName));
     //$numBachesLocality = $serv->getNumBaches(strtolower($locality));
     $lastbaches = $serv->getLastBaches(strtolower($localityName));
@@ -22,18 +24,14 @@ if(isset($_REQUEST['locality'])) {
     $url=urlencode("http://otrobache.com/en/".$locality);
 } else {
     $loc=$serv->visitorLocation();
-
     
-    //redirect to the city
-    //header( 'Location: http://otrobache.com/en/'.$loc['city'] ) ;
-    //die();
+ 		$centerLat= $loc['lat'];
+		$centerLon= $loc['lon'];
     
-    $latCenter = $loc['lat'];
-    $lonCenter = $loc['lon']; 
-    $swLat=35.639441068973916;
-    $swLon=-18.9404296875;
-    $neLat=47.84265762816538;
-    $neLon=11.77734375;
+		$swLat="0";
+    $swLon="0";
+    $neLat="0";
+    $neLon="0";
     $locality=null;
     $localityName="España";
     $numBaches = $serv->getNumBaches();
@@ -92,7 +90,7 @@ function shortenText($text,$num=25) {
 	</head>
 
 
-	<body onload="initialize(<?php echo("$swLat,$swLon,$neLat,$neLon,'$localityName'") ?>)" onunload="GUnload()">
+	<body onload="initialize(<?php echo("'$localityName',$centerLat,$centerLon,$swLat,$swLon,$neLat,$neLon") ?>)" onunload="GUnload()">
 		
 		<div id="iphone_modal">
 			<h4>Estamos en fase beta</h4>

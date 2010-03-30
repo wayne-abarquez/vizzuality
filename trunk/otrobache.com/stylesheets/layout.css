@@ -114,6 +114,9 @@ div#container div.baches ul li p.loading {float:right; width:auto; height:20px; 
 div#container div.baches ul li p.done {float:right; width:auto; height:20px; margin:0; padding:2px 0 0; background:none; color:#999999;}
 div#container div.baches ul li a:hover {background-position: 0 -22px; cursor:pointer;}
 
+a.confirm_info {float:right; width:74px; height:22px; margin:20px 0 0 0; padding:0; background:url(../images/confirm.png) no-repeat 0 0;}
+a:hover.confirm_info {background-position: 0 -22px; cursor:pointer;}
+
 div#footer {margin:0 auto; width:755px;}
 div#footer div.iphone {float:left; margin:50px 0 0 0; padding:23px 17px 0 17px; width:715px; background:url(../images/footer.png) no-repeat 0 0; height:157px;}
 
