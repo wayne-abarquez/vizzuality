@@ -49,7 +49,7 @@ class OtroBache {
     }
     
     public function georeferenceLocality($locality) {
-        $url = 'http://maps.google.com/maps/geo?q='.urlencode($locality).'&output=json&sensor=true_or_false&key=' . $this->api_key;
+        $url = 'http://maps.google.com/maps/geo?q='.urlencode($locality).'&output=json&sensor=false&key=' . $this->api_key;
         // make the HTTP request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -73,7 +73,7 @@ class OtroBache {
         $lonf=round($lon,5);
                        
         // format this string with the appropriate latitude longitude
-        $url = 'http://maps.google.com/maps/geo?q='.$latf.','.$lonf.'&output=json&sensor=true_or_false&key=' . $this->api_key;
+        $url = 'http://maps.google.com/maps/geo?q='.$latf.','.$lonf.'&output=json&sensor=false&key=' . $this->api_key;
         // make the HTTP request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -86,13 +86,31 @@ class OtroBache {
 
         // parse the json response
         $jsondata = json_decode($data,true);
+
+		$address="";
         $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
-        
+		
+		if ($address==""){
+			$address = $jsondata['Placemark'][1]['address'];
+		}
+		
+		$city="";
         $city=strtolower( $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName']);
         
+		if ($city==""){
+			$city = strtolower($jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['SubAdministrativeAreaName']);
+		}
+
+		$zip="";
         $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
+        if ($zip==""){
+			$zip=$jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
+		}
+		if ($zip==""){
+			$zip=$jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['AdministrativeAreaName']['Locality']['PostalCode']['PostalCodeNumber'];
+		}
         
-        $addressline="";
+		$addressline="";
         $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
         
         if($addressline=="") {
@@ -100,7 +118,14 @@ class OtroBache {
         }
         if($addressline=="") {
             $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['DependentLocalityName'];
-        }        
+        } 
+        if($addressline=="") {
+            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AddressLine'][0];
+        }
+		if($addressline=="") {
+            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['Locality']['AddressLine'];
+        } 
+       
         $addressline=str_replace(",","|",$addressline);
         
         if(SERVER=="production") {
