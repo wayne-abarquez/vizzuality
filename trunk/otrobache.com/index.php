@@ -149,7 +149,7 @@ function shortenText($text,$num=25) {
 							<input type="submit" value="" />
 						</form>
 					</span>
-					<h2>Introduce la dirección en texto ó situa el bache de manera manual en el mapa</h2>
+					<h2>Introduce la dirección en texto o situa el bache de manera manual en el mapa</h2>
 					<div id="second_map"></div>
 					<p>Si tu bache ya ha sido reportardo, no te preocupes, actualizaremos su estado</p>
 					<a class="report_button" id="report_bache_a" onclick="pageTracker._trackEvent('Crear', 'Click');"></a>
@@ -163,11 +163,17 @@ function shortenText($text,$num=25) {
 				    $count=1;
 				    foreach($lastbaches as $bache) {
 				        $addr=explode("|",$bache['addressline']);
-				        $calle=$addr[0];
+						
+						
+						$calle=$addr[0];
+						
+						if ($calle == '')
+							$calle = "-";
+						
 				        if(count($addr)>1) {
 				            $num="cerca del ".$addr[1];
 				        } else {
-				            $num="S/N";
+				            $num= "S/N";
 				        }
 				        
 				        if($count%3 ==1) {
