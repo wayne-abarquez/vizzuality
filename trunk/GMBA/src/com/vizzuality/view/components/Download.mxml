@@ -37,7 +37,7 @@
 			<mx:AddChild position="lastChild">
 				<mx:HBox id="hbox3" y="170" horizontalCenter="0" horizontalGap="0">
 					<mx:Button label="Click here"  id="button1" paddingLeft="0" paddingRight="0" paddingBottom="2" paddingTop="0" styleName="linkButton"/>
-					<mx:Label text="if your download does not start automaticlly in 3 seconds."  id="label5" color="#FFFFFF" fontSize="12"/>
+					<mx:Label text="if your download does not start automatically in 3 seconds."  id="label5" color="#FFFFFF" fontSize="12"/>
 				</mx:HBox>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
