@@ -115,7 +115,9 @@ class OtroBache {
 		if ($zip==""){
 			$zip=$jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['PostalCode']['PostalCodeNumber'];
 		}
-       
+       	if ($zip==""){
+			$zip=$jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
+		}
 
 		$addressline="";
         $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
