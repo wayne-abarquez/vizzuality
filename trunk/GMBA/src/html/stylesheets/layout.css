@@ -7,11 +7,21 @@ div.right{float:right; width:auto;}
 a:focus{outline:none}
 
 
-div#header .title { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 178px 0px;}
+div#header div.title { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 178px 0px;}
+div#header div.titleTerms_Conditions { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 20px 0px;}
 
 div#containerContent { margin: 0px auto; height:768px; width:1024px; background-image: url(../images/bkg.jpg); background-color: #d5e8ec; }
-
 div#containerContent div.content { width:920px; margin:0px auto; }
+div#containerContent div.content div.gmbaTitle {float:none; height:36px; width:631px; background: url(../images/gmbaTitle.png) no-repeat; margin:0 0 20px 0;}
+div#containerContent div.content p {font:normal 14px Arial; margin:0 0 10px 0;}
+div#containerContent div.content h4 {font:bold 16px Arial; margin:20px 0;}
+div#containerContent div.content h5 {font:normal 14px Arial; margin:20px 0;}
+div#containerContent div.content ol {font:bold 14px Arial; margin:10px 0 0 20px;}
+div#containerContent div.content ol li {font:normal 14px Arial; margin:10px 0 0 0px;}
+div#containerContent div.content ul {font:bold 14px Arial; margin:10px 0 0 20px;}
+div#containerContent div.content ul li {font:normal 14px Arial; margin:10px 0 0 0px;}
+
+
 div#containerContent div.content div.contentLeft{ float: left; margin:50px 20px 0 0; height:368px; width:363px;}
 div#containerContent div.content div.contentLeft div.contentLeftTitle{ float: left; height:66px; width:360px; background-image: url(../images/contentLeftTitle.png); margin:0 auto; }
 div#containerContent div.content div.contentLeft div.contentLeftInfo p{ float: left; margin:30px 0 0 0; font-size:16px; font-color: #282a2b; font-family:"Lucida Grande";}
