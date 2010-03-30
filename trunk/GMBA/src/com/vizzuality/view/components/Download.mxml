@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" verticalCenter="0" horizontalCenter="0" height="407" width="634" backgroundColor="#1A1A1B" backgroundAlpha="1" 
-	xmlns:utils="com.vizzuality.utils.*" xmlns:components="com.vizzuality.view.components.*" creationComplete="onCreationComplete()">
+	xmlns:utils="com.vizzuality.utils.*" xmlns:components="com.vizzuality.view.components.*" creationComplete="onCreationComplete()" currentState="loading">
 	
 	<mx:states>
 		<mx:State name="loading">
@@ -64,11 +64,25 @@
 			public var bound: LatLngBounds;
 			public var zoom: Number;
 			
+			private var timer:Timer;			
 
 			private function onCreationComplete():void {
+				
 				MyEventDispatcher.addEventListener(ChangeMapZoom.CHANGED, onChangeMapZoom);
+				
+				timer = new Timer(4000,0);
+				timer.addEventListener(TimerEvent.TIMER,onGetData);
+				timer.start();
+				
 			}	
 			
+			private function onGetData(event:TimerEvent):void {
+				
+				timer.stop();
+				timer.removeEventListener(TimerEvent.TIMER,onGetData);
+				this.currentState = '';
+				
+			}
 			private function onChangeMapZoom(ev:ChangeMapZoom): void {
 				if (Number(ev.zoom)<=2) {
 					download_world.selected_item = true;
