@@ -25,8 +25,8 @@ if(isset($_REQUEST['locality'])) {
 
     
     //redirect to the city
-    header( 'Location: http://otrobache.com/en/'.$loc['city'] ) ;
-    die();
+    //header( 'Location: http://otrobache.com/en/'.$loc['city'] ) ;
+    //die();
     
     $latCenter = $loc['lat'];
     $lonCenter = $loc['lon']; 
@@ -43,7 +43,7 @@ if(isset($_REQUEST['locality'])) {
 }
 
 
-function shortenText($text,$num=28) { 
+function shortenText($text,$num=25) { 
     if(strlen($text)>$num) {
        // Change to the number of characters you want to display 
        $chars = $num; 
