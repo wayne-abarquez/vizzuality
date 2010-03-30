@@ -275,7 +275,7 @@
 				<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
 				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="21"/>
 				<components:ShadowButton left="20" top="25" width="200"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
-					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="{mamufas.visible=true; download.visible=true;}"/>
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="{mamufas.visible=true; download.visible=true; download.terms.selected = false;}"/>
 			</mx:Canvas>
 		</mx:VBox>
 		
