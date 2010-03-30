@@ -205,6 +205,9 @@ class OtroBache {
     	$location['city'] = "Madrid";
     	$location['country'] = "Spain";
 
+			if(SERVER=="development") {
+				return $location;
+			}
         @$link = mysql_connect('db.geekisp.com', 'jatorre_viz', 'otrobache');
         if (!$link) {
         	return $location;

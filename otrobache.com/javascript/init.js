@@ -66,6 +66,8 @@ function initialize(swLat,swLon,neLat,neLon,localityName) {
 			$.scrollTo('div.report_map',500);
 		});
 		
+		
+		
 		$('#report_bache_button').click (function(ev) {
 			ev.preventDefault();
 			ev.stopPropagation();
@@ -118,7 +120,9 @@ function initialize(swLat,swLon,neLat,neLon,localityName) {
 			}
 		});
 		
-		
+		$('#map_canvas').change( function(ev){
+			alert('jam');
+		});
 		   
 		
 		//LOAD MAP
