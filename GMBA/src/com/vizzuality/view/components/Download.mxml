@@ -115,8 +115,8 @@
 			private function onFinishTween3():void {
 				MyEventDispatcher.onCloseDownloadWindow();
 				currentState = '';
-			}		
-
+			}	
+			
 			
 		]]>
 	</mx:Script>
@@ -151,7 +151,7 @@
 	<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox2">
 		<mx:CheckBox id="terms" label="" cornerRadius="10"/>
 		<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3"/>
-		<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3"/>
+		<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('..//bin-debug/html/termsAndConditions.html'))"/>
 		<mx:Label text="of the service" fontSize="11" color="#FFFFFF"/>
 	</mx:HBox>	
 	<utils:ShadowButton height="32" label="Download" color="#FFFFFF" fontSize="17" fontWeight="normal" click="onClickToDownload()"
