@@ -23,6 +23,11 @@ Label {
 	font-family: 'DINOT-Medium';
 }
 
+Text {
+	font-family: 'DINOT-Medium';
+}
+
+
 TextInput.taxon {
 	backgroundSize: auto;
 	color: #8D8D8D;
