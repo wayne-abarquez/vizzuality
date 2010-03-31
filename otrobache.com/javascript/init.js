@@ -187,8 +187,7 @@ function initialize(localityName,centerLat,centerLon,swLat,swLon,neLat,neLon) {
 				if (ev.target.nodeName!='A' && ev.target.nodeName!='DIV' && ev.target.nodeName!='P') {
 					click_flag = click_flag + 1;
 					try_ = 0;
-					window.setTimeout('changeInfowindowData('+click_flag+')', 400);
-					
+					changeInfowindowData(click_flag);
 				}
 			});
 
@@ -197,41 +196,44 @@ function initialize(localityName,centerLat,centerLon,swLat,swLon,neLat,neLon) {
 
 	function changeInfowindowData(flag) {
 			var find = false;
-				$('div#map_canvas').find('div[jstcache]').each(function(index){
-						$(this).parent().hide();
-				  	$('div#content p').fadeOut();
-						find = true;
-						$(this).find('*:contains("lat")').remove();
-						$(this).find('*:contains("lon")').remove();
-						$(this).find('*:contains("reported_date")').remove();
-						$(this).find('*:contains("reported_by")').remove();
-						$(this).find('*:contains("address")').remove();
-						$(this).find('*:contains("city")').remove();
-						$(this).find('*:contains("zip")').remove();
-						$(this).find('*:contains("addressline")').remove();
+			$('div#map_canvas').find('div[jstcache]').each(function(index){
+				find = true;
+				if ($(this).children('br').length>0) {
+					$(this).parent().hide();
+					$('div#content p').fadeOut();
+					$(this).find('*:contains("lat")').remove();
+					$(this).find('*:contains("lon")').remove();
+					$(this).find('*:contains("reported_date")').remove();
+					$(this).find('*:contains("reported_by")').remove();
+					$(this).find('*:contains("address")').remove();
+					$(this).find('*:contains("city")').remove();
+					$(this).find('*:contains("zip")').remove();
+					$(this).find('*:contains("addressline")').remove();
 
-						array_params = $(this).text().split(': ');
-						var code_address = array_params[8].split('|');
+					array_params = $(this).text().split(': ');
+					var code_address = array_params[8].split('|');
 
-						if (code_address[1]=='undefined' || code_address[1]=='' || code_address[1]==null) {
-							var street_number = 'S/N';
-						} else {
-							var street_number = 'Cerca del ' + code_address[1];
-						}
-
-						if (choosen_bache(array_params[1],array_params[2])) {
-							$(this).html('<p style="position:relative; width:100%; top:0; left:0; float:left; padding:13px 0 0 0;">Calle '+ code_address[0] +'</p><p style="position:relative; padding:5px 0 0 0; width:100%; top:0; left:0; float:left; font-weight:normal">'+ street_number +'</p><p style="padding:5px 0 0 0; position:relative; width:100%; top:0; left:0; float:left" class="below_bache">'+array_params[7] + ', ' + array_params[6] +'</p<p style="position:relative; top:0; left:0; float:left; width:100%; text-align:right; padding:22px 8px 0 0; margin:0; font:normal 12px Arial; color:#666666">Ya reportado</p>');
-						} else {
-							$(this).html('<p style="position:relative; width:100%; top:0; left:0; float:left; padding:13px 0 0 0;">Calle '+ code_address[0] +'</p><p style="position:relative; padding:5px 0 0 0; width:100%; top:0; left:0; float:left; font-weight:normal">'+ street_number +'</p><p style="padding:5px 0 0 0; position:relative; width:100%; top:0; left:0; float:left" class="below_bache">'+array_params[7] + ', ' + array_params[6] +'</p><a href="javascript:void confirmBacheInfoWindow('+array_params[1]+','+array_params[2]+')" class="confirm_info"></a>');
-						}
-						$(this).parent().show();
-				});
-				if (!find) {
-					$('div#content p').fadeIn();
-					if (click_flag==flag && try_<50) {
-						try_ = try_ + 1;
-						window.setTimeout('changeInfowindowData('+flag+')', 100);
+					if (code_address[1]=='undefined' || code_address[1]=='' || code_address[1]==null) {
+						var street_number = 'S/N';
+					} else {
+						var street_number = 'Cerca del ' + code_address[1];
 					}
+
+					if (choosen_bache(array_params[1],array_params[2])) {
+						$(this).html('<p style="position:relative; width:100%; top:0; left:0; float:left; padding:13px 0 0 0;">Calle '+ code_address[0] +'</p><p style="position:relative; padding:5px 0 0 0; width:100%; top:0; left:0; float:left; font-weight:normal">'+ street_number +'</p><p style="padding:5px 0 0 0; position:relative; width:100%; top:0; left:0; float:left" class="below_bache">'+array_params[7] + ', ' + array_params[6] +'</p<p style="position:relative; top:0; left:0; float:left; width:100%; text-align:right; padding:22px 8px 0 0; margin:0; font:normal 12px Arial; color:#666666">Ya reportado</p>');
+					} else {
+						$(this).html('<p style="position:relative; width:100%; top:0; left:0; float:left; padding:13px 0 0 0;">Calle '+ code_address[0] +'</p><p style="position:relative; padding:5px 0 0 0; width:100%; top:0; left:0; float:left; font-weight:normal">'+ street_number +'</p><p style="padding:5px 0 0 0; position:relative; width:100%; top:0; left:0; float:left" class="below_bache">'+array_params[7] + ', ' + array_params[6] +'</p><a href="javascript:void confirmBacheInfoWindow('+array_params[1]+','+array_params[2]+')" class="confirm_info"></a>');
+					}
+					$(this).parent().show();
+				}
+			});
+			
+				if (click_flag==flag && try_<70) {
+					try_ = try_ + 1;
+					window.setTimeout('changeInfowindowData('+flag+')', 50);
+				} else {
+					if (!find) 
+						$('div#content p').fadeIn();
 				}
 
 	}
