@@ -1,0 +1,127 @@
+ssh -i dev/gmba/id-vizzuality ubuntu@204.236.250.31
+
+mysql -hlocalhost -uroot -proot -Dgmba
+
+
+
+# To add the cell_id to the gmba data using the same ID naming strategy that GBIF uses
+# 8640 is 360 * 24 (24 cells per degree)
+# this calculates the start of the row, and then adds the offset in the row
+update gmba set cell_id=((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360);
+
+# alter table density_trimmed add index(cell_id,nub_id);
+
+
+create table occurrence_density as select dt.nub_id, dt.cell_id, dt.mod_cell_id, dt.resource_id, dt.basis_of_record, dt.count,
+g.elevation, g.relief, g.tpcode as tp_code  from density_trimmed dt join gmba g on dt.cell_id=g.cell_id;
+
+
+rm gmba.tgz
+tar cvzf gmba.tgz webapp
+scp -i /Users/tim/dev/gmba/id-vizzuality /Users/tim/dev/workspace/GMBA/gmba.tgz ubuntu@204.236.250.31:tim/gmba.tgz
+ssh -i /Users/tim/dev/gmba/id-vizzuality ubuntu@204.236.250.31
+cd tim
+rm -fR webapp
+tar xvzf gmba.tgz
+nohup java -Xmx512m -classpath ./webapp/WEB-INF/classes:./webapp/WEB-INF/lib/commons-collections-3.2.1.jar:./webapp/WEB-INF/lib/commons-dbcp-1.3.jar:./webapp/WEB-INF/lib/commons-logging-1.0.4.jar:./webapp/WEB-INF/lib/commons-pool-1.5.4.jar:./webapp/WEB-INF/lib/jetty-6.1.14.jar:./webapp/WEB-INF/lib/jetty-util-6.1.14.jar:./webapp/WEB-INF/lib/log4j-1.2.12.jar:./webapp/WEB-INF/lib/mysql-connector-java-5.1.12-bin.jar:./webapp/WEB-INF/lib/servlet-api-2.5.jar com.vizzuality.gmba.web.Services &
+
+
+
+rm env.tgz
+tar cvzf env.tgz env
+scp -i /Users/tim/dev/gmba/id-vizzuality /tmp/env/env.tgz ubuntu@204.236.250.31:tim/env.tgz
+ssh -i /Users/tim/dev/gmba/id-vizzuality ubuntu@204.236.250.31
+cd tim
+rm -fR env
+tar xvzf env.tgz
+
+scp -i /Users/tim/dev/gmba/id-vizzuality /Users/tim/dev/workspace/GMBA/webapp/map2.html ubuntu@204.236.250.31:tim/webapp/map2.html
+
+
+
+
+# extracting the lat lng
+mysql> select latitude,longitude, count(*) from occurrence_record where latitude is not null and longitude is not null and geospatial_issue=0 group by 1,2 into outfile '/var/lib/mysql/tim_lat_lng_cnt.txt';
+Query OK, 4871033 rows affected (4 min 3.46 sec)
+
+
+# run the buildGTileCache2
+
+# sort it
+sort googleTilesDensity.txt -o googleTilesDensitySorted2.txt 
+
+# run the buildGTileCache2
+
+# tar and copy up
+tar cvzf tiles.tgz tiles
+scp -i /Users/tim/dev/gmba/id-vizzuality /tmp/gmba/tiles.tgz ubuntu@204.236.250.31:tim/tiles.tgz
+ssh -i /Users/tim/dev/gmba/id-vizzuality ubuntu@204.236.250.31
+cd tim
+rm -fR tiles
+tar xvzf tiles.tgz
+
+
+
+
+
+sort env_z0.txt -o env_z0_Sorted.txt
+sort env_z1.txt -o env_z1_Sorted.txt 
+sort env_z2.txt -o env_z2_Sorted.txt
+sort env_z3.txt -o env_z3_Sorted.txt
+sort env_z4.txt -o env_z4_Sorted.txt
+sort env_z5.txt -o env_z5_Sorted.txt
+sort env_z6.txt -o env_z6_Sorted.txt
+sort env_z7.txt -o env_z7_Sorted.txt
+
+sort env_z8.txt -o env_z8_Sorted.txt
+sort env_z9.txt -o env_z9_Sorted.txt
+
+
+
+
+elevation: -416 - 7889
+relief: 0 - 3397
+seadist: 1 - 2433
+mtdist: 0 - 2837
+vegcode: 1,5,11,15,21,22,23,25,26,51,52,55,56,57,61,62,81,82,83 
+tpcode: 1,2,3,4,5,6,7,8,9
+
+
+
+
+
+# 
+mysql> desc gmba;
++-----------+------------------+------+-----+---------+-------+
+| Field     | Type             | Null | Key | Default | Extra |
++-----------+------------------+------+-----+---------+-------+
+| cellnr    | int(11)          | YES  |     | NULL    |       | 
+| latitude  | float            | YES  |     | NULL    |       | 
+| longitude | float            | YES  |     | NULL    |       | 
+| elevation | smallint(6)      | YES  |     | NULL    |       | 
+| relief    | smallint(6)      | YES  |     | NULL    |       | 
+| continent | tinyint(4)       | YES  |     | NULL    |       | 
+| seadist   | mediumint(9)     | YES  |     | NULL    |       | 
+| mtdist    | mediumint(9)     | YES  |     | NULL    |       | 
+| vegcode   | tinyint(4)       | YES  |     | NULL    |       | 
+| tpcode    | tinyint(4)       | YES  |     | NULL    |       | 
+| cell_id   | int(10) unsigned | YES  | MUL | NULL    |       | 
++-----------+------------------+------+-----+---------+-------+
+11 rows in set (0.00 sec)
+
+
+scp -i /Users/tim/dev/gmba/id-vizzuality ubuntu@204.236.250.31:/tmp/env.txt  /tmp/gmba/env.txt 
+
+
+
+
+
+
+7 zooms:
+20:14 start
+
+20:18 Stage 1: "Map" finished (232 secs)
+20:22 Stage 2: "Sort" finished (around 200meg + 200meg per zoom = 3GB of temp files)
+20:27 Stage 3: "Reduce" finished (277 secs)
+
+Total: under 14 mins

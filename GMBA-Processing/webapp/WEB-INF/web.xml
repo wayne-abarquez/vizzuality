@@ -1,0 +1,37 @@
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>GMBA</display-name>
+	
+	<servlet>
+	  <servlet-name>services</servlet-name>
+	  <servlet-class>com.vizzuality.gmba.web.Services</servlet-class>
+		
+	  <init-param>
+		<param-name>connectURI</param-name>
+		 <!-- e.g. jdbc:mysql://localhost:3306/gmba -->
+		<param-value>jdbc:mysql://localhost:3306/gmba</param-value>
+	  </init-param>
+	  <init-param>
+		<param-name>user</param-name>
+		<param-value>root</param-value>
+	  </init-param>
+	
+	  <init-param>
+		<param-name>password</param-name>
+		  <!-- leave blank for no password -->
+		<param-value>root</param-value>
+	  </init-param>
+	  
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+	  <servlet-name>services</servlet-name>
+	  <url-pattern>/service/*</url-pattern>
+	</servlet-mapping>  	
+	
+    <welcome-file-list>
+        <welcome-file>pages/index.html</welcome-file>
+    </welcome-file-list>
+</web-app>
