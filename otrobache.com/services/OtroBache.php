@@ -86,7 +86,6 @@ class OtroBache {
 
         // parse the json response
         $jsondata = json_decode($data,true);
-        return $jsondata;
 
 		$address="";
         $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
