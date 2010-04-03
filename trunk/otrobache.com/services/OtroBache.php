@@ -91,16 +91,19 @@ class OtroBache {
 		$address="";
         $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
 		
-		if ($address==""){
+		/*if ($address==""){
 			$address = $jsondata['Placemark'][1]['address'];
 		}
+		*/
 		
 		$city="";
         $city=strtolower( $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName']);
         
+        /*
 		if ($city==""){
 			$city = strtolower($jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['SubAdministrativeAreaName']);
 		}
+		*/
 
 		$zip="";
 		try {
