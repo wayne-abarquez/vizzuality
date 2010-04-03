@@ -73,7 +73,7 @@ class OtroBache {
         $lonf=round($lon,5);
                        
         // format this string with the appropriate latitude longitude
-        $url = 'http://maps.google.com/maps/geo?q='.$latf.','.$lonf.'&output=json&sensor=false&key=' . $this->api_key;
+        $url = 'http://maps.google.com/maps/geo?q='.$latf.','.$lonf.'&output=json&sensor=true_or_false&key=' . $this->api_key;
         // make the HTTP request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -86,58 +86,21 @@ class OtroBache {
 
         // parse the json response
         $jsondata = json_decode($data,true);
-
-		$address="";
         $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
-		
-		/*if ($address==""){
-			$address = $jsondata['Placemark'][1]['address'];
-		}
-		*/
-		
-		$city="";
+        
         $city=strtolower( $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName']);
         
-        /*
-		if ($city==""){
-			$city = strtolower($jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['SubAdministrativeAreaName']);
-		}
-		*/
-
-		$zip="";
-		try {
-            $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
-     		if ($zip==""){
-    			$zip=$jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['AdministrativeAreaName']['Locality']['DependentLocality']['PostalCode']['PostalCodeNumber'];
-    		}
-    		if ($zip==""){
-    			$zip=$jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['PostalCode']['PostalCodeNumber'];
-    		}
-        } catch (Exception $e) {
-            //echo 'Caught exception: ',  $e->getMessage(), "\n";
-        }		
-
-		$addressline="";
-		try {
-            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
+        $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
         
-            if($addressline=="") {
-                $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['Thoroughfare']['ThoroughfareName'];
-            }
-            if($addressline=="") {
-                $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['DependentLocalityName'];
-            } 
-            if($addressline=="") {
-                $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AddressLine'][0];
-            }
-    		if($addressline=="") {
-                $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['Locality']['AddressLine'];
-            } 
-        } catch (Exception $e) {
-            //echo 'Caught exception: ',  $e->getMessage(), "\n";
-        }       
-       
-       
+        $addressline="";
+        $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
+        
+        if($addressline=="") {
+            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['Thoroughfare']['ThoroughfareName'];
+        }
+        if($addressline=="") {
+            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['DependentLocalityName'];
+        }        
         $addressline=str_replace(",","|",$addressline);
         
         if(SERVER=="production") {
@@ -161,7 +124,7 @@ class OtroBache {
         //Tweet!!!
 		$tweet = new Twitter(TWITTER_USER, TWITTER_PASS);
 		$addressf=str_replace("|",",",$address);
-		$tweetMessage="Otro bache en $addressf Más en http://otrobache.com #fb";
+		$tweetMessage="Otro bache en $addressf MÃ¡s en http://otrobache.com #fb";
         $success = $tweet->update($tweetMessage);
 		if (!$success) {
 			error_log("TWITTER PROBLEM: ".$tweet->error);
