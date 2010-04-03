@@ -102,6 +102,7 @@ class OtroBache {
 		}
 
 		$zip="";
+		try {
         $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
         if ($zip==""){
 			$zip=$jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
@@ -118,8 +119,12 @@ class OtroBache {
        	if ($zip==""){
 			$zip=$jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
 		}
+        } catch (Exception $e) {
+            //echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }		
 
 		$addressline="";
+		try {
         $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
         
         if($addressline=="") {
@@ -134,6 +139,10 @@ class OtroBache {
 		if($addressline=="") {
             $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['Locality']['AddressLine'];
         } 
+        } catch (Exception $e) {
+            //echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }       
+       
        
         $addressline=str_replace(",","|",$addressline);
         
