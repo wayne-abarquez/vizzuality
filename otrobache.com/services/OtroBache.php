@@ -103,42 +103,33 @@ class OtroBache {
 
 		$zip="";
 		try {
-        $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
-        if ($zip==""){
-			$zip=$jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
-		}
-		if ($zip==""){
-			$zip=$jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['AdministrativeAreaName']['Locality']['PostalCode']['PostalCodeNumber'];
-		}
- 		if ($zip==""){
-			$zip=$jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['AdministrativeAreaName']['Locality']['DependentLocality']['PostalCode']['PostalCodeNumber'];
-		}
-		if ($zip==""){
-			$zip=$jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['PostalCode']['PostalCodeNumber'];
-		}
-       	if ($zip==""){
-			$zip=$jsondata['Placemark'][1]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
-		}
+            $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
+     		if ($zip==""){
+    			$zip=$jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['AdministrativeAreaName']['Locality']['DependentLocality']['PostalCode']['PostalCodeNumber'];
+    		}
+    		if ($zip==""){
+    			$zip=$jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['PostalCode']['PostalCodeNumber'];
+    		}
         } catch (Exception $e) {
             //echo 'Caught exception: ',  $e->getMessage(), "\n";
         }		
 
 		$addressline="";
 		try {
-        $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
+            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
         
-        if($addressline=="") {
-            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['Thoroughfare']['ThoroughfareName'];
-        }
-        if($addressline=="") {
-            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['DependentLocalityName'];
-        } 
-        if($addressline=="") {
-            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AddressLine'][0];
-        }
-		if($addressline=="") {
-            $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['Locality']['AddressLine'];
-        } 
+            if($addressline=="") {
+                $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['Thoroughfare']['ThoroughfareName'];
+            }
+            if($addressline=="") {
+                $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['DependentLocality']['DependentLocalityName'];
+            } 
+            if($addressline=="") {
+                $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AddressLine'][0];
+            }
+    		if($addressline=="") {
+                $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['Locality']['AddressLine'];
+            } 
         } catch (Exception $e) {
             //echo 'Caught exception: ',  $e->getMessage(), "\n";
         }       
