@@ -146,8 +146,7 @@ class OtroBache {
         if($res=="User is not authorized to access the table"){
             $this->checkToken(true);
             return $this->reportBache($locality);
-        }      
-        error_log(print_r($res,true));  
+        }       
         if(count($res)>0) {
             $resnum=number_format($res[0]['count()'],0,",",".");
         } else {
