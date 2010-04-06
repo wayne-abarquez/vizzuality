@@ -118,7 +118,7 @@ class OtroBache {
         $newId= $ft->query($sql);
         if($res=="User is not authorized to access the table"){
             $this->checkToken(true);
-            return $this->getNumBaches($lat,$lon,$reportedBy);
+            return $this->reportBache($lat,$lon,$reportedBy);
         }        
         
         //Tweet!!!
