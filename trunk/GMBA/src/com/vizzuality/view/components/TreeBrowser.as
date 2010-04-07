@@ -368,6 +368,8 @@ package com.vizzuality.view.components
 	    
 		private function createColumn():TreeBrowserList{
 			var list:TreeBrowserList = new TreeBrowserList();
+			
+			
 			list.setStyle("paddingBottom","0");
 			list.setStyle("paddingLeft","-1");
 			list.setStyle("paddingRight","-1");

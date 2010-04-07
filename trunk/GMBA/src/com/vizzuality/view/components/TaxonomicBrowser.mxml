@@ -39,6 +39,7 @@
   				
   				var auxDP: ArrayCollection = new ArrayCollection();
 				var clasOb:Object= new Object();
+				
 				clasOb.description ="";
 				clasOb.imageURL ="";
 				clasOb.labelField = 'All taxa';
@@ -110,8 +111,8 @@
 	<!--<mx:Style source="com/vizzuality/skin/fonts.css"/>
 	<mx:Style source="com/vizzuality/skin/general.css"/>-->
 	
-	<components:TreeBrowser id="treeB" columnWidth="250" detailRenderer="com.vizzuality.view.components.ItemDetailRenderer" top="45" bottom="0" left="0" right="0"/>	
-	<utils:GradientCanvas id="click_canvas" height="45" top="0" left="0" right="0" firstColor="0x009933" secondColor="0x006633" />
+	<components:TreeBrowser id="treeB" columnWidth="250" detailRenderer="com.vizzuality.view.components.ItemDetailRenderer" top="45" bottom="0" left="0" right="0" color="#FFAAFF"/>	
+	<utils:GradientCanvas id="click_canvas" height="45" top="0" left="0" right="0" firstColor="0x313131" secondColor="0x1a1a1a" />
 	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />
 	<mx:Button  label="X" color="#FFFFFF" styleName="nullButton" textDecoration="normal" width="30" right="3" top="13" toolTip="Close" useHandCursor="true" 
 	buttonMode="true" mouseChildren="false" click="MyEventDispatcher.onCloseDownloadWindow();"/>

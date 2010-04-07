@@ -61,7 +61,7 @@
 		]]>
 	</mx:Script>
 	
-	<mx:VBox verticalGap="0" left="20" top="15" right="20" id="componentsBox">
+	<mx:VBox horizontalGap="0" verticalGap="0" left="20" top="15" right="20" id="componentsBox" >
 		<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 		<mx:Spacer height="5"/>
 		<mx:TextInput  text="All taxa" styleName="taxon" verticalCenter="0" id="searchText" change="onChangeText()" click="{(searchText.text=='All taxons')?searchText.text='':null}" width="100%"/>

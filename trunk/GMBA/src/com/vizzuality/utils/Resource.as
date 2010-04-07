@@ -27,6 +27,6 @@ package com.vizzuality.utils
 	    
 		[Embed (source="assets/ajax-loader.gif" )]
 	    public static const DOWNLOAD_LOADER:Class;
-		
+	    
 	}
 }

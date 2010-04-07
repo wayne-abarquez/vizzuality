@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="com.vizzuality.utils.*" xmlns:view="com.vizzuality.view.*" 
 	backgroundColor="#D5E8EC" 
-	horizontalScrollPolicy="off" 
+	horizontalScrollPolicy="off"
+	verticalScrollPolicy="auto"
 	addedToStage="initSWFAddress()" 
 	removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()" xmlns:components1="com.vizzuality.view.components.*" xmlns:components2="org.vizzuality.components.*">
@@ -266,20 +267,20 @@
 	
 	<mx:GlowFilter id="sh" alpha="0.3" color="#000000" blurX="20" blurY="20" />
 	
-	<mx:Canvas styleName="bkgBigCanvas" top="20" left="45" right="45" bottom="20" backgroundSize="100%" filters="{[sh]}"> 
+	<mx:Canvas styleName="bkgBigCanvas" top="22" left="22" right="29" bottom="24" backgroundSize="100%" filters="{[sh]}"> 
 
-		<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
-			<view:Toolbar width="20%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}"/>
+		<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
+			<view:Toolbar width="22%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}"/>
 			<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
 				<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 				<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
 				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="21"/>
-				<components:ShadowButton left="20" top="25" width="200"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
+				<components:ShadowButton left="25" top="25" width="200"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
 					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="{download.setCriteriaValues(); mamufas.visible=true; download.visible=true; download.terms.selected = false; }"/>
 			</mx:Canvas>
 		</mx:VBox>
 		
-		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="80%" id="canvas1">
+		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="78%" id="canvas1">
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="no-key" top="5" bottom="5" right="5" left="5"/>
 			<components1:Help backgroundColor="#000000" top="5" bottom="5" right="5" left="5" visible="false" id="help1"/>	
 			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
