@@ -48,6 +48,8 @@ class OtroBache {
         }
     }
     
+
+    
     public function georeferenceLocality($locality) {
         $url = 'http://maps.google.com/maps/geo?q='.urlencode($locality).'&output=json&sensor=false&key=' . $this->api_key;
         // make the HTTP request
@@ -66,6 +68,12 @@ class OtroBache {
         $res['name'] = $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName'];
         return $res;
     }
+    
+    public function reportBacheByAddress($address) {
+        $loc = $this->georeferenceLocality($address);
+        return $this->reportBache($loc['center'][1],$loc['center'][0],"manual");
+    }    
+    
     
     //API
     public function reportBache($lat,$lon,$reportedBy) {
