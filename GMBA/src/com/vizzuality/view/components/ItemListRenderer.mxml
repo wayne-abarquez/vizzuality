@@ -20,9 +20,9 @@
 			[Bindable] public var treeBrowserParent:TreeBrowser;
 
 			
-			/* [Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowGreen")]
+			[Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowYellow")]
 			[Bindable]
-   			public var greenCanvas:Class;
+   			public var yellowCanvas:Class;
 			
 			[Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowGrey")]
 			[Bindable]
@@ -30,7 +30,7 @@
 			
 			[Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowDarkGrey")]
 			[Bindable]
-   			public var grayDarkCanvas:Class; */
+   			public var grayDarkCanvas:Class;
 			
 			private var object: Object;
 		
@@ -39,14 +39,14 @@
 			     
 			 	 if(TreeBrowserList(owner).isItemSelected(data)) {
 			 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
-						/* setStyle("backgroundImage",greenCanvas); */
+						setStyle("backgroundImage",yellowCanvas);
 			     		specieLabel.setStyle('color', 0xFFFFFF);
 		            	specieGroup.setStyle('color', 0xFFFFFF);
 				     } else {
 					 	if (parseInt(children_number)==0 || type=="species") {
-					 		/* setStyle("backgroundImage",greenCanvas); */
+					 		setStyle("backgroundImage",yellowCanvas);
 					 	} else {
-						 	/* setStyle("backgroundImage",grayDarkCanvas); */
+						 	setStyle("backgroundImage",grayDarkCanvas);
 					 	}
 				     	specieLabel.setStyle('color', 0xFFFFFF);
 		             	specieGroup.setStyle('color', 0xFFFFFF);
@@ -54,11 +54,11 @@
 				 }
 				 else {
 				 	 if (TreeBrowserList(owner).isItemHighlighted(data)) {
-						/* setStyle("backgroundImage",greenCanvas); */
+						setStyle("backgroundImage",yellowCanvas);
 				     	specieLabel.setStyle('color', 0xFFFFFF);
 			            specieGroup.setStyle('color', 0xFFFFFF);
 				     } else {
-				     	/* setStyle("backgroundImage",grayCanvas); */
+				     	setStyle("backgroundImage",grayCanvas);
 						specieLabel.setStyle('color', 0x666666);
 						specieGroup.setStyle('color', 0x666666);
 				     }

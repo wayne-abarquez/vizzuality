@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:components="com.vizzuality.components.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" 
-	xmlns:ns1="com.google.maps.*" xmlns:ns2="com.vizzuality.view.GMBAMap.*" applicationComplete="initSWFAddress()" currentStateChange="setSWFAddress()" xmlns:view="com.vizzuality.view.*" minWidth="1400" minHeight="740"
+	xmlns:ns1="com.google.maps.*" xmlns:ns2="com.vizzuality.view.GMBAMap.*" applicationComplete="initSWFAddress()" currentStateChange="setSWFAddress()" xmlns:view="com.vizzuality.view.*" 
+	minWidth="1280" minHeight="740" 
 	preloader="com.vizzuality.view.preloader.Preloader">
 	
 	
@@ -12,7 +13,7 @@
 			<mx:SetStyle target="{vbox}" name="backgroundColor" value="#FFFFFF"/>
 			<mx:AddChild relativeTo="{vbox}" position="lastChild">
 				<view:GMBAMap id="gmbaMap"/>
-			</mx:AddChild>
+			</mx:AddChild> 	
 		</mx:State>
 	</mx:states>
 	
@@ -55,8 +56,8 @@
 	
 
 
-	<mx:VBox height="100%" width="100%" id="vbox">
-		<mx:Canvas height="100%" width="100%" id="home" backgroundColor="#333333">
+	<mx:VBox height="100%" width="100%" id="vbox" verticalScrollPolicy="auto">
+		<mx:Canvas height="100%" width="100%" id="home" backgroundColor="#333333" verticalScrollPolicy="auto">
 			<mx:Button click="{currentState='Map'}" horizontalCenter="0" verticalCenter="0" width="132" label="Change state"/>
 		</mx:Canvas>
 	</mx:VBox>
