@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="com.vizzuality.utils.*" xmlns:view="com.vizzuality.view.*" 
 	backgroundColor="#D5E8EC" 
-	horizontalScrollPolicy="off"
+	horizontalScrollPolicy="auto"
 	verticalScrollPolicy="auto"
 	addedToStage="initSWFAddress()" 
 	removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()" xmlns:components1="com.vizzuality.view.components.*" xmlns:components2="org.vizzuality.components.*"
-    minHeight="740"
-    minWidth="1280">
+    minHeight="742"
+    minWidth="1240">
 	<mx:states>
 		<mx:State name="Help">
 			<mx:SetProperty target="{help1}" name="visible" value="true"/>
@@ -282,7 +282,7 @@
 			</mx:Canvas>
 		</mx:VBox>
 		
-		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="78%" id="canvas1">
+		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="78%" id="canvasMapContainer">
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="no-key" top="5" bottom="5" right="5" left="5"/>
 			<components1:Help backgroundColor="#000000" top="5" bottom="5" right="5" left="5" visible="false" id="help1"/>	
 			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
