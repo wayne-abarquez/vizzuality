@@ -7,7 +7,7 @@
 <div class="content">
 	<div class="span-1 last breadCrumb">
 		<ul>
-			<li class="arrowList"><a href="index.php">Bases de dades</a></li>
+			<li class="arrowList"><a href="index.php">{$smarty.const.BASES_DE_DADES}</a></li>
 			<li>{$BDSelected}</li>
 		</ul>
 	</div>
@@ -53,12 +53,12 @@
 			    
 			    	<div class="fila"> 
 			    		<div class="span-1 last inputContainer">
-			    			<p>{$smarty.const.NOMTAXON} <b>(Acro*)</b></p> 
+			    			<p>{$smarty.const.NOMTAXON} <b>({$nomCientifSug})</b></p> 
 				 			<input name="nameauthoryearstring" id="nameauthoryearstring" class="inputDataLong" type="text" />
 			    		</div>
 			    		
 			    		<div class="span-1 last inputContainer2">
-			    			<p>{$smarty.const.GEN} <b>(Acant*)</b></p> 
+			    			<p>{$smarty.const.GEN} </p> 
 							<select name="genus" class="inputSelect">
 								<option value="">{$smarty.const.TODOS}</option>
 								{html_options values=$genus output=$genus}
@@ -76,7 +76,7 @@
 			    	
 			    	<div class="fila">
 			    		<div class="span-1 last inputContainer">
-				       		<p>{$smarty.const.LOCALITAT} <b>(*Balagu*)</b></p> 
+				       		<p>{$smarty.const.LOCALITAT} <b>({$localitSug})</b></p> 
 				       		<input name="localitytext" id="localitytext" class="inputDataLong" type="text" />
 			    		</div>
 			    		<div class="span-1 last inputContainer2">
@@ -94,7 +94,7 @@
 			    	
 			    	<div class="fila">
 			    		<div class="span-1 last inputContainer">
-				       		<p>{$smarty.const.RECOL} <b>(*Sennen*)</b><p>
+				       		<p>{$smarty.const.RECOL} <b>({$recolSug})</b><p>
 				       		<input name="agenttext" id="agenttext" class="inputDataLong" type="text" />
 			    		</div>
 			    		<div class="span-1 last inputContainer2">
@@ -112,13 +112,13 @@
 			    	</div>
 			    	<div class="fila">
 			    		<div class="span-1 last inputContainer">
-				       		<p>{$smarty.const.NUMHERB} <b>(104*)</b></p> 
+				       		<p>{$smarty.const.NUMHERB} <b>({$numHerbSug})</b></p> 
 				    		<input name="UnitID" id="UnitID" class="inputDataSmall" type="text" />
 				  			<input name="db" type="hidden" value="{$BDSelected}">
 			    		</div>
 			    	</div>
 					<div class="buttonContainer"><input name="submit" value="{$smarty.const.BUTTONSEARCH}" type="submit" class="buttonSearch"/>
-						<input value="Volver" type="button" class="buttonSearch"/ onclick="location.href='index.php'">
+						<input value="{$smarty.const.VOLVER}" type="button" class="buttonSearch"/ onclick="location.href='index.php'">
 					</div>
 			    	</form>
 		  	  	</div>

@@ -5,7 +5,7 @@
 		<div class="navigator">
 			<div class="span-1 last breadCrumb">
 				<ul>
-					<li class="arrowList"><a href="index.php">Bases de dades</a></li>
+					<li class="arrowList"><a href="index.php">{$smarty.const.BASES_DE_DADES}</a></li>
 					<li class="arrowList"><a href="query.php?db={$BDSelected}">{$BDSelected}</a></li>
 				</ul>
 			</div>
@@ -37,7 +37,10 @@
       		<div class="result" onmouseover="this.className='result activo'" onmouseout="this.className='result inactivo'" onclick="location.href='taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring|escape:'url'}&amp;db={$BDSelected}';">
       			<p class="resultTitle"><a href="taxondetail.php?nameauthoryearstring={$result.nameauthoryearstring|escape:'url'}&amp;db={$BDSelected}">{$result.nameauthoryearstring}</a></p>
       			<p class="resultTaxon">{$result.highertaxon}</p>
-      			<p class="resultLocal">{$result.num_sheets} pliego(s) | {$result.num_georef} georef.  | {$result.num_images} foto(s)</p>
+      			<p class="resultLocal">{$result.num_sheets} pliego(s) | {$result.num_georef} georef.  | {$result.num_images} foto(s)
+
+{if $result.num_images>0}<img class="camera" src="images/camera.png">{/if} {if $result.num_georef>0} <img class="icon" src="images/google_marker_red.jpg"> {/if}			    
+      			    </p>
       		</div>
 			{/foreach}
       	</div>

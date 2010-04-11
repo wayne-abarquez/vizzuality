@@ -3,7 +3,7 @@
 <div class="content">
 	<div class="span-1 last breadCrumb">
 		<ul>
-			<li class="arrowList"><a href="index.php">Bases de dades</a></li>
+			<li class="arrowList"><a href="index.php">{$smarty.const.BASES_DE_DADES}</a></li>
 			<li class="arrowList"><a href="query.php?db={$BDSelected}">{$BDSelected}</a></li>
 			<li>{$smarty.request.submit}</li>
 		</ul>
@@ -49,7 +49,9 @@
 				{/if}
 			</a></p>
 			<p>{$result.TypeStatus}</p>
-			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} {if $result.photo}<img class="camera" src="images/camera.png">{/if} {if $result.coords!=''} <img class="icon" src="images/map.png"> {/if}</p>
+			<p><b>Localitat: </b>{$result.localitytext}<b> Recollectors:</b> {$result.AgentText} 
+			    {if $result.num_images>0}<img class="camera" src="images/camera.png">{/if}
+			    {if $result.photo}<img class="camera" src="images/camera.png">{/if} {if $result.coords!=''} <img class="icon" src="images/google_marker_red.jpg"> {/if}</p>
 		{/foreach}
 		</div>
 	</div>

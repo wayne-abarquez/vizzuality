@@ -4,6 +4,7 @@
 define('TITLE_HEADER_1', "Centro de documentación");
 define('TITLE_HEADER_2', "de");
 define('TITLE_HEADER_3', "Biodiversidad Vegetal");
+define('BASES_DE_DADES', "Base de datos");
 
 // define('IDIOMA1', "Català");
 // define('IDIOMA2', "Castellano");
@@ -33,6 +34,8 @@ define('REGGEO', "registros georeferenciados");
 
 //query
 define('INTRO_TEXTBD1', "En esta base de datos se recogen prácticamente todas las muestras de algas del Herbario. Si no obtienes los resultados esperados en tu consulta, ponte en contacto con el personal del centro e indica claramente la información que deseas localizar.");
+
+define('INTRO_TEXTCONTACTE', " ");
 
 define('INTRO_TEXTBD2', "La informatización de la colección de Briófitos se ha iniciado recientemente y de momento esta base de datos recoge un número de registros muy bajo. Si no obtienes los resultados esperados en tu consulta, ponte en contacto con el personal del centro e indica claramente la información que deseas localizar. ");
 
