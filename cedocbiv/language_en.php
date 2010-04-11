@@ -1,9 +1,10 @@
 <?php
 
 //header
-define('TITLE_HEADER_1', "Centre de Documentació");
-define('TITLE_HEADER_2', "de");
-define('TITLE_HEADER_3', "Biodiversitat Vegetal");
+define('TITLE_HEADER_1', "Documentation centre");
+define('TITLE_HEADER_2', "of");
+define('TITLE_HEADER_3', "Vegetal Biodiversity");
+define('BASES_DE_DADES', "Database");
 
 // define('IDIOMA1', "Català");
 // define('IDIOMA2', "Castellano");
@@ -34,6 +35,8 @@ define('REGGEO', "georeferenced records");
 //query
 define('INTRO_TEXTBD1', "This database comprises almost all the algae collection. If 
 you don't find the information you need, please contact with us and indicate as precise as possible the records that you are looking for. ");
+
+define('INTRO_TEXTCONTACTE', "");
 
 define('INTRO_TEXTBD2', "The digitisation of the Bryophyta collection has started recently and this database only cover a low percentage of bryophyta specimens. If 
 you don't find the information you need, please contact with us and indicate as precise as possible the records that you are looking for.");
@@ -74,14 +77,14 @@ define('ABANS', "Before of");
 define('DESPRES', "After of");
 define('IGUAL', "Equal to (with *)");
 
-define('BUTTONSEARCH', "New query");
+define('BUTTONSEARCH', "Query");
 define('BUTTONNEWSEARCH', "New Search");
 
 define('ORD', "Order results by: ");
 
 // Resultado de pliego
 
-define('VOLVER', "Return to previous page");
+define('VOLVER', "Go back");
 
 
 define('VIENDO', "Hits from ");

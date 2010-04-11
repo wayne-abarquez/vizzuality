@@ -1,9 +1,11 @@
 <?php
 
 //header
-define('TITLE_HEADER_1', "Centre de Documentació");
+define('TITLE_HEADER_1', "Centre de documentació");
 define('TITLE_HEADER_2', "de");
 define('TITLE_HEADER_3', "Biodiversitat Vegetal");
+define('BASES_DE_DADES', "Bases de Dades");
+
 
 // define('IDIOMA1', "Catalá");
 // define('IDIOMA2', "Español");
@@ -17,6 +19,8 @@ define('ACTUAL', "Última actualització:");
 //home
 define('INTRO_TITLE', "Bases de Dades de l'Herbari BCN");
 define('INTRO_TEXT', "Des d'aquesta pagina podeu accedir a les sis bases de dades de l'herbari BCN, que es corresponen a les respectives colleccions que allotja el centre. Cliqueu en la base de dades que volgueu consultar:");
+
+
 
 define('BD1', "Algues");
 define('BD2', "Briófits");
@@ -67,12 +71,12 @@ define('TITLE_TABTAXON', "Buscar Taxon");
 define('NOMTAXON', "Nom del tàxon");
 define('GEN', "Gènere");
 define('FAM', "Família");
-define('TODOS', "totes");
+define('TODOS', "·tots");
 
 define('NUMHERB', "Número d'herbari");
 define('DATAREC', "Data recollecció");
 define('UTM', "UTM");
-define('RECOL', "Recollectors");
+define('RECOL', "Recol·lectors");
 define('PAIS', "País");
 define('LOCALITAT', "Localitat");
 
@@ -87,7 +91,7 @@ define('ORD', "Ordenat per: ");
 
 // Resultado de pliego
 
-define('VOLVER', "torna");
+define('VOLVER', "Torna");
 
 
 define('VIENDO', "Viendo del ");

@@ -3,7 +3,7 @@
 <div class="content">
 	<div class="span-1 last breadCrumb">
 		<ul>
-			<li class="arrowList"><a href="index.php">Bases de dades</a></li>
+			<li class="arrowList"><a href="index.php">{$smarty.const.BASES_DE_DADES}</a></li>
 			<li class="arrowList"><a href="query.php?db={$BDSelected}">{$BDSelected}</a></li>
 			<li>{$smarty.request.submit}</li>
 		</ul>
