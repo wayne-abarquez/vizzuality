@@ -7,12 +7,14 @@ div.right{float:right; width:auto;}
 a:focus{outline:none}
 img.left_curve{float:left;}
 img.right_curve{float:right;}
-
+ul {list-style:none;}
 div#outer_layout {float:left; width:100%;}
 div#layout {margin:0 auto; width:940px;}
-
+div#left_container {float:left; width:610px; margin:0; padding:0;}
+div#right_container {float:right; width:311px; margin:0; padding:0;}
 
 /* ---------- HEADER ---------- */
+
 div#outer_header{float:left; width:100%; background:url(../images/header/header_bkg.png) repeat-x 0 0; height:56px;}
 div#header{position:relative; width:940px; margin:0 auto; padding:0; height:56px;}
 div#header a.logo{float:left; width:255px; height:32px; background:url(../images/header/logo.png) no-repeat 0 0; margin:10px 0 0 0;}
@@ -30,21 +32,163 @@ div#header p.user_login a.user {float:none; text-decoration:underline; font:bold
 div#header a#loginLink {float:right; text-decoration:none; font:bold 12px Arial; color:#ffffff; letter-spacing:-0.5px; padding:0 15px 0 0; margin:12px 0 0 13px; background:url(../images/common/transArrow.png) no-repeat right 2px}
 div#header a#loginLink:hover {text-decoration:underline;}
 
+
 /* ---------- JOBS ---------- */
 div#outer_upper_area{width:100%; }
 
 div#upper_area{width:940px; margin:0 auto; }
 div#upper_area div.content{float:left; position:relative; width:940px; height:263px; margin:0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
 div#upper_area div.content div.left_sec_title{float:left; width:616px;}
-
 div#upper_area div.content div.left_sec_title h1{float:left; position:relative; width:616px; font:bold 53px Arial; line-height:41px; color:#4C4C4C; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
+
+
+
+
 
 
 /* ---------- SITE ---------- */
 
+div.upper_area{width:940px; margin:0 auto;}
+div.upper_area div.content {float:left; width:940px; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px; position:relative; padding:0; margin:0;}
+div.upper_area div.left_sec{float:left; width:690px;}
+div.upper_area div.left_sec p {float:left; width:auto; font:normal 13px Arial; color:#666666; margin:0; width:100%; margin:0 0 4px 0;}
+div.upper_area div.left_sec p a {border-bottom:1px solid #006699; color:#336699; text-decoration:none;}
+div.upper_area div.left_sec p a:hover {color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
+div.upper_area div.left_sec h1{float:left; position:relative; width:920px; font:bold 27px Arial; line-height:31px; color:#333333; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
+div.upper_area div.left_sec p.world{float:left; width:440px; color:#339900; font:bold 9px Arial; margin:4px 0 0 0; padding:2px 0 2px 12px; background:url(../images/icons/green_star.gif) no-repeat 0 0; line-height:8px;}
+
+div#tabsC {position:absolute; bottom:-1px; right:-1px; float:right; font-size:12px; line-height:normal; color: #FFFFFF; width:420px; margin:0;}
+div#tabsC ul {margin:0; padding:0 0px 0 0; list-style:none;float:right; width:auto; list-style:none;}
+div#tabsC li {float:right; display:inline; margin:0; padding:0; text-align: center;}
+div#tabsC a { float:left; background:url("../images/tableftC.gif") no-repeat left top; margin:0; padding:0 2px 0 3px; text-decoration:none; font-weight:bold; color: white; width: 83px;}
+div#tabsC a span { float:left; display:block; background:url("../images/tabrightC.gif") no-repeat right top; padding: 5px 7px 5px 3px;}
+div#tabsC a span {float:none;}
+div#tabsC a:hover span {}
+div#tabsC a:hover { background-position:0% -24px; }
+div#tabsC a:hover span { background-position:100% -24px;}
+
+div#tabsC #orange a { background:url("../images/tableftO.gif") no-repeat left top; width: 105px; padding:0 2px 0 3px; margin:0;}
+div#tabsC #orange a span {float:left; display:block; background:url("../images/tabrightO.gif") no-repeat right top; padding: 5px 0px 5px 0px; width:105px;}
+div#tabsC #orange a:hover span {}
+div#tabsC #orange a:hover {background-position:0% -41px;}
+div#tabsC #orange a:hover span {background-position:100% -41px;} 
+
+div#tabsC #green a { background:url("../images/tableftG.gif") no-repeat left top; width: 85px; padding:0 0 0 3px; margin:0;}
+div#tabsC #green a span {float:left; display:block; background:url("../images/tabrightG.gif") no-repeat right top; padding: 5px 10px 5px 5px; width: 70px;}
+div#tabsC #green a:hover span {}
+div#tabsC #green a:hover {background-position:0% -42px;}
+div#tabsC #green a:hover span {background-position:100% -42px;} 
+div#tabsC #currentTab a {background-position:0% -24px;}
+div#tabsC #currentTab a span {background-position:100% -24px;}
+
+div.pa_map {position:relative; width:100%; float:left; margin:0; height:306px; border-top:2px solid #006699; border-bottom:2px solid #006699; z-index:100;}
+
+
+	/* points of interest */
+div#left_container div.interestPoint {float:left; position:relative; width:610px; margin:28px 0 0 0;}
+div#left_container div.interestPoint ul {list-style:none; margin:0; padding:0;}
+div#left_container div.interestPoint h3{float:left; width:610px; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px;}
+div#left_container div.interestPoint div.interestBox {position:relative; float:left; width:197px; height:173px; background:#CCCCCC; margin:12px 9px 0 0;}
+div#left_container div.interestPoint div.interestBox.last {margin:12px 0 0;}
+div#left_container div.interestPoint div.interestBox div.bottomData {position:absolute; bottom:0; left:0; right:0; height:58px; background:url(../images/site/pointBottom.png) no-repeat 0 0;}
+div#left_container div.interestPoint div.interestBox:hover {cursor:pointer;}
+div#left_container div.interestPoint div.interestBox div.image {float:left; width:197px; height:124px; background-position:-10px -10px; background-repeat:no-repeat;}
+div#left_container div.interestPoint div.interestBox:hover div.image {border:3px solid #FF0066; border-bottom:none; width:191px; height:122px; background-position:-13px -13px;}
+div#left_container div.interestPoint div.interestBox div.bottomData a {color:white;text-decoration:none;}
+div#left_container div.interestPoint div.interestBox:hover div.bottomData{background:url(../images/site/pointBottom.png) no-repeat 0 -58px;}
+div#left_container div.interestPoint div.interestBox div.bottomData p.description {float:left; margin:15px 0 0 14px; width:auto; padding:2px 0 0 16px; background:url(../images/common/heartInterest.png) no-repeat 0 5px;}
+div#left_container div.interestPoint div.interestBox div.bottomData p.description a{font:bold 13px Arial; color:#FFFFFF; text-decoration:none;}
+div#left_container div.interestPoint div.interestBox div.bottomData p.submitted {float:left; margin:0 0 0 15px; font:normal 11px Arial; color:#939393; width:160px; padding:0 0 0 16px; background:none;}
+div#left_container div.interestPoint div.interestBox:hover div.bottomData p.submitted {color:#CFC0C6;}
+div#left_container div.interestPoint div.interestBox div.bottomData p.submitted a{text-decoration:underline; color:#FFFFFF;}
+div#left_container div.interestPoint div.interestBox div.bottomData p.submitted a:hover {text-decoration:underline; color:#F7f7f7;}
+
+
+	/* related protected areas */
+div#left_container div.relatedAreas {float:left; width:610px; padding:0 0 60px 0;}
+div#left_container div.relatedAreas ul {list-style:none; margin:0; padding:0;}
+div#left_container div.relatedAreas h3{float:left; width:610px; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px;}
+div#left_container div.relatedAreas div.relatedBox {position:relative; float:left; width:197px; height:173px; background:#CCCCCC; margin:12px 9px 0 0;}
+div#left_container div.relatedAreas div.relatedBox.last {margin:12px 0 0;}
+div#left_container div.relatedAreas div.relatedBox div.bottomData {position:absolute; bottom:0; left:0; right:0; height:59px; background:url(../images/site/relatedBottom.png) no-repeat 0 0;}
+div#left_container div.relatedAreas div.relatedBox:hover {cursor:pointer;}
+div#left_container div.relatedAreas div.relatedBox div.image {float:left; width:197px; height:124px; background-position:0 0; background-repeat:no-repeat;}
+div#left_container div.relatedAreas div.relatedBox:hover div.image {border:3px solid #254C72; border-bottom:none; width:191px; height:122px; background-position:-3px -3px;}
+div#left_container div.relatedAreas div.relatedBox:hover div.bottomData{background:url(../images/site/relatedBottom.png) no-repeat 0 -59px;}
+div#left_container div.relatedAreas div.relatedBox div.bottomData p.description {float:left; margin:15px 0 0 13px; width:auto; padding:2px 0 0 16px; background:url(../images/common/arrowRelated.png) no-repeat 0 2px;}
+div#left_container div.relatedAreas div.relatedBox div.bottomData p.description a{font:bold 13px Arial; color:#FFFFFF; text-decoration:none;}
+div#left_container div.relatedAreas div.relatedBox:hover div.bottomData p.description {background:url(../images/common/arrowRelated.png) no-repeat 0 -15px;}
+div#left_container div.relatedAreas div.relatedBox div.bottomData p.submitted {float:left; margin:0 0 0 15px; font:normal 11px Arial; color:#719FB5; width:auto; padding:0 0 0 16px; background:none;}
+div#left_container div.relatedAreas div.relatedBox:hover div.bottomData p.submitted {color:#7787A7;}
+div#left_container div.relatedAreas div.relatedBox div.relatedToolTipBack {position:absolute; background: url(../images/common/marker.png) left top no-repeat; width:80px; height:80px; left:58px; top:22px;}
+div#left_container div.relatedAreas div.relatedBox div.relatedToolTipImage {position:absolute; width:50px; height:50px; overflow:hidden; top: 34px; left:73px;}
+
+
+div#right_container div.biodiversity {position:relative; float:left; width:312px; margin:30px 0 0; height:212px; overflow:hidden;}
+div#right_container div.biodiversity h3 {float:left; width:100%; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px;}
+div#right_container div.biodiversity div#biodiversity_map {float:left; width:312px; margin:12px 0 0 0; padding:0; height:126px;}
+div#right_container div.biodiversity div.bottom_data {position:absolute; width:312px; height:58px; bottom:0; left:0; right:0; background:url(../images/site/biodiversity_bkg.png) no-repeat 0 0;}
+div#right_container div.biodiversity div.bottom_data div.zooms {float:left; width:20px; margin:16px 0 0 14px;}
+div#right_container div.biodiversity div.bottom_data div.zooms a#zoomin_biodiversity {float:left; width:14px; height:14px; background:url(../images/site/biodiversity_zoomin.png) no-repeat 0 0; margin:0 0 4px 0;}
+div#right_container div.biodiversity div.bottom_data div.zooms a#zoomin_biodiversity:hover {background-position: 0 -14px;}
+div#right_container div.biodiversity div.bottom_data div.zooms a#zoomout_biodiversity {float:left; width:14px; height:14px; background:url(../images/site/biodiversity_zoomout.png) no-repeat 0 0;}
+div#right_container div.biodiversity div.bottom_data div.zooms a#zoomout_biodiversity:hover {background-position: 0 -14px;}
+div#right_container div.biodiversity div.bottom_data div.data {float:right; width:200px; margin:16px 10px 0 0;}
+div#right_container div.biodiversity div.bottom_data div.data a {float:right; width:36px; margin:0 0 0 8px;}
+div#right_container div.biodiversity div.bottom_data div.data p {float:right; width:150px; padding:3px 0 0 0; text-align:right; color:white;}
+div#right_container div.biodiversity div.bottom_data div.data p a {float:none; width:auto; margin:0; padding:0; color:#39b553; text-decoration:none;}
+div#right_container div.biodiversity div.bottom_data div.data p a:hover {color:#ff6600;}
+
+div#right_container div.externalLinks {float:left; width:312px; margin:40px 0 0 0;}
+div#right_container div.externalLinks h3 {float:left; width:100%; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px;}
+div#right_container div.externalLinks ul {float:left; width:312px; margin:8px 0 0 0; list-style: none;}
+div#right_container div.externalLinks ul li {float:left; width:312px; margin:0; margin:1px 0 1px; line-height:18px; color:#006699;}
+div#right_container div.externalLinks ul li a {font:bold 13px Arial; color:#006699; text-decoration:none;}
+div#right_container div.externalLinks ul li a:hover {color:#254C72; text-decoration:none; border-bottom:1px dotted #254C72;}
+
+
+
+
+
 
 /* ---------- REGION ---------- */
 
+
+
+
+
+/* SHARE SOCIAL MEDIA */
+div#share_horizontal {float:left; width:100%; height: 51px; background:#B8CC8F; border-top:1px solid #A8B294; border-bottom:1px solid #999999;}
+div#share_horizontal div.participate {margin:3px auto; width:961px; padding-top:5px; position:relative;}
+
+div#share_horizontal div.participate img{position:absolute; top:-17px; width:39px; height:16px; left:2px;}
+
+div#share_horizontal div.participate div.download {float:left; width:170px; padding-left:10px;} 
+div#share_horizontal div.participate div.download p {float:none; font:normal 13px Arial; color:#78855D; width:300px; margin:0px 0px 0px 0px;}
+div#share_horizontal div.participate div.download a {float:left; font:normal 11px; color:#B8CC8E; font: Arial; background:url(../images/common/button_download_left.png) no-repeat left top; text-decoration:none; margin:3px 0 0; padding:0px 5px 0 4px; height:16px;}
+div#share_horizontal div.participate div.download a span {float:left; display:block; background:url(../images/common/button_download_right.png) no-repeat right top; height:15px; padding: 1px 4px 0px 0px; line-height:14px;}
+div#share_horizontal div.participate div.download a:hover {background-position: 0 -16px;}
+div#share_horizontal div.participate div.download a:hover span{background-position: right -16px;}
+
+div#share_horizontal div.participate div.line {float:left; width:1px; height:32px; background:url(../images/common/divide_line.png);}
+div#share_horizontal div.participate div.upload {float:left; width:150px; padding-left:10px;} 
+div#share_horizontal div.participate div.upload p {float:none; font:normal 13px Arial; color:#78855D; width:300px; margin:0px 0px 0px 0px;}
+div#share_horizontal div.participate div.upload a {float:left; font:normal 11px; color:#B8CC8E; font: Arial; background:url(../images/common/button_download_left.png) no-repeat left top; text-decoration:none; margin:3px 0 0; padding:0px 5px 0 4px; height:16px;} 
+div#share_horizontal div.participate div.upload a span {float:left; display:block; background:url(../images/common/button_download_right.png) no-repeat right top; height:15px; padding: 1px 4px 0px 0px; line-height:14px;}
+div#share_horizontal div.participate div.upload a:hover {background-position: 0 -16px;}
+div#share_horizontal div.participate div.upload a:hover span{background-position: right -16px;}
+
+div#share_horizontal div.participate div.share {float:right; width:312px;}
+div#share_horizontal div.participate div.share p {float:left; font:normal 13px Arial; color:#78855D; width:300px;}
+div#share_horizontal div.participate div.share a {float:left; width:16px; height:16px; padding:0 2px; margin:3px 0 0 0;}
+div#share_horizontal div.participate div.share a.twitter {background:url(../images/common/twitter.png) no-repeat 0 0;}
+div#share_horizontal div.participate div.share a.twitter:hover {background-position: 0 -16px;}
+div#share_horizontal div.participate div.share a.facebook {background:url(../images/common/facebook.png) no-repeat 0 0;}
+div#share_horizontal div.participate div.share a.facebook:hover {background-position: 0 -16px;}
+div#share_horizontal div.participate div.share a.del {background:url(../images/common/del.png) no-repeat 0 0;}
+div#share_horizontal div.participate div.share a.del:hover {background-position: 0 -16px;}
+div#share_horizontal div.participate div.share a.digg {background:url(../images/common/digg.png) no-repeat 0 0;}
+div#share_horizontal div.participate div.share a.digg:hover {background-position: 0 -16px;}
 
 
 
