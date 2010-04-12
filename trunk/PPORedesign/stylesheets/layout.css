@@ -42,7 +42,7 @@ div#upper_area div.content div.content_title {marging:0;}
 
 div#upper_area div.content div.content_title div.left_sec_title{float:left; width:616px; margin:20px 0 0 0;}
 
-div#upper_area div.content div.content_title div.left_sec_title h1{float:left; position:relative; width:616px; font:bold 53px Arial; line-height:41px; color:#4C4C4C; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
+div#upper_area div.content div.content_title div.left_sec_title h1{float:left; position:relative; width:616px; font:bold 53px Arial; line-height:50px; color:#4C4C4C; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
 
 div#upper_area div.content div.content_title div.right_sec_title{float:right; width:295px; margin:45px 0 0 0;}
 div#upper_area div.content div.content_title div.right_sec_title p.title_browse {float:left; font:bold 11px Arial; color:#666666; text-transform:uppercase; margin:0 0 0 10px;}
@@ -74,8 +74,43 @@ div#upper_area div.content div.content_posts div.right_jobs_title p a.organizati
 div#upper_area div.content div.content_posts div.right_jobs_title p a.organization_selected {font:bold 13px Arial; color:#333333; background:url(../images/jobs/bkg_organization_selected.png) no-repeat 0 0; width:85px; height:30px; text-decoration:none;}
 
 
+div#wide_container {margin:0 auto; width:940px; padding:0;}
+
+div#wide_container div.job {float:left; width:940px; padding:0; border:1px solid #CCCCCC; border-bottom:none; background:#FFFFFF; margin:0px 0 0px 0px; overflow:hidden; height:300px;}
+div#wide_container div.job div.logo {float:right; margin:5px;}
+div#wide_container div.job div.logo a {float:right;}
+div#wide_container div.job div.logo a.iucn{ background:url(../images/logos/iucn_original.png) no-repeat 0 0; width:65px; height:50px; margin:5px 0;}
+div#wide_container div.job div.logo a.wwf{ background:url(../images/logos/wwf_original.png) no-repeat 0 0; width:42px; height:59px; margin:10px 15px 0 0;}
+
+div#wide_container div.job div.title {float:left; width:595px; margin:18px 0 0 20px;}
+div#wide_container div.job div.title h3 {font:bold 21px Arial; color:#006699; padding:0 0 4px; letter-spacing:-1px;}
+div#wide_container div.job div.title h2 {font:normal 15px Arial; color:#666666; padding:0 0 4px; letter-spacing:-1px;}
+
+div#wide_container div.job div.data {float:left; width:100%; margin:15px 0 0 20px; }
+div#wide_container div.job div.data div.job_data {float:left; width:240px; margin:0;}
+
+div#wide_container div.job div.data div.job_data p.title{font:bold 11px Arial; text-transform:uppercase; color:#999999; margin:0 0 5px 0;}
+div#wide_container div.job div.data div.job_data p.place{font:bold 15px Arial; color:#333333; margin:0;} 
+div#wide_container div.job div.data div.job_data p.direction{font:normal 13px Arial; color:#333333; margin:0;}
+div#wide_container div.job div.data div.job_data p.kind_application{font:normal 13px Arial; color:#333333; margin:0;}
+
 
 /* ---------- SITE ---------- */
+
+div#wide_container div.job div.data div.job_overview {float:right; width:650px; margin:0 20px 0 0; }
+div#wide_container div.job div.data div.job_overview p {float:left;}
+div#wide_container div.job div.data div.job_overview p.title{font:bold 11px Arial; text-transform:uppercase; color:#999999; margin:0 0 5px 0;}
+div#wide_container div.job div.data div.job_overview p.overview{font:normal 13px Arial; color:#333333; margin:0 0 10px 0;} 
+div#wide_container div.job div.data div.job_overview p.overview a {font:bold 13px Arial; color:#006699; text-decoration:none;}
+div#wide_container div.job div.data div.job_overview p.overview a:hover {color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
+
+
+div#wide_container div.bottomJob {float:left; width:942px; height:59px; background:url(../images/jobs/bottom_job.png) no-repeat 0 top; margin:0 0 20px 0px;}
+div#wide_container div.bottomJob p {float:left; font:normal 13px Arial; color:#666666; padding:25px 0px 0px 20px;}
+div#wide_container div.bottomJob p a{text-decoration:none; color:#FF9900; font-weight:bold;}
+div#wide_container div.bottomJob p a:hover {color:#FF6600;}
+
+
 
 	/* upper area */
 div.upper_area{width:940px; margin:0 auto;}
