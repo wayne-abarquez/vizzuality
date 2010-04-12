@@ -13,7 +13,6 @@ div#layout {margin:0 auto; width:940px;}
 div#left_container {float:left; width:610px; margin:0; padding:0;}
 div#right_container {float:right; width:311px; margin:0; padding:0;}
 
-/* ---------- HEADER ---------- */
 
 div#outer_header{float:left; width:100%; background:url(../images/header/header_bkg.png) repeat-x 0 0; height:56px;}
 div#header{position:relative; width:940px; margin:0 auto; padding:0; height:56px;}
@@ -36,10 +35,44 @@ div#header a#loginLink:hover {text-decoration:underline;}
 /* ---------- JOBS ---------- */
 div#outer_upper_area{width:100%; }
 
-div#upper_area{width:940px; margin:0 auto; }
-div#upper_area div.content{float:left; position:relative; width:940px; height:263px; margin:0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
-div#upper_area div.content div.left_sec_title{float:left; width:616px;}
-div#upper_area div.content div.left_sec_title h1{float:left; position:relative; width:616px; font:bold 53px Arial; line-height:41px; color:#4C4C4C; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
+div#upper_area {width:940px; margin:0 auto; }
+div#upper_area div.content {float:left; position:relative; width:940px; height:263px; margin:0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
+
+div#upper_area div.content div.content_title {marging:0;}
+
+div#upper_area div.content div.content_title div.left_sec_title{float:left; width:616px; margin:20px 0 0 0;}
+
+div#upper_area div.content div.content_title div.left_sec_title h1{float:left; position:relative; width:616px; font:bold 53px Arial; line-height:41px; color:#4C4C4C; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
+
+div#upper_area div.content div.content_title div.right_sec_title{float:right; width:295px; margin:45px 0 0 0;}
+div#upper_area div.content div.content_title div.right_sec_title p.title_browse {float:left; font:bold 11px Arial; color:#666666; text-transform:uppercase; margin:0 0 0 10px;}
+
+div#upper_area div.content div.content_title div.right_sec_title ul {float:left; width:280px; margin:8px 0 0 0; list-style: none;}
+div#upper_area div.content div.content_title div.right_sec_title ul li {float:left; width:100%; margin:0; margin:2px 0 5px 0px; color:#006699;}
+div#upper_area div.content div.content_title div.right_sec_title ul li p {padding: 0 0 0 10px; background:url(../images/jobs/right_arrow.png) no-repeat 0 5px;}
+div#upper_area div.content div.content_title div.right_sec_title ul li p a {font:bold 15px Arial; color:#006699; text-decoration:none;}
+div#upper_area div.content div.content_title div.right_sec_title ul li p a:hover {color:#254C72; text-decoration:none; border-bottom:1px dotted #254C72;}
+
+div#upper_area div.content div.content_title div.right_sec_title ul li p.active {padding: 0 0 0 10px; background:url(../images/jobs/right_arrow_gray.png) no-repeat 0 5px;}
+div#upper_area div.content div.content_title div.right_sec_title ul li p.active a {font:bold 15px Arial; color:#999999; text-decoration:none;}
+div#upper_area div.content div.content_title div.right_sec_title ul li p.active a:hover {color:#254C72; text-decoration:none; border-bottom:1px dotted #254C72;}
+div#upper_area div.content div.content_posts {float:left; margin:55px 0 0 0; width:100%;}
+
+div#upper_area div.content div.content_posts div.left_jobs_title{float:left; width:616px; }
+div#upper_area div.content div.content_posts div.left_jobs_title h2{float:left; width:616px; font:bold 19px Arial; color:#333333;}
+
+div#upper_area div.content div.content_posts div.right_jobs_title {float:right; width:253px; }
+
+div#upper_area div.content div.content_posts div.right_jobs_title p a {float:right; margin: 0 0 0 6px;}
+div#upper_area div.content div.content_posts div.right_jobs_title p span.title {float:left; font:bold 13px Arial; color:#666666; text-decoration:none; padding:5px 0 0 0;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.first {font:bold 13px Arial; color:#333333; background:url(../images/jobs/bkg_first.png) no-repeat 0 0; width:85px; height:25px; text-decoration:none;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.first:over {background-position:0 -25px;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.first_selected {font:bold 13px Arial; color:#333333; background:url(../images/jobs/bkg_first_selected.png) no-repeat 0 0; width:78px; height:27px; padding:3px 0 0 7px; text-decoration:none;}
+
+div#upper_area div.content div.content_posts div.right_jobs_title p a.organization {font:bold 13px Arial; color:#FFFFFF; background:url(../images/jobs/bkg_organization.png) no-repeat 0 0; width:106px; height:22px; padding:3px 0 0 9px; text-decoration:none;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.organization:hover {background-position:0 -25px;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.organization_selected {font:bold 13px Arial; color:#333333; background:url(../images/jobs/bkg_organization_selected.png) no-repeat 0 0; width:85px; height:30px; text-decoration:none;}
+
 
 
 
