@@ -1,0 +1,42 @@
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
+img,fieldset{border:none; padding:0; margin:0;}
+body{font:12px Arial, Helvetica, sans-serif; color:#666666; background:#eeeeee}
+span.clear{clear:both;}
+div.left{float:left; width:auto;}
+div.right{float:right; width:auto;}
+a:focus{outline:none}
+img.left_curve{float:left;}
+img.right_curve{float:right;}
+
+div#outer_layout {float:left; width:100%;}
+div#layout {margin:0 auto; width:940px;}
+
+
+/* ---------- HEADER ---------- */
+div#outer_header{float:left; width:100%; background:url(../images/header/header_bkg.png) repeat-x 0 0; height:36px;}
+div#header{position:relative; width:939px; margin:0 auto; padding:0 0 0 9px; height:35px;}
+div#header a.logo{float:left; width:255px; height:36px; background:url(../images/header/logo.png) no-repeat 0 0;}
+
+div#header form {float:right; width:auto; margin:6px 0 0 0; position:relative;}
+div#header form input[type="text"]{float:left; background:url(../images/header/inputSearch.gif) no-repeat 0 0; padding:5px 25px 5px 5px; width:165px; margin:0; border:none; font:normal 13px Arial; font-style:italic; color:#aaaaaa;}
+div#header form input[type="text"]:focus {outline:none;}
+div#header form input[type="submit"]{float:left; background:url(../images/header/buttonSearch.gif) no-repeat 0 0; margin:0; width:27px; height:24px; border:none;}
+div#header form input[type="submit"]:focus {outline:none;}
+div#header form input[type="submit"]:hover {cursor:pointer;}
+
+div#header p.user_login {float:right; text-decoration:none; font:bold 12px Arial; color:#ffffff; letter-spacing:-0.5px; padding:0; margin:12px 0 0 13px;}
+div#header p.user_login a.user {float:none; text-decoration:underline; font:bold 12px Arial; color:#ffffff; letter-spacing:-0.5px;}
+div#header a#loginLink {float:right; text-decoration:none; font:bold 12px Arial; color:#ffffff; letter-spacing:-0.5px; padding:0 15px 0 0; margin:12px 0 0 13px; background:url(../images/icons/transArrow.png) no-repeat right 2px}
+div#header a#loginLink:hover {text-decoration:underline;}
+
+
+
+/* ---------- SITE ---------- */
+
+
+/* ---------- REGION ---------- */
+
+
+/* ---------- FOOTER ---------- */
+
+
