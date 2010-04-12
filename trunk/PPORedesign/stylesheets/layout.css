@@ -75,40 +75,66 @@ div#upper_area div.content div.content_posts div.right_jobs_title p a.organizati
 
 
 
-
-
-
-
 /* ---------- SITE ---------- */
 
+	/* upper area */
 div.upper_area{width:940px; margin:0 auto;}
-div.upper_area div.content {float:left; width:940px; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px; position:relative; padding:20px 0; margin:0;}
+div.upper_area div.content {float:left; width:940px; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px; position:relative; padding:20px 0; margin:0; border:none;}
 div.upper_area div.content div.left_sec{float:left; width:690px;}
+div.upper_area div.content div.left_sec h1{float:left; position:relative; width:620px; font:bold 27px Arial; line-height:31px; color:#333333; padding:0; margin:0; letter-spacing:-2px;}
 div.upper_area div.content div.left_sec p {float:left; width:auto; font:normal 13px Arial; color:#666666; margin:0; width:100%; margin:0 0 4px 0;}
 div.upper_area div.content div.left_sec p a {border-bottom:1px solid #006699; color:#336699; text-decoration:none;}
 div.upper_area div.content div.left_sec p a:hover {color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
-div.upper_area div.content div.left_sec h1{float:left; position:relative; width:920px; font:bold 27px Arial; line-height:31px; color:#333333; padding:0; margin:0; letter-spacing:-2px;}
-div.upper_area div.content div.left_sec p.world{float:left; width:440px; color:#339900; font:bold 9px Arial; margin:4px 0 0 0; padding:2px 0 2px 12px; background:url(../images/icons/green_star.gif) no-repeat 0 0; line-height:8px;}
+div.upper_area div.content div.left_sec p span.protected{color:#326696; font:bold 9px Arial; padding:0 10px 0 12px; border-right:1px solid #999999; background:url(../images/common/marine.png) no-repeat 0 3px; line-height:8px;}
+div.upper_area div.content div.left_sec p span.world{color:#339900; font:bold 9px Arial; padding:0 0 0 20px; background:url(../images/common/green_star.png) no-repeat 8px 1px; line-height:8px;}
 
-div.upper_area div.content div#tabsC {position:absolute; bottom:-1px; right:-1px; float:right; font-size:12px; line-height:normal; color: #FFFFFF; width:420px; margin:0;}
+div.upper_area div.content div#tabsC {position:absolute; bottom:-2px; right:-1px; float:right; font-size:12px; line-height:normal; color: #FFFFFF; width:420px; margin:0;}
 div.upper_area div.content div#tabsC ul {margin:0; padding:0 0px 0 0; list-style:none;float:right; width:auto; list-style:none;}
 div.upper_area div.content div#tabsC li {float:right; display:inline; margin:0; padding:0; text-align: center;}
-div.upper_area div.content div#tabsC a { float:left; background:url("../images/tableftC.gif") no-repeat left top; margin:0; padding:0 2px 0 3px; text-decoration:none; font-weight:bold; color: white; width: 83px;}
-div.upper_area div.content div#tabsC a span { float:left; display:block; background:url("../images/tabrightC.gif") no-repeat right top; padding: 5px 7px 5px 3px;}
+div.upper_area div.content div#tabsC a { float:left; background:url(../images/common/tableftC.gif) no-repeat left top; margin:0; padding:0 2px 0 3px; text-decoration:none; font-weight:bold; color: white; width: 83px;}
+div.upper_area div.content div#tabsC a span { float:left; display:block; background:url(../images/common/tabrightC.gif) no-repeat right top; padding: 5px 7px 5px 3px;}
 div.upper_area div.content div#tabsC a span {float:none;}
 div.upper_area div.content div#tabsC a:hover span {}
 div.upper_area div.content div#tabsC a:hover { background-position:0% -24px; }
 div.upper_area div.content div#tabsC a:hover span { background-position:100% -24px;}
-
-div.upper_area div.content div#tabsC #green a { background:url("../images/tableftG.gif") no-repeat left top; width: 85px; padding:0 0 0 3px; margin:0;}
-div.upper_area div.content div#tabsC #green a span {float:left; display:block; background:url("../images/tabrightG.gif") no-repeat right top; padding: 5px 10px 5px 5px; width: 70px;}
+div.upper_area div.content div#tabsC #green a { background:url(../images/common/tableftG.gif) no-repeat left top; width: 115px; padding:0 0 0 3px; margin:0;}
+div.upper_area div.content div#tabsC #green a span {float:left; display:block; background:url(../images/common/tabrightG.gif) no-repeat right top; padding: 5px 10px 5px 5px; width: 100px;}
 div.upper_area div.content div#tabsC #green a:hover span {}
 div.upper_area div.content div#tabsC #green a:hover {background-position:0% -42px;}
 div.upper_area div.content div#tabsC #green a:hover span {background-position:100% -42px;} 
 div.upper_area div.content div#tabsC #currentTab a {background-position:0% -24px;}
 div.upper_area div.content div#tabsC #currentTab a span {background-position:100% -24px;}
 
+div.upper_area div.content div.right_sec {float:right; text-align:right; width:235px;}
+div.upper_area div.content div.right_sec p {font:bold 13px Arial; color:#777777;}
+div.upper_area div.content div.right_sec p a {text-decoration:none; color:#326696;}
+div.upper_area div.content div.right_sec p a:hover {color:#254C72; border-bottom: 1px dotted #254C72;}
+
 div.pa_map {position:relative; width:100%; float:left; margin:0; height:306px; border-top:2px solid #006699; border-bottom:2px solid #006699; z-index:100;}
+
+
+	/* pa images */
+div.left_container div.pa_images {position:relative; float:left; width:610px; margin:30px 0 0 1px;}
+div.left_container div.pa_images div.pa_image {position:relative; float:left; width:189px; border:1px solid #cccccc; padding:3px; height:116px; margin: 0 9px 0 0; background:white;}
+div.left_container div.pa_images div.pa_image.last {position:relative; float:left; width:189px; border:1px solid #cccccc; padding:3px; height:116px; margin:0; background:white;}
+div.left_container div.pa_images div div {position:relative; overflow:hidden; width:100%; height:116px;}
+div.left_container div.pa_images div span.shadow {position:absolute; bottom:-6px; left:0; right:0; width:197px; height:5px; background:url(../images/site/pa_images_shadow.jpg) no-repeat 0 0;}
+
+	/* wikipedia */
+div.left_container div.wikipedia {float:left; position:relative; width:578px; padding:10px 15px; border:1px solid #CCCCCC; border-bottom:none; background:#FFFFFF; margin:30px 0 0 0; overflow:hidden; clear:both;}
+div.left_container div.wikipedia a.wikipedia_submit_images {position:absolute; top:12px; right:15px; font:bold 13px Arial; color:#FF9900; text-decoration:none;}
+div.left_container div.wikipedia a.wikipedia_submit_images:hover {color:#FF6600}
+div.left_container div.wikipedia h3 {float:left; width:100%; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px;}
+div.left_container div.wikipedia p {float:left; width:100%; font:normal 13px Arial; color:#666666; padding:0; line-height:19px; margin:10px 0;}
+div.left_container div.wikipedia p a{font:bold 13px Arial; color:#006699; text-decoration:none;}
+div.left_container div.wikipedia p a:hover {color:#254C72; border-bottom: 1px dotted #254C72;}
+div.left_container div.wikipedia p a.more{font:normal 13px Arial; color:#006699; border-bottom:1px solid #006699; text-decoration:none;}
+div.left_container div.wikipedia p a.more:hover {color:#254C72; border-bottom:1px dotted #254C72;}
+
+div.left_container div.bottomWikipedia {float:left; width:580px; padding:22px 15px 9px; height:25px; background:url(../images/site/bottomWikipedia2.png) no-repeat 0 top; margin:0;}
+div.left_container div.bottomWikipedia p b{font:normal 13px Arial; color:#999999;}
+div.left_container div.bottomWikipedia p a{text-decoration:none; color:#FEB13E; font-weight:bold;}
+div.left_container div.bottomWikipedia p a:hover {color:#FF6600;}
 
 
 	/* points of interest */
@@ -149,6 +175,42 @@ div.left_container div.relatedAreas div.relatedBox div.bottomData p.submitted {f
 div.left_container div.relatedAreas div.relatedBox:hover div.bottomData p.submitted {color:#7787A7;}
 div.left_container div.relatedAreas div.relatedBox div.relatedToolTipBack {position:absolute; background: url(../images/common/marker.png) left top no-repeat; width:80px; height:80px; left:58px; top:22px;}
 div.left_container div.relatedAreas div.relatedBox div.relatedToolTipImage {position:absolute; width:50px; height:50px; overflow:hidden; top: 34px; left:73px;}
+
+	/* pa edit container */
+div.right_container div.protected_area{position:relative; float:left; width:285px; border:1px solid #cccccc; background:#E0F0F9; padding:8px 12px 13px; margin:30px 0 0 0;}
+div.right_container div.protected_area div.completed {position:absolute; background: url(../images/site/completed.gif) no-repeat right center; text-align:right; height:30px; right:-8px; top:5px; bottom:0; z-index:100;}
+div.right_container div.protected_area div.completed p {padding:7px 5px 0 5px; line-height:13px; letter-spacing:0px; font-weight:bold; font-size:10px;font-family:Arial;text-align:right;color:white; width:auto;}
+div.right_container div.protected_area h3{position:relative; float:left; width:285px; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; margin:2px 0 0 0; letter-spacing:-1px;}
+div.right_container div.protected_area ul{position:relative; float:left; width:295px; list-style:none; padding:5px 0 0 0; overflow:hidden;}
+div.right_container div.protected_area ul span{position:relative; float:left; width:295px; margin:0; padding:0;}
+div.right_container div.protected_area ul a {color:#666666;}
+div.right_container div.protected_area li{ position:relative; float:left; width:255px; font-size:12px; line-height:14px; color:#666666;}
+div.right_container div.protected_area li strong{float:left; width:230px; font-weight:bold; font-size:10px; text-transform:uppercase}
+div.right_container div.protected_area li span{float:left; width:230px;}
+div.right_container div.protected_area li small{float:right; width:auto; padding-top:11px;}
+div.right_container div.protected_area li img{float:left;}
+div.right_container div.protected_area li .up{float:left; width:269px; padding:5px 9px 6px 7px;}
+div.right_container div.protected_area li .down{float:left; width:269px; padding:5px 9px 6px 7px; background:#CEE2EF}
+div.right_container div.protected_area li .conflict{background-image:url(../images/sites/layer_conflict_data.png); font-size:12px; color:#333333;} 
+div.right_container div.protected_area li .conflict strong {float:left; width:230px; font-weight:bold; font-size:10px; text-transform:uppercase}
+div.right_container div.protected_area li .conflict span{float:left; width:230px;}
+div.right_container div.protected_area li a.what_is_this {position:relative; font:normal 11px Arial; color:#FF9900; text-decoration:underline; margin:0 0 0 3px;}
+div.right_container div.protected_area li a.what_is_this:hover{color:#C64819;}
+
+div.right_container div.protected_area div.edit_bottom {float:left; width:285px; border-top:1px solid #cccccc; padding:10px 0 0 0;}
+div.right_container div.protected_area div.edit_bottom span {float:left; padding:0 9px 0 0; border-right:1px solid #e1dbc7;}
+div.right_container div.protected_area div.edit_bottom span.gaps {padding:0 9px 0 9px;}
+div.right_container div.protected_area div.edit_bottom span.edit_button {float:right; padding:0 0 0 0; border:none;}
+div.right_container div.protected_area div.edit_bottom span.edit_button a {float:left; text-decoration:none; font:bold 15px Arial; color:#FFFFFF; background:url(../images/site/edit_button.png) no-repeat 0 0; width:121px; text-align:center; height:17px; padding:10px 0;}
+div.right_container div.protected_area div.edit_bottom span.edit_button a:hover {background-position:0 -37px;}
+div.right_container div.protected_area div.edit_bottom span p {font:bold 29px Arial; color:#FF9900; letter-spacing:-1px; padding:0; margin:0; line-height:22px;}
+div.right_container div.protected_area div.edit_bottom span small {font:bold 13px Arial; color:#FF9900; letter-spacing:0px; padding:0; margin:0;}
+
+div.right_container div.view_more{float:right; background:url(../images/site/viewMore.png) no-repeat right -9px; height:16px;width:92px; margin:0 1px 0 0;}
+div.right_container div.view_more:hover {background:url(../images/site/viewMore.png) no-repeat right -44px; cursor:pointer;}
+div.right_container div.view_more a{float:left; width:auto; background:url(../images/common/viewMoreArrows.png) no-repeat 24px 4px; font:bold 10px Arial; color:#FFFFFF; text-decoration:none; margin:0; padding:1px 0 0 36px;}
+div.right_container div.view_more:hover a{text-decoration:underline;}
+
 
 	/* biodiversity */
 div.right_container div.biodiversity {position:relative; float:left; width:311px; margin:30px 0 0; height:212px; overflow:hidden;}
@@ -273,7 +335,7 @@ div#share_horizontal div.participate div.download a span {float:left; display:bl
 div#share_horizontal div.participate div.download a:hover {background-position: 0 -16px;}
 div#share_horizontal div.participate div.download a:hover span{background-position: right -16px;}
 
-div#share_horizontal div.participate div.line {float:left; width:1px; height:32px; background:url(../images/common/divide_line.png);}
+div#share_horizontal div.participate div.line {float:left; width:1px; height:32px; background:url(../images/common/divide_line.png)}
 div#share_horizontal div.participate div.upload {float:left; width:150px; padding-left:10px;} 
 div#share_horizontal div.participate div.upload p {float:none; font:normal 13px Arial; color:#78855D; width:300px; margin:0px 0px 0px 0px;}
 div#share_horizontal div.participate div.upload a {float:left; font:normal 11px; color:#B8CC8E; font: Arial; background:url(../images/common/button_download_left.png) no-repeat left top; text-decoration:none; margin:3px 0 0; padding:0px 5px 0 4px; height:16px;} 
