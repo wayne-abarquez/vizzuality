@@ -8,8 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
-import com.vizzuality.gmba.process.GoogleTileUtil;
-
 
 public class RasterPrepare {
 	// 24 requires -Xmx256m
@@ -51,7 +49,7 @@ public class RasterPrepare {
 			double lng = Double.parseDouble(parts[minLngIndex]);
 			int elevation = Integer.parseInt(parts[elevationIndex]);
 			int relief = Integer.parseInt(parts[reliefIndex]);
-			int tpCode = Integer.parseInt(parts[tpCpdeIndex]);
+			int tvzcode = Integer.parseInt(parts[tpCpdeIndex]);
 			
 			for (int zoom=0; zoom<=maxZoom; zoom++) {
 				
@@ -97,7 +95,7 @@ public class RasterPrepare {
 						minPixelY = (minPixelY>tileSize-1) ? 0 : minPixelY;
 						
 						//writers[zoom].write(zoom + "\t" + x + "\t" + y + "\t" + minPixelX + "\t" + maxPixelY + "\t" + maxPixelX + "\t" + minPixelY + "\t" + elevation + "\n");
-						writers[zoom].write(x + "\t" + y + "\t" + minPixelX + "\t" + minPixelY + "\t" + maxPixelX + "\t" + maxPixelY + "\t" + elevation + "\t" + relief + "\t" + tpCode + "\n");
+						writers[zoom].write(x + "\t" + y + "\t" + minPixelX + "\t" + minPixelY + "\t" + maxPixelX + "\t" + maxPixelY + "\t" + elevation + "\t" + relief + "\t" + tvzcode + "\n");
 					}
 				}
 			}
@@ -118,7 +116,7 @@ public class RasterPrepare {
 	
 	public static void main(String[] args) throws IOException {
 		if (args.length != 9) {
-			System.out.println("Usage: RasterPrepare sourceFile outputDir filePrefix numberOfZooms minLatitudeIndex minLongitudeIndex elevationIndex reliefIndex tpCodeIndex");
+			System.out.println("Usage: RasterPrepare sourceFile outputDir filePrefix numberOfZooms minLatitudeIndex minLongitudeIndex elevationIndex reliefIndex tvzCodeIndex");
 			return;
 		}
 		
@@ -128,10 +126,10 @@ public class RasterPrepare {
 		int minLng=Integer.parseInt(args[5]);
 		int elevation=Integer.parseInt(args[6]);
 		int relief=Integer.parseInt(args[7]);
-		int tpCode=Integer.parseInt(args[8]);
+		int tvzCode=Integer.parseInt(args[8]);
 		
 		long timeTotal = System.currentTimeMillis();
-		loadRaster(new File(args[0]), new File(args[1]), args[2], zoom, minLat, minLng, elevation, relief, tpCode);
+		loadRaster(new File(args[0]), new File(args[1]), args[2], zoom, minLat, minLng, elevation, relief, tvzCode);
 		System.out.println("Total msecs[" + (System.currentTimeMillis()-timeTotal) + "]");
 		
 		System.exit(0);

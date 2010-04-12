@@ -10,14 +10,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
-import com.vizzuality.gmba.process.PngEncoderB;
-
 /**
  * Renders the enviroment data
  * 
  * Elevaton becomes Red
  * Relief Green
- * Tpcode blue
+ * tvcCode blue
  * 
  * @author tim
  */
@@ -78,7 +76,7 @@ public class RasterRender {
 			int maxPixelY = Integer.parseInt(parts[5]);
 			int elevation = Integer.parseInt(parts[6]);
 			int relief = Integer.parseInt(parts[7]);
-			int tpcode = Integer.parseInt(parts[8]);
+			int tvzcode = Integer.parseInt(parts[8]);
 			
 			// if it is a new tile (and not the first)
 			//if (flush && (zoom!=_zoom || tileX!=_tileX || tileY!=_tileY)) {
@@ -136,7 +134,7 @@ public class RasterRender {
 						pixelsContributers[1][start + j] = contributers + 1;						
 						pixels[1][start + j] = value;
 						
-						value = tpcode;
+						value = tvzcode;
 						// interpolate with max
 						if(value>pixels[2][start + j]) {
 							pixels[2][start + j] = value;
