@@ -33,7 +33,7 @@ div#header a#loginLink:hover {text-decoration:underline;}
 /* ---------- JOBS ---------- */
 div#outer_upper_area{float:left; width:100%;}
 
-div#upper_area{width:940px; padding:0 0 0 9px; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px; margin:0 auto; }
+div#upper_area{width:940px; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px; margin:0 auto; }
 div#upper_area div.content{float:left; position:relative; width:940px; min-height:73px; padding:0 0 20px; margin:0;}
 div#upper_area div.content div.left_sec{float:left; width:616px;}
 div#upper_area div.content div.left_sec p {float:left; width:auto; font:normal 13px Arial; color:#666666; margin:0; width:100%; margin:0 0 4px 0;}
