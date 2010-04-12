@@ -94,7 +94,14 @@ div#wide_container div.job div.data div.job_data p.place{font:bold 15px Arial; c
 div#wide_container div.job div.data div.job_data p.direction{font:normal 13px Arial; color:#333333; margin:0;}
 div#wide_container div.job div.data div.job_data p.kind_application{font:normal 13px Arial; color:#333333; margin:0;}
 
+div#wide_container div.publish_job {float:left; width:940px; border:1px solid #CCCCCC; border-right:none; border-bottom:none; border-left:none; height:102px; background:url(../images/jobs/bkg_publish_job.png) no-repeat 0 0; margin:0 0 30px 0;}
+div#wide_container div.publish_job div.left_container {float:left; width:697px; margin:15px 0 10px 15px; }
+div#wide_container div.publish_job div.left_container p.title {font:bold 19px Arial; color:#333333; margin:0 0 3px 0; letter-spacing:-1.0px; }
+div#wide_container div.publish_job div.left_container p.comment {font:normal 15px Arial; color:#666666; margin:0; }
 
+div#wide_container div.publish_job div.right_container {float:right; width:206px;}
+div#wide_container div.publish_job div.right_container a.button {float:left; background:url(../images/jobs/bkg_publish_job_bttn.png) no-repeat 0 0; width:189px; height:40px; margin:30px 0 0 0; font:bold 17px Arial; color:#006699; padding:11px 0 0 52px; letter-spacing:-1.0px;}
+div#wide_container div.publish_job div.right_container a.button:hover {color:#254C72;}
 /* ---------- SITE ---------- */
 
 div#wide_container div.job div.data div.job_overview {float:right; width:650px; margin:0 20px 0 0; }
@@ -109,7 +116,6 @@ div#wide_container div.bottomJob {float:left; width:942px; height:59px; backgrou
 div#wide_container div.bottomJob p {float:left; font:normal 13px Arial; color:#666666; padding:25px 0px 0px 20px;}
 div#wide_container div.bottomJob p a{text-decoration:none; color:#FF9900; font-weight:bold;}
 div#wide_container div.bottomJob p a:hover {color:#FF6600;}
-
 
 
 	/* upper area */
