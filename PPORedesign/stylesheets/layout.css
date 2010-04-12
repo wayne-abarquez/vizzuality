@@ -30,12 +30,29 @@ div#header p.user_login a.user {float:none; text-decoration:underline; font:bold
 div#header a#loginLink {float:right; text-decoration:none; font:bold 12px Arial; color:#ffffff; letter-spacing:-0.5px; padding:0 15px 0 0; margin:12px 0 0 13px; background:url(../images/common/transArrow.png) no-repeat right 2px}
 div#header a#loginLink:hover {text-decoration:underline;}
 
+/* ---------- JOBS ---------- */
+div#outer_upper_area{float:left; width:100%;}
+
+div#upper_area{width:940px; padding:0 0 0 9px; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px; margin:0 auto; }
+div#upper_area div.content{float:left; position:relative; width:940px; min-height:73px; padding:0 0 20px; margin:0;}
+div#upper_area div.content div.left_sec{float:left; width:616px;}
+div#upper_area div.content div.left_sec p {float:left; width:auto; font:normal 13px Arial; color:#666666; margin:0; width:100%; margin:0 0 4px 0;}
+div#upper_area div.content div.left_sec p a {border-bottom:1px solid #006699; color:#336699; text-decoration:none;}
+div#upper_area div.content div.left_sec p a:hover {color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
+
+
+div#upper_area div.content div.left_sec h1{float:left; position:relative; width:920px; font:bold 53px Arial; line-height:40px; color:#4C4C4C; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
+div#upper_area div.content div.left_sec v.star_area{float:left; width:440px;}
+div#upper_area div.content div.left_sec div.star_area p.world{float:left; width:440px; color:#339900; font:bold 9px Arial; margin:4px 0 0 0; padding:2px 0 2px 12px; background:url(../images/icons/green_star.gif) no-repeat 0 0; line-height:8px;}
 
 
 /* ---------- SITE ---------- */
 
 
 /* ---------- REGION ---------- */
+
+
+
 
 
 /* ---------- FOOTER ---------- */
