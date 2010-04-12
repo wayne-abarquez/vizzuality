@@ -14,21 +14,8 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
- * TODO The following description is not correct!!!
- * 
- * A script that will take as an input
- *   a) the incoming occurrence records from GBIF in a delimited file
- *   b) the 0.24 degree cells that are the target cells (e.g. the mountainous cells) in a delimited file
- * and filter a) so that only those of interest are passed through.
- * 
- * The output is a delimited file with the following schema:
- * - taxonId
- * - cellId (see the cell numbering strategy WIKI)
- * - modulus 1500 of the cellId (to enable performant bounding box filtering)
- * - basis_of_record (0=occurrence, 1=specimen, 2=other)
- * 
- * This output is expected to be loaded into a temporary table, and grouped to produce a count, 
- * along with a modification to add the cell environment parameters.
+ * This will process the export produced by export.sql to calculate the cell Ids
+ * The output of this is fed into import.sql which will import and process the content
  * 
  * @author tim
  */

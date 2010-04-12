@@ -49,10 +49,11 @@ public class AbstractServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ObjectPool connectionPool = new GenericObjectPool(null, 10);
+		GenericObjectPool connectionPool = new GenericObjectPool(null, 10);
+		connectionPool.setTestOnBorrow(true);
 		ConnectionFactory connectionFactory = new DriverManagerConnectionFactory(getInitParameter("connectURI"), getInitParameter("user"), getInitParameter("password"));
 		@SuppressWarnings("unused")
-		PoolableConnectionFactory poolableConnectionFactory = new PoolableConnectionFactory(connectionFactory,connectionPool,null,null,false,true);
+		PoolableConnectionFactory poolableConnectionFactory = new PoolableConnectionFactory(connectionFactory,connectionPool,null,"select 1",false,true);
 		dataSource = new PoolingDataSource(connectionPool);
 	}
 	
@@ -94,6 +95,21 @@ public class AbstractServlet extends HttpServlet {
 		} else {
 			return defaultValue;
 		}
+	}
+	
+	/**
+	 * @param req To extract from
+	 * @param paramName To extract
+	 * @param throwErrorIfNull True if it is a mandatory field 
+	 * @return The extracted string
+	 * @throws IllegalArgumentException If it is missing and required
+	 */
+	protected String extractString(HttpServletRequest req, String paramName, boolean throwErrorIfNull) throws IllegalArgumentException {
+		String s = req.getParameter(paramName);
+		if (s==null && throwErrorIfNull) {
+			throw new IllegalArgumentException(paramName + " is a required property but is missing in the request");
+		}
+		return s;
 	}
 	
 	/**
