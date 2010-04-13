@@ -12,7 +12,10 @@ div#outer_layout {float:left; width:100%;}
 div#layout {margin:0 auto; width:940px;}
 div.left_container {float:left; width:610px; margin:0; padding:0;}
 div.right_container {float:right; width:311px; margin:0; padding:0;}
+div#wide_container {margin:0 auto; width:940px; padding:0;}
 
+
+/* ---------- HEADER ---------- */
 
 div#outer_header{float:left; width:100%; background:url(../images/header/header_bkg.png) repeat-x 0 0; height:56px;}
 div#header{position:relative; width:940px; margin:0 auto; padding:0; height:56px;}
@@ -32,7 +35,6 @@ div#header a#loginLink {float:right; text-decoration:none; font:bold 12px Arial;
 div#header a#loginLink:hover {text-decoration:underline;}
 
 
-div#wide_container {margin:0 auto; width:940px; padding:0;}
 
 
 /* ---------- INTRO ---------- */
@@ -76,7 +78,7 @@ div#layout div.intro_content div.sign_up p.title a:hover {border-bottom:3px dott
 div#outer_upper_area{width:100%; }
 
 div#upper_area {width:940px; margin:0 auto; }
-div#upper_area div.content {float:left; position:relative; width:940px; height:263px; margin:0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
+div#upper_area div.content {float:left; position:relative; width:940px; margin:0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
 
 div#upper_area div.content div.content_title {marging:0;}
 
@@ -513,7 +515,43 @@ div#share_horizontal div.participate div.share a.digg:hover {background-position
 
 
 
+/* ---------- COMMITMENT TRACKER ---------- */
+
+div.last_commitments {float:left; width:610px; margin:50px 0 0 0; padding:0;}
+div.last_commitments h2 {float:left; width:610px; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px; margin:0 0 10px;}
+div.last_commitments ul {float:left; width:610px; margin:0; padding:0;}
+div.last_commitments ul li {float:left; width:610px; margin:0; padding:15px 0; border-bottom:1px solid #D4D4D4;}
+div.last_commitments ul li h3 {font:bold 17px Arial; color:#006699; padding:0; margin:0;}
+div.last_commitments ul li p.place {font:bold 13px Arial; color:#333333;}
+div.last_commitments ul li p.place a {font:normal 13px Arial; color:#006699; text-decoration:none; border-bottom:1px solid #006699;}
+div.last_commitments ul li p.place a:hover {color:#254C72; border-bottom: 1px dotted #254C72;}
+div.last_commitments ul li div.large {float:left; width:610px; margin:12px 0 0 0;}
+div.last_commitments ul li div.large div.short {float:left; width:195px; margin:0 15px 0 0;}
+div.last_commitments ul li div.large div.long {float:left; width:400px;}
+div.last_commitments ul li div.large div label {font:bold 13px Arial; color:#666666;}
+div.last_commitments ul li div.large div p {font:normal 13px Arial; color:#666666; padding:3px 0 0 0;}
+div.last_commitments p.view_more {float:left; text-align:center; width:100%; padding:20px 0 60px 0;} 
+div.last_commitments p.view_more a {float:left; margin:0 0 0 220px; width:150px; height:26px; background:url(../images/commitment/button_older_activities.png) no-repeat; color:#FFFFFF; text-align:center; font:bold 15px Arial; text-decoration:none; padding:8px 0 0 0;}
+div.last_commitments p.view_more a:hover{background-position: 0 -34px;}
+
+div.browse {position:relative; float:right; border:1px solid #cccccc; background:white; width:281px; margin:34px 0 0 0; padding:14px;}
+div.browse h2 {float:left; width:100%; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px; margin:0;}
+div.browse div.filter {float:left; width:100%; margin:10px 0 0 0;}
+div.browse div.filter label {float:left; width:100%; font:bold 13px Arial; color:#999999; padding:9px 0 2px;}
+div.browse div.filter select {float:left; width:100%;}
+div.browse span.shadow {position:absolute; left:0; bottom:-9px; background:url(../images/commitment/right_shadow.png) no-repeat 0 0; width:310px; height:8px;}
+
+div.submit_commitment {position:relative; float:right; border:1px solid #B1BBD1; background:#FDFDCB; width:281px; margin:30px 0 0 0; padding:14px;}
+div.submit_commitment h2 {float:left; width:100%; font:bold 19px Arial; color:#333333; letter-spacing:-1px; margin:0;}
+div.submit_commitment p {float:left; padding:7px 0 0 0; font:normal 15px Arial; color:#666666;}
+div.submit_commitment a {float:left; text-align:center; margin:10px 0 0 0; background:url(../images/commitment/submit.png) no-repeat 0 0; font:bold 17px Arial; color:#006699; letter-spacing:-1px; text-decoration:none; padding:12px 0; width:207px;}
+div.submit_commitment a:hover{background-position:0 -46px; color:white;}
+
+
+
+
 /* ---------- FOOTER ---------- */
+
 #outer_footer{float:left; width:100%; background:#dddddd; border-top:1px solid #c3c3c3; margin:0;}
 #footer{width:940px; padding:13px 0 0 10px; margin:0 auto;}
 #footer p{float:left; width:300px; padding: 10px 0 60px 0; font:normal 12px Arial; color:#999999;}
