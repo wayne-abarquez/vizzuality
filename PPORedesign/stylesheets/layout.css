@@ -32,7 +32,43 @@ div#header a#loginLink {float:right; text-decoration:none; font:bold 12px Arial;
 div#header a#loginLink:hover {text-decoration:underline;}
 
 
+/* ---------- INTRO ---------- */
+
+div#layout div.intro_content {float:left; position:relative; width:940px; margin:0; padding:53px 0 0 0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
+div#layout div.intro_content h1 {float:left; position:relative; width:880px; font:bold 53px Arial; line-height:50px; color:#4C4C4C; padding:0; margin:0; letter-spacing:-2px;}
+div#layout div.intro_content p.subtitle {font:normal 21px Arial; color:#4C4C4C; padding:10px 0 45px 0;}
+
+div#layout div.intro_content div.marine_images {float:left; width:940px;}
+div#layout div.intro_content div.marine_images div.marine_image {float:left; width:300px; margin:0 20px 0 0;}
+div#layout div.intro_content div.marine_images div.marine_image.last {margin:0;}
+div#layout div.intro_content div.marine_images div.marine_image div.image {float:left; width:300px; position:relative; margin:0; padding:0;}
+div#layout div.intro_content div.marine_images div.marine_image div.image img {padding:3px; background:white; border:1px solid #cccccc; width:292px;}
+div#layout div.intro_content div.marine_images div.marine_image div.image span.shadow {position:absolute; width:300px; height:10px; bottom:-7px; left:0; background:url(../images/intro/images_shadow.png) no-repeat left top;}
+div#layout div.intro_content div.marine_images div.marine_image div.information {float:left; width:300px; margin:10px 0 0 0; border:none; background:none;}
+div#layout div.intro_content div.marine_images div.marine_image div.information h2 {font:bold 23px Arial; color:#666666; letter-spacing:-1px;}
+div#layout div.intro_content div.marine_images div.marine_image div.information h2 small {font:bold 15px Arial;}
+div#layout div.intro_content div.marine_images div.marine_image div.information p {font:normal 15px Arial; color:#666666; padding:10px 0 0 0;}
+
+div#layout div.intro_content div.quotes {float:left; width:940px;  margin:50px 0 0 0;}
+div#layout div.intro_content div.quotes p {float:left; padding:8px 0 0 32px; font:bold 37px Arial; color:#4c4c4c; background:url(../images/intro/quotes_up.png) no-repeat 0 0; line-height:30px;}
+div#layout div.intro_content div.quotes p.last {float:left; width:auto; padding:0 30px 5px 0; font:bold 37px Arial; color:#4c4c4c; background:url(../images/intro/quotes_down.png) no-repeat right bottom;}
+
+div#layout div.intro_content div.message {position:relative; float:left; width:898px;  margin:50px 0 0 0; border:1px solid #CDCDCD; padding:20px; background:white;}
+div#layout div.intro_content div.message h3 {font:bold 23px Arial; color:#4C4C4C; padding:0; margin:0;}
+div#layout div.intro_content div.message p {font:normal 17px Arial; color:#999999; padding:10px 0 0 0;}
+div#layout div.intro_content div.message p a {text-decoration:none; border-bottom:1px solid #006699; color:#006699;}
+div#layout div.intro_content div.message p a:hover {color:#254C72; text-decoration:none; border-bottom:1px dotted #254C72;}
+div#layout div.intro_content div.message img {position:absolute; left:20px; bottom:-20px;}
+
+div#layout div.intro_content div.sign_up {float:left; width:940px; margin:50px 0 0 0; padding:0 0 40px 0;}
+div#layout div.intro_content div.sign_up p {font:normal 21px Arial; color:#4C4C4C;}
+div#layout div.intro_content div.sign_up p.title {font:bold 37px Arial; color:#4c4c4c;}
+div#layout div.intro_content div.sign_up p.title a {color:#FF6600; border-bottom:3px solid #FF6600; text-decoration:none;}
+div#layout div.intro_content div.sign_up p.title a:hover {border-bottom:3px dotted #FF6600;}
+
+
 /* ---------- JOBS ---------- */
+
 div#outer_upper_area{width:100%; }
 
 div#upper_area {width:940px; margin:0 auto; }
@@ -128,6 +164,7 @@ div#wide_container div.publish_job div.right_container {float:right; width:206px
 div#wide_container div.publish_job div.right_container a.button {float:left; background:url(../images/jobs/bkg_publish_job_bttn.png) no-repeat 0 0; width:189px; height:40px; margin:30px 0 0 0; font:bold 17px Arial; color:#006699; padding:11px 0 0 52px; letter-spacing:-1.0px; text-decoration:none;}
 div#wide_container div.publish_job div.right_container a.button:hover {color:#254C72;}
 
+
 /* ---------- EXPERTS ---------- */
 div#wide_container div.add_this_page {float:left; width:940px; border:1px solid #CCCCCC; border-right:none; border-bottom:none; border-left:none; height:102px; background:url(../images/experts/bkg_add_page.png) no-repeat 0 0; margin:60px 0 30px 0;}
 div#wide_container div.add_this_page div.left_container {float:left; width:630px; margin:15px 0 10px 15px; }
@@ -137,6 +174,7 @@ div#wide_container div.add_this_page div.left_container p.comment {font:normal 1
 div#wide_container div.add_this_page div.right_container {float:right; width:280px;}
 div#wide_container div.add_this_page div.right_container a.button {float:left; background:url(../images/experts/bkg_add_page_bttn.png) no-repeat 0 0; width:217px; height:31px; margin:40px 0 0 0; font:bold 17px Arial; color:#006699; padding:11px 0 0 52px; letter-spacing:-1.0px; text-decoration:none;}
 div#wide_container div.add_this_page div.right_container a.button:hover {color:#254C72;}
+
 
 
 /* ---------- SITE ---------- */
@@ -313,7 +351,6 @@ div.right_container div.externalLinks ul {float:left; width:311px; margin:8px 0 
 div.right_container div.externalLinks ul li {float:left; width:311px; margin:0; margin:1px 0 1px; line-height:18px; color:#006699;}
 div.right_container div.externalLinks ul li a {font:bold 13px Arial; color:#006699; text-decoration:none;}
 div.right_container div.externalLinks ul li a:hover {color:#254C72; text-decoration:none; border-bottom:1px dotted #254C72;}
-
 
 
 
