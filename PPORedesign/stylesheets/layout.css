@@ -149,8 +149,6 @@ div#wide_container div.publish_job div.right_container a.button:hover {color:#25
 /* ---------- EXPERTS ---------- */
 
 
-
-
 div#upper_area div.content_expert {float:left; position:relative; width:940px; margin:0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
 
 div#upper_area div.content_expert div.content_title {marging:0;}
@@ -202,10 +200,10 @@ div#wide_container div.list_experts ul {width:100%;}
 div#wide_container div.list_experts ul li {float: left; width:470px; margin:0 0px 20px 0px; height:100px;}
 div#wide_container div.list_experts ul li div.avatar {float:left; width:100px;}
 div#wide_container div.list_experts ul li div.avatar img {padding:4px; border:1px solid #cccccc; background:white; width:90px; height:90px;}
-div#wide_container div.list_experts ul li p {float:left; margin:0 0 5px 13px; width:335px;}
-div#wide_container div.list_experts ul li p.name {float:left; font:bold 15px Arial; color:#006699; }
-div#wide_container div.list_experts ul li p.discipline {float:left; font:italic 13px Arial; color:#666666;}
-div#wide_container div.list_experts ul li p.at_content {float:left; font:normal 13px Arial; color:#666666;}
+div#wide_container div.list_experts ul li p {float:left; margin:0 0 0px 13px; width:335px;}
+div#wide_container div.list_experts ul li p.name {float:left; font:bold 15px Arial; color:#006699; margin:0 0px 0px 13px;}
+div#wide_container div.list_experts ul li p.discipline {float:left; font:italic 13px Arial; color:#666666; margin:2px 0px 0px 13px;}
+div#wide_container div.list_experts ul li p.at_content {float:left; font:normal 13px Arial; color:#666666; margin:10px 0px 0px 13px;}
 div#wide_container div.list_experts ul li p.at_content span {float:left; font:bold 13px Arial; color:#666666; margin:0 5px 0 0;}
 
 
