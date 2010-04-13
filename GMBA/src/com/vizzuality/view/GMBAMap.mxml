@@ -48,6 +48,7 @@
 	        private var rasterLayer:RasterLayer;
 			[Bindable] private var zoom: Number = 2;
 			[Bindable] private var bound: LatLngBounds;
+			 
 	        private var lat: Number = 40.73;
 	        private var lon: Number = -3.99;
 	        
@@ -269,7 +270,7 @@
 	
 	<mx:GlowFilter id="sh" alpha="0.3" color="#000000" blurX="20" blurY="20" />
 	
-	<mx:Canvas styleName="bkgBigCanvas" top="22" left="22" right="29" bottom="24" backgroundSize="100%" filters="{[sh]}"> 
+	<mx:Canvas styleName="bkgBigCanvas" top="22" left="22" right="29" bottom="24" backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off"> 
 
 		<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
 			<view:Toolbar width="22%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}"/>
@@ -293,7 +294,7 @@
 		
 		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas" visible="false" />
 		<components1:TaxonomicBrowser visible="false" id="taxonomic"  horizontalCenter="0" verticalCenter="0" />
-		<components1:Download visible="false" id="download" horizontalCenter="0" verticalCenter="0" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}"
+		<components1:Download visible="false" id="download" horizontalCenter="{map.x}" verticalCenter="{map.y}" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}"
 			zoom="{zoom}" bound="{bound}"/>
 	</mx:Canvas>
 </mx:Canvas>

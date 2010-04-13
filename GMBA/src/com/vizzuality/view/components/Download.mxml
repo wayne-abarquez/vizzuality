@@ -68,7 +68,8 @@
 			public var bound: LatLngBounds;
 			public var zoom: Number;
 			
-			private var timer:Timer;			
+			private var timer:Timer;
+						
 			
 			 public function setCriteriaValues():void{
 				
@@ -109,7 +110,7 @@
 			}
 			
 			private function onCreationComplete():void {
-				
+				 
 				MyEventDispatcher.addEventListener(ChangeMapZoom.CHANGED, onChangeMapZoom);
 				
 			}	
@@ -213,7 +214,7 @@
 	<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox2">
 		<mx:CheckBox id="terms" label="" cornerRadius="10" click="activateDownload()"/>
 		<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3" id="label6"/>
-		<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('..//bin-debug/html/termsAndConditions.html'))" id="button2"/>
+		<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('../html/termsAndConditions.html'))" id="button2"/>
 		<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label7"/>
 	</mx:HBox>	
 	<utils:ShadowButton height="32" label="Download" color="#FFFFFF" fontSize="17" fontWeight="normal" click="onClickToDownload()"
