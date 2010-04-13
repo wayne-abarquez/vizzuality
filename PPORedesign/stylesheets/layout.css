@@ -119,6 +119,12 @@ div#upper_area div.content div.content_posts div.right_jobs_title p a.organizati
 div#upper_area div.content div.content_posts div.right_jobs_title p a.organization:hover {background-position:0 -25px;}
 div#upper_area div.content div.content_posts div.right_jobs_title p a.organization_selected {font:bold 13px Arial; color:#333333; background:url(../images/common/bkg_organization_selected.png) no-repeat 0 0; width:106px; height:30px; padding:3px 0 0 7px; text-decoration:none;}
 
+div#wide_container div.twitter_wide {float:left; width:940px; height:60px; background:url(../images/common/bkg_twitter_wide.png) no-repeat 0 0; margin:0 0 20px 0;}
+div#wide_container div.twitter_wide p {float:left;}
+div#wide_container div.twitter_wide p.title {font:bold 15px Arial; color:#333333; width:800px; margin:11px 0 0 23px;}
+div#wide_container div.twitter_wide p.message {font:normal 13px Arial; color:#333333; margin:2px 0 0 23px;}
+div#wide_container div.twitter_wide p.message a {text-decoration:underline; color:#006699;} 
+div#wide_container div.twitter_wide p.message a:hover {color:#254C72;}
 
 div#wide_container div.job {float:left; width:940px; padding:0; border:1px solid #CCCCCC; border-bottom:none; background:#FFFFFF; margin:0px 0 0px 0px; overflow:hidden; height:300px;}
 div#wide_container div.job div.logo {float:right; margin:5px;}
