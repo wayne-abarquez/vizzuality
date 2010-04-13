@@ -43,6 +43,10 @@ div#upper_area div.content div.content_title {marging:0;}
 div#upper_area div.content div.content_title div.left_sec_title{float:left; width:616px; margin:20px 0 0 0;}
 
 div#upper_area div.content div.content_title div.left_sec_title h1{float:left; position:relative; width:616px; font:bold 53px Arial; line-height:50px; color:#4C4C4C; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
+div#upper_area div.content div.content_title div.left_sec_title p.subtitle{float:left; position:relative; width:616px; font:normal 19px Arial; color:#666666; padding:0px; margin:10px 0 0 0; letter-spacing:-1.0px;}
+div#upper_area div.content div.content_title div.left_sec_title p.subtitle a {font:bold 19px Arial; color:#FF9900; text-decoration:none;}
+div#upper_area div.content div.content_title div.left_sec_title p.subtitle a:hover {color:#FF6600;}
+
 
 div#upper_area div.content div.content_title div.right_sec_title{float:right; width:295px; margin:45px 0 0 0;}
 div#upper_area div.content div.content_title div.right_sec_title p.title_browse {float:left; font:bold 11px Arial; color:#666666; text-transform:uppercase; margin:0 0 0 10px;}
@@ -65,13 +69,34 @@ div#upper_area div.content div.content_posts div.right_jobs_title {float:right; 
 
 div#upper_area div.content div.content_posts div.right_jobs_title p a {float:right; margin: 0 0 0 6px;}
 div#upper_area div.content div.content_posts div.right_jobs_title p span.title {float:left; font:bold 13px Arial; color:#666666; text-decoration:none; padding:5px 0 0 0;}
-div#upper_area div.content div.content_posts div.right_jobs_title p a.first {font:bold 13px Arial; color:#FFFFFF; background:url(../images/jobs/bkg_first.png) no-repeat 0 0; width:78px; height:21px; padding:4px 0 0 7px; text-decoration:none;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.first {font:bold 13px Arial; color:#FFFFFF; background:url(../images/common/bkg_first.png) no-repeat 0 0; width:78px; height:21px; padding:4px 0 0 7px; text-decoration:none;}
 div#upper_area div.content div.content_posts div.right_jobs_title p a.first:hover {background-position:0 -25px;}
-div#upper_area div.content div.content_posts div.right_jobs_title p a.first_selected {font:bold 13px Arial; color:#333333; background:url(../images/jobs/bkg_first_selected.png) no-repeat 0 0; width:78px; height:27px; padding:3px 0 0 7px; text-decoration:none;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.first_selected {font:bold 13px Arial; color:#333333; background:url(../images/common/bkg_first_selected.png) no-repeat 0 0; width:78px; height:27px; padding:3px 0 0 7px; text-decoration:none;}
 
-div#upper_area div.content div.content_posts div.right_jobs_title p a.organization {font:bold 13px Arial; color:#FFFFFF; background:url(../images/jobs/bkg_organization.png) no-repeat 0 0; width:106px; height:21px; padding:4px 0 0 9px; text-decoration:none;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.organization {font:bold 13px Arial; color:#FFFFFF; background:url(../images/common/bkg_organization.png) no-repeat 0 0; width:106px; height:21px; padding:4px 0 0 9px; text-decoration:none;}
 div#upper_area div.content div.content_posts div.right_jobs_title p a.organization:hover {background-position:0 -25px;}
-div#upper_area div.content div.content_posts div.right_jobs_title p a.organization_selected {font:bold 13px Arial; color:#333333; background:url(../images/jobs/bkg_organization_selected.png) no-repeat 0 0; width:106px; height:30px; padding:3px 0 0 7px; text-decoration:none;}
+div#upper_area div.content div.content_posts div.right_jobs_title p a.organization_selected {font:bold 13px Arial; color:#333333; background:url(../images/common/bkg_organization_selected.png) no-repeat 0 0; width:106px; height:30px; padding:3px 0 0 7px; text-decoration:none;}
+
+div#upper_area div.content div.content_experts {float:left; margin:55px 0 20px 0; width:100%;}
+
+div#upper_area div.content div.content_experts div.left_experts_title{float:left; width:616px; }
+div#upper_area div.content div.content_experts div.left_experts_title h2{float:left; width:616px; font:bold 19px Arial; color:#333333;}
+
+div#upper_area div.content div.content_experts div.right_experts_title {float:right; width:253px; }
+
+div#upper_area div.content div.content_experts div.right_experts_title p a {float:right; margin: 0 0 0 6px;}
+div#upper_area div.content div.content_experts div.right_experts_title p span.title {float:left; font:bold 13px Arial; color:#666666; text-decoration:none; padding:5px 0 0 0;}
+div#upper_area div.content div.content_experts div.right_experts_title p a.first {font:bold 13px Arial; color:#FFFFFF; background:url(../images/common/bkg_first.png) no-repeat 0 0; width:78px; height:21px; padding:4px 0 0 7px; text-decoration:none;}
+div#upper_area div.content div.content_experts div.right_experts_title p a.first:hover {background-position:0 -25px;}
+div#upper_area div.content div.content_experts div.right_experts_title p a.first_selected {font:bold 13px Arial; color:#333333; background:url(../images/common/bkg_first_selected.png) no-repeat 0 0; width:78px; height:27px; padding:3px 0 0 7px; text-decoration:none;}
+
+div#upper_area div.content div.content_experts div.right_experts_title p a.organization {font:bold 13px Arial; color:#FFFFFF; background:url(../images/common/bkg_organization.png) no-repeat 0 0; width:106px; height:21px; padding:4px 0 0 9px; text-decoration:none;}
+div#upper_area div.content div.content_experts div.right_experts_title p a.organization:hover {background-position:0 -25px;}
+div#upper_area div.content div.content_experts div.right_experts_title p a.organization_selected {font:bold 13px Arial; color:#333333; background:url(../images/common/bkg_organization_selected.png) no-repeat 0 0; width:106px; height:30px; padding:3px 0 0 7px; text-decoration:none;}
+
+div#upper_area div.content div.content_experts div.right_experts_title p a.alphabetically {font:bold 13px Arial; color:#FFFFFF; background:url(../images/common/bkg_alphabetically.png) no-repeat 0 0; width:106px; height:21px; padding:4px 0 0 9px; text-decoration:none;}
+div#upper_area div.content div.content_experts div.right_experts_title p a.alphabetically:hover {background-position:0 -25px;}
+div#upper_area div.content div.content_experts div.right_experts_title p a.alphabetically_selected {font:bold 13px Arial; color:#333333; background:url(../images/common/bkg_alphabetically_selected.png) no-repeat 0 0; width:106px; height:30px; padding:3px 0 0 7px; text-decoration:none;}
 
 
 div#wide_container {margin:0 auto; width:940px; padding:0;}
@@ -102,6 +127,18 @@ div#wide_container div.publish_job div.left_container p.comment {font:normal 15p
 div#wide_container div.publish_job div.right_container {float:right; width:206px;}
 div#wide_container div.publish_job div.right_container a.button {float:left; background:url(../images/jobs/bkg_publish_job_bttn.png) no-repeat 0 0; width:189px; height:40px; margin:30px 0 0 0; font:bold 17px Arial; color:#006699; padding:11px 0 0 52px; letter-spacing:-1.0px; text-decoration:none;}
 div#wide_container div.publish_job div.right_container a.button:hover {color:#254C72;}
+
+/* ---------- EXPERTS ---------- */
+div#wide_container div.add_this_page {float:left; width:940px; border:1px solid #CCCCCC; border-right:none; border-bottom:none; border-left:none; height:102px; background:url(../images/experts/bkg_add_page.png) no-repeat 0 0; margin:60px 0 30px 0;}
+div#wide_container div.add_this_page div.left_container {float:left; width:630px; margin:15px 0 10px 15px; }
+div#wide_container div.add_this_page div.left_container p.title {font:bold 19px Arial; color:#333333; margin:0 0 3px 0; letter-spacing:-1.0px; }
+div#wide_container div.add_this_page div.left_container p.comment {font:normal 15px Arial; color:#666666; margin:5px 0 0 0; }
+
+div#wide_container div.add_this_page div.right_container {float:right; width:280px;}
+div#wide_container div.add_this_page div.right_container a.button {float:left; background:url(../images/experts/bkg_add_page_bttn.png) no-repeat 0 0; width:217px; height:31px; margin:40px 0 0 0; font:bold 17px Arial; color:#006699; padding:11px 0 0 52px; letter-spacing:-1.0px; text-decoration:none;}
+div#wide_container div.add_this_page div.right_container a.button:hover {color:#254C72;}
+
+
 /* ---------- SITE ---------- */
 
 div#wide_container div.job div.data div.job_overview {float:right; width:650px; margin:0 20px 0 0; }
