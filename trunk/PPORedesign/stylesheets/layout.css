@@ -199,11 +199,11 @@ div#upper_area div.content_expert div.content_experts div.right_experts_title p 
 
 div#wide_container div.list_experts {float:left; width:100%; margin:25px 0 0 0;}
 div#wide_container div.list_experts ul {width:100%;}
-div#wide_container div.list_experts ul li {float: left; width:470px; margin:0 0px 20px 0px; height:100px;}
+div#wide_container div.list_experts ul li {float: left; width:470px; margin:0 0px 25px 0px; height:100px;}
 div#wide_container div.list_experts ul li div.avatar {float:left; width:100px;}
 div#wide_container div.list_experts ul li div.avatar img {padding:4px; border:1px solid #cccccc; background:white; width:90px; height:90px;}
 div#wide_container div.list_experts ul li p {float:left; margin:0 0 0px 13px; width:335px;}
-div#wide_container div.list_experts ul li p.name {float:left; font:bold 15px Arial; color:#006699; margin:0 0px 0px 13px;}
+div#wide_container div.list_experts ul li p.name {float:left; font:bold 15px Arial; color:#006699; margin:3px 0px 0px 13px;}
 div#wide_container div.list_experts ul li p.discipline {float:left; font:italic 13px Arial; color:#666666; margin:2px 0px 0px 13px;}
 div#wide_container div.list_experts ul li p.at_content {float:left; font:normal 13px Arial; color:#666666; margin:10px 0px 0px 13px;}
 div#wide_container div.list_experts ul li p.at_content span {float:left; font:bold 13px Arial; color:#666666; margin:0 5px 0 0;}
@@ -561,8 +561,16 @@ div.submit_commitment a:hover{background-position:0 -46px; color:white;}
 #footer li a{color:#999999; text-decoration:none; font-weight:bold;}
 #footer li a:hover{color:#666666;}
 
-#footer div.powered{float:right; width:600px; padding:0 0 16px;}
-#footer div.powered a{float:right;}
-#footer div.powered a img{float:left; margin-right:10px; display:inline;}
-#footer div.powered a img.last{float:left; margin-right:0; display:inline;}
+#footer div.share_powered {float:left; width:100%;}
+
+#footer div.share_powered div.share{float:left; width:400px; padding:10px 0 0 0;}
+#footer div.share_powered div.share a{float:left; margin:0 5px 0 0;}
+#footer div.share_powered div.share a img{float:left; display:inline;}
+#footer div.share_powered div.share a img.last{float:left; margin-right:0; display:inline;}
+
+
+#footer div.share_powered div.powered{float:right; width:400px; padding:0 0 16px;}
+#footer div.share_powered div.powered a{float:right;}
+#footer div.share_powered div.powered a img{float:left; margin-right:10px; display:inline;}
+#footer div.share_powered div.powered a img.last{float:left; margin-right:0; display:inline;}
 
