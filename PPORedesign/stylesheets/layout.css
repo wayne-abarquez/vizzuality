@@ -599,7 +599,7 @@ div.google_earth p {font:normal 13px Arial; color:#666666; width:600px; line-hei
 div.google_earth a {position:absolute; top:40px; right:30px; width:260px; height:46px; background:url(../images/resources/world_button.png) no-repeat 0 0;}
 div.google_earth a:hover {background-position:0 -46px;}
 
-div.publications {float:left; width:940px; margin:50px 0 0 0; padding:0 0 20px 0;}
+div.publications {float:left; width:620px; margin:51px 0 0 0; padding:0 0 20px 0;}
 div.publications h2 {float:left; width:100%; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px; margin:0;}
 div.publications div.search_container {float:left; background:white; width:100%;}
 div.publications ul {float:left; width:100%; list-style:none; padding:0 0 20px 0; border-bottom:1px solid #cccccc;}
@@ -617,6 +617,49 @@ div.publications p.view_more {float:left; text-align:center; width:940px; paddin
 div.publications p.view_more a {float:left; margin:0 0 0 415px; width:104px; height:25px; background:url(../images/resources/view_more.png) no-repeat; color:#FFFFFF; text-align:center; font:bold 15px Arial; text-decoration:none; padding:8px 0 0 0;}
 div.publications p.view_more a:hover{background-position: 0 -33px;}
 div.publications p.view_more label {text-align:center; width:100%; float:left; margin:0; padding:10px 0 0 0;}
+
+
+div.browse_all {float:left; height:942px; position:relative; width:308px; margin:44px 0 0 0; border:1px solid #cccccc; background:#FFFFFF; border-bottom:none;}
+div.browse_all h2{position:relative; float:left; width:278px; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; margin:10px 0 10px 14px; letter-spacing:-1px;}
+div.browse_all div.content_browse {margin:0px 0 0px 14px;}
+div.browse_all div.content_browse p.section {float:left; font:bold 13px Arial; color:#999999; width:278px; margin:5px 0 0 0;}
+
+div.browse_all div.content_browse form {float:left; width:278px; margin:10px 0 10px 0; height:35px; position:relative; background:url(../images/region/search_box.png) no-repeat 0 0; }
+div.browse_all div.content_browse form input[type="text"]{float:left; padding:5px 0px 0px 0px; width:185px; height:10px; margin:7px 0px 0px 7px; border:none; font:normal 13px Arial; font-style:italic; color:#aaaaaa;}
+div.browse_all div.content_browse form input[type="text"]:focus {outline:none;}
+div.browse_all div.content_browse form input[type="submit"]{float:right; background:url(../images/region/bkg_search_bttn.png) no-repeat 0 0; margin:6px 7px 0px 0; width:66px; height:23px; border:none; }
+div.browse_all div.content_browse form input[type="submit"]:focus {outline:none;}
+div.browse_all div.content_browse form input[type="submit"]:hover {cursor:pointer; background-position:0 -23px;}
+
+div.browse_all div.content_browse ul {float:left; width:350px; margin:10px 0 10px 0;}
+div.browse_all div.content_browse ul li {padding:2px 0 0 18px; position:relative;} 
+div.browse_all div.content_browse ul li a {font:bold 13px Arial; color:#666666; text-decoration:none;}
+div.browse_all div.content_browse ul li.checked {background:url(../images/region/checkBox_checked.png) no-repeat 0 4px;}
+div.browse_all div.content_browse ul li.unchecked {background:url(../images/region/checkBox_unchecked.png) no-repeat 0 4px;}
+
+div.browse_all div.content_browse ul li.more_topics {background:url(../images/region/view_other_arrow.png) no-repeat 95px 9px; margin:15px 0 10px 0;}
+div.browse_all div.content_browse ul li.more_topics a {font:bold 13px Arial; color:#006699; text-decoration:none;}
+div.browse_all div.content_browse ul li.more_types {background:url(../images/region/view_other_arrow.png) no-repeat 90px 9px; margin:15px 0 10px 0;}
+div.browse_all div.content_browse ul li.more_types a {font:bold 13px Arial; color:#006699; text-decoration:none;}
+div.browse_all div.content_browse ul li.more_scopes {background:url(../images/region/view_other_arrow.png) no-repeat 100px 9px; margin:15px 0 10px 0;}
+div.browse_all div.content_browse ul li.more_scopes a {font:bold 13px Arial; color:#006699; text-decoration:none;}
+
+div.browse_all div.content_browse ul li.submenu_actived {background:url(../images/region/view_other_arrow_black.png) no-repeat 95px 9px; margin:15px 0 10px 0;}
+div.browse_all div.content_browse ul li.submenu_actived a {font:bold 13px Arial; color:#333333; text-decoration:none;}
+div.browse_all div.content_browse ul li.submenu_actived {background:url(../images/region/view_other_arrow_black.png) no-repeat 90px 9px; margin:15px 0 10px 0;}
+div.browse_all div.content_browse ul li.submenu_actived a {font:bold 13px Arial; color:#333333; text-decoration:none;}
+div.browse_all div.content_browse ul li.submenu_actived {background:url(../images/region/bkg_more_actived_scopes.png) no-repeat 10px 0px; margin:15px 0 10px 0; padding:5px 0 0 18px; width:176px; height:30px;}
+div.browse_all div.content_browse ul li.submenu_actived a {font:bold 13px Arial; color:#333333; text-decoration:none;}
+
+div.browse_all div.content_browse ul li ul.suboptions {position:relative; float:right; margin:7px 8px 0 0px; border:1px solid #cccccc; background:#D9EAEF; border-bottom:none; border-top:none; width:174px;}
+div.browse_all div.content_browse ul li ul.suboptions li.first_unchecked {margin:10px 0 0 4px; background:url(../images/region/checkbox_unchecked_blue.png) no-repeat 3px 4px; }
+div.browse_all div.content_browse ul li ul.suboptions li.first_checked {margin:10px 0 0 4px; background:url(../images/region/checkbox_checked_blue.png) no-repeat 3px 4px; }
+div.browse_all div.content_browse ul li ul.suboptions li.unchecked {margin:2px 0 0 4px; background:url(../images/region/checkbox_unchecked_blue.png) no-repeat 3px 4px; }
+div.browse_all div.content_browse ul li ul.suboptions li.checked {margin:2px 0 0 4px; background:url(../images/region/checkbox_checked_blue.png) no-repeat 3px 4px; }
+div.browse_all div.content_browse ul li ul.suboptions li a { font:bold 13px Arial; color:#006699; text-decoration:none;}
+div.browse_all div.content_browse ul div.last {float:left; background:url(../images/region/bkg_more_actived_bottom.png) no-repeat 0 bottom; margin:0 0 0 10px; width:176px; height:9px;}
+
+div.bottom_browse_all {float:left; width:310px; height:35px; background:url(../images/region/bottom_browse_all.png) no-repeat 0 top; margin:0;}
 
 
 
