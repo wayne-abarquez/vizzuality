@@ -104,9 +104,11 @@ div#upper_area div.content div.content_title div.right_sec_title ul li p.active 
 div#upper_area div.content div.content_posts {float:left; margin:55px 0 0 0; width:100%;}
 
 div#upper_area div.content div.content_posts div.left_jobs_title{float:left; width:616px; }
+div#upper_area div.content div.content_posts div.left_jobs_title p a.back {float:left; width:616px; background:url(../images/common/back_arrow.png) no-repeat 0 7px; margin:0 0 5px 0; padding:0px 0 10px 20px; text-decoration:none; font:bold 19px Arial; color:#333333;}
+div#upper_area div.content div.content_posts div.left_jobs_title p a.back:hover {color:#000000;}
 div#upper_area div.content div.content_posts div.left_jobs_title h2{float:left; width:616px; font:bold 19px Arial; color:#333333;}
 
-div#upper_area div.content div.content_posts div.right_jobs_title {float:right; width:253px; }
+div#upper_area div.content div.content_posts div.right_jobs_title {float:right; width:253px;}
 
 div#upper_area div.content div.content_posts div.right_jobs_title p a {float:right; margin: 0 0 0 6px;}
 div#upper_area div.content div.content_posts div.right_jobs_title p span.title {float:left; font:bold 13px Arial; color:#666666; text-decoration:none; padding:5px 0 0 0;}
@@ -118,14 +120,14 @@ div#upper_area div.content div.content_posts div.right_jobs_title p a.organizati
 div#upper_area div.content div.content_posts div.right_jobs_title p a.organization:hover {background-position:0 -25px;}
 div#upper_area div.content div.content_posts div.right_jobs_title p a.organization_selected {font:bold 13px Arial; color:#333333; background:url(../images/common/bkg_organization_selected.png) no-repeat 0 0; width:106px; height:30px; padding:3px 0 0 7px; text-decoration:none;}
 
-div#wide_container div.twitter_wide {float:left; width:940px; height:60px; background:url(../images/common/bkg_twitter_wide.png) no-repeat 0 0; margin:0 0 20px 0;}
+div#wide_container div.twitter_wide {float:left; width:940px; height:60px; background:url(../images/common/bkg_twitter_wide.png) no-repeat 0 0; margin:20px 0 40px 0;}
 div#wide_container div.twitter_wide p {float:left;}
 div#wide_container div.twitter_wide p.title {font:bold 15px Arial; color:#333333; width:800px; margin:11px 0 0 23px;}
 div#wide_container div.twitter_wide p.message {font:normal 13px Arial; color:#333333; margin:2px 0 0 23px;}
 div#wide_container div.twitter_wide p.message a {text-decoration:underline; color:#006699;} 
 div#wide_container div.twitter_wide p.message a:hover {color:#254C72;}
 
-div#wide_container div.job {float:left; width:940px; padding:0; border:1px solid #CCCCCC; border-bottom:none; background:#FFFFFF; margin:0px 0 0px 0px; overflow:hidden; height:300px;}
+div#wide_container div.job {float:left; width:940px; padding:0; border:1px solid #CCCCCC; border-bottom:none; background:#FFFFFF; margin:0px 0 0px 0px; overflow:hidden;}
 div#wide_container div.job div.logo {float:right; margin:5px;}
 div#wide_container div.job div.logo a {float:right;}
 div#wide_container div.job div.logo a.iucn{ background:url(../images/logos/iucn_original.png) no-repeat 0 0; width:65px; height:50px; margin:5px 0;}
@@ -137,11 +139,40 @@ div#wide_container div.job div.title h2 {font:normal 15px Arial; color:#666666; 
 
 div#wide_container div.job div.data {float:left; width:100%; margin:15px 0 0 20px; }
 div#wide_container div.job div.data div.job_data {float:left; width:240px; margin:0;}
-
 div#wide_container div.job div.data div.job_data p.title{font:bold 11px Arial; text-transform:uppercase; color:#999999; margin:0 0 5px 0;}
 div#wide_container div.job div.data div.job_data p.place{font:bold 15px Arial; color:#333333; margin:0;} 
 div#wide_container div.job div.data div.job_data p.direction{font:normal 13px Arial; color:#333333; margin:0;}
 div#wide_container div.job div.data div.job_data p.kind_application{font:normal 13px Arial; color:#333333; margin:0;}
+
+div#wide_container div.job div.data div.job_overview {float:right; width:650px; margin:0 20px 0 0; }
+div#wide_container div.job div.data div.job_overview p {float:left;}
+div#wide_container div.job div.data div.job_overview p.title{font:bold 11px Arial; text-transform:uppercase; color:#999999; margin:0 0 5px 0;}
+
+div#wide_container div.job div.data div.job_overview p.overview{font:normal 13px Arial; color:#333333; margin:0 0 10px 0;} 
+div#wide_container div.job div.data div.job_overview p.overview a {font:bold 13px Arial; color:#006699; text-decoration:none;}
+div#wide_container div.job div.data div.job_overview p.overview a:hover {color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
+
+
+
+div#wide_container div.job div.data div.job_info {float:right; width:650px; margin:0 30px 0 0; }
+div#wide_container div.job div.data div.job_info p {float:left;}
+div#wide_container div.job div.data div.job_info p.title_first{float:none; font:bold 11px Arial; text-transform:uppercase; color:#999999; margin:0 0 5px 0;}
+div#wide_container div.job div.data div.job_info p.title {float:left; font:bold 11px Arial; text-transform:uppercase; color:#999999; margin:15px 0 5px 0;}
+div#wide_container div.job div.data div.job_info p.info{font:normal 13px Arial; color:#333333; margin:0 0 10px 0;} 
+div#wide_container div.job div.data div.job_info p.info a {float:none; font:bold 13px Arial; color:#006699; text-decoration:none;}
+div#wide_container div.job div.data div.job_info p.info a:hover {float:none; color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
+
+div#wide_container div.job div.data div.job_info ul {float:left; width:650px; margin:0 0 10px 0;}
+div#wide_container div.job div.data div.job_info ul li p{background:url(../images/jobs/icon_list.png) no-repeat 0 5px; font:normal 13px Arial; color:#333333; margin:0 0 2px 0; padding:0 0 0 10px;}
+div#wide_container div.job div.data div.job_info p.button a {float:left; background:url(../images/jobs/bkg_apply_job_bttn.png) no-repeat 0 0; width:138px; height:28px; font:bold 17px Arial; color:#FFFFFF; padding:5px 0 0 5px; margin:25px 0 25px 0; text-decoration:none;} 
+div#wide_container div.job div.data div.job_info p.button a:hover{background-position:0 -33px;}
+
+
+div#wide_container div.bottomJob {float:left; width:942px; height:59px; background:url(../images/jobs/bottom_job.png) no-repeat 0 top; margin:0 0 20px 0px;}
+div#wide_container div.bottomJob p {float:left; font:normal 13px Arial; color:#666666; padding:25px 0px 0px 20px;}
+div#wide_container div.bottomJob p a{text-decoration:none; color:#FF9900; font-weight:bold;}
+div#wide_container div.bottomJob p a:hover {color:#FF6600;}
+
 
 div#wide_container div.publish_job {float:left; width:940px; border:1px solid #CCCCCC; border-right:none; border-bottom:none; border-left:none; height:102px; background:url(../images/jobs/bkg_publish_job.png) no-repeat 0 0; margin:0 0 30px 0;}
 div#wide_container div.publish_job div.left_container {float:left; width:697px; margin:15px 0 10px 15px; }
@@ -225,18 +256,6 @@ div.add_this_page div.right_container a.button:hover {color:#254C72;}
 
 /* ---------- SITE ---------- */
 
-div#wide_container div.job div.data div.job_overview {float:right; width:650px; margin:0 20px 0 0; }
-div#wide_container div.job div.data div.job_overview p {float:left;}
-div#wide_container div.job div.data div.job_overview p.title{font:bold 11px Arial; text-transform:uppercase; color:#999999; margin:0 0 5px 0;}
-div#wide_container div.job div.data div.job_overview p.overview{font:normal 13px Arial; color:#333333; margin:0 0 10px 0;} 
-div#wide_container div.job div.data div.job_overview p.overview a {font:bold 13px Arial; color:#006699; text-decoration:none;}
-div#wide_container div.job div.data div.job_overview p.overview a:hover {color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
-
-
-div#wide_container div.bottomJob {float:left; width:942px; height:59px; background:url(../images/jobs/bottom_job.png) no-repeat 0 top; margin:0 0 20px 0px;}
-div#wide_container div.bottomJob p {float:left; font:normal 13px Arial; color:#666666; padding:25px 0px 0px 20px;}
-div#wide_container div.bottomJob p a{text-decoration:none; color:#FF9900; font-weight:bold;}
-div#wide_container div.bottomJob p a:hover {color:#FF6600;}
 
 
 	/* upper area */
@@ -638,7 +657,6 @@ div.main_container div.white_container div.right_expert p {float:left; width:100
 div.main_container div.white_container div.right_expert p.space {padding:20px 0 0 0; margin:0;}
 div.main_container div.white_container div.right_expert a {font:bold 13px Arial; color:#006699; text-decoration:none; padding:3px 0 0 0; background:none; height:16px; margin:0 0 15px;}
 div.main_container div.white_container div.right_expert a:hover {color:#254C72; border-bottom:1px dotted #254C72; height:15px;}
-
 
 
 
