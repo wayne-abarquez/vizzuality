@@ -25,7 +25,8 @@ package com.vizzuality.utils {
             	if (event.pathNames[1] == 'help')
             		title += ' > ' + toTitleCase(event.pathNames[1]);
             } else {
-            	  scope.currentState = 'Map';
+            	//SWFAddress.setValue("map/2_40.73_-3.99/0_7889/0_3397/0");
+            	scope.currentState = 'Map';
             } 
             /*  for (var i:int = 0; i < event.pathNames.length; i++) {
                 title += ' » ' + toTitleCase(event.pathNames[i]);
