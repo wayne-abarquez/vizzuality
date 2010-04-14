@@ -646,6 +646,7 @@ div.right_container div.expert div.person div.bottom_data p.title {font:bold 15p
 div.right_container div.expert a.more {position:absolute; right:0; top:250px; text-decoration:none; font:bold 13px Arial; color:#006699;}
 div.right_container div.expert a.more:hover {color:#254C72; border-bottom:1px dotted #254C72;}
 
+
 	/* ocean expert */
 div.main_container div.white_container div.left_expert {float:left; width:232px;}
 div.main_container div.white_container div.left_expert img {border:1px solid #CCCCCC; padding:9px; background:#ECECEC; width:212px;}
