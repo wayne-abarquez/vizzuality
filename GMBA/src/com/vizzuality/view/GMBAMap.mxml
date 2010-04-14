@@ -60,7 +60,7 @@
             public var path:String = "Map";
             public var depth:int = 1;
             
-			[Embed("threshold.pbj", mimeType="application/octet-stream")]
+			[Embed("threshold2.pbj", mimeType="application/octet-stream")]
 			private var TestFilter:Class;		
 			private var shader:Shader; 
 			private var filter:ShaderFilter; 
@@ -108,7 +108,7 @@
                 	var vegetationParams: ArrayCollection = new ArrayCollection();
                 	
                 	if(event.pathNames.length<1 && swfAddInit) {
-                		SWFAddress.setValue('/map/2_40.73_-3.99/0_7889/0_3397/0');
+                		SWFAddress.setValue('/map/2_40.73_-3.99/0_7889/200_3397/0');
                 	}
                 	swfAddInit=true;
                 	if (event.pathNames.length>1) {
@@ -189,7 +189,7 @@
 			    this.map.addControl(new ZoomControl());
 			    
 				//rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png");
-				rasterLayer = new RasterLayer("http://204.236.250.31:7001/env/z|Z|/|X|/|Y|.png");
+				rasterLayer = new RasterLayer("http://204.236.250.31/env/z|Z|/|X|/|Y|.png");
 				tlo = new TileLayerOverlay(rasterLayer);
 				tlo.addEventListener(MapEvent.TILES_LOADED,function(ev:Event):void {
 					loadingMessage.visible=false;
@@ -212,12 +212,11 @@
 				//test adding a filter.
 	            shader = new Shader(new TestFilter() as ByteArray);
 				filter = new ShaderFilter(shader);
-				shader.data.maxColor.value = [1.0,1.0,1.0];
-				shader.data.minColor.value = [0.0,0.0,0.0];				
-				
-				//a.filters = [filter];
-				tlo.foreground.cacheAsBitmap=true;
-				tlo.foreground.filters=[filter];
+
+				var startSlidersEvent:SliderChangeEvent = new SliderChangeEvent(
+					SliderChangeEvent.SLIDER_CHANGED,[0,7889],[200,3397],[1,1,1,1,1,1,1]);
+					
+				onSlidersChange(startSlidersEvent);			
 				
 				MyEventDispatcher.addEventListener(SliderChangeEvent.SLIDER_CHANGED,onSlidersChange,false,0,true); 
 				
@@ -229,11 +228,35 @@
 	 			var rMax:Number = event.altitudeRange[1]/7889;
 	 			var gMin:Number  = event.reliefRange[0]/3397; 
 	 			var gMax:Number  = event.reliefRange[1]/3397; 
-	 			var bMin:Number  = 0.0;
-	 			var bMax:Number  = 1.0; 
 	 			
-				shader.data.maxColor.value = [rMax,gMax,bMax];
-				shader.data.minColor.value = [rMin,gMin,bMin];
+				shader.data.maxColor.value = [rMax,gMax];
+				shader.data.minColor.value = [rMin,gMin];
+				
+				var tvz1:Number=0;
+				if(event.vegtypes[0]) tvz1=1;
+				var tvz2:Number=0;
+				if(event.vegtypes[1]) tvz2=1;
+				var tvz3:Number=0;
+				if(event.vegtypes[2]) tvz3=1;
+				var tvz4:Number=0;
+				if(event.vegtypes[3]) tvz4=1;
+				var tvz5:Number=0;
+				if(event.vegtypes[4]) tvz5=1;
+				var tvz6:Number=0;
+				if(event.vegtypes[5]) tvz6=1;
+				var tvz7:Number=0;
+				if(event.vegtypes[6]) tvz7=1;
+				
+				shader.data.tvz1.value = [tvz1];
+				shader.data.tvz2.value = [tvz2];
+				shader.data.tvz3.value = [tvz3];
+				shader.data.tvz4.value = [tvz4];
+				shader.data.tvz5.value = [tvz5];
+				shader.data.tvz6.value = [tvz6];
+				shader.data.tvz7.value = [tvz7];
+				
+				
+				
 				tlo.foreground.filters = [filter];
 		    	
 		    }
@@ -289,7 +312,7 @@
 		</mx:VBox>
 		
 		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="78%" id="canvasMapContainer">
-			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="no-key" top="5" bottom="5" right="5" left="5"/>
+			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" top="5" bottom="5" right="5" left="5"/>
 			<components1:Help backgroundColor="#000000" top="5" bottom="5" right="5" left="5" visible="false" id="help1"/>	
 			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
 			<mx:Canvas width="95" height="31" borderColor="#FFFFFF" backgroundColor="#FFFFFF" right="10" top="10" id="loadingMessage" visible="true">
