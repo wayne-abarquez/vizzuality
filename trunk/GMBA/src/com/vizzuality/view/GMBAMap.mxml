@@ -96,6 +96,7 @@
 	            Helper.setSWFAddress(this, path, depth);        		
             }
             
+            private var swfAddInit:Boolean=false;
             private function handleSWFAddress(event:SWFAddressEvent):void {
 
                 if (event.pathNames.length >= depth && event.pathNames[depth - 1] == path) {
@@ -106,6 +107,10 @@
                 	var reliefParams: Object = new Object();
                 	var vegetationParams: ArrayCollection = new ArrayCollection();
                 	
+                	if(event.pathNames.length<1 && swfAddInit) {
+                		SWFAddress.setValue('/map/2_40.73_-3.99/0_7889/0_3397/0');
+                	}
+                	swfAddInit=true;
                 	if (event.pathNames.length>1) {
 						mapPoint = Helper.getPoint(event.pathNames[1] as String);
 	                    if (mapPoint.lat!=null) {
