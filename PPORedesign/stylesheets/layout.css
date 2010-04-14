@@ -213,17 +213,13 @@ div#wide_container div.list_experts ul li p.discipline {float:left; font:italic 
 div#wide_container div.list_experts ul li p.at_content {float:left; font:normal 13px Arial; color:#666666; margin:10px 0px 0px 13px;}
 div#wide_container div.list_experts ul li p.at_content span {float:left; font:bold 13px Arial; color:#666666; margin:0 5px 0 0;}
 
-
-
-
-div#wide_container div.add_this_page {float:left; width:940px; border:1px solid #CCCCCC; border-right:none; border-bottom:none; border-left:none; height:102px; background:url(../images/experts/bkg_add_page.png) no-repeat 0 0; margin:30px 0 50px 0;}
-div#wide_container div.add_this_page div.left_container {float:left; width:630px; margin:15px 0 10px 15px; }
-div#wide_container div.add_this_page div.left_container p.title {font:bold 19px Arial; color:#333333; margin:0 0 3px 0; letter-spacing:-1.0px; }
-div#wide_container div.add_this_page div.left_container p.comment {font:normal 15px Arial; color:#666666; margin:5px 0 0 0; }
-
-div#wide_container div.add_this_page div.right_container {float:right; width:280px;}
-div#wide_container div.add_this_page div.right_container a.button {float:left; background:url(../images/experts/bkg_add_page_bttn.png) no-repeat 0 0; width:217px; height:31px; margin:40px 0 0 0; font:bold 17px Arial; color:#006699; padding:11px 0 0 52px; letter-spacing:-1.0px; text-decoration:none;}
-div#wide_container div.add_this_page div.right_container a.button:hover {color:#254C72;}
+div.add_this_page {float:left; width:940px; border:1px solid #CCCCCC; border-right:none; border-bottom:none; border-left:none; height:102px; background:url(../images/experts/bkg_add_page.png) no-repeat 0 0; margin:30px 0 50px 0;}
+div.add_this_page div.left_container {float:left; width:630px; margin:15px 0 10px 15px; }
+div.add_this_page div.left_container p.title {font:bold 19px Arial; color:#333333; margin:0 0 3px 0; letter-spacing:-1.0px; }
+div.add_this_page div.left_container p.comment {font:normal 15px Arial; color:#666666; margin:5px 0 0 0; }
+div.add_this_page div.right_container {float:right; width:280px;}
+div.add_this_page div.right_container a.button {float:left; background:url(../images/experts/bkg_add_page_bttn.png) no-repeat 0 0; width:217px; height:31px; margin:40px 0 0 0; font:bold 17px Arial; color:#006699; padding:11px 0 0 52px; letter-spacing:-1.0px; text-decoration:none;}
+div.add_this_page div.right_container a.button:hover {color:#254C72;}
 
 
 
@@ -553,6 +549,26 @@ div.submit_commitment a {float:left; text-align:center; margin:10px 0 0 0; backg
 div.submit_commitment a:hover{background-position:0 -46px; color:white;}
 
 
+	/* commitment */
+div.main_container {float:left; width:940px; margin:40px 0 0 0; padding:0;}
+div.main_container a {float:left; font:bold 19px Arial; color:#333333; text-decoration:none; padding:0 0 0 16px; background:url(../images/commitment/back_list.png) no-repeat 0 7px;}
+div.main_container a:hover {text-decoration:underline;}
+div.main_container div.white_container {position:relative; float:left; width:898px; border:1px solid #cccccc; background:white; margin:21px 0 60px 0; padding:20px;}
+div.main_container div.white_container div.left {float:left; width:215px;}
+div.main_container div.white_container div.left h3 {float:left; font:bold 21px Arial; color:#006699;}
+div.main_container div.white_container div label {float:left; font:bold 11px Arial; color:#999999; padding:12px 0 0 0; width:100%;}
+div.main_container div.white_container div label span {padding:0 6px;}
+div.main_container div.white_container div p {float:left; font:bold 15px Arial; color:#333333; padding:2px 0 0 0; width:100%;}
+div.main_container div.white_container div p.list {font:normal 13px Arial;}
+div.main_container div.white_container div p.list.space {padding:4px 0 0 0;}
+div.main_container div.white_container div p img {padding:0 3px;}
+div.main_container div.white_container div.right {float:right; width:650px; padding:26px 0 0 0;}
+div.main_container div.white_container div.right ul {float:left; width:650px; padding:2px 0 0 0;}
+div.main_container div.white_container div.right ul li {float:left; width:181px; padding:0 20px 5px 12px; background:url(../images/commitment/dot.png) no-repeat 0 3px; color:#333333;}
+div.main_container div.white_container div.right a {float:left; font:bold 13px Arial; color:#006699; background:none; margin:30px 0 10px 0; padding:0; text-decoration:none;}
+div.main_container div.white_container div.right a:hover {color:#254C72; border-bottom: 1px dotted #254C72;}
+div.main_container div.white_container span.shadow {position:absolute; width:940px; height:12px; left:0; bottom:-13px; background:url(../images/commitment/main_shadow.png) no-repeat 0 0;}
+
 
 
 
@@ -610,6 +626,20 @@ div.right_container div.expert div.person div.bottom_data p.subtitle {font:norma
 div.right_container div.expert div.person div.bottom_data p.title {font:bold 15px Arial; color:#ffffff;}
 div.right_container div.expert a.more {position:absolute; right:0; top:250px; text-decoration:none; font:bold 13px Arial; color:#006699;}
 div.right_container div.expert a.more:hover {color:#254C72; border-bottom:1px dotted #254C72;}
+
+	/* ocean expert */
+div.main_container div.white_container div.left_expert {float:left; width:232px;}
+div.main_container div.white_container div.left_expert img {border:1px solid #CCCCCC; padding:9px; background:#ECECEC; width:212px;}
+div.main_container div.white_container div.right_expert {float:right; width:645px; padding:0;}
+div.main_container div.white_container div.right_expert h2 {float:left; width:100%; font:bold 21px Arial; color:#006699; padding:0; margin:0;}
+div.main_container div.white_container div.right_expert p.subtitle {float:left; width:100%; font:normal 13px Arial; color:#666666; font-style:italic; padding:4px 0 0 0; margin:0;}
+div.main_container div.white_container div.right_expert label {float:left; width:100%; font:bold 11px Arial; color:#999999; padding:25px 0 0 0; margin:0;}
+div.main_container div.white_container div.right_expert p {float:left; width:100%; font:normal 13px Arial; color:#333333; padding:4px 0 0 0; margin:0;}
+div.main_container div.white_container div.right_expert p.space {padding:20px 0 0 0; margin:0;}
+div.main_container div.white_container div.right_expert a {font:bold 13px Arial; color:#006699; text-decoration:none; padding:3px 0 0 0; background:none; height:16px; margin:0 0 15px;}
+div.main_container div.white_container div.right_expert a:hover {color:#254C72; border-bottom:1px dotted #254C72; height:15px;}
+
+
 
 
 
