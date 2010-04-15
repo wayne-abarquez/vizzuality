@@ -32,9 +32,10 @@ public class RasterPrepare {
 	}
 			
 	// both loads the environment data into memory
-	public static void loadRaster(File f, File outputdir, String filePrefix, int maxZoom, int minLatIndex, int minLngIndex, int elevationIndex, int reliefIndex, int tpCpdeIndex) throws IOException {
+	public static void loadRaster(File f, File outputdir, String filePrefix, int maxZoom, int minLatIndex, int minLngIndex, int elevationIndex, int reliefIndex, int tvzcodeIndex) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String line = reader.readLine();
+		line = reader.readLine(); // skip header
 		System.out.println("Preparing environment data");
 		int count = 0;
 		
@@ -49,7 +50,7 @@ public class RasterPrepare {
 			double lng = Double.parseDouble(parts[minLngIndex]);
 			int elevation = Integer.parseInt(parts[elevationIndex]);
 			int relief = Integer.parseInt(parts[reliefIndex]);
-			int tvzcode = Integer.parseInt(parts[tpCpdeIndex]);
+			int tvzcode = Integer.parseInt(parts[tvzcodeIndex]);
 			
 			for (int zoom=0; zoom<=maxZoom; zoom++) {
 				

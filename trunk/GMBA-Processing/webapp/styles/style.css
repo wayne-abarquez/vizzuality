@@ -12,7 +12,7 @@ img {
 	border:0;
 }
 #container { 
-	padding-top: 200px;
+	padding-top: 50px;
 	width: 600px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
 	background: #FFFFFF;
 	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */

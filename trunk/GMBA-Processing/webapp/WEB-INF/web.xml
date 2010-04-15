@@ -19,7 +19,7 @@
 	  <init-param>
 		<param-name>password</param-name>
 		  <!-- leave blank for no password -->
-		<param-value></param-value>
+		<param-value>root</param-value>
 	  </init-param>
 		<!-- the name of the downloads folder -->
 	  <init-param>
