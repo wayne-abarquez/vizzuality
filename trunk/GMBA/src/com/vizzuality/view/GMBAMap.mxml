@@ -334,10 +334,10 @@
 				
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" top="5" bottom="5" right="5" left="5"/>
 			
-			<mx:Button styleName="btnZoomMore" height="14" width="14" right="20" top="10" click="zoomIn()"
+			<mx:Button styleName="btnZoomMore" height="24" width="24" right="17" top="10" click="zoomIn()"
 				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 				
-			<mx:Button styleName="btnZoomMinus" height="14" width="14" right="20" top="30" click="zoomOut()"
+			<mx:Button styleName="btnZoomMinus" height="24" width="24" right="17" top="38" click="zoomOut()"
 				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
 			
 
@@ -345,8 +345,8 @@
 				click="navigateToURL(new URLRequest('http://www.vizzuality.com'))" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 			<components1:Help backgroundColor="#000000" top="5" bottom="5" right="5" left="5" visible="false" id="help1"/>	
 			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
-			<mx:Canvas width="95" height="31" borderColor="#FFFFFF" backgroundColor="#FFFFFF" right="10" top="10" id="loadingMessage" visible="true">
-				<mx:Label x="20" y="6" text="Loading..."/>
+			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="true" alpha="0.6">
+				<mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="32" height="32" source="@Embed('/assets/loadAnimation.swf')"/>
 			</mx:Canvas>
 		</mx:Canvas>
 		
