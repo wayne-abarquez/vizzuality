@@ -175,12 +175,12 @@
 		<mx:Spacer height="5" />
 		<mx:Canvas height="74" width="574" styleName="bkgTopDownload" id="canvasTopDownload">
 			<mx:Label x="10" y="10" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter0" />
-			<mx:Image id="arrowRangeElevation" x="34" y="20" source="assets/arrowRange.png" />
-			<mx:Label x="59" y="10" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter1" />
+			<mx:Image id="arrowRangeElevation" x="50" y="20" source="assets/arrowRange.png" />
+			<mx:Label x="66" y="10" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter1" />
 			<mx:Label x="10" y="34" text="ELEVATION RANGE" fontSize="11" color="#4D4D4D" id="elevationLabel" />
 			
 			<mx:Label x="132" y="10" text="130" fontSize="17" color="#FFFFFF" id="id_relief_filter0" />
-			<mx:Image id="arrowRangeRelief" x="169" y="20" source="assets/arrowRange.png" />
+			<mx:Image id="arrowRangeRelief" x="183" y="20" source="assets/arrowRange.png" />
 			<mx:Label x="200" y="10" text="451" fontSize="17" color="#FFFFFF" id="id_relief_filter1" />
 			<mx:Label x="132" y="34" text="ROUGHNESS RANGE" fontSize="11" color="#4D4D4D" id="roughnessLabel" />
 			
