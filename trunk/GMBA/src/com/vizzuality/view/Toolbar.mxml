@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="620" minWidth="230"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="620" minWidth="230" creationComplete="init()"
 	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.utils.Helper;
+			import swf.SWFAddress;
+			import swf.SWFAddressEvent;
 			import mx.events.SliderEvent;
 			import mx.events.CollectionEvent;
 			import mx.collections.ArrayCollection;
@@ -15,7 +18,27 @@
 			[Bindable] public var rangeAltitude: ArrayCollection = new ArrayCollection([0,7889]);
 			[Bindable] public var rangeRelief: ArrayCollection = new ArrayCollection([0,3889]);
 			[Bindable] public var vegetationValues: ArrayCollection;
-
+			
+			
+			private function init():void {
+				//Check params from the URL
+			     if (SWFAddress.getPathNames().length>4) {
+					var vegetationParams:ArrayCollection = Helper.getVegetationParams(SWFAddress.getPathNames()[4] as String);
+					if(vegetationParams.length==8) {
+	                   	if(vegetationParams.getItemAt(0)=="0") type1._selected=false;
+	                   	if(vegetationParams.getItemAt(1)=="0") type2._selected=false;
+	                   	if(vegetationParams.getItemAt(2)=="0") type3._selected=false;
+	                   	if(vegetationParams.getItemAt(3)=="0") type4._selected=false;
+	                   	if(vegetationParams.getItemAt(4)=="0") type5._selected=false;
+	                   	if(vegetationParams.getItemAt(5)=="0") type6._selected=false;
+	                   	if(vegetationParams.getItemAt(6)=="0") type7._selected=false;
+	                   	if(vegetationParams.getItemAt(7)=="0") type8._selected=false;
+					}
+                   	
+			     }
+				
+			}
+						
 			
 			private function changeAltitudeValues(ev:SliderEvent):void {
 				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
@@ -111,9 +134,7 @@
 			}
 			
 			private function onSliderChange(vent:Event):void {
-				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,[]);
-				//trace(sliderAltitude.values.toString()+ "   "+sliderRoughness.values.toString());
-			
+				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,vegetationValues.source);			
 			}
 			
 		]]>
@@ -149,10 +170,10 @@
 				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
-					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
+					<mx:Label text="200" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
 					<mx:Label text="3397" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
-					<mx:HSlider id="sliderRoughness" showDataTip="false" top="0" left="5" right="20" minimum="0" maximum="3397"  values="{rangeRelief.source}" 
-						 change="onSliderChange(event)" sliderThumbClass="{SliderThumbGmba}" thumbRelease="changeReliefValues(event)"
+					<mx:HSlider id="sliderRoughness" showDataTip="false" top="0" left="5" right="20" minimum="196" maximum="3397"  values="{rangeRelief.source}" 
+						 change="onSliderChange(event)" sliderThumbClass="{SliderThumbGmba}" 
 						 width="100%" thumbCount="2" liveDragging="true" snapInterval="14" 
 						 showTrackHighlight="true"/>
 				</mx:Canvas>
