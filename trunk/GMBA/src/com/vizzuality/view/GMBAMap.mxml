@@ -16,6 +16,9 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.vizzuality.events.TaxonSelectedEvent;
+	    	import com.google.maps.MapMouseEvent;
+	    	import com.google.maps.MapAction;
 	    	import com.google.maps.LatLngBounds;
 	    	import mx.controls.Alert;
 	    	import com.vizzuality.events.OpenTaxonomicEvent;
@@ -64,7 +67,9 @@
 			private var TestFilter:Class;		
 			private var shader:Shader; 
 			private var filter:ShaderFilter; 
-			private var tlo:TileLayerOverlay;        
+			private var tlo:TileLayerOverlay;     
+			private var taxonTileLayerOverlay:TileLayerOverlay;   
+			private var taxonRasterLayer:RasterLayer;
                         	
 			
             private function initSWFAddress():void {        	
@@ -198,6 +203,13 @@
 			private var tm:Timer;
 		    private function onMapReady(event:Event):void {
 			   // this.map.addControl(new ZoomControl());
+			    map.setDoubleClickMode(MapAction.ACTION_NOTHING);
+			    map.addEventListener(MapMouseEvent.DOUBLE_CLICK,zoomIn);
+			    
+				//initialize the taxon layer
+				var startTaxon:TaxonSelectedEvent= new TaxonSelectedEvent(TaxonSelectedEvent.TAXON_SELECTED,"1","1");
+				onTaxonSelected(startTaxon);			    
+			    
 			    
 				//rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png");
 				rasterLayer = new RasterLayer("http://204.236.250.31/env/z|Z|/|X|/|Y|.png");
@@ -235,14 +247,23 @@
 				filter = new ShaderFilter(shader);
 
 				
-
+				//initialize the raster filters
 				var startSlidersEvent:SliderChangeEvent = new SliderChangeEvent(
-					SliderChangeEvent.SLIDER_CHANGED,elevationValues.source,reliefValues.source,vegetationValues.source);
-					
+					SliderChangeEvent.SLIDER_CHANGED,elevationValues.source,reliefValues.source,vegetationValues.source);	
 				onSlidersChange(startSlidersEvent);			
+				
+				
 				
 				MyEventDispatcher.addEventListener(SliderChangeEvent.SLIDER_CHANGED,onSlidersChange,false,0,true); 
 				
+		    }
+		    
+		    private function onTaxonSelected(event:TaxonSelectedEvent):void {
+		    	if(taxonTileLayerOverlay==null) {
+		    		taxonRasterLayer= new RasterLayer("http://204.236.250.31/tiles/z|Z|/|X|/|Y|.png");
+		    		taxonTileLayerOverlay = new TileLayerOverlay(taxonRasterLayer);
+		    		map.addOverlay(taxonTileLayerOverlay);
+		    	}
 		    }
 		    
 		    private function onSlidersChange(event:SliderChangeEvent):void {
@@ -298,7 +319,7 @@
 		    	makeNewURL();
 		    }
 		    
-		    private function zoomIn():void {
+		    private function zoomIn(event:Event=null):void {
 		    	if(map.getZoom()<7)
 					map.setZoom(map.getZoom()+1);
 			}
