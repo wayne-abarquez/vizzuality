@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.mortbay.jetty.Server;
 import org.mortbay.jetty.webapp.WebAppContext;
 
-
 /**
  * This is the single general Services class implementing the JSON methods
  * for the client to call.
@@ -128,7 +127,7 @@ public class Services extends AbstractServlet {
 				if (!f.exists()) {
 					resp.getWriter().write("{status:notReady}");
 				} else if (f.length()!=0) {
-					resp.getWriter().write("{status:downloadFailed}");
+					resp.getWriter().write("{status:downloadFailed, url:/" +downloadPath + "/job-"+ job +  ".error}");
 				} else {
 					resp.getWriter().write("{status:complete, url:/" +downloadPath + "/job-"+ job +  ".zip}");
 				}

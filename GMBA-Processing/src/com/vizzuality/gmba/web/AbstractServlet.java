@@ -49,7 +49,7 @@ public class AbstractServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		GenericObjectPool connectionPool = new GenericObjectPool(null, 10);
+		GenericObjectPool connectionPool = new GenericObjectPool(null, 25);
 		connectionPool.setTestOnBorrow(true);
 		ConnectionFactory connectionFactory = new DriverManagerConnectionFactory(getInitParameter("connectURI"), getInitParameter("user"), getInitParameter("password"));
 		@SuppressWarnings("unused")
