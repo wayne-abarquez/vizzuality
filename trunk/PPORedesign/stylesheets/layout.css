@@ -533,6 +533,35 @@ div#share_horizontal div.participate div.share a.digg {background:url(../images/
 div#share_horizontal div.participate div.share a.digg:hover {background-position: 0 -16px;}
 
 
+/*  SHARE WITH JOIN MAIL LIST */
+div#share_horizontal div.participate div.content_right {float:right; width:320px; position:relative;}
+div#share_horizontal div.participate div.content_right div.join_mail_list_shadow {float:right; width:3px; height:51px; border:1px solid #7C8960; border-bottom:none; border-top:none; border-right:none; background:#A5B780; right:0; position:absolute; bottom:-9px;}
+div#share_horizontal div.participate div.content_right div.join_mail_list {float:right; width:215px; height:64px; border:1px solid #999999; background:#DAE4BC; bottom:-10px; position:absolute; right:3px;}
+div#share_horizontal div.participate div.content_right div.join_mail_list p.title {float:left; width:200px; font:bold 13px Arial; color:#666666; margin:8px 0 0 9px;}
+
+div#share_horizontal div.participate div.content_right div.join_mail_list form {float:left; width:197px; margin:5px 0 0px 6px; height:24px; position:relative; background:url(../images/common/bkg_join_mail_list.png) no-repeat 0 0; }
+div#share_horizontal div.participate div.content_right div.join_mail_list form input[type="text"]{float:left; padding:0px 0px 4px 0px; width:120px; height:12px; margin:6px 0px 0px 7px; border:none; font:normal 13px Arial; color:#999999;}
+div#share_horizontal div.participate div.content_right div.join_mail_list form input[type="text"]:focus {outline:none;}
+div#share_horizontal div.participate div.content_right div.join_mail_list form input[type="submit"]{float:right; background:url(../images/common/bttn_join_mail_list.png) no-repeat 0 0; margin:1px 0px 0px 0; width:56px; height:22px; border:none; }
+div#share_horizontal div.participate div.content_right div.join_mail_list form input[type="submit"]:focus {outline:none;}
+div#share_horizontal div.participate div.content_right div.join_mail_list form input[type="submit"]:hover {cursor:pointer; background-position:0 -22px;}
+
+
+div#share_horizontal div.participate div.content_right div.join_mail_list div.input {float:left; width:200px; font:bold 13px Arial; color:#666666; margin:7px 0 0 7px;}
+
+div#share_horizontal div.participate div.content_right div.share {float:left; width:100px;}
+div#share_horizontal div.participate div.content_right div.share p {float:left; font:normal 13px Arial; color:#78855D; width:150px;}
+div#share_horizontal div.participate div.content_right div.share a {float:left; width:16px; height:16px; padding:0 2px; margin:3px 0 0 0;}
+div#share_horizontal div.participate div.content_right div.share a.twitter {background:url(../images/common/twitter.png) no-repeat 0 0;}
+div#share_horizontal div.participate div.content_right div.share a.twitter:hover {background-position: 0 -16px;}
+div#share_horizontal div.participate div.content_right div.share a.facebook {background:url(../images/common/facebook.png) no-repeat 0 0;}
+div#share_horizontal div.participate div.content_right div.share a.facebook:hover {background-position: 0 -16px;}
+div#share_horizontal div.participate div.content_right div.share a.del {background:url(../images/common/del.png) no-repeat 0 0;}
+div#share_horizontal div.participate div.content_right div.share a.del:hover {background-position: 0 -16px;}
+div#share_horizontal div.participate div.content_right div.share a.digg {background:url(../images/common/digg.png) no-repeat 0 0;}
+div#share_horizontal div.participate div.content_right div.share a.digg:hover {background-position: 0 -16px;}
+
+
 
 
 /* ---------- COMMITMENT TRACKER ---------- */
@@ -723,9 +752,11 @@ div.main_container div.white_container div.right_expert a:hover {color:#254C72; 
 #footer div.share_powered div.share a img{float:left; display:inline;}
 #footer div.share_powered div.share a img.last{float:left; margin-right:0; display:inline;}
 
-
 #footer div.share_powered div.powered{float:right; width:400px; padding:0 0 16px;}
 #footer div.share_powered div.powered a{float:right;}
 #footer div.share_powered div.powered a img{float:left; margin-right:10px; display:inline;}
 #footer div.share_powered div.powered a img.last{float:left; margin-right:0; display:inline;}
+
+
+/* ----------------- FOOTER ------------*/
 
