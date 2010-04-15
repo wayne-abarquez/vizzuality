@@ -1,3 +1,11 @@
+# this is the original formula but due to lack of precision in latitude it is wrong
+# update temp_gmba set cell_id= ((floor(latitude*24) + 2160)*8640) + (floor(longitude*24) + 4320);
+#
+# GMBA uses
+# gmbadata.cellnr:  first 4 digits of cellnr: (latitude + 180)*24, second 4 digits: (longitude + 180)*24
+# to put into our cell_id we do
+update temp_gmba set cell_id = (cast(substring(cellnr,1,4) as SIGNED)-2160) * 8640 + cast(substring(cellnr,5,4) as SIGNED); 
+
 # check the gmba table has the index
 alter table temp_gmba add index(relief),add index(cell_id);
 
@@ -27,7 +35,7 @@ genus_concept_id, species_concept_id, nub_concept_id, basis_of_record, null, nul
 from occurrence_record where latitude is not null and longitude is not null and geospatial_issue=0;
 
 # 158481906 rows affected (12 min 49.34 sec)
-update temp_gmba_occurrence set cell_id=((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360);
+update temp_gmba_occurrence set cell_id= ((floor(latitude*24) + 2164)*8640) + (floor(longitude*24) + 4320);
 
 # 158481906 rows affected (8 min 33.69 sec)
 alter table temp_gmba_occurrence add index(cell_id);
@@ -134,7 +142,7 @@ from temp_gmba_export_density d join temp_gmba g on d.cell_id=g.cell_id;
 # 12158725 rows affected (6 min 37.21 sec)
 create table temp_gmba_occurrence_ids as 
 select o.id as id, e.elevation as elevation, e.relief as relief, e.tvzcode as tvzcode from 
-temp_gmba_occurrence_trimmed o join temp_gmba e on o.cell_id = e.cell_id;
+temp_gmba_occurrence_trimmed o join temp_gmba e on o.cell_id = e.cell_id ;
 # 12158725 rows affected (17.58 sec)
 alter table temp_gmba_occurrence_ids add index(id);
 
