@@ -309,7 +309,7 @@ public class Services extends AbstractServlet {
 		Thread t = new Thread(d);
 		t.start();
 		
-		return "Job submited: " + job++;
+		return "{url: /service/poll?jobId=" + job++ + "}";
 	}	
 	
 	// utility class to write the download 

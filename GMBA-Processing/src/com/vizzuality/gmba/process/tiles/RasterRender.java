@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * 
  * Elevaton becomes Red
  * Relief Green
- * tvcCode blue
+ * tvzcode blue
  * 
  * @author tim
  */
@@ -27,10 +27,6 @@ public class RasterRender {
 	protected static int maxRelief = 3397;
 	
 	public static void main(String[] args) throws IOException {
-		
-		System.out.println(0xf+ 0xf);
-		if (true) return;
-		
 		long timeTotal = System.currentTimeMillis();
 		
 		if (args.length != 7) {
