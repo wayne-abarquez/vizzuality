@@ -15,6 +15,7 @@
     fontFamily: "Roses are FF0000_8pt_st";
 }
 
+
 Canvas.bkgBigCanvas{
 	background-image: Embed(source='skin.swf',symbol='bkgBigCanvas');
 }
@@ -28,9 +29,12 @@ Label {
 	font-family: 'DINOT-Medium';
 }
 
+
+
 Text {
 	font-family: 'DINOT-Medium';
 }
+
 
 
 TextInput.taxon {
@@ -60,6 +64,31 @@ Button.download {
 	shadowDistance: 1;
 }
 
+Button.btnZoomMore{
+	up-skin: Embed(source="skin.swf",symbol="btn_zoom_more_up");	
+	over-skin: Embed(source="skin.swf",symbol="btn_zoom_more_up");	
+	down-skin: Embed(source="skin.swf",symbol="btn_zoom_more_up");	
+	color: #4a4f33;
+	text-roll-over-color: #333333;
+	text-selected-color: #333333;
+	font-family: "DINOT-Medium";
+	font-size: 12;
+	font-weight: normal;
+	padding-top: 0; 	
+}
+
+Button.btnZoomMinus{
+	up-skin: Embed(source="skin.swf",symbol="btn_zoom_minus_up");	
+	over-skin: Embed(source="skin.swf",symbol="btn_zoom_minus_up");	
+	down-skin: Embed(source="skin.swf",symbol="btn_zoom_minus_up");	
+	color: #4a4f33;
+	text-roll-over-color: #333333;
+	text-selected-color: #333333;
+	font-family: "DINOT-Medium";
+	font-size: 12;
+	font-weight: normal;
+	padding-top: 0; 	
+}
 
 HSlider{
 	thumbDisabledSkin: Embed(source="skin.swf", symbol="SliderThumb_disabledSkin");
