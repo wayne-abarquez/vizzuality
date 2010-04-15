@@ -108,7 +108,7 @@
                 	var vegetationParams: ArrayCollection = new ArrayCollection();
                 	
                 	if(event.pathNames.length<1 && swfAddInit) {
-                		SWFAddress.setValue('/map/2_40.73_-3.99/0_7889/200_3397/0');
+                		SWFAddress.setValue('/map/2_40.73_-3.99/0_7889/200_3397/');
                 	}
                 	swfAddInit=true;
                 	if (event.pathNames.length>1) {
@@ -148,16 +148,19 @@
 	                    if (event.pathNames.length>4) {
 							vegetationParams = Helper.getVegetationParams(event.pathNames[4] as String);
 		                   	if (vegetationParams.length!=0) {
-		                   		vegetationValues = new ArrayCollection([false,false,false,false,false,false,false,false,false]);
 		                   		for (var i:Number = 0; i< vegetationParams.length; i++) {
-		                   			vegetationValues[Number(vegetationParams[i])] = true;
+		                   			if(vegetationParams.getItemAt(i)=="0") {
+			                   			vegetationValues.setItemAt(false,i);
+		                   			} else {
+			                   			vegetationValues.setItemAt(true,i);
+		                   			}
 		                   		}
 							} else {
-	                    		SWFAddress.setValue('/map');
-	                    		return;
+								SWFAddress.setValue('/map');
+								return;
 	                    	}	                    
 	                    } else {
-	                    	vegetationValues = new ArrayCollection([true,false,false,false,false,false,false,false,false]);
+	                    	vegetationValues = new ArrayCollection([true,true,true,true,true,true,true,true]);
 	                    }
                 	}	
                 }
@@ -232,21 +235,23 @@
 				shader.data.maxColor.value = [rMax,gMax];
 				shader.data.minColor.value = [rMin,gMin];
 				
+
 				var tvz1:Number=0;
-				if(event.vegtypes[0]) tvz1=1;
+				if(event.vegtypes[1]) tvz1=1;
 				var tvz2:Number=0;
-				if(event.vegtypes[1]) tvz2=1;
+				if(event.vegtypes[2]) tvz2=1;
 				var tvz3:Number=0;
-				if(event.vegtypes[2]) tvz3=1;
+				if(event.vegtypes[3]) tvz3=1;
 				var tvz4:Number=0;
-				if(event.vegtypes[3]) tvz4=1;
+				if(event.vegtypes[4]) tvz4=1;
 				var tvz5:Number=0;
-				if(event.vegtypes[4]) tvz5=1;
+				if(event.vegtypes[5]) tvz5=1;
 				var tvz6:Number=0;
-				if(event.vegtypes[5]) tvz6=1;
+				if(event.vegtypes[6]) tvz6=1;
 				var tvz7:Number=0;
-				if(event.vegtypes[6]) tvz7=1;
+				if(event.vegtypes[7]) tvz7=1;
 				
+
 				shader.data.tvz1.value = [tvz1];
 				shader.data.tvz2.value = [tvz2];
 				shader.data.tvz3.value = [tvz3];
@@ -254,6 +259,7 @@
 				shader.data.tvz5.value = [tvz5];
 				shader.data.tvz6.value = [tvz6];
 				shader.data.tvz7.value = [tvz7];
+				
 				
 				
 				
@@ -276,20 +282,21 @@
 		    }
 		    
 		    private function makeNewURL():void {
-		    	var url: String = '/map/' + zoom + '_' + lat + '_' + lon + '/' + elevationValues[0] + '_' + elevationValues[1] + '/' + reliefValues[0] + '_' + reliefValues[1] + '/';
-		    	var first:Boolean = true;
+		    	var url:String="";
 		    	for (var i:Number=0; i<vegetationValues.length;i++) {
-		    		if (vegetationValues[i]) {
-		    			if (first) {
-		    				first = false;
-		    				url+= i;
-		    			} else {
-		    				url+= '_' + i;
-		    			}
+		    		if (vegetationValues[i]==true) {
+		    			url+= '_1';
+		    			
+		    		} else {
+		    			url+= '_0';
 		    		}
 		    	}
-		    	url+='/';
-		    	SWFAddress.setValue(url);
+		    	url=url.slice(1);
+		    	var url2:String = '/map/' + zoom + '_' + lat + '_' + lon + '/' + elevationValues[0] + '_' + elevationValues[1] + '/' + reliefValues[0] + '_' + reliefValues[1] + '/';
+		    	if(url!="1_1_1_1_1_1_1_1") {
+		    		url2=url2+url;
+		    	}
+		    	SWFAddress.setValue(url2);
 		    }
 	    ]]>
 	</mx:Script>
