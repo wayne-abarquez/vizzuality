@@ -19,8 +19,8 @@ div#wide_container {margin:0 auto; width:940px; padding:0;}
 
 div#outer_header{float:left; width:100%; background:url(../images/header/header_bkg.png) repeat-x 0 0; height:56px;}
 div#header{position:relative; width:940px; margin:0 auto; padding:0; height:56px;}
-div#header a.logo{float:left; width:255px; height:32px; background:url(../images/header/logo.png) no-repeat 0 0; margin:10px 0 0 0;}
-div#header a.logo:hover {background-position: 0 -33px;}
+div#header a.logo{float:left; width:360px; height:32px; background:url(../images/header/logo.png) no-repeat 0 0; margin:10px 0 0 0;}
+/*div#header a.logo:hover {background-position: 0 -33px;}*/
 
 div#header form {float:right; width:auto; margin:6px 0 0 0; position:relative;}
 div#header form input[type="text"]{float:left; background:url(../images/header/inputSearch.gif) no-repeat 0 0; padding:5px 25px 5px 5px; width:165px; margin:0; border:none; font:normal 13px Arial; font-style:italic; color:#aaaaaa;}
@@ -135,6 +135,8 @@ div#wide_container div.job div.logo a.wwf{ background:url(../images/logos/wwf_or
 
 div#wide_container div.job div.title {float:left; width:595px; margin:18px 0 0 20px;}
 div#wide_container div.job div.title h3 {font:bold 21px Arial; color:#006699; padding:0 0 4px; letter-spacing:-1px;}
+div#wide_container div.job div.title h3 a{font:bold 21px Arial; color:#006699; padding:0 0 0px; letter-spacing:-1px; text-decoration:none;}
+div#wide_container div.job div.title h3 a:hover{color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
 div#wide_container div.job div.title h2 {font:normal 15px Arial; color:#666666; padding:0 0 4px; letter-spacing:-1px;}
 
 div#wide_container div.job div.data {float:left; width:100%; margin:15px 0 0 20px; }
@@ -600,7 +602,7 @@ div.submit_commitment a:hover{background-position:0 -46px; color:white;}
 	/* commitment */
 div.main_container {float:left; width:940px; margin:40px 0 0 0; padding:0;}
 div.main_container a {float:left; font:bold 19px Arial; color:#333333; text-decoration:none; padding:0 0 0 16px; background:url(../images/commitment/back_list.png) no-repeat 0 7px;}
-div.main_container a:hover {text-decoration:underline;}
+div.main_container a:hover {text-decoration:none; color:#000000;}
 div.main_container div.white_container {position:relative; float:left; width:898px; border:1px solid #cccccc; background:white; margin:21px 0 60px 0; padding:20px;}
 div.main_container div.white_container div.left {float:left; width:215px;}
 div.main_container div.white_container div.left h3 {float:left; font:bold 21px Arial; color:#006699;}
@@ -614,7 +616,7 @@ div.main_container div.white_container div.right {float:right; width:650px; padd
 div.main_container div.white_container div.right ul {float:left; width:650px; padding:2px 0 0 0;}
 div.main_container div.white_container div.right ul li {float:left; width:181px; padding:0 20px 5px 12px; background:url(../images/commitment/dot.png) no-repeat 0 3px; color:#333333;}
 div.main_container div.white_container div.right a {float:left; font:bold 13px Arial; color:#006699; background:none; margin:30px 0 10px 0; padding:0; text-decoration:none;}
-div.main_container div.white_container div.right a:hover {color:#254C72; border-bottom: 1px dotted #254C72;}
+div.main_container div.white_container div.right a:hover {color:#254C72; border-bottom: 1px dotted #254C72; text-decoration:none;}
 div.main_container div.white_container span.shadow {position:absolute; width:940px; height:12px; left:0; bottom:-13px; background:url(../images/commitment/main_shadow.png) no-repeat 0 0;}
 
 
