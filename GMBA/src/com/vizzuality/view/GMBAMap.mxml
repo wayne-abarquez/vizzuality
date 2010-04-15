@@ -54,7 +54,7 @@
 	        
 	        [Bindable] private var elevationValues: ArrayCollection = new ArrayCollection([0,7889]);
 	        [Bindable] private var reliefValues: ArrayCollection = new ArrayCollection([0,3889]);
-	        [Bindable] private var vegetationValues: ArrayCollection = new ArrayCollection();
+	        [Bindable] private var vegetationValues: ArrayCollection = new ArrayCollection([true,true,true,true,true,true,true,true]);
             
             //variables of SWFAddress
             public var path:String = "Map";
@@ -187,7 +187,15 @@
 	           map.addEventListener(MapMoveEvent.MOVE_END,onChangeMap);
 	           map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);           	
 	        }
+	        
+	        private function onTimer(event:TimerEvent):void {
+				loadingMessage.visible=false;
+				tm.stop();
+				tm.removeEventListener(TimerEvent.TIMER,onTimer);
+				tm=null;
+	        }
 
+			private var tm:Timer;
 		    private function onMapReady(event:Event):void {
 			   // this.map.addControl(new ZoomControl());
 			    
@@ -196,19 +204,29 @@
 				tlo = new TileLayerOverlay(rasterLayer);
 				tlo.addEventListener(MapEvent.TILES_LOADED,function(ev:Event):void {
 					loadingMessage.visible=false;
+					if(tm!=null) {
+						tm.stop();
+						tm.removeEventListener(TimerEvent.TIMER,onTimer);
+						tm=null;
+					}
 				})
 				tlo.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:Event):void {
 					loadingMessage.visible=true;
+					if(tm==null) {
+						tm = new Timer(8000);
+						tm.addEventListener(TimerEvent.TIMER,onTimer);
+						tm.start();
+					}
 				})
 				map.addEventListener(MapMoveEvent.MOVE_START,function(event:MapMoveEvent):void {
-					loadingMessage.visible=true;
-					tlo.foreground.filters=[];
-					tlo.foreground.alpha=0;
+					//loadingMessage.visible=true;
+					//tlo.foreground.filters=[];
+					//tlo.foreground.alpha=0;
 				});
 				map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
-					tlo.foreground.filters=[filter];
-					tlo.foreground.alpha=0.8;
-					loadingMessage.visible=false;
+					//tlo.foreground.filters=[filter];
+					//tlo.foreground.alpha=0.8;
+					//loadingMessage.visible=false;
 				});
 				map.addOverlay(tlo);
 				
@@ -216,8 +234,10 @@
 	            shader = new Shader(new TestFilter() as ByteArray);
 				filter = new ShaderFilter(shader);
 
+				
+
 				var startSlidersEvent:SliderChangeEvent = new SliderChangeEvent(
-					SliderChangeEvent.SLIDER_CHANGED,[0,7889],[200,3397],[1,1,1,1,1,1,1]);
+					SliderChangeEvent.SLIDER_CHANGED,elevationValues.source,reliefValues.source,vegetationValues.source);
 					
 				onSlidersChange(startSlidersEvent);			
 				
@@ -279,11 +299,13 @@
 		    }
 		    
 		    private function zoomIn():void {
-				map.setZoom(map.getZoom()+1);
+		    	if(map.getZoom()<7)
+					map.setZoom(map.getZoom()+1);
 			}
 			
 			private function zoomOut():void {
-				map.setZoom(map.getZoom()-1);
+				if(map.getZoom()>2)
+					map.setZoom(map.getZoom()-1);
 			}
 		    
 		    private function makeNewURL():void {
