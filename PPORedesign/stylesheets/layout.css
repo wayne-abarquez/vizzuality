@@ -19,7 +19,7 @@ div#wide_container {margin:0 auto; width:940px; padding:0;}
 
 div#outer_header{float:left; width:100%; background:url(../images/header/header_bkg.png) repeat-x 0 0; height:56px;}
 div#header{position:relative; width:940px; margin:0 auto; padding:0; height:56px;}
-div#header a.logo{float:left; width:360px; height:32px; background:url(../images/header/logo.png) no-repeat 0 0; margin:10px 0 0 0;}
+div#header a.logo{float:left; width:395px; height:35px; background:url(../images/header/logo.png) no-repeat 0 0; margin:8px 0 0 0;}
 /*div#header a.logo:hover {background-position: 0 -33px;}*/
 
 div#header form {float:right; width:auto; margin:6px 0 0 0; position:relative;}
@@ -71,14 +71,20 @@ div#layout div.intro_content div.sign_up p.title {font:bold 37px Arial; color:#4
 div#layout div.intro_content div.sign_up p.title a {color:#FF6600; border-bottom:3px solid #FF6600; text-decoration:none;}
 div#layout div.intro_content div.sign_up p.title a:hover {border-bottom:3px dotted #FF6600;}
 
-
 /* ---------- JOBS ---------- */
-
 
 div#outer_upper_area{width:100%; }
 
 div#upper_area {width:940px; margin:0 auto; }
 div#upper_area div.content {float:left; position:relative; width:940px; margin:0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
+div#upper_area div.content div.menu {width:100%;}
+
+div#upper_area div.content div.menu {float:left; width:170px; padding-left:10px;} 
+div#upper_area div.content div.menu p {float:none; font:normal 13px Arial; color:#005B8B; width:800px; margin:0px 0px 0px 0px;}
+div#upper_area div.content div.menu a.active {float:left; font:normal 11px; color:#B8CC8E; font: Arial; background:url(../images/common/bttn_menu_up_left.png) no-repeat left top; text-decoration:none; margin:3px 0 0; padding:0px 5px 0 4px; height:32px;}
+div#upper_area div.content div.menu a.active span {float:left; display:block; background:url(../images/common/bttn_menu_up_right.png) no-repeat right top; height:32px; padding: 1px 4px 0px 0px; line-height:14px;}
+
+
 
 div#upper_area div.content div.content_title {marging:0;}
 
