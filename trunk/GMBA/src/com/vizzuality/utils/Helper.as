@@ -77,11 +77,16 @@ package com.vizzuality.utils {
         
         public static function getVegetationParams(str:String):ArrayCollection {
         	var a:Array = str.split('_');
-        	var vegeValues: ArrayCollection = new ArrayCollection();
-        	if (checkIfNumbers(a)) {
-        		for (var i:Number = 0; i<a.length;i++) {
-	        		vegeValues.addItem(Number(a[i]));
-        		}	    		
+        	var vegeValues: ArrayCollection;
+        	if(a.length<2) {
+        		vegeValues = new ArrayCollection([true,true,true,true,true,true,true,true]);
+        	} else {
+	        	vegeValues = new ArrayCollection();
+	        	if (checkIfNumbers(a)) {
+	        		for (var i:Number = 0; i<a.length;i++) {
+		        		vegeValues.addItem(Number(a[i]));
+	        		}	    		
+	        	}
         	}
         	return vegeValues;
         }
