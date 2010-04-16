@@ -356,24 +356,17 @@
 	<mx:Canvas styleName="bkgBigCanvas" top="22" left="22" right="29" bottom="24" backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off"> 
 
 		<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
-			<view:Toolbar width="22%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}"/>
+			<view:Toolbar width="22%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}" id="toolBar"/>
 			<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
 				<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 				<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
 				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="21"/>
 				<components:ShadowButton left="25" top="25" width="200"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
-					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="{download.setCriteriaValues(); mamufas.visible=true; download.visible=true; download.terms.selected = false; }"/>
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="{download.setCriteriaValues(); mamufas.visible=true; download.setPosition(map.width, map.height, toolBar.width, toolBar.height); download.visible=true; download.terms.selected = false; }"/>
 			</mx:Canvas>
 		</mx:VBox>
 		
 		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="78%" id="canvasMapContainer">
-
-			
-		
-			<!--<mx:Button styleName="btnZoomMinus" click="zoomOut()" height="14" width="14"
-				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
-			<mx:Button styleName="btnZoomMore" click="zoomIn()" height="14" width="14"
-				mouseChildren="false" buttonMode="true" useHandCursor="true"/>-->
 				
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" top="5" bottom="5" right="5" left="5"/>
 			
@@ -395,7 +388,7 @@
 		
 		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas" visible="false" />
 		<components1:TaxonomicBrowser visible="false" id="taxonomic"  horizontalCenter="0" verticalCenter="0" />
-		<components1:Download visible="false" id="download" horizontalCenter="0" verticalCenter="0" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}"
+		<components1:Download visible="false" id="download" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}"
 			zoom="{zoom}" bound="{bound}"/>
 	</mx:Canvas>
 </mx:Canvas>
