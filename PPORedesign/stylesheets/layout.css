@@ -677,37 +677,34 @@ div.browse_all div.content_browse form input[type="submit"]{float:right; backgro
 div.browse_all div.content_browse form input[type="submit"]:focus {outline:none;}
 div.browse_all div.content_browse form input[type="submit"]:hover {cursor:pointer; background-position:0 -23px;}
 
-div.browse_all div.content_browse ul {float:left; width:350px; margin:10px 0 10px 0;}
+div.browse_all div.content_browse ul {float:left; width:350px; margin:10px 0 10px 0; position:relative;}
 div.browse_all div.content_browse ul li {padding:2px 0 0 18px; position:relative;} 
 div.browse_all div.content_browse ul li a {font:bold 13px Arial; color:#666666; text-decoration:none;}
+
 div.browse_all div.content_browse ul li.checked {background:url(../images/region/checkBox_checked.png) no-repeat 0 4px;}
 div.browse_all div.content_browse ul li.unchecked {background:url(../images/region/checkBox_unchecked.png) no-repeat 0 4px;}
 
-div.browse_all div.content_browse ul li.more_topics {background:url(../images/region/view_other_arrow.png) no-repeat 95px 9px; margin:15px 0 10px 0;}
-div.browse_all div.content_browse ul li.more_topics a {font:bold 13px Arial; color:#006699; text-decoration:none;}
+/*div.browse_all div.content_browse ul li.more_topics {background:url(../images/region/view_other_arrow.png) no-repeat 95px 9px; margin:15px 0 10px 0;}
 div.browse_all div.content_browse ul li.more_types {background:url(../images/region/view_other_arrow.png) no-repeat 90px 9px; margin:15px 0 10px 0;}
-div.browse_all div.content_browse ul li.more_types a {font:bold 13px Arial; color:#006699; text-decoration:none;}
-div.browse_all div.content_browse ul li.more_scopes {background:url(../images/region/view_other_arrow.png) no-repeat 100px 9px; margin:15px 0 10px 0;}
-div.browse_all div.content_browse ul li.more_scopes a {font:bold 13px Arial; color:#006699; text-decoration:none;}
+div.browse_all div.content_browse ul li.more_scopes {background:url(../images/region/view_other_arrow.png) no-repeat 100px 9px; margin:15px 0 10px 0;} */
 
-div.browse_all div.content_browse ul li.submenu_actived {background:url(../images/region/view_other_arrow_black.png) no-repeat 95px 9px; margin:15px 0 10px 0;}
-div.browse_all div.content_browse ul li.submenu_actived a {font:bold 13px Arial; color:#333333; text-decoration:none;}
-div.browse_all div.content_browse ul li.submenu_actived {background:url(../images/region/view_other_arrow_black.png) no-repeat 90px 9px; margin:15px 0 10px 0;}
-div.browse_all div.content_browse ul li.submenu_actived a {font:bold 13px Arial; color:#333333; text-decoration:none;}
-div.browse_all div.content_browse ul li.submenu_actived {background:url(../images/region/bkg_more_actived_scopes.png) no-repeat 10px 0px; margin:15px 0 10px 0; padding:5px 0 0 18px; width:176px; height:30px;}
-div.browse_all div.content_browse ul li.submenu_actived a {font:bold 13px Arial; color:#333333; text-decoration:none;}
+div.browse_all div.content_browse ul li.more_desactived {background:url(../images/region/view_other_arrow.png) no-repeat 103px 9px; margin:15px 0 10px 0; position:relative;}
+div.browse_all div.content_browse ul li.more_desactived a {font:bold 13px Arial; color:#006699; text-decoration:none;}
 
-div.browse_all div.content_browse ul li ul.suboptions {position:relative; float:right; margin:7px 8px 0 0px; border:1px solid #cccccc; background:#D9EAEF; border-bottom:none; border-top:none; width:174px;}
-div.browse_all div.content_browse ul li ul.suboptions li.first_unchecked {margin:10px 0 0 4px; background:url(../images/region/checkbox_unchecked_blue.png) no-repeat 3px 4px; }
-div.browse_all div.content_browse ul li ul.suboptions li.first_checked {margin:10px 0 0 4px; background:url(../images/region/checkbox_checked_blue.png) no-repeat 3px 4px; }
-div.browse_all div.content_browse ul li ul.suboptions li.unchecked {margin:2px 0 0 4px; background:url(../images/region/checkbox_unchecked_blue.png) no-repeat 3px 4px; }
-div.browse_all div.content_browse ul li ul.suboptions li.checked {margin:2px 0 0 4px; background:url(../images/region/checkbox_checked_blue.png) no-repeat 3px 4px; }
-div.browse_all div.content_browse ul li ul.suboptions li a { font:bold 13px Arial; color:#006699; text-decoration:none;}
-div.browse_all div.content_browse ul div.last {float:left; background:url(../images/region/bkg_more_actived_bottom.png) no-repeat 0 bottom; margin:0 0 0 10px; width:176px; height:9px;}
+
+div.browse_all div.content_browse ul div.submenu_actived {position:absolute; z-index:100000000; top:-3px; left:0; display:none;}
+div.browse_all div.content_browse ul div.submenu_actived li.submenu {background:url(../images/region/bkg_more_actived_scopes.png) no-repeat 10px 0px; margin:0px 0 0px 0; padding:5px 0 0 18px; width:176px; height:30px;}
+div.browse_all div.content_browse ul div.submenu_actived li.submenu a.title_submenu {font:bold 13px Arial; color:#333333; text-decoration:none;}
+div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions {position:relative; float:right; margin:7px 8px 0 0px; border:1px solid #cccccc; background:#D9EAEF; border-bottom:none; border-top:none; width:174px;}
+div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li.first_unchecked {margin:10px 0 0 4px; background:url(../images/region/checkbox_unchecked_blue.png) no-repeat 3px 4px; }
+div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li.first_checked {margin:10px 0 0 4px; background:url(../images/region/checkbox_checked_blue.png) no-repeat 3px 4px; }
+div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li.unchecked {margin:2px 0 0 4px; background:url(../images/region/checkbox_unchecked_blue.png) no-repeat 3px 4px; }
+div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li.checked {margin:2px 0 0 4px; background:url(../images/region/checkbox_checked_blue.png) no-repeat 3px 4px; }
+div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li a { font:bold 13px Arial; color:#006699; text-decoration:none;}
+div.browse_all div.content_browse ul div.submenu_actived div.last {float:left; background:url(../images/region/bkg_more_actived_bottom.png) no-repeat 0 bottom; margin:0 0 0 10px; width:176px; height:9px;}
+
 
 div.bottom_browse_all {float:left; width:310px; height:35px; background:url(../images/region/bottom_browse_all.png) no-repeat 0 top; margin:0;}
-
-
 
 div.left_container div.works_related {float:left; position:relative; width:610px; margin:25px 0 0; padding: 0 0 70px;}
 div.left_container div.works_related h3{float:left; width:610px; font:bold 19px Arial; color:#333333; border-bottom:1px solid #c6c6c6; padding-bottom:4px; letter-spacing:-1px;}
