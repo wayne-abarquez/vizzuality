@@ -308,9 +308,11 @@ div.upper_area div.content div.right_sec p {font:bold 13px Arial; color:#777777;
 div.upper_area div.content div.right_sec p a {text-decoration:none; color:#326696;}
 div.upper_area div.content div.right_sec p a:hover {color:#254C72; border-bottom: 1px dotted #254C72;}
 
-div.pa_map {position:relative; width:100%; float:left; margin:0; height:306px; border-top:2px solid #006699; border-bottom:2px solid #006699; z-index:100;}
+div.pa_map {position:relative; width:100%; float:left; margin:0; height:259px; border-top:2px solid #006699; border-bottom:2px solid #006699; z-index:100; background-color:#99B3CC;}
 
-div.googleMapImage {position:relative; width:100%; float:left; margin:0; height:306px; background:url(../images/resources/googleMapScreenShot.png);}
+/* ORIGINAL SIZE */
+/*div.pa_map {position:relative; width:100%; float:left; margin:0; height:306px; border-top:2px solid #006699; border-bottom:2px solid #006699; z-index:100;}*/
+div.mapImage {width:940px; margin:0 0 0 0px; height:259px; background:url(../images/resources/mapScreenShot.jpg) no-repeat 0 0;}
 
 	/* pa images */
 div.left_container div.pa_images {position:relative; float:left; width:610px; margin:30px 0 0 1px;}
