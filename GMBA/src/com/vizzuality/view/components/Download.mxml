@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" verticalCenter="0" horizontalCenter="0" height="477" width="634" backgroundColor="#1A1A1B" backgroundAlpha="1" 
 	xmlns:utils="com.vizzuality.utils.*" xmlns:components="com.vizzuality.view.components.*" currentState="" creationComplete="setPosition()">
 	
@@ -9,7 +8,7 @@
 			<mx:RemoveChild target="{downloadrepeat1}"/>
 			<mx:RemoveChild target="{hbox1}"/>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:SWFLoader horizontalCenter="0" verticalCenter="-3" width="32" height="32" source="@Embed('/assets/loadAnimation.swf')"/>
+				<mx:SWFLoader horizontalCenter="0" verticalCenter="6" width="50" height="50" source="@Embed('/assets/loaderGray.swf')"/>
 			</mx:AddChild>
 	
 		</mx:State>
