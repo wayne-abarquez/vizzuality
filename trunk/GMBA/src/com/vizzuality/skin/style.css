@@ -185,3 +185,19 @@ ToolTip {
    fontFamily: DINOT-Medium;
    fontSize: 12;
 }
+
+List.taxaList {
+	alternatingItemColors: #EAEAEA, #DDDDDD;
+	backgroundDisabledColor: #B5B5B5;
+	borderThickness: 1;
+	borderStyle: solid;
+	cornerRadius: 0;
+	fontFamily: DINOT-Medium;
+	fontSize: 11;
+	color: #333333;
+	rollOverColor: #c39c01;
+	selectionColor: #AFAFAF;
+	borderColor: #666666;
+	text-roll-over-color: #ffffff;
+	text-selected-color: #ffffff;
+}

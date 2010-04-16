@@ -106,7 +106,8 @@ package com.vizzuality.view.components
 		private var loadMorePosition: int;
 		private var httpsrv2:HTTPService;
 		private var lastID: int;
-		
+		[Bindable] private var treeInitialized:Boolean=false;
+
 		/**
 		 * @private
 		 */
@@ -313,8 +314,23 @@ package com.vizzuality.view.components
 	        dataProviderChanged = true;
 	        invalidateProperties();
 	        invalidateDisplayList();
-	        
-	        
+	
+			
+			//simulat a click to preopen the tree
+	        if(!treeInitialized) {
+	        	
+	        	TweenLite.delayedCall(0.5,function():void {
+	        	
+	        		var colum:TreeBrowserList = getChildAt(0) as TreeBrowserList;
+	        		colum.selectedIndex=0;
+	        		index=1;
+ 		        	colum.dispatchEvent(
+	        		new ListEvent(ListEvent.ITEM_CLICK,true,true,0,0,null,ItemListRenderer as IListItemRenderer));	        		
+					treeInitialized = true;
+	        	});
+	        	
+	        }
+	
 	    }
 	
 	    /**
