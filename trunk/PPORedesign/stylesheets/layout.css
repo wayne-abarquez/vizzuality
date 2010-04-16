@@ -659,10 +659,10 @@ div.publications ul li div.information div.top {float:left; width:185px; min-hei
 div.publications ul li div.information div.top h3 {font:bold 15px Arial; color:#006699; padding:0 0 4px;}
 div.publications ul li div.information div.top a {padding:3px 0 3px 23px; background:url(../images/resources/acrobat.png) no-repeat 0 0; font:normal 11px Arial; color:#666666;}
 div.publications ul li div.information p {font:normal 13px Arial; color:#666666;}
-div.publications p.view_more {float:left; text-align:center; width:940px; padding:15px 0 20px 0;}
-div.publications p.view_more a {float:left; margin:0 0 0 415px; width:104px; height:25px; background:url(../images/resources/view_more.png) no-repeat; color:#FFFFFF; text-align:center; font:bold 15px Arial; text-decoration:none; padding:8px 0 0 0;}
+div.publications p.view_more {float:left; width:620px; padding:15px 0 20px 0;}
+div.publications p.view_more a {float:left; margin:0 0 0 256px; width:104px; height:25px; background:url(../images/resources/view_more.png) no-repeat; color:#FFFFFF; text-align:center; font:bold 15px Arial; text-decoration:none; padding:8px 0 0 0;}
 div.publications p.view_more a:hover{background-position: 0 -33px;}
-div.publications p.view_more label {text-align:center; width:100%; float:left; margin:0; padding:10px 0 0 0;}
+div.publications p.view_more label {float:left; width:100%; float:left; text-align:center; margin:0; padding:10px 0 0 0;}
 
 
 div.browse_all {float:left; height:942px; position:relative; width:308px; margin:44px 0 0 0; border:1px solid #cccccc; background:#FFFFFF; border-bottom:none;}
