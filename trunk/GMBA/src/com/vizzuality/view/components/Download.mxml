@@ -1,5 +1,5 @@
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" verticalCenter="0" horizontalCenter="0" height="477" width="634" backgroundColor="#1A1A1B" backgroundAlpha="1" 
-	xmlns:utils="com.vizzuality.utils.*" xmlns:components="com.vizzuality.view.components.*" currentState="" creationComplete="setPosition()">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="477" width="634" backgroundColor="#1A1A1B" backgroundAlpha="1" 
+	xmlns:utils="com.vizzuality.utils.*" xmlns:components="com.vizzuality.view.components.*" currentState="">
 	
 	<mx:states>
 		
@@ -54,6 +54,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.view.Toolbar;
 			import com.google.maps.LatLngBounds;
 			import mx.collections.ArrayCollection;
 			import com.vizzuality.events.ChangeMapZoom;
@@ -69,8 +70,10 @@
 			
 			private var timer:Timer;
 			
-			public function setPosition():void{
-				var position:Number = 0;
+			public function setPosition(widthMap:Number, heightMap:Number, widthToolBar:Number, heightToolBar:Number):void{
+				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar - 8;
+				this.y = (heightMap / 2) - (this.height / 2);
+				
 			}			
 			
 			 public function setCriteriaValues():void{
