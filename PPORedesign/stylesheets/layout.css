@@ -680,6 +680,8 @@ div.browse_all div.content_browse form input[type="submit"]:hover {cursor:pointe
 div.browse_all div.content_browse ul {float:left; width:350px; margin:10px 0 10px 0; position:relative;}
 div.browse_all div.content_browse ul li {padding:2px 0 0 18px; position:relative;} 
 div.browse_all div.content_browse ul li a {font:bold 13px Arial; color:#666666; text-decoration:none;}
+div.browse_all div.content_browse ul li a:hover {text-decoration:none;}
+
 
 div.browse_all div.content_browse ul li.checked {background:url(../images/region/checkBox_checked.png) no-repeat 0 4px;}
 div.browse_all div.content_browse ul li.unchecked {background:url(../images/region/checkBox_unchecked.png) no-repeat 0 4px;}
@@ -688,7 +690,7 @@ div.browse_all div.content_browse ul li.unchecked {background:url(../images/regi
 div.browse_all div.content_browse ul li.more_types {background:url(../images/region/view_other_arrow.png) no-repeat 90px 9px; margin:15px 0 10px 0;}
 div.browse_all div.content_browse ul li.more_scopes {background:url(../images/region/view_other_arrow.png) no-repeat 100px 9px; margin:15px 0 10px 0;} */
 
-div.browse_all div.content_browse ul li.more_desactived {background:url(../images/region/view_other_arrow.png) no-repeat 103px 9px; margin:15px 0 10px 0; position:relative;}
+div.browse_all div.content_browse ul li.more_desactived {background:url(../images/region/view_other_arrow.png) no-repeat 103px 9px; margin:10px 0 10px 0; position:relative;}
 div.browse_all div.content_browse ul li.more_desactived a {font:bold 13px Arial; color:#006699; text-decoration:none;}
 
 
@@ -696,8 +698,7 @@ div.browse_all div.content_browse ul div.submenu_actived {position:absolute; z-i
 div.browse_all div.content_browse ul div.submenu_actived li.submenu {background:url(../images/region/bkg_more_actived_scopes.png) no-repeat 10px 0px; margin:0px 0 0px 0; padding:5px 0 0 18px; width:176px; height:30px;}
 div.browse_all div.content_browse ul div.submenu_actived li.submenu a.title_submenu {font:bold 13px Arial; color:#333333; text-decoration:none;}
 div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions {position:relative; float:right; margin:7px 8px 0 0px; border:1px solid #cccccc; background:#D9EAEF; border-bottom:none; border-top:none; width:174px;}
-div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li.first_unchecked {margin:10px 0 0 4px; background:url(../images/region/checkbox_unchecked_blue.png) no-repeat 3px 4px; }
-div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li.first_checked {margin:10px 0 0 4px; background:url(../images/region/checkbox_checked_blue.png) no-repeat 3px 4px; }
+
 div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li.unchecked {margin:2px 0 0 4px; background:url(../images/region/checkbox_unchecked_blue.png) no-repeat 3px 4px; }
 div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li.checked {margin:2px 0 0 4px; background:url(../images/region/checkbox_checked_blue.png) no-repeat 3px 4px; }
 div.browse_all div.content_browse ul div.submenu_actived li.submenu ul.suboptions li a { font:bold 13px Arial; color:#006699; text-decoration:none;}
