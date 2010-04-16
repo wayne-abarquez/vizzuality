@@ -3,6 +3,7 @@
 	creationComplete="init()">
 	<mx:Script>
 		<![CDATA[
+			import mx.events.ListEvent;
 			import com.vizzuality.events.MyEventDispatcher;
 			import mx.events.ResizeEvent;
 			import mx.core.Application;
@@ -24,6 +25,7 @@
 					}					
 				});
 				addEventListener(ResizeEvent.RESIZE, function (ev:ResizeEvent):void {
+					list.visible = false;
 					list.width = searchText.width;
 				});
 				var pt:Point = new Point(searchText.x, searchText.y);
@@ -45,9 +47,18 @@
 			}
 			
 			private function onResultTaxon(event:ResultEvent):void {
-				var res:Array = JSON.decode(event.result as String);
-				taxonProvider = new ArrayCollection(res);
-				list.visible = true;
+ 				var res:Object = JSON.decode(event.result as String);	
+ 				taxonProvider = new ArrayCollection(res.data);
+ 				if (taxonProvider.length>0) {
+					list.visible = true; 					
+ 				} else {
+ 					if (taxonProvider.length>7) {
+ 						list.height = 200;
+ 					} else {
+ 						list.height = 30*taxonProvider.length;
+ 					}
+ 					list.visible = false;
+ 				}
 			}
 			
 			private function onFaultTaxon(event:FaultEvent):void {
@@ -55,6 +66,11 @@
 			
 			public function returnValues(item:Object):String {
             	return item.scientificName + ", " + item.id; 
+        	}
+        	
+        	private function onItemClick(ev:ListEvent):void {
+        		searchText.text = ev.itemRenderer.data.scientificName as String;
+        		list.visible = false;
         	}
 			
 			
@@ -64,10 +80,10 @@
 	<mx:VBox horizontalGap="0" verticalGap="0" left="20" top="15" right="20" id="componentsBox" >
 		<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 		<mx:Spacer height="5"/>
-		<mx:TextInput  text="All taxa" styleName="taxon" verticalCenter="0" id="searchText" change="onChangeText()" click="{(searchText.text=='All taxons')?searchText.text='':null}" width="100%"/>
+		<mx:TextInput text="All taxa" styleName="taxon" verticalCenter="0" id="searchText" change="if (searchText.text.length>3) onChangeText()" click="{(searchText.text=='All taxons')?searchText.text='':null}" width="100%" themeColor="#DBDBDB"/>
 		<mx:Button label="explore the taxonomic tree" styleName="explore" useHandCursor="true" mouseChildren="false" buttonMode="true" click="MyEventDispatcher.onOpenTaxonomic();"/>
 	</mx:VBox>
-	<mx:List id="list" visible="false" dataProvider="{taxonProvider}" width="100%" variableRowHeight="true" labelFunction="returnValues"/>
+	<mx:List id="list" visible="false" dataProvider="{taxonProvider}" width="100%" labelFunction="returnValues" styleName="taxaList" itemClick="onItemClick(event)" />
 	<mx:HTTPService  method="GET" id="taxonRequest" result="onResultTaxon(event)" fault="onFaultTaxon(event)" resultFormat="text" concurrency="last"/>
 	<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
 </mx:Canvas>
