@@ -39,8 +39,8 @@ div#header a#loginLink:hover {text-decoration:underline;}
 
 /* ---------- INTRO ---------- */
 
-div#layout div.intro_content {float:left; position:relative; width:940px; margin:0; padding:53px 0 0 0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
-div#layout div.intro_content h1 {float:left; position:relative; width:880px; font:bold 53px Arial; line-height:50px; color:#4C4C4C; padding:0; margin:0; letter-spacing:-2px;}
+div#layout div.intro_content {float:left; position:relative; width:940px; margin:0; padding:0 0 0 0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
+div#layout div.intro_content h1 {float:left; position:relative; width:880px; font:bold 53px Arial; line-height:50px; color:#4C4C4C; padding:0; margin:50px 0 0 0; letter-spacing:-2px;}
 div#layout div.intro_content p.subtitle {font:normal 21px Arial; color:#4C4C4C; padding:10px 0 45px 0;}
 
 div#layout div.intro_content div.marine_images {float:left; width:940px;}
@@ -77,18 +77,26 @@ div#outer_upper_area{width:100%; }
 
 div#upper_area {width:940px; margin:0 auto; }
 div#upper_area div.content {float:left; position:relative; width:940px; margin:0; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px;}
-div#upper_area div.content div.menu {width:100%;}
 
-div#upper_area div.content div.menu {float:left; width:170px; padding-left:10px;} 
-div#upper_area div.content div.menu p {float:none; font:normal 13px Arial; color:#005B8B; width:800px; margin:0px 0px 0px 0px;}
-div#upper_area div.content div.menu a.active {float:left; font:normal 11px; color:#B8CC8E; font: Arial; background:url(../images/common/bttn_menu_up_left.png) no-repeat left top; text-decoration:none; margin:3px 0 0; padding:0px 5px 0 4px; height:32px;}
-div#upper_area div.content div.menu a.active span {float:left; display:block; background:url(../images/common/bttn_menu_up_right.png) no-repeat right top; height:32px; padding: 1px 4px 0px 0px; line-height:14px;}
+div.menu {float:left; width:100%; height:10px;}
+
+div.menu p {float:none; margin:0px 0px 0px 0px; padding:0px 0 5px 0; position:absolute;}
+div.menu a {margin:0px 25px 0 0px; padding:8px 0px 0 0px;}
+div.menu a.option {float:left; font:bold 13px Arial; color:#005A8B; text-decoration:none; }
+div.menu a.option:hover {color:#254C72; text-decoration:none; border-bottom:1px dotted #254C72;}
+
+div.menu a.support {float:left; font:bold 13px Arial; color:#FF9900; text-decoration:none;}
+div.menu a.support:hover {float:left; text-decoration:none; border-bottom:1px dotted #FF9900; }
+
+div.menu a.active {float:left; font:bold 13px Arial; color:#FFFFFF; background:url(../images/common/bttn_menu_up_left.png) no-repeat left top; text-decoration:none; padding:0px 0 5px 5px; height:30px;}
+div.menu a.active span {float:left; display:block; background:url(../images/common/bttn_menu_up_right.png) no-repeat right top; height:30px; padding: 8px 6px 0px 2px; line-height:14px;}
+
 
 
 
 div#upper_area div.content div.content_title {marging:0;}
 
-div#upper_area div.content div.content_title div.left_sec_title{float:left; width:616px; margin:20px 0 0 0;}
+div#upper_area div.content div.content_title div.left_sec_title{float:left; width:616px; margin:25px 0 0 0;}
 
 div#upper_area div.content div.content_title div.left_sec_title h1{float:left; position:relative; width:616px; font:bold 53px Arial; line-height:50px; color:#4C4C4C; padding:20px 0 0 0; margin:0; letter-spacing:-2px;}
 div#upper_area div.content div.content_title div.left_sec_title p.subtitle{float:left; position:relative; width:616px; font:normal 19px Arial; color:#666666; padding:0px; margin:10px 0 0 0; letter-spacing:-1.0px;}
@@ -97,7 +105,7 @@ div#upper_area div.content div.content_title div.left_sec_title p.subtitle a:hov
 
 
 div#upper_area div.content div.content_title div.right_sec_title{float:right; width:295px; margin:45px 0 0 0;}
-div#upper_area div.content div.content_title div.right_sec_title p.title_browse {float:left; font:bold 11px Arial; color:#666666; text-transform:uppercase; margin:0 0 0 10px;}
+div#upper_area div.content div.content_title div.right_sec_title p.title_browse {float:left; font:bold 11px Arial; color:#666666; text-transform:uppercase; margin:10px 0 0 10px;}
 
 div#upper_area div.content div.content_title div.right_sec_title ul {float:left; width:280px; margin:8px 0 0 0; list-style: none;}
 div#upper_area div.content div.content_title div.right_sec_title ul li {float:left; width:100%; margin:0; margin:2px 0 5px 0px; color:#006699;}
@@ -268,10 +276,11 @@ div.add_this_page div.right_container a.button:hover {color:#254C72;}
 
 	/* upper area */
 div.upper_area{width:940px; margin:0 auto;}
-div.upper_area div.content {float:left; width:940px; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px; position:relative; padding:20px 0; margin:0; border:none;}
-div.upper_area div.content div.left_sec{float:left; width:690px;}
+div.upper_area div.content {float:left; width:940px; background: url(../images/common/bigDottedMap.jpg) no-repeat 0 -60px; position:relative; padding:0px 0; margin:0; border:none;}
+div.upper_area div.content div.left_sec{float:left; width:690px; margin:50px 0 0 0;}
 div.upper_area div.content div.left_sec h1{float:left; position:relative; width:620px; font:bold 27px Arial; line-height:31px; color:#333333; padding:0; margin:0; letter-spacing:-2px;}
 div.upper_area div.content div.left_sec p {float:left; width:auto; font:normal 13px Arial; color:#666666; margin:0; width:100%; margin:0 0 4px 0;}
+div.upper_area div.content div.left_sec p.browse_all_regions {float:left; width:auto; font:normal 13px Arial; color:#666666; margin:0; width:100%; margin:0 0 25px 0;}
 div.upper_area div.content div.left_sec p a {border-bottom:1px solid #006699; color:#336699; text-decoration:none;}
 div.upper_area div.content div.left_sec p a:hover {color:#254C72; border-bottom:1px dotted #254C72; cursor:pointer;}
 div.upper_area div.content div.left_sec p span.protected{color:#326696; font:bold 9px Arial; padding:0 10px 0 12px; border-right:1px solid #999999; background:url(../images/common/marine.png) no-repeat 0 3px; line-height:8px;}
