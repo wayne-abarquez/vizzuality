@@ -389,7 +389,7 @@
 			<components1:Help backgroundColor="#000000" top="5" bottom="5" right="5" left="5" visible="false" id="help1"/>	
 			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
 			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="true" alpha="0.6">
-				<mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="32" height="32" source="@Embed('/assets/loadAnimation.swf')"/>
+				<mx:SWFLoader horizontalCenter="-12" verticalCenter="-5" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/>
 			</mx:Canvas>
 		</mx:Canvas>
 		

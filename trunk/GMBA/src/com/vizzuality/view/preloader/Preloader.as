@@ -19,11 +19,7 @@ package com.vizzuality.view.preloader
         /**
         * @private
         * @property Embed the preloader MovieClip from your .swf file.
-        */
-        /* [Embed(source="../../../assets/preloader/mainPreloader.swf", symbol="Preloader")] */
-        
-        //[Embed(source="../../../../assets/loadAnimation2.swf")]
-        
+        */      
         [Embed(source="preloaderAnimation.swf")]
         private var PreloaderSymbol:Class;
         
