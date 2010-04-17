@@ -27,16 +27,20 @@ class GastoPublico {
     }
     
     function getOrganismoData($id) {
-        $sql="select * from organismo WHERE id=".$id;
+        $sql="select *,(select count(id) from licitacion where organismo_fk=o.id) as num_licitaciones from organismo as o where o.id=".$id;
         return pg_fetch_assoc(pg_query($this->conn, $sql));  
     }
     
     
-    function licitacionesByOrganism($id,$offset) {
-        
+    function licitacionesByOrganism($id,$offset) {   
         $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1,fecha2,fecha3,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id WHERE o.id=".$id ." LIMIT 6 OFFSET ".$offset;
 	    return pg_fetch_all(pg_query($this->conn, $sql));        
     }    
+    
+    function getCloseByOrganismos($id) {
+        $sql="select id,nombre_admin from organismo LIMIT 10";
+        return pg_fetch_all(pg_query($this->conn, $sql));
+    }
     
 }
 ?>
