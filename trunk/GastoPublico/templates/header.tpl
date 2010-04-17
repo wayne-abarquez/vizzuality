@@ -23,4 +23,22 @@
 
 
 	<BODY>
-
+		<div class="outer_layout_gray">
+			<div class="header">
+				<p class="logo"><a href="#">gastopublico.es</a></p>
+				<p class="facebook">Identificate con facebook</p>
+			</div>
+		</div>
+		<div class="outer_layout_green">
+			<div class="menu">
+				<img src="../images/green_arrow.png" alt="green arrow"/>
+				<ul>
+					<li><a href="#">obras</a></li>
+					<li><a href="#" class="disabled">suministros</a></li>
+				</ul>
+				<form action="#">
+					<input type="text" value="Busca tu municipio" />
+					<input type="submit" value="" />
+				</form>
+			</div>
+		</div>
