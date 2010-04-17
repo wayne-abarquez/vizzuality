@@ -17,8 +17,13 @@ class GastoPublico {
 
 
     function getFeaturedLicitaciones() {
-        $sql="select id,titulo,importe,fecha1,fecha2,fecha3,votes_up,votes_down,num_comentarios FROM licitacion ORDER BY importe DESC LIMIT 3";
+        $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1,fecha2,fecha3,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id ORDER BY importe DESC LIMIT 3";
 	    return pg_fetch_all(pg_query($this->conn, $sql));        
+    }
+    
+    function getFeaturedOrganismos() {
+        $sql="select count(l.id) as num_licitaciones, o.id as organismo_id, o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id group by o.id,o.nombre_admin,o.org_contratante ORDER BY count(l.id) DESC LIMIT 5";
+        return pg_fetch_all(pg_query($this->conn, $sql));   
     }
 }
 ?>
