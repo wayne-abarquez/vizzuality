@@ -12,16 +12,16 @@ $(document).ready(function() {
   map = new google.maps.Map(document.getElementById("map"), myOptions);
 
 
+	alert('Ochoa, deja de mirar el jodido código y vente a Madrid a programar o en su defecto a currar permanentemente');
 
 	//OBRA LENGTH
 	var left_work = $('div.left_region_work').height();
 	var right_work = $('div.renovation_content').height();
-	console.log(left_work);
-	console.log(right_work);
+
 	if (left_work<right_work) {
-		alert('1');
+			$('div.left_region_work').height(right_work-279);
 	} else {
-		alert('2');
+		 	$('div.renovation_content').height(left_work+279);
 	}
 
 

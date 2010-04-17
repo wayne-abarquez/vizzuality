@@ -86,29 +86,22 @@
 				<div class="content_right_comment">
 					<p><a href="#">3 comentarios</a></p>
 				</div>
-				
 			</div>
 			
 			<div class="content_head"></div>
 			
 			<div class="content">
-
 				<div class="content_left">
 					<p class="award">Adjudicado a:</p>
 					<p class="name"><a href="#">MC Conservación y restauración S.L.</a></p>
 				</div>
-				
 				<div class="content_right">
-
 					<span class="kind_contrat"></span>
-					<a class="money"><span>431,234€</span></a>
-					
+					<a class="money"><span>431,234€</span></a>		
 				</div>
-				
 				<div class="content_left">
 					<p class="title">Descripción de la obra</p>
 				</div>
-				
 				<div class="line_to_separate"></div>
 
 				<p class="description">Obras de renovación de las instalaciones deportivas del polideportivo municipal “El Torreón”. Para estas obras se ha utilizado el presupuesto necesario para realizar y confirmar la mejora de las instalaciones. Para estas obras se ha utilizado el presupuesto necesario para realizar y confirmar la mejora de las instalaciones.  Queriendo satisfaccer a nuestros ciudaddanos con las obras de renovación de las instalaciones deportivas del polideportivo municipal "El Torreón". Para estas obras se ha utilizado el presupuesto necesario para realizar y confirmar la mejora de</p>
@@ -126,8 +119,6 @@
 				<div class="line_to_separate"></div>
 				
 				<div class="comments">
-				
-					
 					<ul>
 						<li>
 							<div class="avatar">
@@ -196,11 +187,10 @@
 					<input type="submit" value="" />
 				</form>
 				
-			</div> <!-- content -->
+			</div>
 			
 			<div class="more">
 				<p class="title">Más obras en Villaviciosa de Odón</p>
-				
 				<ul>
 					<li>
 						<div class="imgPlace"><a href="#"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></a>
