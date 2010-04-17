@@ -11,6 +11,7 @@ $(document).ready(function() {
   };
   map = new google.maps.Map(document.getElementById("map"), myOptions);
 
+
 	//OBRA LENGTH
 	var left_work = $('div.left_region_work').height();
 	var right_work = $('div.renovation_content').height();

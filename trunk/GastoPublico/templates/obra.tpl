@@ -63,6 +63,7 @@
 	</div>
 	<div class="renovation_content">
 			
+			<img src="../images/pink_arrow.png" alt="pink arrow" class="arrow" />
 			<div class="content_up">
 				<div class="content_left">
 					<div class="avatar">
