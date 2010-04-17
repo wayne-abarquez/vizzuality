@@ -84,7 +84,7 @@
 					<p class="do_you_like"><a href="#">te gusta?</a></p>
 				</div>
 				<div class="content_right_comment">
-					<p>3 comentarios</p>
+					<p><a href="#">3 comentarios</a></p>
 				</div>
 				
 			</div>
