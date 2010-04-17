@@ -133,7 +133,7 @@ div.right_region ul li div.right_information a.likes:hover span {background-posi
 div.right_region ul li div.right_information a.comment {float:right; text-align:right; font:normal 13px Arial; color:#408A8D; text-decoration:underline; padding:4px 0 0 0;}
 div.right_region ul li div.right_information a.comments {float:right; text-align:right; background:url(../images/icons/comment_alpha.png) no-repeat 0 5px; padding:4px 0 0 17px; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
 div.right_region ul li div.right_information a:hover {text-decoration:none;}
-div.right_region ul li div.right_information a.no_like {float:right; background:url(../images/greyButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none;}
+div.right_region ul li div.right_information a.no_like {float:right; background:url(../images/greyButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none; cursor: pointer;}
 div.right_region ul li div.right_information a.no_like:hover {background-position:0 -25px;}
 div.right_region ul li div.right_information a.no_like span {background:url(../images/greyButton_bkg.png) no-repeat right 0; padding:5px 7px 5px 3px; margin:0; font:normal 13px Arial; color:#FFFFFF; width:auto;}
 div.right_region ul li div.right_information a.no_like:hover span {background-position:right -25px;}
