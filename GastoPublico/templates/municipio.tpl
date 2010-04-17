@@ -77,7 +77,7 @@
 			<li>
 				<div class="left_information">
 					<div class="work_image">
-						<img src="../images/work_fake.png" />
+						<a href="#"><img src="../images/work_fake.png" /></a>
 					</div>
 					<div class="work_information">
 						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
@@ -92,7 +92,7 @@
 			<li>
 				<div class="left_information">
 					<div class="work_image">
-						<img src="../images/default_work.png" />
+						<a href="#"><img src="../images/default_work.png" /></a>
 					</div>
 					<div class="work_information">
 						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
@@ -107,7 +107,7 @@
 			<li>
 				<div class="left_information">
 					<div class="work_image">
-						<img src="../images/work_fake.png" />
+						<a href="#"><img src="../images/work_fake.png" /></a>
 					</div>
 					<div class="work_information">
 						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
@@ -122,7 +122,7 @@
 			<li>
 				<div class="left_information">
 					<div class="work_image">
-						<img src="../images/default_work.png" />
+						<a href="#"><img src="../images/default_work.png" /></a>
 					</div>
 					<div class="work_information">
 						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
@@ -137,7 +137,7 @@
 			<li>
 				<div class="left_information">
 					<div class="work_image">
-						<img src="../images/work_fake.png" />
+						<a href="#"><img src="../images/work_fake.png" /></a>
 					</div>
 					<div class="work_information">
 						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
@@ -152,7 +152,7 @@
 			<li>
 				<div class="left_information">
 					<div class="work_image">
-						<img src="../images/default_work.png" />
+						<a href="#"><img src="../images/work_fake.png" /></a>
 					</div>
 					<div class="work_information">
 						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
