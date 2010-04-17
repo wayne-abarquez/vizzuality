@@ -13,7 +13,7 @@ div#layout {margin:0 auto; width:924px; position:relative;}
 div#outer_upper_area{width:100%;}
 
 div#upper_area {width:924px; margin:0 auto; }
-div.map {float:left; position:relative; width:924px; height:278px; margin:0; background:url(../images/googleMapScreenShot.jpg) no-repeat 0 0;}
+div.map {float:left; position:relative; width:924px; height:278px; margin:0; background:url(../images/googleMapScreenShot.jpg) no-repeat 0 0; border-bottom:3px solid #FFFFFF;}
 div.renovation {position:absolute; right:0; top:52px; width:623px; height:184px; background:url(../images/bkgRenovacionTitle.png) no-repeat 0 0; margin:0 0 0 0;}
 
 div.renovation div.content_left {float:left; width:80px;}
@@ -57,9 +57,91 @@ div.outer_layout_green div.menu ul li a {text-decoration:none; font:bold 15px Ar
 div.outer_layout_green div.menu ul li a:hover {}
 div.outer_layout_green div.menu ul li a.disabled {text-decoration:none; font:bold 15px Arial; color:#79ADAF;}
 div.outer_layout_green div.menu ul li a.disabled:hover {cursor:default;}
+div.outer_layout_green div.menu p {float:right; font:normal 13px Arial; color:#FFFFFF; padding:8px 0 0 0;}
+div.outer_layout_green div.menu p a {font:bold 13px Arial; color:#FFFFFF;}
+div.outer_layout_green div.menu p a:hover {text-decoration:none;}
 div.outer_layout_green div.menu form {float:right; margin:4px 0 0 0; padding:0;}
 div.outer_layout_green div.menu form input[type="text"] {float:left; width:196px; padding:6px; height:14px; border:none; background:url(../images/header_textinput.png) no-repeat 0 0;  font:normal 13px Arial; color:#cccccc; font-style:italic;}
-div.outer_layout_green div.menu form input[type="submit"] {float:left; width:25px; height:26px; background:url(../images/lens.png) no-repeat 0 0; border:none; margin:0;}
+div.outer_layout_green div.menu form input[type="submit"] {float:left; width:25px; height:26px; background:url(../images/lens.png) no-repeat right 0; border:none; margin:0;}
+div.outer_layout_green div.menu form input[type="submit"]:hover {cursor:pointer; background-position:0 -26px;}
+
+
+/*MUNICIPIO*/
+
+div.left_region {position:absolute; top:52px; left:0; background: url(../images/top_bkg_right_region.png) no-repeat 0 0 #FFFFFF; width:274px; padding:20px;}
+div.left_region img.arrow {position:absolute; top:18px; right:-13px;}
+div.left_region div.top_information {float:left; margin:0; width:100%;}
+div.left_region div.top_information div.logo {float:left; width:32px; padding:3px 0 0 0;}
+div.left_region div.top_information div.logo img {width:26px;}
+div.left_region div.top_information div.region_data {float:right; width:240px;}
+div.left_region div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725;}
+div.left_region div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:3px 0 0 0;}
+div.left_region div.top_information div.region_data p.information a {color:#3F8A8C; text-decoration:underline; font:normal 13px Arial;}
+div.left_region div.top_information div.region_data p.information a:hover {text-decoration:none;}
+div.left_region div.top_information div.region_data p.web {float:left; padding:5px 0 0 0;}
+div.left_region div.top_information div.region_data p.web a {color:#3F8A8C; text-decoration:underline; font:normal 11px Arial;}
+div.left_region div.top_information div.region_data p.web a:hover {text-decoration:none;}
+div.left_region img.region {float:left; margin:20px 0 0 0; border:1px solid #cccccc; padding:5px; background:#EEEEEE; width:262px;}
+div.left_region hr {float:left; width:100%;  margin:20px 0 0 0;}
+div.left_region div.political_data {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region div.political_data h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region div.political_data div.political_logo {float:left; width:44px;}
+div.left_region div.political_data div.political_logo img {width:38px;}
+div.left_region div.political_data div.political_information {float:right; width:230px; padding:3px 0 0 0;}
+div.left_region div.political_data div.political_information h3 {font:bold 13px Arial; color:#418A8E;}
+div.left_region div.political_data div.political_information p {font:normal 11px Arial; color:#666666;}
+div.left_region div.political_data div.political_information p a {color:#3F8A8C; text-decoration:none;}
+div.left_region div.political_data div.political_information p a:hover {text-decoration:underline;}
+div.left_region div.political_stats {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region div.political_stats h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region div.more_enterprises {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region div.more_enterprises h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region div.more_enterprises li {font:normal 13px Arial; color:#666666; padding:1px 0;}
+div.left_region div.related_regions {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region div.related_regions span {float:left; width:100%; padding:0 0 7px 0;}
+div.left_region div.related_regions span h2 {float:left; width:auto; font:bold 15px Arial; color:#333333;}
+div.left_region div.related_regions span a {float:right; width:auto; font:normal 11px Arial; color:#408A8D; padding:2px 0 0; text-decoration:none; border-bottom:1px solid #408A8D;}
+div.left_region div.related_regions span a:hover {border-bottom:1px dotted #408A8D;}
+div.left_region div.related_regions li {padding:2px 0;}
+div.left_region div.related_regions li a {font:bold 13px Arial; color:#408A8D; padding:0; text-decoration:none;}
+div.left_region div.related_regions li a:hover {border-bottom:1px solid #408A8D;}
+
+div.right_region {position:relative; float:right; width:590px; padding:20px 0 100px 20px;}
+div.right_region span {float:left; width:590px; color:#666666; padding:0 0 25px;}
+div.right_region span h3 {float:left; width:auto; font:bold 35px Arial; letter-spacing:-1px;}
+div.right_region span div {float:right; width:142px; padding:7px 0 0 0;}
+div.right_region span div p {float:left; width:142px; text-align:right; font:bold 25px Arial; letter-spacing:-1px;}
+div.right_region span div p.small {float:left; width:142px; font:bold 10px Arial; color:#AAABA7; letter-spacing:0; line-height:5px;}
+/*div.right_region div.search_container {float:left; padding:22px 13px; width:564px; background:url(../images/region_search_bkg.png) no-repeat 0 0 #E1E2DB;}*/
+div.right_region div.search_container {float:left; height:15px; padding:0; width:590px; background:url(../images/searchArrow.png) no-repeat 0 0;}
+div.right_region ul {float:left; padding:0; width:590px; margin:0;}
+div.right_region ul li {float:left; padding:17px 0; width:590px; border-bottom:1px solid #DADCD0;}
+
+div.right_region ul li div.left_information {float:left; width:420px;}
+div.right_region ul li div.left_information div.work_image {float:left; width:77px;}
+div.right_region ul li div.left_information div.work_image img {float:left; width:60px; padding:3px; background:white; border:1px solid #cccccc;}
+div.right_region ul li div.left_information div.work_information {float:left; width:343px;}
+div.right_region ul li div.left_information div.work_information h4 {font:bold 15px Arial; color:#2A2625; line-height:18px;}
+div.right_region ul li div.left_information div.work_information p {font:normal 13px Arial; color:#666666; padding:5px 0 0 0;}
+
+div.right_region ul li div.right_information {float:right; width:170px;}
+div.right_region ul li div.right_information a.likes {float:right; background:url(../images/pinkButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none;}
+div.right_region ul li div.right_information a.likes:hover {background-position:0 -25px;}
+div.right_region ul li div.right_information a.likes span {background:url(../images/pinkButton_bkg.png) no-repeat right 0; padding:5px 7px 5px 3px; margin:0; font:normal 13px Arial; color:#FFFFFF; width:auto;}
+div.right_region ul li div.right_information a.likes:hover span {background-position:right -25px;}
+div.right_region ul li div.right_information a.comment {float:right; text-align:right; font:normal 13px Arial; color:#408A8D; text-decoration:underline; padding:4px 0 0 0;}
+div.right_region ul li div.right_information a.comments {float:right; text-align:right; background:url(../images/icons/comment_alpha.png) no-repeat 0 5px; padding:4px 0 0 17px; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
+div.right_region ul li div.right_information a:hover {text-decoration:none;}
+div.right_region ul li div.right_information a.no_like {float:right; background:url(../images/greyButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none;}
+div.right_region ul li div.right_information a.no_like:hover {background-position:0 -25px;}
+div.right_region ul li div.right_information a.no_like span {background:url(../images/greyButton_bkg.png) no-repeat right 0; padding:5px 7px 5px 3px; margin:0; font:normal 13px Arial; color:#FFFFFF; width:auto;}
+div.right_region ul li div.right_information a.no_like:hover span {background-position:right -25px;}
+div.right_region p.long {float:left; width:590px; margin:3px 0 0 0; text-align:center; color:#666666;}
+div.right_region p.long a {float:left; margin:20px 0 0 225px; width:140px; background:url(../images/view_more.png) no-repeat 0 0; text-align:center; padding:6px 0; font:bold 15px Arial; color:white; text-decoration:none;}
+div.right_region p.long a:hover {background-position: 0 -30px;}
+
+
+
 
 /*FOOTER*/
 div.outer_layout_footer {width:100%; border-top:5px solid #408A8D; background:#2A2825; height:193px; float:left;}
@@ -77,4 +159,4 @@ div.outer_layout_footer div.footer div.right_footer p.regions a {font:bold 13px 
 div.outer_layout_footer div.footer div.right_footer p.regions a:hover {text-decoration:none;}
 div.outer_layout_footer div.footer div.right_footer p.footer {float:left; width:600px; height:auto; font:normal 13px Arial; color:#FFFFFF;}
 div.outer_layout_footer div.footer div.right_footer p.footer a {font:bold 13px Arial; color:#FFFFFF; text-decoration:none;}
-div.outer_layout_footer div.footer div.right_footer p.footer a:hover {text-decoration:underline;}>>>>>>> .r3608
+div.outer_layout_footer div.footer div.right_footer p.footer a:hover {text-decoration:underline;}
