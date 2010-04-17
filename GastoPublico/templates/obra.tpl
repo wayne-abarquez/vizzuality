@@ -100,7 +100,7 @@
 
 				<div class="content_left">
 					<p class="award">Adjudicado a:</p>
-					<p class="name">MC Conservación y restauración S.L.</p>
+					<p class="name"><a href="#">MC Conservación y restauración S.L.</a></p>
 				</div>
 				
 				<div class="content_right">
@@ -215,7 +215,7 @@
 							<p class="info">Infraestructuras <span>- 431,234€</span></p>
 						</div>
 						<div class="result">
-							<a class="likes" href="#"><span><strong>19</strong></span></a>
+							<a class="likes" href="#">19</a>
 							<p class="comments"><a href="#">3 comentarios</a></p>
 							
 						</div>
@@ -228,40 +228,11 @@
 							<p class="info">Infraestructuras <span>- 431,234€</span></p>
 						</div>
 						<div class="result">
-							<a class="likes" href="#"><span><strong>19</strong></span></a>
+							<a class="likes" href="#">19</a>
 							<p class="comments"><a href="#">3 comentarios</a></p>
-							
 						</div>
-					</li>
-					<li>
-						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
-						</div>
-						<div class="info">
-							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
-							<p class="info">Infraestructuras <span>- 431,234€</span></p>
-						</div>
-						<div class="result">
-							<a class="likes" href="#"><span><strong>19</strong></span></a>
-							<p class="comments"><a href="#">3 comentarios</a></p>
-							
-						</div>
-					</li>
-					<li>
-						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
-						</div>
-						<div class="info">
-							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
-							<p class="info">Infraestructuras <span>- 431,234€</span></p>
-						</div>
-						<div class="result">
-							<a class="likes" href="#"><span><strong>19</strong></span></a>
-							<p class="comments"><a href="#">3 comentarios</a></p>
-							
-						</div>
-					</li>
-									
+					</li>			
 				</ul>
-	
 			</div>
 	</div>
 
