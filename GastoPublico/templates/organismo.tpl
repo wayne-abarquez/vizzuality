@@ -9,7 +9,7 @@
 				<img src="../images/villaviciosa.png" />
 			</div>
 			<div class="region_data">
-				<h1>{$municipio.poblacion}</h1>
+				<h1>Organismo</h1>
 				<p class="information"><a href="#">Madrid</a>, 181.013 habitantes</p>
 				<p class="web"><a href="http://www.villaviciosadeodon.com" target="_blank">www.villaviciosadeodon.com</a></p>
 			</div>
@@ -65,9 +65,9 @@
 	
 	<div class="right_region">
 		<span>
-			<h3>{$municipio.num_licitaciones} Obras en el municipio</h3>
+			<h3>17 Obras en el municipio</h3>
 			<div>
-				<p>{$municipio.sum_importe}€</p>
+				<p>2,317,321€</p>
 				<p class="small">GASTO</p>
 			</div>
 		</span>
