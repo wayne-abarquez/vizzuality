@@ -249,6 +249,7 @@
 						</div>
 						<div class="result">
 							<a class="likes" href="#">19</a>
+							<a class="no_likes" href="#">19</a>							
 							<p class="comments"><a href="#">3 comentarios</a></p>
 							
 						</div>
@@ -262,6 +263,7 @@
 						</div>
 						<div class="result">
 							<a class="likes" href="#">19</a>
+							<a class="no_likes" href="#">19</a>
 							<p class="comments"><a href="#">3 comentarios</a></p>
 						</div>
 					</li>			
