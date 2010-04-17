@@ -79,10 +79,8 @@
 			
 			<div class="content_down">
 				<div class="content_left_like">
-					<div class="like_info">
-						<p>gusta a <span>19</span> usuarios</p>
-					</div>
-					<p class="do_you_like"><a href="#">te gusta?</a></p>
+					<a class="like" href="#">si, me gusta(23)</a>
+					<a class="no_like" href="#">no me gusta(22)</a>
 				</div>
 				<div class="content_right_comment">
 					<p><a href="#">3 comentarios</a></p>

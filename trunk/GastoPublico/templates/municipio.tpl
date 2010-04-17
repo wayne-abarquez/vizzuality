@@ -85,7 +85,8 @@
 					</div>
 				</div>
 				<div class="right_information">
-					<a class="likes" href="#"><span>gusta a <strong>1</strong> usuario</span></a>
+					<a class="no_likes" href="#">21</a>	
+					<a class="likes" href="#">1</a>
 					<a class="comment" href="#">comenta el primero</a>
 				</div>
 			</li>
@@ -100,7 +101,8 @@
 					</div>
 				</div>
 				<div class="right_information">
-					<a class="no_like"><span>gusta a 0 usuarios</span></a>
+					<a class="no_likes" href="#">21</a>	
+					<a class="likes" href="#">1</a>
 					<a class="comments" href="#">12 comentarios</a>
 				</div>
 			</li>
@@ -115,7 +117,8 @@
 					</div>
 				</div>
 				<div class="right_information">
-					<a class="likes" href="#"><span>gusta a <strong>1</strong> usuario</span></a>
+					<a class="no_likes" href="#">21</a>	
+					<a class="likes" href="#">1</a>
 					<a class="comment" href="#">comenta el primero</a>
 				</div>
 			</li>
@@ -130,7 +133,8 @@
 					</div>
 				</div>
 				<div class="right_information">
-					<a class="no_like"><span>gusta a 0 usuarios</span></a>
+					<a class="no_likes" href="#">21</a>	
+					<a class="likes" href="#">1</a>
 					<a class="comments" href="#">12 comentarios</a>
 				</div>
 			</li>
@@ -145,7 +149,8 @@
 					</div>
 				</div>
 				<div class="right_information">
-					<a class="likes" href="#"><span>gusta a <strong>1</strong> usuario</span></a>
+					<a class="no_likes" href="#">21</a>	
+					<a class="likes" href="#">1</a>
 					<a class="comment" href="#">comenta el primero</a>
 				</div>
 			</li>
@@ -160,7 +165,8 @@
 					</div>
 				</div>
 				<div class="right_information">
-					<a class="no_like"><span>gusta a 0 usuarios</span></a>
+					<a class="no_likes" href="#">21</a>	
+					<a class="likes" href="#">1</a>
 					<a class="comments" href="#">12 comentarios</a>
 				</div>
 			</li>
