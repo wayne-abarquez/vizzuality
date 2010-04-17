@@ -78,8 +78,7 @@
 					<label>GASTO</label>
 					<p class="amount">212,317,321€</p>
 				</div>
-				<div class="right stats">
-					<img class="bigGraph" src="../images/fake_mini_stat.png" alt="stat" />
+				<div class="right expensive_chart">
 				</div>
 			</div>
 
@@ -88,16 +87,16 @@
 			<h3>¿Cómo gastan los principales partidos el dinero en obras?</h3>
 		
 			<div class="longPolitical">
-				<div class="political_stats">
-					<img class="littleGraph" src="../images/fake_mini_stat.png" alt="stat" />
+				<div class="political_stats2">
+					<div class="expensive_chart2"></div>
 					<p class="politicalName">Partido Popular</p>
 				</div>
 				<div class="political_stats">
-					<img class="littleGraph" src="../images/fake_mini_stat.png" alt="stat" />
+					<div class="expensive_chart2"></div>
 					<p class="politicalName">PSOE</p>
 				</div>
 				<div class="political_stats">
-					<img class="littleGraph" src="../images/fake_mini_stat.png" alt="stat" />
+					<div class="expensive_chart2"></div>
 					<p class="politicalName">Izquierda Unida</p>
 				</div>
 			</div>

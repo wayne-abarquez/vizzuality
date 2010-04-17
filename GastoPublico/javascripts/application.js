@@ -5,13 +5,59 @@ $(document).ready(function() {
 	
 	
   var myOptions = {
-      zoom: 13,
-      center: new google.maps.LatLng(40.4166909, -3.7003454),
+      zoom: 4,
+      center: new google.maps.LatLng(25, 25),
       disableDefaultUI: true,
       scrollwheel:false,
       mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+	// Initialize Fluster and give it a existing map
+	var fluster = new Fluster2(map);
+	var image = '../images/markers/small.png';
+	
+	for(var i = 0; i < 200; i++)
+	{
+		var pos = [
+			50 * Math.random(),
+			50 * Math.random()
+		];
+		
+		// Create a new marker. Don't add it to the map!
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(pos[0], pos[1]),
+			title: 'Marker ' + i,
+			icon: image
+		});
+		
+		// Add the marker to the Fluster
+		fluster.addMarker(marker);
+	}
+	
+	// Set styles
+	// These are the same styles as default, assignment is only for demonstration ...
+	fluster.styles = {
+		0: {
+			image: '../images/markers/medium.png',
+			textColor: '#FFFFFF',
+			width: 48,
+			height: 48
+		},
+		6: {
+			image: '../images/markers/big.png',
+			textColor: '#FFFFFF',
+			width: 58,
+			height: 58
+		}
+	};
+	
+	// Initialize Fluster
+	// This will set event handlers on the map and calculate clusters the first time.
+	fluster.initialize();
+
+
+
 
 
 	//OBRA LENGTH
@@ -42,6 +88,17 @@ $(document).ready(function() {
 		}
 	}
 	
+	
+	//CHARTS
+	
+	//home
+	var colors =["#CACA4E", "#bcbc5f", "#CACA4E"];
+	$('.expensive_chart').sparkline([4,3,5,7,9], {type:'bar', fillColor: '#666666', width:'80px', height:'30px', barColor:'#ADAEAC', barWidth:15, barSpacing:1, chartRangeMin:0 });
+	$('.expensive_chart2').sparkline([4,3,5,7,9], {type:'bar', fillColor: '#666666', width:'85px', height:'30px', barColor:'#ADAEAC', barWidth:16, barSpacing:1, chartRangeMin:0 });
+	$('.big_chart').sparkline([6,10,14], {type:'bar', fillColor: '#666666', width:'274px', height:'80px', barColor:'#ADAEAC', barWidth:90, barSpacing:1, chartRangeMin:0, colorMap: colors });
+
+
+
 	$('div.content_right a span.kind_contrat').hover(function(ev){
 		ev.stopPropagation();
 		ev.preventDefault();
@@ -50,12 +107,9 @@ $(document).ready(function() {
 		
 	},
 	function(){
-
 		$(this).parent().parent().children('div.tool_tip').fadeOut();
 		
 	});
-	
-	
 
 });
 

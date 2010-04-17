@@ -19,6 +19,12 @@
 		<SCRIPT type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></SCRIPT>
 		<SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="javascripts/jquery.input_prompt.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="javascripts/highcharts.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="javascripts/jquery.sparkline.min.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="javascripts/Fluster2ProjectionOverlay.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="javascripts/Fluster2ClusterMarker.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="javascripts/Fluster2Cluster.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="javascripts/Fluster2.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="javascripts/application.js"></SCRIPT>
 		
 		
@@ -40,6 +46,7 @@
 				<ul>
 					<li><a href="#">obras</a></li>
 					<li><a href="#" class="disabled">suministros</a></li>
+					<li><a href="#">sobre</a></li>
 				</ul>
 				<!-- <p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p> -->
 				<form action="#">
