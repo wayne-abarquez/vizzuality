@@ -1,10 +1,19 @@
 {include file="header.tpl"}
 
 <div id="map" style="height:384px">
-	
 </div>
 
+
+
 <div id="layout">
+	
+	<div class="overMap">
+		<h1>Entérate de las obras que hay a tu alrededor y di que te parecen.</h1>
+		<div class="searchForm">
+			<h3>Busca tu municipio y encuentra obras en el</h3>
+		</div>
+	</div>
+	
 	<div class="main_container">
 		<div class="left_home">
 			<h3>Obras con comentarios recientes</h3>
