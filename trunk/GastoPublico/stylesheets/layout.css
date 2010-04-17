@@ -211,7 +211,10 @@ div.outer_layout_green div.menu form input[type="submit"]:hover {cursor:pointer;
 
 /*HOME*/
 
-
+div.overMap {position:absolute; top: 40px; left:0px; background-image: url(../images/bkgOverMap.png); height:277px; width:530px; padding: 25px 28px 0 28px; }
+div.overMap h1 {font-size: 49px; color:#2A2625; letter-spacing: -1px; font-weight: bold; line-height: 47px; margin: 0 0 25px 0;}
+div overMap div.searchForm {}
+div.overMap div.searchForm h3 {font-size: 21px; color:#2A2625; letter-spacing: -1px; font-weight: bold;}
 
 
 div.left_home {float:left; width:544px; background:white; padding:20px;}
