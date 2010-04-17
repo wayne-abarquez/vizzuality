@@ -11,7 +11,7 @@
 		<div class="searchForm">
 			<h3>Busca tu municipio y encuentra obras en él</h3>
 			<form>
-				<input type="text" value="Introduce tu municipio..." id="searchHeader"/>
+				<input type="text" name="bigSearch" value="" />
 				<input type="submit" value="" />
 				
 			</form>

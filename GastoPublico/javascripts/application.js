@@ -119,5 +119,6 @@ $(document).ready(function() {
 
 $j(function(){
 	$j("input[name=search]").prompt("Busca tu municipio...");
+	$j("input[name=bigSearch]").prompt("Busca tu municipio...");
 });
 

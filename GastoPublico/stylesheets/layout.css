@@ -228,30 +228,19 @@ div.outer_layout_green div.menu form input[type="submit"]:hover {cursor:pointer;
 
 
 div.overMap {position:absolute; top: 40px; left:0px; background-image: url(../images/bkgOverMap.png); height:277px; width:530px; padding: 25px 28px 0 28px; }
-div.overMap h1 {font-size: 49px; color:#2A2625; letter-spacing: -1px; font-weight: bold; line-height: 47px; margin: 0 0 22px 0;}
+div.overMap h1 {font-size: 49px; color:#2A2625; letter-spacing: -1px; font-weight: bold; line-height: 47px; margin: 0 0 28px 0;}
 div overMap div.searchForm {}
 div.overMap div.searchForm h3 {font-size: 21px; color:#2A2625; letter-spacing: -1px; font-weight: bold;}
-div.overMap div.searchForm p {float:left; font:normal 13px Arial; color:#2A2725; width:563px; margin:10px 0 0 0;}
+div.overMap div.searchForm p {float:left; font:normal 13px Arial; color:#2A2725; width:563px; margin:4px 0 0 0;}
 div.overMap div.searchForm p a {font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
 div.overMap div.searchForm p a:hover {text-decoration:none;}
 
-div.overMap div.searchForm form {float:left; margin:10px 0 0 0;}
-div.overMap div.searchForm form input[type="text"]{float:left; background:url(../images/bkgInputSearch.png) no-repeat 0 0; width:351px; height:37px; padding:0 10px 0 5px; border:none; font:normal 13px Arial; font-style:italic; color:#CCCCCC;}
+div.overMap div.searchForm form {float:left; margin:6px 0 0 0;}
+div.overMap div.searchForm form input[type="text"]{float:left; background:url(../images/bkgInputSearch.png) no-repeat 0 0; width:351px; height:26px;  border:none; font:normal 17px Arial; font-style:italic; color:#999999; padding: 6px 8px 5px 8px;}
 div.overMap div.searchForm form input[type="text"]:focus {outline:none;}
 div.overMap div.searchForm form input[type="submit"]{float:left; background:url(../images/bttnSearchM.png) no-repeat 0 0; margin:0; width:160px; height:37px; border:none;}
 div.overMap div.searchForm form input[type="submit"]:focus {outline:none;}
 div.overMap div.searchForm form input[type="submit"]:hover {cursor:pointer; background-position:0 -37px;}
-
-/*
-div#header form {float:right; width:auto; margin:6px 0 0 0; position:relative;}
-div#header form input[type="text"]{float:left; background:url(../images/header/inputSearch.gif) no-repeat 0 0; padding:5px 25px 5px 5px; width:165px; margin:0; border:none; font:normal 13px Arial; font-style:italic; color:#aaaaaa;}
-div#header form input[type="text"]:focus {outline:none;}
-div#header form input[type="submit"]{float:left; background:url(../images/header/buttonSearch.gif) no-repeat 0 0; margin:0; width:27px; height:24px; border:none;}
-div#header form input[type="submit"]:focus {outline:none;}
-div#header form input[type="submit"]:hover {cursor:pointer;}
-
-*/
-
 
 div.left_home {float:left; width:544px; background:white; padding:20px;}
 div.left_home h3 {font:bold 21px Arial; color:#2A2625; letter-spacing:-1px;}
