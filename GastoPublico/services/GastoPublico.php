@@ -42,5 +42,15 @@ class GastoPublico {
         return pg_fetch_all(pg_query($this->conn, $sql));
     }
     
+    function getLicitacionDetails($id) {
+        $sql="select * from licitacion as l inner join organismo as o on l.organismo_fk=o.id where l.id=".$id;
+        return pg_fetch_all(pg_query($this->conn, $sql));
+    }
+    
+    function getCloseByLicitacion($id) {
+        $sql="select id,nombre_admin from organismo LIMIT 10";
+        return pg_fetch_all(pg_query($this->conn, $sql));
+    }
+    
 }
 ?>
