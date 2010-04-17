@@ -249,9 +249,11 @@ div.left_home ul li {float:left; padding:17px 0; width:544px; border-bottom:1px 
 div.left_home ul li.last {border-bottom:none;}
 div.left_home ul li div.left_information {float:left; width:390px;}
 div.left_home ul li div.left_information div.work_image {float:left; width:77px;}
-div.left_home ul li div.left_information div.work_image img {float:left; width:60px; padding:3px; background:white; border:1px solid #cccccc;}
+div.left_home ul li div.left_information div.work_image a img {float:left; width:60px; padding:3px; background:white; border:1px solid #cccccc;}
+div.left_home ul li div.left_information div.work_image a:hover img {border:1px solid #999999;}
 div.left_home ul li div.left_information div.work_information {float:left; width:313px;}
-div.left_home ul li div.left_information div.work_information h4 {font:bold 15px Arial; color:#2A2625; line-height:18px;}
+div.left_home ul li div.left_information div.work_information h4 a{font:bold 15px Arial; color:#2A2625; line-height:18px; text-decoration:none;}
+div.left_home ul li div.left_information div.work_information h4 a:hover{text-decoration:underline;}
 div.left_home ul li div.left_information div.work_information p {font:normal 13px Arial; color:#666666; padding:5px 0 0 0;}
 div.left_home ul li div.left_information div.work_information p a {font:normal 13px Arial; color:#408A8D;}
 div.left_home ul li div.left_information div.work_information p a:hover {text-decoration:none;}

@@ -9,9 +9,9 @@ define('DB_USER', 'postgres');
 define('DB_PASSWORD', '');
 
 /** PostgreSQL hostname */
-define('DB_HOST', '79.125.6.201');
+define('DB_HOST', '192.168.1.129');
 
-define('ABSPATH','/Users/jatorre/workspace/runnity2/');
+define('ABSPATH','/Users/saleiva/works/gastopublico.es/code/');
 define('EMAILPASSWORD','alertasrunnity555');
 
 define('HOST','localhost');

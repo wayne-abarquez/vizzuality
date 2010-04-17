@@ -25,14 +25,14 @@
 			<h3>Obras con comentarios recientes</h3>
 			<ul>
 				{foreach key=id item=licitacion from=$licitaciones name=count}
-					{if $smarty.foreach.count.iteration < 3}
+					{if $smarty.foreach.count.iteration < 5}
 						<li>
 					{else}
 						<li class="last">
 					{/if}
 					<div class="left_information">
 						<div class="work_image">
-							<img src="../images/default_work.png" alt="Work" />
+							<a href="obra/{$licitacion.licitacion_id}"><img src="../images/default_work.png" alt="Work" /></a>
 						</div>
 						<div class="work_information">
 							<h4><a href="obra/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:100:"..."}</a></h4>
