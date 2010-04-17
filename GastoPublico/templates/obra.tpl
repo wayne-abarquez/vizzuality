@@ -1,9 +1,7 @@
 {include file="header.tpl"}
 
+<div id="map"></div>
 <div id="layout">
-	<div class="map">
-		
-	</div>
 	<div class="left_region_work">
 	
 		<div class="top_information">
@@ -73,20 +71,17 @@
 					<p class="upload"><a href="#" class="upload_photo">sube una foto</a></p>
 				</div>
 				<div class="content_right">
-
 					<p class="title">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
 					<p class="content">Infraestructuras<span class="state"> - No finalizada - </span>Publicada el 18/31/2010</p>
-
-				</div>
-				
+				</div>			
 			</div>
+			
 			<div class="content_down">
 				<div class="content_left_like">
 					<div class="like_info">
 						<p>gusta a <span>19</span> usuarios</p>
 					</div>
 					<p class="do_you_like"><a href="#">te gusta?</a></p>
-
 				</div>
 				<div class="content_right_comment">
 					<p>3 comentarios</p>

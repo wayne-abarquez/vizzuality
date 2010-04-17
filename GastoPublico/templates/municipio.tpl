@@ -1,7 +1,7 @@
 {include file="header.tpl"}
 
+<div id="map"></div>
 <div id="layout">
-	<div class="map"></div>
 	<div class="left_region">
 		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
 		<div class="top_information">

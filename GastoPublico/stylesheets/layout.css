@@ -13,7 +13,7 @@ div#layout {margin:0 auto; width:924px; position:relative;}
 div#outer_upper_area{width:100%;}
 
 div#upper_area {width:924px; margin:0 auto; }
-div.map {float:left; position:relative; width:100%; height:278px; margin:0; background:url(../images/googleMapScreenShot.jpg) no-repeat center 0; border-bottom:3px solid #FFFFFF;}
+div#map {float:left; position:relative; width:100%; height:278px; margin:0; border-bottom:3px solid #FFFFFF;}
 div.renovation_content {position:absolute; right:0; top:52px; width:623px; height:184px; background:url(../images/bkgRenovacionTitle.png) no-repeat 0 0; margin:0 0 0 0;}
 
 
@@ -22,7 +22,7 @@ div.renovation_content {position:absolute; right:0; top:52px; width:623px; heigh
 
 /************ OBRA *******************/
 
-div.left_region_work {position:relative; background-color:#EFF0E8; width:285px; padding: 0 0 0 10px;}
+div.left_region_work {position:relative; float:left; background-color:#EFF0E8; width:285px; padding: 0 0 0 10px;}
 div.left_region_work img.arrow {position:absolute; top:18px; right:-13px;}
 div.left_region_work div.top_information {float:left; margin:15px 0 0 0; width:100%;}
 div.left_region_work div.top_information div.logo {float:left; width:32px; padding:3px 0 0 0;}
@@ -60,7 +60,7 @@ div.left_region_work div.related_regions li {padding:2px 0;}
 div.left_region_work div.related_regions li a {font:bold 13px Arial; color:#408A8D; padding:0; text-decoration:none;}
 div.left_region_work div.related_regions li a:hover {border-bottom:1px solid #408A8D;}
 
-div.renovation {position:absolute; right:0; top:52px; width:623px; height:184px; background:url(../images/bkgRenovacionTitle.png) no-repeat 0 0; margin:0 0 0 0;}
+div.renovation_content {position:absolute; right:0; top:52px; width:623px; background:url(../images/bkgRenovacionTitle.png) no-repeat 0 0; margin:0 0 0 0;}
 div.renovation_content div.content_up {float:left;}
 div.renovation_content div.content_up div.content_left {float:left; width:76px;}
 div.renovation_content div.content_up div.content_left div.avatar {float:left; width:62px; margin:21px 0 0 32px;}
@@ -90,7 +90,7 @@ div.renovation_content div.content_down div.content_right_comment p {float:left;
 
 
 div.renovation_content div.content_head {float:right; width:610px; height:19px; background:url(../images/renovation_content_head.png) no-repeat 0 0; margin:10px 0 0px 0;}
-div.renovation_content div.content {float:right; width:610px; background-color:#FFFFFF; margin:0px 0 0 0; padding:12px 0 0 0;}
+div.renovation_content div.content {float:right; width:610px; background-color:#FFFFFF; margin:0px 0 0 0; padding:1px 0 0 0;}
 
 
 div.renovation_content div.content div.content_left {float:left; width:260px; margin:5px 0 0 20px;}
@@ -170,7 +170,7 @@ div.renovation_content div.more ul li div.info {float:left; width:200px; margin:
 div.renovation_content div.more ul li div.info p.about a{float:left; font:bold 13px Arial; color:#2A2825; text-decoration: none;}
 div.renovation_content div.more ul li div.info p.about a:hover{text-decoration: underline;}
 div.renovation_content div.more ul li div.info p.info {float:left; font:normal 11px Arial; color:#666666; margin:5px 0 0 0;}
-div.renovation_content div.more ul li div.info p.info span {float:right; font:bold 11px Arial; color:#666666; }
+div.renovation_content div.more ul li div.info p.info span {float:none; font:bold 11px Arial; color:#666666; }
 div.renovation_content div.more ul li div.result {float:left; margin:7px 0 0 64px; width:200px;} 
 
 div.renovation_content div.more ul li div.result a.likes {float:left; background:url(../images/miniSmilleyBox.png) no-repeat 0 top; margin:0; padding:2px 10px 0 20px; height:25px; text-decoration:none; color:#FFFFFF; font-size:11px; font-weight: bold;}
@@ -278,7 +278,7 @@ div.left_region div.related_regions li {padding:2px 0;}
 div.left_region div.related_regions li a {font:bold 13px Arial; color:#408A8D; padding:0; text-decoration:none;}
 div.left_region div.related_regions li a:hover {border-bottom:1px solid #408A8D;}
 
-div.right_region {position:relative; float:right; width:590px; padding:20px 0 100px 20px;}
+div.right_region {position:relative; float:right; width:590px; padding:20px 0 60px 20px;}
 div.right_region span {float:left; width:590px; color:#666666; padding:0 0 20px;}
 div.right_region span h3 {float:left; width:auto; font:bold 35px Arial; letter-spacing:-1px;}
 div.right_region span div {float:right; width:142px; padding:7px 0 0 0;}
@@ -313,8 +313,6 @@ div.right_region ul li div.right_information a.no_like:hover span {background-po
 div.right_region p.long {float:left; width:590px; margin:3px 0 0 0; text-align:center; color:#666666;}
 div.right_region p.long a {float:left; margin:15px 0 0 225px; width:140px; background:url(../images/view_more.png) no-repeat 0 0; text-align:center; padding:6px 0; font:bold 15px Arial; color:white; text-decoration:none;}
 div.right_region p.long a:hover {background-position: 0 -30px;}
-
-
 
 
 
