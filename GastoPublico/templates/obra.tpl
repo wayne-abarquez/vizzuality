@@ -5,7 +5,7 @@
 		
 	</div>
 	<div class="left_region_work">
-		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
+	
 		<div class="top_information">
 			<div class="logo">
 				<img src="../images/villaviciosa.png" />

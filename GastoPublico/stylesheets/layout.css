@@ -22,7 +22,7 @@ div.renovation_content {position:absolute; right:0; top:52px; width:623px; heigh
 
 /************ OBRA *******************/
 
-div.left_region_work {position:relative; background-color:#EFF0E8; width:274px; padding:20px;}
+div.left_region_work {position:relative; background-color:#EFF0E8; width:274px;}
 div.left_region_work img.arrow {position:absolute; top:18px; right:-13px;}
 div.left_region_work div.top_information {float:left; margin:15px 0 0 0; width:100%;}
 div.left_region_work div.top_information div.logo {float:left; width:32px; padding:3px 0 0 0;}
@@ -88,7 +88,7 @@ div.renovation_content div.content_down div.content_right_comment p {float:left;
 
 
 div.renovation_content div.content_head {float:right; width:610px; height:19px; background:url(../images/renovation_content_head.png) no-repeat 0 0; margin:10px 0 0px 0;}
-div.renovation_content div.content {float:right; width:610px; background-color:#FFFFFF; margin:0px 0 0 0; padding:5px 0 0 0;}
+div.renovation_content div.content {float:right; width:610px; background-color:#FFFFFF; margin:0px 0 0 0; padding:12px 0 0 0;}
 
 
 div.renovation_content div.content div.content_left {float:left; width:260px; margin:0 0 0 20px;}
