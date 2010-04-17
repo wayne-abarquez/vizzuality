@@ -96,8 +96,48 @@
 					<p class="award">Adjudicado a:</p>
 					<p class="name"><a href="#">MC Conservación y restauración S.L.</a></p>
 				</div>
+				
+			
+				
+			
 				<div class="content_right">
-					<span class="kind_contrat"></span>
+					
+					<!-- CONTRATO NEGOCIADO -->
+				<!--	<div class="tool_tip">
+						<span class="head"></span>
+						<span class="body">
+							<p class="title">Contrato negociado</p>
+							<p class="info">Obras de renovación de las instalaciones deportivas del polideportivo municipal...</p>
+						</span>
+						<span class="bottom"></span>								
+					</div> -->
+					
+					<!-- CONTRATO ABIERTO -->
+					<div class="tool_tip">
+						<span class="head"></span>
+						<span class="body">
+							<p class="title">Contrato abierto</p>
+							<p class="info">Todo empresario interesado puede presentar una oferta.</p>
+						</span>
+						<span class="bottom"></span>								
+					</div> 
+					
+					<!-- CONTRATO RESTRINGIDO -->
+					<!--<div class="tool_tip">
+						<span class="head"></span>
+						<span class="body">
+							<p class="title">Contrato restringido</p>
+							<p class="info">Sólo podrán presentar ofertas los empresarios seleccionados por la Administración.</p>
+						</span>
+						<span class="bottom"></span>								
+					</div>-->
+					
+					
+					
+					<a href="#">
+						<span class="kind_contrat">
+						</span>
+					</a>
 					<a class="money"><span>431,234€</span></a>		
 				</div>
 				<div class="content_left">
@@ -106,6 +146,15 @@
 				<div class="line_to_separate"></div>
 
 				<p class="description">Obras de renovación de las instalaciones deportivas del polideportivo municipal “El Torreón”. Para estas obras se ha utilizado el presupuesto necesario para realizar y confirmar la mejora de las instalaciones. Para estas obras se ha utilizado el presupuesto necesario para realizar y confirmar la mejora de las instalaciones.  Queriendo satisfaccer a nuestros ciudaddanos con las obras de renovación de las instalaciones deportivas del polideportivo municipal "El Torreón". Para estas obras se ha utilizado el presupuesto necesario para realizar y confirmar la mejora de</p>
+				
+				<!-- SI NO HAY DESCRIPCIÓN -->
+				<!--
+				<div class="no_info">
+					<p class="messageTitle">Aún no tenemos descripción para esta obra</p>
+					<p class="suggestMessage">Si quieres, puedes <a href="#">sugerírnos una</a>  copiarla directamente del PDF</p>
+				</div>
+				-->
+				
 				
 				<p class="download">
 					<span class="pdf"><a href="#">Descargar pdf</a></span>

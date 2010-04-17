@@ -50,7 +50,7 @@ $(document).ready(function() {
 		
 	},
 	function(){
-		
+
 		$(this).parent().parent().children('div.tool_tip').fadeOut();
 		
 	});
