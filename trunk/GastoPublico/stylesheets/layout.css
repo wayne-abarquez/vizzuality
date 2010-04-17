@@ -132,13 +132,12 @@ div.renovation_content div.content div.content_right a.money span {float:right; 
 div.renovation_content div.content div.content_right a {text-decoration:none;}
 div.renovation_content div.content div.content_right a span.kind_contrat {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
 
-div.renovation_content div.content div.content_right div.tool_tip {position:absolute; right:-20px; bottom:30px; width:162px; display:none; z-index:10000;}
-
-div.renovation_content div.content div.content_right div.tool_tip span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
-div.renovation_content div.content div.content_right div.tool_tip span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
-div.renovation_content div.content div.content_right div.tool_tip span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
-div.renovation_content div.content div.content_right div.tool_tip span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
-div.renovation_content div.content div.content_right div.tool_tip span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+div.tool_tip {position:absolute; right:-20px; bottom:30px; width:162px; display:none; z-index:10000;}
+div.tool_tip span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
 
 
 div.renovation_content div.content div.comments {float:left; margin:0 0 0 20px; width:571px;}
