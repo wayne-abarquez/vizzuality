@@ -1,5 +1,3 @@
-<?php?>
-
 <head>
 	<title>gastopublico.es - Very soon...</title>
 	
