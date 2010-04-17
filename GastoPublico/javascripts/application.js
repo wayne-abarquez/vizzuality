@@ -2,6 +2,8 @@ var $j = jQuery;
 var map;
 
 $(document).ready(function() {
+	
+	
   var myOptions = {
       zoom: 13,
       center: new google.maps.LatLng(40.4166909, -3.7003454),
@@ -40,11 +42,28 @@ $(document).ready(function() {
 		}
 	}
 	
-
+	$('div.content_right a span.kind_contrat').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent().children('div.tool_tip').show();
+		
+	},
+	function(){
+		
+		$(this).parent().parent().children('div.tool_tip').fadeOut();
+		
+	});
+	
+	
 
 });
+
+
+	
 
 
 $j(function(){
 	$j("input[name=search]").prompt("Busca tu municipio...");
 });
+
