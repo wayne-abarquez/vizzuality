@@ -3,9 +3,6 @@
 <div id="map" style="height:384px">
 	
 </div>
-<div class="head_lent">
-	
-</div>
 
 <div id="layout">
 	<div class="main_container">
@@ -62,11 +59,11 @@
 		<div class="right_home">
 			<h3>¿Cómo gasta España el dinero en obras?</h3>
 			<div class="long">
-				<div class="left">
+				<div class="stats left">
 					<label>GASTO</label>
 					<p class="amount">212,317,321€</p>
 				</div>
-				<div class="right">
+				<div class="right stats">
 					<img class="bigGraph" src="../images/fake_mini_stat.png" alt="stat" />
 				</div>
 			</div>
