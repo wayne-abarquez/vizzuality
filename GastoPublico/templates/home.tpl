@@ -3,15 +3,21 @@
 <div id="map" style="height:384px">
 </div>
 
-
-
 <div id="layout">
 	
 	<div class="overMap">
 		<h1>Entérate de las obras que hay a tu alrededor y di que te parecen.</h1>
+	
 		<div class="searchForm">
-			<h3>Busca tu municipio y encuentra obras en el</h3>
+			<h3>Busca tu municipio y encuentra obras en él</h3>
+			<form>
+				<input type="text" value="Introduce tu municipio..." id="searchHeader"/>
+				<input type="submit" value="" />
+				
+			</form>
+			<p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p>
 		</div>
+	
 	</div>
 	
 	<div class="main_container">

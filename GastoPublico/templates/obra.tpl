@@ -33,7 +33,7 @@
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_stats">
 			<h2>Gasto por categorías</h2>
-				
+			
 			<img src="../images/fake_stats.png" />
 		</div>
 		<hr color="#E2E3DD" size="1"/>
