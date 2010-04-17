@@ -4,7 +4,11 @@
 				<h5>Municipios más activos</h5>
 				<p class="regions">
 					{foreach key=id item=region from=$regiones name=contador}
-						<a href="#">{$region.nombre_admin} ({$region.num_licitaciones})</a>
+						{if $region.org_contratante eq 'Administración Local'}
+							<a href="municipio/{$region.organismo_id}">{$region.nombre_admin} ({$region.num_licitaciones})</a>
+						{else}
+							<a href="organismo/{$region.organismo_id}">{$region.nombre_admin} ({$region.num_licitaciones})</a>
+						{/if}
 						{if $smarty.foreach.contador.iteration < 7}, {else}...{/if}
 			    {/foreach}
 				</p>
