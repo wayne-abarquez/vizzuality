@@ -32,11 +32,15 @@
 					{/if}
 					<div class="left_information">
 						<div class="work_image">
-							<a href="obra/{$licitacion.licitacion_id}"><img src="../images/default_work.png" alt="Work" /></a>
+								<a href="obra/{$licitacion.licitacion_id}"><img src="../images/default_work.png" alt="Work" /></a>
 						</div>
 						<div class="work_information">
 							<h4><a href="obra/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:100:"..."}</a></h4>
-							<p><a href="municipio/{$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+							{if $licitacion.org_contratante eq 'Administración Local'}
+								<p><a href="municipio/{$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+							{else}
+								<p><a href="organismo/{$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+							{/if}
 						</div>
 					</div>
 					<div class="right_information">
