@@ -119,14 +119,87 @@
 				</div>
 				
 				<form class="send_comment">
-					
+					<div class="line_comment"></div>
 					<div class="name">
 						<p class="title">Tu nombre</p>
 						<input type="text" value="" id="nameCommented"/>
 					</div>
+
+					<div class="email">
+						<p class="title">Tu email</p>
+						<input type="text" value="" id="nameCommented"/>
+					</div>
+					
+					<div class="web">
+						<p class="title">Tu web (opcional)</p>
+						<input type="text" value="" id="nameCommented"/>
+					</div>
+					
+					<div class="comment">
+						<p class="title">Tu comentario</p>
+						<input type="text" value="" id="nameCommented"/>
+					</div>					
+					<input type="submit" value="" />
 				</form>
 				
 			</div> <!-- content -->
+			
+			<div class="more">
+				<p class="title">Más obras en Villaviciosa de Odón</p>
+				
+				<ul>
+					<li>
+						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						</div>
+						<div class="info">
+							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="info">Infraestructuras <span>- 431,234€</span></p>
+						</div>
+					</li>
+					<li>
+						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						</div>
+						<div class="info">
+							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="info">Infraestructuras <span>- 431,234€</span></p>
+						</div>
+					</li>
+					<li>
+						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						</div>
+						<div class="info">
+							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="info">Infraestructuras <span>- 431,234€</span></p>
+						</div>
+					</li>
+					<li>
+						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						</div>
+						<div class="info">
+							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="info">Infraestructuras <span>- 431,234€</span></p>
+						</div>
+					</li>
+					<li>
+						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						</div>
+						<div class="info">
+							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="info">Infraestructuras <span>- 431,234€</span></p>
+						</div>
+					</li>
+					<li>
+						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						</div>
+						<div class="info">
+							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="info">Infraestructuras <span>- 431,234€</span></p>
+						</div>
+					</li>					
+				</ul>
+	
+					
+			</div>
 	</div>
 
 
