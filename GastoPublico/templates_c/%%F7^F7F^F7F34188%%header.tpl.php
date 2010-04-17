@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-04-17 16:02:38
+<?php /* Smarty version 2.6.26, created on 2010-04-17 17:15:58
          compiled from header.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
 <HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
@@ -8,10 +8,10 @@
 		<META name="author" content=""/>
 		<META name="description" content=""/>            
         	
-		<TITLE>GastoPúblico.es</TITLE>
+		<TITLE>gastopublico.es</TITLE>
 	
 		<LINK rel="favicon" href="images/favicon.ico" >
-	  <LINK rel="stylesheet" href="stylesheets/layout.css" type="text/css" />
+	    <LINK rel="stylesheet" href="stylesheets/layout.css" type="text/css" />
 	
 
 		<!--[if lt IE 7]>
@@ -19,7 +19,11 @@
 		<![endif]-->	
 
 		<SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="javascripts/jquery.input_prompt.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="javascripts/application.js"></SCRIPT>
+		
+		
+		
 
 	</HEAD>
 
@@ -40,7 +44,7 @@
 				</ul>
 				<!-- <p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p> -->
 				<form action="#">
-					<input type="text" value="Busca tu municipio" />
+					<input type="text" name="search" value="" />
 					<input type="submit" value="" />
 				</form>
 			</div>
