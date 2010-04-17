@@ -6,10 +6,10 @@
 		<META name="author" content=""/>
 		<META name="description" content=""/>            
         	
-		<TITLE>GastoPúblico.es</TITLE>
+		<TITLE>gastopublico.es</TITLE>
 	
 		<LINK rel="favicon" href="images/favicon.ico" >
-	  <LINK rel="stylesheet" href="stylesheets/layout.css" type="text/css" />
+	    <LINK rel="stylesheet" href="stylesheets/layout.css" type="text/css" />
 	
 
 		<!--[if lt IE 7]>
@@ -17,7 +17,11 @@
 		<![endif]-->	
 
 		<SCRIPT type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="javascripts/jquery.input_prompt.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="javascripts/application.js"></SCRIPT>
+		
+		
+		
 
 	</HEAD>
 
@@ -38,7 +42,7 @@
 				</ul>
 				<!-- <p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p> -->
 				<form action="#">
-					<input type="text" value="Busca tu municipio" />
+					<input type="text" name="search" value="" />
 					<input type="submit" value="" />
 				</form>
 			</div>
