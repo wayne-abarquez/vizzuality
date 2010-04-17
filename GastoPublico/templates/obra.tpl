@@ -18,6 +18,12 @@
 				<p class="content">Infraestructuras,<span class="number">431,234€</span></p>
 
 			</div>
+			
+			<div class="content_left_like">
+				<div class="like_info">
+				</div>
+				
+			</div>
 
 	</div>
 	
