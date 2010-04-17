@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-04-16 17:29:12
+<?php /* Smarty version 2.6.26, created on 2010-04-17 16:02:38
          compiled from header.tpl */ ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd" >
 <HTML xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
@@ -25,3 +25,23 @@
 
 
 	<BODY>
+		<div class="outer_layout_gray">
+			<div class="header">
+				<p class="logo"><a href="#">gastopublico.es</a></p>
+				<p class="facebook">Identificate con facebook</p>
+			</div>
+		</div>
+		<div class="outer_layout_green">
+			<div class="menu">
+				<img src="../images/green_arrow.png" alt="green arrow"/>
+				<ul>
+					<li><a href="#">obras</a></li>
+					<li><a href="#" class="disabled">suministros</a></li>
+				</ul>
+				<!-- <p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p> -->
+				<form action="#">
+					<input type="text" value="Busca tu municipio" />
+					<input type="submit" value="" />
+				</form>
+			</div>
+		</div>

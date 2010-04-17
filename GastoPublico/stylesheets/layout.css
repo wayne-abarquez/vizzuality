@@ -71,25 +71,25 @@ div.outer_layout_green div.menu form input[type="submit"]:hover {cursor:pointer;
 div.left_region {position:absolute; top:52px; left:0; background: url(../images/top_bkg_right_region.png) no-repeat 0 0 #FFFFFF; width:274px; padding:20px;}
 div.left_region img.arrow {position:absolute; top:18px; right:-13px;}
 div.left_region div.top_information {float:left; margin:0; width:100%;}
-div.left_region div.top_information div.logo {float:left; width:32px; padding:3px 0 0 0;}
+div.left_region div.top_information div.logo {float:left; width:32px; padding:0px 0 0 0;}
 div.left_region div.top_information div.logo img {width:26px;}
 div.left_region div.top_information div.region_data {float:right; width:240px;}
-div.left_region div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725;}
-div.left_region div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:3px 0 0 0;}
+div.left_region div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725; margin-top:2px;}
+div.left_region div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:1px 0 0 0;}
 div.left_region div.top_information div.region_data p.information a {color:#3F8A8C; text-decoration:underline; font:normal 13px Arial;}
 div.left_region div.top_information div.region_data p.information a:hover {text-decoration:none;}
 div.left_region div.top_information div.region_data p.web {float:left; padding:5px 0 0 0;}
 div.left_region div.top_information div.region_data p.web a {color:#3F8A8C; text-decoration:underline; font:normal 11px Arial;}
 div.left_region div.top_information div.region_data p.web a:hover {text-decoration:none;}
-div.left_region img.region {float:left; margin:20px 0 0 0; border:1px solid #cccccc; padding:5px; background:#EEEEEE; width:262px;}
-div.left_region hr {float:left; width:100%;  margin:20px 0 0 0;}
+div.left_region img.region {float:left; margin:15px 0 0 0; border:1px solid #cccccc; padding:5px; background:#EEEEEE; width:262px;}
+div.left_region hr {float:left; width:100%;  margin:18px 0 0 0;}
 div.left_region div.political_data {float:left; margin:13px 0 0 0; width:100%;}
 div.left_region div.political_data h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
 div.left_region div.political_data div.political_logo {float:left; width:44px;}
 div.left_region div.political_data div.political_logo img {width:38px;}
-div.left_region div.political_data div.political_information {float:right; width:230px; padding:3px 0 0 0;}
-div.left_region div.political_data div.political_information h3 {font:bold 13px Arial; color:#418A8E;}
-div.left_region div.political_data div.political_information p {font:normal 11px Arial; color:#666666;}
+div.left_region div.political_data div.political_information {float:right; width:228px; padding:3px 0 0 2px;}
+div.left_region div.political_data div.political_information h3 {font:bold 13px Arial; color:#333333;}
+div.left_region div.political_data div.political_information p {font:normal 11px Arial; color:#666666; margin-top: 3px;}
 div.left_region div.political_data div.political_information p a {color:#3F8A8C; text-decoration:none;}
 div.left_region div.political_data div.political_information p a:hover {text-decoration:underline;}
 div.left_region div.political_stats {float:left; margin:13px 0 0 0; width:100%;}
@@ -107,7 +107,7 @@ div.left_region div.related_regions li a {font:bold 13px Arial; color:#408A8D; p
 div.left_region div.related_regions li a:hover {border-bottom:1px solid #408A8D;}
 
 div.right_region {position:relative; float:right; width:590px; padding:20px 0 100px 20px;}
-div.right_region span {float:left; width:590px; color:#666666; padding:0 0 25px;}
+div.right_region span {float:left; width:590px; color:#666666; padding:0 0 20px;}
 div.right_region span h3 {float:left; width:auto; font:bold 35px Arial; letter-spacing:-1px;}
 div.right_region span div {float:right; width:142px; padding:7px 0 0 0;}
 div.right_region span div p {float:left; width:142px; text-align:right; font:bold 25px Arial; letter-spacing:-1px;}
@@ -121,7 +121,8 @@ div.right_region ul li div.left_information {float:left; width:420px;}
 div.right_region ul li div.left_information div.work_image {float:left; width:77px;}
 div.right_region ul li div.left_information div.work_image img {float:left; width:60px; padding:3px; background:white; border:1px solid #cccccc;}
 div.right_region ul li div.left_information div.work_information {float:left; width:343px;}
-div.right_region ul li div.left_information div.work_information h4 {font:bold 15px Arial; color:#2A2625; line-height:18px;}
+div.right_region ul li div.left_information div.work_information a {font:bold 15px Arial; color:#2A2625; line-height:18px;}
+div.right_region ul li div.left_information div.work_information a:hover {font:bold 15px Arial; color:#2A2625; line-height:18px; text-decoration: underline; cursor: pointer;}
 div.right_region ul li div.left_information div.work_information p {font:normal 13px Arial; color:#666666; padding:5px 0 0 0;}
 
 div.right_region ul li div.right_information {float:right; width:170px;}
