@@ -24,54 +24,28 @@
 		<div class="left_home">
 			<h3>Obras con comentarios recientes</h3>
 			<ul>
-				<li>
-					<div class="left_information">
-						<div class="work_image">
-							<img src="../images/work_fake.png" alt="Work" />
-						</div>
-						<div class="work_information">
-							<h4>Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</h4>
-							<p><a href="#">Villaviciosa de Odón</a> - <strong>431,234€</strong></p>
-						</div>
-					</div>
-					<div class="right_information">
-						<a class="no_likes" href="#">21</a>	
-						<a class="likes" href="#">19</a>					
-						<a class="comment" href="#">0 comentarios</a>
-					</div>
-				</li>
-				<li>
+				{foreach key=id item=licitacion from=$licitaciones name=count}
+					{if $smarty.foreach.count.iteration < 3}
+						<li>
+					{else}
+						<li class="last">
+					{/if}
 					<div class="left_information">
 						<div class="work_image">
 							<img src="../images/default_work.png" alt="Work" />
 						</div>
 						<div class="work_information">
-							<h4>Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</h4>
-							<p><a href="#">Villaviciosa de Odón</a> - <strong>431,234€</strong></p>
+							<h4><a href="obra/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:100:"..."}</a></h4>
+							<p><a href="municipio/{$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
 						</div>
 					</div>
 					<div class="right_information">
-						<a class="no_likes" href="#">21</a>	
-						<a class="likes" href="#">1</a>
-						<a class="comments" href="#">12 comentarios</a>
+						<a class="no_likes" href="#">{$licitacion.votes_down}</a>	
+						<a class="likes" href="#">{$licitacion.votes_up}</a>
+						<a class="comments" href="#">{$licitacion.num_comentarios} comentarios</a>
 					</div>
 				</li>
-				<li class="last">
-					<div class="left_information">
-						<div class="work_image">
-							<img src="../images/work_fake.png" alt="Work" />
-						</div>
-						<div class="work_information">
-							<h4>Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</h4>
-							<p><a href="#">Villaviciosa de Odón</a> - <strong>431,234€</strong></p>
-						</div>
-					</div>
-					<div class="right_information">
-						<a class="no_likes" href="#">21</a>	
-						<a class="likes" href="#">19</a>
-						<a class="comments" href="#">2 comentarios</a>
-					</div>
-				</li>
+		    {/foreach}
 			</ul>
 		</div>
 		<div class="right_home">
