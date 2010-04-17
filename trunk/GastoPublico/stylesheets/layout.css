@@ -106,6 +106,12 @@ div.renovation_content div.content div.content_left p.name a:hover {text-decorat
 div.renovation_content div.content div.content_left p.title {float:left; font:bold 17px Arial; color:#2A2625; letter-spacing:-1.0px; margin:20px 0 0 0;}
 
 div.renovation_content div.content p.description {float:left; font:normal 15px Arial; color:#666666; margin:0px 20px 10px 20px; width:567px;}
+div.renovation_content div.content div.no_info {float:left; font:normal 15px Arial; background:url(../images/bkg_no_info.png) no-repeat 0 0; width:566px; height:112px; margin:5px 0 10px 22px;}
+div.renovation_content div.content div.no_info p.messageTitle {text-align:center; font:bold 17px Arial; color:#666666; margin:37px 0 0 0;}
+div.renovation_content div.content div.no_info p.suggestMessage {text-align:center; font:normal 13px Arial; color:#666666;}
+div.renovation_content div.content div.no_info p.suggestMessage a {text-decoration:none; font:bold 13px Arial; color:#408A8D;}
+div.renovation_content div.content div.no_info p.suggestMessage a:hover {text-decoration:underline;}
+
 div.renovation_content div.content p.download {float:left; margin:5px 0 0 20px;}
 
 div.renovation_content div.content p.download span.pdf {float:left; background:url(../images/icons/pdf_icon.png) no-repeat 0 0; height:16px; padding:0 10px 0 20px;}
@@ -120,10 +126,20 @@ div.renovation_content div.content p.download span.view_more a:hover {text-decor
 
 div.renovation_content div.content div.line_to_separate {float:left; background:url(../images/line_to_separate.png) no-repeat 0 0; width:572px; height:2px; margin:10px 0 10px 20px;}
 
-div.renovation_content div.content div.content_right {float:right; margin:0 18px 0 0;}
+div.renovation_content div.content div.content_right {float:right; margin:0 18px 0 0; position:relative;}
 div.renovation_content div.content div.content_right a.money {float:right; font:bold 29px Arial; color:#FFFFFF; background:url(../images/euroBox_left.png) no-repeat 0 0; text-decoration:none; height:40px; margin:0 8px 0 0; padding:0px 5px 0 40px;}
 div.renovation_content div.content div.content_right a.money span {float:right; background:url(../images/euroBox_bkg.png) no-repeat right top; height:40px; padding:2px 9px 0 4px;}
-div.renovation_content div.content div.content_right span.kind_contrat {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
+div.renovation_content div.content div.content_right a {text-decoration:none;}
+div.renovation_content div.content div.content_right a span.kind_contrat {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
+
+div.renovation_content div.content div.content_right div.tool_tip {position:absolute; right:-20px; bottom:30px; width:162px; display:none; z-index:10000;}
+
+div.renovation_content div.content div.content_right div.tool_tip span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.renovation_content div.content div.content_right div.tool_tip span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.renovation_content div.content div.content_right div.tool_tip span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.renovation_content div.content div.content_right div.tool_tip span.body p.info {float:left; font:normal 13px Arial; color:#666666; width:127px; margin:4px 0 6px 20px;}
+div.renovation_content div.content div.content_right div.tool_tip span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
 
 div.renovation_content div.content div.comments {float:left; margin:0 0 0 20px; width:571px;}
 div.renovation_content div.content div.comments ul {float:left; width:100%;}
