@@ -29,12 +29,12 @@
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_stats">
 			<h2>Gasto por tipo de procedimiento</h2>
-			<img src="../images/fake_stats.png" />
+			<div class="big_chart"></div>
 		</div>
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_stats">
 			<h2>Gasto por categorías</h2>
-			<img src="../images/fake_stats.png" />
+			<div class="big_chart"></div>
 		</div>
 		<hr color="#E2E3DD" size="1"/>
 		<div class="more_enterprises">

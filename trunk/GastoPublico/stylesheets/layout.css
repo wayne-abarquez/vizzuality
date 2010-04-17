@@ -226,6 +226,7 @@ div.outer_layout_green div.menu form input[type="submit"]:hover {cursor:pointer;
 
 /*HOME*/
 
+
 div.overMap {position:absolute; top: 40px; left:0px; background-image: url(../images/bkgOverMap.png); height:277px; width:530px; padding: 25px 28px 0 28px; }
 div.overMap h1 {font-size: 49px; color:#2A2625; letter-spacing: -1px; font-weight: bold; line-height: 47px; margin: 0 0 22px 0;}
 div overMap div.searchForm {}
@@ -278,15 +279,17 @@ div.left_home ul li div.right_information a.no_like:hover {background-position:0
 div.left_home ul li div.right_information a.no_like span {float:right; background:url(../images/greyButton_bkg.png) no-repeat right 0; padding:5px 7px 5px 3px; margin:0; font:normal 13px Arial; color:#FFFFFF; width:auto;}
 div.left_home ul li div.right_information a.no_like:hover span {background-position:right -25px;}
 
-div.right_home {float:right; width:320px; background:#EFF0E8; padding:20px 0 20px 20px; text-align:left;}
+div.right_home {float:right; width:320px; background:#EFF0E8; padding:20px 0 40px 20px; text-align:left;}
 div.right_home h3 {float:left; font:bold 21px Arial; color:#AAABA7; letter-spacing: -1px;}
-div.right_home div.longPolitical {float:left; margin:10px 0; width:310px;}
+div.right_home div.longPolitical {float:left; margin:20px 0 10px; width:310px;}
+div.right_home div.long div.right {float:right; width:80px; height:30px; padding:30px 0 0 0;}
 div.right_home label {font:bold 10px Arial; color:#999999;}
 div.right_home p.amount {font:bold 35px Arial; color:#999999;}
 div.right_home p.politicalName {font:bold 10px Arial; color:#999999; width:100px;}
 div.right_home img.littleGraph {float:left; margin:10px 0 3px 0;}
 div.right_home img.bigGraph {float:left; margin:15px 0 0 0;}
-div.right_home div.political_stats {float:left; margin:0px 0px 0 3px; width:100px;}
+div.right_home div.political_stats {float:left; margin:0px 0px 0 35px; width:80px;}
+div.right_home div.political_stats2 {float:left; margin:0; width:80px;}
 div.right_home hr{ margin: 9px 0 12px 0;}
 
 div.right_home p.long {float:left; margin:0 0 0 0; text-align:center; color:#666666; width:315px; padding:0;}
@@ -314,6 +317,7 @@ div.left_region img.region {float:left; margin:15px 0 0 0; border:1px solid #ccc
 div.left_region hr {float:left; width:100%;  margin:18px 0 0 0;}
 div.left_region div.political_data {float:left; margin:13px 0 0 0; width:100%;}
 div.left_region div.political_data h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region div.political_data div.big_chart {float:left; width:274px;}
 div.left_region div.political_data div.political_logo {float:left; width:44px;}
 div.left_region div.political_data div.political_logo img {width:38px;}
 div.left_region div.political_data div.political_information {float:right; width:228px; padding:3px 0 0 2px;}
