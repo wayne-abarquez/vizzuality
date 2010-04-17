@@ -31,7 +31,7 @@
 		<div class="outer_layout_gray">
 			<div class="header">
 				<p class="logo"><a href="#">gastopublico.es</a></p>
-				<p class="facebook">Identificate con facebook</p>
+				<p class="facebook">Identifícate con facebook</p>
 			</div>
 		</div>
 		<div class="outer_layout_green">
