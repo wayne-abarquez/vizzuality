@@ -3,7 +3,7 @@ img,fieldset{border:none; padding:0; margin:0;}
 body{font:normal 12px Arial; background:#EFF0E8;}
 span.clear{clear:both;}
 div.left{float:left; width:auto;}
-div.right{float:right; width:auto;}
+div.right{float:right; width:ttauto;}
 a:focus{outline:none}
 img.left_curve{float:left;}
 img.right_curve{float:right;}
@@ -13,30 +13,167 @@ div#layout {margin:0 auto; width:924px; position:relative;}
 div#outer_upper_area{width:100%;}
 
 div#upper_area {width:924px; margin:0 auto; }
+
+
+div.renovation_content {position:absolute; right:0; top:52px; width:623px; height:184px; background:url(../images/bkgRenovacionTitle.png) no-repeat 0 0; margin:0 0 0 0;}
+
 div.map {float:left; position:relative; width:924px; height:278px; margin:0; background:url(../images/googleMapScreenShot.jpg) no-repeat 0 0; border-bottom:3px solid #FFFFFF;}
+
+
+
+
+/************ OBRA *******************/
+
+div.left_region_work {position:relative; background-color:#EFF0E8; width:274px; padding:20px;}
+div.left_region_work img.arrow {position:absolute; top:18px; right:-13px;}
+div.left_region_work div.top_information {float:left; margin:15px 0 0 0; width:100%;}
+div.left_region_work div.top_information div.logo {float:left; width:32px; padding:3px 0 0 0;}
+div.left_region_work div.top_information div.logo img {width:26px;}
+div.left_region_work div.top_information div.region_data {float:right; width:240px;}
+div.left_region_work div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725;}
+div.left_region_work div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:3px 0 0 0;}
+div.left_region_work div.top_information div.region_data p.information a {color:#3F8A8C; text-decoration:underline; font:normal 13px Arial;}
+div.left_region_work div.top_information div.region_data p.information a:hover {text-decoration:none;}
+div.left_region_work div.top_information div.region_data p.web {float:left; padding:5px 0 0 0;}
+div.left_region_work div.top_information div.region_data p.web a {color:#3F8A8C; text-decoration:underline; font:normal 11px Arial;}
+div.left_region_work div.top_information div.region_data p.web a:hover {text-decoration:none;}
+div.left_region_work img.region {float:left; margin:20px 0 0 0; border:1px solid #cccccc; padding:5px; background:#EEEEEE; width:262px;}
+div.left_region_work hr {float:left; width:100%;  margin:20px 0 0 0;}
+div.left_region_work div.political_data {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region_work div.political_data h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region_work div.political_data div.political_logo {float:left; width:44px;}
+div.left_region_work div.political_data div.political_logo img {width:38px;}
+div.left_region_work div.political_data div.political_information {float:right; width:230px; padding:3px 0 0 0;}
+div.left_region_work div.political_data div.political_information h3 {font:bold 13px Arial; color:#418A8E;}
+div.left_region_work div.political_data div.political_information p {font:normal 11px Arial; color:#666666;}
+div.left_region_work div.political_data div.political_information p a {color:#3F8A8C; text-decoration:none;}
+div.left_region_work div.political_data div.political_information p a:hover {text-decoration:underline;}
+div.left_region_work div.political_stats {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region_work div.political_stats h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region_work div.more_enterprises {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region_work div.more_enterprises h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region_work div.more_enterprises li {font:normal 13px Arial; color:#666666; padding:1px 0;}
+div.left_region_work div.related_regions {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region_work div.related_regions span {float:left; width:100%; padding:0 0 7px 0;}
+div.left_region_work div.related_regions span h2 {float:left; width:auto; font:bold 15px Arial; color:#333333;}
+div.left_region_work div.related_regions span a {float:right; width:auto; font:normal 11px Arial; color:#408A8D; padding:2px 0 0; text-decoration:none; border-bottom:1px solid #408A8D;}
+div.left_region_work div.related_regions span a:hover {border-bottom:1px dotted #408A8D;}
+div.left_region_work div.related_regions li {padding:2px 0;}
+div.left_region_work div.related_regions li a {font:bold 13px Arial; color:#408A8D; padding:0; text-decoration:none;}
+div.left_region_work div.related_regions li a:hover {border-bottom:1px solid #408A8D;}
+
 div.renovation {position:absolute; right:0; top:52px; width:623px; height:184px; background:url(../images/bkgRenovacionTitle.png) no-repeat 0 0; margin:0 0 0 0;}
+div.renovation_content div.content_up {float:left;}
+div.renovation_content div.content_up div.content_left {float:left; width:80px;}
+div.renovation_content div.content_up div.content_left div.avatar {float:left; width:62px; margin:21px 0 0 32px;}
+div.renovation_content div.content_up div.content_left div.avatar img {float:left; padding:4px; border:1px solid #FFFFFF; background:white; width:60px; height:60px;}
+div.renovation_content div.content_up div.content_left p.upload a.upload_photo {float:left; font:bold 11px Arial; color:#FFFFFF; text-decoration:underline; width:100%; margin:0 0 0 32px; letter-spacing:0px;}
 
-div.renovation div.content_left {float:left; width:80px;}
-div.renovation div.content_left div.avatar {float:left; width:62px; margin:21px 0 0 32px;}
-div.renovation div.content_left div.avatar img {float:left; padding:4px; border:1px solid #cccccc; background:white; width:60px; height:60px;}
-div.renovation div.content_left p.upload a.upload_photo {float:left; font:bold 11px Arial; color:#FFFFFF; text-decoration:underline; width:100%; margin:0 0 0 32px; letter-spacing:0px;}
+div.renovation_content div.content_up div.content_right {float:right; width:480px; margin:21px 15px 0 35px; }
+div.renovation_content div.content_up div.content_right p.title {float:left; width:493px; font:bold 21px Arial; color:#FFFFFF; }
+div.renovation_content div.content_up div.content_right p.content {float:left; width:493px; font:normal 13px Arial; color:#E19DB7;}
+div.renovation_content div.content_up div.content_right p.content span.number {font:bold 13px Arial; color:#FFFFFF;}
+div.renovation_content div.content_up div.content_right p.content span.state {font:bold 13px Arial; color:#DA84A5;}
 
-div.renovation div.content_right {float:right; width:510px;}
-div.renovation div.content_right p.title {float:left; width:493px; font:bold 21px Arial; color:#FFFFFF; margin:21px 15px 0 0px;}
-div.renovation div.content_right p.content {float:left; width:493px; font:normal 13px Arial; color:#E19DB7; margin:2px 15px 0 0px;}
-div.renovation div.content_right p.content span.number {font:bold 13px Arial; color:#FFFFFF;}
-
-div.renovation div.content_left_like {float:left; width:250px;}
-div.renovation div.content_left_like div.like_info{float:left; width:143px; height:25px; margin:0 0 0 32px; background:url(../images/bkg_info_like.png) no-repeat 0 0;}
-
-div.renovation div.content_right_comment {float:right; width:150px;}
-
+div.renovation_content div.content_down {}
+div.renovation_content div.content_down div.content_left_like {float:left; width:250px; margin:20px 0 0 32px; background:#C33A6E; padding:0 0 10px 0;}
+div.renovation_content div.content_down div.content_left_like div.like_info{float:left; width:143px; height:25px; margin:0 0 0 0px; background:url(../images/bkg_info_like.png) no-repeat 0 0; }
+div.renovation_content div.content_down div.content_left_like div.like_info p {float:left; text-align:center; font:normal 13px Arial; color:#C33A6E; margin:3px 0 0 21px;}
+div.renovation_content div.content_down div.content_left_like div.like_info p span {font:bold 13px Arial; color:#C33A6E;}
+div.renovation_content div.content_down div.content_left_like p.do_you_like {float:left; margin:5px 0 0 9px;}
+div.renovation_content div.content_down div.content_left_like p.do_you_like a{text-decoration:underline; font:bold 13px Arial; color:#FFFFFF; }
 
 
+div.renovation_content div.content_down div.content_right_comment {float:right; margin:28px 18px 0 0px;}
+div.renovation_content div.content_down div.content_right_comment p {float:left; background:url(../images/icons/comment_alpha.png) no-repeat 0 3px; height:18px; font:bold 13px Arial; color:#FFFFFF; padding:0 0 0 20px;} 
 
 
 
+div.renovation_content div.content_head {float:right; width:610px; height:19px; background:url(../images/renovation_content_head.png) no-repeat 0 0; margin:10px 0 0px 0;}
+div.renovation_content div.content {float:right; width:610px; background-color:#FFFFFF; margin:0px 0 0 0; padding:5px 0 0 0;}
 
+
+div.renovation_content div.content div.content_left {float:left; width:260px; margin:0 0 0 20px;}
+
+
+div.renovation_content div.content div.content_left p.award {font:left; font:bold 13px Arial; color:#999999; text-transform:uppercase; letter-spacing:-1.0px; }
+div.renovation_content div.content div.content_left p.name {font:left; font:normal 13px Arial; color:#408A8D; text-decoration:underline; line-height:12px;}
+
+div.renovation_content div.content div.content_left p.title {float:left; font:bold 17px Arial; color:#2A2625; letter-spacing:-1.0px; margin:25px 0 0 0;}
+
+div.renovation_content div.content p.description {float:left; font:normal 15px Arial; color:#666666; margin:8px 20px 10px 20px; width:567px;}
+div.renovation_content div.content p.download {float:left; margin:5px 0 0 20px;}
+
+div.renovation_content div.content p.download span.pdf {float:left; background:url(../images/icons/pdf_icon.png) no-repeat 0 0; height:16px; padding:0 20px 0 20px;}
+div.renovation_content div.content p.download span.pdf a {float:left; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
+
+div.renovation_content div.content p.download span.line_divide {float:left; background:url(../images/line_divide_download.png) no-repeat 0 0; width:2px; height:16px; margin:0 20px 0 0;}
+
+div.renovation_content div.content p.download span.view_more {float:left; background:url(../images/view_more_link.png) no-repeat 0 0; height:16px; padding:0 0 0 20px;}
+div.renovation_content div.content p.download span.view_more a {float:left; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
+
+div.renovation_content div.content div.line_to_separate {float:left; background:url(../images/line_to_separate.png) no-repeat 0 0; width:572px; height:2px; margin:10px 0 10px 20px;}
+
+div.renovation_content div.content div.content_right {float:right; margin:0 18px 0 0;}
+div.renovation_content div.content div.content_right a.money {float:right; font:bold 29px Arial; color:#FFFFFF; background:url(../images/euroBox_left.png) no-repeat 0 0; text-decoration:none; height:40px; margin:0 8px 0 0; padding:0px 5px 0 40px;}
+div.renovation_content div.content div.content_right a.money span {float:right; background:url(../images/euroBox_bkg.png) no-repeat right top; height:40px; padding:2px 9px 0 4px;}
+div.renovation_content div.content div.content_right span.kind_contrat {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
+
+div.renovation_content div.content div.comments {float:left; margin:0 0 0 20px; width:571px;}
+div.renovation_content div.content div.comments ul {float:left; width:100%;}
+div.renovation_content div.content div.comments li {float:left; width:100%; margin:3px 0;}
+div.renovation_content div.content div.comments li div.avatar {float:left; width:50px;}
+div.renovation_content div.content div.comments li div.avatar img {float:left; padding:4px; border:1px solid #cccccc; background:white; width:48px; height:48px;}
+div.renovation_content div.content div.comments li div.comment_area {float:right; width:500px; margin:0 0 0 0px;}
+div.renovation_content div.content div.comments li div.comment_area p.name {float:left; font:bold 13px Arial; color:#418A8E;}
+div.renovation_content div.content div.comments li div.comment_area p.comment {float:left; font:normal 13px Arial; color:#666666;}
+div.renovation_content div.content div.comments li div.line_to_separate {float:left; background:url(../images/line_to_separate.png) no-repeat 0 0; width:572px; height:2px; margin:10px 0 10px 0px;}
+
+div.renovation_content div.content div.line_comment {float:left; width:571px; height:1px; background-color:#A0C4C6; margin:0px 0 0 0;}
+div.renovation_content div.content form.send_comment {float:left; margin:35px 0 35px 20px; width:571px; height:250px; background-color:#E3EEEE;}
+div.renovation_content div.content form.send_comment div.name {float:left; margin:15px 0 0 15px;}
+div.renovation_content div.content form.send_comment div.name p.title {font:bold 13px Arial; color:#666666; width:170px; }
+div.renovation_content div.content form.send_comment div.name input[type="text"]{float:left; padding:0px 4px 0px 4px; width:162px; height:30px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
+div.renovation_content div.content form.send_comment div.name input[type="text"]:focus {outline:none;} 
+
+div.renovation_content div.content form.send_comment div.email {float:left; margin:15px 0 0 11px;}
+div.renovation_content div.content form.send_comment div.email p.title {font:bold 13px Arial; color:#666666; width:170px; }
+div.renovation_content div.content form.send_comment div.email input[type="text"]{float:left; padding:0px 4px 0px 4px; width:162px; height:30px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
+div.renovation_content div.content form.send_comment div.email input[type="text"]:focus {outline:none;}
+
+div.renovation_content div.content form.send_comment div.web {float:left; margin:15px 0 0 11px;}
+div.renovation_content div.content form.send_comment div.web p.title {font:bold 13px Arial; color:#B4B7B7; width:170px; }
+div.renovation_content div.content form.send_comment div.web input[type="text"]{float:left; padding:0px 4px 0px 4px; width:162px; height:30px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
+div.renovation_content div.content form.send_comment div.web input[type="text"]:focus {outline:none;}
+
+div.renovation_content div.content form.send_comment div.comment {float:left; margin:15px 0 0 15px;}
+div.renovation_content div.content form.send_comment div.comment p.title {font:bold 13px Arial; color:#666666; width:530px; }
+div.renovation_content div.content form.send_comment div.comment textarea{float:left; padding:3px 4px; width:528px; height:74px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
+div.renovation_content div.content form.send_comment div.comment textarea:focus {outline:none;}
+
+
+div.renovation_content div.content form.send_comment input[type="submit"]{float:right; background:url(../images/bkgSendComment.png) no-repeat 0 0; margin:18px 20px 0px 0; width:131px; height:30px; border:none; }
+div.renovation_content div.content form.send_comment input[type="submit"]:focus {outline:none;}
+div.renovation_content div.content form.send_comment input[type="submit"]:hover {cursor:pointer; background-position:0 -30px;}
+
+div.renovation_content div.more {float:right; margin:2px 0 0 0; background-color:#FFFFFF; width:610px;}
+div.renovation_content div.more p.title {float:left; font:bold 17px Arial; color:#2A2625; width:610px; margin:17px 0 0 20px;}
+div.renovation_content div.more ul {float:left; margin:10px 0 20px 20px;}
+div.renovation_content div.more ul li {float:left; width:295px; margin:10px 0 12px 0px;}
+div.renovation_content div.more ul li div.imgPlace {float:left; width:50px;}
+div.renovation_content div.more ul li div.imgPlace img {float:left; padding:4px; border:1px solid #cccccc; background:white; width:48px; height:48px;}
+div.renovation_content div.more ul li div.info {float:left; width:200px; margin:0 0 0 20px;}
+div.renovation_content div.more ul li div.info p.about {float:left; font:bold 13px Arial; color:#2A2825;}
+div.renovation_content div.more ul li div.info p.info {float:left; font:normal 11px Arial; color:#666666; margin:8px 0 0 0;}
+div.renovation_content div.more ul li div.info p.info span {float:right; font:bold 11px Arial; color:#666666; }
+div.renovation_content div.more ul li div.result {float:left; margin:8px 0 0 69px; width:200px;} 
+
+div.renovation_content div.more ul li div.result a.likes {float:left; background:url(../images/pinkButton_leftSmiley.png) no-repeat 0 top; margin:0; padding:0 0 0 20px; height:25px; text-decoration:none;}
+div.renovation_content div.more ul li div.result a.likes:hover {background-position:0 -25px;}
+div.renovation_content div.more ul li div.result a.likes span {float:left; background:url(../images/pinkButton_bkg.png) no-repeat right top; margin:0; font:normal 13px Arial; color:#FFFFFF; padding:4px 10px 0 5px; height:21px;}
+div.renovation_content div.more ul li div.result a.likes:hover span {background-position:right -25px;}
+div.renovation_content div.more ul li div.result p.comments a {float:left; font:normal 13px Arial; color:#3F8A8C; text-decoration:underline; margin:3px 0 0 10px;}
+div.renovation_content div.more ul li div.result p.comments a:hover {}
 
 ul {list-style:none;}
 
