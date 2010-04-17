@@ -59,27 +59,32 @@
 			<div class="long">
 				<div class="left">
 					<label>GASTO</label>
-					<p>212,317,321€</p>
+					<p class="amount">212,317,321€</p>
 				</div>
-				<img src="../images/fake_mini_stat.png" alt="stat" />
+				<div class="right">
+					<img class="bigGraph" src="../images/fake_mini_stat.png" alt="stat" />
+				</div>
 			</div>
-			<hr size="1" color="#CDCDC7" />
+
+			<hr size="1" color="#CDCDC7" width="320" style="float:left"/>
+			
 			<h3>¿Cómo gastan los principales partidos el dinero en obras?</h3>
-			<div class="long">
+		
+			<div class="longPolitical">
 				<div class="political_stats">
-					<img src="../images/fake_mini_stat.png" alt="stat" />
-					<p>Partido Popular</p>
+					<img class="littleGraph" src="../images/fake_mini_stat.png" alt="stat" />
+					<p class="politicalName">Partido Popular</p>
 				</div>
 				<div class="political_stats">
-					<img src="../images/fake_mini_stat.png" alt="stat" />
-					<p>PSOE</p>
+					<img class="littleGraph" src="../images/fake_mini_stat.png" alt="stat" />
+					<p class="politicalName">PSOE</p>
 				</div>
 				<div class="political_stats">
-					<img src="../images/fake_mini_stat.png" alt="stat" />
-					<p>Izquierda Unida</p>
+					<img class="littleGraph" src="../images/fake_mini_stat.png" alt="stat" />
+					<p class="politicalName">Izquierda Unida</p>
 				</div>
 			</div>
-			<a href="#">Más respuestas en stats.gastopublico.es</a>
+			<p class="long"><a href="#">Más respuestas en stats.gastopublico.es</a></p> 
 		</div>
 	</div>
 </div>
