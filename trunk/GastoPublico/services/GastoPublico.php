@@ -27,7 +27,7 @@ class GastoPublico {
     }
     
     function getOrganismoData($id) {
-        $sql="select *,(select count(id) from licitacion where organismo_fk=o.id) as num_licitaciones from organismo as o where o.id=".$id;
+        $sql="select *,(select count(id) from licitacion where organismo_fk=o.id) as num_licitaciones,(select sum(importe) from licitacion where organismo_fk=o.id) as sum_importe from organismo as o where o.id=".$id;
         return pg_fetch_assoc(pg_query($this->conn, $sql));  
     }
     
