@@ -9,7 +9,7 @@
 				<img src="../images/villaviciosa.png" />
 			</div>
 			<div class="region_data">
-				<h1>Villaviciosa de Odón</h1>
+				<h1>{$municipio.poblacion}</h1>
 				<p class="information"><a href="#">Madrid</a>, 181.013 habitantes</p>
 				<p class="web"><a href="http://www.villaviciosadeodon.com" target="_blank">www.villaviciosadeodon.com</a></p>
 			</div>
