@@ -208,10 +208,10 @@
 				
 				<ul>
 					<li>
-						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						<div class="imgPlace"><a href="#"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></a>
 						</div>
 						<div class="info">
-							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="about"><a href="#">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</a></p>
 							<p class="info">Infraestructuras <span>- 431,234€</span></p>
 						</div>
 						<div class="result">
@@ -221,10 +221,10 @@
 						</div>
 					</li>
 					<li>
-						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						<div class="imgPlace"><a href="#"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></a>
 						</div>
 						<div class="info">
-							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="about"><a href="#">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</a></p>
 							<p class="info">Infraestructuras <span>- 431,234€</span></p>
 						</div>
 						<div class="result">

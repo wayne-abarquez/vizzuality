@@ -164,9 +164,11 @@ div.renovation_content div.more p.title {float:left; font:bold 17px Arial; color
 div.renovation_content div.more ul {float:left; margin:10px 0 20px 20px;}
 div.renovation_content div.more ul li {float:left; width:295px; margin:10px 0 12px 0px;}
 div.renovation_content div.more ul li div.imgPlace {float:left; width:50px;}
-div.renovation_content div.more ul li div.imgPlace img {float:left; padding:3px; border:1px solid #cccccc; background:white; width:48px; height:48px;}
+div.renovation_content div.more ul li div.imgPlace a img {float:left; padding:3px; border:1px solid #cccccc; background:white; width:48px; height:48px;}
+div.renovation_content div.more ul li div.imgPlace a:hover img {border:1px solid #999999;}
 div.renovation_content div.more ul li div.info {float:left; width:200px; margin:0 0 0 15px;}
-div.renovation_content div.more ul li div.info p.about {float:left; font:bold 13px Arial; color:#2A2825;}
+div.renovation_content div.more ul li div.info p.about a{float:left; font:bold 13px Arial; color:#2A2825; text-decoration: none;}
+div.renovation_content div.more ul li div.info p.about a:hover{text-decoration: underline;}
 div.renovation_content div.more ul li div.info p.info {float:left; font:normal 11px Arial; color:#666666; margin:5px 0 0 0;}
 div.renovation_content div.more ul li div.info p.info span {float:right; font:bold 11px Arial; color:#666666; }
 div.renovation_content div.more ul li div.result {float:left; margin:7px 0 0 64px; width:200px;} 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2010-04-17 18:01:34
+<?php /* Smarty version 2.6.26, created on 2010-04-17 18:22:41
          compiled from obra.tpl */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => "header.tpl", 'smarty_include_vars' => array()));
@@ -214,10 +214,10 @@ unset($_smarty_tpl_vars);
 				
 				<ul>
 					<li>
-						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						<div class="imgPlace"><a href="#"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></a>
 						</div>
 						<div class="info">
-							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="about"><a href="#">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</a></p>
 							<p class="info">Infraestructuras <span>- 431,234€</span></p>
 						</div>
 						<div class="result">
@@ -227,10 +227,10 @@ unset($_smarty_tpl_vars);
 						</div>
 					</li>
 					<li>
-						<div class="imgPlace"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						<div class="imgPlace"><a href="#"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></a>
 						</div>
 						<div class="info">
-							<p class="about">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
+							<p class="about"><a href="#">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</a></p>
 							<p class="info">Infraestructuras <span>- 431,234€</span></p>
 						</div>
 						<div class="result">
