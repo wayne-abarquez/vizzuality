@@ -12,7 +12,7 @@
 		<link rel="shortcut icon" href="/images/favicon.ico">
 	  <link rel="stylesheet" href="/stylesheets/layout.css" type="text/css">
 	
-		<!-- IE 6 "fixes" -->
+			<!-- IE 6 "fixes" -->
 		<!--[if lt IE 7]>
 		<link type='text/css' href='css/layout_ie.css' rel='stylesheet' media='screen' />
 		<![endif]-->	
