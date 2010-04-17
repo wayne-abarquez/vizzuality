@@ -78,13 +78,11 @@ div.renovation_content div.content_up div.content_right p.content span.number {f
 div.renovation_content div.content_up div.content_right p.content span.state {font:bold 13px Arial; color:#DA84A5;}
 
 div.renovation_content div.content_down {}
-div.renovation_content div.content_down div.content_left_like {float:left; width:250px; margin:20px 0 0 20px; background:#C33A6E; padding:0 0 10px 0;}
-div.renovation_content div.content_down div.content_left_like div.like_info{float:left; width:143px; height:25px; margin:0 0 0 0px; background:url(../images/bkg_info_like.png) no-repeat 0 0; }
-div.renovation_content div.content_down div.content_left_like div.like_info p {float:left; text-align:center; font:normal 13px Arial; color:#C33A6E; margin:3px 0 0 21px;}
-div.renovation_content div.content_down div.content_left_like div.like_info p span {font:bold 13px Arial; color:#C33A6E;}
-div.renovation_content div.content_down div.content_left_like p.do_you_like {float:left; margin:1px 0 0 9px;}
-div.renovation_content div.content_down div.content_left_like p.do_you_like a{text-decoration:underline; font:bold 15px Arial; color:#FFFFFF; }
-div.renovation_content div.content_down div.content_left_like p.do_you_like a:hover{text-decoration:none;}
+div.renovation_content div.content_down div.content_left_like {float:left; width:280px; margin:20px 0 0 20px; background:#C33A6E; padding:0 0 10px 0;}
+div.renovation_content div.content_down div.content_left_like a.like{float:left; width:98px; padding: 5px 0 0 23px; height:20px; margin:0 7px 0 0px;  background:url(../images/likeObra.png) no-repeat 0 0; font-weight:bold; color:#C3396D; text-decoration:none; line-height: 13px; }
+div.renovation_content div.content_down div.content_left_like a.like:hover{background:url(../images/likeObra.png) no-repeat 0 -25px; color:#FFFFFF; }
+div.renovation_content div.content_down div.content_left_like a.no_like{float:left; width:118px; padding: 5px 0 0 23px; height:20px; margin:0 0 0 0px; background:url(../images/nolikeObra.png) no-repeat 0 0; font-weight:bold; color:#666666; text-decoration:none; line-height: 13px; }
+div.renovation_content div.content_down div.content_left_like a.no_like:hover{background:url(../images/nolikeObra.png) no-repeat 0 -25px; color:#FFFFFF; }
 
 
 div.renovation_content div.content_down div.content_right_comment {float:right; margin:28px 18px 0 0px;}
@@ -256,12 +254,12 @@ div.left_home ul li div.left_information div.work_information p {font:normal 13p
 div.left_home ul li div.left_information div.work_information p a {font:normal 13px Arial; color:#408A8D;}
 div.left_home ul li div.left_information div.work_information p a:hover {text-decoration:none;}
 div.left_home ul li div.right_information {float:right; width:154px;}
-div.left_home ul li div.right_information a.likes {float:right; background:url(../images/pinkButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none;}
-div.left_home ul li div.right_information a.likes:hover {background-position:0 -25px;}
-div.left_home ul li div.right_information a.likes span {float:right; background:url(../images/pinkButton_bkg.png) no-repeat right 0; padding:5px 7px 5px 3px; margin:0; font:normal 13px Arial; color:#FFFFFF; width:auto;}
-div.left_home ul li div.right_information a.likes:hover span {background-position:right -25px;}
+div.left_home ul li div.right_information a.likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff; padding: 1px 4px 0 0; margin: 0 5px 0 0; text-align:right;}
+div.left_home ul li div.right_information a.likes:hover {background-position:0 -16px;}
+div.left_home ul li div.right_information a.no_likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat -37px 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff;padding: 1px 4px 0 0; text-align:right;}
+div.left_home ul li div.right_information a.no_likes:hover {background-position:-37px -16px;}
 div.left_home ul li div.right_information a.comment {float:right; text-align:right; font:normal 13px Arial; color:#408A8D; text-decoration:underline; padding:4px 0 0 0;}
-div.left_home ul li div.right_information a.comments {float:right; text-align:right; background:url(../images/icons/comment_alpha.png) no-repeat 0 5px; padding:4px 0 0 17px; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
+div.left_home ul li div.right_information a.comments {float:right; text-align:right; padding:4px 0 0 0; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
 div.left_home ul li div.right_information a:hover {text-decoration:none;}
 div.left_home ul li div.right_information a.no_like {float:right; background:url(../images/greyButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none; cursor:pointer;}
 div.left_home ul li div.right_information a.no_like:hover {background-position:0 -25px;}
@@ -349,10 +347,10 @@ div.right_region ul li div.left_information div.work_information a:hover {font:b
 div.right_region ul li div.left_information div.work_information p {font:normal 13px Arial; color:#666666; padding:5px 0 0 0;}
 
 div.right_region ul li div.right_information {float:right; width:170px;}
-div.right_region ul li div.right_information a.likes {float:right; background:url(../images/pinkButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none;}
-div.right_region ul li div.right_information a.likes:hover {background-position:0 -25px;}
-div.right_region ul li div.right_information a.likes span {background:url(../images/pinkButton_bkg.png) no-repeat right 0; padding:5px 7px 5px 3px; margin:0; font:normal 13px Arial; color:#FFFFFF; width:auto;}
-div.right_region ul li div.right_information a.likes:hover span {background-position:right -25px;}
+div.right_region ul li div.right_information a.likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff; padding: 1px 4px 0 0; margin: 0 5px 0 0; text-align:right;}
+div.right_region ul li div.right_information a.likes:hover {background-position:0 -16px;}
+div.right_region ul li div.right_information a.no_likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat -37px 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff;padding: 1px 4px 0 0; text-align:right;}
+div.right_region ul li div.right_information a.no_likes:hover {background-position:-37px -16px;}
 div.right_region ul li div.right_information a.comment {float:right; text-align:right; font:normal 13px Arial; color:#408A8D; text-decoration:underline; padding:4px 0 0 0;}
 div.right_region ul li div.right_information a.comments {float:right; text-align:right; background:url(../images/icons/comment_alpha.png) no-repeat 0 5px; padding:4px 0 0 17px; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
 div.right_region ul li div.right_information a:hover {text-decoration:none;}
