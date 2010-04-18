@@ -40,7 +40,7 @@
 		<div class="outer_layout_green">
 			<div class="menu">
 				{if $section == 'about'}
-					<img src="../images/green_arrow.png" style="margin:0 0 0 154px" alt="green arrow"/>
+					<img src="../images/green_arrow.png" style="margin:0 0 0 82px" alt="green arrow"/>
 				{else}
 					<img src="../images/green_arrow.png" alt="green arrow"/>
 				{/if}
@@ -48,12 +48,11 @@
 				<ul>
 					<li>
 						{if $section == 'home'}						
-							<a href="../home/">obras</a>
+							<a href="http://www.gastopublico.es">contratos</a>
 						{else}
-							<a href="../home/" class="option">obras</a>
+							<a href="http://www.gastopublico.es" class="option">contratos</a>
 						{/if}
 					</li>
-					<li><a href="#" class="disabled">suministros</a></li>
 					<li>
 						{if $section == 'about'}
 							<a href="../sobre/">sobre</a>
