@@ -62,7 +62,7 @@ $(document).ready(function() {
 	} else {
 		var position = new google.maps.LatLng($('span.lat').attr('id'),$('span.lon').attr('id'));
 		map.setCenter(position);
-		map.setZoom(12);
+		map.setZoom(9);
 		
 		map.panBy(-200,-10);	    
 	}
