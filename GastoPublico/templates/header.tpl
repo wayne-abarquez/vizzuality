@@ -41,7 +41,7 @@
 			<div class="menu">
 				<img src="../images/green_arrow.png" alt="green arrow"/>
 				<ul>
-					<li><a href="#">obras</a></li>
+					<li><a href="/">obras</a></li>
 					<li><a href="#" class="disabled">suministros</a></li>
 					<li><a href="/sobre/">sobre</a></li>
 				</ul>
