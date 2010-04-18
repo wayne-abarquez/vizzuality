@@ -244,8 +244,7 @@
 					</div>
 				</form>
 			</div>
-			<hr size="1" color="#dddddd" width="100%" style="float:left; margin:1px 0 0 0;"/>
-			
+					
 			 <div class="more">
 				<p class="title">Más obras relacionadas</p>
 				<ul>
