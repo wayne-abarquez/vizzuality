@@ -1,7 +1,7 @@
 	<div class="outer_layout_footer">
 		<div class="footer">
 			<div class="left_footer_home">
-				<h5>Municipios más activos</h5>
+				<h5>Organismos más activos</h5>
 				<p class="regions">
 					{foreach key=id item=region from=$regiones name=contador}
 						{if $region.org_contratante eq 'Administración Local'}
