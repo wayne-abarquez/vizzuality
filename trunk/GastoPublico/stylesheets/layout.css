@@ -161,14 +161,38 @@ div.renovation_content div.content div.content_right {float:right; margin:0 18px
 div.renovation_content div.content div.content_right a.money {float:right; font:bold 29px Arial; color:#FFFFFF; background:url(../images/euroBox_left.png) no-repeat 0 0; text-decoration:none; height:40px; margin:0 8px 0 0; padding:0px 5px 0 40px;}
 div.renovation_content div.content div.content_right a.money span {float:right; background:url(../images/euroBox_bkg.png) no-repeat right top; height:40px; padding:2px 9px 2px 4px; line-height: 36px;}
 div.renovation_content div.content div.content_right a {text-decoration:none;}
-div.renovation_content div.content div.content_right a span.kind_contrat {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
+div.renovation_content div.content div.content_right a span.kind_contrat_open {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
+div.renovation_content div.content div.content_right a span.kind_contrat_negociated {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
+div.renovation_content div.content div.content_right a span.kind_contrat_restricted {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
+div.renovation_content div.content div.content_right a span.kind_contrat_other {float:right; background:url(../images/iconoscontratos/contratoAbierto.png) no-repeat 0 0; width:122px; height:40px;}
 
-div.tool_tip {position:absolute; right:-20px; bottom:23px; width:162px; display:none; z-index:10000;}
-div.tool_tip span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
-div.tool_tip span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
-div.tool_tip span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
-div.tool_tip span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
-div.tool_tip span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+div.tool_tip_open {position:absolute; right:-20px; bottom:23px; width:162px; display:none; z-index:10000;}
+div.tool_tip_open span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_open span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_open span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_open span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_open span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
+div.tool_tip_restricted {position:absolute; right:-20px; bottom:23px; width:162px; display:none; z-index:10000;}
+div.tool_tip_restricted span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_restricted span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_restricted span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_restricted span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_restricted span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
+div.tool_tip_other {position:absolute; right:-20px; bottom:23px; width:162px; display:none; z-index:10000;}
+div.tool_tip_other span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_other span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_other span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_other span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_other span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
+div.tool_tip_negociated {position:absolute; right:-20px; bottom:23px; width:162px; display:none; z-index:10000;}
+div.tool_tip_negociated span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_negociated span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_negociated span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_negociated span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_negociated span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
 
 
 div.renovation_content div.content div.comments {float:left; margin:0 0 0 20px; width:571px;}
