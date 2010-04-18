@@ -26,8 +26,8 @@
 		<SCRIPT type="text/javascript" src="../javascripts/Fluster2ClusterMarker.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="../javascripts/Fluster2Cluster.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="../javascripts/Fluster2.js"></SCRIPT>
-		<SCRIPT type="text/javascript" src="../javascripts/application.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="../javascripts/jquery.scrollTo.js"></SCRIPT>
+		<SCRIPT type="text/javascript" src="../javascripts/application.js"></SCRIPT>
 
 	</HEAD>
 
