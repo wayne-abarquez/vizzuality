@@ -176,9 +176,9 @@ div.renovation_content div.content div.comments li {float:left; width:100%; marg
 div.renovation_content div.content div.comments li div.avatar {float:left; width:50px;}
 div.renovation_content div.content div.comments li div.avatar img {float:left; padding:3px; border:1px solid #cccccc; background:white; width:48px; height:48px;}
 div.renovation_content div.content div.comments li div.comment_area {float:left; width:500px; margin:0 0 0 14px;}
-div.renovation_content div.content div.comments li div.comment_area p.name {float:left; font:normal 13px Arial; color:#333333; margin: 0 0 2px 0;}
+div.renovation_content div.content div.comments li div.comment_area p.name {float:left; font:normal 13px Arial; color:#333333; margin: 0 0 2px 0; width:100%;}
 div.renovation_content div.content div.comments li div.comment_area p.name a {text-decoration:none; font:bold 13px Arial; color:#408A8D;}
-
+div.renovation_content div.content div.comments li div.comment_area p.name small {font:normal 11px Arial; color:#999999;}
 div.renovation_content div.content div.comments li div.comment_area p.comment {float:left; font:normal 13px Arial; color:#666666;}
 div.renovation_content div.content div.comments li div.line_to_separate {float:left; background:url(../images/line_to_separate.png) no-repeat 0 0; width:572px; height:2px; margin:10px 0 10px 0px;}
 
@@ -186,24 +186,24 @@ div.renovation_content div.content div.line_comment {float:left; width:571px; he
 div.renovation_content div.content form.send_comment {float:left; margin:15px 0 35px 20px; width:571px; height:250px; background-color:#E3EEEE; padding-bottom: 10px; overflow:hidden;}
 div.renovation_content div.content form.send_comment div.name {float:left; margin:15px 0 0 15px;}
 div.renovation_content div.content form.send_comment div.name p.title {font:bold 13px Arial; color:#666666; width:170px; }
-div.renovation_content div.content form.send_comment div.name input[type="text"]{float:left; padding:6px 4px 0px 4px; width:162px; height:24px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
+div.renovation_content div.content form.send_comment div.name input[type="text"]{float:left; padding:3px 4px 0px 4px; width:162px; height:27px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
 div.renovation_content div.content form.send_comment div.name input[type="text"]:focus {outline:none;} 
 
 div.renovation_content div.content form.send_comment div.email {float:left; margin:15px 0 0 11px;}
 div.renovation_content div.content form.send_comment div.email p.title {font:bold 13px Arial; color:#666666; width:170px; }
-div.renovation_content div.content form.send_comment div.email input[type="text"]{float:left; padding:6px 4px 0px 4px; width:162px; height:24px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
+div.renovation_content div.content form.send_comment div.email input[type="text"]{float:left; padding:3px 4px 0px 4px; width:162px; height:27px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
 div.renovation_content div.content form.send_comment div.email input[type="text"]:focus {outline:none;}
 
 div.renovation_content div.content form.send_comment div.web {float:left; margin:15px 0 0 11px;}
 div.renovation_content div.content form.send_comment div.web p.title {font:bold 13px Arial; color:#B4B7B7; width:170px; }
-div.renovation_content div.content form.send_comment div.web input[type="text"]{float:left; padding:6px 4px 0px 4px; width:162px; height:24px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
+div.renovation_content div.content form.send_comment div.web input[type="text"]{float:left; padding:3px 4px 0px 4px; width:162px; height:27px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
 div.renovation_content div.content form.send_comment div.web input[type="text"]:focus {outline:none;}
 
 div.renovation_content div.content form.send_comment div.comment {float:left; margin:15px 0 0 15px;}
 div.renovation_content div.content form.send_comment div.comment p.title {font:bold 13px Arial; color:#666666; width:530px; }
 div.renovation_content div.content form.send_comment div.comment textarea{float:left; padding:3px 4px; width:528px; height:74px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
 div.renovation_content div.content form.send_comment div.comment textarea:focus {outline:none;}
-
+div.renovation_content div.content form.send_comment p#error {float:left; margin:0 0 0 15px; font:bold 10px Arial; font-style: italic; color:#C33A6E;}
 
 div.renovation_content div.content form.send_comment input[type="submit"]{float:right; background:url(../images/bkgSendComment.png) no-repeat 0 0; margin:18px 20px 0px 0; width:131px; height:30px; border:none; }
 div.renovation_content div.content form.send_comment input[type="submit"]:focus {outline:none;}
