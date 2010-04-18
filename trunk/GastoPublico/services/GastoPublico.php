@@ -34,7 +34,7 @@ class GastoPublico {
     
     
     function licitacionesByOrganism($id,$offset) {   
-        $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1 as fecha,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id WHERE o.grupo_fk=".$id ." LIMIT 6 OFFSET ".$offset;
+        $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1 as fecha,'Obra' as categoria,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id WHERE o.grupo_fk=".$id ." LIMIT 6 OFFSET ".$offset;
 	    return pg_fetch_all(pg_query($this->conn, $sql));        
     }    
     
@@ -63,8 +63,10 @@ class GastoPublico {
         return pg_fetch_all(pg_query($this->conn, $sql));
     }
     
-    function postComment($userfk,$name,$email,$comentario,$web,$licitacion_id) {
+    function postComment($userfk,$name,$email,$comentario,$web,$licitacion_id,$token) {
         $sql="INSERT INTO comentario(user_fk,nombre,email,web,comentario,licitacion_fk) VALUES()";
+        
+        
     }
     
 }
