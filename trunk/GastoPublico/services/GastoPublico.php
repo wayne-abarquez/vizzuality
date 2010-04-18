@@ -64,7 +64,7 @@ class GastoPublico {
     }
     
     function getOtherLicitacionesFromSameOrganismo($id) {
-        $sql="select id,nombre_admin from organismo LIMIT 10";
+        $sql="select l.id as licitacion_id, o.grupo_fk as grupo_id,titulo,importe,fecha1,fecha2,fecha3,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id ORDER BY importe DESC LIMIT 2";
         return pg_fetch_all(pg_query($this->conn, $sql));
     }    
     
@@ -74,10 +74,22 @@ class GastoPublico {
     }
     
     function postComment($userfk,$name,$email,$comentario,$web,$licitacion_id,$token) {
-        $sql="INSERT INTO comentario(user_fk,nombre,email,web,comentario,licitacion_fk) VALUES()";
+        $name=pg_escape_string($name);
+        $email=pg_escape_string($email);
+        $comentario=pg_escape_string($comentario);
+        $web=pg_escape_string($web);
         
+        $sql="INSERT INTO comentario(user_fk,nombre,email,web,comentario,licitacion_fk) VALUES($userfk,'$name','$email','$web','$comentario',$licitacion_id)";
+        $result= pg_query($this->conn, $sql);
         
     }
+    
+    function createUser($facebookToken) {
+        $facebookToken=pg_escape_string($facebookToken);
+        $sql="INSERT INTO users(token) VALUES('$facebookToken')";
+        $result= pg_query($this->conn, $sql);        
+    }
+    
     
 }
 ?>
