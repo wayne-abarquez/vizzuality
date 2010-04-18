@@ -6,7 +6,7 @@
 <div id="layout">
 	
 	<div class="overMap">
-		<h1>Entérate de las obras que hay a tu alrededor y di que te parecen.</h1>
+		<h1>Entérate de las obras que hay a tu alrededor y dí qué te parecen.</h1>
 	
 		<div class="searchForm">
 			<h3>Busca tu municipio y encuentra obras en él</h3>

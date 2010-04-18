@@ -2,8 +2,8 @@
 		<div class="footer">
 			<div class="left_footer">
 				<ul>
-					<li><a href="#">contacto</a></li>
-					<li class="last"><a href="#">about</a></li>
+					<li><a href="http://www.vizzuality.com" target="_blank">contacto</a></li>
+					<li class="last"><a href="about.php">about</a></li>
 				</ul>
 			</div>
 			<div class="right_footer">
