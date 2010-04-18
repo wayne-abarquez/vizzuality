@@ -62,7 +62,7 @@
 					</li>
 				</ul>
 				{if $messageHome == 'localizated'}
-					<p>¿es tu municipio <a class="user_location"></a>?</p>
+					<p>Viendo municipios cerca de <span class="user_location"></span></p>
 				{else}
 					<form action="/">
 						<input type="text" name="city" value="" />

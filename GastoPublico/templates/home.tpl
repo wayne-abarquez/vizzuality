@@ -33,7 +33,7 @@
 				</div>
 			</form>
 
-			<p>¿es tu municipio <a class="user_location"></a>?</p>
+			<p>Viendo municipios cerca de <a class="user_location"></a>?</p>
 		</div>
 	
 	</div>
