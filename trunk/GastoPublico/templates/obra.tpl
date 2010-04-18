@@ -271,7 +271,7 @@
 					<span class="view_more"><a href="{$obra.url_html_licitacion}">Ver esta licitación en contratacióndelestado.es</a></span>
 				</p>
 				
-				<div class="content_left">
+				<div class="content_left" id="comments_container">
 					<p class="title_comments">Comentarios ({$obra.num_comentarios})</p>
 				</div>
 
