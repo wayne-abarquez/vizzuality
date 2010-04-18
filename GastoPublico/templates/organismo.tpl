@@ -9,17 +9,15 @@
 				<img src="../images/villaviciosa.png" />
 			</div>
 			<div class="region_data">
-				<h1>Organismo</h1>
-				<p class="information"><a href="#">Madrid</a>, 181.013 habitantes</p>
+				<h1>Ministerio de Defensa</h1>
 				<p class="web"><a href="http://www.villaviciosadeodon.com" target="_blank">www.villaviciosadeodon.com</a></p>
 			</div>
 		</div>
-		<img class="region" src="../images/villaviciosa_photo.png">
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_data">
-			<h2>Alcaldía</h2>
+			<h2>Responsable</h2>
 			<div class="political_logo">
-				<img src="../images/iconospartido/pp.png" />
+				<img src="../images/iconospartido/psoe.png" />
 			</div>
 			<div class="political_information">
 				<h3>José Jover</h3>
@@ -38,7 +36,7 @@
 		</div>
 		<hr color="#E2E3DD" size="1"/>
 		<div class="more_enterprises">
-			<h2>Gasto por categorías</h2>
+			<h2>Empresas mas contratadas</h2>
 			<ul>
 				<li>asdfñjfasdf (1,457,983€)</li>
 				<li>asdfñjfasdf (1,457,983€)</li>
@@ -50,8 +48,7 @@
 		<hr color="#E2E3DD" size="1"/>
 		<div class="related_regions">
 			<span>
-				<h2>Municipios relacionados</h2>
-				<a href="#">view map</a>
+				<h2>Otros organismos</h2>
 			</span>	
 			<ul>
 				<li><a href="#">Móstoles</a></li>
@@ -65,9 +62,9 @@
 	
 	<div class="right_region">
 		<span>
-			<h3>17 Obras en el municipio</h3>
+			<h3>{$organismo.num_licitaciones} Obras en el municipio</h3>
 			<div>
-				<p>2,317,321€</p>
+				<p>{$organismo.sum_importe}€</p>
 				<p class="small">GASTO</p>
 			</div>
 		</span>
