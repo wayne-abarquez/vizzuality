@@ -17,6 +17,7 @@ foreach($res as $org) {
     $r = google_top(urlencode(normalize($org['poblacion']). " wikipedia"));
 
     $wikipediaUrl = $r->hits[0]->unescapedUrl;
+    echo($wikipediaUrl);
 	$html = file_get_dom($wikipediaUrl);
     foreach($html->find('table') as $table) {
         if (strpos($table->class, "infobox") !== false) {
@@ -24,8 +25,16 @@ foreach($res as $org) {
             
             //los detalles
             $table2=$table->find('table',1);
-            foreach($table2->find('tr') as $tr) {
-                print_r($tr->plaintext);
+            $nextProvince=false;
+            foreach($table2->find('tr') as $tr) {            
+                if(strpos($tr->plaintext,"Alcalde")!==false) {
+                    $nextProvince=true;
+                    
+                }
+                if($nextProvince) {
+                    print_r($tr->plaintext);
+                    $nextProvince=false;
+                }                
             }
         }
     }
