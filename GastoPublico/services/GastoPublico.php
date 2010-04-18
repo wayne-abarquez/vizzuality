@@ -22,7 +22,7 @@ class GastoPublico {
     }
     
     function getFeaturedOrganismos() {
-        $sql="select count(l.id) as num_licitaciones, o.id as organismo_id, o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id group by o.id,o.nombre_admin,o.org_contratante ORDER BY count(l.id) DESC LIMIT 7";
+        $sql="select count(l.id) as num_licitaciones, o.id as organismo_id,o.grupo_fk, o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id group by o.id,o.nombre_admin,o.org_contratante, grupo_fk ORDER BY count(l.id) DESC LIMIT 7";
         return pg_fetch_all(pg_query($this->conn, $sql));   
     }
     
