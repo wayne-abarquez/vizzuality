@@ -165,6 +165,7 @@ $(document).ready(function() {
 	
 	//VOTES ACTION
 	$('a.likes').click(function(ev){
+		
 		ev.stopPropagation();
 		ev.preventDefault();
 		var licitacion = $(this).parent().attr('alt');
@@ -186,6 +187,7 @@ $(document).ready(function() {
 	});
 	
 	$('a.no_likes').click(function(ev){
+						
 		ev.stopPropagation();
 		ev.preventDefault();
 		var licitacion = $(this).parent().attr('alt');
@@ -206,6 +208,50 @@ $(document).ready(function() {
 		 });
 	});
 	
+/*	
+	$('div.content_left_like a.like').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		var obra = $(this).parent().attr('alt');
+		var this_ = this;
+		var dataObj = ({method: 'vote_up', obra: obra});    
+		$.ajax({
+		    	type: "POST",
+		    	url: "../ajaxController.php",
+		    	data: dataObj,
+		    	cache: false,
+		    	success: function(result){
+						var count = parseInt($(this_).html());
+						$(this_).html(count+1);
+		    	},
+		      error:function (xhr, ajaxOptions, thrownError){
+	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+	        }
+		 });
+	});
+	
+	$('div.content_left_like a.no_like').click(function(ev){
+						
+		ev.stopPropagation();
+		ev.preventDefault();
+		var obra = $(this).parent().attr('alt');
+		var this_ = this;
+		var dataObj = ({method: 'vote_down', obra: obra});    
+		$.ajax({
+		    	type: "POST",
+		    	url: "../ajaxController.php",
+		    	data: dataObj,
+		    	cache: false,
+		    	success: function(result){
+						var count = parseInt($(this_).html());
+						$(this_).html(count+1);
+		    	},
+		      error:function (xhr, ajaxOptions, thrownError){
+	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+	        }
+		 });
+	}); */
 	//CREATE COMMENT
 	
 	

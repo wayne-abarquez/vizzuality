@@ -7,7 +7,7 @@
 				</ul>
 			</div>
 			<div class="right_footer">
-				<h5>Municipios más activos</h5>
+				<h5>Organismos más activos</h5>
 				<p class="regions">
 					{foreach key=id item=region from=$regiones name=contador}
 						{if $region.org_contratante eq 'Administración Local'}
