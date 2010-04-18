@@ -31,7 +31,7 @@ foreach($res as $lic) {
         $sql="UPDATE licitacion set the_geom = setsrid(makepoint($lon,$lat),4326) WHERE id=".$lic["id"];
         $result=pg_query($serv->conn, $sql); 
         echo($lat." ".$lon."\n");
-        usleep(5000000);
+        usleep(2000000);
 
 }
 
