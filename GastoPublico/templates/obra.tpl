@@ -178,7 +178,7 @@
 					{if $obra.descripcion == null}
 						<div class="no_info">
 							<p class="messageTitle">Aún no tenemos descripción para esta obra</p>
-							<p class="suggestMessage">Si quieres, puedes <a href="#">sugerírnos una</a>  copiarla directamente del la <a href="{$obra.url_html_licitacion}">web oficial</a></p>
+							<p class="suggestMessage">Si quieres, puedes <a href="mailto:contact@vizzuality.com">sugerirnos una</a>  copiarla directamente del la <a href="{$obra.url_html_licitacion}">web oficial</a></p>
 						</div>
 					{else}
 						<p class="description">{$obra.descripcion}</p>
