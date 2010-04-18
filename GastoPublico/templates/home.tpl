@@ -9,7 +9,7 @@
 {literal}
 <script type="text/javascript">
 	var organismos=[{/literal}{$dataMapa}{literal}];
-	var cityParam="[{/literal}{$ciudadParam}{literal}]";
+	var cityParam="{/literal}{$ciudadParam}{literal}";
 </script>
 {/literal}
 

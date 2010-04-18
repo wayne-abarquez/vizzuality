@@ -280,7 +280,7 @@ div.outer_layout_green div.menu p {float:right; font:normal 13px Arial; color:#F
 div.outer_layout_green div.menu p a {font:bold 13px Arial; color:#FFFFFF;}
 div.outer_layout_green div.menu p a:hover {text-decoration:none;}
 div.outer_layout_green div.menu form {float:right; margin:4px 0 0 0; padding:0;}
-div.outer_layout_green div.menu form input[type="text"] {float:left; width:196px; padding:6px; height:14px; border:none; background:url(../images/header_textinput.png) no-repeat 0 0;  font:normal 13px Arial; color:#cccccc; font-style:italic;}
+div.outer_layout_green div.menu form input[type="text"] {float:left; width:196px; padding:6px; height:14px; border:none; background:url(../images/header_textinput.png) no-repeat 0 0;  font:normal 13px Arial; color:#666666; font-style:italic;}
 div.outer_layout_green div.menu form input[type="submit"] {float:left; width:25px; height:26px; background:url(../images/lens.png) no-repeat right 0; border:none; margin:0;}
 div.outer_layout_green div.menu form input[type="submit"]:hover {cursor:pointer; background-position:0 -26px;}
 
