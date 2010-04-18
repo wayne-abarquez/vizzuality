@@ -66,7 +66,7 @@
 					<p>¿es tu municipio <a class="user_location"></a>?</p>
 				{else}
 					<form action="/">
-						<input type="text" name="search" value="" />
+						<input type="text" name="city" value="" />
 						<input type="submit" value="" />
 					</form>
 				{/if}

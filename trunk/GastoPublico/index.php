@@ -1,47 +1,31 @@
-<head>
-	<title>gastopublico.es - Very soon...</title>
-	
-	<style>
-		*{
-			border: none;
-		}
-		
-		body{
-			background-color: f0f1f5;
-		}
-		
-		div{
-			margin-top: 200px;
-			margin-left: auto;
-			margin-right: auto;
-			width: 177px;
-		}
-		p{
-			text-align:center;
-			font-family: Arial;
-			font-size: 12px;
-			margin-top: 30px;
-		}
-		
-	</style>
-	
-</head>
+<?php
 
-<body>
-	<div>
-		<a href="http://live.abredatos.es"><img src="images/logoAbredatos.png" /></a>
-		<p>Estamos trabajando en ello...</p>
-	</div>
-	
-	<script type="text/javascript">
-	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-	try {
-	var pageTracker = _gat._getTracker("UA-15905050-1");
-	pageTracker._trackPageview();
-	} catch(err) {}</script>
-	
-</body>
+require './libs/Smarty.class.php';
+require 'services/GastoPublico.php';
 
+$smarty = new Smarty;
+$services = new GastoPublico;
+
+
+$smarty->assign('section','home');
+$smarty->assign('messageHome','localizated');
+$licitaciones=$services->getFeaturedLicitaciones();
+foreach($licitaciones as &$lic) {
+	$lic["titulo"]=ucfirst(strtolower($lic["titulo"]));
+}
+
+$smarty->assign('licitaciones',$licitaciones);
+$smarty->assign('regiones',$services->getFeaturedOrganismos());
+
+$organismosMapa = $services->getOrganismosForMapaHome();
+
+$data="";
+foreach($organismosMapa as $org) {
+    $data.="{id:".$org['id'].",lat:".$org['lat'].",lon:".$org['lon'].",nombre:\"".$org['nombre']."\"},";
+}
+$data = substr_replace($data ,"",-1);
+$smarty->assign('dataMapa',$data);
+$smarty->display('home.tpl');
+
+
+?>
