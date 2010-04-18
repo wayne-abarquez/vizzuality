@@ -6,6 +6,11 @@
 <span class="lat" style="display:none" id="{$lat}"></span>
 <span class="lon" style="display:none" id="{$lon}"></span>
 <span class="location" style="display:none" id="home"></span>
+{literal}
+<script type="text/javascript">
+	var organismos=[{/literal}{$dataMapa}{literal}];
+</script>
+{/literal}
 
 <div id="layout">
 	
