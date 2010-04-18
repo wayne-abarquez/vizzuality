@@ -36,7 +36,7 @@
 	<BODY>
 		<div class="outer_layout_gray">
 			<div class="header">
-				<p class="logo"><a href="http://www.gastopublico.es">gastopublico.es</a></p>
+				<p class="logo"><a href="/home.php">gastopublico.es</a></p>
 				<p class="facebook">Identifícate con facebook</p>
 			</div>
 		</div>
