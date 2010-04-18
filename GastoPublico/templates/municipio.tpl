@@ -2,7 +2,7 @@
 
 <div id="map"></div>
 <div id="layout">
-	<div class="left_region">
+	<div class="left_region_mun">
 		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
 		<div class="top_information">
 			<div class="logo">
@@ -61,7 +61,7 @@
 		</div>
 	</div>
 	
-	<div class="right_region">
+	<div class="right_region_mun">
 		<span>
 			<h3>{if $municipio.num_licitaciones eq 1}{$municipio.num_licitaciones} Obra en el municipio{else}{$municipio.num_licitaciones} Obras en el municipio{/if}</h3>
 			<div>
