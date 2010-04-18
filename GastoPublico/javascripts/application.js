@@ -386,16 +386,19 @@ function echeck(str) {
 
 function codeAddress() {
    var address = $("#direccion").val();
+	 address += ', España';
    if (geocoder) {
-     geocoder.geocode( { 'address': address}, function(results, status) {
-       if (status == google.maps.GeocoderStatus.OK) {
-         map.setCenter(results[0].geometry.location);
-         map.panBy(-330,-10);
-       } else {
-         $('div.tooltip').fadeIn();
-				 $('div.tooltip').delay(3000).fadeOut();
-       }
-     });
+     geocoder.geocode( { 'address': address}, 
+			function(results, status) {
+				var country = results.formatted_address;
+				if (status == google.maps.GeocoderStatus.OK) {
+	         map.setCenter(results[0].geometry.location);
+	         map.panBy(-330,-10);
+	       } else {
+	         $('div.tooltip').fadeIn();
+					 $('div.tooltip').delay(3000).fadeOut();
+	       }
+			});
    }
  }
 
