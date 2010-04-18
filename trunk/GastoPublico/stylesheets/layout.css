@@ -438,7 +438,7 @@ div.right_region_mun span {float:left; width:590px; color:#666666; padding:0 0 2
 div.right_region_mun span h3 {float:left; width:auto; font:bold 35px Arial; letter-spacing:-1px;}
 div.right_region_mun span div {float:right; width:142px; padding:7px 0 0 0;}
 div.right_region_mun span div p {float:left; width:142px; text-align:right; font:bold 25px Arial; letter-spacing:-1px;}
-div.right_region span div p.small {float:left; width:142px; font:bold 10px Arial; color:#AAABA7; letter-spacing:0; line-height:5px;}
+div.right_region_mun span div p.small {float:left; width:142px; font:bold 10px Arial; color:#AAABA7; letter-spacing:0; line-height:5px;}
 /*div.right_region_mun div.search_container {float:left; padding:22px 13px; width:564px; background:url(../images/region_search_bkg.png) no-repeat 0 0 #E1E2DB;}*/
 div.right_region_mun div.search_container {float:left; height:15px; padding:0; width:590px; background:url(../images/searchArrow.png) no-repeat 0 0;}
 div.right_region_mun ul {float:left; padding:0; width:590px; margin:0;}
