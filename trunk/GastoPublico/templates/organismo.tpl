@@ -9,8 +9,8 @@
 				<img src="../images/villaviciosa.png" />
 			</div>
 			<div class="region_data">
-				<h1>Ministerio de Defensa</h1>
-				<p class="web"><a href="http://www.villaviciosadeodon.com" target="_blank">www.villaviciosadeodon.com</a></p>
+				<h1>{$organismo.nombre_admin}</h1>
+				<p class="web"><a href="{$organismo.web}" target="_blank">{$organismo.web}</a></p>
 			</div>
 		</div>
 		<hr color="#E2E3DD" size="1"/>
@@ -20,8 +20,8 @@
 				<img src="../images/iconospartido/psoe.png" />
 			</div>
 			<div class="political_information">
-				<h3>José Jover</h3>
-				<p>ver su <a href="#">biografía en voota</a></p>
+				<h3>{$organismo.alcalde}</h3>
+				<p>ver su <a href="{$organismo.alcalde_voota_link}">biografía en voota</a></p>
 			</div>
 		</div>
 		<hr color="#E2E3DD" size="1"/>
@@ -51,11 +51,9 @@
 				<h2>Otros organismos</h2>
 			</span>	
 			<ul>
-				<li><a href="#">Móstoles</a></li>
-				<li><a href="#">Móstoles</a></li>
-				<li><a href="#">Móstoles</a></li>
-				<li><a href="#">Móstoles</a></li>
-				<li><a href="#">Móstoles</a></li>
+				{foreach key=id item=organismo_lista from=$orga_relacionados name=counter}
+					<li><a href="organismo.php?id={$organismo_lista.id}">{$organismo_lista.nombre_admin}</a></li>
+		    {/foreach}
 			</ul>
 		</div>
 	</div>
@@ -84,7 +82,7 @@
 				<div class="right_information">
 					<a class="no_likes" href="#">21</a>	
 					<a class="likes" href="#">1</a>
-					<a class="comment" href="#">comenta el primero</a>
+					<a class="comments" href="#">0 comentarios</a>
 				</div>
 			</li>
 			<li>
@@ -100,7 +98,7 @@
 				<div class="right_information">
 					<a class="no_likes" href="#">21</a>	
 					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">12 comentarios</a>
+					<a class="comments" href="#">{if $organismo.num_comentarios eq 1}{$organismo.num_comentarios} comentario{else}{$organismo.num_comentarios} comentarios{/if}</a>
 				</div>
 			</li>
 			<li>
@@ -116,7 +114,7 @@
 				<div class="right_information">
 					<a class="no_likes" href="#">21</a>	
 					<a class="likes" href="#">1</a>
-					<a class="comment" href="#">comenta el primero</a>
+					<a class="comments" href="#">0 comentarios</a>
 				</div>
 			</li>
 			<li>
@@ -132,7 +130,7 @@
 				<div class="right_information">
 					<a class="no_likes" href="#">21</a>	
 					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">12 comentarios</a>
+					<a class="comments" href="#">0 comentarios</a>
 				</div>
 			</li>
 			<li>
@@ -148,7 +146,7 @@
 				<div class="right_information">
 					<a class="no_likes" href="#">21</a>	
 					<a class="likes" href="#">1</a>
-					<a class="comment" href="#">comenta el primero</a>
+					<a class="comments" href="#">0 comentarios</a>
 				</div>
 			</li>
 			<li>
@@ -164,7 +162,7 @@
 				<div class="right_information">
 					<a class="no_likes" href="#">21</a>	
 					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">12 comentarios</a>
+					<a class="comments" href="#">0 comentarios</a>
 				</div>
 			</li>
 		</ul>

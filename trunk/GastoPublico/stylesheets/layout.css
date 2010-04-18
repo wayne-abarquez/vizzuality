@@ -86,7 +86,7 @@ div.renovation_content div.content_down div.content_left_like a.no_like:hover{ba
 
 
 div.renovation_content div.content_down div.content_right_comment {float:right; margin:28px 18px 0 0px;}
-div.renovation_content div.content_down div.content_right_comment p a {float:left; background:url(../images/icons/comment_alpha.png) no-repeat 0 3px; height:18px; font:13px Arial; color:#FFFFFF; padding:0 0 0 20px; text-decoration: underline;} 
+div.renovation_content div.content_down div.content_right_comment p a {float:left; height:18px; font:13px Arial; color:#FFFFFF; text-decoration: underline;} 
 div.renovation_content div.content_down div.content_right_comment p a:hover {text-decoration: none;} 
 
 
@@ -351,8 +351,7 @@ div.right_region ul li div.right_information a.likes {float:right; background:ur
 div.right_region ul li div.right_information a.likes:hover {background-position:0 -16px;}
 div.right_region ul li div.right_information a.no_likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat -37px 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff;padding: 1px 4px 0 0; text-align:right;}
 div.right_region ul li div.right_information a.no_likes:hover {background-position:-37px -16px;}
-div.right_region ul li div.right_information a.comment {float:right; text-align:right; font:normal 13px Arial; color:#408A8D; text-decoration:underline; padding:4px 0 0 0;}
-div.right_region ul li div.right_information a.comments {float:right; text-align:right; background:url(../images/icons/comment_alpha.png) no-repeat 0 5px; padding:4px 0 0 17px; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
+div.right_region ul li div.right_information a.comments {float:right; text-align:right; padding:4px 0 0 0; font:normal 13px Arial; color:#408A8D; text-decoration:underline; width:100%;}
 div.right_region ul li div.right_information a:hover {text-decoration:none;}
 div.right_region ul li div.right_information a.no_like {float:right; background:url(../images/greyButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none; cursor: pointer;}
 div.right_region ul li div.right_information a.no_like:hover {background-position:0 -25px;}
