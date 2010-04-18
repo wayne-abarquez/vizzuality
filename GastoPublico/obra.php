@@ -14,7 +14,7 @@ $smarty->assign('section','home');
 
 
 $obra = $services->getLicitacionDetails($_REQUEST['id']);
-$obra_titulo = $obra["titulo"];
+$obra_titulo = strtoupper($obra["titulo"]);
 
 
 

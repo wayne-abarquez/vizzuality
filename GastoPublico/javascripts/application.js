@@ -174,15 +174,15 @@ $(document).ready(function() {
 
 
 
-	$('div.content_right a span.kind_contrat').hover(function(ev){
+	$('div.content_right a span.kind_contrat_open').hover(function(ev){
 		ev.stopPropagation();
 		ev.preventDefault();
 		
-		$(this).parent().parent().children('div.tool_tip').show();
+		$(this).parent().parent().children('div.tool_tip_open').show();
 		
 	},
 	function(){
-		$(this).parent().parent().children('div.tool_tip').fadeOut();
+		$(this).parent().parent().children('div.tool_tip_open').fadeOut();
 		
 	});
 

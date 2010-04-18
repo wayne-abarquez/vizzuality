@@ -65,14 +65,7 @@
 		<div class="more_enterprises">
 			<h2>Empresas más contratadas</h2>
 			
-			<div class="tool_tip_toomuch_info">
-				<span class="head"></span>
-				<span class="body">
-					<p class="title">too much</p>
-					<p class="info">¡Que esto lo hicimos en 48 h!, ¿te parece poco?</p>
-				</span>
-				<span class="bottom"></span>								
-			</div>
+		
 			
 			<a href="#"><p style="font:normal 12px Arial; color:#666666; font-style: italic;">Información aún no disponible</p></a>
 			<!--><ul>

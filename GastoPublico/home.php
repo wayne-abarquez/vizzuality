@@ -9,7 +9,12 @@ $services = new GastoPublico;
 
 $smarty->assign('section','home');
 $smarty->assign('messageHome','localizated');
-$smarty->assign('licitaciones',$services->getFeaturedLicitaciones());
+$licitaciones=$services->getFeaturedLicitaciones();
+foreach($licitaciones as &$lic) {
+	$lic["titulo"]=ucfirst(strtolower($lic["titulo"]));
+}
+
+$smarty->assign('licitaciones',$licitaciones);
 $smarty->assign('regiones',$services->getFeaturedOrganismos());
 
 $organismosMapa = $services->getOrganismosForMapaHome();

@@ -52,7 +52,7 @@
 								<a href="../contrato/{$licitacion.licitacion_id}"><img src="{if $licitaion.imagen eq null}../images/default_work.png{else}{$licitacion.imagen}{/if}" alt="Work" /></a>
 						</div>
 						<div class="work_information">
-							<h4><a href="../contrato/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a></h4>
+							<h4><a href="../contrato/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."}</a></h4>
 							{if $licitacion.org_contratante eq 'Administración Local'}
 								<p><a href="../org/{$licitacion.grupo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
 							{else}

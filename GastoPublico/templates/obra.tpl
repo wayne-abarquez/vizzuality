@@ -105,15 +105,7 @@
 		<div class="more_enterprises">
 			<h2>Empresas más contratadas</h2>
 			
-			<div class="tool_tip_toomuch_two">
-				<span class="head"></span>
-				<span class="body">
-					<p class="title">too much</p>
-					<p class="info">¡Que esto lo hicimos en 48 h!, ¿te parece poco?</p>
-				</span>
-				<span class="bottom"></span>								
-			</div>
-			
+						
 			<a href="#"><p style="font:normal 12px Arial; color:#666666; font-style: italic;">Información aún no disponible</p></a>
 			<!--><ul>
 				<li>CM Construcciones y Obras (1,457,983€)</li>
@@ -194,18 +186,19 @@
 			
 				<div class="content_right">
 					
+					
 					<!-- CONTRATO NEGOCIADO -->
-				<!--	<div class="tool_tip">
+					<div class="tool_tip_negociated">
 						<span class="head"></span>
 						<span class="body">
 							<p class="title">Contrato negociado</p>
 							<p class="info">Obras de renovación de las instalaciones deportivas del polideportivo municipal...</p>
 						</span>
 						<span class="bottom"></span>								
-					</div> -->
+					</div>
 					
 					<!-- CONTRATO ABIERTO -->
-					<div class="tool_tip">
+					<div class="tool_tip_open">
 						<span class="head"></span>
 						<span class="body">
 							<p class="title">Contrato abierto</p>
@@ -215,21 +208,32 @@
 					</div> 
 					
 					<!-- CONTRATO RESTRINGIDO -->
-					<!--<div class="tool_tip">
+					<div class="tool_tip_restricted">
 						<span class="head"></span>
 						<span class="body">
 							<p class="title">Contrato restringido</p>
 							<p class="info">Sólo podrán presentar ofertas los empresarios seleccionados por la Administración.</p>
 						</span>
 						<span class="bottom"></span>								
-					</div>-->
+					</div>
 					
+					<!-- CONTRATO OTROS -->
+					<div class="tool_tip_other">
+						<span class="head"></span>
+						<span class="body">
+							<p class="title">Otros contratos</p>
+							<p class="info">Contratos raramente usados: diálogo competitivo o autodefinido.</p>
+						</span>
+						<span class="bottom"></span>								
+					</div>
 					
 					
 					<a href="#">
-						<span class="kind_contrat">
+						<span class="kind_contrat_open">
 						</span>
 					</a>
+					
+					
 					<a class="money"><span>{$obra.importe|number_format}€</span></a>		
 				</div>
 				<div class="content_left">
