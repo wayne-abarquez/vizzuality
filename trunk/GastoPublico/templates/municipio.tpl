@@ -19,7 +19,7 @@
 		<div class="political_data">
 			<h2>Alcaldía</h2>
 			<div class="political_logo">
-				<img src="../images/iconospartido/pp.png" />
+				<img src="{$logoPartido}"/>
 			</div>
 			<div class="political_information">
 				<h3>{$municipio.alcalde}</h3>

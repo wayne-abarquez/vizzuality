@@ -6,7 +6,7 @@
 		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
 		<div class="top_information">
 			<div class="logo">
-				<img src="../images/villaviciosa.png" />
+				<img src="{$organismo.escudo}"/>
 			</div>
 			<div class="region_data">
 				<h1>{$organismo.nombre_admin}</h1>
@@ -17,7 +17,10 @@
 		<div class="political_data">
 			<h2>Responsable</h2>
 			<div class="political_logo">
-				<img src="../images/iconospartido/psoe.png" />
+				<!--<img src="../images/iconospartido/psoe.png" />-->
+				
+				<img src="{$logoPartido}"/>
+				
 			</div>
 			<div class="political_information">
 				<h3>{$organismo.alcalde}</h3>
