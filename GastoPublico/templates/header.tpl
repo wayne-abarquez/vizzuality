@@ -39,7 +39,12 @@
 		</div>
 		<div class="outer_layout_green">
 			<div class="menu">
-				<img src="../images/green_arrow.png" alt="green arrow"/>
+				{if $section == 'about'}
+					<img src="../images/green_arrow.png" style="margin:0 0 0 154px" alt="green arrow"/>
+				{else}
+					<img src="../images/green_arrow.png" alt="green arrow"/>
+				{/if}
+				
 				<ul>
 					<li>
 						{if $section == 'home'}						
