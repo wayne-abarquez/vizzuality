@@ -8,6 +8,8 @@ $services = new GastoPublico;
 
 $organismo = $services->getOrganismoData($_REQUEST['id']);
 
+$smarty->assign('section','home');
+
 $smarty->assign('organismo',$organismo);
 
 $smarty->assign('regiones',$services->getFeaturedOrganismos());

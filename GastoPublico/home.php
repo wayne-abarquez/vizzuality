@@ -8,6 +8,7 @@ $smarty = new Smarty;
 $services = new GastoPublico;
 
 $smarty->assign('section','home');
+$smarty->assign('messageHome','localizated');
 
 $smarty->assign('licitaciones',$services->getFeaturedLicitaciones());
 $smarty->assign('regiones',$services->getFeaturedOrganismos());

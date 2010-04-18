@@ -57,7 +57,7 @@
 						{/if}
 					</li>
 				</ul>
-				{if $section == 'home'}
+				{if $messageHome == 'localizated'}
 					<p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p>
 				{else}
 					<form action="#">
