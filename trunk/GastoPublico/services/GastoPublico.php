@@ -27,9 +27,19 @@ class GastoPublico {
     }
     
     function getOrganismoData($id) {
-        $sql="select grupo_fk as group_id,count(l.id) as num_licitaciones, sum(l.importe) as sum_importe,org_contratante,nombre_admin,poblacion, provincia, web, alcalde, partido_politico,alcalde_voota_link,habitantes from organismo as o inner join licitacion as l on o.id=l.organismo_fk  
-        where grupo_fk=$id  group by grupo_fk,org_contratante,nombre_admin,poblacion,provincia,web,alcalde,partido_politico,alcalde_voota_link,habitantes";
-        return pg_fetch_assoc(pg_query($this->conn, $sql));  
+        //mirar si es un organismo o un municipio
+        $sql="select org_contratante from organismo WHERE grupo_fk=$id LIMIT 1";
+        $res=pg_fetch_assoc(pg_query($this->conn, $sql));
+        if($res['org_contratante']=="Administración General del Estado") {
+            $sql="select grupo_fk as group_id,count(l.id) as num_licitaciones, sum(l.importe) as sum_importe,org_contratante,nombre_admin,'Madrid' as poblacion, 'Madrid' as provincia, web, alcalde, partido_politico,alcalde_voota_link,habitantes from organismo as o inner join licitacion as l on o.id=l.organismo_fk  
+            where grupo_fk=$id  group by grupo_fk,org_contratante,nombre_admin,web,alcalde,partido_politico,alcalde_voota_link,habitantes";
+        } else{
+            $sql="select grupo_fk as group_id,count(l.id) as num_licitaciones, sum(l.importe) as sum_importe,org_contratante,nombre_admin,poblacion, provincia, web, alcalde, partido_politico,alcalde_voota_link,habitantes from organismo as o inner join licitacion as l on o.id=l.organismo_fk  
+            where grupo_fk=$id  group by grupo_fk,org_contratante,nombre_admin,poblacion,provincia,web,alcalde,partido_politico,alcalde_voota_link,habitantes";
+                     
+        }
+        return pg_fetch_assoc(pg_query($this->conn, $sql));   
+ 
     }
     
     
