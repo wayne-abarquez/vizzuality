@@ -10,7 +10,7 @@
 			</div>
 			<div class="region_data">
 				<h1>{$municipio.poblacion}</h1>
-				<p class="information"><a href="#">{$municipio.provincia}</a>, {$municipio.habitantes} habitantes</p>
+				<p class="information">{$municipio.provincia}, {$municipio.habitantes} habitantes</p>
 				<p class="web"><a href="{$municipio.web}" target="_blank">{$municipio.web}</a></p>
 			</div>
 		</div>
