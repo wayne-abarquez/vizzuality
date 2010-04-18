@@ -25,7 +25,13 @@ $smarty->assign('obra',$services->getLicitacionDetails($_REQUEST['id']));
 
 $smarty->assign('licitacion_id',$_REQUEST['id']);
 $smarty->assign('otras_obras',$services->getOtherLicitacionesFromSameOrganismo($_REQUEST['id']));
-$smarty->assign('comentarios',$services->getCommentsByLicitacion($_REQUEST['id']));
+
+$comments=$services->getCommentsByLicitacion($_REQUEST['id']);
+foreach($comments as &$comment) {
+	$comment["md5_imagen"] = "http://www.gravatar.com/avatar.php?gravatar_id=".md5($comment["email"]);
+} 
+
+$smarty->assign('comentarios',$comments );
 $smarty->assign('orga_relacionados',$services->getNearOrganismos($orga_data['grupo_fk']));
 $smarty->display('obra.tpl');
 

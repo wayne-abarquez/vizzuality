@@ -34,8 +34,7 @@
 	<BODY>
 		<div class="outer_layout_gray">
 			<div class="header">
-				<p class="logo"><a href="../">gastopublico.es</a></p>
-				<!-- <p class="facebook">Identifícate con facebook</p> -->
+				<p class="logo"><a href="../"></a></p>
 			</div>
 		</div>
 		<div class="outer_layout_green">
@@ -64,7 +63,7 @@
 					</li>
 				</ul>
 				{if $messageHome == 'localizated'}
-					<p>¿es tu municipio <a>{$city}</a>?</p>
+					<p>¿es tu municipio <a class="user_location"></a>?</p>
 				{else}
 					<form action="/">
 						<input type="text" name="search" value="" />

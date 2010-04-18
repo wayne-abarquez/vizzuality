@@ -19,6 +19,8 @@ $(document).ready(function() {
          userCity="España";
      }  
 
+		$('a.user_location').text(userCity);
+
 
    	geocoder = new google.maps.Geocoder();
      var myOptions = {
