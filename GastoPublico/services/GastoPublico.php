@@ -62,5 +62,9 @@ class GastoPublico {
         return pg_fetch_all(pg_query($this->conn, $sql));
     }
     
+    function postComment($userfk,$name,$email,$comentario,$web,$licitacion_id) {
+        $sql="INSERT INTO comentario(user_fk,nombre,email,web,comentario,licitacion_fk) VALUES()";
+    }
+    
 }
 ?>
