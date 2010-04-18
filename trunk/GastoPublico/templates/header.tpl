@@ -48,22 +48,22 @@
 				<ul>
 					<li>
 						{if $section == 'home'}						
-							<a href="/home/">obras</a>
+							<a href="../home/">obras</a>
 						{else}
-							<a href="/home/" class="option">obras</a>
+							<a href="../home/" class="option">obras</a>
 						{/if}
 					</li>
 					<li><a href="#" class="disabled">suministros</a></li>
 					<li>
 						{if $section == 'about'}
-							<a href="/sobre/">sobre</a>
+							<a href="../sobre/">sobre</a>
 						{else}
-							<a href="/sobre/" class="option">sobre</a>
+							<a href="../sobre/" class="option">sobre</a>
 						{/if}
 					</li>
 				</ul>
 				{if $messageHome == 'localizated'}
-					<p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p>
+					<p>¿es tu municipio <a>{$city}</a>?</p>
 				{else}
 					<form action="#">
 						<input type="text" name="search" value="" />

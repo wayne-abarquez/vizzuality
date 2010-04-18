@@ -3,6 +3,7 @@
 <span class="lat" style="display:none" id="{$obra.lat}"></span>
 <span class="lon" style="display:none" id="{$obra.lon}"></span>
 <span class="licitacion_id" style="display:none" id="{$licitacion_id}"></span>
+<span class="obra_map" style="display:none" id="obra_map"></span>
 
 <div id="mapa"></div>
 <div id="layout">
@@ -119,9 +120,9 @@
 			</div>
 			
 			<div class="content_down">
-				<div class="content_left_like">
-					<a class="like" href="#">si, me gusta({$obra.votes_up})</a>
-					<a class="no_like" href="#">no me gusta({$obra.votes_down})</a>
+				<div class="content_left_like" alt="{$licitacion_id}">
+					<a class="like" href="#">si, me gusta (<strong>{$obra.votes_up}</strong>)</a>
+					<a class="no_like" href="#">no me gusta (<strong>{$obra.votes_down}</strong>)</a>
 				</div>
 				<div class="content_right_comment">
 					<p><a href="#" id="gotocomment">{if $obra.num_comentarios eq 1}{$obra.num_comentarios} comentario{else}{$obra.num_comentarios} comentarios{/if}</a></p>

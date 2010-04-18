@@ -19,12 +19,20 @@
 	
 		<div class="searchForm">
 			<h3>Busca tu municipio y encuentra obras en él</h3>
-			<form>
-				<input type="text" name="bigSearch" value="" />
+			<form action="javascript:void codeAddress()">
+				<input type="text" name="bigSearch" id="direccion" value="" />
 				<input type="submit" value="" />
-				
+				<div class="tooltip">
+					<span class="head"></span>
+					<span class="body">
+						<p class="title">Ups! Lo siento</p>
+						<p class="info">No hemos encontrado tu localidad</p>
+					</span>
+					<span class="bottom"></span>								
+				</div>
 			</form>
-			<p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p>
+
+			<p>¿es tu municipio <a>{$city}</a>?</p>
 		</div>
 	
 	</div>
