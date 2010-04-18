@@ -86,8 +86,4 @@ function visitorLocation(){
 	return $location;
 }
 
-=======
-
-
->>>>>>> .r3757
 ?>
