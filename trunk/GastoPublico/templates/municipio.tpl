@@ -113,8 +113,8 @@
 	    {/foreach}
 		</ul>
 		
-		<p class="long"><a href="#">ver más</a></p>
-		<p class="long">viendo 1 de {$organismo.num_licitaciones}</p>
+		<!-- <p class="long"><a href="#">ver más</a></p>
+		<p class="long">viendo 1 de {$organismo.num_licitaciones}</p> -->
 		
 	</div>
 	

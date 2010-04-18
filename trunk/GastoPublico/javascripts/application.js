@@ -9,19 +9,16 @@ var userCity;
 $(document).ready(function() {
 	
     var zoom;
-    if(cityParam!="") {
-        
-    } else {
-        if (google.loader.ClientLocation) {
-          zoom = 9;
-          userLatLng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
-          userCity=google.loader.ClientLocation.address.city;
-        }  else {
-            zoom = 6;
-            userLatLng = new google.maps.LatLng(40.3967643055720,-3.58154296875);       
-            userCity="España";
-        }        
-    }
+
+    if (google.loader.ClientLocation) {
+      zoom = 9;
+      userLatLng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
+      userCity=google.loader.ClientLocation.address.city;
+    }  else {
+        zoom = 6;
+        userLatLng = new google.maps.LatLng(40.3967643055720,-3.58154296875);       
+        userCity="España";
+    }        
 
 
 		$('a.user_location').text(userCity);
@@ -93,6 +90,13 @@ $(document).ready(function() {
    			};
 
    			fluster.initialize();
+
+				if(window.cityParam) {
+					if (cityParam!='') {
+			      $("#direccion").val(cityParam);
+						codeAddress();
+					}
+		    }
    	}
 	
 	// VER MAPA
@@ -164,7 +168,7 @@ $(document).ready(function() {
 	var left_mun_lenght = $('div.left_region_mun').height()-226;
 	var right_mun_lenght = $('div.right_region_mun').height();
 
-	if (left_mun_lenght<right_mun_lenght) { 
+	if (left_mun_lenght<right_mun_lenght) {
 		$('div.left_region_mun').height(right_mun_lenght + 269);
 	} else {
 		$('div.right_region_mun').height(left_mun_lenght + 118);
