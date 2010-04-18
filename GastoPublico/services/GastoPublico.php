@@ -119,6 +119,46 @@ class GastoPublico {
                 group by grupo_fk,nombre_admin,wikipedia_url,web,partido_politico,provincia,alcalde,alcalde_voota_link,habitantes,escudo,foto  LIMIT 1 OFFSET $tempOffset";
         return pg_fetch_assoc(pg_query($this->conn, $sql));
     }
+
+	function getLogoPartido($organismo) {
+		$urlLogoPartido = "images/iconospartido/andalucista.png";
+		
+		if ($organismo["partido_politico"] == "PP"){
+			$urlLogo = "images/iconospartido/pp.png";
+			return $urlLogo;
+		}
+		if ($organismo["partido_politico"] == "CIU"){
+			$urlLogo = "images/iconospartido/ciu.png";
+			return $urlLogo;	
+		}
+		if ($organismo["partido_politico"] == "ESQUERRA"){
+			$urlLogo = "images/iconospartido/esquerra.png";	
+			return $urlLogo;
+		}
+		if ($organismo["partido_politico"] == "FALANGE"){
+			$urlLogo = "images/iconospartido/falange.png";	
+			return $urlLogo;
+		}
+		if ($organismo["partido_politico"] == "PP"){
+			$urlLogo = "images/iconospartido/iu.png";	
+			return $urlLogo;
+		}
+		if ($organismo["partido_politico"] == "LOSVERDES"){
+			$urlLogo = "images/iconospartido/losverdes.png";	
+			return $urlLogo;
+		}
+		if ($organismo["partido_politico"] == "PNV"){
+			$urlLogo = "images/iconospartido/pnv.png";	
+			return $urlLogo;
+		}
+		if ($organismo["partido_politico"] == "PSOE"){
+			$urlLogo = "images/iconospartido/psoe.png";	
+			return $urlLogo;
+		}
+
+		
+        return $urlLogo;
+    }
     
     function saveOrganismo($alcalde,$voota,$wikipedi_url,$web,$partido_poltico,$provincia,$habitantes,$escudo,$foto,$grupoId) {
         if($alcalde=="") {
