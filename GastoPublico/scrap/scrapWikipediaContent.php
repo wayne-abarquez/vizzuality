@@ -20,7 +20,13 @@ foreach($res as $org) {
 	$html = file_get_dom($wikipediaUrl);
     foreach($html->find('table') as $table) {
         if (strpos($table->class, "infobox") !== false) {
-            print_r($table->plaintext);
+            
+            
+            //los detalles
+            $table2=$table->find('table',1);
+            foreach($table2->find('tr') as $tr) {
+                print_r($tr->plaintext);
+            }
         }
     }
     
