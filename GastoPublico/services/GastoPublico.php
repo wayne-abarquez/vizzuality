@@ -49,7 +49,7 @@ class GastoPublico {
     }    
     
     function getNearOrganismos($id) {
-        $sql="select group_fk as id,nombre_admin from organismo LIMIT 5";
+        $sql="select grupo_fk as id,nombre_admin from organismo LIMIT 5";
         return pg_fetch_all(pg_query($this->conn, $sql));
     }
     

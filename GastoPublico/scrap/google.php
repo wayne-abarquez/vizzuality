@@ -31,7 +31,7 @@ function google_top($query)
 	while ($start < 10)
 	{
 	
-		$url = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=' . $q . '&start=' . ($start - 1);
+		$url = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=' . $q . '&start=1&language=es';
 		curl_setopt($ch, CURLOPT_URL, $url); 
 	
 		$json=curl_exec ($ch); 
