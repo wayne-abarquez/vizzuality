@@ -13,9 +13,10 @@
 				{if $obra.org_contratante eq 'Administración Local'}
 					<h1><a href="municipio.php?id={$obra.grupo_fk}">{$obra.poblacion}</a></h1>
 					<p class="information"><a>{$obra.provincia}</a>, {$obra.habitantes} habitantes</p>
+					<p class="information"><a href="{$obra.web}">{$obra.web}</a></p>					
 				{else}
 					<h1><a href="organismo.php?id={$obra.grupo_fk}">{$obra.nombre_admin}</a></h1>
-					<p class="information">{$obra.web}</p>
+					<p class="information"><a href="{$obra.web}">{$obra.web}</a></p>
 				{/if}
 			</div>
 		</div>
@@ -79,14 +80,14 @@
 				</span>
 				<ul>
 				{foreach key=id item=organismo from=$orga_relacionados name=counter}
-					<li><a href="municipio.php?id={$organismo.id}">{$organismo.nombre_admin}</a></li>
+					<li><a href="/org/{$organismo.id}">{$organismo.nombre_admin}</a></li>
 		    {/foreach}
 				</ul>
 			{else}
 				<span><h2>Otros organismos</h2></span>
 				<ul>
 				{foreach key=id item=organismo from=$orga_relacionados name=counter}
-					<li><a href="organismo.php?id={$organismo.id}">{$organismo.nombre_admin}</a></li>
+					<li><a href="/org/{$organismo.id}">{$organismo.nombre_admin}</a></li>
 		    {/foreach}
 				</ul>
 			{/if}
@@ -270,7 +271,7 @@
 						<div class="result">
 							<a class="likes" href="#">{$licitacion.votes_up}</a>
 							<a class="no_likes" href="#">{$licitacion.votes_down}</a>
-							<p class="comments"><a href="#">{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a></p>
+							<p class="comments"><a href="{$licitacion.licitacion_id}">{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a></p>
 						</div>
 					</li>
 			   {/foreach}
