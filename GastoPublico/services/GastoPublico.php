@@ -104,12 +104,82 @@ class GastoPublico {
         if($direction=="up") {
             $sql="UPDATE licitacion set votes_up=votes_up+1 WHERE id=$licitacion_id";
         } else {
-            $sql="UPDATE licitacion set votes_up=votes_up-1 WHERE id=$licitacion_id";
+            $sql="UPDATE licitacion set votes_down=votes_down+1 WHERE id=$licitacion_id";
         }
         $result= pg_query($this->conn, $sql);
         return  "ok";       
     }
     
+    function getNextOrganismo() {
+        $tempOffset=rand(0,10);
+        $sql="SELECT grupo_fk,nombre_admin,wikipedia_url,web,partido_politico,provincia,alcalde,alcalde_voota_link,habitantes,escudo,foto FROM organismo WHERE partido_politico is null
+                group by grupo_fk,nombre_admin,wikipedia_url,web,partido_politico,provincia,alcalde,alcalde_voota_link,habitantes,escudo,foto  LIMIT 1 OFFSET $tempOffset";
+        return pg_fetch_assoc(pg_query($this->conn, $sql));
+    }
+    
+    function saveOrganismo($alcalde,$voota,$wikipedi_url,$web,$partido_poltico,$provincia,$habitantes,$escudo,$foto,$grupoId) {
+        if($alcalde=="") {
+             $alcalde="null";
+        }else {
+             $alcalde="'".pg_escape_string($alcalde)."'";
+        }
+        if($voota=="") {
+             $voota="null";
+        }else {
+             $voota="'".pg_escape_string($voota)."'";
+        }
+        if($wikipedi_url=="") {
+             $wikipedi_url="null";
+        }else {
+             $wikipedi_url="'".pg_escape_string($wikipedi_url)."'";
+        }
+        if($web=="") {
+             $web="null";
+        }else {
+             $web="'".pg_escape_string($web)."'";
+        }
+        if($partido_poltico=="") {
+             $partido_poltico="null";
+        }else {
+             $partido_poltico="'".pg_escape_string($partido_poltico)."'";
+        }  
+        if($provincia=="") {
+             $provincia="null";
+        }else {
+             $provincia="'".pg_escape_string($provincia)."'";
+        }                                     
+        if($habitantes=="") {
+            $habitantes="null";
+        } else {
+            $habitantes="'".pg_escape_string($habitantes)."'";
+        }
+        if($escudo=="") {
+             $escudo="null";
+        }else {
+             $escudo="'".pg_escape_string($escudo)."'";
+        }
+        if($foto=="") {
+             $foto="null";
+        }else {
+             $foto="'".pg_escape_string($foto)."'";
+        }                
+
+
+        $sql="UPDATE organismo SET 
+        alcalde=$alcalde,
+        alcalde_voota_link=$voota,
+        wikipedia_url=$wikipedi_url,
+        web=$web,
+        partido_politico=$partido_poltico,
+        provincia=$provincia,
+        habitantes=$habitantes,
+        escudo=$escudo,
+        foto=$foto
+        WHERE grupo_fk =$grupoId    
+        ";
+        $result= pg_query($this->conn, $sql);
+        return  "ok";        
+    }
     
 }
 ?>
