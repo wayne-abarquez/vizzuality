@@ -31,9 +31,9 @@
 					
 					<p>Es una <strong>web</strong> que te ofrece información y estadísticas sobre los <strong>contratos públicos</strong> que se ejecutan en tu entorno. Además te permite comentarlos y valorarlos. <a href="http://www.gastopublico.es">gastopublico.es</a> utiliza la última tecnología para localizar al usuario y mostrar tu dirección en Google Maps. Basado en eso, te presentará los contratos públicos que se hayan ejecutado (o estén en ello) en los alrededores.</p><p>Entrando en alguno de los contratos, obtendrás numerosa información sobre diferentes aspectos del contrato que quizás te interesen: responsable del contrato, partido político del gobierno responsable, importe del proyecto, empresa encargada, tipo de contrato y algunas estadísticas (por ejemplo el gasto que supone ese contrato comparado con el presupuesto anual del organo de contratación)...entre otros.</p>
 					
-					<p class="title">Contratación del estado</p>
+					<p class="title">Contratación del Estado</p>
 					 
-					<p class="last">Toda la información sobre contratos públicos ha sido obtenida de webs de Administraciones Públicas, en particular de la plataforma de Contratacion del Estado (<a href="http://www.contrataciondelestado.es">www.contrataciondelestado.es</a>) del <strong>Ministerio de Economía y Hacienda</strong>.</p> <p>En las próximas semanas se irá añadiendo más información de contratación pública de las Comunidades Autónomas que tengan sus datos de contratos publicados en Internet, como es el caso del País Vasco, Andalucía, Madrid...</p><br/><br/>
+					<p class="last">Toda la información sobre contratos públicos ha sido obtenida de webs de Administraciones Públicas, en particular de la plataforma de Contratacion del Estado (www.contrataciondelestado.es) del Ministerio de Economía y Hacienda. En las próximas semanas se irá añadiendo más información de contratación pública de las Comunidades Autónomas que tengan sus datos de contratos publicados en Internet, como es el caso del País Vasco, Andalucía, Madrid...<br/><br/>La semana pasada se contactó con el departamento Responsable de la Plataforma de Contratacion del Estado, la Subdirección General de Coordinación de la Contratación Electrónica, comentando nuestra idea y las intenciones al respecto. Hasta el momento no hemos recibido contestación oficial.</p><br/>
 					 
 				</span>
 				<span class="content_info_bottom_last"></span>
@@ -69,22 +69,13 @@
 						<span class="content_info_header"></span>
 						<span class="content_info">
 						
-							<p>El proyecto <a href="http://www.gastopublico.es">gastopublico.es</a> ha sido desarrollado por <a href="http://www.vizzuality.com">Vizzuality</a>, empresa dedicada a desarrollar aplicaciones web de visualización y anáisis de datos. Quieres saber más? Lo mejor es que te pases por nuestra web donde verás los proyectos que estamos haciendo :-) en <a href="http://www.vizzuality.com">www.vizzuality.com</a></p>  
-							
-							
-							<p class="title">Proyectos relacionados de Vizzuality</p>
-							<ul>
-								<li><p><a href="http://www.otrobache.com">www.otrobache.com</a></p></li>
-								<li><p><a href="http://www.runnity.com">www.runnity.com</a></p></li>
-							</ul>
-	 						
-	
+							<p>El proyecto <a href="http://www.gastopublico.es">gastopublico.es</a> ha sido desarrollado por <a href="http://www.vizzuality.com">Vizzuality</a>, empresa dedicada a desarrollar aplicaciones web de visualización y anáisis de datos. Quieres saber más? Lo mejor es que te pases por nuestra web donde verás los proyectos que estamos haciendo :-) en <a href="http://www.vizzuality.com">www.vizzuality.com</a><br/><br/>Si quieres, puedes ver <a href="http://www.slideshare.net/vizzuality/gastopublicoes-our-proposal-for-abredatos-2010">un keynote presentando la idea</a>, leer un poquito más sobre el proceso en <a href="http://blog.vizzuality.com">nuestro blog</a>, ó descargarte la <a href="http://www.gastopublico.es/docs/NOTA_DE_PRENSA_GASTO_PUBLICO.pdf">nota de prensa</a><br/></p>
+										
 						</span>
 						<span class="content_info_bottom_last"></span>
 						
 						<p class="back"><a href="#" class="back_about">volver arriba</a></p>
-						
-						
+												
 		</div>
 		
 	</div>
