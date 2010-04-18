@@ -61,9 +61,7 @@
 						{/if}
 					</li>
 				</ul>
-				{if $messageHome == 'localizated'}
-					<p>Viendo municipios cerca de <span class="user_location"></span></p>
-				{else}
+				{if $messageHome != 'localizated'}
 					<form action="/">
 						<input type="text" name="city" value="" />
 						<input type="submit" value="" />
