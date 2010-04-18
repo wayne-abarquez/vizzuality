@@ -47,7 +47,7 @@ $(document).ready(function() {
   map = new google.maps.Map(document.getElementById("mapa"), myOptions);
 	var image = '../images/markers/small.png';
 
-	if ($('span.lat').length>0 && $('span.lat').attr('id').length>0) {
+	if (!$('span.location').length>0) {
 		var position = new google.maps.LatLng($('span.lat').attr('id'),$('span.lon').attr('id'));
 		map.setCenter(position);
 		map.setZoom(12);
@@ -59,6 +59,12 @@ $(document).ready(function() {
 				});
 		marker.setMap(map);
 		map.panBy(-200,-10);
+	} else {
+		var position = new google.maps.LatLng($('span.lat').attr('id'),$('span.lon').attr('id'));
+		map.setCenter(position);
+		map.setZoom(12);
+		
+		map.panBy(-200,-10);	    
 	}
 
 	// var fluster = new Fluster2(map);

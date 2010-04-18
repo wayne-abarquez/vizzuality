@@ -3,6 +3,10 @@
 <div id="mapa" style="height:384px">
 </div>
 
+<span class="lat" style="display:none" id="{$lat}"></span>
+<span class="lon" style="display:none" id="{$lon}"></span>
+<span class="location" style="display:none" id="home"></span>
+
 <div id="layout">
 	
 	<div class="overMap">
