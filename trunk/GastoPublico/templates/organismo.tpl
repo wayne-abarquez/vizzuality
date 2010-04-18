@@ -73,7 +73,7 @@
 			<h3>{$organismo.num_licitaciones} Licitaciones</h3>
 			<div>
 				<p>{$organismo.sum_importe|number_format}€</p>
-				<p class="small">GASTO</p>
+				<p class="small">GASTO TOTAL</p>
 			</div>
 		</span>
 		<div class="search_container">

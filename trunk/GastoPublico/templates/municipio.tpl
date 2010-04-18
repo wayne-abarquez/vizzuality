@@ -77,7 +77,7 @@
 			<h3>{if $organismo.num_licitaciones eq 1}{$organismo.num_licitaciones} Obra en el municipio{else}{$organismo.num_licitaciones} Obras en el municipio{/if}</h3>
 			<div>
 				<p>{$organismo.sum_importe|number_format}€</p>
-				<p class="small">GASTO</p>
+				<p class="small">GASTO TOTAL</p>
 			</div>
 		</span>
 		<div class="search_container">
