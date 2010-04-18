@@ -203,7 +203,6 @@ div.renovation_content div.content form.send_comment div.comment {float:left; ma
 div.renovation_content div.content form.send_comment div.comment p.title {font:bold 13px Arial; color:#666666; width:530px; }
 div.renovation_content div.content form.send_comment div.comment textarea{float:left; padding:3px 4px; width:528px; height:74px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
 div.renovation_content div.content form.send_comment div.comment textarea:focus {outline:none;}
-div.renovation_content div.content form.send_comment p#error {float:left; margin:0 0 0 15px; font:bold 10px Arial; font-style: italic; color:#C33A6E;}
 
 div.renovation_content div.content form.send_comment input[type="submit"]{float:right; background:url(../images/bkgSendComment.png) no-repeat 0 0; margin:18px 20px 0px 0; width:131px; height:30px; border:none; }
 div.renovation_content div.content form.send_comment input[type="submit"]:focus {outline:none;}
