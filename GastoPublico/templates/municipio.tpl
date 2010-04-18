@@ -86,7 +86,7 @@
 				<li>
 					<div class="left_information">
 						<div class="work_image">
-							<a href="#">
+							<a href="../contrato/{$licitacion.licitacion_id}">
 								{if $licitacion.imagen != null}
 									<img src="{$licitacion.imagen}" />
 								{else}
