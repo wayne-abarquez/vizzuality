@@ -293,7 +293,7 @@ div.left_region div.top_information {float:left; margin:0; width:100%;}
 div.left_region div.top_information div.logo {float:left; width:32px; padding:0px 0 0 0;}
 div.left_region div.top_information div.logo img {width:26px;}
 div.left_region div.top_information div.region_data {float:right; width:240px;}
-div.left_region div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725; margin-top:2px;}
+div.left_region div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725; margin-top:2px; width: 100%;}
 div.left_region div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:1px 0 0 0;}
 div.left_region div.top_information div.region_data p.information a {color:#3F8A8C; text-decoration:underline; font:normal 13px Arial;}
 div.left_region div.top_information div.region_data p.information a:hover {text-decoration:none;}

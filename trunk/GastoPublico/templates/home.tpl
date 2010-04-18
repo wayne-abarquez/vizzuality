@@ -37,9 +37,9 @@
 						<div class="work_information">
 							<h4><a href="obra/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:100:"..."}</a></h4>
 							{if $licitacion.org_contratante eq 'Administración Local'}
-								<p><a href="municipio?q={$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+								<p><a href="municipio.php?q={$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
 							{else}
-								<p><a href="organismo?q={$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+								<p><a href="organismo.php?q={$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
 							{/if}
 						</div>
 					</div>
