@@ -41,10 +41,9 @@ div.content_about div.content_right_about span.content_info p {font:normal 15px 
 div.content_about div.content_right_about span.content_info p.last {font:normal 15px Arial; color:#666666; margin:15px 20px 30px 20px;}
 div.content_about div.content_right_about span.content_info_bottom {float:left; background:url(../images/content_about_bottom.png) no-repeat 0 0; width:670px; height:8px; margin:0 0 40px 0;}
 div.content_about div.content_right_about span.content_info_bottom_last {float:left; background:url(../images/content_about_bottom.png) no-repeat 0 0; width:670px; height:8px; margin:0 0 80px 0;}
-
-
-
-
+div.content_about div.content_right_about ul {margin:0 0 0 30px;}
+div.content_about div.content_right_about ul li {margin:0 0 0 0;}
+div.content_about div.content_right_about ul li p {font:normal 15px Arial; color:#666666; margin:0px 20px;}
 
 /************ OBRA *******************/
 
@@ -316,7 +315,7 @@ div.right_home p.long a:hover {background-position: 0 -37px;}
 div.right_home .long .stats{margin:12px 0 0 0;}
 
 
-/*MUNICIPIO*/
+/*ORGANISMO*/
 div.left_region {position:absolute; top:52px; left:0; background: url(../images/top_bkg_right_region.png) no-repeat 0 0 #FFFFFF; width:274px; padding:20px;}
 div.left_region img.arrow {position:absolute; top:18px; right:-13px;}
 div.left_region div.top_information {float:left; margin:0; width:100%;}
@@ -391,7 +390,80 @@ div.right_region p.long {float:left; width:590px; margin:3px 0 0 0; text-align:c
 div.right_region p.long a {float:left; margin:15px 0 0 225px; width:140px; background:url(../images/view_more.png) no-repeat 0 0; text-align:center; padding:6px 0; font:bold 15px Arial; color:white; text-decoration:none;}
 div.right_region p.long a:hover {background-position: 0 -30px;}
 
+/*MUNICIPIO*/
+div.left_region_mun {position:absolute; top:52px; left:0; background: url(../images/top_bkg_right_region.png) no-repeat 0 0 #FFFFFF; width:274px; padding:20px;}
+div.left_region_mun img.arrow {position:absolute; top:18px; right:-13px;}
+div.left_region_mun div.top_information {float:left; margin:0; width:100%;}
+div.left_region_mun div.top_information div.logo {float:left; width:32px; padding:0px 0 0 0;}
+div.left_region_mun div.top_information div.logo img {width:26px;}
+div.left_region_mun div.top_information div.region_data {float:right; width:240px;}
+div.left_region_mun div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725; margin:0px; width: 100%; line-height:26px;}
+div.left_region_mun div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:1px 0 0 0;}
+div.left_region_mun div.top_information div.region_data p.information a {color:#3F8A8C; text-decoration:underline; font:normal 13px Arial;}
+div.left_region_mun div.top_information div.region_data p.information a:hover {text-decoration:none;}
+div.left_region_mun div.top_information div.region_data p.web {float:left; padding:5px 0 0 0;}
+div.left_region_mun div.top_information div.region_data p.web a {color:#3F8A8C; text-decoration:underline; font:normal 11px Arial;}
+div.left_region_mun div.top_information div.region_data p.web a:hover {text-decoration:none;}
+div.left_region_mun img.region {float:left; margin:15px 0 0 0; border:1px solid #cccccc; padding:5px; background:#EEEEEE; width:262px;}
+div.left_region_mun hr {float:left; width:100%;  margin:18px 0 0 0;}
+div.left_region_mun div.political_data {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region_mun div.political_data h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region_mun div.political_data div.big_chart {float:left; width:274px;}
+div.left_region_mun div.political_data div.political_logo {float:left; width:44px;}
+div.left_region_mun div.political_data div.political_logo img {width:38px;}
+div.left_region_mun div.political_data div.political_information {float:right; width:228px; padding:3px 0 0 2px;}
+div.left_region_mun div.political_data div.political_information h3 {font:bold 13px Arial; color:#333333;}
+div.left_region_mun div.political_data div.political_information p {font:normal 11px Arial; color:#666666; margin-top: 3px;}
+div.left_region_mun div.political_data div.political_information p a {color:#3F8A8C; text-decoration:none;}
+div.left_region_mun div.political_data div.political_information p a:hover {text-decoration:underline;}
+div.left_region_mun div.political_stats {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region_mun div.political_stats h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region_mun div.more_enterprises {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region_mun div.more_enterprises h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
+div.left_region_mun div.more_enterprises li {font:normal 13px Arial; color:#666666; padding:1px 0;}
+div.left_region_mun div.related_regions {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region_mun div.related_regions span {float:left; width:100%; padding:0 0 7px 0;}
+div.left_region_mun div.related_regions span h2 {float:left; width:auto; font:bold 15px Arial; color:#333333;}
+div.left_region_mun div.related_regions span a {float:right; width:auto; font:normal 11px Arial; color:#408A8D; padding:2px 0 0; text-decoration:none; border-bottom:1px solid #408A8D;}
+div.left_region_mun div.related_regions span a:hover {border-bottom:1px dotted #408A8D;}
+div.left_region_mun div.related_regions li {padding:2px 0;}
+div.left_region_mun div.related_regions li a {font:bold 13px Arial; color:#408A8D; padding:0; text-decoration:none;}
+div.left_region_mun div.related_regions li a:hover {border-bottom:1px solid #408A8D;}
 
+div.right_region_mun {position:relative; float:right; width:590px; padding:20px 0 60px 20px;}
+div.right_region_mun span {float:left; width:590px; color:#666666; padding:0 0 20px;}
+div.right_region_mun span h3 {float:left; width:auto; font:bold 35px Arial; letter-spacing:-1px;}
+div.right_region_mun span div {float:right; width:142px; padding:7px 0 0 0;}
+div.right_region_mun span div p {float:left; width:142px; text-align:right; font:bold 25px Arial; letter-spacing:-1px;}
+div.right_region span div p.small {float:left; width:142px; font:bold 10px Arial; color:#AAABA7; letter-spacing:0; line-height:5px;}
+/*div.right_region_mun div.search_container {float:left; padding:22px 13px; width:564px; background:url(../images/region_search_bkg.png) no-repeat 0 0 #E1E2DB;}*/
+div.right_region_mun div.search_container {float:left; height:15px; padding:0; width:590px; background:url(../images/searchArrow.png) no-repeat 0 0;}
+div.right_region_mun ul {float:left; padding:0; width:590px; margin:0;}
+div.right_region_mun ul li {float:left; padding:17px 0; width:590px; border-bottom:1px solid #DADCD0;}
+
+div.right_region_mun ul li div.left_information {float:left; width:490px;}
+div.right_region_mun ul li div.left_information div.work_image {float:left; width:77px;}
+div.right_region_mun ul li div.left_information div.work_image a img {float:left; width:60px; padding:3px; background:white; border:1px solid #cccccc;}
+div.right_region_mun ul li div.left_information div.work_image a:hover img {border:1px solid #999999;}
+div.right_region_mun ul li div.left_information div.work_information {float:left; width:400px;}
+div.right_region_mun ul li div.left_information div.work_information a {font:bold 15px Arial; color:#2A2625; line-height:18px; text-decoration:none;}
+div.right_region_mun ul li div.left_information div.work_information a:hover {font:bold 15px Arial; color:#2A2625; line-height:18px; text-decoration: underline; cursor: pointer;}
+div.right_region_mun ul li div.left_information div.work_information p {font:normal 13px Arial; color:#666666; padding:5px 0 0 0;}
+
+div.right_region_mun ul li div.right_information {float:right; width:100px;}
+div.right_region_mun ul li div.right_information a.likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff; padding: 1px 4px 0 0; margin: 0 5px 0 0; text-align:right;}
+div.right_region_mun ul li div.right_information a.likes:hover {background-position:0 -16px;}
+div.right_region_mun ul li div.right_information a.no_likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat -37px 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff;padding: 1px 4px 0 0; text-align:right;}
+div.right_region_mun ul li div.right_information a.no_likes:hover {background-position:-37px -16px;}
+div.right_region_mun ul li div.right_information a.comments {float:right; text-align:right; padding:4px 0 0 0; font:normal 13px Arial; color:#408A8D; text-decoration:underline; width:100%;}
+div.right_region_mun ul li div.right_information a:hover {text-decoration:none;}
+div.right_region_mun ul li div.right_information a.no_like {float:right; background:url(../images/greyButton_leftSmiley.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:25px; width:auto; text-decoration:none; cursor: pointer;}
+div.right_region_mun ul li div.right_information a.no_like:hover {background-position:0 -25px;}
+div.right_region_mun ul li div.right_information a.no_like span {background:url(../images/greyButton_bkg.png) no-repeat right 0; padding:5px 7px 5px 3px; margin:0; font:normal 13px Arial; color:#FFFFFF; width:auto;}
+div.right_region_mun ul li div.right_information a.no_like:hover span {background-position:right -25px;}
+div.right_region_mun p.long {float:left; width:590px; margin:3px 0 0 0; text-align:center; color:#666666;}
+div.right_region_mun p.long a {float:left; margin:15px 0 0 225px; width:140px; background:url(../images/view_more.png) no-repeat 0 0; text-align:center; padding:6px 0; font:bold 15px Arial; color:white; text-decoration:none;}
+div.right_region_mun p.long a:hover {background-position: 0 -30px;}
 
 /*FOOTER*/
 div.outer_layout_footer {width:100%; border-top:3px solid #408A8D; background:#2A2825; height:193px; float:left;}
