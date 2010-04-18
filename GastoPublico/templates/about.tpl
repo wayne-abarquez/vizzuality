@@ -64,7 +64,7 @@
 							<p class="title">Subtítulo de la sección</p>
 							<p class="last">Obras de renovación de las <a href="#">instalaciones deportivas</a> del polideportivo municipal "El Torreón". Para estas obras se ha utilizado el <strong>presupuesto</strong> necesario para realizar y confirmar la mejora de las instalaciones. <strong>Para estas obras</strong> se ha utilizado el presupuesto necesario para realizar y confirmar la mejora de las instalaciones.</p>  
 						</span>
-						<span class="content_info_bottom"></span>
+						<span class="content_info_bottom_last"></span>
 		</div>
 		
 	</div>
@@ -74,4 +74,4 @@
 	
 </div>
 
-{include file="footer_home.tpl"}
+{include file="footer.tpl"}

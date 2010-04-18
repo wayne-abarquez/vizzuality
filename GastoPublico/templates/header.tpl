@@ -36,7 +36,7 @@
 	<BODY>
 		<div class="outer_layout_gray">
 			<div class="header">
-				<p class="logo"><a href="#">gastopublico.es</a></p>
+				<p class="logo"><a href="http://www.gastopublico.es">gastopublico.es</a></p>
 				<p class="facebook">Identifícate con facebook</p>
 			</div>
 		</div>
@@ -44,9 +44,9 @@
 			<div class="menu">
 				<img src="../images/green_arrow.png" alt="green arrow"/>
 				<ul>
-					<li><a href="#">obras</a></li>
+					<li><a href="obra.php">obras</a></li>
 					<li><a href="#" class="disabled">suministros</a></li>
-					<li><a href="#">sobre</a></li>
+					<li><a href="about.php">about</a></li>
 				</ul>
 				<!-- <p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p> -->
 				<form action="#">
