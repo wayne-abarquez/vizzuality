@@ -14,13 +14,12 @@ $res= pg_fetch_all(pg_query($conn, $sql));
 foreach($res as $org) {
     
 
-    $r = google_top(normalize($org['poblacion']). " wikipedia");
-    echo(normalize($org['poblacion']). " wikipedia");
+    $r = google_top(urlencode(normalize($org['poblacion']). " wikipedia"));
+
     $wikipediaUrl = $r->hits[0]->unescapedUrl;
-    print_r($r);
 	$html = file_get_dom($wikipediaUrl);
     foreach($html->find('table') as $table) {
-        print_r($table);
+        print_r($table->class."\n\n");
     }
     
     
