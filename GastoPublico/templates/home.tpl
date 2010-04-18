@@ -37,16 +37,16 @@
 						<div class="work_information">
 							<h4><a href="obra/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:100:"..."}</a></h4>
 							{if $licitacion.org_contratante eq 'Administración Local'}
-								<p><a href="municipio.php?q={$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+								<p><a href="municipio.php?q={$licitacion.grupo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
 							{else}
-								<p><a href="organismo.php?q={$licitacion.organismo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+								<p><a href="organismo.php?q={$licitacion.grupo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
 							{/if}
 						</div>
 					</div>
 					<div class="right_information">
 						<a class="no_likes" href="#">{$licitacion.votes_down}</a>	
 						<a class="likes" href="#">{$licitacion.votes_up}</a>
-						<a class="comments" href="#">{$licitacion.num_comentarios} comentarios</a>
+						<a class="comments" href="#">{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a>
 					</div>
 				</li>
 		    {/foreach}

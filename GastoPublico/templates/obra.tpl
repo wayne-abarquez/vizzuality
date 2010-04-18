@@ -9,8 +9,13 @@
 				<img src="../images/villaviciosa.png" />
 			</div>
 			<div class="region_data">
-				<h1>Villaviciosa de Odón</h1>
-				<p class="information"><a href="#">Madrid</a>, 181.013 habitantes</p>
+				{if $obra.org_contratante eq 'Administración Local'}
+					<h1>{$obra.poblacion}</h1>
+					<p class="information"><a href="#">Madrid</a>, 181.013 habitantes</p>
+				{else}
+					<h1>{$obra.nombre_admin}</h1>
+					<p class="information">{$obra.pais}</p>
+				{/if}
 			</div>
 		</div>
 
@@ -72,18 +77,18 @@
 					<p class="upload"><a href="#" class="upload_photo">sube una foto</a></p>
 				</div>
 				<div class="content_right">
-					<p class="title">Renovación de las instalaciones deportivas del Polideportivo municipal "El Torreón"</p>
-					<p class="content">Infraestructuras<span class="state"> - No finalizada - </span>Publicada el 18/31/2010</p>
+					<p class="title">{$obra.titulo}</p>
+					<p class="content">Infraestructuras<span class="state"> - {$obra.estado} - </span>Publicada el 18/31/2010</p>
 				</div>			
 			</div>
 			
 			<div class="content_down">
 				<div class="content_left_like">
-					<a class="like" href="#">si, me gusta(23)</a>
-					<a class="no_like" href="#">no me gusta(22)</a>
+					<a class="like" href="#">si, me gusta({$obra.votes_up})</a>
+					<a class="no_like" href="#">no me gusta({$obra.votes_down})</a>
 				</div>
 				<div class="content_right_comment">
-					<p><a href="#">3 comentarios</a></p>
+					<p><a href="#">{if $obra.num_comentarios eq 1}{$obra.num_comentarios} comentario{else}{$obra.num_comentarios} comentarios{/if}</a></p>
 				</div>
 			</div>
 			
@@ -136,7 +141,7 @@
 						<span class="kind_contrat">
 						</span>
 					</a>
-					<a class="money"><span>431,234€</span></a>		
+					<a class="money"><span>{$obra.importe}€</span></a>		
 				</div>
 				<div class="content_left">
 					<p class="title">Descripción de la obra</p>
@@ -155,13 +160,13 @@
 				
 				
 				<p class="download">
-					<span class="pdf"><a href="#">Descargar pdf</a></span>
+					<span class="pdf"><a href="#al_pdf">Descargar pdf</a></span>
 					<span class="line_divide"></span>
-					<span class="view_more"><a href="#">Ver más en contratacióndelestado.es</a></span>
+					<span class="view_more"><a href="{$obra.contra_permalink}">Ver más en contratacióndelestado.es</a></span>
 				</p>
 				
 				<div class="content_left">
-					<p class="title">Comentarios (3)</p>
+					<p class="title">Comentarios ({$obra.num_comentarios})</p>
 				</div>
 				
 				<div class="line_to_separate"></div>
