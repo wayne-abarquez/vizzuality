@@ -35,6 +35,12 @@ $(document).ready(function() {
 		$.scrollTo('.outer_layout_gray',500);
 	});
 	
+	$('#gotocomment').click (function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		$.scrollTo('p.title_comments',500);
+	});
+	
 	
 
   var myOptions = {

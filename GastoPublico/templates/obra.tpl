@@ -116,7 +116,7 @@
 					<a class="no_like" href="#">no me gusta({$obra.votes_down})</a>
 				</div>
 				<div class="content_right_comment">
-					<p><a href="#">{if $obra.num_comentarios eq 1}{$obra.num_comentarios} comentario{else}{$obra.num_comentarios} comentarios{/if}</a></p>
+					<p><a href="#" id="gotocomment">{if $obra.num_comentarios eq 1}{$obra.num_comentarios} comentario{else}{$obra.num_comentarios} comentarios{/if}</a></p>
 				</div>
 			</div>
 			
@@ -191,7 +191,7 @@
 				</p>
 				
 				<div class="content_left">
-					<p class="title">Comentarios ({$obra.num_comentarios})</p>
+					<p class="title_comments">Comentarios ({$obra.num_comentarios})</p>
 				</div>
 
 				{if $obra.num_comentarios != 0}

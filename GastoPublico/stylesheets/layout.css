@@ -134,6 +134,7 @@ div.renovation_content div.content div.content_left p.name a {font:left; font:no
 div.renovation_content div.content div.content_left p.name a:hover {text-decoration: none;}
 
 div.renovation_content div.content div.content_left p.title {float:left; font:bold 17px Arial; color:#2A2625; letter-spacing:-1.0px; margin:20px 0 0 0; width: 400px;}
+div.renovation_content div.content div.content_left p.title_comments {float:left; font:bold 17px Arial; color:#2A2625; letter-spacing:-1.0px; margin:20px 0 0 0; width: 400px;}
 
 div.renovation_content div.content p.description {float:left; font:normal 15px Arial; color:#666666; margin:0px 20px 10px 20px; width:567px;}
 div.renovation_content div.content div.no_info {float:left; font:normal 15px Arial; background:url(../images/bkg_no_info.png) no-repeat 0 0; width:566px; height:112px; margin:5px 0 10px 22px;}
