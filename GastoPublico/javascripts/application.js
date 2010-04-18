@@ -3,7 +3,14 @@ var map;
 
 $(document).ready(function() {
 	
+	// VER MAPA
+	$('#ve_mapa').click (function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		$.scrollTo('#mapa',500);
+	});
 	
+
   var myOptions = {
       zoom: 4,
       center: new google.maps.LatLng(25, 25),
@@ -11,109 +18,116 @@ $(document).ready(function() {
       scrollwheel:false,
       mapTypeId: google.maps.MapTypeId.ROADMAP
   };
-  map = new google.maps.Map(document.getElementById("map"), myOptions);
-
-	// Initialize Fluster and give it a existing map
-	var fluster = new Fluster2(map);
+  map = new google.maps.Map(document.getElementById("mapa"), myOptions);
 	var image = '../images/markers/small.png';
-	
-	for(var i = 0; i < 200; i++)
-	{
-		var pos = [
-			50 * Math.random(),
-			50 * Math.random()
-		];
+
+	if ($('span.lat').length>0 && $('span.lat').attr('id').length>0) {
+		var position = new google.maps.LatLng($('span.lat').attr('id'),$('span.lon').attr('id'));
+		map.setCenter(position);
+		map.setZoom(12);
 		
-		// Create a new marker. Don't add it to the map!
 		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(pos[0], pos[1]),
-			title: 'Marker ' + i,
-			icon: image
-		});
-		
-		// Add the marker to the Fluster
-		fluster.addMarker(marker);
+					position: position,
+					title: '',
+					icon: image
+				});
+		marker.setMap(map);
+		map.panBy(-200,-10);
 	}
-	
-	// Set styles
-	// These are the same styles as default, assignment is only for demonstration ...
-	fluster.styles = {
-		0: {
-			image: '../images/markers/medium.png',
-			textColor: '#FFFFFF',
-			width: 48,
-			height: 48
-		},
-		6: {
-			image: '../images/markers/big.png',
-			textColor: '#FFFFFF',
-			width: 58,
-			height: 58
-		}
-	};
-	
-	// Initialize Fluster
-	// This will set event handlers on the map and calculate clusters the first time.
-	fluster.initialize();
+
+	// var fluster = new Fluster2(map);
+	// 	var image = '../images/markers/small.png';
+	// 	
+	// 	for(var i = 0; i < 200; i++)
+	// 	{
+	// 		var pos = [
+	// 			50 * Math.random(),
+	// 			50 * Math.random()
+	// 		];
+	// 		
+	// 		var marker = new google.maps.Marker({
+	// 			position: new google.maps.LatLng(pos[0], pos[1]),
+	// 			title: 'Marker ' + i,
+	// 			icon: image
+	// 		});
+	// 		
+	// 		// Add the marker to the Fluster
+	// 		fluster.addMarker(marker);
+	// 	}
+	// 
+	// 	fluster.styles = {
+	// 		0: {
+	// 			image: '../images/markers/medium.png',
+	// 			textColor: '#FFFFFF',
+	// 			width: 48,
+	// 			height: 48
+	// 		},
+	// 		6: {
+	// 			image: '../images/markers/big.png',
+	// 			textColor: '#FFFFFF',
+	// 			width: 58,
+	// 			height: 58
+	// 		}
+	// 	};
+	// 
+	// 	fluster.initialize();
 
 
 
 
 
 	// OBRA LENGTH
-	var left_work = $('div.left_region_work').height();
-	var right_work = $('div.renovation_content').height();
-
-	if (left_work<right_work) {
-			$('div.left_region_work').height(right_work-120);
-	} else {
-		 	$('div.renovation_content').height(left_work+120);
-	}
+	// var left_work = $('div.left_region_work').height();
+	// var right_work = $('div.renovation_content').height();
+	// 
+	// if (left_work<right_work) {
+	// 		$('div.left_region_work').height(right_work-120);
+	// } else {
+	// 	 	$('div.renovation_content').height(left_work+120);
+	// }
 	
 
 	//ORGANISMO LENGTH
-	var left_lenght = $('div#layout div.left_region_mun').innerHeight()-226;
-	var right_lenght = $('div#layout div.right_region_mun').innerHeight();
-
-	if (left_lenght<right_lenght) { 
-		if ($.browser.mozilla) {
-
-		    $('div.left_region_mun').height(right_lenght + 189);
-		 } else {
-
-				$('div.left_region_mun').height(right_lenght + 261);
-		}
-	} else {	// If content_left > content_right
-		if ($.browser.mozilla) {
-
-		    $('div.right_region_mun').height(right_lenght+500);
-		 } else {
-
-				$('div.right_region_mun').height(left_lenght+78);
-		}
-	}
+	// var left_lenght = $('div#layout div.left_region_mun').innerHeight()-226;
+	// var right_lenght = $('div#layout div.right_region_mun').innerHeight();
+	// 
+	// if (left_lenght<right_lenght) { 
+	// 	if ($.browser.mozilla) {
+	// 
+	// 	    $('div.left_region_mun').height(right_lenght + 189);
+	// 	 } else {
+	// 
+	// 			$('div.left_region_mun').height(right_lenght + 261);
+	// 	}
+	// } else {	
+	// 	if ($.browser.mozilla) {
+	// 
+	// 	    $('div.right_region_mun').height(right_lenght+500);
+	// 	 } else {
+	// 
+	// 			$('div.right_region_mun').height(left_lenght+78);
+	// 	}
+	// }
 
 	
 
 	//MUNICIPIO LENGTH
-	var left_lenght = $('div#layout div.left_region').innerHeight()-226;
-	var right_lenght = $('div#layout div.right_region').innerHeight();
+	var left_lenght = $('div.left_region_mun').innerHeight();
+	var right_lenght = $('div.right_region_mun').innerHeight();
+
 
 	if (left_lenght<right_lenght) { 
 		if ($.browser.mozilla) {
-
 		    $('div.left_region').height(right_lenght + 189);
 		 } else {
-
 				$('div.left_region').height(right_lenght + 261);
 		}
-	} else {	// If content_left > content_right
+	} else {
 		if ($.browser.mozilla) {
-
-		    $('div.right_region').height(right_lenght+305);
+		    $('div.right_region_num').height(1200);
 		 } else {
 
-				$('div.right_region').height(left_lenght+78);
+				$('div.right_region_num').height(1200);
 		}
 	}
 	

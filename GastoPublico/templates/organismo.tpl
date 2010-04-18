@@ -1,9 +1,12 @@
 {include file="header.tpl"}
 
-<div id="map"></div>
+<span class="lat" style="display:none" id="{$organismo.lat}"></span>
+<span class="lon" style="display:none" id="{$organismo.lon}"></span>
+
+<div id="mapa"></div>
 <div id="layout">
 	<div class="left_region">
-		<img class="arrow" src="images/white_arrow.png" alt="white arrow">
+		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
 		<div class="top_information">
 			<div class="logo">
 				<img src="{$organismo.escudo}"/>
@@ -16,11 +19,8 @@
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_data">
 			<h2>Responsable</h2>
-			<div class="political_logo">
-				<!--<img src="../images/iconospartido/psoe.png" />-->
-				
+			<div class="political_logo">				
 				<img src="{$logoPartido}"/>
-				
 			</div>
 			<div class="political_information">
 				<h3>{$organismo.alcalde}</h3>
@@ -55,7 +55,7 @@
 			</span>	
 			<ul>
 				{foreach key=id item=organismo_lista from=$orga_relacionados name=counter}
-					<li><a href="organismo.php?id={$organismo_lista.id}">{$organismo_lista.nombre_admin}</a></li>
+					<li><a href="../org/{$organismo_lista.id}">{$organismo_lista.nombre_admin}</a></li>
 		    {/foreach}
 			</ul>
 		</div>
@@ -76,10 +76,10 @@
 				<li>
 					<div class="left_information">
 						<div class="work_image">
-							<a href="#"><img src="../images/work_fake.png" /></a>
+							<a href="../org/{$licitacion.licitacion_id}"><img src="{if $licitaion.imagen eq null}../images/default_work.png{else}{$licitacion.imagen}{/if}" /></a>
 						</div>
 						<div class="work_information">
-							<a href="obra.php?id={$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
+							<a href="../org/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
 							<p>{$licitacion.categoria} - Presupuesto de <strong>{$licitacion.importe|number_format}€</strong></p>
 						</div>
 					</div>

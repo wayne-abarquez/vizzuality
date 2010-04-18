@@ -1,20 +1,24 @@
 {include file="header.tpl"}
 
-<div id="map"></div>
+
+<span class="lat" style="display:none" id="{$municipio.lat}"></span>
+<span class="lon" style="display:none" id="{$municipio.lon}"></span>
+
+<div id="mapa"></div>
 <div id="layout">
 	<div class="left_region_mun">
-		<img class="arrow" src="images/white_arrow.png" alt="white arrow">
+		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
 		<div class="top_information">
 			<div class="logo">
-				<img src="{$municipio.escudo}" />
+				<img src="{$organismo.escudo}" />
 			</div>
 			<div class="region_data">
-				<h1>{$municipio.poblacion}</h1>
-				<p class="information">{$municipio.provincia}, {$municipio.habitantes} habitantes</p>
-				<p class="web"><a href="{$municipio.web}" target="_blank">{$municipio.web}</a></p>
+				<h1>{$organismo.poblacion}</h1>
+				<p class="information">{$organismo.provincia}, {$organismo.habitantes} habitantes</p>
+				<p class="web"><a href="{$organismo.web}" target="_blank">{$organismo.web}</a></p>
 			</div>
 		</div>
-		<img class="region" src="{$municipio.foto}">
+		<img class="region" src="{$organismo.foto}">
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_data">
 			<h2>Alcaldía</h2>
@@ -22,8 +26,8 @@
 				<img src="{$logoPartido}"/>
 			</div>
 			<div class="political_information">
-				<h3>{$municipio.alcalde}</h3>
-				<p>ver su <a href="{$municipio.alcalde_voota_link}">biografía en voota</a></p>
+				<h3>{$organismo.alcalde}</h3>
+				<p>ver su <a href="{$organismo.alcalde_voota_link}">biografía en voota</a></p>
 			</div>
 		</div>
 		<hr color="#E2E3DD" size="1"/>
@@ -51,7 +55,7 @@
 		<div class="related_regions">
 			<span>
 				<h2>Municipios relacionados</h2>
-				<a href="#">ver mapa</a>
+				<a href="#" id="ve_mapa">ver mapa</a>
 			</span>	
 			<ul>
 				{foreach key=id item=organismo_lista from=$orga_relacionados name=counter}
@@ -76,14 +80,14 @@
 				<li>
 					<div class="left_information">
 						<div class="work_image">
-							<a href="#"><img src="../images/work_fake.png" /></a>
+							<a href="#"><img src="{$licitacion.imagen}" /></a>
 						</div>
 						<div class="work_information">
 							<a href="obra.php?id={$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
 							<p>{$licitacion.categoria} - Presupuesto de <strong>{$licitacion.importe|number_format}€</strong></p>
 						</div>
 					</div>
-					<div class="right_information">
+					<div class="right_information" alt="{$licitacion.licitacion_id}">
 						<a class="no_likes" href="#">{$licitacion.votes_down}</a>	
 						<a class="likes" href="#">{$licitacion.votes_up}</a>
 						<a class="comments" href="#">{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a>

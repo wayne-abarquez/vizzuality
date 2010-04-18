@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<div id="map" style="height:384px">
+<div id="mapa" style="height:384px">
 </div>
 
 <div id="layout">
