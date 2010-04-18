@@ -13,6 +13,13 @@ $smarty->assign('organismo',$organismo);
 $smarty->assign('regiones',$services->getFeaturedOrganismos());
 $smarty->assign('orga_relacionados',$services->getNearOrganismos($_REQUEST['id']));
 $smarty->assign('lista_licitaciones',$services->licitacionesByOrganism($_REQUEST['id'],0));
-$smarty->display('organismo.tpl');
+
+
+	if ($organismo['org_contratante'] == 'Administración Local') {
+		$smarty->display('municipio.tpl');
+	} else {
+		$smarty->display('organismo.tpl');
+	}
+
 
 ?>

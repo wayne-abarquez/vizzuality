@@ -13,7 +13,7 @@ div#layout {margin:0 auto; width:924px; position:relative;}
 div#outer_upper_area{width:100%;}
 
 div#upper_area {width:924px; margin:0 auto; }
-div#map {float:left; position:relative; width:100%; height:278px; margin:0; border-bottom:3px solid #FFFFFF;}
+div#mapa {float:left; position:relative; width:100%; height:278px; margin:0; border-bottom:3px solid #FFFFFF;}
 
 
 div.head_lent {float:left; z-index:100000; background:url(../images/homeLent.png) no-repeat 0 0; height:384px; width:100%; margin:0 0 0 0; position:absolute;}

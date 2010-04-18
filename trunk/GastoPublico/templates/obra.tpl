@@ -1,6 +1,9 @@
 {include file="header.tpl"}
 
-<div id="map"></div>
+<span class="lat" style="display:none" id="{$obra.lat}"></span>
+<span class="lon" style="display:none" id="{$obra.lon}"></span>
+
+<div id="mapa"></div>
 <div id="layout">
 	<div class="left_region_work">
 	
@@ -67,7 +70,7 @@
 			{if $obra.org_contratante eq 'Administración Local'}
 				<span>
 					<h2>Municipios relacionados</h2>
-					<a href="#">ver mapa</a>
+					<a href="#" id="ve_mapa">ver mapa</a>
 				</span>
 				<ul>
 				{foreach key=id item=organismo from=$orga_relacionados name=counter}
