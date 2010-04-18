@@ -120,7 +120,7 @@ div.renovation_content div.content_down div.content_right_comment p a {float:lef
 div.renovation_content div.content_down div.content_right_comment p a:hover {text-decoration: none;} 
 
 
-div.renovation_content div.content_head {float:right; width:610px; height:19px; background:url(../images/renovation_content_head.png) no-repeat 0 0; margin:10px 0 0px 0;}
+div.renovation_content div.content_head {float:right; width:610px; height:19px; background:url(../images/renovation_content_head.png) no-repeat 0 0; margin:9px 0 0px 0;}
 div.renovation_content div.content {float:right; width:610px; background-color:#FFFFFF; margin:0px 0 0 0; padding:1px 0 0 0;}
 
 

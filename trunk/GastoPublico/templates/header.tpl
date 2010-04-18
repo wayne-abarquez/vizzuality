@@ -44,7 +44,7 @@
 				<ul>
 					<li><a href="#">obras</a></li>
 					<li><a href="#" class="disabled">suministros</a></li>
-					<li><a href="/sobre">sobre</a></li>
+					<li><a href="/sobre/">sobre</a></li>
 				</ul>
 				{if $section == 'home'}
 					<p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p>
