@@ -58,7 +58,7 @@ div.left_region_work div.top_information div.logo img {width:26px;}
 div.left_region_work div.top_information div.region_data {float:right; width:240px;}
 div.left_region_work div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#8C8B86;}
 div.left_region_work div.top_information div.region_data h1 a {text-decoration:none; color:#8C8B86;}
-div.left_region_work div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:3px 0 0 0;}
+div.left_region_work div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:3px 0 0 0; margin: 4px 0 0 0;}
 div.left_region_work div.top_information div.region_data {float:left; width:240px;}
 div.left_region_work div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#8c8c86; margin: 3px 0 0 2px;}
 div.left_region_work div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:1px 0 0 2px;}
@@ -406,7 +406,7 @@ div.left_region_mun div.top_information div.logo {float:left; width:32px; paddin
 div.left_region_mun div.top_information div.logo img {width:26px;}
 div.left_region_mun div.top_information div.region_data {float:right; width:240px;}
 div.left_region_mun div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725; margin:0px; width: 100%; line-height:26px;}
-div.left_region_mun div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:1px 0 0 0;}
+div.left_region_mun div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:4px 0 0 0;}
 div.left_region_mun div.top_information div.region_data p.information a {color:#3F8A8C; text-decoration:underline; font:normal 13px Arial;}
 div.left_region_mun div.top_information div.region_data p.information a:hover {text-decoration:none;}
 div.left_region_mun div.top_information div.region_data p.web {float:left; padding:5px 0 0 0;}

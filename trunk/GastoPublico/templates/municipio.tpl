@@ -60,7 +60,7 @@
 			</span>	
 			<ul>
 				{foreach key=id item=organismo_lista from=$orga_relacionados name=counter}
-					<li><a href="organismo.php?id={$organismo_lista.id}">{$organismo_lista.nombre_admin}</a></li>
+					<li><a href="{$organismo_lista.id}">{$organismo_lista.nombre_admin}</a></li>
 		    	{/foreach}
 			</ul>
 		</div>
