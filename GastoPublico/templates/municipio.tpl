@@ -18,7 +18,14 @@
 				<p class="web"><a href="{$organismo.web}" target="_blank">{$organismo.web}</a></p>
 			</div>
 		</div>
-		<img class="region" src="{$organismo.foto}">
+
+		{if $organismo.foto != null}
+			<img class="region" src="{$organismo.foto}">
+		{else}
+			<img class="region" src="../images/defaultImages/bigImg.png">
+		{/if}
+
+		
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_data">
 			<h2>Alcaldía</h2>
@@ -60,7 +67,7 @@
 			<ul>
 				{foreach key=id item=organismo_lista from=$orga_relacionados name=counter}
 					<li><a href="organismo.php?id={$organismo_lista.id}">{$organismo_lista.nombre_admin}</a></li>
-		    {/foreach}
+		    	{/foreach}
 			</ul>
 		</div>
 	</div>
@@ -80,7 +87,13 @@
 				<li>
 					<div class="left_information">
 						<div class="work_image">
-							<a href="#"><img src="{$licitacion.imagen}" /></a>
+							<a href="#">
+								{if $licitacion.imagen != null}
+									<img src="{$licitacion.imagen}" />
+								{else}
+									<img src="../images/defaultImages/smallImg.png" />
+								{/if}
+							</a>
 						</div>
 						<div class="work_information">
 							<a href="obra.php?id={$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
