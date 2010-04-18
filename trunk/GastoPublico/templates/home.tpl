@@ -43,10 +43,16 @@
 							{/if}
 						</div>
 					</div>
-					<div class="right_information">
+					<div class="right_information" alt="{$licitacion.licitacion_id}">
 						<a class="no_likes" href="#">{$licitacion.votes_down}</a>	
 						<a class="likes" href="#">{$licitacion.votes_up}</a>
-						<a class="comments" href="#">{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a>
+						<a class="comments" 
+						{if $licitacion.org_contratante eq 'Administración Local'}
+							href="municipio.php?id={$licitacion.grupo_id}"
+						{else}
+							href="organismo.php?id={$licitacion.grupo_id}"
+						{/if}>{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a>
+						
 					</div>
 				</li>
 		    {/foreach}

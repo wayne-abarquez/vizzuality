@@ -139,6 +139,49 @@ $(document).ready(function() {
 		$(this).parent().parent().children('div.tool_tip').fadeOut();
 		
 	});
+	
+	//VOTES ACTION
+	$('a.likes').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		var licitacion = $(this).parent().attr('alt');
+		var this_ = this;
+		var dataObj = ({method: 'vote_up', licitacion: licitacion});    
+		$.ajax({
+		    	type: "POST",
+		    	url: "/ajaxController.php",
+		    	data: dataObj,
+		    	cache: false,
+		    	success: function(result){
+						var count = parseInt($(this_).html());
+						$(this_).html(count+1);
+		    	},
+		      error:function (xhr, ajaxOptions, thrownError){
+	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+	        }
+		 });
+	});
+	
+	$('a.no_likes').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		var licitacion = $(this).parent().attr('alt');
+		var this_ = this;
+		var dataObj = ({method: 'vote_down', licitacion: licitacion});    
+		$.ajax({
+		    	type: "POST",
+		    	url: "/ajaxController.php",
+		    	data: dataObj,
+		    	cache: false,
+		    	success: function(result){
+						var count = parseInt($(this_).html());
+						$(this_).html(count+1);
+		    	},
+		      error:function (xhr, ajaxOptions, thrownError){
+	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+	        }
+		 });
+	});
 
 });
 

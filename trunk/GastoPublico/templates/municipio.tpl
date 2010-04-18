@@ -6,7 +6,7 @@
 		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
 		<div class="top_information">
 			<div class="logo">
-				<img src="../images/villaviciosa.png" />
+				<img src="{$municipio.escudo}" />
 			</div>
 			<div class="region_data">
 				<h1>{$municipio.poblacion}</h1>
@@ -14,7 +14,7 @@
 				<p class="web"><a href="{$municipio.web}" target="_blank">{$municipio.web}</a></p>
 			</div>
 		</div>
-		<img class="region" src="../images/villaviciosa_photo.png">
+		<img class="region" src="{$municipio.foto}">
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_data">
 			<h2>Alcaldía</h2>
