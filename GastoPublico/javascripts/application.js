@@ -186,6 +186,42 @@ $(document).ready(function() {
 		
 	});
 
+	$('div.content_right a span.kind_contrat_restricted').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent().children('div.tool_tip_restricted').show();
+		
+	},
+	function(){
+		$(this).parent().parent().children('div.tool_tip_restricted').fadeOut();
+		
+	});
+
+	$('div.content_right a span.kind_contrat_other').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent().children('div.tool_tip_other').show();
+		
+	},
+	function(){
+		$(this).parent().parent().children('div.tool_tip_other').fadeOut();
+		
+	});
+	
+	$('div.content_right a span.kind_contrat_negociated').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent().children('div.tool_tip_negociated').show();
+		
+	},
+	function(){
+		$(this).parent().parent().children('div.tool_tip_negociated').fadeOut();
+		
+	});
+
 	$('a div.big_chart').hover(function(ev){
 		ev.stopPropagation();
 		ev.preventDefault();
