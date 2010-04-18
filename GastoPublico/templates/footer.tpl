@@ -3,7 +3,7 @@
 			<div class="left_footer">
 				<ul>
 					<li><a href="mailto:contact@vizzuality.com" target="_blank">contacto</a></li>
-					<li class="last"><a href="../about">sobre</a></li>
+					<li class="last"><a href="../sobre/">sobre</a></li>
 				</ul>
 			</div>
 			<div class="right_footer">
