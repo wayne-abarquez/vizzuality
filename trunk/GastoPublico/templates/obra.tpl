@@ -127,7 +127,7 @@
 			<div class="content">
 				<div class="content_left">
 					<p class="award">Adjudicado a:</p>
-					<p class="name"><a href="#">{$obra.empresa_adjudicada}</a></p>
+					<p class="name">{if $obra.empresa_adjudicada eq null}Información aún no disponible{else}<a href="#">{$obra.empresa_adjudicada}{/if}</a></p>
 				</div>
 				
 			
