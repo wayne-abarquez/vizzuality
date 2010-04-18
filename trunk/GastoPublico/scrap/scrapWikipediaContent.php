@@ -19,7 +19,9 @@ foreach($res as $org) {
     $wikipediaUrl = $r->hits[0]->unescapedUrl;
 	$html = file_get_dom($wikipediaUrl);
     foreach($html->find('table') as $table) {
-        print_r($table->class."\n\n");
+        if (strpos($table->class, "infobox") !== false) {
+            print_r($table->class."\n\n");
+        }
     }
     
     
