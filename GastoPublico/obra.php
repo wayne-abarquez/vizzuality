@@ -18,6 +18,5 @@ $smarty->assign('otras_obras',$services->getOtherLicitacionesFromSameOrganismo($
 $smarty->assign('comentarios',$services->getCommentsByLicitacion($_REQUEST['id']));
 $smarty->assign('orga_relacionados',$services->getNearOrganismos($orga_data['grupo_fk']));
 $smarty->display('obra.tpl');
-
-
+	
 ?>

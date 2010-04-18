@@ -45,14 +45,15 @@
 		</div>
 		<hr color="#E2E3DD" size="1"/>
 		<div class="more_enterprises">
-			<h2>Empresas mas contratadas</h2>
-			<ul>
+			<h2>Empresas más contratadas</h2>
+			<p style="font:normal 12px Arial; color:#666666; font-style: italic;">Información aún no disponible</p>
+			<!--><ul>
 				<li>asdfñjfasdf (1,457,983€)</li>
 				<li>asdfñjfasdf (1,457,983€)</li>
 				<li>asdfñjfasdf (1,457,983€)</li>
 				<li>asdfñjfasdf (1,457,983€)</li>
 				<li>asdfñjfasdf (1,457,983€)</li>
-			</ul>
+			</ul>-->
 		</div>
 		<hr color="#E2E3DD" size="1"/>
 		<div class="related_regions">
