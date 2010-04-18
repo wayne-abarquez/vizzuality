@@ -261,14 +261,14 @@
 					{if $obra.descripcion == null}
 						<div class="no_info">
 							<p class="messageTitle">Aún no tenemos descripción para esta obra</p>
-							<p class="suggestMessage">Si quieres, puedes <a href="mailto:contact@vizzuality.com">sugerirnos una</a>  copiarla directamente del la <a href="{$obra.url_html_licitacion}">web oficial</a></p>
+							<p class="suggestMessage">Si quieres, puedes <a href="mailto:contact@vizzuality.com">sugerirnos una</a> . </p>
 						</div>
 					{else}
 						<p class="description">{$obra.descripcion}</p>
 					{/if}
 
 				<p class="download">
-					<span class="view_more"><a href="{$obra.url_html_licitacion}">Ver esta licitación en contratacióndelestado.es</a></span>
+					<span class="view_more"><a href="{$obra.url_html_licitacion}">Ver esta licitación en contratacióndelestado.es</a> (perdona este servicio todavía no esta activo)</span>
 				</p>
 				
 				<div class="content_left">
