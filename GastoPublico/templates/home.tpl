@@ -76,19 +76,20 @@
 			</ul>
 		</div>
 		<div class="right_home">
-			<h3>¿Cómo gasta España el dinero en obras?</h3>
+			<h3>¿Cuánto dinero podemos controlar con datos públicos?</h3>
 			<div class="long">
 				<div class="stats left">
-					<label>GASTO</label>
-					<p class="amount">212,317,321€</p>
+
+					<p class="amount">16.039.466.608,53€</p>
 				</div>
-				<div class="right expensive_chart">
-				</div>
+				<!--div class="right expensive_chart">
+				</div -->
 			</div>
 
 			<hr size="1" color="#CDCDC7" width="320" style="float:left"/>
 			
 			<h3>¿Cómo gastan los principales partidos el dinero en obras?</h3>
+			<label>Estos datos no nos dio tiempo!</label>
 		
 			<div class="longPolitical">
 				<div class="political_stats2">

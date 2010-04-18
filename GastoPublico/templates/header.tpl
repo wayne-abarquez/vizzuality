@@ -66,7 +66,7 @@
 				{if $messageHome == 'localizated'}
 					<p>¿es tu municipio <a>{$city}</a>?</p>
 				{else}
-					<form action="#">
+					<form action="/">
 						<input type="text" name="search" value="" />
 						<input type="submit" value="" />
 					</form>
