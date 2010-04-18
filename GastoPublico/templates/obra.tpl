@@ -9,9 +9,6 @@
 	<div class="left_region_work">
 	
 		<div class="top_information">
-			<div class="logo">
-				<img src="../images/villaviciosa.png" />
-			</div>
 			<div class="region_data">
 				{if $obra.org_contratante eq 'Administración Local'}
 					<h1><a href="municipio.php?id={$obra.grupo_fk}">{$obra.poblacion}</a></h1>
@@ -27,18 +24,18 @@
 		<div class="political_data">
 			{if $obra.org_contratante eq 'Administración Local'}
 				<h2>Alcaldía</h2>
-				<div class="political_logo">
+<!--				<div class="political_logo">
 					<img src="../images/iconospartido/pp.png" />
-				</div>
+				</div> -->
 				<div class="political_information">
 					<h3>{$obra.alcalde}</h3>
 					<p>ver su <a href="{$obra.alcalde_voota_link}">biografía en voota</a></p>
 				</div>
 			{else}
 				<h2>Responsable</h2>
-				<div class="political_logo">
+				<!-- <div class="political_logo">
 					<img src="../images/iconospartido/pp.png" />
-				</div>
+				</div>-->
 				<div class="political_information">
 					<h3>{$obra.alcalde}</h3>
 					<p>ver su <a href="{$obra.alcalde_voota_link}">biografía en voota</a></p>
@@ -207,7 +204,7 @@
 									<img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
 								</div>
 								<div class="comment_area">
-									<p class="name"><a href="{$comentario.web}">{$comentario.nombre}</a>, el {$comentario.created_when}</p>
+									<p class="name"><a href="{$comentario.web}">{$comentario.nombre}</a><small>, el {$comentario.created_when}</small></p>
 									<p class="comment">{$comentario.comentario}</p>
 								</div>
 							</li>
@@ -242,7 +239,7 @@
 							<p class="title">Tu comentario</p>
 							<textarea id="comment_text"></textarea>
 						</div>
-						<p id="errors"></p>	
+						<p id="errors" style="float:left; margin:30px 0 0 19px; font:bold 13px Arial; font-style: italic; color:#333333;"></p>	
 						<input type="submit" value="" />
 					</div>
 				</form>
