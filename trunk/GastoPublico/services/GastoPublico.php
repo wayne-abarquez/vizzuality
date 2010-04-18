@@ -120,7 +120,7 @@ class GastoPublico {
     }
     
     function getNextOrganismo() {
-        $tempOffset=rand(0,100);
+        $tempOffset=rand(0,30);
         $sql="SELECT grupo_fk,nombre_admin,wikipedia_url,web,partido_politico,provincia,alcalde,alcalde_voota_link,habitantes,escudo,foto FROM organismo WHERE partido_politico is null
                 group by grupo_fk,nombre_admin,wikipedia_url,web,partido_politico,provincia,alcalde,alcalde_voota_link,habitantes,escudo,foto  LIMIT 1 OFFSET $tempOffset";
         return pg_fetch_assoc(pg_query($this->conn, $sql));
