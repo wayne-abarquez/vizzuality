@@ -32,14 +32,21 @@
 					<p>ver su <a href="{$obra.alcalde_voota_link}">biografía en voota</a></p>
 				</div>
 			{else}
-				<h2>Responsable</h2>
-				<!-- <div class="political_logo">
-					<img src="../images/iconospartido/pp.png" />
-				</div>-->
-				<div class="political_information">
-					<h3>{$obra.alcalde}</h3>
-					<p>ver su <a href="{$obra.alcalde_voota_link}">biografía en voota</a></p>
-				</div>
+				<h2>Responsable</h2>	
+				{if $obra.alcalde != null}
+					
+					<!-- <div class="political_logo">
+						<img src="../images/iconospartido/pp.png" />
+						</div>-->
+						<div class="political_information">
+							<h3>{$obra.alcalde}</h3>
+							<p>ver su <a href="{$obra.alcalde_voota_link}">biografía en voota</a></p>
+						</div>
+				{else}
+					<p style="font:normal 12px Arial; color:#666666; font-style: italic;">Información aún no disponible</p>
+					
+					
+				{/if}
 			{/if}
 		</div>
 		<hr color="#E2E3DD" size="1"/>

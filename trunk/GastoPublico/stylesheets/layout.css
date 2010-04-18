@@ -128,7 +128,7 @@ div.renovation_content div.content {float:right; width:610px; background-color:#
 div.renovation_content div.content div.content_left {float:left; width:auto; margin:5px 0 0 20px;}
 
 
-div.renovation_content div.content div.content_left p.award {font:left; font:bold 11px Arial; color:#666666; text-transform:uppercase; margin: 0 0 2px 0; }
+div.renovation_content div.content div.content_left p.award {font:bold 11px Arial; color:#666666; text-transform:uppercase; margin: 0 0 2px 0; }
 div.renovation_content div.content div.content_left p.name {color:#666666; font-style: italic;}
 div.renovation_content div.content div.content_left p.name a {font:left; font:normal 13px Arial; color:#408A8D; text-decoration:underline; line-height:12px;}
 div.renovation_content div.content div.content_left p.name a:hover {text-decoration: none;}
