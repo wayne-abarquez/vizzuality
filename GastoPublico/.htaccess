@@ -3,3 +3,4 @@ RewriteEngine On
 RewriteRule ^org/([0-9]+) organismo.php?id=$1 [L]
 RewriteRule ^contrato/([0-9]+) obra.php?id=$1 [L]
 RewriteRule ^home/ home.php [L]
+RewriteRule ^sobre/ about.php [L]
