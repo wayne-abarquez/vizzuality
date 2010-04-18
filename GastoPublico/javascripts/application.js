@@ -163,7 +163,7 @@ $(document).ready(function() {
 		var dataObj = ({method: 'vote_up', licitacion: licitacion});    
 		$.ajax({
 		    	type: "POST",
-		    	url: "/ajaxController.php",
+		    	url: "../ajaxController.php",
 		    	data: dataObj,
 		    	cache: false,
 		    	success: function(result){
@@ -184,7 +184,7 @@ $(document).ready(function() {
 		var dataObj = ({method: 'vote_down', licitacion: licitacion});    
 		$.ajax({
 		    	type: "POST",
-		    	url: "/ajaxController.php",
+		    	url: "../ajaxController.php",
 		    	data: dataObj,
 		    	cache: false,
 		    	success: function(result){
