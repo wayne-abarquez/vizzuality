@@ -53,7 +53,7 @@ class GastoPublico {
     
     
     function licitacionesByOrganism($id,$offset) {   
-        $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1 as fecha, categoria,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id WHERE o.grupo_fk=".$id ." LIMIT 6 OFFSET ".$offset;
+        $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1 as fecha, categoria,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id WHERE o.grupo_fk=".$id ." LIMIT 20 OFFSET ".$offset;
 	    return pg_fetch_all(pg_query($this->conn, $sql));        
     }    
     
@@ -121,7 +121,7 @@ class GastoPublico {
     
     function getNextOrganismo() {
         $tempOffset=rand(0,30);
-        $sql="SELECT grupo_fk,nombre_admin,wikipedia_url,web,partido_politico,provincia,alcalde,alcalde_voota_link,habitantes,escudo,foto FROM organismo WHERE partido_politico is null
+        $sql="SELECT grupo_fk,nombre_admin,wikipedia_url,web,partido_politico,provincia,alcalde,alcalde_voota_link,habitantes,escudo,foto FROM organismo WHERE partido_politico is null AND grupo_fk in (71)
                 group by grupo_fk,nombre_admin,wikipedia_url,web,partido_politico,provincia,alcalde,alcalde_voota_link,habitantes,escudo,foto  LIMIT 1 OFFSET $tempOffset";
         return pg_fetch_assoc(pg_query($this->conn, $sql));
     }

@@ -20,7 +20,7 @@ $obra_titulo = strtoupper($obra["titulo"]);
 
 $smarty->assign('obra_title',$obra_titulo);
  
-$smarty->assign('obra',$services->getLicitacionDetails($_REQUEST['id']));
+$smarty->assign('obra',$obra);
 
 
 $smarty->assign('licitacion_id',$_REQUEST['id']);

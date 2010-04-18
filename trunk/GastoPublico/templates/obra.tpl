@@ -12,11 +12,11 @@
 		<div class="top_information">
 			<div class="region_data">
 				{if $obra.org_contratante eq 'Administración Local'}
-					<h1><a href="municipio.php?id={$obra.grupo_fk}">{$obra.poblacion}</a></h1>
+					<h1><a href="/org/{$obra.grupo_fk}">{$obra.poblacion}</a></h1>
 					<p class="information"><a>{$obra.provincia}</a>, {$obra.habitantes} habitantes</p>
 					<p class="information"><a href="{$obra.web}">{$obra.web}</a></p>					
 				{else}
-					<h1><a href="organismo.php?id={$obra.grupo_fk}">{$obra.nombre_admin}</a></h1>
+					<h1><a href="/org/{$obra.grupo_fk}">{$obra.nombre_admin}</a></h1>
 					<p class="information"><a href="{$obra.web}">{$obra.web}</a></p>
 				{/if}
 			</div>
