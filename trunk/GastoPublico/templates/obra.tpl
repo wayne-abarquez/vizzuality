@@ -249,8 +249,6 @@
 						<p class="description">{$obra.descripcion}</p>
 					{/if}
 
-				
-				
 				<p class="download">
 					<span class="view_more"><a href="{$obra.url_html_licitacion}">Ver esta licitación en contratacióndelestado.es</a></span>
 				</p>
@@ -266,7 +264,7 @@
 						{foreach key=id item=comentario from=$comentarios name=counter}
 							<li>
 								<div class="avatar">
-									<img src="../images/default_work.png">
+									<img src="{$comentario.md5_imagen}" />
 								</div>
 								<div class="comment_area">
 									<p class="name"><a href="{$comentario.web}">{$comentario.nombre}</a><small>, el {$comentario.created_when}</small></p>

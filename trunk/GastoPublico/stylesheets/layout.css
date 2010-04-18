@@ -262,7 +262,7 @@ ul {list-style:none;}
 div.outer_layout_gray {background:#292724; width:100%; height:35px; padding:9px 0 0 0;}
 div.outer_layout_gray div.header {width:924px; margin:0 auto;}
 div.outer_layout_gray div.header p.logo {float:left; letter-spacing:-1px;}
-div.outer_layout_gray div.header p.logo a {text-decoration:none; font:bold 19px Arial; color:#FFFFFF;}
+div.outer_layout_gray div.header p.logo a {float:left; text-decoration:none; font:bold 19px Arial; color:#FFFFFF; width:145px; height:24px; background:url(../images/logo.png) no-repeat 0 0;}
 div.outer_layout_gray div.header p.facebook {float:right; font:normal 13px Arial; color:#FFFFFF; padding:5px 0 0 0;}
 div.outer_layout_green {background:#408A8D; width:100%; height:34px;}
 div.outer_layout_green div.menu {width:924px; margin:0 auto; padding:0; position:relative;}

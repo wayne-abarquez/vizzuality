@@ -32,7 +32,7 @@
 				</div>
 			</form>
 
-			<p>¿es tu municipio <a>{$city}</a>?</p>
+			<p>¿es tu municipio <a class="user_location"></a>?</p>
 		</div>
 	
 	</div>
