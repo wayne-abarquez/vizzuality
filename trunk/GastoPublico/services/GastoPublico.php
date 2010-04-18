@@ -69,7 +69,7 @@ class GastoPublico {
     }
     
     function getLicitacionDetails($id) {
-        $sql="select * from licitacion as l inner join organismo as o on l.organismo_fk=o.id where l.id=".$id." LIMIT 1";
+        $sql="select *,x(l.the_geom) as lon, y(l.the_geom) as lat from licitacion as l inner join organismo as o on l.organismo_fk=o.id where l.id=".$id." LIMIT 1";
         return pg_fetch_assoc(pg_query($this->conn, $sql));
     }
     
