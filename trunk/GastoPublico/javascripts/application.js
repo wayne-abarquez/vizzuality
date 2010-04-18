@@ -77,58 +77,35 @@ $(document).ready(function() {
 
 
 	// OBRA LENGTH
-	// var left_work = $('div.left_region_work').height();
-	// var right_work = $('div.renovation_content').height();
-	// 
-	// if (left_work<right_work) {
-	// 		$('div.left_region_work').height(right_work-120);
-	// } else {
-	// 	 	$('div.renovation_content').height(left_work+120);
-	// }
+	var left_work = $('div.left_region_work').height();
+	var right_work = $('div.renovation_content').height()-226;
+	
+	if (left_work<right_work) {
+			$('div.left_region_work').height(right_work);
+	} else {
+		 	$('div.renovation_content').height(left_work+389);
+	}
 	
 
 	//ORGANISMO LENGTH
-	// var left_lenght = $('div#layout div.left_region_mun').innerHeight()-226;
-	// var right_lenght = $('div#layout div.right_region_mun').innerHeight();
-	// 
-	// if (left_lenght<right_lenght) { 
-	// 	if ($.browser.mozilla) {
-	// 
-	// 	    $('div.left_region_mun').height(right_lenght + 189);
-	// 	 } else {
-	// 
-	// 			$('div.left_region_mun').height(right_lenght + 261);
-	// 	}
-	// } else {	
-	// 	if ($.browser.mozilla) {
-	// 
-	// 	    $('div.right_region_mun').height(right_lenght+500);
-	// 	 } else {
-	// 
-	// 			$('div.right_region_mun').height(left_lenght+78);
-	// 	}
-	// }
-
+	var left_lenght = $('div#layout div.left_region').innerHeight()-226;
+	var right_lenght = $('div#layout div.right_region').innerHeight();
+	
+	if (left_lenght<right_lenght) { 
+		$('div.left_region').height(right_lenght + 189);
+	} else {	
+		$('div.right_region').height(right_lenght+209);
+	}
 	
 
 	//MUNICIPIO LENGTH
-	var left_lenght = $('div.left_region_mun').innerHeight();
-	var right_lenght = $('div.right_region_mun').innerHeight();
+	var left_mun_lenght = $('div.left_region_mun').height()-226;
+	var right_mun_lenght = $('div.right_region_mun').height();
 
-
-	if (left_lenght<right_lenght) { 
-		if ($.browser.mozilla) {
-		    $('div.left_region').height(right_lenght + 189);
-		 } else {
-				$('div.left_region').height(right_lenght + 261);
-		}
+	if (left_mun_lenght<right_mun_lenght) { 
+		$('div.left_region_mun').height(right_mun_lenght + 269);
 	} else {
-		if ($.browser.mozilla) {
-		    $('div.right_region_num').height(1200);
-		 } else {
-
-				$('div.right_region_num').height(1200);
-		}
+		$('div.right_region_mun').height(left_mun_lenght + 118);
 	}
 	
 	

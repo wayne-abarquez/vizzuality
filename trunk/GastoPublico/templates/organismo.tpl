@@ -6,11 +6,10 @@
 <div id="mapa"></div>
 <div id="layout">
 	<div class="left_region">
-		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
+		<img class="arrow" src="../images/white_arrow.png" alt="white arrow" />
 		<div class="top_information">
 			<div class="logo">	
 				{if $organismo.escudo == null}
-					<!-- Añadir un escudo por defecto ? -->
 					<img src="{$organismo.escudo}"/>
 				{else}
 					<img src="{$organismo.escudo}"/>
@@ -83,10 +82,10 @@
 				<li>
 					<div class="left_information">
 						<div class="work_image">
-							<a href="../org/{$licitacion.licitacion_id}"><img src="{if $licitaion.imagen eq null}../images/default_work.png{else}{$licitacion.imagen}{/if}" /></a>
+							<a href="../contrato/{$licitacion.licitacion_id}"><img src="{if $licitaion.imagen eq null}../images/default_work.png{else}{$licitacion.imagen}{/if}" /></a>
 						</div>
 						<div class="work_information">
-							<a href="../org/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
+							<a href="../contrato/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
 							<p>{$licitacion.categoria} - Presupuesto de <strong>{$licitacion.importe|number_format}€</strong></p>
 						</div>
 					</div>

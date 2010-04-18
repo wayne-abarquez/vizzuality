@@ -243,7 +243,7 @@
 			</div>
 			
 			<hr size="1" color="#dddddd" width="100%" style="float:left"/>
-			<div class="more">
+			 <div class="more">
 				<p class="title">Más obras relacionadas</p>
 				<ul>
 					{foreach key=id item=licitacion from=$otras_obras name=counter}

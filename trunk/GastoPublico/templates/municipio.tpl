@@ -25,7 +25,6 @@
 			<img class="region" src="../images/defaultImages/bigImg.png">
 		{/if}
 
-		
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_data">
 			<h2>Alcaldía</h2>
