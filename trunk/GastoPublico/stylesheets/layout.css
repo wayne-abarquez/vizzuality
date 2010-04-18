@@ -41,9 +41,12 @@ div.content_about div.content_right_about span.content_info p {font:normal 15px 
 div.content_about div.content_right_about span.content_info p.last {font:normal 15px Arial; color:#666666; margin:15px 20px 30px 20px;}
 div.content_about div.content_right_about span.content_info_bottom {float:left; background:url(../images/content_about_bottom.png) no-repeat 0 0; width:670px; height:8px; margin:0 0 40px 0;}
 div.content_about div.content_right_about span.content_info_bottom_last {float:left; background:url(../images/content_about_bottom.png) no-repeat 0 0; width:670px; height:8px; margin:0 0 80px 0;}
-div.content_about div.content_right_about ul {margin:0 0 0 30px;}
-div.content_about div.content_right_about ul li {margin:0 0 0 0;}
-div.content_about div.content_right_about ul li p {font:normal 15px Arial; color:#666666; margin:0px 20px;}
+
+div.content_about div.content_right_about span.content_info ul {margin:0 0 30px 30px; }
+div.content_about div.content_right_about span.content_info ul li {margin:0 0 0 0; }
+div.content_about div.content_right_about span.content_info ul li p {font:normal 15px Arial; color:#666666; margin:0px 0 0 20px;}
+
+
 
 /************ OBRA *******************/
 
