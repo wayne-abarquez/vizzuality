@@ -23,7 +23,7 @@ foreach($res as $lic) {
     $client->post("/v1/document",$data);
 
     $resYahoo = $client->getContent();
-    $xml = simplexml_load_string($resYahoo)
+    $xml = simplexml_load_string($resYahoo);
 
 
         $lat = $xml->document->administrativeScope->centroid->latitude;
