@@ -27,8 +27,6 @@
 		<SCRIPT type="text/javascript" src="../javascripts/Fluster2.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="../javascripts/application.js"></SCRIPT>
 		<SCRIPT type="text/javascript" src="../javascripts/jquery.scrollTo.js"></SCRIPT>
-		
-		
 
 	</HEAD>
 
@@ -48,10 +46,13 @@
 					<li><a href="#" class="disabled">suministros</a></li>
 					<li><a href="/sobre">sobre</a></li>
 				</ul>
-				<!-- <p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p> -->
-				<form action="#">
-					<input type="text" name="search" value="" />
-					<input type="submit" value="" />
-				</form>
+				{if $section == 'home'}
+					<p>¿es tu municipio <a href="#">Villaviciosa de Odón, Madrid</a>?</p>
+				{else}
+					<form action="#">
+						<input type="text" name="search" value="" />
+						<input type="submit" value="" />
+					</form>
+				{/if}
 			</div>
 		</div>

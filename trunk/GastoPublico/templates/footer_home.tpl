@@ -17,7 +17,7 @@
 			<div class="right_footer_home">
 				<ul>
 					<li><a href="mailto:contact@vizzuality.com">contacto</a></li>
-					<li class="last"><a href="../sobre">sobre</a></li>
+					<li class="last"><a href="../sobre/">sobre</a></li>
 				</ul>
 			</div>
 		</div>

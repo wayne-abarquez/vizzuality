@@ -1,8 +1,8 @@
 {include file="header.tpl"}
 
 
-<span class="lat" style="display:none" id="{$municipio.lat}"></span>
-<span class="lon" style="display:none" id="{$municipio.lon}"></span>
+<span class="lat" style="display:none" id="{$organismo.lat}"></span>
+<span class="lon" style="display:none" id="{$organismo.lon}"></span>
 
 <div id="mapa"></div>
 <div id="layout">
@@ -74,9 +74,9 @@
 	
 	<div class="right_region_mun">
 		<span>
-			<h3>{if $municipio.num_licitaciones eq 1}{$municipio.num_licitaciones} Obra en el municipio{else}{$municipio.num_licitaciones} Obras en el municipio{/if}</h3>
+			<h3>{if $organismo.num_licitaciones eq 1}{$organismo.num_licitaciones} Obra en el municipio{else}{$organismo.num_licitaciones} Obras en el municipio{/if}</h3>
 			<div>
-				<p>{$municipio.sum_importe|number_format}€</p>
+				<p>{$organismo.sum_importe|number_format}€</p>
 				<p class="small">GASTO</p>
 			</div>
 		</span>
@@ -96,7 +96,7 @@
 							</a>
 						</div>
 						<div class="work_information">
-							<a href="obra.php?id={$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
+							<a href="../contrato/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
 							<p>{$licitacion.categoria} - Presupuesto de <strong>{$licitacion.importe|number_format}€</strong></p>
 						</div>
 					</div>

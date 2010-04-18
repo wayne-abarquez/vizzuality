@@ -32,14 +32,14 @@
 					{/if}
 					<div class="left_information">
 						<div class="work_image">
-								<a href="obra.php?id={$licitacion.licitacion_id}"><img src="../images/default_work.png" alt="Work" /></a>
+								<a href="../contrato/{$licitacion.licitacion_id}"><img src="{if $licitaion.imagen eq null}../images/default_work.png{else}{$licitacion.imagen}{/if}" alt="Work" /></a>
 						</div>
 						<div class="work_information">
-							<h4><a href="obra.php?id={$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a></h4>
+							<h4><a href="../contrato/{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a></h4>
 							{if $licitacion.org_contratante eq 'Administración Local'}
-								<p><a href="municipio.php?id={$licitacion.grupo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+								<p><a href="../org/{$licitacion.grupo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
 							{else}
-								<p><a href="organismo.php?id={$licitacion.grupo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
+								<p><a href="../org/{$licitacion.grupo_id}">{$licitacion.nombre_admin}</a> - <strong>{$licitacion.importe|number_format}€</strong></p>
 							{/if}
 						</div>
 					</div>
@@ -48,9 +48,9 @@
 						<a class="likes" href="#">{$licitacion.votes_up}</a>
 						<a class="comments" 
 						{if $licitacion.org_contratante eq 'Administración Local'}
-							href="municipio.php?id={$licitacion.grupo_id}"
+							href="../org/{$licitacion.grupo_id}"
 						{else}
-							href="organismo.php?id={$licitacion.grupo_id}"
+							href="../contrato/{$licitacion.grupo_id}"
 						{/if}>{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a>
 						
 					</div>
