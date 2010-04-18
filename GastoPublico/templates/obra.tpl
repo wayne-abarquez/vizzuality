@@ -186,6 +186,7 @@
 			
 				<div class="content_right">
 					
+					{if $obra.tipo_contrato == "NegociadoConPubli" || $obra.tipo_contrato == "NegociadoSinPublicidad" }
 					
 					<!-- CONTRATO NEGOCIADO -->
 					<div class="tool_tip_negociated">
@@ -196,6 +197,12 @@
 						</span>
 						<span class="bottom"></span>								
 					</div>
+					<a href="#">
+						<span class="kind_contrat_negociated">
+						</span>
+					</a>
+					{/if}
+					{if $obra.tipo_contrato == "Abierto"}
 					
 					<!-- CONTRATO ABIERTO -->
 					<div class="tool_tip_open">
@@ -206,7 +213,12 @@
 						</span>
 						<span class="bottom"></span>								
 					</div> 
-					
+					<a href="#">
+						<span class="kind_contrat_open">
+						</span>
+					</a>
+					{/if}
+					{if $obra.tipo_contrato == "Restringido"}
 					<!-- CONTRATO RESTRINGIDO -->
 					<div class="tool_tip_restricted">
 						<span class="head"></span>
@@ -216,7 +228,12 @@
 						</span>
 						<span class="bottom"></span>								
 					</div>
-					
+					<a href="#">
+						<span class="kind_contrat_restricted">
+						</span>
+					</a>
+					{/if}
+					{if $obra.tipo_contrato == "Autodefinido" || $obra.tipo_contrato == "Dialogo"}
 					<!-- CONTRATO OTROS -->
 					<div class="tool_tip_other">
 						<span class="head"></span>
@@ -226,12 +243,13 @@
 						</span>
 						<span class="bottom"></span>								
 					</div>
-					
-					
 					<a href="#">
-						<span class="kind_contrat_open">
+						<span class="kind_contrat_other">
 						</span>
 					</a>
+					{/if}
+					
+					
 					
 					
 					<a class="money"><span>{$obra.importe|number_format}€</span></a>		
