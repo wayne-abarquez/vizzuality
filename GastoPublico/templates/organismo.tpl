@@ -8,8 +8,13 @@
 	<div class="left_region">
 		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
 		<div class="top_information">
-			<div class="logo">
-				<img src="{$organismo.escudo}"/>
+			<div class="logo">	
+				{if $organismo.escudo == null}
+					<!-- Añadir un escudo por defecto ? -->
+					<img src="{$organismo.escudo}"/>
+				{else}
+					<img src="{$organismo.escudo}"/>
+				{/if}
 			</div>
 			<div class="region_data">
 				<h1>{$organismo.nombre_admin}</h1>
@@ -19,9 +24,11 @@
 		<hr color="#E2E3DD" size="1"/>
 		<div class="political_data">
 			<h2>Responsable</h2>
+
 			<div class="political_logo">				
 				<img src="{$logoPartido}"/>
 			</div>
+			
 			<div class="political_information">
 				<h3>{$organismo.alcalde}</h3>
 				<p>ver su <a href="{$organismo.alcalde_voota_link}">biografía en voota</a></p>
