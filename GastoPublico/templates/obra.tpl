@@ -268,7 +268,7 @@
 					{/if}
 
 				<p class="download">
-					<span class="view_more"><a href="{$obra.url_html_licitacion}">Ver esta licitación en contratacióndelestado.es</a> (perdona este servicio todavía no esta activo)</span>
+					<span class="view_more"><a href="{$obra.url_html_licitacion}">Ver esta licitación en contratacióndelestado.es</a></span>
 				</p>
 				
 				<div class="content_left">
