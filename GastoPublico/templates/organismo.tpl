@@ -60,115 +60,37 @@
 	
 	<div class="right_region">
 		<span>
-			<h3>{$organismo.num_licitaciones} Obras en el municipio</h3>
+			<h3>{$organismo.num_licitaciones} Licitaciones</h3>
 			<div>
-				<p>{$organismo.sum_importe}€</p>
+				<p>{$organismo.sum_importe|number_format}€</p>
 				<p class="small">GASTO</p>
 			</div>
 		</span>
 		<div class="search_container">
 		</div>
 		<ul>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/work_fake.png" /></a>
+			{foreach key=id item=licitacion from=$lista_licitaciones name=counter}
+				<li>
+					<div class="left_information">
+						<div class="work_image">
+							<a href="#"><img src="../images/work_fake.png" /></a>
+						</div>
+						<div class="work_information">
+							<a href="obra.php?id={$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
+							<p>{$licitacion.categoria} - Presupuesto de <strong>{$licitacion.importe|number_format}€</strong></p>
+						</div>
 					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
+					<div class="right_information">
+						<a class="no_likes" href="#">{$licitacion.votes_down}</a>	
+						<a class="likes" href="#">{$licitacion.votes_up}</a>
+						<a class="comments" href="#">{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a>
 					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/default_work.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">{if $organismo.num_comentarios eq 1}{$organismo.num_comentarios} comentario{else}{$organismo.num_comentarios} comentarios{/if}</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/work_fake.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/default_work.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/work_fake.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/work_fake.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
+				</li>
+	    {/foreach}
 		</ul>
 		
 		<p class="long"><a href="#">ver más</a></p>
-		<p class="long">viendo 6 de 17</p>
+		<p class="long">viendo 6 de {$organismo.num_licitaciones}</p>
 		
 	</div>
 	

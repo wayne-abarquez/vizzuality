@@ -10,8 +10,8 @@
 			</div>
 			<div class="region_data">
 				<h1>{$municipio.poblacion}</h1>
-				<p class="information"><a href="#">Madrid</a>, 181.013 habitantes</p>
-				<p class="web"><a href="http://www.villaviciosadeodon.com" target="_blank">www.villaviciosadeodon.com</a></p>
+				<p class="information"><a href="#">{$municipio.provincia}</a>, {$municipio.habitantes} habitantes</p>
+				<p class="web"><a href="{$municipio.web}" target="_blank">{$municipio.web}</a></p>
 			</div>
 		</div>
 		<img class="region" src="../images/villaviciosa_photo.png">
@@ -22,8 +22,8 @@
 				<img src="../images/iconospartido/pp.png" />
 			</div>
 			<div class="political_information">
-				<h3>José Jover</h3>
-				<p>ver su <a href="#">biografía en voota</a></p>
+				<h3>{$municipio.alcalde}</h3>
+				<p>ver su <a href="{$municipio.alcalde_voota_link}">biografía en voota</a></p>
 			</div>
 		</div>
 		<hr color="#E2E3DD" size="1"/>
@@ -51,129 +51,49 @@
 		<div class="related_regions">
 			<span>
 				<h2>Municipios relacionados</h2>
-				<a href="#">view map</a>
+				<a href="#">ver mapa</a>
 			</span>	
 			<ul>
-				<li><a href="#">Móstoles</a></li>
-				<li><a href="#">Móstoles</a></li>
-				<li><a href="#">Móstoles</a></li>
-				<li><a href="#">Móstoles</a></li>
-				<li><a href="#">Móstoles</a></li>
+				{foreach key=id item=organismo_lista from=$orga_relacionados name=counter}
+					<li><a href="organismo.php?id={$organismo_lista.id}">{$organismo_lista.nombre_admin}</a></li>
+		    {/foreach}
 			</ul>
 		</div>
 	</div>
 	
 	<div class="right_region">
 		<span>
-			<h3>{$municipio.num_licitaciones} Obras en el municipio</h3>
+			<h3>{if $municipio.num_licitaciones eq 1}{$municipio.num_licitaciones} Obra en el municipio{else}{$municipio.num_licitaciones} Obras en el municipio{/if}</h3>
 			<div>
-				<p>{$municipio.sum_importe}€</p>
+				<p>{$municipio.sum_importe|number_format}€</p>
 				<p class="small">GASTO</p>
 			</div>
 		</span>
 		<div class="search_container">
 		</div>
 		<ul>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/work_fake.png" /></a>
+			{foreach key=id item=licitacion from=$lista_licitaciones name=counter}
+				<li>
+					<div class="left_information">
+						<div class="work_image">
+							<a href="#"><img src="../images/work_fake.png" /></a>
+						</div>
+						<div class="work_information">
+							<a href="obra.php?id={$licitacion.licitacion_id}">{$licitacion.titulo|truncate:120:"..."|lower|capitalize:true}</a>
+							<p>{$licitacion.categoria} - Presupuesto de <strong>{$licitacion.importe|number_format}€</strong></p>
+						</div>
 					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
+					<div class="right_information">
+						<a class="no_likes" href="#">{$licitacion.votes_down}</a>	
+						<a class="likes" href="#">{$licitacion.votes_up}</a>
+						<a class="comments" href="#">{if $licitacion.num_comentarios eq 1}{$licitacion.num_comentarios} comentario{else}{$licitacion.num_comentarios} comentarios{/if}</a>
 					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/default_work.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">{if $municipio.num_comentarios eq 1} comentario{else} comentarios{/if}</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/work_fake.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/default_work.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">12 comentarios</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/work_fake.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
-			<li>
-				<div class="left_information">
-					<div class="work_image">
-						<a href="#"><img src="../images/work_fake.png" /></a>
-					</div>
-					<div class="work_information">
-						<a hre="#">Renovación de las instalaciones deportivas del Polideportivo municipal “El Torreón”</a>
-						<p>Infraestructuras - Presupuesto de <strong>431,234€</strong></p>
-					</div>
-				</div>
-				<div class="right_information">
-					<a class="no_likes" href="#">21</a>	
-					<a class="likes" href="#">1</a>
-					<a class="comments" href="#">0 comentarios</a>
-				</div>
-			</li>
+				</li>
+	    {/foreach}
 		</ul>
 		
 		<p class="long"><a href="#">ver más</a></p>
-		<p class="long">viendo 6 de 17</p>
+		<p class="long">viendo 6 de {$organismo.num_licitaciones}</p>
 		
 	</div>
 	

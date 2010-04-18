@@ -28,6 +28,7 @@ div.left_region_work div.top_information div.logo {float:left; width:32px; paddi
 div.left_region_work div.top_information div.logo img {width:26px;}
 div.left_region_work div.top_information div.region_data {float:right; width:240px;}
 div.left_region_work div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#8C8B86;}
+div.left_region_work div.top_information div.region_data h1 a {text-decoration:none; color:#8C8B86;}
 div.left_region_work div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:3px 0 0 0;}
 div.left_region_work div.top_information div.region_data {float:left; width:240px;}
 div.left_region_work div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#8c8c86; margin: 3px 0 0 2px;}
@@ -56,7 +57,7 @@ div.left_region_work div.more_enterprises li {font:normal 13px Arial; color:#666
 div.left_region_work div.related_regions {float:left; margin:13px 0 0 0; width:100%;}
 div.left_region_work div.related_regions span {float:left; width:100%; padding:0 0 7px 0;}
 div.left_region_work div.related_regions span h2 {float:left; width:auto; font:bold 15px Arial; color:#8c8c86;}
-div.left_region_work div.related_regions span a {float:right; width:auto; font:normal 11px Arial; color:#408A8D; padding:3px 0 0; text-decoration:underline;}
+div.left_region_work div.related_regions span a {float:right; width:auto; font:normal 11px Arial; color:#408A8D; padding:1px 0 0; text-decoration:underline;}
 div.left_region_work div.related_regions span a:hover {text-decoration: none;}
 div.left_region_work div.related_regions li {padding:2px 0;}
 div.left_region_work div.related_regions li a {font:bold 13px Arial; color:#408A8D; padding:0; text-decoration:none;}
@@ -118,7 +119,7 @@ div.renovation_content div.content p.download span.pdf a:hover {text-decoration:
 
 div.renovation_content div.content p.download span.line_divide {float:left; background:url(../images/line_divide_download.png) no-repeat 0 0; width:2px; height:16px; margin:0 10px 0 0;}
 
-div.renovation_content div.content p.download span.view_more {float:left; background:url(../images/view_more_link.png) no-repeat 0 0; height:16px; padding:0 0 0 20px;}
+div.renovation_content div.content p.download span.view_more {float:left; background:url(../images/view_more_link.png) no-repeat 0 0; height:16px; padding:0 0 0 20px; width:400px;}
 div.renovation_content div.content p.download span.view_more a {float:left; font:normal 13px Arial; color:#408A8D; text-decoration:underline;}
 div.renovation_content div.content p.download span.view_more a:hover {text-decoration: none;}
 
@@ -144,7 +145,9 @@ div.renovation_content div.content div.comments li {float:left; width:100%; marg
 div.renovation_content div.content div.comments li div.avatar {float:left; width:50px;}
 div.renovation_content div.content div.comments li div.avatar img {float:left; padding:3px; border:1px solid #cccccc; background:white; width:48px; height:48px;}
 div.renovation_content div.content div.comments li div.comment_area {float:left; width:500px; margin:0 0 0 14px;}
-div.renovation_content div.content div.comments li div.comment_area p.name {float:left; font:bold 13px Arial; color:#333333; margin: 0 0 2px 0;}
+div.renovation_content div.content div.comments li div.comment_area p.name {float:left; font:normal 13px Arial; color:#333333; margin: 0 0 2px 0;}
+div.renovation_content div.content div.comments li div.comment_area p.name a {text-decoration:none; font:bold 13px Arial; color:#408A8D;}
+
 div.renovation_content div.content div.comments li div.comment_area p.comment {float:left; font:normal 13px Arial; color:#666666;}
 div.renovation_content div.content div.comments li div.line_to_separate {float:left; background:url(../images/line_to_separate.png) no-repeat 0 0; width:572px; height:2px; margin:10px 0 10px 0px;}
 
@@ -247,17 +250,17 @@ div.left_home h3 {font:bold 21px Arial; color:#2A2625; letter-spacing:-1px;}
 div.left_home ul {float:left; padding:0; width:544px; margin:0;}
 div.left_home ul li {float:left; padding:17px 0; width:544px; border-bottom:1px solid #DADCD0;}
 div.left_home ul li.last {border-bottom:none;}
-div.left_home ul li div.left_information {float:left; width:390px;}
+div.left_home ul li div.left_information {float:left; width:440px;}
 div.left_home ul li div.left_information div.work_image {float:left; width:77px;}
 div.left_home ul li div.left_information div.work_image a img {float:left; width:60px; padding:3px; background:white; border:1px solid #cccccc;}
 div.left_home ul li div.left_information div.work_image a:hover img {border:1px solid #999999;}
-div.left_home ul li div.left_information div.work_information {float:left; width:313px;}
+div.left_home ul li div.left_information div.work_information {float:left; width:360px;}
 div.left_home ul li div.left_information div.work_information h4 a{font:bold 15px Arial; color:#2A2625; line-height:18px; text-decoration:none;}
 div.left_home ul li div.left_information div.work_information h4 a:hover{text-decoration:underline;}
 div.left_home ul li div.left_information div.work_information p {font:normal 13px Arial; color:#666666; padding:5px 0 0 0;}
 div.left_home ul li div.left_information div.work_information p a {font:normal 13px Arial; color:#408A8D;}
 div.left_home ul li div.left_information div.work_information p a:hover {text-decoration:none;}
-div.left_home ul li div.right_information {float:right; width:154px;}
+div.left_home ul li div.right_information {float:right; width:100px;}
 div.left_home ul li div.right_information a.likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff; padding: 1px 4px 0 0; margin: 0 5px 0 0; text-align:right;}
 div.left_home ul li div.right_information a.likes:hover {background-position:0 -16px;}
 div.left_home ul li div.right_information a.no_likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat -37px 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff;padding: 1px 4px 0 0; text-align:right;}
@@ -293,7 +296,7 @@ div.left_region div.top_information {float:left; margin:0; width:100%;}
 div.left_region div.top_information div.logo {float:left; width:32px; padding:0px 0 0 0;}
 div.left_region div.top_information div.logo img {width:26px;}
 div.left_region div.top_information div.region_data {float:right; width:240px;}
-div.left_region div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725; margin-top:2px; width: 100%;}
+div.left_region div.top_information div.region_data h1 {float:left; font:bold 21px Arial; color:#2A2725; margin:0px; width: 100%; line-height:26px;}
 div.left_region div.top_information div.region_data p.information {float:left; font:normal 13px Arial; color:#666666; padding:1px 0 0 0;}
 div.left_region div.top_information div.region_data p.information a {color:#3F8A8C; text-decoration:underline; font:normal 13px Arial;}
 div.left_region div.top_information div.region_data p.information a:hover {text-decoration:none;}
@@ -337,16 +340,16 @@ div.right_region div.search_container {float:left; height:15px; padding:0; width
 div.right_region ul {float:left; padding:0; width:590px; margin:0;}
 div.right_region ul li {float:left; padding:17px 0; width:590px; border-bottom:1px solid #DADCD0;}
 
-div.right_region ul li div.left_information {float:left; width:420px;}
+div.right_region ul li div.left_information {float:left; width:490px;}
 div.right_region ul li div.left_information div.work_image {float:left; width:77px;}
 div.right_region ul li div.left_information div.work_image a img {float:left; width:60px; padding:3px; background:white; border:1px solid #cccccc;}
 div.right_region ul li div.left_information div.work_image a:hover img {border:1px solid #999999;}
-div.right_region ul li div.left_information div.work_information {float:left; width:343px;}
-div.right_region ul li div.left_information div.work_information a {font:bold 15px Arial; color:#2A2625; line-height:18px;}
+div.right_region ul li div.left_information div.work_information {float:left; width:400px;}
+div.right_region ul li div.left_information div.work_information a {font:bold 15px Arial; color:#2A2625; line-height:18px; text-decoration:none;}
 div.right_region ul li div.left_information div.work_information a:hover {font:bold 15px Arial; color:#2A2625; line-height:18px; text-decoration: underline; cursor: pointer;}
 div.right_region ul li div.left_information div.work_information p {font:normal 13px Arial; color:#666666; padding:5px 0 0 0;}
 
-div.right_region ul li div.right_information {float:right; width:170px;}
+div.right_region ul li div.right_information {float:right; width:100px;}
 div.right_region ul li div.right_information a.likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat 0 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff; padding: 1px 4px 0 0; margin: 0 5px 0 0; text-align:right;}
 div.right_region ul li div.right_information a.likes:hover {background-position:0 -16px;}
 div.right_region ul li div.right_information a.no_likes {float:right; background:url(../images/miniSmilleyBox.png) no-repeat -37px 0; margin:0; padding:0 0 0 20px; height:15px; width: 33px; text-decoration:none; font-weight: bold; color:#ffffff;padding: 1px 4px 0 0; text-align:right;}
