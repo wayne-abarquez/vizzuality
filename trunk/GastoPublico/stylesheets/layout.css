@@ -50,7 +50,7 @@ div.content_about div.content_right_about p.back a:hover{text-decoration:none;}
 
 /************ OBRA *******************/
 
-div.left_region_work {position:relative; float:left; background-color:#EFF0E8; width:285px; padding: 0 0 50px 10px;}
+div.left_region_work {position:relative; float:left; background-color:#EFF0E8; width:285px; padding: 0 0 0 10px;}
 div.left_region_work img.arrow {position:absolute; top:18px; right:-13px;}
 div.left_region_work div.top_information {float:left; margin:15px 0 0 0; width:100%;}
 div.left_region_work div.top_information div.logo {float:left; width:32px; padding:3px 0 0 0;}
@@ -92,7 +92,7 @@ div.left_region_work div.related_regions li {padding:2px 0;}
 div.left_region_work div.related_regions li a {font:bold 13px Arial; color:#408A8D; padding:0; text-decoration:none;}
 div.left_region_work div.related_regions li a:hover {border-bottom:1px solid #408A8D;}
 
-div.renovation_content { position:absolute; right:0; top:52px; width:610px; background:url(../images/bkgRenovacionTitle.png) no-repeat 0 0 #FFFFFF; margin:0; padding:0 0 50px;}
+div.renovation_content { position:absolute; right:0; top:52px; width:610px; background:url(../images/bkgRenovacionTitle.png) no-repeat 0 0 #FFFFFF; margin:0; padding:0;}
 div.renovation_content img.arrow {position:absolute; top:20px; left:-13px;}
 div.renovation_content div.content_up {float:left;}
 div.renovation_content div.content_up div.content_left {float:left; width:76px;}
@@ -182,7 +182,7 @@ div.renovation_content div.content div.comments li div.comment_area p.comment {f
 div.renovation_content div.content div.comments li div.line_to_separate {float:left; background:url(../images/line_to_separate.png) no-repeat 0 0; width:572px; height:2px; margin:10px 0 10px 0px;}
 
 div.renovation_content div.content div.line_comment {float:left; width:571px; height:1px; background-color:#A0C4C6; margin:0px 0 0 0;}
-div.renovation_content div.content form.send_comment {float:left; margin:15px 0 35px 20px; width:571px; height:250px; background-color:#E3EEEE; padding-bottom: 10px;}
+div.renovation_content div.content form.send_comment {float:left; margin:15px 0 35px 20px; width:571px; height:250px; background-color:#E3EEEE; padding-bottom: 10px; overflow:hidden;}
 div.renovation_content div.content form.send_comment div.name {float:left; margin:15px 0 0 15px;}
 div.renovation_content div.content form.send_comment div.name p.title {font:bold 13px Arial; color:#666666; width:170px; }
 div.renovation_content div.content form.send_comment div.name input[type="text"]{float:left; padding:6px 4px 0px 4px; width:162px; height:24px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}

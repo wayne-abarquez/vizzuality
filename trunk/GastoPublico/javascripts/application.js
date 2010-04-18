@@ -110,12 +110,13 @@ $(document).ready(function() {
 
 	// OBRA LENGTH
 	var left_work = $('div.left_region_work').height();
-	var right_work = $('div.renovation_content').height()-388;
+	var right_work = $('div.renovation_content').height()-226;
 	
 	if (left_work<right_work) {
 			$('div.left_region_work').height(right_work+20);
+			$('div.renovation_content').height($('div.renovation_content').height()+20);
 	} else {
-		 	$('div.renovation_content').height(left_work+389);
+		 	$('div.renovation_content').height(left_work);
 	}
 	
 
@@ -208,58 +209,170 @@ $(document).ready(function() {
 		 });
 	});
 	
-/*	
-	$('div.content_left_like a.like').click(function(ev){
-		ev.stopPropagation();
-		ev.preventDefault();
-		
-		var obra = $(this).parent().attr('alt');
-		var this_ = this;
-		var dataObj = ({method: 'vote_up', obra: obra});    
-		$.ajax({
-		    	type: "POST",
-		    	url: "../ajaxController.php",
-		    	data: dataObj,
-		    	cache: false,
-		    	success: function(result){
-						var count = parseInt($(this_).html());
-						$(this_).html(count+1);
-		    	},
-		      error:function (xhr, ajaxOptions, thrownError){
-	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
-	        }
-		 });
-	});
-	
-	$('div.content_left_like a.no_like').click(function(ev){
-						
-		ev.stopPropagation();
-		ev.preventDefault();
-		var obra = $(this).parent().attr('alt');
-		var this_ = this;
-		var dataObj = ({method: 'vote_down', obra: obra});    
-		$.ajax({
-		    	type: "POST",
-		    	url: "../ajaxController.php",
-		    	data: dataObj,
-		    	cache: false,
-		    	success: function(result){
-						var count = parseInt($(this_).html());
-						$(this_).html(count+1);
-		    	},
-		      error:function (xhr, ajaxOptions, thrownError){
-	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
-	        }
-		 });
-	}); */
-	//CREATE COMMENT
-	
-	
-	
-	
+	/*	
+		$('div.content_left_like a.like').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+
+			var obra = $(this).parent().attr('alt');
+			var this_ = this;
+			var dataObj = ({method: 'vote_up', obra: obra});    
+			$.ajax({
+			    	type: "POST",
+			    	url: "../ajaxController.php",
+			    	data: dataObj,
+			    	cache: false,
+			    	success: function(result){
+							var count = parseInt($(this_).html());
+							$(this_).html(count+1);
+			    	},
+			      error:function (xhr, ajaxOptions, thrownError){
+		        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+		        }
+			 });
+		});
+
+		$('div.content_left_like a.no_like').click(function(ev){
+
+			ev.stopPropagation();
+			ev.preventDefault();
+			var obra = $(this).parent().attr('alt');
+			var this_ = this;
+			var dataObj = ({method: 'vote_down', obra: obra});    
+			$.ajax({
+			    	type: "POST",
+			    	url: "../ajaxController.php",
+			    	data: dataObj,
+			    	cache: false,
+			    	success: function(result){
+							var count = parseInt($(this_).html());
+							$(this_).html(count+1);
+			    	},
+			      error:function (xhr, ajaxOptions, thrownError){
+		        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+		        }
+			 });
+		}); */
 
 });
 
+
+function createNewComment() {
+	var email = $('#mail_text').attr('value');
+	var name = $('#name_text').attr('value');
+	var comment = $('#comment_text').val();
+	var web = $('#web_text').attr('value');
+	var licitacion_id = $('span.licitacion_id').attr('id');
+
+	//CREATE COMMENT
+	
+	if ((email.length==0) || (echeck(email)==false)) {
+		$('#errors').text('Ups! Hay un problema con tu dirección de correo.');
+		return false;
+	}
+	
+	if (name.length<4) {
+		$('#errors').text('Uy! Es un nombre un poco corto.');
+		return false;
+	}
+	
+	if (comment.length==0) {
+		$('#errors').text('¡Recuerda commentar algo!');
+		return false;
+	}
+	
+	$('form.send_comment').animate({height:0},500,function(ev) {
+		$('div.all_inputs').hide();
+		$('form.send_comment img').show();
+		$('form.send_comment').animate({height:100},500,function(ev){
+			var dataObj = ({method: 'new_comment', name: name, email:email, comment:comment, web:web, licitacion_id:licitacion_id});
+
+			$.ajax({
+	    	type: "POST",
+	    	url: "../ajaxController.php",
+	    	data: dataObj,
+	    	cache: false,
+	    	success: function(result){
+				
+					if (result=="OK") {
+						
+						if ($('div.comments').length==0) {
+							var html_comments = '<div class="line_to_separate"></div><div class="comments"><ul><li><div class="avatar"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></div><div class="comment_area"><p class="name"><a href="';
+							html_comments+= web + '">'+ name +'</a>, ahora mismo</p><p class="comment">'+comment;
+							html_comments+= '</p></div></li><li><div class="line_to_separate"></div></li></ul></div>';
+							$('div.content_left').append(html_comments).hide().fadeIn();
+							
+							$('div.left_region_work').height($('div.renovation_content').height()-149);
+							
+						} else {
+							var html_comments = '<li><div class="line_to_separate"></div></li><li><div class="avatar"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></div><div class="comment_area"><p class="name"><a href="';
+							html_comments+= web + '">'+ name +'</a>, ahora mismo</p><p class="comment">'+comment;
+							html_comments+= '</p></div></li>';
+							$('div.comments ul').append(html_comments).fadeIn();
+							
+							$('div.left_region_work').height($('div.renovation_content').height()-149);
+						}
+
+						
+						
+						$('#mail_text').attr('value','');
+						$('#name_text').attr('value','');
+						$('#comment_text').val('');
+						$('#web_text').attr('value','');
+					} else {
+						$('#errors').text('Ha ocurrido un error, inténtalo más tarde');
+					}
+					$('form.send_comment').animate({height:0},500,function(ev) {
+						$('div.all_inputs').show();
+						$('form.send_comment img').hide();
+						$('form.send_comment').animate({height:260},500);
+					});
+
+	    	},
+	      error:function (xhr, ajaxOptions, thrownError){
+	       	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+	       }
+			 });
+		});
+	});
+}
+
+//CHECK EMAIL JAVASCRIPT
+function echeck(str) {
+	var at="@"
+	var dot="."
+	var lat=str.indexOf(at)
+	var lstr=str.length
+	var ldot=str.indexOf(dot)
+	if (str.indexOf(at)==-1){
+	   return false
+	}
+
+	if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+	   return false
+	}
+
+	if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+	    return false
+	}
+
+	 if (str.indexOf(at,(lat+1))!=-1){
+	    return false
+	 }
+
+	 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+	    return false
+	 }
+
+	 if (str.indexOf(dot,(lat+2))==-1){
+	    return false
+	 }
+
+	 if (str.indexOf(" ")!=-1){
+	    return false
+	 }
+	 return true
+}
 
 	
 

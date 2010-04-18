@@ -2,6 +2,7 @@
 
 <span class="lat" style="display:none" id="{$obra.lat}"></span>
 <span class="lon" style="display:none" id="{$obra.lon}"></span>
+<span class="licitacion_id" style="display:none" id="{$licitacion_id}"></span>
 
 <div id="mapa"></div>
 <div id="layout">
@@ -217,28 +218,33 @@
 					</ul>
 				</div>
 				{/if}
-				<form class="send_comment">
+				<form class="send_comment" action="javascript:void createNewComment()" alt="">
 					<div class="line_comment"></div>
-					<div class="name">
-						<p class="title">Tu nombre</p>
-						<input type="text" value="" id="nameCommented"/>
-					</div>
+					<img src="../images/ajax-loader.gif" style="display:none; padding:40px 0 40px 270px">
+					
+					<div class="all_inputs">
+						<div class="name">
+							<p class="title">Tu nombre</p>
+							<input type="text" value="" id="name_text"/>
+						</div>
 
-					<div class="email">
-						<p class="title">Tu email</p>
-						<input type="text" value="" id="nameCommented"/>
-					</div>
+						<div class="email">
+							<p class="title">Tu email</p>
+							<input type="text" value="" id="mail_text"/>
+						</div>
 					
-					<div class="web">
-						<p class="title">Tu web (opcional)</p>
-						<input type="text" value="" id="nameCommented"/>
-					</div>
+						<div class="web">
+							<p class="title">Tu web (opcional)</p>
+							<input type="text" value="" id="web_text"/>
+						</div>
 					
-					<div class="comment">
-						<p class="title">Tu comentario</p>
-						<textarea></textarea>
-					</div>					
-					<input type="submit" value="" />
+						<div class="comment">
+							<p class="title">Tu comentario</p>
+							<textarea id="comment_text"></textarea>
+						</div>
+						<p id="errors"></p>	
+						<input type="submit" value="" />
+					</div>
 				</form>
 			</div>
 			
