@@ -497,11 +497,11 @@ div.outer_layout_footer div.footer div.right_footer_home ul li {float:left; back
 div.outer_layout_footer div.footer div.right_footer_home ul li.last {background:none; padding:0 0 0 10px;}
 div.outer_layout_footer div.footer div.right_footer_home ul li a {font:bold 13px Arial; color:#FFFFFF; text-decoration:none; padding:0 5px 0 0;}
 div.outer_layout_footer div.footer div.right_footer_home ul li a:hover {text-decoration:underline;}
-div.outer_layout_footer div.footer div.left_footer_home {float:left; width:650px;}
-div.outer_layout_footer div.footer div.left_footer_home h5 {float:left; width:650px; font:bold 13px Arial; color:#959492; padding:0 0 5px 0;}
-div.outer_layout_footer div.footer div.left_footer_home p.regions {float:left; width:650px; height:110px; font:bold 13px Arial; color:#FFFFFF;}
+div.outer_layout_footer div.footer div.left_footer_home {float:left; width:580px;}
+div.outer_layout_footer div.footer div.left_footer_home h5 {float:left; width:580px; font:bold 13px Arial; color:#959492; padding:0 0 5px 0;}
+div.outer_layout_footer div.footer div.left_footer_home p.regions {float:left; width:580px; height:110px; font:bold 13px Arial; color:#FFFFFF;}
 div.outer_layout_footer div.footer div.left_footer_home p.regions a {font:bold 13px Arial; color:#FFFFFF; text-decoration:underline;}
 div.outer_layout_footer div.footer div.left_footer_home p.regions a:hover {text-decoration:none;}
-div.outer_layout_footer div.footer div.left_footer_home p.footer {float:left; width:650px; height:auto; font:normal 13px Arial; color:#FFFFFF;}
+div.outer_layout_footer div.footer div.left_footer_home p.footer {float:left; width:580px; height:auto; font:normal 13px Arial; color:#FFFFFF;}
 div.outer_layout_footer div.footer div.left_footer_home p.footer a {font:bold 13px Arial; color:#FFFFFF; text-decoration:none;}
 div.outer_layout_footer div.footer div.left_footer_home p.footer a:hover {text-decoration:underline;}
