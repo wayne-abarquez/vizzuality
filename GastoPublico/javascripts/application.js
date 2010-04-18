@@ -60,31 +60,60 @@ $(document).ready(function() {
 
 
 
-	//OBRA LENGTH
+	// OBRA LENGTH
 	var left_work = $('div.left_region_work').height();
 	var right_work = $('div.renovation_content').height();
 
 	if (left_work<right_work) {
-			$('div.left_region_work').height(right_work-279);
+			$('div.left_region_work').height(right_work-120);
 	} else {
-		 	$('div.renovation_content').height(left_work+279);
+		 	$('div.renovation_content').height(left_work+120);
+	}
+	
+
+	//ORGANISMO LENGTH
+	var left_lenght = $('div#layout div.left_region_mun').innerHeight()-226;
+	var right_lenght = $('div#layout div.right_region_mun').innerHeight();
+
+	if (left_lenght<right_lenght) { 
+		if ($.browser.mozilla) {
+
+		    $('div.left_region_mun').height(right_lenght + 189);
+		 } else {
+
+				$('div.left_region_mun').height(right_lenght + 261);
+		}
+	} else {	// If content_left > content_right
+		if ($.browser.mozilla) {
+
+		    $('div.right_region_mun').height(right_lenght+500);
+		 } else {
+
+				$('div.right_region_mun').height(left_lenght+78);
+		}
 	}
 
+	
 
 	//MUNICIPIO LENGTH
 	var left_lenght = $('div#layout div.left_region').innerHeight()-226;
 	var right_lenght = $('div#layout div.right_region').innerHeight();
-	if (left_lenght<right_lenght) {
+
+	if (left_lenght<right_lenght) { 
 		if ($.browser.mozilla) {
+
 		    $('div.left_region').height(right_lenght + 189);
 		 } else {
+
 				$('div.left_region').height(right_lenght + 261);
 		}
-	} else {
+	} else {	// If content_left > content_right
 		if ($.browser.mozilla) {
-		    $('div.right_region').height(left_lenght-122);
+
+		    $('div.right_region').height(right_lenght+305);
 		 } else {
-				$('div.right_region').height(left_lenght+208);
+
+				$('div.right_region').height(left_lenght+78);
 		}
 	}
 	
