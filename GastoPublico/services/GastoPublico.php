@@ -17,7 +17,7 @@ class GastoPublico {
 
 
     function getFeaturedLicitaciones() {
-        $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1,fecha2,fecha3,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id ORDER BY importe DESC LIMIT 5";
+        $sql="select l.id as licitacion_id, o.grupo_fk as grupo_id,titulo,importe,fecha1,fecha2,fecha3,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id ORDER BY importe DESC LIMIT 5";
 	    return pg_fetch_all(pg_query($this->conn, $sql));        
     }
     
@@ -27,17 +27,18 @@ class GastoPublico {
     }
     
     function getOrganismoData($id) {
-        $sql="select *,(select count(id) from licitacion where organismo_fk=o.id) as num_licitaciones,(select sum(importe) from licitacion where organismo_fk=o.id) as sum_importe from organismo as o where o.id=".$id;
+        $sql="select grupo_fk as group_id,count(l.id) as num_licitaciones, sum(l.importe) as sum_importe,org_contratante,nombre_admin,poblacion, provincia, web, alcalde, partido_politico,alcalde_voota_link,habitantes from organismo as o inner join licitacion as l on o.id=l.organismo_fk  
+        where grupo_fk=$id  group by grupo_fk,org_contratante,nombre_admin,poblacion,provincia,web,alcalde,partido_politico,alcalde_voota_link,habitantes";
         return pg_fetch_assoc(pg_query($this->conn, $sql));  
     }
     
     
     function licitacionesByOrganism($id,$offset) {   
-        $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1,fecha2,fecha3,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id WHERE o.id=".$id ." LIMIT 6 OFFSET ".$offset;
+        $sql="select l.id as licitacion_id, o.id as organismo_id,titulo,importe,fecha1 as fecha,votes_up,votes_down,num_comentarios,o.nombre_admin,o.org_contratante FROM licitacion as l inner join organismo as o on l.organismo_fk= o.id WHERE o.grupo_fk=".$id ." LIMIT 6 OFFSET ".$offset;
 	    return pg_fetch_all(pg_query($this->conn, $sql));        
     }    
     
-    function getCloseByOrganismos($id) {
+    function getNearOrganismos($id) {
         $sql="select id,nombre_admin from organismo LIMIT 10";
         return pg_fetch_all(pg_query($this->conn, $sql));
     }
