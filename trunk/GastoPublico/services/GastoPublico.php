@@ -87,7 +87,9 @@ class GastoPublico {
         
         $sql="INSERT INTO comentario(user_fk,nombre,email,web,comentario,licitacion_fk) VALUES($userfk,'$name','$email','$web','$comentario',$licitacion_id)";
         $result= pg_query($this->conn, $sql);
-        
+        $sql="UPDATE licitacion set num_comentarios=num_comentarios+1 WHERE id=$licitacion_id";
+        $result= pg_query($this->conn, $sql);
+        return "done";
     }
     
     function createUser($facebookToken) {
