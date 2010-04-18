@@ -224,5 +224,10 @@ class GastoPublico {
         return  "ok";        
     }
     
+    function getOrganismosForMapaHome() {
+        $sql="select * from grupo";
+        return pg_fetch_all(pg_query($this->conn, $sql));
+    }
+    
 }
 ?>
