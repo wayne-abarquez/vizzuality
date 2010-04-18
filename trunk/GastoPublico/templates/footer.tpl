@@ -11,9 +11,9 @@
 				<p class="regions">
 					{foreach key=id item=region from=$regiones name=contador}
 						{if $region.org_contratante eq 'Administración Local'}
-							<a href="../org/{$region.organismo_id}">{$region.nombre_admin} ({$region.num_licitaciones})</a>
+							<a href="/org/{$region.grupo_fk}">{$region.nombre_admin} ({$region.num_licitaciones})</a>
 						{else}
-							<a href="../org/{$region.organismo_id}">{$region.nombre_admin} ({$region.num_licitaciones})</a>
+							<a href="/org/{$region.grupo_fk}">{$region.nombre_admin} ({$region.num_licitaciones})</a>
 						{/if}
 						{if $smarty.foreach.contador.iteration < 7}, {else}...{/if}
 			    {/foreach}
