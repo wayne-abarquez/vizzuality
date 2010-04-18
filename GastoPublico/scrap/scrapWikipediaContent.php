@@ -15,8 +15,16 @@ foreach($res as $org) {
     
 
     $r = google_top(normalize($org['poblacion']). " wikipedia");
-    
+    echo(normalize($org['poblacion']). " wikipedia");
     $wikipediaUrl = $r->hits[0]->unescapedUrl;
+    print_r($r);
+	$html = file_get_dom($wikipediaUrl);
+    foreach($html->find('table') as $table) {
+        print_r($table);
+    }
+    
+    
+    die();
     
     /*
     $contents = file_get_contents($wikipediaUrl."?action=raw");
