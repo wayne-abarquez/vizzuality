@@ -78,10 +78,10 @@ $(document).ready(function() {
 
 	// OBRA LENGTH
 	var left_work = $('div.left_region_work').height();
-	var right_work = $('div.renovation_content').height()-226;
+	var right_work = $('div.renovation_content').height()-388;
 	
 	if (left_work<right_work) {
-			$('div.left_region_work').height(right_work);
+			$('div.left_region_work').height(right_work+20);
 	} else {
 		 	$('div.renovation_content').height(left_work+389);
 	}
@@ -94,7 +94,7 @@ $(document).ready(function() {
 	if (left_lenght<right_lenght) { 
 		$('div.left_region').height(right_lenght + 189);
 	} else {	
-		$('div.right_region').height(right_lenght+209);
+		$('div.right_region').height(left_lenght + 77);
 	}
 	
 
@@ -173,6 +173,12 @@ $(document).ready(function() {
 	        }
 		 });
 	});
+	
+	//CREATE COMMENT
+	
+	
+	
+	
 
 });
 
