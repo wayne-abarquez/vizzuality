@@ -10,9 +10,9 @@
 		<div class="content_left_about">
 			<p class="more_title">Más sobre el proyecto</p>
 			<ul>
-				<li><a href="#">Qué es gastopublico y para qué sirve</a></li>
-				<li><a href="#">Cómo nace el proyecto</a></li>
-				<li><a href="#">Quién está detrás</a></li>
+				<li><a href="#" id="ve_queesgastoPublico">Qué es gastopublico y para qué sirve</a></li>
+				<li><a href="#" id="ve_comonace">Cómo nace el proyecto</a></li>
+				<li><a href="#" id="ve_quienesta">Quién está detrás</a></li>
 			</ul>
 		</div>
 		
@@ -23,7 +23,7 @@
 			<!-- ABOUT -->
 				<span class="header"></span>
 				<span class="content_header">
-					<p>Qué es gastopublico.es y para qué sirve</p>
+					<p id="queesgastopublico">Qué es gastopublico.es y para qué sirve</p>
 				</span>
 				<span class="content_info_header"></span>
 				<span class="content_info">
@@ -43,7 +43,7 @@
 				<!-- ABOUT -->
 					<span class="header"></span>
 					<span class="content_header">
-						<p>Cómo nace el proyecto</p>
+						<p id="comonace">Cómo nace el proyecto</p>
 					</span>
 					<span class="content_info_header"></span>
 					<span class="content_info">
@@ -62,7 +62,7 @@
 					<!-- ABOUT -->
 						<span class="header"></span>
 						<span class="content_header">
-							<p>Quién está detrás</p>
+							<p id="quienesta">Quién está detrás</p>
 						</span>
 						<span class="content_info_header"></span>
 						<span class="content_info">
@@ -78,8 +78,9 @@
 	 						
 	
 						</span>
-						<span class="content_info_bottom"></span>
+						<span class="content_info_bottom_last"></span>
 						
+						<p class="back"><a href="#" id="back_about">volver arriba</a></p>
 						
 						
 		</div>

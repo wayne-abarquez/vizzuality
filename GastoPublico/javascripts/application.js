@@ -10,6 +10,32 @@ $(document).ready(function() {
 		$.scrollTo('#mapa',500);
 	});
 	
+	// ABOUT
+	$('#ve_queesgastoPublico').click (function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		$.scrollTo('#queesgastopublico',500);
+	});
+
+	$('#ve_comonace').click (function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		$.scrollTo('#comonace',500);
+	});
+
+	$('#ve_quienesta').click (function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		$.scrollTo('#quienesta',500);
+	});
+	
+	$('#back_about').click (function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		$.scrollTo('.outer_layout_gray',500);
+	});
+	
+	
 
   var myOptions = {
       zoom: 4,
