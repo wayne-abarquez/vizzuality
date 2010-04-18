@@ -26,9 +26,13 @@
 		<div class="political_data">
 			{if $obra.org_contratante eq 'Administración Local'}
 				<h2>Alcaldía</h2>
+				
+				
 <!--				<div class="political_logo">
 					<img src="../images/iconospartido/pp.png" />
 				</div> -->
+				
+				
 				<div class="political_information">
 					<h3>{$obra.alcalde}</h3>
 					<p>ver su <a href="{$obra.alcalde_voota_link}">biografía en voota</a></p>
@@ -64,13 +68,14 @@
 		<hr color="#E2E3DD" size="1"/>
 		<div class="more_enterprises">
 			<h2>Gasto por categorías</h2>
-			<ul>
+			<p style="font:normal 12px Arial; color:#666666; font-style: italic;">Información aún no disponible</p>
+			<!--><ul>
 				<li>CM Construcciones y Obras (1,457,983€)</li>
 				<li>Vizzuality S.L. (1,457,983€)</li>
 				<li>Mallorca Catering S.L (1,457,983€)</li>
 				<li>IBM (1,457,983€)</li>
 				<li>La cacatua S.A (1,457,983€)</li>
-			</ul>
+			</ul>-->
 		</div>
 		<hr color="#E2E3DD" size="1"/>
 		<div class="related_regions">
@@ -105,7 +110,8 @@
 					<!-- <p class="upload"><a href="#" class="upload_photo">sube una foto</a></p> -->
 				</div>
 				<div class="content_right">
-					<p class="title">{$obra.titulo|truncate:90:"..."|lower|capitalize}</p>
+					<p class="title">{$obra_title|truncate:90:"..."}</p>
+<!--					<p class="title">{$obra.titulo|truncate:90:"..."|lower}</p>-->
 					<p class="content">{$obra.categoria}<span class="state"> - {$obra.estado} - </span>Publicada el 
 						{if $obra.fecha1 eq null}
 							{if $obra.fecha3 eq null}
