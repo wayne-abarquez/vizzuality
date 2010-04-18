@@ -10,7 +10,7 @@ $orga_data = $services->getLicitacionDetails($_REQUEST['id']);
 
 $id_orga = $services->getNearOrganismos($orga_data['grupo_fk']);
 
-$smarty->assign('section','obra');
+$smarty->assign('section','home');
 
 $smarty->assign('obra',$services->getLicitacionDetails($_REQUEST['id']));
 $smarty->assign('otras_obras',$services->getOtherLicitacionesFromSameOrganismo($_REQUEST['id']));
