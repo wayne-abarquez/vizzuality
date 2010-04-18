@@ -438,9 +438,9 @@ function createNewComment() {
 							var html_comments = '<div class="line_to_separate"></div><div class="comments"><ul><li><div class="avatar"><img src="../images/default_work.png"></div><div class="comment_area"><p class="name"><a href="';
 							html_comments+= web + '">'+ name +'</a>, ahora mismo</p><p class="comment">'+comment;
 							html_comments+= '</p></div></li><li><div class="line_to_separate"></div></li></ul></div>';
-							$('div.content_left').append(html_comments).hide().fadeIn();
+							$('div#comments_container').after(html_comments).hide().fadeIn();
 							
-							$('div.left_region_work').height($('div.renovation_content').height()-149);
+							$('div.left_region_work').height($('div.renovation_content').height()-100);
 							
 						} else {
 							var html_comments = '<li><div class="line_to_separate"></div></li><li><div class="avatar"><img src="../images/default_work.png"></div><div class="comment_area"><p class="name"><a href="';
@@ -448,7 +448,7 @@ function createNewComment() {
 							html_comments+= '</p></div></li>';
 							$('div.comments ul').append(html_comments).fadeIn();
 							
-							$('div.left_region_work').height($('div.renovation_content').height()-149);
+							$('div.left_region_work').height($('div.renovation_content').height()-100);
 						}
 
 						$('#mail_text').attr('value','');
