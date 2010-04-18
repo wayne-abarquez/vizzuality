@@ -1,8 +1,92 @@
 var $j = jQuery;
 var map;
 var geocoder;
+var userLatLng;
+var userCity;
+
+
 
 $(document).ready(function() {
+	
+    var zoom;
+     if (google.loader.ClientLocation) {
+       zoom = 9;
+       userLatLng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
+       userCity=google.loader.ClientLocation.address.city;
+     }  else {
+         zoom = 6;
+         userLatLng = new google.maps.LatLng(40.3967643055720,-3.58154296875);       
+         userCity="España";
+     }  
+
+
+   	geocoder = new google.maps.Geocoder();
+     var myOptions = {
+         zoom: zoom,
+         center: userLatLng,
+         disableDefaultUI: true,
+         scrollwheel:false,
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+     };
+     map = new google.maps.Map(document.getElementById("mapa"), myOptions);
+   	var image = '../images/markers/small.png';
+
+   	if (!$('span.location').length>0) {
+   		var position = new google.maps.LatLng($('span.lat').attr('id'),$('span.lon').attr('id'));
+   		map.setCenter(position);
+   		map.setZoom(12);
+
+   		var marker = new google.maps.Marker({
+   					position: position,
+   					title: '',
+   					icon: image
+   				});
+   		marker.setMap(map);
+   		if ($('span.obra_map').length>0) {
+   			map.panBy(300,-10);
+   		} else {
+   			map.panBy(-200,-10);
+   		}
+
+   	} else {
+
+
+   		map.panBy(-330,-10);	
+
+   		var fluster = new Fluster2(map);
+   			var image = '../images/markers/small.png';
+
+   			for(var i = 0; i < organismos.length; i++)
+   			{
+   				var marker = new google.maps.Marker({
+   					position: new google.maps.LatLng(organismos[i].lat, organismos[i].lon),
+   					title: organismos[i].nombre,
+   					icon: image,
+   					data: organismos[i].id
+   				});
+   				google.maps.event.addListener(marker, 'click', function() {
+   				  window.location = '../org/'+this.data;
+   				});
+   				fluster.addMarker(marker);
+   			}
+
+   			fluster.styles = {
+   				0: {
+   					image: '../images/markers/medium.png',
+   					textColor: '#FFFFFF',
+   					width: 48,
+   					height: 48
+   				},
+   				6: {
+   					image: '../images/markers/big.png',
+   					textColor: '#FFFFFF',
+   					width: 58,
+   					height: 58
+   				}
+   			};
+
+   			fluster.initialize();
+   	}
 	
 	// VER MAPA
 	$('#ve_mapa').click (function(ev){
@@ -43,75 +127,7 @@ $(document).ready(function() {
 	});
 	
 	
-	geocoder = new google.maps.Geocoder();
-  var myOptions = {
-      zoom: 9,
-      center: new google.maps.LatLng(25, 25),
-      disableDefaultUI: true,
-      scrollwheel:false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  map = new google.maps.Map(document.getElementById("mapa"), myOptions);
-	var image = '../images/markers/small.png';
 
-	if (!$('span.location').length>0) {
-		var position = new google.maps.LatLng($('span.lat').attr('id'),$('span.lon').attr('id'));
-		map.setCenter(position);
-		map.setZoom(12);
-		
-		var marker = new google.maps.Marker({
-					position: position,
-					title: '',
-					icon: image
-				});
-		marker.setMap(map);
-		if ($('span.obra_map').length>0) {
-			map.panBy(300,-10);
-		} else {
-			map.panBy(-200,-10);
-		}
-		
-	} else {
-		var position = new google.maps.LatLng($('span.lat').attr('id'),$('span.lon').attr('id'));
-		map.setCenter(position);
-		map.setZoom(9);
-		
-		map.panBy(-330,-10);	
-		
-		var fluster = new Fluster2(map);
-			var image = '../images/markers/small.png';
-			
-			for(var i = 0; i < organismos.length; i++)
-			{
-				var marker = new google.maps.Marker({
-					position: new google.maps.LatLng(organismos[i].lat, organismos[i].lon),
-					title: organismos[i].nombre,
-					icon: image,
-					data: organismos[i].id
-				});
-				google.maps.event.addListener(marker, 'click', function() {
-				  window.location = '../org/'+this.data;
-				});
-				fluster.addMarker(marker);
-			}
-		
-			fluster.styles = {
-				0: {
-					image: '../images/markers/medium.png',
-					textColor: '#FFFFFF',
-					width: 48,
-					height: 48
-				},
-				6: {
-					image: '../images/markers/big.png',
-					textColor: '#FFFFFF',
-					width: 58,
-					height: 58
-				}
-			};
-		
-			fluster.initialize();
-	}
 
 
 	// OBRA LENGTH
