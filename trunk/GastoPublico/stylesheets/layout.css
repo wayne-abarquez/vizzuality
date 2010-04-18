@@ -245,9 +245,12 @@ div.outer_layout_green div.menu img {position:absolute; width:14px; height:7px; 
 div.outer_layout_green div.menu ul {float:left; margin:7px 0 0 0;}
 div.outer_layout_green div.menu ul li {float:left; margin:0 15px 0 0;}
 div.outer_layout_green div.menu ul li a {text-decoration:none; font:bold 15px Arial; color:#FFFFFF;}
-div.outer_layout_green div.menu ul li a:hover { color:#333333;}
+div.outer_layout_green div.menu ul li a:hover {}
 div.outer_layout_green div.menu ul li a.disabled {text-decoration:none; font:bold 15px Arial; color:#79ADAF;}
 div.outer_layout_green div.menu ul li a.disabled:hover {cursor:default;}
+div.outer_layout_green div.menu ul li a.option {text-decoration:none; font:bold 15px Arial; color:#FFFFFF;}
+div.outer_layout_green div.menu ul li a.option:hover {color:#333333;}
+
 div.outer_layout_green div.menu p {float:right; font:normal 13px Arial; color:#FFFFFF; padding:8px 0 0 0;}
 div.outer_layout_green div.menu p a {font:bold 13px Arial; color:#FFFFFF;}
 div.outer_layout_green div.menu p a:hover {text-decoration:none;}
