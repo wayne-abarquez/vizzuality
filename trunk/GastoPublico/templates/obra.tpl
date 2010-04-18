@@ -201,7 +201,7 @@
 						{foreach key=id item=comentario from=$comentarios name=counter}
 							<li>
 								<div class="avatar">
-									<img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+									<img src="../images/default_work.png">
 								</div>
 								<div class="comment_area">
 									<p class="name"><a href="{$comentario.web}">{$comentario.nombre}</a><small>, el {$comentario.created_when}</small></p>
@@ -251,7 +251,11 @@
 				<ul>
 					{foreach key=id item=licitacion from=$otras_obras name=counter}
 					<li>
-						<div class="imgPlace"><a href="{$licitacion.licitacion_id}"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></a>
+						<div class="imgPlace">
+							<a href="{$licitacion.licitacion_id}">
+								
+								<img src="../images/default_work.png">
+							</a>
 						</div>
 						<div class="info">
 							<p class="about"><a href="{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:70:"..."|lower|capitalize}</a></p>

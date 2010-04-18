@@ -297,7 +297,7 @@ function createNewComment() {
 					if (result=="OK") {
 						
 						if ($('div.comments').length==0) {
-							var html_comments = '<div class="line_to_separate"></div><div class="comments"><ul><li><div class="avatar"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></div><div class="comment_area"><p class="name"><a href="';
+							var html_comments = '<div class="line_to_separate"></div><div class="comments"><ul><li><div class="avatar"><img src="../images/default_work.png"></div><div class="comment_area"><p class="name"><a href="';
 							html_comments+= web + '">'+ name +'</a>, ahora mismo</p><p class="comment">'+comment;
 							html_comments+= '</p></div></li><li><div class="line_to_separate"></div></li></ul></div>';
 							$('div.content_left').append(html_comments).hide().fadeIn();
@@ -305,7 +305,7 @@ function createNewComment() {
 							$('div.left_region_work').height($('div.renovation_content').height()-149);
 							
 						} else {
-							var html_comments = '<li><div class="line_to_separate"></div></li><li><div class="avatar"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></div><div class="comment_area"><p class="name"><a href="';
+							var html_comments = '<li><div class="line_to_separate"></div></li><li><div class="avatar"><img src="../images/default_work.png"></div><div class="comment_area"><p class="name"><a href="';
 							html_comments+= web + '">'+ name +'</a>, ahora mismo</p><p class="comment">'+comment;
 							html_comments+= '</p></div></li>';
 							$('div.comments ul').append(html_comments).fadeIn();
