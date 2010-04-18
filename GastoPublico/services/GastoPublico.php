@@ -49,7 +49,13 @@ class GastoPublico {
     }    
     
     function getNearOrganismos($id) {
-        $sql="select grupo_fk as id,nombre_admin from organismo LIMIT 5";
+        $sql="select org_contratante from organismo WHERE grupo_fk=$id LIMIT 1";
+        $res=pg_fetch_assoc(pg_query($this->conn, $sql));
+        if($res['org_contratante']=="Administración General del Estado") {
+            $sql="select grupo_fk as id,nombre_admin from organismo WHERE org_contratante='Administración General del Estado' LIMIT 5";
+        } else {
+            $sql="select grupo_fk as id,nombre_admin from organismo WHERE org_contratante<>'Administración General del Estado' LIMIT 5";
+        }
         return pg_fetch_all(pg_query($this->conn, $sql));
     }
     
