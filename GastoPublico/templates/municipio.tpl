@@ -3,7 +3,7 @@
 <div id="map"></div>
 <div id="layout">
 	<div class="left_region_mun">
-		<img class="arrow" src="../images/white_arrow.png" alt="white arrow">
+		<img class="arrow" src="images/white_arrow.png" alt="white arrow">
 		<div class="top_information">
 			<div class="logo">
 				<img src="{$municipio.escudo}" />
