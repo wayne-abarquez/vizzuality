@@ -9,15 +9,20 @@ var userCity;
 $(document).ready(function() {
 	
     var zoom;
-     if (google.loader.ClientLocation) {
-       zoom = 9;
-       userLatLng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
-       userCity=google.loader.ClientLocation.address.city;
-     }  else {
-         zoom = 6;
-         userLatLng = new google.maps.LatLng(40.3967643055720,-3.58154296875);       
-         userCity="España";
-     }  
+    if(cityParam!="") {
+        
+    } else {
+        if (google.loader.ClientLocation) {
+          zoom = 9;
+          userLatLng = new google.maps.LatLng(google.loader.ClientLocation.latitude, google.loader.ClientLocation.longitude);
+          userCity=google.loader.ClientLocation.address.city;
+        }  else {
+            zoom = 6;
+            userLatLng = new google.maps.LatLng(40.3967643055720,-3.58154296875);       
+            userCity="España";
+        }        
+    }
+
 
 		$('a.user_location').text(userCity);
 

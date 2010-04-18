@@ -14,6 +14,11 @@ foreach($licitaciones as &$lic) {
 	$lic["titulo"]=ucfirst(strtolower($lic["titulo"]));
 }
 
+if(isset($_REQUEST['city'])) {
+    $ciudadParam=$_REQUEST['city'];
+    $smarty->assign('ciudadParam',$ciudadParam);
+}
+
 $smarty->assign('licitaciones',$licitaciones);
 $smarty->assign('regiones',$services->getFeaturedOrganismos());
 
