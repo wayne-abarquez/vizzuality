@@ -29,7 +29,7 @@ $(document).ready(function() {
 		$.scrollTo('#quienesta',500);
 	});
 	
-	$('#back_about').click (function(ev){
+	$('.back_about').click (function(ev){
 		ev.stopPropagation();
 		ev.preventDefault();
 		$.scrollTo('.outer_layout_gray',500);

@@ -33,10 +33,11 @@
 					
 					<p class="title">Contratación del estado</p>
 					 
-					<p class="last">Toda la información sobre contratos públicos ha sido obtenida de webs de Administraciones Públicas, en particular de la plataforma de Contratacion del Estado (<a href="http://www.contrataciondelestado.es">www.contrataciondelestado.es</a>) del <strong>Ministerio de Economía y Hacienda</strong>.</p> <p>En las próximas semanas se irá añadiendo más información de contratación pública de las Comunidades Autónomas que tengan sus datos de contratos publicados en Internet, como es el caso del País Vasco, Andalucía, Madrid...</p>
+					<p class="last">Toda la información sobre contratos públicos ha sido obtenida de webs de Administraciones Públicas, en particular de la plataforma de Contratacion del Estado (<a href="http://www.contrataciondelestado.es">www.contrataciondelestado.es</a>) del <strong>Ministerio de Economía y Hacienda</strong>.</p> <p>En las próximas semanas se irá añadiendo más información de contratación pública de las Comunidades Autónomas que tengan sus datos de contratos publicados en Internet, como es el caso del País Vasco, Andalucía, Madrid...</p><br/><br/>
 					 
 				</span>
-				<span class="content_info_bottom"></span>
+				<span class="content_info_bottom_last"></span>
+				<p class="back"><a href="#" class="back_about">volver arriba</a></p>
 				
 				
 				
@@ -55,7 +56,8 @@
 						<p class="last">Toda la información sobre contratos públicos ha sido obtenida de webs de <strong>Administraciones Públicas</strong>, en particular de la plataforma de Contratacion del Estado (<a href="http://www.contrataciondelestado.es">www.contrataciondelestado.es</a>) del <strong>Ministerio de Economía y Hacienda</strong>. En las próximas semanas se irá añadiendo más información de contratación pública de las Comunidades Autónomas que tengan sus datos de contratos publicados en Internet, como es el caso del País Vasco, Andalucía, Madrid...</p>
 						
 					</span>
-					<span class="content_info_bottom"></span>
+					<span class="content_info_bottom_last"></span>
+					<p class="back"><a href="#" class="back_about">volver arriba</a></p>
 					
 					
 					
@@ -80,7 +82,7 @@
 						</span>
 						<span class="content_info_bottom_last"></span>
 						
-						<p class="back"><a href="#" id="back_about">volver arriba</a></p>
+						<p class="back"><a href="#" class="back_about">volver arriba</a></p>
 						
 						
 		</div>
