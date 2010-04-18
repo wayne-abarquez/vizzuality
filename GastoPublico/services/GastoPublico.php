@@ -191,7 +191,7 @@ class GastoPublico {
     }
     
     function getOrganismosForMapaHome() {
-        $sql="select * from grupo";
+        $sql="select id,nombre,x(the_geom) as lon,y(the_geom) as lat from grupo";
         return pg_fetch_all(pg_query($this->conn, $sql));
     }
     
