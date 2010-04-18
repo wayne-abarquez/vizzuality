@@ -91,7 +91,7 @@
 			<div class="content_up">
 				<div class="content_left">
 					<div class="avatar">
-						<img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg">
+						<img src="../images/default_work.png">
 					</div>
 					<!-- <p class="upload"><a href="#" class="upload_photo">sube una foto</a></p> -->
 				</div>
