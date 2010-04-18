@@ -56,19 +56,65 @@
 			{/if}
 		</div>
 		<hr color="#E2E3DD" size="1"/>
+	
+		
+		
 		<div class="political_stats">
+			
+			
+			
 			<h2>Gasto por tipo de procedimiento</h2>
-			<div class="big_chart"></div>
+			
+		
+				<a href="#"><div class="big_chart">	</div></a>
+				
+				<div class="tool_tip_toomuch">
+					<span class="head"></span>
+					<span class="body">
+						<p class="title">too much</p>
+						<p class="info">¡Que esto lo hicimos en 48 h!, ¿te parece poco?</p>
+					</span>
+					<span class="bottom"></span>								
+				</div>
+				
+		
+			
 		</div>
 		<hr color="#E2E3DD" size="1"/>
+		
+		
+		
 		<div class="political_stats">
+			
+			
 			<h2>Gasto por categorías</h2>
-			<div class="big_chart"></div>
+			
+			<a href="#"><div class="big_chart"></div></a>
+			<div class="tool_tip_toomuch_two">
+				<span class="head"></span>
+				<span class="body">
+					<p class="title">too much</p>
+					<p class="info">¡Que esto lo hicimos en 48 h!, ¿te parece poco?</p>
+				</span>
+				<span class="bottom"></span>								
+			</div>
+				
+
 		</div>
 		<hr color="#E2E3DD" size="1"/>
 		<div class="more_enterprises">
-			<h2>Gasto por categorías</h2>
-			<p style="font:normal 12px Arial; color:#666666; font-style: italic;">Información aún no disponible</p>
+			<h2>Empresas más contratadas</h2>
+			
+			<div class="tool_tip_toomuch_two">
+				<span class="head"></span>
+				<span class="body">
+					<p class="title">too much</p>
+					<p class="info">¡Que esto lo hicimos en 48 h!, ¿te parece poco?</p>
+				</span>
+				<span class="bottom"></span>								
+			</div>
+			
+			<a href="#"><p style="font:normal 12px Arial; color:#666666; font-style: italic;">Información aún no disponible</p></a>
 			<!--><ul>
 				<li>CM Construcciones y Obras (1,457,983€)</li>
 				<li>Vizzuality S.L. (1,457,983€)</li>

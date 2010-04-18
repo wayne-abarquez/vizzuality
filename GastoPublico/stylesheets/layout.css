@@ -346,9 +346,48 @@ div.left_region div.top_information div.region_data p.web a {color:#3F8A8C; text
 div.left_region div.top_information div.region_data p.web a:hover {text-decoration:none;}
 div.left_region img.region {float:left; margin:15px 0 0 0; border:1px solid #cccccc; padding:5px; background:#EEEEEE; width:262px;}
 div.left_region hr {float:left; width:100%;  margin:18px 0 0 0;}
-div.left_region div.political_data {float:left; margin:13px 0 0 0; width:100%;}
+div.left_region div.political_data {float:left; margin:13px 0 0 0; width:100%; position:relative;}
 div.left_region div.political_data h2 {float:left; width:100%; font:bold 15px Arial; color:#333333; padding:0 0 7px;}
-div.left_region div.political_data div.big_chart {float:left; width:274px;}
+div.left_region div.political_data div.big_chart a{float:left; width:274px; }
+
+div.tool_tip_toomuch_org {position:absolute; left:65px; top:220px; width:162px; z-index:10000; display:none;}
+div.tool_tip_toomuch_org span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_toomuch_org span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_toomuch_org span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_toomuch_org span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_toomuch_org span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
+div.tool_tip_toomuch_org_two {position:absolute; left:65px; top:350px; width:162px; z-index:10000; display:none;}
+div.tool_tip_toomuch_org_two span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_toomuch_org_two span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_toomuch_org_two span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_toomuch_org_two span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_toomuch_org_two span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
+div.tool_tip_toomuch {position:absolute; left:65px; top:170px; width:162px; z-index:10000; display:none;}
+div.tool_tip_toomuch span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_toomuch span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_toomuch span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_toomuch span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_toomuch span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
+div.tool_tip_toomuch_two {position:absolute; left:65px; top:310px; width:162px; z-index:10000; display:none;}
+div.tool_tip_toomuch_two span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_toomuch_two span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_toomuch_two span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_toomuch_two span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_toomuch_two span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
+
+div.tool_tip_toomuch_info {position:absolute; left:45px; top:430px; width:162px; z-index:10000; display:none;}
+div.tool_tip_toomuch_info span.head{float:left; background:url(../images/tooltip_up.png) no-repeat 0 0; width:162px; height:16px;}
+div.tool_tip_toomuch_info span.body{float:left; background:url(../images/tooltip_middle.png); width:162px; margin:0 0 0 0;}
+div.tool_tip_toomuch_info span.body p.title {float:left; font:bold 13px Arial; color:#C3396D; text-transform:uppercase; width:127px; margin:4px 0 0 20px;}
+div.tool_tip_toomuch_info span.body p.info {float:left; font:normal 11px Arial; color:#666666; width:127px; margin:4px 0 4px 20px;}
+div.tool_tip_toomuch_info span.bottom{float:left; background:url(../images/tooltip_bottom.png) no-repeat 0 0; width:162px; height:32px;}
+
+
+
 div.left_region div.political_data div.political_logo {float:left; width:44px;}
 div.left_region div.political_data div.political_logo img {width:38px;}
 div.left_region div.political_data div.political_information {float:right; width:228px; padding:3px 0 0 2px;}

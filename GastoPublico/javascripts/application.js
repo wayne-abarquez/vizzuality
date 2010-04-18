@@ -169,6 +169,67 @@ $(document).ready(function() {
 		$(this).parent().parent().children('div.tool_tip').fadeOut();
 		
 	});
+
+	$('a div.big_chart').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent().children('div.tool_tip_toomuch').show();
+		
+	},
+	function(){
+		$(this).parent().parent().children('div.tool_tip_toomuch').fadeOut();
+		
+	});
+	
+	$('a div.big_chart').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent().children('div.tool_tip_toomuch_two').show();
+		
+	},
+	function(){
+		$(this).parent().parent().children('div.tool_tip_toomuch_two').fadeOut();
+		
+	});
+	
+	$('a div.big_chart').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent().children('div.tool_tip_toomuch_org').show();
+		
+	},
+	function(){
+		$(this).parent().parent().children('div.tool_tip_toomuch_org').fadeOut();
+		
+	});
+	
+	$('a div.big_chart').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent().children('div.tool_tip_toomuch_org_two').show();
+		
+	},
+	function(){
+		$(this).parent().parent().children('div.tool_tip_toomuch_org_two').fadeOut();
+		
+	});
+	
+	$('div.more_enterprises a').hover(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().children('div.tool_tip_toomuch_info').show();
+		
+	},
+	function(){
+		$(this).parent().children('div.tool_tip_toomuch_info').fadeOut();
+		
+	});
+
 	
 	//VOTES ACTION
 	$('a.likes').click(function(ev){
