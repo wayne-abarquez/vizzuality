@@ -23,6 +23,7 @@ foreach($res as $lic) {
     $client->post("/v1/document",$data);
 
     $resYahoo = $client->getContent();
+    $xml = simplexml_load_string($resYahoo)
 
 
         $lat = $xml->document->administrativeScope->centroid->latitude;
@@ -31,7 +32,9 @@ foreach($res as $lic) {
         $sql="UPDATE licitacion set the_geom = setsrid(makepoint($lon,$lat),4326) WHERE id=".$lic["id"];
         $result=pg_query($serv->conn, $sql); 
         echo($lat." ".$lon."\n");
+
         usleep(2000000);
+
 
 }
 
