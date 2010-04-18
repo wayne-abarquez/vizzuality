@@ -266,7 +266,7 @@ div.outer_layout_gray div.header p.logo a {float:left; text-decoration:none; fon
 div.outer_layout_gray div.header p.facebook {float:right; font:normal 13px Arial; color:#FFFFFF; padding:5px 0 0 0;}
 div.outer_layout_green {background:#408A8D; width:100%; height:34px;}
 div.outer_layout_green div.menu {width:924px; margin:0 auto; padding:0; position:relative;}
-div.outer_layout_green div.menu img {position:absolute; width:14px; height:7px; top:34px; left:13px; z-index:100;}
+div.outer_layout_green div.menu img {position:absolute; width:14px; height:7px; top:34px; left:25px; z-index:100;}
 div.outer_layout_green div.menu ul {float:left; margin:7px 0 0 0;}
 div.outer_layout_green div.menu ul li {float:left; margin:0 15px 0 0;}
 div.outer_layout_green div.menu ul li a {text-decoration:none; font:bold 15px Arial; color:#FFFFFF;}
