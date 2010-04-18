@@ -132,7 +132,7 @@ div.renovation_content div.content div.content_left p.name {color:#666666; font-
 div.renovation_content div.content div.content_left p.name a {font:left; font:normal 13px Arial; color:#408A8D; text-decoration:underline; line-height:12px;}
 div.renovation_content div.content div.content_left p.name a:hover {text-decoration: none;}
 
-div.renovation_content div.content div.content_left p.title {float:left; font:bold 17px Arial; color:#2A2625; letter-spacing:-1.0px; margin:20px 0 0 0;}
+div.renovation_content div.content div.content_left p.title {float:left; font:bold 17px Arial; color:#2A2625; letter-spacing:-1.0px; margin:20px 0 0 0; width: 400px;}
 
 div.renovation_content div.content p.description {float:left; font:normal 15px Arial; color:#666666; margin:0px 20px 10px 20px; width:567px;}
 div.renovation_content div.content div.no_info {float:left; font:normal 15px Arial; background:url(../images/bkg_no_info.png) no-repeat 0 0; width:566px; height:112px; margin:5px 0 10px 22px;}
@@ -182,7 +182,7 @@ div.renovation_content div.content div.comments li div.comment_area p.comment {f
 div.renovation_content div.content div.comments li div.line_to_separate {float:left; background:url(../images/line_to_separate.png) no-repeat 0 0; width:572px; height:2px; margin:10px 0 10px 0px;}
 
 div.renovation_content div.content div.line_comment {float:left; width:571px; height:1px; background-color:#A0C4C6; margin:0px 0 0 0;}
-div.renovation_content div.content form.send_comment {float:left; margin:20px 0 35px 20px; width:571px; height:250px; background-color:#E3EEEE; padding-bottom: 10px;}
+div.renovation_content div.content form.send_comment {float:left; margin:15px 0 35px 20px; width:571px; height:250px; background-color:#E3EEEE; padding-bottom: 10px;}
 div.renovation_content div.content form.send_comment div.name {float:left; margin:15px 0 0 15px;}
 div.renovation_content div.content form.send_comment div.name p.title {font:bold 13px Arial; color:#666666; width:170px; }
 div.renovation_content div.content form.send_comment div.name input[type="text"]{float:left; padding:6px 4px 0px 4px; width:162px; height:24px; border:none; border:1px solid #A0C4C6;font:normal 13px Arial; color:#999999; margin:5px 0 0 0;}
