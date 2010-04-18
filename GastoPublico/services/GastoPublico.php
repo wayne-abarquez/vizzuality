@@ -89,13 +89,25 @@ class GastoPublico {
         $result= pg_query($this->conn, $sql);
         $sql="UPDATE licitacion set num_comentarios=num_comentarios+1 WHERE id=$licitacion_id";
         $result= pg_query($this->conn, $sql);
-        return "done";
+        return "ok";
     }
     
     function createUser($facebookToken) {
         $facebookToken=pg_escape_string($facebookToken);
         $sql="INSERT INTO users(token) VALUES('$facebookToken')";
-        $result= pg_query($this->conn, $sql);        
+        $result= pg_query($this->conn, $sql);
+        return  "ok";      
+    }
+    
+    function vote($direction,$licitacion_id) {
+
+        if($direction=="up") {
+            $sql="UPDATE licitacion set votes_up=votes_up+1 WHERE id=$licitacion_id";
+        } else {
+            $sql="UPDATE licitacion set votes_up=votes_up-1 WHERE id=$licitacion_id";
+        }
+        $result= pg_query($this->conn, $sql);
+        return  "ok";       
     }
     
     
