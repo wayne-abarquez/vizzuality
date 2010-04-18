@@ -19,6 +19,33 @@ div#map {float:left; position:relative; width:100%; height:278px; margin:0; bord
 div.head_lent {float:left; z-index:100000; background:url(../images/homeLent.png) no-repeat 0 0; height:384px; width:100%; margin:0 0 0 0; position:absolute;}
 
 
+/************ ABOUT *******************/
+
+
+div.content_about {width:100%; margin:52px 0 0 0;}
+div.content_about li {margin:0 0 8px 0; width:225px;}
+div.content_about a {font:bold 15px Arial; color:#3F8A8C; text-decoration:none; margin:0;}
+div.content_about a:hover {text-decoration:underline;}
+
+div.content_about div.content_left_about {float:left; width:250px; margin:20px 0 0 0;}
+div.content_about div.content_left_about p.more_title {font:bold 19px Arial; color:#2A2625; margin:0 10px 15px 0; }
+div.content_about div.content_right_about {float:right; width:670px;}
+div.content_about div.content_right_about span.header {float:left; background:url(../images/about_header.png) no-repeat 0 0; width:670px; height:9px; }
+div.content_about div.content_right_about span.content_header {float:left; background-color:#C33A6E; width:670px; margin:0;}
+div.content_about div.content_right_about span.content_header p {font:bold 27px Arial; color:#FFFFFF; margin:5px 0 15px 20px;}
+div.content_about div.content_right_about span.content_info_header {float:left; background:url(../images/content_about_header.png) no-repeat 0 0; width:670px; height:13px; margin:0;}
+div.content_about div.content_right_about span.content_info {float:left; background-color:#FFFFFF; margin:0px; width:670px;}
+
+div.content_about div.content_right_about span.content_info p.title {font:bold 17px Arial; color:#2A2625;}
+div.content_about div.content_right_about span.content_info p {font:normal 15px Arial; color:#666666; margin:15px 20px;}
+div.content_about div.content_right_about span.content_info p.last {font:normal 15px Arial; color:#666666; margin:15px 20px 30px 20px;}
+div.content_about div.content_right_about span.content_info_bottom {float:left; background:url(../images/content_about_bottom.png) no-repeat 0 0; width:670px; height:8px; margin:0 0 40px 0;}
+
+
+
+
+
+
 /************ OBRA *******************/
 
 div.left_region_work {position:relative; float:left; background-color:#EFF0E8; width:285px; padding: 0 0 50px 10px;}
