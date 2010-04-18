@@ -20,7 +20,7 @@ foreach($res as $org) {
 	$html = file_get_dom($wikipediaUrl);
     foreach($html->find('table') as $table) {
         if (strpos($table->class, "infobox") !== false) {
-            print_r($table->class."\n\n");
+            print_r($table->plaintext);
         }
     }
     
