@@ -18,6 +18,4 @@ $smarty->assign('orga_relacionados',$services->getNearOrganismos($orga_data['gru
 $smarty->display('obra.tpl');
 
 
-
-
 ?>
