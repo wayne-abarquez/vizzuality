@@ -1,5 +1,6 @@
 var $j = jQuery;
 var map;
+var geocoder;
 
 $(document).ready(function() {
 	
@@ -42,9 +43,9 @@ $(document).ready(function() {
 	});
 	
 	
-
+	geocoder = new google.maps.Geocoder();
   var myOptions = {
-      zoom: 4,
+      zoom: 9,
       center: new google.maps.LatLng(25, 25),
       disableDefaultUI: true,
       scrollwheel:false,
@@ -64,54 +65,53 @@ $(document).ready(function() {
 					icon: image
 				});
 		marker.setMap(map);
-		map.panBy(-200,-10);
+		if ($('span.obra_map').length>0) {
+			map.panBy(300,-10);
+		} else {
+			map.panBy(-200,-10);
+		}
+		
 	} else {
 		var position = new google.maps.LatLng($('span.lat').attr('id'),$('span.lon').attr('id'));
 		map.setCenter(position);
 		map.setZoom(9);
 		
-		map.panBy(-200,-10);	    
+		map.panBy(-330,-10);	
+		
+		var fluster = new Fluster2(map);
+			var image = '../images/markers/small.png';
+			
+			for(var i = 0; i < organismos.length; i++)
+			{
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(organismos[i].lat, organismos[i].lon),
+					title: organismos[i].nombre,
+					icon: image,
+					data: organismos[i].id
+				});
+				google.maps.event.addListener(marker, 'click', function() {
+				  window.location = '../org/'+this.data;
+				});
+				fluster.addMarker(marker);
+			}
+		
+			fluster.styles = {
+				0: {
+					image: '../images/markers/medium.png',
+					textColor: '#FFFFFF',
+					width: 48,
+					height: 48
+				},
+				6: {
+					image: '../images/markers/big.png',
+					textColor: '#FFFFFF',
+					width: 58,
+					height: 58
+				}
+			};
+		
+			fluster.initialize();
 	}
-
-	// var fluster = new Fluster2(map);
-	// 	var image = '../images/markers/small.png';
-	// 	
-	// 	for(var i = 0; i < 200; i++)
-	// 	{
-	// 		var pos = [
-	// 			50 * Math.random(),
-	// 			50 * Math.random()
-	// 		];
-	// 		
-	// 		var marker = new google.maps.Marker({
-	// 			position: new google.maps.LatLng(pos[0], pos[1]),
-	// 			title: 'Marker ' + i,
-	// 			icon: image
-	// 		});
-	// 		
-	// 		// Add the marker to the Fluster
-	// 		fluster.addMarker(marker);
-	// 	}
-	// 
-	// 	fluster.styles = {
-	// 		0: {
-	// 			image: '../images/markers/medium.png',
-	// 			textColor: '#FFFFFF',
-	// 			width: 48,
-	// 			height: 48
-	// 		},
-	// 		6: {
-	// 			image: '../images/markers/big.png',
-	// 			textColor: '#FFFFFF',
-	// 			width: 58,
-	// 			height: 58
-	// 		}
-	// 	};
-	// 
-	// 	fluster.initialize();
-
-
-
 
 
 	// OBRA LENGTH
@@ -193,13 +193,61 @@ $(document).ready(function() {
 		 });
 	});
 	
-	$('a.no_likes').click(function(ev){
+
+	$('a.like').click(function(ev){
+		
+		ev.stopPropagation();
+		ev.preventDefault();
+		var licitacion = $(this).parent().attr('alt');
+		var this_ = this;
+		var dataObj = ({method: 'vote_up', licitacion: licitacion});    
+		$.ajax({
+		    	type: "POST",
+		    	url: "../ajaxController.php",
+		    	data: dataObj,
+		    	cache: false,
+		    	success: function(result){
+						var count = parseInt($(this_).children('strong').html());
+						$(this_).children('strong').html(count+1);
+		    	},
+		      error:function (xhr, ajaxOptions, thrownError){
+	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+	        }
+		 });
+	});	
+	
+	
+	
+	$('a.no_like').click(function(ev){
 						
 		ev.stopPropagation();
 		ev.preventDefault();
 		var licitacion = $(this).parent().attr('alt');
 		var this_ = this;
 		var dataObj = ({method: 'vote_down', licitacion: licitacion});    
+		$.ajax({
+		    	type: "POST",
+		    	url: "../ajaxController.php",
+		    	data: dataObj,
+		    	cache: false,
+		    	success: function(result){
+						var count = parseInt($(this_).children('strong').html());
+						$(this_).children('strong').html(count+1);
+		    	},
+		      error:function (xhr, ajaxOptions, thrownError){
+	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
+	        }
+		 });
+	});
+	
+
+	$('a.no_likes').click(function(ev){
+		
+		ev.stopPropagation();
+		ev.preventDefault();
+		var licitacion = $(this).parent().attr('alt');
+		var this_ = this;
+		var dataObj = ({method: 'vote_up', licitacion: licitacion});    
 		$.ajax({
 		    	type: "POST",
 		    	url: "../ajaxController.php",
@@ -213,52 +261,8 @@ $(document).ready(function() {
 	        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
 	        }
 		 });
-	});
-	
-	/*	
-		$('div.content_left_like a.like').click(function(ev){
-			ev.stopPropagation();
-			ev.preventDefault();
+	});	
 
-			var obra = $(this).parent().attr('alt');
-			var this_ = this;
-			var dataObj = ({method: 'vote_up', obra: obra});    
-			$.ajax({
-			    	type: "POST",
-			    	url: "../ajaxController.php",
-			    	data: dataObj,
-			    	cache: false,
-			    	success: function(result){
-							var count = parseInt($(this_).html());
-							$(this_).html(count+1);
-			    	},
-			      error:function (xhr, ajaxOptions, thrownError){
-		        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
-		        }
-			 });
-		});
-
-		$('div.content_left_like a.no_like').click(function(ev){
-
-			ev.stopPropagation();
-			ev.preventDefault();
-			var obra = $(this).parent().attr('alt');
-			var this_ = this;
-			var dataObj = ({method: 'vote_down', obra: obra});    
-			$.ajax({
-			    	type: "POST",
-			    	url: "../ajaxController.php",
-			    	data: dataObj,
-			    	cache: false,
-			    	success: function(result){
-							var count = parseInt($(this_).html());
-							$(this_).html(count+1);
-			    	},
-			      error:function (xhr, ajaxOptions, thrownError){
-		        	alert('GastoPublico' + xhr.status + "\n" + thrownError);
-		        }
-			 });
-		}); */
 
 });
 
@@ -319,8 +323,6 @@ function createNewComment() {
 							$('div.left_region_work').height($('div.renovation_content').height()-149);
 						}
 
-						
-						
 						$('#mail_text').attr('value','');
 						$('#name_text').attr('value','');
 						$('#comment_text').val('');
@@ -328,6 +330,7 @@ function createNewComment() {
 					} else {
 						$('#errors').text('Ha ocurrido un error, inténtalo más tarde');
 					}
+					
 					$('form.send_comment').animate({height:0},500,function(ev) {
 						$('div.all_inputs').show();
 						$('form.send_comment img').hide();
@@ -380,7 +383,21 @@ function echeck(str) {
 	 return true
 }
 
-	
+
+function codeAddress() {
+   var address = $("#direccion").val();
+   if (geocoder) {
+     geocoder.geocode( { 'address': address}, function(results, status) {
+       if (status == google.maps.GeocoderStatus.OK) {
+         map.setCenter(results[0].geometry.location);
+         map.panBy(-330,-10);
+       } else {
+         $('div.tooltip').fadeIn();
+				 $('div.tooltip').delay(3000).fadeOut();
+       }
+     });
+   }
+ }
 
 
 $j(function(){

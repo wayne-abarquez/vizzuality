@@ -80,7 +80,7 @@ Fluster2ClusterMarker.prototype.draw = function()
 		
 		// Marker count
 		if (this.markerCount<3) {
-			this.div.style.fontSize = '11px';
+			this.div.style.fontSize = '12px';
 		} else {
 			if (this.markerCount<6) {
 				this.div.style.fontSize = '14px';
@@ -97,6 +97,7 @@ Fluster2ClusterMarker.prototype.draw = function()
 		this.div.style.cursor = 'pointer';
 		google.maps.event.addDomListener(this.div, 'click', function() {
 			me.map.fitBounds(me.cluster.getMarkerBounds());
+			me.map.panBy(-330,-10);
 		});
 		
 		this.getPanes().overlayLayer.appendChild(this.div);
