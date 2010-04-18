@@ -471,18 +471,18 @@ div.right_region_mun p.long a:hover {background-position: 0 -30px;}
 /*FOOTER*/
 div.outer_layout_footer {width:100%; border-top:3px solid #408A8D; background:#2A2825; height:193px; float:left;}
 div.outer_layout_footer div.footer {margin:0 auto; width:924px; padding:28px 0 0 0;}
-div.outer_layout_footer div.footer div.left_footer {float:left; width:297px; padding:0;}
+div.outer_layout_footer div.footer div.left_footer {float:left; width:200px; padding:0;}
 div.outer_layout_footer div.footer div.left_footer ul {float:left;}
 div.outer_layout_footer div.footer div.left_footer ul li {float:left; background:url(../images/separator.png) no-repeat right 3px; padding:0 12px 0 10px;}
 div.outer_layout_footer div.footer div.left_footer ul li.last {background:none; padding:0 0 0 10px;}
 div.outer_layout_footer div.footer div.left_footer ul li a {font:bold 13px Arial; color:#FFFFFF; text-decoration:none; padding:0 5px 0 0;}
 div.outer_layout_footer div.footer div.left_footer ul li a:hover {text-decoration:underline;}
-div.outer_layout_footer div.footer div.right_footer {float:right; width:600px;}
-div.outer_layout_footer div.footer div.right_footer h5 {float:left; width:600px; font:bold 13px Arial; color:#959492; padding:0 0 5px 0;}
-div.outer_layout_footer div.footer div.right_footer p.regions {float:left; width:600px; height:110px; font:bold 13px Arial; color:#FFFFFF;}
+div.outer_layout_footer div.footer div.right_footer {float:right; width:650px;}
+div.outer_layout_footer div.footer div.right_footer h5 {float:left; width:650px; font:bold 13px Arial; color:#959492; padding:0 0 5px 0;}
+div.outer_layout_footer div.footer div.right_footer p.regions {float:left; width:650px; height:110px; font:bold 13px Arial; color:#FFFFFF;}
 div.outer_layout_footer div.footer div.right_footer p.regions a {font:bold 13px Arial; color:#FFFFFF; text-decoration:underline;}
 div.outer_layout_footer div.footer div.right_footer p.regions a:hover {text-decoration:none;}
-div.outer_layout_footer div.footer div.right_footer p.footer {float:left; width:600px; height:auto; font:normal 13px Arial; color:#FFFFFF;}
+div.outer_layout_footer div.footer div.right_footer p.footer {float:left; width:650px; height:auto; font:normal 13px Arial; color:#FFFFFF;}
 div.outer_layout_footer div.footer div.right_footer p.footer a {font:bold 13px Arial; color:#FFFFFF; text-decoration:none;}
 div.outer_layout_footer div.footer div.right_footer p.footer a:hover {text-decoration:underline;}
 
@@ -490,17 +490,17 @@ div.outer_layout_footer div.footer div.right_footer p.footer a:hover {text-decor
 /*FOOTER HOME*/
 div.outer_layout_footer {width:100%; border-top:3px solid #408A8D; background:#2A2825; height:193px; float:left;}
 div.outer_layout_footer div.footer {margin:0 auto; width:924px; padding:28px 0 0 0;}
-div.outer_layout_footer div.footer div.right_footer_home {float:right; width:252px; padding:0 45px 0 0;}
+div.outer_layout_footer div.footer div.right_footer_home {float:right; width:200px; padding:0 45px 0 0;}
 div.outer_layout_footer div.footer div.right_footer_home ul {float:right;}
 div.outer_layout_footer div.footer div.right_footer_home ul li {float:left; background:url(../images/separator.png) no-repeat right 3px; padding:0 12px 0 10px;}
 div.outer_layout_footer div.footer div.right_footer_home ul li.last {background:none; padding:0 0 0 10px;}
 div.outer_layout_footer div.footer div.right_footer_home ul li a {font:bold 13px Arial; color:#FFFFFF; text-decoration:none; padding:0 5px 0 0;}
 div.outer_layout_footer div.footer div.right_footer_home ul li a:hover {text-decoration:underline;}
-div.outer_layout_footer div.footer div.left_footer_home {float:left; width:600px;}
-div.outer_layout_footer div.footer div.left_footer_home h5 {float:left; width:600px; font:bold 13px Arial; color:#959492; padding:0 0 5px 0;}
-div.outer_layout_footer div.footer div.left_footer_home p.regions {float:left; width:600px; height:110px; font:bold 13px Arial; color:#FFFFFF;}
+div.outer_layout_footer div.footer div.left_footer_home {float:left; width:650px;}
+div.outer_layout_footer div.footer div.left_footer_home h5 {float:left; width:650px; font:bold 13px Arial; color:#959492; padding:0 0 5px 0;}
+div.outer_layout_footer div.footer div.left_footer_home p.regions {float:left; width:650px; height:110px; font:bold 13px Arial; color:#FFFFFF;}
 div.outer_layout_footer div.footer div.left_footer_home p.regions a {font:bold 13px Arial; color:#FFFFFF; text-decoration:underline;}
 div.outer_layout_footer div.footer div.left_footer_home p.regions a:hover {text-decoration:none;}
-div.outer_layout_footer div.footer div.left_footer_home p.footer {float:left; width:600px; height:auto; font:normal 13px Arial; color:#FFFFFF;}
+div.outer_layout_footer div.footer div.left_footer_home p.footer {float:left; width:650px; height:auto; font:normal 13px Arial; color:#FFFFFF;}
 div.outer_layout_footer div.footer div.left_footer_home p.footer a {font:bold 13px Arial; color:#FFFFFF; text-decoration:none;}
 div.outer_layout_footer div.footer div.left_footer_home p.footer a:hover {text-decoration:underline;}
