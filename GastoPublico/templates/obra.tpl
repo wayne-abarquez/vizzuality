@@ -251,7 +251,7 @@
 						<div class="imgPlace"><a href="{$licitacion.licitacion_id}"><img src="http://www.protectplanetocean.org/resources/images/experts/ameer_abdulla_rzA_2_200.jpg"></a>
 						</div>
 						<div class="info">
-							<p class="about"><a href="obra.php?id={$licitacion.licitacion_id}">{$licitacion.titulo|truncate:70:"..."|lower|capitalize}</a></p>
+							<p class="about"><a href="{$licitacion.licitacion_id}">{$licitacion.titulo|truncate:70:"..."|lower|capitalize}</a></p>
 							<p class="info">{$licitacion.categoria} <span>- {$licitacion.importe|number_format}€</span></p>
 						</div>
 						<div class="result">
