@@ -20,5 +20,14 @@ session_start();
 			echo("INVALID");
 		}
 	}
+	
+	if ($_REQUEST['method'] == 'new_comment') {
+		$result = $services-> postComment('0',$_REQUEST['name'],$_REQUEST['email'],$_REQUEST['comment'],$_REQUEST['web'],$_REQUEST['licitacion_id'],'');
+		if($result) {
+			echo("OK");
+		} else {
+			echo("INVALID");
+		}
+	}
 
 ?>
