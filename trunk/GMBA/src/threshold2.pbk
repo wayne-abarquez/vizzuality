@@ -1,9 +1,9 @@
 <languageVersion : 1.0;>
 kernel ChannelScramblerFilter
 <
-namespace : "com.adobe.example";
-vendor : "Adobe Systems Inc.";
-version : 1;description : "Changes the color channel order from rgba to gbra.";
+namespace : "com.vizzuality.gmba";
+vendor : "Vizzuality";
+version : 1;description : "Filters for environmental vars in GMBA";
 >
 {
     input image4 inputImage;
