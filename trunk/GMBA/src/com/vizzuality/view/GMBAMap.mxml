@@ -16,6 +16,7 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.vizzuality.maps.MaskLayer;
 	    	import mx.formatters.NumberFormatter;
 	    	import com.vizzuality.events.TaxonSelectedEvent;
 	    	import com.google.maps.MapMouseEvent;
@@ -50,6 +51,8 @@
 		    
 		    //variables of GMBA-Map
 	        private var rasterLayer:RasterLayer;
+	        private var maskLayer:MaskLayer;
+	        private var mLayerTo:TileLayerOverlay;
 			[Bindable] private var zoom: Number = 2;
 			[Bindable] private var bound: LatLngBounds;
 			 
@@ -232,16 +235,25 @@
 					}
 				})
 				map.addEventListener(MapMoveEvent.MOVE_START,function(event:MapMoveEvent):void {
-					//loadingMessage.visible=true;
-					//tlo.foreground.filters=[];
-					//tlo.foreground.alpha=0;
+					loadingMessage.visible=true;
+					tlo.foreground.filters=[];
+					tlo.foreground.alpha=0;
+					mLayerTo.foreground.alpha=0.8;
+					
 				});
 				map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
-					//tlo.foreground.filters=[filter];
-					//tlo.foreground.alpha=0.8;
-					//loadingMessage.visible=false;
+					tlo.foreground.filters=[filter];
+					tlo.foreground.alpha=0.8;
+					loadingMessage.visible=false;
+					mLayerTo.foreground.alpha=0;
 				});
 				map.addOverlay(tlo);
+				
+				
+				maskLayer=new MaskLayer();
+				mLayerTo= new TileLayerOverlay(maskLayer);			
+				map.addOverlay(mLayerTo);	
+				mLayerTo.foreground.alpha=0;
 				
 				//test adding a filter.
 	            shader = new Shader(new TestFilter() as ByteArray);

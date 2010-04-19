@@ -4,17 +4,10 @@ package com.vizzuality.maps
 	import com.google.maps.CopyrightCollection;
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
-	import com.google.maps.MapZoomEvent;
 	import com.google.maps.TileLayerBase;
-	import com.google.maps.interfaces.IMap;
-	import com.vizzuality.events.MyEventDispatcher;
-	import com.vizzuality.events.SliderChangeEvent;
 	
 	import flash.display.DisplayObject;
-	import flash.display.Loader;
-	import flash.display.Shader;
 	import flash.events.IOErrorEvent;
-	/* import flash.filters.ShaderFilter; */
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 
@@ -38,9 +31,10 @@ package com.vizzuality.maps
                 tileUrl = tileUrl.replace("|Y|",tile.y);    
                 tileUrl = tileUrl.replace("|Z|",zoom); 
                 
-				var tileLoader:Loader = new Loader();
-        		tileLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-				tileLoader.load(new URLRequest(tileUrl));                 
+                
+				var tileLoader:CustomTile = new CustomTile();
+        		//tileLoader.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+				tileLoader.loader.load(new URLRequest(tileUrl));                 
                 return tileLoader;    
             }
             
