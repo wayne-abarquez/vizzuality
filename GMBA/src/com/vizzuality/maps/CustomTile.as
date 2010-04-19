@@ -15,7 +15,7 @@ package com.vizzuality.maps
 		{
 			maskRectagle = new Sprite();
 			maskRectagle.graphics.beginFill(0x000000);
-			maskRectagle.graphics.drawRect(0,0,255,255);
+			maskRectagle.graphics.drawRect(0,0,256,256);
 			maskRectagle.graphics.endFill();
 			this.addChild(maskRectagle);
 			
