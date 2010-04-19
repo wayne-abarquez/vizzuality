@@ -237,15 +237,19 @@
 				map.addEventListener(MapMoveEvent.MOVE_START,function(event:MapMoveEvent):void {
 					loadingMessage.visible=true;
 					tlo.foreground.filters=[];
-					tlo.foreground.alpha=0;
-					mLayerTo.foreground.alpha=0.8;
+					//tlo.foreground.alpha=0;
+					tlo.visible=false;
+					//mLayerTo.foreground.alpha=0.8;
+					mLayerTo.visible=true;
 					
 				});
 				map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
 					tlo.foreground.filters=[filter];
-					tlo.foreground.alpha=0.8;
+					tlo.visible=true;
+					//tlo.foreground.alpha=0.8;
+					//mLayerTo.foreground.alpha=0;
+					mLayerTo.visible=false;
 					loadingMessage.visible=false;
-					mLayerTo.foreground.alpha=0;
 				});
 				map.addOverlay(tlo);
 				
@@ -253,7 +257,8 @@
 				maskLayer=new MaskLayer();
 				mLayerTo= new TileLayerOverlay(maskLayer);			
 				map.addOverlay(mLayerTo);	
-				mLayerTo.foreground.alpha=0;
+				//mLayerTo.foreground.alpha=0;
+				mLayerTo.visible=false;
 				
 				//test adding a filter.
 	            shader = new Shader(new TestFilter() as ByteArray);
