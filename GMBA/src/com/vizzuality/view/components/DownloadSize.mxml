@@ -4,3 +4,4 @@
 	<mx:Label x="0" y="7.35" text="200MB" color="#FFFFFF" width="113.6" height="34.6" fontSize="31"/>
 	<mx:VRule y="0" width="1" height="50" right="0"  strokeColor="#898989"/>	
 </mx:Canvas>
+

@@ -49,11 +49,23 @@
 			<mx:RemoveChild target="{label3}"/>
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
+		<mx:State name="error" basedOn="ready">
+			<mx:SetProperty target="{label2}" name="text" value="Has been a error"/>
+			<mx:RemoveChild target="{button1}"/>
+			<mx:RemoveChild target="{label5}"/>
+			<mx:RemoveChild target="{hbox3}"/>
+		</mx:State>
 	</mx:states>
 	
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
+			import flash.sampler.NewObjectSample;
+			import com.vizzuality.view.GMBAMap;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.events.FaultEvent;
+			import com.adobe.serialization.json.JSON;
 			import com.vizzuality.view.Toolbar;
 			import com.google.maps.LatLngBounds;
 			import mx.collections.ArrayCollection;
@@ -68,7 +80,12 @@
 			public var bound: LatLngBounds;
 			public var zoom: Number;
 			
-			private var timer:Timer;
+			
+			[Bindable]private var ocurrences:Number;
+			[Bindable]private var observations:Number;
+			[Bindable]private var specimens:Number;
+			[Bindable]private var providers:Number;
+			
 			
 			public function setPosition(widthMap:Number, heightMap:Number, widthToolBar:Number, heightToolBar:Number):void{
 				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar - 8;
@@ -76,7 +93,7 @@
 				
 			}			
 			
-			 public function setCriteriaValues():void{
+			public function setCriteriaValues():void{
 				
 			 	id_elevation_filter0.text = elevationValues[0];
 				id_elevation_filter1.text = elevationValues[1];
@@ -105,11 +122,35 @@
 				
 					   
 			} 
+			
+			
+			
+			
 			private function initLoading():void{
-				timer = new Timer(3000,0);
-				timer.addEventListener(TimerEvent.TIMER,onGetData);
-				timer.start();
 				
+				ppApiService.addEventListener(ResultEvent.RESULT,onServiceResult);
+				
+				ppApiService.addEventListener(FaultEvent.FAULT,onErrorLoading);
+				 
+ 				ppApiService.url="http://204.236.250.31/service/search";
+				
+				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
+				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
+				
+				ppApiService.send({
+				    minElevation:elevationValues[0],
+				    minElevation:elevationValues[0],
+					maxElevation:elevationValues[1],
+					minRelief:reliefValues[0],
+					maxRelief:reliefValues[1],
+					taxonId:14706247,
+					minCellId:minCellId,
+					maxCellId:maxCellId
+				});
+				
+			
+ 				//taxonId=14706247&minElevation=-4&maxElevation=200000&minRelief=0&maxRelief=2000&taxonId=14706247&minCellId=0&maxCellId=37324799
+ 				
 				currentState="loading";	
 				
 			}
@@ -120,15 +161,37 @@
 				
 			}	
 			
-			private function onGetData(event:TimerEvent):void {
+			private function onErrorLoading(event:FaultEvent):void{
+				currentState="error";	
+
+				ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
+
+			}
+			
+			
+			// Decoding the result
+			 private function onServiceResult(event:ResultEvent):void {
 				
-				timer.stop();
-				timer.removeEventListener(TimerEvent.TIMER,onGetData);
+				// TODO: REmove this when result is parsed ok
+				var res:String=event.result as String;
+				res= (res as String).replace("total",'"total"').replace("observation",'"observation"').replace("specimen",'"specimen"').replace("resources",'"resources"');
 				
+				var res2:Object = JSON.decode(res as String);
+				
+				
+				/* [Bindable]private var ocurrences:Number;
+				[Bindable]private var observations:Number;
+				[Bindable]private var specimens:Number;
+				[Bindable]private var providers:Number; */
+								
 				this.currentState = "";
 				
+				ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 				
-			}
+			} 
+			
 			private function onChangeMapZoom(ev:ChangeMapZoom): void {
 				if (Number(ev.zoom)<=2) {
 					download_world.selected_item = true;
@@ -146,11 +209,6 @@
 				
  			}
 			
-/* 			private function onFinishTween():void {
-				currentState = 'processing';
-				TweenLite.to(this, 5, {delay:3,onComplete:onFinishTween2});			
-			}
- */			
 			private function onFinishTween2():void {
 				currentState = 'ready';
 				TweenLite.to(this, 5, {delay:3,onComplete:onFinishTween3});						
@@ -171,6 +229,7 @@
 		]]>
 	</mx:Script>
 	
+	<mx:HTTPService id="ppApiService" method="GET" resultFormat="text" fault="trace('error')" />
 	
 	<mx:Button  label="X" color="#FFFFFF" styleName="nullButton" textDecoration="normal" width="30" right="3" top="6" toolTip="Close" useHandCursor="true" 
 		buttonMode="true" mouseChildren="false" click="MyEventDispatcher.onCloseDownloadWindow(); currentState = '';"/>
@@ -207,10 +266,10 @@
 			
 			<mx:HBox horizontalGap="0" right="20" left="20" top="30" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="hbox1">
 				<components:DownloadSize  id="downloadsize1"/>
-				<components:DownloadRepeat label_number="23Million" label_text="OCCURENCES" id="downloadrepeat1"/>
-				<components:DownloadRepeat label_number="12Million" label_text="OBSERVATIONS" />
-				<components:DownloadRepeat label_number="8Million" label_text="SPECIMENS" />
-				<components:DownloadRepeat label_number="1658" label_text="PROVIDERS" bar="false"/>
+				<components:DownloadRepeat label_number="{ocurrences}" label_text="OCCURENCES" id="downloadrepeat1"/>
+				<components:DownloadRepeat label_number="{observations}" label_text="OBSERVATIONS" />
+				<components:DownloadRepeat label_number="{specimens}" label_text="SPECIMENS" />
+				<components:DownloadRepeat label_number="{providers}" label_text="PROVIDERS" bar="false"/>
 			</mx:HBox>
 		</mx:Canvas>
 	</mx:VBox>

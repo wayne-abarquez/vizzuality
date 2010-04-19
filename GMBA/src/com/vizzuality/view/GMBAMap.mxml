@@ -16,6 +16,7 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import mx.formatters.NumberFormatter;
 	    	import com.vizzuality.events.TaxonSelectedEvent;
 	    	import com.google.maps.MapMouseEvent;
 	    	import com.google.maps.MapAction;
@@ -305,6 +306,33 @@
 		    	
 		    }
 		    
+		    public function getMinCellId():Number{
+								
+				var minCellId:Number = 0;
+				var latitude:Number = map.getLatLngBounds().getSouthWest().lat();
+				var longitude:Number = map.getLatLngBounds().getSouthWest().lng();
+			
+				
+				minCellId = Math.round((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360);
+				
+				//minCellId = minCellId.toFixed(0) as Number;
+				
+				return minCellId;
+
+			}
+			
+			public function getMaxCellId():Number{
+				 
+				var maxCellId:Number = 0;
+				
+				var latitude:Number = map.getLatLngBounds().getNorthEast().lat();
+				var longitude:Number = map.getLatLngBounds().getNorthEast().lng();
+				
+				maxCellId = Math.round((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360);
+								
+				return maxCellId;
+
+			}
 		    
 		    private function onChangeMap(event:MapMoveEvent):void {
 		    	lat = Number(event.latLng.lat().toFixed(2));
