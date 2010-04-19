@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%"  xmlns:components="com.vizzuality.utils.*" xmlns:view="com.vizzuality.view.*" 
 	backgroundColor="#D5E8EC" 
 	horizontalScrollPolicy="auto"
@@ -364,9 +363,9 @@
 		    	makeNewURL();
 		    }
 		    
-		    private function zoomIn(event:Event=null):void {
+		    private function zoomIn(event:MapMouseEvent=null):void {
 		    	if(map.getZoom()<7)
-					map.setZoom(map.getZoom()+1);
+		    		map.setCenter(event.latLng,map.getZoom()+1);
 			}
 			
 			private function zoomOut():void {
