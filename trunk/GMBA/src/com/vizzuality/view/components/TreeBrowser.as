@@ -317,7 +317,7 @@ package com.vizzuality.view.components
 	
 			
 			//simulat a click to preopen the tree
-	        if(!treeInitialized) {
+/*   	        if(!treeInitialized) {
 	        	
 	        	TweenLite.delayedCall(0.5,function():void {
 	        	
@@ -329,7 +329,7 @@ package com.vizzuality.view.components
 					treeInitialized = true;
 	        	});
 	        	
-	        }
+	        }   */
 	
 	    }
 	
@@ -433,7 +433,7 @@ package com.vizzuality.view.components
 				httpsrv2 = new HTTPService();
 				httpsrv2.concurrency="last";
 				httpsrv2.resultFormat = "text";
-				httpsrv2.url = (parent as TaxonomicBrowser).ecatServices+"nav/?rkey=1&showAll=false&rank=k&image=true&pagesize=25&sort=alpha&page=" + page.toString();
+				httpsrv2.url = (parent as TaxonomicBrowser).ecatServices+"nav/?rkey=1&ranks=k&image=true&pagesize=25&page=" + page.toString();
 				httpsrv2.addEventListener(ResultEvent.RESULT,checkMoreItems);
 				httpsrv2.send();
 			}
@@ -602,7 +602,7 @@ package com.vizzuality.view.components
 				httpsrv.resultFormat = "text";
 				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
 				if (index==0) {
-					httpsrv.url = (parent as TaxonomicBrowser).ecatServices +'nav/?rkey=1&showAll=false&rank=k&image=true&pagesize=25&sort=alpha';
+					httpsrv.url = (parent as TaxonomicBrowser).ecatServices +'nav/?ranks=k&image=true&pagesize=25';
 				} else {
 					httpsrv.url = (parent as TaxonomicBrowser).ecatServices +"nav/?pagesize=25&ranks=kpcofg&page=1&image=true&id="+(_selectedItem.id).toString();
 				}
