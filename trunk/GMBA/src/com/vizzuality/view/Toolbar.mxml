@@ -133,8 +133,8 @@
 				return true;
 			}
 			
-			private function onSliderChange(vent:Event):void {
-				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,vegetationValues.source);			
+			private function onSliderChange(event:Event):void {
+				MyEventDispatcher.updatedSliders(sliderAltitude.values,sliderRoughness.values,vegetationValues.source);
 			}
 			
 		]]>
@@ -173,7 +173,7 @@
 					<mx:Label text="200" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
 					<mx:Label text="3397" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
 					<mx:HSlider id="sliderRoughness" showDataTip="false" top="0" left="5" right="20" minimum="196" maximum="3397"  values="{rangeRelief.source}" 
-						 change="onSliderChange(event)" sliderThumbClass="{SliderThumbGmba}" 
+						 change="onSliderChange(event)" sliderThumbClass="{SliderThumbGmba}" thumbRelease="changeReliefValues(event)"
 						 width="100%" thumbCount="2" liveDragging="true" snapInterval="14" 
 						 showTrackHighlight="true"/>
 				</mx:Canvas>
