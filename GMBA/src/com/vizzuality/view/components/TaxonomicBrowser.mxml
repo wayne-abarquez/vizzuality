@@ -21,7 +21,7 @@
 			[Bindable]
 			public var gbifTaxonomy : ArrayCollection = new ArrayCollection();
 			
-			public var ecatServices:String ="http://names.gbif.org/ws/";
+			public var ecatServices:String ="http://ecat-dev.gbif.org/ws-sdr/";
 			
 			private function onCreationComplete():void {
 
