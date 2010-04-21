@@ -54,57 +54,50 @@
 			     super.updateDisplayList(unscaledWidth, unscaledHeight);
 			     
 			 	 if(TreeBrowserList(owner).isItemSelected(data)) {
-					if (parseInt(children_number)==0 || type=="species") {
+					if (parseInt(children_number)==0) {
 				 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
-							setStyle("backgroundImage",yellowCanvas_last);
-				     		specieLabel.setStyle('color', 0xFFFFFF);
-			            	specieGroup.setStyle('color', 0xFFFFFF);
+							setStyle("backgroundImage",grayDarkCanvas_last);
+				     		specieLabel.setStyle('color', 0x333333);
+			            	specieGroup.setStyle('color', 0x939393);
 					     } else {
-						 	/* if (parseInt(children_number)==0 || type=="species") {
-						 		setStyle("backgroundImage",yellowCanvas);
-						 	} else { */
-							 	setStyle("backgroundImage",grayDarkCanvas_last);
-						 	/* } */
+							setStyle("backgroundImage",yellowCanvas_last);
 					     	specieLabel.setStyle('color', 0xFFFFFF);
-			             	specieGroup.setStyle('color', 0xFFFFFF);
+			             	specieGroup.setStyle('color', 0x826718);
 					     }
 				 	} else {
 				 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
 							setStyle("backgroundImage",yellowCanvas);
-				     		specieLabel.setStyle('color', 0xFFFFFF);
-			            	specieGroup.setStyle('color', 0xFFFFFF);
-					     } else {
-						 	/* if (parseInt(children_number)==0 || type=="species") {
-						 		setStyle("backgroundImage",yellowCanvas);
-						 	} else { */
-							 	setStyle("backgroundImage",grayDarkCanvas);
-						 	/* } */
 					     	specieLabel.setStyle('color', 0xFFFFFF);
-			             	specieGroup.setStyle('color', 0xFFFFFF);
+			             	specieGroup.setStyle('color', 0x826718);
+					     } else {
+					     	setStyle("backgroundImage",grayDarkCanvas);
+				     		specieLabel.setStyle('color', 0x333333);
+			            	specieGroup.setStyle('color', 0x939393);
+
 					     }
 				 		
 				 	}
 
 				 } else {
-				 	if (parseInt(children_number)==0 || type=="species") {
+				 	if (parseInt(children_number)==0) {
 					 	 if (TreeBrowserList(owner).isItemHighlighted(data)) {
-							setStyle("backgroundImage",yellowCanvas_last);
-					     	specieLabel.setStyle('color', 0xFFFFFF);
-				            specieGroup.setStyle('color', 0xFFFFFF);
+							setStyle("backgroundImage",grayDarkCanvas_last);
+					     	specieLabel.setStyle('color', 0x333333);
+				            specieGroup.setStyle('color', 0x939393);
 					     } else {
-					     	setStyle("backgroundImage",grayCanvas_last);
-							specieLabel.setStyle('color', 0x666666);
-							specieGroup.setStyle('color', 0x666666);
+					     	setStyle("backgroundImage",yellowCanvas_last);
+							specieLabel.setStyle('color', 0xFFFFFF);
+							specieGroup.setStyle('color', 0x826718);
 					     }
 				 	} else {
 					 	 if (TreeBrowserList(owner).isItemHighlighted(data)) {
-							setStyle("backgroundImage",yellowCanvas);
-					     	specieLabel.setStyle('color', 0xFFFFFF);
-				            specieGroup.setStyle('color', 0xFFFFFF);
+							setStyle("backgroundImage",grayDarkCanvas);
+					     	specieLabel.setStyle('color', 0x333333);
+				            specieGroup.setStyle('color', 0x939393);
 					     } else {
-					     	setStyle("backgroundImage",grayCanvas);
-							specieLabel.setStyle('color', 0x666666);
-							specieGroup.setStyle('color', 0x666666);
+					     	setStyle("backgroundImage",yellowCanvas);
+							specieLabel.setStyle('color', 0xFFFFFF);
+							specieGroup.setStyle('color', 0x826718);
 					     }
 				 		
 				 	}
@@ -128,7 +121,7 @@
            		if(value.labelField != taxon) {   	
 	                taxon = value.labelField;
 	                //children_number = value.number_children;
-	                children_number = value.numInmediateChild;
+	                children_number = value.number_children;
 	                children_ranks = value.inmediateChildRank;
 					//flickrImg.query=taxon;
                 	flickrImg.query=value.imageURL;
@@ -176,10 +169,10 @@
 	<mx:Canvas id="mamufas" backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52" visible="{(taxon == 'Load more...')? false : true}">
 	 	<components:FlickrImage id="flickrImg" left="3" horizontalAlign="center" verticalAlign="middle" top="3" width="46" height="46"/>
 	</mx:Canvas>
-    <mx:Label id="specieLabel" text="{taxon}" textAlign="left" verticalCenter="{(taxon == 'Load more...')? -4 : -9}" left="{(taxon == 'Load more...')? 30 : 65}" fontSize="{(taxon == 'Load more...')? 20 : 14}" width="{(parseInt(children_number)==0 || type=='species')? 155 : 135}" height="23" fontFamily="DINOT-Medium" color="#666666"/>
-    <mx:Label id="specieGroup" text="{(parseInt(children_number)>0)?Application.application.nf.format(parseInt(children_number))+' '+children_ranks: ''}" textAlign="left" verticalCenter="10" left="65" fontSize="12" width="135" 
-    	height="23" fontFamily="DINOT-Medium" color="#666666" visible="{(taxon == 'Load more...')? false : true}" />
-    <mx:Button styleName="add" label="ADD"  x="67" y="40" height="18" click="stopPropagation=true;" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+    <mx:Label id="specieLabel" text="{taxon}" textAlign="left" top="{(taxon == 'Load more...')? 5 : 3}" left="{(taxon == 'Load more...')? 30 : 65}" fontSize="{(taxon == 'Load more...')? 20 : 14}" width="{(parseInt(children_number)==0 || type=='species')? 155 : 135}" height="23" fontFamily="DINOT-Medium" color="#666666"/>
+    <mx:Label id="specieGroup" text="{children_number} taxons" textAlign="left" top="21" left="65" fontSize="11" width="135" 
+    	height="23" fontFamily="DINOT-Medium" color="#A7a7a7" visible="{(children_number == '0' || children_number==null)? false : true}" />
+    <mx:Button styleName="add" label="ADD"  x="67" y="41" height="18" click="stopPropagation=true;" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
 	<mx:SWFLoader id="loading" right="13" verticalCenter="0" source="@Embed('assets/loadAnimation2.swf')" 
 		width="15" height="15" visible="false" alpha=".5"/>
    

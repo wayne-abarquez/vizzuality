@@ -15,6 +15,14 @@
 			import mx.collections.ArrayCollection;
 			import com.vizzuality.utils.Resource;
 			
+			[Embed(source="/com/vizzuality/skin/skin.swf",symbol="searchInput")]
+			[Bindable]
+   			public var SEARCH:Class;
+   			
+			[Embed(source="/assets/loadAnimation.swf")]
+			[Bindable]
+			public var ANIMATION:Class;
+			
 			[Bindable] private var taxonProvider: ArrayCollection = new ArrayCollection();
 			private var popup:IFlexDisplayObject;
 			
@@ -28,18 +36,19 @@
 					list.visible = false;
 					list.width = searchText.width;
 				});
-				var pt:Point = new Point(searchText.x, searchText.y);
-	            pt = searchText.localToGlobal(pt);
+				var pt:Point = new Point(search_as_you_type.x, search_as_you_type.y);
+	            pt = search_as_you_type.localToGlobal(pt);
 	            list.x = pt.x;
-	            list.y = pt.y - 5;
+	            list.y = pt.y;
 				list.visible = false;
-				list.width = searchText.width;
+				list.width = search_as_you_type.width;
 				PopUpManager.addPopUp(list as IFlexDisplayObject,this,false);
 				
 			}
 			
 			private function onChangeText():void {
 				list.visible = false;
+				loader.visible = true;
 				if (searchText.text.length>1) {
 					taxonRequest.url="http://ecat-dev.gbif.org/ws/usage?rkey=1&q=" + searchText.text;
 					taxonRequest.send();
@@ -59,6 +68,7 @@
  					}
  					list.visible = false;
  				}
+ 				loader.visible = false;
 			}
 			
 			private function onFaultTaxon(event:FaultEvent):void {
@@ -77,10 +87,18 @@
 		]]>
 	</mx:Script>
 	
+	
+	
 	<mx:VBox horizontalGap="0" verticalGap="0" left="20" top="15" right="20" id="componentsBox" >
 		<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 		<mx:Spacer height="5"/>
-		<mx:TextInput text="All taxa" styleName="taxon" verticalCenter="0" id="searchText" change="if (searchText.text.length>3) onChangeText()" click="{(searchText.text=='All taxons')?searchText.text='':null}" width="100%" themeColor="#DBDBDB"/>
+		<mx:Canvas backgroundImage="{SEARCH}" width="100%" backgroundSize="100%" id="search_as_you_type">
+			<mx:HBox width="100%" horizontalGap="0" styleName="taxon" backgroundSize="100%" paddingTop="5" paddingBottom="5" verticalCenter="0">
+				<mx:TextInput text="All taxa" styleName="taxon" verticalCenter="0" id="searchText" change="if (searchText.text.length>3) onChangeText()" click="{(searchText.text=='All taxa')?searchText.text='':null}"  themeColor="#DBDBDB" width="100%"/>
+				<mx:Image source="{ANIMATION}" width="25" height="15" visible="false" id="loader"/>
+				<mx:Button width="15" styleName="taxon" height="15" buttonMode="true" useHandCursor="true" mouseChildren="false" verticalCenter="0"/>
+			</mx:HBox>
+		</mx:Canvas>
 		<mx:Button label="explore the taxonomic tree" styleName="explore" useHandCursor="true" mouseChildren="false" buttonMode="true" click="MyEventDispatcher.onOpenTaxonomic();"/>
 	</mx:VBox>
 	<mx:List id="list" visible="false" dataProvider="{taxonProvider}" width="100%" labelFunction="returnValues" styleName="taxaList" itemClick="onItemClick(event)" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="700" height="500" xmlns:controls="com.ninem.controls.*" xmlns:utils="com.vizzuality.utils.*" xmlns:components="com.vizzuality.view.components.*"
-	creationComplete="onCreationComplete()">
+	creationComplete="onCreationComplete()" backgroundColor="#19191A">
 
 	<mx:Script>
 		<![CDATA[
@@ -111,9 +111,11 @@
 	<!--<mx:Style source="com/vizzuality/skin/fonts.css"/>
 	<mx:Style source="com/vizzuality/skin/general.css"/>-->
 	
-	<components:TreeBrowser id="treeB" columnWidth="250" detailRenderer="com.vizzuality.view.components.ItemDetailRenderer" top="45" bottom="0" left="0" right="0" color="#FFAAFF"/>	
-	<utils:GradientCanvas id="click_canvas" height="45" top="0" left="0" right="0" firstColor="0x313131" secondColor="0x1a1a1a" />
+	<components:TreeBrowser id="treeB" columnWidth="250" detailRenderer="com.vizzuality.view.components.ItemDetailRenderer" top="45" bottom="20" left="20" right="20" color="#FFAAFF"/>	
+	<mx:Canvas id="click_canvas" height="45" top="0" left="0" right="0"  >
+		<mx:Label x="16" y="10" text="SELECT A TAXON TO FILTER DATA" fontSize="15" color="#FFFFFF"/>
+	</mx:Canvas>
 	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />
-	<mx:Button  label="X" color="#FFFFFF" styleName="nullButton" textDecoration="normal" width="30" right="3" top="13" toolTip="Close" useHandCursor="true" 
+	<mx:Button  label="X" color="#FFFFFF" styleName="nullButton" textDecoration="normal" width="30" right="0" top="6" toolTip="Close" useHandCursor="true" 
 	buttonMode="true" mouseChildren="false" click="MyEventDispatcher.onCloseDownloadWindow();"/>
 </mx:Canvas>
