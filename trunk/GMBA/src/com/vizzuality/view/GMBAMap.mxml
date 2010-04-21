@@ -15,6 +15,7 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.vizzuality.events.ChooseTaxonEvent;
 	    	import mx.controls.Text;
 	    	import com.vizzuality.maps.MaskLayer;
 	    	import mx.formatters.NumberFormatter;
@@ -62,6 +63,7 @@
 	        [Bindable] private var elevationValues: ArrayCollection = new ArrayCollection([0,7889]);
 	        [Bindable] private var reliefValues: ArrayCollection = new ArrayCollection([0,3889]);
 	        [Bindable] private var vegetationValues: ArrayCollection = new ArrayCollection([true,true,true,true,true,true,true,true]);
+	        [Bindable] private var chooseTaxon: Object = new Object();
             
             //variables of SWFAddress
             public var path:String = "Map";
@@ -101,6 +103,13 @@
 	            	function (event:OpenTaxonomicEvent):void { 
 	            		mamufas.visible=true; taxonomic.visible = true;
 	            	});
+	           	MyEventDispatcher.addEventListener(ChooseTaxonEvent.CHOSEN, onChangeTaxon);
+            }
+            
+            private function onChangeTaxon(event:ChooseTaxonEvent):void{
+            	toolBar.taxonSearch.searchText.text = event.information_.labelField;
+            	mamufas.visible=false; download.visible = false; taxonomic.visible = false;
+            	chooseTaxon = event.information_;
             }
             
             private function onChangeSliderValues(event:SliderThumbRelease):void {

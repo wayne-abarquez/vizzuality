@@ -1,7 +1,5 @@
 package com.vizzuality.events
 {
-  	import com.google.maps.MapEvent;
-  	
   	import flash.events.Event;
   	import flash.events.EventDispatcher;
   	
@@ -46,7 +44,12 @@ package com.vizzuality.events
     	
 		public static function onChangeMapZoom(zoom:Number):void {
    			dispatchEvent(new ChangeMapZoom(ChangeMapZoom.CHANGED,zoom));
-    	}    	
+    	}    
+    	
+    	public static function onChooseTaxon(information:Object):void {
+    		dispatchEvent(new ChooseTaxonEvent(ChooseTaxonEvent.CHOSEN,information));
+    	}
+    		
 
     }
 }
