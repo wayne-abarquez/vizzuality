@@ -388,9 +388,12 @@
 		    
 		    private function zoomIn(event:MapMouseEvent=null):void {
 		    	if(map.getZoom()<7) {
-		    		map.setZoom(map.getZoom()+1);
-		    		//map.setCenter(event.latLng,map.getZoom()+1);
-		    	}
+		    		if (event!=null) {
+		    			map.setCenter(event.latLng,map.getZoom()+1);
+		    		} else {
+		    			map.setZoom(map.getZoom()+1);
+		    		}
+		    	} 
 			}
 			
 			private function zoomOut():void {
