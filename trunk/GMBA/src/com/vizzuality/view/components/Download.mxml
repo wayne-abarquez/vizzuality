@@ -80,7 +80,8 @@
 			public var vegetationValues: ArrayCollection;
 			public var chooseTaxon: Object;
 			private var urlToDownload:String;
-			
+			private var taxonRank:String;
+			private var tvzCode:Array = [];
 			
 			public var bound: LatLngBounds;
 			public var zoom: Number;
@@ -116,19 +117,25 @@
 				
 				if (chooseTaxon.id != null)
 					id_taxon_result.text = chooseTaxon.labelField;
-				else	
+				else{
 					id_taxon_result.text = "ALL TAXA";
+					taxonRank = "species";	// ASK TO TIM, WHEN ALL TAXA IS SELECTED, WHAT IS THE TAXONRANK
+				}
 					
 				var numberVegTypes:Number = 0;
-				
 								
 				if (vegetationValues.length != 0) {
 					
-					if (vegetationValues[0]) numberVegTypes = vegetationValues.length - 1;
-					
+					if (vegetationValues[0]){ 
+						numberVegTypes = vegetationValues.length - 1;
+						tvzCode=[1,2,3,4,5,6,7];
+					}
 					else {
 						for (var n:Number = 1; n < vegetationValues.length; n++){
-							if (vegetationValues[n]) numberVegTypes++;
+							if (vegetationValues[n]){
+								numberVegTypes++;
+								tvzCode.push(n);	// Set the tvzCode
+							} 
 						}	
 					}
 				}
@@ -153,12 +160,11 @@
 				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
 				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
 				
-				// TODO. Whitch format?
-				var tvzCode:ArrayCollection = new ArrayCollection;
-				
 				var taxonValue:Number = taxonId_allTaxa;
+				
 				if (chooseTaxon.id != null) {
 					taxonValue = (chooseTaxon.id) as Number;
+					taxonRank = (chooseTaxon.type) as String;
 				}
 				
 				ppApiService.send({
@@ -167,10 +173,10 @@
 					minRelief:reliefValues[0],
 					maxRelief:reliefValues[1],	
 					taxonId:taxonValue,
-					minCellId:0,			// Datos de prueba
-					maxCellId:37324799		// Datos de prueba
+					tvzCode:tvzCode,
+					minCellId:minCellId,			
+					maxCellId:maxCellId	
 				});
-				
 			
  				//taxonId=14706247&minElevation=-4&maxElevation=200000&minRelief=0&maxRelief=2000&taxonId=14706247&minCellId=0&maxCellId=37324799
  				
@@ -204,9 +210,11 @@
 				this.ocurrences = (res.total) as Number;
 				
 				// Our estimation -> 1 ocurrence = 10KB
-				var sizeDownloading:String = (this.ocurrences * 5).toPrecision(3);
+				var sizeDownloading:String = ((this.ocurrences * 39) / 1000).toPrecision(3);
 				
-				// ¿MB?, ¿KB?			
+				//var sizeDownloading:String = (this.ocurrences * 39).toPrecision(3);
+				
+				// ¿MB?, ¿KB?, ¿Bytes?			
 				if (sizeDownloading.length > 6){
 					this.downloadSize = sizeDownloading.substring(0,sizeDownloading.length - 3);
 					this.downloadSize += "MB"; 						  
@@ -247,17 +255,22 @@
 				var taxonValue:Number = taxonId_allTaxa;
 				if (chooseTaxon.id != null) {
 					taxonValue = (chooseTaxon.id) as Number;
+					taxonRank = (chooseTaxon.type) as String;
 				}
 				
+				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
+				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
+				
 				ppApiService.send({
-					rank:"species",
+					rank:taxonRank,
+					tvzCode:tvzCode,
 				    //minElevation:elevationValues[0],
 					//maxElevation:elevationValues[1],
 					//minRelief:reliefValues[0],
 					//maxRelief:reliefValues[1],	
 					taxonId:taxonValue//,
-					//minCellId:0,			// Datos de prueba
-					//maxCellId:37324799		// Datos de prueba
+					//minCellId:minCellId,			// Datos de prueba
+					//maxCellId:maxCellId		// Datos de prueba
 				});
 				
 /* 				taxonId: the id of the taxon in the GBIF backbone (nub) taxonomy. This is mandatory
