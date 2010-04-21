@@ -34,6 +34,19 @@
 			[Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowDarkGrey")]
 			[Bindable]
    			public var grayDarkCanvas:Class;
+   			
+			[Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowYellow_last")]
+			[Bindable]
+   			public var yellowCanvas_last:Class;
+			
+			[Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowGrey_last")]
+			[Bindable]
+   			public var grayCanvas_last:Class;
+			
+			[Embed(source="/com/vizzuality/skin/general.swf",symbol="bkgRowDarkGrey_last")]
+			[Bindable]
+   			public var grayDarkCanvas_last:Class;
+   			
 			
 			private var object: Object;
 		
@@ -41,30 +54,61 @@
 			     super.updateDisplayList(unscaledWidth, unscaledHeight);
 			     
 			 	 if(TreeBrowserList(owner).isItemSelected(data)) {
-			 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
-						setStyle("backgroundImage",yellowCanvas);
-			     		specieLabel.setStyle('color', 0xFFFFFF);
-		            	specieGroup.setStyle('color', 0xFFFFFF);
-				     } else {
-					 	if (parseInt(children_number)==0 || type=="species") {
-					 		setStyle("backgroundImage",yellowCanvas);
-					 	} else {
-						 	setStyle("backgroundImage",grayDarkCanvas);
-					 	}
-				     	specieLabel.setStyle('color', 0xFFFFFF);
-		             	specieGroup.setStyle('color', 0xFFFFFF);
-				     }
-				 }
-				 else {
-				 	 if (TreeBrowserList(owner).isItemHighlighted(data)) {
-						setStyle("backgroundImage",yellowCanvas);
-				     	specieLabel.setStyle('color', 0xFFFFFF);
-			            specieGroup.setStyle('color', 0xFFFFFF);
-				     } else {
-				     	setStyle("backgroundImage",grayCanvas);
-						specieLabel.setStyle('color', 0x666666);
-						specieGroup.setStyle('color', 0x666666);
-				     }
+					if (parseInt(children_number)==0 || type=="species") {
+				 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
+							setStyle("backgroundImage",yellowCanvas_last);
+				     		specieLabel.setStyle('color', 0xFFFFFF);
+			            	specieGroup.setStyle('color', 0xFFFFFF);
+					     } else {
+						 	/* if (parseInt(children_number)==0 || type=="species") {
+						 		setStyle("backgroundImage",yellowCanvas);
+						 	} else { */
+							 	setStyle("backgroundImage",grayDarkCanvas_last);
+						 	/* } */
+					     	specieLabel.setStyle('color', 0xFFFFFF);
+			             	specieGroup.setStyle('color', 0xFFFFFF);
+					     }
+				 	} else {
+				 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
+							setStyle("backgroundImage",yellowCanvas);
+				     		specieLabel.setStyle('color', 0xFFFFFF);
+			            	specieGroup.setStyle('color', 0xFFFFFF);
+					     } else {
+						 	/* if (parseInt(children_number)==0 || type=="species") {
+						 		setStyle("backgroundImage",yellowCanvas);
+						 	} else { */
+							 	setStyle("backgroundImage",grayDarkCanvas);
+						 	/* } */
+					     	specieLabel.setStyle('color', 0xFFFFFF);
+			             	specieGroup.setStyle('color', 0xFFFFFF);
+					     }
+				 		
+				 	}
+
+				 } else {
+				 	if (parseInt(children_number)==0 || type=="species") {
+					 	 if (TreeBrowserList(owner).isItemHighlighted(data)) {
+							setStyle("backgroundImage",yellowCanvas_last);
+					     	specieLabel.setStyle('color', 0xFFFFFF);
+				            specieGroup.setStyle('color', 0xFFFFFF);
+					     } else {
+					     	setStyle("backgroundImage",grayCanvas_last);
+							specieLabel.setStyle('color', 0x666666);
+							specieGroup.setStyle('color', 0x666666);
+					     }
+				 	} else {
+					 	 if (TreeBrowserList(owner).isItemHighlighted(data)) {
+							setStyle("backgroundImage",yellowCanvas);
+					     	specieLabel.setStyle('color', 0xFFFFFF);
+				            specieGroup.setStyle('color', 0xFFFFFF);
+					     } else {
+					     	setStyle("backgroundImage",grayCanvas);
+							specieLabel.setStyle('color', 0x666666);
+							specieGroup.setStyle('color', 0x666666);
+					     }
+				 		
+				 	}
+				 	
 				 }
 			}  
 
@@ -103,9 +147,13 @@
             
             private function handleClick(event:MouseEvent):void{
             	
-            	/* if (parseInt(children_number)==0 || type=="species") {
+            	if (parseInt(children_number)==0 || type=="species") {
+            		if (stopPropagation) {
+						stopPropagation = false;
+            			MyEventDispatcher.onChooseTaxon(this.data);
+            		} 
             		return;
-            	} */
+            	}
             	
             	if (!stopPropagation) {
 	            	var ev: Event = new Event("loadingFinish",true);
@@ -128,10 +176,10 @@
 	<mx:Canvas id="mamufas" backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52" visible="{(taxon == 'Load more...')? false : true}">
 	 	<components:FlickrImage id="flickrImg" left="3" horizontalAlign="center" verticalAlign="middle" top="3" width="46" height="46"/>
 	</mx:Canvas>
-    <mx:Label id="specieLabel" text="{taxon}" textAlign="left" verticalCenter="{(taxon == 'Load more...')? -4 : -9}" left="{(taxon == 'Load more...')? 30 : 65}" fontSize="{(taxon == 'Load more...')? 20 : 14}" width="135" height="23" fontFamily="DINOT-Medium" color="#666666"/>
+    <mx:Label id="specieLabel" text="{taxon}" textAlign="left" verticalCenter="{(taxon == 'Load more...')? -4 : -9}" left="{(taxon == 'Load more...')? 30 : 65}" fontSize="{(taxon == 'Load more...')? 20 : 14}" width="{(parseInt(children_number)==0 || type=='species')? 155 : 135}" height="23" fontFamily="DINOT-Medium" color="#666666"/>
     <mx:Label id="specieGroup" text="{(parseInt(children_number)>0)?Application.application.nf.format(parseInt(children_number))+' '+children_ranks: ''}" textAlign="left" verticalCenter="10" left="65" fontSize="12" width="135" 
     	height="23" fontFamily="DINOT-Medium" color="#666666" visible="{(taxon == 'Load more...')? false : true}" />
-    <mx:Button styleName="add" label="ADD"  x="67" y="40" height="18" click="stopPropagation=true;"/>
+    <mx:Button styleName="add" label="ADD"  x="67" y="40" height="18" click="stopPropagation=true;" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
 	<mx:SWFLoader id="loading" right="13" verticalCenter="0" source="@Embed('assets/loadAnimation2.swf')" 
 		width="15" height="15" visible="false" alpha=".5"/>
    
