@@ -78,6 +78,8 @@
 			public var elevationValues: ArrayCollection;
 			public var reliefValues: ArrayCollection;
 			public var vegetationValues: ArrayCollection;
+			public var chooseTaxon: Object;
+			
 			public var bound: LatLngBounds;
 			public var zoom: Number;
 			
@@ -85,6 +87,9 @@
 			private var downloadInProcess:Boolean = false;
 			private var downloadURL:String;
 			private var timer:Timer;
+			
+			// All TAXA
+			private var taxonId_allTaxa:Number = 14706247;
 			
 			[Bindable]private var ocurrences:Number;
 			[Bindable]private var observations:Number;
@@ -107,6 +112,11 @@
 				id_relief_filter0.text = reliefValues[0];
 				id_relief_filter1.text = reliefValues[1];
 				
+				if (chooseTaxon.id != null)
+					id_taxon_result.text = chooseTaxon.labelField;
+				else	
+					id_taxon_result.text = "ALL TAXA";
+					
 				var numberVegTypes:Number = 0;
 				
 								
@@ -144,12 +154,17 @@
 				// TODO. Whitch format?
 				var tvzCode:ArrayCollection = new ArrayCollection;
 				
+				var taxonValue:Number = taxonId_allTaxa;
+				if (chooseTaxon.id != null) {
+					taxonValue = (chooseTaxon.id) as Number;
+				}
+				
 				ppApiService.send({
 				    minElevation:elevationValues[0],
 					maxElevation:elevationValues[1],
 					minRelief:reliefValues[0],
 					maxRelief:reliefValues[1],	
-					taxonId:14706247,
+					taxonId:taxonValue,
 					minCellId:0,			// Datos de prueba
 					maxCellId:37324799		// Datos de prueba
 				});
@@ -227,13 +242,18 @@
 				 
  				ppApiService.url= serviceURL + "/service/download";
 				
+				var taxonValue:Number = taxonId_allTaxa;
+				if (chooseTaxon.id != null) {
+					taxonValue = (chooseTaxon.id) as Number;
+				}
+				
 				ppApiService.send({
 					rank:"species",
 				    //minElevation:elevationValues[0],
 					//maxElevation:elevationValues[1],
 					//minRelief:reliefValues[0],
 					//maxRelief:reliefValues[1],	
-					taxonId:14706247//,
+					taxonId:taxonValue//,
 					//minCellId:0,			// Datos de prueba
 					//maxCellId:37324799		// Datos de prueba
 				});
@@ -328,7 +348,7 @@
 			<mx:Label x="259" y="10" text="Number" fontSize="17" color="#FFFFFF" id="id_number_veg_types"  width="100.33333" height="23"/>
 			<mx:Label x="259" y="34" text="VEGETATION TYPES" fontSize="11" color="#4D4D4D" id="vegetationLabel" />
 			
-			<mx:Label x="384" y="10" text="NONE" fontSize="17" color="#FFFFFF" id="id_taxon_result"  width="103" height="23"/>
+			<mx:Label x="384" y="10" text="ALL TAXA" fontSize="17" color="#FFFFFF" id="id_taxon_result"  width="180" height="23"/>
 			<mx:Label x="384" y="34" text="TAXON SELECTED" fontSize="11" color="#4D4D4D" id="taxonSelectedLabel" />
 		</mx:Canvas>
 	
