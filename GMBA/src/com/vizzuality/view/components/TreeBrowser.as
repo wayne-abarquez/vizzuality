@@ -682,6 +682,9 @@ package com.vizzuality.view.components
 		
 		private function selectionChangeHandler():void{
 			var children:ICollectionView;
+/* 			if (!_selectedItem.children && _selectedItem.labelField != "All taxa") {
+				return;
+			} */
 			if (_selectedItem){
 				children = _rootModel[index+1];
 				if (children.length >= 0 || showDetails){
@@ -712,13 +715,14 @@ package com.vizzuality.view.components
 					}else{
 						// item clicked is in the last column, new column needs to be added
 						if(children.length == 0 || _selectedItem.type=="species"){
-							nextColumn = createDetailRenderer();	
+							/* nextColumn = createDetailRenderer(); */	
 						}else{
 							nextColumn = createColumn();
+							addChild(nextColumn);
+							// need to wait until display has updated to scroll
+							addEventListener(FlexEvent.UPDATE_COMPLETE, onUpdateComplete);
 						}
-						addChild(nextColumn);
-						// need to wait until display has updated to scroll
-						addEventListener(FlexEvent.UPDATE_COMPLETE, onUpdateComplete);
+						
 					}
 					if(nextColumn is TreeBrowserList) {
 						dataChild = children as ArrayCollection;
@@ -730,8 +734,8 @@ package com.vizzuality.view.components
 						TreeBrowserList(nextColumn).dataProvider = auxArrayCollec;
 						//TreeBrowserList(nextColumn).dataProvider = children;
 					}
-					else
-						IListItemRenderer(nextColumn).data = column.selectedItem;
+					/* else
+						IListItemRenderer(nextColumn).data = column.selectedItem; */
 				}else{
 					// item clicked has no children, clear all columns after this one
 					/* if(index < numChildren - 1)

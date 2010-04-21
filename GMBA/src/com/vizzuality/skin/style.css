@@ -201,3 +201,14 @@ List.taxaList {
 	text-roll-over-color: #ffffff;
 	text-selected-color: #ffffff;
 }
+Button.add
+{
+	color: #333333;
+	fontFamily: DINOT-Medium;
+	fontSize: 12;
+	textAlign: left;
+	fontWeight: normal;
+	themeColor: #333333;
+	padding-left:5;
+	padding-right:5;
+}
