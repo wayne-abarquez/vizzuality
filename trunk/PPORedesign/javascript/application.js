@@ -1,6 +1,4 @@
-/* VARIABLES */
 
-/* */
 
 $(document).ready(function() {
 

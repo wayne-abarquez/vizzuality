@@ -34,6 +34,65 @@ div#header p.user_login a.user {float:none; text-decoration:underline; font:bold
 div#header a#loginLink {float:right; text-decoration:none; font:bold 12px Arial; color:#ffffff; letter-spacing:-0.5px; padding:0 15px 0 0; margin:12px 0 0 13px; background:url(../images/common/transArrow.png) no-repeat right 2px}
 div#header a#loginLink:hover {text-decoration:underline;}
 
+/* ----------  HOME ---------- */
+
+div.home_container {top:0; left:0; right:0; bottom:0; position:fixed; background:#cccccc;}
+div#home_map {float:left; height:100%; width:100%;}
+
+div#home_header {position:absolute; left:0; top:0; width:100%; height:85px; background:url(../images/home/header_bkg.png) repeat-x 0 0; display:none; z-index:200;}
+div#home_header div.menu {float:left; width:940px; margin:12px 0 0 0;}
+
+div#center_information {position:absolute; z-index:100; width:642px; height:518px; top:90px; padding:20px 28px; background:url(../images/home/center_bkg.png) no-repeat 0 0;}
+div#center_information a.close_window {position:absolute; right:10px; top:10px; height:17px; width:17px; background:url(../images/home/close_window.png) no-repeat 0 0;}
+div#center_information a.close_window:hover {background-position:0 -17px;}
+div#center_information a.home_logo {float:left; width:401px; height:41px; background:url(../images/home/home_logo.png) no-repeat 0 0;}
+div#center_information h1 {float:left; width:642px; margin:25px 0 0 0; font:bold 35px Arial; color:#FFFFFF; letter-spacing:-2px;}
+div#center_information div.top {float:left; width:642px;}
+div#center_information div.top form {float:left; margin:20px 0 0 0;}
+div#center_information div.top form input[type="text"]{float:left; width:369px; height:37px; padding:0 8px; background:url(../images/home/text_input.png) no-repeat 0 0; border:0; margin:0; font:normal 17px Arial; color:#999999; font-style:italic;}
+div#center_information div.top form input[type="text"]:focus {outline:none;}
+div#center_information div.top form input[type="text"]:hover {outline:none;}
+div#center_information div.top form input[type="submit"]{float:left; width:84px; height:37px; background:url(../images/home/button_input.png) no-repeat right 0; border:0; text-align:center; font:bold 17px Arial; color:#FFFFFF;}
+div#center_information div.top form input[type="submit"]:hover {cursor:pointer; background-position:right -37px;}
+div#center_information div.top form input[type="submit"]:focus {outline:none;}
+div#center_information div.top form input[type="text"]:hover {outline:none;}
+div#center_information div.top a {float:left; margin:28px 0 0 10px; font:bold 15px Arial; color:#FFFFFF; font-style:underline;}
+div#center_information div.top a:hover {text-decoration:none;}
+
+div#center_information div.middle {float:left; width:642px; margin:30px 0 0 0;}
+div#center_information div.middle div.box {float:left; width:195px; margin:0 28px 0 0;}
+div#center_information div.middle div.box.last {margin:0;}
+div#center_information div.middle div.box h2 {font:bold 25px Arial; color:#BFD3DD;}
+div#center_information div.middle div.box p {font:normal 13px Arial; color:#BFD3DD; margin:5px 0 0 0;}
+div#center_information div.middle div.box p a {font:normal 13px Arial; color:#BFD3DD; text-decoration:underline;}
+div#center_information div.middle div.box p a:hover {text-decoration:none;}
+div#center_information div.middle div.box a.youtube {float:left; margin:10px 5px 0 0; width:44px; height:44px; background:url(../images/home/youtube.png) no-repeat 0 0;}
+div#center_information div.middle div.box a.youtube:hover {background-position: 0 -44px;}
+div#center_information div.middle div.box a.facebook {float:left; margin:10px 5px 0 0; width:44px; height:44px; background:url(../images/home/facebook.png) no-repeat 0 0;}
+div#center_information div.middle div.box a.facebook:hover {background-position: 0 -44px;}
+div#center_information div.middle div.box a.twitter {float:left; margin:10px 0 0 0; width:44px; height:44px; background:url(../images/home/twitter.png) no-repeat 0 0;}
+div#center_information div.middle div.box a.twitter:hover {background-position: 0 -44px;}
+
+div#center_information div.bottom {float:left; margin:45px 0 0 0; width:642px;}
+div#center_information div.bottom span {float:left; width:642px; padding:0 0 10px 0; border-bottom:1px solid #c6c6c6;}
+div#center_information div.bottom span h3 {float:left; font:bold 19px Arial; color:#626263;}
+div#center_information div.bottom span a {float:right; margin:2px 0 0 0; font:bold 13px Arial; color:#3C89AF;}
+div#center_information div.bottom span a:hover {text-decoration:none;}
+div#center_information div.bottom div.box {float:left; width:200px; margin:0 21px 0 0;}
+div#center_information div.bottom div.box.last {margin:0;}
+div#center_information div.bottom div.box h4 {float:left; width:195px; font:normal 11px Arial; color:#666666; margin:12px 0 0 0;}
+div#center_information div.bottom div.box h4.events {background:url(../images/home/events.png) no-repeat 0 0; padding:3px 0 3px 58px;}
+div#center_information div.bottom div.box h4.twitter {background:url(../images/home/twitter_events.png) no-repeat 0 0; padding:3px 0 3px 64px;}
+div#center_information div.bottom div.box h4.blog {background:url(../images/home/blog.png) no-repeat 0 0; padding:3px 0 3px 47px;}
+div#center_information div.bottom div.box h4 a {text-decoration:underline; color:#006699;}
+div#center_information div.bottom div.box h4 a:hover {text-decoration:none;}
+div#center_information div.bottom div.box h5 {float:left; width:195px; font:normal 13px Arial; color:#006699; margin:6px 0 0 0; word-spacing:-2px;}
+div#center_information div.bottom div.box p {float:left; font:normal 13px Arial; color:#333333; padding:6px 0 0 0;}
+div#center_information div.bottom div.box p.blog {font-style:italic; color:#666666; padding:15px 0 0 0;}
+div#center_information div.bottom div.box p.blog a {font-style:italic; text-decoration:underline;}
+div#center_information div.bottom div.box p.blog a:hover {text-decoration:none;}
+div#center_information div.bottom div.box p a {text-decoration:none; color:#006699;}
+div#center_information div.bottom div.box p a:hover {text-decoration:underline;}
 
 
 
