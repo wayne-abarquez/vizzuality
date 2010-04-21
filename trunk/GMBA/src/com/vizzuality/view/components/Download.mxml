@@ -38,13 +38,13 @@
 			<mx:SetStyle target="{label2}" name="verticalCenter" value="-53"/>
 			<mx:AddChild position="lastChild">
 				<mx:HBox id="hbox3" y="170" horizontalCenter="0" horizontalGap="0">
-					<mx:Button label="Click here"  id="button1" paddingLeft="0" paddingRight="0" paddingBottom="2" paddingTop="0" styleName="linkButton"/>
+					<mx:Button label="Click here"  id="button1" paddingLeft="0" paddingRight="0" paddingBottom="2" paddingTop="0" styleName="linkButton" click="navigateToDownload()"/>
 					<mx:Label text="if your download does not start automatically in 3 seconds."  id="label5" color="#FFFFFF" fontSize="12"/>
 				</mx:HBox>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<utils:ShadowButton height="32" label="Create another request" color="#FFFFFF" fontSize="17" fontWeight="normal"
-					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" y="243" horizontalCenter="0"/>
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" y="243" horizontalCenter="0" click="MyEventDispatcher.onCloseDownloadWindow()"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{label3}"/>
 			<mx:SetProperty name="height" value="407"/>
@@ -79,6 +79,8 @@
 			public var reliefValues: ArrayCollection;
 			public var vegetationValues: ArrayCollection;
 			public var chooseTaxon: Object;
+			private var urlToDownload:String;
+			
 			
 			public var bound: LatLngBounds;
 			public var zoom: Number;
@@ -202,7 +204,7 @@
 				this.ocurrences = (res.total) as Number;
 				
 				// Our estimation -> 1 ocurrence = 10KB
-				var sizeDownloading:String = (this.ocurrences * 10).toPrecision(3);
+				var sizeDownloading:String = (this.ocurrences * 5).toPrecision(3);
 				
 				// ¿MB?, ¿KB?			
 				if (sizeDownloading.length > 6){
@@ -305,7 +307,11 @@
 						timer.stop();
 						timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
 						
-						navigateToURL(new URLRequest(serviceURL + (res.url) as String),"_blank");	
+						urlToDownload = serviceURL + (res.url) as String;
+						
+						navigateToURL(new URLRequest(urlToDownload),"_blank");	
+						
+						
 						
 						currentState = "ready";
 						
@@ -316,6 +322,12 @@
 				
 			}
 
+
+			private function navigateToDownload():void{
+				
+				navigateToURL(new URLRequest(urlToDownload),"_blank");	
+				
+			}
 			private function activateDownload():void{
 				if (shadowbutton1.enabled == true)
 					shadowbutton1.enabled = false;
