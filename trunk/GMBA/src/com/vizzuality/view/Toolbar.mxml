@@ -4,7 +4,6 @@
 	<mx:Script>
 		<![CDATA[
 			import com.vizzuality.events.VegTypeClickEvent;
-			import mx.controls.Alert;
 			import com.vizzuality.utils.Helper;
 			import swf.SWFAddress;
 			import swf.SWFAddressEvent;
@@ -51,11 +50,15 @@
 			}
 			
 			private function onChangeVegeValue(num:Number,event:VegTypeClickEvent):void {
+				if ((vegetationValues.getItemAt(num) as Boolean) == true) {
+					vegetationValues.setItemAt(false,num);
+					(event.currentTarget as ChooseVegetableType)._selected=false;
 				
-				if ((vegetationValues.getItemAt(num) as Boolean) != true) {
+				
+				} else {
 					vegetationValues.setItemAt(true,num);
 					(event.currentTarget as ChooseVegetableType)._selected=true;
-				
+				}
 				
 				var allTrue:Boolean=true;
 				for (var i:uint=1;i<8;i++) {
@@ -78,10 +81,7 @@
 					type7._selected=true;
 					type8._selected=true;
 				}
-				
 				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
-				}
-				
 			}
 			
 			private function onSelectAllClicked():void {
@@ -89,26 +89,26 @@
 					for(var i:uint=0;i<8;i++) {
 						vegetationValues.setItemAt(false,i);
 					}
-					type1._selected=false;
-					type2._selected=false;
-					type3._selected=false;
-					type4._selected=false;
-					type5._selected=false;
-					type6._selected=false;
-					type7._selected=false;
-					type8._selected=false;
+					type1._selected=false; 
+					type2._selected=false; 
+					type3._selected=false; 
+					type4._selected=false; 
+					type5._selected=false; 
+					type6._selected=false; 
+					type7._selected=false; 
+					type8._selected=false; 
 				} else {
 					for(var i2:uint=0;i2<8;i2++) {
 						vegetationValues.setItemAt(true,i2);
 					}
-					type1._selected=true;
-					type2._selected=true;
-					type3._selected=true;
-					type4._selected=true;
-					type5._selected=true;
-					type6._selected=true;
-					type7._selected=true;
-					type8._selected=true;
+					type1._selected=true; 
+					type2._selected=true; 
+					type3._selected=true; 
+					type4._selected=true; 
+					type5._selected=true; 
+					type6._selected=true; 
+					type7._selected=true; 
+					type8._selected=true; 
 				}
 				vegetationValues.refresh();
 				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
@@ -141,11 +141,16 @@
 				if ((vegetationValues.getItemAt(num) as Boolean) == true) {
 					vegetationValues.setItemAt(false,num);
 					element._selected=false;
+					element.useHandCursor = false;
+					element.buttonMode=false;
 				} 
-		
+				
+							
 				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
 				event.stopImmediatePropagation();
+				
 			}
+			
 		]]>
 	</mx:Script>
 
@@ -199,6 +204,24 @@
 					<mx:Spacer height="5" />
 					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknown" click="onSelectAllClicked()" 
 					 _selected="true"	 mamufa="true"/>
+					
+					
+					<!--<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Nival" clickOnVegTypeEvent="onChangeVegeValue(1,event)"
+						_selected="true" />
+					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Upper alpine zone" clickOnVegTypeEvent="onChangeVegeValue(2,event)"
+						_selected="true" />
+					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Lower alpine zone" clickOnVegTypeEvent="onChangeVegeValue(3,event)"
+						 _selected="true"/>
+					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Upper montane zone" clickOnVegTypeEvent="onChangeVegeValue(4,event)"
+						_selected="true" />
+					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Lower montane zone" clickOnVegTypeEvent="onChangeVegeValue(5,event)"
+						_selected="true" />
+					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Warm zone with possible freezing" clickOnVegTypeEvent="onChangeVegeValue(6,event)"
+						_selected="true" />
+					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Perpetual warm conditions" clickOnVegTypeEvent="onChangeVegeValue(7,event)"
+						_selected="true" />-->
+						
+						
 					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Nival" clickOnVegTypeEvent="onChangeVegeValue(1,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(1,event, type2)"/>
 					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Upper alpine zone" clickOnVegTypeEvent="onChangeVegeValue(2,event)"
@@ -213,6 +236,7 @@
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(6,event, type6)"/>
 					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Perpetual warm conditions" clickOnVegTypeEvent="onChangeVegeValue(7,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(7,event, type7)"/>
+						
 				</mx:VBox>
 			</mx:VBox> 
 			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />

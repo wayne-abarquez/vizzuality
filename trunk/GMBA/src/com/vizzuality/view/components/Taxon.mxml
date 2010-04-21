@@ -19,7 +19,7 @@
 			[Bindable]
    			public var SEARCH:Class;
    			
-			[Embed(source="/assets/loadAnimation.swf")]
+			[Embed(source="/assets/loaderGray.swf")]
 			[Bindable]
 			public var ANIMATION:Class;
 			
@@ -96,7 +96,7 @@
 			<mx:HBox width="100%" horizontalGap="0" styleName="taxon" backgroundSize="100%" paddingTop="5" paddingBottom="5" verticalCenter="0">
 				<mx:TextInput text="All taxa" styleName="taxon" verticalCenter="0" id="searchText" change="if (searchText.text.length>3) onChangeText()" click="{(searchText.text=='All taxa')?searchText.text='':null}"  themeColor="#DBDBDB" width="100%"/>
 				<mx:Image source="{ANIMATION}" width="25" height="15" visible="false" id="loader"/>
-				<mx:Button width="15" styleName="taxon" height="15" buttonMode="true" useHandCursor="true" mouseChildren="false" verticalCenter="0"/>
+				<mx:Button width="15" styleName="taxon" height="20" buttonMode="true" useHandCursor="true" mouseChildren="false" />
 			</mx:HBox>
 		</mx:Canvas>
 		<mx:Button label="explore the taxonomic tree" styleName="explore" useHandCursor="true" mouseChildren="false" buttonMode="true" click="MyEventDispatcher.onOpenTaxonomic();"/>

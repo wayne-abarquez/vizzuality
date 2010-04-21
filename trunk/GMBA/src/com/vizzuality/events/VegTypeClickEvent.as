@@ -12,8 +12,12 @@ package com.vizzuality.events
         // constructor
         public function VegTypeClickEvent(type:String):void
         {
-            super(type,false,true);
+            super(type,true,true);
+            //super(type);
         }
+        
+        
     }
 
 }
+
