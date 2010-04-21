@@ -12,7 +12,7 @@ package com.vizzuality.events
         // constructor
         public function DeselectedEvent(type:String):void
         {
-            super(type);
+            super(type, false, true);
         }
     }
 

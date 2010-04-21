@@ -268,7 +268,8 @@
 				 
  				ppApiService.url= serviceURL + "/service/download";
 				
-				
+				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
+				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
 				
 				if (chooseTaxon.id != null) {
 					var taxonValue:Number;
@@ -283,26 +284,26 @@
 						//maxElevation:elevationValues[1],
 						//minRelief:reliefValues[0],
 						//maxRelief:reliefValues[1],	
-						taxonId:taxonValue//,
-						//minCellId:minCellId,			// Datos de prueba
-						//maxCellId:maxCellId		// Datos de prueba
+						taxonId:taxonValue,
+						minCellId:minCellId,	// Datos de prueba
+						maxCellId:maxCellId		// Datos de prueba
 					});
 				}
 				else {	// ALL TAXA
 						ppApiService.send({
 						tvzCode:tvzCode,
-						taxonId:taxonId_allTaxa	// REMOVE THIS WHEN TIM CHANGE THE SERVICE		
+						rank:taxonRank, // REMOVE THIS WHEN TIM CHANGE THE SERVICE
+						taxonId:taxonId_allTaxa,	// REMOVE THIS WHEN TIM CHANGE THE SERVICE		
 					    //minElevation:elevationValues[0],
 						//maxElevation:elevationValues[1],
 						//minRelief:reliefValues[0],
 						//maxRelief:reliefValues[1],	
-						//minCellId:minCellId,			// Datos de prueba
-						//maxCellId:maxCellId		// Datos de prueba
+						minCellId:minCellId,	// Datos de prueba
+						maxCellId:maxCellId		// Datos de prueba
 					});
 				}
 				
-				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
-				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
+				
 				
 				
 				
@@ -356,8 +357,6 @@
 						urlToDownload = serviceURL + (res.url) as String;
 						
 						navigateToURL(new URLRequest(urlToDownload),"_blank");	
-						
-						
 						
 						currentState = "ready";
 						
