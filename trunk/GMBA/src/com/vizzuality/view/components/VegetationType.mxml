@@ -4,15 +4,15 @@
 		<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 		<mx:VBox verticalGap="1" width="100%">
 			<mx:Spacer height="5" />
-			<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow" click="{(type1.selected)? type1.selected=false: type1.selected=true}"/>
-			<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above" click="{(type2.selected)? type2.selected=false: type2.selected=true}"/>
-			<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Adjacent above" click="{(type3.selected)? type3.selected=false: type3.selected=true}"/>
-			<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Adjacent below" click="{(type4.selected)? type4.selected=false: type4.selected=true}"/>
-			<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Below" click="{(type5.selected)? type5.selected=false: type5.selected=true}"/>
-			<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Dry desert" click="{(type6.selected)? type6.selected=false: type6.selected=true}"/>
-			<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Arid grassland" click="{(type7.selected)? type7.selected=false: type7.selected=true}"/>
-			<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Above - Arid" click="{(type8.selected)? type8.selected=false: type8.selected=true}"/>
-			<components:ChooseVegetableType id="type9" selectedColor="#915659" unselectedColor="#492B2D" textType="Below - Arid" click="{(type9.selected)? type9.selected=false: type9.selected=true}"/>
+			<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknow"/>
+			<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Far above"/>
+			<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Adjacent above"/>
+			<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Adjacent below"/>
+			<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Below"/>
+			<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Dry desert"/>
+			<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Arid grassland"/>
+			<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Above - Arid"/>
+			<components:ChooseVegetableType id="type9" selectedColor="#915659" unselectedColor="#492B2D" textType="Below - Arid"/>
 		</mx:VBox>
 	</mx:VBox>
 	<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
