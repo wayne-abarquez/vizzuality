@@ -272,7 +272,7 @@
 			}
 			
 			private function checkStatus(event:ResultEvent):void{
-					
+				// TODO: Stop the time after the time	
 				if (downloadInProcess) {
 					
 					var res:Object = JSON.decode(event.result as String);
