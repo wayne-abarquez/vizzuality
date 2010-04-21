@@ -388,8 +388,10 @@ package com.vizzuality.view.components
 			
 			list.setStyle("paddingBottom","0");
 			list.setStyle("paddingLeft","-1");
-			list.setStyle("paddingRight","-1");
+			list.setStyle("paddingRight","0");
 			list.setStyle("paddingTop","-1");
+			list.setStyle('backgroundColor','0x131314');
+			list.setStyle('borderColor','#333333');
 			list.percentHeight = 100;
 			list.percentWidth = 100;
 			list.width = list.minWidth = columnWidth - 2; 
