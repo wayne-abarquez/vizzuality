@@ -15,6 +15,7 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import mx.controls.Text;
 	    	import com.vizzuality.maps.MaskLayer;
 	    	import mx.formatters.NumberFormatter;
 	    	import com.vizzuality.events.TaxonSelectedEvent;
@@ -74,6 +75,19 @@
 			private var taxonTileLayerOverlay:TileLayerOverlay;   
 			private var taxonRasterLayer:RasterLayer;
                         	
+			
+			[Bindable] private var minCellIdShow:Number;
+			[Bindable] private var maxCellIdShow:Number;
+			
+			[Bindable] private var latitudeSW_text:String;
+			[Bindable] private var longitudeSW_text:String;
+			[Bindable] private var latitudeNE_text:String;
+			[Bindable] private var longitudeNE_text:String;
+			
+			private var latitudeSW:Number;
+			private var longitudeSW:Number;
+			private var latitudeNE:Number;
+			private var longitudeNE:Number;
 			
             private function initSWFAddress():void {        	
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
@@ -322,6 +336,26 @@
 		    	
 		    }
 		    
+		    public function getCellId():void{
+		    	
+		    	minCellIdShow = getMinCellId();
+		    	maxCellIdShow = getMaxCellId();
+		    	
+				latitudeSW = map.getLatLngBounds().getSouthWest().lat();
+				latitudeSW_text = latitudeSW.toPrecision(3);
+				
+				longitudeSW = map.getLatLngBounds().getSouthWest().lng();
+				longitudeSW_text= longitudeSW.toPrecision(3);
+				
+				
+				latitudeNE = map.getLatLngBounds().getNorthEast().lat();
+				latitudeNE_text = latitudeNE.toPrecision(3);
+				
+				longitudeNE = map.getLatLngBounds().getNorthEast().lng();
+				longitudeNE_text = longitudeNE.toPrecision(3);
+		    	
+		    }
+		    
 		    public function getMinCellId():Number{
 								
 				var minCellId:Number = 0;
@@ -329,7 +363,9 @@
 				var longitude:Number = map.getLatLngBounds().getSouthWest().lng();
 			
 				
-				minCellId = Math.round((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360);
+				minCellId = Math.round(((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360));
+				
+				
 				
 				//minCellId = minCellId.toFixed(0) as Number;
 				
@@ -344,8 +380,8 @@
 				var latitude:Number = map.getLatLngBounds().getNorthEast().lat();
 				var longitude:Number = map.getLatLngBounds().getNorthEast().lng();
 				
-				maxCellId = Math.round((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360);
-								
+				maxCellId = Math.round(((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360));
+				
 				return maxCellId;
 
 			}
@@ -364,13 +400,8 @@
 		    }
 		    
 		    private function zoomIn(event:MapMouseEvent=null):void {
-		    	if(map.getZoom()<7) {
-		    		if (event!=null)  {
-		    			map.setCenter(event.latLng,map.getZoom()+1);
-		    		} else {
-		    			map.setZoom(map.getZoom()+1);
-		    		}
-		    	}	
+		    	if(map.getZoom()<7)
+		    		map.setCenter(event.latLng,map.getZoom()+1);
 			}
 			
 			private function zoomOut():void {
@@ -433,6 +464,23 @@
 			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="true" alpha="0.6">
 				<mx:SWFLoader horizontalCenter="-12" verticalCenter="-5" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/>
 			</mx:Canvas>
+			
+			<mx:Canvas left="20" bottom="12" width="130" height="90" backgroundColor="#8D0B0B">
+				<mx:Label x="10" y="10" text="minCellId"  color="#FBFBFB"/>
+				<mx:Label x="10" y="20" text="{minCellIdShow}" color="#FBFBFB" fontSize="14"/>
+				<mx:Label x="10" y="50" text="lat:{latitudeSW_text}" color="#FBFBFB" fontSize="14"/>
+				<mx:Label x="10" y="65" text="long:{longitudeSW_text}" color="#FBFBFB" fontSize="14"/>
+			</mx:Canvas>
+			
+			<mx:Canvas top="12" right="80" width="130" height="90" backgroundColor="#8D0B0B">
+				<mx:Label x="10" y="10" text="maxCellId" color="#FBFBFB" />
+				<mx:Label x="10" y="20" text="{maxCellIdShow}" color="#FBFBFB" fontSize="14"/>
+				<mx:Label x="10" y="51" text="lat:{latitudeNE_text}" color="#FBFBFB" fontSize="14"/>
+				<mx:Label x="10" y="66" text="long:{longitudeNE_text}" color="#FBFBFB" fontSize="14"/>
+
+			</mx:Canvas>
+			<mx:Button x="372" y="586" bottom="12" label="GetCoord" horizontalCenter="0" click="getCellId()"/>
+			
 		</mx:Canvas>
 		
 		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas" visible="false" />
