@@ -12,7 +12,7 @@
 			
 			public function setStyleRollOver():void {
 				this.labelVegType.setStyle("color","0xFFFFFF");
-				this.labelVegType.setStyle("fontFamily","DINOT-Bold");
+				this.labelVegType.setStyle("fontWeight","bold");
 				this.canvasVegTypes.setStyle("backgroundColor",selectedColor);
 				
 			}
@@ -20,7 +20,7 @@
 			public function setStyleRollOut():void {
 				if (!_selected) {
 					this.labelVegType.setStyle("color","0x666666");
-					this.labelVegType.setStyle("fontFamily","DINOT-Medium");
+					this.labelVegType.setStyle("fontWeight","normal");	
 					this.canvasVegTypes.setStyle("backgroundColor",unselectedColor);
 				}
 			}
@@ -29,8 +29,8 @@
 	</mx:Script>
 	
 	<mx:Canvas id="canvasVegTypes" left="3" width="6" top="0" bottom="0" backgroundColor="{(_selected)?selectedColor:unselectedColor}" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
-	<mx:Label text="{textType}" color="{(_selected)?0xFFFFFF:0x666666}" verticalCenter="0" left="13" fontSize="12" fontFamily="{(_selected)?'DINOT-Bold':'DINOT-Medium'}" buttonMode="true" 
-		useHandCursor="true" mouseChildren="false" rollOver="setStyleRollOver()" rollOut="setStyleRollOut()" id="labelVegType" styleName="labelVegTypes" width="147"/>
+	<mx:Label text="{textType}" color="{(_selected)?0xFFFFFF:0x666666}" verticalCenter="0" left="13" fontSize="12" fontFamily="Arial" buttonMode="true" 
+		useHandCursor="true" mouseChildren="false" rollOver="setStyleRollOver()" rollOut="setStyleRollOut()" id="labelVegType" styleName="labelVegTypes" width="147" fontWeight="{(_selected)?'bold':'normal'}"/>
 		
 	<mx:Canvas id="mamufas" visible="{(!mamufa)?true:false}" verticalCenter="0" right="4">
 		<mx:Button label="deselect"  mouseChildren="false" useHandCursor="true" visible="{(_selected)?true:false}" styleName="nullButton" buttonMode="true" />
