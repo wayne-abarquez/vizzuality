@@ -8,7 +8,7 @@
 			<mx:RemoveChild target="{downloadrepeat1}"/>
 			<mx:RemoveChild target="{hbox1}"/>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:SWFLoader horizontalCenter="0" verticalCenter="6" width="50" height="50" source="@Embed('/assets/loaderGray.swf')"/>
+				<mx:SWFLoader horizontalCenter="0" verticalCenter="6" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/>
 			</mx:AddChild>
 	
 		</mx:State>
@@ -24,13 +24,13 @@
 				<mx:Label text="It could take some minutes. Please be patient." horizontalCenter="0" verticalCenter="-6" color="#FFFFFF" fontSize="12" id="label3"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" color="#FFFFFF" label=" " enabled="true" id="progressbar1"/>
+				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" color="#FFFFFF" label="" minimum="0" maximum="100" enabled="true" id="progressbarDownloading" />
 			</mx:AddChild>
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
 		<mx:State name="ready" basedOn="processing">
 			<mx:SetProperty target="{label2}" name="text" value="Your request is ready"/>
-			<mx:RemoveChild target="{progressbar1}"/>
+			<mx:RemoveChild target="{progressbarDownloading}"/>
 			<mx:SetProperty target="{hbox3}" name="y" value="168"/>
 			<mx:SetProperty target="{button1}" name="styleName" value="linkButton"/>
 			<mx:SetStyle target="{hbox3}" name="horizontalGap" value="0"/>
@@ -50,7 +50,7 @@
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
 		<mx:State name="error" basedOn="ready">
-			<mx:SetProperty target="{label2}" name="text" value="Has been a error"/>
+			<mx:SetProperty target="{label2}" name="text" value="Have been a error"/>
 			<mx:RemoveChild target="{button1}"/>
 			<mx:RemoveChild target="{label5}"/>
 			<mx:RemoveChild target="{hbox3}"/>
@@ -60,6 +60,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
 			import mx.core.Application;
 			import flash.sampler.NewObjectSample;
 			import com.vizzuality.view.GMBAMap;
@@ -80,11 +81,16 @@
 			public var bound: LatLngBounds;
 			public var zoom: Number;
 			
+			private var serviceURL:String = "http://204.236.250.31";
+			private var downloadInProcess:Boolean = false;
+			private var downloadURL:String;
+			private var timer:Timer;
 			
 			[Bindable]private var ocurrences:Number;
 			[Bindable]private var observations:Number;
 			[Bindable]private var specimens:Number;
 			[Bindable]private var providers:Number;
+			[Bindable]private var downloadSize:String = "0MB";
 			
 			
 			public function setPosition(widthMap:Number, heightMap:Number, widthToolBar:Number, heightToolBar:Number):void{
@@ -119,33 +125,32 @@
 				
 				initLoading();
 				
-				
-					   
 			} 
 			
-			
-			
-			
 			private function initLoading():void{
+				
+				this.terms.selected = false;
 				
 				ppApiService.addEventListener(ResultEvent.RESULT,onServiceResult);
 				
 				ppApiService.addEventListener(FaultEvent.FAULT,onErrorLoading);
 				 
- 				ppApiService.url="http://204.236.250.31/service/search";
+ 				ppApiService.url= serviceURL + "/service/search";
 				
 				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
 				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
 				
+				// TODO. Whitch format?
+				var tvzCode:ArrayCollection = new ArrayCollection;
+				
 				ppApiService.send({
-				    minElevation:elevationValues[0],
 				    minElevation:elevationValues[0],
 					maxElevation:elevationValues[1],
 					minRelief:reliefValues[0],
-					maxRelief:reliefValues[1],
+					maxRelief:reliefValues[1],	
 					taxonId:14706247,
-					minCellId:minCellId,
-					maxCellId:maxCellId
+					minCellId:0,			// Datos de prueba
+					maxCellId:37324799		// Datos de prueba
 				});
 				
 			
@@ -173,17 +178,24 @@
 			// Decoding the result
 			 private function onServiceResult(event:ResultEvent):void {
 				
-				// TODO: REmove this when result is parsed ok
-				var res:String=event.result as String;
-				res= (res as String).replace("total",'"total"').replace("observation",'"observation"').replace("specimen",'"specimen"').replace("resources",'"resources"');
+				var res:Object = JSON.decode(event.result as String);
 				
-				var res2:Object = JSON.decode(res as String);
+				this.observations = (res.observation) as Number;
+				this.specimens = (res.specimen) as Number;
+				this.providers = (res.resources) as Number;
+				this.ocurrences = (res.total) as Number;
 				
+				// Our estimation -> 1 ocurrence = 10KB
+				var sizeDownloading:String = (this.ocurrences * 10).toPrecision(3);
 				
-				/* [Bindable]private var ocurrences:Number;
-				[Bindable]private var observations:Number;
-				[Bindable]private var specimens:Number;
-				[Bindable]private var providers:Number; */
+				// ¿MB?, ¿KB?			
+				if (sizeDownloading.length > 6){
+					this.downloadSize = sizeDownloading.substring(0,sizeDownloading.length - 3);
+					this.downloadSize += "MB"; 						  
+				} 			
+				else{
+					this.downloadSize = sizeDownloading + "KB"; 						  
+				} 			
 								
 				this.currentState = "";
 				
@@ -203,22 +215,85 @@
 			}		
 			
 			private function onClickToDownload():void {
+
+				downloadInProcess = false;
 				
 				currentState = 'processing';
-				TweenLite.to(this, 5, {delay:3,onComplete:onFinishTween2});
 				
+				// Begin to download the data
+				ppApiService.addEventListener(ResultEvent.RESULT,onBeginToDownload);
+				ppApiService.addEventListener(FaultEvent.FAULT,onErrorDownloading);
+				 
+ 				ppApiService.url= serviceURL + "/service/download";
+				
+				ppApiService.send({
+					rank:"species",
+				    //minElevation:elevationValues[0],
+					//maxElevation:elevationValues[1],
+					//minRelief:reliefValues[0],
+					//maxRelief:reliefValues[1],	
+					taxonId:14706247//,
+					//minCellId:0,			// Datos de prueba
+					//maxCellId:37324799		// Datos de prueba
+				});
+				
+/* 				taxonId: the id of the taxon in the GBIF backbone (nub) taxonomy. This is mandatory
+    			rank: one of kingdom,phylum,class,order,family,genus,species(will include subspecies) or nub(will not include subspecies). This is mandatory
+			    tvzCode: the tvzCodes (see WIKI). This can be repeated to logically OR tvzCodes
+ */    
+    
  			}
+ 			
+ 			private function onErrorDownloading(event:FaultEvent):void{
+				currentState="error";	
+
+				ppApiService.removeEventListener(ResultEvent.RESULT,onBeginToDownload);
+				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
+
+			}
 			
-			private function onFinishTween2():void {
-				currentState = 'ready';
-				TweenLite.to(this, 5, {delay:3,onComplete:onFinishTween3});						
-			}	
+			private function onBeginToDownload(event:ResultEvent):void {
+				
+				var res:Object = JSON.decode(event.result as String);
+				
+				downloadURL = serviceURL + (res.url) as String;
+				
+				ppApiService.removeEventListener(ResultEvent.RESULT,onBeginToDownload);
+				ppApiService.addEventListener(ResultEvent.RESULT,checkStatus);
+				
+				downloadInProcess = true;
+				ppApiService.url= downloadURL;
+				
+							
+				timer = new Timer(2000,0);
+				timer.addEventListener(TimerEvent.TIMER,ppApiService.send);
+				timer.start();
+				
+			}
 			
-			private function onFinishTween3():void {
-				MyEventDispatcher.onCloseDownloadWindow();
-				currentState = 'loading';
-			}	
-			
+			private function checkStatus(event:ResultEvent):void{
+					
+				if (downloadInProcess) {
+					
+					var res:Object = JSON.decode(event.result as String);
+					
+					if (res.status == "complete"){
+						downloadInProcess = false;
+						
+						timer.stop();
+						timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
+						
+						navigateToURL(new URLRequest(serviceURL + (res.url) as String),"_blank");	
+						
+						currentState = "ready";
+						
+						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
+					}
+					
+				}
+				
+			}
+
 			private function activateDownload():void{
 				if (shadowbutton1.enabled == true)
 					shadowbutton1.enabled = false;
@@ -265,7 +340,7 @@
 			<mx:HRule width="100%" height="1"  strokeWidth="1" strokeColor="#19191A"/>
 			
 			<mx:HBox horizontalGap="0" right="20" left="20" top="30" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="hbox1">
-				<components:DownloadSize  id="downloadsize1"/>
+				<components:DownloadSize  label_number="{downloadSize}" id="downloadsize1" />
 				<components:DownloadRepeat label_number="{ocurrences}" label_text="OCCURENCES" id="downloadrepeat1"/>
 				<components:DownloadRepeat label_number="{observations}" label_text="OBSERVATIONS" />
 				<components:DownloadRepeat label_number="{specimens}" label_text="SPECIMENS" />
@@ -276,7 +351,7 @@
 	
 	
 	<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox2">
-		<mx:CheckBox id="terms" label="" cornerRadius="10" click="activateDownload()"/>
+		<mx:CheckBox id="terms" label="" cornerRadius="10" click="activateDownload()" selected="false"/>
 		<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3" id="label6"/>
 		<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('../html/termsAndConditions.html'))" id="button2"/>
 		<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label7"/>
