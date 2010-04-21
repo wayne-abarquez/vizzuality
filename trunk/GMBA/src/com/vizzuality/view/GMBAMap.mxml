@@ -494,7 +494,7 @@
 		
 		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas" visible="false" />
 		<components1:TaxonomicBrowser visible="false" id="taxonomic"  horizontalCenter="0" verticalCenter="0" />
-		<components1:Download visible="false" id="download" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}"
-			zoom="{zoom}" bound="{bound}"/>
+		<components1:Download visible="false" id="download" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}" chooseTaxon="{chooseTaxon}"
+			zoom="{zoom}" bound="{bound}" />
 	</mx:Canvas>
 </mx:Canvas>
