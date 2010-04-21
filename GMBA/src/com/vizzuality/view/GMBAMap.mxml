@@ -387,13 +387,17 @@
 		    }
 		    
 		    private function zoomIn(event:MapMouseEvent=null):void {
-		    	if(map.getZoom()<7)
-		    		map.setCenter(event.latLng,map.getZoom()+1);
+		    	if(map.getZoom()<7) {
+		    		map.setZoom(map.getZoom()+1);
+		    		//map.setCenter(event.latLng,map.getZoom()+1);
+		    	}
 			}
 			
 			private function zoomOut():void {
-				if(map.getZoom()>2)
+				if(map.getZoom()>2){
 					map.setZoom(map.getZoom()-1);
+				}
+				
 			}
 		    
 		    private function makeNewURL():void {
@@ -438,10 +442,10 @@
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" top="5" bottom="5" right="5" left="5"/>
 			
 			<mx:Button styleName="btnZoomMore" height="24" width="24" right="17" top="10" click="zoomIn()"
-				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
+				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomIn"/>
 				
 			<mx:Button styleName="btnZoomMinus" height="24" width="24" right="17" top="38" click="zoomOut()"
-				mouseChildren="false" buttonMode="true" useHandCursor="true"/>
+				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomOut"/>
 			
 
 			<mx:Image bottom="12" left="70" source="@Embed('/assets/logoMapVizz.png')"

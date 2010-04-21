@@ -160,23 +160,39 @@
 				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
 				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
 				
-				var taxonValue:Number = taxonId_allTaxa;
-				
 				if (chooseTaxon.id != null) {
+					
+					var taxonValue:Number;
+									
 					taxonValue = (chooseTaxon.id) as Number;
 					taxonRank = (chooseTaxon.type) as String;
+					
+					ppApiService.send({
+					    minElevation:elevationValues[0],
+						maxElevation:elevationValues[1],
+						minRelief:reliefValues[0],
+						maxRelief:reliefValues[1],
+						taxonId:taxonValue,
+						tvzCode:tvzCode,
+						minCellId:minCellId,			
+						maxCellId:maxCellId	
+					});
+				}
+				else {	// ALL TAXA
+					ppApiService.send({
+						taxonId:taxonId_allTaxa,	// REMOVE THIS WHEN TIM CHANGE THE SERVICE
+					    minElevation:elevationValues[0],
+						maxElevation:elevationValues[1],
+						minRelief:reliefValues[0],
+						maxRelief:reliefValues[1],
+						tvzCode:tvzCode,
+						minCellId:minCellId,			
+						maxCellId:maxCellId	
+					});	
 				}
 				
-				ppApiService.send({
-				    minElevation:elevationValues[0],
-					maxElevation:elevationValues[1],
-					minRelief:reliefValues[0],
-					maxRelief:reliefValues[1],	
-					taxonId:taxonValue,
-					tvzCode:tvzCode,
-					minCellId:minCellId,			
-					maxCellId:maxCellId	
-				});
+				
+				
 			
  				//taxonId=14706247&minElevation=-4&maxElevation=200000&minRelief=0&maxRelief=2000&taxonId=14706247&minCellId=0&maxCellId=37324799
  				
@@ -252,26 +268,43 @@
 				 
  				ppApiService.url= serviceURL + "/service/download";
 				
-				var taxonValue:Number = taxonId_allTaxa;
+				
+				
 				if (chooseTaxon.id != null) {
+					var taxonValue:Number;
+					
 					taxonValue = (chooseTaxon.id) as Number;
 					taxonRank = (chooseTaxon.type) as String;
+					
+					ppApiService.send({
+						rank:taxonRank,
+						tvzCode:tvzCode,
+					    //minElevation:elevationValues[0],
+						//maxElevation:elevationValues[1],
+						//minRelief:reliefValues[0],
+						//maxRelief:reliefValues[1],	
+						taxonId:taxonValue//,
+						//minCellId:minCellId,			// Datos de prueba
+						//maxCellId:maxCellId		// Datos de prueba
+					});
+				}
+				else {	// ALL TAXA
+						ppApiService.send({
+						tvzCode:tvzCode,
+						taxonId:taxonId_allTaxa	// REMOVE THIS WHEN TIM CHANGE THE SERVICE		
+					    //minElevation:elevationValues[0],
+						//maxElevation:elevationValues[1],
+						//minRelief:reliefValues[0],
+						//maxRelief:reliefValues[1],	
+						//minCellId:minCellId,			// Datos de prueba
+						//maxCellId:maxCellId		// Datos de prueba
+					});
 				}
 				
 				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
 				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
 				
-				ppApiService.send({
-					rank:taxonRank,
-					tvzCode:tvzCode,
-				    //minElevation:elevationValues[0],
-					//maxElevation:elevationValues[1],
-					//minRelief:reliefValues[0],
-					//maxRelief:reliefValues[1],	
-					taxonId:taxonValue//,
-					//minCellId:minCellId,			// Datos de prueba
-					//maxCellId:maxCellId		// Datos de prueba
-				});
+				
 				
 /* 				taxonId: the id of the taxon in the GBIF backbone (nub) taxonomy. This is mandatory
     			rank: one of kingdom,phylum,class,order,family,genus,species(will include subspecies) or nub(will not include subspecies). This is mandatory
