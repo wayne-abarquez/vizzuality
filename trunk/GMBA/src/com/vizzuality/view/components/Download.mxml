@@ -130,6 +130,7 @@
 			private function initLoading():void{
 				
 				this.terms.selected = false;
+				this.shadowbutton1.enabled = false;
 				
 				ppApiService.addEventListener(ResultEvent.RESULT,onServiceResult);
 				
@@ -264,8 +265,9 @@
 				downloadInProcess = true;
 				ppApiService.url= downloadURL;
 				
-							
-				timer = new Timer(2000,0);
+				
+				// After 2 minutes, the timer will stop			
+				timer = new Timer(2000,180000);
 				timer.addEventListener(TimerEvent.TIMER,ppApiService.send);
 				timer.start();
 				
