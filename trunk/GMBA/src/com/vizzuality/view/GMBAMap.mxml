@@ -107,7 +107,13 @@
             }
             
             private function onChangeTaxon(event:ChooseTaxonEvent):void{
-            	toolBar.taxonSearch.searchText.text = event.information_.labelField;
+            	toolBar.taxonSearch.currentState = 'SelectedTaxon';
+            	if (event.information_.labelField==null) {
+            		toolBar.taxonSearch.taxonName = event.information_.scientificName;
+            		toolBar.taxonSearch.list.visible = false;
+            	} else {
+	            	toolBar.taxonSearch.taxonName = event.information_.labelField;
+            	}
             	mamufas.visible=false; download.visible = false; taxonomic.visible = false;
             	chooseTaxon = event.information_;
             }
@@ -470,5 +476,6 @@
 		<components1:TaxonomicBrowser visible="false" id="taxonomic"  horizontalCenter="0" verticalCenter="0" />
 		<components1:Download visible="false" id="download" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}" chooseTaxon="{chooseTaxon}"
 			zoom="{zoom}" bound="{bound}" />
+		
 	</mx:Canvas>
 </mx:Canvas>

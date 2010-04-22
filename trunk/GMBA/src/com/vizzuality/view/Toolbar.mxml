@@ -201,7 +201,7 @@
 		
 		<!--VEGETATION-->
 		<mx:Canvas width="100%" height="255">
-			<mx:VBox verticalGap="0" left="20" top="15" width="100%">
+			<mx:VBox verticalGap="0" left="20" top="15" right="5">
 				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 				<mx:VBox verticalGap="1" width="100%">
 					<mx:Spacer height="5" />
