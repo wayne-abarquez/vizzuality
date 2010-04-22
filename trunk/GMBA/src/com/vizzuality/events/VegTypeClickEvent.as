@@ -10,10 +10,10 @@ package com.vizzuality.events
         public static const MY_EVENT:String = "clickOnVegTypeEvent";
  
         // constructor
-        public function VegTypeClickEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false):void
+        public function VegTypeClickEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=true):void
         {
         	
-            super(type,true,true);
+            super(type,bubbles,cancelable);
             //super(type);
         }
         

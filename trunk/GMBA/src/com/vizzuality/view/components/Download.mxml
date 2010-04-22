@@ -110,10 +110,21 @@
 			public function setCriteriaValues():void{
 				
 			 	id_elevation_filter0.text = elevationValues[0];
+			 	var longTextFilter:Number = elevationValues[0].toString().length;
+				arrowRangeElevation.x = id_elevation_filter0.x + (longTextFilter) * 5;
+				
+				
+				
 				id_elevation_filter1.text = elevationValues[1];
+				id_elevation_filter1.x = arrowRangeElevation.x + arrowRangeElevation.height + 10;
 				
 				id_relief_filter0.text = reliefValues[0];
+				
+				longTextFilter = reliefValues[0].toString().length;
+				arrowRangeRelief.x = id_relief_filter0.x + (longTextFilter) * 5;
+				
 				id_relief_filter1.text = reliefValues[1];
+				id_relief_filter1.x = arrowRangeRelief.x + arrowRangeRelief.height + 10; 
 				
 				if (chooseTaxon.id != null)
 					id_taxon_result.text = chooseTaxon.labelField;
@@ -392,7 +403,7 @@
 		<mx:Label text="SCOPE AND SUMMARY OF YOUR DATA" color="#FFFFFF" fontWeight="normal" fontSize="13"  width="100%" height="23" id="label1"/>
 		<mx:Spacer height="5" />
 		<mx:Canvas height="74" width="574" styleName="bkgTopDownload" id="canvasTopDownload">
-			<mx:Label x="10" y="10" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter0" />
+			<mx:Label x="10" y="10" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter0"/>
 			<mx:Image id="arrowRangeElevation" x="50" y="20" source="assets/arrowRange.png" />
 			<mx:Label x="66" y="10" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter1" />
 			<mx:Label x="10" y="34" text="ELEVATION RANGE" fontSize="11" color="#4D4D4D" id="elevationLabel" />
