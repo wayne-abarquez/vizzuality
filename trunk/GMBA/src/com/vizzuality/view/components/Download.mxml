@@ -55,6 +55,19 @@
 			<mx:RemoveChild target="{label5}"/>
 			<mx:RemoveChild target="{hbox3}"/>
 		</mx:State>
+		<mx:State name="nodata_bbox">
+			<mx:RemoveChild target="{downloadsize1}"/>
+			<mx:RemoveChild target="{downloadrepeat1}"/>
+			<mx:RemoveChild target="{downloadrepeat2}"/>
+			<mx:RemoveChild target="{downloadrepeat3}"/>
+			<mx:RemoveChild target="{downloadrepeat4}"/>
+			<mx:RemoveChild target="{hbox1}"/>
+			<mx:RemoveChild target="{hbox2}"/>
+			<mx:RemoveChild target="{shadowbutton1}"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Label x="10" y="10" text="Sorry, there is no data for the taxon and filters that you have selected" fontSize="17" color="#FFFFFF" id="id_text_waiting"  width="554" height="98"/>
+			</mx:AddChild>
+		</mx:State>
 	</mx:states>
 	
 	
@@ -91,6 +104,10 @@
 			private var downloadURL:String;
 			private var timer:Timer;
 			
+			// All World
+			private var minCellId:Number = 0;	
+			private var maxCellId:Number = 37324799;
+			
 			// All TAXA
 			private var taxonId_allTaxa:Number = 14706247;
 			
@@ -108,6 +125,7 @@
 			}			
 			
 			public function setCriteriaValues():void{
+				
 				
 			 	id_elevation_filter0.text = elevationValues[0];
 			 	var longTextFilter:Number = elevationValues[0].toString().length;
@@ -151,13 +169,16 @@
 					}
 				}
 				
+				setDownloadBox();
+				
 				id_number_veg_types.text = "" +numberVegTypes;
 				
-				initLoading();
+				
+				initSearch();
 				
 			} 
 			
-			private function initLoading():void{
+			private function initSearch(searchWorldScale:Boolean = false):void{
 				
 				this.terms.selected = false;
 				this.shadowbutton1.enabled = false;
@@ -168,8 +189,10 @@
 				 
  				ppApiService.url= serviceURL + "/service/search";
 				
-				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
-				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
+				if (!searchWorldScale) {
+					minCellId = Application.application.gmbaMap.getMinCellId();
+					maxCellId = Application.application.gmbaMap.getMaxCellId();
+				}	
 				
 				if (chooseTaxon.id != null) {
 					
@@ -202,9 +225,6 @@
 					});	
 				}
 				
-				
-				
-			
  				//taxonId=14706247&minElevation=-4&maxElevation=200000&minRelief=0&maxRelief=2000&taxonId=14706247&minCellId=0&maxCellId=37324799
  				
 				currentState="loading";	
@@ -213,7 +233,7 @@
 			
 			private function onCreationComplete():void {
 				 
-				MyEventDispatcher.addEventListener(ChangeMapZoom.CHANGED, onChangeMapZoom);
+				//MyEventDispatcher.addEventListener(ChangeMapZoom.CHANGED, onChangeMapZoom);
 				
 			}	
 			
@@ -257,17 +277,17 @@
 				
 			} 
 			
-			private function onChangeMapZoom(ev:ChangeMapZoom): void {
-				if (Number(ev.zoom)<=2) {
+			private function setDownloadBox(): void {
+				if (Number(Application.application.gmbaMap.getZoom())<=2) {
 					download_world.selected_item = true;
 					download_bound.selected_item = false;
 				} else {
 					download_world.selected_item = false;
 					download_bound.selected_item = true;
 				}
-			}		
+			}
 			
-			private function onClickToDownload():void {
+			private function initDownload(downloadWorldScale:Boolean = false):void {
 
 				downloadInProcess = false;
 				
@@ -279,8 +299,10 @@
 				 
  				ppApiService.url= serviceURL + "/service/download";
 				
-				var minCellId:Number = Application.application.gmbaMap.getMinCellId();
-				var maxCellId:Number = Application.application.gmbaMap.getMaxCellId();
+				if (!downloadWorldScale) {
+					minCellId = Application.application.gmbaMap.getMinCellId();
+					maxCellId = Application.application.gmbaMap.getMaxCellId();
+				}	
 				
 				if (chooseTaxon.id != null) {
 					var taxonValue:Number;
@@ -313,16 +335,7 @@
 						maxCellId:maxCellId		// Datos de prueba
 					});
 				}
-				
-				
-				
-				
-				
-/* 				taxonId: the id of the taxon in the GBIF backbone (nub) taxonomy. This is mandatory
-    			rank: one of kingdom,phylum,class,order,family,genus,species(will include subspecies) or nub(will not include subspecies). This is mandatory
-			    tvzCode: the tvzCodes (see WIKI). This can be repeated to logically OR tvzCodes
- */    
-    
+   
  			}
  			
  			private function onErrorDownloading(event:FaultEvent):void{
@@ -354,7 +367,6 @@
 			}
 			
 			private function checkStatus(event:ResultEvent):void{
-				// TODO: Stop the time after the time	
 				if (downloadInProcess) {
 					
 					var res:Object = JSON.decode(event.result as String);
@@ -375,10 +387,24 @@
 					}
 					
 				}
-				
 			}
 
-
+			private function clickToDownloadWorld():void{
+				download_world.selected_item=true; 
+				download_bound.selected_item=false;
+				
+				initSearch(true);
+				
+			}
+			
+			private function clickToDownloadBBox():void{
+				download_world.selected_item=false; 
+				download_bound.selected_item=true;
+				
+				initSearch();
+				
+			}
+			
 			private function navigateToDownload():void{
 				
 				navigateToURL(new URLRequest(urlToDownload),"_blank");	
@@ -403,27 +429,27 @@
 		<mx:Label text="SCOPE AND SUMMARY OF YOUR DATA" color="#FFFFFF" fontWeight="normal" fontSize="13"  width="100%" height="23" id="label1"/>
 		<mx:Spacer height="5" />
 		<mx:Canvas height="74" width="574" styleName="bkgTopDownload" id="canvasTopDownload">
-			<mx:Label x="10" y="10" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter0"/>
-			<mx:Image id="arrowRangeElevation" x="50" y="20" source="assets/arrowRange.png" />
-			<mx:Label x="66" y="10" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter1" />
-			<mx:Label x="10" y="34" text="ELEVATION RANGE" fontSize="11" color="#4D4D4D" id="elevationLabel" />
+			<mx:Label x="10" y="8" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter0"/>
+			<mx:Image id="arrowRangeElevation" x="50" y="18" source="assets/arrowRange.png" />
+			<mx:Label x="66" y="8" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter1" />
+			<mx:Label x="10" y="30" text="ELEVATION RANGE" fontSize="11" color="#4D4D4D" id="elevationLabel" />
 			
-			<mx:Label x="132" y="10" text="130" fontSize="17" color="#FFFFFF" id="id_relief_filter0" />
-			<mx:Image id="arrowRangeRelief" x="183" y="20" source="assets/arrowRange.png" />
-			<mx:Label x="200" y="10" text="451" fontSize="17" color="#FFFFFF" id="id_relief_filter1" />
-			<mx:Label x="132" y="34" text="ROUGHNESS RANGE" fontSize="11" color="#4D4D4D" id="roughnessLabel" />
+			<mx:Label x="132" y="8" text="130" fontSize="17" color="#FFFFFF" id="id_relief_filter0" />
+			<mx:Image id="arrowRangeRelief" x="183" y="18" source="assets/arrowRange.png" />
+			<mx:Label x="200" y="8" text="451" fontSize="17" color="#FFFFFF" id="id_relief_filter1" />
+			<mx:Label x="132" y="30" text="ROUGHNESS RANGE" fontSize="11" color="#4D4D4D" id="roughnessLabel" />
 			
-			<mx:Label x="259" y="10" text="Number" fontSize="17" color="#FFFFFF" id="id_number_veg_types"  width="100.33333" height="23"/>
-			<mx:Label x="259" y="34" text="VEGETATION TYPES" fontSize="11" color="#4D4D4D" id="vegetationLabel" />
+			<mx:Label x="259" y="8" text="Number" fontSize="17" color="#FFFFFF" id="id_number_veg_types"  width="100.33333" height="23"/>
+			<mx:Label x="259" y="30" text="VEGETATION TYPES" fontSize="11" color="#4D4D4D" id="vegetationLabel" />
 			
-			<mx:Label x="384" y="10" text="ALL TAXA" fontSize="17" color="#FFFFFF" id="id_taxon_result"  width="180" height="23"/>
-			<mx:Label x="384" y="34" text="TAXON SELECTED" fontSize="11" color="#4D4D4D" id="taxonSelectedLabel" />
+			<mx:Label x="384" y="8" text="ALL TAXA" fontSize="17" color="#FFFFFF" id="id_taxon_result"  width="180" height="23"/>
+			<mx:Label x="384" y="30" text="TAXON SELECTED" fontSize="11" color="#4D4D4D" id="taxonSelectedLabel" />
 		</mx:Canvas>
 	
 		<mx:Canvas height="135" width="574" backgroundColor="#121213" id="canvas2" horizontalScrollPolicy="off">
 			<mx:HBox  horizontalGap="15" left="20" right="20" top="21" bottom="23" id="hbox4">
-				<components:DownloadType id="download_world" click="download_world.selected_item=true; download_bound.selected_item=false;" world_type="World" selected_item="false" />
-				<components:DownloadType id="download_bound" click="download_world.selected_item=false; download_bound.selected_item=true;" world_type="Bound" selected_item="true" />
+				<components:DownloadType id="download_world" click="clickToDownloadWorld()" world_type="World" selected_item="false" />
+				<components:DownloadType id="download_bound" click="clickToDownloadBBox()" world_type="Bound" selected_item="true" />
 			</mx:HBox>
 		</mx:Canvas>
 		<mx:Canvas width="574" height="118" backgroundColor="#121213" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
@@ -432,9 +458,9 @@
 			<mx:HBox horizontalGap="0" right="20" left="20" top="30" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="hbox1">
 				<components:DownloadSize  label_number="{downloadSize}" id="downloadsize1" />
 				<components:DownloadRepeat label_number="{ocurrences}" label_text="OCCURENCES" id="downloadrepeat1"/>
-				<components:DownloadRepeat label_number="{observations}" label_text="OBSERVATIONS" />
-				<components:DownloadRepeat label_number="{specimens}" label_text="SPECIMENS" />
-				<components:DownloadRepeat label_number="{providers}" label_text="PROVIDERS" bar="false"/>
+				<components:DownloadRepeat label_number="{observations}" label_text="OBSERVATIONS"  id="downloadrepeat2"/>
+				<components:DownloadRepeat label_number="{specimens}" label_text="SPECIMENS"  id="downloadrepeat3"/>
+				<components:DownloadRepeat label_number="{providers}" label_text="PROVIDERS" bar="false" id="downloadrepeat4"/>
 			</mx:HBox>
 		</mx:Canvas>
 	</mx:VBox>
@@ -446,6 +472,6 @@
 		<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('../html/termsAndConditions.html'))" id="button2"/>
 		<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label7"/>
 	</mx:HBox>	
-	<utils:ShadowButton height="32" label="Download" color="#FFFFFF" fontSize="17" fontWeight="normal" click="onClickToDownload()"
+	<utils:ShadowButton height="32" label="Download" color="#FFFFFF" fontSize="17" fontWeight="normal" click="initDownload()"
 					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="30" bottom="30" width="150" id="shadowbutton1" enabled="false"/>
 </mx:Canvas>

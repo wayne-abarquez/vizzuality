@@ -232,6 +232,7 @@
 			    map.setDoubleClickMode(MapAction.ACTION_NOTHING);
 			    map.addEventListener(MapMouseEvent.DOUBLE_CLICK,zoomIn);
 			    
+			    
 				//initialize the taxon layer
 				var startTaxon:TaxonSelectedEvent= new TaxonSelectedEvent(TaxonSelectedEvent.TAXON_SELECTED,"1","1");
 				onTaxonSelected(startTaxon);			    
@@ -402,6 +403,10 @@
 				}
 				
 			}
+			
+			public function getZoom():Number{
+					return map.getZoom();
+			}
 		    
 		    private function makeNewURL():void {
 		    	var url:String="";
@@ -444,10 +449,10 @@
 				
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" top="5" bottom="5" right="5" left="5"/>
 			
-			<mx:Button styleName="btnZoomMore" height="24" width="24" right="17" top="10" click="zoomIn()"
+			<mx:Button styleName="btnZoomMore" height="24" width="24" right="15" top="17" click="zoomIn()"
 				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomIn"/>
 				
-			<mx:Button styleName="btnZoomMinus" height="24" width="24" right="17" top="38" click="zoomOut()"
+			<mx:Button styleName="btnZoomMinus" height="24" width="24" right="15" top="45" click="zoomOut()"
 				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomOut"/>
 			
 
