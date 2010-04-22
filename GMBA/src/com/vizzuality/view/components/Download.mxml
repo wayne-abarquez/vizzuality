@@ -8,7 +8,7 @@
 			<mx:RemoveChild target="{downloadrepeat1}"/>
 			<mx:RemoveChild target="{hbox1}"/>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:SWFLoader horizontalCenter="0" verticalCenter="6" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/>
+				<mx:SWFLoader horizontalCenter="0" verticalCenter="6" width="30" height="30" source="@Embed('/assets/loaderGray.swf')" id="swfloader1"/>
 			</mx:AddChild>
 	
 		</mx:State>
@@ -43,7 +43,7 @@
 				</mx:HBox>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<utils:ShadowButton height="32" label="Create another request" color="#FFFFFF" fontSize="17" fontWeight="normal"
+				<utils:ShadowButton height="32" label="Close window" color="#FFFFFF" fontSize="17" fontWeight="normal"
 					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" y="243" horizontalCenter="0" click="MyEventDispatcher.onCloseDownloadWindow()"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{label3}"/>
@@ -55,21 +55,41 @@
 			<mx:RemoveChild target="{label5}"/>
 			<mx:RemoveChild target="{hbox3}"/>
 		</mx:State>
-		<mx:State name="nodata_bbox">
-			<mx:RemoveChild target="{downloadsize1}"/>
-			<mx:RemoveChild target="{downloadrepeat1}"/>
-			<mx:RemoveChild target="{downloadrepeat2}"/>
-			<mx:RemoveChild target="{downloadrepeat3}"/>
-			<mx:RemoveChild target="{downloadrepeat4}"/>
-			<mx:RemoveChild target="{hbox1}"/>
+		<mx:State name="nodata_world" basedOn="loading">
+			<mx:RemoveChild target="{swfloader1}"/>
+			<mx:RemoveChild target="{terms}"/>
+			<mx:RemoveChild target="{label6}"/>
+			<mx:RemoveChild target="{button2}"/>
+			<mx:RemoveChild target="{label7}"/>
 			<mx:RemoveChild target="{hbox2}"/>
+			<mx:AddChild position="lastChild">
+				<utils:ShadowButton height="32" label="Cancel" color="#FFFFFF" fontSize="17" fontWeight="normal" click="MyEventDispatcher.onCloseDownloadWindow(); currentState = '';"
+								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="242" bottom="30" width="150" id="cancelProcess" enabled="true"/>
+			</mx:AddChild>
 			<mx:RemoveChild target="{shadowbutton1}"/>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:Label x="10" y="10" text="Sorry, there is no data for the taxon and filters that you have selected" fontSize="17" color="#FFFFFF" id="id_text_waiting"  width="554" height="98"/>
+				<mx:Label x="10" y="78" text="Sorry, there is no data for the taxon and filters that you have selected." fontSize="17" color="#FFFFFF" id="id_taxon_result0"  width="554" height="19"/>
 			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Label x="10" y="105" text="Try expanding filter criterias." fontSize="17" color="#FFFFFF" id="message2"  width="554" height="25"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{download_bound}"/>
+			<mx:RemoveChild target="{download_world}"/>
+			<mx:RemoveChild target="{hbox4}"/>
+			<mx:RemoveChild target="{canvas2}"/>
+			<mx:SetProperty target="{canvas1}" name="height" value="258"/>
 		</mx:State>
+		<mx:State name="nodata_bbox" basedOn="loading">
+			<mx:RemoveChild target="{hbox2}"/>
+			<mx:RemoveChild target="{shadowbutton1}"/>
+			<mx:SetStyle target="{swfloader1}" name="verticalCenter" value="8"/>
+			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+				<mx:Label x="10" y="10" text="Sorry, there is no data for your filters. We are searching on world scale." fontSize="17" color="#FFFFFF" id="id_taxon_result1"  width="554" height="57"/>
+			</mx:AddChild>
+			<mx:SetProperty target="{canvas1}" name="height" value="172"/>
+		</mx:State>
+		
 	</mx:states>
-	
 	
 	<mx:Script>
 		<![CDATA[
@@ -95,6 +115,8 @@
 			private var urlToDownload:String;
 			private var taxonRank:String;
 			private var tvzCode:Array = [];
+			private var searchingWorld:Boolean = true;
+			
 			
 			public var bound: LatLngBounds;
 			public var zoom: Number;
@@ -184,7 +206,6 @@
 				this.shadowbutton1.enabled = false;
 				
 				ppApiService.addEventListener(ResultEvent.RESULT,onServiceResult);
-				
 				ppApiService.addEventListener(FaultEvent.FAULT,onErrorLoading);
 				 
  				ppApiService.url= serviceURL + "/service/search";
@@ -192,6 +213,10 @@
 				if (!searchWorldScale) {
 					minCellId = Application.application.gmbaMap.getMinCellId();
 					maxCellId = Application.application.gmbaMap.getMaxCellId();
+				}
+				else {
+					minCellId = 0;	
+					maxCellId = 37324799;
 				}	
 				
 				if (chooseTaxon.id != null) {
@@ -227,7 +252,8 @@
 				
  				//taxonId=14706247&minElevation=-4&maxElevation=200000&minRelief=0&maxRelief=2000&taxonId=14706247&minCellId=0&maxCellId=37324799
  				
-				currentState="loading";	
+ 				if (this.currentState != "nodata_bbox")	currentState="loading";
+ 					
 				
 			}
 			
@@ -245,7 +271,6 @@
 
 			}
 			
-			
 			// Decoding the result
 			 private function onServiceResult(event:ResultEvent):void {
 				
@@ -259,21 +284,44 @@
 				// Our estimation -> 1 ocurrence = 10KB
 				var sizeDownloading:String = ((this.ocurrences * 39) / 1000).toPrecision(3);
 				
-				//var sizeDownloading:String = (this.ocurrences * 39).toPrecision(3);
 				
-				// ¿MB?, ¿KB?, ¿Bytes?			
-				if (sizeDownloading.length > 6){
-					this.downloadSize = sizeDownloading.substring(0,sizeDownloading.length - 3);
-					this.downloadSize += "MB"; 						  
-				} 			
-				else{
-					this.downloadSize = sizeDownloading + "KB"; 						  
-				} 			
-								
-				this.currentState = "";
-				
-				ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
-				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
+				if (this.ocurrences > 0) {
+					//var sizeDownloading:String = (this.ocurrences * 39).toPrecision(3);
+					
+					// ¿MB?, ¿KB?, ¿Bytes?			
+					if (sizeDownloading.length > 6){
+						this.downloadSize = sizeDownloading.substring(0,sizeDownloading.length - 3);
+						this.downloadSize += "MB"; 						  
+					} 			
+					else{
+						this.downloadSize = sizeDownloading + "KB"; 						  
+					} 			
+									
+					this.currentState = "";
+					
+					ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+				}
+				else {
+					
+					if (searchingWorld) {
+						this.currentState = "nodata_world";
+						
+						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
+					}
+					else {
+						searchingWorld = true;
+						
+						
+						this.currentState = "nodata_bbox";
+						
+						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
+						
+						// 5 seconds after, will begin the search on the world
+						TweenLite.delayedCall(3,initSearch,[true]);
+					}
+				}				
 				
 			} 
 			
@@ -281,14 +329,16 @@
 				if (Number(Application.application.gmbaMap.getZoom())<=2) {
 					download_world.selected_item = true;
 					download_bound.selected_item = false;
+					searchingWorld = true;
 				} else {
 					download_world.selected_item = false;
 					download_bound.selected_item = true;
+					searchingWorld = false;
 				}
 			}
 			
 			private function initDownload(downloadWorldScale:Boolean = false):void {
-
+				
 				downloadInProcess = false;
 				
 				currentState = 'processing';
@@ -385,31 +435,27 @@
 						
 						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 					}
-					
 				}
 			}
 
 			private function clickToDownloadWorld():void{
 				download_world.selected_item=true; 
 				download_bound.selected_item=false;
-				
+				searchingWorld = true;
 				initSearch(true);
-				
 			}
 			
 			private function clickToDownloadBBox():void{
 				download_world.selected_item=false; 
 				download_bound.selected_item=true;
-				
+				searchingWorld = false;
 				initSearch();
-				
 			}
 			
 			private function navigateToDownload():void{
-				
 				navigateToURL(new URLRequest(urlToDownload),"_blank");	
-				
 			}
+			
 			private function activateDownload():void{
 				if (shadowbutton1.enabled == true)
 					shadowbutton1.enabled = false;
