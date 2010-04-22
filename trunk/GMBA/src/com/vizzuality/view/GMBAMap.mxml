@@ -6,7 +6,7 @@
 	removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()" xmlns:components1="com.vizzuality.view.components.*" xmlns:components2="org.vizzuality.components.*"
     minHeight="742"
-    minWidth="1240">
+    minWidth="1000">
 	<mx:states>
 		<mx:State name="Help">
 			<mx:SetProperty target="{help1}" name="visible" value="true"/>
@@ -435,7 +435,7 @@
 	<mx:Canvas styleName="bkgBigCanvas" top="22" left="22" right="29" bottom="24" backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off"> 
 
 		<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
-			<view:Toolbar width="22%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}" id="toolBar"/>
+			<view:Toolbar width="30%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}" id="toolBar"/>
 			<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
 				<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 				<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
@@ -445,7 +445,7 @@
 			</mx:Canvas>
 		</mx:VBox>
 		
-		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="78%" id="canvasMapContainer">
+		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="70%" id="canvasMapContainer">
 				
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" top="5" bottom="5" right="5" left="5"/>
 			
