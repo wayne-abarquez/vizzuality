@@ -387,7 +387,7 @@ package com.vizzuality.view.components
 			
 			
 			list.setStyle("paddingBottom","0");
-			list.setStyle("paddingLeft","-1");
+			list.setStyle("paddingLeft","0");
 			list.setStyle("paddingRight","0");
 			list.setStyle("paddingTop","-1");
 			list.setStyle('backgroundColor','0x131314');

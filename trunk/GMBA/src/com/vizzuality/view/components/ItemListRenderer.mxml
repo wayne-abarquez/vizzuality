@@ -55,51 +55,49 @@
 			     
 			 	 if(TreeBrowserList(owner).isItemSelected(data)) {
 					if (parseInt(children_number)==0) {
-				 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
-							setStyle("backgroundImage",grayDarkCanvas_last);
-				     		specieLabel.setStyle('color', 0x333333);
-			            	specieGroup.setStyle('color', 0x939393);
-					     } else {
-							setStyle("backgroundImage",yellowCanvas_last);
-					     	specieLabel.setStyle('color', 0xFFFFFF);
-			             	specieGroup.setStyle('color', 0x826718);
-					     }
+						setStyle("backgroundImage",grayDarkCanvas_last);
+			     		specieLabel.setStyle('color', 0x333333);
+		            	specieGroup.setStyle('color', 0x939393);
+		            	addButton.setStyle('color',0xFAFAFA);
+		            	addButton.setStyle('textRollOverColor',0xFAFAFA);
 				 	} else {
-				 	 	if (TreeBrowserList(owner).isItemHighlighted(data)) {
-							setStyle("backgroundImage",yellowCanvas);
-					     	specieLabel.setStyle('color', 0xFFFFFF);
-			             	specieGroup.setStyle('color', 0x826718);
-					     } else {
-					     	setStyle("backgroundImage",grayDarkCanvas);
-				     		specieLabel.setStyle('color', 0x333333);
-			            	specieGroup.setStyle('color', 0x939393);
-
-					     }
-				 		
+				     	setStyle("backgroundImage",grayDarkCanvas);
+			     		specieLabel.setStyle('color', 0x333333);
+		            	specieGroup.setStyle('color', 0x939393);
+		            	addButton.setStyle('color',0xFAFAFA);
+		            	addButton.setStyle('textRollOverColor',0xFAFAFA);
 				 	}
 
 				 } else {
 				 	if (parseInt(children_number)==0) {
 					 	 if (TreeBrowserList(owner).isItemHighlighted(data)) {
 							setStyle("backgroundImage",grayDarkCanvas_last);
-					     	specieLabel.setStyle('color', 0x333333);
-				            specieGroup.setStyle('color', 0x939393);
+			     			specieLabel.setStyle('color', 0x333333);
+		            		specieGroup.setStyle('color', 0x939393);
+		            		addButton.setStyle('color',0xFAFAFA);
+		            		addButton.setStyle('textRollOverColor',0xFAFAFA);
+				            
 					     } else {
 					     	setStyle("backgroundImage",yellowCanvas_last);
 							specieLabel.setStyle('color', 0xFFFFFF);
 							specieGroup.setStyle('color', 0x826718);
+							addButton.setStyle('color',0xB48F26);
+							addButton.setStyle('textRollOverColor',0xB48F26);
 					     }
 				 	} else {
-					 	 if (TreeBrowserList(owner).isItemHighlighted(data)) {
+				     	if (TreeBrowserList(owner).isItemHighlighted(data)) {
 							setStyle("backgroundImage",grayDarkCanvas);
-					     	specieLabel.setStyle('color', 0x333333);
-				            specieGroup.setStyle('color', 0x939393);
+			     			specieLabel.setStyle('color', 0x333333);
+		            		specieGroup.setStyle('color', 0x939393);
+		            		addButton.setStyle('color',0xFAFAFA);
+		            		addButton.setStyle('textRollOverColor',0xFAFAFA);
 					     } else {
 					     	setStyle("backgroundImage",yellowCanvas);
 							specieLabel.setStyle('color', 0xFFFFFF);
 							specieGroup.setStyle('color', 0x826718);
+							addButton.setStyle('color',0xB48F26);
+							addButton.setStyle('textRollOverColor',0xB48F26);
 					     }
-				 		
 				 	}
 				 	
 				 }
@@ -166,13 +164,15 @@
 		]]>
 	</mx:Script>
 	
-	<mx:Canvas id="mamufas" backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52" visible="{(taxon == 'Load more...')? false : true}">
-	 	<components:FlickrImage id="flickrImg" left="3" horizontalAlign="center" verticalAlign="middle" top="3" width="46" height="46"/>
+	<mx:DropShadowFilter id="sh"  distance="3" angle="90" alpha="0.2" />
+	
+	<mx:Canvas id="mamufas" backgroundColor="#FFFFFF" left="7" width="52" top="7" height="52" visible="{(taxon == 'Load more...')? false : true}" filters="{[sh]}">
+	 	<components:FlickrImage id="flickrImg" left="3" horizontalAlign="center" verticalAlign="middle" top="3" width="46" height="46"  />
 	</mx:Canvas>
     <mx:Label id="specieLabel" text="{taxon}" textAlign="left" top="{(taxon == 'Load more...')? 5 : 3}" left="{(taxon == 'Load more...')? 30 : 65}" fontSize="{(taxon == 'Load more...')? 20 : 14}" width="{(parseInt(children_number)==0 || type=='species')? 155 : 135}" height="23" fontFamily="DINOT-Medium" color="#666666"/>
     <mx:Label id="specieGroup" text="{children_number} taxons" textAlign="left" top="21" left="65" fontSize="11" width="135" 
     	height="23" fontFamily="DINOT-Medium" color="#A7a7a7" visible="{(children_number == '0' || children_number==null)? false : true}" />
-    <mx:Button styleName="add" label="ADD"  x="67" y="41" height="18" click="stopPropagation=true;" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+    <mx:Button styleName="add" label="ADD THIS"  x="67" y="41" height="18" click="stopPropagation=true;" buttonMode="true" useHandCursor="true" mouseChildren="false" fontSize="10" id="addButton" />
 	<mx:SWFLoader id="loading" right="13" verticalCenter="0" source="@Embed('assets/loadAnimation2.swf')" 
 		width="15" height="15" visible="false" alpha=".5"/>
    
