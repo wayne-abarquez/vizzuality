@@ -111,7 +111,7 @@
 				
 			 	id_elevation_filter0.text = elevationValues[0];
 			 	var longTextFilter:Number = elevationValues[0].toString().length;
-				arrowRangeElevation.x = id_elevation_filter0.x + (longTextFilter) * 5;
+				arrowRangeElevation.x = id_elevation_filter0.x + (longTextFilter) * 8 + 10;
 				
 				
 				
@@ -121,7 +121,7 @@
 				id_relief_filter0.text = reliefValues[0];
 				
 				longTextFilter = reliefValues[0].toString().length;
-				arrowRangeRelief.x = id_relief_filter0.x + (longTextFilter) * 5;
+				arrowRangeRelief.x = id_relief_filter0.x + (longTextFilter) * 8 + 10;
 				
 				id_relief_filter1.text = reliefValues[1];
 				id_relief_filter1.x = arrowRangeRelief.x + arrowRangeRelief.height + 10; 
