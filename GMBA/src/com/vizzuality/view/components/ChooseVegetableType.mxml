@@ -53,7 +53,7 @@
 		useHandCursor="true" mouseChildren="false" rollOver="setStyleRollOver()" rollOut="setStyleRollOut()" id="labelVegType" styleName="labelVegTypes" width="147" fontWeight="{(_selected)?'bold':'normal'}" click="{_selected=true;}"/>
 		
 	<mx:Canvas id="mamufas" visible="{(!mamufa)?true:false}" verticalCenter="0" right="4">
-		<mx:Button label="deselect"  mouseChildren="false" useHandCursor="true" visible="{(_selected)?true:false}" styleName="nullButton" buttonMode="true"/>
+		<mx:Button label="deselect"  mouseChildren="false" useHandCursor="true" visible="{(_selected)?true:false}" styleName="nullButton" buttonMode="true" click="onClickDeselect()" />
 		<!--click="onClickDeselect()" -->
 	</mx:Canvas>
 	
