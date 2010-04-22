@@ -8,7 +8,7 @@
 			<mx:RemoveChild target="{downloadrepeat1}"/>
 			<mx:RemoveChild target="{hbox1}"/>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:SWFLoader horizontalCenter="-7" width="30" height="30" source="@Embed('/assets/loadAnimation.swf')" id="swfloader1" verticalCenter="0" scaleContent="true"/>
+				<mx:SWFLoader horizontalCenter="-7" width="30" height="30" source="@Embed('/assets/loaderGray.swf')" id="swfloader1" verticalCenter="0" scaleContent="true"/>
 			</mx:AddChild>
 	
 		</mx:State>
