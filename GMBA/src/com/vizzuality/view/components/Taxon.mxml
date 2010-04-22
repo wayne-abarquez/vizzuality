@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="110" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*"
 	creationComplete="init()">
+	<mx:states>
+		<mx:State name="SelectedTaxon">
+			<mx:RemoveChild target="{searchText}"/>
+			<mx:RemoveChild target="{button1}"/>
+			<mx:RemoveChild target="{loader}"/>
+			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
+				<mx:Label text="{(taxonName.length>25)?taxonName.substr(0,25)+'...':taxonName}" color="0xFFFFFF" verticalCenter="0" left="13" fontSize="12" fontFamily="Arial" id="taxonLabel" styleName="labelVegTypes" width="100%" fontWeight="bold" 
+					truncateToFit="true"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
+				<mx:Button label="deselect"  mouseChildren="false" textAlign="right" useHandCursor="true" styleName="nullButton" buttonMode="true" click="changeTaxonState()"  paddingBottom="0" paddingRight="0" paddingTop="0" paddingLeft="0"/>
+			</mx:AddChild>
+			<mx:SetStyle target="{search_as_you_type}" name="backgroundImage" value="null"/>
+			<mx:SetStyle target="{hbox1}" name="paddingRight" value="0"/>
+		</mx:State>
+	</mx:states>
 	<mx:Script>
 		<![CDATA[
 			import mx.events.ListEvent;
@@ -26,24 +42,38 @@
 			[Bindable] private var taxonProvider: ArrayCollection = new ArrayCollection();
 			private var popup:IFlexDisplayObject;
 			
+			[Bindable] public var taxonName: String = 'All taxa';
+			
 			private function init():void {
 				Application.application.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {
 					if (!(contains(ev.target as DisplayObject)) || !(ev.target == this)) {
 						list.visible = false;
+						if (list.searchText.text != '') {
+							searchText.text = list.searchText.text;
+						}
 					}					
 				});
-				addEventListener(ResizeEvent.RESIZE, function (ev:ResizeEvent):void {
+				Application.application.addEventListener(ResizeEvent.RESIZE, function (ev:ResizeEvent):void {
 					list.visible = false;
 					list.width = searchText.width;
+					currentState = 'SelectedTaxon';
 				});
+				addEventListener(KeyboardEvent.KEY_DOWN,onKeyPress);
 				var pt:Point = new Point(search_as_you_type.x, search_as_you_type.y);
 	            pt = search_as_you_type.localToGlobal(pt);
-	            list.x = pt.x;
-	            list.y = pt.y;
+	            list.x = pt.x-6;
+	            list.y = pt.y-139;
 				list.visible = false;
-				list.width = search_as_you_type.width;
+				list.width = search_as_you_type.width + 12;
 				PopUpManager.addPopUp(list as IFlexDisplayObject,this,false);
 				
+			}
+			
+			private function onKeyPress(event:KeyboardEvent):void {
+				if (event.keyCode == 27) {
+					currentState = 'SelectedTaxon';
+					list.visible = false;
+				}
 			}
 			
 			private function onChangeText():void {
@@ -59,13 +89,10 @@
  				var res:Object = JSON.decode(event.result as String);	
  				taxonProvider = new ArrayCollection(res.data);
  				if (taxonProvider.length>0) {
-					list.visible = true; 					
+					list.visible = true;
+					list.taxonText = searchText.text;
+					list.searchText.setFocus();					
  				} else {
- 					if (taxonProvider.length>7) {
- 						list.height = 200;
- 					} else {
- 						list.height = 30*taxonProvider.length;
- 					}
  					list.visible = false;
  				}
  				loader.visible = false;
@@ -82,7 +109,13 @@
         		searchText.text = ev.itemRenderer.data.scientificName as String;
         		list.visible = false;
         	}
-			
+        	
+        	private function changeTaxonState():void {
+        		searchText.text = '';
+        		searchText.setFocus();
+        		currentState = '';
+        	}
+        	
 			
 		]]>
 	</mx:Script>
@@ -92,16 +125,20 @@
 	<mx:VBox horizontalGap="0" verticalGap="0" left="20" top="15" right="20" id="componentsBox" >
 		<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 		<mx:Spacer height="5"/>
-		<mx:Canvas backgroundImage="{SEARCH}" width="100%" backgroundSize="100%" id="search_as_you_type">
-			<mx:HBox width="100%" horizontalGap="0" styleName="taxon" backgroundSize="100%" paddingTop="5" paddingBottom="5" verticalCenter="0" horizontalAlign="center" verticalAlign="top" paddingLeft="0" paddingRight="8">
+		<mx:Canvas backgroundImage="{SEARCH}" width="100%" backgroundSize="100%" id="search_as_you_type" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:HBox width="100%" horizontalGap="0" styleName="taxon" backgroundSize="100%" paddingTop="5" paddingBottom="5" verticalCenter="0" horizontalAlign="center" verticalAlign="top" 
+				paddingLeft="0" paddingRight="8" id="hbox1" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 				<mx:TextInput text="All taxa" styleName="taxon" verticalCenter="0" id="searchText" change="if (searchText.text.length>3) onChangeText()" click="{(searchText.text=='All taxa')?searchText.text='':null}"  themeColor="#DBDBDB" width="100%"/>
 				<mx:Image source="{ANIMATION}" width="32" height="16" visible="false" id="loader"/>
-				<mx:Button width="15" styleName="taxon" height="20" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
+				<mx:Button width="15" styleName="taxon" height="20" buttonMode="true" useHandCursor="true" mouseChildren="false" id="button1"/>
 			</mx:HBox>
 		</mx:Canvas>
 		<mx:Button label="explore the taxonomic tree" styleName="explore" useHandCursor="true" mouseChildren="false" buttonMode="true" click="MyEventDispatcher.onOpenTaxonomic();"/>
 	</mx:VBox>
-	<mx:List id="list" visible="false" dataProvider="{taxonProvider}" width="100%" labelFunction="returnValues" styleName="taxaList" itemClick="onItemClick(event)" />
+	
+	<components:SearchList visible="false" id="list" dataList="{taxonProvider}" />
+
+	
 	<mx:HTTPService  method="GET" id="taxonRequest" result="onResultTaxon(event)" fault="onFaultTaxon(event)" resultFormat="text" concurrency="last"/>
 	<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
 </mx:Canvas>

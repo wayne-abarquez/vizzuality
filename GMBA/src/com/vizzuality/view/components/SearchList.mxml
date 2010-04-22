@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="151" borderStyle="solid" alpha="1.0" cornerRadius="5" themeColor="#CCCCCC" backgroundColor="#323232">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ListEvent;
+			import com.vizzuality.events.MyEventDispatcher;
+			import com.adobe.serialization.json.JSON;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.collections.ArrayCollection;
+			[Embed(source="/com/vizzuality/skin/skin.swf",symbol="searchInput")]
+			[Bindable]
+   			public var SEARCH:Class;
+   			
+			[Embed(source="/assets/loaderGray.swf")]
+			[Bindable]
+			public var ANIMATION:Class;
+			
+			[Bindable]public var taxonText: String;
+			[Bindable]public var dataList: ArrayCollection = new ArrayCollection();
+			
+			private function onChangeText():void {
+				loader.visible = true;
+				if (searchText.text.length>1) {
+					taxonRequest.url="http://ecat-dev.gbif.org/ws/usage?rkey=1&q=" + searchText.text;
+					taxonRequest.send();
+				}
+			}
+			
+			private function onResultTaxon(event:ResultEvent):void {
+ 				var res:Object = JSON.decode(event.result as String);	
+ 				dataList = new ArrayCollection(res.data);
+ 				if (dataList.length==0) {
+ 					var obj:Object = new Object();
+ 					obj.scientificName = 'No results found';
+ 					dataList.addItem(obj);
+ 				}
+ 				loader.visible = false;
+			}
+			
+			private function onFaultTaxon(event:FaultEvent):void {
+				trace('Error ' + event.fault);
+			}
+			
+            private function handleClick(event:ListEvent):void{         	
+            	MyEventDispatcher.onChooseTaxon(event.itemRenderer.data);
+            }
+			
+			
+		]]>
+	</mx:Script>
+	
+	<mx:VBox left="5" top="5" bottom="5" right="5">
+		<mx:Canvas  height="100%" width="100%" cornerRadius="5" backgroundColor="#252525" borderStyle="solid" borderColor="#252525">
+			<mx:List id="searchList" dataProvider="{dataList}" borderSkin="{null}" left="3" top="3" bottom="3" right="3" itemClick="handleClick(event)" backgroundColor="#252525" rollOverColor="#252525"
+				styleName="{null}" themeColor="{null}" itemRenderer="com.vizzuality.view.components.SearchListRenderer" />
+		</mx:Canvas>
+		<mx:Canvas backgroundImage="{SEARCH}" width="100%" backgroundSize="100%" id="search_as_you_type" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:HBox horizontalGap="0" styleName="taxon" backgroundSize="100%" paddingTop="5" paddingBottom="5" verticalCenter="0" horizontalAlign="center" verticalAlign="top" paddingLeft="0" paddingRight="8" id="hbox1" right="0" left="0">
+				<mx:TextInput text="{taxonText}" styleName="taxon" verticalCenter="0" id="searchText" change="if (searchText.text.length>3) onChangeText()" click="{(searchText.text=='All taxa')?searchText.text='':null}"  themeColor="#DBDBDB" width="100%"/>
+				<mx:Image source="{ANIMATION}" width="32" height="16" visible="false" id="loader"/>
+				<mx:Button width="15" styleName="taxon" height="20" buttonMode="true" useHandCursor="true" mouseChildren="false" id="button1"/>
+			</mx:HBox>
+		</mx:Canvas>
+	</mx:VBox>
+	
+	<mx:HTTPService  method="GET" id="taxonRequest" result="onResultTaxon(event)" fault="onFaultTaxon(event)" resultFormat="text" concurrency="last"/>
+	
+</mx:Canvas>

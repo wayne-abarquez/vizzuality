@@ -173,7 +173,7 @@
     <mx:Label id="specieGroup" text="{children_number} taxons" textAlign="left" top="21" left="65" fontSize="11" width="135" 
     	height="23" fontFamily="DINOT-Medium" color="#A7a7a7" visible="{(children_number == '0' || children_number==null)? false : true}" />
     <mx:Button styleName="add" label="ADD THIS"  x="67" y="41" height="18" click="stopPropagation=true;" buttonMode="true" useHandCursor="true" mouseChildren="false" fontSize="10" id="addButton" />
-	<mx:SWFLoader id="loading" right="13" verticalCenter="0" source="@Embed('assets/loadAnimation2.swf')" 
+	<mx:SWFLoader id="loading" right="13" verticalCenter="-2" source="@Embed('assets/loadAnimation2.swf')" 
 		width="15" height="15" visible="false" alpha=".5"/>
    
 </mx:Canvas>

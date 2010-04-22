@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="80%" xmlns:components = "com.vizzuality.utils.*" useHandCursor="true" buttonMode="true" mouseChildren="false"
+	 verticalScrollPolicy="off" horizontalScrollPolicy="off" height="31"  mouseOver="hadleOver(event)" borderColor="#252525" 
+	 >
+
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.List;
+			import com.vizzuality.events.MyEventDispatcher;
+			import mx.controls.Button;
+			
+			[Bindable]private var taxon:String;
+		
+
+           	public override function set data(value:Object):void{
+                super.data = value;
+                if(value == null){
+                	taxon="";
+                    return;
+                } else {
+	                taxon = value.scientificName;                	
+                }
+            }
+            
+            
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			     super.updateDisplayList(unscaledWidth, unscaledHeight);		     
+			 	 /* this.setStyle('backgroundColor','0x252525'); */
+			}  
+                
+            
+            private function hadleOver(event:MouseEvent):void {
+            	/* this.setStyle('backgroundColor','0x252525');
+            	this.setStyle('borderColor','0x252525'); */
+            }
+
+		]]>
+	</mx:Script>
+
+    <mx:Label id="specieLabel" top="4" text="{(taxon.length>30)?taxon.substr(0,30)+'...':taxon}" fontFamily="DINOT-Medium" color="#ffffff" fontSize="12" bottom="5" width="100%" left="0"/>
+    <mx:HRule height="1" bottom="0" left="0" width="100%" strokeColor="#3C3C3C"/>
+
+   
+</mx:Canvas>
