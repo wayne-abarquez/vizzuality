@@ -185,7 +185,6 @@ ScrollBar{
 	upArrowDownSkin: Embed(source="general.swf", symbol="ScrollArrowUp_downSkin");
 	upArrowOverSkin: Embed(source="general.swf", symbol="ScrollArrowUp_overSkin");
 	upArrowUpSkin: Embed(source="general.swf", symbol="ScrollArrowUp_upSkin");
-
 }
 
 ToolTip {
@@ -212,12 +211,16 @@ List.taxaList {
 }
 Button.add
 {
-	color: #333333;
+	up-skin: Embed(source="general.swf", symbol="btnAddThis");	
+	over-skin: Embed(source="general.swf", symbol="btnAddThis_over");	
+	down-skin: Embed(source="general.swf", symbol="btnAddThis_over");
+	color: #FFFFFF;
 	fontFamily: DINOT-Medium;
-	fontSize: 12;
+	fontSize: 10;
 	textAlign: left;
 	fontWeight: normal;
-	themeColor: #333333;
+	themeColor: #000000;
 	padding-left:5;
 	padding-right:5;
+	focusAlpha: 0;
 }
