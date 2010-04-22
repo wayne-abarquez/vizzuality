@@ -18,7 +18,7 @@ package com.vizzuality.utils
 		public function DataTipeSlider() {
 			tf= new TextField();
             var format:TextFormat = tf.getTextFormat();
-            format.font = "Arial";
+            /* format.font = ROSES; */
             format.size = 9;
             format.bold = false;
 			format.align = TextFormatAlign.CENTER;	                    
@@ -26,6 +26,7 @@ package com.vizzuality.utils
 	        format.rightMargin = 5;
            	
             tf.defaultTextFormat = format;
+            /* tf.embedFonts = true; */
             tf.textColor = 0xBFBFBF;
             tf.text = "8000m";
 			tf.autoSize = TextFieldAutoSize.CENTER;
