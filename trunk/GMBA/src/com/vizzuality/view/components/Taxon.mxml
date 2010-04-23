@@ -35,7 +35,7 @@
 			[Bindable]
    			public var SEARCH:Class;
    			
-			[Embed(source="/assets/loaderGray.swf")]
+			[Embed(source="/assets/loaderGrayInput.swf")]
 			[Bindable]
 			public var ANIMATION:Class;
 			

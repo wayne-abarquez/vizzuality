@@ -12,21 +12,21 @@ package com.vizzuality.utils
 		public var background: Sprite = new Sprite();
 		public var arrow: Sprite = new Sprite();
 		
-		/* [Embed(source='/com/vizzuality/skin/fonts/roses.swf',fontName='',fontWeight='normal')]
-       	public var ROSES:Class; */
+		[Embed(source='/com/vizzuality/skin/fonts/roses.swf',fontName='Roses are FF0000_8pt_st',fontWeight='normal')]
+       	public var ROSES:Class;
 
 		public function DataTipeSlider() {
 			tf= new TextField();
             var format:TextFormat = tf.getTextFormat();
-            /* format.font = ROSES; */
-            format.size = 9;
+            format.font = "Roses are FF0000_8pt_st";
+            format.size = 8;
             format.bold = false;
 			format.align = TextFormatAlign.CENTER;	                    
            	format.leftMargin = 5;
 	        format.rightMargin = 5;
            	
             tf.defaultTextFormat = format;
-            /* tf.embedFonts = true; */
+            tf.embedFonts = true;
             tf.textColor = 0xBFBFBF;
             tf.text = "8000m";
 			tf.autoSize = TextFieldAutoSize.CENTER;

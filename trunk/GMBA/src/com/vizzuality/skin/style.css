@@ -38,6 +38,20 @@ Text {
 	font-family: 'DINOT-Medium';
 }
 
+
+CheckBox{
+        disabledIcon: Embed(source="skin.swf", symbol="bkg_checkBox");
+        downIcon: Embed(source="skin.swf", symbol="bkg_checkBox");
+        overIcon: Embed(source="skin.swf", symbol="bkg_checkBox");
+        selectedDisabledIcon: Embed(source="skin.swf", symbol="bkg_checkBox");
+        selectedDownIcon: Embed(source="skin.swf", symbol="bkg_checkBox_checked");
+        selectedOverIcon: Embed(source="skin.swf", symbol="bkg_checkBox_checked");
+        selectedUpIcon: Embed(source="skin.swf", symbol="bkg_checkBox_checked");
+        upIcon: Embed(source="skin.swf", symbol="bkg_checkBox");
+
+}
+
+
 HBox.taxon {
 	background-image: Embed(source="skin.swf",symbol="searchInput");
 }
