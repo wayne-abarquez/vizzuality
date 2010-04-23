@@ -357,7 +357,6 @@
 				var minCellId:Number = 0;
 				var latitude:Number = map.getLatLngBounds().getSouthWest().lat();
 				var longitude:Number = map.getLatLngBounds().getSouthWest().lng();
-			
 				
 				//minCellId = Math.round(((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360));
 				minCellId = 0;

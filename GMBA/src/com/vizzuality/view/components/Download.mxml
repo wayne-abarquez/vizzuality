@@ -1,5 +1,5 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" height="477" width="634" backgroundColor="#1A1A1B" backgroundAlpha="1" 
-	xmlns:utils="com.vizzuality.utils.*" xmlns:components="com.vizzuality.view.components.*" currentState="">
+	xmlns:utils="com.vizzuality.utils.*" xmlns:components="com.vizzuality.view.components.*" currentState="" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 	
 	<mx:states>
 		
@@ -24,7 +24,8 @@
 				<mx:Label text="It could take some minutes. Please be patient." horizontalCenter="0" verticalCenter="-6" color="#FFFFFF" fontSize="12" id="label3"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" color="#FFFFFF" label="" minimum="0" maximum="100" enabled="true" id="progressbarDownloading" />
+				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" color="#FFFFFF" label="" minimum="0" maximum="100" enabled="true" 
+					id="progressbarDownloading"/>
 			</mx:AddChild>
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
@@ -68,16 +69,21 @@
 			</mx:AddChild>
 			<mx:RemoveChild target="{shadowbutton1}"/>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:Label x="10" y="78" text="Sorry, there is no data for the taxon and filters that you have selected." fontSize="17" color="#FFFFFF" id="id_taxon_result0"  width="554" height="19"/>
+				<mx:Label x="10" y="36" text="Sorry, there is no data for the taxon and filters that you have selected." fontSize="17" color="#FFFFFF" id="id_taxon_result0"  width="554" height="19"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:Label x="10" y="105" text="Try expanding filter criterias." fontSize="17" color="#FFFFFF" id="message2"  width="554" height="25"/>
+				<mx:Label x="10" y="63" text="Try expanding filter criterias." fontSize="17" color="#FFFFFF" id="message2"  width="554" height="25"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{download_bound}"/>
 			<mx:RemoveChild target="{download_world}"/>
 			<mx:RemoveChild target="{hbox4}"/>
 			<mx:RemoveChild target="{canvas2}"/>
-			<mx:SetProperty target="{canvas1}" name="height" value="258"/>
+			<mx:SetProperty target="{canvas1}" name="height" value="214"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="59"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="41"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="100"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="75"/>
+			<mx:SetProperty target="{canvas2}" name="height" value="44"/>
 		</mx:State>
 		<mx:State name="nodata_bbox" basedOn="loading">
 			<mx:RemoveChild target="{hbox2}"/>
@@ -85,7 +91,7 @@
 			<mx:SetStyle target="{swfloader1}" name="verticalCenter" value="8" />
 			<mx:SetStyle target="{swfloader1}" name="horizontalCenter" value="0" />
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:Label x="10" y="10" text="Sorry, there is no data for your filters. We are searching on world scale." fontSize="17" color="#FFFFFF" id="id_taxon_result1"  width="554" height="57"/>
+				<mx:Label x="10" y="27" text="Sorry, there is no data for your filters. We are searching on world scale." fontSize="17" color="#FFFFFF" id="id_taxon_result1"  width="554" height="57"/>
 			</mx:AddChild>
 			<mx:SetProperty target="{canvas1}" name="height" value="172"/>
 		</mx:State>
@@ -193,9 +199,7 @@
 				}
 				
 				setDownloadBox();
-				
 				id_number_veg_types.text = "" +numberVegTypes;
-				
 				
 				initSearch();
 				
@@ -206,7 +210,7 @@
 				this.terms.selected = false;
 				this.shadowbutton1.enabled = false;
 				
-				ppApiService.addEventListener(ResultEvent.RESULT,onServiceResult);
+				ppApiService.addEventListener(ResultEvent.RESULT,onServiceSearchResult);
 				ppApiService.addEventListener(FaultEvent.FAULT,onErrorLoading);
 				 
  				ppApiService.url= serviceURL + "/service/search";
@@ -240,7 +244,6 @@
 				}
 				else {	// ALL TAXA
 					ppApiService.send({
-						taxonId:taxonId_allTaxa,	// REMOVE THIS WHEN TIM CHANGE THE SERVICE
 					    minElevation:elevationValues[0],
 						maxElevation:elevationValues[1],
 						minRelief:reliefValues[0],
@@ -250,12 +253,7 @@
 						maxCellId:maxCellId	
 					});	
 				}
-				
- 				//taxonId=14706247&minElevation=-4&maxElevation=200000&minRelief=0&maxRelief=2000&taxonId=14706247&minCellId=0&maxCellId=37324799
- 				
  				if (this.currentState != "nodata_bbox")	currentState="loading";
- 					
-				
 			}
 			
 			private function onCreationComplete():void {
@@ -267,13 +265,12 @@
 			private function onErrorLoading(event:FaultEvent):void{
 				currentState="error";	
 
-				ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+				ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
-
 			}
 			
 			// Decoding the result
-			 private function onServiceResult(event:ResultEvent):void {
+			 private function onServiceSearchResult(event:ResultEvent):void {
 				
 				var res:Object = JSON.decode(event.result as String);
 				
@@ -283,13 +280,13 @@
 				this.ocurrences = (res.total) as Number;
 				
 				// Our estimation -> 1 ocurrence = 10KB
-				var sizeDownloading:String = ((this.ocurrences * 39) / 1000).toPrecision(3);
+				var sizeDownloading:String = ((this.ocurrences * 39) / 1024).toPrecision(3);
 				
 				
 				if (this.ocurrences > 0) {
 					//var sizeDownloading:String = (this.ocurrences * 39).toPrecision(3);
 					
-					// ¿MB?, ¿KB?, ¿Bytes?			
+					// ¿MB?, ¿KB?			
 					if (sizeDownloading.length > 6){
 						this.downloadSize = sizeDownloading.substring(0,sizeDownloading.length - 3);
 						this.downloadSize += "MB"; 						  
@@ -300,26 +297,25 @@
 									
 					this.currentState = "";
 					
-					ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+					ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 				}
 				else {
 					
 					if (searchingWorld) {
 						this.currentState = "nodata_world";
 						
-						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 					}
 					else {
 						searchingWorld = true;
 						
-						
 						this.currentState = "nodata_bbox";
 						
-						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceResult);
+						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 						
-						// 5 seconds after, will begin the search on the world
+						// 5 seconds after, will start the search on the world
 						TweenLite.delayedCall(3,initSearch,[true]);
 					}
 				}				
@@ -364,26 +360,24 @@
 					ppApiService.send({
 						rank:taxonRank,
 						tvzCode:tvzCode,
-					    //minElevation:elevationValues[0],
-						//maxElevation:elevationValues[1],
-						//minRelief:reliefValues[0],
-						//maxRelief:reliefValues[1],	
+					    minElevation:elevationValues[0],
+						maxElevation:elevationValues[1],
+						minRelief:reliefValues[0],
+						maxRelief:reliefValues[1],	
 						taxonId:taxonValue,
-						minCellId:minCellId,	// Datos de prueba
-						maxCellId:maxCellId		// Datos de prueba
+						minCellId:minCellId,	
+						maxCellId:maxCellId		
 					});
 				}
 				else {	// ALL TAXA
 						ppApiService.send({
 						tvzCode:tvzCode,
-						rank:taxonRank, // REMOVE THIS WHEN TIM CHANGE THE SERVICE
-						taxonId:taxonId_allTaxa,	// REMOVE THIS WHEN TIM CHANGE THE SERVICE		
-					    //minElevation:elevationValues[0],
-						//maxElevation:elevationValues[1],
-						//minRelief:reliefValues[0],
-						//maxRelief:reliefValues[1],	
-						minCellId:minCellId,	// Datos de prueba
-						maxCellId:maxCellId		// Datos de prueba
+					    minElevation:elevationValues[0],
+						maxElevation:elevationValues[1],
+						minRelief:reliefValues[0],
+						maxRelief:reliefValues[1],	
+						minCellId:minCellId,
+						maxCellId:maxCellId	
 					});
 				}
    
@@ -409,7 +403,6 @@
 				downloadInProcess = true;
 				ppApiService.url= downloadURL;
 				
-				
 				// After 2 minutes, the timer will stop			
 				timer = new Timer(2000,180000);
 				timer.addEventListener(TimerEvent.TIMER,ppApiService.send);
@@ -429,6 +422,8 @@
 						timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
 						
 						urlToDownload = serviceURL + (res.url) as String;
+						
+						//progressbarDownloading.source = 
 						
 						navigateToURL(new URLRequest(urlToDownload),"_blank");	
 						
@@ -499,7 +494,7 @@
 				<components:DownloadType id="download_bound" click="clickToDownloadBBox()" world_type="Bound" selected_item="true" />
 			</mx:HBox>
 		</mx:Canvas>
-		<mx:Canvas width="574" height="118" backgroundColor="#121213" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
+		<mx:Canvas width="574" height="118" backgroundColor="#0D0D0D" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
 			
 			<mx:HBox horizontalGap="0" right="20" left="20" top="30" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="hbox1">
 				<components:DownloadSize  label_number="{downloadSize}" id="downloadsize1" />
@@ -513,7 +508,7 @@
 	
 	
 	<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox2">
-		<mx:CheckBox id="terms" label="" cornerRadius="10" click="activateDownload()" selected="false"/>
+		<mx:CheckBox id="terms" label="" cornerRadius="10"  click="activateDownload()" selected="false" useHandCursor="true" mouseChildren="false" buttonMode="true" />
 		<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3" id="label6"/>
 		<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('../html/termsAndConditions.html'))" id="button2"/>
 		<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label7"/>
