@@ -94,7 +94,7 @@ div#center_information div.bottom div.box p.blog a:hover {text-decoration:none;}
 div#center_information div.bottom div.box p a {text-decoration:none; color:#006699;}
 div#center_information div.bottom div.box p a:hover {text-decoration:underline;}
 
-div#tooltip {position:absolute; width:325px; height:60px; padding:10px 10px 10px 45px; z-index:200; top:4px; display:none; background:url(../images/home/marine_tooltip.png) no-repeat 0 0;}
+div#tooltip {position:absolute; width:325px; height:60px; padding:10px 10px 10px 45px; z-index:98; top:4px; display:none; background:url(../images/home/marine_tooltip.png) no-repeat 0 0;}
 div#tooltip h4 {float:left; width:328px; font:bold 18px Arial; color:#FF6600;}
 div#tooltip h4 a {text-decoration:none; font:bold 18px Arial; color:#FF6600;}
 div#tooltip h4 a:hover {text-decoration:underline;}
@@ -381,7 +381,7 @@ div.upper_area div.content div.right_sec p {font:bold 13px Arial; color:#777777;
 div.upper_area div.content div.right_sec p a {text-decoration:none; color:#326696;}
 div.upper_area div.content div.right_sec p a:hover {color:#254C72; border-bottom: 1px dotted #254C72;}
 
-div.pa_map {position:relative; width:100%; float:left; margin:0; height:259px; border-top:2px solid #006699; border-bottom:2px solid #006699; z-index:100; background-color:#99B3CC;}
+div#pa_map {position:relative; width:100%; float:left; margin:0; height:332px; border-top:2px solid #006699; border-bottom:2px solid #006699; z-index:100;}
 
 /* ORIGINAL SIZE */
 /*div.pa_map {position:relative; width:100%; float:left; margin:0; height:306px; border-top:2px solid #006699; border-bottom:2px solid #006699; z-index:100;}*/
@@ -589,6 +589,32 @@ div.right_container div.coordinator div.bottom_information {float:left; width:31
 div.right_container div.coordinator div.bottom_information p {font:normal 13px Arial; color:#666666;}
  
 
+a#zoom_in {position:absolute; width:25px; height:25px; top:118px; left:0; background:url(../images/region/zoom_in.png) no-repeat 0 0; z-index:1000; display:none;}
+a#zoom_in:hover {background-position: 0 -25px;}
+a#zoom_out {position:absolute; width:25px; height:25px; top:118px; left:30px; background:url(../images/region/zoom_out.png) no-repeat 0 0; z-index:1000; display:none;}
+a#zoom_out:hover {background-position: 0 -25px;}
+a#satellite {position:absolute; width:75px; height:25px; top:118px; right:0; background:url(../images/region/satellite.png) no-repeat 0 0; z-index:1000; display:none;}
+a#satellite.selected {height:32px; background:url(../images/region/satellite_selected.png) no-repeat 0 0;}
+a#satellite:hover {background-position: 0 -25px;}
+a#satellite:hover.selected {background-position:0 0;}
+a#terrain {position:absolute; width:75px; height:25px; top:118px; right:80px; background:url(../images/region/terrain.png) no-repeat 0 0; z-index:1000; display:none;}
+a#terrain.selected {height:32px; background:url(../images/region/terrain_selected.png) no-repeat 0 0;}
+a#terrain:hover {background-position: 0 -25px;}
+a#terrain:hover.selected {background-position:0 0;}
+a#previous {position:absolute; width:66px; height:56px; top:118px; left:0; background:url(../images/region/previous_region.png) no-repeat 0 0; z-index:1000; display:none;}
+a#previous:hover {background-position: 0 -56px;}
+a#next {position:absolute; width:66px; height:56px; top:118px; right:0; background:url(../images/region/next_region.png) no-repeat 0 0; z-index:1000; display:none;}
+a#next:hover {background-position: 0 -56px;}
+div#data1 {position:absolute; width:77px; height:31px; left:0; background:url(../images/region/data1.png) no-repeat 0 0; z-index:1000; padding:15px 10px;}
+div#data1 p {float:left; font:bold 15px Arial; color:#326696;}
+div#data1 label {float:left; font:bold 13px Arial; color:#326696; padding:2px 0 0 0;}
+div#data2 {position:absolute; width:81px; height:47px; left:110px; background:url(../images/region/data2.png) no-repeat 0 0; z-index:1000; padding:8px 8px;}
+div#data2 p {float:left; font:bold 31px Arial; color:#FFFFFF; letter-spacing:-2px; padding:0; line-height:32px;}
+div#data2 sup {float:left; font:bold 11px Arial; color:#FFFFFF;  letter-spacing:0; padding:1px 0 0 0;}
+div#data2 label {float:left; font:bold 13px Arial; color:#FFFFFF; width:81px; text-align:center; }
+div#data3 {position:absolute; width:77px; height:41px; left:220px; background:url(../images/region/data1.png) no-repeat 0 0; z-index:1000; padding:10px;}
+div#data3 p {float:left; font:bold 25px Arial; color:#326696; letter-spacing:-2px; width:77px; text-align:center;}
+div#data3 label {float:left; font:bold 13px Arial; color:#326696; width:81px; text-align:center; }
 
 
 /* SHARE SOCIAL MEDIA */
