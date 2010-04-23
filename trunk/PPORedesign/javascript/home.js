@@ -58,7 +58,7 @@ function init() {
   });
 
 	GEvent.addListener(polygon2, "mouseover", function(latlng, index) {
-    this.setFillStyle({color:"purple"});
+    this.setFillStyle({color:"green"});
 		var bounds = this.getBounds();
 		var polygon_center = bounds.getCenter();
 		var position = map.fromLatLngToContainerPixel(polygon_center);
