@@ -96,6 +96,8 @@ div#center_information div.bottom div.box p a:hover {text-decoration:underline;}
 
 div#tooltip {position:absolute; width:325px; height:60px; padding:10px 10px 10px 45px; z-index:200; top:4px; display:none; background:url(../images/home/marine_tooltip.png) no-repeat 0 0;}
 div#tooltip h4 {float:left; width:328px; font:bold 18px Arial; color:#FF6600;}
+div#tooltip h4 a {text-decoration:none; font:bold 18px Arial; color:#FF6600;}
+div#tooltip h4 a:hover {text-decoration:underline;}
 div#tooltip div.areas_number {float:left; margin:5px 0 0 0; padding:0; border-right:1px solid #999999; width:112px;}
 div#tooltip div.areas_number p {float:left; font:bold 13px Arial; color:#006699;}
 div#tooltip div.areas_number label {float:left;float:left; font:bold 13px Arial; color:#006699;}
