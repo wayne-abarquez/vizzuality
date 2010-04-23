@@ -489,13 +489,14 @@
 		</mx:Canvas>
 	
 		<mx:Canvas height="135" width="574" backgroundColor="#0D0D0D" id="canvas2" horizontalScrollPolicy="off">
-			<mx:HBox  left="20" right="20" top="21" id="hbox4">
+			
+		
+			<mx:HBox  left="20" right="20" top="21" id="hbox4" borderStyle="none">
 				<components:DownloadType id="download_world" click="clickToDownloadWorld()" world_type="World" selected_item="false" />
 				<components:DownloadType id="download_bound" click="clickToDownloadBBox()" world_type="Bound" selected_item="true" />
 			</mx:HBox>
 		</mx:Canvas>
-		<mx:Canvas width="574" height="118" backgroundColor="#0D0D0D" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1">
-			
+		<mx:Canvas width="574" height="118" backgroundColor="#121213" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1" top="0" borderStyle="none">
 			<mx:HBox horizontalGap="0" right="20" left="20" top="30" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="hbox1">
 				<components:DownloadSize  label_number="{downloadSize}" id="downloadsize1" />
 				<components:DownloadRepeat label_number="{ocurrences}" label_text="OCCURENCES" id="downloadrepeat1"/>
@@ -503,9 +504,10 @@
 				<components:DownloadRepeat label_number="{specimens}" label_text="SPECIMENS"  id="downloadrepeat3"/>
 				<components:DownloadRepeat label_number="{providers}" label_text="PROVIDERS" bar="false" id="downloadrepeat4"/>
 			</mx:HBox>
+			<mx:Image id="vertexDownload" width="574" source="assets/vertexDownload.jpg" height="29" y="-7"/>
+			
 		</mx:Canvas>
 	</mx:VBox>
-	
 	
 	<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox2">
 		<mx:CheckBox id="terms" label="" cornerRadius="10"  click="activateDownload()" selected="false" useHandCursor="true" mouseChildren="false" buttonMode="true" />
