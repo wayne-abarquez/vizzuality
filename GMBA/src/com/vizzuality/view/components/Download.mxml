@@ -88,10 +88,10 @@
 		<mx:State name="nodata_bbox" basedOn="loading">
 			<mx:RemoveChild target="{hbox2}"/>
 			<mx:RemoveChild target="{shadowbutton1}"/>
-			<mx:SetStyle target="{swfloader1}" name="verticalCenter" value="8" />
+			<mx:SetStyle target="{swfloader1}" name="verticalCenter" value="18" />
 			<mx:SetStyle target="{swfloader1}" name="horizontalCenter" value="0" />
 			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
-				<mx:Label x="10" y="27" text="Sorry, there is no data for your filters. We are searching on world scale." fontSize="17" color="#FFFFFF" id="id_taxon_result1"  width="554" height="57"/>
+				<mx:Label x="10" y="41" text="Sorry, there is no data for your filters. We are searching on world scale." fontSize="17" color="#FFFFFF" id="id_taxon_result1"  width="554" height="57"/>
 			</mx:AddChild>
 			<mx:SetProperty target="{canvas1}" name="height" value="172"/>
 		</mx:State>
