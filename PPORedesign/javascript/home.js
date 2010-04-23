@@ -57,6 +57,10 @@ function init() {
 		$('div#tooltip').hide();
   });
 
+	GEvent.addListener(polygon, "click", function(latlng, index) {
+		window.location = '/pa_area.html';
+  });
+
 	GEvent.addListener(polygon2, "mouseover", function(latlng, index) {
     this.setFillStyle({color:"green"});
 		var bounds = this.getBounds();
@@ -71,6 +75,11 @@ function init() {
 		this.setFillStyle({color:"#ff0000"});
 		$('div#tooltip').hide();
   });
+
+	GEvent.addListener(polygon2, "click", function(latlng, index) {
+		window.location = '/pa_area.html';
+  });
+
 
 }
 
