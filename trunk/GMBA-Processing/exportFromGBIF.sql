@@ -7,6 +7,7 @@
 update temp_gmba set cell_id = (cast(substring(cellnr,1,4) as SIGNED)-2160) * 8640 + cast(substring(cellnr,5,4) as SIGNED); 
 
 # check the gmba table has the index
+# alter table temp_gmba drop index relief,drop index cell_id;
 alter table temp_gmba add index(relief),add index(cell_id);
 
 # create a temporary table for exporting
@@ -72,6 +73,14 @@ CREATE TABLE temp_gmba_export_density (
 	basis_of_record tinyint,
 	count int
 );
+
+# All data
+# 377535 rows affected (26.43 sec)
+insert into temp_gmba_export_density
+select cell_id, mod_cell_id, 0, data_resource_id, basis_of_record, sum(count)
+from temp_gmba_occurrence_density
+group by 1,2,3,4,5;
+
 
 # kingdom to species
 # 357662 rows affected (12.16 sec)
@@ -141,7 +150,7 @@ from temp_gmba_export_density d join temp_gmba g on d.cell_id=g.cell_id;
 # doing this in the single join below is too expensive for mysql
 # 12158725 rows affected (6 min 37.21 sec)
 create table temp_gmba_occurrence_ids as 
-select o.id as id, e.elevation as elevation, e.relief as relief, e.tvzcode as tvzcode from 
+select o.id as id, e.elevation as elevation, e.relief as relief, e.tvzcode as tvzcode, e.cell_id, o.mod_cell_id from 
 temp_gmba_occurrence_trimmed o join temp_gmba e on o.cell_id = e.cell_id ;
 # 12158725 rows affected (17.58 sec)
 alter table temp_gmba_occurrence_ids add index(id);
@@ -152,6 +161,8 @@ select
 e.elevation as 'elevation',
 e.relief as 'relief',
 e.tvzcode as 'tvzcode',
+e.cell_id as 'cell_id',
+e.mod_cell_id as 'mod_cell_id',
 o.data_provider_id as 'data_provider_id',
 o.data_resource_id as 'data_resource_id', 
 dp.name as 'data_provider', 
@@ -186,8 +197,6 @@ r.longitude as 'longitude',
 o.longitude as 'longitude_interpreted', 
 r.lat_long_precision as 'coordinate_precision', 
 o.geospatial_issue as 'geospatial_issue', 
-o.cell_id as 'cell_id', 
-o.centi_cell_id as 'centi_cell_id', 
 r.min_depth as 'min_depth', 
 r.max_depth as 'max_depth', 
 r.min_altitude as 'min_altitude', 

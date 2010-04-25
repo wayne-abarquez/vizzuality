@@ -3,6 +3,7 @@
  */
 package com.vizzuality.gmba.web;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -14,7 +15,6 @@ import org.apache.commons.dbcp.ConnectionFactory;
 import org.apache.commons.dbcp.DriverManagerConnectionFactory;
 import org.apache.commons.dbcp.PoolableConnectionFactory;
 import org.apache.commons.dbcp.PoolingDataSource;
-import org.apache.commons.pool.ObjectPool;
 import org.apache.commons.pool.impl.GenericObjectPool;
 
 /**
@@ -34,8 +34,10 @@ public class AbstractServlet extends HttpServlet {
 
 	/**
 	 * The pool of mysql connections to use
+	 * We use 2 pools, to allow for seperation of services vs. downloads
 	 */
 	protected PoolingDataSource dataSource;
+	protected PoolingDataSource dataSource2;
 	
 	/**
 	 * Sets up the connection pool to the database on initialization
@@ -55,6 +57,14 @@ public class AbstractServlet extends HttpServlet {
 		@SuppressWarnings("unused")
 		PoolableConnectionFactory poolableConnectionFactory = new PoolableConnectionFactory(connectionFactory,connectionPool,null,"select 1",false,true);
 		dataSource = new PoolingDataSource(connectionPool);
+		
+		// repeat for download pool
+		GenericObjectPool connectionPool2 = new GenericObjectPool(null, 25);
+		connectionPool2.setTestOnBorrow(true);
+		ConnectionFactory connectionFactory2 = new DriverManagerConnectionFactory(getInitParameter("connectURI"), getInitParameter("user"), getInitParameter("password"));
+		@SuppressWarnings("unused")
+		PoolableConnectionFactory poolableConnectionFactory2 = new PoolableConnectionFactory(connectionFactory2,connectionPool2,null,"select 1",false,true);
+		dataSource2 = new PoolingDataSource(connectionPool2);		
 	}
 	
 	/**
@@ -67,6 +77,15 @@ public class AbstractServlet extends HttpServlet {
 		return dataSource.getConnection();
 	}
 	
+	/**
+	 * Warning -  do not forget to close the connections you borrow using connection.close()
+	 * which will return then to the pool
+	 * @return a new connection
+	 * @throws SQLException on error
+	 */
+	protected Connection getConnection2() throws SQLException {
+		return dataSource2.getConnection();
+	}
 	
 	/**
 	 * @param req To extract from
@@ -96,6 +115,38 @@ public class AbstractServlet extends HttpServlet {
 			return defaultValue;
 		}
 	}
+
+	
+	/**
+	 * @param req To extract from
+	 * @param paramName To extract
+	 * @param defaultValue If it is null or can't be made into an BigDecimal
+	 * @param throwErrorIfNull True to throw error or return the default value if no param found
+	 * @param throwErrorIfUnparsable True to throw error or return the default value if not parsable found
+	 * @return The value or the default if errors occur
+	 * @throws NumberFormatException Only if throw error is true and an issue occurs
+	 */
+	protected BigDecimal extractDecimal(HttpServletRequest req, String paramName, BigDecimal defaultValue, boolean throwErrorIfNull, boolean throwErrorIfUnparsable) throws NumberFormatException {
+		String s = req.getParameter(paramName);
+		if (s != null) {
+			try {
+				return new BigDecimal(s);
+			} catch (NumberFormatException e) {
+				if (throwErrorIfUnparsable) {
+					System.err.println("Bad decimal:" + s);
+					throw e;
+				} else {
+					return defaultValue;
+				}
+			}
+		}
+		if (throwErrorIfNull) {
+			throw new NumberFormatException("Cannot create decimal for param[" + paramName + "] as no value was in the request");
+		} else {
+			return defaultValue;
+		}
+	}
+	
 	
 	/**
 	 * @param req To extract from
