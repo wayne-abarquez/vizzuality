@@ -133,6 +133,8 @@
 			private var downloadURL:String;
 			private var timer:Timer;
 			
+			private var xDownload:Number;
+			
 			// All World
 			private var minCellId:Number = 0;	
 			private var maxCellId:Number = 37324799;
@@ -336,11 +338,14 @@
 				}
 			}
 			
-			private function initDownload(downloadWorldScale:Boolean = false):void {
-				
+			private function windowDownloadTransition(downloadWorldScale:Boolean):void{
 				downloadInProcess = false;
 				
+				this.x = Application.application.width;
+				
 				currentState = 'processing';
+				
+				TweenLite.to(this, 0.5, {x:xDownload});
 				
 				// Begin to download the data
 				ppApiService.addEventListener(ResultEvent.RESULT,onBeginToDownload);
@@ -382,6 +387,15 @@
 						maxCellId:maxCellId	
 					});
 				}
+				
+			}
+			
+			private function initDownload(downloadWorldScale:Boolean = false):void {
+				
+				xDownload = this.x;
+				
+				TweenLite.to(this, 0.5, {x:-(this.x+this.width), onComplete:windowDownloadTransition, onCompleteParams:[downloadWorldScale]});				
+				
    
  			}
  			
