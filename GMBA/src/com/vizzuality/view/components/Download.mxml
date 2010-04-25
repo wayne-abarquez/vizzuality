@@ -95,6 +95,27 @@
 			</mx:AddChild>
 			<mx:SetProperty target="{canvasDataDownload}" name="height" value="172"/>
 		</mx:State>
+		<mx:State name="bigDataNotify">
+			<mx:RemoveChild target="{downloadsize1}"/>
+			<mx:RemoveChild target="{downloadrepeat1}"/>
+			<mx:RemoveChild target="{hbox1}"/>
+			<mx:RemoveChild target="{hbox2}"/>
+			<mx:AddChild position="lastChild">
+				<utils:ShadowButton height="32" label="Download all" color="#FFFFFF" fontSize="17" fontWeight="normal" click="downloadAllData()"
+								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="375" bottom="30" width="150" id="downloadAll" enabled="true"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{downloadAll}" position="before">
+				<utils:ShadowButton height="32" label="Cancel" color="#FFFFFF" fontSize="17" fontWeight="normal" click="MyEventDispatcher.onCloseDownloadWindow(); currentState = '';"
+								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="105" bottom="30" width="150" id="cancelButton" enabled="true"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{shadowbutton1}"/>
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
+				<mx:Label x="10" y="30" text="Sorry, this is too much data to prepare download." fontSize="17" color="#FFFFFF" id="id_notify_0"  width="543" height="23"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
+				<mx:Label x="10" y="56" text="You can download the hole dataset or further refine the filter." fontSize="17" color="#FFFFFF" id="id_notify_1"  width="543" height="23"/>
+			</mx:AddChild>
+		</mx:State>
 		
 	</mx:states>
 	
@@ -136,11 +157,14 @@
 			private var xDownload:Number;
 			
 			// All World
-			private var minCellId:Number = 0;	
-			private var maxCellId:Number = 37324799;
+			private var minLatitude:Number = -90;
+			private var maxLatitude:Number = 90;
+			private var minLongitude:Number = -180;
+			private var maxLongitude:Number = 180;
 			
-			// All TAXA
-			private var taxonId_allTaxa:Number = 14706247;
+			
+			/* private var minCellId:Number = 0;	
+			private var maxCellId:Number = 37324799; */
 			
 			[Bindable]private var ocurrences:Number;
 			[Bindable]private var observations:Number;
@@ -155,6 +179,13 @@
 				
 			}			
 			
+			// TODO: Change the url
+			public function downloadAllData():void{
+				
+				navigateToURL(new URLRequest(""),"_blank");
+				
+			}
+						
 			public function setCriteriaValues():void{
 				
 				
@@ -220,12 +251,17 @@
  				ppApiService.url= serviceURL + "/service/search";
 				
 				if (!searchWorldScale) {
-					minCellId = Application.application.gmbaMap.getMinCellId();
-					maxCellId = Application.application.gmbaMap.getMaxCellId();
+					minLatitude = Application.application.gmbaMap.getMinLatitude();
+					maxLatitude = Application.application.gmbaMap.getMaxLatitude();
+					minLongitude = Application.application.gmbaMap.getMinLongitude();
+					maxLongitude = Application.application.gmbaMap.getMaxLongitude();
 				}
 				else {
-					minCellId = 0;	
-					maxCellId = 37324799;
+					// ALL WORLD
+					minLatitude = -90;
+					maxLatitude = 90;
+					minLongitude = -180;
+					maxLongitude = 180;
 				}	
 				
 				if (chooseTaxon.id != null) {
@@ -242,8 +278,10 @@
 						maxRelief:reliefValues[1],
 						taxonId:taxonValue,
 						tvzCode:tvzCode,
-						minCellId:minCellId,			
-						maxCellId:maxCellId	
+						minLongitude:minLongitude,
+						maxLongitude:maxLongitude,
+						minLatitude:minLatitude,
+						maxLatitude:maxLatitude
 					});
 				}
 				else {	// ALL TAXA
@@ -253,8 +291,10 @@
 						minRelief:reliefValues[0],
 						maxRelief:reliefValues[1],
 						tvzCode:tvzCode,
-						minCellId:minCellId,			
-						maxCellId:maxCellId	
+						minLongitude:minLongitude,
+						maxLongitude:maxLongitude,
+						minLatitude:minLatitude,
+						maxLatitude:maxLatitude
 					});	
 				}
  				if (this.currentState != "nodata_bbox")	currentState="loading";
@@ -299,11 +339,17 @@
 						this.downloadSize = sizeDownloading + "KB"; 						  
 					} 			
 									
-					canvasDataDownload.alpha = 0.0;				
-					this.currentState = "";
-					TweenLite.to(canvasDataDownload,0.5,{alpha:1.0});
-					
-					ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
+					if (this.ocurrences > 250000) {
+						this.currentState = "bigDataNotify";
+						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);						
+					}
+					else{
+						canvasDataDownload.alpha = 0.0;				
+						this.currentState = "";
+						TweenLite.to(canvasDataDownload,0.5,{alpha:1.0});
+						
+						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
+					}
 				}
 				else {
 					
@@ -356,9 +402,19 @@
  				ppApiService.url= serviceURL + "/service/download";
 				
 				if (!downloadWorldScale) {
-					minCellId = Application.application.gmbaMap.getMinCellId();
-					maxCellId = Application.application.gmbaMap.getMaxCellId();
+					minLatitude = Application.application.gmbaMap.getMinLatitude();
+					maxLatitude = Application.application.gmbaMap.getMaxLatitude();
+					minLongitude = Application.application.gmbaMap.getMinLongitude();
+					maxLongitude = Application.application.gmbaMap.getMaxLongitude();
+				}
+				else {
+					// ALL WORLD
+					minLatitude = -90;
+					maxLatitude = 90;
+					minLongitude = -180;
+					maxLongitude = 180;
 				}	
+	
 				
 				if (chooseTaxon.id != null) {
 					var taxonValue:Number;
@@ -374,8 +430,10 @@
 						minRelief:reliefValues[0],
 						maxRelief:reliefValues[1],	
 						taxonId:taxonValue,
-						minCellId:minCellId,	
-						maxCellId:maxCellId		
+						minLongitude:minLongitude,
+						maxLongitude:maxLongitude,
+						minLatitude:minLatitude,
+						maxLatitude:maxLatitude
 					});
 				}
 				else {	// ALL TAXA
@@ -385,8 +443,10 @@
 						maxElevation:elevationValues[1],
 						minRelief:reliefValues[0],
 						maxRelief:reliefValues[1],	
-						minCellId:minCellId,
-						maxCellId:maxCellId	
+						minLongitude:minLongitude,
+						maxLongitude:maxLongitude,
+						minLatitude:minLatitude,
+						maxLatitude:maxLatitude
 					});
 				}
 				
