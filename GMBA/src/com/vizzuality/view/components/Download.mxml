@@ -209,6 +209,8 @@
 			
 			private function initSearch(searchWorldScale:Boolean = false):void{
 				
+				Application.application.gmbaMap.tracker.trackPageview( "/search" );
+				
 				this.terms.selected = false;
 				this.shadowbutton1.enabled = false;
 				
@@ -345,7 +347,7 @@
 				
 				currentState = 'processing';
 				
-				TweenLite.to(this, 0.5, {x:xDownload});
+				TweenLite.to(this, 0.3, {x:xDownload});
 				
 				// Begin to download the data
 				ppApiService.addEventListener(ResultEvent.RESULT,onBeginToDownload);
@@ -391,10 +393,9 @@
 			}
 			
 			private function initDownload(downloadWorldScale:Boolean = false):void {
-				
+				Application.application.gmbaMap.tracker.trackPageview( "/download" );				
 				xDownload = this.x;
-				
-				TweenLite.to(this, 0.5, {x:-(this.x+this.width), onComplete:windowDownloadTransition, onCompleteParams:[downloadWorldScale]});				
+				TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition, onCompleteParams:[downloadWorldScale]});				
 				
    
  			}

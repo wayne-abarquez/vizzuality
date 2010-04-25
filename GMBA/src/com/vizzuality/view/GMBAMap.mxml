@@ -7,6 +7,8 @@
     currentStateChange="setSWFAddress()" xmlns:components1="com.vizzuality.view.components.*" xmlns:components2="org.vizzuality.components.*"
     minHeight="742"
     minWidth="1000">
+    
+    
 	<mx:states>
 		<mx:State name="Help">
 			<mx:SetProperty target="{help1}" name="visible" value="true"/>
@@ -15,6 +17,8 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import com.google.analytics.AnalyticsTracker;
+	    	import com.google.analytics.GATracker;
 	    	import gs.TweenLite;
 	    	import com.vizzuality.events.ChooseTaxonEvent;
 	    	import mx.controls.Text;
@@ -57,7 +61,7 @@
 	        private var mLayerTo:TileLayerOverlay;
 			[Bindable] private var zoom: Number = 2;
 			[Bindable] private var bound: LatLngBounds;
-			 
+			
 	        private var lat: Number = 40.73;
 	        private var lon: Number = -3.99;
 	        
@@ -92,6 +96,8 @@
 			private var latitudeNE:Number;
 			private var longitudeNE:Number;
 			
+			public var tracker:AnalyticsTracker;
+			
             private function initSWFAddress():void {        	
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
@@ -105,6 +111,9 @@
 	            		mamufas.visible=true; taxonomic.visible = true;
 	            	});
 	           	MyEventDispatcher.addEventListener(ChooseTaxonEvent.CHOSEN, onChangeTaxon);
+	           	
+				tracker = new GATracker( this, "UA-16019841-1", "AS3", false );
+	           	
             }
             
             private function onChangeTaxon(event:ChooseTaxonEvent):void{
@@ -415,6 +424,9 @@
 			}
 			
 			private function onClickDownload():void{
+				
+				tracker.trackPageview( "/download" );
+				
 				download.alpha = 0.0;
 				download.setCriteriaValues(); 
 				mamufas.visible=true; 
@@ -444,8 +456,6 @@
 	    ]]>
 	</mx:Script>
 	
-	
-	
 	<mx:GlowFilter id="sh" alpha="0.3" color="#000000" blurX="20" blurY="20" />
 	
 	<mx:Canvas styleName="bkgBigCanvas" top="22" left="22" right="29" bottom="24" backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off"> 
@@ -470,7 +480,6 @@
 				
 			<mx:Button styleName="btnZoomMinus" height="24" width="24" right="15" top="45" click="zoomOut()"
 				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomOut"/>
-			
 
 			<mx:Image bottom="12" left="70" source="@Embed('/assets/logoMapVizz.png')"
 				click="navigateToURL(new URLRequest('http://www.vizzuality.com'))" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
