@@ -7,7 +7,7 @@
 			<mx:RemoveChild target="{downloadsize1}"/>
 			<mx:RemoveChild target="{downloadrepeat1}"/>
 			<mx:RemoveChild target="{hbox1}"/>
-			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
 				<mx:SWFLoader horizontalCenter="-7" width="30" height="30" source="@Embed('/assets/loaderGray.swf')" id="swfloader1" verticalCenter="0" scaleContent="true"/>
 			</mx:AddChild>
 	
@@ -68,17 +68,17 @@
 								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="242" bottom="30" width="150" id="cancelProcess" enabled="true"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{shadowbutton1}"/>
-			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
 				<mx:Label x="10" y="36" text="Sorry, there is no data for the taxon and filters that you have selected." fontSize="17" color="#FFFFFF" id="id_taxon_result0"  width="554" height="19"/>
 			</mx:AddChild>
-			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
 				<mx:Label x="10" y="63" text="Try expanding filter criterias." fontSize="17" color="#FFFFFF" id="message2"  width="554" height="25"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{download_bound}"/>
 			<mx:RemoveChild target="{download_world}"/>
 			<mx:RemoveChild target="{hbox4}"/>
 			<mx:RemoveChild target="{canvas2}"/>
-			<mx:SetProperty target="{canvas1}" name="height" value="214"/>
+			<mx:SetProperty target="{canvasDataDownload}" name="height" value="214"/>
 			<mx:SetProperty target="{canvas2}" name="height" value="59"/>
 			<mx:SetProperty target="{canvas2}" name="height" value="41"/>
 			<mx:SetProperty target="{canvas2}" name="height" value="100"/>
@@ -90,10 +90,10 @@
 			<mx:RemoveChild target="{shadowbutton1}"/>
 			<mx:SetStyle target="{swfloader1}" name="verticalCenter" value="18" />
 			<mx:SetStyle target="{swfloader1}" name="horizontalCenter" value="0" />
-			<mx:AddChild relativeTo="{canvas1}" position="lastChild">
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
 				<mx:Label x="10" y="41" text="Sorry, there is no data for your filters. We are searching on world scale." fontSize="17" color="#FFFFFF" id="id_taxon_result1"  width="554" height="57"/>
 			</mx:AddChild>
-			<mx:SetProperty target="{canvas1}" name="height" value="172"/>
+			<mx:SetProperty target="{canvasDataDownload}" name="height" value="172"/>
 		</mx:State>
 		
 	</mx:states>
@@ -177,7 +177,7 @@
 					id_taxon_result.text = chooseTaxon.labelField;
 				else{
 					id_taxon_result.text = "ALL TAXA";
-					taxonRank = "species";	// ASK TO TIM, WHEN ALL TAXA IS SELECTED, WHAT IS THE TAXONRANK
+					//taxonRank = "species";	// ASK TO TIM, WHEN ALL TAXA IS SELECTED, WHAT IS THE TAXONRANK
 				}
 					
 				var numberVegTypes:Number = 0;
@@ -295,7 +295,9 @@
 						this.downloadSize = sizeDownloading + "KB"; 						  
 					} 			
 									
+					canvasDataDownload.alpha = 0.0;				
 					this.currentState = "";
+					TweenLite.to(canvasDataDownload,0.5,{alpha:1.0});
 					
 					ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 				}
@@ -496,7 +498,7 @@
 				<components:DownloadType id="download_bound" click="clickToDownloadBBox()" world_type="Bound" selected_item="true" />
 			</mx:HBox>
 		</mx:Canvas>
-		<mx:Canvas width="574" height="118" backgroundColor="#121213" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvas1" top="0" borderStyle="none">
+		<mx:Canvas width="574" height="118" backgroundColor="#121213" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="canvasDataDownload" top="0" borderStyle="none">
 			<mx:HBox horizontalGap="0" right="20" left="20" top="30" horizontalScrollPolicy="off" verticalScrollPolicy="off" id="hbox1">
 				<components:DownloadSize  label_number="{downloadSize}" id="downloadsize1" />
 				<components:DownloadRepeat label_number="{ocurrences}" label_text="OCCURENCES" id="downloadrepeat1"/>

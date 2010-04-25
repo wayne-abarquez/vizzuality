@@ -15,6 +15,7 @@
 	
 	<mx:Script>
 	    <![CDATA[
+	    	import gs.TweenLite;
 	    	import com.vizzuality.events.ChooseTaxonEvent;
 	    	import mx.controls.Text;
 	    	import com.vizzuality.maps.MaskLayer;
@@ -412,6 +413,16 @@
 			public function getZoom():Number{
 					return map.getZoom();
 			}
+			
+			private function onClickDownload():void{
+				download.alpha = 0.0;
+				download.setCriteriaValues(); 
+				mamufas.visible=true; 
+				download.setPosition(map.width, map.height, toolBar.width, toolBar.height); 
+				download.visible=true;
+				TweenLite.to(download,0.5,{alpha:1.0} ); 
+				
+			}
 		    
 		    private function makeNewURL():void {
 		    	var url:String="";
@@ -446,7 +457,7 @@
 				<mx:HRule top="1" left="0" right="0" strokeColor="#424243" strokeWidth="1" />
 				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="21"/>
 				<components:ShadowButton left="25" top="25" width="200"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
-					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="{download.setCriteriaValues(); mamufas.visible=true; download.setPosition(map.width, map.height, toolBar.width, toolBar.height); download.visible=true; }"/>
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="onClickDownload()"/>
 			</mx:Canvas>
 		</mx:VBox>
 		
@@ -474,7 +485,7 @@
 		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas" visible="false" />
 		<components1:TaxonomicBrowser visible="false" id="taxonomic"  horizontalCenter="0" verticalCenter="0" />
 		<components1:Download visible="false" id="download" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}" chooseTaxon="{chooseTaxon}"
-			zoom="{zoom}" bound="{bound}" />
+			zoom="{zoom}" bound="{bound}" alpha="0.0"/>
 		
 	</mx:Canvas>
 </mx:Canvas>
