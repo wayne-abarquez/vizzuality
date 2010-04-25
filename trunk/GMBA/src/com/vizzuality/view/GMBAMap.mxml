@@ -82,10 +82,6 @@
 			private var taxonTileLayerOverlay:TileLayerOverlay;   
 			private var taxonRasterLayer:RasterLayer;
                         	
-			
-			[Bindable] private var minCellIdShow:Number;
-			[Bindable] private var maxCellIdShow:Number;
-			
 			[Bindable] private var latitudeSW_text:String;
 			[Bindable] private var longitudeSW_text:String;
 			[Bindable] private var latitudeNE_text:String;
@@ -362,32 +358,21 @@
 		    	
 		    }
 		    
-		    public function getMinCellId():Number{
-								
-				var minCellId:Number = 0;
-				var latitude:Number = map.getLatLngBounds().getSouthWest().lat();
-				var longitude:Number = map.getLatLngBounds().getSouthWest().lng();
-				
-				//minCellId = Math.round(((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360));
-				minCellId = 0;
-				
-				return minCellId;
-
-			}
-			
-			public function getMaxCellId():Number{
-				 
-				var maxCellId:Number = 0;
-				
-				var latitude:Number = map.getLatLngBounds().getNorthEast().lat();
-				var longitude:Number = map.getLatLngBounds().getNorthEast().lng();
-				
-				//maxCellId = Math.round(((((latitude+90)*4320)/180)*8640) + (((longitude+180)*8640)/360));
-				maxCellId = 37324799;
-				
-				return maxCellId;
-
-			}
+		    public function getMinLongitude():Number {
+		    	return map.getLatLngBounds().getSouthWest().lng();
+		    }
+		    
+		    public function getMinLatitude():Number {
+		    	return map.getLatLngBounds().getSouthWest().lat();
+		    }
+		    
+		    public function getMaxLongitude():Number {
+		    	return map.getLatLngBounds().getNorthEast().lng();
+		    }
+		    
+		    public function getMaxLatitude():Number {
+		    	return map.getLatLngBounds().getNorthEast().lat();
+		    }
 		    
 		    private function onChangeMap(event:MapMoveEvent):void {
 		    	lat = Number(event.latLng.lat().toFixed(2));
