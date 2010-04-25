@@ -8,7 +8,7 @@ java -Xmx256m -classpath /Users/tim/dev/workspace/GMBA/webapp/WEB-INF/classes co
 echo "Finished density data"
 # process the environment data tiles
 echo "Starting environment data"
-java -Xmx256m -classpath /Users/tim/dev/workspace/GMBA/webapp/WEB-INF/classes com.vizzuality.gmba.process.tiles.RasterPrepare /Users/tim/dev/gmba/env.txt /tmp env 7 1 2 3 4 9
+java -Xmx256m -classpath /Users/tim/dev/workspace/GMBA/webapp/WEB-INF/classes com.vizzuality.gmba.process.tiles.RasterPrepare /Users/tim/dev/gmba/env.txt /tmp env 7 1 2 3 4 11
 echo "Sorting Z0"
 sort /tmp/env_z0.txt -o /tmp/env_z0_sorted.txt
 echo "Sorting Z1"

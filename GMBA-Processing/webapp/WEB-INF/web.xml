@@ -10,7 +10,7 @@
 	  <init-param>
 		<param-name>connectURI</param-name>
 		 <!-- e.g. jdbc:mysql://localhost:3306/gmba -->
-		<param-value>jdbc:mysql://localhost:3306/gmba</param-value>
+		<param-value>jdbc:mysql://localhost:3306/gmba?useUnicode=yes&amp;characterEncoding=UTF-8</param-value>
 	  </init-param>
 	  <init-param>
 		<param-name>user</param-name>

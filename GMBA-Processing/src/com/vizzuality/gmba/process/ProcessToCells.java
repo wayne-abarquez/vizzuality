@@ -152,6 +152,13 @@ public class ProcessToCells {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		BigDecimal lat = new BigDecimal("-67.6");
+		lat = lat.add(new BigDecimal(90));
+		int row = lat.multiply(new BigDecimal(4320)).divide(new BigDecimal(180), BigDecimal.ROUND_DOWN).intValue();
+		row = row*8640;		
+		System.out.println(row);
+		if (true) return;
+		
 		// 9 is lat, 10 is lng
 		File fin = new File("/Users/tim/dev/data/spatial/timSpatial.txt");
 		File fout = new File("/tmp/timSpatialCells.txt");
