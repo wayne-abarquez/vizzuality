@@ -105,7 +105,7 @@
 								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="375" bottom="30" width="150" id="downloadAll" enabled="true"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{downloadAll}" position="before">
-				<utils:ShadowButton height="32" label="Cancel" color="#FFFFFF" fontSize="17" fontWeight="normal" click="MyEventDispatcher.onCloseDownloadWindow(); currentState = '';"
+				<utils:ShadowButton height="32" label="Cancel" color="#FFFFFF" fontSize="17" fontWeight="normal" click="MyEventDispatcher.onCloseDownloadWindow(); currentState = ''; Application.application.gmbaMap.tracker.trackPageview('/cancel'); "
 								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="105" bottom="30" width="150" id="cancelButton" enabled="true"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{shadowbutton1}"/>
@@ -183,6 +183,8 @@
 			public function downloadAllData():void{
 				
 				navigateToURL(new URLRequest(""),"_blank");
+				
+				Application.application.gmbaMap.tracker.trackPageview( "/download/alldata");
 				
 			}
 						
@@ -312,7 +314,10 @@
 			
 			private function onErrorLoading(event:FaultEvent):void{
 				currentState="error";	
-
+				
+				Application.application.gmbaMap.tracker.trackPageview( "/error/search/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
+					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+				
 				ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 			}
@@ -470,6 +475,8 @@
  			
  			private function onErrorDownloading(event:FaultEvent):void{
 				currentState="error";	
+				Application.application.gmbaMap.tracker.trackPageview( "/error/download/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
+					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
 
 				ppApiService.removeEventListener(ResultEvent.RESULT,onBeginToDownload);
 				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
@@ -540,6 +547,9 @@
 						
 						currentState = "ready";
 						
+						Application.application.gmbaMap.tracker.trackPageview( "/download/ready/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
+							"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+							
 						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 					}
 				}
