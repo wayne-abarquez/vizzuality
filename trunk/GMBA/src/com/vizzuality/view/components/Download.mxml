@@ -24,8 +24,8 @@
 				<mx:Label text="It could take some minutes. Please be patient." horizontalCenter="0" verticalCenter="-6" color="#FFFFFF" fontSize="12" id="label3"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" color="#FFFFFF" label="" minimum="0" maximum="100" enabled="true" 
-					id="progressbarDownloading"/>
+				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" label="" minimum="0" maximum="100" enabled="true" indeterminate="true" 
+					id="progressbarDownloading"  borderColor="0x1A1A1B" trackColors="[ 0xF5C400, 0x1A1A1B ]" color="0x1A1A1B" themeColor="0xF5C400"/>
 			</mx:AddChild>
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
@@ -144,7 +144,7 @@
 			private var taxonRank:String;
 			private var tvzCode:Array = [];
 			private var searchingWorld:Boolean = true;
-			
+			private var downloadWorldScale:Boolean = false;
 			
 			public var bound: LatLngBounds;
 			public var zoom: Number;
@@ -159,8 +159,8 @@
 			// All World
 			private var minLatitude:String = "-90";
 			private var maxLatitude:String = "90";
-			private var minLongitude:String = "-180";
-			private var maxLongitude:String = "180";
+			private var minLongitude:String = "-179.9999";
+			private var maxLongitude:String = "179.9999";
 			
 			
 			/* private var minCellId:Number = 0;	
@@ -254,14 +254,17 @@
 					minLatitude = Application.application.gmbaMap.getMinLatitude();
 					maxLatitude = Application.application.gmbaMap.getMaxLatitude();
 					minLongitude = Application.application.gmbaMap.getMinLongitude();
-					maxLongitude = Application.application.gmbaMap.getMaxLongitude();
+					maxLongitude = Application.application.gmbaMap.getMaxLongitude();3
+					downloadWorldScale = false;
 				}
 				else {
 					// ALL WORLD
 					minLatitude = "-90";
 					maxLatitude = "90";
-					minLongitude = "-180";
-					maxLongitude = "180";
+					minLongitude = "-179.9999";
+					maxLongitude = "179.9999";
+					downloadWorldScale = true;
+					
 				}	
 				
 				if (chooseTaxon.id != null) {
@@ -333,7 +336,7 @@
 				this.ocurrences = (res.total) as Number;
 				
 				// Our estimation -> 1 ocurrence = 10KB
-				var sizeDownloading:String = ((this.ocurrences * 39) / 1024).toFixed(2);
+				var sizeDownloading:String = ((this.ocurrences * 63) / 1024).toPrecision(3);
 				
 				if (this.ocurrences > 0) {
 					//var sizeDownloading:String = (this.ocurrences * 39).toPrecision(3);
@@ -394,7 +397,7 @@
 				}
 			}
 			
-			private function windowDownloadTransition(downloadWorldScale:Boolean):void{
+			private function windowDownloadTransition():void{
 				downloadInProcess = false;
 				
 				this.x = Application.application.width;
@@ -420,8 +423,8 @@
 					// ALL WORLD
 					minLatitude = "-90";
 					maxLatitude = "90";
-					minLongitude = "-180";
-					maxLongitude = "180";
+					minLongitude = "-179.9999";
+					maxLongitude = "179.9999";
 				}	
 	
 				
@@ -466,10 +469,9 @@
 				
 			}
 			
-			private function initDownload(downloadWorldScale:Boolean = false):void {
+			private function initDownload():void {
 				xDownload = this.x;
-				TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition, onCompleteParams:[downloadWorldScale]});				
-				
+				TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition});				
    
  			}
  			
@@ -492,19 +494,18 @@
 				ppApiService.removeEventListener(ResultEvent.RESULT,onBeginToDownload);
 				ppApiService.addEventListener(ResultEvent.RESULT,checkStatus);
 				
-				
 				downloadInProcess = true;
 				ppApiService.url= downloadURL;
 				
 				// After 2 minutes, the timer will stop			
-				timer = new Timer(2000,60);
+				timer = new Timer(2000,0);
 				timer.addEventListener(TimerEvent.TIMER,ppApiService.send);
-				timer.addEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
+				//timer.addEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
 				timer.start();
 				
 			}
 			
-			private function errorDownloading(event:TimerEvent):void{
+			/* private function errorDownloading(event:TimerEvent):void{
 				currentState="error";	
 
 				ppApiService.removeEventListener(ResultEvent.RESULT,checkStatus);
@@ -512,7 +513,7 @@
 				timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
 				timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
 			}
-			
+			 */
 			private function removeCurrentEvent():void{
 				if (ppApiService != null){
 					ppApiService.removeEventListener(ResultEvent.RESULT,checkStatus);
@@ -523,7 +524,7 @@
 				
 				if (timer !=null){
 					timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
-					timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);	
+					//timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);	
 				}
 			}
 			
@@ -537,7 +538,7 @@
 						
 						timer.stop();
 						timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
-						timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
+						//timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
 						
 						urlToDownload = serviceURL + (res.url) as String;
 						
