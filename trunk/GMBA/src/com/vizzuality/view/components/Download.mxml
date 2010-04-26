@@ -32,8 +32,8 @@
 				<mx:Label text="It could take some minutes. Please be patient." horizontalCenter="0" verticalCenter="-6" color="#FFFFFF" fontSize="12" id="label3"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" label="" minimum="0" maximum="100" enabled="true" indeterminate="true" 
-					id="progressbarDownloading"  borderColor="0x1A1A1B" trackColors="[ 0xF5C400, 0x1A1A1B ]" color="0x1A1A1B" themeColor="0xF5C400"/>
+				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" label="" minimum="0" maximum="100" enabled="true" mode="manual"
+					id="progressbarDownloading"  borderColor="0x1A1A1B" themeColor="0xF5C400"/>
 			</mx:AddChild>
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
