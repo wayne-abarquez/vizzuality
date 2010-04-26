@@ -11,7 +11,7 @@ class OtroBache {
     }
     
     
-    public function getLocalityCoords($locality) {
+    public function getLocalityCoords($locality,$country) {
         if(file_exists( 'cache/localities.txt' )) {
             $filename = "cache/localities.txt";
             $fp = fopen($filename, "r");
@@ -23,7 +23,7 @@ class OtroBache {
         } else {
             $res=array();
         }
-        $geo = $this->georeferenceLocality($locality);
+        $geo = $this->georeferenceLocality($locality,$country);
         $res[strtolower($locality)] = $geo;          
         $fp = fopen('cache/localities.txt', 'w');
         fwrite($fp, serialize($res));
@@ -50,8 +50,8 @@ class OtroBache {
     
 
     
-    public function georeferenceLocality($locality) {
-        $url = 'http://maps.google.com/maps/geo?q='.urlencode($locality).'&output=json&sensor=false&key=' . $this->api_key;
+    public function georeferenceLocality($locality,$country) {
+        $url = 'http://maps.google.com/maps/geo?q='.urlencode($locality . ','.$country).'&output=json&sensor=false&key=' . $this->api_key;
         // make the HTTP request
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -142,12 +142,12 @@ class OtroBache {
 
     }
     
-    public function getNumBaches($locality=null) {        
+    public function getNumBaches($locality=null,$country) {        
         $ft = new FusionTable($this->fusionTablesToken); 
         if($locality!=null && $locality!="") {
-            $sql="SELECT COUNT() FROM .$this->table WHERE city='$locality'";
+            $sql="SELECT COUNT() FROM .$this->table WHERE city='$locality' AND country='$country'";
         } else {
-            $sql="SELECT COUNT() FROM .$this->table";
+            $sql="SELECT COUNT() FROM .$this->table WHERE country='$country'";
         }
         
         $res = $ft->query($sql);        
@@ -164,12 +164,12 @@ class OtroBache {
         return $resnum;
     }
     
-    public function getLastBaches($locality=null) {
+    public function getLastBaches($locality=null,$country) {
         $ft = new FusionTable($this->fusionTablesToken); 
         if($locality!=null && $locality!="") {
-            $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table WHERE city='$locality' GROUP BY lat,lon,address,address,addressline,zip,city  ORDER BY reported_date DESC LIMIT 15";
+            $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table WHERE city='$locality' AND country='$country' GROUP BY lat,lon,address,address,addressline,zip,city  ORDER BY reported_date DESC LIMIT 15";
         } else {
-            $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table GROUP BY lat,lon,address,address,addressline,zip,city ORDER BY reported_date DESC LIMIT 15";
+            $sql="SELECT count(),lat,lon,address,addressline,zip,city FROM .$this->table WHERE country='$country' GROUP BY lat,lon,address,address,addressline,zip,city ORDER BY reported_date DESC LIMIT 15";
         }            
 
         $res = $ft->query($sql);
@@ -180,9 +180,9 @@ class OtroBache {
         return $res;              
     }
     
-    public function getCities() {
+    public function getCities($country) {
         $ft = new FusionTable($this->fusionTablesToken); 
-        $sql="SELECT count(),city FROM .$this->table GROUP BY city ORDER BY count() DESC LIMIT 50";           
+        $sql="SELECT count(),city FROM .$this->table WHERE country='$country' GROUP BY city ORDER BY count() DESC LIMIT 50";           
 
         $res = $ft->query($sql);
         if($res=="User is not authorized to access the table"){
@@ -191,20 +191,6 @@ class OtroBache {
         }            
         return $res;              
     }    
-    
-    /*
-    public function deleteAllDB() {
-        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
-        $ft = new FusionTable($this->fusionTablesToken); 
-        for($i=0;$i<110;$i++) {
-            $sql="SELECT ROWID FROM .$this->table LIMIT 1";
-            $res = $ft->query($sql);
-            $sql="DELETE FROM .$this->table WHERE ROWID='".$res[0]['rowid']."'";
-            $res = $ft->query($sql);
-        }
-        return null;
-    }
-    */
     
     function visitorLocation(){
         $location = array();
@@ -246,7 +232,36 @@ class OtroBache {
         } 
 
     	return $location;
-    }    
+    } 
+    
+    /*
+    public function deleteAllDB() {
+        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
+        $ft = new FusionTable($this->fusionTablesToken); 
+        for($i=0;$i<110;$i++) {
+            $sql="SELECT ROWID FROM .$this->table LIMIT 1";
+            $res = $ft->query($sql);
+            $sql="DELETE FROM .$this->table WHERE ROWID='".$res[0]['rowid']."'";
+            $res = $ft->query($sql);
+        }
+        return null;
+    }
+    */
+    
+    
+    public function updateDB() {
+        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
+        $ft = new FusionTable($this->fusionTablesToken); 
+        for($i=0;$i<320;$i++) {
+            $sql="SELECT ROWID FROM .$this->table OFFSET ".($i+1)." LIMIT 1";
+            $res = $ft->query($sql);
+            $sql="UPDATE .$this->table SET country='Spain' WHERE ROWID='".$res[0]['rowid']."'";
+            $res = $ft->query($sql);
+        }
+        return null;
+    }
+    
+       
     
 }
 

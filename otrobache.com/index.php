@@ -4,11 +4,15 @@ require_once("services/OtroBache.php");
 
 $serv = new OtroBache();
 
+$country="Spain";
 
+if($_SERVER['HTTP_HOST']=="paraguay.otrobache.com") {
+    $country="paraguay";
+}
 
 if(isset($_REQUEST['locality'])) {
     $locality=$_REQUEST['locality'];
-    $coords = $serv->getLocalityCoords($locality);
+    $coords = $serv->getLocalityCoords($locality,$country);
     $localityName=$coords["name"];
     $bbox=$coords['bbox'];
     $swLat=$bbox['south'];
@@ -17,11 +21,15 @@ if(isset($_REQUEST['locality'])) {
     $neLon=$bbox['east'];   
  		$centerLat="0";
 		$centerLon="0";
-    $numBaches = $serv->getNumBaches(strtolower($localityName));
+    $numBaches = $serv->getNumBaches(strtolower($localityName),$country);
     //$numBachesLocality = $serv->getNumBaches(strtolower($locality));
-    $lastbaches = $serv->getLastBaches(strtolower($localityName));
+    $lastbaches = $serv->getLastBaches(strtolower($localityName),$country);
     $cities = array();
-    $url=urlencode("http://otrobache.com/en/".$locality);
+    if($country!="Spain") {
+        $url=urlencode("http://".$country.".otrobache.com/en/".$locality);
+    } else {
+        $url=urlencode("http://otrobache.com/en/".$locality);        
+    }
 } else {
     $loc=$serv->visitorLocation();
     
@@ -34,10 +42,15 @@ if(isset($_REQUEST['locality'])) {
     $neLon="0";
     $locality=null;
     $localityName="España";
-    $numBaches = $serv->getNumBaches();
-    $lastbaches = $serv->getLastBaches();    
-    $cities = $serv->getCities();
-    $url=urlencode("http://otrobache.com/");
+    $numBaches = $serv->getNumBaches(null,$country);
+    $lastbaches = $serv->getLastBaches(null,$country);    
+    $cities = $serv->getCities($country);
+    if($country!="Spain") {
+        $url=urlencode("http://".$country.".otrobache.com/");
+    } else {
+        $url=urlencode("http://otrobache.com/");        
+    }
+        
 }
 
 
