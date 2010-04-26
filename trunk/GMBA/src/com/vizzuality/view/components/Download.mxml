@@ -324,14 +324,14 @@
 				this.ocurrences = (res.total) as Number;
 				
 				// Our estimation -> 1 ocurrence = 10KB
-				var sizeDownloading:String = ((this.ocurrences * 39) / 1024).toPrecision(3);
+				var sizeDownloading:String = ((this.ocurrences * 39) / 1024).toPrecision(2);
 				
 				
 				if (this.ocurrences > 0) {
 					//var sizeDownloading:String = (this.ocurrences * 39).toPrecision(3);
 					
 					// ¿MB?, ¿KB?			
-					if (sizeDownloading.length > 6){
+					if (sizeDownloading.length > 5){
 						this.downloadSize = sizeDownloading.substring(0,sizeDownloading.length - 3);
 						this.downloadSize += "MB"; 						  
 					} 			
@@ -397,6 +397,7 @@
 				
 				// Begin to download the data
 				ppApiService.addEventListener(ResultEvent.RESULT,onBeginToDownload);
+				
 				ppApiService.addEventListener(FaultEvent.FAULT,onErrorDownloading);
 				 
  				ppApiService.url= serviceURL + "/service/download";
@@ -477,13 +478,40 @@
 				ppApiService.removeEventListener(ResultEvent.RESULT,onBeginToDownload);
 				ppApiService.addEventListener(ResultEvent.RESULT,checkStatus);
 				
+				
 				downloadInProcess = true;
 				ppApiService.url= downloadURL;
 				
 				// After 2 minutes, the timer will stop			
 				timer = new Timer(2000,180000);
 				timer.addEventListener(TimerEvent.TIMER,ppApiService.send);
+				timer.addEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
 				timer.start();
+				
+			}
+			
+			private function errorDownloading(event:TimerEvent):void{
+				currentState="error";	
+
+				ppApiService.removeEventListener(ResultEvent.RESULT,checkStatus);
+				timer.stop();
+				timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
+				timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
+			}
+			
+			private function removeCurrentEvent():void{
+				if (ppApiService != null){
+					ppApiService.removeEventListener(ResultEvent.RESULT,checkStatus);
+					ppApiService.removeEventListener(ResultEvent.RESULT,onBeginToDownload);
+					ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
+					ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);					
+				}
+				
+				if (timer !=null){
+					timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
+					timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);	
+				}
+				
 				
 			}
 			
@@ -497,6 +525,7 @@
 						
 						timer.stop();
 						timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
+						timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
 						
 						urlToDownload = serviceURL + (res.url) as String;
 						
@@ -542,7 +571,7 @@
 	<mx:HTTPService id="ppApiService" method="GET" resultFormat="text" fault="trace('error')" />
 	
 	<mx:Button  label="X" color="#FFFFFF" styleName="nullButton" textDecoration="normal" width="30" right="3" top="6" toolTip="Close" useHandCursor="true" 
-		buttonMode="true" mouseChildren="false" click="MyEventDispatcher.onCloseDownloadWindow(); currentState = '';"/>
+		buttonMode="true" mouseChildren="false" click="MyEventDispatcher.onCloseDownloadWindow(); removeCurrentEvent(); currentState = '';  "/>
 	
 	<mx:VBox left="30" right="30" top="35" verticalGap="0" id="vbox1">
 		<mx:Label text="SCOPE AND SUMMARY OF YOUR DATA" color="#FFFFFF" fontWeight="normal" fontSize="13"  width="100%" height="23" id="label1"/>
