@@ -32,8 +32,8 @@
 				<mx:Label text="It could take some minutes. Please be patient." horizontalCenter="0" verticalCenter="-6" color="#FFFFFF" fontSize="13" id="label3" fontFamily="Arial"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" label="" minimum="0" maximum="100" enabled="true" mode="manual"
-					id="progressbarDownloading"  borderColor="0x1A1A1B" themeColor="0xF5C400"/>
+				<mx:ProgressBar horizontalCenter="4" verticalCenter="45" label="" minimum="0" maximum="100" enabled="true" mode="manual"
+					id="progressbarDownloading"  borderColor="0x1A1A1B" themeColor="0xF5C400" trackHeight="20"/>
 			</mx:AddChild>
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
@@ -166,11 +166,11 @@
 			private var downloadInProcess:Boolean = false;
 			private var downloadURL:String;
 			private var timer:Timer;
-			
+			private var timerProgressBar:Timer;
 			private var widthMap:Number = 0;
 			private var heightMap:Number = 0;
 			private var widthToolBar:Number = 0;
-			
+			private var progressBarStep:Number = 0;
 			private var xDownload:Number;
 			
 			// All World
@@ -429,16 +429,29 @@
 				}
 			}
 			
+			private function stepProgressBar(event:TimerEvent):void{
+				progressBarStep+=10;
+				progressbarDownloading.setProgress(progressBarStep,100);
+			}
+			
 			private function windowDownloadTransition():void{
+				
+				progressBarStep = 0;
 				downloadInProcess = false;
 				
 				this.x = Application.application.width;
 				
 				currentState = 'processing';
 				
-				/* var timeEstimated:Number = (this.ocurrences)
+				// ms
+				var timeEstimated:Number = (this.ocurrences) / 13;
 				
-				progressbarDownloading.setProgress(10,100); */
+				timerProgressBar = new Timer(timeEstimated,0);
+				timerProgressBar.addEventListener(TimerEvent.TIMER,stepProgressBar);
+				timerProgressBar.start();
+				
+				
+				
 				
 				
 				TweenLite.to(this, 0.3, {x:xDownload});
@@ -601,7 +614,10 @@
 						
 						urlToDownload = serviceURL + (res.url) as String;
 						
-						//progressbarDownloading.source = 
+						progressbarDownloading.setProgress(100,100);
+						
+						timerProgressBar.stop();
+						timerProgressBar.removeEventListener(TimerEvent.TIMER,stepProgressBar);
 						
 						navigateToURL(new URLRequest(urlToDownload),"_blank");	
 						
