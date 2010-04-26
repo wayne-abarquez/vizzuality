@@ -8,14 +8,16 @@
 			<mx:RemoveChild target="{downloadrepeat1}"/>
 			<mx:RemoveChild target="{hbox1}"/>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:SWFLoader horizontalCenter="-7" width="30" height="30" source="@Embed('/assets/loaderGray.swf')" id="swfloader1" verticalCenter="0" scaleContent="true"/>
+				<mx:SWFLoader horizontalCenter="-7" width="30" height="30" source="@Embed('/assets/loaderGray.swf')" id="swfloader1" verticalCenter="-15" scaleContent="true"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{downloadButton}"/>
 			<mx:RemoveChild target="{terms}"/>
 			<mx:RemoveChild target="{button2}"/>
-			<mx:SetStyle target="{hboxTerms}" name="bottom" value="32"/>
 			<mx:RemoveChild target="{label7}"/>
-			<mx:SetProperty target="{label6}" name="text" value="Please wait meanwhile we receive the data"/>
+			<mx:RemoveChild target="{hboxTerms}"/>
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
+				<mx:Label x="141" y="78" text="Please wait meanwhile we receive the data" fontSize="15" color="#FFFFFF" id="id_notify_3"  width="367" height="23"/>
+			</mx:AddChild>
 	
 		</mx:State>
 		<mx:State name="processing">
@@ -109,8 +111,8 @@
 			<mx:RemoveChild target="{hbox4}"/>
 			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
 				<mx:HBox  left="20" right="20" top="21" id="hbox5" borderStyle="none">
-					<components:DownloadType id="disabled_download_world" world_type="World"/>
-					<components:DownloadType id="disabled_download_bound" world_type="Bound"/>
+					<components:DownloadTypeDisabled id="disabled_download_world" world_type="World"/>
+					<components:DownloadTypeDisabled id="disabled_download_bound" world_type="Bound"/>
 				</mx:HBox>
 			</mx:AddChild>
 			<mx:SetEventHandler target="{button4}" name="click">
@@ -176,10 +178,6 @@
 			private var minLongitude:String = "-179.9999";
 			private var maxLongitude:String = "179.9999";
 			
-			
-			/* private var minCellId:Number = 0;	
-			private var maxCellId:Number = 37324799; */
-			
 			[Bindable]private var ocurrences:Number;
 			[Bindable]private var observations:Number;
 			[Bindable]private var specimens:Number;
@@ -230,7 +228,6 @@
 					id_taxon_result.text = chooseTaxon.labelField;
 				else{
 					id_taxon_result.text = "ALL TAXA";
-					//taxonRank = "species";	// ASK TO TIM, WHEN ALL TAXA IS SELECTED, WHAT IS THE TAXONRANK
 				}
 					
 				var numberVegTypes:Number = 0;
@@ -325,7 +322,6 @@
 	
 				}
  				if (this.currentState != "nodata_bbox"){
- 					//enableDownload();
  					currentState="loading";
  				}	
 			}
@@ -337,9 +333,6 @@
 			}	
 			
 			private function onErrorLoading(event:FaultEvent):void{
-				
-				//download.setPosition(map.width, map.height, toolBar.width, toolBar.height); 
-				//download.visible=true;
 				
 				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar - 8;
 				this.y = (heightMap / 2) - (this.height / 2);
@@ -364,12 +357,9 @@
 				this.providers = (res.resources) as Number;
 				this.ocurrences = (res.total) as Number;
 				
-				// Our estimation -> 1 ocurrence = 10KB
 				var sizeDownloading:String = ((this.ocurrences * 63) / 1024).toPrecision(3);
 				
 				if (this.ocurrences > 0) {
-					//var sizeDownloading:String = (this.ocurrences * 39).toPrecision(3);
-					
 					// ¿MB?, ¿KB?			
 					if (sizeDownloading.length > 5){
 						this.downloadSize = sizeDownloading.substring(0,sizeDownloading.length - 3);
@@ -401,14 +391,15 @@
 					}
 				}
 				else {
-					if (this.currentState != "nodata_bbox"){ 
 					
 						if (searchingWorld) {
-							
-							this.currentState = "nodata_world";
-							
-							ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
-							ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
+							if (this.currentState != "nodata_bbox"){ 
+								
+								this.currentState = "nodata_world";
+								
+								ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
+								ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
+							}
 						}
 						else {
 							searchingWorld = true;
@@ -421,7 +412,7 @@
 							initSearch(true);
 						}
 						
-					}
+					
 				}				
 				
 			} 
@@ -443,7 +434,6 @@
 				
 				this.x = Application.application.width;
 				
-				//enableDownload();
 				currentState = 'processing';
 				
 				TweenLite.to(this, 0.3, {x:xDownload});
@@ -525,8 +515,7 @@
 					TweenLite.to(downloadButton,0.5,{alpha:1.0});
 				} 
 				else{
-						
-													
+					
 						if (ppApiService.hasEventListener(ResultEvent.RESULT))
 							this.currentState = "loading";
 						
@@ -572,20 +561,10 @@
 				// After 2 minutes, the timer will stop			
 				timer = new Timer(2000,0);
 				timer.addEventListener(TimerEvent.TIMER,ppApiService.send);
-				//timer.addEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
 				timer.start();
 				
 			}
 			
-			/* private function errorDownloading(event:TimerEvent):void{
-				currentState="error";	
-
-				ppApiService.removeEventListener(ResultEvent.RESULT,checkStatus);
-				timer.stop();
-				timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
-				timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
-			}
-			 */
 			private function removeCurrentEvent():void{
 				if (ppApiService != null){
 					ppApiService.removeEventListener(ResultEvent.RESULT,checkStatus);
@@ -596,7 +575,6 @@
 				
 				if (timer !=null){
 					timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
-					//timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);	
 				}
 			}
 			
@@ -610,7 +588,6 @@
 						
 						timer.stop();
 						timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
-						//timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
 						
 						urlToDownload = serviceURL + (res.url) as String;
 						
@@ -628,17 +605,6 @@
 				}
 			}
 			
-			/* private function enableDownload():void{
-				download_world.disabled_item = false; 
-				download_bound.disabled_item = false;
-			} */
-			
-			/* private function disableDownload():void{
-				download_world.disabled_item = true; 
-				download_bound.disabled_item = true;
-			} */
-
-
 			private function clickToDownloadWorld():void{
 				download_world.selected_item=true; 
 				download_bound.selected_item=false;
