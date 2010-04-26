@@ -157,10 +157,10 @@
 			private var xDownload:Number;
 			
 			// All World
-			private var minLatitude:Number = -90;
-			private var maxLatitude:Number = 90;
-			private var minLongitude:Number = -180;
-			private var maxLongitude:Number = 180;
+			private var minLatitude:String = "-90";
+			private var maxLatitude:String = "90";
+			private var minLongitude:String = "-180";
+			private var maxLongitude:String = "180";
 			
 			
 			/* private var minCellId:Number = 0;	
@@ -240,8 +240,6 @@
 			
 			private function initSearch(searchWorldScale:Boolean = false):void{
 				
-				Application.application.gmbaMap.tracker.trackPageview( "/search" );
-				
 				this.terms.selected = false;
 				this.shadowbutton1.enabled = false;
 				
@@ -258,10 +256,10 @@
 				}
 				else {
 					// ALL WORLD
-					minLatitude = -90;
-					maxLatitude = 90;
-					minLongitude = -180;
-					maxLongitude = 180;
+					minLatitude = "-90";
+					maxLatitude = "90";
+					minLongitude = "-180";
+					maxLongitude = "180";
 				}	
 				
 				if (chooseTaxon.id != null) {
@@ -283,6 +281,9 @@
 						minLatitude:minLatitude,
 						maxLatitude:maxLatitude
 					});
+					
+					Application.application.gmbaMap.tracker.trackPageview( "/search/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
+					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/taxonId="+taxonValue+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
 				}
 				else {	// ALL TAXA
 					ppApiService.send({
@@ -295,7 +296,10 @@
 						maxLongitude:maxLongitude,
 						minLatitude:minLatitude,
 						maxLatitude:maxLatitude
-					});	
+					});
+					Application.application.gmbaMap.tracker.trackPageview( "/search/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
+					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+	
 				}
  				if (this.currentState != "nodata_bbox")	currentState="loading";
 			}
@@ -324,8 +328,7 @@
 				this.ocurrences = (res.total) as Number;
 				
 				// Our estimation -> 1 ocurrence = 10KB
-				var sizeDownloading:String = ((this.ocurrences * 39) / 1024).toPrecision(2);
-				
+				var sizeDownloading:String = ((this.ocurrences * 39) / 1024).toFixed(2);
 				
 				if (this.ocurrences > 0) {
 					//var sizeDownloading:String = (this.ocurrences * 39).toPrecision(3);
@@ -410,10 +413,10 @@
 				}
 				else {
 					// ALL WORLD
-					minLatitude = -90;
-					maxLatitude = 90;
-					minLongitude = -180;
-					maxLongitude = 180;
+					minLatitude = "-90";
+					maxLatitude = "90";
+					minLongitude = "-180";
+					maxLongitude = "180";
 				}	
 	
 				
@@ -436,6 +439,9 @@
 						minLatitude:minLatitude,
 						maxLatitude:maxLatitude
 					});
+					Application.application.gmbaMap.tracker.trackPageview( "/download/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
+					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/taxonId="+taxonValue+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude+"/rank="+taxonRank );
+
 				}
 				else {	// ALL TAXA
 						ppApiService.send({
@@ -449,12 +455,13 @@
 						minLatitude:minLatitude,
 						maxLatitude:maxLatitude
 					});
+					Application.application.gmbaMap.tracker.trackPageview( "/download/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
+					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
 				}
 				
 			}
 			
 			private function initDownload(downloadWorldScale:Boolean = false):void {
-				Application.application.gmbaMap.tracker.trackPageview( "/download" );				
 				xDownload = this.x;
 				TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition, onCompleteParams:[downloadWorldScale]});				
 				
@@ -483,7 +490,7 @@
 				ppApiService.url= downloadURL;
 				
 				// After 2 minutes, the timer will stop			
-				timer = new Timer(2000,180000);
+				timer = new Timer(2000,60);
 				timer.addEventListener(TimerEvent.TIMER,ppApiService.send);
 				timer.addEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);
 				timer.start();
@@ -511,8 +518,6 @@
 					timer.removeEventListener(TimerEvent.TIMER,ppApiService.send);
 					timer.removeEventListener(TimerEvent.TIMER_COMPLETE,errorDownloading);	
 				}
-				
-				
 			}
 			
 			private function checkStatus(event:ResultEvent):void{
