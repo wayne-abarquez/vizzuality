@@ -376,6 +376,7 @@
 							ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);						
 						}
 						else{
+							
 							canvasDataDownload.alpha = 0.0;
 							hboxTerms.alpha = 0.0;
 							downloadButton.alpha = 0.0;		
@@ -407,8 +408,6 @@
 							ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 							ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 							
-							download_world.selected_item=true; 
-							download_bound.selected_item=false;
 							initSearch(true);
 						}
 						
@@ -507,7 +506,9 @@
 					canvasDataDownload.alpha = 0.0;
 					hboxTerms.alpha = 0.0;
 					downloadButton.alpha = 0.0;		
-									
+					
+					download_world.selected_item=true; 
+					download_bound.selected_item=false;				
 					this.currentState = "";
 							
 					TweenLite.to(canvasDataDownload,0.5,{alpha:1.0});
@@ -520,6 +521,9 @@
 							this.currentState = "loading";
 						
 						else {
+							download_world.selected_item=true; 
+							download_bound.selected_item=false;				
+
 							this.currentState = "nodata_world";
 						}
 				} 
