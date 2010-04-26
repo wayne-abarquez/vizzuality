@@ -223,6 +223,12 @@ public class Services extends AbstractServlet {
 			int offset = lng.multiply(new BigDecimal(8640)).divide(new BigDecimal(360), BigDecimal.ROUND_DOWN).intValue();
 			
 			int cell = row+offset;
+			
+			// catch when the longitude is actually +180
+			if (360 - lng.doubleValue() <0.24) {
+				cell = cell-1;
+			}
+			
 			return cell;
 		}
 		System.err.println("Latitude[" + lat.subtract(new BigDecimal(90)) + "] or Longitude[" + lng.subtract(new BigDecimal(180)) + "] is outside range.  Ignoring...");
@@ -342,9 +348,10 @@ public class Services extends AbstractServlet {
 			Integer maxElevation, Integer minRelief, Integer maxRelief, Integer[] tvzCode, boolean logSQL) throws IOException {
 			
 		
-		StringBuffer sb = new StringBuffer("select * from occurrence_download where ");
+		StringBuffer sb = new StringBuffer("select * from occurrence_download ");
 		boolean first = true;
 		if (taxonId!=null) {
+			sb.append(" where ");
 			if ("KINGDOM".equalsIgnoreCase(rank)) {
 				sb.append(" kingdom_concept_id=" + taxonId);
 			} else if ("PHYLUM".equalsIgnoreCase(rank)) {
@@ -368,6 +375,8 @@ public class Services extends AbstractServlet {
 		if (minCellId!=null) {
 			if (!first) {
 				sb.append(" and ");
+			} else {
+				sb.append(" where ");
 				first=false;
 			}
 			// use the mod hack to limit results
@@ -377,6 +386,8 @@ public class Services extends AbstractServlet {
 		if (maxCellId!=null) {
 			if (!first) {
 				sb.append(" and ");
+			} else {
+				sb.append(" where ");
 				first=false;
 			}
 			// use the mod hack to limit results
@@ -386,6 +397,8 @@ public class Services extends AbstractServlet {
 		if (minElevation!=null) {
 			if (!first) {
 				sb.append(" and ");
+			} else {
+				sb.append(" where ");
 				first=false;
 			}
 			sb.append(" elevation>=" + minElevation);
@@ -393,6 +406,8 @@ public class Services extends AbstractServlet {
 		if (maxElevation!=null) {
 			if (!first) {
 				sb.append(" and ");
+			} else {
+				sb.append(" where ");
 				first=false;
 			}
 			sb.append(" elevation<=" + maxElevation);
@@ -400,6 +415,8 @@ public class Services extends AbstractServlet {
 		if (minRelief!=null) {
 			if (!first) {
 				sb.append(" and ");
+			} else {
+				sb.append(" where ");
 				first=false;
 			}
 			sb.append(" relief>=" + minRelief);
@@ -407,6 +424,8 @@ public class Services extends AbstractServlet {
 		if (maxRelief!=null) {
 			if (!first) {
 				sb.append(" and ");
+			} else {
+				sb.append(" where ");
 				first=false;
 			}
 			sb.append(" relief<=" + maxRelief);
@@ -414,6 +433,8 @@ public class Services extends AbstractServlet {
 		if (tvzCode!=null) {
 			if (!first) {
 				sb.append(" and ");
+			} else {
+				sb.append(" where ");
 				first=false;
 			}
 			sb.append(" tvzcode in(");
@@ -466,6 +487,7 @@ public class Services extends AbstractServlet {
 				
 				while (rs.next()) {
 					for (int i=1; i<=columns; i++) {
+						
 						Object o = rs.getObject(i);
 						if (o!=null) {
 							writer.write(o.toString());
