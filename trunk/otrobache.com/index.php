@@ -5,7 +5,7 @@ require_once("services/OtroBache.php");
 $serv = new OtroBache();
 
 $country="espana";
-$countryName="España"
+$countryName="España";
 
 if($_SERVER['HTTP_HOST']=="paraguay.otrobache.com") {
     $country="paraguay";
