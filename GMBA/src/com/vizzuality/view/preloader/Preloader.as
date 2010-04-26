@@ -103,10 +103,10 @@ package com.vizzuality.view.preloader
         */
         private function centerPreloader():void
         {
-        	this.x = 100 ;
-        	this.y = 100;
-             /* this.x = this.stageWidth >> 1;
-             this.y = this.stageHeight >> 1; */
+        	/* this.x = 100 ;
+        	this.y = 100; */
+             this.x = ((this.stageWidth) / 6) + 100;
+             this.y = (this.stageHeight) / 6 - 50;
         }
         
         /**
