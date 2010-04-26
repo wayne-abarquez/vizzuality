@@ -9,7 +9,7 @@ $countryName="España";
 
 if($_SERVER['HTTP_HOST']=="paraguay.otrobache.com") {
     $country="paraguay";
-    $countryName="Paraguay"
+    $countryName="Paraguay";
 }
 
 if(isset($_REQUEST['locality'])) {
