@@ -94,12 +94,16 @@ class OtroBache {
 
         // parse the json response
         $jsondata = json_decode($data,true);
+
         $address =  str_replace(",","|",$jsondata['Placemark'][0]['address']);
         
         $city=strtolower( $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['LocalityName']);
         
         $zip= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['PostalCode']['PostalCodeNumber'];
         
+        $countryName="";
+        $countryName=$jsondata['Placemark'][0]['AddressDetails']['Country']['CountryName'];
+
         $addressline="";
         $addressline= $jsondata['Placemark'][0]['AddressDetails']['Country']['AdministrativeArea']['SubAdministrativeArea']['Locality']['AddressLine'][0];
         
@@ -121,7 +125,7 @@ class OtroBache {
         
         
         $ft = new FusionTable($this->fusionTablesToken); 
-        $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,address,city,zip,addressline) VALUES ($latf,$lonf,'$reportedDate','$reportedBy','$address','$city','$zip','$addressline')";
+        $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,address,city,zip,addressline,country) VALUES ($latf,$lonf,'$reportedDate','$reportedBy','$address','$city','$zip','$addressline','$countryName')";
         //return $sql;
         $newId= $ft->query($sql);
         if($res=="User is not authorized to access the table"){
@@ -153,7 +157,7 @@ class OtroBache {
         $res = $ft->query($sql);        
         if($res=="User is not authorized to access the table"){
             $this->checkToken(true);
-            return $this->reportBache($locality);
+            return $this->getNumBaches($locality,$country);
         }       
         if(count($res)>0) {
             $resnum=number_format($res[0]['count()'],0,",",".");

@@ -13,7 +13,7 @@ var array_params;
 var infowindow_open = false;
 var choosenDictionary = [];
 
-function initialize(localityName,centerLat,centerLon,swLat,swLon,neLat,neLon) {
+function initialize(localityName,centerLat,centerLon,swLat,swLon,neLat,neLon,country) {
 	    locality=localityName;
 		//JQUERY EFFECTS
 		second_map_height = $('div#container div.report_map').height();
@@ -140,21 +140,22 @@ function initialize(localityName,centerLat,centerLon,swLat,swLon,neLat,neLon) {
         searchFormHint : "busca direccion"
         };      
 
-      map = new GMap2(document.getElementById("map_canvas"),{googleBarOptions: options});
-			map2 = new GMap2(document.getElementById("second_map"));
+        map = new GMap2(document.getElementById("map_canvas"),{googleBarOptions: options});
+		map2 = new GMap2(document.getElementById("second_map"));
+		
 		
 		if(centerLat==0) {
 		  var bounds = new GLatLngBounds(
 		  		new GLatLng(swLat,swLon),new GLatLng(neLat,neLon));
 		  var center = bounds.getCenter();
 		  var zoom = map.getBoundsZoomLevel(bounds);			
-      map.setCenter(center,zoom);
-			map2.setCenter(center,zoom);		
+          map.setCenter(center,zoom);
+		  map2.setCenter(center,zoom);	
 
 		} else {
 			var center=new GLatLng(centerLat,centerLon);
 			var zoom=10;	
-      map.setCenter(new GLatLng(41.73852846935917,-3.4716796875),5);
+            map.setCenter(new GLatLng(centerLat,centerLon),5);
 			map2.setCenter(center,zoom);			
 		}
 		
