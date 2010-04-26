@@ -22,6 +22,12 @@ package com.vizzuality.utils
 		[Embed (source="assets/bound.png" )]
         public static const BOUND:Class;
         
+        [Embed (source="assets/world_disabled.png" )]
+        public static const WORLD_DISABLED:Class;
+        
+		[Embed (source="assets/bound_disabled.png" )]
+        public static const BOUND_DISABLED:Class;
+        
 		[Embed (source="assets/download_arrow.png" )]
 	    public static const DOWNLOAD_ARROW:Class;
 	    

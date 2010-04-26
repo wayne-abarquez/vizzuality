@@ -418,12 +418,10 @@
 			
 			private function onClickDownload():void{
 				
-				tracker.trackPageview( "/download" );
-				
 				download.alpha = 0.0;
 				download.setCriteriaValues(); 
 				mamufas.visible=true; 
-				download.setPosition(map.width, map.height, toolBar.width, toolBar.height); 
+				download.setPosition(map.width, map.height, toolBar.width); 
 				download.visible=true;
 				TweenLite.to(download,0.5,{alpha:1.0} ); 
 				

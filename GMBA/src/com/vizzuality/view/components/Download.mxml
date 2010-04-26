@@ -18,7 +18,7 @@
 			<mx:RemoveChild target="{hbox2}"/>
 			<mx:RemoveChild target="{shadowbutton1}"/>
 			<mx:AddChild position="lastChild">
-				<mx:Label text="We are processing your request" horizontalCenter="0" verticalCenter="-32" color="#FFFFFF" fontSize="25" id="label2"/>
+				<mx:Label text="We are processing your request" horizontalCenter="0" verticalCenter="-32" color="#FFFFFF" fontSize="15" id="label2"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:Label text="It could take some minutes. Please be patient." horizontalCenter="0" verticalCenter="-6" color="#FFFFFF" fontSize="12" id="label3"/>
@@ -45,76 +45,77 @@
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<utils:ShadowButton height="32" label="Close window" color="#FFFFFF" fontSize="17" fontWeight="normal"
-					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" y="243" horizontalCenter="0" click="MyEventDispatcher.onCloseDownloadWindow()"/>
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" y="243" horizontalCenter="0" click="MyEventDispatcher.onCloseDownloadWindow()" id="shadowbutton2"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{label3}"/>
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
 		<mx:State name="error" basedOn="ready">
-			<mx:SetProperty target="{label2}" name="text" value="Have been a error"/>
+			<mx:SetProperty target="{label2}" name="text" value="Sorry, have been an error."/>
 			<mx:RemoveChild target="{button1}"/>
 			<mx:RemoveChild target="{label5}"/>
 			<mx:RemoveChild target="{hbox3}"/>
-		</mx:State>
-		<mx:State name="nodata_world" basedOn="loading">
-			<mx:RemoveChild target="{swfloader1}"/>
-			<mx:RemoveChild target="{terms}"/>
-			<mx:RemoveChild target="{label6}"/>
-			<mx:RemoveChild target="{button2}"/>
-			<mx:RemoveChild target="{label7}"/>
-			<mx:RemoveChild target="{hbox2}"/>
+			<mx:RemoveChild target="{shadowbutton2}"/>
+			<mx:SetStyle target="{label2}" name="verticalCenter" value="30"/>
+			<mx:SetProperty target="{label2}" name="height" value="97.509094"/>
 			<mx:AddChild position="lastChild">
-				<utils:ShadowButton height="32" label="Cancel" color="#FFFFFF" fontSize="17" fontWeight="normal" click="MyEventDispatcher.onCloseDownloadWindow(); currentState = '';"
-								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="242" bottom="30" width="150" id="cancelProcess" enabled="true"/>
+				<mx:Label text="Please retry later." horizontalCenter="0" verticalCenter="49" color="#FFFFFF" fontSize="15" id="label0" height="97.509094"/>
 			</mx:AddChild>
-			<mx:RemoveChild target="{shadowbutton1}"/>
-			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="10" y="36" text="Sorry, there is no data for the taxon and filters that you have selected." fontSize="17" color="#FFFFFF" id="id_taxon_result0"  width="554" height="19"/>
-			</mx:AddChild>
-			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="10" y="63" text="Try expanding filter criterias." fontSize="17" color="#FFFFFF" id="message2"  width="554" height="25"/>
-			</mx:AddChild>
-			<mx:RemoveChild target="{download_bound}"/>
-			<mx:RemoveChild target="{download_world}"/>
-			<mx:RemoveChild target="{hbox4}"/>
-			<mx:RemoveChild target="{canvas2}"/>
-			<mx:SetProperty target="{canvasDataDownload}" name="height" value="214"/>
-			<mx:SetProperty target="{canvas2}" name="height" value="59"/>
-			<mx:SetProperty target="{canvas2}" name="height" value="41"/>
-			<mx:SetProperty target="{canvas2}" name="height" value="100"/>
-			<mx:SetProperty target="{canvas2}" name="height" value="75"/>
-			<mx:SetProperty target="{canvas2}" name="height" value="44"/>
-		</mx:State>
-		<mx:State name="nodata_bbox" basedOn="loading">
-			<mx:RemoveChild target="{hbox2}"/>
-			<mx:RemoveChild target="{shadowbutton1}"/>
-			<mx:SetStyle target="{swfloader1}" name="verticalCenter" value="18" />
-			<mx:SetStyle target="{swfloader1}" name="horizontalCenter" value="0" />
-			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="10" y="41" text="Sorry, there is no data for your filters. We are searching on world scale." fontSize="17" color="#FFFFFF" id="id_taxon_result1"  width="554" height="57"/>
-			</mx:AddChild>
-			<mx:SetProperty target="{canvasDataDownload}" name="height" value="172"/>
+			<mx:SetProperty name="width" value="376"/>
+			<mx:SetProperty name="height" value="236"/>
 		</mx:State>
 		<mx:State name="bigDataNotify">
 			<mx:RemoveChild target="{downloadsize1}"/>
 			<mx:RemoveChild target="{downloadrepeat1}"/>
 			<mx:RemoveChild target="{hbox1}"/>
 			<mx:RemoveChild target="{hbox2}"/>
+			
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
+				<mx:Label x="91" y="33" text="Sorry, this is too much data to prepare download." fontSize="15" color="#FFFFFF" id="id_notify_0"  width="367" height="23"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
+				<mx:Label x="90" y="53" text="You can" fontSize="15" color="#FFFFFF" id="id_notify_1"  width="122" height="23"/>
+			</mx:AddChild>
+			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
+				<mx:Image x="22" y="30" width="58" height="55" id="image1" source="assets/warning.png"/>
+			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<utils:ShadowButton height="32" label="Download all" color="#FFFFFF" fontSize="17" fontWeight="normal" click="downloadAllData()"
-								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="375" bottom="30" width="150" id="downloadAll" enabled="true"/>
-			</mx:AddChild>
-			<mx:AddChild relativeTo="{downloadAll}" position="before">
-				<utils:ShadowButton height="32" label="Cancel" color="#FFFFFF" fontSize="17" fontWeight="normal" click="MyEventDispatcher.onCloseDownloadWindow(); currentState = ''; Application.application.gmbaMap.tracker.trackPageview('/cancel'); "
-								useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="105" bottom="30" width="150" id="cancelButton" enabled="true"/>
-			</mx:AddChild>
-			<mx:RemoveChild target="{shadowbutton1}"/>
-			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="10" y="30" text="Sorry, this is too much data to prepare download." fontSize="17" color="#FFFFFF" id="id_notify_0"  width="543" height="23"/>
+				<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox0">
+					<mx:CheckBox id="terms0" label="" cornerRadius="10"  click="activateDownload()" selected="false" useHandCursor="true" mouseChildren="false" buttonMode="true"  enabled="false"/>
+					<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3" id="label4" enabled="false"/>
+					<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('../html/termsAndConditions.html'))" id="button0" enabled="false"/>
+					<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label8" enabled="false"/>
+				</mx:HBox>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="10" y="56" text="You can download the hole dataset or further refine the filter." fontSize="17" color="#FFFFFF" id="id_notify_1"  width="543" height="23"/>
+				<mx:Button label="download the whole" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest(''))" id="button4" x="148" y="55" fontSize="15"/>
 			</mx:AddChild>
+			<mx:AddChild relativeTo="{image1}" position="before">
+				<mx:Label x="294" y="53" text="dataset or turther refine the search" fontSize="15" color="#FFFFFF" id="id_notify_2"  width="264" height="23"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="nodata_world" basedOn="bigDataNotify">
+			<mx:SetProperty target="{id_notify_0}" name="text" value="Sorry, there is no data for yor filter criteria"/>
+			<mx:SetProperty target="{id_notify_1}" name="text" value="Try"/>
+			<mx:RemoveChild target="{id_notify_2}"/>
+			<mx:SetProperty target="{button4}" name="label" value="expanding filter criterias."/>
+			<mx:SetProperty target="{button4}" name="x" value="116"/>
+			<mx:RemoveChild target="{hbox4}"/>
+			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
+				<mx:HBox  left="20" right="20" top="21" id="hbox5" borderStyle="none">
+					<components:DownloadType id="disabled_download_world" world_type="World" selected_item="false" disabled_item="true" />
+					<components:DownloadType id="disabled_download_bound" world_type="Bound" selected_item="false" disabled_item="true"/>
+				</mx:HBox>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="nodata_bbox" basedOn="bigDataNotify">
+			<mx:SetProperty target="{id_notify_0}" name="text" value="Sorry, there is no data for your filters"/>
+			<mx:SetProperty target="{id_notify_1}" name="text" value="If you want"/>
+			<mx:SetProperty target="{id_notify_2}" name="text" value="or further refine the search"/>
+			<mx:SetProperty target="{button4}" name="label" value="try with world scale"/>
+			<mx:SetProperty target="{button4}" name="x" value="167"/>
+			<mx:SetProperty target="{id_notify_2}" name="x" value="308"/>
+			<mx:SetEventHandler target="{button4}" name="click"/>
 		</mx:State>
 		
 	</mx:states>
@@ -154,6 +155,10 @@
 			private var downloadURL:String;
 			private var timer:Timer;
 			
+			private var widthMap:Number = 0;
+			private var heightMap:Number = 0;
+			private var widthToolBar:Number = 0;
+			
 			private var xDownload:Number;
 			
 			// All World
@@ -173,9 +178,13 @@
 			[Bindable]private var downloadSize:String = "0MB";
 			
 			
-			public function setPosition(widthMap:Number, heightMap:Number, widthToolBar:Number, heightToolBar:Number):void{
+			public function setPosition(widthMap:Number, heightMap:Number, widthToolBar:Number):void{
 				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar - 8;
 				this.y = (heightMap / 2) - (this.height / 2);
+				
+				this.widthMap = widthMap;
+				this.heightMap = heightMap;
+				this.widthToolBar = widthToolBar;
 				
 			}			
 			
@@ -316,7 +325,14 @@
 			}	
 			
 			private function onErrorLoading(event:FaultEvent):void{
-				currentState="error";	
+				
+				//download.setPosition(map.width, map.height, toolBar.width, toolBar.height); 
+				//download.visible=true;
+				
+				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar - 8;
+				this.y = (heightMap / 2) - (this.height / 2);
+				currentState="error";
+					
 				
 				Application.application.gmbaMap.tracker.trackPageview( "/error/search/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
 					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
@@ -351,6 +367,7 @@
 					} 			
 									
 					if (this.ocurrences > 250000) {
+						
 						this.currentState = "bigDataNotify";
 						ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);						
 					}
@@ -476,7 +493,12 @@
  			}
  			
  			private function onErrorDownloading(event:FaultEvent):void{
-				currentState="error";	
+				
+				// Center the window
+				this.x = (widthMap / 2) - (376 / 2) + widthToolBar - 8;
+				this.y = (heightMap / 2) - (236 / 2);
+				currentState="error";
+	
 				Application.application.gmbaMap.tracker.trackPageview( "/error/download/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
 					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
 
