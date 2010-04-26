@@ -6,12 +6,12 @@
 			import mx.controls.Alert;
 			import com.vizzuality.utils.Resource;
 			
-			[Bindable] public var world_type: String = "World";
+			[Bindable] public var world_type_disabled: String = "World";
 			
 		]]>
 	</mx:Script>
-	<mx:Image left="10" top="10" height="70" width="70" source="{(world_type)? Resource.WORLD_DISABLED:Resource.BOUND_DISABLED}" id="image"/>
-	<mx:Label color="#2F3030" fontSize="15" left="88" top="15" id="title" text="{(world_type == 'World')? 'World scale' : 'Bounding box' }"/>
-	<mx:Text fontFamily="Arial" color="#2F3030" left="88" top="38" id="secondary" text="{(world_type == 'World')? 'Download data for the whole world' : 'Download only the area that you are visualizing' }" fontSize="13" height="38" width="150"/>
+	<mx:Image left="10" top="10" height="70" width="70" source="{(world_type_disabled == 'World')? Resource.WORLD_DISABLED : Resource.BOUND_DISABLED}"/>
+	<mx:Label color="#2F3030" fontSize="15" left="88" top="15" id="title" text="{(world_type_disabled == 'World')? 'World scale' : 'Bounding box' }"/>
+	<mx:Text fontFamily="Arial" color="#2F3030" left="88" top="38" id="secondary" text="{(world_type_disabled == 'World')? 'Download data for the whole world' : 'Download only the area that you are visualizing' }" fontSize="13" height="38" width="150"/>
 	
 </mx:Canvas>

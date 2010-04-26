@@ -35,7 +35,7 @@
 			
 		]]>
 	</mx:Script>
-	<mx:Image left="10" top="10" height="70" width="70" source="{(selected_item)? Resource.WORLD:Resource.BOUND}" id="image"/>
+	<mx:Image left="10" top="10" height="70" width="70" source="{(world_type == 'World')? Resource.WORLD : Resource.BOUND}"/>
 	<mx:Label color="{(selected_item)? 0x2F3030:0xF8C600}" fontSize="15" left="88" top="15" id="title" text="{(world_type == 'World')? 'World scale' : 'Bounding box' }"/>
 	<mx:Text fontFamily="Arial" color="{(selected_item)? 0x2F3030:0xFFFFFF}" left="88" top="38" id="secondary" text="{(world_type == 'World')? 'Download data for the whole world' : 'Download only the area that you are visualizing' }" fontSize="13" height="38" width="150"/>
 	
