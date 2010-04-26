@@ -570,7 +570,11 @@
 			}
 			
 			private function navigateToDownload():void{
-				navigateToURL(new URLRequest(urlToDownload),"_blank");	
+				navigateToURL(new URLRequest(urlToDownload),"_blank");
+				
+				Application.application.gmbaMap.tracker.trackPageview( "/download/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
+					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+						
 			}
 			
 			private function activateDownload():void{
