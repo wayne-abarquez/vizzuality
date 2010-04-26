@@ -26,10 +26,10 @@
 			<mx:RemoveChild target="{hboxTerms}"/>
 			<mx:RemoveChild target="{downloadButton}"/>
 			<mx:AddChild position="lastChild">
-				<mx:Label text="We are processing your request" horizontalCenter="0" verticalCenter="-32" color="#FFFFFF" fontSize="15" id="label2"/>
+				<mx:Label text="We are processing your request" horizontalCenter="0" verticalCenter="-32" color="#FFFFFF" fontSize="25" id="label2"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<mx:Label text="It could take some minutes. Please be patient." horizontalCenter="0" verticalCenter="-6" color="#FFFFFF" fontSize="12" id="label3"/>
+				<mx:Label text="It could take some minutes. Please be patient." horizontalCenter="0" verticalCenter="-6" color="#FFFFFF" fontSize="13" id="label3" fontFamily="Arial"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:ProgressBar horizontalCenter="0" verticalCenter="31" label="" minimum="0" maximum="100" enabled="true" mode="manual"
@@ -47,8 +47,8 @@
 			<mx:SetStyle target="{label2}" name="verticalCenter" value="-53"/>
 			<mx:AddChild position="lastChild">
 				<mx:HBox id="hbox3" y="170" horizontalCenter="0" horizontalGap="0">
-					<mx:Button label="Click here"  id="button1" paddingLeft="0" paddingRight="0" paddingBottom="2" paddingTop="0" styleName="linkButton" click="navigateToDownload()"/>
-					<mx:Label text="if your download does not start automatically in 3 seconds."  id="label5" color="#FFFFFF" fontSize="12"/>
+					<mx:Button label="Click here"  id="button1" paddingLeft="0" paddingRight="0" paddingBottom="2" paddingTop="0" fontFamily="Arial" fontSize="13" styleName="linkButton" click="navigateToDownload()"/>
+					<mx:Label text="if your download does not start automatically in 3 seconds."  id="label5" color="#FFFFFF" fontSize="13" fontFamily="Arial"/>
 				</mx:HBox>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
@@ -71,6 +71,7 @@
 			</mx:AddChild>
 			<mx:SetProperty name="width" value="376"/>
 			<mx:SetProperty name="height" value="236"/>
+			<mx:SetStyle target="{label2}" name="fontSize" value="15"/>
 		</mx:State>
 		<mx:State name="bigDataNotify">
 			<mx:RemoveChild target="{downloadsize1}"/>
@@ -435,6 +436,9 @@
 				
 				currentState = 'processing';
 				
+				/* var timeEstimated:Number = (this.ocurrences)
+				
+				progressbarDownloading.setProgress(10,100); */
 				
 				
 				TweenLite.to(this, 0.3, {x:xDownload});
