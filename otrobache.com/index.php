@@ -4,7 +4,7 @@ require_once("services/OtroBache.php");
 
 $serv = new OtroBache();
 
-$country="espana";
+$country="Spain";
 $countryName="España";
 
 if($_SERVER['HTTP_HOST']=="paraguay.otrobache.com") {
@@ -34,25 +34,23 @@ if(isset($_REQUEST['locality'])) {
     }
 } else {
     $loc=$serv->visitorLocation();
-    
-    if($country!="espana") {
-        $url=urlencode("http://otrobache.com/");
-     	$centerLat= "42.09822241118974";
-    	$centerLon= "-3.6474609375";
-    
-    	$swLat="0";
-        $swLon="0";
-        $neLat="0";
-        $neLon="0";
+    if($country=="paraguay") {
+        $url=urlencode("http://paraguay.otrobache.com/");
+        $centerLat= "0";
+    	$centerLon= "0";            
+    	$swLat="-29.075375179558346";
+        $swLon="-74.267578125";
+        $neLat="-13.838079936422462";
+        $neLon="-43.5498046875";
     
     } else {
-        $url=urlencode("http://".$country.".otrobache.com/");
-        $centerLat= "-23.442503";
-    	$centerLon= "-58.443832";
-    	$swLat="0";
-        $swLon="0";
-        $neLat="0";
-        $neLon="0";       
+        $url=urlencode("http://otrobache.com/");
+     	$centerLat= "0";
+    	$centerLon= "0";
+    	$swLat="35.35321610123821";
+        $swLon="-18.720703125";
+        $neLat="47.60616304386874";
+        $neLon="11.9970703125";       
         
     } 
     $localityName=$countryName;
@@ -95,7 +93,7 @@ function shortenText($text,$num=25) {
     		<meta name="description" content="OtroBache es una iniciativa para reportar los baches en tu ciudad. Busca en el mapa la direccion y envia el bache. Pronto podras realizar a traves de tu Iphone, Android o Blackberry.">            
         <?php } ?>
 	
-		<title>Otrobache.com - Reporta baches en <?php if($locality!=null) {echo($localityName);}else{echo("España");}?></title>
+		<title>Otrobache.com - Reporta baches en <?php if($locality!=null) {echo($localityName);}else{echo($countryName);}?></title>
 	
 		<link rel="shortcut icon" href="/images/favicon.ico" >
 	  <link rel="stylesheet" href="/stylesheets/layout.css" type="text/css" />
@@ -114,7 +112,7 @@ function shortenText($text,$num=25) {
 	</head>
 
 
-	<body onload="initialize(<?php echo("'$localityName',$centerLat,$centerLon,$swLat,$swLon,$neLat,$neLon") ?>)" onunload="GUnload()">
+	<body onload="initialize(<?php echo("'$localityName',$centerLat,$centerLon,$swLat,$swLon,$neLat,$neLon,'$country'") ?>)" onunload="GUnload()">
 		
 		<div id="iphone_modal">
 			<h4>Estamos en fase beta</h4>
