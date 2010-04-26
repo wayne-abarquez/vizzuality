@@ -111,8 +111,8 @@
 			<mx:RemoveChild target="{hbox4}"/>
 			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
 				<mx:HBox  left="20" right="20" top="21" id="hbox5" borderStyle="none">
-					<components:DownloadTypeDisabled id="disabled_download_world" world_type="World"/>
-					<components:DownloadTypeDisabled id="disabled_download_bound" world_type="Bound"/>
+					<components:DownloadTypeDisabled id="disabled_download_world" world_type_disabled="World"/>
+					<components:DownloadTypeDisabled id="disabled_download_bound" world_type_disabled="Bound"/>
 				</mx:HBox>
 			</mx:AddChild>
 			<mx:SetEventHandler target="{button4}" name="click">
@@ -434,6 +434,8 @@
 				this.x = Application.application.width;
 				
 				currentState = 'processing';
+				
+				
 				
 				TweenLite.to(this, 0.3, {x:xDownload});
 				
