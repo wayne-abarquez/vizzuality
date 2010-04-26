@@ -8,15 +8,12 @@
 			
 			[Bindable] public var world_type: String = "World";
 			[Bindable] public var selected_item: Boolean = false;
-			//[Bindable] public var disabled_item:Boolean = false;
 			
 			
 			private function onMouseOver(event:MouseEvent):void {
-				//if (!disabled_item){
-					this.setStyle('backgroundColor','#F8C600');
-					secondary.setStyle('color','#2F3030');
-					title.setStyle('color','#2F3030');
-			//	}
+				this.setStyle('backgroundColor','#F8C600');
+				secondary.setStyle('color','#2F3030');
+				title.setStyle('color','#2F3030');
 			}
 			
 			private function onMouseOut(event:MouseEvent):void {
@@ -36,31 +33,9 @@
 				}
 			}
 			
-			private function getSource():Class{
-				if (world_type == 'World') {
-					//if (disabled_item) return Resource.WORLD_DISABLED;
-					return Resource.WORLD;	
-				}else {
-					//if (disabled_item) return Resource.BOUND_DISABLED;
-					return Resource.BOUND;
-				}
-			}
-			
-			private function getLabelColor():uint{
-			 	//if (disabled_item) return 0x2F3030;
-				return (selected_item)? 0x2F3030:0xF8C600
-			}
-			
-			private function getTextColor():uint{
-			 	//if (disabled_item) return 0x2F3030;
-				return (selected_item)? 0x2F3030:0xFFFFFF
-			}
-			
-			
-			
 		]]>
 	</mx:Script>
-	<mx:Image left="10" top="10" height="70" width="70" source="{getSource()}" id="image"/>
+	<mx:Image left="10" top="10" height="70" width="70" source="{(selected_item)? Resource.WORLD:Resource.BOUND}" id="image"/>
 	<mx:Label color="{(selected_item)? 0x2F3030:0xF8C600}" fontSize="15" left="88" top="15" id="title" text="{(world_type == 'World')? 'World scale' : 'Bounding box' }"/>
 	<mx:Text fontFamily="Arial" color="{(selected_item)? 0x2F3030:0xFFFFFF}" left="88" top="38" id="secondary" text="{(world_type == 'World')? 'Download data for the whole world' : 'Download only the area that you are visualizing' }" fontSize="13" height="38" width="150"/>
 	
