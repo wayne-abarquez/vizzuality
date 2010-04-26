@@ -358,20 +358,20 @@
 		    	
 		    }
 		    
-		    public function getMinLongitude():Number {
-		    	return map.getLatLngBounds().getSouthWest().lng();
+		    public function getMinLongitude():String {
+		    	return map.getLatLngBounds().getSouthWest().lng().toFixed(4);
 		    }
 		    
-		    public function getMinLatitude():Number {
-		    	return map.getLatLngBounds().getSouthWest().lat();
+		    public function getMinLatitude():String {
+		    	return map.getLatLngBounds().getSouthWest().lat().toFixed(4);
 		    }
 		    
-		    public function getMaxLongitude():Number {
-		    	return map.getLatLngBounds().getNorthEast().lng();
+		    public function getMaxLongitude():String {
+		    	return map.getLatLngBounds().getNorthEast().lng().toFixed(4);
 		    }
 		    
-		    public function getMaxLatitude():Number {
-		    	return map.getLatLngBounds().getNorthEast().lat();
+		    public function getMaxLatitude():String {
+		    	return map.getLatLngBounds().getNorthEast().lat().toFixed(4);
 		    }
 		    
 		    private function onChangeMap(event:MapMoveEvent):void {
