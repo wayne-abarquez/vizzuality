@@ -101,7 +101,7 @@
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="nodata_world" basedOn="bigDataNotify">
-			<mx:SetProperty target="{id_notify_0}" name="text" value="Sorry, there is no data for yor filter criteria"/>
+			<mx:SetProperty target="{id_notify_0}" name="text" value="Sorry, there is no data for your filter criteria"/>
 			<mx:SetProperty target="{id_notify_1}" name="text" value="Try"/>
 			<mx:RemoveChild target="{id_notify_2}"/>
 			<mx:SetProperty target="{button4}" name="label" value="expanding filter criterias."/>
@@ -113,6 +113,7 @@
 					<components:DownloadType id="disabled_download_bound" world_type="Bound" selected_item="false" disabled_item="true"/>
 				</mx:HBox>
 			</mx:AddChild>
+			<mx:SetEventHandler target="{button4}" name="click" handler="MyEventDispatcher.onCloseDownloadWindow"/>
 		</mx:State>
 		<mx:State name="nodata_bbox" basedOn="bigDataNotify">
 			<mx:SetProperty target="{id_notify_0}" name="text" value="Sorry, there is no data for your filters"/>
@@ -513,7 +514,6 @@
 					download_bound.selected_item=false;
 					this.currentState = "nodata_world";
 				} 
-				
 			}
 			
 			private function initDownload():void {
