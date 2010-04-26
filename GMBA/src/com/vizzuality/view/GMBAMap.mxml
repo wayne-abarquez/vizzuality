@@ -359,15 +359,23 @@
 		    }
 		    
 		    public function getMinLongitude():String {
-		    	return map.getLatLngBounds().getSouthWest().lng().toFixed(4);
+		    	if (map.getLatLngBounds().getSouthWest().lng().toFixed(4) == "-180.0000")
+		    		return "-179.9999";
+		    	
+		    	else
+		    		return map.getLatLngBounds().getSouthWest().lng().toFixed(4);
 		    }
 		    
 		    public function getMinLatitude():String {
+		    	
 		    	return map.getLatLngBounds().getSouthWest().lat().toFixed(4);
 		    }
 		    
 		    public function getMaxLongitude():String {
-		    	return map.getLatLngBounds().getNorthEast().lng().toFixed(4);
+		    	if (map.getLatLngBounds().getNorthEast().lng().toFixed(4) == "180.0000")
+		    		return "179.9999";
+		    	else 
+		    		return map.getLatLngBounds().getNorthEast().lng().toFixed(4);
 		    }
 		    
 		    public function getMaxLatitude():String {
