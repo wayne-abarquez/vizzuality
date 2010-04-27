@@ -30,6 +30,7 @@ package com.vizzuality.maps
 		
 		private function ioErrorHandler(event:IOErrorEvent):void {
 			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
 
 		}
 		
@@ -37,6 +38,7 @@ package com.vizzuality.maps
 		private function loaded(event:Event):void {
 			this.removeChild(maskRectagle);
 			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
+			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 			addChild(loader);
 			
 		}				

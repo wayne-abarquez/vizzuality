@@ -97,6 +97,8 @@
             private function initSWFAddress():void {        	
                 handleSWFAddress(new SWFAddressEvent(SWFAddressEvent.CHANGE));
                 SWFAddress.addEventListener(SWFAddressEvent.CHANGE, handleSWFAddress);
+
+                
                 MyEventDispatcher.addEventListener(SliderThumbRelease.SLIDER_VALUE_CHANGED, onChangeSliderValues);
                 MyEventDispatcher.addEventListener(CloseDownloadWindowEvent.CLOSE_WINDOW, 
 	                function (event:CloseDownloadWindowEvent):void { 
@@ -239,6 +241,7 @@
 	        }
 
 			private var tm:Timer;
+			private var tilesLoading:Boolean=false;
 		    private function onMapReady(event:Event):void {
 			   // this.map.addControl(new ZoomControl());
 			    map.setDoubleClickMode(MapAction.ACTION_NOTHING);
@@ -255,6 +258,7 @@
 				tlo = new TileLayerOverlay(rasterLayer);
 				tlo.addEventListener(MapEvent.TILES_LOADED,function(ev:Event):void {
 					loadingMessage.visible=false;
+					tilesLoading=false;
 					if(tm!=null) {
 						tm.stop();
 						tm.removeEventListener(TimerEvent.TIMER,onTimer);
@@ -263,6 +267,7 @@
 				})
 				tlo.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:Event):void {
 					loadingMessage.visible=true;
+					tilesLoading=true;
 					if(tm==null) {
 						tm = new Timer(8000);
 						tm.addEventListener(TimerEvent.TIMER,onTimer);
@@ -284,7 +289,8 @@
 					//tlo.foreground.alpha=0.8;
 					//mLayerTo.foreground.alpha=0;
 					mLayerTo.visible=false;
-					loadingMessage.visible=false;
+					if(!tilesLoading)
+						loadingMessage.visible=false;
 				});
 				map.addOverlay(tlo);
 				
