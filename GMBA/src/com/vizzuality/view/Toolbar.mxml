@@ -165,7 +165,7 @@
 		<!--ALTITUDE-->
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
 			<mx:VBox verticalGap="0" left="12" top="15" width="100%">
-				<mx:Label text="ELEVATION" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8"/>
+				<mx:Label text="ELEVATION" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8" toolTip="Taken from WorldClim"/>
 				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
@@ -183,7 +183,7 @@
 		<!--ROUGHNESS-->
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
 			<mx:VBox verticalGap="0" left="12" top="15" width="100%">
-				<mx:Label text="RELIEF" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8"/>
+				<mx:Label text="RELIEF" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8" toolTip="A measurement of the steepnest of land. The more relief the more steepest"/>
 				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
 					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
@@ -202,25 +202,25 @@
 		<!--VEGETATION-->
 		<mx:Canvas width="100%" height="255">
 			<mx:VBox verticalGap="0" left="20" top="15" right="5">
-				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" />
+				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" toolTip="Taken from WorldClim classification" />
 				<mx:VBox verticalGap="1" width="100%">
 					<mx:Spacer height="5" />
 					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknown" click="onSelectAllClicked()" 
 					 _selected="true"	 mamufa="true"/>
 					
-					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textType="Nival" clickOnVegTypeEvent="onChangeVegeValue(1,event)"
+					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textTooltip="Season length &lt;= 10 days" textType="Nival" clickOnVegTypeEvent="onChangeVegeValue(1,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(1,event, type2)"/>
-					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textType="Upper alpine zone" clickOnVegTypeEvent="onChangeVegeValue(2,event)"
+					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textTooltip="Season length between 10 and 59 days or season longer and season mean &lt; 3.5 degrees C" textType="Upper alpine" clickOnVegTypeEvent="onChangeVegeValue(2,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(2,event, type3)"/>
-					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textType="Lower alpine zone" clickOnVegTypeEvent="onChangeVegeValue(3,event)"
+					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textTooltip="Season length &lt; 94 days or season mean &lt; 6.4 degrees C" textType="Lower alpine" clickOnVegTypeEvent="onChangeVegeValue(3,event)"
 						 _selected="true" clickOnDeselectEvent="onDeselectVegeValue(3,event, type4)"/>
-					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textType="Upper montane zone" clickOnVegTypeEvent="onChangeVegeValue(4,event)"
+					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textTooltip="Season length &gt;= 94 days and season mean between 6.4 and 10 degrees C" textType="Upper montane" clickOnVegTypeEvent="onChangeVegeValue(4,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(4,event, type5)"/>
-					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textType="Lower montane zone" clickOnVegTypeEvent="onChangeVegeValue(5,event)"
+					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textTooltip="Season length &gt;= 94 days and seasonal mean temperature between 10 and 15 degrees C" textType="Lower montane" clickOnVegTypeEvent="onChangeVegeValue(5,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(5,event, type6)"/>
-					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textType="Warm zone with possible freezing" clickOnVegTypeEvent="onChangeVegeValue(6,event)"
+					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textTooltip="Warm zone with possible freezing. Season length &gt;= 94 days and season mean temperature &gt;= 15 degrees C" textType="Warm zone with possible freezing" clickOnVegTypeEvent="onChangeVegeValue(6,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(6,event, type7)"/>
-					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textType="Perpetual warm conditions" clickOnVegTypeEvent="onChangeVegeValue(7,event)"
+					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textTooltip="Perpetual warm conditions, no freezing. Season mean temperature &gt;= 15 degrees C" textType="Perpetual warm conditions, no freezing" clickOnVegTypeEvent="onChangeVegeValue(7,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(7,event, type8)"/>
 						
 				</mx:VBox>
