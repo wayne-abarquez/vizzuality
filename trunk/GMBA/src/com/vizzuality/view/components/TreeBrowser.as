@@ -316,6 +316,21 @@ package com.vizzuality.view.components
 	        invalidateDisplayList();
 	
 			
+			/* if (column != null) {
+				column.dispatchEvent(new ListEvent(ListEvent.ITEM_CLICK,true,true,0,0,null,ItemListRenderer as IListItemRenderer));
+			} */
+			
+				TweenLite.delayedCall(1.5,function():void {
+	        	
+	        		var colum:TreeBrowserList = getChildAt(0) as TreeBrowserList;
+	        		colum.selectedIndex=0;
+	        		index=1;
+ 		        	colum.dispatchEvent(
+	        		new ListEvent(ListEvent.CHANGE,true,true,0,0,null,ItemListRenderer as IListItemRenderer));	        		
+					treeInitialized = true;
+	        	});
+			
+			
 			//simulat a click to preopen the tree
 /*   	        if(!treeInitialized) {
 	        	
@@ -376,7 +391,7 @@ package com.vizzuality.view.components
 							break;
 						}
 					}
-				}
+				}		
 				checkScrollBar();
 			}
 		}
