@@ -94,7 +94,7 @@ div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p s
 div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.email{background:url(../images/bkg_email.png) no-repeat 0 0; font:bold 13px Arial; color:#262A2B; height:23px; width:200px; padding:2px 0 0 28px;}
 div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.email a{font:bold 13px Arial; text-decoration:none; color:#262A2B; }
 
-div#application {float: left; height: 742px; width:1080px; margin:0px 0 0 0;}
+div#application {float:left; height:742px; width:1080px; margin:0px 0 0 0;}
 div#footer_application {float: left; height: auto; width:100%; margin:60px 0 0 0;}
 div#footer_application div.footerLeft {float:left; margin:0 0 0 40px;}
 div#footer_application div.footerLeft a p.gmbaLogo {float:left; background:url(../images/gmba_logo.png) no-repeat 0 0; width:58px; height:32px; margin:4px 5px 0 5px;}
