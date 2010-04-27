@@ -455,7 +455,9 @@
 	
 	<mx:GlowFilter id="sh" alpha="0.3" color="#000000" blurX="20" blurY="20" />
 	
-	<mx:Canvas styleName="bkgBigCanvas" top="22" left="22" right="29" bottom="24" backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off"> 
+	<mx:Canvas styleName="bkgBigCanvas"
+		 maxWidth="1170" maxHeight="700"
+		 backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="92%" height="92%" horizontalCenter="0" verticalCenter="0"> 
 
 		<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
 			<view:Toolbar width="30%" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}" id="toolBar"/>
