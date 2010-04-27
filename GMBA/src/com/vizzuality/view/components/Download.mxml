@@ -94,7 +94,7 @@
 				<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox0">
 					<mx:CheckBox id="terms0" label="" cornerRadius="10"  click="activateDownload()" selected="false" useHandCursor="true" mouseChildren="false" buttonMode="true"  enabled="true"/>
 					<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3" id="label4" enabled="true"/>
-					<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('termsAndConditions.html'))" id="button0" enabled="true"/>
+					<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('http://data.gbif.org/terms.htm'))" id="button0" enabled="true"/>
 					<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label8" enabled="true"/>
 				</mx:HBox>
 			</mx:AddChild>
