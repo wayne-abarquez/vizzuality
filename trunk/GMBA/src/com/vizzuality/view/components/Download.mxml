@@ -249,7 +249,11 @@
 				}
 				
 				setDownloadBox();
-				id_number_veg_types.text = "" +numberVegTypes;
+				if(numberVegTypes==7) {
+					id_number_veg_types.text = "ALL";
+				} else {
+					id_number_veg_types.text = "" +numberVegTypes;	
+				}
 				
 				initSearch();
 				
