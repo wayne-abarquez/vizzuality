@@ -97,7 +97,7 @@
 				</mx:HBox>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Button label="download the whole" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="removeCurrentEvent(); currentState = '';" id="button4" x="148" y="55" fontSize="15"/>
+				<mx:Button label="download the whole" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" id="button4" x="148" y="55" fontSize="15"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{image1}" position="before">
 				<mx:Label x="294" y="53" text="dataset or turther refine the search" fontSize="15" color="#FFFFFF" id="id_notify_2"  width="264" height="23"/>
