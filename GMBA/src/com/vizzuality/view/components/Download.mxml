@@ -88,13 +88,13 @@
 				<mx:Label x="90" y="53" text="You can download the whole dataset (650MB) if you want." fontSize="15" color="#FFFFFF" id="id_notify_1"  width="454" height="23"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Image x="22" y="30" width="58" height="55" id="image1" source="assets/warning.png"/>
+				<mx:Image x="22" y="30" width="58" height="55" id="image1" source="@Embed('/assets/warning.png')"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox0">
 					<mx:CheckBox id="terms0" label="" cornerRadius="10"  click="activateDownload()" selected="false" useHandCursor="true" mouseChildren="false" buttonMode="true"  enabled="true"/>
 					<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3" id="label4" enabled="true"/>
-					<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('../html/termsAndConditions.html'))" id="button0" enabled="true"/>
+					<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('termsAndConditions.html'))" id="button0" enabled="true"/>
 					<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label8" enabled="true"/>
 				</mx:HBox>
 			</mx:AddChild>
@@ -683,12 +683,12 @@
 		<mx:Spacer height="5" />
 		<mx:Canvas height="74" width="574" styleName="bkgTopDownload" id="canvasTopDownload">
 			<mx:Label x="10" y="8" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter0"/>
-			<mx:Image id="arrowRangeElevation" x="50" y="18" source="assets/arrowRange.png" />
+			<mx:Image id="arrowRangeElevation" x="50" y="18" source="@Embed('/assets/arrowRange.png')" />
 			<mx:Label x="66" y="8" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter1" />
 			<mx:Label x="10" y="30" text="ELEVATION RANGE" fontSize="11" color="#4D4D4D" id="elevationLabel" />
 			
 			<mx:Label x="132" y="8" text="130" fontSize="17" color="#FFFFFF" id="id_relief_filter0" />
-			<mx:Image id="arrowRangeRelief" x="183" y="18" source="assets/arrowRange.png" />
+			<mx:Image id="arrowRangeRelief" x="183" y="18" source="@Embed('/assets/arrowRange.png')" />
 			<mx:Label x="200" y="8" text="451" fontSize="17" color="#FFFFFF" id="id_relief_filter1" />
 			<mx:Label x="132" y="30" text="ROUGHNESS RANGE" fontSize="11" color="#4D4D4D" id="roughnessLabel" />
 			
@@ -715,7 +715,7 @@
 				<components:DownloadRepeat label_number="{specimens}" label_text="SPECIMENS"  id="downloadrepeat3"/>
 				<components:DownloadRepeat label_number="{providers}" label_text="PROVIDERS" bar="false" id="downloadrepeat4"/>
 			</mx:HBox>
-			<mx:Image id="vertexDownload" width="574" source="assets/vertexDownload.jpg" height="29" y="-7"/>
+			<mx:Image id="vertexDownload" width="574" source="@Embed('/assets/vertexDownload.jpg')" height="29" y="-7"/>
 			
 		</mx:Canvas>
 	</mx:VBox>
