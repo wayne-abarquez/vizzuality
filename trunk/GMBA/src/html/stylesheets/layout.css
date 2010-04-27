@@ -32,7 +32,7 @@ div#containerContent div.content ul li {font:normal 14px Arial; margin:10px 0 0 
 div#containerContent div.content div.contentLeft{ float: left; margin:50px 20px 0 0; height:368px; width:363px;}
 div#containerContent div.content div.contentLeft div.contentLeftTitle{ float: left; height:66px; width:360px; background-image: url(../images/contentLeftTitle.png); margin:0 auto; }
 
-div#containerContent div.content div.contentLeft div.contentLeftInfo p{ float: left; margin:30px 0 0 0; font-size:16px; font-color: #282a2b; font-family:"Lucida Grande";}
+div#containerContent div.content div.contentLeft div.contentLeftInfo p{ float: left; margin:30px 0 0 0; font-size:16px; font-color: #282a2b; font-family:"Arial";}
 div#containerContent div.content div.contentLeft div.button a{ float: left; height:49px; width:334px; background-image: url(../images/button.png); margin:60px 0 0 0; border:none;}
 div#containerContent div.content div.contentLeft div.button a:hover{ background-position: 0 -49px;}
 div#containerContent div.content div.contentRight { float:right; height:368px; width:520px; margin:0 0 0 0px; right:0;}
