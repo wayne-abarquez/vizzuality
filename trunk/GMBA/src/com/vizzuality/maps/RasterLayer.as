@@ -40,11 +40,8 @@ package com.vizzuality.maps
             
             return null;			
 		}
+		
 
-
-        private function ioErrorHandler(event:IOErrorEvent):void {
-            event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-        }
 		
 	}
 }
