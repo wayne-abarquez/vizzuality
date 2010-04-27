@@ -7,7 +7,7 @@
 		]]>
 	</mx:Script>
 
-	<mx:Image source="{Resource.LOGO}" width="139" height="55" left="25" top="25"/>
+	<mx:Image source="{Resource.LOGO}" width="128" height="55" left="21" top="25"/>
 	<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
 	<mx:VBox right="10" top="10" bottom="10" verticalAlign="middle" horizontalAlign="center">
 		<!--TODO: Use events handlers for the principal buttons, not Application.application...-->
