@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:components="com.vizzuality.components.*" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" 
 	xmlns:ns1="com.google.maps.*" xmlns:ns2="com.vizzuality.view.GMBAMap.*" applicationComplete="initSWFAddress()" currentStateChange="setSWFAddress()" xmlns:view="com.vizzuality.view.*" 
-	preloader="com.vizzuality.view.preloader.Preloader" horizontalScrollPolicy="off">
+	preloader="com.vizzuality.view.preloader.Preloader" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 	
 	<mx:Style source="com/vizzuality/skin/style.css"/>
 	
