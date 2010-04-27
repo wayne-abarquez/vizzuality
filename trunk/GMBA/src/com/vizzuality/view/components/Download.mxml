@@ -16,7 +16,7 @@
 			<mx:RemoveChild target="{label7}"/>
 			<mx:RemoveChild target="{hboxTerms}"/>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="141" y="78" text="Please wait meanwhile we receive the data" fontSize="15" color="#FFFFFF" id="id_notify_3"  width="367" height="23"/>
+				<mx:Label x="141" y="78" text="Please wait while we receive the data" fontSize="15" color="#FFFFFF" id="id_notify_3"  width="367" height="23"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{download_world}"/>
 			<mx:RemoveChild target="{hbox4}"/>
@@ -85,17 +85,17 @@
 				<mx:Label x="91" y="33" text="Sorry, this is too much data to prepare for download." fontSize="15" color="#FFFFFF" id="id_notify_0"  width="367" height="23"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="90" y="53" text="You can download the whole dataset (650MB) if you want" fontSize="15" color="#FFFFFF" id="id_notify_1"  width="368" height="23"/>
+				<mx:Label x="90" y="53" text="You can download the whole dataset (650MB) if you want." fontSize="15" color="#FFFFFF" id="id_notify_1"  width="454" height="23"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
 				<mx:Image x="22" y="30" width="58" height="55" id="image1" source="assets/warning.png"/>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:HBox  bottom="30" left="30" width="412" borderStyle="none" horizontalGap="0" horizontalScrollPolicy="off" id="hbox0">
-					<mx:CheckBox id="terms0" label="" cornerRadius="10"  click="activateDownload()" selected="false" useHandCursor="true" mouseChildren="false" buttonMode="true"  enabled="false"/>
-					<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3" id="label4" enabled="false"/>
-					<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('../html/termsAndConditions.html'))" id="button0" enabled="false"/>
-					<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label8" enabled="false"/>
+					<mx:CheckBox id="terms0" label="" cornerRadius="10"  click="activateDownload()" selected="false" useHandCursor="true" mouseChildren="false" buttonMode="true"  enabled="true"/>
+					<mx:Label text="Before continue, you must accept the" fontSize="11" color="#FFFFFF" paddingLeft="3" id="label4" enabled="true"/>
+					<mx:Button label="terms and conditions" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" click="navigateToURL(new URLRequest('../html/termsAndConditions.html'))" id="button0" enabled="true"/>
+					<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label8" enabled="true"/>
 				</mx:HBox>
 			</mx:AddChild>
 		</mx:State>
@@ -549,7 +549,7 @@
 			
 			private function initDownload():void {
 				if(currentState=="bigDataNotify") {
-					navigateToURL(new URLRequest('http://204.236.250.31/gbif.zip'),"_blank");
+					navigateToURL(new URLRequest('http://204.236.250.31/data/gbif.zip'),"_blank");
 				} else {
 					xDownload = this.x;
 					TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition});				
