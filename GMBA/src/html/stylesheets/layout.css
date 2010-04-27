@@ -7,7 +7,7 @@ div.right{float:right; width:auto;}
 a:focus{outline:none}
 
 
-div#header div.title { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 178px 0px;}
+div#header div.title { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 100px 0px;}
 div#header div.titleTerms_Conditions { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 20px 0px;}
 div#header div.titleContact { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 100px 0px;}
 div#header div.titleHelp { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 100px 0px;}
@@ -37,17 +37,8 @@ div#containerContent div.content div.contentLeft div.button a{ float: left; heig
 div#containerContent div.content div.contentLeft div.button a:hover{ background-position: 0 -49px;}
 div#containerContent div.content div.contentRight { float:right; height:368px; width:520px; margin:0 0 0 0px; right:0;}
 div#containerContent div.content div.contentRight img { float:right; }
- 	
-div#containerContent div.content div.footer {float: left; height: auto; width:100%; margin:90px 0 0 0; font-family: "Lucida Grande"; font-size: 13px; color: #282a2b;}
-div#containerContent div.content div.footer div.footerLeft { float: left; color: #282a2b;}
-div#containerContent div.content div.footer div.footerLeft a {text-decoration:none; font-family: "Arial"; font-size: 13px; color: #282a2b;}
-div#containerContent div.content div.footer div.footerLeft p {background:url(../images/gmba_logo.png) no-repeat 0 0; height:32px; width:700px; padding:8px 0 0 68px; }
 
-div#containerContent div.content div.footer div.footerRight { float: right; color: #282a2b; margin:0 23px 0 0;}
-div#containerContent div.content div.footer div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b;}
-div#containerContent div.content div.footer div.footerRight p a:hover{ color: #ff9933;}
-
-div#containerContent div.content div.contentLeftContact{ float: left; margin:50px 20px 0 0; height:368px; width:393px;}
+div#containerContent div.content div.contentLeftContact{ float: left; margin:50px 20px 70px 0; height:368px; width:393px;}
 div#containerContent div.content div.contentLeftContact a.back {float:left; font:normal 13px Arial; color:#272A2B; text-decoration:underline;}
 div#containerContent div.content div.contentLeftContact a.back:hover {color:#000000;}
 div#containerContent div.content div.contentLeftContact div.contact_us_Title{ float: none; height:59px; width:347px; background-image: url(../images/contact_usTitle.png); margin:40px 0 30px 0; }
@@ -104,20 +95,14 @@ div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.e
 div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.email a{font:bold 13px Arial; text-decoration:none; color:#262A2B; }
 
 
-div#containerContentHelp div.content div.footerHelp {float: left; height: auto; width:100%; margin:20px 0 0 0; font-family: "Arial"; font-size: 13px; color: #282a2b;}
-div#containerContentHelp div.content div.footerHelp div.footerLeft { float: left; color: #282a2b;;}
-div#containerContentHelp div.content div.footerHelp div.footerLeft a {font-family: "Arial"; font-size: 13px; color: #282a2b; text-decoration:none;} 
-div#containerContentHelp div.content div.footerHelp div.footerLeft p {background:url(../images/gmba_logo.png) no-repeat 0 0; height:32px; width:700px; padding:8px 0 0 68px;}
-div#containerContentHelp div.content div.footerHelp div.footerRight { float: right; color: #282a2b; margin:5px 23px 0 0;}
-div#containerContentHelp div.content div.footerHelp div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b;}
-div#containerContentHelp div.content div.footerHelp div.footerRight p a:hover{ color: #ff9933;}
+div#footer {float: left; height: auto; width:100%; margin:60px 0 0 0;}
+div#footer div.footerLeft {float:left;}
+div#footer div.footerLeft a p.gmbaLogo {float:left; background:url(../images/gmba_logo.png) no-repeat 0 0; width:58px; height:32px; margin:4px 5px 0 5px;}
+div#footer div.footerLeft a p.gbifLogo {float:left; background:url(../images/gbif_logo.png) no-repeat 0 0; width:39px; height:38px; margin:0 5px 0 5px;}
+div#footer div.footerLeft div.text {float:left; width:490px; margin:5px 0 0 15px;}
+div#footer div.footerLeft div.text p {float:left; font:normal 13px Arial; color:#333333; width:490px; margin:0;}
+div#footer div.footerRight {float:right; margin:0 25px 0 0;}
+div#footer div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b; font-family: "Arial"; font-size: 13px;}
+div#footer div.footerRight p a:hover{ color: #ff9933;}
 
 
-
-div#containerContent div.content div.footerContact {float: left; height: auto; width:100%; margin:90px 0 0 0; font-family: "Arial"; font-size: 13px; color: #282a2b;}
-div#containerContent div.content div.footerContact div.footerLeft { float: left; color: #282a2b;}
-div#containerContent div.content div.footerContact div.footerLeft a {text-decoration:none; font-family: "Arial"; font-size: 13px; color: #282a2b;}
-div#containerContent div.content div.footerContact div.footerLeft p {background:url(../images/gmba_logo.png) no-repeat 0 0; height:32px; width:700px; padding:8px 0 0 68px;}
-div#containerContent div.content div.footerContact div.footerRight { float: right; color: #282a2b; margin:5px 23px 0 0;}
-div#containerContent div.content div.footerContact div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b;}
-div#containerContent div.content div.footerContact div.footerRight p a:hover{ color: #ff9933;}
