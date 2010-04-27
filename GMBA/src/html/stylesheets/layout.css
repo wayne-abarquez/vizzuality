@@ -65,7 +65,7 @@ div#containerContentHelp div.content div.contentLeftHelp div.step_one div.title{
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_left {float:left; width:360px; height:260px;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_left div.video {float:left; width:360px; height:260px; background:url(../images/help_video_step_one.png) no-repeat 0 0; margin:0 0 0 50px;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div content {float:left; width:100%;}
-div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_right {float:right; width:490px; height:260px;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
 
 div#containerContentHelp div.content div.contentLeftHelp div.step_two{ float:left; width:373px; margin:0px 0 0px 0; }
@@ -73,7 +73,7 @@ div#containerContentHelp div.content div.contentLeftHelp div.step_two div.title{
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_left {float:left; width:360px; }
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_left div.video {float:left; width:360px; height:260px; background:url(../images/help_video_step_two.png) no-repeat 0 0; margin:0 0 0 50px;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div content {float:left; width:100%;}
-div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_right {float:right; width:490px; height:260px;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
 
 div#containerContentHelp div.content div.contentLeftHelp div.step_three{ float:left; width:373px; margin:0px 0 0px 0; }
@@ -81,7 +81,7 @@ div#containerContentHelp div.content div.contentLeftHelp div.step_three div.titl
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_left {float:left; width:360px; height:260px;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_left div.video {float:left; width:360px; height:260px; background:url(../images/help_video_step_one.png) no-repeat 0 0; margin:0 0 0 50px;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div content {float:left; width:100%;}
-div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_right {float:right; width:490px; height:260px;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
 
 
