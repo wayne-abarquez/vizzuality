@@ -40,6 +40,9 @@ div#containerContent div.content div.contentRight img { float:right; }
  	
 div#containerContent div.content div.footer {float: left; height: auto; width:100%; margin:90px 0 0 0; font-family: "Lucida Grande"; font-size: 13px; color: #282a2b;}
 div#containerContent div.content div.footer div.footerLeft { float: left; color: #282a2b;}
+div#containerContent div.content div.footer div.footerLeft a {text-decoration:none; font-family: "Arial"; font-size: 13px; color: #282a2b;}
+div#containerContent div.content div.footer div.footerLeft p {background:url(../images/gmba_logo.png) no-repeat 0 0; height:32px; width:700px; padding:8px 0 0 68px; }
+
 div#containerContent div.content div.footer div.footerRight { float: right; color: #282a2b; margin:0 23px 0 0;}
 div#containerContent div.content div.footer div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b;}
 div#containerContent div.content div.footer div.footerRight p a:hover{ color: #ff9933;}
@@ -98,8 +101,9 @@ div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.e
 div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.email a{font:bold 13px Arial; text-decoration:none; color:#262A2B; }
 
 
-div#containerContentHelp div.content div.footerHelp {float: left; height: auto; width:100%; margin:20px 0 0 0; font-family: "Lucida Grande"; font-size: 13px; color: #282a2b;}
-div#containerContentHelp div.content div.footerHelp div.footerLeft { float: left; color: #282a2b;}
+div#containerContentHelp div.content div.footerHelp {float: left; height: auto; width:100%; margin:20px 0 0 0; font-family: "Arial"; font-size: 13px; color: #282a2b;}
+div#containerContentHelp div.content div.footerHelp div.footerLeft { float: left; color: #282a2b;;}
+div#containerContentHelp div.content div.footerHelp div.footerLeft a {font-family: "Arial"; font-size: 13px; color: #282a2b; text-decoration:none;} 
 div#containerContentHelp div.content div.footerHelp div.footerLeft p {background:url(../images/gmba_logo.png) no-repeat 0 0; height:32px; width:700px; padding:8px 0 0 68px;}
 div#containerContentHelp div.content div.footerHelp div.footerRight { float: right; color: #282a2b; margin:5px 23px 0 0;}
 div#containerContentHelp div.content div.footerHelp div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b;}
@@ -107,8 +111,9 @@ div#containerContentHelp div.content div.footerHelp div.footerRight p a:hover{ c
 
 
 
-div#containerContent div.content div.footerContact {float: left; height: auto; width:100%; margin:90px 0 0 0; font-family: "Lucida Grande"; font-size: 13px; color: #282a2b;}
+div#containerContent div.content div.footerContact {float: left; height: auto; width:100%; margin:90px 0 0 0; font-family: "Arial"; font-size: 13px; color: #282a2b;}
 div#containerContent div.content div.footerContact div.footerLeft { float: left; color: #282a2b;}
+div#containerContent div.content div.footerContact div.footerLeft a {text-decoration:none; font-family: "Arial"; font-size: 13px; color: #282a2b;}
 div#containerContent div.content div.footerContact div.footerLeft p {background:url(../images/gmba_logo.png) no-repeat 0 0; height:32px; width:700px; padding:8px 0 0 68px;}
 div#containerContent div.content div.footerContact div.footerRight { float: right; color: #282a2b; margin:5px 23px 0 0;}
 div#containerContent div.content div.footerContact div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b;}
