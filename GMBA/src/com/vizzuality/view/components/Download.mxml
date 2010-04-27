@@ -18,6 +18,8 @@
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
 				<mx:Label x="141" y="78" text="Please wait meanwhile we receive the data" fontSize="15" color="#FFFFFF" id="id_notify_3"  width="367" height="23"/>
 			</mx:AddChild>
+			<mx:RemoveChild target="{download_world}"/>
+			<mx:RemoveChild target="{hbox4}"/>
 	
 		</mx:State>
 		<mx:State name="processing">
@@ -80,10 +82,10 @@
 			<mx:RemoveChild target="{hboxTerms}"/>
 			
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="91" y="33" text="Sorry, this is too much data to prepare download." fontSize="15" color="#FFFFFF" id="id_notify_0"  width="367" height="23"/>
+				<mx:Label x="91" y="33" text="Sorry, this is too much data to prepare for download." fontSize="15" color="#FFFFFF" id="id_notify_0"  width="367" height="23"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Label x="90" y="53" text="You can" fontSize="15" color="#FFFFFF" id="id_notify_1"  width="122" height="23"/>
+				<mx:Label x="90" y="53" text="You can download the whole dataset (650MB) if you want" fontSize="15" color="#FFFFFF" id="id_notify_1"  width="368" height="23"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
 				<mx:Image x="22" y="30" width="58" height="55" id="image1" source="assets/warning.png"/>
@@ -96,19 +98,10 @@
 					<mx:Label text="of the service" fontSize="11" color="#FFFFFF" id="label8" enabled="false"/>
 				</mx:HBox>
 			</mx:AddChild>
-			<mx:AddChild relativeTo="{canvasDataDownload}" position="lastChild">
-				<mx:Button label="download the whole" click="navigateToURL(new URLRequest('http://204.236.250.31/data/gbif.zip'),'_blank')" styleName="linkButton" paddingLeft="0" paddingRight="0" useHandCursor="true" buttonMode="true" mouseChildren="false" paddingTop="0" paddingBottom="3" id="button4" x="148" y="55" fontSize="15"/>
-			</mx:AddChild>
-			<mx:AddChild relativeTo="{image1}" position="before">
-				<mx:Label x="294" y="53" text="dataset or turther refine the search" fontSize="15" color="#FFFFFF" id="id_notify_2"  width="264" height="23"/>
-			</mx:AddChild>
 		</mx:State>
 		<mx:State name="nodata_world" basedOn="bigDataNotify">
 			<mx:SetProperty target="{id_notify_0}" name="text" value="Sorry, there is no data for your filter criteria"/>
-			<mx:SetProperty target="{id_notify_1}" name="text" value="Try"/>
-			<mx:RemoveChild target="{id_notify_2}"/>
-			<mx:SetProperty target="{button4}" name="label" value="expanding filter criterias."/>
-			<mx:SetProperty target="{button4}" name="x" value="116"/>
+			<mx:SetProperty target="{id_notify_1}" name="text" value="Try expanding the filter criteria or selecting a higher taxon."/>
 			<mx:RemoveChild target="{hbox4}"/>
 			<mx:AddChild relativeTo="{canvas2}" position="lastChild">
 				<mx:HBox  left="20" right="20" top="21" id="hbox5" borderStyle="none">
@@ -116,18 +109,24 @@
 					<components:DownloadTypeDisabled id="disabled_download_bound" world_type_disabled="Bound"/>
 				</mx:HBox>
 			</mx:AddChild>
-			<mx:SetEventHandler target="{button4}" name="click">
-				<mx:handler><![CDATA[MyEventDispatcher.onCloseDownloadWindow(); removeCurrentEvent(); currentState = '';  ]]></mx:handler>
-			</mx:SetEventHandler>
+			<mx:AddChild position="lastChild">
+				<utils:ShadowButton height="32" label="Close window" color="#FFFFFF" fontSize="17" fontWeight="normal"
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" y="416" horizontalCenter="0" click="MyEventDispatcher.onCloseDownloadWindow()" id="shadowbutton1"/>
+			</mx:AddChild>
+			<mx:RemoveChild target="{hbox0}"/>
+			<mx:RemoveChild target="{downloadButton}"/>
 		</mx:State>
 		<mx:State name="nodata_bbox" basedOn="bigDataNotify">
-			<mx:SetProperty target="{id_notify_0}" name="text" value="Sorry, there is no data for your filters"/>
-			<mx:SetProperty target="{id_notify_1}" name="text" value="If you want"/>
-			<mx:SetProperty target="{id_notify_2}" name="text" value="or further refine the search"/>
-			<mx:SetProperty target="{button4}" name="label" value="try with world scale"/>
-			<mx:SetProperty target="{button4}" name="x" value="167"/>
-			<mx:SetProperty target="{id_notify_2}" name="x" value="308"/>
-			<mx:SetEventHandler target="{button4}" name="click" handler="checkDataSearched()"/>
+			<mx:SetProperty target="{id_notify_0}" name="text" value="Sorry, there is no data for your filter criteria"/>
+			<mx:SetProperty target="{id_notify_1}" name="text" value="Try expanding the filter criteria or selecting a higher taxon."/>
+			<mx:SetProperty target="{id_notify_1}" name="width" value="392"/>
+			<mx:RemoveChild target="{label4}"/>
+			<mx:RemoveChild target="{hbox0}"/>
+			<mx:RemoveChild target="{downloadButton}"/>
+			<mx:AddChild position="lastChild">
+				<utils:ShadowButton height="32" label="Close window" color="#FFFFFF" fontSize="17" fontWeight="normal"
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" y="416" horizontalCenter="0" click="MyEventDispatcher.onCloseDownloadWindow()" id="shadowbutton0"/>
+			</mx:AddChild>
 		</mx:State>
 		
 	</mx:states>
@@ -549,8 +548,12 @@
 			}
 			
 			private function initDownload():void {
-				xDownload = this.x;
-				TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition});				
+				if(currentState=="bigDataNotify") {
+					navigateToURL(new URLRequest('http://204.236.250.31/gbif.zip'),"_blank");
+				} else {
+					xDownload = this.x;
+					TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition});				
+				}
    
  			}
  			
