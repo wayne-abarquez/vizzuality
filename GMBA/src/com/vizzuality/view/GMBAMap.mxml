@@ -6,7 +6,7 @@
 	removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()" xmlns:components1="com.vizzuality.view.components.*" xmlns:components2="org.vizzuality.components.*"
     minHeight="742"
-    minWidth="1000">
+    minWidth="1080">
     
     
 	<mx:states>
