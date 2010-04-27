@@ -66,7 +66,8 @@ div#containerContentHelp div.content div.contentLeftHelp div.help_Title{ float: 
 div#containerContentHelp div.content div.contentLeftHelp div.step_one{ float:left; width:373px; margin:50px 0 0px 0; }
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div.title{ float: left; height:39px; width:1024px; background:url(../images/help_step_one.png) no-repeat; margin:0px 0 30px 0; }
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_left {float:left; width:360px; height:260px;}
-div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_left div.video {float:left; width:360px; height:260px; background:url(../images/help_video_step_one.png) no-repeat 0 0; margin:0 0 0 50px;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_left div.video {float:left; width:355px; height:208px; background:url(../images/frameVideo.png) no-repeat 0 0; margin:0 0 0 50px; padding:10px 0 0 12px; position:relative;}
+div#containerContentHelp div.play a{position:absolute; background:url(../images/playVideo.png) no-repeat; width:70px; height:45px; top:78px; left:143px; z-index:1000000;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div content {float:left; width:100%;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
@@ -74,7 +75,8 @@ div#containerContentHelp div.content div.contentLeftHelp div.step_one div.conten
 div#containerContentHelp div.content div.contentLeftHelp div.step_two{ float:left; width:373px; margin:0px 0 0px 0; }
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div.title{ float: left; height:39px; width:1024px; background:url(../images/help_step_two.png) no-repeat; margin:0px 0 30px 0; }
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_left {float:left; width:360px; }
-div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_left div.video {float:left; width:360px; height:260px; background:url(../images/help_video_step_two.png) no-repeat 0 0; margin:0 0 0 50px;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_left div.video {float:left; width:355px; height:208px; background:url(../images/frameVideo.png) no-repeat 0 0; margin:0 0 0 50px; padding:10px 0 0 12px; position:relative;}
+
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div content {float:left; width:100%;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
@@ -82,7 +84,8 @@ div#containerContentHelp div.content div.contentLeftHelp div.step_two div.conten
 div#containerContentHelp div.content div.contentLeftHelp div.step_three{ float:left; width:373px; margin:0px 0 0px 0; }
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div.title{ float: left; height:39px; width:1024px; background:url(../images/help_step_three.png) no-repeat; margin:0px 0 30px 0; }
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_left {float:left; width:360px; height:260px;}
-div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_left div.video {float:left; width:360px; height:260px; background:url(../images/help_video_step_one.png) no-repeat 0 0; margin:0 0 0 50px;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_left div.video {float:left; width:355px; height:208px; background:url(../images/frameVideo.png) no-repeat 0 0; margin:0 0 0 50px; padding:10px 0 0 12px; position:relative;}
+
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div content {float:left; width:100%;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
 div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
