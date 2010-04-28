@@ -10,7 +10,7 @@
 	  <init-param>
 		<param-name>connectURI</param-name>
 		 <!-- e.g. jdbc:mysql://localhost:3306/gmba -->
-		<param-value>jdbc:mysql://localhost:3306/gmba?useUnicode=yes&amp;characterEncoding=UTF-8</param-value>
+		<param-value>jdbc:mysql://localhost:3306/gmba_utf8?useUnicode=yes&amp;characterEncoding=UTF8&amp;characterSetResults=UTF8</param-value>
 	  </init-param>
 	  <init-param>
 		<param-name>user</param-name>
@@ -36,6 +36,6 @@
 	</servlet-mapping>  	
 	
     <welcome-file-list>
-        <welcome-file>pages/index.html</welcome-file>
+        <welcome-file>home.html</welcome-file>
     </welcome-file-list>
 </web-app>
