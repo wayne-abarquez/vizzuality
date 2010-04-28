@@ -7,11 +7,11 @@
 			<mx:RemoveChild target="{button1}"/>
 			<mx:RemoveChild target="{loader}"/>
 			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
-				<mx:Label text="{(taxonName.length>25)?taxonName.substr(0,25)+'...':taxonName}" color="0xFFFFFF" verticalCenter="0" left="13" fontSize="12" fontFamily="Arial" id="taxonLabel" styleName="labelVegTypes" width="100%" fontWeight="bold" 
+				<mx:Label text="{(taxonName.length>20)?taxonName.substr(0,20)+'...':taxonName}" color="0xFFFFFF" verticalCenter="0" left="13" fontSize="12" fontFamily="Arial" id="taxonLabel" styleName="labelVegTypes" width="100%" fontWeight="bold" 
 					truncateToFit="true"/>
 			</mx:AddChild>
 			<mx:AddChild relativeTo="{hbox1}" position="lastChild">
-				<mx:Button label="deselect"  mouseChildren="false" textAlign="right" useHandCursor="true" styleName="nullButton" buttonMode="true" click="changeTaxonState()"  paddingBottom="0" paddingRight="0" paddingTop="0" paddingLeft="0"/>
+				<mx:Button label="deselect"  mouseChildren="false" textAlign="right" useHandCursor="true" styleName="nullButton" buttonMode="true" click="changeTaxonState()"  paddingBottom="6" paddingRight="0" paddingTop="0" paddingLeft="0"/>
 			</mx:AddChild>
 			<mx:SetStyle target="{search_as_you_type}" name="backgroundImage" value="null"/>
 			<mx:SetStyle target="{hbox1}" name="paddingRight" value="0"/>
