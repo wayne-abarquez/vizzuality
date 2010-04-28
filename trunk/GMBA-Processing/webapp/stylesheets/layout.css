@@ -1,0 +1,119 @@
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
+body{background-color:#d5e8ec; margin:0px auto ;}
+img,fieldset{border:none; padding:0; margin:0;}
+span.clear{clear:both;}
+div.left{float:left; width:auto;}
+div.right{float:right; width:auto;}
+a:focus{outline:none}
+
+
+div#header div.title { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 100px 0px;}
+div#header div.titleTerms_Conditions { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 20px 0px;}
+div#header div.titleContact { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 100px 0px;}
+div#header div.titleHelp { height:29px; width:100px; background-image: url(../images/title.png); margin: 20px 0 100px 0px;}
+
+
+div#containerContent { margin: 0px auto; height:720px; width:1024px; background-image: url(../images/bkg.jpg); background-attachment:fixed;}
+div#containerContent div.content { width:920px; margin:0px auto; }
+
+div#containerContentHelp { margin: 0px auto; height:1650px; width:1024px; background-image: url(../images/bkg.jpg); background-attachment:fixed;}
+div#containerContentHelp div.content { width:920px; margin:0px auto; }
+
+
+div#containerContent div.content div.gmbaTitle {float:none; height:36px; width:631px; background: url(../images/gmbaTitle.png) no-repeat; margin:0 0 20px 0;}
+div#containerContent div.content p {font:normal 14px Arial; margin:0 0 10px 0;}
+div#containerContent div.content h4 {font:bold 16px Arial; margin:20px 0;}
+div#containerContent div.content h5 {font:normal 14px Arial; margin:20px 0;}
+div#containerContent div.content ol {font:bold 14px Arial; margin:10px 0 0 20px;}
+div#containerContent div.content ol li {font:normal 14px Arial; margin:10px 0 0 0px;}
+div#containerContent div.content ul {font:bold 14px Arial; margin:10px 0 0 20px;}
+div#containerContent div.content ul li {font:normal 14px Arial; margin:10px 0 0 0px;}
+
+div#containerContent div.content div.contentLeft{ float: left; margin:50px 20px 0 0; height:368px; width:363px;}
+div#containerContent div.content div.contentLeft div.contentLeftTitle{ float: left; height:66px; width:360px; background-image: url(../images/contentLeftTitle.png); margin:0 auto; }
+
+div#containerContent div.content div.contentLeft div.contentLeftInfo p{ float: left; margin:30px 0 0 0; font-size:16px; font-color: #282a2b; font-family:"Arial";}
+div#containerContent div.content div.contentLeft div.button a{ float: left; height:49px; width:334px; background-image: url(../images/button.png); margin:60px 0 0 0; border:none;}
+div#containerContent div.content div.contentLeft div.button a:hover{ background-position: 0 -49px;}
+div#containerContent div.content div.contentRight { float:right; height:368px; width:520px; margin:0 0 0 0px; right:0;}
+div#containerContent div.content div.contentRight img { float:right; }
+
+div#containerContent div.content div.contentLeftContact{ float: left; margin:50px 20px 70px 0; height:368px; width:393px;}
+div#containerContent div.content div.contentLeftContact a.back {float:left; font:normal 13px Arial; color:#272A2B; text-decoration:underline;}
+div#containerContent div.content div.contentLeftContact a.back:hover {color:#000000;}
+div#containerContent div.content div.contentLeftContact div.contact_us_Title{ float: none; height:59px; width:347px; background-image: url(../images/contact_usTitle.png); margin:40px 0 30px 0; }
+div#containerContent div.content div.contentLeftContact div.contentLeftInfo p{ float: left; font:normal 15px Arial; color:#262A2B; margin:20px 0 0 0;}
+div#containerContent div.content div.contentLeftContact div.contentLeftInfo p.info{margin:10px 0 0 0;}
+div#containerContent div.content div.contentLeftContact div.contentLeftInfo p span{ font:bold 15px Arial;}
+div#containerContent div.content div.contentLeftContact div.contentLeftInfo p.email{background:url(../images/bkg_email.png) no-repeat 0 0; font:bold 13px Arial; color:#262A2B; height:23px; width:200px; padding:2px 0 0 28px;}
+div#containerContent div.content div.contentLeftContact div.contentLeftInfo p.email a{font:bold 13px Arial; text-decoration:none; color:#262A2B;}
+
+
+div#containerContentHelp div.content div.contentLeftHelp{ float: left; margin:50px 20px 20px 0; width:393px;}
+div#containerContentHelp div.content div.contentLeftHelp a.back {float:left; font:normal 13px Arial; color:#272A2B; text-decoration:underline;}
+div#containerContentHelp div.content div.contentLeftHelp a.back:hover {color:#000000;}
+div#containerContentHelp div.content div.contentLeftHelp div.help_Title{ float: none; height:117px; width:413px; background-image: url(../images/helpTitle.png); margin:40px 0 30px 0; }
+
+div#containerContentHelp div.content div.contentLeftHelp div.step_one{ float:left; width:373px; margin:50px 0 0px 0; }
+div#containerContentHelp div.content div.contentLeftHelp div.step_one div.title{ float: left; height:39px; width:1024px; background:url(../images/help_step_one.png) no-repeat; margin:0px 0 30px 0; }
+div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_left {float:left; width:360px; height:260px;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_left div.video {float:left; width:355px; height:208px; background:url(../images/frameVideo.png) no-repeat 0 0; margin:0 0 0 50px; padding:10px 0 0 12px; position:relative;}
+div#containerContentHelp div.play a{position:absolute; background:url(../images/playVideo.png) no-repeat; width:70px; height:45px; top:78px; left:143px; z-index:1000000;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_one div content {float:left; width:100%;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_one div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
+
+div#containerContentHelp div.content div.contentLeftHelp div.step_two{ float:left; width:373px; margin:0px 0 0px 0; }
+div#containerContentHelp div.content div.contentLeftHelp div.step_two div.title{ float: left; height:39px; width:1024px; background:url(../images/help_step_two.png) no-repeat; margin:0px 0 30px 0; }
+div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_left {float:left; width:360px; }
+div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_left div.video {float:left; width:355px; height:208px; background:url(../images/frameVideo.png) no-repeat 0 0; margin:0 0 0 50px; padding:10px 0 0 12px; position:relative;}
+
+div#containerContentHelp div.content div.contentLeftHelp div.step_two div content {float:left; width:100%;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_two div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
+
+div#containerContentHelp div.content div.contentLeftHelp div.step_three{ float:left; width:373px; margin:0px 0 0px 0; }
+div#containerContentHelp div.content div.contentLeftHelp div.step_three div.title{ float: left; height:39px; width:1024px; background:url(../images/help_step_three.png) no-repeat; margin:0px 0 30px 0; }
+div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_left {float:left; width:360px; height:260px;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_left div.video {float:left; width:355px; height:208px; background:url(../images/frameVideo.png) no-repeat 0 0; margin:0 0 0 50px; padding:10px 0 0 12px; position:relative;}
+
+div#containerContentHelp div.content div.contentLeftHelp div.step_three div content {float:left; width:100%;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_right {float:right; width:490px; height:260px; margin:0 13px 0 0;}
+div#containerContentHelp div.content div.contentLeftHelp div.step_three div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
+
+
+div#containerContentHelp div.content div.contentLeftHelp div.more_about { float:left; width:373px; margin:0px 0 0px 0; background:url(../images/bkg_more_about.png) no-repeat 0 0; width:878px; height:163px;}
+div#containerContentHelp div.content div.contentLeftHelp div.more_about a.document {float:left; background:url(../images/help_document_download.png) no-repeat 0 0; width:54px; height:61px; margin:72px 0 0 50px;}
+div#containerContentHelp div.content div.contentLeftHelp div.more_about p.title {float:left; font:bold 15px Arial; color:#262A2B; width:755px; margin:72px 0 0 10px;}
+div#containerContentHelp div.content div.contentLeftHelp div.more_about p.about {float:left; font:normal 13px Arial; color:#262A2B; width:755px; margin:5px 0 0 10px;}
+
+
+div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p{ float: left; font:normal 15px Arial; color:#262A2B; margin:20px 0 0 0;}
+div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.info{margin:10px 0 0 0;}
+div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p span{ font:bold 15px Arial;}
+div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.email{background:url(../images/bkg_email.png) no-repeat 0 0; font:bold 13px Arial; color:#262A2B; height:23px; width:200px; padding:2px 0 0 28px;}
+div#containerContentHelp div.content div.contentLeftHelp div.contentLeftInfo p.email a{font:bold 13px Arial; text-decoration:none; color:#262A2B; }
+
+div#application {float:left; height:742px; width:1080px; margin:0px 0 0 0;}
+div#footer_application {float: left; height: auto; width:100%; margin:60px 0 0 0;}
+div#footer_application div.footerLeft {float:left; margin:0 0 0 40px;}
+div#footer_application div.footerLeft a p.gmbaLogo {float:left; background:url(../images/gmba_logo.png) no-repeat 0 0; width:58px; height:32px; margin:4px 5px 0 5px;}
+div#footer_application div.footerLeft a p.gbifLogo {float:left; background:url(../images/gbif_logo.png) no-repeat 0 0; width:39px; height:38px; margin:0 5px 0 5px;}
+div#footer_application div.footerLeft div.text {float:left; width:490px; margin:5px 0 0 15px;}
+div#footer_application div.footerLeft div.text p {float:left; font:normal 13px Arial; color:#333333; width:490px; margin:0;}
+div#footer_application div.footerRight {float:right; margin:0 0px 0 0;}
+div#footer_application div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b; font-family: "Arial"; font-size: 13px;}
+div#footer_application div.footerRight p a:hover{ color: #ff9933;}
+
+
+div#footer {float: left; height: auto; width:100%; margin:60px 0 0 0;}
+div#footer div.footerLeft {float:left;}
+div#footer div.footerLeft a p.gmbaLogo {float:left; background:url(../images/gmba_logo.png) no-repeat 0 0; width:58px; height:32px; margin:4px 5px 0 5px;}
+div#footer div.footerLeft a p.gbifLogo {float:left; background:url(../images/gbif_logo.png) no-repeat 0 0; width:39px; height:38px; margin:0 5px 0 5px;}
+div#footer div.footerLeft div.text {float:left; width:490px; margin:5px 0 0 15px;}
+div#footer div.footerLeft div.text p {float:left; font:normal 13px Arial; color:#333333; width:490px; margin:0;}
+div#footer div.footerRight {float:right; margin:0 25px 0 0;}
+div#footer div.footerRight p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b; font-family: "Arial"; font-size: 13px;}
+div#footer div.footerRight p a:hover{ color: #ff9933;}
+
+
