@@ -60,12 +60,12 @@ package com.vizzuality.view.preloader
         public function Preloader()
         {
             super();
-           /*  var backGroundBox:Sprite = new Sprite();
+            var backGroundBox:Sprite = new Sprite();
             
             this.addChild(backGroundBox);
-            backGroundBox.graphics.beginFill(0x1A1A1B,1);
-            backGroundBox.graphics.drawRect(0,0,this.stageWidth,this.stageHeight);
-            backGroundBox.graphics.endFill();  */
+            backGroundBox.graphics.beginFill(0xd5e8ec,1);
+            backGroundBox.graphics.drawRect(-500,-500,5000,5000);
+            backGroundBox.graphics.endFill();
             // Instantiate and add the Preloader MovieClip to the main application;
             // don't forget to call stop(); because any code that was added to your
             // MovieClip in Flash will be ignored once embedded into Flex
