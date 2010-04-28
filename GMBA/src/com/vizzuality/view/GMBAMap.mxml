@@ -471,7 +471,7 @@
 		
 		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="726"  id="canvasMapContainer">
 				
-			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRg7HwCf_Bcs2jklKqgeKp-jtSWGxSDHNJxwkDiWNxXtGqiuEhk0jybUg" top="5" bottom="5" right="5" left="5"/>
+			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRDbO8iWdFOHEw_keFYnsz-JnrHdBQ7xSdQ75Dt0_iAIBZpsP_S843TzA" top="5" bottom="5" right="5" left="5"/>
 			
 			<mx:Button styleName="btnZoomMore" height="24" width="24" right="15" top="17" click="zoomIn()"
 				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomIn"/>
