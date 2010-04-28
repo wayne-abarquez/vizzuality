@@ -111,9 +111,10 @@
         	}
         	
         	private function changeTaxonState():void {
-        		searchText.text = '';
+        		list.searchText.text = "";
+        		searchText.text = "";
         		searchText.setFocus();
-        		currentState = '';
+        		currentState = "";
         	}
         	
 			
