@@ -765,7 +765,7 @@ class RunnitServices {
             $offset=0;
         }
         
-	    $sql="select r.id,r.name,event_date,event_location,flickr_img_id,distance_text,(SELECT COUNT(id) FROM picture where on_id=r.id) as num_pictures,(SELECT COUNT(id) FROM comments where on_id=r.id) as num_comments,(select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type,date_trunc('day',event_date) as event_day";
+	    $sql="select r.id,r.name,r.description,event_date,event_location,flickr_img_id,distance_text,(SELECT COUNT(id) FROM picture where on_id=r.id) as num_pictures,(SELECT COUNT(id) FROM comments where on_id=r.id) as num_comments,(select count(id) from users_run where run_fk=r.id) as num_users, p.name as province_name,r.province_fk as province_id,run_type,date_trunc('day',event_date) as event_day";
 		$sql.=",CASE WHEN EXTRACT(DOW FROM event_date)=0 THEN 7 ELSE EXTRACT(DOW FROM event_date) END as day_in_week";
 
         if(isset($_SESSION['logged']) and $_SESSION['logged']) {

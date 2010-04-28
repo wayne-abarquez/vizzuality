@@ -9,7 +9,7 @@
 <language>es-es</language>
 <pubDate>{$smarty.now|date_format:'%Y-%m-%dT%H:%M:%SZ'}</pubDate>
 <generator>Runnity.com http://www.runnity.com/</generator>
-{foreach key=id item=run from=$runs}
+{foreach key=id item=run from=$results}
 <item>
 <title>{$run.name}, {$run.event_date}, {$run.event_location}</title>
 <link>http://www.runnity.com/run/{$run.id}/{$run.name|seourl}</link>

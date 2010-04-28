@@ -6,7 +6,7 @@ require 'services/RunnitServices.php';
 $smarty = new Smarty;
 $services = new RunnitServices;
 
-$smarty->assign('runs',$services->getRunsList(50));
+$smarty->assign('results',$services->getRunsList(50));
 
 $smarty->display('rss.tpl');
 
