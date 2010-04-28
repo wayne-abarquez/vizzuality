@@ -90,7 +90,8 @@ $smarty->assign('count', $results['count']);
 $smarty->assign('offset', $offset);
 
 if(isset($_REQUEST['format']) && $_REQUEST['format']=="rss") {
-    $smarty->assign('titulo',"Runnity.com: ".$q.", ".$tipoCarrera);
+    $titulo="Runnity.com: ".$q.", ".$tipoCarrera;
+    $smarty->assign('titulo',$titulo);
     $smarty->display('rss.tpl');
 } else {
     $smarty->display('searchresults.tpl');
