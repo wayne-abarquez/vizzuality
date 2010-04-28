@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:georss="http://www.georss.org/georss" version="2.0">
 <channel>
-<title>Próximas carreras en runnity.com</title>
+<title>{$smarty.titulo}</title>
 <copyright>Copyright retained by original author, refer to http://www.runnity.com/ for further information</copyright>
 <webMaster>jatorre@runnity.com</webMaster>
 <link>http://www.runnity.com/</link>

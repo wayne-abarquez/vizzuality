@@ -7,6 +7,7 @@ $smarty = new Smarty;
 $services = new RunnitServices;
 
 $smarty->assign('results',$services->getRunsList(50));
+$smarty->assign('titulo',"Próximas carreras en runnity.com");
 
 $smarty->display('rss.tpl');
 
