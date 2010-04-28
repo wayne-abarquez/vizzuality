@@ -23,7 +23,7 @@
 			
 			public function setStyleRollOver():void {
 				this.labelVegType.setStyle("color","0xFFFFFF");
-				this.labelVegType.setStyle("fontWeight","bold");
+				this.labelVegType.setStyle("fontWeight","normal");
 				this.canvasVegTypes.setStyle("backgroundColor",selectedColor);
 				
 			}
@@ -51,7 +51,7 @@
 	
 	<mx:Canvas id="canvasVegTypes" left="3" width="6" top="0" bottom="0" backgroundColor="{(_selected)?selectedColor:unselectedColor}" buttonMode="true" useHandCursor="true" mouseChildren="false"/>
 	<mx:Label text="{textType}" color="{(_selected)?0xFFFFFF:0x666666}" verticalCenter="0" left="13" fontSize="12" fontFamily="Arial" buttonMode="true" toolTip="{textTooltip}" 
-		useHandCursor="true" mouseChildren="false" rollOver="setStyleRollOver()" rollOut="setStyleRollOut()" id="labelVegType" styleName="labelVegTypes" width="128" fontWeight="{(_selected)?'bold':'normal'}" click="{_selected=true;}"/>
+		useHandCursor="true" mouseChildren="false" rollOver="setStyleRollOver()" rollOut="setStyleRollOut()" id="labelVegType" styleName="labelVegTypes" width="128" fontWeight="{(_selected)?'normal':'normal'}" click="{_selected=true;}"/>
 		
 	<mx:Canvas id="mamufas" visible="{(!mamufa)?true:false}" verticalCenter="0" right="4">
 		<mx:Button label="deselect"  mouseChildren="false" useHandCursor="true" visible="{(_selected)?true:false}" styleName="nullButton" buttonMode="true" click="onClickDeselect()" />
