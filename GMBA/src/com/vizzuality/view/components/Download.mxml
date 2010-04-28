@@ -161,7 +161,7 @@
 			public var bound: LatLngBounds;
 			public var zoom: Number;
 			
-			private var serviceURL:String = "http://204.236.250.31";
+			private var serviceURL:String = "http://79.125.117.227";
 			private var downloadInProcess:Boolean = false;
 			private var downloadURL:String;
 			private var timer:Timer;
@@ -553,7 +553,7 @@
 			
 			private function initDownload():void {
 				if(currentState=="bigDataNotify") {
-					navigateToURL(new URLRequest('http://204.236.250.31/data/gbif.zip'),"_blank");
+					navigateToURL(new URLRequest('http://79.125.117.227/data/gbif.zip'),"_blank");
 				} else {
 					xDownload = this.x;
 					TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition});				

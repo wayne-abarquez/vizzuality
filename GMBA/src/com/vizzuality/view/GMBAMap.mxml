@@ -254,7 +254,7 @@
 			    
 			    
 				//rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png");
-				rasterLayer = new RasterLayer("http://204.236.250.31/env/z|Z|/|X|/|Y|.png");
+				rasterLayer = new RasterLayer("http://d3eawsq20ts9ys.cloudfront.net/env/z|Z|/|X|/|Y|.png");
 				tlo = new TileLayerOverlay(rasterLayer);
 				tlo.addEventListener(MapEvent.TILES_LOADED,function(ev:Event):void {
 					loadingMessage.visible=false;
@@ -319,7 +319,7 @@
 		    
 		    private function onTaxonSelected(event:TaxonSelectedEvent):void {
 		    	if(taxonTileLayerOverlay==null) {
-		    		taxonRasterLayer= new RasterLayer("http://204.236.250.31/tiles/z|Z|/|X|/|Y|.png");
+		    		taxonRasterLayer= new RasterLayer("http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png");
 		    		taxonTileLayerOverlay = new TileLayerOverlay(taxonRasterLayer);
 		    		map.addOverlay(taxonTileLayerOverlay);
 		    	}
