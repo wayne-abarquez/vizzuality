@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GMBA</title>
+<link href="../styles/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 5]>
+<style type="text/css"> 
+/* place css box model fixes for IE 5* in this conditional comment */
+#sidebar1 { width: 230px; }
+</style>
+<![endif]--><!--[if IE]>
+<style type="text/css"> 
+/* place css fixes for all versions of IE in this conditional comment */
+#mainContent { zoom: 1; }
+/* the above proprietary zoom property gives IE the hasLayout it needs to avoid several bugs */
+</style>
+<![endif]-->
+</head>
+<body>
+<!-- begin #container -->
+<div id="container">
+    <!-- end #header -->
+    <!-- begin #mainContent -->
+    <div id="mainContent">
+        <div class="steps">
+            <div class="t">
+            <div class="b">
+            <div class="l">
+            <div class="r">
+            <div class="bl">
+            <div class="br">
+            <div class="tl">
+            <div class="tr">
+                <span class="step1">Welcome to the <b>GMBA</b> web services Beta</span>
+                <p>The web services available are:</p>
+                <p>
+				<b>&gt; Search</b> <i>with the following options:</i></p>
+				
+				<p> 
+					&nbsp;&nbsp;&nbsp;&nbsp;taxonId: the id of the taxon in the GBIF backbone (nub) taxonomy. This is <b>mandatory</b> <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;minLatitude: the minimum latitude <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;maxLatitude: the maximim latitude <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;minLongitude: the minimum longitude <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;maxLongitude: the maximim longitude <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;minElevation: the minimum elevation in meters <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;maxElevation: the maximum elevation in meters <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;minRelief: the minimum relief <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;maxRelief: the maximum relief <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;tvzCode: the tvzCodes (see <a href="#">WIKI</a>). This can be repeated to logically <i>OR</i> tvzCodes<br/>
+				</p>
+				<p>					
+					&nbsp;&nbsp;&nbsp;&nbsp;Example 1: <a href="service/search?taxonId=14706247">/service/search?taxonId=14706247</a><br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;Example 2: <a href="service/search?taxonId=14706247&minElevation=-4&maxElevation=200000&minRelief=0&maxRelief=2000&taxonId=14706247&minLatitude=0&maxLatitude=80">/service/search?taxonId=14706247&minElevation=-4&maxElev....</a>
+				</p>
+                <p>
+				<b>&gt; Download</b> <i>with the following options:</i></p>
+				
+				<p> 
+					&nbsp;&nbsp;&nbsp;&nbsp;taxonId: the id of the taxon in the GBIF backbone (nub) taxonomy. This is <b>mandatory</b> <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;rank: one of kingdom,phylum,class,order,family,genus,species(will include subspecies) or nub(will not include subspecies). This is <b>mandatory</b> <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;minLatitude: the minimum latitude <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;maxLatitude: the maximim latitude <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;minLongitude: the minimum longitude <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;maxLongitude: the maximim longitude <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;minElevation: the minimum elevation in meters <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;maxElevation: the maximum elevation in meters <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;minRelief: the minimum relief <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;maxRelief: the maximum relief <br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;tvzCode: the tvzCodes (see <a href="#">WIKI</a>). This can be repeated to logically <i>OR</i> tvzCodes<br/>
+				</p>
+				<p>					
+					&nbsp;&nbsp;&nbsp;&nbsp;Example 1: <a href="service/download?taxonId=14706247&rank=species">/service/download?taxonId=14706247&rank=species</a><br/>
+				</p>
+                <p><b>&gt; Biodiversity Map</b></p>
+				<p> 
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="map.html">See a demo of all GBIF data as a Google map</a><br/>
+				</p> 
+                <p><b>&gt; Environment Map</b></p>
+				<p> 
+					&nbsp;&nbsp;&nbsp;&nbsp;<a href="map.html">See a demo of the environment data as a Google map</a><br/>
+				</p> 
+				
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- end #mainContent -->
+    <!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+    <!-- begin #footer -->
+    <div id="footer">
+        <div class="copyright">
+        	<a href="http://www.vizzuality.com" class="footerLink">Vizzuality</a> <img alt="logo" src="logo.png"/>
+        </div>
+    </div>
+    <!-- end #footer -->
+</div>
+<!-- end #container -->
+</body>
+</html>
