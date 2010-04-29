@@ -27,7 +27,7 @@
  * @param {Fluster2} the Fluster2 itself
  * @param {Fluster2Cluster} the Fluster2Cluster assigned to this marker
  */
-function Fluster2ClusterMarker(_fluster, _cluster)
+function Fluster2ClusterMarker(_fluster, _cluster, _matched)
 {
 	this.fluster = _fluster;
 	this.cluster = _cluster;
@@ -36,6 +36,7 @@ function Fluster2ClusterMarker(_fluster, _cluster)
 	this.map = this.fluster.getMap();
 	this.style = null;
 	this.div = null;
+	this.matched = _matched;
 	
 	// Assign style
 	var styles = this.fluster.getStyles();
@@ -76,7 +77,13 @@ Fluster2ClusterMarker.prototype.draw = function()
 		this.div.style.height = this.style.height + 'px';
 		this.div.style.lineHeight = this.style.height + 'px';
 		this.div.style.background = 'transparent url("' + this.style.image + '") 50% 50% no-repeat';
-		this.div.style.color = this.style.textColor;
+		
+		if (this.matched) {
+			this.div.style.color = '#3085A3';
+		} else {
+			this.div.style.color = 'white';
+		}
+		
 		
 		// Marker count
 		this.div.style.textAlign = 'center';
