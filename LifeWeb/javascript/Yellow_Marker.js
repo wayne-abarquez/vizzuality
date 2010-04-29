@@ -171,6 +171,7 @@ Yellow_Marker.prototype.setIcon = function(source,type) {
 	if (type=='far') {
 		$(this.div_).css('height','28px');
 		$(this.div_).css('width','28px');
+		$(this.div_).children('div').css('left','-147px');
 	  this.offsetVertical_ = -14;
 	  this.offsetHorizontal_ = -14;
 	  this.height_ = 28;
@@ -178,10 +179,12 @@ Yellow_Marker.prototype.setIcon = function(source,type) {
 	} else {
 		$(this.div_).css('height','54px');
 		$(this.div_).css('width','52px');
+		$(this.div_).children('div').css('left','-135px');
 	  this.offsetVertical_ = -54;
 	  this.offsetHorizontal_ = -26;
 	  this.height_ = 54;
 	  this.width_ = 52;
+		
 	}
 	
 };
