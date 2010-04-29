@@ -35,7 +35,7 @@
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
 				<mx:ProgressBar horizontalCenter="4" verticalCenter="45" label="" minimum="0" maximum="100" enabled="true" mode="manual"
-					id="progressbarDownloading"  borderColor="0x1A1A1B" themeColor="0xF5C400" trackHeight="20"/>
+					id="progressbarDownloading"  borderColor="0x1A1A1B" themeColor="0xF5C400" trackHeight="7"/>
 			</mx:AddChild>
 			<mx:SetProperty name="height" value="407"/>
 		</mx:State>
