@@ -1,0 +1,49 @@
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
+img,fieldset{border:none; padding:0; margin:0;}
+body{font:12px Arial, Helvetica, sans-serif; color:#666666; background:#eeeeee}
+span.clear{clear:both;}
+div.left{float:left; width:auto;}
+div.right{float:right; width:auto;}
+a:focus{outline:none}
+img.left_curve{float:left;}
+img.right_curve{float:right;}
+ul {list-style:none;}
+div#outer_layout {float:left; width:100%;}
+div#layout {margin:0 auto; width:940px;}
+div#wide_container {margin:0 auto; width:940px; padding:0;}
+
+
+div#map_canvas {float:left; background:url(../images/bkgMapShadow.png) no-repeat 0 0; width:658px; height:360px; position:relative;}
+div#map_canvas div#map {float:left; width:632px; float:left; height:341px; z-index:100; margin:3px 9px 10px 13px;}
+div#map_canvas div.zoomButtons {background:url(../images/bkgZoomBttns.png) no-repeat 0 0; z-index:10000000; width:64px; height:33px; position:absolute; top:11px; left:21px;} 
+div#map_canvas div.zoomButtons div.bttn_zoomIn a{float:left; margin:4px 0 0 5px; background:url(../images/bttnZoomIn.png) no-repeat 0 0; width:25px; height:25px;}
+div#map_canvas div.zoomButtons div.bttn_zoomIn a:hover{background-position:0 -25px;}
+div#map_canvas div.zoomButtons div.bttn_zoomOut a{float:left; margin:4px 0 0 4px; background:url(../images/bttnZoomOut.png) no-repeat 0 0; width:25px; height:25px;}
+div#map_canvas div.zoomButtons div.bttn_zoomOut a:hover{background-position:0 -25px;}
+
+div#map_canvas div.filterButtons div.filter_markers {position:absolute; top:11px; right:145px; text-decoration:none;}
+div#map_canvas div.filterButtons div.layers_overlay {position:absolute; top:11px; right:17px; text-decoration:none;}
+
+div#map_canvas div.filterButtons div.unclicked div.left {float:left; background:url(../images/bttnFilterLayerLeft.png) no-repeat 0 0; width:4px; height:24px;}
+div#map_canvas div.filterButtons div.unclicked div.center {float:left; background-color:#FFFFFF; border:1px solid #3086A3; border-left:none; border-right:none; height:22px; width:auto; padding:0 1px 0 2px;}
+div#map_canvas div.filterButtons div.unclicked div.center p {float:left; font:bold 10px Arial; color:#3086A3; text-transform:uppercase; text-decoration:none; margin:5px 0 0 3px;}
+div#map_canvas div.filterButtons div.unclicked div.right{float:left; background:url(../images/bttnFilterLayerRight.png) no-repeat 0 0; width:24px; height:24px;}
+
+
+div#map_canvas div.filterButtons div.clicked div.left {float:left; background:url(../images/bttnFilterLayerLeft_clicked.png) no-repeat 0 0; width:4px; height:21px;}
+div#map_canvas div.filterButtons div.clicked div.center {float:left; background-color:#FFFFFF; border:1px solid #666666; border-left:none; border-right:none; border-bottom:none; height:21px; width:auto; padding:0 1px 0 2px;}
+div#map_canvas div.filterButtons div.clicked div.center p {float:left; font:bold 10px Arial; color:#999999; text-transform:uppercase; text-decoration:none; margin:5px 0 0 3px;}
+div#map_canvas div.filterButtons div.clicked div.right{float:left; background:url(../images/bttnFilterLayerRight_clicked.png) no-repeat 0 0; width:24px; height:21px;}
+
+div#map_canvas div.filterButtons div.list {position:absolute; top:21px; right:0; display:none;}
+div#map_canvas div.filterButtons div.list div.head {float:right; background:url(../images/bttnFilterLayerHead_clicked.png) no-repeat 0 0; width:163px; height:8px; margin:0px 1px 0 0;}
+div#map_canvas div.filterButtons div.list div.content ul {}
+div#map_canvas div.filterButtons div.list div.content li {float:left; background:url(../images/bkg_list_content.png); width:163px; height:21px; padding:1px 0 0 0; margin:0;} 
+div#map_canvas div.filterButtons div.list div.content li.line {float:left; background:url(../images/bkg_list_content_line.png); width:163px; height:3px; margin:0;} 
+div#map_canvas div.filterButtons div.list div.content li.title {float:left; background:url(../images/bkg_list_content.png); width:163px; height:5px; padding:7px 0 15px 0; margin:0;} 
+div#map_canvas div.filterButtons div.list div.content li.title p {float:left; font:bold 10px Arial; color:#999999; text-transform:uppercase; margin:0 0 0 10px;}
+div#map_canvas div.filterButtons div.list div.content li.checked a {float:left; background:url(../images/checkBox_checked.png) no-repeat 0 0; width:14px; height:14px; margin:0 5px 0 9px;}
+div#map_canvas div.filterButtons div.list div.content li.checked p {float:left; font:normal 13px Arial; color:#666666;} 
+div#map_canvas div.filterButtons div.list div.content li.unchecked a {float:left; background:url(../images/checkBox_unchecked.png) no-repeat 0 0; width:14px; height:14px; margin:0 5px 0 9px;}
+div#map_canvas div.filterButtons div.list div.content li.unchecked p {float:left; font:normal 13px Arial; color:#999999;}
+div#map_canvas div.filterButtons div.list div.bottom {float:left; background:url(../images/bttnFilterLayerBottom_clicked.png) no-repeat 0 0; width:163px; height:9px;}
