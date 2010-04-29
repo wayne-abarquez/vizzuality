@@ -4,17 +4,19 @@ require_once("services/OtroBache.php");
 
 $serv = new OtroBache();
 
-$country="Spain";
+$countryCode="espana";
 $countryName="España";
 
 if($_SERVER['HTTP_HOST']=="paraguay.otrobache.com") {
-    $country="paraguay";
+    $countryCode="paraguay";
     $countryName="Paraguay";
 }
 
+
+
 if(isset($_REQUEST['locality'])) {
     $locality=$_REQUEST['locality'];
-    $coords = $serv->getLocalityCoords($locality,$country);
+    $coords = $serv->getLocalityCoords($locality,$countryName);
     $localityName=$coords["name"];
     $bbox=$coords['bbox'];
     $swLat=$bbox['south'];
@@ -23,18 +25,18 @@ if(isset($_REQUEST['locality'])) {
     $neLon=$bbox['east'];   
  		$centerLat="0";
 		$centerLon="0";
-    $numBaches = $serv->getNumBaches(strtolower($localityName),$country);
+    $numBaches = $serv->getNumBaches(strtolower($localityName),$countryName);
     //$numBachesLocality = $serv->getNumBaches(strtolower($locality));
-    $lastbaches = $serv->getLastBaches(strtolower($localityName),$country);
+    $lastbaches = $serv->getLastBaches(strtolower($localityName),$countryName);
     $cities = array();
     if($country!="espana") {
-        $url=urlencode("http://".$country.".otrobache.com/en/".$locality);
+        $url=urlencode("http://".$countryCode.".otrobache.com/en/".$locality);
     } else {
         $url=urlencode("http://otrobache.com/en/".$locality);        
     }
 } else {
     $loc=$serv->visitorLocation();
-    if($country=="paraguay") {
+    if($countryCode=="paraguay") {
         $url=urlencode("http://paraguay.otrobache.com/");
         $centerLat= "0";
     	$centerLon= "0";            
@@ -55,9 +57,10 @@ if(isset($_REQUEST['locality'])) {
     } 
     $localityName=$countryName;
     $locality=null;
-    $numBaches = $serv->getNumBaches(null,$country);
-    $lastbaches = $serv->getLastBaches(null,$country);    
-    $cities = $serv->getCities($country);
+    $numBaches = $serv->getNumBaches(null,$countryName);
+    $lastbaches = $serv->getLastBaches(null,$countryName);    
+    
+    $cities = $serv->getCities($countryName);
     
         
 }
@@ -112,7 +115,7 @@ function shortenText($text,$num=25) {
 	</head>
 
 
-	<body onload="initialize(<?php echo("'$localityName',$centerLat,$centerLon,$swLat,$swLon,$neLat,$neLon,'$country'") ?>)" onunload="GUnload()">
+	<body onload="initialize(<?php echo("'$localityName',$centerLat,$centerLon,$swLat,$swLon,$neLat,$neLon,'$countryName'") ?>)" onunload="GUnload()">
 		
 		<div id="iphone_modal">
 			<h4>Estamos en fase beta</h4>
