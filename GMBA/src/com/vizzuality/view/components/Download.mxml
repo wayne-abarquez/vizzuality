@@ -374,7 +374,7 @@
 					} 			
 					
 					if (this.currentState != "nodata_bbox"){				
-						if (this.ocurrences > 250000) {
+						if (this.ocurrences > 500000) {
 							
 							this.currentState = "bigDataNotify";
 							ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);						
