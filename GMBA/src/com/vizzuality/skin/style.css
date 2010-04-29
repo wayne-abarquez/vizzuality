@@ -54,6 +54,7 @@ CheckBox{
 ProgressBar{
 		barSkin: Embed(source="skin.swf",symbol="SliderHighlight_Skin");
 		trackSkin: Embed(source="skin.swf",symbol="bkgProgressBar");
+		
 }
 
 
