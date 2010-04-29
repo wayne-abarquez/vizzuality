@@ -127,8 +127,8 @@ class OtroBache {
         $ft = new FusionTable($this->fusionTablesToken); 
         $sql="INSERT INTO ".$this->table." (lat,lon,reported_date,reported_by,address,city,zip,addressline,country) VALUES ($latf,$lonf,'$reportedDate','$reportedBy','$address','$city','$zip','$addressline','$countryName')";
         //return $sql;
-        $newId= $ft->query($sql);
-        if($res=="User is not authorized to access the table"){
+        $res= $ft->query($sql);
+        if(is_string($res)){
             $this->checkToken(true);
             return $this->reportBache($lat,$lon,$reportedBy);
         }        
@@ -153,9 +153,11 @@ class OtroBache {
         } else {
             $sql="SELECT COUNT() FROM .$this->table WHERE country='$country'";
         }
+
         
         $res = $ft->query($sql);        
-        if($res=="User is not authorized to access the table"){
+
+        if(is_string($res)){
             $this->checkToken(true);
             return $this->getNumBaches($locality,$country);
         }       
@@ -177,19 +179,20 @@ class OtroBache {
         }            
 
         $res = $ft->query($sql);
-        if($res=="User is not authorized to access the table"){
+        if(is_string($res)){
             $this->checkToken(true);
-            return $this->getLastBaches($locality);
+            return $this->getLastBaches($locality,$country);
         }            
         return $res;              
     }
     
     public function getCities($country) {
         $ft = new FusionTable($this->fusionTablesToken); 
-        $sql="SELECT count(),city FROM .$this->table WHERE country='$country' GROUP BY city ORDER BY count() DESC LIMIT 50";           
+        //$sql="SELECT count(),city FROM .$this->table WHERE country='$country' GROUP BY city ORDER BY count() DESC LIMIT 50";
+        $sql="SELECT count(),city FROM .$this->table WHERE country='$country' GROUP BY city LIMIT 50";         
 
         $res = $ft->query($sql);
-        if($res=="User is not authorized to access the table"){
+        if(is_string($res)){
             $this->checkToken(true);
             return $this->getCities();
         }            
@@ -257,14 +260,20 @@ class OtroBache {
         $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
         $ft = new FusionTable($this->fusionTablesToken); 
         for($i=0;$i<320;$i++) {
-            $sql="SELECT ROWID FROM .$this->table OFFSET ".($i+1)." LIMIT 1";
+            $sql="SELECT ROWID FROM .$this->table ORDER BY country OFFSET ".($i+1)." LIMIT 1";
             $res = $ft->query($sql);
-            $sql="UPDATE .$this->table SET country='Spain' WHERE ROWID='".$res[0]['rowid']."'";
+            $sql="UPDATE .$this->table SET country='España' WHERE ROWID='".$res[0]['rowid']."'";
             $res = $ft->query($sql);
         }
         return null;
     }
     
+    
+    public function executeSql($sql) {
+        $this->fusionTablesToken = GoogleClientLogin(GMAIL_USER, GMAIL_PASS, "fusiontables"); 
+        $ft = new FusionTable($this->fusionTablesToken);        
+        return $ft->query("INSERT INTO 136993 (lat,lon,reported_date,reported_by,address,city,zip,addressline,country) VALUES (40.41962,-3.6889,'04/29/10 12:47:11','web','Plaza de la Independencia| 8| 28014 Madrid| Spain','madrid','28014','Plaza de la Independencia| 8','España')");
+    }
        
     
 }
