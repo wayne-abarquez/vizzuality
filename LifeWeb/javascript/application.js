@@ -3,17 +3,18 @@ var map;
 
 
 function initialize() {
-		var center = new google.maps.LatLng(-19.186678,48.647461);
+		var center = new google.maps.LatLng(42.68243539838623, -37.08984375);
  
 		map = new google.maps.Map(document.getElementById('map'), {
-			zoom: 5,
+			zoom: 3,
 			center: center,
 			mapTypeControl:false,
 			navigationControl:false,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
  
-		var fluster = new Fluster2(map);
+		var fluster1 = new Fluster2(map);
+		var fluster2 = new Fluster2(map);
 		
 		bounds = new google.maps.LatLngBounds();
    
@@ -22,15 +23,22 @@ function initialize() {
 		  dataType: 'jsonp',
 		  data: null,
 		  success: function(result) {
-							 		$.each(result, function(key, value) { 
-										 //bounds.extend (new google.maps.LatLng(value.lat,value.lon));
-									  var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
-										fluster.addMarker(marker);
+							 		$.each(result, function(key, value) {
+										bounds.extend (new google.maps.LatLng(value.lat,value.lon));
+										if (value.matched) {
+											var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+											fluster2.addMarker(marker);
+										} else {
+											var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+											fluster1.addMarker(marker);
+										}
 									});
-								//map.fitBounds (bounds);
-							    //map.setCenter( bounds.getCenter());
+									
+									
+									map.fitBounds (bounds);
+							  	map.setCenter( bounds.getCenter());
 							
-									fluster.styles = {
+									fluster1.styles = {
 											0: {
 												image: 'images/markers/22_yellow.png',
 												textColor: '#FFFFFF',
@@ -44,8 +52,24 @@ function initialize() {
 												height: 40
 											}
 										};
+										
+										fluster2.styles = {
+												0: {
+													image: 'images/markers/22_white.png',
+													textColor: '#FFFFFF',
+													width: 32,
+													height: 32
+												},
+												5: {
+													image: 'images/markers/30_white.png',
+													textColor: '#FFFFFF',
+													width: 40,
+													height: 40
+												}
+											};
 
-										fluster.initialize();
+										fluster1.initialize();
+										fluster2.initialize();
 							
 							 }
 		});

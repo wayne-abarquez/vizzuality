@@ -80,9 +80,17 @@ function Fluster2Cluster(_fluster, _marker)
 		if(this.markers.length == 1)
 		{
 			if (this.zoom>5) {
-				this.markers[0].setIcon('images/markers/yellow.png', 'near');
+				if (this.markers[0].information_.matched) {
+					this.markers[0].setIcon('images/markers/white.png', 'near');
+				} else {
+					this.markers[0].setIcon('images/markers/yellow.png', 'near');
+				}
 			} else {
-				this.markers[0].setIcon('images/markers/18_yellow.png', 'far');
+				if (this.markers[0].information_.matched) {
+					this.markers[0].setIcon('images/markers/18_white.png', 'far');
+				} else {
+					this.markers[0].setIcon('images/markers/18_yellow.png', 'far');
+				}
 			}
 			this.markers[0].setMap(me.map);
 		}
@@ -97,7 +105,7 @@ function Fluster2Cluster(_fluster, _marker)
 			// Create marker
 			if(this.marker == null)
 			{
-				this.marker = new Fluster2ClusterMarker(this.fluster, this);
+				this.marker = new Fluster2ClusterMarker(this.fluster, this,this.markers[0].information_.matched);
 				
 				if(this.fluster.debugEnabled)
 				{
