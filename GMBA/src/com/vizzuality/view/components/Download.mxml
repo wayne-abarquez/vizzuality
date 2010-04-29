@@ -361,17 +361,17 @@
 				this.providers = (res.resources) as Number;
 				this.ocurrences = (res.total) as Number;
 				
-				var sizeDownloading:String = ((this.ocurrences * 63) / 1024).toPrecision(3);
+				//var sizeDownloading:String = ((this.ocurrences * 63) / 1024).toPrecision(3);
+				var bytes:Number =(this.ocurrences * 63);
+				
+				var s:Array = ['bytes', 'kb', 'MB', 'GB', 'TB', 'PB'];
+    			var e:Number = Math.floor( Math.log( bytes ) / Math.log( 1024 ) );
+    			var sizeDownloading:String = ( bytes / Math.pow( 1024, Math.floor( e ) ) ).toFixed( 1 ) + s[e];
+
 				
 				if (this.ocurrences > 0) {
-					// ¿MB?, ¿KB?			
-					if (sizeDownloading.length > 5){
-						this.downloadSize = sizeDownloading.substring(0,sizeDownloading.length - 3);
-						this.downloadSize += "MB"; 						  
-					} 			
-					else{
-						this.downloadSize = sizeDownloading + "KB"; 						  
-					} 			
+		
+					this.downloadSize=	sizeDownloading;
 					
 					if (this.currentState != "nodata_bbox"){				
 						if (this.ocurrences > 500000) {
@@ -728,4 +728,5 @@
 	</mx:HBox>	
 	<utils:ShadowButton height="32" label="Download" color="#FFFFFF" fontSize="17" fontWeight="normal" click="initDownload()"
 					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="30" bottom="30" width="150" id="downloadButton" enabled="false"/>
+	<mx:NumberFormatter id="nf" useThousandsSeparator="true" />
 </mx:Canvas>
