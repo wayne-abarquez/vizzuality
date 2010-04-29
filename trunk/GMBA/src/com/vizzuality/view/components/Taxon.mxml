@@ -48,6 +48,7 @@
 				Application.application.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {
 					if (!(contains(ev.target as DisplayObject)) || !(ev.target == this)) {
 						list.visible = false;
+						
 						if (list.searchText.text != '') {
 							searchText.text = list.searchText.text;
 						}
@@ -91,7 +92,9 @@
  				if (taxonProvider.length>0) {
 					list.visible = true;
 					list.taxonText = searchText.text;
-					list.searchText.setFocus();					
+					list.searchText.setFocus();
+					list.searchText.setSelection(list.searchText.length,list.searchText.length);
+										
  				} else {
  					list.visible = false;
  				}
