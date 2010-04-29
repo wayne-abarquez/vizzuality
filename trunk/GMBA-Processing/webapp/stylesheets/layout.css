@@ -117,3 +117,48 @@ div#footer div.footerRight p a{ font-weight: bold; color: black; text-decoration
 div#footer div.footerRight p a:hover{ color: #ff9933;}
 
 
+
+/*API HTML*/
+div.api_content {margin: 0px auto; width:900px; background-image: url(../images/bkg.jpg); background-attachment:fixed;}
+div.api_header {float:left; width:900px; height:100px; padding:0 0 30px 0;}
+div.api_header a.logo {float:left; height:30px; width:260px; background: url(../images/title.png) no-repeat 0 0;}
+
+div.api_data {float:left; width:900px; font:normal 15px Arial; color:#262A2B;}
+div.api_data h2 {float:left; width:410px; height:70px; background:url(../images/api_title.png) no-repeat 0 0;}
+div.api_data p {float:left; width:100%;}
+div.api_data p.subtitle {padding:20px 0 0 0;}
+
+div.api_data div {float:left; width:900px; padding:0 0 20px 0; margin:40px 0 0 0;}
+div.api_data div.search h3 {float:left; width:900px; font:normal 18px Arial; color:#262A2B; height:25px; background:url(../images/api_search.png) no-repeat 0 0;}
+div.api_data div.download h3 {float:left; width:900px; font:normal 18px Arial; color:#262A2B; height:25px; background:url(../images/api_download.png) no-repeat 0 0;}
+div.api_data div ul {float:left; width:850px; padding:20px 0 0 40px;}
+div.api_data div ul li {padding:1px 0;}
+div.api_data div ul li a {text-decoration:none; color:#006699; font-weight:bold;}
+div.api_data div ul li a:hover {text-decoration:underline;}
+
+div.api_data div.bio {float:left; width:400px; position:relative;}
+div.api_data div.bio h3 {float:left; width:400px; height:25px; background:url(../images/biodiversity.png) no-repeat 0 0; padding:0 0 15px;}
+div.api_data div.bio a {float:left; padding:10px; border:1px solid #cccccc; background:white; width:240px; height:240px;}
+div.api_data div.bio a img {width:240px; height:240px;}
+div.api_data div.bio span.shadow {position:absolute; bottom:12px; left:0; width:260px; height:8px; background:url(../images/api_shadow.png) no-repeat 2px bottom;}
+div.api_data div.env {float:right; width:400px; position:relative;}
+div.api_data div.env h3 {float:left; width:400px; height:25px; background:url(../images/environment.png) no-repeat 0 0; padding:0 0 15px;}
+div.api_data div.env span.shadow {position:absolute; bottom:12px; left:0; width:260px; height:8px; background:url(../images/api_shadow.png) no-repeat 2px bottom;}
+div.api_data div.env a {float:left; padding:10px; border:1px solid #cccccc; background:white; width:240px; height:240px;}
+div.api_data div.env a img {width:240px; height:240px;}
+
+
+div.footer {float: left; width:900px; margin:60px 0 0 0; padding: 0 0 30px;}
+div.footer div.footer_left {float:left; width:700px}
+div.footer div.footer_left div.logos {float:left; width:auto; width:120px;}
+div.footer div.footer_left div.logos a.gmbaLogo {float:left; background:url(../images/gmba_logo.png) no-repeat 0 0; width:58px; height:32px;}
+div.footer div.footer_left div.logos a.gbifLogo {float:left; background:url(../images/gbif_logo.png) no-repeat 0 0; width:39px; height:38px;}
+div.footer div.footer_left div.text {float:left; width:550px;}
+div.footer div.footer_left div.text p {float:left; font:normal 13px Arial; color:#333333; width:550px; margin:0;}
+div.footer div.footer_right {float:right; width:200px}
+div.footer div.footer_right p {padding:12px 0 0 0;}
+div.footer div.footer_right p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b; font-family: "Arial"; font-size: 13px;}
+div.footer div.footer_right p a:hover{ color: #ff9933;}
+
+
+
