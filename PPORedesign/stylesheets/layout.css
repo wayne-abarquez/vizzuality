@@ -98,15 +98,15 @@ div#tooltip {position:absolute; width:325px; height:60px; padding:10px 10px 10px
 div#tooltip h4 {float:left; width:328px; font:bold 18px Arial; color:#FF6600;}
 div#tooltip h4 a {text-decoration:none; font:bold 18px Arial; color:#FF6600;}
 div#tooltip h4 a:hover {text-decoration:underline;}
-div#tooltip div.areas_number {float:left; margin:5px 0 0 0; padding:0; border-right:1px solid #999999; width:112px;}
+div#tooltip div.areas_number {float:left; margin:5px 0 0 0; padding:0; border-right:1px solid #999999; width:105px;}
 div#tooltip div.areas_number p {float:left; font:bold 13px Arial; color:#006699;}
 div#tooltip div.areas_number label {float:left;float:left; font:bold 13px Arial; color:#006699;}
-div#tooltip div.protected {float:left; margin:5px 0 0 0; padding:0 0 0 13px; border-right:1px solid #999999; width:71px;}
+div#tooltip div.protected {float:left; margin:5px 0 0 0; padding:0 0 0 10px; border-right:1px solid #999999; width:67px;}
 div#tooltip div.protected p {float:left; font:bold 13px Arial; color:#999999;}
 div#tooltip div.protected label {float:left;float:left; font:bold 13px Arial; color:#999999;}
-div#tooltip div.area {float:left; margin:5px 0 0 0; padding:0; width:81px;}
-div#tooltip div.area p {float:left; font:bold 13px Arial; color:#999999; text-align:right; width:78px;}
-div#tooltip div.area label {float:left;float:left; font:bold 13px Arial; color:#999999; text-align:right; width:78px;}
+div#tooltip div.area {float:left; margin:0 0 0 0; padding:0; width:81px;}
+div#tooltip div.area p {float:left; font:bold 13px Arial; color:#999999; text-align:center; width:95px; padding:0 0 0 5px; line-height:15px;}
+div#tooltip div.area label {float:left;float:left; font:bold 13px Arial; color:#999999; text-align:center; width:95px; padding:0 0 0 5px;}
 
 
 
