@@ -51,6 +51,11 @@ CheckBox{
 
 }
 
+ProgressBar{
+		barSkin: Embed(source="skin.swf",symbol="SliderHighlight_Skin");
+		trackSkin: Embed(source="skin.swf",symbol="bkgProgressBar");
+}
+
 
 HBox.taxon {
 	background-image: Embed(source="skin.swf",symbol="searchInput");
