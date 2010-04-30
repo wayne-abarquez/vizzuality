@@ -16,16 +16,28 @@
 
 <body>
 <div id="containerContent">
-		<div class="application" style="margin:20px 0 0 0; height:740px;" >
+		<div class="application" style="height:740px; margin:20px 0 0 0;">
               <script type="text/javascript">
-AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','1080','height','100%','src','index','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','index' ); //end AC code
-</script><noscript><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="1080" height="100%">
-        <param name="movie" value="index.swf">
-                <param name="quality" value="high">
-                <embed src="index.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1080" height="100%"></embed>
-              </object></noscript>
+              
+AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','1080','height','100%','src','index','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','index',"allowFullScreen","true"); //end AC code
+</script>
+				<noscript>
+					<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="1080" height="100%">
+	        			<param name="movie" value="index.swf">
+	                	<param name="quality" value="high">
+	                	<param name="allowFullScreen" value="true" />
+	                	
+	                	<embed src="index.swf" quality="high" 
+	                		pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" 
+	                		type="application/x-shockwave-flash" 
+	                		width="1080" 
+	                		height="100%"
+	                		allowFullScreen="true">
+	                	</embed>
+	              	</object>
+              	</noscript>
              
-			<div id="footer_application" style="margin:20px 0 20px 0;">
+			<div id="footer_application">
 
 				<div class="footerLeft">
 					<a href="http://gmba.unibas.ch/index/index.htm" target="_blank"><p class="gmbaLogo"></p></a>
@@ -35,8 +47,8 @@ AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/
 						<p>Global Mountain biodiversity asessment and Global Biodiversity Information Facility</p>
 					</div>
 				</div>
-				<div class="footerRight" style="margin:20px 0 0 0">
-					<p><a href="/">home</a> / <a href="api.html">api</a> / <a href="help.html">learn more</a> / <a href="contact.html">contact</a></p>
+				<div class="footerRight">
+					<p><a href="/">home</a> / <a href="help.html">learn more</a> / <a href="contact.html">contact</a></p>
 				</div>
 			</div>
 			</div>
