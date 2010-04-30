@@ -55,7 +55,6 @@
 		
 	<mx:Canvas id="mamufas" visible="{(!mamufa)?true:false}" verticalCenter="0" right="4">
 		<mx:Button label="deselect"  mouseChildren="false" useHandCursor="true" visible="{(_selected)?true:false}" styleName="nullButton" buttonMode="true" click="onClickDeselect()" />
-		<!--click="onClickDeselect()" -->
 	</mx:Canvas>
 	
 </mx:Canvas>

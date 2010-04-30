@@ -51,6 +51,8 @@
 				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
 			}
 			
+			
+			
 			private function onChangeVegeValue(num:Number,event:VegTypeClickEvent):void {
 				if (!clickOnDeselect) { 
 					if ((vegetationValues.getItemAt(num) as Boolean) == false) {
@@ -84,8 +86,9 @@
 				else clickOnDeselect = false;
 			}
 			
-			private function onSelectAllClicked():void {
-				if(vegetationValues.getItemAt(0) as Boolean) {
+			
+			private function onDeselectAllClicked():void {
+					clickOnDeselect = true;
 					for(var i:uint=0;i<8;i++) {
 						vegetationValues.setItemAt(false,i);
 					}
@@ -97,7 +100,14 @@
 					type6._selected=false; 
 					type7._selected=false; 
 					type8._selected=false; 
-				} else {
+				
+				vegetationValues.refresh();
+				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
+			}
+			
+			
+			private function onSelectAllClicked():void {
+				if (!clickOnDeselect) { 
 					for(var i2:uint=0;i2<8;i2++) {
 						vegetationValues.setItemAt(true,i2);
 					}
@@ -109,9 +119,11 @@
 					type6._selected=true; 
 					type7._selected=true; 
 					type8._selected=true; 
+				
+					vegetationValues.refresh();
+					MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
 				}
-				vegetationValues.refresh();
-				MyEventDispatcher.onChangeThumbRelease(sliderAltitude.values,sliderRoughness.values,vegetationValues);
+				else clickOnDeselect = false;
 			}
 			
 			
@@ -205,8 +217,8 @@
 				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" toolTip="Taken from WorldClim classification" />
 				<mx:VBox verticalGap="1" width="100%">
 					<mx:Spacer height="5" />
-					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknown" click="onSelectAllClicked()" 
-					 _selected="true"	 mamufa="true"/>
+					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknown" clickOnVegTypeEvent="onSelectAllClicked()"  clickOnDeselectEvent="onDeselectAllClicked()"
+					 _selected="true"/>
 					
 					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textTooltip="Season length &lt;= 10 days" textType="Nival" clickOnVegTypeEvent="onChangeVegeValue(1,event)"
 						_selected="true" clickOnDeselectEvent="onDeselectVegeValue(1,event, type2)"/>
