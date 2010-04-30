@@ -62,6 +62,18 @@ HBox.taxon {
 	background-image: Embed(source="skin.swf",symbol="searchInput");
 }
 
+Button.fullScreenIn {
+	up-skin: Embed(source='skin.swf',symbol='bttnFullScreenIn');
+	over-skin: Embed(source='skin.swf',symbol='bttnFullScreenIn');
+	down-skin: Embed(source='skin.swf',symbol='bttnFullScreenIn');
+}
+
+Button.fullScreenOut {
+	up-skin: Embed(source='skin.swf',symbol='bttnFullScreenOut');
+	over-skin: Embed(source='skin.swf',symbol='bttnFullScreenOut');
+	down-skin: Embed(source='skin.swf',symbol='bttnFullScreenOut');
+}
+
 Button.taxon {
 	up-skin: Embed(source='skin.swf',symbol='btnLentSearch');
 	over-skin: Embed(source='skin.swf',symbol='btnLentSearch');

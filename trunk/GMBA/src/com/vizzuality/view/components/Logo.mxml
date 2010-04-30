@@ -8,6 +8,9 @@
 	</mx:Script>
 
 	<mx:Image source="{Resource.LOGO}" width="128" height="55" left="21" top="25"/>
+	<mx:Button width="20" height="20" label="fullscreen" color="#FFFFFF" fontSize="14" fontWeight="normal" click="Application.application.gmbaMap.toggleFullScreen()"
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="fullScreenOut" id="fullScreenButton" enabled="true" top="27" right="15"/>
+					
 	<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
 	<mx:VBox right="10" top="10" bottom="10" verticalAlign="middle" horizontalAlign="center">
 		<!--TODO: Use events handlers for the principal buttons, not Application.application...-->

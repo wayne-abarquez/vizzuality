@@ -172,7 +172,7 @@
 	<mx:VBox height="100%"  width="100%" verticalGap="0" right="0" left="0">
 	
 		<!--LOGO-->
-		<components:Logo x="0" y="0" borderThickness="0"/>
+		<components:Logo x="0" y="0" borderThickness="0" id="header"/>
 		
 		<!--ALTITUDE-->
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
