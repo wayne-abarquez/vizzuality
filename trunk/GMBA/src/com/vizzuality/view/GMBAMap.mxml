@@ -6,7 +6,7 @@
 	removedFromStage="destroySWFAddress()"
     currentStateChange="setSWFAddress()" xmlns:components1="com.vizzuality.view.components.*" xmlns:components2="org.vizzuality.components.*"
     minHeight="742"
-    minWidth="1080">
+    minWidth="980">
     
     
 	<mx:states>
@@ -475,10 +475,10 @@
 	
 	<mx:GlowFilter id="sh" alpha="0.3" color="#000000" blurX="20" blurY="20" />
 	<mx:Canvas styleName="bkgBigCanvas"
-		 maxWidth="983" height="710"
-		 backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="983" horizontalCenter="0" verticalCenter="0"> 
+		 height="96%"
+		 backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="96%" horizontalCenter="0" verticalCenter="0"> 
 
-		<mx:VBox verticalGap="0" height="100%" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
+		<mx:VBox verticalGap="0" height="100%" width="236" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
 			<view:Toolbar width="234" rangeAltitude="{elevationValues}" rangeRelief="{reliefValues}" vegetationValues="{vegetationValues}" id="toolBar"/>
 			<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
 				<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
@@ -489,9 +489,15 @@
 			</mx:Canvas>
 		</mx:VBox>
 		
-		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" width="726"  id="canvasMapContainer">
+		<mx:Canvas backgroundColor="#121213" right="0" left="236" top="636" height="100%">
+				<mx:HRule top="0" width="100%" strokeColor="#000000" strokeWidth="1"/>
+				<mx:HRule top="1" width="100%" left="0" strokeColor="#424243" strokeWidth="1" />
+		</mx:Canvas>		
 				
-			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRRDbO8iWdFOHEw_keFYnsz-JnrHdBQ7xSdQ75Dt0_iAIBZpsP_S843TzA" top="5" bottom="5" right="5" left="5"/>
+		
+		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" id="canvasMapContainer" left="236">
+				
+			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQm56IXr6kiPUawQ1p8p5lUSJeJ_RSJxaBaPlq145Y86Pke48jFmxSuGA" top="5" bottom="5" right="5" left="5"/>
 			
 			<mx:Button styleName="btnZoomMore" height="24" width="24" right="15" top="17" click="zoomIn()"
 				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomIn"/>
@@ -512,6 +518,7 @@
 			
 		</mx:Canvas>
 		
+
 		<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" id="mamufas" visible="false" />
 		<components1:TaxonomicBrowser visible="false" id="taxonomic"  horizontalCenter="0" verticalCenter="0" />
 		<components1:Download visible="false" id="download" elevationValues="{elevationValues}" reliefValues="{reliefValues}" vegetationValues="{vegetationValues}" chooseTaxon="{chooseTaxon}"
