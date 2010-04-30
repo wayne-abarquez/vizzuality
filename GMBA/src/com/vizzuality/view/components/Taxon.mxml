@@ -49,9 +49,9 @@
 					if (!(contains(ev.target as DisplayObject)) || !(ev.target == this)) {
 						list.visible = false;
 						
-						if (list.searchText.text != '') {
+						 /* if (list.searchText.text != '') {
 							searchText.text = list.searchText.text;
-						}
+						}  */
 					}					
 				});
 				Application.application.addEventListener(ResizeEvent.RESIZE, function (ev:ResizeEvent):void {
@@ -78,6 +78,10 @@
 			}
 			
 			private function onChangeText():void {
+				if (list.searchText.text != '') {
+					searchText.text = list.searchText.text;
+				}
+				 
 				list.visible = false;
 				loader.visible = true;
 				if (searchText.text.length>1) {
@@ -114,10 +118,10 @@
         	}
         	
         	private function changeTaxonState():void {
-        		list.searchText.text = "";
-        		searchText.text = "";
-        		searchText.setFocus();
+        		//list.searchText.text = "";
+        		searchText.text = "";        		
         		currentState = "";
+        		searchText.setFocus();
         	}
         	
 			
