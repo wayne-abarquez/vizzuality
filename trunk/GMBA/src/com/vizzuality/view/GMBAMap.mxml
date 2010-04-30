@@ -450,6 +450,26 @@
 		    	}
 		    	SWFAddress.setValue(url2);
 		    }
+		    
+		    public function toggleFullScreen():void{
+            try {
+                switch (Application.application.stage.displayState) {
+                    case StageDisplayState.FULL_SCREEN:
+                        Application.application.stage.displayState = StageDisplayState.NORMAL;
+                        fullScreenButton.selected=false;
+                        break;
+                    default:
+                        Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
+                        fullScreenButton.selected=true;
+						//tracker.trackEvent("event","fullscreen","true");
+                        break;
+                }
+            } catch (err:SecurityError) {
+                // ignore
+                trace(err.message);
+            }
+		}				
+		
 	    ]]>
 	</mx:Script>
 	
@@ -478,7 +498,10 @@
 				
 			<mx:Button styleName="btnZoomMinus" height="24" width="24" right="15" top="45" click="zoomOut()"
 				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomOut"/>
-
+			
+			<mx:Button height="32" label="fullscreen" color="#FFFFFF" fontSize="14" fontWeight="normal" click="toggleFullScreen()"
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download"  right="15" bottom="15" width="105" id="fullScreenButton" enabled="true"/>
+					
 			<mx:Image bottom="12" left="70" source="@Embed('/assets/logoMapVizz.png')"
 				click="navigateToURL(new URLRequest('http://www.vizzuality.com'))" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 			<components1:Help backgroundColor="#000000" top="5" bottom="5" right="5" left="5" visible="false" id="help1"/>	
