@@ -13,9 +13,9 @@ package com.vizzuality.maps
 
 	public class RasterLayer extends TileLayerBase
 	{
-        private var rasterUrl:String;	
+        public var rasterUrl:String;	
  
-		public function RasterLayer(_rasterUrl:String) {
+		public function RasterLayer(_rasterUrl:String=null) {
 			
 			rasterUrl=_rasterUrl;	
             var copyrightCollection:CopyrightCollection = new CopyrightCollection();

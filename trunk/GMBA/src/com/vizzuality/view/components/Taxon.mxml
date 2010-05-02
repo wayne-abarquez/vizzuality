@@ -19,6 +19,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.events.TaxonSelectedEvent;
 			import mx.events.ListEvent;
 			import com.vizzuality.events.MyEventDispatcher;
 			import mx.events.ResizeEvent;
@@ -122,6 +123,9 @@
         		searchText.text = "";        		
         		currentState = "";
         		searchText.setFocus();
+        		
+        		var taxEv:TaxonSelectedEvent= new TaxonSelectedEvent(TaxonSelectedEvent.TAXON_SELECTED,null,null);
+            	MyEventDispatcher.dispatchEvent(taxEv);
         	}
         	
 			

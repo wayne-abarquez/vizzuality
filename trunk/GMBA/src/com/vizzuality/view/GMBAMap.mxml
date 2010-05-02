@@ -126,6 +126,9 @@
             	}
             	mamufas.visible=false; download.visible = false; taxonomic.visible = false;
             	chooseTaxon = event.information_;
+            	
+            	var taxEv:TaxonSelectedEvent= new TaxonSelectedEvent(TaxonSelectedEvent.TAXON_SELECTED,event.information_.id,event.information_.type);
+            	onTaxonSelected(taxEv);
             }
             
             private function onChangeSliderValues(event:SliderThumbRelease):void {
@@ -251,8 +254,9 @@
 			    
 			    
 				//initialize the taxon layer
-				var startTaxon:TaxonSelectedEvent= new TaxonSelectedEvent(TaxonSelectedEvent.TAXON_SELECTED,"1","1");
-				onTaxonSelected(startTaxon);			    
+				var startTaxon:TaxonSelectedEvent= new TaxonSelectedEvent(TaxonSelectedEvent.TAXON_SELECTED,null,null);
+				onTaxonSelected(startTaxon);		
+				MyEventDispatcher.addEventListener(TaxonSelectedEvent.TAXON_SELECTED,onTaxonSelected);	    
 			    
 			    
 				//rasterLayer = new RasterLayer("http://vizzuality.tiles.s3.amazonaws.com/gmba_data_raster/|Z|_|X|_|Y|.png");
@@ -267,6 +271,7 @@
 						tm=null;
 					}
 				})
+				//tlo.foreground.cacheAsBitmap=true;
 				tlo.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:Event):void {
 					loadingMessage.visible=true;
 					tilesLoading=true;
@@ -299,6 +304,7 @@
 				
 				maskLayer=new MaskLayer();
 				mLayerTo= new TileLayerOverlay(maskLayer);			
+				//mLayerTo.foreground.cacheAsBitmap=true;
 				map.addOverlay(mLayerTo);	
 				//mLayerTo.foreground.alpha=0;
 				mLayerTo.visible=false;
@@ -320,11 +326,23 @@
 		    }
 		    
 		    private function onTaxonSelected(event:TaxonSelectedEvent):void {
-		    	if(taxonTileLayerOverlay==null) {
-		    		taxonRasterLayer= new RasterLayer("http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png");
-		    		taxonTileLayerOverlay = new TileLayerOverlay(taxonRasterLayer);
-		    		map.addOverlay(taxonTileLayerOverlay);
-		    	}
+				if(taxonTileLayerOverlay==null) {
+					taxonRasterLayer= new RasterLayer();
+					if(event.taxonId==null) {		    		
+			    		taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
+			    	} else {
+			    		taxonRasterLayer.rasterUrl="http://maps1.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+event.taxonId;
+		    		}
+					taxonTileLayerOverlay = new TileLayerOverlay(taxonRasterLayer);
+					map.addOverlay(taxonTileLayerOverlay);
+				} else {
+			    	if(event.taxonId==null) {		    		
+			    		taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
+			    	} else {
+			    		taxonRasterLayer.rasterUrl="http://maps1.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+event.taxonId;
+			    	}
+			    	taxonTileLayerOverlay.refresh();
+				}
 		    }
 		    
 		    private function onSlidersChange(event:SliderChangeEvent):void {
