@@ -34,5 +34,11 @@ package com.vizzuality.utils
 		[Embed (source="assets/ajax-loader.gif" )]
 	    public static const DOWNLOAD_LOADER:Class;
 	    
+		[Embed (source="assets/loaderGrayInput.swf" )]
+	    public static const ANIMATION:Class;
+	    
+		[Embed(source="com/vizzuality/skin/skin.swf",symbol="searchInput")]
+	    public static const SEARCH:Class;
+	    
 	}
 }
