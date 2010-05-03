@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="620" minWidth="230"
+	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.events.FilterChangedEvent;
+			import com.vizzuality.events.MyEventDispatcher;
+			import com.vizzuality.utils.Resource;
+			import mx.core.Application;
+			import com.vizzuality.utils.Helper;
+			import mx.events.SliderEvent;
+			import mx.events.CollectionEvent;
+			import mx.collections.ArrayCollection;
+
+			import com.vizzuality.utils.SliderThumbGmba;
+			import mx.controls.sliderClasses.Slider;
+			
+			private var sliderChangeEvent:FilterChangedEvent;
+			
+			public function init():void {
+				sliderChangeEvent = new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,false);
+				
+				//Application.application.stage.addEventListener(FullScreenEvent.FULL_SCREEN, fullScreenHandler);
+				
+					type1.isSelected =(Application.application.vegetation[0]==1)?true:false;
+					type2.isSelected =(Application.application.vegetation[1]==1)?true:false;
+					type3.isSelected =(Application.application.vegetation[2]==1)?true:false;
+					type4.isSelected =(Application.application.vegetation[3]==1)?true:false;
+					type5.isSelected =(Application.application.vegetation[4]==1)?true:false;
+					type6.isSelected =(Application.application.vegetation[5]==1)?true:false;
+					type7.isSelected =(Application.application.vegetation[6]==1)?true:false;
+					type8.isSelected =(Application.application.vegetation[7]==1)?true:false;
+					sliderAltitude.values = Application.application.elevation;
+					sliderRoughness.values = Application.application.relief;
+					
+			}
+			
+		    private function fullScreenHandler(evt:FullScreenEvent):void {
+
+                if (evt.fullScreen) {
+		        	fullScreenButton.setStyle("styleName","fullScreenIn");
+                } else {
+                  	fullScreenButton.setStyle("styleName","fullScreenOut");
+                }
+            }
+
+		    
+		    public function toggleFullScreen():void{
+	            try {
+	                switch (Application.application.stage.displayState) {
+	                    case StageDisplayState.FULL_SCREEN:
+	                        Application.application.stage.displayState = StageDisplayState.NORMAL;
+	                        break;
+	                    default:
+	                        Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
+	                        break;
+	                }
+	            } catch (err:SecurityError) {
+	                // ignore
+	                trace(err.message);
+	            }
+			}		
+			
+			public function onChooseVegetableTypeClick(chooseVegType:ChooseVegetableType):void {
+				if(chooseVegType.vegTypeButton!=ChooseVegetableType.ALL) {
+					if(chooseVegType.isSelected) {
+						Application.application.vegetation[chooseVegType.vegTypeButton]=0;
+						chooseVegType.isSelected=false;
+					} else {
+						
+						Application.application.vegetation[chooseVegType.vegTypeButton]=1;
+						chooseVegType.isSelected=true;
+					}
+					//Check if all selected
+					var allSelected:Boolean=true;
+					for(var i:uint =1;i<=7;i++) {
+						if(!Application.application.vegetation[i]) {
+							allSelected=false;
+							break;
+						}
+					}
+					if(allSelected) {
+						type1.isSelected=true;
+						Application.application.vegetation[0]=1;
+					} else {
+						type1.isSelected=false;
+						Application.application.vegetation[0]=0;
+					}
+					
+				} else {
+					if(chooseVegType.isSelected) {
+						type1.isSelected=false;
+						type2.isSelected=false;
+						type3.isSelected=false;
+						type4.isSelected=false;
+						type5.isSelected=false;
+						type6.isSelected=false;
+						type7.isSelected=false;
+						type8.isSelected=false;
+						Application.application.vegetation=[0,0,0,0,0,0,0,0];
+					} else {
+						type1.isSelected=true;
+						type2.isSelected=true;
+						type3.isSelected=true;
+						type4.isSelected=true;
+						type5.isSelected=true;
+						type6.isSelected=true;
+						type7.isSelected=true;
+						type8.isSelected=true;
+						Application.application.vegetation=[1,1,1,1,1,1,1,1];
+					}
+				}
+				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED));
+			}		
+			
+			private function onSliderChange():void {
+				Application.application.elevation = sliderAltitude.values;
+				Application.application.relief = sliderRoughness.values;
+				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,false));
+			}
+			
+			private function onSliderThumbRelease():void {
+				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,true));
+			}
+			
+			
+			
+		]]>
+	</mx:Script>
+
+	<mx:VBox height="100%"  width="100%" verticalGap="0" right="0" left="0">
+	
+		<!--LOGO-->
+		<mx:Canvas width="100%" height="97" borderStyle="none" x="0" y="0" borderThickness="0" id="header">
+			<mx:Image source="{Resource.LOGO}" width="128" height="55" left="21" top="25"/>
+			<mx:Button width="20" height="20" label="fullscreen" color="#FFFFFF" fontSize="14" fontWeight="normal" click="toggleFullScreen()"
+							useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="fullScreenOut" id="fullScreenButton" enabled="true" top="27" right="15"/>
+			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+		</mx:Canvas>
+
+		
+		<!--ALTITUDE-->
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
+			<mx:VBox verticalGap="0" left="8" top="15" width="100%">
+				<mx:Label text="ELEVATION" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8" toolTip="Taken from WorldClim"/>
+				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
+					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
+					<mx:Label text="0" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
+					<mx:Label text="7889" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
+					<mx:HSlider id="sliderAltitude" enabled="true" top="0" left="5" right="20" minimum="0" maximum="7889" 
+						showDataTip="false" width="100%" 
+						thumbCount="2" liveDragging="true" 
+						sliderThumbClass="{SliderThumbGmba}"
+						change="onSliderChange()"
+						 thumbRelease="onSliderThumbRelease()"
+						showTrackHighlight="true" snapInterval="30"/>
+				</mx:Canvas>
+			</mx:VBox>
+			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
+			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+		</mx:Canvas>
+		
+		<!--ROUGHNESS-->
+		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
+			<mx:VBox verticalGap="0" left="12" top="15" width="100%">
+				<mx:Label text="RELIEF" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8" toolTip="A measurement of the steepnest of land. The more relief the more steepest"/>
+				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
+					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" left="13" top="16"/>
+					<mx:VRule strokeColor="#000000" strokeWidth="1" height="3" right="25" top="16"/>
+					<mx:Label text="200" left="4" textAlign="center" top="16" fontSize="11" color="#000000" fontWeight="normal"/>
+					<mx:Label text="3397" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
+					<mx:HSlider id="sliderRoughness" showDataTip="false" top="0" left="5" right="20" minimum="200" maximum="3397"  
+						 sliderThumbClass="{SliderThumbGmba}" 
+						 change="onSliderChange()"
+						 thumbRelease="onSliderThumbRelease()"
+						 width="100%" thumbCount="2" liveDragging="true" snapInterval="14" 
+						 showTrackHighlight="true"/>
+				</mx:Canvas>
+			</mx:VBox>
+			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
+			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+		</mx:Canvas>
+		
+		<!--VEGETATION-->
+		<mx:Canvas width="100%" height="240">
+			<mx:VBox verticalGap="0" left="20" top="15" right="5">
+				<mx:Label text="VEGETATION TYPE" color="#FFFFFF" fontWeight="normal" fontSize="13" toolTip="Taken from WorldClim classification" />
+				<mx:VBox verticalGap="1" width="100%">
+					<mx:Spacer height="5" />
+					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="All / Unknown"
+					 isSelected="true" vegTypeButton="{ChooseVegetableType.ALL}"/>
+					
+					<components:ChooseVegetableType id="type2" selectedColor="#006699" unselectedColor="#004365" textTooltip="Season length &lt;= 10 days" textType="Nival"
+						isSelected="true" vegTypeButton="{ChooseVegetableType.NIVAL}" />
+					<components:ChooseVegetableType id="type3" selectedColor="#0099CC" unselectedColor="#005876" textTooltip="Season length between 10 and 59 days or season longer and season mean &lt; 3.5 degrees C" textType="Upper alpine"
+						isSelected="true" vegTypeButton="{ChooseVegetableType.UPPER_ALPINE}" />
+					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textTooltip="Season length &lt; 94 days or season mean &lt; 6.4 degrees C" textType="Lower alpine"
+						isSelected="true" vegTypeButton="{ChooseVegetableType.LOWER_ALPINE}" />
+					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textTooltip="Season length &gt;= 94 days and season mean between 6.4 and 10 degrees C" textType="Upper montane"
+						isSelected="true" vegTypeButton="{ChooseVegetableType.UPPER_MOUNTANE}" />
+					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textTooltip="Season length &gt;= 94 days and seasonal mean temperature between 10 and 15 degrees C" textType="Lower montane"
+						isSelected="true" vegTypeButton="{ChooseVegetableType.LOWER_MONTANE}" />
+					<components:ChooseVegetableType id="type7" selectedColor="#7A7D57" unselectedColor="#42432F" textTooltip="Warm zone with possible freezing. Season length &gt;= 94 days and season mean temperature &gt;= 15 degrees C" textType="Warm zone with possible freezing" 
+						isSelected="true" vegTypeButton="{ChooseVegetableType.WARM_ZONE}" />
+					<components:ChooseVegetableType id="type8" selectedColor="#7E7F9C" unselectedColor="#4A4A5B" textTooltip="Perpetual warm conditions, no freezing. Season mean temperature &gt;= 15 degrees C" textType="Perpetual warm conditions, no freezing"
+						isSelected="true" vegTypeButton="{ChooseVegetableType.PERPETUAL_WARM}" />
+						
+				</mx:VBox>
+			</mx:VBox> 
+			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
+			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
+		</mx:Canvas>
+			
+		<!--TAXON-->
+		<!--components:Taxon id="taxonSearch" / -->
+
+	</mx:VBox>
+</mx:Canvas>	
+	
