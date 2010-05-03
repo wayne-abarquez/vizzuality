@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="126" height="50">
+	<mx:Label y="0" text="APROX. SIZE" left="0" fontSize="11" color="#FFFFFF"/>
+	<mx:Label x="0" y="7.35" text="{label_number}" color="#FFFFFF" width="117" height="34.6" fontSize="31"/>
+	<mx:VRule y="0" width="1" height="50" right="0"  strokeColor="#898989"/>
+	
+	<mx:Script>
+	
+		[Bindable] public var label_number:String;
+		
+	</mx:Script>
+	
+</mx:Canvas>
+

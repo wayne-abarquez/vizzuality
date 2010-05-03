@@ -8,19 +8,29 @@
     minWidth="980" xmlns:utils="com.vizzuality.utils.*"
     addedToStage="init()"
     preloader="com.vizzuality.view.preloader.Preloader"
-    >
+     xmlns:ns1="com.vizzuality.view.components.taxonomicbrowser.*" xmlns:ns2="com.vizzuality.view.components.download.*">
     
     <mx:Style source="com/vizzuality/skin/style.css"/>
     	
 	<mx:states>
 		<mx:State name="TaxonomicBrowser">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0"/>
+				<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0">
+				</mx:Canvas>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<ns1:TaxonomicBrowser horizontalCenter="0" verticalCenter="0">
+				</ns1:TaxonomicBrowser>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="Download">
 			<mx:AddChild position="lastChild">
-				<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" />
+				<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" >
+				</mx:Canvas>
+			</mx:AddChild>
+			<mx:AddChild position="lastChild">
+				<ns2:Download id="downloadBox" horizontalCenter="0" verticalCenter="0">
+				</ns2:Download>
 			</mx:AddChild>
 		</mx:State>
 	</mx:states>
@@ -119,7 +129,12 @@
 	        
 		    private function onMapReady(event:Event):void {
 				//Taxon Layer
-				taxonRasterLayer= new BasicLayer("http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png");
+				taxonRasterLayer= new BasicLayer();
+	    		if(taxon!=null) {
+		    		taxonRasterLayer.rasterUrl="http://maps1.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
+	    		} else {
+	    			taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
+	    		}				
 				taxonRasterTileOverlay= new TileLayerOverlay(taxonRasterLayer);
 				map.addOverlay(taxonRasterTileOverlay);			    
 		    	
@@ -192,7 +207,8 @@
 		    }		      
 		    
 		    private function onClickDownload():void {
-				init();
+				currentState='Download';
+				downloadBox.setCriteriaValues();
 		    }   	
 		    
 		    private function onFilterChange(event:FilterChangedEvent):void {
@@ -200,40 +216,57 @@
 			    	SWFAddress.setValue(createCurrentURL());
 		    	}
 		    	
-			   	var rMin:Number = elevation[0]/7889;
-	 			var rMax:Number = elevation[1]/7889;
-	 			var gMin:Number  = relief[0]/3397; 
-	 			var gMax:Number  = relief[1]/3397; 
-	 			
-				shader.data.maxColor.value = [rMax,gMax];
-				shader.data.minColor.value = [rMin,gMin];
-				
-
-				var tvz1:Number=0;
-				if(vegetation[1]) tvz1=1;
-				var tvz2:Number=0;
-				if(vegetation[2]) tvz2=1;
-				var tvz3:Number=0;
-				if(vegetation[3]) tvz3=1;
-				var tvz4:Number=0;
-				if(vegetation[4]) tvz4=1;
-				var tvz5:Number=0;
-				if(vegetation[5]) tvz5=1;
-				var tvz6:Number=0;
-				if(vegetation[6]) tvz6=1;
-				var tvz7:Number=0;
-				if(vegetation[7]) tvz7=1;
-				
-
-				shader.data.tvz1.value = [tvz1];
-				shader.data.tvz2.value = [tvz2];
-				shader.data.tvz3.value = [tvz3];
-				shader.data.tvz4.value = [tvz4];
-				shader.data.tvz5.value = [tvz5];
-				shader.data.tvz6.value = [tvz6];
-				shader.data.tvz7.value = [tvz7];
-				
-				rasterTileOverlay.foreground.filters = [filter];		    	
+		    	if(event.changeType==FilterChangedEvent.ELEVATION_CHANGE ||
+		    		event.changeType==FilterChangedEvent.RELIEF_CHANGE ||
+		    		event.changeType==FilterChangedEvent.VEGETATION_CHANGE) {
+					   	var rMin:Number = elevation[0]/7889;
+			 			var rMax:Number = elevation[1]/7889;
+			 			var gMin:Number  = relief[0]/3397; 
+			 			var gMax:Number  = relief[1]/3397; 
+			 			
+						shader.data.maxColor.value = [rMax,gMax];
+						shader.data.minColor.value = [rMin,gMin];
+						
+		
+						var tvz1:Number=0;
+						if(vegetation[1]) tvz1=1;
+						var tvz2:Number=0;
+						if(vegetation[2]) tvz2=1;
+						var tvz3:Number=0;
+						if(vegetation[3]) tvz3=1;
+						var tvz4:Number=0;
+						if(vegetation[4]) tvz4=1;
+						var tvz5:Number=0;
+						if(vegetation[5]) tvz5=1;
+						var tvz6:Number=0;
+						if(vegetation[6]) tvz6=1;
+						var tvz7:Number=0;
+						if(vegetation[7]) tvz7=1;
+						
+		
+						shader.data.tvz1.value = [tvz1];
+						shader.data.tvz2.value = [tvz2];
+						shader.data.tvz3.value = [tvz3];
+						shader.data.tvz4.value = [tvz4];
+						shader.data.tvz5.value = [tvz5];
+						shader.data.tvz6.value = [tvz6];
+						shader.data.tvz7.value = [tvz7];
+						
+						rasterTileOverlay.foreground.filters = [filter];			    			
+		    	}
+		    	if(event.changeType==FilterChangedEvent.TAXON_CHANGE) {
+		    		if(taxon!=null) {
+			    		taxonRasterLayer.rasterUrl="http://maps1.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
+			    		toolBar.taxonBox.taxonName=taxon.name;
+			    		toolBar.taxonBox.currentState='SelectedTaxon';
+		    		} else {
+		    			taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
+			    		toolBar.taxonBox.taxonName="All taxa";
+			    		toolBar.taxonBox.currentState='';
+		    			
+		    		}
+		    		taxonRasterTileOverlay.refresh();
+		    	}
 		    	
 		    }    	
 	    	

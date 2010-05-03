@@ -19,6 +19,7 @@
 	</mx:states>
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.events.FilterChangedEvent;
 			import mx.events.ListEvent;
 			import com.vizzuality.events.MyEventDispatcher;
 			import mx.events.ResizeEvent;
@@ -110,6 +111,7 @@
         		searchText.text = "All taxa";
         		Application.application.taxon=null;        		
         		currentState = "";
+        		MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.TAXON_CHANGE));
         	}
         	
 			
@@ -129,7 +131,7 @@
 				<mx:Button width="15" styleName="taxon" height="20" buttonMode="true" useHandCursor="true" mouseChildren="false" id="button1"/>
 			</mx:HBox>
 		</mx:Canvas>
-		<mx:Button label="explore the taxonomic tree" styleName="explore" useHandCursor="true" mouseChildren="false" buttonMode="true" />
+		<mx:Button label="explore the taxonomic tree" styleName="explore" useHandCursor="true" mouseChildren="false" buttonMode="true" click="Application.application.currentState='TaxonomicBrowser'" />
 	</mx:VBox>
 	
 	<components:SearchList visible="false" id="list" dataList="{taxonProvider}" />
