@@ -59,11 +59,17 @@
 			
 			
 			private function onRollOver():void {
-				
+				if (!_isSelected){
+					canvasVegTypes.setStyle("backgroundColor",selectedColor);
+					labelText.enabled = true;
+				} 
 			}
 			
 			private function onRollOut():void {
-				
+				if (!_isSelected){ 
+					canvasVegTypes.setStyle("backgroundColor",unselectedColor);
+					labelText.enabled = false;
+				}
 			}
 			
 			private function onClick():void {
@@ -76,7 +82,7 @@
 	
 	
 	<mx:Canvas id="canvasVegTypes" left="3" width="6" top="0" bottom="0" />
-	<mx:Label id="labelText" verticalCenter="0" left="13" styleName="labelVegTypes" width="128" />
+	<mx:Label id="labelText" verticalCenter="0" left="13" styleName="labelVegTypes" width="128"  rollOver="onRollOver()" rollOut="onRollOut()"/>
 		
 	<mx:Button id="unselectButton" visible="true" label="deselect" styleName="nullButton"  right="0"/>
 	
