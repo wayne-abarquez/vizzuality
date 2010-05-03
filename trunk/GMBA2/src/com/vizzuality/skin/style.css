@@ -32,6 +32,12 @@ Label {
 	font-family: 'DINOT-Medium';
 }
 
+Label.labelVegTypes {
+	font-family: 'Arial';
+	font-size: 12;
+	color: #FFFFFF;
+	disabledColor:#666666;
+}
 
 
 Text {
