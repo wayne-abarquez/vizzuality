@@ -213,6 +213,7 @@
 		</mx:Canvas>
 			
 		<!--TAXON-->
+		<components:TaxonBox id="taxonBox" />
 
 	</mx:VBox>
 </mx:Canvas>	
