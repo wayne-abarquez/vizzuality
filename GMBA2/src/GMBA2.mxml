@@ -28,6 +28,7 @@
     
 	<mx:Script>
 	    <![CDATA[
+	    	import com.vizzuality.maps.BasicLayer;
 	    	import com.google.maps.MapMouseEvent;
 	    	import com.vizzuality.events.FilterChangedEvent;
 	    	import com.vizzuality.events.MyEventDispatcher;
@@ -56,7 +57,7 @@
 			private var RasterFilter:Class;		
 	        private var rasterLayer:RasterLayer;
 			private var rasterTileOverlay:TileLayerOverlay;     
-			private var taxonRasterLayer:RasterLayer;	        	
+			private var taxonRasterLayer:BasicLayer;	        	
 			private var taxonRasterTileOverlay:TileLayerOverlay;   
 			private var shader:Shader; 
 			private var filter:ShaderFilter; 
@@ -118,7 +119,7 @@
 	        
 		    private function onMapReady(event:Event):void {
 				//Taxon Layer
-				taxonRasterLayer= new RasterLayer("http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png");
+				taxonRasterLayer= new BasicLayer("http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png");
 				taxonRasterTileOverlay= new TileLayerOverlay(taxonRasterLayer);
 				map.addOverlay(taxonRasterTileOverlay);			    
 		    	
@@ -132,10 +133,12 @@
 				map.addEventListener(MapMoveEvent.MOVE_START,function(event:MapMoveEvent):void {
 					rasterTileOverlay.visible=false;
 					taxonRasterTileOverlay.visible=false;
+					map.alpha=0.07;
 				});
 				map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
 					rasterTileOverlay.visible=true;
 					taxonRasterTileOverlay.visible=true;
+					map.alpha=1;
 				});
 				map.addOverlay(rasterTileOverlay);
 		    }	        
@@ -148,13 +151,9 @@
 		    	SWFAddress.setValue(createCurrentURL());
 		    }
 		    
-		    private function onClickZoomIn(event:MapMouseEvent=null):void {
+		    private function onClickZoomIn():void {
 		    	if(map.getZoom()<7) {
-		    		if (event!=null) {
-		    			map.setCenter(event.latLng,map.getZoom()+1);
-		    		} else {
-		    			map.setZoom(map.getZoom()+1);
-		    		}
+					map.setZoom(map.getZoom()+1);
 		    	} 
 			}
 			
@@ -269,8 +268,9 @@
 				
 		
 		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" id="canvasMapContainer" left="236">
-				
-			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQm56IXr6kiPUawQ1p8p5lUSJeJ_RSJxaBaPlq145Y86Pke48jFmxSuGA" top="5" bottom="5" right="5" left="5"/>
+			<mx:Canvas top="5" bottom="5" right="5" left="5" backgroundColor="#000000">
+				<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQm56IXr6kiPUawQ1p8p5lUSJeJ_RSJxaBaPlq145Y86Pke48jFmxSuGA" width="100%" height="100%"/>
+			</mx:Canvas>
 			
 			<mx:Button styleName="btnZoomIn" height="24" width="24" right="15" top="17"
 				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomIn" click="onClickZoomIn()"/>
@@ -282,7 +282,7 @@
 				click="navigateToURL(new URLRequest('http://www.vizzuality.com'))" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
 			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="true" alpha="0.6">
-				<mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/>
+				<!--mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/ -->
 			</mx:Canvas>
 			<mx:Canvas width="113" height="52" right="47" top="17" backgroundColor="#FFFFFF" backgroundAlpha="0.51">
 				<mx:Label id="numOcc" text="-" fontSize="20" fontFamily="Arial" right="5" top="2" color="#000000"/>
