@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"  xmlns:view="com.vizzuality.view.*"
+	layout="absolute"
+	backgroundColor="#D5E8EC" 	
+	horizontalScrollPolicy="off"
+	verticalScrollPolicy="off"
+    minHeight="742"
+    minWidth="980" xmlns:utils="com.vizzuality.utils.*"
+    addedToStage="init()"
+    >
+    
+    <mx:Style source="com/vizzuality/skin/style.css"/>
+    	
+	<mx:states>
+		<mx:State name="TaxonomicBrowser">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0"/>
+			</mx:AddChild>
+		</mx:State>
+		<mx:State name="Download">
+			<mx:AddChild position="lastChild">
+				<mx:Canvas alpha="0.7" backgroundColor="#000000" top="0" right="0" bottom="0" left="0" />
+			</mx:AddChild>
+		</mx:State>
+	</mx:states>
+    
+    
+	<mx:Script>
+	    <![CDATA[
+	    	import com.vizzuality.events.FilterChangedEvent;
+	    	import com.vizzuality.events.MyEventDispatcher;
+	    	import com.google.maps.overlays.TileLayerOverlay;
+	    	import com.vizzuality.maps.MaskLayer;
+	    	import com.vizzuality.maps.RasterLayer;
+	    	import com.asual.swfaddress.SWFAddress;
+	    	import com.vizzuality.model.Taxon;
+	    	import com.google.maps.MapZoomEvent;
+	    	import com.google.maps.MapMoveEvent;
+	    	import com.google.maps.LatLng;
+	    	import com.google.maps.MapType;
+	    	import com.google.maps.MapOptions;
+	    	import com.vizzuality.utils.Resource;
+	    	
+	    	public var elevation:Array = [0,7889];
+	    	public var relief:Array = [200,3397];
+	    	public var vegetation:Array=[1,1,1,1,1,1,1,1];
+	    	public var taxon:Taxon;
+	    	
+	    	private var initLat:Number;
+	    	private var initLng:Number;
+	    	private var initZoom:Number;
+	    	
+			[Embed("pixelbender/threshold2.pbj", mimeType="application/octet-stream")]
+			private var RasterFilter:Class;		
+	        private var rasterLayer:RasterLayer;
+			private var rasterTileOverlay:TileLayerOverlay;     
+			private var taxonRasterLayer:RasterLayer;	        	
+			private var taxonRasterTileOverlay:TileLayerOverlay;   
+			private var shader:Shader; 
+			private var filter:ShaderFilter; 
+	    	
+	    	private function init():void {
+	    		
+	    		//Check the URL to see if we need to initialize at specific state
+	    		var paths:Array = SWFAddress.getPathNames();
+	    		trace(SWFAddress.getPath());
+				if(paths.length!=5) {
+					//Defalt values
+					setDefaultParams();
+				} else {
+					var mapParams:Array=(paths[0] as String).split("_");
+					var elevParams:Array=(paths[1] as String).split("_");
+					var reliefParams:Array=(paths[2] as String).split("_");
+					var vegetatationParams:Array=(paths[3] as String).split("_");
+					var taxonParams:Array=(paths[4] as String).split("_");
+					initLat=Number(mapParams[1]);
+					initLng=Number(mapParams[2]);
+					initZoom=Number(mapParams[0]);
+					elevation=[Number(elevParams[0]), Number(elevParams[1])];
+					relief=[Number(reliefParams[0]), Number(reliefParams[1])];
+					vegetation=
+						[Number(vegetatationParams[0]), 
+						 Number(vegetatationParams[1]), 
+						 Number(vegetatationParams[2]), 
+						 Number(vegetatationParams[3]), 
+						 Number(vegetatationParams[4]), 
+						 Number(vegetatationParams[5]), 
+						 Number(vegetatationParams[6]), 
+						 Number(vegetatationParams[7])];
+					if(taxonParams[0]=="All") {
+						taxon=null;						
+					} else {
+						taxon=new Taxon();	
+						taxon.name=	taxonParams[0];
+						taxon.id=	taxonParams[1];
+						taxon.rank=	taxonParams[2];
+					}
+				}
+				toolBar.init();
+				MyEventDispatcher.addEventListener(FilterChangedEvent.FILTER_CHANGED,onFilterChange);
+				
+	    	}
+	    	
+	    	private function setDefaultParams():void {
+    			initLat=40.73;
+				initLng=-3.99;
+				initZoom=3;
+	    	}
+	    	
+	        private function onMapPreinitialize(event:Event):void {
+	           var opts:MapOptions = new MapOptions({mapType:MapType.PHYSICAL_MAP_TYPE,center:new LatLng(40.73,-3.99),zoom:3});
+	           map.setInitOptions(opts);
+	           map.addEventListener(MapMoveEvent.MOVE_END,onMoveMap);
+	           map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);           	
+	        }	    
+	        
+		    private function onMapReady(event:Event):void {
+				//Taxon Layer
+				taxonRasterLayer= new RasterLayer("http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png");
+				taxonRasterTileOverlay= new TileLayerOverlay(taxonRasterLayer);
+				map.addOverlay(taxonRasterTileOverlay);			    
+		    	
+		    	//Raster filter
+		    	shader = new Shader(new RasterFilter() as ByteArray);
+				filter = new ShaderFilter(shader);
+		    	
+				rasterLayer = new RasterLayer("http://d3eawsq20ts9ys.cloudfront.net/env/z|Z|/|X|/|Y|.png");
+				rasterTileOverlay = new TileLayerOverlay(rasterLayer);
+				rasterTileOverlay.foreground.filters=[filter];
+				map.addEventListener(MapMoveEvent.MOVE_START,function(event:MapMoveEvent):void {
+					rasterTileOverlay.visible=false;
+					taxonRasterTileOverlay.visible=false;
+				});
+				map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
+					rasterTileOverlay.visible=true;
+					taxonRasterTileOverlay.visible=true;
+				});
+				map.addOverlay(rasterTileOverlay);
+		    }	        
+
+		    private function onMoveMap(event:MapMoveEvent):void {
+		    	SWFAddress.setValue(createCurrentURL());
+		    }
+		    
+		    private function onZoomChange(event:MapZoomEvent):void {
+		    	SWFAddress.setValue(createCurrentURL());
+		    }	   
+		    
+		    private function createCurrentURL():String {
+		    	if(!map.isLoaded()) {
+		    		return SWFAddress.getPath();
+		    	}
+		    	//Vegetation types
+		    	var vegUrl:String="";
+		    	for (var i:Number=0; i<vegetation.length;i++) {
+		    		(vegetation[i])?vegUrl+= '_1':vegUrl+= '_0';
+		    	}
+		    	vegUrl=vegUrl.slice(1);
+		    	
+		    	var url:String = '/' + map.getZoom() + 
+		    		'_' + map.getCenter().lat().toFixed(2) + 
+		    		'_' + map.getCenter().lng().toFixed(2)  + 
+		    		'/' + elevation[0] + '_' + elevation[1] + 
+		    		'/' + relief[0] + '_' + relief[1] + 
+		    		'/'+ vegUrl;
+		    	
+		    	if(taxon!=null) {
+					url+="/"+escape(taxon.name)+"_"+taxon.id+"_"+taxon.rank; 		
+		    	} else {
+		    		url+="/All";
+		    	}
+		    		
+		    	return url;
+		    }		      
+		    
+		    private function onClickDownload():void {
+				init();
+		    }   	
+		    
+		    private function onFilterChange(event:FilterChangedEvent):void {
+		    	if(event.mustChangeUrl) {
+			    	SWFAddress.setValue(createCurrentURL());
+		    	}
+		    	
+			   	var rMin:Number = elevation[0]/7889;
+	 			var rMax:Number = elevation[1]/7889;
+	 			var gMin:Number  = relief[0]/3397; 
+	 			var gMax:Number  = relief[1]/3397; 
+	 			
+				shader.data.maxColor.value = [rMax,gMax];
+				shader.data.minColor.value = [rMin,gMin];
+				
+
+				var tvz1:Number=0;
+				if(vegetation[1]) tvz1=1;
+				var tvz2:Number=0;
+				if(vegetation[2]) tvz2=1;
+				var tvz3:Number=0;
+				if(vegetation[3]) tvz3=1;
+				var tvz4:Number=0;
+				if(vegetation[4]) tvz4=1;
+				var tvz5:Number=0;
+				if(vegetation[5]) tvz5=1;
+				var tvz6:Number=0;
+				if(vegetation[6]) tvz6=1;
+				var tvz7:Number=0;
+				if(vegetation[7]) tvz7=1;
+				
+
+				shader.data.tvz1.value = [tvz1];
+				shader.data.tvz2.value = [tvz2];
+				shader.data.tvz3.value = [tvz3];
+				shader.data.tvz4.value = [tvz4];
+				shader.data.tvz5.value = [tvz5];
+				shader.data.tvz6.value = [tvz6];
+				shader.data.tvz7.value = [tvz7];
+				
+				rasterTileOverlay.foreground.filters = [filter];		    	
+		    	
+		    }    	
+	    	
+	    	
+			
+            
+	    ]]>
+	</mx:Script>
+	
+	<mx:GlowFilter id="sh" alpha="0.3" color="#000000" blurX="20" blurY="20" />
+	<mx:Canvas styleName="bkgBigCanvas"
+		 height="96%"
+		 backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="96%" horizontalCenter="0" verticalCenter="0" backgroundColor="#000000"> 
+
+		<mx:VBox verticalGap="0" height="100%" width="236" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
+			
+			<view:Toolbar id="toolBar" width="234" />
+					
+			<mx:Canvas backgroundColor="#121213" width="100%" height="100%">
+				<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
+				<mx:HRule left="0" strokeColor="#424243" strokeWidth="1" width="236"/>
+				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="17"/>
+				<utils:ShadowButton left="21" top="25" width="191"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
+					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="onClickDownload()"/>
+			</mx:Canvas>
+		</mx:VBox>
+		
+		<mx:Canvas backgroundColor="#121213" right="0" left="236" top="636" height="100%">
+				<mx:HRule top="0" width="100%" strokeColor="#000000" strokeWidth="1"/>
+				<mx:HRule top="1" width="100%" left="0" strokeColor="#424243" strokeWidth="1" />
+		</mx:Canvas>		
+				
+		
+		<mx:Canvas backgroundColor="#FFFFFF" top="20" bottom="20" right="20" id="canvasMapContainer" left="236">
+				
+			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQm56IXr6kiPUawQ1p8p5lUSJeJ_RSJxaBaPlq145Y86Pke48jFmxSuGA" top="5" bottom="5" right="5" left="5"/>
+			
+			<mx:Button styleName="btnZoomMore" height="24" width="24" right="15" top="17"
+				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomIn"/>
+				
+			<mx:Button styleName="btnZoomMinus" height="24" width="24" right="15" top="45"
+				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomOut"/>
+					
+			<mx:Image bottom="12" left="70" source="@Embed('/assets/logoMapVizz.png')"
+				click="navigateToURL(new URLRequest('http://www.vizzuality.com'))" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
+			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
+			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="true" alpha="0.6">
+				<mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/>
+			</mx:Canvas>
+			<mx:Canvas width="113" height="52" right="47" top="17" backgroundColor="#FFFFFF" backgroundAlpha="0.51">
+				<mx:Label id="numOcc" text="-" fontSize="20" fontFamily="Arial" right="5" top="2" color="#000000"/>
+				<mx:Label text="occurreces" fontSize="12" fontFamily="Arial" right="10" top="25" color="#000000"/>
+			</mx:Canvas>
+			
+		</mx:Canvas>
+		
+
+		
+	</mx:Canvas>
+		<mx:HTTPService id="gmbaService" url="http://79.125.117.227/service/search" method="GET" concurrency="last" resultFormat="text" fault="trace(event)" />
+		<mx:NumberFormatter useThousandsSeparator="true" id="nf" />
+
+
+	
+</mx:Application>

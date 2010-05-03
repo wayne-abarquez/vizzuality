@@ -1,0 +1,66 @@
+<languageVersion : 1.0;>
+kernel ChannelScramblerFilter
+<
+namespace : "com.vizzuality.gmba";
+vendor : "Vizzuality";
+version : 1;description : "Filters for environmental vars in GMBA";
+>
+{
+    input image4 inputImage;
+    parameter float2 minColor
+    < minValue: float2(0.0,0.05);
+      maxValue: float2(1.0,1.0);
+      defaultValue: float2(0.0,0.05);>;
+    parameter float2 maxColor
+    < minValue: float2(0.0);
+      maxValue: float2(1.0);
+      defaultValue: float2(1.0);>;
+      
+    parameter int tvz1 <defaultValue:1;minValue:0;maxValue:1;>;
+    parameter int tvz2 <defaultValue:1;minValue:0;maxValue:1;>;
+    parameter int tvz3 <defaultValue:1;minValue:0;maxValue:1;>;
+    parameter int tvz4 <defaultValue:1;minValue:0;maxValue:1;>;
+    parameter int tvz5 <defaultValue:1;minValue:0;maxValue:1;>;
+    parameter int tvz6 <defaultValue:1;minValue:0;maxValue:1;>;
+    parameter int tvz7 <defaultValue:1;minValue:0;maxValue:1;>;
+
+
+    output pixel4 outPixel;
+    void evaluatePixel()
+    {
+        float2 tvz1Range = float2(0.0,0.06);
+        float2 tvz2Range = pixel2(0.10,0.13);
+        float2 tvz3Range = pixel2(0.15,0.19);
+        float2 tvz4Range = pixel2(0.21,0.25);
+        float2 tvz5Range = pixel2(0.27,0.31);
+        float2 tvz6Range = pixel2(0.33,0.37);
+        float2 tvz7Range = pixel2(0.40,45);
+    
+        pixel4 notAcceptedColor = pixel4( 0.0, 0.0, 0.0, 1.0 );
+        pixel4 acceptedColor = pixel4( 1.0, 1.0, 1.0, 0.0 );
+        pixel4 pix = sampleNearest( inputImage, outCoord() );
+
+
+
+
+
+if(  pix.r > maxColor[0] ||  pix.g > maxColor[1] ||  pix.r < minColor[0]   ||  pix.g < minColor[1] 
+    || (tvz1==0 && pix.b > tvz1Range[0] &&  pix.b < tvz1Range[1] )     
+    || (tvz2==0 && pix.b > tvz2Range[0] &&  pix.b < tvz2Range[1] )  
+    || (tvz3==0 && pix.b > tvz3Range[0] &&  pix.b < tvz3Range[1] )  
+    || (tvz4==0 && pix.b > tvz4Range[0] &&  pix.b < tvz4Range[1] )  
+    || (tvz5==0 && pix.b > tvz5Range[0] &&  pix.b < tvz5Range[1] )  
+    || (tvz6==0 && pix.b > tvz6Range[0] &&  pix.b < tvz6Range[1] )
+    || (tvz7==0 && pix.b > tvz7Range[0] &&  pix.b < tvz7Range[1] )   
+ 
+        
+        )
+        {
+            outPixel = notAcceptedColor;
+        }
+        else
+        {
+            outPixel = acceptedColor;
+        }
+    }
+}

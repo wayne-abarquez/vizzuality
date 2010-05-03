@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="20"  buttonMode="true" useHandCursor="true" mouseChildren="false" click="onClick()"
+	horizontalScrollPolicy="off" verticalScrollPolicy="off" creationComplete="init()" rollOver="onRollOver()" rollOut="onRollOut()">
+	
+	
+	<mx:Script>
+		<![CDATA[
+			import com.vizzuality.view.Toolbar;
+			import com.vizzuality.events.FilterChangedEvent;
+			import com.vizzuality.events.MyEventDispatcher;
+			import mx.core.Application;
+			public static const ALL:Number = 0;
+			public static const NIVAL:Number = 1;
+			public static const UPPER_ALPINE:Number = 2;
+			public static const LOWER_ALPINE:Number = 3;
+			public static const UPPER_MOUNTANE:Number = 4;
+			public static const LOWER_MONTANE:Number = 5;
+			public static const WARM_ZONE:Number = 6;
+			public static const PERPETUAL_WARM:Number = 7;
+		
+			public var selectedColor: uint;
+			public var unselectedColor: uint;
+			public var textType: String;
+			public var textTooltip: String;		
+			public var vegTypeButton:Number;
+		
+			private var _isSelected:Boolean = true;	
+			private var isInitialize:Boolean =false;
+			
+
+			private function init():void {
+				labelText.text= textType;
+				labelText.toolTip = textTooltip;
+				
+				isInitialize=true;
+			}
+		
+			public function set isSelected(val:Boolean):void {
+				_isSelected=val;
+				
+				if(isInitialize) {
+					if(val) {
+						labelText.enabled=true;
+						canvasVegTypes.setStyle("backgroundColor",selectedColor);
+						unselectButton.visible=true;
+					} else {
+						labelText.enabled=false;
+						canvasVegTypes.setStyle("backgroundColor",unselectedColor);
+						unselectButton.visible=false;
+					}
+				}
+				
+			}
+			
+			public function get isSelected():Boolean {
+				
+				return _isSelected;
+			}
+			
+			
+			private function onRollOver():void {
+				
+			}
+			
+			private function onRollOut():void {
+				
+			}
+			
+			private function onClick():void {
+				(this.parentDocument as Toolbar).onChooseVegetableTypeClick(this);
+			}
+		
+		]]>
+	</mx:Script>
+	
+	
+	
+	<mx:Canvas id="canvasVegTypes" left="3" width="6" top="0" bottom="0" />
+	<mx:Label id="labelText" verticalCenter="0" left="13" styleName="labelVegTypes" width="128" />
+		
+	<mx:Button id="unselectButton" visible="true" label="deselect" styleName="nullButton"  right="0"/>
+	
+</mx:Canvas>
