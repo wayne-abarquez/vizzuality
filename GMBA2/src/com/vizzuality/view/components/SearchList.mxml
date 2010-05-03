@@ -3,6 +3,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.vizzuality.events.FilterChangedEvent;
 			import mx.managers.PopUpManager;
 			import com.vizzuality.model.Taxon;
 			import mx.core.Application;
@@ -56,7 +57,7 @@
 	            	MyEventDispatcher.dispatchEvent(new Event("selectedTaxon"));
             	}
             	PopUpManager.removePopUp(this);
-            	
+            	MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.TAXON_CHANGE));
             }
 			
 			

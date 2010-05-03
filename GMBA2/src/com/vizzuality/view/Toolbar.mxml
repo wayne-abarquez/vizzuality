@@ -15,10 +15,8 @@
 			import com.vizzuality.utils.SliderThumbGmba;
 			import mx.controls.sliderClasses.Slider;
 			
-			private var sliderChangeEvent:FilterChangedEvent;
 			
 			public function init():void {
-				sliderChangeEvent = new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,false);
 				
 				//Application.application.stage.addEventListener(FullScreenEvent.FULL_SCREEN, fullScreenHandler);
 				
@@ -110,18 +108,18 @@
 						Application.application.vegetation=[1,1,1,1,1,1,1,1];
 					}
 				}
-				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED));
+				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.VEGETATION_CHANGE));
 			}		
 			
-			private function onSliderChange():void {
+			private function onElevationChange(changeUrl:Boolean):void {
 				Application.application.elevation = sliderAltitude.values;
+				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.ELEVATION_CHANGE,changeUrl));
+			}
+			private function onReliefChange(changeUrl:Boolean):void {
 				Application.application.relief = sliderRoughness.values;
-				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,false));
+				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.RELIEF_CHANGE,changeUrl));
 			}
 			
-			private function onSliderThumbRelease():void {
-				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,true));
-			}
 			
 			
 			
@@ -152,8 +150,8 @@
 						showDataTip="false" width="100%" 
 						thumbCount="2" liveDragging="true" 
 						sliderThumbClass="{SliderThumbGmba}"
-						change="onSliderChange()"
-						 thumbRelease="onSliderThumbRelease()"
+						change="onElevationChange(false)"
+						 thumbRelease="onElevationChange(true)"
 						showTrackHighlight="true" snapInterval="30"/>
 				</mx:Canvas>
 			</mx:VBox>
@@ -172,8 +170,8 @@
 					<mx:Label text="3397" right="0" textAlign="center" top="16" width="52" color="#000000" fontSize="11" fontWeight="normal"/>
 					<mx:HSlider id="sliderRoughness" showDataTip="false" top="0" left="5" right="20" minimum="200" maximum="3397"  
 						 sliderThumbClass="{SliderThumbGmba}" 
-						 change="onSliderChange()"
-						 thumbRelease="onSliderThumbRelease()"
+						 change="onReliefChange(false)"
+						 thumbRelease="onReliefChange(true)"
 						 width="100%" thumbCount="2" liveDragging="true" snapInterval="14" 
 						 showTrackHighlight="true"/>
 				</mx:Canvas>
