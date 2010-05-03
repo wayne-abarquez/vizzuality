@@ -28,6 +28,7 @@
     
 	<mx:Script>
 	    <![CDATA[
+	    	import com.google.maps.MapMouseEvent;
 	    	import com.vizzuality.events.FilterChangedEvent;
 	    	import com.vizzuality.events.MyEventDispatcher;
 	    	import com.google.maps.overlays.TileLayerOverlay;
@@ -145,7 +146,24 @@
 		    
 		    private function onZoomChange(event:MapZoomEvent):void {
 		    	SWFAddress.setValue(createCurrentURL());
-		    }	   
+		    }
+		    
+		    private function onClickZoomIn(event:MapMouseEvent=null):void {
+		    	if(map.getZoom()<7) {
+		    		if (event!=null) {
+		    			map.setCenter(event.latLng,map.getZoom()+1);
+		    		} else {
+		    			map.setZoom(map.getZoom()+1);
+		    		}
+		    	} 
+			}
+			
+			private function onClickZoomOut():void {
+				if(map.getZoom()>2){
+					map.setZoom(map.getZoom()-1);
+				}
+				
+			}	   
 		    
 		    private function createCurrentURL():String {
 		    	if(!map.isLoaded()) {
@@ -254,11 +272,11 @@
 				
 			<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mappreinitialize="onMapPreinitialize(event)" mapevent_mapready="onMapReady(event)" key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQm56IXr6kiPUawQ1p8p5lUSJeJ_RSJxaBaPlq145Y86Pke48jFmxSuGA" top="5" bottom="5" right="5" left="5"/>
 			
-			<mx:Button styleName="btnZoomMore" height="24" width="24" right="15" top="17"
-				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomIn"/>
+			<mx:Button styleName="btnZoomIn" height="24" width="24" right="15" top="17"
+				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomIn" click="onClickZoomIn()"/>
 				
-			<mx:Button styleName="btnZoomMinus" height="24" width="24" right="15" top="45"
-				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomOut"/>
+			<mx:Button styleName="btnZoomOut" height="24" width="24" right="15" top="45"
+				mouseChildren="false" buttonMode="true" useHandCursor="true" id="btnZoomOut" click="onClickZoomOut()"/>
 					
 			<mx:Image bottom="12" left="70" source="@Embed('/assets/logoMapVizz.png')"
 				click="navigateToURL(new URLRequest('http://www.vizzuality.com'))" mouseChildren="false" useHandCursor="true" buttonMode="true"/>

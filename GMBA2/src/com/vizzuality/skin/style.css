@@ -114,7 +114,7 @@ Button.download {
 	shadowDistance: 1;
 }
 
-Button.btnZoomMore{
+Button.btnZoomIn{
 	up-skin: Embed(source="skin.swf",symbol="btn_zoom_more_up");	
 	over-skin: Embed(source="skin.swf",symbol="btn_zoom_more_over");	
 	down-skin: Embed(source="skin.swf",symbol="btn_zoom_more_up");	
@@ -127,7 +127,7 @@ Button.btnZoomMore{
 	padding-top: 0; 	
 }
 
-Button.btnZoomMinus{
+Button.btnZoomOut{
 	up-skin: Embed(source="skin.swf",symbol="btn_zoom_minus_up");	
 	over-skin: Embed(source="skin.swf",symbol="btn_zoom_minus_over");	
 	down-skin: Embed(source="skin.swf",symbol="btn_zoom_minus_up");	
