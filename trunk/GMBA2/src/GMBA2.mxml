@@ -29,7 +29,7 @@
 				</mx:Canvas>
 			</mx:AddChild>
 			<mx:AddChild position="lastChild">
-				<ns2:Download id="downloadBox" horizontalCenter="0" verticalCenter="0">
+				<ns2:Download id="downloadBox" verticalCenter="0" left="312">
 				</ns2:Download>
 			</mx:AddChild>
 		</mx:State>
@@ -38,6 +38,8 @@
     
 	<mx:Script>
 	    <![CDATA[
+	    	import com.google.analytics.GATracker;
+	    	import com.google.analytics.AnalyticsTracker;
 	    	import com.vizzuality.maps.BasicLayer;
 	    	import com.google.maps.MapMouseEvent;
 	    	import com.vizzuality.events.FilterChangedEvent;
@@ -71,8 +73,12 @@
 			private var taxonRasterTileOverlay:TileLayerOverlay;   
 			private var shader:Shader; 
 			private var filter:ShaderFilter; 
+			
+			public var tracker:AnalyticsTracker;
 	    	
 	    	private function init():void {
+	    		
+	    		tracker = new GATracker( this, "UA-16019841-1", "AS3", true );
 	    		
 	    		//Check the URL to see if we need to initialize at specific state
 	    		var paths:Array = SWFAddress.getPathNames();
