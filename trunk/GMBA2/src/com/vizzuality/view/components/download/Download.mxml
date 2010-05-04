@@ -183,7 +183,7 @@
 			
 			
 			public function setPosition(widthMap:Number, heightMap:Number, widthToolBar:Number):void{
-				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar - 8;
+				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar;
 				this.y = (heightMap / 2) - (this.height / 2);
 				
 				this.widthMap = widthMap;
@@ -192,15 +192,6 @@
 				
 			}			
 			
-			// TODO: Change the url
-			public function downloadAllData():void{
-				
-				navigateToURL(new URLRequest(""),"_blank");
-				
-				//Application.application.tracker.trackPageview( "/download/alldata");
-				
-			}
-						
 			public function setCriteriaValues():void{
 				
 				var elevation:Array = Application.application.elevation;

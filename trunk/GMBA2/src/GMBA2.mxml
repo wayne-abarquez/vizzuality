@@ -38,6 +38,7 @@
     
 	<mx:Script>
 	    <![CDATA[
+	    	import mx.rpc.AsyncToken;
 	    	import com.greensock.TweenLite;
 	    	import com.adobe.serialization.json.JSON;
 	    	import mx.rpc.events.ResultEvent;
@@ -288,7 +289,9 @@
 		    	
 		    }    	
 	    	
+	    	private var lastCall:AsyncToken;
 	    	private function getStats():void {
+	    		loadingOcurrences.visible = true;
 	    		
 	    		var params:Object = {
 				    minElevation:elevation[0],
@@ -304,13 +307,17 @@
 				if(taxon!=null) {
 					params.taxonId=taxon.id;
 				}
-	    		gmbaService.send(params);
+	    		lastCall = gmbaService.send(params);
 	    	}
 	    	
 	    	
 	    	private function onSearchResults(event:ResultEvent):void {
 	    		var res:Object = JSON.decode(event.result as String);
 				ocurrences = (res.total) as Number;
+				
+				if(event.token == lastCall) {
+					loadingOcurrences.visible = false;
+				}
 	    	}
 	    	
 			private function getTvzArray():Array {
@@ -342,8 +349,13 @@
 				<mx:HRule top="0" left="0" right="0" strokeColor="#000000" strokeWidth="1"/>
 				<mx:HRule left="0" strokeColor="#424243" strokeWidth="1" width="236"/>
 				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="17"/>
-				<mx:Label id="ocurrencesLabel" styleName="ocurrences" text="{nf.format(ocurrences)}" right="91" top="8" width="120" textAlign="right"/>
-				<mx:Label styleName="ocurrences" text="OCURRENCES" right="22" top="8"/>
+				
+				<mx:HBox top="2" right="22" id="hBoxOcurrences" width="193" horizontalAlign="right" horizontalGap="0" verticalAlign="middle" height="26">
+					<mx:SWFLoader width="13" height="13" source="@Embed('/assets/loaderGray.swf')" id="loadingOcurrences"/>
+					<mx:Label id="ocurrencesLabel" styleName="ocurrences" text="{nf.format(ocurrences)}" horizontalCenter="right" textAlign="right" paddingTop="3"/>
+					<mx:Label styleName="ocurrences" text="OCURRENCES" paddingTop="3"/>	
+				</mx:HBox>
+				
 
 				<utils:ShadowButton left="21" top="25" width="191"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
 					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="onClickDownload()"/>
@@ -373,7 +385,7 @@
 				click="navigateToURL(new URLRequest('http://www.vizzuality.com'))" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
 			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="true" alpha="0.6">
-				<!--mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/ -->
+				<mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/>
 			</mx:Canvas>
 			
 		</mx:Canvas>
@@ -381,7 +393,7 @@
 
 		
 	</mx:Canvas>
-		<mx:HTTPService id="gmbaService" url="http://79.125.117.227/service/search" method="GET" result="onSearchResults(event)" concurrency="multiple" resultFormat="text" fault="trace(event)" />
+		<mx:HTTPService  id="gmbaService" url="http://79.125.117.227/service/search" method="GET" result="onSearchResults(event)" concurrency="multiple" resultFormat="text" fault="trace(event)" />
 		<mx:NumberFormatter useThousandsSeparator="true" id="nf" />
 
 
