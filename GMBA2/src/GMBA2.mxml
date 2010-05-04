@@ -38,6 +38,8 @@
     
 	<mx:Script>
 	    <![CDATA[
+	    	import com.adobe.serialization.json.JSON;
+	    	import mx.rpc.events.ResultEvent;
 	    	import com.google.analytics.GATracker;
 	    	import com.google.analytics.AnalyticsTracker;
 	    	import com.vizzuality.maps.BasicLayer;
@@ -74,11 +76,17 @@
 			private var shader:Shader; 
 			private var filter:ShaderFilter; 
 			
+			//[Bindable] public var observations:Number=0;	
+			//[Bindable] public var specimens:Number=0;	
+			//[Bindable] public var providers:Number=0;	
+			[Bindable] public var ocurrences:Number=0;
+			[Bindable] public var currentTaxonName:String="All taxa";	
+			
 			public var tracker:AnalyticsTracker;
 	    	
 	    	private function init():void {
 	    		
-	    		tracker = new GATracker( this, "UA-16019841-1", "AS3", true );
+	    		tracker = new GATracker( this, "UA-16019841-1", "AS3", false );
 	    		
 	    		//Check the URL to see if we need to initialize at specific state
 	    		var paths:Array = SWFAddress.getPathNames();
@@ -129,8 +137,12 @@
 	        private function onMapPreinitialize(event:Event):void {
 	           var opts:MapOptions = new MapOptions({mapType:MapType.PHYSICAL_MAP_TYPE,center:new LatLng(40.73,-3.99),zoom:3});
 	           map.setInitOptions(opts);
-	           map.addEventListener(MapMoveEvent.MOVE_END,onMoveMap);
-	           map.addEventListener(MapZoomEvent.ZOOM_CHANGED,onZoomChange);           	
+	           map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
+					MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.MAP_CHANGE));	           
+	           });
+	           map.addEventListener(MapZoomEvent.ZOOM_CHANGED,function(event:MapZoomEvent):void {
+	           		MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.MAP_CHANGE));
+	           });           	
 	        }	    
 	        
 		    private function onMapReady(event:Event):void {
@@ -164,14 +176,6 @@
 				map.addOverlay(rasterTileOverlay);
 		    }	        
 
-		    private function onMoveMap(event:MapMoveEvent):void {
-		    	SWFAddress.setValue(createCurrentURL());
-		    }
-		    
-		    private function onZoomChange(event:MapZoomEvent):void {
-		    	SWFAddress.setValue(createCurrentURL());
-		    }
-		    
 		    private function onClickZoomIn():void {
 		    	if(map.getZoom()<7) {
 					map.setZoom(map.getZoom()+1);
@@ -220,6 +224,7 @@
 		    private function onFilterChange(event:FilterChangedEvent):void {
 		    	if(event.mustChangeUrl) {
 			    	SWFAddress.setValue(createCurrentURL());
+			    	getStats();
 		    	}
 		    	
 		    	if(event.changeType==FilterChangedEvent.ELEVATION_CHANGE ||
@@ -265,19 +270,59 @@
 			    		taxonRasterLayer.rasterUrl="http://maps1.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
 			    		toolBar.taxonBox.taxonName=taxon.name;
 			    		toolBar.taxonBox.currentState='SelectedTaxon';
+			    		currentTaxonName=taxon.name;
 		    		} else {
 		    			taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
 			    		toolBar.taxonBox.taxonName="All taxa";
 			    		toolBar.taxonBox.currentState='';
-		    			
+			    		currentTaxonName="All taxa";
 		    		}
 		    		taxonRasterTileOverlay.refresh();
 		    	}
+				
 		    	
 		    }    	
 	    	
+	    	private function getStats():void {
+	    		
+	    		var params:Object = {
+				    minElevation:elevation[0],
+					maxElevation:elevation[1],
+					minRelief:relief[0],
+					maxRelief:relief[1],
+					tvzCode:getTvzArray(),
+					minLongitude:map.getLatLngBounds().getWest(),
+					maxLongitude:map.getLatLngBounds().getEast(),
+					minLatitude:map.getLatLngBounds().getSouth(),
+					maxLatitude:map.getLatLngBounds().getNorth()
+				};
+				if(taxon!=null) {
+					params.taxonId=taxon.id;
+				}
+	    		gmbaService.send(params);
+	    	}
 	    	
-			
+	    	
+	    	private function onSearchResults(event:ResultEvent):void {
+	    		var res:Object = JSON.decode(event.result as String);
+				//observations = (res.observation) as Number;
+				//specimens = (res.specimen) as Number;
+				//providers = (res.resources) as Number;
+				ocurrences = (res.total) as Number;
+	    	}
+	    	
+			private function getTvzArray():Array {
+	    		if (vegetation[0]){ 
+					return [1,2,3,4,5,6,7];
+				}
+				var tvzAr:Array =[];
+				for (var n:uint = 1; n < vegetation.length; n++){
+					if (vegetation[n]){
+						tvzAr.push(n);
+					}		
+				}
+				return tvzAr;
+			}
             
 	    ]]>
 	</mx:Script>
@@ -323,9 +368,10 @@
 			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="true" alpha="0.6">
 				<!--mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/ -->
 			</mx:Canvas>
-			<mx:Canvas width="113" height="52" right="47" top="17" backgroundColor="#FFFFFF" backgroundAlpha="0.51">
-				<mx:Label id="numOcc" text="-" fontSize="20" fontFamily="Arial" right="5" top="2" color="#000000"/>
-				<mx:Label text="occurreces" fontSize="12" fontFamily="Arial" right="10" top="25" color="#000000"/>
+			<mx:Canvas width="188" height="52" right="47" top="17" backgroundColor="#FFFFFF" backgroundAlpha="0.51">
+				<mx:Label id="numOcc" text="{nf.format(ocurrences)}" fontSize="20" fontFamily="Arial" right="72" top="2" color="#000000"/>
+				<mx:Label text="occurreces" fontSize="12" fontFamily="Arial" right="5" top="12" color="#000000"/>
+				<mx:Label text="{currentTaxonName}" fontSize="12" fontFamily="Arial" right="5" top="30" color="#000000"/>
 			</mx:Canvas>
 			
 		</mx:Canvas>
@@ -333,7 +379,7 @@
 
 		
 	</mx:Canvas>
-		<mx:HTTPService id="gmbaService" url="http://79.125.117.227/service/search" method="GET" concurrency="last" resultFormat="text" fault="trace(event)" />
+		<mx:HTTPService id="gmbaService" url="http://79.125.117.227/service/search" method="GET" result="onSearchResults(event)" concurrency="multiple" resultFormat="text" fault="trace(event)" />
 		<mx:NumberFormatter useThousandsSeparator="true" id="nf" />
 
 
