@@ -10,6 +10,7 @@ package com.vizzuality.events
 		public static const RELIEF_CHANGE:String ="reliefChange";
 		public static const VEGETATION_CHANGE:String ="vegetationChange";
 		public static const TAXON_CHANGE:String ="taxonChange";
+		public static const MAP_CHANGE:String ="mapChange";
 		public var mustChangeUrl:Boolean = true;
 		public var changeType:String;
 		
