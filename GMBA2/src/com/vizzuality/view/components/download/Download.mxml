@@ -200,21 +200,10 @@
 				var taxon:Taxon = Application.application.taxon;
 				
 			 	id_elevation_filter0.text = elevation[0];
-			 	var longTextFilter:Number = elevation[0].toString().length;
-				arrowRangeElevation.x = id_elevation_filter0.x + (longTextFilter) * 8 + 10;
-				
-				
-				
 				id_elevation_filter1.text = elevation[1];
-				id_elevation_filter1.x = arrowRangeElevation.x + arrowRangeElevation.height + 10;
 				
 				id_relief_filter0.text = relief[0];
-				
-				longTextFilter = relief[0].toString().length;
-				arrowRangeRelief.x = id_relief_filter0.x + (longTextFilter) * 8 + 10;
-				
 				id_relief_filter1.text = relief[1];
-				id_relief_filter1.x = arrowRangeRelief.x + arrowRangeRelief.height + 10; 
 				
 				if (taxon != null)
 					id_taxon_result.text = taxon.name;
@@ -647,14 +636,18 @@
 		<mx:Label text="SCOPE AND SUMMARY OF YOUR DATA" color="#FFFFFF" fontWeight="normal" fontSize="13"  width="100%" height="23" id="label1"/>
 		<mx:Spacer height="5" />
 		<mx:Canvas height="74" width="574" styleName="bkgTopDownload" id="canvasTopDownload">
-			<mx:Label x="10" y="8" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter0"/>
-			<mx:Image id="arrowRangeElevation" x="50" y="18" source="@Embed('/assets/arrowRange.png')" />
-			<mx:Label x="66" y="8" text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter1" />
+			<mx:HBox horizontalGap="4" top="10" left="12" verticalAlign="middle">
+				<mx:Label text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter0"/>
+				<mx:Image id="arrowRangeElevation" source="@Embed('/assets/arrowRange.png')"/>
+				<mx:Label text="70" fontSize="17" color="#FFFFFF" id="id_elevation_filter1" />
+			</mx:HBox>
 			<mx:Label x="10" y="30" text="ELEVATION RANGE" fontSize="11" color="#4D4D4D" id="elevationLabel" />
 			
-			<mx:Label x="132" y="8" text="130" fontSize="17" color="#FFFFFF" id="id_relief_filter0" />
-			<mx:Image id="arrowRangeRelief" x="183" y="18" source="@Embed('/assets/arrowRange.png')" />
-			<mx:Label x="200" y="8" text="451" fontSize="17" color="#FFFFFF" id="id_relief_filter1" />
+			<mx:HBox horizontalGap="4" top="10" left="135" verticalAlign="middle">
+				<mx:Label text="130" fontSize="17" color="#FFFFFF" id="id_relief_filter0" />
+				<mx:Image id="arrowRangeRelief" source="@Embed('/assets/arrowRange.png')"/>
+				<mx:Label text="451" fontSize="17" color="#FFFFFF" id="id_relief_filter1" />
+			</mx:HBox>
 			<mx:Label x="132" y="30" text="ROUGHNESS RANGE" fontSize="11" color="#4D4D4D" id="roughnessLabel" />
 			
 			<mx:Label x="259" y="8" text="Number" fontSize="17" color="#FFFFFF" id="id_number_veg_types"  width="100.33333" height="23"/>
