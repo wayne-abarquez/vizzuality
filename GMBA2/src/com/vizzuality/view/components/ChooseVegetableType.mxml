@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="20"  buttonMode="true" useHandCursor="true" mouseChildren="false" click="onClick()"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="20" click="onClick()"  buttonMode="true" useHandCursor="true" mouseChildren="false" 
 	horizontalScrollPolicy="off" verticalScrollPolicy="off" creationComplete="init()" rollOver="onRollOver()" rollOut="onRollOut()">
 	
 	
@@ -30,7 +30,7 @@
 
 			private function init():void {
 				labelText.text= textType;
-				labelText.toolTip = textTooltip;
+				this.toolTip = textTooltip;
 				
 				isInitialize=true;
 			}
@@ -53,7 +53,6 @@
 			}
 			
 			public function get isSelected():Boolean {
-				
 				return _isSelected;
 			}
 			
@@ -82,7 +81,7 @@
 	
 	
 	<mx:Canvas id="canvasVegTypes" left="3" width="6" top="0" bottom="0" />
-	<mx:Label id="labelText" verticalCenter="0" left="13" styleName="labelVegTypes" width="128"  rollOver="onRollOver()" rollOut="onRollOut()"/>
+	<mx:Label id="labelText" verticalCenter="0" left="13" styleName="labelVegTypes" width="128"/>
 		
 	<mx:Button id="unselectButton" visible="true" label="deselect" styleName="nullButton"  right="0"/>
 	

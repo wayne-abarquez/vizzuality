@@ -120,9 +120,6 @@
 				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.RELIEF_CHANGE,changeUrl));
 			}
 			
-			
-			
-			
 		]]>
 	</mx:Script>
 
