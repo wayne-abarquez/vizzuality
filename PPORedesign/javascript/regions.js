@@ -71,7 +71,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(baltic, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 		
 		
@@ -120,7 +120,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(antartic, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 	
 	
@@ -168,7 +168,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(artic1, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });	
 	
 
@@ -219,7 +219,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(north_pole, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 		
 
@@ -269,7 +269,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(africa_1, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 		
 
@@ -319,7 +319,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(oman, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -376,7 +376,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(australia, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -428,7 +428,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(oceanic, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -480,7 +480,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(brasil, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -532,7 +532,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(cuba, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 		
 		
@@ -585,7 +585,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(newyork, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 		
 		
@@ -636,7 +636,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(chile, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -694,7 +694,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(japan, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -753,7 +753,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(africa_2, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -809,7 +809,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(europe, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -867,7 +867,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(mediterraneo, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -917,7 +917,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(india, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
@@ -975,7 +975,7 @@ var regions = []
 	  });
 
 		GEvent.addListener(malasia, "click", function(latlng, index) {
-			window.location = '/pa_area.html?id='+this.name.id;
+			window.location = 'region.html?id='+this.name.id;
 	  });
 
 
