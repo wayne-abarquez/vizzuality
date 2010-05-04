@@ -133,6 +133,7 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import com.google.maps.LatLng;
 			import com.vizzuality.model.Taxon;
 			import com.greensock.TweenLite;
 			import flash.net.navigateToURL;
@@ -147,9 +148,7 @@
 			import com.vizzuality.utils.Resource;
 			import com.vizzuality.events.MyEventDispatcher;
 			
-			public var elevationValues: ArrayCollection;
-			public var reliefValues: ArrayCollection;
-			public var vegetationValues: ArrayCollection;
+			
 			private var urlToDownload:String;
 			private var taxonRank:String;
 			private var tvzCode:Array = [];
@@ -198,7 +197,7 @@
 				
 				navigateToURL(new URLRequest(""),"_blank");
 				
-				Application.application.tracker.trackPageview( "/download/alldata");
+				//Application.application.tracker.trackPageview( "/download/alldata");
 				
 			}
 						
@@ -259,7 +258,26 @@
 				
 				initSearch();
 				
-			} 
+			}
+			
+			private function setDownloadBox(): void {
+				if (Number(Application.application.map.getZoom())<=2) {
+					download_world.selected_item = true;
+					download_bound.selected_item = false;
+					searchingWorld = true;
+				} else {
+					download_world.selected_item = false;
+					download_bound.selected_item = true;
+					searchingWorld = false;
+				}
+			}
+			
+			private function setCoordsMap():void{
+				minLatitude = Application.application.map.getLatLngBounds().getSouthWest().lat().toFixed(4);
+				minLongitude = Application.application.map.getLatLngBounds().getSouthWest().lng().toFixed(4);
+				maxLatitude = Application.application.map.getLatLngBounds().getNorthEast().lat().toFixed(4);
+				maxLongitude = Application.application.map.getLatLngBounds().getNorthEast().lng().toFixed(4);
+			}
 			
 			private function initSearch(searchWorldScale:Boolean = false):void{
 				
@@ -272,10 +290,7 @@
  				ppApiService.url= serviceURL + "/service/search";
 				
 				if (!searchWorldScale) {
-					minLatitude = Application.application.gmbaMap.getMinLatitude();
-					maxLatitude = Application.application.gmbaMap.getMaxLatitude();
-					minLongitude = Application.application.gmbaMap.getMinLongitude();
-					maxLongitude = Application.application.gmbaMap.getMaxLongitude();3
+					setCoordsMap();
 					downloadWorldScale = false;
 				}
 				else {
@@ -285,7 +300,6 @@
 					minLongitude = "-179.9999";
 					maxLongitude = "179.9999";
 					downloadWorldScale = true;
-					
 				}	
 				
 				if (Application.application.taxon != null) {
@@ -296,10 +310,11 @@
 					taxonRank = (Application.application.taxon.rank) as String;
 					
 					ppApiService.send({
-					    minElevation:elevationValues[0],
-						maxElevation:elevationValues[1],
-						minRelief:reliefValues[0],
-						maxRelief:reliefValues[1],
+					    minElevation:Application.application.elevation[0],
+						maxElevation:Application.application.elevation[1],
+						minRelief:Application.application.relief[0],
+						maxRelief:Application.application.relief[1],
+						rank:taxonRank,
 						taxonId:taxonValue,
 						tvzCode:tvzCode,
 						minLongitude:minLongitude,
@@ -308,23 +323,23 @@
 						maxLatitude:maxLatitude
 					});
 					
-					Application.application.tracker.trackPageview( "/search/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
-					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/taxonId="+taxonValue+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+					/* Application.application.tracker.trackPageview( "/search/minElevation="+Application.application.elevation[0]+"/maxElevation="+Application.application.elevation[1]+
+					"/minRelief="+Application.application.relief[0]+"/maxRelief="+Application.application.relief[1]+"/taxonId="+taxonValue+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude+"/rank="+taxonRank ); */
 				}
 				else {	// ALL TAXA
 					ppApiService.send({
-					    minElevation:elevationValues[0],
-						maxElevation:elevationValues[1],
-						minRelief:reliefValues[0],
-						maxRelief:reliefValues[1],
+					    minElevation:Application.application.elevation[0],
+						maxElevation:Application.application.elevation[1],
+						minRelief:Application.application.relief[0],
+						maxRelief:Application.application.relief[1],
 						tvzCode:tvzCode,
 						minLongitude:minLongitude,
 						maxLongitude:maxLongitude,
 						minLatitude:minLatitude,
 						maxLatitude:maxLatitude
 					});
-					Application.application.tracker.trackPageview( "/search/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
-					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+					/* Application.application.tracker.trackPageview( "/search/minElevation="+Application.application.elevation[0]+"/maxElevation="+Application.application.elevation[1]+
+					"/minRelief="+Application.application.relief[0]+"/maxRelief="+Application.application.relief[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude ); */
 	
 				}
  				if (this.currentState != "nodata_bbox"){
@@ -332,22 +347,18 @@
  				}	
 			}
 			
-			private function onCreationComplete():void {
-				 
-				//MyEventDispatcher.addEventListener(ChangeMapZoom.CHANGED, onChangeMapZoom);
-				
-			}	
-			
+		
 			private function onErrorLoading(event:FaultEvent):void{
 				
+				// Center the window error
 				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar - 8;
 				this.y = (heightMap / 2) - (this.height / 2);
 				
 				currentState="error";
 					
 				
-				Application.application.tracker.trackPageview( "/error/search/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
-					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+				/* Application.application.tracker.trackPageview( "/error/search/minElevation="+Application.application.elevation[0]+"/maxElevation="+Application.application.elevation[1]+
+					"/minRelief="+Application.application.relief[0]+"/maxRelief="+Application.application.relief[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude ); */
 				
 				ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
@@ -379,10 +390,8 @@
 						if (this.ocurrences > 500000) {
 							
 							this.currentState = "bigDataNotify";
-							ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);						
 						}
 						else{
-							
 							canvasDataDownload.alpha = 0.0;
 							hboxTerms.alpha = 0.0;
 							downloadButton.alpha = 0.0;		
@@ -393,7 +402,6 @@
 							TweenLite.to(hboxTerms,0.5,{alpha:1.0});
 							TweenLite.to(downloadButton,0.5,{alpha:1.0});
 							
-							ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 						}
 					}
 				}
@@ -404,41 +412,31 @@
 								
 								this.currentState = "nodata_world";
 								
-								ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
-								ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 							}
 						}
 						else {
 							searchingWorld = true;
 							this.currentState = "nodata_bbox";
-							ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
-							ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 							
 							initSearch(true);
 						}
-						
+						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 					
-				}				
+				}
+				ppApiService.removeEventListener(ResultEvent.RESULT,onServiceSearchResult);
 				
 			} 
 			
-			private function setDownloadBox(): void {
-				if (Number(Application.application.map.getZoom())<=2) {
-					download_world.selected_item = true;
-					download_bound.selected_item = false;
-					searchingWorld = true;
+			private function initDownload():void {
+				if(currentState=="bigDataNotify") {
+					navigateToURL(new URLRequest('http://79.125.117.227/data/gbif.zip'),"_blank");
 				} else {
-					download_world.selected_item = false;
-					download_bound.selected_item = true;
-					searchingWorld = false;
+					xDownload = this.x;
+					TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition});				
 				}
-			}
-			
-			private function stepProgressBar(event:TimerEvent):void{
-				progressBarStep+=10;
-				progressbarDownloading.setProgress(progressBarStep,100);
-			}
-			
+   
+ 			}
+ 			
 			private function windowDownloadTransition():void{
 				
 				progressBarStep = 0;
@@ -448,40 +446,18 @@
 				
 				currentState = 'processing';
 				
-				// ms
 				var timeEstimated:Number = (this.ocurrences) / 13;
 				
 				timerProgressBar = new Timer(timeEstimated,0);
 				timerProgressBar.addEventListener(TimerEvent.TIMER,stepProgressBar);
 				timerProgressBar.start();
 				
-				
-				
-				
-				
 				TweenLite.to(this, 0.3, {x:xDownload});
 				
 				// Begin to download the data
 				ppApiService.addEventListener(ResultEvent.RESULT,onBeginToDownload);
-				
-				ppApiService.addEventListener(FaultEvent.FAULT,onErrorDownloading);
 				 
  				ppApiService.url= serviceURL + "/service/download";
-				
-				if (!downloadWorldScale) {
-					minLatitude = Application.application.gmbaMap.getMinLatitude();
-					maxLatitude = Application.application.gmbaMap.getMaxLatitude();
-					minLongitude = Application.application.gmbaMap.getMinLongitude();
-					maxLongitude = Application.application.gmbaMap.getMaxLongitude();
-				}
-				else {
-					// ALL WORLD
-					minLatitude = "-90";
-					maxLatitude = "90";
-					minLongitude = "-179.9999";
-					maxLongitude = "179.9999";
-				}	
-	
 				
 				if (Application.application.taxon != null) {
 					var taxonValue:Number;
@@ -492,35 +468,35 @@
 					ppApiService.send({
 						rank:taxonRank,
 						tvzCode:tvzCode,
-					    minElevation:elevationValues[0],
-						maxElevation:elevationValues[1],
-						minRelief:reliefValues[0],
-						maxRelief:reliefValues[1],	
+					    minElevation:Application.application.elevation[0],
+						maxElevation:Application.application.elevation[1],
+						minRelief:Application.application.relief[0],
+						maxRelief:Application.application.relief[1],	
 						taxonId:taxonValue,
 						minLongitude:minLongitude,
 						maxLongitude:maxLongitude,
 						minLatitude:minLatitude,
 						maxLatitude:maxLatitude
 					});
-					Application.application.tracker.trackPageview( "/download/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
-					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/taxonId="+taxonValue+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude+"/rank="+taxonRank );
+					/* Application.application.tracker.trackPageview( "/download/minElevation="+Application.application.elevation[0]+"/maxElevation="+Application.application.elevation[1]+
+					"/minRelief="+Application.application.relief[0]+"/maxRelief="+Application.application.relief[1]+"/taxonId="+taxonValue+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude+"/rank="+taxonRank ); */
 
 				}
 				else {	// ALL TAXA
 						ppApiService.send({
 						tvzCode:tvzCode,
-					    minElevation:elevationValues[0],
-						maxElevation:elevationValues[1],
-						minRelief:reliefValues[0],
-						maxRelief:reliefValues[1],	
+					    minElevation:Application.application.elevation[0],
+						maxElevation:Application.application.elevation[1],
+						minRelief:Application.application.relief[0],
+						maxRelief:Application.application.relief[1],	
 						minLongitude:minLongitude,
 						maxLongitude:maxLongitude,
 						minLatitude:minLatitude,
 						maxLatitude:maxLatitude
 					});
-					Application.application.tracker.trackPageview( "/download/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
-					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
-				}
+/* 					Application.application.tracker.trackPageview( "/download/minElevation="+Application.application.elevation[0]+"/maxElevation="+Application.application.elevation[1]+
+					"/minRelief="+Application.application.relief[0]+"/maxRelief="+Application.application.relief[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+ */				}
 				
 			}
 			
@@ -553,15 +529,6 @@
 				} 
 			}
 			
-			private function initDownload():void {
-				if(currentState=="bigDataNotify") {
-					navigateToURL(new URLRequest('http://79.125.117.227/data/gbif.zip'),"_blank");
-				} else {
-					xDownload = this.x;
-					TweenLite.to(this, 0.3, {x:-(this.x+this.width), onComplete:windowDownloadTransition});				
-				}
-   
- 			}
  			
  			private function onErrorDownloading(event:FaultEvent):void{
 				
@@ -570,8 +537,8 @@
 				this.y = (heightMap / 2) - (236 / 2);
 				currentState="error";
 	
-				Application.application.tracker.trackPageview( "/error/download/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
-					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+				/* Application.application.tracker.trackPageview( "/error/download/minElevation="+Application.application.elevation[0]+"/maxElevation="+Application.application.elevation[1]+
+					"/minRelief="+Application.application.relief[0]+"/maxRelief="+Application.application.relief[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude ); */
 
 				ppApiService.removeEventListener(ResultEvent.RESULT,onBeginToDownload);
 				ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
@@ -610,6 +577,11 @@
 				}
 			}
 			
+			private function stepProgressBar(event:TimerEvent):void{
+				progressBarStep+=10;
+				progressbarDownloading.setProgress(progressBarStep,100);
+			}
+			
 			private function checkStatus(event:ResultEvent):void{
 				if (downloadInProcess) {
 					
@@ -632,8 +604,8 @@
 						
 						currentState = "ready";
 						
-						Application.application.tracker.trackPageview( "/download/ready/minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
-							"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude );
+						/* Application.application.tracker.trackPageview( "/download/ready/minElevation="+Application.application.elevation[0]+"/maxElevation="+Application.application.elevation[1]+
+							"/minRelief="+Application.application.relief[0]+"/maxRelief="+Application.application.relief[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude ); */
 							
 						ppApiService.removeEventListener(FaultEvent.FAULT,onErrorLoading);
 					}
@@ -658,10 +630,10 @@
 				navigateToURL(new URLRequest(urlToDownload),"_blank");
 				
 				var parameters:String ="";
-				parameters = "minElevation="+elevationValues[0]+"/maxElevation="+elevationValues[1]+
-					"/minRelief="+reliefValues[0]+"/maxRelief="+reliefValues[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude;
+				parameters = "minElevation="+Application.application.elevation[0]+"/maxElevation="+Application.application.elevation[1]+
+					"/minRelief="+Application.application.relief[0]+"/maxRelief="+Application.application.relief[1]+"/tvzCode="+tvzCode+"/minLongitude="+minLongitude+"/maxLongitude)="+maxLongitude+"/minLatitude="+minLatitude+"/maxLatitude="+maxLatitude;
 				
-				Application.application.tracker.trackPageview( "/download/"+parameters);
+				/* Application.application.tracker.trackPageview( "/download/"+parameters); */
 						
 			}
 			
