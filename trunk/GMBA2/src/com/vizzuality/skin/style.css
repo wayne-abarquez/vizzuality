@@ -39,6 +39,14 @@ Label.labelVegTypes {
 	disabledColor:#666666;
 }
 
+Label.ocurrences {
+	font-family: 'DINOT-Medium';
+	font-size: 10;
+	color: #666666;
+	text-transform:uppercase;
+}
+
+
 
 Text {
 	font-family: 'DINOT-Medium';
