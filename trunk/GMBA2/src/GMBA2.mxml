@@ -78,9 +78,9 @@
 			private var shader:Shader; 
 			private var filter:ShaderFilter; 
 			
-			//[Bindable] public var observations:Number=0;	
-			//[Bindable] public var specimens:Number=0;	
-			//[Bindable] public var providers:Number=0;	
+			[Bindable] public var observations:Number=0;	
+			[Bindable] public var specimens:Number=0;	
+			[Bindable] public var providers:Number=0;	
 			[Bindable] public var ocurrences:Number=0;
 			[Bindable] public var currentTaxonName:String="All taxa";	
 			
@@ -221,8 +221,8 @@
 				currentState='Download';
 				
 				downloadBox.alpha = 0.0;
-				downloadBox.setPosition(map.width,map.height,toolBar.width); 
 				downloadBox.setCriteriaValues(); 
+				downloadBox.setPosition(map.width,map.height,toolBar.width); 
 				downloadBox.visible=true;
 				TweenLite.to(downloadBox,0.5,{alpha:1.0} ); 
 				
