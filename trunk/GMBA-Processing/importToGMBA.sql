@@ -1,8 +1,9 @@
 rename table temp_gmba_export_occurrence_density to occurrence_density;
 # 10733436 rows affected (3 min 34.34 sec)
 alter table occurrence_density 
-add index(elevation, nub_id, cell_id), 
-add index(nub_id, elevation);
+add index(elevation, nub_id), 
+add index(elevation, relief),
+add index(cell_id);
 
 
 rename table temp_gmba_export_download to occurrence_download;
