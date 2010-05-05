@@ -77,15 +77,15 @@
 					list.visible = false;
 					loader.visible = true;
 					if (searchText.text.length>1) {
-						taxonRequest.url="http://ecat-dev.gbif.org/ws-sdr/usage?q=" + searchText.text;
+						taxonRequest.url="http://ecat-dev.gbif.org/ws/usage?rkey=1&status=acc&pagesize=4&q=" + searchText.text;
 						taxonRequest.send();
 					}
 				}
 			}
 			
 			private function onResultTaxon(event:ResultEvent):void {
- 				var res:Array = JSON.decode(event.result as String);	
- 				taxonProvider = new ArrayCollection(res);
+ 				var res:Object = JSON.decode(event.result as String);	
+ 				taxonProvider = new ArrayCollection(res.data as Array);
  				if (taxonProvider.length>0) {
 					list.visible = true;
 					list.taxonText = searchText.text;

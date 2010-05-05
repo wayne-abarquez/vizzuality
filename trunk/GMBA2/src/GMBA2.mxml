@@ -393,7 +393,7 @@
 
 		
 	</mx:Canvas>
-		<mx:HTTPService  id="gmbaService" url="http://79.125.117.227/service/search" method="GET" result="onSearchResults(event)" concurrency="multiple" resultFormat="text" fault="trace(event)" />
+		<mx:HTTPService  id="gmbaService" url="http://79.125.117.227/service/count" method="GET" result="onSearchResults(event)" concurrency="multiple" resultFormat="text" fault="trace(event)" />
 		<mx:NumberFormatter useThousandsSeparator="true" id="nf" />
 
 
