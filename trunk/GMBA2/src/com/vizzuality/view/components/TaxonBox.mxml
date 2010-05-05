@@ -41,10 +41,6 @@
 				Application.application.addEventListener(MouseEvent.CLICK,function (ev:MouseEvent):void {
 					if (!(contains(ev.target as DisplayObject)) || !(ev.target == this)) {
 						list.visible = false;
-						
-						 /* if (list.searchText.text != '') {
-							searchText.text = list.searchText.text;
-						}  */
 					}					
 				});
 				addEventListener(KeyboardEvent.KEY_DOWN,onKeyPress);
@@ -70,10 +66,6 @@
 			
 			private function onChangeText():void {
 				if (searchText.text.length>3) {
-					if (list.searchText.text != '') {
-						searchText.text = list.searchText.text;
-					}
-					 
 					list.visible = false;
 					loader.visible = true;
 					if (searchText.text.length>1) {
