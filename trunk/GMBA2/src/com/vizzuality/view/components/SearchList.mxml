@@ -22,14 +22,14 @@
 			private function onChangeText():void {
 				loader.visible = true;
 				if (searchText.text.length>1) {
-					taxonRequest.url="http://ecat-dev.gbif.org/ws/usage?rkey=1&status=acc&pagesize=4&q=" + searchText.text;
+					taxonRequest.url="http://ecat-dev.gbif.org/ws-sdr/usage?q=" + searchText.text;
 					taxonRequest.send();
 				}
 			}
 			
 			private function onResultTaxon(event:ResultEvent):void {
- 				var res:Object = JSON.decode(event.result as String);	
- 				dataList = new ArrayCollection(res.data as Array);
+ 				var res:Array = JSON.decode(event.result as String);	
+ 				dataList = new ArrayCollection(res);
  				if (dataList.length==0) {
  					var obj:Object = new Object();
  					obj.scientificName = 'No results found';
@@ -49,7 +49,7 @@
             	}
             	else {
 	            	var taxon:Taxon = new Taxon();
-	            	taxon.id = event.itemRenderer.data.nameID;
+	            	taxon.id = event.itemRenderer.data.taxonID;
 	            	taxon.rank = event.itemRenderer.data.rank;
 	            	taxon.name = event.itemRenderer.data.scientificName;
 	            	Application.application.taxon = taxon;

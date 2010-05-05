@@ -38,6 +38,7 @@
     
 	<mx:Script>
 	    <![CDATA[
+	    	import com.google.maps.MapEvent;
 	    	import mx.rpc.AsyncToken;
 	    	import com.greensock.TweenLite;
 	    	import com.adobe.serialization.json.JSON;
@@ -83,6 +84,9 @@
 			[Bindable] public var providers:Number=0;	
 			[Bindable] public var ocurrences:Number=0;
 			[Bindable] public var currentTaxonName:String="All taxa";	
+			
+			[Bindable] private var taxonLayerLoading:Boolean=true;
+			[Bindable] private var envLayerLoading:Boolean=true;
 			
 			public var tracker:AnalyticsTracker;
 	    	
@@ -155,6 +159,9 @@
 	    			taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
 	    		}				
 				taxonRasterTileOverlay= new TileLayerOverlay(taxonRasterLayer);
+				taxonRasterTileOverlay.addEventListener(MapEvent.TILES_LOADED,function(ev:MapEvent):void {taxonLayerLoading=false;});
+				taxonRasterTileOverlay.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:MapEvent):void {taxonLayerLoading=true;});
+				
 				map.addOverlay(taxonRasterTileOverlay);			    
 		    	
 		    	//Raster filter
@@ -274,7 +281,7 @@
 		    	}
 		    	if(event.changeType==FilterChangedEvent.TAXON_CHANGE) {
 		    		if(taxon!=null) {
-			    		taxonRasterLayer.rasterUrl="http://maps1.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
+			    		taxonRasterLayer.rasterUrl="http://maps|N|.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
 			    		toolBar.taxonBox.taxonName=taxon.name;
 			    		toolBar.taxonBox.currentState='SelectedTaxon';
 			    		currentTaxonName=taxon.name;
