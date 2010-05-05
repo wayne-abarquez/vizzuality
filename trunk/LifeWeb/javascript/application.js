@@ -1,5 +1,19 @@
 /* VARIABLES */
 var map;
+var protected_layer;
+var carbon_layer;
+var cluster1;
+var cluster2;
+var white_markers= [];
+var yellow_markers=[];
+var white_style = new Object();
+var yellow_style = new Object();
+
+var e1 = true;
+var e2 = true;
+var e3 = true;
+var e4 = true;
+var e5 = true;
 
 
 function initialize() {
@@ -12,69 +26,118 @@ function initialize() {
 			navigationControl:false,
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
+		
+		/*yellow style*/
+		var yellow_array = []
+		
+		var obj_yellow = new Object();
+		obj_yellow.height = 32;
+		obj_yellow.width = 32;
+		obj_yellow.opt_textColor = 'white';
+		obj_yellow.url = 'images/markers/22_yellow.png';
+		yellow_array.push(obj_yellow);
+		
+		var obj_yellow_2 = new Object();
+		obj_yellow_2.height = 40;
+		obj_yellow_2.width = 40;
+		obj_yellow_2.opt_textColor = 'white';
+		obj_yellow_2.url = 'images/markers/30_yellow.png';
+		yellow_array.push(obj_yellow_2);
+		
+		yellow_style.styles = yellow_array;
+		yellow_style.gridSize = 60;
+		yellow_style.zoom = null;
+		
+		
+		/*white style*/
+		var white_array = []
+		
+		var obj_white = new Object();
+		obj_white.height = 32;
+		obj_white.width = 32;
+		obj_white.opt_textColor = '#5099B4';
+		obj_white.url = 'images/markers/22_white.png';
+		white_array.push(obj_white);
+		
+		var obj_white_2 = new Object();
+		obj_white_2.height = 40;
+		obj_white_2.width = 40;
+		obj_white_2.opt_textColor = '#5099B4';
+		obj_white_2.url = 'images/markers/30_white.png';
+		white_array.push(obj_white_2);
+		
+		white_style.styles = white_array;
+		white_style.gridSize = 60;
+		white_style.zoom = null;
  
-		var fluster1 = new Fluster2(map);
-		var fluster2 = new Fluster2(map);
+
 		
 		bounds = new google.maps.LatLngBounds();
+		
+		
+		carbon_layer=new SparseTileLayerOverlay();
+		    carbon_layer.setUrl = function SetUrl(xy,z){
+		    	var u=[];
+		    	u[0]= 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/Carbon_webmerc/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x;
+		    	return u;
+		    };
+		carbon_layer.setMap(map);
+		
+		protected_layer=new SparseTileLayerOverlay();
+		    protected_layer.setUrl = function SetUrl(xy,z){
+		    	var q=[];
+		    	q[0]= 'http://184.73.201.235/blue/'+z+'/'+xy.x+'/'+xy.y;
+		    	return q;
+		    };
+		protected_layer.setMap(null);
+		protected_layer.setStyle(0,{alpha:0});
+		
+		
+		
    
 		$.ajax({
 		  url: 'http://lifeweb.heroku.com/projects',
 		  dataType: 'jsonp',
 		  data: null,
 		  success: function(result) {
-							 		$.each(result, function(key, value) {
-										bounds.extend (new google.maps.LatLng(value.lat,value.lon));
-										if (value.matched) {
-											var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
-											fluster2.addMarker(marker);
-										} else {
-											var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
-											fluster1.addMarker(marker);
-										}
-									});
-									
-									
-									map.fitBounds (bounds);
-							  	map.setCenter( bounds.getCenter());
-							
-									fluster1.styles = {
-											0: {
-												image: 'images/markers/22_yellow.png',
-												textColor: '#FFFFFF',
-												width: 32,
-												height: 32
-											},
-											5: {
-												image: 'images/markers/30_yellow.png',
-												textColor: '#FFFFFF',
-												width: 40,
-												height: 40
-											}
-										};
-										
-										fluster2.styles = {
-												0: {
-													image: 'images/markers/22_white.png',
-													textColor: '#FFFFFF',
-													width: 32,
-													height: 32
-												},
-												5: {
-													image: 'images/markers/30_white.png',
-													textColor: '#FFFFFF',
-													width: 40,
-													height: 40
-												}
-											};
+			 		$.each(result, function(key, value) {
+						bounds.extend (new google.maps.LatLng(value.lat,value.lon));
+						if (value.matched) {
+							var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+							white_markers.push(marker);
+						} else {
+							var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+							yellow_markers.push(marker);
+						}
+					});
 
-										fluster1.initialize();
-										fluster2.initialize();
-							
-							 }
+					map.fitBounds (bounds);
+			  	map.setCenter( bounds.getCenter());
+			
+					cluster1 = new MarkerClusterer(map, white_markers,white_style);
+					cluster2 = new MarkerClusterer(map, yellow_markers,yellow_style);
+			
+			 }
 		});
 		
-
+		google.maps.event.addListener(map, 'center_changed', function(ev){ 
+				
+				if ($('div.layers_overlay div').hasClass('clicked')){
+					$('div.layers_overlay').children('div.list').fadeOut();
+					$('div.layers_overlay div').removeClass('clicked');
+					$('div.layers_overlay div').addClass('unclicked');						
+				}
+				
+				if ($('div.filter_markers div').hasClass('clicked')){
+					$('div.filter_markers').children('div.list').fadeOut();
+					$('div.filter_markers div').removeClass('clicked');
+					$('div.filter_markers div').addClass('unclicked');						
+				}
+				
+				$('body').trigger('hide_infowindow');
+				
+			}
+		);
 }
 
 $(document).ready(function() {
@@ -95,25 +158,163 @@ $(document).ready(function() {
 		}
 		
 	});
-		
-	$('div.list ul li a').click(function(ev){
+
+	
+	$('#matches').click(function(ev){
 		ev.stopPropagation();
 		ev.preventDefault();
-		
 		if ($(this).parent().hasClass('checked')) {
-		
 			$(this).parent().removeClass('checked');
-			$(this).parent().addClass('unchecked');			
-		}
-		
-		else if ($(this).parent().hasClass('unchecked')) {
-			
+			$(this).parent().addClass('unchecked');		
+			cluster1.clearMarkers();
+		} else {
 			$(this).parent().removeClass('unchecked');
-			$(this).parent().addClass('checked');			
+			$(this).parent().addClass('checked');	
+			showWhiteClusters();
 		}
-		
 	});
 	
+	
+	$('#potential').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');		
+			cluster2.clearMarkers();
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');	
+			showYellowClusters();
+		}
+	});
+	
+	
+	$('#carbon_layer').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');		
+			carbon_layer.setStyle(0,{alpha:0});
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');	
+			carbon_layer.setStyle(0,{alpha:.5});		
+		}
+	});
+	
+	$('#protected_layer').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			protected_layer.setMap(map);
+			protected_layer.setStyle(0,{alpha:0});			
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			protected_layer.setMap(map);
+			protected_layer.setStyle(0,{alpha:.5});	
+		}
+	});
+	
+	
+	$('#climate').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e1 = false;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e1 = true;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();
+		}
+	});
+	
+	
+	$('#freshwater').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e2 = false;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e2 = true;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();
+		}
+	});
+	
+	
+	$('#food').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e3 = false;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();	
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e3 = true;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();
+		}
+	});
+	
+
+	$('#potential_pro').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e4 = false;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();		
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e4 = true;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();
+		}
+	});
+
+
+	$('#cultural').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e5 = false;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();		
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e5 = true;
+			if ($('#matches').parent().hasClass('checked')) showWhiteClusters();
+			if ($('#potential').parent().hasClass('checked')) showYellowClusters();
+		}
+	});
+
 
 	$('div.bttn_zoomIn').click(function(ev){map.setZoom(map.getZoom()+1)});
 	$('div.bttn_zoomOut').click(function(ev){map.setZoom(map.getZoom()-1)});
@@ -122,4 +323,26 @@ $(document).ready(function() {
 });
 
 
+function showWhiteClusters() {
+	cluster1.clearMarkers();
+	var new_white_markers = [];
+	for (var i=0; i<white_markers.length;i++) {
+		if ((e1 && white_markers[i].information_.ecosystem_service.e1) || (e2 && white_markers[i].information_.ecosystem_service.e2) || (e3 && white_markers[i].information_.ecosystem_service.e3) || (e4 && white_markers[i].information_.ecosystem_service.e4) || (e5 && white_markers[i].information_.ecosystem_service.e5)) {
+			new_white_markers.push(white_markers[i]);
+		}
+	}
+	cluster1 = new MarkerClusterer(map, new_white_markers,white_style);
+}
+
+
+function showYellowClusters() {
+	cluster2.clearMarkers();
+	var new_yellow_markers = [];
+	for (var i=0; i<yellow_markers.length;i++) {
+		if ((e1 && yellow_markers[i].information_.ecosystem_service.e1) || (e2 && yellow_markers[i].information_.ecosystem_service.e2) || (e3 && yellow_markers[i].information_.ecosystem_service.e3) || (e4 && yellow_markers[i].information_.ecosystem_service.e4) || (e5 && yellow_markers[i].information_.ecosystem_service.e5)) {
+			new_yellow_markers.push(yellow_markers[i]);
+		}
+	}
+	cluster2 = new MarkerClusterer(map, new_yellow_markers,yellow_style);
+}
 
