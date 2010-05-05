@@ -11,6 +11,7 @@ package com.vizzuality.events
 		public static const VEGETATION_CHANGE:String ="vegetationChange";
 		public static const TAXON_CHANGE:String ="taxonChange";
 		public static const MAP_CHANGE:String ="mapChange";
+		public static const ALL_CHANGE:String ="allChange";
 		public var mustChangeUrl:Boolean = true;
 		public var changeType:String;
 		

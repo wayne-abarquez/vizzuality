@@ -10,9 +10,10 @@ package com.vizzuality.maps
 	{
 		public var loader:Loader;
 		private var maskRectagle:Sprite;
+		private var rasterLayer:RasterLayer;
 		
-		public function CustomTile()
-		{
+		public function CustomTile(_rasterLayer:RasterLayer) {
+			rasterLayer=_rasterLayer;
 			maskRectagle = new Sprite();
 			maskRectagle.graphics.beginFill(0x000000);
 			maskRectagle.graphics.drawRect(0,0,256,256);
@@ -31,7 +32,7 @@ package com.vizzuality.maps
 		private function ioErrorHandler(event:IOErrorEvent):void {
 			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
-
+			rasterLayer.customTileLoaded();
 		}
 		
 		
@@ -40,7 +41,7 @@ package com.vizzuality.maps
 			event.currentTarget.removeEventListener(Event.COMPLETE, loaded);
 			event.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
 			addChild(loader);
-			
+			rasterLayer.customTileLoaded();
 		}				
 		
 	}
