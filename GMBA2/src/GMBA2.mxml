@@ -38,6 +38,7 @@
     
 	<mx:Script>
 	    <![CDATA[
+	    	import com.abdulqabiz.utils.QueryString;
 	    	import com.google.maps.MapEvent;
 	    	import mx.rpc.AsyncToken;
 	    	import com.greensock.TweenLite;
@@ -50,7 +51,6 @@
 	    	import com.vizzuality.events.FilterChangedEvent;
 	    	import com.vizzuality.events.MyEventDispatcher;
 	    	import com.google.maps.overlays.TileLayerOverlay;
-	    	import com.vizzuality.maps.MaskLayer;
 	    	import com.vizzuality.maps.RasterLayer;
 	    	import com.asual.swfaddress.SWFAddress;
 	    	import com.vizzuality.model.Taxon;
@@ -85,8 +85,10 @@
 			[Bindable] public var ocurrences:Number=0;
 			[Bindable] public var currentTaxonName:String="All taxa";	
 			
-			[Bindable] private var taxonLayerLoading:Boolean=true;
-			[Bindable] private var envLayerLoading:Boolean=true;
+			[Bindable] private var taxonLayerLoaded:Boolean=false;
+			[Bindable] private var envLayerLoaded:Boolean=false;
+			
+			private var appInitialized:Boolean=false;
 			
 			public var tracker:AnalyticsTracker;
 	    	
@@ -94,8 +96,16 @@
 	    		
 	    		tracker = new GATracker( this, "UA-16019841-1", "AS3", false );
 	    		//Check the URL to see if we need to initialize at specific state
-	    		var paths:Array = SWFAddress.getPathNames();
-	    		trace(SWFAddress.getPath());
+	    		var qs:QueryString = new QueryString();
+	    		var ta:Array = qs.url.split("#");
+	    		var paths:Array;
+	    		if(ta.length>1) {
+	    			paths = (ta[1] as String).split("/");
+	    			paths.shift();
+	    		} else {
+	    			paths=[];
+	    		}
+	    		
 				if(paths.length!=5) {
 					//Defalt values
 					setDefaultParams();
@@ -129,7 +139,7 @@
 					}
 				}
 				toolBar.init();
-				MyEventDispatcher.addEventListener(FilterChangedEvent.FILTER_CHANGED,onFilterChange);
+				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.ALL_CHANGE,false));
 				
 	    	}
 	    	
@@ -154,13 +164,19 @@
 				//Taxon Layer
 				taxonRasterLayer= new BasicLayer();
 	    		if(taxon!=null) {
-		    		taxonRasterLayer.rasterUrl="http://maps1.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
+		    		taxonRasterLayer.rasterUrl="http://maps|N|.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
 	    		} else {
 	    			taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
 	    		}				
 				taxonRasterTileOverlay= new TileLayerOverlay(taxonRasterLayer);
-				taxonRasterTileOverlay.addEventListener(MapEvent.TILES_LOADED,function(ev:MapEvent):void {taxonLayerLoading=false;});
-				taxonRasterTileOverlay.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:MapEvent):void {taxonLayerLoading=true;});
+				taxonRasterTileOverlay.addEventListener(MapEvent.TILES_LOADED,function(ev:MapEvent):void {
+					taxonLayerLoaded=true;
+					if(!appInitialized && envLayerLoaded) {
+						appInitialized=true;
+						//currentState='';
+					}
+				});
+				taxonRasterTileOverlay.addEventListener(MapEvent.TILES_LOADED_PENDING,function(ev:MapEvent):void {taxonLayerLoaded=false;});
 				
 				map.addOverlay(taxonRasterTileOverlay);			    
 		    	
@@ -182,16 +198,28 @@
 					map.alpha=1;
 				});
 				map.addOverlay(rasterTileOverlay);
+				
+				
+				MyEventDispatcher.addEventListener(RasterLayer.ENV_TILES_LOADED_PENDING,function(ev:Event):void {envLayerLoaded=false;});
+				MyEventDispatcher.addEventListener(RasterLayer.ENV_TILES_LOADED,function(ev:Event):void {
+					envLayerLoaded=true;
+					if(!appInitialized && taxonLayerLoaded) {
+						appInitialized=true;
+					}
+				});
+				
+				//refresh the tiles
+				getStats();
 		    }	        
 
 		    private function onClickZoomIn():void {
-		    	if(map.getZoom()<7) {
+		    	if(map.getZoom()<8) {
 					map.setZoom(map.getZoom()+1);
 		    	} 
 			}
 			
 			private function onClickZoomOut():void {
-				if(map.getZoom()>2){
+				if(map.getZoom()>1){
 					map.setZoom(map.getZoom()-1);
 				}
 				
@@ -241,9 +269,14 @@
 			    	getStats();
 		    	}
 		    	
-		    	if(event.changeType==FilterChangedEvent.ELEVATION_CHANGE ||
+		    	if((event.changeType==FilterChangedEvent.ELEVATION_CHANGE ||
 		    		event.changeType==FilterChangedEvent.RELIEF_CHANGE ||
-		    		event.changeType==FilterChangedEvent.VEGETATION_CHANGE) {
+		    		event.changeType==FilterChangedEvent.VEGETATION_CHANGE ||
+		    		event.changeType==FilterChangedEvent.ALL_CHANGE
+		    		)
+					&& map.initialize()		    		
+		    		
+		    		) {
 					   	var rMin:Number = elevation[0]/7889;
 			 			var rMax:Number = elevation[1]/7889;
 			 			var gMin:Number  = relief[0]/3397; 
@@ -279,7 +312,7 @@
 						
 						rasterTileOverlay.foreground.filters = [filter];			    			
 		    	}
-		    	if(event.changeType==FilterChangedEvent.TAXON_CHANGE) {
+		    	if(event.changeType==FilterChangedEvent.TAXON_CHANGE || event.changeType==FilterChangedEvent.ALL_CHANGE) {
 		    		if(taxon!=null) {
 			    		taxonRasterLayer.rasterUrl="http://maps|N|.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
 			    		toolBar.taxonBox.taxonName=taxon.name;
@@ -346,7 +379,7 @@
 	<mx:GlowFilter id="sh" alpha="0.3" color="#000000" blurX="20" blurY="20" />
 	<mx:Canvas styleName="bkgBigCanvas"
 		 height="96%"
-		 backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="96%" horizontalCenter="0" verticalCenter="0" backgroundColor="#000000"> 
+		 backgroundSize="100%" filters="{[sh]}" verticalScrollPolicy="off" horizontalScrollPolicy="off" width="96%" horizontalCenter="0" verticalCenter="0" backgroundColor="#000000" id="canvas1"> 
 
 		<mx:VBox verticalGap="0" height="100%" width="236" verticalScrollPolicy="off" horizontalScrollPolicy="off" x="2">
 			
@@ -358,8 +391,8 @@
 				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="17"/>
 				
 				<mx:HBox top="2" right="22" id="hBoxOcurrences" width="193" horizontalAlign="right" horizontalGap="0" verticalAlign="middle" height="26">
-					<mx:SWFLoader width="13" height="13" source="@Embed('/assets/loaderGray.swf')" id="loadingOcurrences"/>
-					<mx:Label id="ocurrencesLabel" styleName="ocurrences" text="{nf.format(ocurrences)}" horizontalCenter="right" textAlign="right" paddingTop="3"/>
+					<mx:SWFLoader width="11" height="11" source="@Embed('/assets/loaderGray.swf')" id="loadingOcurrences" visible="false"/>
+					<mx:Label id="ocurrencesLabel" styleName="ocurrences" text="{nf.format(ocurrences)}" horizontalCenter="right" textAlign="right" paddingTop="4"/>
 					<mx:Label styleName="ocurrences" text="OCURRENCES" paddingTop="3"/>	
 				</mx:HBox>
 				
@@ -391,7 +424,7 @@
 			<mx:Image bottom="12" left="70" source="@Embed('/assets/logoMapVizz.png')"
 				click="navigateToURL(new URLRequest('http://www.vizzuality.com'))" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
 			<mx:Image source="{Resource.ARROW}"  width="24" height="46" left="-5" top="24"/>
-			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="true" alpha="0.6">
+			<mx:Canvas width="81" height="84" styleName="bkgLoading" horizontalCenter="0" top="10" id="loadingMessage" visible="{(!taxonLayerLoaded || !envLayerLoaded)}" alpha="0.6">
 				<mx:SWFLoader horizontalCenter="0" verticalCenter="0" width="30" height="30" source="@Embed('/assets/loaderGray.swf')"/>
 			</mx:Canvas>
 			

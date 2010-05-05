@@ -5,15 +5,20 @@ package com.vizzuality.maps
 	import com.google.maps.LatLng;
 	import com.google.maps.LatLngBounds;
 	import com.google.maps.TileLayerBase;
+	import com.vizzuality.events.MyEventDispatcher;
 	
 	import flash.display.DisplayObject;
-	import flash.events.IOErrorEvent;
+	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.net.URLRequest;
 
 	public class RasterLayer extends TileLayerBase
 	{
         public var rasterUrl:String;	
+        public static const ENV_TILES_LOADED:String="envTilesLoaded";
+        public static const ENV_TILES_LOADED_PENDING:String="envTilesLoadedPending";
+        
+        public var pendingTiles:Number=0;
  
 		public function RasterLayer(_rasterUrl:String=null) {
 			
@@ -32,15 +37,24 @@ package com.vizzuality.maps
                 tileUrl = tileUrl.replace("|Z|",zoom); 
                 
                 
-				var tileLoader:CustomTile = new CustomTile();
-        		//tileLoader.loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-				tileLoader.loader.load(new URLRequest(tileUrl));                 
+				var tileLoader:CustomTile = new CustomTile(this);
+				tileLoader.loader.load(new URLRequest(tileUrl));          
+				pendingTiles++;       
+				MyEventDispatcher.dispatchEvent(new Event(RasterLayer.ENV_TILES_LOADED_PENDING));
                 return tileLoader;    
             }
             
             return null;			
 		}
 		
+		public function customTileLoaded():void {
+			pendingTiles--;
+			
+			if(pendingTiles==0) {
+				MyEventDispatcher.dispatchEvent(new Event(RasterLayer.ENV_TILES_LOADED));
+			}
+			
+		}
 
 		
 	}
