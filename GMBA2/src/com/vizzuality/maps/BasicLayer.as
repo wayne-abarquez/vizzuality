@@ -16,6 +16,7 @@ package com.vizzuality.maps
 	public class BasicLayer extends TileLayerBase
 	{
         public var rasterUrl:String;	
+        private var srvNum:Number=1;
  
 		public function BasicLayer(_rasterUrl:String=null) {
 			
@@ -28,7 +29,13 @@ package com.vizzuality.maps
 		
 		public override function loadTile(tile:Point, zoom:Number):DisplayObject {
             if (!isNaN(tile.x) && !isNaN(tile.y) && zoom >= 0) {
+            	
+            	srvNum++;
+           		if (srvNum>4)
+           			srvNum=1;
+           		
                 var tileUrl:String = rasterUrl;
+                tileUrl = tileUrl.replace("|N|",srvNum);    
                 tileUrl = tileUrl.replace("|X|",tile.x);    
                 tileUrl = tileUrl.replace("|Y|",tile.y);    
                 tileUrl = tileUrl.replace("|Z|",zoom); 
