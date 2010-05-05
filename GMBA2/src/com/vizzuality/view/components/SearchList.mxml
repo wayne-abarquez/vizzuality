@@ -56,7 +56,8 @@
             		Application.application.toolBar.taxonBox.taxonName = taxon.name;
 	            	MyEventDispatcher.dispatchEvent(new Event("selectedTaxon"));
             	}
-            	PopUpManager.removePopUp(this);
+            	this.visible = false;
+            	//PopUpManager.removePopUp(this);
             	MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.TAXON_CHANGE));
             }
 			
