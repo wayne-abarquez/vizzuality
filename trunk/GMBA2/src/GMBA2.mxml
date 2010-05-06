@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"  xmlns:view="com.vizzuality.view.*"
 	layout="absolute"
-	backgroundColor="#D5E8EC" 	
+	backgroundGradientAlphas="[1.0, 1.0]" 
+	backgroundGradientColors="[#D5E8EC, #D5E8EC]"
 	horizontalScrollPolicy="off"
 	verticalScrollPolicy="off"
     minHeight="742"
@@ -145,9 +146,9 @@
 	    	}
 	    	
 	    	private function setDefaultParams():void {
-    			initLat=40.73;
-				initLng=-3.99;
-				initZoom=3;
+    			initLat=26.73;
+				initLng=-12.66;
+				initZoom=2;
 	    	}
 	    	
 	        private function onMapPreinitialize(event:Event):void {
