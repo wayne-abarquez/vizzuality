@@ -104,26 +104,45 @@ function initialize() {
 		  dataType: 'jsonp',
 		  data: null,
 		  success: function(result) {
-			 		$.each(result, function(key, value) {
+			
+					$.each(result, function(key, value) {
 						bounds.extend (new google.maps.LatLng(value.lat,value.lon));
 						if (value.matched) {
-							var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+							var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map);
 							white_markers.push(marker);
 						} else {
 							var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
 							yellow_markers.push(marker);
 						}
+						marker.setMap(map);
 					});
 
-					
-					
+				
+				
 					map.fitBounds (bounds);
 			  	map.setCenter( bounds.getCenter());
-						
-					cluster1 = new MarkerClusterer(map, white_markers,white_style);
-					cluster2 = new MarkerClusterer(map, yellow_markers,yellow_style);
-					
-					ppe_infowindow = new PPE_Infowindow(new google.maps.LatLng(0,0), null, map);
+
+			
+			 		// $.each(result, function(key, value) {
+			 		// 						bounds.extend (new google.maps.LatLng(value.lat,value.lon));
+			 		// 						if (value.matched) {
+			 		// 							var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+			 		// 							white_markers.push(marker);
+			 		// 						} else {
+			 		// 							var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+			 		// 							yellow_markers.push(marker);
+			 		// 						}
+			 		// 					});
+			 		// 
+			 		// 					
+			 		// 					
+			 		// 					map.fitBounds (bounds);
+			 		// 			  	map.setCenter( bounds.getCenter());
+			 		// 						
+			 		// 					cluster1 = new MarkerClusterer(map, white_markers,white_style);
+			 		// 					cluster2 = new MarkerClusterer(map, yellow_markers,yellow_style);
+			 		// 					
+			 		// 					ppe_infowindow = new PPE_Infowindow(new google.maps.LatLng(0,0), null, map);
 
 			
 			 }
@@ -197,7 +216,7 @@ $(document).ready(function() {
 		if ($(this).parent().hasClass('checked')) {
 			$(this).parent().removeClass('checked');
 			$(this).parent().addClass('unchecked');		
-			cluster1.clearMarkers();
+			cleanWhiteMarkers();
 		} else {
 			$(this).parent().removeClass('unchecked');
 			$(this).parent().addClass('checked');	
@@ -212,7 +231,7 @@ $(document).ready(function() {
 		if ($(this).parent().hasClass('checked')) {
 			$(this).parent().removeClass('checked');
 			$(this).parent().addClass('unchecked');		
-			cluster2.clearMarkers();
+			cleanYellowMarkers();
 		} else {
 			$(this).parent().removeClass('unchecked');
 			$(this).parent().addClass('checked');	
@@ -356,26 +375,65 @@ $(document).ready(function() {
 });
 
 
+// function showWhiteClusters() {
+// 	cluster1.clearMarkers();
+// 	var new_white_markers = [];
+// 	for (var i=0; i<white_markers.length;i++) {
+// 		if ((e1 && white_markers[i].information_.ecosystem_service.e1) || (e2 && white_markers[i].information_.ecosystem_service.e2) || (e3 && white_markers[i].information_.ecosystem_service.e3) || (e4 && white_markers[i].information_.ecosystem_service.e4) || (e5 && white_markers[i].information_.ecosystem_service.e5)) {
+// 			new_white_markers.push(white_markers[i]);
+// 		}
+// 	}
+// 	cluster1 = new MarkerClusterer(map, new_white_markers,white_style);
+// }
+// 
+// 
+// function showYellowClusters() {
+// 	cluster2.clearMarkers();
+// 	var new_yellow_markers = [];
+// 	for (var i=0; i<yellow_markers.length;i++) {
+// 		if ((e1 && yellow_markers[i].information_.ecosystem_service.e1) || (e2 && yellow_markers[i].information_.ecosystem_service.e2) || (e3 && yellow_markers[i].information_.ecosystem_service.e3) || (e4 && yellow_markers[i].information_.ecosystem_service.e4) || (e5 && yellow_markers[i].information_.ecosystem_service.e5)) {
+// 			new_yellow_markers.push(yellow_markers[i]);
+// 		}
+// 	}
+// 	cluster2 = new MarkerClusterer(map, new_yellow_markers,yellow_style);
+// }
+
+
 function showWhiteClusters() {
-	cluster1.clearMarkers();
-	var new_white_markers = [];
 	for (var i=0; i<white_markers.length;i++) {
 		if ((e1 && white_markers[i].information_.ecosystem_service.e1) || (e2 && white_markers[i].information_.ecosystem_service.e2) || (e3 && white_markers[i].information_.ecosystem_service.e3) || (e4 && white_markers[i].information_.ecosystem_service.e4) || (e5 && white_markers[i].information_.ecosystem_service.e5)) {
-			new_white_markers.push(white_markers[i]);
+			white_markers[i].setMap(map);
+		} else {
+			white_markers[i].setMap(null);
 		}
 	}
-	cluster1 = new MarkerClusterer(map, new_white_markers,white_style);
+	
 }
 
 
 function showYellowClusters() {
-	cluster2.clearMarkers();
-	var new_yellow_markers = [];
 	for (var i=0; i<yellow_markers.length;i++) {
 		if ((e1 && yellow_markers[i].information_.ecosystem_service.e1) || (e2 && yellow_markers[i].information_.ecosystem_service.e2) || (e3 && yellow_markers[i].information_.ecosystem_service.e3) || (e4 && yellow_markers[i].information_.ecosystem_service.e4) || (e5 && yellow_markers[i].information_.ecosystem_service.e5)) {
-			new_yellow_markers.push(yellow_markers[i]);
+			yellow_markers[i].setMap(map);
+		}else {
+			yellow_markers[i].setMap(null);
 		}
 	}
-	cluster2 = new MarkerClusterer(map, new_yellow_markers,yellow_style);
 }
+
+
+function cleanYellowMarkers() {
+	for (var i=0; i<yellow_markers.length;i++) {
+			yellow_markers[i].setMap(null);
+	}
+}
+
+function cleanWhiteMarkers() {
+	for (var i=0; i<white_markers.length;i++) {
+			white_markers[i].setMap(null);
+	}
+}
+
+
+
 
