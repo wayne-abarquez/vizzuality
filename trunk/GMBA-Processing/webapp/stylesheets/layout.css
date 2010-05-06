@@ -19,11 +19,11 @@ div.header a.logo {float:left; height:30px; width:260px; background: url(../imag
 div.main {float:left; width:900px; padding:0 0 60px;}
 div.main div.contentLeft{ float: left; margin:50px 20px 0 0; width:360px;}
 div.main div.contentLeft h1.contentLeftTitle{ float: left; height:66px; width:360px; background-image: url(../images/contentLeftTitle.png); margin:0 auto;}
-div.main div.contentLeft p{ float: left; margin:30px 0 0 0; font-size:16px; font-color: #282a2b; font-family:"Arial";}
+div.main div.contentLeft p{ float: left; margin:30px 0 0 0; font-size:15px; font-color: #282a2b; font-family:"Arial";}
 div.main div.contentLeft a.button{ float: left; height:49px; width:334px; background-image: url(../images/button.png); margin:60px 0 0 0; border:none;}
 div.main div.contentLeft a.button:hover{ background-position: 0 -49px;}
 
-div.main div.contentLeft a{font:normal 16px Arial; color:#282a2b; text-decoration:underline;}
+div.main div.contentLeft a{color:#282a2b; text-decoration:underline;}
 div.main div.contentLeft a:hover{color:#000000;}
 
 div.main div.contentRight {float:right; height:368px; width:520px; padding:15px 0 0; right:0;}
@@ -60,9 +60,9 @@ div.content div.about div#high_elevation_about h2.title {float:left; background:
 div.main div.left_help { float: left; margin:50px 20px 20px 0; width:900px; padding:0;}
 div.main div.left_help a {font:normal 13px Arial; color:#262A2B; text-decoration:underline;}
 div.main div.left_help a:hover {color:#000000;}
-div.main div.left_help a.back {float:left; font:normal 13px Arial; color:#272A2B; text-decoration:underline;}
+div.main div.left_help a.back {float:left; font:normal 13px Arial; color:#272A2B; text-decoration:underline; width:100%;}
 div.main div.left_help a.back:hover {color:#000000;}
-div.main div.left_help h1.help_Title{ float: left; height:117px; width:455px; background: url(../images/helpTitle.png) no-repeat 0 0; margin:40px 0 0 0; padding:0 0 30px 0; }
+div.main div.left_help h1.help_Title{ float: left; height:117px; width:455px; background: url(../images/helpTitle.png) no-repeat 0 0; margin:40px 0 0 0; padding:0 0 20px 0; }
 div.main div.left_help div.play a{position:absolute; background:url(../images/playVideo.png) no-repeat; width:70px; height:45px; top:78px; left:143px; z-index:1000;}
 div.main div.left_help div.video {float:left; width:355px; height:208px; background:url(../images/frameVideo.png) no-repeat 0 0; margin:0 0 0 50px; position:relative;}
 div.main div.left_help div.video div.play_video {float:left; margin:10px 0 10px 11px; width:332px; height:180px; overflow:hidden;}
