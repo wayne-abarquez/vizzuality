@@ -46,10 +46,8 @@ package com.vizzuality.maps
 				
 				if(!tilesTimer.running) {
 					tilesTimer.start();
-					trace("start");
 				} else {
 					tilesTimer.reset();
-					trace("reset");
 				}
 				pendingTiles++;       
 				MyEventDispatcher.dispatchEvent(new Event(RasterLayer.ENV_TILES_LOADED_PENDING));
