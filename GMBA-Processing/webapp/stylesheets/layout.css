@@ -122,7 +122,7 @@ div.api_data div.env a img {width:240px; height:240px;}
 
 /* FOOTER */
 div.footer {float:left; width:900px; margin:60px 0 0; padding: 0 0 30px;}
-div.footer.application {width:980px; margin:10px 0 0 0; }
+div.footer.app {width:980px; margin:10px 0 0 0; height:auto;}
 div.footer div.footer_left {float:left; width:600px}
 div.footer div.logos {float:left; width:100%;}
 div.footer div.logos a.gmbaLogo {float:left; background:url(../images/gmba_logo.png) no-repeat 0 0; width:58px; height:32px; margin:9px 9px 0 0;}
