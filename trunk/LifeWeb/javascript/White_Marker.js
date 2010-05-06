@@ -247,6 +247,13 @@ White_Marker.prototype.createElement = function() {
 				$(this).parent().hide();
 			}
 		);
+		
+		$(div).hover(
+			function (ev) {
+				$(this).css('z-index',lastMask+1);
+				lastMask++;
+			}
+		);
 
 		$(div).click(
 			function (ev) {
