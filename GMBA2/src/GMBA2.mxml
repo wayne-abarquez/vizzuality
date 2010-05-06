@@ -225,7 +225,7 @@
 		    }	        
 
 		    private function onClickZoomIn():void {
-		    	if(map.getZoom()<8) {
+		    	if(map.getZoom()<7) {
 					map.setZoom(map.getZoom()+1);
 		    	} 
 			}
