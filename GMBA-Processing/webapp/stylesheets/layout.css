@@ -20,8 +20,12 @@ div.main {float:left; width:900px; padding:0 0 60px;}
 div.main div.contentLeft{ float: left; margin:50px 20px 0 0; width:360px;}
 div.main div.contentLeft h1.contentLeftTitle{ float: left; height:66px; width:360px; background-image: url(../images/contentLeftTitle.png); margin:0 auto;}
 div.main div.contentLeft p{ float: left; margin:30px 0 0 0; font-size:16px; font-color: #282a2b; font-family:"Arial";}
-div.main div.contentLeft a{ float: left; height:49px; width:334px; background-image: url(../images/button.png); margin:60px 0 0 0; border:none;}
-div.main div.contentLeft a:hover{ background-position: 0 -49px;}
+div.main div.contentLeft a.button{ float: left; height:49px; width:334px; background-image: url(../images/button.png); margin:60px 0 0 0; border:none;}
+div.main div.contentLeft a.button:hover{ background-position: 0 -49px;}
+
+div.main div.contentLeft a{font:normal 16px Arial; color:#282a2b; text-decoration:underline;}
+div.main div.contentLeft a:hover{color:#000000;}
+
 div.main div.contentRight {float:right; height:368px; width:520px; padding:15px 0 0; right:0;}
 div.main div.contentRight img { float:right;}
 
@@ -30,19 +34,35 @@ div.main div.contentRight img { float:right;}
 div.content div.left_contact{ float: left; margin:50px 20px 70px 0; height:368px; width:393px;}
 div.content div.left_contact a.back {float:left; font:normal 13px Arial; color:#272A2B; text-decoration:underline;}
 div.content div.left_contact a.back:hover {color:#000000;}
-div.content div.left_contact div.contact_us_Title{ float: none; height:59px; width:347px; background-image: url(../images/contact_usTitle.png); margin:40px 0 30px 0; }
-div.content div.left_contact div.contentLeftInfo p{ float: left; font:normal 15px Arial; color:#262A2B; margin:20px 0 0 0;}
+div.content div.left_contact div.contact_us_Title{ float: none; height:25px; width:119px; background-image: url(../images/contact_usTitle.png); margin:40px 0 30px 0; }
+div.content div.left_contact div.contentLeftInfo p{ float: none; font:normal 15px Arial; color:#262A2B; margin:20px 0 0 0;}
 div.content div.left_contact div.contentLeftInfo p.info{margin:10px 0 0 0;}
 div.content div.left_contact div.contentLeftInfo p span{ font:bold 15px Arial;}
 div.content div.left_contact div.contentLeftInfo p.email{background:url(../images/bkg_email.png) no-repeat 0 0px; font:bold 13px Arial; color:#262A2B; height:23px; width:200px; padding:4px 0 0 28px;}
 div.content div.left_contact div.contentLeftInfo p.email a{font:bold 13px Arial; text-decoration:none; color:#262A2B;}
 
+/* ABOUT */
+div.content div.about{ float: left; margin:50px 20px 70px 0; width:100%;}
+div.content div.about a.back {float:left; font:normal 13px Arial; color:#272A2B; text-decoration:underline;}
+div.content div.about a.back:hover {color:#000000;}
+div.content div.about div.about_Title{ float: none; height:31px; width:114px; background-image: url(../images/about_title.png); margin:40px 0 50px 0; }
+div.content div.about div.contentLeftAbout p{ float: left; font:normal 15px Arial; color:#262A2B; margin:20px 0 0 0;}
+div.content div.about div.contentLeftAbout p.info{float:left; width:100%; margin:10px 0 0 0;}
+div.content div.about a{color:#272A2B; text-decoration:underline;}
+div.content div.about a:hover{color:#000000;}
+div.content div.about div#ruggedness_about h2.title {float:left; background:url(../images/ruggedness_title.png) no-repeat; width:372px; height:21px; margin:0px 0 10px 0;}
+div.content div.about div#elevation_about h2.title {float:left; background:url(../images/elevation_title.png) no-repeat; width:127px; height:21px; margin:50px 0 10px 0;}
+div.content div.about div#thermal_belts_about h2.title {float:left; background:url(../images/thermal_belts_title.png) no-repeat; width:172px; height:20px; margin:50px 0 10px 0;}
+div.content div.about div#high_elevation_about h2.title {float:left; background:url(../images/high_elevation_title.png) no-repeat; width:278px; height:25px; margin:50px 0 10px 0;}
+
 
 /* HELP */
-div.main div.left_help { float: left; margin:50px 20px 20px 0; width:900px;}
+div.main div.left_help { float: left; margin:50px 20px 20px 0; width:900px; padding:0;}
+div.main div.left_help a {font:normal 13px Arial; color:#262A2B; text-decoration:underline;}
+div.main div.left_help a:hover {color:#000000;}
 div.main div.left_help a.back {float:left; font:normal 13px Arial; color:#272A2B; text-decoration:underline;}
 div.main div.left_help a.back:hover {color:#000000;}
-div.main div.left_help h1.help_Title{ float: left; height:117px; width:413px; background: url(../images/helpTitle.png) no-repeat 0 0; margin:40px 0 0 0; padding:0 0 30px; }
+div.main div.left_help h1.help_Title{ float: left; height:117px; width:455px; background: url(../images/helpTitle.png) no-repeat 0 0; margin:40px 0 0 0; padding:0 0 30px 0; }
 div.main div.left_help div.play a{position:absolute; background:url(../images/playVideo.png) no-repeat; width:70px; height:45px; top:78px; left:143px; z-index:1000;}
 div.main div.left_help div.video {float:left; width:355px; height:208px; background:url(../images/frameVideo.png) no-repeat 0 0; margin:0 0 0 50px; position:relative;}
 div.main div.left_help div.video div.play_video {float:left; margin:10px 0 10px 11px; width:332px; height:180px; overflow:hidden;}
@@ -51,11 +71,11 @@ div.main div.left_help div.kind { float:left; width:900px; margin:50px 0 0;}
 div.main div.left_help div.kind h2.title{ float: left; height:39px; width:900px; margin:0px 0 30px 0;}
 div.main div.left_help div.kind div.content_left {float:left; width:400px;}
 div.main div.left_help div.kind div.content_right {float:right; width:465px; margin:0 13px 0 0;}
-div.main div.left_help div.kind div.content_right p.info {float:left; font:normal 15px Arial; color:#262A2B; margin:15px 20px 0 0;}
+div.main div.left_help div.kind div.content_right p.info {float:left; font:normal 13px Arial; color:#262A2B; margin:0 20px 15px 0;}
 
 div.main div.left_help div.kind.step_one h2.title {background:url(../images/help_step_one.png) no-repeat;}
 div.main div.left_help div.kind.step_two h2.title {background:url(../images/help_step_two.png) no-repeat;}
-div.main div.left_help div.kind.step_three h2.title {background:url(../images/help_step_three.png) no-repeat;}
+div.main div.left_help div.kind.step_three h2.title {background:url(../images/help_step_three.png) no-repeat; height:54px;}
 
 div.main div.left_help div.more_about { float:left; width:900px; margin:60px 0 0; background:url(../images/bkg_more_about.png) no-repeat 0 0; width:878px; height:163px;}
 div.main div.left_help div.more_about a.document {float:left; background:url(../images/help_document_download.png) no-repeat 0 0; width:54px; height:61px; margin:72px 0 0 50px;}
@@ -104,12 +124,13 @@ div.api_data div.env a img {width:240px; height:240px;}
 div.footer {float:left; width:900px; margin:60px 0 0; padding: 0 0 30px;}
 div.footer.application {width:980px; height:auto;}
 div.footer div.footer_left {float:left; width:700px}
-div.footer div.footer_left div.logos {float:left; width:auto; width:120px;}
-div.footer div.footer_left div.logos a.gmbaLogo {float:left; background:url(../images/gmba_logo.png) no-repeat 0 0; width:58px; height:32px;}
-div.footer div.footer_left div.logos a.gbifLogo {float:left; background:url(../images/gbif_logo.png) no-repeat 0 0; width:39px; height:38px;}
-div.footer div.footer_left div.text {float:left; width:550px;}
-div.footer div.footer_left div.text p {float:left; font:normal 13px Arial; color:#333333; width:550px; margin:0;}
-div.footer div.footer_right {float:right; width:185px; padding:0 15px 0 0; margin:0; text-align:right;}
+div.footer div.logos {float:left; width:100%;}
+div.footer div.logos a.gmbaLogo {float:left; background:url(../images/gmba_logo.png) no-repeat 0 0; width:58px; height:32px; margin:15px 7px 0 0;}
+div.footer div.logos a.diversitasLogo {float:left; background:url(../images/diversitas_logo.png) no-repeat 0 0; width:119px; height:60px;}
+div.footer div.logos a.gbifLogo {float:left; background:url(../images/gbif_logo.png) no-repeat 0 0; width:39px; height:38px; margin:7px 0 0 7px;}
+div.footer div.footer_left div.text {float:left; width:600px; margin:15px 0 0 0;}
+div.footer div.footer_left div.text p {float:left; font:normal 13px Arial; color:#333333; width:100%; margin:0;}
+div.footer div.footer_right {float:right; width:185px; padding:0 15px 0 0; margin:11px 0 0 0; text-align:right; }
 div.footer div.footer_right p {padding:14px 0 0 0;}
 div.footer div.footer_right p a{ font-weight: bold; color: black; text-decoration: none; color: #282a2b; font-family: "Arial"; font-size: 13px;}
 div.footer div.footer_right p a:hover{ color: #ff9933;}
