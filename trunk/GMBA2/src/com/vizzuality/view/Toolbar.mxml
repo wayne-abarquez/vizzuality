@@ -32,8 +32,6 @@
 			
 			public function init():void {
 				
-				//Application.application.stage.addEventListener(FullScreenEvent.FULL_SCREEN, fullScreenHandler);
-				
 					type1.isSelected =(Application.application.vegetation[0]==1)?true:false;
 					type2.isSelected =(Application.application.vegetation[1]==1)?true:false;
 					type3.isSelected =(Application.application.vegetation[2]==1)?true:false;
@@ -47,7 +45,7 @@
 					
 			}
 			
-		    private function fullScreenHandler(evt:FullScreenEvent):void {
+		    public function fullScreenHandler(evt:FullScreenEvent):void {
 
                 if (evt.fullScreen) {
 		        	fullScreenButton.setStyle("styleName","fullScreenIn");
@@ -62,9 +60,11 @@
 	                switch (Application.application.stage.displayState) {
 	                    case StageDisplayState.FULL_SCREEN:
 	                        Application.application.stage.displayState = StageDisplayState.NORMAL;
+	                        fullScreenButton.setStyle("styleName","fullScreenOut");
 	                        break;
 	                    default:
 	                        Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
+	                        fullScreenButton.setStyle("styleName","fullScreenIn");
 	                        break;
 	                }
 	            } catch (err:SecurityError) {

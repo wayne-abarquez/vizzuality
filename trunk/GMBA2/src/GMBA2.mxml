@@ -142,6 +142,7 @@
 				}
 				toolBar.init();
 				MyEventDispatcher.addEventListener(FilterChangedEvent.FILTER_CHANGED,onFilterChange);
+				Application.application.stage.addEventListener(FullScreenEvent.FULL_SCREEN, Application.application.toolBar.fullScreenHandler);
 				
 	    	}
 	    	
