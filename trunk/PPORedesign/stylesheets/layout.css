@@ -19,7 +19,7 @@ div#wide_container {margin:0 auto; width:940px; padding:0;}
 
 div#outer_header{float:left; width:100%; background:url(../images/header/header_bkg.png) repeat-x 0 0; height:56px;}
 div#header{position:relative; width:940px; margin:0 auto; padding:0; height:56px;}
-div#header a.logo{float:left; width:395px; height:35px; background:url(../images/header/logo.png) no-repeat 0 0; margin:8px 0 0 0;}
+div#header a.logo{float:left; width:396px; height:35px; background:url(../images/header/logo.png) no-repeat 0 0; margin:8px 0 0 0;}
 /*div#header a.logo:hover {background-position: 0 -33px;}*/
 
 div#header form {float:right; width:auto; margin:6px 0 0 0; position:relative;}
