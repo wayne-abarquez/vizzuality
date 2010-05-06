@@ -91,6 +91,7 @@
 			private var appInitialized:Boolean=false;
 			
 			public var tracker:AnalyticsTracker;
+			private var mapIsInitialized:Boolean=false;
 	    	
 	    	private function init():void {
 	    		
@@ -139,7 +140,7 @@
 					}
 				}
 				toolBar.init();
-				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.ALL_CHANGE,false));
+				MyEventDispatcher.addEventListener(FilterChangedEvent.FILTER_CHANGED,onFilterChange);
 				
 	    	}
 	    	
@@ -210,6 +211,8 @@
 				
 				//refresh the tiles
 				getStats();
+				mapIsInitialized=true;
+				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.ALL_CHANGE,false));
 		    }	        
 
 		    private function onClickZoomIn():void {
@@ -274,7 +277,7 @@
 		    		event.changeType==FilterChangedEvent.VEGETATION_CHANGE ||
 		    		event.changeType==FilterChangedEvent.ALL_CHANGE
 		    		)
-					&& map.initialize()		    		
+					&& mapIsInitialized	    		
 		    		
 		    		) {
 					   	var rMin:Number = elevation[0]/7889;
@@ -312,7 +315,8 @@
 						
 						rasterTileOverlay.foreground.filters = [filter];			    			
 		    	}
-		    	if(event.changeType==FilterChangedEvent.TAXON_CHANGE || event.changeType==FilterChangedEvent.ALL_CHANGE) {
+		    	if((event.changeType==FilterChangedEvent.TAXON_CHANGE 
+		    	|| event.changeType==FilterChangedEvent.ALL_CHANGE) && mapIsInitialized) {
 		    		if(taxon!=null) {
 			    		taxonRasterLayer.rasterUrl="http://maps|N|.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
 			    		toolBar.taxonBox.taxonName=taxon.name;
