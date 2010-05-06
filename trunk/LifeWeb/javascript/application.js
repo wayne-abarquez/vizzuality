@@ -8,6 +8,7 @@ var white_markers= [];
 var yellow_markers=[];
 var white_style = new Object();
 var yellow_style = new Object();
+var lastMask = 10000;
 
 var e1 = true;
 var e2 = true;
@@ -15,6 +16,8 @@ var e3 = true;
 var e4 = true;
 var e5 = true;
 
+var ppe_infowindow;
+var ppe_layer = false;
 
 function initialize() {
 		var center = new google.maps.LatLng(42.68243539838623, -37.08984375);
@@ -24,9 +27,10 @@ function initialize() {
 			center: center,
 			mapTypeControl:false,
 			navigationControl:false,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			mapTypeId: google.maps.MapTypeId.TERRAIN
 		});
 		
+
 		/*yellow style*/
 		var yellow_array = []
 		
@@ -111,11 +115,16 @@ function initialize() {
 						}
 					});
 
+					
+					
 					map.fitBounds (bounds);
 			  	map.setCenter( bounds.getCenter());
-			
+						
 					cluster1 = new MarkerClusterer(map, white_markers,white_style);
 					cluster2 = new MarkerClusterer(map, yellow_markers,yellow_style);
+					
+					ppe_infowindow = new PPE_Infowindow(new google.maps.LatLng(0,0), null, map);
+
 			
 			 }
 		});
@@ -133,11 +142,33 @@ function initialize() {
 					$('div.filter_markers div').removeClass('clicked');
 					$('div.filter_markers div').addClass('unclicked');						
 				}
-				
-				$('body').trigger('hide_infowindow');
-				
+								
 			}
 		);
+		
+		google.maps.event.addListener(map, 'click', function(ev){ 
+				// console.log(ev);
+				if (ppe_layer) {
+					$.ajax({
+					  url: 'http://www.protectedplanet.net/api2/sites?lat='+ev.latLng.b+'&lng='+ev.latLng.c,
+					  dataType: 'jsonp',
+					  data: null,
+					  success: function(result) {
+						 		console.log(result);
+
+						 }
+					});
+				}
+								
+			}
+		);
+		
+	  // var pixPosition = this.getProjection().fromLatLngToDivPixel(latlng);
+	  // if (!pixPosition) return;
+	  // 
+	  // ppe_infowindow.style.left = (pixPosition.x) + "px";
+	  // ppe_infowindow.style.top = (pixPosition.y) + "px";
+		
 }
 
 $(document).ready(function() {
@@ -211,12 +242,14 @@ $(document).ready(function() {
 			$(this).parent().removeClass('checked');
 			$(this).parent().addClass('unchecked');
 			protected_layer.setMap(map);
-			protected_layer.setStyle(0,{alpha:0});			
+			protected_layer.setStyle(0,{alpha:0});
+			ppe_layer = false;		
 		} else {
 			$(this).parent().removeClass('unchecked');
 			$(this).parent().addClass('checked');
 			protected_layer.setMap(map);
 			protected_layer.setStyle(0,{alpha:.5});	
+			ppe_layer = true;	
 		}
 	});
 	

@@ -1,4 +1,4 @@
-var lastMask = 10000;
+
 
 function Yellow_Marker(latlng,opts,map) {
   google.maps.OverlayView.call(this);
@@ -50,8 +50,7 @@ Yellow_Marker.prototype.createElement = function() {
 	var this_ = this;
   var div = this.div_;
   if (!div) {
-    // This does not handle changing panes.  You can set the map to be null and
-    // then reset the map to move the div.
+	
     div = this.div_ = document.createElement("div");
 		$(div).addClass('marker_infowindow');
     div.style.border = "0px none";
@@ -70,6 +69,21 @@ Yellow_Marker.prototype.createElement = function() {
 	  hiddenDiv.style.height = "125px";
 		hiddenDiv.style.background = "url('images/infowindows/bkg_yellow.png') no-repeat 0 0";
 	  hiddenDiv.style.cursor = "default";
+
+		var close = document.createElement('a');
+		close.style.position = "absolute";
+		close.style.top = '-7px';
+		close.style.right = '-3px'; 
+    close.style.width = "17px";
+    close.style.height = "17px";
+		close.style.background = "url(images/infowindows/close_window.png) no-repeat 0 -17px";
+		$(close).hover(function(ev){
+			$(this).css('background','url(images/infowindows/close_window.png) no-repeat 0 0');
+		}, function(ev){
+			$(this).css('background','url(images/infowindows/close_window.png) no-repeat 0 -17px');
+		});
+		close.style.cursor = "pointer";
+		hiddenDiv.appendChild(close);
 
 
 		var imgDiv = document.createElement('div');
@@ -119,20 +133,7 @@ Yellow_Marker.prototype.createElement = function() {
 		});
 		title.appendChild(link_title);
 		
-		var close = document.createElement('a');
-		close.style.position = "absolute";
-		close.style.top = '-7px';
-		close.style.right = '-3px'; 
-    close.style.width = "17px";
-    close.style.height = "17px";
-		close.style.background = "url(images/infowindows/close_window.png) no-repeat 0 -17px";
-		$(close).hover(function(ev){
-			$(this).css('background','url(images/infowindows/close_window.png) no-repeat 0 0');
-		}, function(ev){
-			$(this).css('background','url(images/infowindows/close_window.png) no-repeat 0 -17px');
-		});
-		close.style.cursor = "pointer";
-		hiddenDiv.appendChild(close);
+
 		
 		
 		hiddenDiv.appendChild(title);

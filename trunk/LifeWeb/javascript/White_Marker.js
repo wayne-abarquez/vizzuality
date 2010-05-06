@@ -1,4 +1,3 @@
-var lastMask = 10000;
 
 function White_Marker(latlng,opts,map) {
   google.maps.OverlayView.call(this);

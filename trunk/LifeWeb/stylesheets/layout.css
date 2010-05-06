@@ -48,6 +48,8 @@ div#map_canvas div.filterButtons div.list div.content li.unchecked a {float:left
 div#map_canvas div.filterButtons div.list div.content li.unchecked p {float:left; font:normal 13px Arial; color:#999999;}
 div#map_canvas div.filterButtons div.list div.bottom {float:left; background:url(../images/bttnFilterLayerBottom_clicked.png) no-repeat 0 0; width:163px; height:9px;}
 
+
+
 /* ---------------- PROJECT --------------- */
 div#wide_container_viz {margin:0 auto; width:940px; padding:0; border:1px solid #E7E7E7;}
 div#header_project_viz {float:left; width:100%; background-color:#FFFFFF; border:1px solid #E7E7E7; border-bottom:none; margin:10px 0 0 0; height:43px;}
@@ -109,17 +111,3 @@ div.map_project div.filterButtons div.list div.content li.checked p {float:left;
 div.map_project div.filterButtons div.list div.content li.unchecked a {float:left; background:url(../images/checkBox_unchecked.png) no-repeat 0 0; width:14px; height:14px; margin:0 5px 0 9px;}
 div.map_project div.filterButtons div.list div.content li.unchecked p {float:left; font:normal 13px Arial; color:#999999;}
 div.map_project div.filterButtons div.list div.bottom {float:left; background:url(../images/bttnFilterLayerBottom_clicked.png) no-repeat 0 0; width:163px; height:9px;}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
