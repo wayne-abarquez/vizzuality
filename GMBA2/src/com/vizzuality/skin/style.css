@@ -39,6 +39,12 @@ Label.labelVegTypes {
 	disabledColor:#666666;
 }
 
+Label.sliderRanges {
+	font-family: 'DINOT-Medium';
+	font-size: 11;
+	color: #666666;
+}
+
 Label.ocurrences {
 	font-family: 'DINOT-Medium';
 	font-size: 11;
