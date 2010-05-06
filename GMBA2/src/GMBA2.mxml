@@ -134,9 +134,9 @@
 						taxon=null;						
 					} else {
 						taxon=new Taxon();	
-						taxon.name=	taxonParams[0];
+						taxon.name=	decodeURI(taxonParams[0]);
 						taxon.id=	taxonParams[1];
-						taxon.rank=	taxonParams[2];
+						taxon.rank=	decodeURI(taxonParams[2]);
 					}
 				}
 				toolBar.init();
@@ -152,6 +152,9 @@
 	    	
 	        private function onMapPreinitialize(event:Event):void {
 	           var opts:MapOptions = new MapOptions({mapType:MapType.PHYSICAL_MAP_TYPE,center:new LatLng(40.73,-3.99),zoom:3});
+	           if(!isNaN(initLat)) {
+	        		opts = new MapOptions({mapType:MapType.PHYSICAL_MAP_TYPE,center:new LatLng(initLat,initLng),zoom:initZoom});
+	           }
 	           map.setInitOptions(opts);
 	           map.addEventListener(MapMoveEvent.MOVE_END,function(event:MapMoveEvent):void {
 					MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.MAP_CHANGE));	           
@@ -162,6 +165,10 @@
 	        }	    
 	        
 		    private function onMapReady(event:Event):void {
+		    	
+		    	//set the status of the map if there were params.
+		    	
+		    	
 				//Taxon Layer
 				taxonRasterLayer= new BasicLayer();
 	    		if(taxon!=null) {
