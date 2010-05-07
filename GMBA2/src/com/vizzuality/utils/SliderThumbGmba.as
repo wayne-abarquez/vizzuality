@@ -19,7 +19,7 @@ package com.vizzuality.utils
         	super();
             initListeners();
             initSprite();
-            spr.visible = false    
+            spr.visible = false;   
             addChild(spr);
             useHandCursor = true;
             buttonMode = true;
@@ -104,6 +104,10 @@ package com.vizzuality.utils
             super.measure();
             measuredWidth = currentSkin.measuredWidth;
             measuredHeight = currentSkin.measuredHeight;
+        }
+        
+        public function showSliderValue():void{
+        	this.spr.visible = true;
         }
 
     }

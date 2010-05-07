@@ -105,7 +105,7 @@ package com.vizzuality.view.preloader
         {
         	/* this.x = 100 ;
         	this.y = 100; */
-             this.x = ((this.stageWidth) / 6) + 100;
+             this.x = ((this.stageWidth) / 6);
              this.y = (this.stageHeight) / 6 - 50;
         }
         
