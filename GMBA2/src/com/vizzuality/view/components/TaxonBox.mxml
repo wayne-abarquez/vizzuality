@@ -113,7 +113,7 @@
 	
 	
 	<mx:VBox horizontalGap="0" verticalGap="0" left="20" top="15" right="20" id="componentsBox" >
-		<mx:HBox verticalAlign="middle">
+		<mx:HBox verticalAlign="middle" horizontalGap="2">
 			<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
 			<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"
 				click="navigateToURL(new URLRequest('http://mountainbiodiversity.org/about.html#taxon'),'_blank')"
