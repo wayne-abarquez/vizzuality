@@ -48,6 +48,7 @@ package com.vizzuality.maps
 					tilesTimer.start();
 				} else {
 					tilesTimer.reset();
+					tilesTimer.start();
 				}
 				pendingTiles++;       
 				MyEventDispatcher.dispatchEvent(new Event(RasterLayer.ENV_TILES_LOADED_PENDING));
@@ -59,8 +60,9 @@ package com.vizzuality.maps
 		
 		public function customTileLoaded():void {
 			pendingTiles--;
+			trace(pendingTiles);
 			
-			if(pendingTiles==0) {
+			if(pendingTiles<1) {
 				tilesTimer.stop();
 				MyEventDispatcher.dispatchEvent(new Event(RasterLayer.ENV_TILES_LOADED));
 			}
@@ -69,6 +71,7 @@ package com.vizzuality.maps
 
 		private function onTileTimer(event:TimerEvent):void {
 			pendingTiles=0;
+			tilesTimer.stop();
 			MyEventDispatcher.dispatchEvent(new Event(RasterLayer.ENV_TILES_LOADED));
 		}
 		

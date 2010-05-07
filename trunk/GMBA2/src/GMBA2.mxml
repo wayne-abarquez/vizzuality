@@ -176,7 +176,7 @@
 	    		if(taxon!=null) {
 		    		taxonRasterLayer.rasterUrl="http://maps|N|.eol.org/php/map/getEolTile.php?tile=|X|_|Y|_|Z|_"+taxon.id;
 	    		} else {
-	    			taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
+	    			taxonRasterLayer.rasterUrl="http://mountainbiodiversity.org/density/z|Z|/|X|/|Y|.png";
 	    		}				
 				taxonRasterTileOverlay= new TileLayerOverlay(taxonRasterLayer);
 				taxonRasterTileOverlay.addEventListener(MapEvent.TILES_LOADED,function(ev:MapEvent):void {
@@ -194,7 +194,7 @@
 		    	shader = new Shader(new RasterFilter() as ByteArray);
 				filter = new ShaderFilter(shader);
 		    	
-				rasterLayer = new RasterLayer("http://d3eawsq20ts9ys.cloudfront.net/env/z|Z|/|X|/|Y|.png");
+				rasterLayer = new RasterLayer("http://mountainbiodiversity.org/env/z|Z|/|X|/|Y|.png");
 				rasterTileOverlay = new TileLayerOverlay(rasterLayer);
 				rasterTileOverlay.foreground.filters=[filter];
 				map.addEventListener(MapMoveEvent.MOVE_START,function(event:MapMoveEvent):void {
@@ -225,14 +225,26 @@
 		    }	        
 
 		    private function onClickZoomIn():void {
-		    	if(map.getZoom()<7) {
+		    	if(map.getZoom()<8) {
 					map.setZoom(map.getZoom()+1);
 		    	} 
+		  		if(map.getZoom()==8) {
+		  			btnZoomIn.alpha=0.3;
+		  		} else {
+		  			btnZoomIn.alpha=1;
+		  			btnZoomOut.alpha=1;
+		  		}
 			}
 			
 			private function onClickZoomOut():void {
 				if(map.getZoom()>1){
 					map.setZoom(map.getZoom()-1);
+				}
+				if(map.getZoom()==1) {
+					btnZoomOut.alpha=0.3;
+				} else {
+					btnZoomOut.alpha=1;
+					btnZoomIn.alpha=1;
 				}
 				
 			}	   
@@ -332,7 +344,7 @@
 			    		toolBar.taxonBox.currentState='SelectedTaxon';
 			    		currentTaxonName=taxon.name;
 		    		} else {
-		    			taxonRasterLayer.rasterUrl="http://d3eawsq20ts9ys.cloudfront.net/gbif/z|Z|/|X|/|Y|.png";
+		    			taxonRasterLayer.rasterUrl="http://mountainbiodiversity.org/density/z|Z|/|X|/|Y|.png";
 			    		toolBar.taxonBox.taxonName="All taxa";
 			    		toolBar.taxonBox.currentState='';
 			    		currentTaxonName="All taxa";
