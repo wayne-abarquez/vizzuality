@@ -36,8 +36,6 @@ div#map_canvas div.leyend div.filter_markers div.unclicked p{float:left; font:bo
 div#map_canvas div.leyend div.filter_markers div.clicked{position:absolute; width:164px; height:29px; background:url(../images/map/bkg_filter_markers_bttm_clicked.png) no-repeat 0 0; right:0px; bottom:0px;}
 
 
-
-
 div#map_canvas div.filterButtons div.layers_overlay {position:absolute; top:11px; right:17px; text-decoration:none;}
 div#map_canvas div.filterButtons div.unclicked div.left {float:left; background:url(../images/map/bttnFilterLayerLeft.png) no-repeat 0 0; width:4px; height:24px;}
 div#map_canvas div.filterButtons div.unclicked div.center {float:left; background-color:#FFFFFF; border:1px solid #3086A3; border-left:none; border-right:none; height:22px; width:96px;}
@@ -184,7 +182,7 @@ div.big_loader img {margin:8px 0 0 21px}
 
 div.modal {position:absolute; top:10px; left:10px; width:855px; height:353px; background-color:#FFFFFF; z-index:2000; opacity:0.7; display:none;}
 div.map_carbon_container div.modal {position:absolute; top:0; left:0; width:100%; height:100%; background-color:#FFFFFF; z-index:2000; opacity:0.7; display:none;}
-div.modal_window {position:absolute; display:none; z-index:2000; width:456px; height:171px; padding:44px 44px 20px 44px; left:160px; top:75px; background:url(../images/calculator/done_window_bkg.png) no-repeat 0 0; }
+div.modal_window {position:absolute; display:none; z-index:2000; width:456px; height:251px; padding:44px 44px 20px 44px; left:160px; top:75px; background:url(../images/calculator/done_window_bkg.png) no-repeat 0 0; }
 div.modal_window h4 {float:left; font:bold 19px Arial; color:#666666; letter-spacing:-1px; width:100%; margin:0; padding:0 0 15px;}
 div.modal_window div.image {position:relative; float:left; width:127px; margin:0 12px 0 0;}
 div.modal_window div.image img {padding:5px; border:1px solid #F2F2F2; border-top:none; width:115px; height:75px;}
@@ -198,4 +196,8 @@ div.modal_window a.another:hover {background-position:0 -35px;}
 div.modal_window a.get_more {float:left; width:auto; padding:3px 0 0 0; margin:0 0 0 75px; text-align:center; font:normal 11px Arial; color:#999999; text-decoration:underline; line-height:19px;}
 div.modal_window a.get_more:hover {color:#666666;}
 
-span.map_shadow {position:absolute; bottom:-7px; left:0; width:875px; height:6px; background:url(../images/calculator/shadow.png) no-repeat 0 0;}>>>>>>> .r4053
+div.modal_window p.bottom {float:left; margin:43px 0 0 0; font:normal 13px Arial; color:#999999; line-height:16px;}
+div.modal_window p.bottom a {color:#4C87A3;}
+div.modal_window p.bottom a:hover {text-decoration:none;}
+
+span.map_shadow {position:absolute; bottom:-7px; left:0; width:875px; height:6px; background:url(../images/calculator/shadow.png) no-repeat 0 0;}
