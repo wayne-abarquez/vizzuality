@@ -57,7 +57,7 @@ div.data_project_viz div.content_left p.info {float:left; font:normal 13px Arial
 div.data_project_viz div.content_left div.data_info {float:left; width:155px; margin:20px 0 0 0;}
 div.data_project_viz p.about {float:left; font:normal 10px Arial; color:#999999; text-transform:uppercase; margin:0; width:100%;}
 div.data_project_viz div.content_left div.data_info p.info_data {float:left; font:bold 13px Arial; color:#666666; margin:0;}
-div.data_project_viz div.content_left div.scope {float:left; width:100%; margin:20px 0 0 0;}
+div.data_project_viz div.content_left div.wide_info {float:left; width:100%; margin:15px 0 0 0;}
 
 div.data_project_viz div.valorations {float:left; width:100%; margin:0px 0px 20px 0px;}
 div.data_project_viz div.valorations div.valoration {float:left; width:135px; margin:0 0 0 22px;}
@@ -71,9 +71,9 @@ div.data_project_viz div.valorations div.valoration div.green_star_three {float:
 div.data_project_viz div.valorations div.valoration div.green_star_four {float:left; background:url(../images/project/green_stars_four.png) no-repeat 0 0; width:114px; height:22px;}
 
 div.data_project_viz div.content_right {float:right; width:450px; position:relative;}
-div.data_project_viz div.map_project {position:absolute; top:-13px; right:28px; background:url(../images/project/bkgProjectMapShadow.png) no-repeat 0 0; width:433px; height:267px;}
+div.data_project_viz div.map_project {position:absolute; top:22px; right:22px; background:url(../images/project/bkgProjectMapShadow.png) no-repeat 0 0; width:429px; height:268px;}
 
-div.map_project div#map {float:left; width:414px; height:251px; z-index:100; margin:0px 2px 0 9px;}
+div.map_project div#map {float:left; width:413px; height:251px; z-index:100; margin:6px 0px 0 8px;}
 div.map_project div.filterButtons a {text-decoration:none;}
 div.map_project div.filterButtons div.filter_markers {position:absolute; top:11px; right:145px; text-decoration:none;}
 div.map_project div.filterButtons div.layers_overlay {position:absolute; top:11px; right:17px; text-decoration:none;}
