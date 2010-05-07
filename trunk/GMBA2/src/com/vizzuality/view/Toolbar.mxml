@@ -161,7 +161,7 @@
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
 			<mx:VBox id="vBoxRoughness" verticalGap="0" left="12" top="15" width="100%">
 				
-				<mx:HBox paddingLeft="8" verticalAlign="middle">
+				<mx:HBox paddingLeft="8" verticalAlign="middle" horizontalGap="2">
 					<mx:Label text="ELEVATION BELT" color="#FFFFFF" fontWeight="normal" fontSize="13"  toolTip="Taken from WorldClim. To avoid climatic bias along the latitudinal gradient, better use thermal belts, or restrict elevation only on a regional scale (e.g. at the highest zoom level)"/>
 					<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"
 						 click="navigateToURL(new URLRequest('http://mountainbiodiversity.org/about.html#elevation'),'_blank')"
@@ -190,7 +190,7 @@
 		<!--VEGETATION-->
 		<mx:Canvas width="100%" height="240">
 			<mx:VBox verticalGap="0" left="20" top="15" right="5">
-				<mx:HBox verticalAlign="middle">
+				<mx:HBox verticalAlign="middle" horizontalGap="2">
 					<mx:Label text="THERMAL BELTs" color="#FFFFFF" fontWeight="normal" fontSize="13" toolTip="Based on temperature data from WORLDCLIM. Thermal belts seperate elevational life zones by temperature only, permitting global comparisons across latitudes" />
 					<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"
 						click="navigateToURL(new URLRequest('http://mountainbiodiversity.org/about.html#thermal_belts'),'_blank')"
