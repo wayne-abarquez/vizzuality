@@ -46,10 +46,10 @@ div#map_canvas div.filterButtons div.list div.bottom {float:left; background:url
 
 
 /* ---------------- PROJECT --------------- */
-div#wide_container_viz {margin:0 auto; width:940px; padding:0; border:1px solid #E7E7E7;}
+div#wide_container_viz {margin:0 auto; width:940px; padding:0; }
 div#header_project_viz {float:left; width:100%; background-color:#FFFFFF; border:1px solid #E7E7E7; border-bottom:none; margin:10px 0 0 0; height:43px;}
 div#header_project_viz p {float:left; font:bold 11px Arial; color:#CCCCCC; text-transform:uppercase; margin:15px 0 5px 22px; }
-div.data_project_viz {float:left; width:940px; background-color:#F4F4F6; margin:0; border:1px solid #E7E7E7; border-top:none; border-bottom:none;} 
+div.data_project_viz {float:left; width:940px; background-color:#F4F4F6; margin:0; border:1px solid #E7E7E7; border-top:none;} 
 div.data_project_viz div.content_left {float:left; width:445px; margin:22px;}
 div.data_project_viz div.content_left p.title {float:left; font:bold 19px Arial; color:#333333; width:100%; margin:0 0 5px 0;}
 
