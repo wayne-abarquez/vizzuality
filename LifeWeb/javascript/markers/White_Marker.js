@@ -141,7 +141,7 @@ White_Marker.prototype.createElement = function() {
 		country.style.margin = '2px 0 0 132px';
 		country.style.font = 'normal 13px Arial';
 		country.style.color = '#999999';
-		if (this.information_.funding!=null || this.information_.funding!='undefined') {
+		if (this.information_.funding!=null || this.information_.funding!=undefined) {
 			$(country).html(this.information_.country + '. '+this.information_.funding+'$');
 		} else {
 			$(country).html(this.information_.country);
@@ -153,7 +153,7 @@ White_Marker.prototype.createElement = function() {
 		good_div.style.margin = '5px 0 0 132px';
 		good_div.style.position = "relative";
 		good_div.style.float = "left";
-	  good_div.style.width = "180px";
+	  good_div.style.width = "193px";
 		
 		var good_for = document.createElement('img');
 		good_for.style.float = 'left';
@@ -218,7 +218,7 @@ White_Marker.prototype.createElement = function() {
 	
 		var donor_div = document.createElement('div');
 		donor_div.style.float = "left";
-		donor_div.style.margin = '3px 0 0 10px';
+		donor_div.style.margin = '7px 0 0 10px';
 		donor_div.style.position = "relative";
 	  donor_div.style.width = "315px";
 		
