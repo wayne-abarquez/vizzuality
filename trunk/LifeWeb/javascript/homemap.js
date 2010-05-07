@@ -2,6 +2,7 @@
 var map;
 var protected_layer;
 var carbon_layer;
+var kba_layer;
 var cluster1;
 var cluster2;
 var white_markers= [];
@@ -86,6 +87,16 @@ function initialize() {
 		    	return u;
 		    };
 		carbon_layer.setMap(map);
+		carbon_layer.setStyle(0,{alpha:0.5});
+		
+		kba_layer=new SparseTileLayerOverlay();
+		    kba_layer.setUrl = function SetUrl(xy,z){
+		    	var u=[];
+		    	u[0]= 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/KBA/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x;
+		    	return u;
+		    };
+		kba_layer.setMap(null);
+		kba_layer.setStyle(0,{alpha:0});
 		
 		protected_layer=new SparseTileLayerOverlay();
 		    protected_layer.setUrl = function SetUrl(xy,z){
@@ -269,6 +280,21 @@ $(document).ready(function() {
 			protected_layer.setMap(map);
 			protected_layer.setStyle(0,{alpha:.5});	
 			ppe_layer = true;	
+		}
+	});
+	
+	$('#kba_layer').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			kba_layer.setStyle(0,{alpha:0});
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			kba_layer.setMap(map);
+			kba_layer.setStyle(0,{alpha:.5});	
 		}
 	});
 	

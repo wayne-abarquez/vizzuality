@@ -51,7 +51,7 @@ Yellow_Marker.prototype.createElement = function() {
   var div = this.div_;
   if (!div) {
 	
-    div = this.div_ = document.createElement("div");
+		div = this.div_ = document.createElement("div");
 		$(div).addClass('marker_infowindow');
     div.style.border = "0px none";
     div.style.position = "absolute";
@@ -63,13 +63,13 @@ Yellow_Marker.prototype.createElement = function() {
 		var hiddenDiv = document.createElement('div');
 		hiddenDiv.style.position = "absolute";
 		hiddenDiv.style.display = 'none';
-		hiddenDiv.style.top = '-107px';
+		hiddenDiv.style.top = '-110px';
 		hiddenDiv.style.left = '-147px'; 
-	  hiddenDiv.style.width = "342px";
-	  hiddenDiv.style.height = "125px";
+    hiddenDiv.style.width = "342px";
+    hiddenDiv.style.height = "170px";
 		hiddenDiv.style.background = "url('images/infowindows/bkg_yellow.png') no-repeat 0 0";
-	  hiddenDiv.style.cursor = "default";
-
+		hiddenDiv.style.cursor = 'default';
+		
 		var close = document.createElement('a');
 		close.style.position = "absolute";
 		close.style.top = '-7px';
@@ -84,8 +84,7 @@ Yellow_Marker.prototype.createElement = function() {
 		});
 		close.style.cursor = "pointer";
 		hiddenDiv.appendChild(close);
-
-
+	
 		var imgDiv = document.createElement('div');
 		imgDiv.style.position = "absolute";
 		imgDiv.style.top = '13px';
@@ -94,7 +93,7 @@ Yellow_Marker.prototype.createElement = function() {
 		imgDiv.style.height = "83px";
 		imgDiv.style.border = '1px solid #CCCCCC';
 		hiddenDiv.appendChild(imgDiv);
-
+	
 		var image_place = document.createElement("img");
 		image_place.style.position = "absolute";
 		image_place.style.float = 'left';
@@ -110,7 +109,7 @@ Yellow_Marker.prototype.createElement = function() {
 
 		var title = document.createElement('p');
 		title.style.float = "left";
-		title.style.margin = '15px 0 0 132px';
+		title.style.margin = '12px 0 0 132px';
 		title.style.padding = '0';
 	  title.style.width = "189px";
 		title.style.height = "37px";
@@ -119,6 +118,7 @@ Yellow_Marker.prototype.createElement = function() {
 		var link_title = document.createElement('a');
 		link_title.style.font = 'bold 15px Arial';
 		link_title.style.color = '#006699';
+		link_title.style.lineHeight = '13px';
 		if (this.information_.title.length>40) {
 			$(link_title).text(this.information_.title.substr(0,40)+'...');
 		} else {
@@ -133,11 +133,8 @@ Yellow_Marker.prototype.createElement = function() {
 		});
 		title.appendChild(link_title);
 		
-
-		
-		
 		hiddenDiv.appendChild(title);
-
+		
 		var country = document.createElement('p');
 		country.style.float = "left";
 		country.style.padding = '0';
@@ -145,9 +142,14 @@ Yellow_Marker.prototype.createElement = function() {
 		country.style.margin = '2px 0 0 132px';
 		country.style.font = 'normal 13px Arial';
 		country.style.color = '#999999';
-		$(country).html('Palau. 396,250$ required');
+		if (this.information_.funding!=null || this.information_.funding!='undefined') {
+			$(country).html(this.information_.country + '. '+this.information_.funding+'$');
+		} else {
+			$(country).html(this.information_.country);
+		}
 		hiddenDiv.appendChild(country);
-		
+	
+	
 		var good_div = document.createElement('div');
 		good_div.style.margin = '5px 0 0 132px';
 		good_div.style.position = "relative";
@@ -166,42 +168,52 @@ Yellow_Marker.prototype.createElement = function() {
 		image_air.style.float = 'left';
 	  image_air.style.width = "auto";
 	  image_air.style.height = "auto";
-		image_air.style.padding = "3px 0 0 5px";
+		image_air.style.padding = "3px 0 0 3px";
 		image_air.src = './images/infowindows/air.png';
-		good_div.appendChild(image_air);
+		if (this.information_.ecosystem_service.e1) {
+			good_div.appendChild(image_air);
+		}
 		
 		var image_oil = document.createElement("img");
 		image_oil.style.float = 'left';
 	  image_oil.style.width = "auto";
 	  image_oil.style.height = "auto";
-		image_oil.style.padding = "3px 0 0 5px";
+		image_oil.style.padding = "3px 0 0 3px";
 		image_oil.src = './images/infowindows/oil.png';
-		good_div.appendChild(image_oil);
+		if (this.information_.ecosystem_service.e2) {
+			good_div.appendChild(image_oil);
+		}
 		
 		var image_food = document.createElement("img");
 		image_food.style.float = 'left';
 	  image_food.style.width = "auto";
 	  image_food.style.height = "auto";
-		image_food.style.padding = "3px 0 0 5px";
+		image_food.style.padding = "3px 0 0 3px";
 		image_food.src = './images/infowindows/food.png';
-		good_div.appendChild(image_food);
-		
-		var image_climate = document.createElement("img");
-		image_climate.style.float = 'left';
-	  image_climate.style.width = "auto";
-	  image_climate.style.height = "auto";
-		image_climate.style.padding = "3px 0 0 5px";
-		image_climate.src = './images/infowindows/climate.png';
-		good_div.appendChild(image_climate);
+		if (this.information_.ecosystem_service.e3) {
+			good_div.appendChild(image_food);
+		}
 		
 		var image_water = document.createElement("img");
 		image_water.style.float = 'left';
 	  image_water.style.width = "auto";
 	  image_water.style.height = "auto";
-		image_water.style.padding = "3px 0 0 5px";
+		image_water.style.padding = "3px 0 0 3px";
 		image_water.src = './images/infowindows/water.png';
-		good_div.appendChild(image_water);
-	
+		if (this.information_.ecosystem_service.e5) {
+			good_div.appendChild(image_water);
+		}
+		
+		var image_climate = document.createElement("img");
+		image_climate.style.float = 'left';
+	  image_climate.style.width = "auto";
+	  image_climate.style.height = "auto";
+		image_climate.style.padding = "3px 0 0 3px";
+		image_climate.src = './images/infowindows/climate.png';
+		if (this.information_.ecosystem_service.e4) {
+			good_div.appendChild(image_climate);
+		}
+
 		hiddenDiv.appendChild(good_div);
 	
 
@@ -234,11 +246,11 @@ Yellow_Marker.prototype.createElement = function() {
 						if (this_.map_.getZoom()<6) {
 							this_.map_.setCenter(this_.latlng_);
 							this_.map_.setZoom(6);
-							this_.map_.panBy(0,-115);
+							this_.map_.panBy(0,-70);
 						} else {
 							if (!$(this).children('div').is(':visible')) {
 								this_.map_.setCenter(this_.latlng_);
-								this_.map_.panBy(0,-115);
+								this_.map_.panBy(0,-70);
 							}
 						}
 					}
