@@ -113,7 +113,11 @@
 	
 	
 	<mx:VBox horizontalGap="0" verticalGap="0" left="20" top="15" right="20" id="componentsBox" >
-		<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
+		<mx:HBox verticalAlign="middle">
+			<mx:Label text="TAXON" color="#FFFFFF" fontWeight="normal" fontSize="13" />
+			<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
+		</mx:HBox> 
+		
 		<mx:Spacer height="5"/>
 		<mx:Canvas backgroundImage="{Resource.SEARCH}" width="100%" backgroundSize="100%" id="search_as_you_type" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 			<mx:HBox width="100%" horizontalGap="0" styleName="taxon" backgroundSize="100%" paddingTop="5" paddingBottom="5" verticalCenter="0" horizontalAlign="center" verticalAlign="top" 

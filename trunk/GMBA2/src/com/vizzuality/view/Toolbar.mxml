@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="606" minWidth="230"
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="522" minWidth="230"
 	borderThickness="0" verticalScrollPolicy="off" horizontalScrollPolicy="off" xmlns:components="com.vizzuality.view.components.*">
 	<mx:VBox height="100%"  width="100%" verticalGap="0" right="0" left="0">
 	
@@ -13,8 +13,8 @@
 
 		
 		<!--ALTITUDE-->
-		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
-			<mx:VBox verticalGap="0" left="12" top="15" width="100%">
+		<!--<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
+			<mx:VBox verticalGap="0" left="12" top="15" width="100%">-->
 				<mx:Script>
 		<![CDATA[
 			import com.vizzuality.events.FilterChangedEvent;
@@ -41,7 +41,7 @@
 					type7.isSelected =(Application.application.vegetation[6]==1)?true:false;
 					type8.isSelected =(Application.application.vegetation[7]==1)?true:false;
 					sliderAltitude.values = Application.application.elevation;
-					sliderRoughness.values = Application.application.relief;
+					//sliderRoughness.values = Application.application.relief;
 					
 			}
 			
@@ -130,13 +130,13 @@
 				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.ELEVATION_CHANGE,changeUrl));
 			}
 			private function onReliefChange(changeUrl:Boolean):void {
-				Application.application.relief = sliderRoughness.values;
+				//Application.application.relief = sliderRoughness.values;
 				MyEventDispatcher.dispatchEvent(new FilterChangedEvent(FilterChangedEvent.FILTER_CHANGED,FilterChangedEvent.RELIEF_CHANGE,changeUrl));
 			}
 			
 		]]>
 	</mx:Script>
-	<mx:Label text="RUGGEDNESS > 200 m" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8" toolTip="Maximal elevational difference of 200 m or more among neighboring gridpoints on the 30” grid of WORLDCLIM"/>
+		<!--<mx:Label text="RUGGEDNESS > 200 m" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8" toolTip="Maximal elevational difference of 200 m or more among neighboring gridpoints on the 30” grid of WORLDCLIM"/>
 		<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 					<mx:VRule strokeColor="#666666" strokeWidth="1" height="3" left="13" top="16"/>
 					<mx:VRule strokeColor="#666666" strokeWidth="1" height="3" right="25" top="16"/>
@@ -154,13 +154,16 @@
 			</mx:VBox>
 			<mx:HRule top="0" left="2" right="0" strokeColor="#424243" strokeWidth="1" />
 			<mx:HRule bottom="0" left="2" right="0" strokeColor="#000000" strokeWidth="1"/>
-		</mx:Canvas>
+		</mx:Canvas>-->
 		
 		<!--ROUGHNESS-->
 		<mx:Canvas verticalScrollPolicy="off" horizontalScrollPolicy="off" width="100%" height="81">
-			<mx:VBox verticalGap="0" left="12" top="15" width="100%">
+			<mx:VBox id="vBoxRoughness" verticalGap="0" left="12" top="15" width="100%">
 				
-				<mx:Label text="ELEVATION BELT" color="#FFFFFF" fontWeight="normal" fontSize="13" paddingLeft="8" toolTip="Taken from WorldClim. To avoid climatic bias along the latitudinal gradient, better use thermal belts, or restrict elevation only on a regional scale (e.g. at the highest zoom level)"/>
+				<mx:HBox paddingLeft="8" verticalAlign="middle">
+					<mx:Label text="ELEVATION BELT" color="#FFFFFF" fontWeight="normal" fontSize="13"  toolTip="Taken from WorldClim. To avoid climatic bias along the latitudinal gradient, better use thermal belts, or restrict elevation only on a regional scale (e.g. at the highest zoom level)"/>
+					<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
+				</mx:HBox> 
 				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 					<mx:VRule strokeColor="#666666" strokeWidth="1" height="3" left="13" top="16"/>
 					<mx:VRule strokeColor="#666666" strokeWidth="1" height="3" right="25" top="16"/>
@@ -171,7 +174,7 @@
 						thumbCount="2" liveDragging="true" 
 						sliderThumbClass="{SliderThumbGmba}"
 						change="onElevationChange(false)"
-						 thumbRelease="onElevationChange(true)"
+						thumbRelease="onElevationChange(true)"
 						showTrackHighlight="true" snapInterval="30"/>
 				</mx:Canvas>
 				
@@ -184,8 +187,13 @@
 		<!--VEGETATION-->
 		<mx:Canvas width="100%" height="240">
 			<mx:VBox verticalGap="0" left="20" top="15" right="5">
-				<mx:Label text="THERMAL BELTs" color="#FFFFFF" fontWeight="normal" fontSize="13" toolTip="Based on temperature data from WORLDCLIM. Thermal belts seperate elevational life zones by temperature only, permitting global comparisons across latitudes" />
-				<mx:VBox verticalGap="1" width="100%">
+				<mx:HBox verticalAlign="middle">
+					<mx:Label text="THERMAL BELTs" color="#FFFFFF" fontWeight="normal" fontSize="13" toolTip="Based on temperature data from WORLDCLIM. Thermal belts seperate elevational life zones by temperature only, permitting global comparisons across latitudes" />
+					<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
+				</mx:HBox> 
+				
+				
+				<mx:VBox verticalGap="1" width="100%" paddingBottom="5">
 					<mx:Spacer height="5" />
 					<components:ChooseVegetableType id="type1" selectedColor="#dddddd" unselectedColor="#6B6C6C" textType="Total mountain area"
 					 isSelected="true" vegTypeButton="{ChooseVegetableType.ALL}"/>
@@ -196,6 +204,11 @@
 						isSelected="true" vegTypeButton="{ChooseVegetableType.UPPER_ALPINE}" />
 					<components:ChooseVegetableType id="type4" selectedColor="#79BA5C" unselectedColor="#3C5C2E" textTooltip="Season length &lt; 94 days or season mean &lt; 6.4 degrees C" textType="Lower alpine"
 						isSelected="true" vegTypeButton="{ChooseVegetableType.LOWER_ALPINE}" />
+				</mx:VBox>
+					
+				<mx:Image source="{Resource.TREE_LINE}" width="194" height="8"/>
+					
+				<mx:VBox verticalGap="1" width="100%" paddingTop="5">	
 					<components:ChooseVegetableType id="type5" selectedColor="#3E6B2A" unselectedColor="#2C4C1E" textTooltip="Season length &gt;= 94 days and season mean between 6.4 and 10 degrees C" textType="Upper montane"
 						isSelected="true" vegTypeButton="{ChooseVegetableType.UPPER_MOUNTANE}" />
 					<components:ChooseVegetableType id="type6" selectedColor="#A68C2D" unselectedColor="#6A5A1E" textTooltip="Season length &gt;= 94 days and seasonal mean temperature between 10 and 15 degrees C" textType="Lower montane"

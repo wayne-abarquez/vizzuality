@@ -403,19 +403,19 @@
 				<mx:HRule left="0" strokeColor="#424243" strokeWidth="1" width="236"/>
 				<mx:Image source="{Resource.DOWN_ARROW}" width="16" height="9" top="0" left="17"/>
 				
-				<mx:HBox top="2" right="22" id="hBoxOcurrences" width="193" horizontalAlign="right" horizontalGap="0" verticalAlign="middle" height="26">
+				<mx:HBox top="15" right="22" id="hBoxOcurrences" width="193" horizontalAlign="right" horizontalGap="0" verticalAlign="middle" height="26">
 					<mx:SWFLoader width="11" height="11" source="@Embed('/assets/loaderGray.swf')" id="loadingOcurrences" visible="false"/>
 					<mx:Label id="ocurrencesLabel" styleName="ocurrences" text="{nf.format(ocurrences)}" horizontalCenter="right" textAlign="right" paddingTop="4"/>
 					<mx:Label styleName="ocurrences" text="OCURRENCES" paddingTop="3"/>	
 				</mx:HBox>
 				
 
-				<utils:ShadowButton left="21" top="25" width="191"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
+				<utils:ShadowButton left="21" top="38" width="191"  height="32" label="Download data" color="#FFFFFF" fontSize="17" fontWeight="normal"
 					useHandCursor="true" mouseChildren="false" buttonMode="true" styleName="download" click="onClickDownload()"/>
 			</mx:Canvas>
 		</mx:VBox>
 		
-		<mx:Canvas backgroundColor="#121213" right="0" left="236" top="636" height="100%">
+		<mx:Canvas backgroundColor="#121213" right="0" left="236" top="520" height="100%">
 				<mx:HRule top="0" width="100%" strokeColor="#000000" strokeWidth="1"/>
 				<mx:HRule top="1" width="100%" left="0" strokeColor="#424243" strokeWidth="1" />
 		</mx:Canvas>		

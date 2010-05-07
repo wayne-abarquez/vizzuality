@@ -10,6 +10,9 @@ package com.vizzuality.utils
         [Embed (source="assets/arrow.png" )]
         public static const ARROW:Class;
         
+        [Embed(source="assets/questionSymbol.png")]
+	    public static const QUESTION_SYMBOL:Class;
+	    
         [Embed (source="assets/downArrow.png" )]
         public static const DOWN_ARROW:Class;
         
@@ -33,6 +36,9 @@ package com.vizzuality.utils
 	    
 		[Embed (source="assets/ajax-loader.gif" )]
 	    public static const DOWNLOAD_LOADER:Class;
+	    
+	    [Embed (source="assets/tree_line.png" )]
+	    public static const TREE_LINE:Class;
 	    
 		[Embed (source="assets/loaderGrayInput.swf" )]
 	    public static const ANIMATION:Class;

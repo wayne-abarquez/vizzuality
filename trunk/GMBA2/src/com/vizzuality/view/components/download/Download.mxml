@@ -49,7 +49,7 @@
 			<mx:SetStyle target="{label2}" name="verticalCenter" value="-53"/>
 			<mx:AddChild position="lastChild">
 				<mx:HBox id="hbox3" y="170" horizontalCenter="0" horizontalGap="0">
-					<mx:Button label="Click here"  id="button1" paddingLeft="0" paddingRight="0" paddingBottom="2" paddingTop="0" fontFamily="Arial" fontSize="13" styleName="linkButton" click="navigateToDownload()"/>
+					<mx:Button label="Click here"  id="button1" paddingLeft="0" paddingRight="0" paddingBottom="2" paddingTop="0" fontFamily="Arial" fontSize="13" styleName="linkButton" click="navigateToDownload()" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 					<mx:Label text="if your download does not start automatically in 3 seconds."  id="label5" color="#FFFFFF" fontSize="13" fontFamily="Arial"/>
 				</mx:HBox>
 			</mx:AddChild>
@@ -183,7 +183,7 @@
 			
 			
 			public function setPosition(widthMap:Number, heightMap:Number, widthToolBar:Number):void{
-				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar;
+				this.x = (widthMap / 2) - (this.width / 2) + widthToolBar + 25;
 				this.y = (heightMap / 2) - (this.height / 2);
 				
 				this.widthMap = widthMap;
@@ -357,7 +357,7 @@
 				//var sizeDownloading:String = ((this.ocurrences * 63) / 1024).toPrecision(3);
 				var bytes:Number =(this.ocurrences * 63);
 				
-				var s:Array = ['bytes', 'kb', 'MB', 'GB', 'TB', 'PB'];
+				var s:Array = ['B', 'Kb', 'MB', 'GB', 'TB', 'PB'];
     			var e:Number = Math.floor( Math.log( bytes ) / Math.log( 1024 ) );
     			var sizeDownloading:String = ( bytes / Math.pow( 1024, Math.floor( e ) ) ).toFixed( 1 ) + s[e];
 
