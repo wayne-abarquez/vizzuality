@@ -1,6 +1,6 @@
 body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
 img,fieldset{border:none; padding:0; margin:0;}
-
+ul{list-style:none;}
 
 
 div#outer_layout {float:left; width:100%;}
@@ -101,3 +101,79 @@ div.map_project div.filterButtons div.list div.content li.checked p {float:left;
 div.map_project div.filterButtons div.list div.content li.unchecked a {float:left; background:url(../images/map/checkBox_unchecked.png) no-repeat 0 0; width:14px; height:14px; margin:0 5px 0 9px;}
 div.map_project div.filterButtons div.list div.content li.unchecked p {float:left; font:normal 13px Arial; color:#999999;}
 div.map_project div.filterButtons div.list div.bottom {float:left; background:url(../images/map/bttnFilterLayerBottom_clicked.png) no-repeat 0 0; width:163px; height:9px;}
+
+
+
+/*CALCULATOR MAPS*/
+
+div.map_carbon_form_container {position:relative; width:855px; height:353px; background:white; padding:10px; border:1px solid #F2F2F2; margin:0;}
+div.map_carbon_container {position:absolute; left:0; top:0; width:100%; height:100%; background:white; padding:0; margin:0;}
+p.madeby {float:left; padding:8px 0 0 15px; margin:0; font:normal 12px Arial; color:#999999; font-style:italic;}
+p.madeby a {color:#999999;}
+p.madeby a:hover {color:#666666;}
+
+div#map {width:100%; height:100%; float:left;}
+
+div#carbon_text {position:absolute; top:40px; right:20px;}
+div#carbon_text p {width:100%; color:red; text-align:right;}
+
+div#map_tools {position:absolute; bottom:10px; right:10px; z-index:1000; width:277px; height:107px; background:url(../images/calculator/float.png) no-repeat 0 0; padding:0 6px 6px;}
+div#map_tools h3 {float:left; font:bold 13px Arial; color:#99B3C9; margin:0; padding:7px 0 0 0;}
+div#map_tools span {float:right; font:bold 13px Arial; color:#FFFFFF; padding:0 13px 0 0; line-height:30px; height:28px;}
+div#map_tools span sup {font-size:7px;}
+div#map_tools div {float:left; margin:18px 0 0 0;}
+div#map_tools div a:focus {outline:none;}
+div#map_tools div a#select {float:left; width:82px; height:45px; background:url(../images/calculator/edit_polygon.png) no-repeat 0 2px; margin:0 0 0 4px;}
+div#map_tools div a#select:hover {background-position:0 -45px;}
+div#map_tools div a#select.selected {background-position: 0 -45px;}
+div#map_tools div a#select.selected:hover {background-position:0 -45px;}
+div#map_tools div a#remove {float:left; width:82px; height:45px; background:url(../images/calculator/remove_vertex.png) no-repeat 0 2px; margin:0 0 0 7px;}
+div#map_tools div a#remove:hover {background-position:0 -45px;}
+div#map_tools div a#remove.selected {background-position: 0 -45px;}
+div#map_tools div a#remove.selected:hover {background-position:0 -45px;}
+div#map_tools div a#draw {float:left; width:82px; height:45px; background:url(../images/calculator/draw_polygon.png) no-repeat 0 2px; margin:0 0 0 7px;}
+div#map_tools div a#draw:hover {background-position:0 -45px;}
+div#map_tools div a#draw.selected {background-position: 0 -45px;}
+div#map_tools div a#draw.selected:hover {background-position:0 -45px;}
+div#map_tools div a#done {float:left; width:82px; height:45px; margin:0 0 0 7px; background:url(../images/calculator/done_geometry.png) no-repeat 0 0;}
+div#map_tools div a#done:hover {background-position:0 -45px;}
+div#map_tools div a#done.disabled {background:url(../images/calculator/done_geometry.png) no-repeat 0 -90px;}
+div#map_tools div a#done.disabled:hover {background-position:0 -90px;}
+
+div#geocoder {position:absolute; top:15px; left:15px; width:275px; height:25px; background:url(../images/calculator/geocoder.png) no-repeat 0 0; padding:4px; z-index:200;}
+div#geocoder a#zoom_in {background:url(../images/calculator/zoom_in.png) no-repeat 0 0; float:left; width:25px; height:25px; margin:0 4px 0 0;}
+div#geocoder a#zoom_in:hover {background-position:0 -25px;}
+div#geocoder a#zoom_out {background:url(../images/calculator/zoom_out.png) no-repeat 0 0; float:left; width:25px; height:25px;}
+div#geocoder a#zoom_out:hover {background-position:0 -25px;}
+div#geocoder form {float:left; width:201px; height:26px; background:url(../images/calculator/form.png) no-repeat 0 0; margin:0 0 0 12px; padding:3px 4px 4px;}
+div#geocoder form input {border:0; background:none;}
+div#geocoder form input:focus {outline:none;}
+div#geocoder form input[type='text'] {float:left; font:normal 13px Arial; font-style:italic; color:#999999; width:175px;}
+div#geocoder form input[type='submit'] {float:left; background:url(../images/calculator/len.png) no-repeat 0 0; width:15px; height:15px; margin:3px 0 0 8px;}
+div#geocoder form input[type='submit']:hover {cursor:pointer;}
+
+div.map_tooltip {position:absolute; width:140px; height:40px; background:url(../images/calculator/tooltip.png) no-repeat 0 0; padding:20px 10px 0 33px; z-index:300; display:none;}
+div.map_tooltip p {padding:0; margin:0; font:normal 13px Arial; color:#333333;}
+div#not_found {top:30px; left:200px;}
+
+div.big_loader {position:absolute; width:60px; height:30px; background:url(../images/calculator/loader_bkg.png) no-repeat 0 0; top:17px; left:400px; display:none;}
+div.big_loader img {margin:8px 0 0 21px}
+
+
+div.modal {position:absolute; top:10px; left:10px; width:855px; height:353px; background-color:#FFFFFF; z-index:2000; opacity:0.7; display:none;}
+div.map_carbon_container div.modal {position:absolute; top:0; left:0; width:100%; height:100%; background-color:#FFFFFF; z-index:2000; opacity:0.7; display:none;}
+div.modal_window {position:absolute; display:none; z-index:2000; width:456px; height:171px; padding:44px 44px 20px 44px; left:160px; top:75px; background:url(../images/calculator/done_window_bkg.png) no-repeat 0 0; }
+div.modal_window h4 {float:left; font:bold 19px Arial; color:#666666; letter-spacing:-1px; width:100%; margin:0; padding:0 0 15px;}
+div.modal_window div.image {position:relative; float:left; width:127px; margin:0 12px 0 0;}
+div.modal_window div.image img {padding:5px; border:1px solid #F2F2F2; border-top:none; width:115px; height:75px;}
+div.modal_window div.image span.shadow {position:absolute; left:0; bottom:0px; background:url(../images/calculator/shadow_image.png) no-repeat 0 0; width:127px; height:5px;}
+div.modal_window div.text {position:relative; float:left; width:317px; padding:0; margin:0;}
+div.modal_window div.text p.calculating {float:left; width:317px; font:normal 17px Arial; color:#666666; padding:0; margin:0;}
+div.modal_window div.text p.bio {float:left; width:317px; font:bold 13px Arial; color:#4D88A3; padding:7px 0 0 0; margin:0;}
+div.modal_window div.text p sup {font-size:6px;}
+div.modal_window a.another {float:left; width:160px; height:19px; padding:8px 0; margin:27px 0 0 10px; text-align:center; background:url(../images/calculator/select_another.png) no-repeat 0 0; font:bold 15px Arial; color:#EBEBEB; text-decoration:none; letter-spacing:-1px; line-height:19px;}
+div.modal_window a.another:hover {background-position:0 -35px;}
+div.modal_window a.get_more {float:left; width:auto; padding:3px 0 0 0; margin:0 0 0 75px; text-align:center; font:normal 11px Arial; color:#999999; text-decoration:underline; line-height:19px;}
+div.modal_window a.get_more:hover {color:#666666;}
+
+span.map_shadow {position:absolute; bottom:-7px; left:0; width:875px; height:6px; background:url(../images/calculator/shadow.png) no-repeat 0 0;}

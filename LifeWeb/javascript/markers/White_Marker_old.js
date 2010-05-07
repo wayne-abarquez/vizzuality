@@ -108,7 +108,7 @@ White_Marker.prototype.createElement = function() {
 
 		var title = document.createElement('p');
 		title.style.float = "left";
-		title.style.margin = '12px 0 0 132px';
+		title.style.margin = '15px 0 0 132px';
 		title.style.padding = '0';
 	  title.style.width = "189px";
 		title.style.height = "37px";
@@ -117,7 +117,6 @@ White_Marker.prototype.createElement = function() {
 		var link_title = document.createElement('a');
 		link_title.style.font = 'bold 15px Arial';
 		link_title.style.color = '#006699';
-		link_title.style.lineHeight = '13px';
 		if (this.information_.title.length>40) {
 			$(link_title).text(this.information_.title.substr(0,40)+'...');
 		} else {
@@ -141,11 +140,7 @@ White_Marker.prototype.createElement = function() {
 		country.style.margin = '2px 0 0 132px';
 		country.style.font = 'normal 13px Arial';
 		country.style.color = '#999999';
-		if (this.information_.funding!=null || this.information_.funding!='undefined') {
-			$(country).html(this.information_.country + '. '+this.information_.funding+'$');
-		} else {
-			$(country).html(this.information_.country);
-		}
+		$(country).html('Palau. 396,250$ required');
 		hiddenDiv.appendChild(country);
 	
 	
@@ -154,6 +149,7 @@ White_Marker.prototype.createElement = function() {
 		good_div.style.position = "relative";
 		good_div.style.float = "left";
 	  good_div.style.width = "180px";
+		good_div.style.height = "39px";
 		
 		var good_for = document.createElement('img');
 		good_for.style.float = 'left';
@@ -167,58 +163,47 @@ White_Marker.prototype.createElement = function() {
 		image_air.style.float = 'left';
 	  image_air.style.width = "auto";
 	  image_air.style.height = "auto";
-		image_air.style.padding = "3px 0 0 3px";
+		image_air.style.padding = "3px 0 0 5px";
 		image_air.src = './images/infowindows/air.png';
-		if (this.information_.ecosystem_service.e1) {
-			good_div.appendChild(image_air);
-		}
+		good_div.appendChild(image_air);
 		
 		var image_oil = document.createElement("img");
 		image_oil.style.float = 'left';
 	  image_oil.style.width = "auto";
 	  image_oil.style.height = "auto";
-		image_oil.style.padding = "3px 0 0 3px";
+		image_oil.style.padding = "3px 0 0 5px";
 		image_oil.src = './images/infowindows/oil.png';
-		if (this.information_.ecosystem_service.e2) {
-			good_div.appendChild(image_oil);
-		}
+		good_div.appendChild(image_oil);
 		
 		var image_food = document.createElement("img");
 		image_food.style.float = 'left';
 	  image_food.style.width = "auto";
 	  image_food.style.height = "auto";
-		image_food.style.padding = "3px 0 0 3px";
+		image_food.style.padding = "3px 0 0 5px";
 		image_food.src = './images/infowindows/food.png';
-		if (this.information_.ecosystem_service.e3) {
-			good_div.appendChild(image_food);
-		}
-		
-		var image_water = document.createElement("img");
-		image_water.style.float = 'left';
-	  image_water.style.width = "auto";
-	  image_water.style.height = "auto";
-		image_water.style.padding = "3px 0 0 3px";
-		image_water.src = './images/infowindows/water.png';
-		if (this.information_.ecosystem_service.e5) {
-			good_div.appendChild(image_water);
-		}
+		good_div.appendChild(image_food);
 		
 		var image_climate = document.createElement("img");
 		image_climate.style.float = 'left';
 	  image_climate.style.width = "auto";
 	  image_climate.style.height = "auto";
-		image_climate.style.padding = "3px 0 0 3px";
+		image_climate.style.padding = "3px 0 0 5px";
 		image_climate.src = './images/infowindows/climate.png';
-		if (this.information_.ecosystem_service.e4) {
-			good_div.appendChild(image_climate);
-		}
+		good_div.appendChild(image_climate);
+		
+		var image_water = document.createElement("img");
+		image_water.style.float = 'left';
+	  image_water.style.width = "auto";
+	  image_water.style.height = "auto";
+		image_water.style.padding = "3px 0 0 5px";
+		image_water.src = './images/infowindows/water.png';
+		good_div.appendChild(image_water);
 
 		hiddenDiv.appendChild(good_div);
-
 	
 		var donor_div = document.createElement('div');
 		donor_div.style.float = "left";
-		donor_div.style.margin = '3px 0 0 10px';
+		donor_div.style.margin = '0 0 0 10px';
 		donor_div.style.position = "relative";
 	  donor_div.style.width = "315px";
 		
@@ -228,23 +213,21 @@ White_Marker.prototype.createElement = function() {
 		donor_title.style.textAlign = "right";
 		donor_title.style.width = "110px";
 		donor_title.style.font = 'normal 10px Arial';
-		donor_title.style.margin = '0';
+		donor_title.style.margin = '0 13px 0 0';
 		donor_title.style.padding = '1px 0 0 0';
-		donor_title.style.lineHeight = '10px';
 		donor_title.style.color = '#FF9900';
 		$(donor_title).text('DONOR');
 		$(donor_title).css('background','url(images/infowindows/donor.png) no-repeat 60px 1px');
 		donor_div.appendChild(donor_title);
 		
 		var donor_p = document.createElement('p');
-		donor_p.style.position = "absolute";
-		donor_p.style.right = "0px";
-		donor_p.style.top = "0px";
+		donor_p.style.position = "relative";
+		donor_p.style.float = "left";
 		donor_p.style.textAlign = "left";
-		donor_p.style.width = "194px";
+		donor_p.style.width = "190px";
 		donor_p.style.font = 'bold 11px Arial';
 		donor_p.style.color = '#FF9900';
-		$(donor_p).text(this.information_.organisation);
+		$(donor_p).text(this.information_.donor);
 		donor_div.appendChild(donor_p);
 		
 	
@@ -279,11 +262,11 @@ White_Marker.prototype.createElement = function() {
 						if (this_.map_.getZoom()<6) {
 							this_.map_.setCenter(this_.latlng_);
 							this_.map_.setZoom(6);
-							this_.map_.panBy(0,-90);
+							this_.map_.panBy(0,-115);
 						} else {
 							if (!$(this).children('div').is(':visible')) {
 								this_.map_.setCenter(this_.latlng_);
-								this_.map_.panBy(0,-90);
+								this_.map_.panBy(0,-115);
 							}
 						}
 					}
