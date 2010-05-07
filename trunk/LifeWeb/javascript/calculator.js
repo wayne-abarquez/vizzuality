@@ -10,6 +10,7 @@
 	var polygon;
 	var ex_polygon;
 	var map_click_event;
+	var polygon_area;
   
 	
 	
@@ -53,7 +54,7 @@
 		if (buttonId == 'select') {
 			// FAKE POLYGON CLICK
 			GEvent.addListener(map, "click", function(overlay, latlng, overlaylatlng) {
-				$('div.big_loader').fadeIn();
+				showLoader();
 				setTimeout(function(){
 					if (overlaylatlng!=null) {
 						GEvent.clearListeners(map, "click");
@@ -107,40 +108,32 @@
 	  polygon = new GPolygon([], color, 2, 0.7, color, 0.2);
 	  startDrawing(polygon, "Shape " + (++shapeCounter_), function() {
 		  	var area = polygon.getArea();
-				if ((Math.floor(area / 10000) / 100) > 620000) {
-					if (!$('#done').hasClass('disabled')) {
-						$('#done').addClass('disabled');
-					}
-					var position = polygon.getBounds().getCenter();
-					var point = map.fromLatLngToDivPixel(position);
-					$('#big_area').css('top', point.y+'px');
-					$('#big_area').css('left', point.x-20+'px');
-					$('#big_area').fadeIn();
-					$('#big_area').delay(2000).fadeOut();
-				} else {
-					getStaticImage(polygon);
-					if ($('#done').hasClass('disabled')) {
-						$('#done').removeClass('disabled');
-					}
-					$('strong.area').html('');
-					$('strong.carbon').html('');
-					$('#loader_image').show();
-					getCarbonHeight(polygon);
+				getStaticImage(polygon);
+				if ($('#done').hasClass('disabled')) {
+					$('#done').removeClass('disabled');
 				}
-				$('strong.area').html((Math.floor(area / 10000) / 100).toFixed(0));
-				$('div.modal_window p.area').html((Math.floor(area / 10000) / 100).toFixed(0));
+				$('strong.area').html('');
+				$('strong.carbon').html('');
+				$('#loader_image').show();
+				getCarbonHeight(polygon);
+				
+				polygon_area = (Math.floor(area / 10000) / 100).toFixed(0);
+				$('strong.area').html(polygon_area);
+				$('div.modal_window p.area').html(polygon_area);
 		  }, color);
 	}
 
 
 	function startDrawing(poly, name, onUpdate, color) {
-	  map.addOverlay(poly);
+	  map.addOverlay(polygon);
 	  polygon.enableDrawing(options);
-	  polygon.enableEditing();
-	  GEvent.addListener(poly, "endline", function() {
+	  polygon.enableEditing({onEvent: "mouseover"});
+	  polygon.disableEditing({onEvent: "mouseout"});
+		
+	  GEvent.addListener(polygon, "endline", function() {
 			select("select");
-			GEvent.bind(poly, "lineupdated", null, onUpdate);
-	    GEvent.addListener(polygon, "click", function(latlng, index) {
+			GEvent.bind(polygon, "lineupdated", null, onUpdate);
+	    GEvent.addListener(poly, "click", function(latlng, index) {
 	      if (typeof index == "number") {
 	        polygon.deleteVertex(index);
 	      }
@@ -159,8 +152,9 @@
 			$('strong.carbon').html('');
 			$('#loader_image').show();
 			getCarbonHeight(ex_polygon);
-			$('strong.area').html((Math.floor(area / 10000) / 100).toFixed(0));
-			$('div.modal_window p.area').html((Math.floor(area / 10000) / 100).toFixed(0));
+			polygon_area = (Math.floor(area / 10000) / 100).toFixed(0);
+			$('strong.area').html(polygon_area);
+			$('div.modal_window p.area').html(polygon_area);
 	}
 	
 
@@ -218,7 +212,7 @@
 
 	function getCarbonHeight(polygon){
 		var geojson = polys2geoJson([polygon]);
-		var dataObj = ({geojson: geojson});    
+		var dataObj = ({area:polygon_area,geojson: geojson});    
 		$.ajax({
 		    	url: "http://192.168.1.129:4567/carbon",
 		    	data: dataObj,
@@ -262,12 +256,21 @@
 		  var hscr = $(window).height();
 
 		  var mleft = ( wscr - 544 ) / 2;
-		  var mtop = ( hscr - 544 ) / 2;
+		  var mtop = ( hscr - 250 ) / 2;
 
 		  $('div.modal_window').css("left", mleft+'px');
 		  $('div.modal_window').css("top", mtop+'px');
 			$('div.modal').fadeIn(100,function(ev){$('div.modal_window').fadeIn(400)});
 		}
+	}
+	
+	function showLoader() {
+			var wscr = $(window).width();
+
+		  var mleft = ( wscr - 60 ) / 2;
+
+		  $('div.big_loader').css("left", mleft+'px');
+			$('div.big_loader').show();
 	}
 	
 	function firstState() {
