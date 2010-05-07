@@ -216,6 +216,7 @@
 		$.ajax({
 					//http://192.168.1.129:4567/
 		    	url: "http://ec2-174-129-149-237.compute-1.amazonaws.com/carbon",
+					method: 'POST',
 		    	data: dataObj,
 		    	cache: false,
 					dataType: 'jsonp',
