@@ -1,0 +1,599 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head lang="en" xml:lang="en">
+		
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>CBD</title>
+
+		<style type="text/css">
+			body {background-color: white; margin:0; padding:0;}
+			div.map_container {position:relative; width:855px; height:353px; background:white; padding:10px; border:1px solid #F2F2F2; margin:0;}
+			p.madeby {float:left; padding:8px 0 0 15px; margin:0; font:normal 12px Arial; color:#999999; font-style:italic;}
+			p.madeby a {color:#999999;}
+			p.madeby a:hover {color:#666666;}
+			
+			div#map {width:100%; height:100%; float:left;}
+			
+			div#carbon_text {position:absolute; top:40px; right:20px;}
+			div#carbon_text p {width:100%; color:red; text-align:right;}
+			
+			div#map_tools {position:absolute; bottom:10px; right:10px; z-index:1000; width:277px; height:107px; background:url(../images/float.png) no-repeat 0 0; padding:0 6px 6px;}
+			div#map_tools h3 {float:left; font:bold 13px Arial; color:#99B3C9; margin:0; padding:7px 0 0 0;}
+			div#map_tools span {float:right; font:bold 13px Arial; color:#FFFFFF; padding:0 13px 0 0; line-height:30px; height:28px;}
+			div#map_tools span sup {font-size:7px;}
+			div#map_tools div {float:left; margin:18px 0 0 0;}
+			div#map_tools div a:focus {outline:none;}
+			div#map_tools div a#select {float:left; width:82px; height:45px; background:url(../images/edit_polygon.png) no-repeat 0 2px; margin:0 0 0 4px;}
+			div#map_tools div a#select:hover {background-position:0 -45px;}
+			div#map_tools div a#select.selected {background-position: 0 -45px;}
+			div#map_tools div a#select.selected:hover {background-position:0 -45px;}
+			div#map_tools div a#remove {float:left; width:82px; height:45px; background:url(../images/remove_vertex.png) no-repeat 0 2px; margin:0 0 0 7px;}
+			div#map_tools div a#remove:hover {background-position:0 -45px;}
+			div#map_tools div a#remove.selected {background-position: 0 -45px;}
+			div#map_tools div a#remove.selected:hover {background-position:0 -45px;}
+			div#map_tools div a#draw {float:left; width:82px; height:45px; background:url(../images/draw_polygon.png) no-repeat 0 2px; margin:0 0 0 7px;}
+			div#map_tools div a#draw:hover {background-position:0 -45px;}
+			div#map_tools div a#draw.selected {background-position: 0 -45px;}
+			div#map_tools div a#draw.selected:hover {background-position:0 -45px;}
+			div#map_tools div a#done {float:left; width:82px; height:45px; margin:0 0 0 7px; background:url(../images/done_geometry.png) no-repeat 0 0;}
+			div#map_tools div a#done:hover {background-position:0 -45px;}
+			div#map_tools div a#done.disabled {background:url(../images/done_geometry.png) no-repeat 0 -90px;}
+			div#map_tools div a#done.disabled:hover {background-position:0 -90px;}
+			
+			div#geocoder {position:absolute; top:15px; left:15px; width:275px; height:25px; background:url(../images/geocoder.png) no-repeat 0 0; padding:4px; z-index:200;}
+			div#geocoder a#zoom_in {background:url(../images/zoom_in.png) no-repeat 0 0; float:left; width:25px; height:25px; margin:0 4px 0 0;}
+			div#geocoder a#zoom_in:hover {background-position:0 -25px;}
+			div#geocoder a#zoom_out {background:url(../images/zoom_out.png) no-repeat 0 0; float:left; width:25px; height:25px;}
+			div#geocoder a#zoom_out:hover {background-position:0 -25px;}
+			div#geocoder form {float:left; width:201px; height:26px; background:url(../images/form.png) no-repeat 0 0; margin:0 0 0 12px; padding:3px 4px 4px;}
+			div#geocoder form input {border:0; background:none;}
+			div#geocoder form input:focus {outline:none;}
+			div#geocoder form input[type='text'] {float:left; font:normal 13px Arial; font-style:italic; color:#999999; width:175px;}
+			div#geocoder form input[type='submit'] {float:left; background:url(../images/len.png) no-repeat 0 0; width:15px; height:15px; margin:3px 0 0 8px;}
+			div#geocoder form input[type='submit']:hover {cursor:pointer;}
+
+			div.tooltip {position:absolute; width:140px; height:40px; background:url(../images/tooltip.png) no-repeat 0 0; padding:20px 10px 0 33px; z-index:300; display:none;}
+			div.tooltip p {padding:0; margin:0; font:normal 13px Arial; color:#333333;}
+			div#not_found {top:30px; left:200px;}
+			
+			div.big_loader {position:absolute; width:60px; height:30px; background:url(images/loader_bkg.png) no-repeat 0 0; top:17px; left:400px; display:none;}
+			div.big_loader img {margin:8px 0 0 21px}
+
+			div.modal {position:absolute; top:10px; left:10px; width:855px; height:353px; background-color:#FFFFFF; z-index:2000; opacity:0.7; display:none;}
+			div.modal_window {position:absolute; display:none; z-index:2000; width:456px; height:171px; padding:44px 44px 20px 44px; left:160px; top:75px; background:url(../images/done_window_bkg.png) no-repeat 0 0; }
+			div.modal_window h4 {float:left; font:bold 19px Arial; color:#666666; letter-spacing:-1px; width:100%; margin:0; padding:0 0 15px;}
+			div.modal_window div.image {position:relative; float:left; width:127px; margin:0 12px 0 0;}
+			div.modal_window div.image img {padding:5px; border:1px solid #F2F2F2; border-top:none; width:115px; height:75px;}
+			div.modal_window div.image span.shadow {position:absolute; left:0; bottom:0px; background:url(../images/shadow_image.png) no-repeat 0 0; width:127px; height:5px;}
+			div.modal_window div.text {position:relative; float:left; width:317px; padding:0; margin:0;}
+			div.modal_window div.text p.calculating {float:left; width:317px; font:normal 17px Arial; color:#666666; padding:0; margin:0;}
+			div.modal_window div.text p.bio {float:left; width:317px; font:bold 13px Arial; color:#4D88A3; padding:7px 0 0 0; margin:0;}
+			div.modal_window div.text p sup {font-size:6px;}
+			div.modal_window a.another {float:left; width:160px; height:19px; padding:8px 0; margin:27px 0 0 10px; text-align:center; background:url(../images/select_another.png) no-repeat 0 0; font:bold 15px Arial; color:#EBEBEB; text-decoration:none; letter-spacing:-1px; line-height:19px;}
+			div.modal_window a.another:hover {background-position:0 -35px;}
+			div.modal_window a.get_more {float:left; width:auto; padding:3px 0 0 0; margin:0 0 0 75px; text-align:center; font:normal 11px Arial; color:#999999; text-decoration:underline; line-height:19px;}
+			div.modal_window a.get_more:hover {color:#666666;}
+			
+			
+			span.shadow {position:absolute; bottom:-7px; left:0; width:875px; height:6px; background:url(../images/shadow.png) no-repeat 0 0;}
+			
+		</style>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>	
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=nokey" type="text/javascript"></script>
+		<script src="underscore-min.js" type="text/javascript"></script>
+		<script src="jquery.json-2.2.js" type="text/javascript"></script>
+		<script src="PolylineEncoder.js" type="text/javascript"></script>
+
+		
+		<script type="text/javascript">
+			var COLORS = [["#999999", "#333333"]];
+			var options = {};
+			var lineCounter_ = 0;
+			var shapeCounter_ = 0;
+			var markerCounter_ = 0;
+			var colorIndex_ = 0;
+			var featureTable_;
+			var map;
+			var geocoder = null;
+			var polygon;
+			var ex_polygon;
+			var map_click_event;
+			var first_spet = false;
+	    var ex_coords = [
+			new GLatLng(5.6966154781599485,-7.752227783203125),
+			new GLatLng(5.665184914439158,-7.75634765625),
+			new GLatLng(5.643319165077759,-7.743988037109375),
+			new GLatLng(5.6310193184878985,-7.73162841796875),
+			new GLatLng(5.617352516956665,-7.719268798828125),
+			new GLatLng(5.610518995900887,-7.691802978515625),
+			new GLatLng(5.621452591118845,-7.646484375),
+			new GLatLng(5.633752640248934,-7.628631591796875),
+			new GLatLng(5.659718554577285,-7.61077880859375),
+			new GLatLng(5.672017791509176,-7.62451171875),
+			new GLatLng(5.684316766223759,-7.645111083984375),
+			new GLatLng(5.693882453800991,-7.66021728515625),
+			new GLatLng(5.711646879515105,-7.678070068359375),
+			new GLatLng(5.719845659536203,-7.716522216796875),
+			new GLatLng(5.7335100316877625,-7.754974365234375),
+			new GLatLng(5.748540463122795,-7.785186767578125),
+			new GLatLng(5.748540463122795,-7.80029296875),
+			new GLatLng(5.745807686900396,-7.812652587890625),
+			new GLatLng(5.75537234625931,-7.815399169921875),
+			new GLatLng(5.782699056797093,-7.7947998046875),
+			new GLatLng(5.852376180414698,-7.74810791015625),
+			new GLatLng(5.868769539456522,-7.730255126953125),
+			new GLatLng(5.885162416386865,-7.711029052734375),
+			new GLatLng(5.894724704759804,-7.68768310546875),
+			new GLatLng(5.909750824919061,-7.66845703125),
+			new GLatLng(5.916580744756599,-7.650604248046875),
+			new GLatLng(5.901554809878024,-7.6409912109375),
+			new GLatLng(5.872867803938926,-7.64373779296875),
+			new GLatLng(5.829151432413108,-7.6409912109375),
+			new GLatLng(5.805925723281634,-7.636871337890625),
+			new GLatLng(5.7908968128719565,-7.639617919921875),
+			new GLatLng(5.774501181937736,-7.620391845703125),
+			new GLatLng(5.763570497636485,-7.60528564453125),
+			new GLatLng(5.75537234625931,-7.57781982421875),
+			new GLatLng(5.75537234625931,-7.562713623046875),
+			new GLatLng(5.774501181937736,-7.54486083984375),
+			new GLatLng(5.80319322390002,-7.53387451171875),
+			new GLatLng(5.822320441094254,-7.5311279296875),
+			new GLatLng(5.8373485122388935,-7.524261474609375),
+			new GLatLng(5.841447007202826,-7.5091552734375),
+			new GLatLng(5.818221806434406,-7.494049072265625),
+			new GLatLng(5.811390682287025,-7.481689453125),
+			new GLatLng(5.8619390317028275,-7.469329833984375),
+			new GLatLng(5.859206805186889,-7.45697021484375),
+			new GLatLng(5.86330513994496,-7.44598388671875),
+			new GLatLng(5.84827776547992,-7.436370849609375),
+			new GLatLng(5.842813165526571,-7.425384521484375),
+			new GLatLng(5.8264190458573335,-7.433624267578125),
+			new GLatLng(5.80319322390002,-7.441864013671875),
+			new GLatLng(5.788164240722203,-7.43499755859375),
+			new GLatLng(5.774501181937736,-7.433624267578125),
+			new GLatLng(5.756738713037117,-7.44049072265625),
+			new GLatLng(5.7184792043553365,-7.42950439453125),
+			new GLatLng(5.703447982149503,-7.4322509765625),
+			new GLatLng(5.695248967605638,-7.4212646484375),
+			new GLatLng(5.673384357214508,-7.414398193359375),
+			new GLatLng(5.658351956534084,-7.4102783203125),
+			new GLatLng(5.6310193184878985,-7.389678955078125),
+			new GLatLng(5.622819276089737,-7.378692626953125),
+			new GLatLng(5.5995851957163305,-7.378692626953125),
+			new GLatLng(5.581817334277345,-7.373199462890625),
+			new GLatLng(5.580450553378546,-7.395172119140625),
+			new GLatLng(5.559948458049067,-7.397918701171875),
+			new GLatLng(5.547646857881998,-7.3992919921875),
+			new GLatLng(5.5312443253599755,-7.381439208984375),
+			new GLatLng(5.520309050962868,-7.384185791015625),
+			new GLatLng(5.524409802521124,-7.3992919921875),
+			new GLatLng(5.5066396743548855,-7.393798828125),
+			new GLatLng(5.49160299697849,-7.406158447265625),
+			new GLatLng(5.477932961011244,-7.44873046875),
+			new GLatLng(5.466996706994796,-7.463836669921875),
+			new GLatLng(5.477932961011244,-7.53387451171875),
+			new GLatLng(5.469730789244445,-7.54486083984375),
+			new GLatLng(5.4546931824367935,-7.56134033203125),
+			new GLatLng(5.435553865190251,-7.5640869140625),
+			new GLatLng(5.4082109285908295,-7.5421142578125),
+			new GLatLng(5.378132271671659,-7.53387451171875),
+			new GLatLng(5.364459662948643,-7.54486083984375),
+			new GLatLng(5.363092385212534,-7.562713623046875),
+			new GLatLng(5.365826937620923,-7.57781982421875),
+			new GLatLng(5.349419439510537,-7.58331298828125),
+			new GLatLng(5.326174731029589,-7.570953369140625),
+			new GLatLng(5.274212797424882,-7.569580078125),
+			new GLatLng(5.21540852261179,-7.5091552734375),
+			new GLatLng(5.193526452535153,-7.480316162109375),
+			new GLatLng(5.167540507950538,-7.472076416015625),
+			new GLatLng(5.129243490429326,-7.483062744140625),
+			new GLatLng(5.114197603914644,-7.49267578125),
+			new GLatLng(5.096415645847096,-7.503662109375),
+			new GLatLng(5.105990607613748,-7.51739501953125),
+			new GLatLng(5.108726284726907,-7.525634765625),
+			new GLatLng(5.092312047102726,-7.53387451171875),
+			new GLatLng(5.092312047102726,-7.543487548828125),
+			new GLatLng(5.0800010938086215,-7.554473876953125),
+			new GLatLng(5.088208422167594,-7.57232666015625),
+			new GLatLng(5.108726284726907,-7.58331298828125),
+			new GLatLng(5.131979068086922,-7.58056640625),
+			new GLatLng(5.156598738411155,-7.590179443359375),
+			new GLatLng(5.17711440129899,-7.613525390625),
+			new GLatLng(5.194894104202499,-7.645111083984375),
+			new GLatLng(5.242760037159453,-7.702789306640625),
+			new GLatLng(5.245495122823749,-7.7178955078125),
+			new GLatLng(5.246862661161304,-7.7288818359375),
+			new GLatLng(5.276947744869894,-7.7508544921875),
+			new GLatLng(5.300194310699868,-7.77008056640625),
+			new GLatLng(5.319337884572724,-7.787933349609375),
+			new GLatLng(5.338480862927288,-7.787933349609375),
+			new GLatLng(5.356255950601548,-7.779693603515625),
+			new GLatLng(5.376765024608604,-7.79205322265625),
+			new GLatLng(5.40410938139607,-7.822265625),
+			new GLatLng(5.424616839194558,-7.840118408203125),
+			new GLatLng(5.417781097244325,-7.86346435546875),
+			new GLatLng(5.402742192824369,-7.895050048828125),
+			new GLatLng(5.425983978294346,-7.914276123046875),
+			new GLatLng(5.4396551987446715,-7.936248779296875),
+			new GLatLng(5.4546931824367935,-7.949981689453125),
+			new GLatLng(5.460161446754582,-7.965087890625),
+			new GLatLng(5.503905761280072,-7.94036865234375),
+			new GLatLng(5.514841338097563,-7.925262451171875),
+			new GLatLng(5.527143621124265,-7.911529541015625),
+			new GLatLng(5.620085902939194,-7.91290283203125),
+			new GLatLng(5.647419055989253,-7.8936767578125),
+			new GLatLng(5.67475091968182,-7.870330810546875),
+			new GLatLng(5.700714990313155,-7.855224609375),
+			new GLatLng(5.703447982149503,-7.833251953125),
+			new GLatLng(5.697981985463134,-7.80853271484375),
+			new GLatLng(5.695248967605638,-7.782440185546875),
+			new GLatLng(5.6966154781599485,-7.752227783203125)
+	    ];
+			
+			
+			$(document).ready(function() {
+				
+					if ($('#search_text').val()!='Search by city, area, ...') {
+						$(this).css('color','#666666');
+					}
+					
+					$('div.modal').css('opacity','0.7');
+				
+			    $('#zoom_in').click(function(ev){
+						ev.stopPropagation();
+						ev.preventDefault();
+						map.setZoom(map.getZoom()+1);
+					});
+					$('#zoom_out').click(function(ev){
+						ev.stopPropagation();
+						ev.preventDefault();
+						map.setZoom(map.getZoom()-1);
+					});
+					$('#search_text').click(function(ev){
+						ev.stopPropagation();
+						ev.preventDefault();
+						if ($(this).val() == 'Search by city, area, ...') {
+							$(this).val('');
+							$(this).focus();
+							$(this).css('color','#666666');
+						}
+					});
+					
+					$('div.map_tools a').click(function(ev){
+						ev.stopPropagation();
+						ev.preventDefault();
+					});
+					
+			});
+			
+
+			function select(buttonId) {
+				if (buttonId == 'select') {
+					// FAKE POLYGON CLICK
+					GEvent.addListener(map, "click", function(overlay, latlng, overlaylatlng) {
+						$('div.big_loader').fadeIn();
+						setTimeout(function(){
+							if (overlaylatlng!=null) {
+								GEvent.clearListeners(map, "click");
+								map.setCenter(new GLatLng(5.380866756582382, -7.525634765625));
+								if (polygon!=null) {
+									map.removeOverlay(polygon);
+								}
+								ex_polygon.setFillStyle({opacity:0.7});
+								ex_polygon.setStrokeStyle({opacity:0.9});
+								makePolygonOperations();
+							  ex_polygon.enableEditing();
+								GEvent.bind(ex_polygon, "lineupdated", null, function(){
+									makePolygonOperations();
+								});
+							}
+							$('div.big_loader').fadeOut();
+						},2000);
+						
+					});
+				}
+				if (buttonId == 'draw') {
+					GEvent.clearListeners(map, "click");
+				}
+			  document.getElementById("select").className="";
+ 			  document.getElementById("draw").className="";
+ 			  document.getElementById(buttonId).className="selected";
+			}
+
+			function stopEditing() {
+			  select("select");
+			}
+
+			function getColor(named) {
+			  return COLORS[(colorIndex_++) % COLORS.length][named ? 0 : 1];
+			}
+
+			function startShape() {
+			  select("draw");
+				if (!$('#done').hasClass('disabled')) {
+					$('#done').addClass('disabled');
+				}
+				if (polygon!=null) {
+					map.removeOverlay(polygon);
+				}
+				ex_polygon.setFillStyle({opacity:0});
+				ex_polygon.setStrokeStyle({opacity:0});
+				ex_polygon.disableEditing();
+				$('strong.area').html('');
+				$('strong.carbon').html('');
+			  var color = getColor(false);
+			  polygon = new GPolygon([], color, 2, 0.7, color, 0.2);
+			  startDrawing(polygon, "Shape " + (++shapeCounter_), function() {
+				  	var area = polygon.getArea();
+						if ((Math.floor(area / 10000) / 100) > 620000) {
+							if (!$('#done').hasClass('disabled')) {
+								$('#done').addClass('disabled');
+							}
+							var position = polygon.getBounds().getCenter();
+							var point = map.fromLatLngToDivPixel(position);
+							$('#big_area').css('top', point.y+'px');
+							$('#big_area').css('left', point.x-20+'px');
+							$('#big_area').fadeIn();
+							$('#big_area').delay(2000).fadeOut();
+						} else {
+							getStaticImage(polygon);
+							if ($('#done').hasClass('disabled')) {
+								$('#done').removeClass('disabled');
+							}
+							$('strong.area').html('');
+							$('strong.carbon').html('');
+							$('#loader_image').show();
+							getCarbonHeight(polygon);
+						}
+						$('strong.area').html((Math.floor(area / 10000) / 100).toFixed(0));
+						$('div.modal_window p.area').html((Math.floor(area / 10000) / 100).toFixed(0));
+				  }, color);
+			}
+
+
+			function startDrawing(poly, name, onUpdate, color) {
+			  map.addOverlay(poly);
+			  polygon.enableDrawing(options);
+			  polygon.enableEditing();
+			  GEvent.addListener(poly, "endline", function() {
+					select("select");
+					GEvent.bind(poly, "lineupdated", null, onUpdate);
+			    GEvent.addListener(polygon, "click", function(latlng, index) {
+			      if (typeof index == "number") {
+			        polygon.deleteVertex(index);
+			      }
+			    });
+			  });
+			}
+
+
+			function makePolygonOperations() {
+					var area = ex_polygon.getArea();
+					getStaticImage(ex_polygon);
+					if ($('#done').hasClass('disabled')) {
+						$('#done').removeClass('disabled');
+					}
+					$('strong.area').html('');
+					$('strong.carbon').html('');
+					$('#loader_image').show();
+					getCarbonHeight(ex_polygon);
+					$('strong.area').html((Math.floor(area / 10000) / 100).toFixed(0));
+					$('div.modal_window p.area').html((Math.floor(area / 10000) / 100).toFixed(0));
+			}
+			
+
+			function initialize() {
+			  if (GBrowserIsCompatible()) {
+			    map = new GMap2(document.getElementById("map"));
+			    map.setCenter(new GLatLng(42.4419, 15.1419), 2);
+			    map.clearOverlays();
+					map.setMapType(G_PHYSICAL_MAP);
+					geocoder = new GClientGeocoder();
+					
+					var copy_wcmc = new GCopyrightCollection("g");
+					copy_wcmc.addCopyright(new GCopyright('Carbon',new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)),0,'2010 UNEP-WCMC'));
+					var tilelayer = new GTileLayer(copy_wcmc);
+					tilelayer.getTileUrl = function(xy,z) { return 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/Carbon_webmerc/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x};
+					tilelayer.isPng = function() { return true;};
+					tilelayer.getOpacity = function() { return 0.7; }
+
+					ppeOverlay = new GTileLayerOverlay(tilelayer);
+					map.addOverlay(ppeOverlay);
+
+					var copy_gbif = new GCopyrightCollection("©");
+					copy_gbif.addCopyright(new GCopyright(' ',new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)),0,' '));
+					var tilelayer_ppe = new GTileLayer(copy_gbif);
+					tilelayer_ppe.getTileUrl = function(xy,z) { return 'http://184.73.201.235/blue/'+z+'/'+xy.x+'/'+xy.y; };
+					tilelayer_ppe.isPng = function() { return true;};
+					tilelayer_ppe.getOpacity = function() { return 1; }
+
+					var ppe_overlay = new GTileLayerOverlay(tilelayer_ppe);
+					map.addOverlay(ppe_overlay);
+
+			    ex_polygon = new GPolygon(ex_coords,"#999999", 2, 0, "#333333", 0);
+					map.addOverlay(ex_polygon);
+					
+			    select("select");
+
+			  }
+			}
+			
+			function showAddress(address) {
+	      if (geocoder) {
+	        geocoder.getLatLng(
+	          address,
+	          function(point) {
+	            if (!point) {
+	              $('#not_found').fadeIn();
+								$('#not_found').delay(2000).fadeOut();
+	            } else {
+	              map.setCenter(point, 8);
+	            }
+	          }
+	        );
+	      }
+	    }
+	
+			function getCarbonHeight(polygon){
+				var geojson = polys2geoJson([polygon]);
+				var dataObj = ({geojson: geojson});    
+				$.ajax({
+				    	url: "http://192.168.1.129:4567/carbon",
+				    	data: dataObj,
+				    	cache: false,
+							dataType: 'jsonp',
+				    	success: function(result){
+								$('#loader_image').hide();
+								$('strong.carbon').text(Math.floor(result.sum_Band1));
+				    	},
+				      error:function (xhr, ajaxOptions, thrownError){
+			        	alert('CBD' + xhr.status + "\n" + thrownError);
+			        }
+				 });
+			}
+			
+			function polys2geoJson(polygons) {
+			    var geojson={"type":"MultiPolygon"};
+			    var polys = [];
+			    _.each(polygons,function(pol) {
+			        var poly =[];
+			        //fake the paths, we dont support yet inner rings
+			        var path=[];
+			        var numPoints = pol.getVertexCount();
+			        for(var i=0; i < numPoints; i++) {
+			            var lat = pol.getVertex(i).lat();
+			            var lng = pol.getVertex(i).lng();
+			            path.push([lng,lat]);
+			        }
+			        poly.push(path);
+			        polys.push(poly);
+			    });
+			    geojson['coordinates'] = polys;
+
+			    return $.toJSON(geojson);
+			}
+			
+			function showModal() {
+				if (!$('#done').hasClass('disabled')) {
+					GEvent.clearListeners(map, "click");
+					$('div.modal').fadeIn(100,function(ev){$('div.modal_window').fadeIn(400)});
+				}
+			}
+			
+			function firstState() {
+				if (polygon!=null) {
+					map.removeOverlay(polygon);
+				}
+				ex_polygon.setFillStyle({opacity:0});
+				ex_polygon.setStrokeStyle({opacity:0});
+				ex_polygon.disableEditing();
+				$('#done').addClass('disabled');
+				$('div.modal_window').fadeOut(300,function(ev){
+					$('div.modal').fadeOut(100);
+					select('select');
+					$('#loader_image').hide();
+					$('strong.area').html('');
+					$('strong.carbon').html('');
+					if (!$('#done').hasClass('disabled')) {
+						$('#done').addClass('disabled');
+					}
+				});
+				
+			}
+			
+			function getStaticImage(polygon) {
+				var markers=[];
+        var numPoints = polygon.getVertexCount();
+				
+				for(var i=0; i < numPoints; i++) {
+            var lat = polygon.getVertex(i).lat();
+            var lng = polygon.getVertex(i).lng();
+            markers.push(new GLatLng(lat,lng));
+        }
+
+				var polygonEncoder = new PolylineEncoder();
+				var finalPolygon = polygonEncoder.dpEncode(markers);
+				
+				$('div.image img').attr('src','http://maps.google.com/maps/api/staticmap?size=115x75&key=nokey&sensor=false&path=fillcolor:0x666666|color:0x666666|weight:1|enc:'+finalPolygon.encodedPoints);
+
+			}
+			
+			//function checkPointArea(latlng) {
+				// $.ajax({
+				// 			    	type: "POST",
+				// 			    	url: "http://www.protectedplanet.net/api2/sites?lat="+latlng.lat()+"&lng="+latlng.lng(),
+				// 			    	data: null,
+				// 			    	cache: false,
+				// 			    	success: function(result){
+				// 			console.log(result);
+				// 			    	},
+				// 			      error:function (xhr, ajaxOptions, thrownError){
+				// 		        	alert('CBD' + xhr.status + "\n" + thrownError);
+				// 		        }
+				//  });
+			//}
+			
+			
+		</script>
+						
+	</head>
+	
+	<body onload="initialize()" onunload="GUnload">	
+
+		<div class="map_container">
+			<div id="map"></div>
+			
+			<div id="map_tools">
+				<h3>Editing tools</h3>
+				<span><strong class="area"></strong> ha - <strong class="carbon"></strong> Tn C<img src="../images/ajax-loader.gif" style="display:none" id="loader_image"/></span>
+				<div>
+					<a id="select" href="javascript: void stopEditing()"></a>
+					<a id="draw" href="javascript: void startShape()"></a>
+					<a id="done" class="disabled" href="javascript: void showModal()"></a>
+				</div>
+			</div>
+			
+			<div id="geocoder">
+				<a id="zoom_in" href="#"></a>
+				<a id="zoom_out" href="#"></a>
+				<form action="#" onsubmit="showAddress(this.address.value); return false">
+		        <input type="text" size="30" name="address" value="Search by city, area, ..." id="search_text" />
+		        <input type="submit" value="" />
+		    </form>
+			</div>
+			
+			<div class="tooltip" id="not_found">
+				<p>Ops! We couldn’t find this location</p>
+			</div>
+			
+			<div class="tooltip" id="big_area">
+				<p>This polygon is too big. Please make it smaller</p>
+			</div>
+			
+			<div class="big_loader">
+				<img src="images/ajax-loader-big.gif" />
+			</div>
+			
+			<div class="modal"></div>
+			<div class="modal_window">
+				<div class="image">
+					<img src="" />
+					<span class="shadow"></span>
+				</div>
+				<div class="text">
+					<p class="calculating">The area stores an estimated <strong class="carbon">12,314</strong> tons of carbon, representing <strong>5% of Liberia's total carbon</strong>.</p>
+					<p class="bio">12% of the area falls within Key Biodiversity Areas</p>
+				</div>
+				<a href="javascript:void firstState()" class="another">SELECT ANOTHER</a>
+				<a href="#" class="get_more">get more information about the Carbon and Biodiversity layers</a>
+			</div>
+			<span class="shadow"></span>
+		</div>
+		<p class="madeby">map developed by <a href="http://www.unep-wcmc.org/" target="_blank">UNEP-WCMC</a> and <a href="http://www.vizzuality.com" target="_blank">vizzuality</a></p>
+		
+	</body>
+	
+</html>
