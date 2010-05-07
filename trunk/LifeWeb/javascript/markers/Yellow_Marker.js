@@ -142,7 +142,7 @@ Yellow_Marker.prototype.createElement = function() {
 		country.style.margin = '2px 0 0 132px';
 		country.style.font = 'normal 13px Arial';
 		country.style.color = '#999999';
-		if (this.information_.funding!=null || this.information_.funding!='undefined') {
+		if (this.information_.funding!=null || this.information_.funding!=undefined) {
 			$(country).html(this.information_.country + '. '+this.information_.funding+'$');
 		} else {
 			$(country).html(this.information_.country);
@@ -154,7 +154,7 @@ Yellow_Marker.prototype.createElement = function() {
 		good_div.style.margin = '5px 0 0 132px';
 		good_div.style.position = "relative";
 		good_div.style.float = "left";
-	  good_div.style.width = "180px";
+	  good_div.style.width = "193px";
 		
 		var good_for = document.createElement('img');
 		good_for.style.float = 'left';

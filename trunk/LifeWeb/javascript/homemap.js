@@ -224,13 +224,13 @@ $(document).ready(function() {
 	$('#matches').click(function(ev){
 		ev.stopPropagation();
 		ev.preventDefault();
-		if ($(this).parent().hasClass('checked')) {
-			$(this).parent().removeClass('checked');
-			$(this).parent().addClass('unchecked');		
+		if ($(this).children('p').hasClass('enabled')) {
+			$(this).children('p').removeClass('enabled');
+			$(this).children('p').addClass('disabled');		
 			cleanWhiteMarkers();
 		} else {
-			$(this).parent().removeClass('unchecked');
-			$(this).parent().addClass('checked');	
+			$(this).children('p').removeClass('disabled');
+			$(this).children('p').addClass('enabled');
 			showWhiteClusters();
 		}
 	});
@@ -239,13 +239,13 @@ $(document).ready(function() {
 	$('#potential').click(function(ev){
 		ev.stopPropagation();
 		ev.preventDefault();
-		if ($(this).parent().hasClass('checked')) {
-			$(this).parent().removeClass('checked');
-			$(this).parent().addClass('unchecked');		
+		if ($(this).children('p').hasClass('enabled')) {
+			$(this).children('p').removeClass('enabled');
+			$(this).children('p').addClass('disabled');		
 			cleanYellowMarkers();
 		} else {
-			$(this).parent().removeClass('unchecked');
-			$(this).parent().addClass('checked');	
+			$(this).children('p').removeClass('disabled');
+			$(this).children('p').addClass('enabled');	
 			showYellowClusters();
 		}
 	});
