@@ -22,32 +22,39 @@
 					<div class="about_Title"></div>
 					<div class="contentLeftAbout">
 						
-						<div id="ruggedness_about">
-							<h2 class="title"></h2>
 						
+						<div id="ruggedness_about">
+							
+						<h2 class="title"></h2>
+						<a class="anchor" name="ruggedness"></a>
 						<p class="info">The only common feature of mountains is their steepness, which causes the forces of gravity to shape them and create all those habitat types and disturbances so typical for mountains. The <b>GMBA Mountain Portal</b> uses ruggedness as a simple and pragmatic proxi to steepness, to define mountains across the globe. Calculations are based on the digital elevation model (DEM) from <b>WorldClim</b> at a 30'' resolution.</p>  
 
 						<p class="info"><b>Ruggedness</b> is defined here as the maximal elevational difference among neighboring grid points. If the difference between the lowest and highest of the nine 30” grid point exceeds 200 m, the 2' 30'' pixel (this is the resolution the MB Portal operates) belongs to mountain terrain, as a matter of convention. With this definition, 16.5 Mio km2 or 12.3 % of the terrestrial surface are mountains at this scale</p>
 
 						<p class="info">This convention also covers non-rugged terrain adjacent to mountains at the given 30” resolution of ruggedness within a 2’ 30” grid (valley floors, small plateaus, forelands). Needless to say that <b>no topographic information</b> < 30'' is reflected in these data, hence, the boundary of mountains adjacent to lowland is not more accurate than 30'' (c. 0.9 km at the equator).</p>
 						</div>
+						
 
 						<div id="elevation_about">
-							<a id="elevation" name="elevation"></a><h2 class="title"></h2>
-						
+
+							<h2 class="title"></h2>
+							<a class="anchor" name="elevation"></a>							
 						<p class="info"><b>The elevation of each 2'30'' pixel (the spatial unit of MBP) and the 30” grid, superimposed for a ruggedness definition, are based on</b> the digital elevation model (DEM) of WorldClim. Although we advise against, you may select your own range of elevation in meters of your mountain area of interest, by defining a lower and an upper limit of elevation. However, this tool should only be used in regional studies (i.e. at the closest zoom level). Even then, there is a risk of climatic bias, because, for instance, front ranges and central ranges may differ dramatically in climate. Since life in mountains is not driven by elevation per se, but by the climatic conditions associated with elevation, we offer instead the <a href="#thermal_belts">thermal belts of life</a>, a simple, temperature-only driven zonation of mountains. </p>
 						</div>
 						
+
 						<div id="thermal_belts_about">
-							
-							<a id="thermal_belts" name="thermal_belts"></a><h2 class="title"></h2>
-							
-						<p class="info">The <b>thermal belts</b> characterize life zones in mountains by temperature only, to account for the latitudinal change in elevation of climatically similar areas. All belts refer to the best defined biome boundary in mountains, the high elevation treeline, between the alpine and the montane belts. From there you can go up (alpine and nival) and down (montane and lower) based on temperature criteria. Thermal belts are defined by algorithms using <b>WorldClim</b> climate data and field data from across the globe that characterize the position of the climatic treeline, irrespective of the actual presence or absence of trees in a given area (Körner and Paulsen 2004 and additional data).</p>
+
+							<h2 class="title"></h2>
+							<a class="anchor" name="thermal_belts"></a>														
+							<p class="info">The <b>thermal belts</b> characterize life zones in mountains by temperature only, to account for the latitudinal change in elevation of climatically similar areas. All belts refer to the best defined biome boundary in mountains, the high elevation treeline, between the alpine and the montane belts. From there you can go up (alpine and nival) and down (montane and lower) based on temperature criteria. Thermal belts are defined by algorithms using <b>WorldClim</b> climate data and field data from across the globe that characterize the position of the climatic treeline, irrespective of the actual presence or absence of trees in a given area (Körner and Paulsen 2004 and additional data).</p>
 						</div>
+
 						
 						<div id="taxon_about">
-							<a id="taxon" name="taxon"></a><h2 class="title"></h2>
 
+							<h2 class="title"></h2>
+							<a class="anchor" name="taxon"></a>
 							<p class="info">The taxonomic browser used in this tool make use of the web services and taxonomy provided by the <a href="http://ecat-dev.gbif.org/">GBIF Checklist Bank </a>. Specifically is making use of the <a href="http://ecat-dev.gbif.org/checklist/1">GBIF NUB taxonomy</a> created as an aggregation from multiple sources and includes more than 4 million name usages.</p>
 							
 							<p class="info">The tiles displayed when a taxon is selected are provided kindly by <a href="http://www.eol.org/">Encyclopedia of Life (EOL)</a> servers. The data for those tiles are frequently updated from the data cached maintained by the <a href="http://www.gbif.org/">GBIF secretariat</a>. The data itself comes from the <a href="http://www.gbif.org/participation/data-publishers/who-is-publishing/">GBIF network of data providers</a>.
@@ -57,8 +64,9 @@
 						
 						
 						<div id="high_elevation_about">
-							<a id="high_elevation" name="high_elevation"></a><h2 class="title"></h2>
 
+							<h2 class="title"></h2>
+							<a class="anchor" name="high_elevation"></a>
 							<p class="info">The high elevation treeline is only a few hundred meters above sea level in the arctic, but at ca. 4000 m asl in the tropics (as long as annual precipitation is > 250 mm). The Mountain Portal offers the treeline as the main reference line, separating the lower alpine and the upper montane belt. The treeline isotherm and the alpine belt are defined by an empirically determined minimum duration of the growing season (i.e. number of days with temperatures above a minimum of 0.9°C; 94 days for treeline. These numbers have been obtained from iterative searches for best parameterization of the algorithm across several hundred reference points). Where trees or any other vegetation is naturally absent (e.g. due to lack of moisture, in alpine and montane deserts), this treeline isotherm is still used to separate terrain above and below. </p>
 
 							<p class="info"><b>A note of caution:</b> Working with gridded data, the accuracy of any analysis increases with the number of grid points included. Hence, best results are obtained for large areas across which local deviations from reality of both topography criteria (ruggedness) and climate data become less significant. Errors are largest for individual point data, because, at the given resolution, these may deviate from the nearest grid point by kilometers of elevation, in the case of steep mountain flanks. </p>

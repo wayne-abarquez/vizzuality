@@ -14,7 +14,6 @@ div.backimage {float:left; width:900px; background-image: url(../images/bkg.jpg)
 div.header {float:left; width:900px; height:100px; padding:15px 0 30px 0;}
 div.header a.logo {float:left; height:30px; width:260px; background: url(../images/title.png) no-repeat 0 0;}
 
-
 /* HOME */
 div.main {float:left; width:900px; padding:0 0 60px;}
 div.main div.contentLeft{ float: left; margin:50px 20px 0 0; width:360px;}
@@ -28,7 +27,6 @@ div.main div.contentLeft a:hover{color:#000000;}
 
 div.main div.contentRight {float:right; height:368px; width:520px; padding:15px 0 0; right:0;}
 div.main div.contentRight img { float:right;}
-
 
 /* CONTACT */
 div.content div.left_contact{ float: left; margin:50px 20px 70px 0; height:368px; width:393px;}
@@ -50,6 +48,7 @@ div.content div.about div.contentLeftAbout p{ float: left; font:normal 15px Aria
 div.content div.about div.contentLeftAbout p.info{float:left; width:100%; margin:10px 0 0 0;}
 div.content div.about a{color:#272A2B; text-decoration:underline;}
 div.content div.about a:hover{color:#000000;}
+div.content div.about a.anchor {float:left;}
 div.content div.about div#ruggedness_about h2.title {float:left; background:url(../images/ruggedness_title.png) no-repeat; width:372px; height:21px; margin:0px 0 10px 0;}
 div.content div.about div#elevation_about h2.title {float:left; background:url(../images/elevation_title.png) no-repeat; width:127px; height:21px; margin:50px 0 10px 0;}
 div.content div.about div#thermal_belts_about h2.title {float:left; background:url(../images/thermal_belts_title.png) no-repeat; width:172px; height:20px; margin:50px 0 10px 0;}
