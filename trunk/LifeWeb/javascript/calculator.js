@@ -256,7 +256,7 @@
 		  var hscr = $(window).height();
 
 		  var mleft = ( wscr - 544 ) / 2;
-		  var mtop = ( hscr - 250 ) / 2;
+		  var mtop = ( hscr - 315 ) / 2;
 
 		  $('div.modal_window').css("left", mleft+'px');
 		  $('div.modal_window').css("top", mtop+'px');
