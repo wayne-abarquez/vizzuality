@@ -216,7 +216,8 @@
 		var dataObj = {"area":polygon_area,"geojson": geojson};    
 		$.ajax({
 		        type: 'POST',
-		    	url: "/carbon",				
+		    	//url: "/proxy.php?mode=native&url="+escape("http://ec2-174-129-149-237.compute-1.amazonaws.com/carbon"),	
+		    	url: "/carbon",							
 		    	data: dataObj,
 		    	cache: false,
 				dataType: 'json',
