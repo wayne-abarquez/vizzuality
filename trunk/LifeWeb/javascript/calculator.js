@@ -214,7 +214,8 @@
 		var geojson = polys2geoJson([polygon]);
 		var dataObj = ({area:polygon_area,geojson: geojson});    
 		$.ajax({
-		    	url: "http://192.168.1.129:4567/carbon",
+					//http://192.168.1.129:4567/
+		    	url: "http://ec2-174-129-149-237.compute-1.amazonaws.com/carbon",
 		    	data: dataObj,
 		    	cache: false,
 					dataType: 'jsonp',
