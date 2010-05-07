@@ -112,12 +112,13 @@
 				if ($('#done').hasClass('disabled')) {
 					$('#done').removeClass('disabled');
 				}
+				polygon_area = (Math.floor(area / 10000) / 100).toFixed(0);
 				$('strong.area').html('');
 				$('strong.carbon').html('');
 				$('#loader_image').show();
 				getCarbonHeight(polygon);
 				
-				polygon_area = (Math.floor(area / 10000) / 100).toFixed(0);
+				
 				$('strong.area').html(polygon_area);
 				$('div.modal_window p.area').html(polygon_area);
 		  }, color);
@@ -151,8 +152,8 @@
 			$('strong.area').html('');
 			$('strong.carbon').html('');
 			$('#loader_image').show();
-			getCarbonHeight(ex_polygon);
 			polygon_area = (Math.floor(area / 10000) / 100).toFixed(0);
+			getCarbonHeight(ex_polygon);
 			$('strong.area').html(polygon_area);
 			$('div.modal_window p.area').html(polygon_area);
 	}
@@ -212,14 +213,13 @@
 
 	function getCarbonHeight(polygon){
 		var geojson = polys2geoJson([polygon]);
-		var dataObj = ({area:polygon_area,geojson: geojson});    
+		var dataObj = {"area":polygon_area,"geojson": geojson};    
 		$.ajax({
-					//http://192.168.1.129:4567/
-		    	url: "http://ec2-174-129-149-237.compute-1.amazonaws.com/carbon",
-					method: 'POST',
+		        type: 'POST',
+		    	url: "/carbon",				
 		    	data: dataObj,
 		    	cache: false,
-					dataType: 'jsonp',
+				dataType: 'json',
 		    	success: function(result){
 						$('#loader_image').hide();
 						$('strong.carbon').text(Math.floor(result.sum_Band1));
