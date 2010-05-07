@@ -26,7 +26,7 @@ div.main div.contentLeft a{color:#282a2b; text-decoration:underline;}
 div.main div.contentLeft a:hover{color:#000000;}
 
 div.main div.contentRight {float:right; height:368px; width:520px; padding:15px 0 0; right:0;}
-div.main div.contentRight img { float:right;}
+div.main div.contentRight img { float:right; margin:5px 0 0 0;}
 
 /* CONTACT */
 div.content div.left_contact{ float: left; margin:50px 20px 70px 0; height:368px; width:393px;}
