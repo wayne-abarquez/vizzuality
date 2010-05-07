@@ -3,6 +3,12 @@ var map;
 var protected_layer;
 var carbon_layer;
 var kba_layer;
+var cluster1;
+var cluster2;
+var white_markers= [];
+var yellow_markers=[];
+var white_style = new Object();
+var yellow_style = new Object();
 var lastMask = 10000;
 
 var e1 = true;
@@ -33,15 +39,7 @@ function initialize(lat,lng) {
 		    	return u;
 		    };
 		carbon_layer.setMap(map);
-		
-		protected_layer=new SparseTileLayerOverlay();
-		    protected_layer.setUrl = function SetUrl(xy,z){
-		    	var q=[];
-		    	q[0]= 'http://184.73.201.235/blue/'+z+'/'+xy.x+'/'+xy.y;
-		    	return q;
-		    };
-		protected_layer.setMap(null);
-		protected_layer.setStyle(0,{alpha:0});
+		carbon_layer.setStyle(0,{alpha:0.5});
 		
 		kba_layer=new SparseTileLayerOverlay();
 		    kba_layer.setUrl = function SetUrl(xy,z){
@@ -52,42 +50,37 @@ function initialize(lat,lng) {
 		kba_layer.setMap(null);
 		kba_layer.setStyle(0,{alpha:0});
 		
+		protected_layer=new SparseTileLayerOverlay();
+		    protected_layer.setUrl = function SetUrl(xy,z){
+		    	var q=[];
+		    	q[0]= 'http://184.73.201.235/blue/'+z+'/'+xy.x+'/'+xy.y;
+		    	return q;
+		    };
+		protected_layer.setMap(null);
+		protected_layer.setStyle(0,{alpha:0});
+		
+		
+		
    
 		$.ajax({
 		  url: 'http://lifeweb.heroku.com/projects',
 		  dataType: 'jsonp',
 		  data: null,
 		  success: function(result) {
-			 		$.each(result, function(key, value) {
+			
+					$.each(result, function(key, value) {
 						if (value.matched) {
-							var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+							var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map);
+							white_markers.push(marker);
 						} else {
 							var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+							yellow_markers.push(marker);
 						}
 						marker.setMap(map);
 					});
-					
-					ppe_infowindow = new PPE_Infowindow(new google.maps.LatLng(0,0), null, map);
-					ppe_infowindow.setMap(null);
 			 }
 		});
 		
-		google.maps.event.addListener(map, 'center_changed', function(ev){ 
-				
-				if ($('div.layers_overlay div').hasClass('clicked')){
-					$('div.layers_overlay').children('div.list').fadeOut();
-					$('div.layers_overlay div').removeClass('clicked');
-					$('div.layers_overlay div').addClass('unclicked');						
-				}
-				
-				if ($('div.filter_markers div').hasClass('clicked')){
-					$('div.filter_markers').children('div.list').fadeOut();
-					$('div.filter_markers div').removeClass('clicked');
-					$('div.filter_markers div').addClass('unclicked');						
-				}
-								
-			}
-		);
 		
 		google.maps.event.addListener(map, 'click', function(ev){ 
 				// console.log(ev);
@@ -105,28 +98,68 @@ function initialize(lat,lng) {
 								
 			}
 		);
+
 		
 }
 
 $(document).ready(function() {
 		
-	$('div.filterButtons div a').click(function(ev){
+	$('a.filter_markers_legend_button').click(function(ev){
 		ev.stopPropagation();
 		ev.preventDefault();
-		
-		if ($(this).parent().hasClass('unclicked')){
-			$(this).parent().parent().children('div.list').show();
-			$(this).parent().removeClass('unclicked');
-			$(this).parent().addClass('clicked');			
+		if ($(this).parent().parent().hasClass('unclicked')){
+			$(this).parent().parent().parent().children('div.clicked').fadeIn();
+		} else {
+			$(this).parent().parent().parent().children('div.clicked').fadeOut();				
 		}
-		else {
-			$(this).parent().parent().children('div.list').fadeOut();
-			$(this).parent().removeClass('clicked');
-			$(this).parent().addClass('unclicked');						
-		}
-		
 	});
+	
+  $('div.filterButtons div a').click(function(ev){
+	  ev.stopPropagation();
+	  ev.preventDefault();
+  
+	  if ($(this).parent().hasClass('unclicked')){
+	          $(this).parent().parent().children('div.list').show();
+	          $(this).parent().removeClass('unclicked');
+	          $(this).parent().addClass('clicked');                   
+	  }
+	  else {
+	          $(this).parent().parent().children('div.list').fadeOut();
+	          $(this).parent().removeClass('clicked');
+	          $(this).parent().addClass('unclicked');                                         
+	  }
+          
+  });
 
+	
+	$('#matches').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).children('p').hasClass('enabled')) {
+			$(this).children('p').removeClass('enabled');
+			$(this).children('p').addClass('disabled');		
+			cleanWhiteMarkers();
+		} else {
+			$(this).children('p').removeClass('disabled');
+			$(this).children('p').addClass('enabled');
+			showWhiteClusters();
+		}
+	});
+	
+	
+	$('#potential').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).children('p').hasClass('enabled')) {
+			$(this).children('p').removeClass('enabled');
+			$(this).children('p').addClass('disabled');		
+			cleanYellowMarkers();
+		} else {
+			$(this).children('p').removeClass('disabled');
+			$(this).children('p').addClass('enabled');	
+			showYellowClusters();
+		}
+	});
 	
 	
 	$('#carbon_layer').click(function(ev){
@@ -175,6 +208,103 @@ $(document).ready(function() {
 			kba_layer.setStyle(0,{alpha:.5});	
 		}
 	});
+	
+	
+	$('#climate').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e1 = false;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e1 = true;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		}
+	});
+	
+	
+	$('#freshwater').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e2 = false;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e2 = true;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		}
+	});
+	
+	
+	$('#food').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e3 = false;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e3 = true;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		}
+	});
+	
+
+	$('#potential_pro').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e4 = false;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e4 = true;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		}
+	});
+
+
+	$('#cultural').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		if ($(this).parent().hasClass('checked')) {
+			$(this).parent().removeClass('checked');
+			$(this).parent().addClass('unchecked');
+			e5 = false;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();	
+		} else {
+			$(this).parent().removeClass('unchecked');
+			$(this).parent().addClass('checked');
+			e5 = true;
+			if ($('#matches').children('p').hasClass('enabled')) showWhiteClusters();
+			if ($('#potential').children('p').hasClass('enabled')) showYellowClusters();
+		}
+	});
+
+
 
 	
 	
@@ -182,25 +312,37 @@ $(document).ready(function() {
 
 
 function showWhiteClusters() {
-	cluster1.clearMarkers();
-	var new_white_markers = [];
 	for (var i=0; i<white_markers.length;i++) {
 		if ((e1 && white_markers[i].information_.ecosystem_service.e1) || (e2 && white_markers[i].information_.ecosystem_service.e2) || (e3 && white_markers[i].information_.ecosystem_service.e3) || (e4 && white_markers[i].information_.ecosystem_service.e4) || (e5 && white_markers[i].information_.ecosystem_service.e5)) {
-			new_white_markers.push(white_markers[i]);
+			white_markers[i].setMap(map);
+		} else {
+			white_markers[i].setMap(null);
 		}
 	}
-	cluster1 = new MarkerClusterer(map, new_white_markers,white_style);
+	
 }
 
 
 function showYellowClusters() {
-	cluster2.clearMarkers();
-	var new_yellow_markers = [];
 	for (var i=0; i<yellow_markers.length;i++) {
 		if ((e1 && yellow_markers[i].information_.ecosystem_service.e1) || (e2 && yellow_markers[i].information_.ecosystem_service.e2) || (e3 && yellow_markers[i].information_.ecosystem_service.e3) || (e4 && yellow_markers[i].information_.ecosystem_service.e4) || (e5 && yellow_markers[i].information_.ecosystem_service.e5)) {
-			new_yellow_markers.push(yellow_markers[i]);
+			yellow_markers[i].setMap(map);
+		}else {
+			yellow_markers[i].setMap(null);
 		}
 	}
-	cluster2 = new MarkerClusterer(map, new_yellow_markers,yellow_style);
+}
+
+
+function cleanYellowMarkers() {
+	for (var i=0; i<yellow_markers.length;i++) {
+			yellow_markers[i].setMap(null);
+	}
+}
+
+function cleanWhiteMarkers() {
+	for (var i=0; i<white_markers.length;i++) {
+			white_markers[i].setMap(null);
+	}
 }
 
