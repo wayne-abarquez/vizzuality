@@ -17,6 +17,7 @@
 			<mx:VBox verticalGap="0" left="12" top="15" width="100%">-->
 				<mx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
 			import com.vizzuality.events.FilterChangedEvent;
 			import com.vizzuality.events.MyEventDispatcher;
 			import com.vizzuality.utils.Resource;
@@ -162,7 +163,9 @@
 				
 				<mx:HBox paddingLeft="8" verticalAlign="middle">
 					<mx:Label text="ELEVATION BELT" color="#FFFFFF" fontWeight="normal" fontSize="13"  toolTip="Taken from WorldClim. To avoid climatic bias along the latitudinal gradient, better use thermal belts, or restrict elevation only on a regional scale (e.g. at the highest zoom level)"/>
-					<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
+					<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"
+						 click="navigateToURL(new URLRequest('http://mountainbiodiversity.org/about.html#elevation'),'_blank')"
+						/>
 				</mx:HBox> 
 				<mx:Canvas  height="45" width="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off">
 					<mx:VRule strokeColor="#666666" strokeWidth="1" height="3" left="13" top="16"/>
@@ -189,7 +192,9 @@
 			<mx:VBox verticalGap="0" left="20" top="15" right="5">
 				<mx:HBox verticalAlign="middle">
 					<mx:Label text="THERMAL BELTs" color="#FFFFFF" fontWeight="normal" fontSize="13" toolTip="Based on temperature data from WORLDCLIM. Thermal belts seperate elevational life zones by temperature only, permitting global comparisons across latitudes" />
-					<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"/>
+					<mx:Image source="{Resource.QUESTION_SYMBOL}" width="10" height="10" mouseChildren="false" useHandCursor="true" buttonMode="true"
+						click="navigateToURL(new URLRequest('http://mountainbiodiversity.org/about.html#thermal_belts'),'_blank')"
+						/>
 				</mx:HBox> 
 				
 				
