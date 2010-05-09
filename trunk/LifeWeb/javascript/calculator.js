@@ -170,7 +170,7 @@
 			var copy_wcmc = new GCopyrightCollection("g");
 			copy_wcmc.addCopyright(new GCopyright('Carbon',new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)),0,'2010 UNEP-WCMC'));
 			var tilelayer = new GTileLayer(copy_wcmc);
-			tilelayer.getTileUrl = function(xy,z) { return 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/Carbon_webmerc/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x};
+			tilelayer.getTileUrl = function(xy,z) { return 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/Carbon2/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x};
 			tilelayer.isPng = function() { return true;};
 			tilelayer.getOpacity = function() { return 0.7; }
 
