@@ -38,22 +38,22 @@ div.legend div.filter_markers_leyend div.unclicked p{float:left; font:bold 10px 
 div.legend div.filter_markers_leyend div.unclicked p a{color:#3086A3;}
 div.legend div.filter_markers_leyend div.unclicked p a:hover {color:#3086A3;}
 div.legend div.filter_markers_leyend div.unclicked p a:visited {color:#3086A3;}
-div.legend div.filter_markers_leyend div.clicked{position:absolute; width:164px; height:29px; background:url(../images/map/bkg_filter_markers_bttm_clicked.png) no-repeat 0 0; right:-3px; bottom:0px; display:none;}
+div.legend div.filter_markers_leyend div.clicked{position:absolute; width:200px; height:29px; background:url(../images/map/bkg_filter_markers_bttm_clicked.png) no-repeat 0 0; right:-3px; bottom:0px; display:none;}
 div.legend div.filter_markers_leyend div.clicked p{float:right; font:bold 10px Arial; color:#999999; text-transform:uppercase; margin:10px 26px 0 0px; line-height:10px; padding:2px 0 0 0;}
-div.legend div.filter_markers_leyend div.clicked ul{position:absolute; bottom:29px; right:1px;}
-div.legend div.filter_markers_leyend div.clicked li{float:right; background:url(../images/map/bkg_list_content_gray.png); width:163px; height:21px; padding:1px 0 0 0; margin:0;} 
+div.legend div.filter_markers_leyend div.clicked ul{position:absolute; bottom:25px; right:1px;}
+div.legend div.filter_markers_leyend div.clicked li{float:right; background:url(../images/map/bkg_list_content_gray.png); width:200px; height:21px; padding:1px 0 0 0; margin:0;} 
 div.legend div.filter_markers_leyend div.clicked p a{color:#999999;}
 div.legend div.filter_markers_leyend div.clicked p a:hover {color:#999999;}
 div.legend div.filter_markers_leyend div.clicked p a:visited {color:#999999;}
 
 
 div.legend div.filter_markers_leyend div.clicked li.line {float:left; background:url(../images/map/bkg_list_content_line.png); width:163px; height:3px; margin:0;} 
-div.legend div.filter_markers_leyend div.clicked li.title {float:right; background:url(../images/map/bkg_filter_markers_head_clicked.png) no-repeat 0 0; width:163px; height:31px; padding:0px 0 0px 0; margin:0 0 0px 0px;} 
+div.legend div.filter_markers_leyend div.clicked li.title {float:right; background:url(../images/map/bkg_filter_markers_head_clicked.png) no-repeat 1px 0; width:200px; height:31px; padding:0px 0 0px 0; margin:0 0 0px 0px;} 
 div.legend div.filter_markers_leyend div.clicked li.title p {float:left; font:bold 10px Arial; color:#999999; text-transform:uppercase; margin:0 0 0 10px; padding:13px 0 0 0;}
 div.legend div.filter_markers_leyend div.clicked li.checked a {float:left; background:url(../images/map/checkBox_checked.png) no-repeat 0 0; width:14px; height:14px; margin:0 5px 0 9px; text-decoration:none;}
-div.legend div.filter_markers_leyend div.clicked li.checked p {float:left; font:normal 13px Arial; color:#666666; text-transform:none; margin:0; line-height:13px;} 
+div.legend div.filter_markers_leyend div.clicked li.checked p {float:left; font:normal 12px Arial; color:#666666; text-transform:none; margin:0; line-height:13px;} 
 div.legend div.filter_markers_leyend div.clicked li.unchecked a {float:left; background:url(../images/map/checkBox_unchecked.png) no-repeat 0 0; width:14px; height:14px; margin:0 5px 0 9px;}
-div.legend div.filter_markers_leyend div.clicked li.unchecked p {float:left; font:normal 13px Arial; color:#999999; text-transform:none; margin:0; line-height:13px;}
+div.legend div.filter_markers_leyend div.clicked li.unchecked p {float:left; font:normal 12px Arial; color:#999999; text-transform:none; margin:0; line-height:13px;}
 
 
 div#map_canvas div.filterButtons div.layers_overlay {position:absolute; top:11px; right:17px; text-decoration:none;}
