@@ -258,28 +258,31 @@ public class DensityRender {
 			
 			System.out.println("Zoom 0");
 			File fout = new File(base + "/z0");
-			me.generateGoogleTiles(fin, fout, 0,1, 28, 8);
+			me.generateGoogleTiles(fin, fout, 0,1, 30, 8);
 			System.out.println("Zoom 1");
 			fout = new File(base + "/z1");
-			me.generateGoogleTiles(fin, fout, 2,3, 28, 8);
+			me.generateGoogleTiles(fin, fout, 2,3, 30, 8);
 			fout = new File(base + "/z2");
 			System.out.println("Zoom 2");
-			me.generateGoogleTiles(fin, fout, 4,5, 28, 8);
+			me.generateGoogleTiles(fin, fout, 4,5, 30, 8);
 			fout = new File(base + "/z3");
 			System.out.println("Zoom 3");
-			me.generateGoogleTiles(fin, fout, 6,7, 28, 7);
+			me.generateGoogleTiles(fin, fout, 6,7, 30, 7);
 			fout = new File(base + "/z4");
 			System.out.println("Zoom 4");
-			me.generateGoogleTiles(fin, fout, 8,9, 28, 7);
+			me.generateGoogleTiles(fin, fout, 8,9, 30, 7);
 			fout = new File(base + "/z5");
 			System.out.println("Zoom 5");
-			me.generateGoogleTiles(fin, fout, 10,11, 28, 6);
+			me.generateGoogleTiles(fin, fout, 10,11, 30, 6);
 			fout = new File(base + "/z6");
 			System.out.println("Zoom 6");
-			me.generateGoogleTiles(fin, fout, 12,13, 28, 6);
+			me.generateGoogleTiles(fin, fout, 12,13, 30, 6);
 			fout = new File(base + "/z7");
 			System.out.println("Zoom 7");
-			me.generateGoogleTiles(fin, fout, 14,15, 28, 6);
+			me.generateGoogleTiles(fin, fout, 14,15, 30, 6);
+			fout = new File(base + "/z8");
+			System.out.println("Zoom 8");
+			me.generateGoogleTiles(fin, fout, 16,17, 30, 6);
 			
 			System.out.println("Msecs: " + (System.currentTimeMillis() - time));
 
