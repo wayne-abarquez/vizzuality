@@ -10,16 +10,19 @@
 	  <init-param>
 		<param-name>connectURI</param-name>
 		 <!-- e.g. jdbc:mysql://localhost:3306/gmba -->
-		<param-value>jdbc:mysql://localhost:3306/gmba_utf8?useUnicode=yes&amp;characterEncoding=UTF8&amp;characterSetResults=UTF8</param-value>
+		<!--
+		 <param-value>jdbc:mysql://localhost:3306/gmba_utf8?useUnicode=yes&amp;characterEncoding=UTF8&amp;characterSetResults=UTF8</param-value>
+		-->
+		<param-value>jdbc:postgresql://localhost:5432/gmba</param-value>
 	  </init-param>
 	  <init-param>
 		<param-name>user</param-name>
-		<param-value>root</param-value>
+		<param-value>postgres</param-value>
 	  </init-param>
 	  <init-param>
 		<param-name>password</param-name>
 		  <!-- leave blank for no password -->
-		<param-value>root</param-value>
+		<param-value>postgres</param-value>
 	  </init-param>
 		<!-- the name of the downloads folder -->
 	  <init-param>

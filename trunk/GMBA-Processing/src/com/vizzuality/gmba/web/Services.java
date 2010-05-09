@@ -130,7 +130,54 @@ public class Services extends AbstractServlet {
 							extractInt(req, "minRelief", null, false, true),
 							extractInt(req, "maxRelief", null, false, true),
 							extractInts(req, "tvzCode", false, true),
-							extractBool(req, "logSql", false)));
+							extractBool(req, "logSql", false),
+							false));
+				} catch (Exception e) {
+					resp.getWriter().write("An error has occured: <br/>");
+					e.printStackTrace(resp.getWriter());
+				} finally {
+					try {
+						c.close();
+					} catch (Exception e) {
+						// proper hosed!
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			if ("/COUNT".equalsIgnoreCase(req.getPathInfo())) {
+				Connection c = null;
+				
+				try {
+					c = this.getConnection();
+				
+					// we throw error if not parsable but otherwise default to null
+					BigDecimal minLat = extractDecimal(req, "minLatitude", null, false, true);
+					BigDecimal maxLat = extractDecimal(req, "maxLatitude", null, false, true);
+					BigDecimal minLng = extractDecimal(req, "minLongitude", null, false, true);
+					BigDecimal maxLng = extractDecimal(req, "maxLongitude", null, false, true);
+					
+					Integer minCellId = null;
+					Integer maxCellId = null;
+					if (minLat!=null && minLng!=null) {
+						minCellId = toCell(minLat, minLng, null);
+					}
+					if (maxLat!=null && maxLng!=null) {
+						maxCellId = toCell(maxLat, maxLng, null);
+					}
+					
+					// we throw error if not parsable but otherwise default to null
+					resp.getWriter().write(search(c,
+							extractInt(req, "taxonId", new Integer(0), false, true),
+							minCellId,
+							maxCellId,
+							extractInt(req, "minElevation", null, false, true),
+							extractInt(req, "maxElevation", null, false, true),
+							extractInt(req, "minRelief", null, false, true),
+							extractInt(req, "maxRelief", null, false, true),
+							extractInts(req, "tvzCode", false, true),
+							extractBool(req, "logSql", false),
+							true));
 				} catch (Exception e) {
 					resp.getWriter().write("An error has occured: <br/>");
 					e.printStackTrace(resp.getWriter());
@@ -251,7 +298,7 @@ public class Services extends AbstractServlet {
 	 * @throws SQLException On SQL errors
 	 */
 	protected String search(Connection c, Integer taxonId, Integer minCellId, Integer maxCellId, Integer minElevation, 
-			Integer maxElevation, Integer minRelief, Integer maxRelief, Integer[] tvzCode, boolean logSQL) throws SQLException {
+			Integer maxElevation, Integer minRelief, Integer maxRelief, Integer[] tvzCode, boolean logSQL, boolean countOnly) throws SQLException {
 		StringBuffer sb = new StringBuffer("from occurrence_density where nub_id=" + taxonId);
 				
 		if (minCellId!=null) {
@@ -295,15 +342,17 @@ public class Services extends AbstractServlet {
 		// 2=specimen
 		String sql = "select sum(count) "  + sb.toString();
 		addCount(c, logSQL, result, sql, "\"total\":");
-		result.append(",");
-		sql = "select sum(count) "  + sb.toString() + " and basis_of_record=1";
-		addCount(c, logSQL, result, sql, "\"observation\":");
-		result.append(",");
-		sql = "select sum(count) "  + sb.toString() + " and basis_of_record=2";
-		addCount(c, logSQL, result, sql, "\"specimen\":");
-		result.append(",");
-		sql = "select count(distinct resource_id) "  + sb.toString();
-		addCount(c, logSQL, result, sql, "\"resources\":");
+		if (!countOnly) {
+			result.append(",");
+			sql = "select sum(count) "  + sb.toString() + " and basis_of_record=1";
+			addCount(c, logSQL, result, sql, "\"observation\":");
+			result.append(",");
+			sql = "select sum(count) "  + sb.toString() + " and basis_of_record=2";
+			addCount(c, logSQL, result, sql, "\"specimen\":");
+			result.append(",");
+			sql = "select count(distinct resource_id) "  + sb.toString();
+			addCount(c, logSQL, result, sql, "\"resources\":");
+		}
 		result.append("}");
 		
 		return result.toString();
@@ -348,7 +397,13 @@ public class Services extends AbstractServlet {
 			Integer maxElevation, Integer minRelief, Integer maxRelief, Integer[] tvzCode, boolean logSQL) throws IOException {
 			
 		
-		StringBuffer sb = new StringBuffer("select * from occurrence_download ");
+		StringBuffer sb = new StringBuffer("select elevation,relief,tvzcode,data_provider_id,data_resource_id,data_provider,dataset,collector_name," +
+				"date_collected,institution_code,collection_code,catalogue_number, basis_of_record, last_indexed,identifier,identification_date," +
+				"scientific_name_original,author,scientific_name,kingdom,phylum,class,order_rank,family,genus,country,locality,county,continent_or_ocean," +
+				"state_or_province,region,provider_country,latitude_interpreted,longitude_interpreted,coordinate_precision,geospatial_issue,min_altitude," +
+				"max_altitude,altitude_precision,gbif_portal_url,occurrence_id,nub_concept_id,kingdom_concept_id,phylum_concept_id,class_concept_id," +
+				"order_concept_id,family_concept_id,genus_concept_id,species_concept_id from occurrence_download ");
+		
 		boolean first = true;
 		if (taxonId!=null) {
 			sb.append(" where ");
@@ -471,19 +526,34 @@ public class Services extends AbstractServlet {
 			this.lockFile = lockFile;
 		}
 
-
-
 		@Override
 		public void run() {
 			// we create a line by line only reading query
 			try {
-				Statement s = c.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-				s.setFetchSize(Integer.MIN_VALUE);
+				// this does mysql cursors
+				// Statement s = c.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+				// s.setFetchSize(Integer.MIN_VALUE);				
+				
+				// postgres cursors mandates this
+				c.setAutoCommit(false);
+				Statement s = c.createStatement();
+				s.setFetchSize(50);
+				
+				// execute and use DB cursor scanning
 				ResultSet rs = s.executeQuery(sql);
 				ResultSetMetaData metaData = rs.getMetaData();
 				int columns = metaData.getColumnCount();		
 				
 				BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output),"UTF-8"));
+				
+				// write the header row
+				writer.write("elevation\treliefCode\ttvzCode\tdataProviderId\tdataResourceId\tdataProvider\tdataset\tcollectorName\t" +
+						"dateCollected\tinstitutionCode\tcollectionCode\tcatalogueNumber\tbasisOfRecord\tlastIndexed\tidentifier\t" +
+						"identificationDate\tscientificNameOriginal\tauthor\tscientificName\tkingdom\tphylum\tclass\torder\tfamily\t" +
+						"genus\tisoCountryCode\tlocality\tcounty\tcontinentOrOcean\tstateOrProvince\tregion\tproviderCountry\t" +
+						"latitudeInterpreted\tlongitudeInterpreted\tcoordinatePrecision\tgeospatialIssue\tminAltitude\tmaxAltitude" +
+						"\taltitudePrecision\tgbifPortalUrl\toccurrenceId\tnubConceptId\tkingdomConceptId\tphylumConceptId\tclassConceptId" +
+						"\torderConceptId\tfamilyConceptId\tgenusConceptId\tspeciesConceptId\n");
 				
 				while (rs.next()) {
 					for (int i=1; i<=columns; i++) {
