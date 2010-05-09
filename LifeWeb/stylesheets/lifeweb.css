@@ -119,13 +119,13 @@ div.map_project div.filterButtons div.layers_overlay {position:absolute; top:11p
 
 div.map_project div.filterButtons div.unclicked div.left {float:left; background:url(../images/map/bttnFilterLayerLeft.png) no-repeat 0 0; width:4px; height:24px;}
 div.map_project div.filterButtons div.unclicked div.center {float:left; background-color:#FFFFFF; border:1px solid #3086A3; border-left:none; border-right:none; height:22px; width:96px;}
-div.map_project div.filterButtons div.unclicked div.center p {float:left; font:bold 10px Arial; color:#3086A3; text-transform:uppercase; text-decoration:none; margin:4px 0 0 3px;}
+div.map_project div.filterButtons div.unclicked div.center p {float:left; font:bold 10px Arial; color:#3086A3; text-transform:uppercase; text-decoration:none; margin:6px 0 0 3px;}
 div.map_project div.filterButtons div.unclicked div.right{float:left; background:url(../images/map/bttnFilterLayerRight.png) no-repeat 0 0; width:24px; height:24px;}
 
 
 div.map_project div.filterButtons div.clicked div.left {float:left; background:url(../images/map/bttnFilterLayerLeft_clicked.png) no-repeat 0 0; width:4px; height:21px;}
 div.map_project div.filterButtons div.clicked div.center {float:left; background-color:#FFFFFF; border:1px solid #666666; border-left:none; border-right:none; border-bottom:none; height:21px; width:96px;}
-div.map_project div.filterButtons div.clicked div.center p {float:left; font:bold 10px Arial; color:#999999; text-transform:uppercase; text-decoration:none; margin:4px 0 0 3px;}
+div.map_project div.filterButtons div.clicked div.center p {float:left; font:bold 10px Arial; color:#999999; text-transform:uppercase; text-decoration:none; margin:6px 0 0 3px;}
 div.map_project div.filterButtons div.clicked div.right{float:left; background:url(../images/map/bttnFilterLayerRight_clicked.png) no-repeat 0 0; width:24px; height:21px;}
 
 div.map_project div.filterButtons div.list {position:absolute; top:21px; right:0; display:none;}
