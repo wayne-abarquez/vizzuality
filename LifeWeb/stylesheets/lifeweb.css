@@ -92,10 +92,11 @@ div.data_project_viz div.content_left {float:left; width:445px; margin:22px;}
 div.data_project_viz div.content_left p.title {float:left; font:bold 19px Arial; color:#333333; width:100%; margin:0 0 5px 0;}
 
 div.data_project_viz div.content_left p.info {float:left; font:normal 13px Arial; color:#666666; width:100%; margin:3px 0 0 0;}
-div.data_project_viz div.content_left div.data_info {float:left; width:155px; margin:20px 0 0 0;}
+div.data_project_viz div.content_left div.data_info {float:left; width:156px; margin:20px 0 0 0;}
+div.data_project_viz div.content_left div.data_info_last {float:left; width:130px; margin:20px 0 0 0;}
 div.data_project_viz p.about {float:left; font:normal 10px Arial; color:#999999; text-transform:uppercase; margin:0; width:100%;}
-div.data_project_viz div.content_left div.data_info p.info_data {float:left; font:bold 13px Arial; color:#666666; margin:0;}
-div.data_project_viz div.content_left div.wide_info {float:left; width:100%; margin:15px 0 0 0;}
+div.data_project_viz div.content_left div.data_info p.info_data,div.data_project_viz div.content_left div.data_info_last p.info_data {float:left; font:bold 19px Arial; color:#666666; margin:0;}
+div.data_project_viz div.content_left div.wide_info {float:left; width:100%; margin:15px 0 2px 0;}
 
 div.data_project_viz div.valorations {float:left; width:100%; margin:0px 0px 20px 0px;}
 div.data_project_viz div.valorations div.valoration {float:left; width:135px; margin:0 0 0 22px;}
