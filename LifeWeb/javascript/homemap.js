@@ -37,7 +37,7 @@ function initialize() {
 		carbon_layer=new SparseTileLayerOverlay();
 		    carbon_layer.setUrl = function SetUrl(xy,z){
 		    	var u=[];
-		    	u[0]= 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/Carbon_webmerc/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x;
+		    	u[0]= 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/Carbon2/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x;
 		    	return u;
 		    };
 		carbon_layer.setMap(map);
