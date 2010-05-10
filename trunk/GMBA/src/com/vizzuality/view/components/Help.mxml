@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" backgroundAlpha="0.8" backgroundColor="#000000">
-	<mx:HRule y="111" left="0"/>
-	<mx:HRule y="190" left="0"/>
-	<mx:HRule y="337" left="0"/>
-	<mx:Text x="108" y="103" text="Elevation" width="252" height="22" color="#FFFFFF"/>
-	<mx:Text x="108" y="183" text="Altitude" width="252" height="22" color="#FFFFFF"/>
-	<mx:Text x="108" y="329" text="Vegetation type&#xd;" width="252" height="22" color="#FFFFFF"/>
-</mx:Canvas>
