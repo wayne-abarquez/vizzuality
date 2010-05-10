@@ -117,10 +117,10 @@
 				$('strong.carbon').html('');
 				$('#loader_image').show();
 				getCarbonHeight(polygon);
-				
-				
+
 				$('strong.area').html(polygon_area);
 				$('div.modal_window p.area').html(polygon_area);
+				getCountry(polygon.getBounds().getCenter());
 		  }, color);
 	}
 
@@ -156,6 +156,7 @@
 			getCarbonHeight(ex_polygon);
 			$('strong.area').html(polygon_area);
 			$('div.modal_window p.area').html(polygon_area);
+			getCountry(ex_polygon.getBounds().getCenter());
 	}
 	
 
@@ -313,6 +314,20 @@
 		$('div.image img').attr('src','http://maps.google.com/maps/api/staticmap?size=115x75&key=nokey&sensor=false&path=fillcolor:0x666666|color:0x666666|weight:1|enc:'+finalPolygon.encodedPoints);
 
 	}
+	
+	
+	function getCountry(latlng) {
+		if (geocoder) {
+      geocoder.getLocations(
+        latlng,
+        function(result) {
+					console.log(result);
+					$('strong.country').text("5% of "+ result.Placemark[0].AddressDetails.Country.CountryName +"'s total carbon");
+        }
+      );
+    }
+	}
+	
 	
 	//function checkPointArea(latlng) {
 		// $.ajax({
