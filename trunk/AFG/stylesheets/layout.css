@@ -6,32 +6,30 @@ a:focus{outline:none}
 input:focus{outline:none;}
 ul {list-style:none;}
 
-div#outer_layout{float:left; width:100%;}
-div#layout{margin:0 auto; width:936px;}
+div.outer_layout{margin:0 auto; width:936px;}
 
 
 
 /*HEADER*/
-div.header {margin:31px auto 0; width:936px;}
-div.header div.in {float:left; width:894px; padding:23px 20px 0 20px; background:white;}
-div.header div.in div.logo {float:left; width:894px; }
-div.header div.in div.logo a {float:left; width:191px; height:38px; background:url(../images/home/logo.png) no-repeat 0 0;}
-div.header div.in div.logo span.search {float:right; width:auto;}
-div.header div.in div.logo span.search form {float:left; margin:0; padding:0;}
-div.header div.in div.logo span.search form input[type="text"] {float:left; border:1px solid #cccccc; background:white; margin:0; padding:0; font:normal 13px Arial; color:#cccccc; line-height:13px; padding:4px; width:181px;}
-div.header div.in div.logo span.search form input[type="submit"] {float:left; border:1px solid #cccccc; border-left:none; background:url(../images/home/len.png) no-repeat 0 0; height:25px; width:24px; margin:0; padding:0;}
+div.header {float:left; width:894px; margin:23px 0 0 0; padding:23px 20px 0 20px; background:white;}
+div.header div.logo {float:left; width:894px; }
+div.header div.logo a {float:left; width:191px; height:38px; background:url(../images/home/logo.png) no-repeat 0 0;}
+div.header div.logo span.search {float:right; width:auto;}
+div.header div.logo span.search form {float:left; margin:0; padding:0;}
+div.header div.logo span.search form input[type="text"] {float:left; border:1px solid #cccccc; background:white; margin:0; padding:0; font:normal 13px Arial; color:#cccccc; line-height:13px; padding:4px; width:181px;}
+div.header div.logo span.search form input[type="submit"] {float:left; border:1px solid #cccccc; border-left:none; background:url(../images/home/len.png) no-repeat 0 0; height:25px; width:24px; margin:0; padding:0;}
+div.header div.header_menu {float:left; width:auto; padding:27px 0 17px 0;}
+div.header div.header_menu ul {float:left; width:894px; margin:0;}
+div.header div.header_menu ul li {float:left; width:auto; padding:0 15px;}
+div.header div.header_menu ul li.first {padding:0 15px 0 0;}
+div.header div.header_menu ul li a {text-decoration:none; font:bold 13px Arial; color:#999999;}
+div.header div.header_menu ul li a.current {color:#0099CC;}
+div.header div.header_menu ul li a:hover {color:#0099CC;}
 
-div.header div.in div.header_menu {float:left; width:auto; padding:27px 0 17px 0;}
-div.header div.in div.header_menu ul {float:left; width:894px; margin:0;}
-div.header div.in div.header_menu ul li {float:left; width:auto; padding:0 15px;}
-div.header div.in div.header_menu ul li.first {padding:0 15px 0 0;}
-div.header div.in div.header_menu ul li a {text-decoration:none; font:bold 13px Arial; color:#999999;}
-div.header div.in div.header_menu ul li a.current {color:#0099CC;}
-div.header div.in div.header_menu ul li a:hover {color:#0099CC;}
 
 
 /*HOME*/
-
+div.images_gallery {float:left; width:936px; background:url(../images/home/home_top_bkg.png) repeat-x 0 0; height:500px; margin:0; padding:0;}
 
 
 
