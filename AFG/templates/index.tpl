@@ -19,7 +19,6 @@
 							<p class="heart">11</p>
 							<p class="taxa">Pygoscelis papua</p>
 						</div>
-						<span class="shadow"></span>
 					</li>
 					<li>
 						<div class="specie">
@@ -27,7 +26,6 @@
 							<h4><a href="#">Gentoo Penguin</a></h4>
 							<p class="heart">11</p>
 							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
 						</div>
 					</li>
 					<li class="last">
@@ -36,7 +34,6 @@
 							<h4><a href="#">Gentoo Penguin</a></h4>
 							<p class="heart zero">0</p>
 							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
 						</div>
 					</li>
 					<li>
@@ -45,7 +42,6 @@
 							<h4><a href="#">Gentoo Penguin</a></h4>
 							<p class="heart">11</p>
 							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
 						</div>
 					</li>
 					<li>
@@ -54,7 +50,6 @@
 							<h4><a href="#">Gentoo Penguin</a></h4>
 							<p class="heart">11</p>
 							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
 						</div>
 					</li>
 					<li class="last">
@@ -63,7 +58,6 @@
 							<h4><a href="#">Gentoo Penguin</a></h4>
 							<p class="heart">11</p>
 							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
 						</div>
 					</li>
 				</ul>
@@ -74,65 +68,69 @@
 		</div>
 		
 		<div class="right">
-			<div class="latest">
+			<div class="latest_">
 				<h3>Latest activity</h3>
 				<p class="subtitle">species, guides and landscapes added...</a></p>
 				<ul>
 					<li>
-						<div class="specie">
-							<a href="#"><img src="images/home/penguin.png" /></a>
-							<h4><a href="#">Gentoo Penguin</a></h4>
-							<p class="heart">11</p>
-							<p class="taxa">Pygoscelis papua</p>
-						</div>
-						<span class="shadow"></span>
-					</li>
-					<li>
-						<div class="specie">
-							<a href="#"><img src="images/home/penguin.png" /></a>
-							<h4><a href="#">Gentoo Penguin</a></h4>
-							<p class="heart">11</p>
-							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
-						</div>
-					</li>
-					<li class="last">
-						<div class="specie">
-							<a href="#"><img src="images/home/penguin.png" /></a>
-							<h4><a href="#">Gentoo Penguin</a></h4>
-							<p class="heart zero">0</p>
-							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
+						<div class="latest first">
+							<div class="image">
+								<img src="images/home/mini_avatar.png" />
+							</div>
+							<div class="data">
+								<p>Someone has added the <a href="#">this amazing landscape</a> to a guide</p>
+								<p class="ago">2 hours before</p>
+							</div>
 						</div>
 					</li>
 					<li>
-						<div class="specie">
-							<a href="#"><img src="images/home/penguin.png" /></a>
-							<h4><a href="#">Gentoo Penguin</a></h4>
-							<p class="heart">11</p>
-							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
+						<div class="latest">
+							<div class="image">
+								<img src="images/home/mini_avatar.png" />
+							</div>
+							<div class="data">
+								<p>Someone has added the <a href="#">this amazing landscape</a> to a guide</p>
+								<p class="ago">2 hours before</p>
+							</div>
 						</div>
 					</li>
 					<li>
-						<div class="specie">
-							<a href="#"><img src="images/home/penguin.png" /></a>
-							<h4><a href="#">Gentoo Penguin</a></h4>
-							<p class="heart">11</p>
-							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
+						<div class="latest">
+							<div class="image">
+								<img src="images/home/mini_avatar.png" />
+							</div>
+							<div class="data">
+								<p>Someone has added the <a href="#">this amazing landscape</a> to a guide</p>
+								<p class="ago">2 hours before</p>
+							</div>
 						</div>
 					</li>
-					<li class="last">
-						<div class="specie">
-							<a href="#"><img src="images/home/penguin.png" /></a>
-							<h4><a href="#">Gentoo Penguin</a></h4>
-							<p class="heart">11</p>
-							<p class="taxa">Pygoscelis papua</p>
-							<span class="shadow"></span>
+					<li>
+						<div class="latest">
+							<div class="image">
+								<img src="images/home/mini_avatar.png" />
+							</div>
+							<div class="data">
+								<p>Someone has added the <a href="#">this amazing landscape</a> to a guide</p>
+								<p class="ago">2 hours before</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="latest">
+							<div class="image">
+								<img src="images/home/mini_avatar.png" />
+							</div>
+							<div class="data">
+								<p>Someone has added the <a href="#">this amazing landscape</a> to a guide</p>
+								<p class="ago">2 hours before</p>
+							</div>
 						</div>
 					</li>
 				</ul>
+			</div>
+			<div class="bottom">
+				<p>why this matters? <a href="#">create your guide</a></p>
 			</div>
 		</div>
 		
