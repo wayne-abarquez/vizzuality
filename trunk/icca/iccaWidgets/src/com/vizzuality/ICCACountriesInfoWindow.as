@@ -53,6 +53,7 @@ package com.vizzuality
                     tf.embedFonts = true;
                     tf.x=10+2*ob.sites;
                     tf.y=14+2*ob.sites;
+                    tf.selectable = false;
                     shape.addChild(tf);
                     addChild(shape);
 
@@ -92,9 +93,9 @@ package com.vizzuality
                     numICCAFormat.size = 12;
                     iccaText.defaultTextFormat = numICCAFormat;
                     if (ob.sites==1) {
-                    	iccaText.text = ob.sites + " ICCA SITE";
+                    	iccaText.text = ob.sites + " ICCA CASE STUDY";
                     } else {
-                    	iccaText.text = ob.sites + " ICCA SITES";
+                    	iccaText.text = ob.sites + " ICCA CASE STUDIES";
                     }
                     iccaText.textColor = 0x9cc342;
                     iccaText.embedFonts = true;
@@ -123,7 +124,12 @@ package com.vizzuality
 	                    textFormat.size = 16;
 	                    textFormat.letterSpacing = -1;
 	                    textField.defaultTextFormat = textFormat;
-	                    textField.text = (ob.textSites as Array)[i].name;
+	                    if(((ob.textSites as Array)[i].name as String).length > 17){
+	                    	textField.text = ((ob.textSites as Array)[i].name as String).substr(0,17) + "...";
+	                    }else{
+		                    textField.text = (ob.textSites as Array)[i].name;
+	                    }
+	                    
 	                    textField.textColor = 0xffffff;
 	                    textField.embedFonts = true;
 	                    textField.width = 130;

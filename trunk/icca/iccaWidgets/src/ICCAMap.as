@@ -44,10 +44,13 @@ package {
 		[Embed(source='assets/band.jpg')]
 		private var bandClass:Class;
 
+    	[Embed(source='DINOT-Medium.swf',fontName='DINOT-Medium',fontWeight='normal')]
+    	public var f4:Class;
+
 		
 		public function ICCAMap() {	
-			var font: LoadFont = new LoadFont("TitilliumText14L.swf",["TitilliumText14L"]);
- 	 	 	font.addEventListener(LoadFont.COMPLETE, successLoadFont);
+			/* var font: LoadFont = new LoadFont("DINOT-Medium.swf",["DINOT-Medium"]);
+ 	 	 	font.addEventListener(LoadFont.COMPLETE, successLoadFont); */
  	 	 	
  	 	 	
  	 	 	var mapKey:String =root.loaderInfo.parameters.mapkey;
@@ -80,7 +83,7 @@ package {
    			newFormatValue.size = 12; 
    			newFormatValue.bold = true;
 			newFormatValue.color = 0xFFFFFF; 
-   			newFormatValue.font=embeddedFonts[0].fontName;
+   			newFormatValue.font="DINOT-Medium";
    			newFormatValue.letterSpacing = 0;
     		title.setTextFormat(newFormatValue); 
   	 		title.embedFonts = true;		
@@ -95,7 +98,7 @@ package {
    			newFormatValue2.size = 24; 
    			newFormatValue2.bold = true;
 			newFormatValue2.color = 0xFFFFFF; 
-   			newFormatValue2.font=embeddedFonts[0].fontName;
+   			newFormatValue2.font="DINOT-Medium";
    			newFormatValue2.letterSpacing = 0;
     		title2.setTextFormat(newFormatValue2); 
   	 		title2.embedFonts = true;		
@@ -219,7 +222,7 @@ package {
 	       			newFormat.color = 0xFFFFFF;
 	       			newFormat.bold = true;
 	       			newFormat.letterSpacing = 0;
-	       			newFormat.font=embeddedFonts[0].fontName;
+	       			newFormat.font="DINOT-Medium";
 	        		countryText.setTextFormat(newFormat); 
 	 	 	 		countryText.embedFonts = true;
 		            countryText.multiline = true;
@@ -250,7 +253,7 @@ package {
 	       			newFormatValue.size = 11; 
 	       			newFormatValue.bold = true;
 	       			newFormatValue.color = 0xFFFFFF; 
-	       			newFormatValue.font=embeddedFonts[0].fontName;
+	       			newFormatValue.font="DINOT-Medium";
 	       			newFormatValue.letterSpacing = 0;
 	        		countryValue.setTextFormat(newFormatValue); 
 	 	 	 		countryValue.embedFonts = true;		
@@ -301,7 +304,7 @@ package {
 	       			newFormat.color = 0xFFFFFF;
 	       			newFormat.bold = true;
 	       			newFormat.letterSpacing = 0;
-	       			newFormat.font=embeddedFonts[0].fontName;
+	       			newFormat.font="DINOT-Medium";
 	        		countryText.setTextFormat(newFormat); 
 	 	 	 		countryText.embedFonts = true;
 		            countryText.multiline = true;
@@ -328,7 +331,7 @@ package {
 	       			newFormatValue.size = 11; 
 	       			newFormatValue.bold = true;
 	       			newFormatValue.color = 0xFFFFFF; 
-	       			newFormatValue.font=embeddedFonts[0].fontName;
+	       			newFormatValue.font="DINOT-Medium";
 	       			newFormatValue.letterSpacing = 0;
 	        		countryValue.setTextFormat(newFormatValue); 
 	 	 	 		countryValue.embedFonts = true;		
