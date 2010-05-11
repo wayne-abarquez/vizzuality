@@ -8,7 +8,7 @@
 							<li><a href="/">Explore</a></li>
 							<li><a href="#">Species</a></li>
 							<li><a href="#">Guides</a></li>
-							<li class="first"><a href="#">Landscapes</a></li>
+							<li class="last"><a href="#">Landscapes</a></li>
 						</ul>
 					</span>
 				</div>

@@ -5,6 +5,8 @@ span.clear{clear:both;}
 a:focus{outline:none}
 input:focus{outline:none;}
 ul {list-style:none;}
+div.left {float:left; width:624px;}
+div.right {float:right; width:312px;}
 
 div.outer_layout{margin:0 auto; width:936px;}
 
@@ -28,7 +30,41 @@ div.header div.header_menu ul li a:hover {color:#0099CC;}
 
 
 /*HOME*/
-div.images_gallery {float:left; width:936px; background:url(../images/home/home_top_bkg.png) repeat-x 0 0; height:500px; margin:0; padding:0;}
+/*gallery*/
+div.images_gallery {float:left; width:896px; padding:0 20px 0 20px; background:url(../images/home/home_top_bkg.png) repeat-x 0 0;}
+div.images_gallery h2 {float:left; width:896px; text-align:center; font:bold 36px Arial; color:#CCCCCC; letter-spacing:-2px; padding:27px 0 23px; line-height:36px;}
+div.images_gallery h2 a {text-decoration:none; color:#0099CC;}
+div.images_gallery h2 a:hover {text-decoration:underline;}
+
+/*below gallery*/
+div.left div.information {float:left; padding:21px; width:582px; background:white;}
+div.left div.information h3 {font:bold 25px Helvetica; color:#666666; letter-spacing:-1px;}
+div.left div.information p.subtitle {font:normal 13px "Lucida Grande"; color:#666666;}
+div.left div.information p.subtitle a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
+div.left div.information p.subtitle a:hover {text-decoration:underline;}
+
+div.left div.information ul {float:left; width:582px; padding:5px 0;}
+div.left div.information ul li {position:relative; float:left; margin:8px 15px 0 0;}
+div.left div.information ul li.last {margin:8px 0 0 0;}
+div.left div.information ul li div.specie {float:left; padding:8px; width:168px; height:155px; background:url(../images/home/specie_bkg.png) no-repeat 0 0;}
+div.left div.information ul li div.specie h4 {float:left; width:140px; padding:4px 0 0 0;}
+div.left div.information ul li div.specie h4 a {font:bold 15px "Lucida Grande"; color:#0099CC; text-decoration:none;}
+div.left div.information ul li div.specie h4 a:hover {text-decoration:underline;}
+div.left div.information ul li div.specie p.taxa {font:normal 11px "Lucida Grande"; color:#999999; padding:1px 0 0 0;}
+div.left div.information ul li div.specie p.heart {float:right; font:normal 10px Arial; color:#999999; margin:9px 0 0 0; padding:0 0 0 11px; line-height:10px; background:url(../images/home/heart.png) no-repeat 0 1px;}
+div.left div.information ul li div.specie p.heart.zero {background-position:0 -10px;}
+
+div.left div.bottom {float:left; border-top:1px solid #E8E8E8; border-bottom:1px solid #CCCCCC; background:#F7F7F7; padding:15px 21px; width:582px;}
+div.left div.bottom p {font:normal 13px "Lucida Grande"; color:#666666; text-align:right;}
+div.left div.bottom p a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
+div.left div.bottom p a:hover {text-decoration:underline;}
+
+div.right div.latest {float:left; padding:21px; width:269px; background:white; border-left:1px solid #cccccc;}
+div.right div.latest h3 {font:bold 25px Helvetica; color:#666666; letter-spacing:-1px;}
+div.right div.latest p.subtitle {font:normal 13px "Lucida Grande"; color:#666666;}
+div.right div.latest p.subtitle a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
+div.right div.latest p.subtitle a:hover {text-decoration:underline;}
+
 
 /*GUIDE*/
 div.header_guide {float:left; width:936px; background:url(../images/guide/bkg_head_repeatx.png) repeat-x 0 0; height:313px; margin:0; padding:0;}
@@ -83,7 +119,7 @@ div.footer div.in div.logo {float:left; width:894px; }
 div.footer div.in div.logo a.logo {float:left; width:123px; height:26px; background:url(../images/home/logo_footer.png) no-repeat 0 0;}
 div.footer div.in div.logo span.menu {float:right; width:auto;}
 div.footer div.in div.logo span.menu ul li {float:left; width:auto; padding:0 15px;}
-div.footer div.in div.logo span.menu ul li.first {padding:0 15px 0 0;}
+div.footer div.in div.logo span.menu ul li.last {padding:0 0 0 15px;}
 div.footer div.in div.logo span.menu ul li a {text-decoration:none; font:bold 13px Arial; color:#999999;}
 div.footer div.in div.logo span.menu ul li a.current {color:#0099CC;}
 div.footer div.in div.logo span.menu ul li a:hover {color:#0099CC;}
