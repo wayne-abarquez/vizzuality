@@ -28,7 +28,20 @@
 					</div>
 				</div>			
 			</div>
-		</div>
+		</div> <!-- header_guide -->
+		<div class="taxonomy_browser_body">
+			<div class="content">
+				<div class="content_left">
+					<p class="species_included">Species included</p>
+					<p class="number_species">32 species included in this guide</p>				
+				</div>
+				<div class="content_right">
+					<a class="view_advanced_browser" href="#">view the <span>advanced taxon browser</span></a>
+				</div>		
+			</div>
+		</div> <!-- taxonomy_browser_body -->
+		
+		
 	</div>
 {include file="footer.tpl"}
 
