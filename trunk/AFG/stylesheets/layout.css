@@ -46,7 +46,7 @@ div.left div.information p.subtitle a:hover {text-decoration:underline;}
 div.left div.information ul {float:left; width:582px; padding:5px 0;}
 div.left div.information ul li {position:relative; float:left; margin:8px 15px 0 0;}
 div.left div.information ul li.last {margin:8px 0 0 0;}
-div.left div.information ul li div.specie {float:left; padding:8px; width:168px; height:155px; background:url(../images/home/specie_bkg.png) no-repeat 0 0;}
+div.left div.information ul li div.specie {float:left; padding:8px; width:168px; height:155px; background:url(../images/home/specie_bkg.png) no-repeat -4px -4px;}
 div.left div.information ul li div.specie h4 {float:left; width:140px; padding:4px 0 0 0;}
 div.left div.information ul li div.specie h4 a {font:bold 15px "Lucida Grande"; color:#0099CC; text-decoration:none;}
 div.left div.information ul li div.specie h4 a:hover {text-decoration:underline;}
@@ -59,11 +59,32 @@ div.left div.bottom p {font:normal 13px "Lucida Grande"; color:#666666; text-ali
 div.left div.bottom p a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
 div.left div.bottom p a:hover {text-decoration:underline;}
 
-div.right div.latest {float:left; padding:21px; width:269px; background:white; border-left:1px solid #cccccc;}
-div.right div.latest h3 {font:bold 25px Helvetica; color:#666666; letter-spacing:-1px;}
-div.right div.latest p.subtitle {font:normal 13px "Lucida Grande"; color:#666666;}
-div.right div.latest p.subtitle a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
-div.right div.latest p.subtitle a:hover {text-decoration:underline;}
+div.right div.latest_ {float:left; padding:21px; width:269px; background:white; border-left:1px solid #cccccc;}
+div.right div.latest_ h3 {font:bold 25px Helvetica; color:#666666; letter-spacing:-1px;}
+div.right div.latest_ p.subtitle {font:normal 13px "Lucida Grande"; color:#666666;}
+div.right div.latest_ p.subtitle a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
+div.right div.latest_ p.subtitle a:hover {text-decoration:underline;}
+
+div.right div.latest_ ul {float:left; width:269px; padding:10px 0 8px 0;}
+div.right div.latest_ ul li {position:relative; float:left; margin:3px 15px 0 0;}
+div.right div.latest_ ul li div.latest {float:left; padding:8px; width:251px; height:51px; background:url(../images/home/latest_bkg.png) no-repeat 0 0;}
+div.right div.latest_ ul li div.latest.first {background-position:0 -72px;}
+div.right div.latest_ ul li div.latest div.image {float:left; width:54px;}
+div.right div.latest_ ul li div.latest div.image img {width:48px; height:48px;}
+div.right div.latest_ ul li div.latest div.data {float:left; width:195px;}
+div.right div.latest_ ul li div.latest div.data p {font:normal 13px "Lucida Grande"; color:#666666;}
+div.right div.latest_ ul li div.latest div.data p a {color:#0099CC; text-decoration:none;}
+div.right div.latest_ ul li div.latest div.data p a:hover {text-decoration:underline;}
+div.right div.latest_ ul li div.latest div.data p.ago {font:normal 11px "Lucida Grande"; color:#999999; padding:3px 0 0 0;}
+
+
+div.right div.bottom {float:left; border-top:1px solid #E8E8E8; border-right:none; border-left:1px solid #CCCCCC; border-bottom:1px solid #CCCCCC; background:#F7F7F7; padding:15px 21px; width:269px;}
+div.right div.bottom p {font:normal 13px "Lucida Grande"; color:#666666; text-align:right;}
+div.right div.bottom p a {text-decoration:none; font-family:"Lucida Grande"; font-weight:bold; font-size:13px; /*font:bold 13px "Lucida Grande";*/ color:#0099CC; letter-spacing:-1px; line-height:13px;}
+div.right div.bottom p a:hover {text-decoration:underline;}
+
+
+
 
 
 /*GUIDE*/
