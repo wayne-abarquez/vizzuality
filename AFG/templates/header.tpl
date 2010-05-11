@@ -9,8 +9,8 @@
 
 	<body>
 
-		<div class="header">
-			<div class="in">
+		<div class="outer_layout">
+			<div class="header">
 				<div class="logo">
 					<a href="/"></a>
 					<span class="search">
