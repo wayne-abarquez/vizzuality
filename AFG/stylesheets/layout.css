@@ -11,7 +11,7 @@ div.outer_layout{margin:0 auto; width:936px;}
 
 
 /*HEADER*/
-div.header {float:left; width:894px; margin:23px 0 0 0; padding:23px 20px 0 20px; background:white;}
+div.header {float:left; width:896px; margin:23px 0 0 0; padding:23px 20px 0 20px; background:white;}
 div.header div.logo {float:left; width:894px; }
 div.header div.logo a {float:left; width:191px; height:38px; background:url(../images/home/logo.png) no-repeat 0 0;}
 div.header div.logo span.search {float:right; width:auto;}
@@ -35,7 +35,7 @@ div.images_gallery {float:left; width:936px; background:url(../images/home/home_
 
 /*FOOTER*/
 div.footer {margin:0 auto; width:936px;}
-div.footer div.in {float:left; width:894px; padding:24px 20px 20px 20px; background:white;}
+div.footer div.in {float:left; width:896px; padding:24px 20px 20px 20px; background:white;}
 div.footer div.in div.logo {float:left; width:894px; }
 div.footer div.in div.logo a.logo {float:left; width:123px; height:26px; background:url(../images/home/logo_footer.png) no-repeat 0 0;}
 div.footer div.in div.logo span.menu {float:right; width:auto;}
