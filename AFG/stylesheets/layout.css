@@ -89,7 +89,7 @@ div.right div.bottom p a:hover {text-decoration:underline;}
 
 /*GUIDE*/
 div.header_guide {float:left; width:936px; background:url(../images/guide/bkg_head_repeatx.png) repeat-x 0 0; height:313px; margin:0; padding:0;}
-div.header_guide div.content {float:left; margin:26px 26px 26px 26px;}
+div.header_guide div.content {margin:26px 0px 26px 26px;}
 div.header_guide div.content div.content_left {float:left; width:560px; height:100%;}
 div.header_guide div.content div.content_left p.title {float:left; font:bold 25px Helvetica; color:#FFFFFF; width:100%;}
 div.header_guide div.content div.content_left p.by {float:left; font:normal 15px; font-family:"Lucida Grande"; color:#FFFFFF; width:100%;}
@@ -103,7 +103,7 @@ div.header_guide div.content div.content_left div.data_info p.species_data span{
 div.header_guide div.content div.content_left div.data_info p.landscapes_data {float:left; color:#7FCCE5; background:url(../images/guide/bkg_info_bttn_left.png) no-repeat left 0; height:21px; }
 div.header_guide div.content div.content_left div.data_info p.landscapes_data span{float:left; background:url(../images/guide/bkg_info_bttn_right.png) no-repeat right 0; height:21px; margin:0 0 0 3px; padding:3px 5px 0 4px;}
 
-div.header_guide div.content div.content_left p.info_guide {float:left; font-weight:normal; font-size:13px; font-family:"Lucida Grande"; color:#FFFFFF; width:100%; margin:13px 0 5px 0; letter-spacing:-1.0px;}
+div.header_guide div.content div.content_left p.info_guide {float:left; font-weight:normal; font-size:13px; font-family:"Lucida Grande";color:#FFFFFF; width:100%; margin:13px 0 5px 0; letter-spacing:-1.0px;}
 
 div.header_guide div.content div.content_left a.download_guide {float:left; background:url(../images/guide/bkg_download_button.png) no-repeat 0 0; width:265px; height:59px; text-decoration:none; margin:20px 0 0 0;}
 div.header_guide div.content div.content_left a.download_guide p.title {float:left; font:bold 19px Arial; color:#0099CC; margin:9px 0 0 65px;}
@@ -113,24 +113,37 @@ div.header_guide div.content div.content_left p.template {float:left; font-weigh
 div.header_guide div.content div.content_left p.template a{text-decoration:underline; color:#FFFFFF;}
 div.header_guide div.content div.content_left p.template a:hover{}
 
-div.header_guide div.content div.content_right {float:right; width:320px; height:100%;}
+div.header_guide div.content div.content_right {float:right; width:320px; height:100%; margin:0 20px 0 0;}
 div.header_guide div.content div.content_right div.bkg_map {float:right; background:url(../images/guide/bkg_header_map.png) no-repeat 0 0; width:280px; height:210px; margin:40px 0 0 0;}
 div.header_guide div.content div.content_right div.bkg_map div.map {float:left; background:url(../images/guide/header_map.png) no-repeat 0 0; width:261px; height:190px; margin:6px 0 0 10px;}
 
-div.taxonomy_browser_body {float:left; width:936px; background-color:#FFFFFF; }
-div.taxonomy_browser_body div.content {float:left; margin:26px;}
+div.taxonomy_browser_body {float:right; width:936px; background-color:#FFFFFF; padding-bottom:15px;}
+div.taxonomy_browser_body div.content {margin:26px 23px 0 26px;}
 div.taxonomy_browser_body div.content div.content_left {float:left; width:590px;}
 div.taxonomy_browser_body div.content div.content_left p.species_included{float:left; font:bold 25px Helvetica; color:#666666; width:100%;}
-div.taxonomy_browser_body div.content div.content_left p.number_species{float:left; font-weight:normal; font-size:13px; font-family:Helvetica; color:#666666; width:100%;}
+div.taxonomy_browser_body div.content div.content_left p.number_species{float:left; font-weight:normal; font-size:13px; font-family:Helvetica; color:#666666; width:100%; margin:5px 0 0 0;}
+
+div.taxonomy_browser_body div.content div.taxonomy_browser{float:left; background:url(../images/guide/fake_taxonomy_browser.png) no-repeat 0 0; width:885px; height:302px; margin:10px 0;}
+
+div.landscapes_body {float:right; width:936px; background-color:#FFFFFF; padding-bottom:15px;}
+div.landscapes_body div.content {margin:26px 23px 0 26px;}
+div.landscapes_body div.content div.content_left {float:left; width:590px;}
+div.landscapes_body div.content div.content_left p.landscapes_included{float:left; font:bold 25px Helvetica; color:#666666; width:100%;}
+div.landscapes_body div.content div.content_left p.number_landscapes{float:left; font-weight:normal; font-size:13px; font-family:Helvetica; color:#666666; width:100%; margin:5px 0 0 0;}
+div.landscapes_body div.content div.landscape_map {float:left; width:883px; height:360px; background-color:#F7F7F7; margin:15px 0; border:1px solid #F0F0F0;}
+div.landscapes_body div.content div.landscape_map div.map {float:left; border:1px solid #CCCCCC; background:url(../images/guide/fake_landscape_map.png) no-repeat; width:861px; height:338px; margin:9px;}
+
+
 
 div.taxonomy_browser_body div.content div.content_right {float:right; width:285px;}
-div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser {float:right; background:url(../images/guide/bkg_view_advanced_browser.png) no-repeat 0 0; text-align:center; width:231px; height:24px; font-size:13px; font-weight:normal; font-family:"Lucida Grande"; color:#666666; text-decoration:none; padding:6px 0 0 0px; letter-spacing:-1.0px;}
+div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser {float:right; background:url(../images/guide/bkg_view_advanced_browser.png) no-repeat 0 0; text-align:center; width:231px; height:24px; font-size:13px; font-weight:normal; 
+	font-family:"Lucida Grande"; color:#666666; text-decoration:none; padding:6px 0 0 0px; letter-spacing:-1.0px;}
 div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser span{font-weight:bold; color:#0099CC;}
 div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser:hover span{color:#0086B3;}
 
-div.taxonomy_browser_body div.info_species_list {float:left; width:936px; background-color:#F7F7F7; height:44px; border-top:1px solid #E8E8E8; border-bottom:1px solid #CCCCCC;}
-div.taxonomy_browser_body div.info_species_list p{float:right; font-family:"Lucida Grande"; font-size:13px; font-weight:normal;}
-div.taxonomy_browser_body div.info_species_list a{font-family:"Lucida Grande"; color:#0099CC; font-size:13px; font-weight:normal;}
+div.info_species_list {float:right; width:936px; background-color:#F7F7F7; height:44px; border-top:1px solid #E8E8E8; border-bottom:1px solid #CCCCCC;}
+div.info_species_list p{float:right; font-family:"Lucida Grande"; font-size:13px; font-weight:normal; letter-spacing:-1.0px; margin:12px 23px 0 0;}
+div.info_species_list p a{color:#0099CC; font-weight:bold; text-decoration:none;}
 
 
 /*FOOTER*/

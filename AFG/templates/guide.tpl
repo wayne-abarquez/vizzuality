@@ -37,9 +37,32 @@
 				</div>
 				<div class="content_right">
 					<a class="view_advanced_browser" href="#">view the <span>advanced taxon browser</span></a>
-				</div>		
+				</div>
+				
+				<div class="taxonomy_browser"> <!-- FAKE -->
+				</div>
 			</div>
 		</div> <!-- taxonomy_browser_body -->
+						
+		<div class="info_species_list">
+			<p>more than 1,663 species in our <a href="#">species list</a></p>
+		</div>
+		
+		<div class="landscapes_body">
+			<div class="content">
+				<div class="content_left">
+					<p class="landscapes_included">Landscapes included</p>
+					<p class="number_landscapes">11 landscapes in this guide</p>				
+				</div>
+				<div class="landscape_map">
+					<div class="map">
+						
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
 		
 		
 	</div>
