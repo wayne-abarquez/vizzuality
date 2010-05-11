@@ -103,7 +103,7 @@ div.taxonomy_browser_body div.content div.content_left p.species_included{float:
 div.taxonomy_browser_body div.content div.content_left p.number_species{float:left; font-weight:normal; font-size:13px; font-family:Helvetica; color:#666666; width:100%;}
 
 div.taxonomy_browser_body div.content div.content_right {float:right; width:285px;}
-div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser {float:right; background:url(../images/guide/bkg_view_advanced_browser.png) no-repeat 0 0; width:225px; height:23px; font-size:13px; font-weight:normal; font-family:"Lucida Grande"; color:#666666; text-decoration:none; padding:7px 0 0 6px;}
+div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser {float:right; background:url(../images/guide/bkg_view_advanced_browser.png) no-repeat 0 0; text-align:center; width:231px; height:24px; font-size:13px; font-weight:normal; font-family:"Lucida Grande"; color:#666666; text-decoration:none; padding:6px 0 0 0px; letter-spacing:-1.0px;}
 div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser span{font-weight:bold; color:#0099CC;}
 div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser:hover span{color:#0086B3;}
 
