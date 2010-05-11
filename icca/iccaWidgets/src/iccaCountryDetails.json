@@ -4,7 +4,7 @@
 	"lng":-10.8984375,
 	"iccas":[
 			    {
-			        "name": "MEXICO",
+			        "name": "MÉXÑCO",
 			        "url": "http://www.vizzuality.com",
 			        "value": "Lorem ipsum dolor set eman crosina em...",
 			        "lat": 23.634501,
@@ -12,7 +12,7 @@
 			        "short": "MEX",
 			        "sites": 2,
 			        "textSites": [ {
-			        					"name": "The Olmecs",
+			        					"name": "The Olmecs of San Cristiano",
 			        					"url": "http://www.vizzuality.com"
 			        				},
 			        			    {
@@ -78,7 +78,7 @@
 			        					"url": "http://www.vizzuality.com"
 			        				},
 			        			    {
-			        					"name": "The Vizzualeños",
+			        					"name": "The Vizzuale√±os",
 			        					"url": "http://www.vizzuality.com"
 			        				}
 			        			  ]
