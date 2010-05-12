@@ -15,8 +15,8 @@
 									<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 								</div>
 								<div class="stats">
-									<p class="species">32 SPECIES</p>
-									<p class="landscapes">9 LANDSCAPES</p>
+									<p class="species_rank second_rank left">32 SPECIES</p>
+									<p class="landscapes_rank first_rank left">9 LANDSCAPES</p>
 								</div>
 							</div>
 						</li>
