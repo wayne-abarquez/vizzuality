@@ -117,7 +117,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="bottom">
+			<div class="bottom noborder">
 				<p>browse our <a href="#">guide catalog</a> created by the users</p>
 			</div>
 		</div>
@@ -129,6 +129,28 @@
 				<ul>
 					<li>
 						<div class="latest first">
+							<div class="image">
+								<img src="images/home/mini_avatar.png" alt="Gentoo Penguin" />
+							</div>
+							<div class="data">
+								<p>Someone has added the <a href="#">this amazing landscape</a> to a guide</p>
+								<p class="ago">2 hours before</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="latest">
+							<div class="image">
+								<img src="images/home/mini_avatar.png" alt="Gentoo Penguin" />
+							</div>
+							<div class="data">
+								<p>Someone has added the <a href="#">this amazing landscape</a> to a guide</p>
+								<p class="ago">2 hours before</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="latest">
 							<div class="image">
 								<img src="images/home/mini_avatar.png" alt="Gentoo Penguin" />
 							</div>
