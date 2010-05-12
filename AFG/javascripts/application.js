@@ -1,4 +1,3 @@
-
 	$(document).ready(function() {
 		
 		//hover species list effect >> HOME
@@ -19,6 +18,16 @@
 		
 		//list effect latest activity >> HOME
 		setInterval("changeList()",3000);
+		
+		
+
+		//hover created list effect >> GUIDES
+		$('div.header_guides div.content ul li').hover(function(ev){
+			$(this).css('background-position','-2px -177px');
+		},
+		function(ev){
+			$(this).css('background-position','-2px -2px');
+		});
 		
   });
 
