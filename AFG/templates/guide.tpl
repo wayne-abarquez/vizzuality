@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 	<div class="outer_layout">
+		<div class="wide_container">
 		<div class="header_guide">
 			<div class="content">
 				<div class="content_left">
@@ -66,8 +67,11 @@
 			<p>more than <a href="#">161 landscapes</a> in our website</p>
 		</div>
 		
+		<div class="afg_dashboard">
+		</div>
 		
 		
+	</div>
 	</div>
 {include file="footer.tpl"}
 
