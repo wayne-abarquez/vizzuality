@@ -10,6 +10,7 @@ div.right {float:right; width:312px;}
 
 div.outer_layout{margin:0 auto; width:936px;}
 
+div.wide_container{float:left; background-color:#FFFFFF; width:100%; height:auto;} 
 
 
 /*HEADER*/
@@ -88,6 +89,7 @@ div.right div.bottom p a:hover {text-decoration:underline;}
 
 
 /*GUIDE*/
+
 div.header_guide {float:left; width:936px; background:url(../images/guide/bkg_head_repeatx.png) repeat-x 0 0; height:313px; margin:0; padding:0;}
 div.header_guide div.content {margin:26px 0px 26px 26px;}
 div.header_guide div.content div.content_left {float:left; width:560px; height:100%;}
@@ -147,6 +149,7 @@ div.info_landscapes_list {float:right; width:936px; background-color:#F7F7F7; he
 div.info_landscapes_list p{float:right; font-family:"Lucida Grande"; font-size:13px; font-weight:normal; letter-spacing:-1.0px; margin:12px 23px 0 0;}
 div.info_landscapes_list p a{color:#0099CC; font-weight:bold; text-decoration:none;}
 
+div.afg_dashboard {float:left; margin:0 0 20px 0; background-color:#333333; width:936px; height:300px;}
 
 
 /*FOOTER*/
