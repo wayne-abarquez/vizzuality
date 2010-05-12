@@ -60,9 +60,12 @@
 					</div>
 					
 				</div>
-				
 			</div>
 		</div>
+		<div class="info_landscapes_list">
+			<p>more than <a href="#">161 landscapes</a> in our website</p>
+		</div>
+		
 		
 		
 	</div>
