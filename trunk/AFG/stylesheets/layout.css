@@ -149,8 +149,15 @@ div.info_landscapes_list {float:right; width:936px; background-color:#F7F7F7; he
 div.info_landscapes_list p{float:right; font-family:"Lucida Grande"; font-size:13px; font-weight:normal; letter-spacing:-1.0px; margin:12px 23px 0 0;}
 div.info_landscapes_list p a{color:#0099CC; font-weight:bold; text-decoration:none;}
 
-div.afg_dashboard {float:left; margin:0 0 20px 0; background-color:#333333; width:936px; height:300px;}
-
+div.afg_dashboard {float:left; margin:0 0 20px 0; background-color:#333333; width:936px; height:300px; position:relative;}
+div.afg_dashboard div.content {margin:26px 23px 0 26px;}
+div.afg_dashboard div.content p.title {float:left; font:bold 25px Helvetica; color:#FFFFFF; width:100%;}
+div.afg_dashboard div.content p.subtitle {float:left; font:normal 13px "Lucida Grande"; letter-spacing:-1.0; color:#FFFFFF; width:100%;}
+div.afg_dashboard div.footer {position:absolute; bottom:0; left:0; width:100%; height:66px; background:url(../images/guide/bkg_footer_dashboard.png) no-repeat 0 0; width:936px; height:66px;}
+div.afg_dashboard div.footer div.nav_buttons{float:left; width:280px; margin:19px 0 17px 26px;}
+div.afg_dashboard div.footer div.nav_buttons a.left {float:left; background:url(../images/guide/left_content_dashboard_disabled.png) no-repeat 0 0; width:30px; height:30px; margin:0 4px 0 0;}
+div.afg_dashboard div.footer div.nav_buttons a.right {float:left; background:url(../images/guide/right_content_dashboard_disabled.png) no-repeat 0 0; width:30px; height:30px;}
+div.afg_dashboard div.footer a.publish_download_button{float:right; background:url(../images/guide/bttn_publish_download.png) no-repeat 0 0; width:182px; height:33px; margin:18px 19px 16px 0; }
 
 /*FOOTER*/
 div.footer {margin:0 auto; width:936px;}
