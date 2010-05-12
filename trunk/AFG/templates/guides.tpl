@@ -5,6 +5,22 @@
 			<div class="content">
 					<p class="title">Most popular Antartic Field Guides</p>
 					<p class="by">choose one of this guides if you don't want to create yours from scratch</p>
+					
+					<ul>
+						<li>
+							<div class="specie">
+								<div class="information_title">
+									<h4><a href="#">This is gonna be great. Antartic trip...</a></h4>
+									<p class="by">by Brunno Dannis</p>
+									<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
+								</div>
+								<div class="stats">
+									<p class="species">32 SPECIES</p>
+									<p class="landscapes">9 LANDSCAPES</p>
+								</div>
+							</div>
+						</li>
+					</ul>
 			</div>
 		</div> <!-- header_guide -->
 		<div class="left">
