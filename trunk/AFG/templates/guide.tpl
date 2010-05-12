@@ -24,6 +24,11 @@
 										
 				</div> <!-- content_left -->
 				<div class="content_right">
+					<div class="share_this">
+						<p class="share">share this on</p>
+						<a class="share_twitter" href="#"></a>
+						<a class="share_facebook" href="#"></a>
+					</div>
 					<div class="bkg_map">
 						<div class="map"></div>
 					</div>
