@@ -11,6 +11,33 @@ div.right {float:right; width:312px;}
 div.outer_layout{margin:0 auto; width:936px;}
 div.wide_container{float:left; background-color:#FFFFFF; width:100%; height:auto;} 
 
+/* COMMON */
+p.landscapes_rank {width:76px; font:normal 11px "Lucida Grande"; text-transform:uppercase; color:#999999; height:22px; padding:16px 0 0 17px; line-height:12px;}
+p.species_rank {width:40px; font:normal 11px "Lucida Grande"; text-transform:uppercase; color:#999999; height:22px; padding:16px 0 0 17px; line-height:12px; margin-right:7px;}
+
+p.landscapes_rank.left {float:left;}
+p.species_rank.left {float:left;}
+
+p.landscapes_rank.right {float:right;}
+p.species_rank.right {float:right;}
+
+
+
+p.white {color:#FFFFFF;}
+
+p.landscapes_rank.first_rank {background:url(../images/common/rank_landscapes_20.png) no-repeat 0 bottom;}
+p.landscapes_rank.second_rank {background:url(../images/common/rank_landscapes_40.png) no-repeat 0 bottom;}
+p.landscapes_rank.third_rank {background:url(../images/common/rank_landscapes_60.png) no-repeat 0 bottom;}
+p.landscapes_rank.fourth_rank {background:url(../images/common/rank_landscapes_80.png) no-repeat 0 bottom;}
+p.landscapes_rank.fifth_rank {background:url(../images/common/rank_landscapes_100.png) no-repeat 0 bottom;}
+
+
+p.species_rank.first_rank {background:url(../images/common/rank_species_20.png) no-repeat 0 bottom;}
+p.species_rank.second_rank {background:url(../images/common/rank_species_40.png) no-repeat 0 bottom;}
+p.species_rank.third_rank {background:url(../images/common/rank_species_60.png) no-repeat 0 bottom;}
+p.species_rank.fourth_rank {background:url(../images/common/rank_species_80.png) no-repeat 0 bottom;}
+p.species_rank.fifth_rank {background:url(../images/common/rank_species_100.png) no-repeat 0 bottom;}
+
 
 /*HEADER*/
 div.header {float:left; width:896px; margin:23px 0 0 0; padding:23px 20px 0 20px; background:white;}
@@ -178,12 +205,7 @@ div.header_guides div.content ul li div.information_title p.heart {position:rela
 div.header_guides div.content ul li div.information_title p.heart span {float:left; width:auto; font:bold 9px Arial; color:#FF0066; line-height:9px; background:url(../images/home/heart_bkg.png) no-repeat right 0; padding:3px 3px 3px 11px;}
 div.header_guides div.content ul li div.information_title p.heart.zero span {color:#999999;}
 div.header_guides div.content ul li div.information_title p.heart span img {position:absolute; top:3px; left:3px;}
-div.header_guides div.content ul li div.stats {float:left; width:100%; margin:20px 0 0 0;}
-
-div.header_guides div.content ul li div.stats p.landscapes {float:left; background:url(../images/guides/bkg_landscapes_amount.png) no-repeat 0 bottom; width:76px; font:normal 11px "Lucida Grande"; text-transform:uppercase; color:#999999; height:22px; padding:5px 0 0 17px; line-height:12px;}
-div.header_guides div.content ul li div.stats p.species {float:left; background:url(../images/guides/bkg_species_amount.png) no-repeat 0 bottom; width:48px; font:normal 11px "Lucida Grande"; text-transform:uppercase; color:#999999; height:22px; padding:5px 0 0 17px; line-height:12px; margin:0 5px 0 0;}
-
-
+div.header_guides div.content ul li div.stats {float:left; width:100%; margin:7px 0 0 0;}
 
 
 div.right div.about_afg {float:left; padding:21px 23px 0 21px; width:269px; background:#F7F7F7; border-left:1px solid #cccccc;}
@@ -222,8 +244,9 @@ div.header_guide div.content div.content_left p.template a:hover{}
 div.header_guide div.content div.content_right {float:right; width:320px; height:100%; margin:0 22px 0 0;}
 
 div.header_guide div.content div.content_right div.amount_info {float:right; width:100%; margin:0px 0px 0px 0;}
-div.header_guide div.content div.content_right div.amount_info p.landscapes {float:right; background:url(../images/guide/bkg_info_landscapes.png) no-repeat 0 bottom; width:76px; font:normal 11px "Lucida Grande"; text-transform:uppercase; color:#FFFFFF; height:22px; padding:5px 0 0 17px; line-height:12px;}
-div.header_guide div.content div.content_right div.amount_info p.species {float:right; background:url(../images/guide/bkg_info_species.png) no-repeat 0 bottom; width:48px; font:normal 11px "Lucida Grande"; text-transform:uppercase; color:#FFFFFF; height:22px; padding:5px 0 0 17px; line-height:12px; margin:0 5px 0 0;}
+
+/*div.header_guide div.content div.content_right div.amount_info p.landscapes {float:right; background:url(../images/guide/bkg_info_landscapes.png) no-repeat 0 bottom; width:76px; font:normal 11px "Lucida Grande"; text-transform:uppercase; color:#FFFFFF; height:22px; padding:5px 0 0 17px; line-height:12px;}
+div.header_guide div.content div.content_right div.amount_info p.species {float:right; background:url(../images/guide/bkg_info_species.png) no-repeat 0 bottom; width:48px; font:normal 11px "Lucida Grande"; text-transform:uppercase; color:#FFFFFF; height:22px; padding:5px 0 0 17px; line-height:12px; margin:0 5px 0 0;}*/
 
 div.header_guide div.content div.content_right div.share_this {float:right; background:url(../images/guide/bkg_share_this.png) no-repeat 0 0; width:137px; height:30px; margin:3px 4px 0 0;}
 div.header_guide div.content div.content_right div.share_this p.share {float:left; font:bold 13px "Lucida Grande"; color:#5DB3D0; width:90px; margin:6px 4px 0 6px;}
