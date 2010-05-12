@@ -245,14 +245,21 @@
 			</div>
 		</div>
 		<div class="long">
+			<img class="arrow" src="images/home/arrow_bottom.png" />
 			<div class="long_in">
 				<h3>Your Atlantic Field Guide</h3>
 				<p class="subtitle">Here is were your species and landscapes will be added</p>
+				<ul>
+					<li>sañldfjaskdf</li>
+					<li>saf</li>
+					<li>jamon</li>
+				</ul>
+				
 			</div>
 			<div class="bottom">
 				<div class="left_side">
-					<a href="#"></a>
-					<a href="#"></a>
+					<a href="#" class="left"></a>
+					<a href="#" class="right"></a>
 				</div>
 				<div class="right_side">
 					<a href="#"></a>
