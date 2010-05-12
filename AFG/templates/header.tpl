@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="stylesheets/layout.css" type="text/css" media="screen" title="no title" charset="utf-8">
 		
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascripts/jquery.nivo.slider.js" type="text/javascript" charset="utf-8"></script> 
 		<script src="javascripts/application.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
