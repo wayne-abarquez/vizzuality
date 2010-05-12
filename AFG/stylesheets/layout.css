@@ -63,7 +63,7 @@ div.left div.information h3 {float:left; font:bold 25px Helvetica; color:#666666
 div.left div.information p.subtitle {float:left; font:normal 13px "Lucida Grande"; color:#666666;}
 div.left div.information p.subtitle a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
 div.left div.information p.subtitle a:hover {border-bottom:1px dotted #0099CC;}
-div.left div.information ul { width:582px; padding:5px 0;}
+div.left div.information ul {float:left; width:582px; padding:5px 0;}
 div.left div.information ul li {position:relative; float:left; margin:8px 15px 0 0;}
 div.left div.information ul li.last {margin:8px 0 0 0;}
 div.left div.information ul li div.specie {position:relative; float:left; padding:8px; width:168px; height:155px; background:url(../images/home/specie_bkg.png) no-repeat -4px -4px;}
@@ -71,11 +71,10 @@ div.left div.information ul li div.specie h4 {float:left; width:135px; padding:4
 div.left div.information ul li div.specie h4 a {font:bold 15px "Lucida Grande"; color:#0099CC; text-decoration:none;}
 div.left div.information ul li div.specie h4 a:hover {border-bottom:1px dotted #0099CC;}
 div.left div.information ul li div.specie p.taxa {float:left; font:normal 11px "Lucida Grande"; color:#999999; padding:1px 0 0 0;}
-div.left div.information ul li div.specie p.heart {position:relative; float:right;  margin:9px 0 0 0; padding:0 0 0 3px; background:url(../images/home/heart_bkg_mini.png) no-repeat 0 0;}
-div.left div.information ul li div.specie p.heart span {float:right; width:auto; font:bold 9px Arial; color:#FF0066; line-height:9px; background:url(../images/home/heart_bkg.png) no-repeat right 0; padding:3px 3px 3px 11px;}
+div.left div.information ul li div.specie p.heart {float:right; margin:6px 0 0 0; padding:0 0 0 3px; background:url(../images/home/heart_bkg_mini.png) no-repeat 0 0; line-height:9px;}
+div.left div.information ul li div.specie p.heart span {position:relative; float:left; width:auto; font:bold 9px Arial; color:#FF0066; line-height:9px; background:url(../images/home/heart_bkg.png) no-repeat right 0; padding:3px 3px 3px 11px;}
 div.left div.information ul li div.specie p.heart.zero span {color:#999999;}
-div.left div.information ul li div.specie p.heart span img {position:absolute; top:3px; left:3px;}
-div.left div.information ul li div.specie p.heart.zero {background-position:0 -10px;}
+div.left div.information ul li div.specie p.heart span img {position:absolute; top:3px; left:0; z-index:40;}
 
 div.left div.bottom {float:left; border-top:1px solid #E8E8E8; border-bottom:1px solid #CCCCCC; background:#F7F7F7; padding:15px 21px; width:582px;}
 div.left div.bottom p {font:normal 13px "Lucida Grande"; color:#666666; text-align:right;}
@@ -111,7 +110,8 @@ div.left div.create {float:left; padding:21px; width:582px; background:white;}
 div.left div.create h3 {font:bold 25px Helvetica; color:#666666; letter-spacing:-1px;}
 div.left div.create p.subtitle {font:normal 13px "Lucida Grande"; color:#666666;}
 div.left div.create ul {float:left; width:582px; margin:15px 0 0 0;}
-div.left div.create ul li {float:left; width:163px; height:141px; padding:22px 18px 10px 9px; background:url(../images/home/created_bkg_list.png) no-repeat -2px -2px}
+div.left div.create ul li {float:left; width:163px; height:141px; padding:22px 18px 10px 9px; background:url(../images/home/created_bkg_list.png) no-repeat -2px -2px; margin:0 6px 0 0;}
+div.left div.create ul li.last {margin:0;}
 div.left div.create ul li div.information_title {float:left; height:80px; border-bottom:1px solid #E0E0E0;}
 div.left div.create ul li div.information_title h4 {float:left; width:163px;}
 div.left div.create ul li div.information_title h4 a {font:bold 15px "Lucida Grande"; text-decoration:none; color:#0099CC;}
@@ -138,7 +138,6 @@ div.right div.blue ul li div.data h5 a:hover {border-bottom:1px dotted white;}
 div.right div.blue ul li div.data p {float:left; width:208px; font:normal 13px "Lucida Grande"; color:#004C66; padding:2px 0 0 0;}
 
 /*long bottom*/
-
 div.long {float:left; width:936px;}
 div.long div.long_in {float:left; background:#333333; padding:28px; width:880px;}
 div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-1px;}
