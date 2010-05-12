@@ -9,7 +9,6 @@ div.left {float:left; width:624px;}
 div.right {float:right; width:312px;}
 
 div.outer_layout{margin:0 auto; width:936px;}
-
 div.wide_container{float:left; background-color:#FFFFFF; width:100%; height:auto;} 
 
 
@@ -60,7 +59,7 @@ div.images_gallery div#slider .nivo-caption p {float:left; margin:0 0 0 100px; w
 /*left top*/
 div.left div.information {float:left; padding:21px; width:582px; background:white; margin:0;}
 div.left div.information h3 {float:left; font:bold 25px Helvetica; color:#666666; letter-spacing:-1px; width:582px;}
-div.left div.information p.subtitle {float:left; font:normal 13px "Lucida Grande"; color:#666666;}
+div.left div.information p.subtitle {float:left; font:normal 13px "Lucida Grande"; color:#666666; letter-spacing:-1.0px;}
 div.left div.information p.subtitle a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
 div.left div.information p.subtitle a:hover {border-bottom:1px dotted #0099CC;}
 div.left div.information ul {float:left; width:582px; padding:5px 0;}
@@ -143,7 +142,21 @@ div.long div.long_in {float:left; background:#333333; padding:28px; width:880px;
 div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-1px;}
 div.long div.long_in p.subtitle {font:normal 13px "Lucida Grande"; color:white;}
 
+/*GUIDES*/
 
+div.header_guides {float:left; width:936px; background:url(../images/guide/bkg_head_repeatx.png) repeat-x 0 0; height:313px; margin:0; padding:0;}
+div.header_guides div.content {margin:26px 0px 26px 26px;}
+div.header_guides div.content {float:left; width:560px; height:100%;}
+div.header_guides div.content p.title {float:left; font:bold 25px Helvetica; color:#FFFFFF; width:100%;}
+div.header_guides div.content p.by {float:left; font:normal 15px; font-family:"Lucida Grande"; color:#FFFFFF; width:100%;}
+
+div.right div.about_afg {float:left; padding:21px 23px 0 21px; width:269px; background:#F7F7F7; border-left:1px solid #cccccc;}
+div.right div.about_afg h3 {font:bold 25px Helvetica; color:#666666; letter-spacing:-1px;}
+div.right div.about_afg p.subtitle {font:normal 13px "Lucida Grande"; color:#666666; letter-spacing:-1.0px; margin:0 0 30px 0;}
+div.right div.about_afg p.subtitle a {text-decoration:none; font:bold 13px "Lucida Grande"; color:#0099CC; letter-spacing:-1px;}
+div.right div.about_afg p.subtitle a:hover {border-bottom:1px dotted #0099CC;}
+div.right div.about_afg h2 {font:bold 17px "Lucida Grande"; color:#666666; letter-spacing:-1px; margin:0px 0 5px 0;}
+div.right div.about_afg p.about {font:normal 13px "Lucida Grande"; color:#666666; letter-spacing:-1px; margin:0 0 20px 0;}
 
 /*GUIDE*/
 
