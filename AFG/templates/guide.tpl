@@ -68,6 +68,18 @@
 		</div>
 		
 		<div class="afg_dashboard">
+			<div class="content">
+				<p class="title">Your Atlantic Field Guide</p>
+				<p class="subtitle">Here is were your species and landscapes will be added</p>
+			</div>
+			<div class="footer">
+				<div class="nav_buttons">
+					<a href="#" class="left"></a>
+					<a href="#" class="right"></a>
+				</div>
+				<a class="publish_download_button" href="#"></a>
+				
+			</div>
 		</div>
 		
 		
