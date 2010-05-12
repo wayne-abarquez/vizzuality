@@ -74,8 +74,10 @@
 			</div>
 			<div class="footer">
 				<div class="nav_buttons">
-					<a href="#" class="left"></a>
-					<a href="#" class="right"></a>
+					<div class="enabled">
+						<a href="#" class="left"></a>
+						<a href="#" class="right"></a>
+					</div>
 				</div>
 				<a class="publish_download_button" href="#"></a>
 				
