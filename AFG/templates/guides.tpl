@@ -53,7 +53,7 @@
 			</div>
 		</div> <!-- header_guide -->
 		<div class="left">
-			<div class="create">
+			<div id="guides_left" class="create">
 				<h3>Published Atlantic Field Guides</h3>
 				<p class="subtitle">more than <b>234 AFGs published</b></p>
 				<div class="sorted_by">
