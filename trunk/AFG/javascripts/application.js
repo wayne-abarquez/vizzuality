@@ -23,11 +23,31 @@
 
 		//hover created list effect >> GUIDES
 		$('div.header_guides div.content ul li').hover(function(ev){
-			$(this).css('background-position','-2px -177px');
+			$(this).css('background-position','0px -177px');
 		},
 		function(ev){
-			$(this).css('background-position','-2px -2px');
+			$(this).css('background-position','0 -2px');
 		});
+		
+		//hover created list effect >> GUIDES
+		$('div.sorted_by a.sorted_box_deactivated').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			$(this).parent().children('div.activated_box').show();
+
+		});
+
+		//hover created list effect >> GUIDES
+		$('div.activated_box a.sorted_box_activated').click(function(ev){
+
+			ev.stopPropagation();
+			ev.preventDefault();
+
+			$(this).parent().fadeOut();
+
+		});
+		
+		
 		
   });
 

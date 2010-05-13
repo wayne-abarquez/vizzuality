@@ -82,10 +82,8 @@
 								<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 							</div>
 							<div class="stats">
-								<span class="species">
-								</span>
-								<span class="landscapes">
-								</span>
+								<p class="species_rank second_rank left">20 SPECIES</p>
+								<p class="landscapes_rank second_rank left">18 LANDSCAPES</p>
 							</div>
 						</div>
 					</li>
@@ -96,10 +94,8 @@
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 						</div>
 						<div class="stats">
-							<span class="species">
-							</span>
-							<span class="landscapes">
-							</span>
+							<p class="species_rank second_rank left">20 SPECIES</p>
+							<p class="landscapes_rank second_rank left">18 LANDSCAPES</p>
 						</div>
 					</li>
 					<li class="last">
@@ -109,10 +105,8 @@
 							<p class="heart zero"><span><img src="images/home/gray_heart.png" alt="heart"/>0</span></p>
 						</div>
 						<div class="stats">
-							<span class="species">
-							</span>
-							<span class="landscapes">
-							</span>
+							<p class="species_rank second_rank left">20 SPECIES</p>
+							<p class="landscapes_rank second_rank left">18 LANDSCAPES</p>
 						</div>
 					</li>
 				</ul>

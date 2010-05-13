@@ -60,32 +60,34 @@
 				<p class="subtitle">more than <b>234 AFGs published</b></p>
 				<div class="sorted_by">
 					<p class="title">Order by:</p><p class="kind_sorted"> <a href="#">Most popular</a><span class="vertical_line"></span><a href="#" class="activated">Most recent</a></p>
-					<a class="sorted_box" href="#">
+					<a class="sorted_box_deactivated" href="#">
 						<div class="deactivated_box">
 							<p>From last week</p>
 						</div>
-						<div class="activated_box">
+					</a>		
+					
+					<div class="activated_box">
+						<a class="sorted_box_activated" href="#">
 							<span class="head">
 								<p>From last week</p>
 							</span>
-							<ul>
-<!--								<li>
- 									<p>From last Month</p>
-								</li>
-								<li>
-									<p>From last 3 Months</p>
-								</li>
-								<li class="last">
-									<p>From last year</p>
-								</li>-->
-							</ul>
-						</div>
-						
-					</a>
-				</div>
+						</a>
+						<ul>
+							<li>
+								<a href="#">From last Month</a>
+							</li>
+							<li>
+								<a href="#">From last 3 Months</a>
+							</li>
+							<li class="last">
+								<a href="#">From last year</a>
+							</li>
+						</ul>
+					</div>
+				</div> <!-- Sorted_box -->
 				
 				
-			</div>
+			</div><!-- information -->
 		</div>
 		<div class="right">
 			<div class="about_afg">
