@@ -5,7 +5,6 @@
 			<div class="content">
 					<p class="title">Most popular Antartic Field Guides</p>
 					<p class="by">choose one of this guides if you don't want to create yours from scratch</p>
-					
 					<ul>
 						<li>
 							<div class="information_title">
@@ -50,7 +49,6 @@
 								<p class="species_rank third_rank left">41 SPECIES</p>
 							</div>
 						</li>
-						
 					</ul>
 			</div>
 		</div> <!-- header_guide -->
