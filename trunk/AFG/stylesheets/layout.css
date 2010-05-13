@@ -130,8 +130,8 @@ div.left div.create h3 {font:bold 25px Helvetica; color:#666666; letter-spacing:
 div.left div.create p.subtitle {font:normal 13px "Lucida Grande"; color:#666666;}
 div.left div.create ul.published_afg {float:left; width:582px; margin:15px 0 0 0;}
 div.left div.create ul.published_afg li {float:left; width:163px; height:141px; padding:22px 18px 10px 9px; background:url(../images/home/created_bkg_list.png) no-repeat 0 0; margin:0 6px 0 0;}
-div.left div.create ul.published_afg li.multiple {margin:0 6px 10px 0;}
-div.left div.create ul.published_afg li.multiple_last {margin:0 0px 10px 0;}
+div.left div.create ul.published_afg li.multiple {margin:10px 6px 0px 0;}
+div.left div.create ul.published_afg li.multiple_last {margin:10px 0px 0px 0;}
 
 div.left div.create ul.published_afg li.last {margin:0;}
 
@@ -216,7 +216,7 @@ div.header_guides div.content ul li div.information_title p.heart span img {posi
 div.header_guides div.content ul li div.stats {float:left; width:100%; margin:7px 0 0 0;}
 
 
-div.left div.create div.sorted_by {float:left; background:url(../images/guides/bkg_sorted_by.png) no-repeat 0 0; width:580px; height:43px; margin:20px 0 10px 0; position:relative;}
+div.left div.create div.sorted_by {float:left; background:url(../images/guides/bkg_sorted_by.png) no-repeat 0 0; width:580px; height:43px; margin:20px 0 0px 0; position:relative;}
 div.left div.create div.sorted_by p {font:normal 13px "Lucida Grande"; color:#666666; line-height:17px;}
 div.left div.create div.sorted_by p.title {float:left; width:60px; margin:13px 7px 0 12px;}
 div.left div.create div.sorted_by p.kind_sorted  {float:left; width:300px; margin:13px 0 0 0;}
@@ -227,7 +227,8 @@ div.left div.create div.sorted_by p.kind_sorted span.vertical_line {float:left; 
 div.left div.create div.sorted_by p.kind_sorted a.activated {color:#0099CC; }
 div.left div.create div.sorted_by p.kind_sorted a.activated:hover {border-bottom:1px dotted #0099CC;}
 
-div.left div.create div.sorted_by a.sorted_box_deactivated {text-decoration:none;}
+div.left div.create div.sorted_by a {text-decoration:none;}
+div.left div.create div.sorted_by a:visited {text-decoration:none;}
 
 div.left div.create div.sorted_by div.deactivated_box {float:right; background:url(../images/guides/bkg_sort_box_deactivated.png) no-repeat 0 0; width:154px; height:27px; margin:8px 8px 0 0;}
 div.left div.create div.sorted_by div.deactivated_box p {float:left; font:normal 13px "Lucida Grande"; color:#666666; margin:5px 0 0 12px; width:123px;}
@@ -242,7 +243,7 @@ div.left div.create div.sorted_by div.activated_box ul.kind_sort li a {font:bold
 div.left div.create div.sorted_by div.activated_box ul.kind_sort li a:hover {border-bottom:1px dotted #666666;}
 div.left div.create div.sorted_by div.activated_box ul.kind_sort li.last {float:right; width:161px; height:35px; background:url(../images/guides/bkg_sort_box_activated_li_last.png) no-repeat 0 0;}
 
-div.left div.create div.pagination {float:right; margin:0 5px 0 0;}
+div.left div.create div.pagination {float:right; margin:10px 5px 0 0;}
 div.left div.create div.pagination p {float:left; font:normal 13px "Lucida Grande"; color:#666666; margin:8px 10px 0 0; line-height:13px;}
 div.left div.create div.pagination a.left {float:left; background:url(../images/guides/bttn_nav_left.png) no-repeat 0 0; width:30px; height:30px; margin:0 5px;}
 div.left div.create div.pagination a.right {float:left; background:url(../images/guides/bttn_nav_right.png) no-repeat 0 0; width:30px; height:30px;}
