@@ -6,12 +6,8 @@
 				<div class="content_left">
 					<p class="title">The definitive Antarctic Field Guide</p>
 					<p class="by">by Bruno Dannis</p>
-
 					<div class="data_info">
-
 						<p class="downloads_data"><span>11 downloads</span></p>
-						
-						
 					</div>
 					<p class="info_guide">This guide is a delight to look at: the illustrations are stunning, the design is clean and elegant. It's a delight to hold: the binding, the quality of the paper, the form factor. And it's a delight to read: the text is clear and concise, while packed with detail. For me, the most compelling aspect of the book is the illustrations, which Lynch.</p>
 					
