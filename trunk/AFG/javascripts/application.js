@@ -48,6 +48,18 @@
 		});
 		
 		
+		// GUIDES - HEIGHT (Who has the higher height?)
+		var left_guides = $('div.left div#guides_left').height();
+        var right_guides = $('div.right div.about_afg').height();
+
+        if (left_guides>right_guides) {
+                        $('div.about_afg').height(left_guides+20);
+        } else {
+                        $('div#guides_left').height(right_guides+20);
+        }
+        
+		
+		
 		
   });
 
