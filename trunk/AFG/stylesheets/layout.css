@@ -242,6 +242,13 @@ div.left div.create div.sorted_by div.activated_box ul.kind_sort li a {font:bold
 div.left div.create div.sorted_by div.activated_box ul.kind_sort li a:hover {border-bottom:1px dotted #666666;}
 div.left div.create div.sorted_by div.activated_box ul.kind_sort li.last {float:right; width:161px; height:35px; background:url(../images/guides/bkg_sort_box_activated_li_last.png) no-repeat 0 0;}
 
+div.left div.create div.pagination {float:right; margin:0 5px 0 0;}
+div.left div.create div.pagination p {float:left; font:normal 13px "Lucida Grande"; color:#666666; margin:8px 10px 0 0; line-height:13px;}
+div.left div.create div.pagination a.left {float:left; background:url(../images/guides/bttn_nav_left.png) no-repeat 0 0; width:30px; height:30px; margin:0 5px;}
+div.left div.create div.pagination a.right {float:left; background:url(../images/guides/bttn_nav_right.png) no-repeat 0 0; width:30px; height:30px;}
+div.left div.create div.pagination a:hover{background-position:0 -30px;}
+
+
 div.right div.about_afg {float:left; padding:21px 23px 0 21px; width:267px; background:#F7F7F7; border-left:1px solid #cccccc;}
 div.right div.about_afg h3 {font:bold 25px Helvetica; color:#666666; letter-spacing:-1px;}
 div.right div.about_afg p.subtitle {font:normal 13px "Lucida Grande"; color:#666666; letter-spacing:-1.0px; margin:0 0 30px 0;}
