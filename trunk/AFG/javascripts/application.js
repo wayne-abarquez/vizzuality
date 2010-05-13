@@ -18,6 +18,8 @@
 		
 		//list effect latest activity >> HOME
 		setInterval("changeList()",3000);
+		
+		
 
 		//hover created list effect >> GUIDES
 		$('div.header_guides div.content ul li').hover(function(ev){
@@ -51,7 +53,7 @@
         var right_guides = $('div.right div.about_afg').height();
 
         if (left_guides>right_guides) {
-                        $('div.about_afg').height(left_guides+22);
+                        $('div.about_afg').height(left_guides+20);
         } else {
                         $('div#guides_left').height(right_guides+20);
         }
