@@ -9,7 +9,7 @@
 		});
 		
 		//hover created list effect >> HOME
-		$('div.left div.create ul li').hover(function(ev){
+		$('div.left div.create ul.published_afg li').hover(function(ev){
 			$(this).css('background-position','-2px -175px');
 		},
 		function(ev){
