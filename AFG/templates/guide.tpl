@@ -31,7 +31,7 @@
 					<div class="bkg_map">
 						<div class="map"></div>
 					</div>
-				</div>			
+				</div>
 			</div>
 		</div> <!-- header_guide -->
 		<div class="taxonomy_browser_body">
