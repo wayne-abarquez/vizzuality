@@ -202,7 +202,7 @@ div.header_guides div.content p.title {float:left; font:bold 25px Helvetica; col
 div.header_guides div.content p.by {float:left; font:normal 15px; font-family:"Lucida Grande"; color:#FFFFFF; width:100%;}
 
 div.header_guides div.content ul {float:left; width:100%; margin:35px 0 0 0;}
-div.header_guides div.content ul li {float:left; width:181px; height:145px; padding:22px 18px 10px 9px; background:url(../images/guides/created_bkg_list.png) no-repeat -2px -2px; margin:0 20px 0 0;}
+div.header_guides div.content ul li {float:left; width:181px; height:145px; padding:22px 18px 10px 9px; background:url(../images/guides/created_bkg_list.png) no-repeat 0px -2px; margin:0 20px 0 0;}
 div.header_guides div.content ul li.last {margin:0;}
 div.header_guides div.content ul li div.information_title {float:left; height:85px; border-bottom:1px solid #E0E0E0;}
 div.header_guides div.content ul li div.information_title h4 {float:left; width:163px;}
@@ -312,7 +312,7 @@ div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser:
 div.info_species_list {float:right; width:936px; background-color:#F7F7F7; height:44px; border-top:1px solid #E8E8E8; border-bottom:1px solid #CCCCCC;}
 div.info_species_list p{float:right; font-family:"Lucida Grande"; font-size:13px; font-weight:normal; letter-spacing:-1.0px; margin:12px 23px 0 0;}
 div.info_species_list p a{color:#0099CC; font-weight:bold; text-decoration:none;}
-div.info_species_list p a:hover{color:#0086B3;}
+div.info_species_list p a:hover{border-bottom:1px dotted #0099CC;}
 
 div.landscapes_body {float:right; width:936px; background-color:#FFFFFF; padding-bottom:15px;}
 div.landscapes_body div.content {margin:26px 23px 0 26px;}
@@ -325,7 +325,7 @@ div.landscapes_body div.content div.landscape_map div.map {float:left; border:1p
 div.info_landscapes_list {float:right; width:936px; background-color:#F7F7F7; height:44px; border-top:1px solid #E8E8E8; border-bottom:1px solid #CCCCCC;}
 div.info_landscapes_list p{float:right; font-family:"Lucida Grande"; font-size:13px; font-weight:normal; letter-spacing:-1.0px; margin:12px 23px 0 0;}
 div.info_landscapes_list p a{color:#0099CC; font-weight:bold; text-decoration:none;}
-div.info_landscapes_list p a:hover{color:#0086B3;}
+div.info_landscapes_list p a:hover{border-bottom:1px dotted #0099CC;}
 
 div.afg_dashboard {float:left; margin:0 0 20px 0; background-color:#333333; width:936px; height:300px; position:relative;}
 div.afg_dashboard div.content {margin:26px 23px 0 26px;}
