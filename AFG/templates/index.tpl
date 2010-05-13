@@ -15,7 +15,7 @@
 				<h3>Species that you can find in the antartic</h3>
 				<p class="subtitle">you can find more than <a href="#">1.312 species</a></p>
 				<div class="species_list">
-				<ul>
+				<ul class="published_afg">
 					<li>
 						<div class="specie">
 							<a href="#"><img src="images/home/penguin.png" alt="Gentoo Penguin" /></a>
@@ -73,19 +73,18 @@
 			<div class="create">
 				<h3>Some of the already created Antartic Field Guides</h3>
 				<p class="subtitle">create your AFG with species and landscapes, and enjoy your trip</p>
-				<ul>
+				<ul class="published_afg">
 					<li>
-						<div class="specie">
-							<div class="information_title">
-								<h4><a href="#">This is gonna be great. Antartic trip...</a></h4>
-								<p class="by">by Brunno Dannis</p>
-								<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
-							</div>
-							<div class="stats">
-								<p class="species_rank second_rank left">20 SPECIES</p>
-								<p class="landscapes_rank second_rank left">18 LANDSCAPES</p>
-							</div>
+						<div class="information_title">
+							<h4><a href="#">This is gonna be great. Antartic trip...</a></h4>
+							<p class="by">by Brunno Dannis</p>
+							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 						</div>
+						<div class="stats">
+							<p class="species_rank second_rank left">20 SPECIES</p>
+							<p class="landscapes_rank second_rank left">18 LANDSCAPES</p>
+						</div>
+
 					</li>
 					<li>
 						<div class="information_title">
