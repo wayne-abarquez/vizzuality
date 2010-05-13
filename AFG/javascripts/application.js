@@ -18,8 +18,6 @@
 		
 		//list effect latest activity >> HOME
 		setInterval("changeList()",3000);
-		
-		
 
 		//hover created list effect >> GUIDES
 		$('div.header_guides div.content ul li').hover(function(ev){
@@ -29,7 +27,7 @@
 			$(this).css('background-position','0 -2px');
 		});
 		
-		//hover created list effect >> GUIDES
+		// click sorted box  >> GUIDES
 		$('div.sorted_by a.sorted_box_deactivated').click(function(ev){
 			ev.stopPropagation();
 			ev.preventDefault();
@@ -37,7 +35,7 @@
 
 		});
 
-		//hover created list effect >> GUIDES
+		// click sorted box  >> GUIDES
 		$('div.activated_box a.sorted_box_activated').click(function(ev){
 
 			ev.stopPropagation();
@@ -48,12 +46,12 @@
 		});
 		
 		
-		// GUIDES - HEIGHT (Who has the higher height?)
+		// Who has the higher height? >> GUIDES
 		var left_guides = $('div.left div#guides_left').height();
         var right_guides = $('div.right div.about_afg').height();
 
         if (left_guides>right_guides) {
-                        $('div.about_afg').height(left_guides+20);
+                        $('div.about_afg').height(left_guides+22);
         } else {
                         $('div#guides_left').height(right_guides+20);
         }
