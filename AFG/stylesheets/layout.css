@@ -172,6 +172,15 @@ div.long img.arrow {position:absolute; top:0; right:257px; z-index:20;}
 div.long div.long_in {float:left; background:#333333; padding:28px 28px 28px 24px; width:884px;}
 div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-1px;}
 div.long div.long_in p.subtitle {font:normal 13px "Lucida Grande"; color:white;}
+div.long div.long_in ul {float:left; width:100%; margin:20px 0 0 0;}
+div.long div.long_in ul li {margin:0 15px 0 0;}
+div.long div.long_in li.single {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable.png) no-repeat 0 0;}
+div.long div.long_in li.amount {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable_amount.png) no-repeat 0 0;}
+div.long div.long_in li.dragg_here {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable_here.png) no-repeat 0 0;}
+div.long div.long_in li p.title {float:left; margin:15px 0 0 12px; font:bold 13px "Lucida Grande"; color:#0099CC;}
+
+div.long div.long_in li.dragg_here p {float:left; margin:85px 0 0 15px; font:bold 9px "Lucida Grande"; color:#CCCCCC; text-transform:uppercase; text-align:center; width:96px;}
+
 
 div.long div.bottom {float:left; background:url(../images/home/paginate_bkg.png) repeat-x 0 0; height:66px; width:936px; margin:0; padding:0;}
 div.long div.bottom div.left_side {float:left; padding:18px 0 0 22px;}
