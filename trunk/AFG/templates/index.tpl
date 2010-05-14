@@ -95,7 +95,7 @@
 						<div class="stats">
 							<p class="species_rank second_rank left">20 SPECIES</p>
 							<p class="landscapes_rank second_rank left">18 LANDSCAPES</p>
-						</div>
+						</div>						
 					</li>
 					<li class="last">
 						<div class="information_title">
