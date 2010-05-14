@@ -161,6 +161,13 @@ div.right div.blue ul li div.data p {float:left; width:206px; font:normal 13px "
 
 /*long bottom*/
 div.long {position:relative; float:left; width:936px; margin:0; padding:0;}
+
+
+div.long div.tooltip_add_this {position:absolute; top:-17px; right:23px; background:url(../images/common/bkg_tooltip_addthis.png) no-repeat 0 0; width:116px; height:65px;}
+div.long div.tooltip_add_this a {float:left; font:bold 11px "Lucida Grande"; color:#FFFFFF; text-transform:uppercase; width:98px; margin:12px 0 0 10px; text-decoration:none; text-align:center;}
+div.long div.tooltip_add_this a:hover {color:#333333;}
+
+
 div.long img.arrow {position:absolute; top:0; right:257px; z-index:20;}
 div.long div.long_in {float:left; background:#333333; padding:28px 28px 28px 24px; width:884px;}
 div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-1px;}
@@ -278,9 +285,12 @@ div.pictures_additional_info div.content div.content_left ul.pictures li {float:
 div.pictures_additional_info div.content div.content_left ul.pictures li.last {margin:0px;}
 div.pictures_additional_info div.content div.content_left ul.pictures li a img {float:left; margin:4px;}
 div.pictures_additional_info div.content div.content_right {float:right; width:270px; margin:10px 0 0 0;}
-div.pictures_additional_info div.content div.content_right p.title_link {float:left; font:normal 13px "Lucida Grande"; color:#999999; width:100%; margin:10px 0 0 0; text-decoration:none;}
-div.pictures_additional_info div.content div.content_right a.link {float:left; font:bold 13px "Lucida Grande"; color:#666666; width:100%; margin:2px 0 0 0;}
-div.pictures_additional_info div.content div.content_right a.link:hover {}
+
+div.pictures_additional_info div.content div.content_right p.title_link {float:left; font:normal 13px "Lucida Grande"; color:#999999; width:100%; margin:10px 0 0 0;}
+div.pictures_additional_info div.content div.content_right ul {margin:2px 0 0 0;}
+div.pictures_additional_info div.content div.content_right ul li{float:left; width:100%;}
+div.pictures_additional_info div.content div.content_right a.link {float:left; font:bold 13px "Lucida Grande"; color:#0099CC; margin:2px 0 0 0; text-decoration:none; border-bottom:1px solid #FFFFFF;}
+div.pictures_additional_info div.content div.content_right a.link:hover {border-bottom:1px dotted;}
 
 
 
@@ -388,7 +398,7 @@ div.header_guide div.content div.content_right div.amount_info {float:right; wid
 div.header_guide div.content div.content_right div.bkg_map {float:right; background:url(../images/guide/bkg_header_map.png) no-repeat 0 0; width:280px; height:210px; margin:17px 0 0 0;}
 div.header_guide div.content div.content_right div.bkg_map div.map {float:left; background:url(../images/guide/header_map.png) no-repeat 0 0; width:261px; height:190px; margin:6px 0 0 10px;}
 
-div.taxonomy_browser_body {float:right; width:936px; background-color:#FFFFFF; padding-bottom:15px;}
+div.taxonomy_browser_body {float:right; width:936px; background-color:#FFFFFF; padding-bottom:20px;}
 div.taxonomy_browser_body div.content {margin:26px 23px 0 26px;}
 div.taxonomy_browser_body div.content div.content_left {float:left; width:590px;}
 div.taxonomy_browser_body div.content div.content_left p.species_included{float:left; font:bold 25px Helvetica; color:#666666; width:100%; letter-spacing:-1.0px;}
