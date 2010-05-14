@@ -228,8 +228,10 @@ div.header_landscape div.content p.by a:hover {text-decoration:none;}
 
 
 div.header_landscape div.content p.info_guide {float:left; font-weight:normal; font-size:13px; font-family:"Lucida Grande";color:#FFFFFF; width:100%; margin:13px 0 5px 0; letter-spacing:-1.0px; margin:20px 0 0 0;}
-div.header_landscape div.content a.add_guide {float:left; background:url(../images/landscape/bkg_add_guide_bttn.png) no-repeat 0 0; width:122px; height:26px; font:bold 15px Arial; color:#0099CC; text-decoration:none; line-height:15px; margin:40px 0 0 0; padding:11px 7px 0 47px;}
-div.header_landscape div.content p.times_added {float:left; background:url(../images/landscape/heart_white.png) no-repeat 0 4px; height:13px; padding:0 0 0 14px; font:normal 13px "Lucida Grande"; color:#FFFFFF; width:100%; margin:3px 0 0 37px; letter-spacing:-1.0px;}
+div.header_landscape div.content a.add_guide {float:left; background:url(../images/landscape/bkg_add_guide_bttn.png) no-repeat 0 0; width:122px; height:31px; font:bold 15px Arial; color:#0099CC; text-decoration:none; line-height:15px; margin:40px 0 0 0; padding:11px 7px 0 47px;}
+div.header_landscape div.content a.add_guide:hover {background-position:0 -42px; color:#006D91;} 
+
+div.header_landscape div.content p.times_added {float:left; background:url(../images/landscape/heart_white.png) no-repeat 0 4px; height:13px; padding:0 0 0 14px; font:normal 13px "Lucida Grande"; color:#FFFFFF; width:100%; margin:0px 0 0 37px; letter-spacing:-1.0px;}
 
 div.header_landscape div.content div.content_right {float:right; width:300px; margin:0px 30px 0 0;} 
 div.header_landscape div.content div.content_right div.share_this {float:right; background:url(../images/landscape/bkg_share_bttns.png) no-repeat 0 0; width:137px; height:30px; margin:0 10px 0 0;}
@@ -237,6 +239,7 @@ div.header_landscape div.content div.content_right div.share_this p.share {float
 div.header_landscape div.content div.content_right div.share_this a {margin:7px 0 0 0;}
 div.header_landscape div.content div.content_right div.share_this a.share_twitter {float:left; background:url(../images/landscape/bttn_share_twitter.png) no-repeat 0 0; width:15px; height:15px; margin-right:5px;}
 div.header_landscape div.content div.content_right div.share_this a.share_facebook {float:left; background:url(../images/landscape/bttn_share_facebook.png) no-repeat 0 0; width:15px; height:15px;}
+div.header_landscape div.content div.content_right div.share_this a:hover {background-position:0 -15px;}
 
 
 div.header_landscape div.content div.content_right div.map_landscape {float:right; background:url(../images/landscape/bkg_header_map.png) no-repeat 0 0; width:274px; height:210px; margin:18px 0px 0 0;}
@@ -253,7 +256,7 @@ div.pictures_additional_info div.content div.content_left ul.pictures li {float:
 div.pictures_additional_info div.content div.content_left ul.pictures li.last {margin:0px;}
 div.pictures_additional_info div.content div.content_left ul.pictures li a img {float:left; margin:4px;}
 div.pictures_additional_info div.content div.content_right {float:right; width:270px; margin:10px 0 0 0;}
-div.pictures_additional_info div.content div.content_right p.title_link {float:left; font:normal 13px "Lucida Grande"; color:#999999; width:100%; margin:10px 0 0 0;}
+div.pictures_additional_info div.content div.content_right p.title_link {float:left; font:normal 13px "Lucida Grande"; color:#999999; width:100%; margin:10px 0 0 0; text-decoration:none;}
 div.pictures_additional_info div.content div.content_right a.link {float:left; font:bold 13px "Lucida Grande"; color:#666666; width:100%; margin:2px 0 0 0;}
 div.pictures_additional_info div.content div.content_right a.link:hover {}
 
