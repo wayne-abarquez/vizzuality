@@ -1,6 +1,34 @@
 {include file="header.tpl"}
 	<div class="outer_layout">
 		
+		<div class="long top_species">
+			<img class="arrow" src="images/common/arrow_menu.png" alt=""/>
+			<ul class="breadcrumb">
+				<li class="first">Animalia</li>
+				<li>Mollusca</li>
+				<li>Mollusca</li>
+				<li>Mollusca</li>
+				<li>Mollusca</li>
+			</ul>
+			<div class="left">
+				<h2>Nutella Ferrero</h2>
+				<label>Description</label>
+				<p>White flesh in brown or black shell; inside of shell shiny dark bronze. Young shells may have weak radial ribs which disappear when older. Outer of shell often characteristically grooved by grazing of other Nacella individuals, and sometimes very eroded.</p>
+				<label>Distinguishing Characters</label>
+				<p>Nutella concinna is the only common shallow-water Antarctic limpet</p>
+				<a href="#" class="add_guide">Add your guide</a>
+				<p class="times_added">11 times added</p>
+			</div>
+			<div class="right">
+				<div class="share_this">
+					<p class="share">share this on</p><a class="share_twitter" href="#"></a><a class="share_facebook" href="#"></a>
+				</div>
+				<div class="map_landscape">
+					<div class="map"></div>
+				</div>
+			</div>
+		</div>
+		
 		<div class="long border">
 			<div class="left species">
 				<h3>Species information</h3>
