@@ -32,9 +32,9 @@
 				
 				<div class="content_left">
 					<ul class="pictures">
-						<li><img src="images/landscape/img_landscape_1.png" alt="Landscape location"/></li>
-						<li><img src="images/landscape/img_landscape_2.png" alt="Landscape location"/></li>
-						<li class="last"><img src="images/landscape/img_landscape_3.png" alt="Landscape location"/></li>						
+						<li><a href="#"><img src="images/landscape/img_landscape_1.png" alt="Landscape location"/></a></li>
+						<li><a href="#"><img src="images/landscape/img_landscape_2.png" alt="Landscape location"/></li>
+						<li class="last"><a href="#"><img src="images/landscape/img_landscape_3.png" alt="Landscape location"/></li>						
 					</ul>
 				</div>
 				<div class="content_right">
@@ -63,27 +63,21 @@
 				</div>
 			</div>
 		</div> <!-- taxonomy_browser_body -->
-		
-		<div class="">
-		<div class="afg_dashboard">
-			<div class="content">
-				<p class="title">Your Atlantic Field Guide</p>
+		<div class="long">
+			<div class="long_in">
+				<h3>Your Atlantic Field Guide</h3>
 				<p class="subtitle">Here is were your species and landscapes will be added</p>
 			</div>
-			<div class="footer">
-				<div class="nav_buttons">
-					<div class="enabled">
-						<a href="#" class="left"></a>
-						<a href="#" class="right"></a>
-					</div>
+			<div class="bottom">
+				<div class="left_side">
+					<a href="#" class="left"></a>
+					<a href="#" class="right"></a>
 				</div>
-				<a class="publish_download_button" href="#"></a>
-				
+				<div class="right_side">
+					<a href="#"></a>
+				</div>
 			</div>
 		</div>
-		
-		
-	</div>
 	</div>
 {include file="footer.tpl"}
 

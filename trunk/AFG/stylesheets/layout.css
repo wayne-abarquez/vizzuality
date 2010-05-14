@@ -162,12 +162,12 @@ div.right div.blue ul li div.data p {float:left; width:206px; font:normal 13px "
 /*long bottom*/
 div.long {position:relative; float:left; width:936px; margin:0; padding:0;}
 div.long img.arrow {position:absolute; top:0; right:257px; z-index:20;}
-div.long div.long_in {float:left; background:#333333; padding:28px; width:880px;}
+div.long div.long_in {float:left; background:#333333; padding:28px 28px 28px 24px; width:884px;}
 div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-1px;}
 div.long div.long_in p.subtitle {font:normal 13px "Lucida Grande"; color:white;}
 
 div.long div.bottom {float:left; background:url(../images/home/paginate_bkg.png) repeat-x 0 0; height:66px; width:936px; margin:0; padding:0;}
-div.long div.bottom div.left_side {float:left; padding:18px 0 0 18px;}
+div.long div.bottom div.left_side {float:left; padding:18px 0 0 20px;}
 div.long div.bottom div.left_side a.left.disabled {float:left; background:url(../images/guide/left_content_dashboard_disabled.png) no-repeat 0 0; width:30px; height:30px; margin:0 4px 0 0;}
 div.long div.bottom div.left_side a.right.disabled {float:left; background:url(../images/guide/right_content_dashboard_disabled.png) no-repeat 0 0; width:30px; height:30px;}
 div.long div.bottom div.left_side a.left {float:left; background:url(../images/guide/left_content_dashboard_enabled.png) no-repeat 0 0; width:30px; height:30px; margin:0 4px 0 0;}
@@ -242,19 +242,20 @@ div.header_landscape div.content div.content_right div.share_this a.share_facebo
 div.header_landscape div.content div.content_right div.map_landscape {float:right; background:url(../images/landscape/bkg_header_map.png) no-repeat 0 0; width:274px; height:210px; margin:18px 0px 0 0;}
 div.header_landscape div.content div.content_right div.map_landscape div.map {float:left; background:url(../images/landscape/fake_header_map.png) no-repeat 0 0; width:257px; height:192px; margin:5px 5px 5px 8px;}
 
-div.pictures_additional_info {float:left; width:936px; }
+div.pictures_additional_info {float:left; width:936px; padding-bottom:30px; border-bottom:1px solid #CCCCCC;}
 
 div.pictures_additional_info div.content {margin:26px 23px 0 26px;}
-div.pictures_additional_info div.content div.content_left {float:left; width:615px;}
+div.pictures_additional_info div.content div.content_left {float:left; width:600px;}
 div.pictures_additional_info div.content p.title{float:left; font:bold 25px Helvetica; color:#666666; width:100%; letter-spacing:-1.0px;}
 div.pictures_additional_info div.content p.subtitle{float:left; font-weight:normal; font-size:13px; font-family:"Lucida Grande"; color:#666666; width:100%; margin:0px 0 0 0;}
 div.pictures_additional_info div.content div.content_left ul.pictures {width:100%; margin:18px 0 0 0;}
 div.pictures_additional_info div.content div.content_left ul.pictures li {float:left; background-color:#FFFFFF; width:184px; height:140px; border:1px solid #E1E1E1; margin:0 19px 0 0;}
 div.pictures_additional_info div.content div.content_left ul.pictures li.last {margin:0px;}
-div.pictures_additional_info div.content div.content_left ul.pictures li img {float:left; margin:4px;}
-div.pictures_additional_info div.content div.content_right {float:right; width:300px;}
-div.pictures_additional_info div.content div.content_right p.title_link {float:left; font:normal 13px "Lucida Grande"; color:#999999; width:100%;}
-div.pictures_additional_info div.content div.content_right a.link {float:left; font:bold 13px "Lucida Grande"; color:#666666; width:100%;}
+div.pictures_additional_info div.content div.content_left ul.pictures li a img {float:left; margin:4px;}
+div.pictures_additional_info div.content div.content_right {float:right; width:270px; margin:10px 0 0 0;}
+div.pictures_additional_info div.content div.content_right p.title_link {float:left; font:normal 13px "Lucida Grande"; color:#999999; width:100%; margin:10px 0 0 0;}
+div.pictures_additional_info div.content div.content_right a.link {float:left; font:bold 13px "Lucida Grande"; color:#666666; width:100%; margin:2px 0 0 0;}
+div.pictures_additional_info div.content div.content_right a.link:hover {}
 
 
 
@@ -393,23 +394,6 @@ div.info_landscapes_list {float:right; width:936px; background-color:#F7F7F7; he
 div.info_landscapes_list p{float:right; font-family:"Lucida Grande"; font-size:13px; font-weight:normal; letter-spacing:-1.0px; margin:12px 23px 0 0;}
 div.info_landscapes_list p a{color:#0099CC; font-weight:bold; text-decoration:none;}
 div.info_landscapes_list p a:hover{border-bottom:1px dotted #0099CC;}
-
-div.afg_dashboard {float:left; margin:0 0 20px 0; background-color:#333333; width:936px; height:300px; position:relative;}
-div.afg_dashboard div.content {margin:26px 23px 0 26px;}
-div.afg_dashboard div.content p.title {float:left; font:bold 25px Helvetica; color:#FFFFFF; width:100%;}
-div.afg_dashboard div.content p.subtitle {float:left; font:normal 13px "Lucida Grande"; letter-spacing:-1.0; color:#FFFFFF; width:100%;}
-div.afg_dashboard div.footer {position:absolute; bottom:0; left:0; width:100%; height:66px; background:url(../images/guide/bkg_footer_dashboard.png) no-repeat 0 0; width:936px; height:66px;}
-div.afg_dashboard div.footer div.nav_buttons{float:left; width:280px; margin:19px 0 17px 26px;}
-div.afg_dashboard div.footer div.nav_buttons div.disabled a.left {float:left; background:url(../images/guide/left_content_dashboard_disabled.png) no-repeat 0 0; width:30px; height:30px; margin:0 4px 0 0;}
-div.afg_dashboard div.footer div.nav_buttons div.disabled a.right {float:left; background:url(../images/guide/right_content_dashboard_disabled.png) no-repeat 0 0; width:30px; height:30px;}
-div.afg_dashboard div.footer div.nav_buttons div.enabled a.left {float:left; background:url(../images/guide/left_content_dashboard_enabled.png) no-repeat 0 0; width:30px; height:30px; margin:0 4px 0 0;}
-div.afg_dashboard div.footer div.nav_buttons div.enabled a.right {float:left; background:url(../images/guide/right_content_dashboard_enabled.png) no-repeat 0 0; width:30px; height:30px;}
-div.afg_dashboard div.footer div.nav_buttons div.enabled a:hover {background-position:0 -30px;}
-
-div.afg_dashboard div.footer a.publish_download_button{float:right; background:url(../images/guide/bttn_publish_download.png) no-repeat 0 0; width:182px; height:33px; margin:18px 19px 16px 0; }
-div.afg_dashboard div.footer a.publish_download_button:hover {background-position:0 -33px;}
-
-
 
 
 /*FOOTER*/
