@@ -164,7 +164,7 @@ div.long {position:relative; float:left; width:936px; margin:0; padding:0;}
 
 
 div.long div.tooltip_add_this {position:absolute; top:-17px; right:23px; background:url(../images/common/bkg_tooltip_addthis.png) no-repeat 0 0; width:116px; height:65px;}
-div.long div.tooltip_add_this a {float:left; font:bold 11px "Lucida Grande"; color:#FFFFFF; text-transform:uppercase; width:98px; margin:12px 0 0 10px; text-decoration:none; text-align:center;}
+div.long div.tooltip_add_this a {float:left; font:bold 11px "Lucida Grande"; color:#FFFFFF; text-transform:uppercase; width:100px; margin:12px 0 0 8px; text-decoration:none; text-align:center;}
 div.long div.tooltip_add_this a:hover {color:#333333;}
 
 
@@ -174,7 +174,7 @@ div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-
 div.long div.long_in p.subtitle {font:normal 13px "Lucida Grande"; color:white;}
 
 div.long div.bottom {float:left; background:url(../images/home/paginate_bkg.png) repeat-x 0 0; height:66px; width:936px; margin:0; padding:0;}
-div.long div.bottom div.left_side {float:left; padding:18px 0 0 20px;}
+div.long div.bottom div.left_side {float:left; padding:18px 0 0 22px;}
 div.long div.bottom div.left_side a.left.disabled {float:left; background:url(../images/guide/left_content_dashboard_disabled.png) no-repeat 0 0; width:30px; height:30px; margin:0 4px 0 0;}
 div.long div.bottom div.left_side a.right.disabled {float:left; background:url(../images/guide/right_content_dashboard_disabled.png) no-repeat 0 0; width:30px; height:30px;}
 div.long div.bottom div.left_side a.left {float:left; background:url(../images/guide/left_content_dashboard_enabled.png) no-repeat 0 0; width:30px; height:30px; margin:0 4px 0 0;}
@@ -253,17 +253,17 @@ div.header_landscape div.content div.content_left {float:left; width:560px;}
 div.header_landscape div.content p.title {float:left; font:bold 25px Helvetica; color:#FFFFFF; width:100%;}
 div.header_landscape div.content p.by {float:left; font:normal 15px; font-family:"Lucida Grande"; color:#FFFFFF; width:100%;}
 div.header_landscape div.content p.by a {text-decoration:underline; color:#FFFFFF; }
-div.header_landscape div.content p.by a:hover {text-decoration:none;}
+div.header_landscape div.content p.by a:hover {}
 
 
-div.header_landscape div.content p.info_guide {float:left; font-weight:normal; font-size:13px; font-family:"Lucida Grande";color:#FFFFFF; width:100%; margin:13px 0 5px 0; letter-spacing:-1.0px; margin:20px 0 0 0;}
-div.header_landscape div.content a.add_guide {float:left; background:url(../images/landscape/bkg_add_guide_bttn.png) no-repeat 0 0; width:122px; height:31px; font:bold 15px Arial; color:#0099CC; text-decoration:none; line-height:15px; margin:40px 0 0 0; padding:11px 7px 0 47px;}
+div.header_landscape div.content p.info_guide {float:left; font-weight:normal; font-size:13px; font-family:"Lucida Grande";color:#FFFFFF; width:100%; margin:13px 0 5px 0; margin:15px 0 0 0;}
+div.header_landscape div.content a.add_guide {float:left; background:url(../images/landscape/bkg_add_guide_bttn.png) no-repeat 0 0; width:122px; height:31px; font:bold 15px Arial; color:#0099CC; text-decoration:none; line-height:15px; margin:20px 0 0 0; padding:11px 7px 0 47px;}
 div.header_landscape div.content a.add_guide:hover {background-position:0 -42px; color:#006D91;} 
 
 div.header_landscape div.content p.times_added {float:left; background:url(../images/landscape/heart_white.png) no-repeat 0 4px; height:13px; padding:0 0 0 14px; font:normal 13px "Lucida Grande"; color:#FFFFFF; width:100%; margin:0px 0 0 37px; letter-spacing:-1.0px;}
 
 div.header_landscape div.content div.content_right {float:right; width:300px; margin:0px 30px 0 0;} 
-div.header_landscape div.content div.content_right div.share_this {float:right; background:url(../images/landscape/bkg_share_bttns.png) no-repeat 0 0; width:137px; height:30px; margin:0 10px 0 0;}
+div.header_landscape div.content div.content_right div.share_this {float:right; background:url(../images/landscape/bkg_share_bttns.png) no-repeat 0 0; width:137px; height:30px; margin:0 6px 0 0;}
 div.header_landscape div.content div.content_right div.share_this p.share {float:left; font:bold 13px "Lucida Grande"; color:#5DB3D0; width:82px; margin:6px 2px 0 9px; letter-spacing:-1.0px;}
 div.header_landscape div.content div.content_right div.share_this a {margin:7px 0 0 0;}
 div.header_landscape div.content div.content_right div.share_this a.share_twitter {float:left; background:url(../images/landscape/bttn_share_twitter.png) no-repeat 0 0; width:15px; height:15px; margin-right:5px;}
@@ -398,13 +398,13 @@ div.header_guide div.content div.content_right div.amount_info {float:right; wid
 div.header_guide div.content div.content_right div.bkg_map {float:right; background:url(../images/guide/bkg_header_map.png) no-repeat 0 0; width:280px; height:210px; margin:17px 0 0 0;}
 div.header_guide div.content div.content_right div.bkg_map div.map {float:left; background:url(../images/guide/header_map.png) no-repeat 0 0; width:261px; height:190px; margin:6px 0 0 10px;}
 
-div.taxonomy_browser_body {float:right; width:936px; background-color:#FFFFFF; padding-bottom:20px;}
+div.taxonomy_browser_body {float:right; width:936px; background-color:#FFFFFF; padding-bottom:40px;}
 div.taxonomy_browser_body div.content {margin:26px 23px 0 26px;}
 div.taxonomy_browser_body div.content div.content_left {float:left; width:590px;}
 div.taxonomy_browser_body div.content div.content_left p.species_included{float:left; font:bold 25px Helvetica; color:#666666; width:100%; letter-spacing:-1.0px;}
 div.taxonomy_browser_body div.content div.content_left p.number_species{float:left; font-weight:normal; font-size:13px; font-family:"Lucida Grande"; color:#666666; width:100%; margin:0px 0 0 0;}
 
-div.taxonomy_browser_body div.content div.taxonomy_browser{float:left; background:url(../images/guide/fake_taxonomy_browser.png) no-repeat 0 0; width:885px; height:302px; margin:30px 0;}
+div.taxonomy_browser_body div.content div.taxonomy_browser{float:left; background:url(../images/guide/fake_taxonomy_browser.png) no-repeat 0 0; width:885px; height:302px; margin:30px 0 0 0;}
 
 div.taxonomy_browser_body div.content div.content_right {float:right; width:285px;}
 div.taxonomy_browser_body div.content div.content_right a.view_advanced_browser {float:right; background:url(../images/guide/bkg_view_advanced_browser.png) no-repeat 0 0; text-align:center; width:231px; height:24px; font-size:13px; font-weight:normal; 
