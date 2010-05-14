@@ -1,5 +1,15 @@
 	$(document).ready(function() {
 		
+		// dragg elements >> ALL PAGES
+		$(function() {
+			$("#sortable").sortable({items: 'li:not(.dragg_here)'});
+			$("#sortable").disableSelection();
+			
+			
+			
+		});
+		
+		
 		//hover species list effect >> HOME
 		$('div.left ul li div.specie').hover(function(ev){
 			$(this).css('background-position','-4px -175px');

@@ -242,10 +242,11 @@
 			<div class="long_in">
 				<h3>Your Atlantic Field Guide</h3>
 				<p class="subtitle">Here is were your species and landscapes will be added</p>
-				<ul>
-					<li>sañldfjaskdf</li>
-					<li>saf</li>
-					<li>jamon</li>
+				<ul id="sortable">
+					<li id ="draggable" class="single"><p class="title">Your AFG</p></li>
+					<li id ="draggable" class="single"><p class="title">Your AFG</p></li>
+					<li id ="draggable" class="amount"><p class="title">Your AFG</p></li>
+					<li class="dragg_here"><p>DRAGG SOMETHING HERE TO ADD IT</p></li>					
 				</ul>
 				
 			</div>
