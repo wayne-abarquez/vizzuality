@@ -39,11 +39,14 @@
 				</div>
 				<div class="content_right">
 					<p class="title_link">Official link</p>
-					<a class="link" href="#">Marine Technology Unit: Juan Carlos I</a>
-					
+					<ul>
+						<li><a class="link" href="#">Marine Technology Unit: Juan Carlos I</a></li>
+					</ul>
 					<p class="title_link">Related with</p>
-					<a class="link" href="#">Livingston Island</a>
-					<a class="link" href="#">Camp Byers</a>
+					<ul>
+						<li><a class="link" href="#">Livingston Island</a></li>
+						<li><a class="link" href="#">Camp Byers</a></li>
+					</ul>
 					
 				</div>
 			</div>
@@ -64,6 +67,9 @@
 			</div>
 		</div> <!-- taxonomy_browser_body -->
 		<div class="long">
+			<div class="tooltip_add_this">
+				<a href="#">CLICK TO ADD THIS LANDSCAPE</a>
+			</div>
 			<div class="long_in">
 				<h3>Your Atlantic Field Guide</h3>
 				<p class="subtitle">Here is were your species and landscapes will be added</p>
