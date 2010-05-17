@@ -22,7 +22,7 @@
 					
 					<div class="amount_info">
 						<p class="landscapes_rank first_rank white right">9 LANDSCAPES</p>
-						<p class="species_rank second_rank white right">32 SPECIES</p>
+						<p class="species_guide_rank second_rank white right">32 SPECIES</p>
 					</div>
 					<div class="bkg_map">
 						<div class="map"></div>
