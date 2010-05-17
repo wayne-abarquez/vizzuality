@@ -40,6 +40,18 @@ if($data['description']) {
 $data['description'] = nl2br($data['description']);
 
 $smarty->assign('data',$data);
+
+//generate the embadable code
+$smartyEmbed = new Smarty;
+$smartyEmbed->assign('data',$data);
+$embedableCode = $smartyEmbed->fetch('widgetEmbedableCode.tpl');
+
+$embedableCode = trim( preg_replace( '/\s+/', ' ', $embedableCode ) );  
+$embedableCode = htmlspecialchars($embedableCode);
+$smarty->assign('embedableCode',$embedableCode);
+
+//--------
+
 $smarty->assign('runners',$services->getLastUsersInscribedToRuns($_REQUEST['id']));
 $smarty->assign('comments',$services->getComments($_REQUEST['id'],'run'));
 

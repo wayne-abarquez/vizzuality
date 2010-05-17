@@ -9,8 +9,31 @@ $(document).ready(function(){
 	  Cufon.replace('.titleBoxRegister p');
 	  Cufon.replace('.nameUserProfile');
 	  Cufon.replace('.nameUserProfileNick');
-		Cufon.replace('#correres');
+	  Cufon.replace('#correres');
+		
+		
+	
+	 $('a.share_race').click (function(ev){
 
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent('div#columnLong_last').animate({height:125},500);
+		$(this).parent().parent('div#columnLong_last').children('div.widget_race').show();
+		
+	});
+	
+	 $('a.close_window').click (function(ev){
+
+		ev.stopPropagation();
+		ev.preventDefault();
+		
+		$(this).parent().parent('div#columnLong_last').animate({height:25},500);
+		$(this).parent().parent('div#columnLong_last').children('div.widget_race').fadeOut();
+		
+	});
+	
+	
 
       $('#inputsearchFirst').emptyonclick(); 
 
@@ -781,3 +804,4 @@ function gup( name )
   else
     return results[1];
 }
+

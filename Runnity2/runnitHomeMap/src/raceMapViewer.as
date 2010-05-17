@@ -84,6 +84,7 @@ package
 			//if(root.loaderInfo.parameters.mapkey!=null) {
 				map.key=root.loaderInfo.parameters.mapkey;				
 			//}
+			
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(610, 250));
 			addChild(map);
