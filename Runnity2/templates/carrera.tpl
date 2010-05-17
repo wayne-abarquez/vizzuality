@@ -253,10 +253,9 @@ function SubirFotos(){
 							<p>Selecciona, copia y pega el siguiente código:</p>
 							<a class="close_window" href="#"></a>
 							<div class="widget_embed">
-								<input type="text" name="code" value="{$embedableCode}"/>		    					    
-				       			
-								
+								<input type="text" name="code" value="{$embedableCode}"/>
 							</div>
+							
 						</div>
 						</div>	
 					</div>
