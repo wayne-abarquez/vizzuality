@@ -98,7 +98,7 @@ function SubirFotos(){
 </script>
 {/literal}
 
-<script type='text/javascript' src='/js/jquery-1.3.2.min.js'></script>
+<!-- <script type='text/javascript' src='/js/jquery-1.3.2.min.js'></script> -->
 <script type="text/javascript" src="/js/init.js"></script>	
 
 <div class="span-24 column content">
