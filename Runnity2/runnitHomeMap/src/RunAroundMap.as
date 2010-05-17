@@ -72,18 +72,16 @@ package
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
 			if(loaderInfo.url.indexOf("runnity.net")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRS5lFIZ4lX1ZuOUC3gMG9aTZZnVExRO7Xbt-wEBLhd43QE_x_w9pE80BQ";				
-			} else
+			}
 			if(loaderInfo.url.indexOf("runnity.com")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA";
-			} else
+			}
 			if(loaderInfo.url.indexOf("runnity.es")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRQK12cEqCNB3jyFRUdZAxcDvhADJRQn0mHTp4RIKJVv2RqDsWp8h9RPvA";				
-			} else
+			}
 			if(loaderInfo.url.indexOf("67.23.47.172")>=0) {
 				map.key="ABQIAAAAXucQwXp28TiGqramtQ-1nhTGDsp2z8MalcroimtHohqExHETcBT5ufo4NMa7ge3ZWP3vXPrzs4p00Q";				
-			} else {
-				map.key="ABQIAAAAXucQwXp28TiGqramtQ-1nhTGDsp2z8MalcroimtHohqExHETcBT5ufo4NMa7ge3ZWP3vXPrzs4p00Q";				
-			}		
+			}			
 			
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(270, 191));
