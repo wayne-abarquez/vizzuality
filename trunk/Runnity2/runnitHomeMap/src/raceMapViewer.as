@@ -82,7 +82,7 @@ package
 				map.key="ABQIAAAAXucQwXp28TiGqramtQ-1nhTGDsp2z8MalcroimtHohqExHETcBT5ufo4NMa7ge3ZWP3vXPrzs4p00Q";				
 			} */
 			//if(root.loaderInfo.parameters.mapkey!=null) {
-				map.key=root.loaderInfo.parameters.mapkey;				
+			map.key=root.loaderInfo.parameters.mapkey;				
 			//}
 			
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
