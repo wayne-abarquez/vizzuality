@@ -81,6 +81,9 @@ package
 			} else {
 				map.key="ABQIAAAAXucQwXp28TiGqramtQ-1nhTGDsp2z8MalcroimtHohqExHETcBT5ufo4NMa7ge3ZWP3vXPrzs4p00Q";				
 			}
+			if(root.loaderInfo.parameters.mapkey!=null) {
+				map.key=root.loaderInfo.parameters.mapkey;				
+			}
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(610, 250));
 			addChild(map);
@@ -196,7 +199,7 @@ package
 				}		
 				
 				trackLength=track.getLength();
-			
+				
 				//add 10% around
 
  				//var diff:Number = Math.round((maxAltitude-minAltitude)*.3);
@@ -229,6 +232,8 @@ package
 				endOpt.icon = new GenericMarkerIcon("end");
 				var eMarker:Marker= new Marker(points[points.length-1],endOpt);
 				map.addOverlay(eMarker);
+				
+				
 				
 				//find the intermediate markers
 				//dive the length by 10000
