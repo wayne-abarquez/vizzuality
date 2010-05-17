@@ -11,7 +11,7 @@
 				<li>Mollusca</li>
 			</ul>
 			<div class="left">
-				<h2>Nutella Ferrero</h2>
+				<h2>Nacella concinna</h2>
 				<label>Description</label>
 				<p>White flesh in brown or black shell; inside of shell shiny dark bronze. Young shells may have weak radial ribs which disappear when older. Outer of shell often characteristically grooved by grazing of other Nacella individuals, and sometimes very eroded.</p>
 				<label>Distinguishing Characters</label>
