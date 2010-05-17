@@ -2086,6 +2086,24 @@ div.mapStyle {
 	background-color: white;
 }
 
+div.+_buttons{
+	float:right;
+	margin:2px 0 10px 0;	
+}
+
+div.share_buttons a.share_race{float:right; background:url(/img/shareRaceBttn.png) no-repeat 0 0; width:116px; height:17px; margin:5px 0; font:normal 11px Arial; color:#FFFFFF; text-decoration:none; padding:2px 0 0 8px;}
+div.share_buttons a:hover{background-position:0 -19px;}
+
+div#columnLong_last {float:right; margin:0;}
+div.widget_race{width:608px;height:80px;border: 1px solid #cdd7e1;background-color: #f3f6f9;margin-top: 40px; display:none;}
+div.widget_race a.close_window {float:right; background:url(/img/closeShareWidget.png) no-repeat 0 0; width:20px; height:21px; margin:11px 11px 0 0;}
+div.widget_race a.close_window:hover {background-position:0 -21px;}
+div.widget_race p {float:left; color: #336699; font:bold 13px Arial; margin:15px 12px 0 12px; }
+
+
+div.widget_embed {float:left; margin:5px 0 0 12px; width: 582px; height:25px; font-size: 13px; color: #666666; font-family: "Arial"; border: 1px solid #cdd7e1; overflow:hidden; background-color:#FFFFFF;}
+div.widget_embed input{color: #666666; margin:5px; font:italic 12px Arial; border:none; width:100%;}
+
 div.mapStyleRight {
 	border: 1px solid #cccccc;
 	vertical-align: middle;

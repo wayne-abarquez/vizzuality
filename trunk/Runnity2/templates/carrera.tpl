@@ -98,6 +98,9 @@ function SubirFotos(){
 </script>
 {/literal}
 
+<script type='text/javascript' src='/js/jquery-1.3.2.min.js'></script>
+<script type="text/javascript" src="/js/init.js"></script>	
+
 <div class="span-24 column content">
 
 	<div class="span-1 last leftColumn">
@@ -240,6 +243,21 @@ function SubirFotos(){
                    <!--<![endif]-->
                  </object>		    					    
 							</div>
+						</div>	
+						
+					<div id="columnLong_last">	
+						<div class="share_buttons">
+							<a class="share_race" href="#">compartir esta carrera</a>
+						</div>
+						<div class="widget_race">
+							<p>Selecciona, copia y pega el siguiente código:</p>
+							<a class="close_window" href="#"></a>
+							<div class="widget_embed">
+								<input type="text" name="code" value="{$embedableCode}"/>		    					    
+				       			
+								
+							</div>
+						</div>
 						</div>	
 					</div>
 				{/if}
