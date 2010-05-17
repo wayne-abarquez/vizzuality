@@ -44,9 +44,6 @@ switch ($_SERVER["SERVER_NAME"]){
 	case (HOST=="runnity.net"):
 		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRS5lFIZ4lX1ZuOUC3gMG9aTZZnVExRO7Xbt-wEBLhd43QE_x_w9pE80BQ');	//runnity.net
 		break;
-	case (HOST=="tumblr.com"):
-			define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRSC87GBmgHWnSTrc5OmAg2oGs6xtRQYpdLrpOe5203GCF0SmZKxbhOKWw');	//tumblr
-			break;		
 	case (HOST=="67.23.47.172"):
 		define('GMAPS_KEY','ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTGDsp2z8MalcroimtHohqExHETcBS4NC7BdwWef8UXYbVt7VWSNZ9bOQ');   //server
 		break;
