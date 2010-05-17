@@ -67,7 +67,7 @@ package
 		private function initMap():void {
 			map=new Map();
 			map.addEventListener(MapEvent.MAP_PREINITIALIZE, preinit);
-			if(loaderInfo.url.indexOf("runnity.net")>=0) {
+/* 			if(loaderInfo.url.indexOf("runnity.net")>=0) {
 				map.key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRS5lFIZ4lX1ZuOUC3gMG9aTZZnVExRO7Xbt-wEBLhd43QE_x_w9pE80BQ";				
 			} else
 			if(loaderInfo.url.indexOf("runnity.com")>=0) {
@@ -80,10 +80,10 @@ package
 				map.key="ABQIAAAAXucQwXp28TiGqramtQ-1nhTGDsp2z8MalcroimtHohqExHETcBT5ufo4NMa7ge3ZWP3vXPrzs4p00Q";				
 			} else {
 				map.key="ABQIAAAAXucQwXp28TiGqramtQ-1nhTGDsp2z8MalcroimtHohqExHETcBT5ufo4NMa7ge3ZWP3vXPrzs4p00Q";				
-			}
-			if(root.loaderInfo.parameters.mapkey!=null) {
+			} */
+			//if(root.loaderInfo.parameters.mapkey!=null) {
 				map.key=root.loaderInfo.parameters.mapkey;				
-			}
+			//}
 			map.addEventListener(MapEvent.MAP_READY, onMapReady);
 			map.setSize(new Point(610, 250));
 			addChild(map);
