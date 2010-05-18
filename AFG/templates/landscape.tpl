@@ -32,9 +32,9 @@
 				
 				<div class="content_left">
 					<ul class="pictures">
-						<li><a href="#"><img src="images/landscape/img_landscape_1.png" alt="Landscape location"/></a></li>
-						<li><a href="#"><img src="images/landscape/img_landscape_2.png" alt="Landscape location"/></a></li>
-						<li class="last"><a href="#"><img src="images/landscape/img_landscape_3.png" alt="Landscape location"/></a></li>
+						<a href="#"><li><img src="images/landscape/img_landscape_1.png" alt="Landscape location"/></li></a>
+						<a href="#"><li><img src="images/landscape/img_landscape_2.png" alt="Landscape location"/></li></a>
+						<a href="#"><li class="last"><img src="images/landscape/img_landscape_3.png" alt="Landscape location"/></li></a>
 					</ul>
 				</div>
 				<div class="content_right">

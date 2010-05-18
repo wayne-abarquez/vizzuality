@@ -2,7 +2,7 @@
 		
 		// dragg elements >> ALL PAGES
 		$(function() {
-			$("#sortable").sortable({items: 'li:not(.dragg_here)'});
+			$("#sortable").sortable({items: 'li:not(.dragg_here)',placeholder: 'place_draggable'});
 			$("#sortable").disableSelection();
 			
 			

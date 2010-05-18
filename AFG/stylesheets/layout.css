@@ -182,9 +182,11 @@ div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-
 div.long div.long_in p.subtitle {font:normal 13px "Lucida Grande"; color:white;}
 div.long div.long_in ul {float:left; width:100%; margin:20px 0 0 0;}
 div.long div.long_in ul li {margin:0 15px 0 0;}
-div.long div.long_in li.single {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable.png) no-repeat 0 0;}
+div.long div.long_in li.single {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable_amount.png) no-repeat 0 0;}
 div.long div.long_in li.amount {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable_amount.png) no-repeat 0 0;}
 div.long div.long_in li.dragg_here {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable_here.png) no-repeat 0 0;}
+div.long div.long_in .place_draggable {float:left; width:127px; height:137px; background:url(../images/common/bkg_place_draggable.png) no-repeat 0 0;}
+
 div.long div.long_in li p.title {float:left; margin:15px 0 0 12px; font:bold 13px "Lucida Grande"; color:#0099CC;}
 
 div.long div.long_in li.dragg_here p {float:left; margin:85px 0 0 15px; font:bold 9px "Lucida Grande"; color:#CCCCCC; text-transform:uppercase; text-align:center; width:96px;}
@@ -234,6 +236,7 @@ div.right.species {position:relative; background:#F7F7F7; padding:24px; width:26
 div.right.species img.arrow {position:absolute; left:-15px; top:22px;}
 div.right.species ul {float:left; width:264px; margin:24px 0 0 0; padding:0 0 6px 0;}
 div.right.species ul li {float:left; padding:3px; background:white; border:1px solid #CCCCCC; width:76px; height:64px; margin:5px 4px 0 0;}
+div.right.species ul li:hover {border:1px solid #BCBCBC;}
 div.right.species ul li img {height:64px; width:76px;}
 div.right.species div.map {position:relative; float:left; margin:24px 0 0 0; border:1px solid #EAEAEA; border-top:none; padding:6px; width:250px; height:190px; background:white;}
 div.right.species div.map span.shadow {position:absolute; bottom:-7px; left:0; width:264px; height:8px; background:url(../images/species/map_shadow.png) no-repeat 0 0;}
@@ -299,6 +302,7 @@ div.pictures_additional_info div.content p.title{float:left; font:bold 25px Helv
 div.pictures_additional_info div.content p.subtitle{float:left; font-weight:normal; font-size:13px; font-family:"Lucida Grande"; color:#666666; width:100%; margin:0px 0 0 0;}
 div.pictures_additional_info div.content div.content_left ul.pictures {width:100%; margin:18px 0 0 0;}
 div.pictures_additional_info div.content div.content_left ul.pictures li {float:left; background-color:#FFFFFF; width:184px; height:140px; border:1px solid #E1E1E1; margin:0 19px 0 0;}
+div.pictures_additional_info div.content div.content_left ul.pictures li:hover {border:1px solid #999999;}
 div.pictures_additional_info div.content div.content_left ul.pictures li.last {margin:0px;}
 div.pictures_additional_info div.content div.content_left ul.pictures li a img {float:left; margin:4px;}
 div.pictures_additional_info div.content div.content_right {float:right; width:270px; margin:10px 0 0 0;}
