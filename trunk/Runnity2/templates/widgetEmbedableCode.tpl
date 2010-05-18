@@ -1,5 +1,5 @@
 <div style="width:610px; height:470px; position:relative; float:left; border:1px solid #CCCCCC; background-color:#FFFFFF;">	
-<p style="float:left; font:bold 18px Arial; color:#006599; width:475px; margin:10px 0 0 10px;">{$data.name}</p>
+<a href="http://www.runnity.com/run/{$data.id}/{$data.name|seourl}" style="decoration:none"><p style="float:left; font:bold 18px Arial; color:#006599; width:475px; margin:10px 0 0 10px;">{$data.name}</p></a>
 <div style="float:right; width:110px; margin:0 5px 0 0;">
 <p style="float:right; font:normal 11px Arial; color:#006599; width:85px; margin:10px 5px 0 0;">más carreras en</p>
 <a href="http://www.runnity.com" style="float:right; background:url(http://www.runnity.com/img/logoRunnityWidget.png) no-repeat 0 0; width:99px; height:33px; margin:2px 5px 0 0;"></a>
