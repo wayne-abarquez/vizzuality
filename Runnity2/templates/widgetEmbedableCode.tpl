@@ -2,7 +2,7 @@
 <p style="float:left; font:bold 18px Arial; color:#006599; width:475px; margin:10px 0 0 10px;">{$data.name}</p>
 <div style="float:right; width:110px; margin:0 5px 0 0;">
 <p style="float:right; font:normal 11px Arial; color:#006599; width:85px; margin:10px 5px 0 0;">más carreras en</p>
-<a href="http://wwww.runnity.com" style="float:right; background:url(http://www.runnity.com/img/logoRunnityWidget.png) no-repeat 0 0; width:99px; height:33px; margin:2px 5px 0 0;"></a>
+<a href="http://www.runnity.com" style="float:right; background:url(http://www.runnity.com/img/logoRunnityWidget.png) no-repeat 0 0; width:99px; height:33px; margin:2px 5px 0 0;"></a>
 </div>
 <p style="float:left; font:normal 13px Arial; color:#999999; margin:0px 0 0 10px;">{$data.distance_text}</p><p style="float:left; font:normal 13px Arial; color:#999999; margin:0px 4px;"> | </p>
 <p style="float:left; font:normal 13px Arial; color:#999999; margin:0px 0 0 0px;">{$data.province_name}</p>
