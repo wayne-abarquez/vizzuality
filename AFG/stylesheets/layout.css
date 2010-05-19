@@ -182,7 +182,7 @@ div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-
 div.long div.long_in p.subtitle {font:normal 13px "Lucida Grande"; color:white;}
 div.long div.long_in ul {float:left; width:100%; margin:20px 0 0 0;}
 div.long div.long_in ul li {margin:0 15px 0 0;}
-div.long div.long_in li.single {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable_amount.png) no-repeat 0 0;}
+div.long div.long_in li.single {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable.png) no-repeat 0 0;}
 div.long div.long_in li.amount {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable_amount.png) no-repeat 0 0;}
 div.long div.long_in li.dragg_here {float:left; width:127px; height:137px; background:url(../images/common/bkg_afg_draggable_here.png) no-repeat 0 0;}
 div.long div.long_in .place_draggable {float:left; width:127px; height:137px; background:url(../images/common/bkg_place_draggable.png) no-repeat 0 0;}
@@ -211,7 +211,7 @@ div.top_species {position:relative; float:left; width:888px; padding:27px 24px; 
 div.top_species ul {float:left; width:888px;}
 div.top_species ul li {float:left; width:auto; background:url(../images/species/breadcrumb_arrow.png) no-repeat 0 5px; padding:0 0 0 11px; margin:0 7px 0 0; font:normal 13px "Lucida Grande"; color:#A6E1F3; line-height:13px;}
 div.top_species ul li.first {background:none; padding:0;}
-div.top_species img.arrow {position:absolute; top:0; left:107px; z-index:10;}
+img.arrow {position:absolute; top:0; left:107px; z-index:10;}
 div.top_species h2 {float:left; width:100%; text-align:left; font:bold 25px Helvetica; color:white; letter-spacing:-1px; line-height:25px; padding:0 0 15px 0;}
 div.top_species label {float:left; width:100%; font:bold 15px "Lucida Grande"; color:white; line-height:15px; padding:0 0 6px 0;}
 div.top_species p {float:left; width:100%; text-align:left; font:normal 13px 'Lucida Grande'; color:#B7E7F3; line-height:16px; padding:0 0 13px 0;}
