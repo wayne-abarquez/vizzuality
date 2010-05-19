@@ -2,11 +2,8 @@
 		
 		// dragg elements >> ALL PAGES
 		$(function() {
-			$("#sortable").sortable({items: 'li:not(.dragg_here)',placeholder: 'place_draggable'});
+			$("#sortable").sortable({items: 'li:not(.dragg_here)',placeholder: 'place_draggable',tolerance: 'pointer'});
 			$("#sortable").disableSelection();
-			
-			
-			
 		});
 		
 		
