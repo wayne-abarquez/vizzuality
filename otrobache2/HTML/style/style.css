@@ -1,0 +1,31 @@
+
+body {background: #EDEDED url('../img/bkg.jpg') no-repeat; }
+
+#container {width: 940px; margin: 0 auto;}
+
+/*HEADER*/
+
+#header {width: 720px;}
+#header .logo h2 {font: bold 19px Arial; color: #FFFFFF; letter-spacing: -1px; float:left; margin-top: 8px;}
+
+#header .menu {float:right;}
+#header .menu ul {margin-top: 10px;}
+#header .menu ul li {display: inline; margin-left: 30px;}
+#header .menu ul li a {font: normal 13px Arial; color: #999999; text-decoration: none;}
+#header .menu ul li a:hover {color: #FFFFFF;}
+#header .menu ul li a.active {color: #FFFFFF; cursor: default;}
+
+
+/*TITLE*/
+#title {clear:both; float: left; margin: 40px 0 0 0; width: 100%;}
+#title p {font: normal 17px Arial; color: #999999; padding: 0 0 0 2px; margin: 0 0 -3px 0;}
+#title h1 {font: bold 47px Arial; color: #FFFFFF; letter-spacing: -1px;}
+
+
+/*LEFTCOLUMN*/
+#leftcol {float: left; width: 100%; margin: 24px 0 0 0;}
+
+#leftcol #yellowBox {background: url('../img/yellowBox_overMap.png') no-repeat; height: 73px; width: 100%; margin: -11px 0 0 -10px;}
+#leftcol #yellowBox p { font: normal 13px Arial; color: #333333; padding: 28px 0 0 15px;}
+#leftcol #yellowBox p a { text-decoration: underline; color: #333333;}
+#leftcol #yellowBox p a.active { text-decoration: none; font-weight: bold; cursor: default;}
