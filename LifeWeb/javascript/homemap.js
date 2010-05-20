@@ -201,11 +201,7 @@ function initialize(lat,lng) {
 								
 			}
 		);
-		
-		
-		
 
-		
 }
 
 
