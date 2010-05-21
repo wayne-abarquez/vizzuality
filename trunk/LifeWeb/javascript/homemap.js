@@ -9,6 +9,7 @@ var yellow_markers=[];
 
 var lastMask = 10000;
 
+var e0 = true
 var e1 = true;
 var e2 = true;
 var e3 = true;
@@ -246,21 +247,23 @@ function cleanWhiteMarkers() {
 
 function getElementByPosition(element,checked) {
 	switch ($(element).attr('id')) {
-	    case 'climate' : e1 = checked;
-	      break;
-	    case 'climate2' : e2 = checked;
-	      break;
-	    case 'freshwater' : e3 = checked;
-	      break;
-	    case 'food' : e4 = checked;
-	      break;
-			case 'human_health' : e5= checked;
-		    break;
-			case 'Cultural_and_Spiritual_access' : e6 = checked;
-			  break;
-			case 'income_generation' : e7 = checked;
-				break;
-	  }
+		case 'all': e0 = checked;
+			break;
+    case 'climate' : e1 = checked;
+      break;
+    case 'climate2' : e2 = checked;
+      break;
+    case 'freshwater' : e3 = checked;
+      break;
+    case 'food' : e4 = checked;
+      break;
+		case 'human_health' : e5= checked;
+	    break;
+		case 'Cultural_and_Spiritual_access' : e6 = checked;
+		  break;
+		case 'income_generation' : e7 = checked;
+			break;
+  }
 }
 
 function getLayerByPosition(element,visible) {

@@ -11,8 +11,6 @@ function White_Marker(latlng,opts,map) {
 
   var me = this;
 
-	
-  // this.setMap(this.map_);
 }
 
 White_Marker.prototype = new google.maps.OverlayView();
@@ -25,23 +23,18 @@ White_Marker.prototype.remove = function() {
 };
 
 White_Marker.prototype.draw = function() {
-  // Creates the element if it doesn't exist already.
   this.createElement();
   if (!this.div_) return;
 
-  // Calculate the DIV coordinates of two opposite corners of our bounds to
-  // get the size and position of our Bar
   var pixPosition = this.getProjection().fromLatLngToDivPixel(this.latlng_);
   if (!pixPosition) return;
 
-  // Now position our DIV based on the DIV coordinates of our bounds
   this.div_.style.width = this.width_ + "px";
   this.div_.style.left = (pixPosition.x + this.offsetHorizontal_) + "px";
   this.div_.style.height = this.height_ + "px";
   this.div_.style.top = (pixPosition.y + this.offsetVertical_) + "px";
 	
 	$(this.div_).fadeIn('fast');
-  // this.div_.style.display = 'block';
 };
 
 White_Marker.prototype.createElement = function() {

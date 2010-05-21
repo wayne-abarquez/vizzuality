@@ -173,8 +173,8 @@ function showAddress(address) {
     geocoder.getLocations(
       address,
       function(data) {
-				console.debug(data);
-        if (!data) {
+				console.log(data);
+        if (data.Status.code!=200) {
           $('#not_found').fadeIn();
 					$('#not_found').delay(2000).fadeOut();
         } else {
