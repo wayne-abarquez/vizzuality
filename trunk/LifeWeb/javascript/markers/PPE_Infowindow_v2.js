@@ -20,7 +20,7 @@ PPE_Infowindow_v2.prototype.initialize = function(map) {
 	div.style.zIndex = '100';
 	div.style.width = '348px';
 	div.style.height = '130px';
-	div.style.background = 'url(images/infowindows/area_bkg.png) no-repeat 0 0';
+	div.style.background = 'url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/infowindows/area_bkg.png) no-repeat 0 0';
 	
 	var close = document.createElement('a');
 		close.style.position = "absolute";
@@ -28,11 +28,11 @@ PPE_Infowindow_v2.prototype.initialize = function(map) {
 		close.style.right = '2px'; 
 	  close.style.width = "17px";
 	  close.style.height = "17px";
-		close.style.background = "url(images/infowindows/close_window.png) no-repeat 0 -17px";
+		close.style.background = "url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/infowindows/close_window.png) no-repeat 0 -17px";
 		$(close).hover(function(ev){
-			$(this).css('background','url(images/infowindows/close_window.png) no-repeat 0 0');
+			$(this).css('background','url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/infowindows/close_window.png) no-repeat 0 0');
 		}, function(ev){
-			$(this).css('background','url(images/infowindows/close_window.png) no-repeat 0 -17px');
+			$(this).css('background','url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/infowindows/close_window.png) no-repeat 0 -17px');
 		});
 		close.style.cursor = "pointer";
 		div.appendChild(close);
