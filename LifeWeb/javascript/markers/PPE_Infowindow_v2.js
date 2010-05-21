@@ -17,8 +17,7 @@ PPE_Infowindow_v2.prototype.initialize = function(map) {
   div.style.border = "none";
   div.style.position = "absolute";
   div.style.paddingLeft = "0px";
-	div.style.zIndex = '300000';
-  div.style.cursor = 'pointer';
+	div.style.zIndex = '100';
 	div.style.width = '348px';
 	div.style.height = '130px';
 	div.style.background = 'url(images/infowindows/area_bkg.png) no-repeat 0 0';
@@ -90,21 +89,21 @@ PPE_Infowindow_v2.prototype.initialize = function(map) {
 		div.appendChild(title);
 		
 		
-		var country = document.createElement('p');
-		country.style.float = "left";
-		country.style.padding = '0';
-		country.style.width = "180px";
-		country.style.margin = '0 0 0 132px';
-		country.style.font = 'normal 13px Arial';
-		country.style.color = '#f7f7f7';
-		$(country).html('No country data');
-		div.appendChild(country);
+		// var country = document.createElement('p');
+		// 		country.style.float = "left";
+		// 		country.style.padding = '0';
+		// 		country.style.width = "180px";
+		// 		country.style.margin = '0 0 0 132px';
+		// 		country.style.font = 'normal 13px Arial';
+		// 		country.style.color = '#f7f7f7';
+		// 		$(country).html('');
+		// 		div.appendChild(country);
 		
 		var select = document.createElement('p');
 		select.style.float = "left";
 		select.style.padding = '0';
 		select.style.width = "180px";
-		select.style.margin = '21px 0 0 142px';
+		select.style.margin = '41px 0 0 142px';
 		select.style.font = 'normal 13px Arial';
 		select.style.textDecoration = 'underline';
 		select.style.color = '#006699';
