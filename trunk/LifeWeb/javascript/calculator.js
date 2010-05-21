@@ -258,8 +258,8 @@ function geoJson2Polys(areajson, bounds){
 function showModal() {
 	if (!$('#done').hasClass('disabled')) {
 		GEvent.clearListeners(map, "click");
-		var wscr = $('#map').width();
-	  var hscr = $('#map').height();
+		var wscr = $('div#map').parent().width();
+	  var hscr = $('div#map').parent().height();
 
 	  var mleft = ( wscr - 544 ) / 2;
 	  var mtop = ( hscr - 315 ) / 2;
@@ -271,7 +271,7 @@ function showModal() {
 }
 
 function showLoader() {
-		var wscr = $('#map').width();
+		var wscr = $('div#map').parent().width();
 
 	  var mleft = ( wscr - 60 ) / 2;
 
