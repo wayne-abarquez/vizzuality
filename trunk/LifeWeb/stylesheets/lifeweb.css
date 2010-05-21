@@ -156,7 +156,7 @@ div#carbon_text p {width:100%; color:red; text-align:right;}
 
 div#map_tools {position:absolute; bottom:10px; right:10px; z-index:1000; width:277px; height:107px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/float.png) no-repeat 0 0; padding:0 6px 6px;}
 div#map_tools h3 {float:left; font:bold 13px Arial; color:#99B3C9; margin:0; padding:7px 0 0 0;}
-div#map_tools span {position:relative; float:right; font:bold 13px Arial; color:#FFFFFF; padding:2px 13px 0 0; line-height:13px;}
+div#map_tools span {position:relative; float:right; font:bold 13px Arial; color:#FFFFFF; padding:7px 13px 0 0;}
 div#map_tools span img {position:absolute; right:12px; top:6px;}
 div#map_tools div {float:left; margin:24px 0 0 0;}
 div#map_tools div a:focus {outline:none;}
@@ -182,11 +182,12 @@ div#geocoder a#zoom_in {background:url(http://ec2-174-129-149-237.compute-1.amaz
 div#geocoder a#zoom_in:hover {background-position:0 -25px;}
 div#geocoder a#zoom_out {background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/zoom_out.png) no-repeat 0 0; float:left; width:25px; height:25px;}
 div#geocoder a#zoom_out:hover {background-position:0 -25px;}
-div#geocoder form {float:left; width:201px; height:26px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/form.png) no-repeat 0 0; margin:0 0 0 12px; padding:3px 4px 4px;}
+div#geocoder form {float:left; width:201px; height:20px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/form.png) no-repeat 0 0; margin:0 0 0 12px; padding:0px 4px 4px;
+	vertical-align:text-top;}
 div#geocoder form input {border:0; background:none;}
 div#geocoder form input:focus {outline:none;}
-div#geocoder form input[type='text'] {float:left; font:normal 13px Arial; font-style:italic; color:#999999; width:175px;}
-div#geocoder form input[type='submit'] {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/len.png) no-repeat 0 0; width:15px; height:15px; margin:3px 0 0 8px;}
+div#geocoder form input[type='text'] {float:left; font:normal 13px Arial; font-style:italic; color:#999999; width:175px; padding:0; line-height:8px; height:14px; vertical-align:text-top;}
+div#geocoder form input[type='submit'] {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/len.png) no-repeat 0 0; width:15px; height:15px; margin:6px 0 0 8px;}
 div#geocoder form input[type='submit']:hover {cursor:pointer;}
 
 div.map_tooltip {position:absolute; width:140px; height:40px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/tooltip.png) no-repeat 0 0; padding:20px 10px 0 33px; z-index:300; display:none;}
