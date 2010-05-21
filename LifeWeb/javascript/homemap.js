@@ -210,8 +210,7 @@ function initialize(lat,lng) {
 
 function showWhiteClusters() {
 	for (var i=0; i<white_markers.length;i++) {
-		console.log(white_markers[i].information_.ecosystem_service);
-		if ((e1 && white_markers[i].information_.ecosystem_service.e1!='0') || (e2 && white_markers[i].information_.ecosystem_service.e2!='0') || (e3 && white_markers[i].information_.ecosystem_service.e3!='0') || (e4 && white_markers[i].information_.ecosystem_service.e4!='0') || (e5 && white_markers[i].information_.ecosystem_service.e5!='0') || (e6 && white_markers[i].information_.ecosystem_service.e6!='0') || (e7 && white_markers[i].information_.ecosystem_service.e7!='0') ) {
+		if ((e0) || (e1 && white_markers[i].information_.ecosystem_service.e1!='0') || (e2 && white_markers[i].information_.ecosystem_service.e2!='0') || (e3 && white_markers[i].information_.ecosystem_service.e3!='0') || (e4 && white_markers[i].information_.ecosystem_service.e4!='0') || (e5 && white_markers[i].information_.ecosystem_service.e5!='0') || (e6 && white_markers[i].information_.ecosystem_service.e6!='0') || (e7 && white_markers[i].information_.ecosystem_service.e7!='0') ) {
 			white_markers[i].setMap(map);
 		} else {
 			white_markers[i].setMap(null);
@@ -223,7 +222,7 @@ function showWhiteClusters() {
 
 function showYellowClusters() {
 	for (var i=0; i<yellow_markers.length;i++) {
-		if ((e1 && yellow_markers[i].information_.ecosystem_service.e1!='0') || (e2 && yellow_markers[i].information_.ecosystem_service.e2!='0') || (e3 && yellow_markers[i].information_.ecosystem_service.e3!='0') || (e4 && yellow_markers[i].information_.ecosystem_service.e4!='0') || (e5 && yellow_markers[i].information_.ecosystem_service.e5!='0') || (e6 && yellow_markers[i].information_.ecosystem_service.e6!='0') || (e7 && yellow_markers[i].information_.ecosystem_service.e7!='0')) {
+		if ((e0) || (e1 && yellow_markers[i].information_.ecosystem_service.e1!='0') || (e2 && yellow_markers[i].information_.ecosystem_service.e2!='0') || (e3 && yellow_markers[i].information_.ecosystem_service.e3!='0') || (e4 && yellow_markers[i].information_.ecosystem_service.e4!='0') || (e5 && yellow_markers[i].information_.ecosystem_service.e5!='0') || (e6 && yellow_markers[i].information_.ecosystem_service.e6!='0') || (e7 && yellow_markers[i].information_.ecosystem_service.e7!='0')) {
 			yellow_markers[i].setMap(map);
 		}else {
 			yellow_markers[i].setMap(null);
