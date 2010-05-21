@@ -103,12 +103,12 @@ PPE_Infowindow_v2.prototype.initialize = function(map) {
 		select.style.float = "left";
 		select.style.padding = '0';
 		select.style.width = "180px";
-		select.style.margin = '41px 0 0 142px';
+		select.style.margin = '41px 0 0 135px';
 		select.style.font = 'normal 13px Arial';
 		select.style.textDecoration = 'underline';
 		select.style.color = '#006699';
 		select.style.cursor = 'pointer';
-		$(select).html('Calculate this protected area');
+		$(select).html('Calculate carbon in this protected area');
 		div.appendChild(select);
 
 	

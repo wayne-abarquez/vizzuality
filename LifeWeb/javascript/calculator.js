@@ -305,15 +305,24 @@ function getStaticImage(polygon) {
   var numPoints = polygon.getVertexCount();
 	
 	for(var i=0; i < numPoints; i++) {
-      var lat = polygon.getVertex(i).lat();
-      var lng = polygon.getVertex(i).lng();
+      var lat = polygon.getVertex(i).lat().toFixed(2);
+      var lng = polygon.getVertex(i).lng().toFixed(2);
       markers.push(new GLatLng(lat,lng));
   }
 
 	var polygonEncoder = new PolylineEncoder();
 	var finalPolygon = polygonEncoder.dpEncode(markers);
 	
-	$('div.image img').attr('src','http://maps.google.com/maps/api/staticmap?size=115x75&key=nokey&sensor=false&path=fillcolor:0x666666|color:0x666666|weight:1|enc:'+finalPolygon.encodedPoints);
+	var url = 'http://maps.google.com/maps/api/staticmap?size=115x75&maptype=terrain&key=nokey&sensor=false&path=fillcolor:0xFF6600|color:0xFF6600|weight:1|enc:'+finalPolygon.encodedPoints;
+	
+	if (url.length<1000) {
+		$('div.image img').attr('src',url);
+	} else {
+		var latlng = polygon.getBounds().getCenter();
+		var newUrl = 'http://maps.google.com/maps/api/staticmap?center='+latlng.lat()+','+latlng.lng()+'&size=115x75&maptype=terrain&key=nokey&sensor=false';
+		$('div.image img').attr('src',newUrl);
+	}
+	
 }
 
 
