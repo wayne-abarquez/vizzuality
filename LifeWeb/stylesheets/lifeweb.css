@@ -143,8 +143,8 @@ div.map_project div.filterButtons div.list div.bottom {float:left; background:ur
 
 
 /*CALCULATOR MAPS*/
-div.map_carbon_form_container {position:relative; width:855px; height:353px; background:white; padding:10px; border:1px solid #F2F2F2; margin:0;}
-div.map_carbon_container {position:absolute; left:0; top:0; width:100%; height:100%; background:white; padding:0; margin:0;}
+div.map_carbon_form_container {position:relative; width:855px; height:353px; background:white; padding:10px; border:1px solid #F2F2F2; margin:0; overflow:hidden;}
+div.map_carbon_container {position:absolute; left:0; top:0; width:100%; height:100%; background:white; padding:0; margin:0; overflow:hidden;}
 p.madeby {float:left; padding:8px 0 0 15px; margin:0; font:normal 12px Arial; color:#999999; font-style:italic;}
 p.madeby a {color:#999999;}
 p.madeby a:hover {color:#666666;}
