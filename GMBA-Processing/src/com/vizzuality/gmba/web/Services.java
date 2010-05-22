@@ -21,6 +21,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -555,6 +557,9 @@ public class Services extends AbstractServlet {
 						"\taltitudePrecision\tgbifPortalUrl\toccurrenceId\tnubConceptId\tkingdomConceptId\tphylumConceptId\tclassConceptId" +
 						"\torderConceptId\tfamilyConceptId\tgenusConceptId\tspeciesConceptId\n");
 				
+				// keep a map of the resource ID and name to build the citation
+				Map<Integer, String> citationMap = new HashMap<Integer, String>();
+				
 				while (rs.next()) {
 					for (int i=1; i<=columns; i++) {
 						
@@ -566,23 +571,54 @@ public class Services extends AbstractServlet {
 						writer.write("\t");
 					}
 					writer.write("\n");
+					
+					try {
+						citationMap.put(rs.getInt("data_resource_id"), rs.getString("dataset"));
+					} catch (RuntimeException e) {
+						e.printStackTrace(System.err);
+					}
+					
 				}
 				rs.close();
 				s.close();
 				writer.flush();
 				writer.close();
 				
-				// now zip the file
+				// write the citation
+				writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(output.replaceAll("txt", "citation")),"UTF-8"));
+				writer.write("Please cite this data as follows:\n\n");
+				for (int id : citationMap.keySet()) {
+					String name = citationMap.get(id);
+					if (name != null && name.trim().length()>0) {
+						writer.write("(accessed through GBIF data portal (Mountain Biodiversity Portal), " + name.trim() + ", http://data.gbif.org/datasets/resource/" + id + ")\n");
+					}
+				}				
+				writer.flush();
+				writer.close();
+				
+				
+				// now zip the files
 				ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(output.replaceAll(".txt", ".zip"))));
 				byte data[] = new byte[2048];
 				BufferedInputStream in = new BufferedInputStream(new FileInputStream(output));
 				ZipEntry entry = new ZipEntry("results.txt");
 				out.putNextEntry(entry);
-				int count;
+				int count = 0;
 	            while((count = in.read(data, 0, 2048)) != -1) {
 	               out.write(data, 0, count);
 	            }
 	            in.close();
+	            
+	            // add the citation
+	            in = new BufferedInputStream(new FileInputStream(output.replaceAll("txt", "citation")));
+				entry = new ZipEntry("citation.txt");
+				out.putNextEntry(entry);
+				count = 0;
+	            while((count = in.read(data, 0, 2048)) != -1) {
+	               out.write(data, 0, count);
+	            }
+	            in.close();
+	            
 	            out.flush();
 	            out.close();
 				
