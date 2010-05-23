@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" 
-	xmlns:ns1="com.google.maps.*" width="100%" height="100%" xmlns:local="*" currentState="Login" applicationComplete="applicationComplete()"
-	xmlns:view="org.sbistram.view.*"> 
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#3c6398, #294c7c]" 
+	xmlns:ns1="com.google.maps.*" width="100%" height="100%" xmlns:local="*" currentState="Login" applicationComplete="setFocus()"
+	xmlns:view="org.sbistram.view.*" creationPolicy="all"> 
 	
+	<mx:Style source="style.css"/>
 
 	<mx:states>
 		<mx:State name="Login">
 			<mx:AddChild position="lastChild">
 				<mx:Canvas x="0" y="0" width="100%" height="100%" backgroundColor="#346696" backgroundAlpha="1">
 					<mx:TextInput id="usernameInput" y="314" horizontalCenter="0" borderStyle="solid" borderThickness="1" cornerRadius="5" textAlign="left" color="#474747" fontStyle="italic" 
-						fontWeight="bold" paddingLeft="5"/>
-					<mx:TextInput id="passwordInput" y="370" horizontalCenter="0" displayAsPassword="true" borderStyle="solid" cornerRadius="5" textAlign="left" color="#474747" 
-						fontStyle="italic" fontWeight="bold" paddingLeft="5" enter="login()"/>
-					<mx:Button y="410" label="Entrar" color="#3B3B3B" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #E5E5E5]" horizontalCenter="0" click="login()" themeColor="#31414C"/>
-					<mx:Label y="353" text="Contraseña" fontWeight="bold" color="#F4F4F4" horizontalCenter="0"/>
+						fontWeight="bold" paddingLeft="5" fontSize="13" paddingBottom="5" paddingRight="5" paddingTop="5"/>
+					<mx:TextInput id="passwordInput" y="375" horizontalCenter="0" displayAsPassword="true" borderStyle="solid" cornerRadius="5" textAlign="left" color="#474747" 
+						fontStyle="italic" fontWeight="bold" paddingLeft="5" enter="login()" fontSize="13" paddingRight="5" paddingTop="5" paddingBottom="5"/>
+					<mx:Button y="421" label="Entrar" color="#3B3B3B" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #E5E5E5]" horizontalCenter="0" click="login()" 
+						useHandCursor="true" mouseChildren="false" buttonMode="true" themeColor="#31414C"/>
+					<mx:Label y="356" text="Contraseña" fontWeight="bold" color="#F4F4F4" horizontalCenter="0"/>
 					<mx:Label y="297" text="Usuario" fontWeight="bold" color="#F4F4F4" horizontalCenter="0"/>
-					<mx:Image source="{LOGO}" left="30" top="30"/>
+					<mx:Image source="{LOGO}" left="30" top="30" click="navigateToURL(new URLRequest('http://www.runnity.com'),'_self')" useHandCursor="true" buttonMode="true"
+						mouseChildren="false"/>
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
 		<mx:State name="data">
 			<mx:RemoveChild target="{racesTab}"/>
 			<mx:AddChild position="lastChild" relativeTo="{vbox1}">
-				<local:RaceData left="0" top="0" width="100%" height="100%"/>
+				<local:RaceData id="racedata" left="0" top="0" width="100%" height="100%"/>
 			</mx:AddChild>
 			<mx:RemoveChild target="{hbox1}"/>
 		</mx:State>
+		<mx:State name="loading">
+			<mx:SetProperty target="{loader}" name="visible" value="true"/>
+		</mx:State>
+
 	</mx:states>
 	
 	<mx:Script>
 		<![CDATA[
+			import flash.net.navigateToURL;
 			import mx.events.ListEvent;
 			import org.hasseg.externalMouseWheel.ExternalMouseWheelSupport;
 			import flash.sampler.NewObjectSample;   
@@ -39,7 +47,7 @@
 			import mx.rpc.events.ResultEvent;
 			import mx.controls.Alert;
 			
-
+			private var userName: String = '';
 			[Bindable]private var arrayRaces: Array = new Array();
 			[Bindable]private var provincesArray: ArrayCollection;
 			
@@ -52,12 +60,14 @@
 			[Bindable]
 			public var LOGO:Class;
 
-			//mouse wheel support
-			private function applicationComplete():void {
+			//mouse wheel support and focus in the textinput
+			public override function setFocus():void {
 				_mwSupport= ExternalMouseWheelSupport.getInstance(stage);
+				ExternalInterface.call("setFocus", null);
+				usernameInput.setFocus();
 			}
 			
-			private function init():void {
+			private function init():void {				
 				raceList.enabled = false;
                 server.addEventListener(ResultEvent.RESULT,onGetRacesResult);
             	server.addEventListener(FaultEvent.FAULT,onGetRacesFault);
@@ -70,12 +80,14 @@
             	server.removeEventListener(FaultEvent.FAULT,onGetRacesFault);
             	arrayRaces = event.result as Array;
             	getProvinces();
+            	currentState='';
             }
             
             private function onGetRacesFault (event:FaultEvent):void {
             	server.removeEventListener(ResultEvent.RESULT,onGetRacesFault);
             	server.removeEventListener(FaultEvent.FAULT,onGetRacesResult);
             	trace(event.fault);
+            	currentState='';
             }
             
             //GET PROVINCES FUNCTIONS
@@ -96,23 +108,27 @@
             	server.addEventListener(ResultEvent.RESULT,onLoginOK);
             	server.addEventListener(FaultEvent.FAULT,onLoginKO);
             	server.login(usernameInput.text,passwordInput.text);
+            	userName = usernameInput.text;
             }
             
             private function onLoginOK(ev: ResultEvent):void {
             	server.removeEventListener(ResultEvent.RESULT,onLoginOK);
             	server.removeEventListener(FaultEvent.FAULT,onLoginKO);
             	if(ev.result.is_admin=='t') {
-	            	this.currentState = "";            		
+	            	this.currentState = "";
+	            	loader.message = 'Cargando las carreras tunante, échate un coffee mientras ' + userName;
+	            	currentState = 'loading';
+	            	init();         		
             	} else {
-            		Alert.show("El usuario no es administrador");
+            		Alert.show("El usuario no es administrador","Problemas");
             	}
-            	init();
+            	
             }
             
             private function onLoginKO(ev: FaultEvent):void {
             	server.removeEventListener(ResultEvent.RESULT,onLoginOK);
             	server.removeEventListener(FaultEvent.FAULT,onLoginKO);
-            	Alert.show("El login es incorrecto");
+            	Alert.show("El login es incorrecto","Vuelvo a intentarlo");
             }
             
             private function addNewRace():void {
@@ -131,7 +147,7 @@
             		var a:Alert = Alert.show("¿Estas seguro de eliminar " + arrayRaces[raceList.selectedIndex].name + "?", 
             		"Vas a eliminar una carrera", Alert.YES | Alert.NO , this, alertClickHandler);
             	} else {
-            		Alert.show ("No tienes ninguna carrera seleccionada!");
+            		Alert.show ("No tienes ninguna carrera seleccionada!","No se puede eliminar");
             	}
             }
             
@@ -140,7 +156,7 @@
             		server.addEventListener(ResultEvent.RESULT,
 	            		function onEraseResult():void { 
 	            			server.removeEventListener(ResultEvent.RESULT,onEraseResult);
-	            			Alert.show("Carrera eliminada de la base de datos"); init();
+	            			Alert.show("Carrera eliminada de la base de datos", "Hecho!"); init();
 	            		}
 	            	);
             		server.addEventListener(FaultEvent.FAULT,
@@ -173,18 +189,27 @@
 			
 			
 			private function goToRace(ev:ListEvent):void {
+
 				currentState = 'data';
+				racedata.raceData = ev.itemRenderer.data;
+				if (racedata.mapReady) {
+					racedata.cleanInputs();
+					racedata.fillInputs(racedata.raceData);
+				}
 			}
             
 			
 		]]>
 	</mx:Script>	
 		
-	<mx:VBox height="100%" width="100%" verticalGap="0" id="vbox1">
+	<mx:VBox height="100%" width="100%" verticalGap="20" id="vbox1" paddingLeft="30" paddingRight="30" paddingTop="30" paddingBottom="30">
 		
-		<mx:Label y="10" text="Editor de carreras" fontSize="20" width="100%" height="50" textAlign="center" paddingTop="10" id="label1"/>
+		<mx:HBox width="100%" horizontalAlign="center" verticalAlign="middle" id="hbox2">
+			<mx:Image source="{LOGO}" click="navigateToURL(new URLRequest('http://www.runnity.com'),'_self')" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+			<mx:Label y="10" text="Editor de carreras" fontSize="22" width="100%" textAlign="center" paddingTop="5" id="label1" color="#FFFFFF" fontWeight="bold" fontFamily="Arial"/>
+		</mx:HBox>
 		
-		<mx:TabNavigator id="racesTab" height="675" width="100%" selectedIndex="0" borderColor="gray" borderStyle="solid" creationPolicy="all">
+		<mx:TabNavigator id="racesTab" left="20" height="100%" width="100%" selectedIndex="0" borderColor="gray" borderStyle="solid" creationPolicy="all">
 			
 			<mx:Canvas id="nextRaces" height="100%" width="100%" label="Siguientes carreras">
 				<!--<mx:ApplicationControlBar dock="true" >
@@ -196,12 +221,12 @@
 				<mx:DataGrid id="raceList" top="54" left="20" right="20" bottom="40" horizontalScrollPolicy="auto" itemDoubleClick="goToRace(event)" dataProvider="{arrayRaces}"
 					 showScrollTips="true" verticalScrollPolicy="on" doubleClickEnabled="true">
 					<mx:columns>
-		                <mx:DataGridColumn dataField="id" headerText="ID" width="30"/>
+		                <mx:DataGridColumn dataField="id" headerText="ID" width="40"/>
 		                <mx:DataGridColumn headerText="Public?" dataField="published" width="50">
-		                <mx:itemRenderer> <mx:Component> <mx:Label fontSize="15" textAlign="center" opaqueBackground="{(data.published =='f') ? '0xef5334' : '0x7be525'}" /> </mx:Component> </mx:itemRenderer> 
+		                <mx:itemRenderer> <mx:Component> <mx:Label fontSize="15" color="#333333" textAlign="center" opaqueBackground="{(data.published =='f') ? '0xef5334' : '0x7be525'}" /> </mx:Component> </mx:itemRenderer> 
 		                </mx:DataGridColumn>
 		                <mx:DataGridColumn dataField="name" headerText="Nombre carrera" width="325"/>
-		                <mx:DataGridColumn dataField="event_date" headerText="Fecha" width="100"/>
+		                <mx:DataGridColumn dataField="event_date" headerText="Fecha" width="120"/>
 		                <mx:DataGridColumn dataField="event_location" headerText="Lugar"/>
 		                <mx:DataGridColumn dataField="distance_text" headerText="Dist Txt" />
 		                <mx:DataGridColumn dataField="distance_meters" headerText="Dist" width="40" />
@@ -212,21 +237,21 @@
 				</mx:DataGrid>
 			</mx:Canvas>
 			
-			<mx:Canvas id="previousRaces" height="100%" width="100%" label="Carreras pasadas" enabled="false">
-				<mx:DataGrid width="100%" height="100%">
-					
-				</mx:DataGrid>
+			<mx:Canvas id="previousRaces" height="100%" width="100%" label="Carreras pasadas" enabled="false" borderColor="#828486">
+				<mx:DataGrid width="100%" height="100%"/>
 			</mx:Canvas>
 		
 		</mx:TabNavigator>
-		<mx:HBox horizontalAlign="right" height="30" paddingLeft="15" paddingTop="5" id="hbox1">
-			<mx:Button label="Crear nueva carrera" click="addNewRace()" id="createNewRun"/>
-			<mx:Button label="Eliminar una carrera" click="eraseRace()" id="eraseOneRun"/>
+		<mx:HBox horizontalAlign="right" id="hbox1">
+			<mx:Button label="Crear nueva carrera" click="addNewRace()" id="createNewRun" useHandCursor="true" buttonMode="true" mouseChildren="false" fillAlphas="[1.0, 1.0]" 
+				fillColors="[#FFFFFF, #FFFFFF]" color="#19355B" themeColor="#09283B" borderColor="#333333"/>
+			<mx:Button label="Eliminar una carrera" click="eraseRace()" id="eraseOneRun" useHandCursor="true" buttonMode="true" mouseChildren="false" fillAlphas="[1.0, 1.0]" 
+				fillColors="[#FFFFFF, #FFFFFF]" color="#19355B" themeColor="#09283B" borderColor="#333333"/>
 		</mx:HBox>		
 	</mx:VBox>
 		
 		
-		
+	<local:LoadingWindow id="loader" width="100%" height="100%" visible="false"/>
 	
 	<mx:RemoteObject id="server" endpoint="http://localhost:8888/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
 	<mx:RemoteObject id="server2" endpoint="http://localhost:8888/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices" concurrency="last"/>
