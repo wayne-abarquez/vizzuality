@@ -1,0 +1,44 @@
+/* CSS file */
+DataGrid {
+	rollOverColor: #E8E8E8;
+	selectionColor: #C8C9C9;
+	selectionDisabledColor: #616161;
+	verticalAlign: middle;
+	color: #333333;
+	fontSize: 13;
+	fontFamily: Arial;
+	textAlign: left;
+	headerColors: #EDEDED, #E4E3E3;
+	verticalGridLineColor: #999999;
+	horizontalGridLines: true;
+	horizontalGridLineColor: #FFFFFF;
+	headerStyleName: dataGridHeader;
+}
+.dataGridHeader
+{
+	fontFamily: Arial;
+	fontSize: 15;
+	fontWeight: bold;
+}
+
+Alert{
+	color : #124332;
+	background-color: #ffffff;
+	header-colors : #243322, #243322;
+	header-height:25;
+	drop-shadow-enabled: true;
+	drop-shadow-color :#243322;
+	corner-radius :6;
+	border-style :solid;
+	border-thickness: 1;
+	border-color : #243322;
+	footer-colors : #243322, #ffffff;
+	title-style-name : "title";
+}
+
+.title{
+	font-family :Arial;
+	font-size :12;
+	font-weight :bold;
+	color :#ffffff;
+}
