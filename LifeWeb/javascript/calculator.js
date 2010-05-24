@@ -18,6 +18,22 @@ var lastMask = 1000;
 
 
 $(document).ready(function() {
+
+		if ($.browser.msie && $.browser.version.substr(0,1)<7) {
+			var Tam = TamVentana();
+		  $('#map').css('width',Tam[0]+'px');
+		 	$('#map').css('height',Tam[1]+'px');
+			$('div.map_carbon_container div.modal').css('width',Tam[0]+'px');
+		 	$('div.map_carbon_container div.modal').css('height',Tam[1]+'px');
+			window.onresize = function() {
+			  var Tam = TamVentana();
+			  $('#map').css('width',Tam[0]+'px');
+			 	$('#map').css('height',Tam[1]+'px');
+				$('div.map_carbon_container div.modal').css('width',Tam[0]+'px');
+			 	$('div.map_carbon_container div.modal').css('height',Tam[1]+'px');
+			};
+		}
+	
 	
 		if ($('#search_text').val()!='Search by city, area, ...') {
 			$(this).css('color','#666666');
@@ -107,6 +123,11 @@ function initialize() {
 function select(buttonId) {
   document.getElementById("select").className="";
   document.getElementById("draw").className="";
+	if (buttonId=='select') {
+		if (polygon!=null) {
+			polygon.disableEditing();
+		}
+	}
   document.getElementById(buttonId).className="selected";
 }
 
@@ -173,7 +194,6 @@ function showAddress(address) {
     geocoder.getLocations(
       address,
       function(data) {
-				console.log(data);
         if (data.Status.code!=200) {
           $('#not_found').fadeIn();
 					$('#not_found').delay(2000).fadeOut();
@@ -206,7 +226,6 @@ function getCarbonHeight(polygon){
   		},
     	error:function (xhr, ajaxOptions, thrownError){
 				$('#loader_image').hide();
-     		console.log('CBD' + xhr.status + "\n" + thrownError);
      	}
 		});
 }
@@ -265,7 +284,12 @@ function showModal() {
 	  var mtop = ( hscr - 315 ) / 2;
 
 	  $('div.modal_window').css("left", mleft+'px');
-	  $('div.modal_window').css("top", mtop+'px');
+		if ($.browser.msie && $.browser.version.substr(0,1)<7) {
+			var Tam = TamVentana();
+		  $('div.modal_window').css("top", (Tam[1]-315)/2+'px');
+		} else {
+		  $('div.modal_window').css("top", mtop+'px');
+		}
 		$('div.modal').fadeIn(100,function(ev){$('div.modal_window').fadeIn(400)});
 	}
 }
@@ -418,4 +442,34 @@ function onUpdatePolygon() {
 	$('div.modal_window p.area').html(polygon_area);
 	getCountry(polygon.getBounds().getCenter());
 }
+
+
+function TamVentana() {
+  var Tamanyo = [0, 0];
+  if (typeof window.innerWidth != 'undefined')
+  {
+    Tamanyo = [
+        window.innerWidth,
+        window.innerHeight
+    ];
+  }
+  else if (typeof document.documentElement != 'undefined'
+      && typeof document.documentElement.clientWidth !=
+      'undefined' && document.documentElement.clientWidth != 0)
+  {
+ Tamanyo = [
+        document.documentElement.clientWidth,
+        document.documentElement.clientHeight
+    ];
+  }
+  else   {
+    Tamanyo = [
+        document.getElementsByTagName('body')[0].clientWidth,
+        document.getElementsByTagName('body')[0].clientHeight
+    ];
+  }
+  return Tamanyo;
+}
+
+
 
