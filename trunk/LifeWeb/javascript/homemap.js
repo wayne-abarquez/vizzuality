@@ -81,8 +81,6 @@ function initialize(lat,lng) {
 					if (lat==null) {
 						map.fitBounds (bounds);
 				  	map.setCenter( bounds.getCenter());
-						console.log(map.getCenter());
-						console.log(map.getZoom());
 					} else {
 						map.setCenter(new google.maps.LatLng(lat,lng));
 						map.setZoom(6);
@@ -187,21 +185,21 @@ function initialize(lat,lng) {
 		});
 		
 		
-		google.maps.event.addListener(map, 'click', function(ev){ 
-				if (ppe_layer) {
-					$.ajax({
-					  url: 'http://www.protectedplanet.net/api2/sites?lat='+ev.latLng.b+'&lng='+ev.latLng.c,
-					  dataType: 'jsonp',
-					  data: null,
-					  success: function(result) {
-						 		console.log(result);
-
-						 }
-					});
-				}
-								
-			}
-		);
+		// google.maps.event.addListener(map, 'click', function(ev){ 
+		// 				if (ppe_layer) {
+		// 					$.ajax({
+		// 					  url: 'http://www.protectedplanet.net/api2/sites?lat='+ev.latLng.b+'&lng='+ev.latLng.c,
+		// 					  dataType: 'jsonp',
+		// 					  data: null,
+		// 					  success: function(result) {
+		// 						 		console.log(result);
+		// 
+		// 						 }
+		// 					});
+		// 				}
+		// 								
+		// 			}
+		// 		);
 
 }
 

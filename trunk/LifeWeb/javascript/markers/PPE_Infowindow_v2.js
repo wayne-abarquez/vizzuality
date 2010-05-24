@@ -114,7 +114,6 @@ PPE_Infowindow_v2.prototype.initialize = function(map) {
 
 	
     GEvent.addDomListener(select, "click", function(event) {
-			console.log('asdfdas');
 			choosePPEToCalculate();
     });
 
