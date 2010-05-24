@@ -186,7 +186,7 @@ div#geocoder form {float:right; width:201px; height:16px; background:url(http://
 div#geocoder form input {border:0; background:none;}
 div#geocoder form input:focus {outline:none;}
 div#geocoder form input[type='text'] {float:left; font:normal 13px Arial; font-style:italic; color:#999999; width:155px; padding:0; height:20px; vertical-align:text-top;}
-div#geocoder form input[type='submit'] {float:right; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/len.png) no-repeat 0 0; width:15px; height:15px; margin:2px 0 0; border:1px solid red;}
+div#geocoder form input[type='submit'] {float:right; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/len.png) no-repeat 0 0; width:15px; height:15px; margin:2px 0 0;}
 div#geocoder form input[type='submit']:hover {cursor:pointer;}
 
 div.map_tooltip {position:absolute; width:140px; height:40px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/calculator/tooltip.png) no-repeat 0 0; padding:20px 10px 0 33px; z-index:300; display:none;}
