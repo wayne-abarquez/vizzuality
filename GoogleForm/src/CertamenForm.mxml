@@ -30,8 +30,8 @@
 				var codigoInscripcion:String = generateRandomString(6);
 				
 				var srv:HTTPService = new HTTPService();
-				srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
-				//srv.url = "http://localhost:8082/gpreadsheets/";
+				//srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
+				srv.url = "http://localhost:8082/gpreadsheets/";
 				srv.method = "POST";
 				srv.resultFormat = "text";
 				srv.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void {
@@ -59,18 +59,18 @@
 					"emailToEmail":mailInput.text,
 					"emailBody":"Bienvenido al certamen." + 
 						"\n Bienvenido al certamen de pintura rápida 2010 del Parque del Retiro:" + 
-						"\n     Tu número de inscripción lo puedes encontrar en el asunto de este mensaje"+
+						"\n     Tu número de inscripción es el ||NUM_INSCRIPCION||"+
 						"\n     Este comprobante debe ser presentado el Domingo 20 de Junio, día del certamen." +
 						"\n     Esperamos que disfrutes de tu participación tanto como nosotros. " + 
 						"\n\n   Un saludo. " + 
 						"\n\n                                                   El equipo organizador",
 					"emailSender":"inscripciones@certamenpinturarapida.es",
-					"emailSubject":"Certamen de pintura rápida 2010:" + codigoInscripcion
+					"emailSubject":"Certamen de pintura rápida 2010"
 				};
 				
 				srv.send(params);                
-				this.currentState='sentForm';		
-				//sendFormButton.enabled=true;
+				//this.currentState='sentForm';		
+				sendFormButton.enabled=true;
 			}
 			
 
