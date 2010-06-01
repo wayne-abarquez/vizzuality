@@ -30,8 +30,8 @@
 				var codigoInscripcion:String = generateRandomString(6);
 				
 				var srv:HTTPService = new HTTPService();
-				//srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
-				srv.url = "http://localhost:8082/gpreadsheets/";
+				srv.url = "http://vizzproxy.appspot.com/gpreadsheets/";
+				//srv.url = "http://localhost:8082/gpreadsheets/";
 				srv.method = "POST";
 				srv.resultFormat = "text";
 				srv.addEventListener(ResultEvent.RESULT,function(ev:ResultEvent):void {
@@ -54,11 +54,11 @@
 					"entry.7.single":condInput.text,
 					"entry.8.single":postalInput.text,
 					"entry.9.single":mailInput.text,
-					"entry.10.single":codigoInscripcion,
+					//"entry.10.single":codigoInscripcion,
 					"emailToName":mailInput.text,
 					"emailToEmail":mailInput.text,
-					"emailBody":"Bienvenido al certamen." + 
-						"\n Bienvenido al certamen de pintura rápida 2010 del Parque del Retiro:" + 
+					"emailBody":"Bienvenido al certamen de pintura rápida 2010 del Parque del Retiro:" + 
+						"\n " + 
 						"\n     Tu número de inscripción es el ||NUM_INSCRIPCION||"+
 						"\n     Este comprobante debe ser presentado el Domingo 20 de Junio, día del certamen." +
 						"\n     Esperamos que disfrutes de tu participación tanto como nosotros. " + 
