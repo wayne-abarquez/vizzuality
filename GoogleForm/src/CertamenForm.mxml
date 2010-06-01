@@ -69,8 +69,8 @@
 				};
 				
 				srv.send(params);                
-				//this.currentState='sentForm';		
-				sendFormButton.enabled=true;
+				this.currentState='sentForm';		
+				//sendFormButton.enabled=true;
 			}
 			
 
