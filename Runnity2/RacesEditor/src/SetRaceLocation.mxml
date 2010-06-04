@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="init()">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" creationComplete="init()" xmlns:local="*">
 	
-	<mx:Canvas left="0" right="0" top="0" bottom="200">
+	<mx:Canvas left="0" right="0" top="0" height="75%">
 		<maps:Map xmlns:maps="com.google.maps.*" id="map" mapevent_mapready="onMapReady(event)" width="100%" height="100%"
     	key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA"/>
 		<mx:TextInput id="searchInput" left="96" top="10" enter="searchLocation(searchInput.text)"/>
-		<mx:Button label="Buscar" left="255" top="10" fillAlphas="[1.0, 1.0, 1.0, 1.0]" click="searchLocation(searchInput.text)"/>
+		<mx:Button label="Buscar" left="255" top="10" click="searchLocation(searchInput.text)" useHandCursor="true" buttonMode="true" mouseChildren="false" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" 
+				color="#19355B" themeColor="#09283B" borderColor="#333333" />
 		<mx:Canvas width="226" height="22" backgroundColor="#FFFFFF" left="328" top="10">
 			<mx:Label x="10" y="4" text="Distancia de carrera:" id="expText"/>
 			<mx:Label x="129" y="4" width="97" id="distance" textAlign="right"/>
 		</mx:Canvas>
 		<mx:Button id="saveButton" label="Guardar recorrido y altemetría" right="10" top="40" click="saveTrack()" fillAlphas="[1.0, 1.0, 1.0, 1.0]"/>
+	<mx:Button id="clean" label="Limpiar" click="clearMarkers()" left="10" bottom="30" useHandCursor="true" buttonMode="true" mouseChildren="false" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" 
+				color="#19355B" themeColor="#09283B" borderColor="#333333" />
+	<mx:Button id="undoPoint" label="Deshacer último" left="83" bottom="30" click="undoRoute()" useHandCursor="true" buttonMode="true" mouseChildren="false" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" 
+				color="#19355B" themeColor="#09283B" borderColor="#333333" />
+	<mx:Button id="createAltimetry" label="Crear altimetría" right="10" bottom="30" click="getAltimetriaFresh()" useHandCursor="true" buttonMode="true" mouseChildren="false" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" 
+				color="#19355B" themeColor="#09283B" borderColor="#333333" />
 	</mx:Canvas>
 	
 	<mx:Script>
@@ -52,7 +59,7 @@
 		    
 		    private var count: int = 0;
 		    private var aux: int = 0;
-		    [Bindable]private var array: Array = new Array();
+		    [Bindable]public var raceRun: Array = new Array();
 		    [Bindable]private var altimetry: Array = new Array();
 		    private var pol: Polyline;
 		    private var endMarker: Marker;
@@ -73,12 +80,15 @@
 					
 					//PARA VER EL RECORRIDO
 					map.clearOverlays();
-					array = new Array();
+					raceRun = new Array();
+					var bounds:LatLngBounds = new LatLngBounds();
+					
 					for (var i:int=0 ; i<idRace.track.length; i++)  { 
-				    	array.push(new LatLng((idRace.track as Array)[i].lat, (idRace.track as Array)[i].lon)); 
+						bounds.extend(new LatLng((idRace.track as Array)[i].lat, (idRace.track as Array)[i].lon));
+				    	raceRun.push(new LatLng((idRace.track as Array)[i].lat, (idRace.track as Array)[i].lon)); 
 				    }	
 				    
-				    var markerA:Marker = new Marker(array[0],new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+				    var markerA:Marker = new Marker(raceRun[0],new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: false,
 								         hasShadow: false, 
@@ -88,7 +98,7 @@
 								         }));
 					map.addOverlay(markerA);				
 					
-					endMarker = new Marker(array[i-1],new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+					endMarker = new Marker(raceRun[i-1],new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: false,
 								         hasShadow: false, 
@@ -98,10 +108,11 @@
 								         }));
 					map.addOverlay(endMarker);
 					
-					pol = new Polyline(array);
+					pol = new Polyline(raceRun);
 		 			var directionsBounds:LatLngBounds = pol.getLatLngBounds();
-					map.addOverlay(pol); 
-					map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds));
+					map.addOverlay(pol);
+					trace(map.getBoundsZoomLevel(bounds));
+					map.setCenter(bounds.getCenter(),12);
 					calculateDistance();
 					
 					//PARA MOSTRAR LA ALTIMETRÍA
@@ -123,7 +134,6 @@
 		
 		    private function onMapReady(event:Event):void {
 		    	map.setDoubleClickMode(MapAction.ACTION_NOTHING); 
-		    	this.map.setCenter(new LatLng(40.736072,-73.992062), 3, MapType.NORMAL_MAP_TYPE);
 	  			map.addControl(new ZoomControl());
 	  			map.addControl(new PositionControl());
 	  			map.addControl(new MapTypeControl());
@@ -153,9 +163,9 @@
 		    protected function onMapClick(event:MapMouseEvent):void {  
 
 		       
-				array.push(event.latLng);
+				raceRun.push(event.latLng);
 				
-		    	if (array.length==1) {
+		    	if (raceRun.length==1) {
 		    		var markerA:Marker = new Marker(event.latLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: false,
@@ -169,7 +179,7 @@
 		    	} else {
 		    		if (pol!=null)
 		    			map.removeOverlay(pol);
-		    		pol = new Polyline(array);
+		    		pol = new Polyline(raceRun);
 					map.setCenter(event.latLng);
 		      		map.addOverlay(pol); 	         					
 	 				var marker: Marker = new Marker(event.latLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
@@ -180,14 +190,14 @@
 								         label: "Ll",
 								         strokeStyle: new StrokeStyle({ alpha: 0.8, color: 0x000000, thickness: 1 })
 								         }));
-					if (array.length>2) map.removeOverlay(endMarker);
+					if (raceRun.length>2) map.removeOverlay(endMarker);
 					endMarker = marker;
 					map.addOverlay(marker);
 		    		
 		    	}
 		    	calculateDistance();
 		    	var tempCoords:Array=[];
-				for each (var po:LatLng in array) {
+				for each (var po:LatLng in raceRun) {
 					tempCoords.push({lat:po.lat(),lon:po.lng()});
 				}
 				
@@ -199,16 +209,16 @@
 		    }
 		    
 		    private function undoRoute():void {
-			    array.pop();
-			    pol = new Polyline(array);
+			    raceRun.pop();
+			    pol = new Polyline(raceRun);
 			    aux--;
 			    altimetry.pop();
 
 			    map.clearOverlays();
 
 			    
-			    if (array.length==1) {
-			    	var marker: Marker = new Marker(array[0] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+			    if (raceRun.length==1) {
+			    	var marker: Marker = new Marker(raceRun[0] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: false,
 								         hasShadow: false, 
@@ -220,8 +230,8 @@
 					map.addOverlay(marker);
 					map.addOverlay(pol);
 			    } else {
-			    	if (array.length>1) {
-			    		var markerA: Marker = new Marker(array[0] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+			    	if (raceRun.length>1) {
+			    		var markerA: Marker = new Marker(raceRun[0] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: false,
 								         hasShadow: false, 
@@ -231,7 +241,7 @@
 								         }));
 						map.addOverlay(markerA);
 						map.addOverlay(pol);
-						var markerB: Marker = new Marker(array[array.length - 1] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
+						var markerB: Marker = new Marker(raceRun[raceRun.length - 1] as LatLng,new MarkerOptions({ fillStyle: new FillStyle({ alpha: 0.75, color: 0x00CCFF}), 
 								         labelFormat: {color: 0xFFFFFF, bold: true},
 								         draggeable: false,
 								         hasShadow: false, 
@@ -250,7 +260,7 @@
 		
 
 		    private function clearMarkers():void {
-		    	array = new Array();
+		    	raceRun = new Array();
 		    	map.clearOverlays();
 		    	aux = 0;
 		    	altimetry = new Array();
@@ -276,11 +286,7 @@
 		    
 		    private function getAltimetriaFresh():void {
 		    	
-		    	clean.enabled=false;
-		    	createAltimetry.enabled=false;
-		    	undoPoint.enabled = false;
-		    	saveButton.enabled = false;
-		    	createAltimetry.label = "Creando...";
+
 		    	altimetry = new Array();
 		    	
 		    	var maxNodes:Number = Math.round (Number ((distance.text as String).substr(0,7)) / 0.1);
@@ -294,16 +300,13 @@
 		    private function getAltitudes():void {
 		    	
 		    	if (aux!=auxPolyLinesPoints.length) {
+		    		loader.visible = true;
 		    		altitudeService.url = "http://www.earthtools.org/height/" + (auxPolyLinesPoints[aux] as LatLng).lat() + "/" +  (auxPolyLinesPoints[aux] as LatLng).lng();
 		        	altitudeService.send();
 		    	} else {
+		    		loader.visible = false;
 		    		AltimetryChart.dataProvider = altimetry;
 		    		updateChartValues();
-		    		clean.enabled=true;
-		    		createAltimetry.enabled=true;
-		    		saveButton.enabled = true;
-		    		undoPoint.enabled = true;
-		    		createAltimetry.label = "Crear altimetría";
 		    	}
 		    }
 		    
@@ -369,22 +372,22 @@
             }
             
             private function geocoder_geocodingFailure(evt:GeocodingEvent):void {
-                Alert.show("Unable to geocode address: " + evt.name);
+                Alert.show("No hemos encontrado esa dirección: " + evt.name);
             }
 		    
 			
 			private function calculateDistance():void{
 			    var dist: Number=0;
-			    for (var x:int =0;x<array.length-1;x++){
-			        dist += (array[x]).distanceFrom(array[x+1])/1000;
+			    for (var x:int =0;x<raceRun.length-1;x++){
+			        dist += (raceRun[x]).distanceFrom(raceRun[x+1])/1000;
 			    }
 			    distance.text = (formatter.format(dist)).substr(0,7) + "km";
 			}
 			
 			private function calculateDistanceResult():Number{
 			    var dist: Number=0;
-			    for (var x:int =0;x<array.length-1;x++){
-			        dist += (array[x]).distanceFrom(array[x+1]);
+			    for (var x:int =0;x<raceRun.length-1;x++){
+			        dist += (raceRun[x]).distanceFrom(raceRun[x+1]);
 			    }
 			    return dist;
 			}			
@@ -392,7 +395,7 @@
 			
 			private function saveTrack():void {
 				var tempCoords:Array=[];
-				for each (var po:LatLng in array) {
+				for each (var po:LatLng in raceRun) {
 					tempCoords.push({lat:po.lat(),lon:po.lng()});
 				}
 				
@@ -440,10 +443,8 @@
 			
 	    ]]>
 	</mx:Script>	
-	<mx:Button id="clean" label="Limpiar" click="clearMarkers()" left="10" bottom="170"/>
-	<mx:Button id="undoPoint" label="Deshacer último" left="83" bottom="170" click="undoRoute()"/>
-	<mx:Button id="createAltimetry" label="Crear altimetría" right="10" bottom="170" click="getAltimetriaFresh()"/>
-	<mx:AreaChart id="AltimetryChart" left="10" right="10" bottom="10" height="151">
+
+	<mx:AreaChart id="AltimetryChart" left="0" bottom="0" height="25%" right="0">
 		<mx:verticalAxis>
             <mx:LinearAxis id="linearAxis" baseAtZero="false" interval="50" maximum="900" minimum="500"  title="Altitud"/>
         </mx:verticalAxis>
@@ -451,6 +452,9 @@
 			<mx:AreaSeries displayName="Series 1" yField="" form="curve" />
 		</mx:series>
 	</mx:AreaChart>
+	
+	<local:LoadingWindow id="loader" width="100%" height="100%" visible="false" message="Generando la altimetría, no desesperes... deja que acabe antes de nada!"/>
+	
 	<mx:HTTPService id="altitudeService" result="onResult(event)" fault="onFault(event)" resultFormat="object"/>
 	
 </mx:Canvas>

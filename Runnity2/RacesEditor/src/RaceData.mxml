@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" xmlns:local="*"
-	>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%" xmlns:maps="com.google.maps.*" xmlns:local="*">
 
 
 	<mx:Script>
@@ -199,17 +198,19 @@
 	            	trace(directionsBounds.getCenter());
 	            	
 					map.setCenter(directionsBounds.getCenter(),map.getBoundsZoomLevel(directionsBounds));      		
-            	} 
-				
+            	}
+            	
+            	editRace();
+				loader.visible = false;
             }
 
             
             [Bindable] private var recorridoCanvasHabilitado:Boolean=false;
             private function editRace():void {
             	recorridoCanvasHabilitado=false;
-        		cleanInputs();
             	Application.application.server.addEventListener(ResultEvent.RESULT,onGetGeometryDataOK);
             	Application.application.server.addEventListener(FaultEvent.FAULT,onGetGeometryDataKO);
+            	Application.application.server.getTrackGeometry(iden.text);
             }
             
             private function onGetGeometryDataOK(ev:ResultEvent):void {
@@ -226,17 +227,63 @@
             }
             
             
-            
+            private function checkUserCanSave():Boolean {
+            	if (date.text.length==0) {
+            		Alert.show('No has puesto la fecha de la carrera');
+            		return false;
+            	}
+            	
+            	if (race_name.text.length==0) {
+            		Alert.show('No has puesto el nombre de la carrera');
+            		return false;
+            	}
+            	
+            	
+            	if (runType.selectedItem==null) {
+            		Alert.show('No has seleccionado el tipo de la carrera');
+            		return false;
+            	}
+            	
+            	if (distance_text.text.length==0) {
+            		Alert.show('No has puesto la distancia en texto de la carrera');
+            		return false;
+            	}     
+            	
+            	if (distance_meters.text.length==0) {
+            		Alert.show('No has puesto la distancia en metros de la carrera');
+            		return false;
+            	} 
+            	
+            	if (provincesCombo.selectedItem==null) {
+            		Alert.show('No has seleccionado la provincia de la carrera');
+            		return false;
+            	}         	              	       	
+            	
+            	if (race_location.length==0) {
+            		Alert.show('No has puesto el lugar de la carrera');
+            		return false;
+            	}
+            	
+            	if (markersArray.length!=2) {
+            		Alert.show('Indica en el mapa donde empieza y donde acaba la carrera');
+            		return false;
+            	}
+            	
+            	return true;
+            }
             
              
             //add new race or edit previous race
             private function saveData (identification: String = null): void {
-            		
-        		dataRace.enabled = false;
-        		saveChanges.label = "Guardando...";
-        		
-        		
+            	
+            	if (!checkUserCanSave()) {
+            		return;
+            	}
+
+
             	if (identification==null) /* ESTA CREANDO UNO NUEVO */ {
+            		loader.message = "Creando la nueva carrera";
+					loader.visible = true;  
             		Application.application.server.addEventListener(ResultEvent.RESULT, onEditNewRace);
             		Application.application.server.addEventListener(FaultEvent.FAULT, onEditNewRaceFault);
                 	Application.application.server.createNewRun(race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
@@ -245,6 +292,8 @@
                 	(markersArray.length==0)?null:markersArray[1].lat(),(markersArray.length==0)?null:markersArray[1].lng(), 
                 	provincesCombo.selectedItem.id,(selectedRunCheck.selected)?'t':'f',runType.selectedIndex+1,publishedRunCheck.selected,inscription_phone.text,flickr.text);
             	} else { /* ESTA EDITANDO UNO PREVIO*/
+            		loader.message = "Editando los datos de la carrera";
+					loader.visible = true; 
 		        	Application.application.server.addEventListener(ResultEvent.RESULT,onEditNewRace);
 		        	Application.application.server.addEventListener(FaultEvent.FAULT,onEditNewRaceFault);
                 	Application.application.server.updateRun(iden.text,race_name.text,race_location.text,distance_meters.text,distance_text.text,date.text,
@@ -259,13 +308,28 @@
             private function onEditNewRace(event: ResultEvent):void {
             	Application.application.server.removeEventListener(ResultEvent.RESULT,onEditNewRace);
             	Application.application.server.removeEventListener(FaultEvent.FAULT,onEditNewRaceFault);
-				Alert.show("Carrera editada o añadida satisfactoriamente");
+				if (iden.text.length==0) {iden.text = event.result as String;}
+				hasChanged = false;
+				loader.visible = false;
+				
+				if (!publishedRunCheck.selected) {
+					Alert.show("Carrera editada o añadida satisfactoriamente, bocati di Carabancheli");
+				} else {
+	            	Alert.yesLabel = "Cerrar";
+	                Alert.noLabel = "Ver la carrera en Runnity";
+	                Alert.buttonWidth = 100;
+					Alert.show("Has editado o creado una carrera nueva " + Application.application.userName +". Puedes comprobar su estado en la web... ",
+	            		"Bocati de Carabancheli", Alert.YES | Alert.NO , this, function(event:CloseEvent):void {if(event.detail == Alert.NO) { navigateToURL(new URLRequest('http://runnity.com/run/'+iden.text+'/tw'), '_blank');}});
+				}
+				
+
             }
             
             private function onEditNewRaceFault(event: FaultEvent):void {
             	Application.application.server.removeEventListener(ResultEvent.RESULT,onEditNewRace);
             	Application.application.server.removeEventListener(FaultEvent.FAULT,onEditNewRaceFault);
-				trace(event.fault);
+				hasChanged = false;
+				loader.visible = false;
 				Alert.show(event.fault.faultString);
             }
             
@@ -289,8 +353,36 @@
             }
             
             private function backToRaces():void {
-            	Application.application.currentState = '';
+            	Alert.yesLabel = "Si";
+                Alert.noLabel = "No";
+                Alert.buttonWidth = 50;
+				if (hasChanged) {
+					var a:Alert = Alert.show("Has cambiado datos de esta carrera y no has guardado, ¿quieres volver al listado de carreras?", 
+            		"Vas a salir sin guardar", Alert.YES | Alert.NO , this, backToRacesFunction);
+				} else {
+					Application.application.currentState = 'loading';
+	            	Application.application.init();
+	            	recorridoCanvasHabilitado = false;
+				}	    	
             }
+            
+            private function backToRacesFunction(event:CloseEvent):void {
+				if(event.detail == Alert.YES) {
+					hasChanged = false;
+					recorridoCanvasHabilitado = false;   	
+            		Application.application.currentState = 'loading';
+	           		Application.application.init();     			
+    			} else {
+    				loader.visible = false;
+    			}
+            }
+            
+            
+            private function checkFlickrImage():void {
+            	
+            }
+            
+            
 		]]>
 	</mx:Script>
 
@@ -316,38 +408,37 @@
 				<maps:Map id="map" y="354" height="400" mapevent_mapready="onMapReady(event)" 
 					key="ABQIAAAAtDJGVn6RztUmxjnX5hMzjRTy9E-TgLeuCHEEJunrcdV8Bjp5lBTu2Rw7F-koeV8TrxpLHZPXoYd2BA" left="186" right="40"/>
 				<mx:Button x="260" y="365.5" label="Limpiar marcadores" click="cleanOverlay()" alpha="1" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A"/>
-				<mx:Label x="10" y="813" text="Email organización" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
-				<mx:Label x="10" y="845" text="Teléfono organización" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
-				<mx:Label x="10" y="880" text="URL IMAGEN" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
+				<mx:Label x="10" y="815" text="Email organización" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
+				<mx:Label x="10" y="848" text="Teléfono organización" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
+				<mx:Label x="10" y="884" text="URL IMAGEN" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
 				<mx:Label x="10" y="916" text="Descripción" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
 				<mx:HBox top="10" right="40" horizontalAlign="right" height="30">
-					<mx:Button id="saveChanges" label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A"/>
+					<mx:Button id="saveChanges" label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 				</mx:HBox>
-				<mx:Label x="10" y="778" text="Website organización" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
+				<mx:Label x="10" y="779" text="Website organización" width="168" textAlign="right" color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
 				<mx:CheckBox x="390" y="7" label="¿Carrera destacada?" id="selectedRunCheck" fontFamily="Arial" fontSize="14" color="#333333"/>
 				<mx:CheckBox x="278" y="6" label="Publicado?" id="publishedRunCheck" borderColor="#727272" fontFamily="Arial" fontSize="14" color="#333333"/>
-				<mx:TextInput x="186" y="8" width="78" enabled="false" id="iden"/>
-				<mx:TextInput x="186" y="39" width="255" id="date" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="73" width="447" id="race_name" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="107" width="255" id="distance_text" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="597" y="108" width="255" id="distance_meters" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="141" width="255" id="category" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="175" width="666" id="awards" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="209" width="666" id="price" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="243" width="666" id="inscription_location" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="8" change="hasChanged=true" width="78" enabled="false" id="iden" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="39" change="hasChanged=true" width="255" id="date" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="73" change="hasChanged=true" width="447" id="race_name" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="107" change="hasChanged=true" width="255" id="distance_text" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="597" y="108" change="hasChanged=true" width="255" id="distance_meters" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="141" change="hasChanged=true" width="255" id="category" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="175" change="hasChanged=true" width="666" id="awards" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="209" change="hasChanged=true" width="666" id="price" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="243" change="hasChanged=true" width="666" id="inscription_location" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
 				<mx:Label x="10" y="285" text="Provincia carrera" width="168" textAlign="right"  color="#3F3F3F" fontFamily="Arial" fontSize="14"/>
-				<mx:TextInput id="race_location" x="186" y="313" width="666" enter="searchLocation(race_location.text)" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput id="buscador" x="260" y="717.3" width="375.33337" enter="searchLocation(buscador.text)" borderStyle="solid" borderColor="#DDDDDD" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5"/>
-				<mx:TextInput x="186" y="773" width="600" id="web" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="808" width="600" id="inscription_email" borderStyle="solid" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="843" width="600" id="inscription_phone" borderColor="#DDDDDD" borderStyle="solid" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextInput x="186" y="878" width="600" id="flickr" borderColor="#DDDDDD" borderStyle="solid" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
-				<mx:TextArea x="186" width="600" height="100" id="description" top="913" borderColor="#DDDDDD" color="#222222" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5" fontSize="12" text=" "/>
+				<mx:TextInput id="race_location" change="hasChanged=true" x="186" y="313" width="666" enter="searchLocation(race_location.text)" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput id="buscador"  x="260" y="717.3" width="375.33337" enter="searchLocation(buscador.text)" borderStyle="solid" borderColor="#DDDDDD" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5"/>
+				<mx:TextInput x="186" y="773" change="hasChanged=true" width="600" id="web" borderStyle="solid" borderThickness="1" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="808" change="hasChanged=true" width="600" id="inscription_email" borderStyle="solid" borderColor="#DDDDDD" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="843" change="hasChanged=true" width="600" id="inscription_phone" borderColor="#DDDDDD" borderStyle="solid" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextInput x="186" y="878" change="hasChanged=true" width="600" id="flickr" borderColor="#DDDDDD" borderStyle="solid" paddingLeft="5" paddingRight="5" paddingTop="5" color="#222222" paddingBottom="5" fontSize="12"/>
+				<mx:TextArea x="186" width="600" change="hasChanged=true" height="100" id="description" top="913" borderColor="#DDDDDD" color="#222222" paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5" fontSize="12" text=" "/>
 				<mx:Button x="407" y="365.5" label="Deshacer último" alpha="1" click="undo()" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A"/>
-				<mx:ComboBox x="187" y="281" id="provincesCombo" dataProvider="{provincesArray}" labelField="name" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A" width="212" height="28"></mx:ComboBox>
+				<mx:ComboBox x="187" y="281" change="hasChanged=true" id="provincesCombo" dataProvider="{provincesArray}" labelField="name" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A" width="212" height="28"></mx:ComboBox>
 				<mx:Label x="641" y="77" text="Tipo" textAlign="left"  fontFamily="Arial" fontSize="14" color="#333333"/>
-				<mx:ComboBox x="681" y="76" id="runType" labelField="name" textAlign="left" width="170" borderColor="#8C8C8C" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A"
-					>
+				<mx:ComboBox x="681" y="76" change="hasChanged=true" id="runType" labelField="name" textAlign="left" width="170" borderColor="#8C8C8C" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A">
 					<mx:dataProvider>
 		                <mx:String>Mediofondo</mx:String>
 		                <mx:String>Fondo</mx:String>
@@ -356,12 +447,15 @@
 		                <mx:String>Combinadas</mx:String>
 		            </mx:dataProvider>
 				</mx:ComboBox>
-				<mx:Button label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)" right="40" y="1034" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A"/>
+				<mx:Button label="Guardar cambios" click="(iden.text=='')?saveData():saveData(iden.text)" right="40" y="1034" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A"
+					useHandCursor="true" buttonMode="true" mouseChildren="false"/>
 				<mx:Button x="633.3" y="717.3" label="Buscar" click="searchLocation(buscador.text)" fillAlphas="[1.0, 1.0]" fillColors="[#FFFFFF, #FFFFFF]" color="#4A4A4A" height="30" width="64"/>
 				<mx:Label x="449" y="43" text="Ejemplo:   2010-06-09 00:00:00" width="193" fontFamily="Arial" fontSize="12" color="#333333"/>
+				<mx:Button x="794" y="884" label="Comprobar" click="checkFlickrImage()" useHandCursor="true" buttonMode="true" mouseChildren="false"/>
+				<mx:Label x="891" y="887" text="Resultado" color="#000000" fontFamily="Arial" fontSize="12"/>
 		    </mx:Canvas>
 		
-		    <mx:Canvas id="recorridoCanvas" label="Recorrido" backgroundColor="#D7D7D7" enabled="{(iden.text.length>0 &amp;&amp; recorridoCanvasHabilitado)}">
+		    <mx:Canvas id="recorridoCanvas" label="Recorrido" backgroundColor="#D7D7D7" enabled="{recorridoCanvasHabilitado}">
 		        <local:SetRaceLocation id="geometryRace"/>
 		    </mx:Canvas>
 		</mx:TabNavigator>
