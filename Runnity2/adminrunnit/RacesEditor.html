@@ -18,11 +18,11 @@ Learn more about Flex at http://flex.org
 <link rel="stylesheet" type="text/css" href="history/history.css" />
 <!--  END Browser History required section -->
 
-<title></title>
+<title>Runnity Races Editor</title>
 <script src="AC_OETags.js" language="javascript"></script>
-
 <!--  BEGIN Browser History required section -->
 <script src="history/history.js" language="javascript"></script>
+<script type="text/javascript" src="extMouseWheel.js"></script>
 <!--  END Browser History required section -->
 
 <style>
@@ -41,9 +41,18 @@ var requiredRevision = 124;
 // -----------------------------------------------------------------------------
 // -->
 </script>
+<script type="text/javascript">
+function setFocus(value) {
+document.getElementById('RacesEditor').focus();
+}
+
+</script>
+
+
 </head>
 
 <body scroll="no">
+<div style="width:100%;height:100%;" id="flashContainerDiv">
 <script language="JavaScript" type="text/javascript">
 <!--
 // Version check for the Flash Player that has the ability to start Player Product Install (6.0r65)
@@ -117,5 +126,6 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			</embed>
 	</object>
 </noscript>
+</div>
 </body>
 </html>
