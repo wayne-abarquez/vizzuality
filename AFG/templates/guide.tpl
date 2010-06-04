@@ -47,7 +47,7 @@
 		</div> <!-- taxonomy_browser_body -->
 						
 		<div class="info_species_list">
-			<p>more than 1,663 species in our <a href="#">species list</a></p>
+			<p>more than 1,663 species in our <a href="/species.php">species list</a></p>
 		</div>
 		
 		<div class="landscapes_body">
