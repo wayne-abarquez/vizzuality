@@ -2,7 +2,7 @@
 	<div class="outer_layout">
 		
 		<div class="long top_species">
-			<img class="arrow" src="images/common/arrow_menu.png" alt=""/>
+			<!-- <img class="arrow" src="images/common/arrow_menu.png" alt=""/> -->
 			<ul class="breadcrumb">
 				<li class="first">Animalia</li>
 				<li>Mollusca</li>

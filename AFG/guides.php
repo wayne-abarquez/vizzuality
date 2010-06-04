@@ -11,7 +11,7 @@ $smarty->caching = true;
 $smarty->cache_lifetime = 120;
 
 $smarty->assign("title","Most popular Antartic Field Guides");
-$smarty->assign("page","");
+$smarty->assign("page","Guides");
 
 $smarty->display('guides.tpl');
 ?>

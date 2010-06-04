@@ -2,6 +2,7 @@
 	<div class="outer_layout">
 		<div class="wide_container">
 		<div class="header_guide">
+			<img class="arrow" src="images/common/arrow_menu.png" alt=""/>
 			<div class="content">
 				<div class="content_left">
 					<p class="title">The definitive Antarctic Field Guide</p>
@@ -64,7 +65,7 @@
 			</div>
 		</div>
 		<div class="info_landscapes_list">
-			<p>more than <a href="#">161 landscapes</a> in our website</p>
+			<p>more than <a href="/landscape.php">161 landscapes</a> in our website</p>
 		</div>
 		
 		<div class="long">

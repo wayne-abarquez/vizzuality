@@ -29,9 +29,26 @@
 				</div>
 				<div class="header_menu">
 					<ul>
-						<li class="first"><a class="current" href="/">HOME</a></li>
-						<li><a href="#">EXPLORE</a></li>
-						<li><a href="#">GUIDES</a></li>
+						<li class="first">
+							{if $page == 'Home'}						
+								<a class="current" href="/">HOME</a></li>
+							{else}
+								<a href="/">HOME</a></li>
+							{/if}
+						<li>
+							{if $page == 'Explore'}						
+								<a class="current" href="/explore.php">EXPLORE</a>
+							{else}
+								<a href="/explore.php">EXPLORE</a>
+							{/if}
+						</li>
+						<li>
+							{if $page == 'Guides' || $page == 'Guide'}
+								<a class="current" href="/guides.php">GUIDES</a>
+							{else}
+								<a href="/guides.php">GUIDES</a>
+							{/if}
+						</li>
 						<li><a href="#">ABOUT</a></li>
 					</ul>
 				</div>
