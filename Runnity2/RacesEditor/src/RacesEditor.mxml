@@ -256,11 +256,11 @@
 		
 	<local:LoadingWindow id="loader" width="100%" height="100%" visible="false"/>
 	
-	<mx:RemoteObject id="server" endpoint="http://localhost:8888/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
-	<mx:RemoteObject id="server2" endpoint="http://localhost:8888/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices" concurrency="last"/>
+	<!--<mx:RemoteObject id="server" endpoint="http://localhost:8888/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
+	<mx:RemoteObject id="server2" endpoint="http://localhost:8888/amfphp/gateway.php" source="RunnitServices" destination="RunnitServices" concurrency="last"/>-->
 	
-	<!--<mx:RemoteObject id="server" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
-	<mx:RemoteObject id="server2" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices" concurrency="last"/>-->
+	<mx:RemoteObject id="server" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices"/>
+	<mx:RemoteObject id="server2" endpoint="../amfphp/gateway.php" source="RunnitServices" destination="RunnitServices" concurrency="last"/>
 
 	
 </mx:Application>
