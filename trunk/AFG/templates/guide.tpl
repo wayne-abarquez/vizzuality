@@ -47,7 +47,7 @@
 		</div> <!-- taxonomy_browser_body -->
 						
 		<div class="info_species_list">
-			<p>more than 1,663 species in our <a href="/species.php">species list</a></p>
+			<p>more than 1,663 species in our <a href="species.php">species list</a></p>
 		</div>
 		
 		<div class="landscapes_body">
@@ -65,7 +65,7 @@
 			</div>
 		</div>
 		<div class="info_landscapes_list">
-			<p>more than <a href="/landscape.php">161 landscapes</a> in our website</p>
+			<p>more than <a href="landscape.php">161 landscapes</a> in our website</p>
 		</div>
 		
 		<div class="long">
