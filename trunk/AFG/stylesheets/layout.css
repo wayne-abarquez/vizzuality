@@ -176,7 +176,7 @@ div.long div.tooltip_add_this a {float:left; font:bold 11px "Lucida Grande"; col
 div.long div.tooltip_add_this a:hover {color:#333333;}
 
 
-div.long img.arrow {position:absolute; top:0; right:257px; z-index:20;}
+div.long img.arrow_blue {position:absolute; top:0; right:257px; z-index:20;}
 div.long div.long_in {float:left; background:#333333; padding:28px 28px 28px 24px; width:884px;}
 div.long div.long_in h3 {font:bold 25px Helvetica; color:white; letter-spacing:-1px;}
 div.long div.long_in p.subtitle {font:normal 13px "Lucida Grande"; color:white;}
