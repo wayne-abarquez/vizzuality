@@ -11,7 +11,7 @@ $smarty->caching = true;
 $smarty->cache_lifetime = 120;
 
 $smarty->assign("title","Antartic Field Guides");
-$smarty->assign("page","");
+$smarty->assign("page","Home");
 
 // $smarty->assign("FirstName",array("John","Mary","James","Henry"));
 // $smarty->assign("LastName",array("Doe","Smith","Johnson","Case"));
