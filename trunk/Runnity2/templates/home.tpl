@@ -4,20 +4,13 @@
 <div class="span-1 column mapTop"></div>
 <div class="span-1 column map">
 	<div id="runnityHomeMap">
-	<object id="flashMovie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="894" height="364">
-		<param name="wmode" value="opaque">
-		<param name="flashvars" value="mapkey={$smarty.const.GMAPS_KEY}">
-		<param name="movie" value="/flash/runnitHomeMap.swf?8">
-		<!--[if !IE]>-->
-		<object type="application/x-shockwave-flash" data="/flash/runnitHomeMap.swf?8" width="894" height="364" flashvars="mapkey={$smarty.const.GMAPS_KEY}">
-		<!--<![endif]-->
-		<h1>Necesitas Flash para poder ver el mapa</h1>
-		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"></a></p>
-		<!--[if !IE]>-->
-		</object>
-		<!--<![endif]-->
-    </object>
-</div>
+		<div id="home_map"></div>
+		<a id="zoom_in"></a>
+		<a id="zoom_out"></a>
+		<div id="loading_map">
+			<img src="/img/loadingmap.png" />
+		</div>
+	</div>
 </div>
 <div class="span-1 column mapBottom"></div>
 </div>
@@ -30,9 +23,7 @@
 		<div class="span-1 last column1">
 		<p class="titulo">PRÓXIMAS CARRERAS CERCA DE TI</p>
 			{foreach key=id item=race from=$nextRaces name=raceloop}
-				{if $race eq "false"}
-				<!-- 	<div class="carrera">No hay próximas carreras.</div>  -->
-				{else}
+				{if $race eq "true"}
 					<div class="span-1 {cycle values="carrera,carrera2"}">
 						<div class="span-1 avatar2">
 							{if $race.flickr_img_id==""}

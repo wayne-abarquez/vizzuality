@@ -1294,14 +1294,23 @@ p.subTitleInfo{
 /***** CONTENT *****/
 
 #runnityHomeMap{
-	margin-left: 8px;
+	position:relative;
+	height:100%;
+	width:100%;
+	background:white;
+}
+
+#home_map {
+	height:100%;
+	width:100%;
 }
 
 .map{
 	background-color: #eeeeee;
-	height: 365px;
-	width: 910px;
+	height: 353px;
+	width: 890px;
 	margin: 0px 0px 0px 20px;
+	padding:2px 10px;
 }
 
 .mapTop{
@@ -1321,6 +1330,17 @@ p.subTitleInfo{
 	width: 910px;
 	margin: 0px 0px 0px 20px;
 }
+
+#loading_map {position:absolute; width:890px; height:353px; background:white; left:0; top:0;}
+#loading_map img {position:absolute; left:365px; top:96px;}
+
+#zoom_in {position:absolute; left:10px; top:10px; height:25px; width:25px; background:url(../img/moreZoomBtnExplore.png) no-repeat 0 0;}
+#zoom_in:hover {background-position:-25px 0; cursor:pointer;}
+#zoom_out {position:absolute; left:10px; top:40px; height:25px; width:25px; background:url(../img/lessZoomBtnExplore.png) no-repeat 0 0;}
+#zoom_out:hover {background-position:-25px 0; cursor:pointer;}
+
+
+
 
 .content{
 	width: 910px;
