@@ -19,7 +19,7 @@
 		<div class="outer_layout">
 			<div class="header">
 				<div class="logo">
-					<a href="/"></a>
+					<a href="index.php"></a>
 					<span class="search">
 						<form>
 							<input type="text" value="Search species, guides, ..." />
@@ -31,22 +31,22 @@
 					<ul>
 						<li class="first">
 							{if $page == 'Home'}						
-								<a class="current" href="/">HOME</a></li>
+								<a class="current" href="index.php">HOME</a></li>
 							{else}
-								<a href="/">HOME</a></li>
+								<a href="index.php">HOME</a></li>
 							{/if}
 						<li>
 							{if $page == 'Explore'}						
-								<a class="current" href="/explore.php">EXPLORE</a>
+								<a class="current" href="explore.php">EXPLORE</a>
 							{else}
-								<a href="/explore.php">EXPLORE</a>
+								<a href="explore.php">EXPLORE</a>
 							{/if}
 						</li>
 						<li>
 							{if $page == 'Guides' || $page == 'Guide'}
-								<a class="current" href="/guides.php">GUIDES</a>
+								<a class="current" href="guides.php">GUIDES</a>
 							{else}
-								<a href="/guides.php">GUIDES</a>
+								<a href="guides.php">GUIDES</a>
 							{/if}
 						</li>
 						<li><a href="#">ABOUT</a></li>

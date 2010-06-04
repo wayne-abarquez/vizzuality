@@ -30,7 +30,7 @@
 				<ul>
 					<li>
 						<div class="information_title">
-							<h4><a href="/guide.php">The definitive Atlantic Field Guide</a></h4>
+							<h4><a href="guide.php">The definitive Atlantic Field Guide</a></h4>
 							<p class="by">by Brunno Dannis</p>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 						</div>
@@ -41,7 +41,7 @@
 					</li>
 					<li>
 						<div class="information_title">
-							<h4><a href="/guide.php">This is gonna be great. Antartic trip...</a></h4>
+							<h4><a href="guide.php">This is gonna be great. Antartic trip...</a></h4>
 							<p class="by">by Javier de la Torre</p>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 						</div>
@@ -52,7 +52,7 @@
 					</li>
 					<li>
 						<div class="information_title">
-							<h4><a href="/guide.php">Whales guide</a></h4>
+							<h4><a href="guide.php">Whales guide</a></h4>
 							<p class="by">by Sergio Alvarez</p>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 						</div>
@@ -63,7 +63,7 @@
 
 					<li>
 						<div class="information_title">
-							<h4><a href="/guide.php">The Whole Pole</a></h4>
+							<h4><a href="guide.php">The Whole Pole</a></h4>
 							<p class="by">by Brunno Dannis</p>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 						</div>

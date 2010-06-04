@@ -13,13 +13,13 @@
 		<div class="left">
 			<div class="information">
 				<h3>Species that you can find in the antartic</h3>
-				<p class="subtitle">you can find more than <a href="/species.php">1.312 species</a></p>
+				<p class="subtitle">you can find more than <a href="species.php">1.312 species</a></p>
 				<div class="species_list">
 				<ul class="published_afg">
 					<li>
 						<div class="specie">
 							<a href="#"><img src="images/home/penguin.png" alt="Gentoo Penguin" /></a>
-							<h4><a href="/species.php">Gentoo Penguin</a></h4>
+							<h4><a href="species.php">Gentoo Penguin</a></h4>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 							<p class="taxa">Pygoscelis papua</p>
 						</div>
@@ -27,7 +27,7 @@
 					<li>
 						<div class="specie">
 							<a href="#"><img src="images/home/penguin.png" alt="Gentoo Penguin" /></a>
-							<h4><a href="/species.php">Gentoo Penguin</a></h4>
+							<h4><a href="species.php">Gentoo Penguin</a></h4>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 							<p class="taxa">Pygoscelis papua</p>
 						</div>
@@ -35,7 +35,7 @@
 					<li class="last">
 						<div class="specie">
 							<a href="#"><img src="images/home/penguin.png" alt="Gentoo Penguin" /></a>
-							<h4><a href="/species.php">Gentoo Penguin</a></h4>
+							<h4><a href="species.php">Gentoo Penguin</a></h4>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 							<p class="taxa">Pygoscelis papua</p>
 						</div>
@@ -43,7 +43,7 @@
 					<li>
 						<div class="specie">
 							<a href="#"><img src="images/home/penguin.png" alt="Gentoo Penguin" /></a>
-							<h4><a href="/species.php">Gentoo Penguin</a></h4>
+							<h4><a href="species.php">Gentoo Penguin</a></h4>
 							<p class="heart zero"><span><img src="images/home/gray_heart.png" alt="heart"/>0</span></p>
 							<p class="taxa">Pygoscelis papua</p>
 						</div>
@@ -51,7 +51,7 @@
 					<li>
 						<div class="specie">
 							<a href="#"><img src="images/home/penguin.png" alt="Gentoo Penguin" /></a>
-							<h4><a href="/species.php">Gentoo Penguin</a></h4>
+							<h4><a href="species.php">Gentoo Penguin</a></h4>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 							<p class="taxa">Pygoscelis papua</p>
 						</div>
@@ -59,7 +59,7 @@
 					<li class="last">
 						<div class="specie">
 							<a href="#"><img src="images/home/penguin.png" alt="Gentoo Penguin" /></a>
-							<h4><a href="/species.php">Gentoo Penguin</a></h4>
+							<h4><a href="species.php">Gentoo Penguin</a></h4>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 							<p class="taxa">Pygoscelis papua</p>
 						</div>
@@ -76,7 +76,7 @@
 				<ul class="published_afg">
 					<li>
 						<div class="information_title">
-							<h4><a href="/guide.php">This is gonna be great. Antartic trip...</a></h4>
+							<h4><a href="guide.php">This is gonna be great. Antartic trip...</a></h4>
 							<p class="by">by Brunno Dannis</p>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 						</div>
@@ -88,7 +88,7 @@
 					</li>
 					<li>
 						<div class="information_title">
-							<h4><a href="/guide.php">This is gonna be great. Antartic trip...</a></h4>
+							<h4><a href="guide.php">This is gonna be great. Antartic trip...</a></h4>
 							<p class="by">by Brunno Dannis</p>
 							<p class="heart"><span><img src="images/home/pink_heart.png" alt="heart"/>11</span></p>
 						</div>
@@ -99,7 +99,7 @@
 					</li>
 					<li class="last">
 						<div class="information_title">
-							<h4><a href="/guide.php">This is gonna be great. Antartic trip...</a></h4>
+							<h4><a href="guide.php">This is gonna be great. Antartic trip...</a></h4>
 							<p class="by">by Brunno Dannis</p>
 							<p class="heart zero"><span><img src="images/home/gray_heart.png" alt="heart"/>0</span></p>
 						</div>
@@ -111,7 +111,7 @@
 				</ul>
 			</div>
 			<div class="bottom noborder">
-				<p>browse our <a href="/guides.php">guide catalog</a> created by the users</p>
+				<p>browse our <a href="guides.php">guide catalog</a> created by the users</p>
 			</div>
 		</div>
 		
@@ -212,7 +212,7 @@
 							<img src="images/home/browse.png" alt="Browse"/>
 						</div>
 						<div class="data">
-							<h5><a href="/explore.php">Browse our site</a></h5>
+							<h5><a href="explore.php">Browse our site</a></h5>
 							<p>Explore our database of species, and landscapes</p>
 						</div>
 					</li>

@@ -2,13 +2,13 @@
 		<div class="footer">
 			<div class="in">
 				<div class="logo">
-					<a href="/" class="logo"></a>
+					<a href="index.php" class="logo"></a>
 					<span class="menu">
 						<ul>
-							<li><a href="/">Explore</a></li>
-							<li><a href="#">Species</a></li>
-							<li><a href="#">Guides</a></li>
-							<li class="last"><a href="#">Landscapes</a></li>
+							<li><a href="explore.php">Explore</a></li>
+							<li><a href="species.php">Species</a></li>
+							<li><a href="guides.php">Guides</a></li>
+							<li class="last"><a href="landscape.php">Landscapes</a></li>
 						</ul>
 					</span>
 				</div>
