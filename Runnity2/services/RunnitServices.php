@@ -18,7 +18,7 @@ class RunnitServices {
 	}
 	
 	private function getMailService() {
-	    $mail = new PHPMailer();
+	  $mail = new PHPMailer();
 		$mail->IsSMTP();
 		$mail->SMTPAuth = true;
 		$mail->SMTPSecure = "ssl";
@@ -1145,17 +1145,23 @@ class RunnitServices {
     
     
     public function updateRunGeometry($points,$altimetria,$id) {
-        $wkt="MULTIPOINT(";
-        foreach ($points as &$p) {
-            $wkt.="(".$p['lon']." ". $p['lat'] ."),";
-        }
-        $wkt=substr($wkt,0,-1);
-        $wkt.=")";
-        
-        $altText=implode(",",$altimetria);
-        
-        $sql="UPDATE run SET track_geom=geomFromText('$wkt',4326), altimetria='{".$altText."}' WHERE id=$id";
-        $result= pg_query($this->conn, $sql);
+				if(count($points)>0) {
+	        $wkt="MULTIPOINT(";
+	        foreach ($points as &$p) {
+	            $wkt.="(".$p['lon']." ". $p['lat'] ."),";
+	        }
+	        $wkt=substr($wkt,0,-1);
+	        $wkt.=")";
+
+	        $altText=implode(",",$altimetria);
+
+	        $sql="UPDATE run SET track_geom=geomFromText('$wkt',4326), altimetria='{".$altText."}' WHERE id=$id";
+	        $result= pg_query($this->conn, $sql);					
+				} else {
+	        $sql="UPDATE run SET track_geom=null, altimetria=null WHERE id=$id";
+	        $result= pg_query($this->conn, $sql);					
+				}
+
         return null;        
         
     }
