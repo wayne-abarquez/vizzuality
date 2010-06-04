@@ -238,7 +238,7 @@
 			</div>
 		</div>
 		<div class="long">
-			<img class="arrow" src="images/home/arrow_bottom.png" />
+			<img class="arrow_blue" src="images/home/arrow_bottom.png" />
 			<div class="long_in">
 				<h3>Your Atlantic Field Guide</h3>
 				<p class="subtitle">Here is were your species and landscapes will be added</p>
