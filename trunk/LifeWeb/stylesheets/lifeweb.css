@@ -1,3 +1,16 @@
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
+img,fieldset{border:none; padding:0; margin:0;}
+body{color:#666666; background:#ffffff}
+span.clear{clear:both;}
+div.left{float:left; width:auto;}
+div.right{float:right; width:auto;}
+a {color:#4a8e3a; text-decoration:none;}
+a:hover {color:#408030; text-decoration:none; cursor:pointer;}
+a:focus{outline:none}
+ul {list-style:none;}
+img.left_curve{float:left;}
+img.right_curve{float:right;}
+
 
 @import http://cleanslatecss.googlecode.com/svn/trunk/cleanslate.css
 
@@ -19,12 +32,12 @@ div#map_canvas div.filterButtons div.filter_markers {position:absolute; top:11px
 div.legend {position:absolute; bottom:27px; right:20px; text-decoration:none; width:360px; height:24px;}
 div.legend div.info {float:left; text-decoration:none; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_leyend_left.png) no-repeat 0 0; width:242px; padding:0;}
 div.legend div.info div.matched_made {float:left; width:105px; margin:0 0 0 5px; padding:0; height:auto;}
-div.legend div.info div.matched_made p.enabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/star_matched_enabled.png) no-repeat 0 0; font:bold 11px Arial; color:#3085A3; padding:1px 0 0 19px; line-height:11px;}
-div.legend div.info div.matched_made p.disabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/star_matched_disabled.png) no-repeat 0 0; font:bold 11px Arial; color:#999999; padding:1px 0 0 19px; line-height:11px;}
+div.legend div.info div.matched_made p.enabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/star_matched_enabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#3085A3; padding:7px 0 7px 19px; line-height:11px;}
+div.legend div.info div.matched_made p.disabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/star_matched_disabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#999999; padding:7px 0 7px 19px; line-height:11px;}
 
 div.legend div.info div.active_expressions {float:left; width:120px; margin:0 0 0 5px; padding:0; height:auto;}
-div.legend div.info div.active_expressions p.enabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/symbol_expression_enabled.png) no-repeat 0 0; font:bold 11px Arial; color:#3085A3; padding:1px 0 0 19px; line-height:11px;}
-div.legend div.info div.active_expressions p.disabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/symbol_expression_disabled.png) no-repeat 0 0; font:bold 11px Arial; color:#999999; padding:1px 0 0 19px;; line-height:11px;}
+div.legend div.info div.active_expressions p.enabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/symbol_expression_enabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#3085A3; padding:7px 0 7px 19px; line-height:11px;}
+div.legend div.info div.active_expressions p.disabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/symbol_expression_disabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#999999; padding:7px 0 7px 19px; line-height:11px;}
 div.legend a {text-decoration:none;}
 
 div#map_canvas a {text-decoration:none; }
@@ -35,9 +48,9 @@ div.legend div.filter_markers_leyend div.unclicked p{float:left; font:bold 10px 
 div.legend div.filter_markers_leyend div.unclicked p a{color:#3086A3;}
 div.legend div.filter_markers_leyend div.unclicked p a:hover {color:#3086A3;}
 div.legend div.filter_markers_leyend div.unclicked p a:visited {color:#3086A3;}
-div.legend div.filter_markers_leyend div.clicked{position:absolute; width:200px; height:29px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_filter_markers_bttm_clicked.png) no-repeat 0 0; right:-3px; bottom:0px; display:none;}
+div.legend div.filter_markers_leyend div.clicked{position:absolute; width:200px; height:29px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_filter_markers_bttm_clicked.png) no-repeat 0 0; right:-3px; bottom:0; display:none;}
 div.legend div.filter_markers_leyend div.clicked p{float:right; font:bold 10px Arial; color:#999999; text-transform:uppercase; margin:10px 26px 0 0px; line-height:10px; padding:2px 0 0 0;}
-div.legend div.filter_markers_leyend div.clicked ul{position:absolute; bottom:7px; right:1px; list-style:none;}
+div.legend div.filter_markers_leyend div.clicked ul{position:absolute; bottom:22px; right:1px; list-style:none; z-index:1000;}
 div.legend div.filter_markers_leyend div.clicked li{float:right; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_list_content_gray.png); width:200px; height:21px; padding:1px 0 0 0; margin:0;} 
 div.legend div.filter_markers_leyend div.clicked p a{color:#999999;}
 div.legend div.filter_markers_leyend div.clicked p a:hover {color:#999999;}
