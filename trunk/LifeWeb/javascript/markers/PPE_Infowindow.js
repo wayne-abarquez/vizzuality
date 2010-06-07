@@ -1,4 +1,5 @@
 
+
   function PPE_Infowindow(latlng, opts, map) {
     this.latlng_ = latlng;
 		this.information_ = opts;
@@ -113,7 +114,14 @@
 			
 			$(close).click(
 				function (ev) {
+					ppe_close = true;
 					me.setMap(null);
+				}
+			);
+			
+			$(div).click(
+				function (ev) {
+					ppe_close = true;
 				}
 			);
 			
