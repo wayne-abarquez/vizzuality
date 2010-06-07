@@ -3,8 +3,8 @@ function White_Marker(latlng,opts,map) {
   google.maps.OverlayView.call(this);
   this.latlng_ = latlng;
   this.map_ = map;
-  this.offsetVertical_ = -14;
-  this.offsetHorizontal_ = -14;
+  this.offsetVertical_ = 14;
+  this.offsetHorizontal_ = 14;
   this.height_ = 28;
   this.width_ = 28;
 	this.information_ = opts;
@@ -35,6 +35,7 @@ White_Marker.prototype.draw = function() {
   this.div_.style.top = (pixPosition.y + this.offsetVertical_) + "px";
 	
 	$(this.div_).fadeIn('fast');
+	
 };
 
 White_Marker.prototype.createElement = function() {
