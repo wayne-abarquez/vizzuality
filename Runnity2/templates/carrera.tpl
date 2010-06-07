@@ -98,8 +98,6 @@ function SubirFotos(){
 </script>
 {/literal}
 
-<!-- <script type='text/javascript' src='/js/jquery-1.3.2.min.js'></script> -->
-<script type="text/javascript" src="/js/init.js"></script>	
 
 <div class="span-24 column content">
 
@@ -227,7 +225,7 @@ function SubirFotos(){
 				
                 {else}
 					<p class="titulo tituloLeft tituloRight">MAPA DE LA CARRERA Y ALTIMETRÍA APROXIMADA</p>
-                	<div id="map3Container" class="span-16"></div>                
+          <div id="map3Container" class="span-16"></div>                
 					<div>
 						<div class="mapStyle">
 							<div id="trackMap">
@@ -351,21 +349,10 @@ function SubirFotos(){
 		<div class="span-1 functionalContainerRight">
 			<p class="titulo tituloLeft tituloColumnRight">LOCALIZACIÓN</p>
 			<div id="map" class="mapStyleRight">
-	            <object id="aroundMap" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="254" height="192" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
-	              <param name="wmode" value="opaque">
-	              <param name="movie" value="/flash/RunAroundMap.swf?7" />
-	              <!--[if !IE]>-->
-	              <object type="application/x-shockwave-flash" data="/flash/RunAroundMap.swf?7" width="254" height="192" flashvars="id={$data.id}&amp;mapkey={$smarty.const.GMAPS_KEY}">
-	              <!--<![endif]-->
-					    {if $data.start_point_lat === null}
-<img width="254" height="192" src="http://maps.google.com/maps/api/staticmap?size=254x192&maptype=map&zoom=10&center={$data.event_location},spain&sensor=false&key={$smarty.const.GMAPS_KEY}" />					    
-					    {else}
-					<img src="http://maps.google.com/staticmap?size=254x192&maptype=map&zoom=10&markers={if $data.end_point_lat}{$data.end_point_lat},{$data.end_point_lon},bluem%7C{/if}{$data.start_point_lat},{$data.start_point_lon},greens&sensor=false&key={$smarty.const.GMAPS_KEY}">
-					    {/if}
-	              <!--[if !IE]>-->
-	              </object>
-	              <!--<![endif]-->
-	            </object>						
+				<div id="race_map" style="position:relative;height:100%;width:100%"></div>
+				<div id="loading_race">
+					<img src="/img/loadingmap.png" />
+				</div>
 			</div>
 		</div>
 		
@@ -434,10 +421,12 @@ function SubirFotos(){
 		</div>
 		{/if}
 	</div>
+	
+	<span id="id_carrera" style="display:none">{$data.id}</span>
+	
+</div>
 
-</div> <!-- content -->
-
-</div> <!-- container -->
+</div>
 
 
 {include file="footer.tpl"} 

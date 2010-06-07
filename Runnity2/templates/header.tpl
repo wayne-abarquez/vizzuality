@@ -32,30 +32,23 @@
 	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/cufon-yui.js"></script>	
 	<script type="text/javascript" src="http://runnity.com.s3-external-3.amazonaws.com/js/Arial_Rounded_MT_Bold_400.font.js"></script>	
 	<script type="text/javascript" src="/js/init.js"></script>	
+
 	
-		<!-- multiple upload files -->
-<!--
-	<script type="text/javascript" src="/js/jquery.uploadify.v2.1.0.js"></script>	
-	<link href="/css/uploadify.css" rel="stylesheet" type="text/css" />
--->
-	
-	{if $section eq "home"}
+	{if $section eq "home" }
 		{literal}
-		<script type="text/javascript">
-			swfobject.registerObject("flashMovie", "9.0.115", "expressInstall.swf");
-		</script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<script type="text/javascript" src="/js/jquery.json-2.2.js"></script>
 		<script type="text/javascript" src="/js/markerclusterer.js"></script>
 		<script type="text/javascript" src="/js/homemap.js"></script>
-		{/literal}
-		
+		{/literal}		
 	{/if}
+	
 	{if $section eq "carrera"}
 		{literal}
-		<script type="text/javascript">
-			swfobject.registerObject("flashMovie", "10.0.0", "expressInstall.swf");
-		</script>
+			<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+			<script type="text/javascript" src="/js/jquery.json-2.2.js"></script>
+			<script type="text/javascript" src="/js/markerclusterer.js"></script>
+			<script type="text/javascript" src="/js/carreramap.js"></script>
 		{/literal}
 	{/if}	
 	

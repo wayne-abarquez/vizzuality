@@ -35,7 +35,7 @@ $(document).ready(function(){
 	
 	
 
-      $('#inputsearchFirst').emptyonclick(); 
+    $('#inputsearchFirst').emptyonclick(); 
 
 	  $('div.avatarContainer a img').hover(
 		function () {
