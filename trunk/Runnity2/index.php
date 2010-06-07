@@ -38,6 +38,7 @@ if(!isset($_COOKIE["geolocation"])){
 	$visitor_location['city'] = $_COOKIE["geolocation"];
 }
 
+
 if ($visitor_location['city']!='') {
 	$smarty->assign('city', $visitor_location['city']);
 	$smarty->assign('nextRaces',$services->getNextRuns($visitor_location['lat'],$visitor_location['lon'],150));
@@ -47,6 +48,7 @@ if ($visitor_location['city']!='') {
 	$smarty->assign('nextRaces',$services->getNextRuns());
 	$smarty->assign('nextImportantRaces',$services->getNextImportantRuns());
 }
+
 
 //Recent activity
 $smarty->assign('activity',$services->getLastActivity());

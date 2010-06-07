@@ -23,8 +23,7 @@
 		<div class="span-1 last column1">
 		<p class="titulo">PRÓXIMAS CARRERAS CERCA DE TI</p>
 			{foreach key=id item=race from=$nextRaces name=raceloop}
-				{if $race eq "true"}
-					<div class="span-1 {cycle values="carrera,carrera2"}">
+					<div class="span-1 {cycle values='carrera,carrera2'}">
 						<div class="span-1 avatar2">
 							{if $race.flickr_img_id==""}
 							    <img src="/media/run/{$race.thumbnail}" alt="Foto de la carrera {$race.name}" class="avatar">	
@@ -46,9 +45,6 @@
 					{if $smarty.foreach.raceloop.iteration < 3}
 						<div class="span-1 last separator"></div>
 					{/if}
-				{/if}
-			{foreachelse}
-			<!-- 	<div class="carrera">No hay próximas carreras.</div>  -->
     		{/foreach}	
 			<a class="verTodas" {if $city eq "España"} href="/buscar?q=&amp;tipoBusqueda=Proximas" {else} href="/buscar?q={$city}&amp;tipoBusqueda=Proximas" {/if}><b>Ver todas las carreras en {$city}</b></a>
 		</div>
