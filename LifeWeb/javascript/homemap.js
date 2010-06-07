@@ -4,6 +4,8 @@ var protected_layer;
 var carbon_layer;
 var kba_layer;
 
+var ppe_close = false;
+
 var white_markers= [];
 var yellow_markers=[];
 
@@ -202,19 +204,7 @@ function initialize(lat,lng) {
 							  dataType: 'jsonp',
 							  data: null,
 							  success: function(result) {
-								//console.log(result);
-										if (result.length>0) {
-											ppe_open = true;
-											if (ppe_infowindow!=null) {
-												ppe_infowindow.setMap(null);
-											}
-											ppe_infowindow = new PPE_Infowindow(ev.latLng,result[0],map);
-										} else {
-											ppe_open = false;
-											if (ppe_infowindow!=null) {
-												ppe_infowindow.setMap(null);
-											}
-										}
+									setTimeout(openInfoWindow(result,ev.latLng),700);
 								}
 							});
 					});
@@ -223,6 +213,26 @@ function initialize(lat,lng) {
 			 }
 		});
 
+}
+
+function openInfoWindow(data,latlng) {
+	if (!ppe_close) {
+											console.log('entra')
+		if (data.length>0 && $('#protected_layer').parent().hasClass('checked')) {
+			ppe_open = true;
+			if (ppe_infowindow!=null) {
+				ppe_infowindow.setMap(null);
+			}
+			ppe_infowindow = new PPE_Infowindow(latlng,data[0],map);
+		} else {
+			ppe_open = false;
+			if (ppe_infowindow!=null) {
+				ppe_infowindow.setMap(null);
+			}
+		}
+	} else {
+		ppe_close = false;
+	}
 }
 
 

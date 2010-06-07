@@ -222,6 +222,7 @@ Yellow_Marker.prototype.createElement = function() {
 		$(close).click(
 			function (ev) {
 				$(this).parent().hide();
+				ppe_close = true;
 			}
 		);
 		
@@ -234,6 +235,7 @@ Yellow_Marker.prototype.createElement = function() {
 
 		$(div).click(
 			function (ev) {
+				ppe_close = true;
 				if ($(ev.target).hasClass('marker_infowindow')) {
 					if (!$(this).children('div').is(':visible')) {
 						if (this_.map_.getZoom()<6) {
