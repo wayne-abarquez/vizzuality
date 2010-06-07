@@ -198,42 +198,40 @@ function initialize(lat,lng) {
 					$('div.bttn_zoomOut').click(function(ev){map.setZoom(map.getZoom()-1)});
 
 					google.maps.event.addListener(map, 'click', function(ev){ 
-							$.ajax({
-								method: 'GET',
-							  url: 'http://www.protectedplanet.net/api/sites_by_point/'+ev.latLng.c+'/'+ev.latLng.b,
-							  dataType: 'jsonp',
-							  data: null,
-							  success: function(result) {
-									setTimeout(openInfoWindow(result,ev.latLng),700);
-								}
-							});
+							if ($('#protected_layer').parent().hasClass('checked')) {
+									$.ajax({
+										method: 'GET',
+									  url: 'http://www.protectedplanet.net/api/sites_by_point/'+ev.latLng.c+'/'+ev.latLng.b,
+									  dataType: 'jsonp',
+									  data: null,
+									  success: function(result) {
+											setTimeout(function(){
+												if (!ppe_close) {
+													if (data.length>0) {
+														ppe_open = true;
+														if (ppe_infowindow!=null) {
+															ppe_infowindow.setMap(null);
+														}
+														ppe_infowindow = new PPE_Infowindow(ev.latLng,result[0],map);
+													} else {
+														ppe_open = false;
+														if (ppe_infowindow!=null) {
+															ppe_infowindow.setMap(null);
+														}
+													}
+												} else {
+													ppe_close = false;
+												}
+											},700);
+										}
+									});
+							}
 					});
-
-
 			 }
 		});
 
 }
 
-function openInfoWindow(data,latlng) {
-	if (!ppe_close) {
-											console.log('entra')
-		if (data.length>0 && $('#protected_layer').parent().hasClass('checked')) {
-			ppe_open = true;
-			if (ppe_infowindow!=null) {
-				ppe_infowindow.setMap(null);
-			}
-			ppe_infowindow = new PPE_Infowindow(latlng,data[0],map);
-		} else {
-			ppe_open = false;
-			if (ppe_infowindow!=null) {
-				ppe_infowindow.setMap(null);
-			}
-		}
-	} else {
-		ppe_close = false;
-	}
-}
 
 
 

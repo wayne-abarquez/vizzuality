@@ -56,10 +56,10 @@ White_Marker.prototype.createElement = function() {
 		var hiddenDiv = document.createElement('div');
 		hiddenDiv.style.position = "absolute";
 		hiddenDiv.style.display = 'none';
-		hiddenDiv.style.top = '-160px';
+		hiddenDiv.style.top = '-175px';
 		hiddenDiv.style.left = '-147px'; 
     hiddenDiv.style.width = "342px";
-    hiddenDiv.style.height = "170px";
+    hiddenDiv.style.height = "185px";
 		hiddenDiv.style.background = "url('images/infowindows/bkg_white.png') no-repeat 0 0";
 		hiddenDiv.style.cursor = 'default';
 		
@@ -136,7 +136,11 @@ White_Marker.prototype.createElement = function() {
 		country.style.font = 'normal 13px Arial';
 		country.style.color = '#999999';
 		if (this.information_.funding!=null || this.information_.funding!=undefined) {
-			$(country).html(this.information_.country + '. '+this.information_.funding+'$');
+			if (this.information_.country.length>20) {
+				$(country).text(this.information_.country.substr(0,17)+'... ' +this.information_.funding+'$');
+			} else {
+				$(country).text(this.information_.country+'. '+this.information_.funding+'$');
+			}
 		} else {
 			$(country).html(this.information_.country);
 		}

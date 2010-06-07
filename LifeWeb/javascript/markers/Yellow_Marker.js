@@ -136,7 +136,11 @@ Yellow_Marker.prototype.createElement = function() {
 		country.style.font = 'normal 13px Arial';
 		country.style.color = '#999999';
 		if (this.information_.funding!=null || this.information_.funding!=undefined) {
-			$(country).html(this.information_.country + '. '+this.information_.funding+'$');
+			if (this.information_.country.length>20) {
+				$(country).text(this.information_.country.substr(0,17)+'... ' +this.information_.funding+'$');
+			} else {
+				$(country).text(this.information_.country+'. '+this.information_.funding+'$');
+			}
 		} else {
 			$(country).html(this.information_.country);
 		}
