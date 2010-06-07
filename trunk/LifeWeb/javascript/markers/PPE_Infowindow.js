@@ -23,7 +23,7 @@
       div.style.cursor = 'pointer';
 			div.style.width = '348px';
 			div.style.height = '130px';
-			div.style.background = 'url(images/area_bkg.png) no-repeat 0 0';
+			div.style.background = 'url(images/infowindows/area_bkg.png) no-repeat 0 0';
 			div.style.zIndex = lastMask;
 			
 			var close = document.createElement('a');
@@ -56,11 +56,11 @@
 		  image_place.style.width = "100px";
 		  image_place.style.height = "75px";
 			image_place.style.border = '4px solid #E5E5E5';
-			// 		  if (this.information_pictures!=null || this.information_.pictures.length>0) {
-			// 	image_place.src = this.information_.pictures[0];
-			// } else {
+			if (this.information_.image!=null) {
+			 	image_place.src = this.information_.image;
+			} else {
 				image_place.src = 'http://mw2.google.com/mw-panoramio/photos/small/5110708.jpg';
-			// }
+			}
 			imgDiv.appendChild(image_place);
 
 			var title = document.createElement('p');
@@ -74,13 +74,13 @@
 			var link_title = document.createElement('a');
 			link_title.style.font = 'bold 15px Arial';
 			link_title.style.color = '#FFFFFF';
-			// if (this.information_.title.length>40) {
-			// 				$(link_title).text(this.information_.title.substr(0,40)+'...');
-			// 			} else {
-			// 				$(link_title).text(this.information_.title);
-			// 			}
-			$(link_title).text('Cursos del Río Tajo');
-			$(link_title).attr('href','adsf');
+			if (this.information_.name.length>40) {
+				$(link_title).text(this.information_.name.substr(0,28)+'...');
+			} else {
+				$(link_title).text(this.information_.name);
+			}
+			$(link_title).attr('href','http://protectedplanet.net/sites/'+this.information_.id);
+			$(link_title).attr('target','_blank');
 			$(link_title).css('text-decoration','none');
 			$(link_title).hover(function(ev){
 				$(this).css('text-decoration','underline');
@@ -88,7 +88,6 @@
 				$(this).css('text-decoration','none');
 			});
 			title.appendChild(link_title);
-
 			div.appendChild(title);
 
 			var country = document.createElement('p');
@@ -98,7 +97,7 @@
 			country.style.margin = '15px 0 0 132px';
 			country.style.font = 'normal 13px Arial';
 			country.style.color = '#999999';
-			$(country).html('Ecuador, IUCN Category <strong>lb</strong');
+			$(country).html(this.information_.desig_eng);
 			div.appendChild(country);
 			
 			var visit = document.createElement('p');
@@ -121,7 +120,7 @@
 
       // Then add the overlay to the DOM
       var panes = this.getPanes();
-      panes.overlayImage.appendChild(div);
+      panes.floatPane.appendChild(div);
     }
  
     // Position the overlay 

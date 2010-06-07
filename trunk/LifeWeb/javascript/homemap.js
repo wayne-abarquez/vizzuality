@@ -20,10 +20,17 @@ var e7 = true;
 
 var ppe_infowindow;
 var ppe_layer = false;
+var ppe_open = false;
 
 function initialize(lat,lng) {
-		var center = new google.maps.LatLng(18.39195639592592, -97.82797844140623);
- 
+	
+		if (lat==null) {
+			$('#loader').css('left','300px');	
+		}
+		$('#loader').fadeIn();
+		
+
+		var center = new google.maps.LatLng(38.3351361875, 18.39195639592592); 
 		map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 1,
 			center: center,
@@ -67,17 +74,24 @@ function initialize(lat,lng) {
 		  success: function(result) {
 			
 					$.each(result, function(key, value) {
-						bounds.extend (new google.maps.LatLng(value.lat,value.lon));
-						if (value.matched) {
-							var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map);
-							white_markers.push(marker);
-						} else {
-							var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
-							yellow_markers.push(marker);
+						if (value.lat!=null || value.lon!=null) {
+							bounds.extend (new google.maps.LatLng(value.lat,value.lon));
+							if (value.matched) {
+								var marker = new White_Marker(new google.maps.LatLng(value.lat, value.lon),value,map);
+								white_markers.push(marker);
+							} else {
+								var marker = new Yellow_Marker(new google.maps.LatLng(value.lat, value.lon),value,map); 
+								yellow_markers.push(marker);
+							}
+							marker.setMap(map);
 						}
-						marker.setMap(map);
+
 					});
-				
+					
+					$('div.legend').fadeIn('slow');
+					$('div.layers_overlay').fadeIn('slow');
+					$('#loader').fadeOut();
+					
 					if (lat==null) {
 						map.fitBounds (bounds);
 				  	map.setCenter( bounds.getCenter());
@@ -181,25 +195,33 @@ function initialize(lat,lng) {
 					$('div.bttn_zoomIn').click(function(ev){map.setZoom(map.getZoom()+1)});
 					$('div.bttn_zoomOut').click(function(ev){map.setZoom(map.getZoom()-1)});
 
+					google.maps.event.addListener(map, 'click', function(ev){ 
+							$.ajax({
+								method: 'GET',
+							  url: 'http://www.protectedplanet.net/api/sites_by_point/'+ev.latLng.c+'/'+ev.latLng.b,
+							  dataType: 'jsonp',
+							  data: null,
+							  success: function(result) {
+								//console.log(result);
+										if (result.length>0) {
+											ppe_open = true;
+											if (ppe_infowindow!=null) {
+												ppe_infowindow.setMap(null);
+											}
+											ppe_infowindow = new PPE_Infowindow(ev.latLng,result[0],map);
+										} else {
+											ppe_open = false;
+											if (ppe_infowindow!=null) {
+												ppe_infowindow.setMap(null);
+											}
+										}
+								}
+							});
+					});
+
+
 			 }
 		});
-		
-		
-		// google.maps.event.addListener(map, 'click', function(ev){ 
-		// 				if (ppe_layer) {
-		// 					$.ajax({
-		// 					  url: 'http://www.protectedplanet.net/api2/sites?lat='+ev.latLng.b+'&lng='+ev.latLng.c,
-		// 					  dataType: 'jsonp',
-		// 					  data: null,
-		// 					  success: function(result) {
-		// 						 		console.log(result);
-		// 
-		// 						 }
-		// 					});
-		// 				}
-		// 								
-		// 			}
-		// 		);
 
 }
 

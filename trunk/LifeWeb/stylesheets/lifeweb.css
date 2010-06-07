@@ -17,6 +17,8 @@ img.right_curve{float:right;}
 div#outer_layout {float:left; width:100%;}
 div#wide_container {margin:0 auto; width:940px; padding:0;}
 
+div#loader {position:absolute; top:12px; left:200px; background:url(../images/loader_bkg.png) no-repeat 0 0; width:30px; height:30px; z-index:100; display:none;}
+div#loader img {position:absolute; top:7px; left:7px; width:16px; height:16px;}
 
 /* ---------------- MAP --------------- */
 div#map_canvas {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkgMapShadow.png) no-repeat 0 0; width:658px; height:360px; position:relative; text-align:left;}
@@ -27,17 +29,17 @@ div#map_canvas div.zoomButtons div.bttn_zoomIn a:hover{background-position:0 -25
 div#map_canvas div.zoomButtons div.bttn_zoomOut a{float:left; margin:4px 0 0 4px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bttnZoomOut.png) no-repeat 0 0; width:25px; height:25px;}
 div#map_canvas div.zoomButtons div.bttn_zoomOut a:hover{background-position:0 -25px;}
 div#map_canvas div.filterButtons a {text-decoration:none;}
-div#map_canvas div.filterButtons div.filter_markers {position:absolute; top:11px; right:145px; text-decoration:none;}
+div#map_canvas div.filterButtons div.filter_markers {position:absolute; top:11px; right:145px; text-decoration:none; z-index:100;}
 
-div.legend {position:absolute; bottom:27px; right:20px; text-decoration:none; width:360px; height:24px;}
+div.legend {position:absolute; bottom:27px; right:20px; text-decoration:none; width:360px; height:24px; z-index:100; display:none;}
 div.legend div.info {float:left; text-decoration:none; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_leyend_left.png) no-repeat 0 0; width:242px; padding:0;}
-div.legend div.info div.matched_made {float:left; width:105px; margin:0 0 0 5px; padding:0; height:auto;}
+div.legend div.info div.matched_made {float:left; width:102px; margin:0 0 0 4px; padding:0; height:auto;}
 div.legend div.info div.matched_made p.enabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/star_matched_enabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#3085A3; padding:7px 0 7px 19px; line-height:11px;}
 div.legend div.info div.matched_made p.disabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/star_matched_disabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#999999; padding:7px 0 7px 19px; line-height:11px;}
 
-div.legend div.info div.active_expressions {float:left; width:120px; margin:0 0 0 5px; padding:0; height:auto;}
-div.legend div.info div.active_expressions p.enabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/symbol_expression_enabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#3085A3; padding:7px 0 7px 19px; line-height:11px;}
-div.legend div.info div.active_expressions p.disabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/symbol_expression_disabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#999999; padding:7px 0 7px 19px; line-height:11px;}
+div.legend div.info div.active_expressions {float:left; width:125px; margin:0 0 0 7px; padding:0; height:auto;}
+div.legend div.info div.active_expressions p.enabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/symbol_expression_enabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#3085A3; padding:7px 0 7px 17px; line-height:11px;}
+div.legend div.info div.active_expressions p.disabled {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/symbol_expression_disabled.png) no-repeat 0 5px; font:bold 11px Arial; color:#999999; padding:7px 0 7px 17px; line-height:11px;}
 div.legend a {text-decoration:none;}
 
 div#map_canvas a {text-decoration:none; }
@@ -66,7 +68,7 @@ div.legend div.filter_markers_leyend div.clicked li.unchecked a {float:left; bac
 div.legend div.filter_markers_leyend div.clicked li.unchecked p {float:left; font:normal 12px Arial; color:#999999; text-transform:none; margin:0; line-height:13px;}
 
 
-div#map_canvas div.filterButtons div.layers_overlay {position:absolute; top:11px; right:17px; text-decoration:none;}
+div#map_canvas div.filterButtons div.layers_overlay {position:absolute; top:11px; right:17px; text-decoration:none; z-index:100; display:none;}
 div#map_canvas div.filterButtons div.unclicked div.left {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bttnFilterLayerLeft.png) no-repeat 0 0; width:4px; height:24px;}
 div#map_canvas div.filterButtons div.unclicked div.center {float:left; background-color:#FFFFFF; border:1px solid #3086A3; border-left:none; border-right:none; height:22px; width:96px;}
 div#map_canvas div.filterButtons div.unclicked div.center p {float:left; font:bold 10px Arial; color:#3086A3; text-transform:uppercase; text-decoration:none; margin:5px 0 0 3px;}
@@ -80,7 +82,7 @@ div#map_canvas div.filterButtons div.clicked div.right{float:left; background:ur
 
 div#map_canvas div.filterButtons div.list {position:absolute; top:21px; right:0; display:none;}
 div#map_canvas div.filterButtons div.list div.head {float:right; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bttnFilterLayerHead_clicked.png) no-repeat 0 0; width:163px; height:8px; margin:0px 1px 0 0;}
-div#map_canvas div.filterButtons div.list div.content ul {}
+div#map_canvas div.filterButtons div.list div.content ul {list-style:none;}
 div#map_canvas div.filterButtons div.list div.content li {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_list_content.png); width:163px; height:21px; padding:1px 0 0 0; margin:0;} 
 div#map_canvas div.filterButtons div.list div.content li.line {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_list_content_line.png); width:163px; height:3px; margin:0;} 
 div#map_canvas div.filterButtons div.list div.content li.title {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_list_content.png); width:163px; height:5px; padding:7px 0 15px 0; margin:0;} 
@@ -125,7 +127,7 @@ div.data_project_viz div.map_project {position:absolute; top:22px; right:22px; b
 div.map_project div#map {float:left; width:413px; height:251px; z-index:100; margin:6px 0px 0 8px;}
 div.map_project div.filterButtons a {text-decoration:none;}
 div.map_project div.filterButtons div.filter_markers {position:absolute; top:11px; right:145px; text-decoration:none;}
-div.map_project div.filterButtons div.layers_overlay {position:absolute; top:11px; right:17px; text-decoration:none;}
+div.map_project div.filterButtons div.layers_overlay {position:absolute; top:11px; right:17px; text-decoration:none; display:none; z-index:100;}
 
 div.map_project div.filterButtons div.unclicked div.left {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bttnFilterLayerLeft.png) no-repeat 0 0; width:4px; height:24px;}
 div.map_project div.filterButtons div.unclicked div.center {float:left; background-color:#FFFFFF; border:1px solid #3086A3; border-left:none; border-right:none; height:22px; width:96px;}
@@ -162,7 +164,7 @@ p.madeby {float:left; padding:8px 0 0 15px; margin:0; font:normal 12px Arial; co
 p.madeby a {color:#999999;}
 p.madeby a:hover {color:#666666;}
 
-div#map {width:100%; height:100%; float:left;}
+div#map {position:relative; width:100%; height:100%; float:left;}
 
 div#carbon_text {position:absolute; top:40px; right:20px;}
 div#carbon_text p {width:100%; color:red; text-align:right;}
