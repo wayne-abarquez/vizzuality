@@ -1334,6 +1334,10 @@ p.subTitleInfo{
 #loading_map {position:absolute; width:890px; height:353px; background:white; left:0; top:0;}
 #loading_map img {position:absolute; left:365px; top:96px;}
 
+#loading_race {position:absolute; width:100%; height:100%; background:white; left:0; top:0;}
+#loading_race img {position:absolute; left:46px; top:13px;}
+
+
 #zoom_in {position:absolute; left:10px; top:10px; height:25px; width:25px; background:url(../img/moreZoomBtnExplore.png) no-repeat 0 0;}
 #zoom_in:hover {background-position:-25px 0; cursor:pointer;}
 #zoom_out {position:absolute; left:10px; top:40px; height:25px; width:25px; background:url(../img/lessZoomBtnExplore.png) no-repeat 0 0;}
@@ -2124,6 +2128,7 @@ div.widget_embed {position:absolute; top:37px; left:12px; width: 582px; height:2
 div.widget_embed input{float:left; color: #666666; margin:5px; font:italic 12px Arial; border:none; width:100%;}
 
 div.mapStyleRight {
+	position:relative;
 	border: 1px solid #cccccc;
 	vertical-align: middle;
 	width: 254px;
