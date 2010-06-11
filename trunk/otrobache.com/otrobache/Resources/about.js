@@ -25,7 +25,7 @@ var l2 = Titanium.UI.createLabel({
 w.add(l2);    
 
 var l3 = Titanium.UI.createLabel({
-    text:'Un artículo de El País nos impulsó a hacer esto. En madrid se realizan mas de 90 denuncias al día, sobre los socavones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay',
+    text:'Un artículo de El País nos impulsó a hacer esto. En Madrid se realizan mas de 90 denuncias al día, sobre los socavones de la capital. Por desgracia estos datos no son públicos, y por eso queremos saber dónde y cuantos realmente hay.',
 	top:96,
 	right:20,
 	left:20,    	
@@ -51,6 +51,8 @@ var l4 = Titanium.UI.createLabel({
 });
 w.add(l4);    
 
+
+
 var l5 = Titanium.UI.createLabel({
     text:'Si, en www.otrobache.com hay disponible un mapa interactivo para analizar y visualizar toda la información que la gente nos reporta.',
 	top:284,
@@ -67,7 +69,13 @@ w.add(l5);
 
 
 // create close button for our window
-var b = Ti.UI.createButton({title:'Close',bottom:15,width:200,height:40});
+var b = Ti.UI.createButton({
+	backgroundImage:'images/bttn_back_out.png',
+	backgroundSelectedImage:'images/bttn_back_selected.png',
+	bottom:15,
+	width:280,
+	height:53});
+	
 b.addEventListener('click',function()
 {
 	w.close({transition:Ti.UI.iPhone.AnimationStyle.CURL_UP});

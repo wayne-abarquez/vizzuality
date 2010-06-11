@@ -33,6 +33,20 @@ w.add(loadingGps);
 loadingGps.show();
 */
 
+
+// VERTEX
+var vertex = Titanium.UI.createImageView({
+	backgroundImage:'images/vertex_confirm.png',
+	width:32,
+	height:15,
+	top:70,
+	left:17,
+	zIndex:100
+	
+});
+
+w.add(vertex);
+
 //MAP
 var map = Titanium.Map.createView({
     top:70,
@@ -46,13 +60,31 @@ var map = Titanium.Map.createView({
 
 w.add(map);
 
-var b = Ti.UI.createButton({title:'Close',bottom:15,width:200,height:40});
+var b = Ti.UI.createButton({
+	backgroundImage:'images/bttn_ok_out.png',
+	backgroundSelectedImage:'images/bttn_ok_selected.png',
+	bottom:30,
+	width:280,
+	height:53});
 b.addEventListener('click',function()
 {
 	w.close({transition:Ti.UI.iPhone.AnimationStyle.CURL_UP});
 });
 w.add(b);
 
+
+var cancelButton = Ti.UI.createButton({
+	backgroundImage:'images/bttn_cancel_out.png',
+	backgroundSelectedImage:'images/bttn_cancel_selected.png',	
+	bottom:10,
+	width:55,
+	height:14});
+
+cancelButton.addEventListener('click',function()
+{
+	w.close({transition:Ti.UI.iPhone.AnimationStyle.CURL_UP});
+});
+w.add(cancelButton);
 
 
 

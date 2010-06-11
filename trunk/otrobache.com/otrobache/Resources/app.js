@@ -16,31 +16,24 @@ var home = Titanium.UI.createWindow({
 //CONFIRMATION WINDOW
 var confirm = Ti.UI.createWindow({
     url:'confirmation.js',
-	backgroundColor:'#474747',
-    tabBarHidden:true,
-    navBarHidden:true	
+	backgroundColor:'#333333'
+   
 }); 
-var fakeTab = Titanium.UI.createTab({  
-    title:'Foo',
-    window:confirm
-});
-var tabFooGroup = Titanium.UI.createTabGroup();
-
-
 
 //ABOUT WINDOW
 var about = Ti.UI.createWindow({
     url:'about.js',
-	backgroundColor:'#474747'
+	backgroundColor:'#333333'
 });
 
 //INFO BUTTON
 var infoButton = Titanium.UI.createButton({
-	title:'i',
+	backgroundImage:'images/bttn_info_out.png',
+	backgroundSelectedImage:'images/bttn_info_selected.png',
 	top:10,
 	right:10,
-	height:25,
-	width:25
+	height:19,
+	width:19
 });
 infoButton.addEventListener('click', function()
 {
@@ -48,9 +41,6 @@ infoButton.addEventListener('click', function()
 	about.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});		
 });
 home.add(infoButton);
-
-
-
 
 //NUMBER OF BACHES
 var loadingNumBaches = Titanium.UI.createActivityIndicator({
@@ -130,8 +120,8 @@ function testInternetConnection() {
         });
         alertNoConnection.show();
     } else {
-        xhr.open("GET","http://otrobache.com/api/OtroBache.getNumBaches");
-        xhr.send();        
+         xhr.open("GET","http://otrobache.com/api/OtroBache.getNumBaches/null/Espa%C3%B1a");
+         xhr.send();        
     }
 }
 
@@ -148,9 +138,12 @@ xhr.onload = function()
     //if(resp.length==0) {
     //    numBachesLabel.text=0;
     //} else {
-    numBachesLabel.text=this.responseText.replace(/\"/g,'');
-    //}    
-    home.add(numBachesLabel);
+	
+		//numBachesLabel.text=0;
+    	numBachesLabel.text=this.responseText.replace(/\"/g,'');
+    
+	//}    
+    	home.add(numBachesLabel);
     subtextNumBachesLabel.text="baches ya reportados";
     captureButton.text="+";
     home.add(statusLabel);
@@ -166,7 +159,6 @@ xhr.onerror = function()
     } else {
         testInternetConnection();        
     }
-
 };
 
 
@@ -174,21 +166,19 @@ xhr.onerror = function()
 home.open();
 loadingNumBaches.show();
 
-
-
 var req = Titanium.Network.createHTTPClient();
 req.onload = function()
 {
     captureButton.text="+";
     sendingBache.hide();        
-    statusLabel.text="gracias! Si quieres puedes enviar mas.";
+    statusLabel.text="Gracias! Si quieres puedes enviar más.";
     numBachesLabel.text = (parseInt(numBachesLabel.text) + 1);
     captureButton.addEventListener('click', onReportBacheClick);
     //captureButton.enabled=true;
 };
 req.onerror = function()
 {
-    statusLabel.text="disculpa,ha ocurrido un error. Vuelve a intentarlo";
+    statusLabel.text="Disculpa, ha ocurrido un error. Vuelve a intentarlo";
     statusLabel.color = "#9D2C2A";
     captureButton.text="+";
     sendingBache.hide();        
@@ -197,10 +187,12 @@ req.onerror = function()
 };
 
 function onReportBacheClick() {
-    tabFooGroup.addTab(fakeTab);
-    tabFooGroup.open({
-        transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
-    });    
+
+	confirm.open({transition:Ti.UI.iPhone.AnimationStyle.CURL_DOWN});	
+    // tabFooGroup.addTab(fakeTab);
+    // tabFooGroup.open({
+    //     transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+    // });    
 }
 
 /*
