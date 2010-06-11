@@ -47,7 +47,7 @@ function initialize(lat,lng) {
 		carbon_layer=new SparseTileLayerOverlay();
 		    carbon_layer.setUrl = function SetUrl(xy,z){
 		    	var u=[];
-		    	u[0]= 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/Carbon2/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x;
+		    	u[0]= 'http://downloads.wdpa.org/ArcGIS/rest/services/carbon/Carbon_webmerc_93/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x;
 		    	return u;
 		    };
 		carbon_layer.setMap(null);
@@ -63,7 +63,7 @@ function initialize(lat,lng) {
 		kba_layer=new SparseTileLayerOverlay();
 		    kba_layer.setUrl = function SetUrl(xy,z){
 		    	var u=[];
-		    	u[0]= 'http://development3.unep-wcmc.org/ArcGIS/rest/services/LifeWeb/KBA/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x;
+		    	u[0]= 'http://downloads.wdpa.org/ArcGIS/rest/services/carbon/KBA2/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x;
 		    	return u;
 		    };
 		kba_layer.setMap(null);
@@ -207,7 +207,7 @@ function initialize(lat,lng) {
 									  success: function(result) {
 											setTimeout(function(){
 												if (!ppe_close) {
-													if (result.length>0) {
+													if (data.length>0) {
 														ppe_open = true;
 														if (ppe_infowindow!=null) {
 															ppe_infowindow.setMap(null);
