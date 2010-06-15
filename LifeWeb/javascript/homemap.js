@@ -70,8 +70,8 @@ function initialize(lat,lng) {
 		
 
 		$.ajax({
-		  url: 'http://lifeweb.heroku.com/projects',
-		  dataType: 'jsonp',
+		  url: 'projects.json',
+		  dataType: 'json',
 		  data: null,
 		  success: function(result) {
 			
