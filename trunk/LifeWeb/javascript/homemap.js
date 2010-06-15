@@ -207,7 +207,7 @@ function initialize(lat,lng) {
 									  success: function(result) {
 											setTimeout(function(){
 												if (!ppe_close) {
-													if (data.length>0) {
+													if (result.length>0) {
 														ppe_open = true;
 														if (ppe_infowindow!=null) {
 															ppe_infowindow.setMap(null);
