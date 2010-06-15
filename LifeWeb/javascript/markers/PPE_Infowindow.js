@@ -58,7 +58,11 @@
 		  image_place.style.height = "75px";
 			image_place.style.border = '4px solid #E5E5E5';
 			if (this.information_.image!=null) {
-			 	image_place.src = this.information_.image;
+				if (this.information_.image=='/images/defaults/site/default_terrestrial.jpg') {
+					image_place.src = "http://protectedplanet.net/images/defaults/site/default_terrestrial.jpg";
+				} else {
+					image_place.src = this.information_.image;
+				}
 			} else {
 				image_place.src = 'http://mw2.google.com/mw-panoramio/photos/small/5110708.jpg';
 			}
