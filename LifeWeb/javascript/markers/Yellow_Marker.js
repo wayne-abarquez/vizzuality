@@ -166,8 +166,9 @@ Yellow_Marker.prototype.createElement = function() {
 	  image_1.style.width = "auto";
 	  image_1.style.height = "auto";
 		image_1.style.padding = "1px 0 0 6px";
+		image_1.alt="Climate change mitigation";
 		image_1.src = './images/icons/1.jpg';
-		if (this.information_.ecosystem_service.e1) {
+		if (this.information_.ecosystem_service.e1!="0") {
 			good_div.appendChild(image_1);
 		}
 		
@@ -175,9 +176,10 @@ Yellow_Marker.prototype.createElement = function() {
 		image_2.style.float = 'left';
 	  image_2.style.width = "auto";
 	  image_2.style.height = "auto";
+		image_2.alt="Climate change adaption";
 		image_2.style.padding = "1px 0 0 3px";
 		image_2.src = './images/icons/2.jpg';
-		if (this.information_.ecosystem_service.e2) {
+		if (this.information_.ecosystem_service.e2!="0") {
 			good_div.appendChild(image_2);
 		}
 		
@@ -185,19 +187,21 @@ Yellow_Marker.prototype.createElement = function() {
 		image_3.style.float = 'left';
 	  image_3.style.width = "auto";
 	  image_3.style.height = "auto";
+		image_3.alt="Freshwater security";
 		image_3.style.padding = "1px 0 0 3px";
 		image_3.src = './images/icons/3.jpg';
-		if (this.information_.ecosystem_service.e3) {
+		if (this.information_.ecosystem_service.e3!="0") {
 			good_div.appendChild(image_3);
 		}
 		
 		var image_4 = document.createElement("img");
 		image_4.style.float = 'left';
 	  image_4.style.width = "auto";
+		image_4.alt="Food security";
 	  image_4.style.height = "auto";
 		image_4.style.padding = "1px 0 0 3px";
 		image_4.src = './images/icons/4.jpg';
-		if (this.information_.ecosystem_service.e4) {
+		if (this.information_.ecosystem_service.e4!="0") {
 			good_div.appendChild(image_4);
 		}
 		
@@ -205,29 +209,32 @@ Yellow_Marker.prototype.createElement = function() {
 		image_5.style.float = 'left';
 	  image_5.style.width = "auto";
 	  image_5.style.height = "auto";
+		image_5.alt="Human Health";
 		image_5.style.padding = "1px 0 0 3px";
 		image_5.src = './images/icons/5.jpg';
-		if (this.information_.ecosystem_service.e5) {
+		if (this.information_.ecosystem_service.e5!="0") {
 			good_div.appendChild(image_5);
 		}
 		
 		var image_6 = document.createElement("img");
 		image_6.style.float = 'left';
 	  image_6.style.width = "auto";
+		image_6.alt="Cultural and Spiritual Access";
 	  image_6.style.height = "auto";
 		image_6.style.padding = "1px 0 0 3px";
 		image_6.src = './images/icons/6.jpg';
-		if (this.information_.ecosystem_service.e6) {
+		if (this.information_.ecosystem_service.e6!="0") {
 			good_div.appendChild(image_6);
 		}
 		
 		var image_7 = document.createElement("img");
 		image_7.style.float = 'left';
 	  image_7.style.width = "auto";
+		image_7.alt ="Income Generation";
 	  image_7.style.height = "auto";
 		image_7.style.padding = "1px 0 0 3px";
 		image_7.src = './images/icons/7.jpg';
-		if (this.information_.ecosystem_service.e7) {
+		if (this.information_.ecosystem_service.e7!="0") {
 			good_div.appendChild(image_7);
 		}
 		

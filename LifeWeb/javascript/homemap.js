@@ -238,7 +238,7 @@ function initialize(lat,lng) {
 
 function showWhiteClusters() {
 	for (var i=0; i<white_markers.length;i++) {
-		if ((e0) || (e1 && white_markers[i].information_.ecosystem_service.e1!='0') || (e2 && white_markers[i].information_.ecosystem_service.e2!='0') || (e3 && white_markers[i].information_.ecosystem_service.e3!='0') || (e4 && white_markers[i].information_.ecosystem_service.e4!='0') || (e5 && white_markers[i].information_.ecosystem_service.e5!='0') || (e6 && white_markers[i].information_.ecosystem_service.e6!='0') || (e7 && white_markers[i].information_.ecosystem_service.e7!='0') ) {
+		if ((e0) || (e1 && white_markers[i].information_.ecosystem_service.e1!='0') || (e2 && white_markers[i].information_.ecosystem_service.e2!='0') || (e3 && white_markers[i].information_.ecosystem_service.e3!='0') || (e4 && white_markers[i].information_.ecosystem_service.e4!='0') || (e5 && white_markers[i].information_.ecosystem_service.e5!='0') || (e6 && white_markers[i].information_.ecosystem_service.e6!='0') || (e7 && white_markers[i].information_.ecosystem_service.e7!='0')) {
 			white_markers[i].setMap(map);
 		} else {
 			white_markers[i].setMap(null);
@@ -282,7 +282,7 @@ function getElementByPosition(element,checked) {
       break;
     case 'freshwater' : e3 = checked;
       break;
-    case 'food' : e4 = checked;
+    case 'Food' : e4 = checked;
       break;
 		case 'human_health' : e5= checked;
 	    break;
