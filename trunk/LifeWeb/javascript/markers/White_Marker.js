@@ -8,7 +8,6 @@ function White_Marker(latlng,opts,map) {
   this.height_ = 28;
   this.width_ = 28;
 	this.information_ = opts;
-
   var me = this;
 
 }
@@ -168,7 +167,7 @@ White_Marker.prototype.createElement = function() {
 		image_1.style.padding = "1px 0 0 6px";
 		image_1.alt="Climate change mitigation";
 		image_1.src = './images/icons/1.jpg';
-		if (this.information_.ecosystem_service.e1) {
+		if (this.information_.ecosystem_service.e1!="0") {
 			good_div.appendChild(image_1);
 		}
 		
@@ -179,7 +178,7 @@ White_Marker.prototype.createElement = function() {
 		image_2.alt="Climate change adaption";
 		image_2.style.padding = "1px 0 0 3px";
 		image_2.src = './images/icons/2.jpg';
-		if (this.information_.ecosystem_service.e2) {
+		if (this.information_.ecosystem_service.e2!="0") {
 			good_div.appendChild(image_2);
 		}
 		
@@ -190,7 +189,7 @@ White_Marker.prototype.createElement = function() {
 		image_3.alt="Freshwater security";
 		image_3.style.padding = "1px 0 0 3px";
 		image_3.src = './images/icons/3.jpg';
-		if (this.information_.ecosystem_service.e3) {
+		if (this.information_.ecosystem_service.e3!="0") {
 			good_div.appendChild(image_3);
 		}
 		
@@ -201,7 +200,7 @@ White_Marker.prototype.createElement = function() {
 	  image_4.style.height = "auto";
 		image_4.style.padding = "1px 0 0 3px";
 		image_4.src = './images/icons/4.jpg';
-		if (this.information_.ecosystem_service.e4) {
+		if (this.information_.ecosystem_service.e4!="0") {
 			good_div.appendChild(image_4);
 		}
 		
@@ -212,7 +211,7 @@ White_Marker.prototype.createElement = function() {
 		image_5.alt="Human Health";
 		image_5.style.padding = "1px 0 0 3px";
 		image_5.src = './images/icons/5.jpg';
-		if (this.information_.ecosystem_service.e5) {
+		if (this.information_.ecosystem_service.e5!="0") {
 			good_div.appendChild(image_5);
 		}
 		
@@ -223,7 +222,7 @@ White_Marker.prototype.createElement = function() {
 	  image_6.style.height = "auto";
 		image_6.style.padding = "1px 0 0 3px";
 		image_6.src = './images/icons/6.jpg';
-		if (this.information_.ecosystem_service.e6) {
+		if (this.information_.ecosystem_service.e6!="0") {
 			good_div.appendChild(image_6);
 		}
 		
@@ -234,7 +233,7 @@ White_Marker.prototype.createElement = function() {
 	  image_7.style.height = "auto";
 		image_7.style.padding = "1px 0 0 3px";
 		image_7.src = './images/icons/7.jpg';
-		if (this.information_.ecosystem_service.e7) {
+		if (this.information_.ecosystem_service.e7!="0") {
 			good_div.appendChild(image_7);
 		}
 
