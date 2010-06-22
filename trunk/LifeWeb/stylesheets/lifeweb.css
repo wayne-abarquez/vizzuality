@@ -53,11 +53,12 @@ div.legend div.filter_markers_leyend div.unclicked p a:visited {color:#3086A3;}
 div.legend div.filter_markers_leyend div.clicked{position:absolute; width:200px; height:29px; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_filter_markers_bttm_clicked.png) no-repeat 0 0; right:-3px; bottom:0; display:none;}
 div.legend div.filter_markers_leyend div.clicked p{float:right; font:bold 10px Arial; color:#999999; text-transform:uppercase; margin:10px 26px 0 0px; line-height:10px; padding:2px 0 0 0;}
 div.legend div.filter_markers_leyend div.clicked ul{position:absolute; bottom:22px; right:1px; list-style:none; z-index:1000;}
-div.legend div.filter_markers_leyend div.clicked li{float:right; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_list_content_gray.png); width:200px; height:21px; padding:1px 0 0 0; margin:0;} 
+div.legend div.filter_markers_leyend div.clicked li{position:relative;float:right; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_list_content_gray.png); width:200px; height:21px; padding:1px 0 0 0; margin:0;} 
 div.legend div.filter_markers_leyend div.clicked p a{color:#999999;}
 div.legend div.filter_markers_leyend div.clicked p a:hover {color:#999999;}
 div.legend div.filter_markers_leyend div.clicked p a:visited {color:#999999;}
 
+div.legend div.filter_markers_leyend ul li img {position:absolute; right:9px; top:2px; z-index:100;}
 
 div.legend div.filter_markers_leyend div.clicked li.line {float:left; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_list_content_line.png); width:163px; height:3px; margin:0;} 
 div.legend div.filter_markers_leyend div.clicked li.title {float:right; background:url(http://ec2-174-129-149-237.compute-1.amazonaws.com/html/LifeWeb/images/map/bkg_filter_markers_head_clicked.png) no-repeat 1px 0; width:200px; height:31px; padding:0px 0 0px 0; margin:0 0 0px 0px;} 
