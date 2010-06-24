@@ -56,10 +56,10 @@ Yellow_Marker.prototype.createElement = function() {
 		var hiddenDiv = document.createElement('div');
 		hiddenDiv.style.position = "absolute";
 		hiddenDiv.style.display = 'none';
-		hiddenDiv.style.top = '-110px';
+		hiddenDiv.style.top = '-118px';
 		hiddenDiv.style.left = '-147px'; 
     hiddenDiv.style.width = "342px";
-    hiddenDiv.style.height = "170px";
+    hiddenDiv.style.height = "125px";
 		hiddenDiv.style.background = "url('images/infowindows/bkg_yellow.png') no-repeat 0 0";
 		hiddenDiv.style.cursor = 'default';
 		
@@ -117,7 +117,7 @@ Yellow_Marker.prototype.createElement = function() {
 		} else {
 			$(link_title).text(this.information_.title);
 		}
-		$(link_title).attr('href',this.information_.href);
+		$(link_title).attr('href','http://www.cbd.int/lifeweb/project.shtml?id='+this.information_.id);
 		$(link_title).css('text-decoration','none');
 		$(link_title).hover(function(ev){
 			$(this).css('text-decoration','underline');
@@ -147,92 +147,86 @@ Yellow_Marker.prototype.createElement = function() {
 		hiddenDiv.appendChild(country);
 	
 	
-		var good_div = document.createElement('div');
-		good_div.style.margin = '9px 0 0 132px';
-		good_div.style.position = "relative";
-		good_div.style.float = "left";
-	  good_div.style.width = "193px";
-		
-		var good_for = document.createElement('img');
-		good_for.style.float = 'left';
-	  good_for.style.width = "auto";
-	  good_for.style.height = "auto";
-		good_for.style.padding = "0";
-		good_for.src = './images/infowindows/good_for.png';
-		good_div.appendChild(good_for);
-	
+			var good_div = document.createElement('div');
+			good_div.style.margin = '9px 0 0 132px';
+			good_div.style.position = "relative";
+			good_div.style.float = "left";
+		  good_div.style.width = "193px";
+			good_div.style.height = "20px";
+
+
 		var image_1 = document.createElement("img");
 		image_1.style.float = 'left';
 	  image_1.style.width = "auto";
 	  image_1.style.height = "auto";
-		image_1.style.padding = "1px 0 0 6px";
-		image_1.alt="Climate change mitigation";
+		image_1.style.padding = "1px 0 0 0";
+		image_1.title="Climate change mitigation";
 		image_1.src = './images/icons/1.jpg';
 		if (this.information_.ecosystem_service.e1!="0") {
 			good_div.appendChild(image_1);
 		}
-		
+
 		var image_2 = document.createElement("img");
 		image_2.style.float = 'left';
 	  image_2.style.width = "auto";
 	  image_2.style.height = "auto";
-		image_2.alt="Climate change adaption";
-		image_2.style.padding = "1px 0 0 3px";
+		image_2.title="Climate change adaption";
+		image_2.style.padding = "1px 0 0 4px";
 		image_2.src = './images/icons/2.jpg';
 		if (this.information_.ecosystem_service.e2!="0") {
 			good_div.appendChild(image_2);
 		}
-		
+
 		var image_3 = document.createElement("img");
 		image_3.style.float = 'left';
 	  image_3.style.width = "auto";
 	  image_3.style.height = "auto";
-		image_3.alt="Freshwater security";
-		image_3.style.padding = "1px 0 0 3px";
+		image_3.title="Freshwater security";
+		image_3.style.padding = "1px 0 0 4px";
 		image_3.src = './images/icons/3.jpg';
 		if (this.information_.ecosystem_service.e3!="0") {
 			good_div.appendChild(image_3);
 		}
-		
+
 		var image_4 = document.createElement("img");
 		image_4.style.float = 'left';
 	  image_4.style.width = "auto";
-		image_4.alt="Food security";
+		image_4.title="Food security";
 	  image_4.style.height = "auto";
-		image_4.style.padding = "1px 0 0 3px";
+		image_4.style.padding = "1px 0 0 4px";
 		image_4.src = './images/icons/4.jpg';
 		if (this.information_.ecosystem_service.e4!="0") {
 			good_div.appendChild(image_4);
 		}
-		
+
 		var image_5 = document.createElement("img");
 		image_5.style.float = 'left';
 	  image_5.style.width = "auto";
 	  image_5.style.height = "auto";
-		image_5.alt="Human Health";
-		image_5.style.padding = "1px 0 0 3px";
+		image_5.title="Human health";
+		image_5.style.padding = "1px 0 0 4px";
 		image_5.src = './images/icons/5.jpg';
 		if (this.information_.ecosystem_service.e5!="0") {
 			good_div.appendChild(image_5);
 		}
-		
+
 		var image_6 = document.createElement("img");
 		image_6.style.float = 'left';
 	  image_6.style.width = "auto";
-		image_6.alt="Cultural and Spiritual Access";
+		image_6.title="Cultural and spiritual access";
 	  image_6.style.height = "auto";
-		image_6.style.padding = "1px 0 0 3px";
+		image_6.style.padding = "1px 0 0 4px";
 		image_6.src = './images/icons/6.jpg';
 		if (this.information_.ecosystem_service.e6!="0") {
 			good_div.appendChild(image_6);
 		}
-		
+
 		var image_7 = document.createElement("img");
 		image_7.style.float = 'left';
 	  image_7.style.width = "auto";
-		image_7.alt ="Income Generation";
+		image_7.title ="Income generation";
 	  image_7.style.height = "auto";
-		image_7.style.padding = "1px 0 0 3px";
+		image_7.style.padding = "1px 0 0 4px";
 		image_7.src = './images/icons/7.jpg';
 		if (this.information_.ecosystem_service.e7!="0") {
 			good_div.appendChild(image_7);
@@ -269,19 +263,6 @@ Yellow_Marker.prototype.createElement = function() {
 			function (ev) {
 				ppe_close = true;
 				if ($(ev.target).hasClass('marker_infowindow')) {
-					if (!$(this).children('div').is(':visible')) {
-						if (this_.map_.getZoom()<6) {
-							this_.map_.setCenter(this_.latlng_);
-							this_.map_.setZoom(6);
-							this_.map_.panBy(0,-70);
-						} else {
-							if (!$(this).children('div').is(':visible')) {
-								this_.map_.setCenter(this_.latlng_);
-								this_.map_.panBy(0,-70);
-							}
-						}
-					}
-
 					if ( $(this).children('div').is(':visible')) {
 						$(this).children('div').hide();
 					} else {	
