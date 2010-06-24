@@ -76,6 +76,7 @@
 			title.style.height = "37px";
 			title.style.overflow = "hidden";
 
+
 			var link_title = document.createElement('a');
 			link_title.style.font = 'bold 15px Arial';
 			link_title.style.color = '#FFFFFF';
@@ -102,7 +103,11 @@
 			country.style.margin = '15px 0 0 132px';
 			country.style.font = 'normal 13px Arial';
 			country.style.color = '#999999';
-			$(country).html(this.information_.desig_eng);
+			if (this.information_.desig_eng.length>30) {
+				$(country).text(this.information_.desig_eng.substr(0,27)+'...');
+			} else {
+				$(country).text(this.information_.desig_eng);
+			}
 			div.appendChild(country);
 			
 			var visit = document.createElement('p');
