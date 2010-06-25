@@ -15,7 +15,10 @@ var ppe_marker;
 var ppe_information;
 var ppe_open = false;
 var lastMask = 1000;
-
+var ppeOverlay;
+var ppe_overlay;
+var ppe_layer_visible = true;
+var double_click = false;
 
 $(document).ready(function() {
 
@@ -33,6 +36,44 @@ $(document).ready(function() {
 			 	$('div.map_carbon_container div.modal').css('height',Tam[1]+'px');
 			};
 		}
+		
+		
+	  $('div.filterButtons div a').click(function(ev){
+		  ev.stopPropagation();
+		  ev.preventDefault();
+		  if ($(this).parent().hasClass('unclicked')){
+	      $(this).parent().parent().children('div.list').show();
+	      $(this).parent().removeClass('unclicked');
+	      $(this).parent().addClass('clicked');                   
+		  } else {
+		    $(this).parent().parent().children('div.list').fadeOut();
+		    $(this).parent().removeClass('clicked');
+		    $(this).parent().addClass('unclicked');                                         
+		  }
+	  });
+	
+	
+		//Layers checkboxes
+		$('div.list ul li a').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			if ($(this).parent().hasClass('checked')) {
+				$(this).parent().removeClass('checked');
+				$(this).parent().addClass('unchecked');		
+				getLayerByPosition(this,false);
+			} else {
+				$(this).parent().removeClass('unchecked');
+				$(this).parent().addClass('checked');	
+				getLayerByPosition(this,true);
+			}
+		});
+		
+		$('div#map_tools span').hover(function(ev){
+			$('#area_tooltip').stop().fadeTo('fast',1);
+		},
+		function(ev){
+			$('#area_tooltip').stop().fadeTo('slow',0);
+		});
 	
 	
 		if ($('#search_text').val()!='Search by city, area, ...') {
@@ -82,7 +123,7 @@ function initialize() {
 		//wcmc layers
 		var copy_wcmc = new GCopyrightCollection("g");
 		copy_wcmc.addCopyright(new GCopyright('Carbon',new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)),0,'2010 UNEP-WCMC'));
-		var tilelayer = new GTileLayer(copy_wcmc);
+		tilelayer = new GTileLayer(copy_wcmc);
 		tilelayer.getTileUrl = function(xy,z) { return 'http://downloads.wdpa.org/ArcGIS/rest/services/carbon/Carbon_webmerc_93/MapServer/tile/'+z+'/'+xy.y+'/'+xy.x};
 		tilelayer.isPng = function() { return true;};
 		tilelayer.getOpacity = function() { return 0.7; }
@@ -92,26 +133,43 @@ function initialize() {
 
 		var copy_gbif = new GCopyrightCollection("©");
 		copy_gbif.addCopyright(new GCopyright(' ',new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)),0,' '));
-		var tilelayer_ppe = new GTileLayer(copy_gbif);
+		tilelayer_ppe = new GTileLayer(copy_gbif);
 		tilelayer_ppe.getTileUrl = function(xy,z) { return 'http://184.73.201.235/blue/'+z+'/'+xy.x+'/'+xy.y; };
 		tilelayer_ppe.isPng = function() { return true;};
 		tilelayer_ppe.getOpacity = function() { return 1; }
 
-		var ppe_overlay = new GTileLayerOverlay(tilelayer_ppe);
+		ppe_overlay = new GTileLayerOverlay(tilelayer_ppe);
 		map.addOverlay(ppe_overlay);
 
 		//click map event
-		GEvent.addListener(map, "click", function(overlay, latlng, overlaylatlng) {
-			if (ppe_open) {
-				setTimeout('map.removeOverlay(ppe_marker)',500);
-				ppe_open = false;
-			} else {
-	     	if (latlng!=null && !$('#draw').hasClass('selected')) {
-					showLoader();
-					checkPointArea(latlng);
-				}
-			}
+		GEvent.addListener(map, "dblclick", function(overlay, latlng) {
+			double_click = true;
+    });
 
+
+		//click map event
+		GEvent.addListener(map, "click", function(overlay, latlng, overlaylatlng) {
+			setTimeout(
+				function(ev){
+					if (!double_click) {
+						if (ppe_layer_visible) {
+							if (ppe_open) {
+								setTimeout('map.removeOverlay(ppe_marker)',500);
+								ppe_open = false;
+							} else {
+					     	if (latlng!=null && !$('#draw').hasClass('selected')) {
+									showLoader();
+									checkPointArea(latlng);
+								}
+							}
+						}
+					} else {
+						setTimeout(function(ev){
+							double_click = false;
+						},200);
+					}
+				},200);
+			
     });
 
     select("select");
@@ -147,6 +205,10 @@ function startShape() {
 	if (polygon!=null) {
 		map.removeOverlay(polygon);
 	}
+	if (ppe_marker!=null) {
+		map.removeOverlay(ppe_marker);
+	}
+	
 	$('strong.area').html('');
 	$('strong.carbon').html('');
   var color = getColor(false);
@@ -222,7 +284,7 @@ function getCarbonHeight(polygon){
 			dataType: 'json',
   		success: function(result){
 				$('#loader_image').hide();
-				$('strong.carbon').text(Math.floor(result.sum_Band1));
+				$('strong.carbon').text(Math.floor(result.sum_Band1).to_spaces());
   		},
     	error:function (xhr, ajaxOptions, thrownError){
 				$('#loader_image').hide();
@@ -470,6 +532,27 @@ function TamVentana() {
   }
   return Tamanyo;
 }
+
+	$.fn.digits = function(){ 
+	    return this.each(function(){ 
+	        $(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1 ") ); 
+	    })
+	}
+	
+	$.fn.to_spaces = function(){ 
+	    return this.replace(',',' ');
+	}
+	
+	
+	function getLayerByPosition(element,visible) {
+		switch ($(element).attr('id')) {
+		    case 'protected_layer' : if (visible) {ppe_overlay.show(); ppe_layer_visible = true;} else {ppe_overlay.hide(); ppe_layer_visible = false;};
+		      break;
+		    case 'carbon_layer': if (visible) {ppeOverlay.show();} else {ppeOverlay.hide();};
+		      break;
+		  }
+	}
+	
 
 
 
