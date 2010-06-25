@@ -20,7 +20,6 @@ $(document).ready(function(){
 	  url: '/amfphp/json.php/RunnitServices.getRunsCloseToAnotherForMap/'+ carrera_id,
 	  success: function(result) {
 			var data = JSON.parse(result);
-			console.log(data);
 
 			var markers = [];
 			var bounds = new google.maps.LatLngBounds();
