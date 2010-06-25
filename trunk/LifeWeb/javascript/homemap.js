@@ -115,7 +115,6 @@ function initialize(lat,lng) {
 				  $('div.filterButtons div a').click(function(ev){
 					  ev.stopPropagation();
 					  ev.preventDefault();
-
 					  if ($(this).parent().hasClass('unclicked')){
 				      $(this).parent().parent().children('div.list').show();
 				      $(this).parent().removeClass('unclicked');
@@ -125,7 +124,6 @@ function initialize(lat,lng) {
 					    $(this).parent().removeClass('clicked');
 					    $(this).parent().addClass('unclicked');                                         
 					  }
-
 				  });
 
 
