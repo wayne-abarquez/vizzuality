@@ -70,8 +70,7 @@ $(document).ready(function() {
 		
 		$('div#map_tools span').hover(function(ev){
 			$('#area_tooltip').stop().fadeTo('fast',1);
-		},
-		function(ev){
+		},function(ev){
 			$('#area_tooltip').stop().fadeTo('slow',0);
 		});
 	
@@ -225,8 +224,10 @@ function startShape() {
 			$('#loader_image').show();
 			getCarbonHeight(polygon);
 
-			$('strong.area').html(polygon_area);
-			$('div.modal_window p.area').html(polygon_area);
+			$('strong.area').html($().number_format(polygon_area, {numberOfDecimals:0,
+			                                                       decimalSeparator: '.',
+			                                                       thousandSeparator: ' '}));
+			//$('div.modal_window p.area').html(polygon_area);
 			getCountry(polygon.getBounds().getCenter());
 	  }, color);
 }
@@ -417,11 +418,11 @@ function getCountry(latlng) {
     geocoder.getLocations(
       latlng,
       function(result) {
-				if (result.Placemark!=undefined) {
-					$('strong.country').text("X% of "+ result.Placemark[0].AddressDetails.Country.CountryName +"'s total carbon");
-				} else {
-					$('strong.country').text("X% of this region total carbon");
-				}
+				// if (result.Placemark!=undefined) {
+				// 	$('strong.country').text("X% of "+ result.Placemark[0].AddressDetails.Country.CountryName +"'s total carbon");
+				// } else {
+				// 	$('strong.country').text("X% of this region total carbon");
+				// }
       }
     );
   }
@@ -488,8 +489,9 @@ function makePolygonOperations() {
 	$('#loader_image').show();
 	polygon_area = (Math.floor(area / 10000) / 100).toFixed(0);
 	getCarbonHeight(polygon);
-	$('strong.area').html(polygon_area);
-	$('div.modal_window p.area').html(polygon_area);
+	$('strong.area').html($().number_format(polygon_area, {numberOfDecimals:0,
+	                                                       decimalSeparator: '.',
+	                                                       thousandSeparator: ' '}));
 	getCountry(polygon.getBounds().getCenter());
 }
 
@@ -500,8 +502,10 @@ function onUpdatePolygon() {
 	$('#loader_image').show();
 	polygon_area = (Math.floor(area / 10000) / 100).toFixed(0);
 	getCarbonHeight(polygon);
-	$('strong.area').html(polygon_area);
-	$('div.modal_window p.area').html(polygon_area);
+	$('strong.area').html($().number_format(polygon_area, {numberOfDecimals:0,
+	                                                       decimalSeparator: '.',
+	                                                       thousandSeparator: ' '}));
+	//$('div.modal_window p.area').html(polygon_area);
 	getCountry(polygon.getBounds().getCenter());
 }
 
