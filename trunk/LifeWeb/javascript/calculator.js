@@ -275,7 +275,8 @@ function showAddress(address) {
 
 function getCarbonHeight(polygon){
 	var geojson = polys2geoJson([polygon]);
-	var dataObj = {"area":polygon_area,"geojson": geojson};    
+	var dataObj = {"area":polygon_area,"geojson": geojson};  
+	  
 	$.ajax({
       type: 'POST',
   		url: "/proxy.php?mode=native&url="+escape("http://ec2-174-129-149-237.compute-1.amazonaws.com/carbon"),	
@@ -285,7 +286,9 @@ function getCarbonHeight(polygon){
 			dataType: 'json',
   		success: function(result){
 				$('#loader_image').hide();
-				$('strong.carbon').text(Math.floor(result.sum_Band1).to_spaces());
+				$('strong.carbon').html($().number_format(Math.floor(result.sum_Band1), {numberOfDecimals:0,
+				                                                       decimalSeparator: '.',
+				                                                       thousandSeparator: ' '}));
   		},
     	error:function (xhr, ajaxOptions, thrownError){
 				$('#loader_image').hide();
@@ -543,9 +546,6 @@ function TamVentana() {
 	    })
 	}
 	
-	$.fn.to_spaces = function(){ 
-	    return this.replace(',',' ');
-	}
 	
 	
 	function getLayerByPosition(element,visible) {
