@@ -219,8 +219,8 @@ div.modal_window div.image {position:relative; float:left; width:127px; margin:0
 div.modal_window div.image img {padding:5px; border:1px solid #F2F2F2; border-top:none; width:115px; height:75px; margin:0;}
 div.modal_window div.image span.shadow {position:absolute; left:0; bottom:0px; background:url(../images/calculator/shadow_image.png) no-repeat 0 0; width:127px; height:5px;}
 div.modal_window div.text {position:relative; float:left; width:330px; padding:0; margin:0; height:105px;}
-div.modal_window div.text p.calculating {float:left; text-align:center; width:330px; font:normal 17px Arial; color:#666666; padding:5px 0 0 0; margin:0; line-height:26px;}
-div.modal_window div.text p.bio {float:left; width:330px; font:bold 13px Arial; color:#4D88A3; padding:7px 0 0 0; margin:0;}
+div.modal_window div.text p.calculating {float:left; text-align:center; width:330px; font:normal 16px Arial; color:#666666; padding:0; margin:0; line-height:23px;}
+div.modal_window div.text p.bio {float:left; width:330px; font:bold 12px Arial; color:#4D88A3; padding:7px 0 0 0; margin:0; text-align:center;}
 div.modal_window div.text p.calculating strong.carbon {padding:10px 0; font-size:25px;}
 div.modal_window div.text p sup {font-size:6px;}
 div.modal_window a.another {float:left; width:160px; height:19px; padding:8px 0; margin:20px 0 0 155px; text-align:center; background:url(../images/calculator/select_another.png) no-repeat 0 0; font:bold 15px Arial; color:#EBEBEB; text-decoration:none; letter-spacing:-1px; line-height:19px;}
