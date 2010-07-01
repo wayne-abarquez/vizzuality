@@ -273,6 +273,7 @@ function showAddress(address) {
   }
 }
 
+
 function getCarbonHeight(polygon){
 	var geojson = polys2geoJson([polygon]);
 	var dataObj = {"area":polygon_area,"geojson": geojson};  
@@ -295,6 +296,29 @@ function getCarbonHeight(polygon){
      	}
 		});
 }
+
+
+function getBioPercentage(polygon){
+	var geojson = polys2geoJson([polygon]);
+	var dataObj = {"area":polygon_area,"geojson": geojson};  
+	  
+	$.ajax({
+      type: 'POST',
+  		url: "http://ec2-174-129-149-237.compute-1.amazonaws.com/kba?polygon_id=12345&area=23456",	
+  		//url: "/carbon",							
+  		data: dataObj,
+  		cache: false,
+			dataType: 'json',
+  		success: function(result){
+				alert(result);
+  		},
+    	error:function (xhr, ajaxOptions, thrownError){
+				$('#loader_image').hide();
+     	}
+		});
+}
+
+
 
 function polys2geoJson(polygons) {
     var geojson={"type":"MultiPolygon"};
