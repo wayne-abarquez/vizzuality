@@ -307,7 +307,7 @@ function getBioPercentage(area, pol_id){
   		cache: false,
 			dataType: 'json',
   		success: function(result){
-				$('p.bio strong').text(result.kbaperc);
+				$('p.bio strong').text(result.kbaperc.toFixed(2));
   		},
     	error:function (xhr, ajaxOptions, thrownError){
 				$('#loader_image').hide();
