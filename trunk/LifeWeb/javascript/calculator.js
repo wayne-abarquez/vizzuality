@@ -277,7 +277,6 @@ function showAddress(address) {
 function getCarbonHeight(polygon){
 	var geojson = polys2geoJson([polygon]);
 	var dataObj = {"area":polygon_area,"geojson": geojson};  
-	 
 	$.ajax({
       type: 'POST',
   		url: "/proxy.php?mode=native&url="+escape("http://ec2-174-129-149-237.compute-1.amazonaws.com/carbon"),	
@@ -307,7 +306,7 @@ function getBioPercentage(area, pol_id){
   		cache: false,
 			dataType: 'json',
   		success: function(result){
-				$('p.bio strong').text(result.kbaperc.toFixed(2));
+				$('p.bio strong').text(parseInt(result.kbaperc).toFixed(2));
   		},
     	error:function (xhr, ajaxOptions, thrownError){
 				$('#loader_image').hide();
