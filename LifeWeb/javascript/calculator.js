@@ -290,6 +290,7 @@ function getCarbonHeight(polygon){
 				$('strong.carbon').html($().number_format(Math.floor(result.sum_Band1), {numberOfDecimals:0,
 				                                                       decimalSeparator: '.',
 				                                                       thousandSeparator: ' '}));
+				getBioPercentage(polygon_area,result.polygon_id);
   		},
     	error:function (xhr, ajaxOptions, thrownError){
 				$('#loader_image').hide();
@@ -298,19 +299,15 @@ function getCarbonHeight(polygon){
 }
 
 
-function getBioPercentage(polygon){
-	var geojson = polys2geoJson([polygon]);
-	var dataObj = {"area":polygon_area,"geojson": geojson};  
+function getBioPercentage(area, pol_id){
 	  
 	$.ajax({
       type: 'POST',
-  		url: "http://ec2-174-129-149-237.compute-1.amazonaws.com/kba?polygon_id=12345&area=23456",	
-  		//url: "/carbon",							
-  		data: dataObj,
+  		url: "/kba?polygon_id="+pol_id+"&area="+area,	
   		cache: false,
 			dataType: 'json',
   		success: function(result){
-				alert(result);
+				$('p.bio strong').text(result);
   		},
     	error:function (xhr, ajaxOptions, thrownError){
 				$('#loader_image').hide();
