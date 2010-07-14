@@ -1,0 +1,21 @@
+<html><head><script type="text/javascript" src="http://maps.google.com/maps?gwt=1&amp;file=api&amp;sensor=false&amp;v=2.x&amp;key=ABQIAAAAsr1EK3jOnsy7O8lboKSKVBTLybsNN1QQLL3yd1mH-Xs1H21zbxRgDSEWauB7ePR3UqCHnxy_ubydEQ"> 
+ 
+</script> 
+<script type="text/javascript"> 
+function initialize() {
+  if (GBrowserIsCompatible()) {
+    var map = new GMap2(document.getElementById("map_canvas"));
+    map.setCenter(new google.maps.LatLng(-23.006367043493974,43.62248182296753),17);
+    var l = new GLayer("ft:216828");
+    l.setParameter("h", "false");
+    l.setParameter("s", "select+col2+from+216828");
+    
+    map.addOverlay(l);
+    map.setUIToDefault();
+    map.enableScrollWheelZoom();
+    map.addControl(new GMapTypeControl());
+    map.addMapType(G_PHYSICAL_MAP);
+  }
+}
+</script></head> 
+<body onload="initialize()" onunload="GUnload()"><div id="map_canvas" style="width: 100%; height: 100%"></div></body></html>
