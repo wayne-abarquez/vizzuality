@@ -4,8 +4,8 @@ span.clear{clear:both;}
 div.left{float:left; width:auto;}
 div.right{float:right; width:auto;}
 a:focus{outline:none}
-
-a {float:left; font:bold 14px Arial; color:#333333; margin-right:20px;}
+h1 {float:left; font-family:Arial; text-align:center; width:100%; padding-bottom:20px;} 
+a {float:left; font:bold 14px Arial; color:#333333; text-align:center; width:100%;}
 a:hover {color:#000000;}
 /* HOME */
 
