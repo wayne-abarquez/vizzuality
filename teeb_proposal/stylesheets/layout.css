@@ -9,7 +9,7 @@ a {float:left; font:bold 14px Arial; color:#333333; text-align:center; width:100
 a:hover {color:#000000;}
 /* HOME */
 
-#container { margin: 0px auto; 	width: 1024px;  height: 2340px; background:url(../images/body.png); }
+#container { margin: 0px auto; 	width: 1024px;  height: 2204px; background:url(../images/body.png); }
 #container.proposal3 { background:url(../images/bkg3.jpg); height:2020px;}
 #container.index { background-image:none; height:auto;} 
 
