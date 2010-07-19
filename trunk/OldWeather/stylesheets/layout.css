@@ -38,6 +38,13 @@ div.data div.shadow_topbottom.bottom {background-position:center -3px; height:5p
 div.data div.information {float:left; width:890px; background:white; height:1000px;}
 
 
+/*VESSELS-LIST*/
+div.vessels_list {float:left; margin:30px 0 0 30px;}
+div.vessels_list h1 {font:normal 25px "Clarendon LT"; color:#666666; letter-spacing:-1.0px;}
+div.filter {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:1000px;}
+div.filter.vessel {background:url(../images/vessels/container_bkg.png) repeat-y 0 0 white;}
+div#vertex_right {background:url(../images/common/vertex_right.png) no-repeat 0 0; width:40px; height:39px; position:absolute; left:-16px; top:29px;} 
+
 /*VESSEL*/
 div.data div.information.vessel {background:url(../images/vessels/container_bkg.png) repeat-y 0 0 white;}
 
