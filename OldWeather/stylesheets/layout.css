@@ -53,17 +53,26 @@ div.vessels_list ul li div.info {float:left; margin:0 0 0 8px;}
 div.vessels_list ul li div.info p.ship {float:left; font:bold 15px Arial; color:#666666; width:100%;}
 div.vessels_list ul li div.info p.travel {float:left; font:normal 13px Arial; color:#999999; margin:2px 0 0 0;}
 div.vessels_list ul li div.info p.travel img {width:10px; height:7px;}
-	
-div.vessels_list ul li div.info div.bar_empty {float:left; margin:8px 0 0 0; background:url(../images/common/bar_empty.png) no-repeat 0 0; width:307px; height:6px;}
+div.vessels_list ul li div.info div.bar_empty {float:left; margin:8px 0 0 0; background:url(../images/common/bar_empty.png) no-repeat 0 0; width:307px; height:6px; overflow:hidden;}
+
+/*div.bar_empty.width() - a.left_orange.width() - span.orange.width() - span.space.width() - a.right_orange.width()*/
 
 /* PROGRESS BAR */
-a.left_orange {float:left; background:url(../images/common/left_orange.png) no-repeat 0 0; width:2px; height:6px; margin:0;}
-a.left_cyan {float:left; background:url(../images/common/left_cyan.png) no-repeat 0 0; width:2px; height:6px; margin:0;}
-span.orange {float:left; height:6px; background-color:#DB4A18; margin:0 0 0 2px;}
-span.cyan {float:left; height:6px; background-color:#00CFD7; margin:0 0 0 2px;}
-span.space {float:left; background-color:#FFFFFF; width:1px; height:6px;}
-span.right_orange {float:right; position:absolute; top:0; left:3px; background:url(../images/common/right_orange.png) no-repeat 0 0;}
-span.right_cyan {float:right; top:0; left:3px; background:url(../images/common/right_orange.png) no-repeat 0 0;}
+div.bar_empty a {cursor:pointer;}
+a.left {float:left; height:6px; margin:0; width:auto;}
+a.left.orange {background:url(../images/common/left_orange.png) no-repeat 0 0;}
+a.left.cyan {background:url(../images/common/left_cyan.png) no-repeat 0 0;}
+
+span.left {float:left; margin:0 0 0 2px; }
+span.right {float:right; margin:0 2px 0 0; }
+span.orange {background-color:#DB4A18; height:6px; width:auto;}
+span.cyan {background-color:#00CFD7; height:6px; width:auto;}
+
+span.space {float:left; background-color:#FFFFFF; width:1px; height:6px; }
+
+a.right {float:right; height:6px; width:2px; }
+a.orange {background:url(../images/common/right_orange.png) no-repeat right 0;}
+a.cyan {background:url(../images/common/right_cyan.png) no-repeat right 0;}
 /* ---------- */
 
 div.vessels_list ul li span.line {float:left; background:url(../images/common/line_divide.png) no-repeat 0 0; width:2px; height:64px; margin:0 10px;}
@@ -75,10 +84,7 @@ div.vessels_list ul li div.users div.following a {font:normal 13px Arial; color:
 div.vessels_list ul li div.users div.following a:hover {color:#00B2B9;}
 div.vessels_list ul li div.users div.following span {position:absolute; color:#B5B5B5; background:url(../images/common/follow_checked.png) no-repeat 0 2px; padding:0 0 0 15px; font:normal 13px Arial; top:0; left:0; display:none;}
 
-
-
-
-div.filter {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:1000px;}
+div.filter {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:800px;}
 div.filter div.content {float:left; margin:30px 0 0 18px; }
 div.filter h1 {font:normal 25px "Clarendon LT"; color:#666666; letter-spacing:-1.0px; padding-bottom:20px;}
 
@@ -97,13 +103,8 @@ div.filter ul.links li a {font:normal 13px Arial; color:#DA4A18; text-decoration
 div.filter ul.links li a:hover {color:#A53611;}
 div.filter ul.links li a.view_all {text-decoration:underline;}
 
-
-
-
 div.filter.vessel {background:url(../images/vessels/container_bkg.png) repeat-y 0 0 white;}
-
 div#vertex_right {background:url(../images/common/vertex_right.png) no-repeat 0 0; width:22px; height:39px; position:absolute; left:-15px; top:29px;} 
-
 
 
 /*VESSEL*/
