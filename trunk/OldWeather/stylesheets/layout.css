@@ -90,9 +90,11 @@ div.filter.vessel {background:url(../images/vessels/container_bkg.png) repeat-y 
 
 div#vertex_right {background:url(../images/common/vertex_right.png) no-repeat 0 0; width:22px; height:39px; position:absolute; left:-15px; top:29px;} 
 
+
+
 /*VESSEL*/
 div.data div.information.vessel {background:url(../images/vessels/container_bkg.png) repeat-y 0 0 white;}
-div.data div.information div.left {float:left; width:229px; padding:30px;}
+div.data div.information div.left {float:left; width:229px; padding:25px 30px;}
 div.data div.information div.left h3 {float:left; width:100%; font:normal 25px Arial; color:#666666;}
 div.data div.information div.left p {float:left; margin:4px 0 0 0; width:100%; font:normal 13px Arial; color:#929292;}
 div.data div.information div.left div.image {float:left; margin:15px 0 0 0; width:219px; padding:4px; border:1px solid #c6c6c6; background:#E0e0e0;}
@@ -111,9 +113,9 @@ div.data div.information div.right p {float:left; width:100%; font:normal 13px A
 div.data div.information.vessel_map {background:url(../images/vessels/right_column_bkg.png) repeat-y right 0 white;}
 div.data div.information.vessel_map div#map {float:left; width:100%; height:400px;}
 div.data div.information.vessel_map div.orange_container {float:left; width:100%; height:130px; background:url(../images/vessels/orange_bkg.png) repeat-x 0 0;}
-div.data div.information.vessel_map div.orange_container h1 {float:left; width:100%; font:normal 43px "Clarendon LT"; color:#FFFFFF; text-align:center; padding:20px 0 0 0;}
-div.data div.information.vessel_map div.orange_container p {float:left; width:100%; font:normal 27px "Clarendon LT"; color:#FFFFFF; text-align:center;}
-div.data div.information.vessel_map div h4 {float:left; width:100%; font:normal 25px "Clarendon LT"; color:#666666;}
+div.data div.information.vessel_map div.orange_container h1 {float:left; width:100%; font:normal 43px Arial; color:#FFFFFF; text-align:center; padding:20px 0 0 0;}
+div.data div.information.vessel_map div.orange_container p {float:left; width:100%; font:normal 27px Arial; color:#FFFFFF; text-align:center;}
+div.data div.information.vessel_map div h4 {float:left; width:100%; font:normal 25px Arial; color:#666666;}
 div.data div.information.vessel_map div p {float:left; width:100%; font:normal 15px Arial; color:#666666; padding:3px 0 0;}
 div.data div.information.vessel_map div p a {color:#EB593A;}
 div.data div.information.vessel_map div p a:hover {text-decoration:none;}
