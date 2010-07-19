@@ -19,13 +19,13 @@ div#header div.right ul {float:right; width:700px;}
 div#header div.right ul li {float:right; width:auto; margin:0 5px;}
 div#header div.right ul li.last {margin:0 0 0 5px;}
 div#header div.right ul li a {float:left; padding:0 0 0 2px; height:23px; background:url(../images/common/item_left.png) no-repeat 0 0; text-decoration:none;}
-div#header div.right ul li a span {float:left; padding:4px 7px 4px 5px; height:15px; background:url(../images/common/item_right.png) no-repeat right 0; font:bold 13px Arial; color:white; cursor:pointer;}
+div#header div.right ul li a span {float:left; padding:4px 7px 4px 5px; height:15px; background:url(../images/common/item_right.png) no-repeat right 0; font:bold 13px Arial; color:white; cursor:pointer; text-shadow: #909797 0 1px;}
 div#header div.right ul li.selected a {background-position:0 -23px;}
-div#header div.right ul li.selected a span {background-position:right -23px; color:#999999;}
+div#header div.right ul li.selected a span {background-position:right -23px; color:#999999; text-shadow:none;}
 div#header div.right ul li.started a {background:url(../images/common/started_left.png) no-repeat 0 0;}
-div#header div.right ul li.started a span {background:url(../images/common/started_right.png) no-repeat right 0; color:white;}
+div#header div.right ul li.started a span {background:url(../images/common/started_right.png) no-repeat right 0; color:white; text-shadow:#00A6A6 0 1px;}
 div#header div.right ul li a:hover {background-position:0 -23px;}
-div#header div.right ul li a:hover span {background-position:right -23px; color:#999999;}
+div#header div.right ul li a:hover span {background-position:right -23px; color:#999999; text-shadow:none;}
 div#header div.right ul li.selected.started a {background-position:0 -23px;}
 div#header div.right ul li.selected.started a span {background-position:right -23px; color:white;}
 div#header div.right ul li.started a:hover span {background-position:right -23px; color:white;}
@@ -108,7 +108,29 @@ div.data div.information div.right p {float:left; width:100%; font:normal 13px A
 
 
 /* VESSEL MAP */
-div.data div.information div#map {float:left; width:100%; height:400px;}
+div.data div.information.vessel_map {background:url(../images/vessels/right_column_bkg.png) repeat-y right 0 white;}
+div.data div.information.vessel_map div#map {float:left; width:100%; height:400px;}
+div.data div.information.vessel_map div.orange_container {float:left; width:100%; height:130px; background:url(../images/vessels/orange_bkg.png) repeat-x 0 0;}
+div.data div.information.vessel_map div.orange_container h1 {float:left; width:100%; font:normal 43px "Clarendon LT"; color:#FFFFFF; text-align:center; padding:20px 0 0 0;}
+div.data div.information.vessel_map div.orange_container p {float:left; width:100%; font:normal 27px "Clarendon LT"; color:#FFFFFF; text-align:center;}
+div.data div.information.vessel_map div h4 {float:left; width:100%; font:normal 25px "Clarendon LT"; color:#666666;}
+div.data div.information.vessel_map div p {float:left; width:100%; font:normal 15px Arial; color:#666666; padding:3px 0 0;}
+div.data div.information.vessel_map div p a {color:#EB593A;}
+div.data div.information.vessel_map div p a:hover {text-decoration:none;}
+div.data div.information.vessel_map div.left_map {float:left; width:541px; padding:25px 30px;}
+div.data div.information.vessel_map div.left_map div.block {float:left; width:173px; margin:25px 10px 0 0;}
+div.data div.information.vessel_map div.left_map div.block.last {margin:25px 0 0 0;}
+div.data div.information.vessel_map div.left_map div.block div.gray_cont {float:left; width:173px; height:96px; background:url(../images/vessels/gray_cont.png) no-repeat 0 0;}
+div.data div.information.vessel_map div.left_map div.block h5 {float:left; margin:15px 0 0 0; width:100%; font:bold 15px Arial; color:#333333;}
+div.data div.information.vessel_map div.left_map div.block p {float:left; width:100%; font:normal 15px Arial; color:#333333;}
+div.data div.information.vessel_map div.left_map div.block a {color:#EB593A; text-decoration:none;}
+div.data div.information.vessel_map div.left_map div.block a:hover {text-decoration:underline;}
+
+
+div.data div.information.vessel_map div.right_map {position:relative; float:right; width:229px; padding:25px 30px;}
+div.data div.information.vessel_map div.right_map img.arrow {position:absolute; left:0; top:28px; width:13px; height:25px;}
+div.data div.information.vessel_map div.right_map div.percentage {float:left; margin:25px 0 0 0; width:229px; height:170px; background:url(../images/vessels/data_right_bkg.png) no-repeat 0 0;}
+
 
 
 
