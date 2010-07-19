@@ -57,11 +57,11 @@ div.vessels_list ul li div.info span.bar_empty {float:left; margin:8px 0 0 0; ba
 div.vessels_list ul li span.line {float:left; background:url(../images/common/line_divide.png) no-repeat 0 0; width:2px; height:64px; margin:0 10px;}
 div.vessels_list ul li div.users {float:left; margin:8px 0px 0 0; width:140px;}
 div.vessels_list ul li div.users p {float:left; font:normal 13px Arial; color:#666666; margin:0; width:100%;}
-div.vessels_list ul li div.users a {float:left; font:normal 13px Arial; color:#00CFD7; text-decoration:underline; margin:3px 0 0 0; width:100%;}
-div.vessels_list ul li div.users a:hover {color:#00B2B9;}
 
-
-
+div.vessels_list ul li div.users div.following {float:left;  margin:3px 0 0 0; width:100%; position:relative;}
+div.vessels_list ul li div.users div.following a {font:normal 13px Arial; color:#00CFD7; text-decoration:underline; position:absolute; top:0; left:0; }
+div.vessels_list ul li div.users div.following a:hover {color:#00B2B9;}
+div.vessels_list ul li div.users div.following span {position:absolute; color:#B5B5B5; background:url(../images/common/follow_checked.png) no-repeat 0 2px; padding:0 0 0 15px; font:normal 13px Arial; top:0; left:0; display:none;}
 
 
 div.filter {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:1000px;}
