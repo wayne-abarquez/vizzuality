@@ -1,5 +1,6 @@
 	
 	$(document).ready(function(){ 
+
 		if ($('div#map').is(':visible')) {
 			var myLatlng = new google.maps.LatLng(-34.397, 150.644);
 		    var myOptions = {
@@ -11,4 +12,13 @@
 		   var map = new google.maps.Map(document.getElementById("map"), myOptions);
 		}
 
+		/* VESSELS_LIST */
+		$('div.following a').click(function(ev){
+			console.log('entra');
+			ev.stopPropagation();
+		    ev.preventDefault();
+		 	$(this).hide();
+		    $(this).parent().children('span').show();
+
+		});
 	});
