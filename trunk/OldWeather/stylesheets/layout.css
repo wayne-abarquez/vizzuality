@@ -125,6 +125,9 @@ div.filter.vessel {background:url(../images/vessels/container_bkg.png) repeat-y 
 div#vertex_right {background:url(../images/common/vertex_right.png) no-repeat 0 0; width:22px; height:39px; position:absolute; left:-15px; top:29px;} 
 
 
+
+
+
 /*VESSEL*/
 div.data div.information.vessel {background:url(../images/vessels/container_bkg.png) repeat-y 0 0 white;}
 div.data div.information div.left {float:left; width:229px; padding:25px 30px;}
@@ -143,7 +146,7 @@ div.data div.information div.right p {float:left; width:100%; font:normal 13px A
 
 
 /* VESSEL MAP */
-div.data div.information.vessel_map {background:url(../images/vessels/right_column_bkg.png) repeat-y right 0 white;}
+div.data div.information.vessel_map {background:url(../images/vessels/right_column_bkg.png) repeat-y right 0;}
 div.data div.information.vessel_map div#map {float:left; width:100%; height:400px;}
 div.data div.information.vessel_map div.orange_container {float:left; width:100%; height:130px; background:url(../images/vessels/orange_bkg.png) repeat-x 0 0;}
 div.data div.information.vessel_map div.orange_container h1 {float:left; width:100%; font:normal 43px Arial; color:#FFFFFF; text-align:center; padding:20px 0 0 0;}
@@ -152,32 +155,42 @@ div.data div.information.vessel_map div h4 {float:left; width:100%; font:normal 
 div.data div.information.vessel_map div p {float:left; width:100%; font:normal 15px Arial; color:#666666; padding:3px 0 0;}
 div.data div.information.vessel_map div p a {color:#EB593A;}
 div.data div.information.vessel_map div p a:hover {text-decoration:none;}
-div.data div.information.vessel_map div.left_map {float:left; width:541px; padding:25px 30px;}
+div.data div.information.vessel_map div.left_map {float:left; width:541px; padding:25px 30px; height:250px; background:white;}
 div.data div.information.vessel_map div.left_map div.block {float:left; width:173px; margin:25px 10px 0 0;}
 div.data div.information.vessel_map div.left_map div.block.last {margin:25px 0 0 0;}
 div.data div.information.vessel_map div.left_map div.block div.gray_cont {float:left; width:173px; height:96px; background:url(../images/vessels/gray_cont.png) no-repeat 0 0;}
 div.data div.information.vessel_map div.left_map div.block h5 {float:left; margin:15px 0 0 0; width:100%; font:bold 15px Arial; color:#333333;}
-div.data div.information.vessel_map div.left_map div.block p {float:left; width:100%; font:normal 15px Arial; color:#333333;}
+div.data div.information.vessel_map div.left_map div.block p {float:left; width:100%; padding:10px 0 0 0; font:normal 15px Arial; color:#333333;}
 div.data div.information.vessel_map div.left_map div.block a {color:#EB593A; text-decoration:none;}
 div.data div.information.vessel_map div.left_map div.block a:hover {text-decoration:underline;}
 
-
-div.data div.information.vessel_map div.right_map {position:relative; float:right; width:229px; padding:25px 30px;}
+div.data div.information.vessel_map div.right_map {position:relative; float:right; width:229px; padding:25px 30px; height:250px;}
 div.data div.information.vessel_map div.right_map img.arrow {position:absolute; left:0; top:28px; width:13px; height:25px;}
 div.data div.information.vessel_map div.right_map div.percentage {float:left; margin:25px 0 0 0; width:229px; height:170px; background:url(../images/vessels/data_right_bkg.png) no-repeat 0 0;}
 
+div.data div.information.vessel_map div.left_map_bottom {float:left; width:541px; padding:25px 30px; margin:1px 0 0 0; background:white; height:221px;}
+div.data div.information.vessel_map div.left_map_bottom div.block {float:left; width:157px; margin:25px 26px 0 0;}
+div.data div.information.vessel_map div.left_map_bottom div.block.last {margin:25px 0 0 0; width:168px;}
 
+div.data div.information.vessel_map div.left_map_bottom div.block h5 {float:left; margin:10px 0 0 0; width:100%; font:bold 15px Arial; color:#666666;}
+div.data div.information.vessel_map div.left_map_bottom div.block p {float:left; padding:10px 0 0 0; width:100%; font:normal 15px Arial; color:#666666;}
+div.data div.information.vessel_map div.left_map_bottom div.block a {color:#EB593A; text-decoration:none;}
+div.data div.information.vessel_map div.left_map_bottom div.block a:hover {text-decoration:underline;}
+
+div.data div.information.vessel_map div.right_map_bottom {position:relative; float:right; width:289px; height:272px;}
+div.data div.information.vessel_map div.right_map_bottom h4 {float:left; background:#272727; padding:25px 0 25px 30px; width:259px; font:normal 25px Arial; color:white; letter-spacing:-1px;}
+div.data div.information.vessel_map div.right_map_bottom img.arrow {position:absolute; left:27px; top:75px; width:26px; height:13px;}
 
 
 /* FOOTER */
 div#footer {float:left; width:100%; height:244px; background:#222222; padding:30px 0 0 0;}
-div#footer div.content {margin:0 auto; width:860px; padding:29px 0 21px 30px;}
-div#footer div.content div.information {float:left; width:860px;}
-div#footer div.content div.information div.block {float:left; width:168px; margin:0 0 0 15px;}
-div#footer div.content div.information div.block h4 {float:left; width:168px; font:bold 13px Arial; color:#767676; padding:0 0 15px 0;}
-div#footer div.content div.information div.block p {float:left; width:168px; font:normal 13px Arial; color:#5A5A5A; line-height:18px;}
-div#footer div.content div.information div.block p a {color:#5E5E5E;}
-div#footer div.content div.information div.block p a:hover {color:#CCCCCC; text-decoration:none;}
-div#footer div.content p.terms {float:left; width:860px; padding:65px 0 0 30px; font:normal 13px Arial; color:#5A5A5A; text-align:left;}
-div#footer div.content p.terms a {color:#5A5A5A;}
-div#footer div.content p.terms a:hover {color:#CCCCCC; text-decoration:none;}
+div#footer div.content_foo {margin:0 auto; width:890px; padding:29px 0 21px 0;}
+div#footer div.content_foo div.block {float:left; width:168px; margin:0 0 0 15px; padding:0;}
+div#footer div.content_foo div.block.first {margin:0 0 0 30px;}
+div#footer div.content_foo div.block h4 {float:left; width:168px; font:bold 13px Arial; color:#767676; padding:0 0 15px 0;}
+div#footer div.content_foo div.block p {float:left; width:168px; font:normal 13px Arial; color:#5A5A5A; line-height:18px;}
+div#footer div.content_foo div.block p a {color:#5E5E5E;}
+div#footer div.content_foo div.block p a:hover {color:#CCCCCC; text-decoration:none;}
+div#footer div.content_foo p.terms {float:left; width:860px; padding:65px 0 0 30px; font:normal 13px Arial; color:#5A5A5A; text-align:left;}
+div#footer div.content_foo p.terms a {color:#5A5A5A;}
+div#footer div.content_foo p.terms a:hover {color:#CCCCCC; text-decoration:none;}
