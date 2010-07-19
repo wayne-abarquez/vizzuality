@@ -1,6 +1,14 @@
 	
 	$(document).ready(function(){ 
 
+		
+		Cufon.set('selector', jQuery);
+		Cufon.replace('.clarendon');
+		Cufon.replace('div.data div.information.vessel_map div.orange_container h1',{textShadow:'0 -1px #712B1D'});
+		Cufon.replace('div.data div.information.vessel_map div.orange_container p',{textShadow:'0 2px #AB422D'});
+		
+
+
 		if ($('div#map').is(':visible')) {
 			var myLatlng = new google.maps.LatLng(-34.397, 150.644);
 		    var myOptions = {
