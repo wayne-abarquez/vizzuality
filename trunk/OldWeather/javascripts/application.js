@@ -1,7 +1,6 @@
 	
 	$(document).ready(function(){ 
 
-		
 		Cufon.set('selector', jQuery);
 		Cufon.replace('.clarendon');
 		Cufon.replace('div.data div.information.vessel_map div.orange_container h1',{textShadow:'0 -1px #712B1D'});
@@ -22,11 +21,12 @@
 
 		/* VESSELS_LIST */
 		$('div.following a').click(function(ev){
-			console.log('entra');
 			ev.stopPropagation();
 		    ev.preventDefault();
 		 	$(this).hide();
-		    $(this).parent().children('span').show();
+		    $(this).parent().children('span').fadeIn('fast');
 
 		});
+		
+
 	});
