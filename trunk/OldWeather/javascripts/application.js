@@ -5,9 +5,10 @@
 		Cufon.replace('.clarendon');
 		Cufon.replace('div.data div.information.vessel_map div.orange_container h1',{textShadow:'0 -1px #712B1D'});
 		Cufon.replace('div.data div.information.vessel_map div.orange_container p',{textShadow:'0 2px #AB422D'});
+		Cufon.replace('div.data div.information div.vessels_list h1');
+		Cufon.replace('div.filter.vessel div.content h1');
+		Cufon.replace('div.pages a');
 		
-
-
 		if ($('div#map').is(':visible')) {
 			var myLatlng = new google.maps.LatLng(-34.397, 150.644);
 		    var myOptions = {
@@ -36,9 +37,7 @@
 			if (!percent_blue.length > 0) percent_blue = 0; 
 			
 			drawProgressBar(percent_orange,percent_blue,$(this));
-		});
-		
-		
+		});		
 	});
 	
 	/* RETURN THE CORRECT WIDTH FOR SPECIFIC PERCENT */
