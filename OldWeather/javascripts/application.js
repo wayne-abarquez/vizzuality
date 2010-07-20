@@ -41,6 +41,7 @@
 		
 	});
 	
+	/* RETURN THE CORRECT WIDTH FOR SPECIFIC PERCENT */
 	function getWidthBar(percent){
 	
 		var width = 0;
@@ -48,6 +49,7 @@
 		return Math.round(width);
 	}
 	
+	/* DRAW THE PROGRESS BAR IN VESSELS_LIST.HTML */
 	function drawProgressBar(percent_orange, percent_blue, element_to_draw) {
 		// 100% -> 303px
 		// 50% ->  151px
