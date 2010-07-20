@@ -54,26 +54,33 @@ div.vessels_list ul.ships li div.info {float:left; margin:0 0 0 8px;}
 div.vessels_list ul.ships li div.info p.ship {float:left; font:bold 15px Arial; color:#666666; width:100%;}
 div.vessels_list ul.ships li div.info p.travel {float:left; font:normal 13px Arial; color:#999999; margin:2px 0 0 0;}
 div.vessels_list ul.ships li div.info p.travel img {width:10px; height:7px;}
-div.vessels_list ul.ships li div.info div.bar_empty {float:left; margin:8px 0 0 0; background:url(../images/common/bar_empty.png) no-repeat 0 0; width:307px; height:6px; overflow:hidden;}
+div.vessels_list ul.ships li div.info div.bar {float:left; margin:8px 0 0 0; background:url(../images/common/bar_empty.png) no-repeat 0 0; width:307px; height:6px; overflow:hidden;}
 
 /*div.bar_empty.width() - a.left_orange.width() - span.orange.width() - span.space.width() - a.right_orange.width()*/
 
 /* PROGRESS BAR */
-div.bar_empty a {cursor:pointer;}
-div.bar_empty a.left {float:left; height:6px; margin:0; width:auto;}
-div.bar_empty a.left.orange {background:url(../images/common/left_orange.png) no-repeat 0 0;}
-div.bar_empty a.left.cyan {background:url(../images/common/left_cyan.png) no-repeat 0 0;}
 
-div.bar_empty span.left {float:left; margin:0 0 0 2px; }
-div.bar_empty span.right {float:right; margin:0 2px 0 0; }
-div.bar_empty span.orange {background-color:#DB4A18; height:6px; width:auto;}
-div.bar_empty span.cyan {background-color:#00CFD7; height:6px; width:auto;}
+div.bar p.percent_orange {display:none;}
+div.bar p.percent_blue {display:none;}
 
-div.bar_empty span.space {float:left; background-color:#FFFFFF; width:1px; height:6px; }
+div.bar a {cursor:pointer;}
 
-div.bar_empty a.right {float:right; height:6px; width:2px; }
-div.bar_empty a.orange {background:url(../images/common/right_orange.png) no-repeat right 0;}
-div.bar_empty a.cyan {background:url(../images/common/right_cyan.png) no-repeat right 0;}
+div.bar a.left {float:left; height:6px; margin:0; width:auto;}
+div.bar a.left.orange {background:url(../images/common/left_orange.png) no-repeat 0 0;}
+div.bar a.left.blue {background:url(../images/common/left_cyan.png) no-repeat 0 0;}
+div.bar span.orange {background-color:#DB4A18; height:6px; width:auto; float:left; margin:0 0 0 2px;}
+div.bar span.blue {background-color:#00CFD7; height:6px; width:auto; float:left; margin:0 0 0 2px;}
+
+div.bar span.space {float:left; background-color:#FFFFFF; width:1px; height:6px; margin:0; }
+
+div.bar a.right {float:left; height:6px; width:2px; margin:0 0 0 0px;}
+div.bar a.right.orange {background:url(../images/common/right_orange.png) no-repeat right 0;}
+div.bar a.right.blue {background:url(../images/common/right_cyan.png) no-repeat right 0;}
+
+div.bar a.second_bar {float:left; height:6px; margin:0 0 0 1px; width:auto;}
+div.bar a.second_bar.orange {background-color:#DB4A18;}
+div.bar a.second_bar.blue {background-color:#00CFD7;}
+
 /* ---------- */
 
 div.vessels_list ul.ships li span.line {float:left; background:url(../images/common/line_divide.png) no-repeat 0 0; width:2px; height:64px; margin:0 10px;}

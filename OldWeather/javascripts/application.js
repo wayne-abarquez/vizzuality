@@ -28,5 +28,50 @@
 
 		});
 		
-
+		$('li div.bar').each(function(index) {
+			var percent_orange = $(this).children('p.percent_orange').text();
+			var percent_blue = $(this).children('p.percent_blue').text();
+			
+			if (!percent_orange.length > 0) percent_orange = 0;	 
+			if (!percent_blue.length > 0) percent_blue = 0; 
+			
+			drawProgressBar(percent_orange,percent_blue,$(this));
+		});
+		
+		
 	});
+	
+	function getWidthBar(percent){
+	
+		var width = 0;
+		width = percent * 303 / 100;
+		return Math.round(width);
+	}
+	
+	function drawProgressBar(percent_orange, percent_blue, element_to_draw) {
+		// 100% -> 303px
+		// 50% ->  151px
+		
+		console.log('percent_blue: '+ percent_blue);
+		console.log('function: ',getWidthBar(percent_blue));
+
+		var html_to_add = ""
+		
+		if ((percent_orange != 0) || (percent_blue != 0)){
+			if (percent_orange > 0) {
+				html_to_add = html_to_add + '<a class="left orange"><span class="orange" style="width:'+ getWidthBar(percent_orange) +'px"></span></a>'
+				
+				if (percent_blue > 0) {
+					html_to_add = html_to_add + '<span class="space"></span><a class="second_bar blue" style="width:'+ getWidthBar(percent_blue) +'px"></a><a class="right blue"></a>'
+				}
+				else {
+					html_to_add = html_to_add + '<a class="right orange"></a>'
+				}
+			}
+			else {
+				html_to_add = html_to_add + '<a class="left blue"><span class="blue" style="width:'+ getWidthBar(percent_blue) +'px"></span></a><a class="right blue"></a>'
+				element_to_draw.prepend(html_to_add);
+			}
+			element_to_draw.prepend(html_to_add);
+		}
+	}
