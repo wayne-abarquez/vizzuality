@@ -145,10 +145,14 @@ div.data div.information div.right p {float:left; width:100%; font:normal 13px A
 
 
 
-/* VESSEL MAP */
-div.data div.information.vessel_map {background:url(../images/vessels/right_column_bkg.png) repeat-y right 0;}
+/* INDEX */
+div.data div.information.vessel_map {position:relative; background:url(../images/home/right_column_bkg.png) repeat-y right 0;}
 div.data div.information.vessel_map div#map {float:left; width:100%; height:400px;}
-div.data div.information.vessel_map div.orange_container {float:left; width:100%; height:130px; background:url(../images/vessels/orange_bkg.png) repeat-x 0 0;}
+
+div.data div.information.vessel_map div.floating_content {position:absolute; right:20px; top:60px; width:293px; height:214px; padding:17px 14px; z-index:100; background:url(../images/home/float_bkg.png) no-repeat 0 0;}
+div.data div.information.vessel_map div.floating_content
+
+div.data div.information.vessel_map div.orange_container {float:left; width:100%; height:130px; background:url(../images/home/orange_bkg.png) repeat-x 0 0;}
 div.data div.information.vessel_map div.orange_container h1 {float:left; width:100%; font:normal 43px Arial; color:#FFFFFF; text-align:center; padding:20px 0 0 0;}
 div.data div.information.vessel_map div.orange_container p {float:left; width:100%; font:normal 27px Arial; color:#FFFFFF; text-align:center;}
 div.data div.information.vessel_map div h4 {float:left; width:100%; font:normal 25px Arial; color:#666666;}
@@ -158,7 +162,7 @@ div.data div.information.vessel_map div p a:hover {text-decoration:none;}
 div.data div.information.vessel_map div.left_map {float:left; width:541px; padding:25px 30px; height:250px; background:white;}
 div.data div.information.vessel_map div.left_map div.block {float:left; width:173px; margin:25px 10px 0 0;}
 div.data div.information.vessel_map div.left_map div.block.last {margin:25px 0 0 0;}
-div.data div.information.vessel_map div.left_map div.block div.gray_cont {float:left; width:173px; height:96px; background:url(../images/vessels/gray_cont.png) no-repeat 0 0;}
+div.data div.information.vessel_map div.left_map div.block div.gray_cont {float:left; width:173px; height:96px; background:url(../images/home/gray_cont.png) no-repeat 0 0;}
 div.data div.information.vessel_map div.left_map div.block h5 {float:left; margin:15px 0 0 0; width:100%; font:bold 15px Arial; color:#333333;}
 div.data div.information.vessel_map div.left_map div.block p {float:left; width:100%; padding:10px 0 0 0; font:normal 15px Arial; color:#333333;}
 div.data div.information.vessel_map div.left_map div.block a {color:#EB593A; text-decoration:none;}
@@ -166,7 +170,7 @@ div.data div.information.vessel_map div.left_map div.block a:hover {text-decorat
 
 div.data div.information.vessel_map div.right_map {position:relative; float:right; width:229px; padding:25px 30px; height:250px;}
 div.data div.information.vessel_map div.right_map img.arrow {position:absolute; left:0; top:28px; width:13px; height:25px;}
-div.data div.information.vessel_map div.right_map div.percentage {float:left; margin:25px 0 0 0; width:229px; height:170px; background:url(../images/vessels/data_right_bkg.png) no-repeat 0 0;}
+div.data div.information.vessel_map div.right_map div.percentage {float:left; margin:25px 0 0 0; width:229px; height:170px; background:url(../images/home/data_right_bkg.png) no-repeat 0 0;}
 
 div.data div.information.vessel_map div.left_map_bottom {float:left; width:541px; padding:25px 30px; margin:1px 0 0 0; background:white; height:221px;}
 div.data div.information.vessel_map div.left_map_bottom div.block {float:left; width:157px; margin:25px 26px 0 0;}
