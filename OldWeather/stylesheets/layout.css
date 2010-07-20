@@ -98,10 +98,10 @@ div.vessels_list div.pages ul li {float:left; margin:0 2px; padding:0; width:13p
 div.vessels_list div.pages ul li.selected {background:url(../images/common/bkg_page_selected.png) no-repeat 0 0; }
 div.vessels_list div.pages ul li.selected:hover {background-position:0 -18px;}
 
-div.vessels_list div.pages ul li a {float:left; font:normal 13px "Clarendon LT"; color:#999999; text-decoration:none; padding:0;}
-div.vessels_list div.pages ul li a:hover {color:#666666;}
+div.vessels_list div.pages ul li a.option {float:left; font:normal 13px "Clarendon LT"; color:#999999; text-decoration:none; padding:0;}
+div.vessels_list div.pages ul li a.option:hover {color:#666666;}
 
-div.vessels_list div.pages ul li.selected a {color:#FFFFFF;}
+div.vessels_list div.pages ul li.selected a {color:#FFFFFF; text-decoration:none;}
 
 div.vessels_list div.pages a.next {float:right; font:normal 13px "Clarendon LT"; text-decoration:underline; color:#EB593E; margin:0;}
 div.vessels_list div.pages a.next:hover {color:#B2432E;}

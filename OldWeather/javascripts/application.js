@@ -7,7 +7,8 @@
 		Cufon.replace('div.data div.information.vessel_map div.orange_container p',{textShadow:'0 2px #AB422D'});
 		Cufon.replace('div.data div.information div.vessels_list h1');
 		Cufon.replace('div.filter.vessel div.content h1');
-		Cufon.replace('div.pages a');
+		Cufon.replace('div.pages ul li a.option',{hover:{color:'#666666'}});
+		Cufon.replace('div.pages a.next',{hover:{color:'#B2432E'}});
 		
 		if ($('div#map').is(':visible')) {
 			var myLatlng = new google.maps.LatLng(-34.397, 150.644);
@@ -53,9 +54,6 @@
 		// 100% -> 303px
 		// 50% ->  151px
 		
-		console.log('percent_blue: '+ percent_blue);
-		console.log('function: ',getWidthBar(percent_blue));
-
 		var html_to_add = ""
 		
 		if ((percent_orange != 0) || (percent_blue != 0)){
