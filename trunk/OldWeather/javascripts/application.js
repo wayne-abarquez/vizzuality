@@ -10,15 +10,27 @@
 		Cufon.replace('div.pages ul li a.option',{hover:{color:'#666666'}});
 		Cufon.replace('div.pages a.next',{hover:{color:'#B2432E'}});
 		
+
 		if ($('div#map').is(':visible')) {
-			var myLatlng = new google.maps.LatLng(-34.397, 150.644);
+			var myLatlng = new google.maps.LatLng(38.97595868249733, 1.1844635009765625);
 		    var myOptions = {
-		      zoom: 8,
+		      zoom: 14,
 		      center: myLatlng,
 					disableDefaultUI: true,
 		      mapTypeId: google.maps.MapTypeId.ROADMAP
 		    }
-		   var map = new google.maps.Map(document.getElementById("map"), myOptions);
+		  var map = new google.maps.Map(document.getElementById("map"), myOptions);
+			
+			if ($('div.floating_content').length==0) {
+				var image = new google.maps.MarkerImage('images/vessels/tiny_marker.png',
+																								new google.maps.Size(32, 38),
+																								new google.maps.Point(0,0),
+																								new google.maps.Point(16, 38));
+				var marker = new google.maps.Marker({position: myLatlng,map: map,icon: image});
+			} else {
+				var marker = new BoatMarker(myLatlng,218,135,'images/vessels/queen.png', map);
+				map.panBy(170,-80);
+			}
 		}
 
 		/* VESSELS_LIST */
