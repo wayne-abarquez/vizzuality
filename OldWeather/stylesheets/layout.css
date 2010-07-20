@@ -207,7 +207,6 @@ div.data div.information.vessel_map div.right_map_bottom h4 {float:left; backgro
 div.data div.information.vessel_map div.right_map_bottom img.arrow {position:absolute; left:27px; top:75px; width:26px; height:13px;}
 
 
-	
 
 /* VESSELS */
 div.data div.information.vessels {background:url(../images/home/right_column_bkg.png) repeat-y right 0;}
@@ -234,18 +233,17 @@ div.data div.information.vessels div ul {float:left; width:100%; margin:10px 0 0
 
 div.data div.information.vessels div.left.bottom ul {border-bottom:1px solid #E5E5E5;}
 div.data div.information.vessels div.left.bottom ul li {float:left; padding:12px 0; width:251px; border-bottom:1px solid #E0E0E0;}
-div.data div.information.vessels div.left.bottom ul li.long {position:relative; float:left; height:66px;}
-div.data div.information.vessels div.left.bottom ul li.long div.abs {position:absolute; left:-5px; top:0; width:475px; background:red;}
+div.data div.information.vessels div.left.bottom ul li.long {position:relative; float:left; height:66px; width:542px; border-bottom:none; padding:0; margin:10px 0 0 0;}
+div.data div.information.vessels div.left.bottom ul li.long div.abs {position:absolute; left:-5px; top:0; width:532px; padding:8px 5px; height:50px; background:url(../images/vessels/captain_bkg.png) no-repeat 0 0;}
 div.data div.information.vessels div.left.bottom ul li.right {float:right; width:266px;}
 div.data div.information.vessels div.left.bottom ul li.last {border-bottom:none;}
-div.data div.information.vessels div.left.bottom ul li div.image {float:left; width:51px; height:51px; margin:0 7px 0 0; padding:0; background:url(../images/common/bkg_img_ship.png) no-repeat 0 0; border:none;}
+div.data div.information.vessels div.left.bottom ul li div.image {float:left; width:51px; height:51px; margin:0 7px 0 2px; padding:0; background:url(../images/common/bkg_img_ship.png) no-repeat 0 0; border:none;}
 div.data div.information.vessels div.left.bottom ul li div.image img {float:left; width:49px; height:49px; margin:1px 0 0 1px;}
-div.data div.information.vessels div.left.bottom ul li div.info {float:left; width:190px;}
-div.data div.information.vessels div.left.bottom ul li.right div.info {float:left; width:205px;}
+div.data div.information.vessels div.left.bottom ul li div.info {float:left; width:188px;}
+div.data div.information.vessels div.left.bottom ul li.right div.info {float:left; width:203px;}
 div.data div.information.vessels div.left.bottom ul li div.info h6 {float:left; font:bold 15px Arial; color:#666666;}
 div.data div.information.vessels div.left.bottom ul li div.info p.class {float:left; font:normal 13px Arial; color:#999999; padding:0;}
 div.data div.information.vessels div.left.bottom ul li div.info p.pages_made {float:left; font:normal 13px Arial; color:#EB593E; padding:2px 0 0 0;}
-
 
 
 div.data div.information.vessels div.right.bottom ul li {float:left; width:100%; padding:12px 0; border-bottom:1px solid #E0E0E0;}
@@ -258,17 +256,44 @@ div.data div.information.vessels div.right.bottom ul li div.info p {font:normal 
 div.data div.information.vessels div.right.bottom a.view_all {float:left; font:normal 13px Arial; color:#DA4A18; margin:18px 0 0 0;}
 
 
-/*<ul>
-	<li>
-		<div class="image">
-			<img src="images/ships/abocado.jpg" />
-		</div>
-		<div class="info">
-			<h6>Queen Elisabeth III</h6>
-			<p>Lisbon &rarr; Bahamas / 1923</p>
-		</div>
-	</li>
-	</ul>*/
+
+
+
+/*USER*/
+div.data div.information.user {background:url(../images/home/right_column_bkg.png) repeat-y right 0;}
+
+div.data div.information.user div.map_container {position:relative; float:left; height:470px; width:890px;}
+div.data div.information.user div.map_container div.abs {position:absolute; width:910px; width:470px; top:0; left:-10px; right:-10px;}
+div.data div.information.user div.map_container div.abs div#map {position:absolute; top:0; left:0; width:910px; height:430px;}
+div.data div.information.user div.map_container div.abs div.dates {position:absolute; left:0; top:417px; width:910px; height:63px; background:url(../images/user/user_band.png) no-repeat 0 0;}
+
+div.data div.information.user div.left.bottom {float:left; width:540px; padding:25px 30px;}
+div.data div.information.user div.right.bottom {position:relative; float:right; width:229px; padding:25px 30px;}
+div.data div.information.user div h4 {float:left; width:100%; font:normal 25px Arial; color:#666666;}
+div.data div.information.user div p {float:left; width:100%; font:normal 15px Arial; color:#666666; padding:3px 0 0; margin:0;}
+div.data div.information.user div ul {float:left; width:100%; margin:10px 0 0 0;}
+
+div.data div.information.user div.left.bottom ul {border-bottom:1px solid #E5E5E5;}
+div.data div.information.user div.left.bottom ul li {float:left; padding:12px 0; width:251px; border-bottom:1px solid #E0E0E0;}
+div.data div.information.user div.left.bottom ul li.right {float:right; width:266px;}
+div.data div.information.user div.left.bottom ul li.last {border-bottom:none;}
+div.data div.information.user div.left.bottom ul li div.image {float:left; width:51px; height:51px; margin:0 7px 0 0; padding:0; background:white; border:none;}
+div.data div.information.user div.left.bottom ul li div.image img {float:left; width:49px; height:49px; margin:1px 0 0 1px; border:none;}
+div.data div.information.user div.left.bottom ul li div.info {float:left; width:190px;}
+div.data div.information.user div.left.bottom ul li.right div.info {float:left; width:205px;}
+div.data div.information.user div.left.bottom ul li div.info h6 {float:left; font:bold 15px Arial; color:#666666;}
+div.data div.information.user div.left.bottom ul li div.info p {float:left; font:normal 13px Arial; color:#999999; padding:0;}
+
+
+div.data div.information.user div.right.bottom ul li {float:left; width:100%; padding:12px 0; border-bottom:1px solid #E0E0E0;}
+div.data div.information.user div.right.bottom ul li.last {border-bottom:none;}
+div.data div.information.user div.right.bottom ul li div.image {float:left; width:51px; height:51px; margin:0 7px 0 0; background:url(../images/common/bkg_img_ship.png) no-repeat 0 0;}
+div.data div.information.user div.right.bottom ul li div.image img {float:left; width:49px; height:49px; margin:1px 0 0 1px;}
+div.data div.information.user div.right.bottom ul li div.info {float:left; width:171px;}
+div.data div.information.user div.right.bottom ul li div.info h6 {font:bold 15px Arial; color:#666666;}
+div.data div.information.user div.right.bottom ul li div.info p.class {float:left; font:normal 13px Arial; color:#999999; padding:0;}
+div.data div.information.user div.right.bottom ul li div.info p.pages_made {float:left; font:normal 13px Arial; color:#EB593E; padding:2px 0 0 0;}
+
 
 
 
