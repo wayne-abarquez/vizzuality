@@ -1,3 +1,5 @@
+input:focus{outline:none;}
+
 body {float:left; background:url('../images/common/body_bkg.png') repeat 0 0;}
 a {cursor:pointer;}
 
@@ -41,23 +43,22 @@ div.data div.information {float:left; width:890px; background:white;}
 
 
 /* VESSELS-LIST */
-div.vessels_list {float:left; margin:30px 0 0 30px; }
-div.vessels_list h1 {font:normal 25px "Clarendon LT"; color:#666666; letter-spacing:-1.0px;}
-div.vessels_list h2 {font:normal 15px Arial; color:#666666; margin:2px 0 0 0;}
+div.vessels_list {float:left; margin:30px 0 0 30px; width:570px;}
+div.vessels_list h1 {font:normal 25px "Clarendon LT"; color:#666666; letter-spacing:-1.0px; padding:0;}
+div.vessels_list h2 {font:normal 15px Arial; color:#666666; margin:2px 0 0 0; padding:0;}
 
 div.vessels_list ul.ships {width:538px; margin:26px 0 0 0; border-bottom:1px solid #E5E5E5;}
-div.vessels_list ul.ships li {border-top:1px solid #E5E5E5; padding-top:10px; height:62px;}
-div.vessels_list ul.ships li div.info {float:left; width:315px; }
-div.vessels_list ul.ships li div.image {float:left; background:url(../images/common/bkg_img_ship.png) no-repeat 0 0; width:51px; height:51px;}
+div.vessels_list ul.ships li {border-top:1px solid #E5E5E5; padding:13px 0 4px 0; height:62px;}
+div.vessels_list ul.ships li div.info {float:left; width:315px;}
+div.vessels_list ul.ships li div.image {float:left; background:url(../images/common/bkg_img_ship.png) no-repeat 0 0; width:51px; height:51px; }
 div.vessels_list ul.ships li div.image img {float:left; width:49px; height:49px; margin:1px 0px 0 1px;}
-div.vessels_list ul.ships li div.info {float:left; margin:0 0 0 8px;}
+div.vessels_list ul.ships li div.info {float:left; margin:0 0 0 8px; padding:0;}
 div.vessels_list ul.ships li div.info p.ship {float:left; font:bold 15px Arial; color:#666666; width:100%;}
 div.vessels_list ul.ships li div.info p.travel {float:left; font:normal 13px Arial; color:#999999; margin:2px 0 0 0;}
 div.vessels_list ul.ships li div.info p.travel img {width:10px; height:7px;}
-div.vessels_list ul.ships li div.info div.bar {float:left; margin:8px 0 0 0; background:url(../images/common/bar_empty.png) no-repeat 0 0; width:307px; height:6px; overflow:hidden;}
+div.vessels_list ul.ships li div.info div.bar {float:left; margin:8px 0 0 0; background:url(../images/common/bar_empty.png) no-repeat 0 0; width:307px; height:6px; overflow:hidden; padding:0;}
 
 /* PROGRESS BAR */
-
 div.bar p.percent_orange {display:none;}
 div.bar p.percent_blue {display:none;}
 
@@ -82,23 +83,23 @@ div.bar a.second_bar.blue {background-color:#00CFD7;}
 /* ---------- */
 
 div.vessels_list ul.ships li span.line {float:left; background:url(../images/common/line_divide.png) no-repeat 0 0; width:2px; height:64px; margin:0 10px;}
-div.vessels_list ul.ships li div.users {float:left; margin:8px 0px 0 0; width:140px;}
+div.vessels_list ul.ships li div.users {float:left; margin:8px 0px 0 0; width:140px; padding:0;}
 div.vessels_list ul.ships li div.users p {float:left; font:normal 13px Arial; color:#666666; margin:0; width:100%;}
 
 div.vessels_list ul.ships li div.users div.following {float:left;  margin:3px 0 0 0; width:100%; position:relative;}
-div.vessels_list ul.ships li div.users div.following a {font:normal 13px Arial; color:#00CFD7; text-decoration:underline; position:absolute; top:0; left:0; }
+div.vessels_list ul.ships li div.users div.following a {font:normal 13px Arial; color:#00CFD7; text-decoration:underline; position:absolute; top:0; left:0; padding:0;}
 div.vessels_list ul.ships li div.users div.following a:hover {color:#00B2B9;}
 div.vessels_list ul.ships li div.users div.following span {position:absolute; color:#B5B5B5; background:url(../images/common/follow_checked.png) no-repeat 0 2px; padding:0 0 0 15px; font:normal 13px Arial; top:0; left:0; display:none;}
 
 
-div.vessels_list div.pages {float:right; width:170px; height:50px; margin:20px 0 0 0; font:normal 13px "Clarendon LT"; padding:0 0 0px 0;}
+div.vessels_list div.pages {float:right; width:170px; height:50px; margin:15px 35px 0 0; font:normal 13px "Clarendon LT"; padding:0 0 0px 0;}
 
 div.vessels_list div.pages ul {float:left; width:120px; height:20px;}
-div.vessels_list div.pages ul li {float:left; margin:0 2px; padding:0; width:13px; height:17px; padding:1px 0 0 5px;}
+div.vessels_list div.pages ul li {float:left; margin:0 2px; width:13px; height:17px; padding:1px 0 0 5px;}
 div.vessels_list div.pages ul li.selected {background:url(../images/common/bkg_page_selected.png) no-repeat 0 0; }
 div.vessels_list div.pages ul li.selected:hover {background-position:0 -18px;}
 
-div.vessels_list div.pages ul li a.option {float:left; font:normal 13px "Clarendon LT"; color:#999999; text-decoration:none; padding:0;}
+div.vessels_list div.pages ul li a.option {float:left; font:normal 13px "Clarendon LT"; color:#999999; text-decoration:none; padding:1px 0 0 5px;}
 div.vessels_list div.pages ul li a.option:hover {color:#666666;}
 
 div.vessels_list div.pages ul li.selected a {color:#FFFFFF; text-decoration:none;}
@@ -108,16 +109,16 @@ div.vessels_list div.pages a.next:hover {color:#B2432E;}
 
 /* CONTENT_RIGHT */
 div.filter {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:830px;}
-div.filter div.content {float:left; margin:30px 0 0 18px; }
+div.filter div.content {float:left; margin:30px 0 0 20px; }
 div.filter h1 {font:normal 25px "Clarendon LT"; color:#666666; letter-spacing:-1.0px; padding-bottom:20px;}
 
-div.filter span.search {float:right; width:auto;}
+div.filter span.search {float:left; width:240px; margin:0; padding:0;}
 div.filter span.search.second {margin:20px 0 0 0;}
 div.filter span.search p {float:left; font:bold 11px Arial; color:#999999; text-transform:uppercase;}
 
-div.filter span.search form {float:left; margin:4px 0 0 0; padding:0; position:relative;}
-div.filter span.search form input[type="text"] {float:left; background:url(../images/vessels/bkg_input_search.png); margin:0; padding:0; font:normal 13px Arial; color:#cccccc; line-height:13px; padding:5px 28px 5px 7px; width:202px; height:20px; border:none; }
-div.filter span.search form input[type="submit"] {background:url(../images/vessels/len_search.png) no-repeat 0 0; height:15px; width:15px; margin:0; padding:0; border:none; position:absolute; top:7px; right:7px; cursor:pointer;}
+div.filter span.search form {float:left; position:relative; margin:4px 0 0 0; padding:0; background:url(../images/vessels/bkg_input_search.png) no-repeat 0 0; width:237px; height:30px;}
+div.filter span.search form input[type="text"] {font:normal 13px Arial; color:#cccccc; width:200px; height:20px; border:none; background:transparent; position:absolute; top:5px; left:5px; line-height:17px;}
+div.filter span.search form input[type="submit"] {background:url(../images/vessels/len_search.png) no-repeat 0 0; height:15px; width:15px; border:none; position:absolute; top:7px; right:7px; cursor:pointer;}
 
 div.filter ul.links {float:left; width:90px; height:50px; margin:10px 0 0 1px; padding-bottom:35px;}
 div.filter ul.links.two {float:left; margin:10px 0 0 30px;}
@@ -128,8 +129,6 @@ div.filter ul.links li a.view_all {text-decoration:underline;}
 
 div.filter.vessel {background:url(../images/vessels/container_bkg.png) repeat-y 0 0 white;}
 div#vertex_right {background:url(../images/common/vertex_right.png) no-repeat 0 0; width:22px; height:39px; position:absolute; left:-15px; top:29px;} 
-
-
 
 
 
