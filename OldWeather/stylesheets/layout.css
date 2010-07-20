@@ -56,8 +56,6 @@ div.vessels_list ul.ships li div.info p.travel {float:left; font:normal 13px Ari
 div.vessels_list ul.ships li div.info p.travel img {width:10px; height:7px;}
 div.vessels_list ul.ships li div.info div.bar {float:left; margin:8px 0 0 0; background:url(../images/common/bar_empty.png) no-repeat 0 0; width:307px; height:6px; overflow:hidden;}
 
-/*div.bar_empty.width() - a.left_orange.width() - span.orange.width() - span.space.width() - a.right_orange.width()*/
-
 /* PROGRESS BAR */
 
 div.bar p.percent_orange {display:none;}
