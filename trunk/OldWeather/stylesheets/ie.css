@@ -1,3 +1,6 @@
 div.data div.information.vessel_map div.right_map div.percentage span.bottom div.right p {float:left; width:100%; padding:3px 0 10px; margin:0; font:bold 11px Arial; color:#999999; letter-spacing:0; line-height:11px;}
+div.data div.information.vessels div.left.bottom div.pages ul li.selected {background:url(../images/common/bkg_page_selected.png) no-repeat 0 0; padding:1px 0 0 5px; height:17px; margin:1px 2px 0;}
+div.data div.information.user div.left.bottom div.pages ul li.selected {background:url(../images/common/bkg_page_selected.png) no-repeat 0 0; padding:1px 0 0 5px; height:17px; margin:1px 2px 0;}
+div.data div.information.vessel_map div.right_map_bottom h4 {float:left; background:#272727; padding:25px 0 31px 30px; width:260px; font:normal 25px Arial; color:white; letter-spacing:-1px;}
 
 

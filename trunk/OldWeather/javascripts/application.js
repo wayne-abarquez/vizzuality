@@ -3,17 +3,20 @@
 
 		Cufon.set('selector', jQuery);
 		Cufon.replace('.clarendon');
-		Cufon.replace('div.data div.information.vessel_map div.orange_container h1',{textShadow:'0 -1px #712B1D'});
-		Cufon.replace('div.data div.information.vessel_map div.orange_container p',{textShadow:'0 2px #AB422D'});
+		Cufon.replace('div.information.vessel_map div.orange_container h1',{textShadow:'0 -1px #712B1D'});
+		Cufon.replace('div.information.vessel_map div.orange_container p',{textShadow:'0 2px #AB422D'});
+		Cufon.replace('div.information.vessels div.right.top h3',{textShadow:'0 1px #6F2A1C'});
+		
 
 		Cufon.replace('div.pages ul li a.option',{hover:{color:'#666666'}});
+		Cufon.replace('div.pages ul li.selected',{hover:{color:'white'}});
 		Cufon.replace('div.pages a.next',{hover:{color:'#B2432E'}});
 		
 		//Bar completed tooltip
 		$('div.inner_bar').each(function(index){
 			var bar_width = $(this).parent().width();
 			var percentage = $(this).parent().find('p.completed').text();
-			$(this).find('span').css('width', ((bar_width * percentage) / 100)+ 'px');
+			$(this).find('span').css('width', ((bar_width * percentage) / 100) - 2 + 'px');
 		});
 		
 		//Map stuff - If there isn't a map, it doesn't matter
@@ -28,10 +31,7 @@
 		  var map = new google.maps.Map(document.getElementById("map"), myOptions);
 			
 			if ($('div.floating_content').length==0) {
-				var image = new google.maps.MarkerImage('images/vessels/tiny_marker.png',
-																								new google.maps.Size(32, 38),
-																								new google.maps.Point(0,0),
-																								new google.maps.Point(16, 38));
+				var image = new google.maps.MarkerImage('images/vessels/tiny_marker.png', new google.maps.Size(32, 38), new google.maps.Point(0,0), new google.maps.Point(16, 38));
 				var marker = new google.maps.Marker({position: myLatlng,map: map,icon: image});
 			} else {
 				var marker = new BoatMarker(myLatlng,218,135,'images/vessels/queen.png', map);
@@ -48,14 +48,14 @@
 
 		});
 		
-		$('li div.bar').each(function(index) {
+		$('div.bar').each(function(index) {
 			var percent_orange = $(this).children('p.percent_orange').text();
 			var percent_blue = $(this).children('p.percent_blue').text();
 			
 			if (!percent_orange.length > 0) percent_orange = 0;	 
-			if (!percent_blue.length > 0) percent_blue = 0; 
-			
-			drawProgressBar(percent_orange,percent_blue,$(this),303);
+			if (!percent_blue.length > 0) percent_blue = 0;
+						
+			drawProgressBar(percent_orange,percent_blue,$(this),$(this).width()-4);
 		});	
 		
 		
@@ -72,8 +72,7 @@
 
 	/* RETURN THE CORRECT WIDTH FOR SPECIFIC PERCENT */
 	function getWidthBar(percent,sizeBar){
-		
-		
+
 		// 100% -> 303px/483px 
 		// 50% ->  151px
 				
@@ -82,13 +81,12 @@
 		return Math.round(width);
 	}
 	
+	
 	/* DRAW THE PROGRESS BAR IN VESSELS_LIST.HTML */
 	function drawProgressBar(percent_orange, percent_blue, element_to_draw,sizeBar) {
 		
 		var html_to_add = ""
-		
-		
-		
+
 		if ((percent_orange != 0) || (percent_blue != 0)){
 			if (percent_orange > 0) {
 				html_to_add = html_to_add + '<a class="left orange"><span class="orange" style="width:'+ getWidthBar(percent_orange,sizeBar) +'px"></span></a>'
