@@ -62,14 +62,14 @@ div.vessels_list ul.ships li div.info div.bar {float:left; margin:8px 0 0 0; bac
 div.bar p.percent_orange {display:none;}
 div.bar p.percent_blue {display:none;}
 
-div.bar a {cursor:pointer;}
+div.bar a {cursor:pointer; margin:0; padding:0;}
 div.bar a.left {float:left; height:6px; margin:0; width:auto;}
 div.bar a.left.orange {background:url(../images/common/left_orange.png) no-repeat 0 0;}
 div.bar a.left.blue {background:url(../images/common/left_cyan.png) no-repeat 0 0;}
-div.bar span.orange {background-color:#DB4A18; height:6px; width:auto; float:left; margin:0 0 0 2px;}
-div.bar span.blue {background-color:#00CFD7; height:6px; width:auto; float:left; margin:0 0 0 2px;}
+div.bar span.orange {background-color:#DB4A18; height:6px; width:auto; float:left; margin:0 0 0 2px; padding:0;}
+div.bar span.blue {background-color:#00CFD7; height:6px; width:auto; float:left; margin:0 0 0 2px; padding:0;}
 
-div.bar span.space {float:left; background-color:#FFFFFF; width:1px; height:6px; margin:0; }
+div.bar span.space {float:left; background-color:#FFFFFF; width:1px; height:6px; margin:0; padding:0;}
 
 div.bar a.right {float:left; height:6px; width:2px; margin:0 0 0 0px;}
 div.bar a.right.orange {background:url(../images/common/right_orange.png) no-repeat right 0;}
@@ -249,6 +249,7 @@ div.data div.information.vessels {background:url(../images/home/right_column_bkg
 div.data div.information.vessels div.left.top {position:relative; float:left; width:601px; height:390px; margin:0; padding:0;}
 div.data div.information.vessels div.left.top img.arrow {position:absolute; right:0; top:20px; width:16px; height:32px;}
 div.data div.information.vessels div.left.top div#map {float:left; width:100%; height:100%; padding:0; margin:0;}
+div.data div.information.vessels div.left.top div#map span {background:none; width:auto; margin:0; padding:0;}
 div.data div.information.vessels div.right.top {float:right; width:229px; height:340px; padding:25px 30px; background:url(../images/vessels/orange_bkg_x.png) repeat-x 0 0;}
 div.data div.information.vessels div.right.top h3 {float:left; width:100%; font:normal 25px Arial; color:white; line-height:25px; padding:0; margin:0;}
 div.data div.information.vessels div.right.top p {float:left; width:100%; font:normal 13px Arial; color:#853226; padding:5px 0 0; line-height:13px;}
@@ -286,6 +287,7 @@ div.data div.information.vessels div.left.bottom ul li div.image img {float:left
 div.data div.information.vessels div.left.bottom ul li div.info {float:left; width:188px;}
 div.data div.information.vessels div.left.bottom ul li.right div.info {float:left; width:203px;}
 div.data div.information.vessels div.left.bottom ul li div.info h6 {float:left; font:bold 15px Arial; color:#666666; padding:0; line-height:15px;}
+div.data div.information.vessels div.left.bottom ul li div.info h6 a {float:left; font:bold 15px Arial; color:#666666; padding:0; line-height:15px; text-decoration:none;}
 div.data div.information.vessels div.left.bottom ul li div.info p.class {float:left; font:normal 13px Arial; color:#999999; padding:0;}
 div.data div.information.vessels div.left.bottom ul li div.info p.pages_made {float:left; font:normal 13px Arial; color:#EB593E; padding:2px 0 0 0;}
 
@@ -297,7 +299,7 @@ div.data div.information.vessels div.left.bottom div.pages ul li.selected:hover 
 div.data div.information.vessels div.left.bottom div.pages ul li a.option {float:left; font:normal 13px Arial; color:#999999; text-decoration:none; padding:1px 0 0 5px;}
 div.data div.information.vessels div.left.bottom div.pages ul li a.option:hover {color:#666666;}
 div.data div.information.vessels div.left.bottom div.pages ul li.selected a {color:#FFFFFF; text-decoration:none;}
-div.data div.information.vessels div.left.bottom div.pages a.next {float:right; font:normal 13px Arial; text-decoration:underline; color:#EB593E; margin:18px 0 0 6px;}
+div.data div.information.vessels div.left.bottom div.pages a.next {float:right; font:normal 13px Arial; text-decoration:none; color:#EB593E; margin:18px 0 0 6px;}
 div.data div.information.vessels div.left.bottom div.pages a.next:hover {color:#B2432E;}
 
 
@@ -307,6 +309,8 @@ div.data div.information.vessels div.right.bottom ul li div.image {float:left; w
 div.data div.information.vessels div.right.bottom ul li div.image img {float:left; width:49px; height:49px; margin:1px 0 0 1px;}
 div.data div.information.vessels div.right.bottom ul li div.info {float:left; width:171px;}
 div.data div.information.vessels div.right.bottom ul li div.info h6 {font:bold 15px Arial; color:#666666; line-height:15px;}
+div.data div.information.vessels div.right.bottom ul li div.info h6 a {font:bold 15px Arial; color:#666666; line-height:15px; text-decoration:none;}
+div.data div.information.vessels div.right.bottom ul li div.info h6 a:hover {color:#333333;}
 div.data div.information.vessels div.right.bottom ul li div.info p {font:normal 13px Arial; color:#999999;}
 div.data div.information.vessels div.right.bottom ul li div.bar {float:left; margin:7px 0 0 0; background:url(../images/common/bar_bkg_gray.png) no-repeat 0 0; width:169px; height:6px; overflow:hidden; padding:0;}
 
@@ -348,20 +352,40 @@ div.data div.information.user div.right.top div.white_round div.your_data div.in
 div.data div.information.user div.right.top div.white_round div.your_data div.info h6 {float:left; font:bold 15px Arial; color:#666666; width:100%; padding:0;}
 div.data div.information.user div.right.top div.white_round div.your_data div.info p {float:left; font:normal 13px Arial; color:#999999; width:100%; padding:2px 0 0 0;}
 div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar {float:left; margin:6px 0 0 0; background:url(../images/user/top_bar_bkg.png) no-repeat 0 0; width:147px; height:6px; padding:0;}
-div.data div.information.user div.right.top div.white_round a {float:right; padding:15px 0 0 0; color:#00CDD7; font:normal 13px Arial;}
-div.data div.information.user div.right.top div.white_round a:hover {color:#00AAB0;}
+
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar p.percent_orange {display:none;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar p.percent_blue {display:none;}
+
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a {cursor:pointer; margin:0; padding:0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.left {float:left; height:6px; margin:0; width:auto;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.left.orange {background:url(../images/common/left_orange.png) no-repeat 0 0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.left.blue {background:url(../images/common/left_cyan.png) no-repeat 0 0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar span.orange {background-color:#DB4A18; height:6px; width:auto; float:left; margin:0 0 0 2px; padding:0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar span.blue {background-color:#00CFD7; height:6px; width:auto; float:left; margin:0 0 0 2px; padding:0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar span.space {float:left; background-color:#FFFFFF; width:1px; height:6px; margin:0; padding:0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.right {float:left; height:6px; width:2px; margin:0 0 0 0px;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.right.orange {background:url(../images/common/right_orange.png) no-repeat right 0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.right.blue {background:url(../images/common/right_cyan.png) no-repeat right 0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.second_bar {float:left; height:6px; margin:0 0 0 1px; width:auto;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.second_bar.orange {background-color:#DB4A18;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar a.second_bar.blue {background-color:#00CFD7;}
+
+div.data div.information.user div.right.top div.white_round a.continue {float:right; padding:15px 0 0 0; color:#00CDD7; font:normal 13px Arial;}
+div.data div.information.user div.right.top div.white_round a.continue:hover {color:#00AAB0;}
 
 div.data div.information.user div.map_container {position:relative; float:left; height:470px; width:890px;}
 div.data div.information.user div.map_container div.abs {position:absolute; width:910px; width:470px; top:0; left:-10px; right:-10px;}
 div.data div.information.user div.map_container div.abs div#map {position:absolute; top:0; left:0; width:910px; height:430px;}
-div.data div.information.user div.map_container div.abs div.dates {position:absolute; left:0; top:417px; width:910px; height:63px; background:url(../images/user/user_band.png) no-repeat 0 0;}
-div.data div.information.user div.map_container div.abs div.years_container {float:left; width:auto;}
-div.data div.information.user div.map_container div.abs div.years_container ul {float:left; }
-div.data div.information.user div.map_container div.abs div.years_container ul li { background:url(../) no-repeat 0 0;}
+div.data div.information.user div.map_container div.abs div.dates {position:absolute; left:0; top:417px; width:910px; height:63px; background:url(../images/user/user_band.png) no-repeat 0 13px;}
+div.data div.information.user div.map_container div.abs div.years_container {float:left; width:795px; padding:0;}
+div.data div.information.user div.map_container div.abs div.years_container ul {float:left; width:auto; padding:0; margin:0;}
+div.data div.information.user div.map_container div.abs div.years_container ul li {float:left; background:url(../images/user/date_separator.png) no-repeat right 12px; width:auto; padding:26px 13px 7px 13px; height:20px;}
+div.data div.information.user div.map_container div.abs div.years_container ul li.selected {background:url(../images/user/selected_date.png) no-repeat 0 0;}
 div.data div.information.user div.map_container div.abs div.years_container ul li.last {background:none;}
-
-
-
+div.data div.information.user div.map_container div.abs div.years_container ul li a {float:left; color:white; font:normal 15px Arial; line-height:15px;}
+div.data div.information.user div.map_container div.abs div.years_container ul li a:hover {color:#F4F4F4;}
+div.data div.information.user div.map_container div.abs div.dates a.all {float:right; width:auto; width:89px; padding:26px 13px 7px 13px; height:20px; color:white; text-align:center;}
+div.data div.information.user div.map_container div.abs div.dates a.all.selected {background:url(../images/user/selected_all.png) no-repeat 0 0;}
 
 div.data div.information.user div.left.bottom {float:left; width:540px; padding:25px 30px;}
 div.data div.information.user div.right.bottom {position:relative; float:right; width:229px; padding:25px 30px;}
@@ -381,6 +405,25 @@ div.data div.information.user div.left.bottom ul li div.info h6 {float:left; fon
 div.data div.information.user div.left.bottom ul li div.info p {float:left; font:normal 13px Arial; color:#999999; padding:0;}
 div.data div.information.user div.left.bottom ul li div.info div.bar {float:left; margin:7px 0 0 0; background:url(../images/common/bar_bkg_gray_2.png) no-repeat 0 0; width:178px; height:6px; padding:0;}
 div.data div.information.user div.left.bottom ul li.right div.info div.bar {width:178px;}
+
+div.data div.information.user div.left.bottom ul li div.info div.bar p.percent_orange {display:none;}
+div.data div.information.user div.left.bottom ul li div.info div.bar p.percent_blue {display:none;}
+
+div.data div.information.user div.left.bottom ul li div.info div.bar a {cursor:pointer; margin:0; padding:0;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.left {float:left; height:6px; margin:0; width:auto;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.left.orange {background:url(../images/common/left_orange.png) no-repeat 0 0;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.left.blue {background:url(../images/common/left_cyan.png) no-repeat 0 0;}
+div.data div.information.user div.left.bottom ul li div.info div.bar span.orange {background-color:#DB4A18; height:6px; width:auto; float:left; margin:0 0 0 2px; padding:0; background-image:none;}
+div.data div.information.user div.left.bottom ul li div.info div.bar span.blue {background-color:#00CFD7; height:6px; width:auto; float:left; margin:0 0 0 2px; padding:0;}
+div.data div.information.user div.left.bottom ul li div.info div.bar span.space {float:left; background-color:#FFFFFF; width:1px; height:6px; margin:0; padding:0;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.right {float:left; height:6px; width:2px; margin:0 0 0 0px;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.right.orange {background:url(../images/common/right_orange.png) no-repeat right 0;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.right.blue {background:url(../images/common/right_cyan.png) no-repeat right 0;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.second_bar {float:left; height:6px; margin:0 0 0 1px; width:auto;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.second_bar.orange {background-color:#DB4A18;}
+div.data div.information.user div.left.bottom ul li div.info div.bar a.second_bar.blue {background-color:#00CFD7;}
+
+
 div.data div.information.user div.left.bottom p.select {float:left; width:auto; margin:17px 0 0 0; font:normal 13px Arial; color:#666666;}
 div.data div.information.user div.left.bottom p.select a {color:#00CDD7;}
 div.data div.information.user div.left.bottom p.select a:hover {color:#00AAB0;}
@@ -393,7 +436,7 @@ div.data div.information.user div.left.bottom div.pages ul li.selected:hover {ba
 div.data div.information.user div.left.bottom div.pages ul li a.option {float:left; font:normal 13px Arial; color:#999999; text-decoration:none; padding:1px 0 0 5px;}
 div.data div.information.user div.left.bottom div.pages ul li a.option:hover {color:#666666;}
 div.data div.information.user div.left.bottom div.pages ul li.selected a {color:#FFFFFF; text-decoration:none;}
-div.data div.information.user div.left.bottom div.pages a.next {float:right; font:normal 13px Arial; text-decoration:underline; color:#EB593E; margin:18px 0 0 6px;}
+div.data div.information.user div.left.bottom div.pages a.next {float:right; font:normal 13px Arial; text-decoration:none; color:#EB593E; margin:18px 0 0 6px;}
 div.data div.information.user div.left.bottom div.pages a.next:hover {color:#B2432E;}
 
 div.data div.information.user div.right.bottom ul li {float:left; width:100%; padding:12px 0; border-bottom:1px solid #E0E0E0;}
@@ -404,7 +447,6 @@ div.data div.information.user div.right.bottom ul li div.info {float:left; width
 div.data div.information.user div.right.bottom ul li div.info h6 {font:bold 15px Arial; color:#666666; line-height:15px; padding:0;}
 div.data div.information.user div.right.bottom ul li div.info p.class {float:left; font:normal 13px Arial; color:#999999; padding:0;}
 div.data div.information.user div.right.bottom ul li div.info p.pages_made {float:left; font:normal 13px Arial; color:#EB593E; padding:2px 0 0 0;}
-
 
 
 
