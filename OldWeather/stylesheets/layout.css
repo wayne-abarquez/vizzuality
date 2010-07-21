@@ -107,33 +107,66 @@ div.vessels_list div.pages a.next:hover {color:#B2432E;}
 
 /* DIGITALIZING */
 div.data div.information.digitalizing_bkg {background:url(../images/home/right_column_bkg.png) repeat-y right 0;}
-div.digitalizing_content {float:left; margin:30px 0 0 30px; width:570px;}
+div.digitalizing_content {float:left; margin:30px 0 0 0px; width:570px; background:white; height:1120px;}
 
-div.data div.information div.digitalizing_content div.image {float:left; width:51px; height:51px; margin:0 7px 0 0; padding:0; background:white; border:none;}
+div.data div.information div.digitalizing_content div.image {float:left; width:51px; height:51px; margin:0 7px 0 30px; padding:0; background:white; border:none;}
 div.data div.information div.digitalizing_content div.image img {float:left; width:49px; height:49px; margin:1px 0 0 1px; border:none;}
 div.data div.information div.digitalizing_content div.info {float:left; width:450px;}
 div.data div.information div.digitalizing_content h6 {float:left; font:bold 15px Arial; color:#666666;}
 div.data div.information div.digitalizing_content div.info p {float:left; font:normal 13px Arial; color:#999999; padding:0;}
 
-div.data div.information div.digitalizing_content div.bar {float:left; margin:8px 0 0 0; background:url(../images/digitalizing/bar_empty.png) no-repeat 0 0; width:483px; height:6px; overflow:hidden; padding:0;}
+div.data div.information div.digitalizing_content div.bar {float:left; margin:8px 0 0 0; background:url(../images/digitalizing/bar_empty.png) no-repeat 0 0; width:483px; height:6px; overflow:hidden; padding:0; position:relative;}
 
-div.data div.information div.progress {float:left; border-top:1px solid #E5E5E5; width:600px; padding:15px 0 0 0; margin:20px 0 0 0;}
-div.data div.information div.progress ul {float:left; width:539px; position:relative; margin:0 0 0 30px;}
-div.data div.information div.progress ul li {font:bold 11px Arial; color:#FFFFFF; height:22px; padding-top:10px; text-transform:uppercase;}
-div.data div.information div.progress ul li.step1 {background:url(../images/digitalizing/first_progress.png) no-repeat; width:117px; position:absolute; top:0; left:0; z-index:6; padding-left:10px;}
-div.data div.information div.progress ul li.step1.current {background:url(../images/digitalizing/first_progress_current.png) no-repeat;}
-div.data div.information div.progress ul li.step2 {background:url(../images/digitalizing/second_progress.png) no-repeat; width:146px; position:absolute; top:0; left:100px; z-index:5;}
-div.data div.information div.progress ul li.step2.current {background:url(../images/digitalizing/second_progress_current.png) no-repeat;}
-div.data div.information div.progress ul li.step3 {background:url(../images/digitalizing/third_progress.png) no-repeat; width:136px; position:absolute; top:0; left:200px; z-index:4;}
-div.data div.information div.progress ul li.step3.current {background:url(../images/digitalizing/third_progress_current.png) no-repeat;}
-div.data div.information div.progress ul li.step4 {background:url(../images/digitalizing/fourth_progress.png) no-repeat; width:138px; position:absolute; top:0; left:300px; z-index:3;}
-div.data div.information div.progress ul li.step4.current {background:url(../images/digitalizing/fourth_progress_current.png) no-repeat;}
-div.data div.information div.progress ul li.step5 {background:url(../images/digitalizing/fifth_progress.png) no-repeat; width:138px; position:absolute; top:0; right:-138px; z-index:2; font-color:#999999;}
-div.data div.information div.progress ul li.step5.current {background:url(../images/digitalizing/fifth_progress_current.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress {float:left; border-top:1px solid #E5E5E5; width:600px; padding:28px 0 0 0; margin:20px 0 0 0; background:white; height:200px;}
+div.data div.information div.digitalizing_content div.progress ul {float:left; width:539px; position:relative; margin:0 0 0 30px;}
+div.data div.information div.digitalizing_content div.progress ul li {font:bold 11px Arial; color:#FFFFFF; height:22px; padding-top:10px; text-transform:uppercase;}
+div.data div.information div.digitalizing_content div.progress ul li.step1 {background:url(../images/digitalizing/first_progress.png) no-repeat; width:117px; position:absolute; top:0; left:0; z-index:6; padding-left:10px;}
+div.data div.information div.digitalizing_content div.progress ul li.step1.current {background:url(../images/digitalizing/first_progress_current.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress ul li.step1.passed {background:url(../images/digitalizing/first_progress_checked.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress ul li.step2 {background:url(../images/digitalizing/second_progress.png) no-repeat; width:116px; position:absolute; top:0; left:105px; z-index:5; padding-left:30px;}
+div.data div.information div.digitalizing_content div.progress ul li.step2.current {background:url(../images/digitalizing/second_progress_current.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress ul li.step2.passed {background:url(../images/digitalizing/second_progress_checked.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress ul li.step3 {background:url(../images/digitalizing/third_progress.png) no-repeat; width:100px; position:absolute; top:0; left:225px; z-index:4; padding-left:36px;}
+div.data div.information div.digitalizing_content div.progress ul li.step3.current {background:url(../images/digitalizing/third_progress_current.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress ul li.step3.passed {background:url(../images/digitalizing/third_progress_checked.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress ul li.step4 {background:url(../images/digitalizing/fourth_progress.png) no-repeat; width:89px; position:absolute; top:0; left:321px; z-index:3; padding-left:49px;}
+div.data div.information div.digitalizing_content div.progress ul li.step4.current {background:url(../images/digitalizing/fourth_progress_current.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress ul li.step4.passed {background:url(../images/digitalizing/fourth_progress_checked.png) no-repeat;}
+div.data div.information div.digitalizing_content div.progress ul li.step5 {background:url(../images/digitalizing/fifth_progress.png) no-repeat; width:68px; position:absolute; top:0; right:0; z-index:2; color:#999999; padding-left:80px;}
+div.data div.information div.digitalizing_content div.progress ul li.step5.current {background:url(../images/digitalizing/fifth_progress_finished.png) no-repeat; color:#FFFFFF;}
+div.data div.information div.digitalizing_content div.progress ul li.step5.passed {background:url(../images/digitalizing/fifth_progress_checked.png) no-repeat;}
 
-div.ship_information {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:auto;}
+div.data div.information div.digitalizing_content div.digitalization {position:absolute; top:330px; left:257px; background:url(../images/digitalizing/digitalization_demo.png) no-repeat 0 0; width:630px; height:918px;}
+
+div.ship_information {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:auto; margin:0;}
 div.ship_information div.content {float:left; margin:30px 0 0 25px; width:200px;}
-div.ship_information h1 {font:normal 25px "Clarendon LT"; color:#666666; letter-spacing:-1.0px; padding-bottom:20px;}
+div.ship_information h1 {float:left; font:normal 25px "Clarendon LT"; color:#666666; letter-spacing:-1.0px; padding-bottom:5px;}
+div.ship_information p {float:left; font:normal 13px Arial; color:#999999; width:220px; }
+div.ship_information div.ship_image {float:left; background:url(../images/digitalizing/bkg_ship_img.png) no-repeat 0 0; width:224px; height:142px; padding:6px 0 0 6px; margin:15px 0 0 0;}
+div.ship_information p.info {margin:18px 0 0 0;}
+div.ship_information p.info a {text-decoration:underline; color:#999999;}
+div.ship_information p.info a:hover {color:#666666;}
+div.ship_information h3 {float:left; font:normal 21px "Clarendon LT"; color:#666666; letter-spacing:-1.0px; margin:25px 0 0 0; padding-bottom:5px;}
+div.ship_information div.map_timeline {float:left; background:url(../images/digitalizing/bkg_map_timeline.png) no-repeat 0 0; width:225px; height:389px; padding:5px 0 0 6px; margin:15px 0 0 0;}
+div.ship_information div.map_timeline div#map {float:left; width:218px; height:135px;}
+div.ship_information div.map_timeline ul.information {float:left; width:218px; margin:7px 0 0 0; border-bottom:1px solid #E5E5E5; padding-bottom:7px;}
+div.ship_information div.map_timeline ul.information li {float:left; height:25px; }
+div.ship_information div.map_timeline ul.information li p.title {font:bold 11px Arial; color:#CCCCCC; width:100%; margin:0; text-transform:uppercase;}
+div.ship_information div.map_timeline ul.information li p.data {font:normal 13px Arial; color:#666666; width:100%; margin:0;}
+div.ship_information div.map_timeline ul.information li.date {width:60px; border-right:1px solid #E5E5E5; padding-right:10px;}
+div.ship_information div.map_timeline ul.information li.position {width:135px; padding-left:7px;}	
+
+div.ship_information div.map_timeline ul.data_temp {float:left; width:218px; height:155px; margin:7px 0 0 0;}
+div.ship_information div.map_timeline ul.data_temp li.row {float:left; width:218px; margin:0px 0 0 0; height:auto;}
+div.ship_information div.map_timeline ul.data_temp li.temp_image {float:left;}
+div.ship_information div.map_timeline ul.data_temp li.temp_image img {width:70px; height:49px;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp {float:left; width:47px; height:49px; background:url(../images/digitalizing/data_temp.png) no-repeat 0 0; margin:0 0 0 2px;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p {color:#FFFFFF;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.temperature {float:left; font:normal 19px "Clarendon LT"; width:25px; margin:7px 0 0 9px;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.kind_temp {float:left; font:normal 10px "Clarendon LT"; width:10px; margin:6px 0 0 0;}  
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.material {float:left; font:bold 11px Arial; text-align:center; text-transform:uppercase; width:100%; height:10px; margin:8px 0 0 0;}
+div.ship_information div.map_timeline a.page_finished {float:left; margin:5px 0 0 0; background:url(../images/digitalizing/btn_page_finished.png) no-repeat 0 0; width:217px; height:28px; font:bold 15px Arial; color:#FFFFFF; text-decoration:none; text-align:center; padding-top:9px;}
+div.ship_information div.map_timeline a.page_finished:hover {background-position:0 -37px;}
 
 /* CONTENT_RIGHT */
 div.filter {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:auto;}
