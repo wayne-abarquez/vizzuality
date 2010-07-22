@@ -2,6 +2,7 @@
 	$(document).ready(function(){ 
 
 		Cufon.set('selector', jQuery);
+		Cufon.replace('div.info h6.clarendon',{hover:{color:'#DB4A18'}});
 		Cufon.replace('.clarendon');
 		Cufon.replace('div.data div.information.vessel_map div.orange_container h1',{textShadow:'0 -1px #712B1D'});
 		Cufon.replace('div.data div.information.vessel_map div.orange_container p',{textShadow:'0 2px #AB422D'});
@@ -17,8 +18,24 @@
 		var dates_list_width = $('div.information.user div.map_container div.abs div.years_container ul').width();
 		$('div.information.user div.map_container div.abs div.years_container ul').css('margin-left',(795/2) - (dates_list_width/2) + 'px');
 		
-		$('div.information.user div.map_container div.abs div.years_container ul li a').click(function(ev){
-			
+
+		//User logged header container effects
+		var user_width = $('div#header div.right ul li.logged').width() - 1;
+		$('div#header div.right ul li.logged div.options').width(user_width);
+		$('div#header div.right ul li.logged div.options div.left').width(user_width-4);
+		$('div#header div.right ul li.logged div.options div.left div.right').width(user_width-8);
+		$('div#header div.right ul li.logged div.options div.left div.right div.center').width(user_width-8);
+		$('div#header div.right ul li.logged div.options span.line').width(user_width-45);
+		$('li.logged a.button').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			if ($(this).parent().find('div.options').is(':visible')) {
+				$(this).css('background-position','0 0');
+				$(this).parent().find('div.options').fadeOut();
+			} else {
+				$(this).css('background-position','0 -23px');
+				$(this).parent().find('div.options').fadeIn();
+			}
 		});
 		
 		
@@ -35,10 +52,10 @@
 		if ($('div#map').is(':visible')) {
 			var myLatlng = new google.maps.LatLng(38.97595868249733, 1.1844635009765625);
 		    var myOptions = {
-		      zoom: 14,
+		      zoom: 4,
 		      center: myLatlng,
 					disableDefaultUI: true,
-		      mapTypeId: google.maps.MapTypeId.ROADMAP
+		      mapTypeId: google.maps.MapTypeId.TERRAIN
 		    }
 		  var map = new google.maps.Map(document.getElementById("map"), myOptions);
 			
@@ -90,7 +107,7 @@
 				
 		var width = 0;
 		width = percent * sizeBar / 100;
-		return Math.round(width);
+		return Math.floor(width);
 	}
 	
 	

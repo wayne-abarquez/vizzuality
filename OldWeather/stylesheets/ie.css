@@ -2,5 +2,7 @@ div.data div.information.vessel_map div.right_map div.percentage span.bottom div
 div.data div.information.vessels div.left.bottom div.pages ul li.selected {background:url(../images/common/bkg_page_selected.png) no-repeat 0 0; padding:1px 0 0 5px; height:17px; margin:1px 2px 0;}
 div.data div.information.user div.left.bottom div.pages ul li.selected {background:url(../images/common/bkg_page_selected.png) no-repeat 0 0; padding:1px 0 0 5px; height:17px; margin:1px 2px 0;}
 div.data div.information.vessel_map div.right_map_bottom h4 {float:left; background:#272727; padding:25px 0 31px 30px; width:260px; font:normal 25px Arial; color:white; letter-spacing:-1px;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.temperature sup {font:normal 9px Arial; padding:0; margin:0; vertical-align:0.9em; line-height:9px;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.material {float:left; font:bold 11px Arial; text-align:center; text-transform:uppercase; width:47px; height:10px; margin:8px 0 0 0; color:white; line-height:11px;}
 
 

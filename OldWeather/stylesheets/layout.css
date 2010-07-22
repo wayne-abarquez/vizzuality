@@ -31,6 +31,18 @@ div#header div.right ul li a:hover span {background-position:right -23px; color:
 div#header div.right ul li.selected.started a {background-position:0 -23px;}
 div#header div.right ul li.selected.started a span {background-position:right -23px; color:white;}
 div#header div.right ul li.started a:hover span {background-position:right -23px; color:white;}
+div#header div.right ul li.logged {position:relative;}
+div#header div.right ul li.logged span {float:left; background:url(../images/common/user_logged_left.png) no-repeat 0 0; height:15px; vertical-align:center; line-height:13px; color:white; padding:4px 11px; font:bold 13px Arial; color:white;}
+div#header div.right ul li.logged span a {font:bold 13px Arial; color:white; text-decoration:none; background:none;}
+div#header div.right ul li.logged span a:hover {background:none; color:#F1F1F1;}
+div#header div.right ul li.logged a.button {float:left; background:url(../images/common/user_logged_right.png) no-repeat 0 0; height:23px; width:23px; margin:0;}
+div#header div.right ul li.logged div.options {position:absolute; display:none; right:1px; top:22px; width:100%; height:72px; z-index:100;}
+div#header div.right ul li.logged div.options div.left {float:left; background:url(../images/common/log_cont_left.png) no-repeat 0 0; width:100%; height:72px; padding:0 0 0 4px;}
+div#header div.right ul li.logged div.options div.left div.right {float:left; background:url(../images/common/log_cont_right.png) no-repeat right 0; width:100%; height:72px; padding:0 4px 0 0;}
+div#header div.right ul li.logged div.options div.left div.right div.center {background:url(../images/common/log_cont.png) repeat-x 0 0; width:100%; padding:4px 0 0 0; height:68px;}
+div#header div.right ul li.logged div.options span.line {position:absolute; top:0; left:0; width:100%; height:1px; background:url(../images/common/log_cont_line.png) repeat-x 0 0;}
+div#header div.right ul li.logged div.options div.left div.right div.center a {float:left; margin:5px 0 0 10px; padding:0; width:100px; height:auto; background:none; text-decoration: underline; font:normal 13px Arial; color:#B3EDF0;}
+div#header div.right ul li.logged div.options div.left div.right div.center a:hover {color:#FFFFFF;}
 
 /*COMMON*/
 div.data {margin:0 auto; width:910px;}
@@ -40,6 +52,8 @@ div.data div.shadow_topbottom {float:left; width:910px; height:10px; background:
 div.data div.shadow_topbottom.bottom {background-position:center -3px; height:5px;}
 div.data div.information {float:left; width:890px; background:white;}
 
+
+
 /* VESSELS-LIST */
 div.data div.information.vessels_bkg {background:url(../images/home/right_column_bkg.png) repeat-y right 0;}
 
@@ -48,15 +62,18 @@ div.vessels_list h1 {font:normal 25px "Clarendon LT"; color:#666666; letter-spac
 div.vessels_list h2 {font:normal 15px Arial; color:#666666; margin:2px 0 0 0; padding:0;}
 
 div.vessels_list ul.ships {width:538px; margin:26px 0 0 0; border-bottom:1px solid #E5E5E5;}
-div.vessels_list ul.ships li {border-top:1px solid #E5E5E5; padding:13px 0 4px 0; height:62px;}
+div.vessels_list ul.ships li {float:left; position:relative; border-top:1px solid #E5E5E5; padding:13px 0; height:51px; width:538px;}
 div.vessels_list ul.ships li div.info {float:left; width:315px;}
 div.vessels_list ul.ships li div.image {float:left; background:url(../images/common/bkg_img_ship.png) no-repeat 0 0; width:51px; height:51px; }
 div.vessels_list ul.ships li div.image img {float:left; width:49px; height:49px; margin:1px 0px 0 1px;}
 div.vessels_list ul.ships li div.info {float:left; margin:0 0 0 8px; padding:0;}
 div.vessels_list ul.ships li div.info p.ship {float:left; font:bold 15px Arial; color:#666666; width:100%;}
+div.vessels_list ul.ships li div.info p.ship a {font:bold 15px Arial; color:#666666; text-decoration:none;}
+div.vessels_list ul.ships li div.info p.ship a:hover {color:#DB4A18;}
 div.vessels_list ul.ships li div.info p.travel {float:left; font:normal 13px Arial; color:#999999; margin:2px 0 0 0;}
 div.vessels_list ul.ships li div.info p.travel img {width:10px; height:7px;}
 div.vessels_list ul.ships li div.info div.bar {float:left; margin:8px 0 0 0; background:url(../images/common/bar_empty.png) no-repeat 0 0; width:307px; height:6px; overflow:hidden; padding:0;}
+
 
 /* 	PROGRESS BAR (-- COMMON --)	*/
 div.bar p.percent_orange {display:none;}
@@ -80,34 +97,29 @@ div.bar a.second_bar.orange {background-color:#DB4A18;}
 div.bar a.second_bar.blue {background-color:#00CFD7;}
 
 /* ---------- */
-div.vessels_list ul.ships li span.line {float:left; background:url(../images/common/line_divide.png) no-repeat 0 0; width:2px; height:64px; margin:0 10px;}
-div.vessels_list ul.ships li div.users {float:left; margin:8px 0px 0 0; width:140px; padding:0;}
-div.vessels_list ul.ships li div.users p {float:left; font:normal 13px Arial; color:#666666; margin:0; width:100%;}
-
+div.vessels_list ul.ships li span.line {position:absolute; top:8px; left:383px; background:url(../images/common/line_divide.png) no-repeat 0 0; width:2px; height:62px; padding:0; margin:0;}
+div.vessels_list ul.ships li div.users {float:right; margin:8px 0px 0 0; width:140px; padding:0;}
+div.vessels_list ul.ships li div.users p {float:right; font:normal 13px Arial; color:#666666; margin:0; width:100%;}
 div.vessels_list ul.ships li div.users div.following {float:left;  margin:3px 0 0 0; width:100%; position:relative;}
 div.vessels_list ul.ships li div.users div.following a {font:normal 13px Arial; color:#00CFD7; text-decoration:underline; position:absolute; top:0; left:0; padding:0;}
 div.vessels_list ul.ships li div.users div.following a:hover {color:#00B2B9;}
 div.vessels_list ul.ships li div.users div.following span {position:absolute; color:#B5B5B5; background:url(../images/common/follow_checked.png) no-repeat 0 2px; padding:0 0 0 15px; font:normal 13px Arial; top:0; left:0; display:none;}
 
-div.vessels_list div.pages {float:right; width:170px; height:50px; margin:15px 35px 0 0; font:normal 13px "Clarendon LT"; padding:0 0 0px 0;}
-
+div.vessels_list div.pages {float:right; width:170px; height:50px; margin:15px 35px 0 0; font:normal 13px Arial; padding:0 0 0px 0;}
 div.vessels_list div.pages ul {float:left; width:120px; height:20px;}
 div.vessels_list div.pages ul li {float:left; margin:0 2px; width:13px; height:17px; padding:1px 0 0 5px;}
 div.vessels_list div.pages ul li.selected {background:url(../images/common/bkg_page_selected.png) no-repeat 0 0; }
 div.vessels_list div.pages ul li.selected:hover {background-position:0 -18px;}
-
-div.vessels_list div.pages ul li a.option {float:left; font:normal 13px "Clarendon LT"; color:#999999; text-decoration:none; padding:1px 0 0 5px;}
+div.vessels_list div.pages ul li a.option {float:left; font:normal 13px Arial; color:#999999; text-decoration:none; padding:1px 0 0 5px;}
 div.vessels_list div.pages ul li a.option:hover {color:#666666;}
-
 div.vessels_list div.pages ul li.selected a {color:#FFFFFF; text-decoration:none;}
-
-div.vessels_list div.pages a.next {float:right; font:normal 13px "Clarendon LT"; text-decoration:underline; color:#EB593E; margin:0;}
+div.vessels_list div.pages a.next {float:right; font:normal 13px Arial; text-decoration:underline; color:#EB593E; margin:0; padding:2px 0 0 0;}
 div.vessels_list div.pages a.next:hover {color:#B2432E;}
 
 
 /* DIGITALIZING */
 div.data div.information.digitalizing_bkg {background:url(../images/home/right_column_bkg.png) repeat-y right 0;}
-div.digitalizing_content {float:left; margin:30px 0 0 0px; width:570px; background:white; height:1120px;}
+div.digitalizing_content {position:relative; float:left; margin:30px 0 0 0px; width:570px; background:white; height:1120px;}
 
 div.data div.information div.digitalizing_content div.image {float:left; width:51px; height:51px; margin:0 7px 0 30px; padding:0; background:white; border:none;}
 div.data div.information div.digitalizing_content div.image img {float:left; width:49px; height:49px; margin:1px 0 0 1px; border:none;}
@@ -132,11 +144,11 @@ div.data div.information div.digitalizing_content div.progress ul li.step3.passe
 div.data div.information div.digitalizing_content div.progress ul li.step4 {background:url(../images/digitalizing/fourth_progress.png) no-repeat; width:89px; position:absolute; top:0; left:321px; z-index:3; padding-left:49px;}
 div.data div.information div.digitalizing_content div.progress ul li.step4.current {background:url(../images/digitalizing/fourth_progress_current.png) no-repeat;}
 div.data div.information div.digitalizing_content div.progress ul li.step4.passed {background:url(../images/digitalizing/fourth_progress_checked.png) no-repeat;}
-div.data div.information div.digitalizing_content div.progress ul li.step5 {background:url(../images/digitalizing/fifth_progress.png) no-repeat; width:68px; position:absolute; top:0; right:0; z-index:2; color:#999999; padding-left:80px;}
+div.data div.information div.digitalizing_content div.progress ul li.step5 {background:url(../images/digitalizing/fifth_progress.png) no-repeat right 0; width:68px; position:absolute; top:0; right:0; z-index:2; color:#999999; padding-left:80px;}
 div.data div.information div.digitalizing_content div.progress ul li.step5.current {background:url(../images/digitalizing/fifth_progress_finished.png) no-repeat; color:#FFFFFF;}
 div.data div.information div.digitalizing_content div.progress ul li.step5.passed {background:url(../images/digitalizing/fifth_progress_checked.png) no-repeat;}
 
-div.data div.information div.digitalizing_content div.digitalization {position:absolute; top:330px; left:257px; background:url(../images/digitalizing/digitalization_demo.png) no-repeat 0 0; width:630px; height:918px;}
+div.data div.information div.digitalizing_content div.digitalization {position:absolute; top:160px; left:-22px; background:url(../images/digitalizing/digitalization_demo.png) no-repeat 0 0; width:630px; height:918px;}
 
 div.ship_information {float:right; width:289px; border-left:1px solid #DCDCDC; position:relative; height:auto; margin:0;}
 div.ship_information div.content {float:left; margin:30px 0 0 25px; width:200px;}
@@ -156,15 +168,15 @@ div.ship_information div.map_timeline ul.information li p.data {font:normal 13px
 div.ship_information div.map_timeline ul.information li.date {width:60px; border-right:1px solid #E5E5E5; padding-right:10px;}
 div.ship_information div.map_timeline ul.information li.position {width:135px; padding-left:7px;}	
 
-div.ship_information div.map_timeline ul.data_temp {float:left; width:218px; height:155px; margin:7px 0 0 0;}
-div.ship_information div.map_timeline ul.data_temp li.row {float:left; width:218px; margin:0px 0 0 0; height:auto;}
-div.ship_information div.map_timeline ul.data_temp li.temp_image {float:left;}
+div.ship_information div.map_timeline ul.data_temp {float:left; width:218px; height:155px; margin:7px 0 0 0; padding:0 0 1px 0; display:inline;}
+div.ship_information div.map_timeline ul.data_temp li.row {float:left; width:218px; margin:0; padding:0; height:auto;}
+div.ship_information div.map_timeline ul.data_temp li.row ul {float:left; margin:0; padding:0;}
+div.ship_information div.map_timeline ul.data_temp li.temp_image {float:left; margin:0; padding:0;}
 div.ship_information div.map_timeline ul.data_temp li.temp_image img {width:70px; height:49px;}
 div.ship_information div.map_timeline ul.data_temp li.data_temp {float:left; width:47px; height:49px; background:url(../images/digitalizing/data_temp.png) no-repeat 0 0; margin:0 0 0 2px;}
-div.ship_information div.map_timeline ul.data_temp li.data_temp p {color:#FFFFFF;}
-div.ship_information div.map_timeline ul.data_temp li.data_temp p.temperature {float:left; font:normal 19px "Clarendon LT"; width:25px; margin:7px 0 0 9px;}
-div.ship_information div.map_timeline ul.data_temp li.data_temp p.kind_temp {float:left; font:normal 10px "Clarendon LT"; width:10px; margin:6px 0 0 0;}  
-div.ship_information div.map_timeline ul.data_temp li.data_temp p.material {float:left; font:bold 11px Arial; text-align:center; text-transform:uppercase; width:100%; height:10px; margin:8px 0 0 0;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.temperature {float:left; font:normal 19px "Clarendon LT"; width:47px; margin:6px 0 0; text-align:center; padding:0; line-height:19px; color:white;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.temperature sup {font:normal 9px Arial; padding:0; margin:0; vertical-align:0.5em; line-height:9px;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.material {float:left; font:bold 11px Arial; text-align:center; text-transform:uppercase; width:47px; height:10px; margin:9px 0 0 0; color:white; line-height:11px;}
 div.ship_information div.map_timeline a.page_finished {float:left; margin:5px 0 0 0; background:url(../images/digitalizing/btn_page_finished.png) no-repeat 0 0; width:217px; height:28px; font:bold 15px Arial; color:#FFFFFF; text-decoration:none; text-align:center; padding-top:9px;}
 div.ship_information div.map_timeline a.page_finished:hover {background-position:0 -37px;}
 
@@ -193,6 +205,7 @@ div#vertex_right {background:url(../images/common/vertex_right.png) no-repeat 0 
 
 
 
+
 /*VESSEL DESC*/
 div.data div.information.vessels_desc {background:url(../images/vessels/container_bkg.png) repeat-y 0 0 white;}
 div.data div.information div.left {float:left; width:229px; padding:25px 30px;}
@@ -201,12 +214,14 @@ div.data div.information div.left p {float:left; margin:4px 0 0 0; width:100%; f
 div.data div.information div.left div.image {float:left; margin:15px 0 0 0; width:219px; padding:4px; border:1px solid #c6c6c6; background:#E0e0e0;}
 div.data div.information div.left span {float:left; width:229px; height:10px; background:url(../images/vessels/shadow_image.png) no-repeat 0 0;}
 div.data div.information div.left a.back {float:left; margin:7px 0 0 0; font:normal 13px Arial; color:#E45739; text-decoration:none; border-bottom:1px solid #E45739;}
+div.data div.information div.left a.back:hover {color:#A53611;}
 
 div.data div.information div.right {position:relative; float:right; width:541px; padding:30px;}
 div.data div.information div.right img.arrow {position:absolute; top:25px; left:-1px; width:18px; height:33px;}
 div.data div.information div.right h4 {float:left; width:100%; font:bold 15px Arial; color:#333333;}
 div.data div.information div.right h4.sub {padding:30px 0 0 0;}
 div.data div.information div.right p {float:left; width:100%; font:normal 13px Arial; color:#666666; padding:10px 0;}
+
 
 
 
@@ -233,7 +248,7 @@ div.data div.information.vessel_map div.orange_container p {float:left; width:10
 div.data div.information.vessel_map div h4 {float:left; width:100%; font:normal 25px Arial; color:#666666;}
 div.data div.information.vessel_map div p {float:left; width:100%; font:normal 15px Arial; color:#666666; padding:3px 0 0;}
 div.data div.information.vessel_map div p a {color:#EB593A;}
-div.data div.information.vessel_map div p a:hover {text-decoration:none;}
+div.data div.information.vessel_map div p a:hover {color:#A53611;}
 div.data div.information.vessel_map div.left_map {float:left; width:540px; padding:25px 30px; height:250px; background:white;}
 div.data div.information.vessel_map div.left_map div.block {float:left; width:173px; margin:25px 10px 0 0;}
 div.data div.information.vessel_map div.left_map div.block.last {margin:25px 0 0 0;}
@@ -241,7 +256,7 @@ div.data div.information.vessel_map div.left_map div.block div.gray_cont {float:
 div.data div.information.vessel_map div.left_map div.block h5 {float:left; margin:15px 0 0 0; width:100%; font:bold 15px Arial; color:#333333;}
 div.data div.information.vessel_map div.left_map div.block p {float:left; width:100%; padding:10px 0 0 0; font:normal 15px Arial; color:#333333;}
 div.data div.information.vessel_map div.left_map div.block a {color:#EB593A; text-decoration:none;}
-div.data div.information.vessel_map div.left_map div.block a:hover {text-decoration:underline;}
+div.data div.information.vessel_map div.left_map div.block a:hover {color:#A53611;}
 
 div.data div.information.vessel_map div.right_map {position:relative; float:right; width:230px; padding:25px 30px; height:250px;}
 div.data div.information.vessel_map div.right_map img.arrow {position:absolute; left:0; top:28px; width:13px; height:25px;}
@@ -298,7 +313,7 @@ div.data div.information.vessels div.blue_part div.abs {position:absolute; left:
 div.data div.information.vessels div.blue_part div.abs div.bar {float:left; width:587px; height:6px; padding:1px 0 0 0; margin:41px 0 0 24px; background:url(../images/vessels/bar_bkg.png) no-repeat 0 0;}
 div.data div.information.vessels div.blue_part div.abs div.inner_bar {position:relative; float:left; width:auto; height:6px; margin:0; padding:0 0 0 2px; background:url(../images/vessels/left_inner_bar.png) no-repeat 0 0;}
 div.data div.information.vessels div.blue_part div.abs div.inner_bar span {float:left; width:200px; height:6px; background:url(../images/vessels/right_inner_bar.png) no-repeat right 0;}
-div.data div.information.vessels div.blue_part div.abs div.inner_bar p.bar_tooltip_inner {position:absolute; top:-27px; right:-48px; width:96px; height:18px; padding:4px 0 0 0; text-align:center; background:url(../images/common/white_tooltip.png) no-repeat 0 0; font:bold 10px Arial; color:#00969C; line-height:10px;}
+div.data div.information.vessels div.blue_part div.abs div.inner_bar p.bar_tooltip_inner {position:absolute; top:-27px; right:-48px; width:96px; height:18px; padding:4px 0 0 0; text-align:center; background:url(../images/common/white_tooltip.png) no-repeat 0 0; font:bold 10px Arial; color:#00969C; line-height:10px; display:block; z-index:100;}
 div.data div.information.vessels div.blue_part div.abs a {float:right; margin:16px 24px 0 0; width:214px; height:34px; padding:8px 0 0 34px; background:url(../images/vessels/follow_button.png) no-repeat 0 0; font:bold 19px Arial; color:#F15A3E; text-decoration:none; text-shadow:white 0 1px;}
 div.data div.information.vessels div.blue_part div.abs a:hover {background-position:0 -42px;}
 
@@ -348,6 +363,7 @@ div.data div.information.vessels div.right.bottom ul li div.info p {font:normal 
 div.data div.information.vessels div.right.bottom ul li div.bar {float:left; margin:7px 0 0 0; background:url(../images/common/bar_bkg_gray.png) no-repeat 0 0; width:169px; height:6px; overflow:hidden; padding:0;}
 
 div.data div.information.vessels div.right.bottom a.view_all {float:left; font:normal 13px Arial; color:#DA4A18; margin:18px 0 0 0;}
+div.data div.information.vessels div.right.bottom a.view_all:hover {color:#A53611;}
 
 
 
@@ -383,8 +399,11 @@ div.data div.information.user div.right.top div.white_round div.your_data div.im
 div.data div.information.user div.right.top div.white_round div.your_data div.image img {float:left; width:49px; height:49px; padding:0; margin:0; border:0;}
 div.data div.information.user div.right.top div.white_round div.your_data div.info {float:left; width:146px;}
 div.data div.information.user div.right.top div.white_round div.your_data div.info h6 {float:left; font:bold 15px Arial; color:#666666; width:100%; padding:0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info h6 a {color:#666666; text-decoration:none;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info h6 a:hover {color:#DB4A18;}
+
 div.data div.information.user div.right.top div.white_round div.your_data div.info p {float:left; font:normal 13px Arial; color:#999999; width:100%; padding:2px 0 0 0;}
-div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar {float:left; margin:6px 0 0 0; background:url(../images/user/top_bar_bkg.png) no-repeat 0 0; width:147px; height:6px; padding:0;}
+div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar {float:left; margin:6px 0 0 0; background:url(../images/user/top_bar_bkg.png) no-repeat 0 0; width:147px; height:6px; padding:0; overflow:hidden;}
 
 div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar p.percent_orange {display:none;}
 div.data div.information.user div.right.top div.white_round div.your_data div.info div.bar p.percent_blue {display:none;}
@@ -435,8 +454,10 @@ div.data div.information.user div.left.bottom ul li div.image img {float:left; w
 div.data div.information.user div.left.bottom ul li div.info {float:left; width:190px;}
 div.data div.information.user div.left.bottom ul li.right div.info {float:left; width:205px;}
 div.data div.information.user div.left.bottom ul li div.info h6 {float:left; font:bold 15px Arial; color:#666666;}
+div.data div.information.user div.left.bottom ul li div.info h6 a {color:#666666; text-decoration:none;}
+div.data div.information.user div.left.bottom ul li div.info h6 a:hover {color:#DB4A18;}
 div.data div.information.user div.left.bottom ul li div.info p {float:left; font:normal 13px Arial; color:#999999; padding:0;}
-div.data div.information.user div.left.bottom ul li div.info div.bar {float:left; margin:7px 0 0 0; background:url(../images/common/bar_bkg_gray_2.png) no-repeat 0 0; width:178px; height:6px; padding:0;}
+div.data div.information.user div.left.bottom ul li div.info div.bar {float:left; margin:7px 0 0 0; background:url(../images/common/bar_bkg_gray_2.png) no-repeat 0 0; width:178px; height:6px; padding:0; overflow:hidden;}
 div.data div.information.user div.left.bottom ul li.right div.info div.bar {width:178px;}
 
 div.data div.information.user div.left.bottom ul li div.info div.bar p.percent_orange {display:none;}
@@ -455,7 +476,6 @@ div.data div.information.user div.left.bottom ul li div.info div.bar a.right.blu
 div.data div.information.user div.left.bottom ul li div.info div.bar a.second_bar {float:left; height:6px; margin:0 0 0 1px; width:auto;}
 div.data div.information.user div.left.bottom ul li div.info div.bar a.second_bar.orange {background-color:#DB4A18;}
 div.data div.information.user div.left.bottom ul li div.info div.bar a.second_bar.blue {background-color:#00CFD7;}
-
 
 div.data div.information.user div.left.bottom p.select {float:left; width:auto; margin:17px 0 0 0; font:normal 13px Arial; color:#666666;}
 div.data div.information.user div.left.bottom p.select a {color:#00CDD7;}
