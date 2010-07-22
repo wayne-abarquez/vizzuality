@@ -10,6 +10,9 @@ div.outer_layout div.inner_layout {float:left; width:100%; background:url('../im
 /* GALAXY ZOO */
 div#galaxy_zoo {float:left; width:100%; background:url('../images/common/header_bkg.png') repeat-x 0 0; height:35px;}
 div#galaxy_zoo div.content {margin:0 auto; width:890px;}
+div#galaxy_zoo div.content ul.left {float:left;}
+div#galaxy_zoo div.content ul li {display: inline; font-size: 0.7em; margin-left: 0px; margin-top: 0px; padding-top: 0px; padding-right: 5px; padding-bottom: 0px; padding-left: 2px; font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: normal; color: #FFFFFF; line-height:36px;}
+div#galaxy_zoo div.content ul.right {float:right;}
 
 
 /* HEADER */
