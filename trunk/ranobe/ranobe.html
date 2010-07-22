@@ -1,0 +1,186 @@
+<html><head><script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"> </script> 
+<script type="text/javascript" src="jquery/jquery.js"> </script> 
+ 
+
+<script type="text/javascript"> 
+
+var map, sliderTimer, layer, slider;
+
+  var iw = null;
+  function initialize() {
+    map = new google.maps.Map(document.getElementById('map_canvas'), {
+      center: new google.maps.LatLng(-22.994901124466512,43.62971305847168),
+      zoom: 13,
+	mapTypeId: 'roadmap'
+
+    });
+
+	tracks = new google.maps.FusionTablesLayer(219813, {heatmap:false});
+	tracks.setMap(map);
+	   
+    layer = new google.maps.FusionTablesLayer(219811, {heatmap: false,
+      suppressInfoWindows: true
+    });
+
+    layer.setMap(map);
+
+google.maps.event.addListener(layer, 'click', popup);
+function popup(mouseEvent) {
+    if (iw != null) {
+      iw.close();
+    }
+//console.warn(mouseEvent.row)
+//console.log(mouseEvent.row['name'])
+if (!mouseEvent.row['name'])
+{ alert("asking tracks")}
+else
+{
+  var content = '<b>' + mouseEvent.row['name'].value + '</b><br>Symbol: ' + mouseEvent.row['symbol'].value; 
+if (mouseEvent.row['url'].value !='NULL')
+ content+='<br><img src="'+mouseEvent.row['url'].value+'" style="width:200px;height:200px"></img><br>';
+else content+='<br><b>No image avaible</b>';
+//console.warn(content);
+/*
+  if (mouseEvent.row['characteristic'].value=='NULL')
+{
+content+='<br>NULL characteristic'
+}   else { '<br><b>'+mouseEvent.row['characteristic'].value+' characteristic' } 
+*/
+    iw = new google.maps.InfoWindow({
+      content: content,
+      position: mouseEvent.position
+
+
+    });
+    iw.open(map);
+}
+  }
+
+	update=function(param)
+	{
+if (param == '4x4' || param == 'shareti') {var group='tracks'} else {var group='waypoints'};	
+
+	if ($("input[id='"+param+"']").attr('checked')==true)
+	{
+
+     if (group=='tracks')
+     {
+     	if ($("ul[id='"+group+"'] input:checked").size() == 2)
+	{
+	tracks.setQuery("select geometry from 219813");
+	}
+	else
+	{
+	switch(param)
+	 {
+	case '4x4':
+	tracks.setQuery("select geometry from 219813 where characteristics = '4x4'");break;
+	case 'shareti':
+	tracks.setQuery("select geometry from 219813 where characteristics = 'shareti'");break;
+	 }	
+	}  //not==2
+
+	}   //end tracks
+	
+    else   //dealing with waypoints
+    {
+
+	if ($("ul[id='"+group+"'] input:checked").size() >1)
+	{
+	$("ul[id='"+group+"'] input:checked").attr('checked',false);	
+	}
+    $("input[id='"+param+"']").attr('checked',true);
+
+	switch(param)
+	{
+	case 'flora':
+	layer.setQuery("select geometry from 219811 where symbol = 'Park'");break;
+	case 'fauna':
+	layer.setQuery("select geometry from 219811 where symbol = 'Fauna'");break;
+	case 'chp':
+	layer.setQuery("select geometry from 219811 where symbol = 'Crossing'");break;
+	}	
+	}
+	}
+	else
+	{	
+	if ($("ul[id='"+group+"'] input:checked").size() == 0)
+	{
+	//no checkbox--> we clean the map, creating a 'no result' sql query
+	if (group=='waypoints') 
+	{
+	layer.setQuery("select name from 219811 where symbol = 'no_valid'");
+	}else 
+	{
+	tracks.setQuery("select name from 219813 where characteristics = 'no_valid'");
+	}	
+	}
+	else
+	{
+//	console.warn("removing checkeds..")
+	if (group=='tracks')
+	{
+		switch(param)
+	 {
+	case '4x4':
+	tracks.setQuery("select geometry from 219813 where characteristics = 'shareti'");break;
+	case 'shareti':
+	tracks.setQuery("select geometry from 219813 where characteristics = '4x4'");break;
+	 }	
+	}
+	}
+	}
+	}
+layer.setQuery("select geometry from 219811 where symbol = 'Crossing'");
+$("input").attr('checked',false);
+$("input[id='chp']").attr('checked',true);
+$("ul[id='tracks'] input").attr('checked',true);
+}
+$(document).ready(function() {
+	$('li:has(ul)')
+          .click(function(event){
+
+            if (this == event.target) 
+			{
+				if ($(this).children().is(':hidden'))
+					$(this).css('list-style-image', 'url(img/minus.gif)');
+				else
+					$(this).css('list-style-image', 'url(img/plus.gif)');
+	            	$(this).children().toggle('slow');
+					}
+        //    return false;
+          })
+          .css({cursor:'pointer','list-style-image':'url(img/plus.gif)'})
+          .children().hide();
+
+        $('#wp li:not(:has(ul))').css({
+          cursor: 'default', 'list-style-image':'none'
+		});	
+	
+})
+</script></head> 
+<body onload="initialize()" >
+<div style="position:absolute;top:0;right:100">
+ <ul style="width:190px">
+<li>
+          Waypoints
+      <ul id="waypoints">
+
+            <input id="flora" type="checkbox"  onClick='update("flora")'>Flora</input><br>
+			<input id="fauna" type="checkbox"  onClick='update("fauna")'>Fauna</input><br>
+			<input id="chp" type="checkbox" onClick='update("chp")'>Charcoal areas</input><br>            
+      </ul>
+</li>
+<li>
+<br>
+          Tracks
+      <ul id="tracks">
+            <input id="4x4" type="checkbox" onClick='update("4x4")'>Easy access by 4x4</input><p>
+			<input id="shareti" type="checkbox" onClick='update("shareti")'>Easy access by shareti</input><p>         
+      </ul>
+</li>
+</ul>
+</div>
+<div id="map_canvas" style="width: 70%; height: 70%"></div>
+ 
+			</body></html>
