@@ -1,6 +1,9 @@
 	
 	$(document).ready(function(){ 
-
+		
+		$("div#lens_tool").draggable();	
+		$("div#lens_confirm").draggable();	
+		
 		Cufon.set('selector', jQuery);
 		Cufon.replace('div.info h6.clarendon',{hover:{color:'#DB4A18'}});
 		Cufon.replace('.clarendon');
