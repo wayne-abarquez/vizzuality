@@ -64,7 +64,7 @@ div.vessels_list {float:left; margin:30px 0 0 30px; width:570px;}
 div.vessels_list h1 {font:normal 25px "Clarendon LT"; color:#666666; letter-spacing:-1.0px; padding:0;}
 div.vessels_list h2 {font:normal 15px Arial; color:#666666; margin:2px 0 0 0; padding:0;}
 
-div.vessels_list ul.ships {width:538px; margin:26px 0 0 0; border-bottom:1px solid #E5E5E5;}
+div.vessels_list ul.ships {float:left; width:538px; margin:26px 0 0 0; border-bottom:1px solid #E5E5E5;}
 div.vessels_list ul.ships li {float:left; position:relative; border-top:1px solid #E5E5E5; padding:13px 0; height:51px; width:538px;}
 div.vessels_list ul.ships li div.info {float:left; width:315px;}
 div.vessels_list ul.ships li div.image {float:left; background:url(../images/common/bkg_img_ship.png) no-repeat 0 0; width:51px; height:51px; }
@@ -199,7 +199,7 @@ div.ship_information div.map_timeline ul.data_temp li.temp_image {float:left; ma
 div.ship_information div.map_timeline ul.data_temp li.temp_image img {width:70px; height:49px;}
 div.ship_information div.map_timeline ul.data_temp li.data_temp {float:left; width:47px; height:49px; background:url(../images/digitalizing/data_temp.png) no-repeat 0 0; margin:0 0 0 2px;}
 div.ship_information div.map_timeline ul.data_temp li.data_temp p.temperature {float:left; font:normal 19px "Clarendon LT"; width:47px; margin:6px 0 0; text-align:center; padding:0; line-height:19px; color:white;}
-div.ship_information div.map_timeline ul.data_temp li.data_temp p.temperature sup {font:normal 9px Arial; padding:0; margin:0; vertical-align:0.5em; line-height:9px;}
+div.ship_information div.map_timeline ul.data_temp li.data_temp p.temperature sup {font:normal 9px Arial; padding:0; margin:0; vertical-align:0.9em; line-height:9px;}
 div.ship_information div.map_timeline ul.data_temp li.data_temp p.material {float:left; font:bold 11px Arial; text-align:center; text-transform:uppercase; width:47px; height:10px; margin:9px 0 0 0; color:white; line-height:11px;}
 div.ship_information div.map_timeline a.page_finished {float:left; margin:5px 0 0 0; background:url(../images/digitalizing/btn_page_finished.png) no-repeat 0 0; width:217px; height:28px; font:bold 15px Arial; color:#FFFFFF; text-decoration:none; text-align:center; padding-top:9px;}
 div.ship_information div.map_timeline a.page_finished:hover {background-position:0 -37px;}
@@ -214,8 +214,8 @@ div.filter span.search.second {margin:20px 0 0 0;}
 div.filter span.search p {float:left; font:bold 11px Arial; color:#999999; text-transform:uppercase;}
 
 div.filter span.search form {float:left; position:relative; margin:4px 0 0 0; padding:0; background:url(../images/vessels/bkg_input_search.png) no-repeat 0 0; width:237px; height:30px;}
-div.filter span.search form input[type="text"] {font:normal 13px Arial; color:#cccccc; width:200px; height:20px; border:none; background:transparent; position:absolute; top:5px; left:5px; line-height:17px;}
-div.filter span.search form input[type="submit"] {background:url(../images/vessels/len_search.png) no-repeat 0 0; height:15px; width:15px; border:none; position:absolute; top:7px; right:7px; cursor:pointer;}
+div.filter span.search form input[type="text"] {font:normal 13px Arial; color:#666666; width:200px; height:20px; border:none; background:transparent; position:absolute; top:5px; left:5px; line-height:17px;}
+div.filter span.search form input[type="submit"] {background:url(../images/vessels/search_len.png) no-repeat 0 0; height:15px; width:15px; border:none; position:absolute; top:7px; right:7px; cursor:pointer;}
 
 div.filter ul.links {float:left; width:90px; height:50px; margin:10px 0 0 1px; padding-bottom:35px;}
 div.filter ul.links.two {float:left; margin:10px 0 0 30px;}
@@ -264,7 +264,7 @@ div.data div.information.vessel_map div.floating_content div.info {float:left; w
 div.data div.information.vessel_map div.floating_content div.info div.image {float:left; width:28px; margin:2px 10px 0 0;}
 div.data div.information.vessel_map div.floating_content div.info p {float:left; width:240px; padding:0; margin:0; line-height:15px;}
 div.data div.information.vessel_map div.floating_content a {float:left; width:189px; height:30px; margin:18px 0 0 0; font:bold 19px Arial; color:#F15A3E; text-decoration:none; padding:7px 0 0 10px; background:url(../images/home/follow_button.png) no-repeat 0 0;}
-div.data div.information.vessel_map div.floating_content a:hover {background-position:0 -37px;}
+div.data div.information.vessel_map div.floating_content a:hover {background-position:0 -37px; color:#666666;}
 
 div.data div.information.vessel_map div.orange_container {float:left; width:100%; height:130px; background:url(../images/home/orange_bkg.png) repeat-x 0 0;}
 div.data div.information.vessel_map div.orange_container h1 {float:left; width:100%; font:normal 43px Arial; color:#FFFFFF; text-align:center; padding:20px 0 0 0;}
@@ -339,7 +339,7 @@ div.data div.information.vessels div.blue_part div.abs div.inner_bar {position:r
 div.data div.information.vessels div.blue_part div.abs div.inner_bar span {float:left; width:200px; height:6px; background:url(../images/vessels/right_inner_bar.png) no-repeat right 0;}
 div.data div.information.vessels div.blue_part div.abs div.inner_bar p.bar_tooltip_inner {position:absolute; top:-27px; right:-48px; width:96px; height:18px; padding:4px 0 0 0; text-align:center; background:url(../images/common/white_tooltip.png) no-repeat 0 0; font:bold 10px Arial; color:#00969C; line-height:10px; display:block; z-index:100;}
 div.data div.information.vessels div.blue_part div.abs a {float:right; margin:16px 24px 0 0; width:214px; height:34px; padding:8px 0 0 34px; background:url(../images/vessels/follow_button.png) no-repeat 0 0; font:bold 19px Arial; color:#F15A3E; text-decoration:none; text-shadow:white 0 1px;}
-div.data div.information.vessels div.blue_part div.abs a:hover {background-position:0 -42px;}
+div.data div.information.vessels div.blue_part div.abs a:hover {background-position:0 -42px; color:#666666;}
 
 
 div.data div.information.vessels div.left.bottom {float:left; width:540px; padding:25px 30px;}
@@ -360,7 +360,7 @@ div.data div.information.vessels div.left.bottom ul li div.info {float:left; wid
 div.data div.information.vessels div.left.bottom ul li.right div.info {float:left; width:203px;}
 div.data div.information.vessels div.left.bottom ul li div.info h6 {float:left; font:bold 15px Arial; color:#666666; padding:0; line-height:15px;}
 div.data div.information.vessels div.left.bottom ul li div.info h6 a {float:left; font:bold 15px Arial; color:#666666; padding:0; line-height:15px; text-decoration:none;}
-div.data div.information.vessels div.left.bottom ul li div.info p.class {float:left; font:normal 13px Arial; color:#999999; padding:0;}
+div.data div.information.vessels div.left.bottom ul li div.info p.class {float:left; font:normal 13px Arial; color:#999999; padding:2px 0 0 0;}
 div.data div.information.vessels div.left.bottom ul li div.info p.pages_made {float:left; font:normal 13px Arial; color:#EB593E; padding:2px 0 0 0;}
 
 div.data div.information.vessels div.left.bottom div.pages {float:right; height:50px; font:normal 13px Arial; padding:0;}
@@ -408,7 +408,7 @@ div.data div.information.user div.left.top div.numbers div.digitalizations {floa
 div.data div.information.user div.left.top div.numbers div.digitalizations span {float:left; background:url(../images/user/blue_right.png) no-repeat right 0; width:auto; padding:8px 11px 0 8px; height:48px;}
 div.data div.information.user div.left.top div.numbers div.digitalizations p.number {float:left; font:bold 33px Arial; color:white; padding:0; width:auto; margin:0 10px 0 0;}
 div.data div.information.user div.left.top div.numbers div.digitalizations p.text {float:left; font:normal 13px Arial; color:white; padding:4px 0 0 0; width:auto;}
-div.data div.information.user div.left.top div.numbers div.vessels {float:left; background:url(../images/user/grey_left.png) no-repeat 0 0; width:auto; padding:0 0 0 3px; height:56px;}
+div.data div.information.user div.left.top div.numbers div.vessels {float:left; background:url(../images/user/grey_left.png) no-repeat 0 0; width:auto; padding:0 0 0 2px; height:56px;}
 div.data div.information.user div.left.top div.numbers div.vessels span {float:left; background:url(../images/user/grey_right.png) no-repeat right 0; width:auto; padding:8px 11px 0 8px; height:48px;}
 div.data div.information.user div.left.top div.numbers div.vessels p.number {float:left; font:bold 33px Arial; color:#666666; padding:0; width:auto; margin:0 10px 0 0;}
 div.data div.information.user div.left.top div.numbers div.vessels p.text {float:left; font:normal 13px Arial; color:#666666; padding:4px 0 0 0; width:auto;}
@@ -480,7 +480,7 @@ div.data div.information.user div.left.bottom ul li.right div.info {float:left; 
 div.data div.information.user div.left.bottom ul li div.info h6 {float:left; font:bold 15px Arial; color:#666666;}
 div.data div.information.user div.left.bottom ul li div.info h6 a {color:#666666; text-decoration:none;}
 div.data div.information.user div.left.bottom ul li div.info h6 a:hover {color:#DB4A18;}
-div.data div.information.user div.left.bottom ul li div.info p {float:left; font:normal 13px Arial; color:#999999; padding:0;}
+div.data div.information.user div.left.bottom ul li div.info p {float:left; font:normal 13px Arial; color:#999999; padding:2px 0 0 0;}
 div.data div.information.user div.left.bottom ul li div.info div.bar {float:left; margin:7px 0 0 0; background:url(../images/common/bar_bkg_gray_2.png) no-repeat 0 0; width:178px; height:6px; padding:0; overflow:hidden;}
 div.data div.information.user div.left.bottom ul li.right div.info div.bar {width:178px;}
 
@@ -522,13 +522,13 @@ div.data div.information.user div.right.bottom ul li div.image {float:left; widt
 div.data div.information.user div.right.bottom ul li div.image img {float:left; width:49px; height:49px; margin:1px 0 0 1px;}
 div.data div.information.user div.right.bottom ul li div.info {float:left; width:171px;}
 div.data div.information.user div.right.bottom ul li div.info h6 {font:bold 15px Arial; color:#666666; line-height:15px; padding:0;}
-div.data div.information.user div.right.bottom ul li div.info p.class {float:left; font:normal 13px Arial; color:#999999; padding:0;}
+div.data div.information.user div.right.bottom ul li div.info p.class {float:left; font:normal 13px Arial; color:#999999; padding:2px 0 0 0;}
 div.data div.information.user div.right.bottom ul li div.info p.pages_made {float:left; font:normal 13px Arial; color:#EB593E; padding:2px 0 0 0;}
 
 
 
 /* FOOTER */
-div#footer {float:left; width:100%; height:244px; background:#222222; padding:30px 0 0 0;}
+div#footer {float:left; width:100%; height:244px; background:#222222; padding:10px 0 0 0;}
 div#footer div.content_foo {margin:0 auto; width:890px; padding:29px 0 21px 0;}
 div#footer div.content_foo div.block {float:left; width:168px; margin:0 0 0 15px; padding:0;}
 div#footer div.content_foo div.block.first {margin:0 0 0 30px;}

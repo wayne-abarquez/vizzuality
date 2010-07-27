@@ -11,7 +11,6 @@
 		Cufon.replace('div.data div.information.vessel_map div.orange_container p',{textShadow:'0 2px #AB422D'});
 		Cufon.replace('div.data div.information.vessels div.right.top h3',{textShadow:'0 1px #6F2A1C'});
 		Cufon.replace('div.data div.information.user div.map_container div.abs div.years_container ul li a',{textShadow:'0 1px #000000'});
-
 		Cufon.replace('div.pages ul li a.option',{hover:{color:'#666666'}});
 		Cufon.replace('div.pages ul li.selected',{hover:{color:'white'}});
 		Cufon.replace('div.pages a.next',{hover:{color:'#B2432E'}});
@@ -20,6 +19,15 @@
 		//Dates in user page
 		var dates_list_width = $('div.information.user div.map_container div.abs div.years_container ul').width();
 		$('div.information.user div.map_container div.abs div.years_container ul').css('margin-left',(795/2) - (dates_list_width/2) + 'px');
+		
+		
+		$('div.filter span.search form input[type="text"]').focus(function(ev){
+			$(this).parent().find('input[type="submit"]').css('background-position','0 -31px');
+		});
+		
+		$('div.filter span.search form input[type="text"]').focusout(function(ev){
+			$(this).parent().find('input[type="submit"]').css('background-position','0 0');
+		});
 		
 
 		//User logged header container effects
