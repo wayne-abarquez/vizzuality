@@ -108,7 +108,7 @@
 			
 			private function checkUserToken():void {
 				//if the token exist (sent as param) check if it is valid
-				if(user_token!=null) {
+				if(user_token!=null && user_token!="") {
 					//check if the token is valid
 					
 					flickrService.addEventListener(FlickrResultEvent.AUTH_CHECK_TOKEN,onCheckToken);
@@ -187,12 +187,12 @@
 				    checkUserPicturesInBbox();
 				       
 				    //send ProtectedPlanet the user credentials.
-				    ppApiService.url="/api/users/" + user_id;
+				    ppApiService.url="/users/" + user_id;
 				    ppApiService.send({
-						method:"PUT",
+						_method:"put",
 						authenticity_token: form_authenticity_token,
-				    	flickr_token:user_token,
-				    	flickr_user_id:user_flickr_id
+				    	"user[flickr_token]":user_token,
+				    	"user[flickr_user_id]":user_flickr_id
 				    }); 
 				}
 			}			
@@ -226,8 +226,10 @@
 										
 					// Call the PPE service
 					var jsonMessage:String=JSON.encode(picturesToBeSent);
-					ppApiService.url="/users/"+user_id+"/flickr_images";
+					ppApiService.url="/users/"+user_id+"/images";
 					ppApiService.send({
+						_method:"post",
+						image_type:"flickr",
 						site_id:site_id,
 						pictures: jsonMessage
 					});	
