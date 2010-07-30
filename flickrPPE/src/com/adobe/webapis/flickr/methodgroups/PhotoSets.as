@@ -594,6 +594,7 @@ package com.adobe.webapis.flickr.methodgroups {
 			MethodGroupHelper.invokeMethod( _service, getPhotos_result, 
 								   "flickr.photosets.getPhotos", 
 								   false,
+								   new NameValuePair( "privacy_filter", "1" ),
 								   new NameValuePair( "photoset_id", photoset_id ));
 		}
 		

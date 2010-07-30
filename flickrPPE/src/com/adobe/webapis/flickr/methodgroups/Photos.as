@@ -1181,7 +1181,7 @@ package com.adobe.webapis.flickr.methodgroups {
 								   new NameValuePair ( "content_type", "1"),								   
 								   new NameValuePair ( "per_page", per_page.toString()),
 								   new NameValuePair ( "page", page.toString() ),								   
-								   new NameValuePair ( "accuracy", "4")
+								   new NameValuePair ( "accuracy", "6")
 								   );
 		}
 		
