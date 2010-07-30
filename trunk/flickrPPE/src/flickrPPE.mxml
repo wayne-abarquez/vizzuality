@@ -7,32 +7,35 @@
 	
 	<mx:Script>
 		<![CDATA[
-			import com.greensock.easing.Linear;
-			import com.greensock.TweenMax;
 			import com.adobe.serialization.json.JSON;
+			import com.adobe.webapis.flickr.AuthPerm;
 			import com.adobe.webapis.flickr.AuthResult;
+			import com.adobe.webapis.flickr.FlickrService;
+			import com.adobe.webapis.flickr.PagedPhotoList;
+			import com.adobe.webapis.flickr.Photo;
+			import com.adobe.webapis.flickr.events.FlickrResultEvent;
+			import com.adobe.webapis.flickr.methodgroups.Photos;
+			import com.greensock.TweenMax;
 			import com.greensock.easing.Expo;
-			import mx.controls.Alert;
-			import com.vizzuality.events.ClickPhotoFrameEvent;
+			import com.greensock.easing.Linear;
 			import com.vizzuality.components.PhotoFrame;
-			import mx.collections.SortField;
-			import mx.collections.Sort;
-			import mx.binding.utils.BindingUtils;
+			import com.vizzuality.events.ClickPhotoFrameEvent;
+			
 			import flash.events.Event;
 			import flash.events.TimerEvent;
 			import flash.net.URLRequest;
+			
+			import mx.binding.utils.BindingUtils;
 			import mx.collections.ArrayCollection;
+			import mx.collections.Sort;
+			import mx.collections.SortField;
+			import mx.controls.Alert;
 			import mx.controls.Image;
 			import mx.core.Application;
-			import com.adobe.webapis.flickr.Photo;
-			import com.adobe.webapis.flickr.methodgroups.Photos;
-			import com.adobe.webapis.flickr.PagedPhotoList;
-			import com.adobe.webapis.flickr.AuthPerm;
-			import com.adobe.webapis.flickr.FlickrService;
-			import com.adobe.webapis.flickr.events.FlickrResultEvent;
 			
 			[Bindable] private var flickrSets:ArrayCollection;
 			
+			[Bindable] private var errorCode:String;	
 			private var timer:Timer;
 			
 			private var tamCanvas:Number = 82;
@@ -50,6 +53,7 @@
 			public var user_flickr_id:String;
 			public var pa_bbox:String;
 			public var user_token:String;
+			public var form_authenticity_token:String;
 			
 			// Variables of control
 			private var actualPage:int = 1;
@@ -68,22 +72,33 @@
 				if(this.parameters.site_id!=null) {
 					site_id=this.parameters.site_id;
 				} else {
-					site_id=975;
+					errorCode="01";
+					currentState="error";
+					return;
 				}
 				if(this.parameters.user_id!=null) {
 					user_id=this.parameters.user_id;
 				} else {
-					user_id=2;
+					errorCode="02";
+					currentState="error";
+					return;
+				}
+				if(this.parameters.form_authenticity_token!=null) {
+					form_authenticity_token=this.parameters.form_authenticity_token;
+				} else {
+					errorCode="03";
+					currentState="error";
+					return;
 				}
 				if(this.parameters.user_token!=null) {
 					user_token=this.parameters.user_token;
 				} else {
-					user_token="72157623534482544-87a16c7e2e06a192";
+					user_token=null;
 				}
 				if(this.parameters.user_flickr_id!=null) {
 					user_flickr_id=this.parameters.user_flickr_id;
 				} else {
-					user_flickr_id="30720887@N03";
+					user_flickr_id=null;
 				}
 				// API KEY from Flickr
 		        flickrService.secret = "e8345cb79db113f7";				
@@ -145,6 +160,7 @@
 										
 			    } else {
 			    	currentState="error";
+					errorCode="08";
 			    }
 			}  
 			
@@ -171,10 +187,12 @@
 				    checkUserPicturesInBbox();
 				       
 				    //send ProtectedPlanet the user credentials.
-				    ppApiService.url="http://www.protectedplanet.net/api/users/" + user_id + "/flickr/credentials";
+				    ppApiService.url="/api/users/" + user_id;
 				    ppApiService.send({
-				    flickr_token:user_token,
-				    flickr_user_id:user_flickr_id
+						method:"PUT",
+						authenticity_token: form_authenticity_token,
+				    	flickr_token:user_token,
+				    	flickr_user_id:user_flickr_id
 				    }); 
 				}
 			}			
@@ -208,7 +226,7 @@
 										
 					// Call the PPE service
 					var jsonMessage:String=JSON.encode(picturesToBeSent);
-					ppApiService.url="http://www.protectedplanet.net/api/users/"+user_id+"/flickr/images";
+					ppApiService.url="/users/"+user_id+"/flickr_images";
 					ppApiService.send({
 						site_id:site_id,
 						pictures: jsonMessage
@@ -525,7 +543,9 @@
 		<mx:State name="error">
 			<mx:AddChild position="lastChild">
 				<mx:Canvas x="0" y="0" styleName="bkg" id="canvasError" backgroundSize="100%" width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="off">
-					<mx:Label x="113" y="97" text="There has been an error, plese refresh page" styleName="infoBold"/>
+					<mx:Text x="84.5" y="96" text="There has been an error. If you refresh the page&#xd;and this error keeps appearing please contact us." styleName="infoBold" height="82" textAlign="center"/>
+					<mx:Text x="204.5" y="161" text="CODE:" styleName="infoBold" height="28" textAlign="right" width="67"/>
+					<mx:Text x="279.5" y="161" text="{errorCode}" styleName="infoBold" height="28" textAlign="left" width="67" id="errorCodeNumber"/>
 				</mx:Canvas>
 			</mx:AddChild>
 		</mx:State>
