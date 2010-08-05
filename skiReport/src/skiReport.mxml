@@ -149,7 +149,8 @@
 				- d400: full cloud coverage
 				- n432: full cloud coverage and snowing hard
 				*/		
-				
+			if(code==null)
+				return NaN;	
 			return (Number(code.charAt(1))-4)*-1;
 						
 		}
