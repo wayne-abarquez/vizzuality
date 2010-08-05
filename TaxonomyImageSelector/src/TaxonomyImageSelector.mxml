@@ -36,7 +36,8 @@
 				this.addEventListener(ItemClickTreeBrowserEvent.ITEM_CLICK, updateProvaiderImages);
 				var httpsrv:HTTPService = new HTTPService();
 				httpsrv.resultFormat = "text";
-				httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
+				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
+				httpsrv.url = "http://ecat-dev.gbif.org/ws-sdr/nav/?image=thumb";
 				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
 				httpsrv.send();			
 			}
@@ -47,14 +48,20 @@
 				var resultAc2: ArrayCollection = new ArrayCollection();
 				var auxDP:ArrayCollection = new ArrayCollection()
 				
-				for each(var co:Object in resultObj.classificationSearch.classification) {
+				//for each(var co:Object in resultObj.classificationSearch.classification) {
+				for each(var co:Object in resultObj) {
 					if (co.id != this.id) {
 						var clasOb:Object= new Object();
-						clasOb.id = co.id;
+						clasOb.id = co.taxonID;
 						clasOb.type = co.rank;
 						clasOb.description ="";
+						if (co.imageURL!=null) {
+							clasOb.imageUrl=co.imageURL;
+						} else {
+							clasOb.imageUrl="";							
+						}
 						clasOb.labelField = co.scientificName;
-						clasOb.children=true;
+						clasOb.children=(co.numChildren>0);
 						resultAc.addItem(clasOb);
 					}
 				}
@@ -85,8 +92,17 @@
 	        private function changeImageTaxon():void {
 	        	if (imageSelector.selectedItem) {
 		        	var obj:Object = imageSelector.selectedItem;
-		        	resolvedImages[specieID] = "http://farm" + obj.farm + ".static.flickr.com/" +  obj.server + "/" +  obj.id + "_" +  obj.secret + "_s.jpg";
-		        	itemClickRenderer.flickrImg.source = "http://farm" + obj.farm + ".static.flickr.com/" +  obj.server + "/" +  obj.id + "_" +  obj.secret + "_s.jpg";
+		        	var imgUrl:String = "http://farm" + obj.farm + ".static.flickr.com/" +  obj.server + "/" +  obj.id + "_" +  obj.secret + "_s.jpg";
+		        	
+		        	resolvedImages[specieID] = imgUrl;
+		        	itemClickRenderer.flickrImg.source = imgUrl;
+	        	
+	        	
+	        		//Alert the service that an image has been selected.
+					var imageServ:HTTPService = new HTTPService();
+		            imageServ.resultFormat = 'text';
+		            imageServ.url = "http://ecat-ws.gbif.org/ws/image?id="+specieID+"&url="+escape(imgUrl);
+		            imageServ.send();			
 	        	}
 	        }
 			
