@@ -21,7 +21,7 @@
 			[Bindable]
 			public var gbifTaxonomy : ArrayCollection = new ArrayCollection();
 			
-			public var ecatServices:String ="http://ecat-dev.gbif.org/ws/";
+			public var ecatServices:String ="http://ecat-dev.gbif.org/ws-sdr/";
 			
 			private function onCreationComplete():void {
 				ExternalInterface.call("s = function() {document.getElementById('"+this.id+"').focus(); }");
@@ -45,6 +45,7 @@
 				var httpsrv:HTTPService = new HTTPService();
 				httpsrv.resultFormat = "text";
 				//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2";
+				//httpsrv.url = ecatServices+"nav?rkey=34e3ebeb-9d3a-4048-85be-0e756dd70c01&image=true&ranks=k&ranks=kpcofg";
 				httpsrv.url = ecatServices+"nav?image=true&ranks=k&ranks=kpcofg";
 				httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
 				httpsrv.send();			
