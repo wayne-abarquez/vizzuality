@@ -16,11 +16,6 @@
 		Cufon.replace('div.pages a.next',{hover:{color:'#B2432E'}});
 		
 		
-		//Dates in user page
-		var dates_list_width = $('div.information.user div.map_container div.abs div.years_container ul').width();
-		$('div.information.user div.map_container div.abs div.years_container ul').css('margin-left',(795/2) - (dates_list_width/2) + 'px');
-		
-		
 		$('div.filter span.search form input[type="text"]').focus(function(ev){
 			$(this).parent().find('input[type="submit"]').css('background-position','0 -31px');
 		});

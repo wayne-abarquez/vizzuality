@@ -454,7 +454,7 @@ div.data div.information.user div.map_container div.abs {position:absolute; widt
 div.data div.information.user div.map_container div.abs div#map {position:absolute; top:0; left:0; width:910px; height:430px;}
 div.data div.information.user div.map_container div.abs div.dates {position:absolute; left:0; top:417px; width:910px; height:63px; background:url(../images/user/user_band.png) no-repeat 0 13px;}
 div.data div.information.user div.map_container div.abs div.years_container {float:left; width:795px; padding:0;}
-div.data div.information.user div.map_container div.abs div.years_container ul {float:left; width:auto; padding:0; margin:0;}
+div.data div.information.user div.map_container div.abs div.years_container ul {float:right; width:auto; padding:0; margin:0;}
 div.data div.information.user div.map_container div.abs div.years_container ul li {float:left; background:url(../images/user/date_separator.png) no-repeat right 12px; width:auto; padding:26px 13px 7px 13px; height:20px;}
 div.data div.information.user div.map_container div.abs div.years_container ul li.selected {background:url(../images/user/selected_date.png) no-repeat 0 0;}
 div.data div.information.user div.map_container div.abs div.years_container ul li.last {background:none;}
