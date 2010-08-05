@@ -22,6 +22,11 @@
 			<location>/Users/jmedina/Desktop</location>
 		</link>
 		<link>
+			<name>bin-release4</name>
+			<type>2</type>
+			<location>/Users/jatorre/Desktop</location>
+		</link>
+		<link>
 			<name>bin-release</name>
 			<type>2</type>
 			<location>/Users/jmedina/Desktop/SDR Browser</location>
