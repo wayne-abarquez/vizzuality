@@ -22,8 +22,13 @@ package com.vizzuality.components
 		}
 		
 		public function set query(value:Object):void {
-        	super.source = "com/vizzuality/assets/loader.swf";
+        	//super.source = new LoadingIcon();
+        	super.source = "";
+        	if(value!="") {
+        		super.source=value;
+        	}
         	
+   /*      	
             if (value!=null) {
 	        	queryString=value.labelField.toString();
 	        	idTaxon=value.id.toString();
@@ -42,7 +47,7 @@ package com.vizzuality.components
 		            imageServ.addEventListener(ResultEvent.RESULT,onImageSearchResult);
 		            imageServ.send();       
 	        	}
-            }
+            } */
         }
             
         private function onImageSearchResult(event:ResultEvent):void {

@@ -394,7 +394,9 @@ package com.ninem.controls
 			
 			var httpsrv:HTTPService = new HTTPService();
 			httpsrv.resultFormat = "text";
-			httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
+			//httpsrv.url = "http://data.gbif.org/species/classificationSearch?view=json&allowUnconfirmed=false&providerId=2&query="+(_selectedItem.id).toString();
+			
+			httpsrv.url = "http://ecat-dev.gbif.org/ws-sdr/nav/?image=thumb&id="+(_selectedItem.id).toString();
 			httpsrv.addEventListener(ResultEvent.RESULT,onResultGbif);
 			httpsrv.send();
 
@@ -405,20 +407,21 @@ package com.ninem.controls
 			var resultObj:Object = JSON.decode(String(ev.result));				
 			var resultAc:ArrayCollection = new ArrayCollection();
 			var getTaxon: Boolean = false;
-			for each(var co:Object in resultObj.classificationSearch.classification) {
-				if (getTaxon) {
+			//for each(var co:Object in resultObj.classificationSearch.classification) {
+			for each(var co:Object in resultObj) {
 					var clasOb:Object= new Object();
-					clasOb.id = co.id;
+					clasOb.id = co.taxonID;
 					clasOb.type = co.rank;
 					clasOb.description ="";
-					clasOb.labelField = co.scientificName;
-					clasOb.children=true;
-					resultAc.addItem(clasOb);
-				} else {
-					if (co.id == _selectedItem.id) {
-						getTaxon=true;
+					//trace(co.imageURL);
+					if (co.imageURL!=null) {
+						clasOb.imageUrl=co.imageURL;
+					} else {
+						clasOb.imageUrl="";							
 					}
-				} 
+					clasOb.labelField = co.scientificName;
+					clasOb.children=(co.numChildren>0);
+					resultAc.addItem(clasOb);
 			}			
 			(_rootModel as ArrayCollection).addItemAt(resultAc,index+1);
 			selectionChangeHandler();

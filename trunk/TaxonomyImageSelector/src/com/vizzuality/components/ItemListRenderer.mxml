@@ -33,9 +33,10 @@
                     return;
                 }
                 if(value.labelField != taxon) {
+                	//trace("val:"+value.imageUrl);
 	                taxon = value.labelField;
                 	flickrImg.id = value.id;
-                	flickrImg.query=value;
+                	flickrImg.query=value.imageUrl;
 	                bool = value.has_children;
                 }
                 this.alpha=0;
