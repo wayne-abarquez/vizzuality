@@ -77,9 +77,9 @@ $(document).ready(function() {
 	  url: 'region.json.txt',
 	  dataType: "json",
 	  success: function(data) {
-			var geomCoords = new Array() ;
-			for(var co in data.geometry) {
-				geomCoords.push(new google.maps.LatLng(co[0],co[1]));
+			var geomCoords = new Array();
+			for(var i=0; i<data.geometry.length; i++) {
+				geomCoords.push(new google.maps.LatLng(data.geometry[i][0],data.geometry[i][1]));
 			}
 			var world = [
 		    new google.maps.LatLng(-89.99,-179.99),
@@ -109,46 +109,6 @@ $(document).ready(function() {
 	
 
 
-
-
-
-	// cluster=new PolyCluster();
-	// 	cluster.setMap(hawaii);
-	// 	google.maps.event.addListener(hawaii,"idle",function(){cluster.repair();});
-	// 	q=document.getElementById("_");
-	// 	if (q) 
-	// 		document.body.removeChild(q);
-	// 	
-	// 	q=document.createElement("SCRIPT");
-	// 
-	// 	if (q) 
-	// 		document.body.appendChild(q);
-	// 		
-	// 	q.src="http://home.provide.net/~bratliff/polycluster/pack/hawaii.set";
-	// 	q.id="_";
-
 });
 
 
-
-		function PolyClusterFile(call,file) {
-			var q;
-			cluster.load(call);
-			for (q in call) setTimeout('setColor("'+q+'","#000000")',0);
-		}
- 
-		function setColor(a,c) {
-			if (c==colors[a]) {
-				colors[a]="";
-				cluster.setColor(a,0);
-			} else {
-				colors[a]=c;
-				cluster.setColor(a,{fill:1,stroke:1,fillColor:colors[a],strokeColor:colors[a],fillAlpha:0.4,strokeAlpha:1.0,weight:1});
-			}
-			Reciprocal(a,1);
-		}
- 
-		function Reciprocal(a,c) {
-			reciprocal^=c;
-			cluster.reciprocal(reciprocal ? {fill:1,fillColor:colors[a],fillAlpha:0.4,stroke:0,strokeColor:colors[a],strokeAlpha:0.4,weight:0} : 0);
-		}
