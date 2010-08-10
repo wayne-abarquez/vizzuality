@@ -4,6 +4,9 @@ var reciprocal=0;
 var colors={hawaii:""};
 
 $(document).ready(function() {
+	
+	var map_position = $('div#pa_map').offset();
+	$('div#loader_map').css('top',map_position.top + 2 + 'px');
 
 	var height_content = $('div.upper_area div.content').height();
 	$('a#zoom_in').css('top',height_content + 11 + 'px');
@@ -64,10 +67,22 @@ $(document).ready(function() {
     zoom: 3,
     center: myLatlng,
 		disableDefaultUI: true,
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
+    scrollwheel: false
   }
   map = new google.maps.Map(document.getElementById("pa_map"), myOptions);
 
+
+
+	//Marine overlay
+	var marineOverlay=new SparseTileLayerOverlay();
+	marineOverlay.setUrl = function SetUrl(xy,z){
+		var q=[];
+		q[0]= "http://184.73.201.235/geoserver/gwc/service/gmaps?layers=ppe:marine_public_blue&zoom="+z+"&x="+xy.x+"&y="+xy.y;
+		return q;
+	};
+	marineOverlay.setMap(map);
+	google.maps.event.addListener(map,"idle",function(){marineOverlay.idle();});
 
 
 
@@ -77,6 +92,26 @@ $(document).ready(function() {
 	  url: 'region.json.txt',
 	  dataType: "json",
 	  success: function(data) {
+		
+			console.log(data);
+			$("div.relatedBox a div.image").each(function(index,element){
+				console.log('slakfja');
+				try {									$(element).css('background-image','url(http://maps.google.com/maps/api/staticmap?size=197x124&maptype=terrain&path=fillcolor:0xED671E66|color:0xED671EFF|weight:2|enc:' + escape(data.popular_pas[index].encoding) + '&sensor=false)');			
+					$(element).parent().parent().find('img').attr('src',data.popular_pas[index].image);
+					$(element).parent().attr('href','region.html?id=' + data.popular_pas[index].id);
+					$(element).parent().parent().children('a').attr('href', 'region.html?id=' + data.popular_pas[index].id);
+					$(element).parent().parent().find('p.description a').text(data.popular_pas[index].name);
+					$(element).parent().parent().find('p.description a').attr('href', 'region.html?id=' + data.popular_pas[index].id);
+				} catch (e) {
+					$(element).parent().parent().hide();
+				}
+			});
+			
+			$('div#data1 p').text(data.area + 'km');
+			$('div#data2 p').text(data.per_protected + '%');
+			$('div#data2 sup').text('(' + data.position + ')');
+			$('div#data3 p').text(data.num_pas);
+		
 			var geomCoords = new Array();
 			for(var i=0; i<data.geometry.length; i++) {
 				geomCoords.push(new google.maps.LatLng(data.geometry[i][0],data.geometry[i][1]));
@@ -103,7 +138,9 @@ $(document).ready(function() {
 	      strokeWeight: 4
 		  });		
 		  region.setMap(map);
-		  region_border.setMap(map);		
+		  region_border.setMap(map);
+		
+			$('div#loader_map').fadeOut();
 		}
 	  });
 	

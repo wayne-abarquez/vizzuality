@@ -5,14 +5,108 @@
    "name": "Baltic",
    "area": "441,000",
    "per_protected": 2.99,
-   "num_pas":580,
-   "geometry": [{"points": "us}pKsjxgCpnw@|vXjn[x~lEjyb@}nr@fwcApqnBrzzAgl}Al_dBnihC~egAvn`GvjnCxvfFbafAzflAb}fArytAn~wEria@newEkq|H~tkBnabDk`o@|~eBhjCvvfFvdY{nyC|{`AoihCr_fApytAv|GxfsDbjbAgl}A|{y@tia@|hvB?l|nFnabD?vvfFf}V|flAfcnBf|i@xzCxvfFsqgDf|i@cwkB?cgxCznyCoopC?y~Gd|pCszrBria@g|}BrytA?f|i@`{qAidPrmo@h|i@mlCfl}Al}_D`tqGxs~AqvtL~o}Df|i@plHftcAvpi@my{Drc}Cly{Dnmt@yfsDtcaB~vXkwoBny{DjjhAf|i@~kf@}flA`lnAtqGr~CcldEpk~AhdP}ktA_|~Ibcq@etjDxgb@{~eBekcB{{eMqq_AwfzGj}CedwBlrnAi|i@czp@iq|HizRpa{@elp@?utR{~eBryH{v_CiuoE?kgmC~vX{coCgdwBoxLynyCbnh@{v_Crtv@_or@jiVel}A}er@sytAgghE}nr@goUnabDoxk@|nr@ibrBhdPmeiAei}LhkPqvtLo_s@idPizX}{eMc}kAtvmIox{A?hjbA~sxJ_|Opa{@nbv@rytAb`yAjfoQima@}vXqir@pqnBggCnabDwhuFhdPm}{EpqnBeimA{v_Cyiq@sa{@eam@{~eBuujFgqcLsbg@etjD_ayBria@ufTddwB_vl@sqGlr^ddwBuqP`deI", "levels": "PMOMNNMMLIPOPNMPLPMONLNPMMNPLMNNNLPMMNMPPMOOOONOMMPNNNINHNMNPMNKNKNPMLLMPONLPMLMPNOLLMNMMPMPJLKMPMMOLP"}]			
-},		{
-		   "id": 2,
-		   "name": "East Asian Seas",
-		   "area": "12,043,000",
-		   "per_protected": 0.73,
-		   "num_pas":529,
-		   "geometry": [{"points": "`mubA{ddgNqlGytonF~|y@}hrVqb_D}sxJ?iih_ByavG}vXeeqDly{Du~q@idPh~bAx~lE|}`@laiGunqD}flAs_Pe|pCoar@|vXa`PqytAosz@pytAcbpGfdwBm`wFtczR{fa@fdwBsalAz~eBpocAria@~tXfl}Ak`hCria@outApihCscPqqnB}qcAitcAvcPqqnBwi}Aqa{@b`{@~kkHuawBra{@mscAbldEca{@ra{@unr@}nr@ha{@sia@{k}AitcA{nr@oihC?}flAxflAatqGxrjDsqGrkyCsia@fdlA_or@gdlAsqGrhyCgppAfqG}byAmcjB{byAoha@ixv@svv@idP{ha@etjD_scA~zKqwv@e|pCfvyEuk`RbvXitcAgyfS_{Ko|oJz|qbAok~fBh`]?xpqnBz~hJjq|H{aCbtjD}_p@peuCo|dBdhjBothB~zKmafJ_{Ky`cC?j}v@fhjBd`k@ria@p`W|j_A~_Kh|i@jhgAh`]`l_AhhC|cS~vXjdSpa{@?hxv@fbuDren@ljWsia@d|pB}j_AtmWsen@x`t@_{Kfi|@i`]b`l@}flAlr`A}vXpdqA}~eBzemEchqElxiHquaB|toE}re@j|vA|re@ftxB?xgwA|re@x`dBdpwDbcoAfxv@?|byActKfxv@?~nr@vlm@hhC`q\\ria@efCria@hzfAidPpwq@ren@l~pDvvfF?|j_A_wcF_{Kaom@qen@{idBneuC?puaBk_uBren@be~@fppAgwoDren@qeXf|i@ceX~nr@}epBp}gAaeCbhqE_vyChhCejGpabDdiiF|zKfxsIzjfDr`_F_{K`nGghjBve_LedwBpbr@wvfFrwkGatqGvncC}flAl|nH?zg_A_{Kbvv@}nr@nvv@i|i@rwtAi|i@zj}AsqG?|re@zzKhxv@vvXrmTwwv@ren@u{i@pqnBy_]|flAqauCly{D_vX~vX_qaB?kajBfl}Aou}Mzv_Cka~Jj}uGhvoAftcAivoAtmTwj|ArqGw`oC}re@yjoA_se@onm@~zKhov`CbjipB", "levels": "PMOOPNMPLPNMMOMPKLNMPMOMMMPOMLPMMMNLPKNNMPMKLMMMPGPPPPPNPMOKIPLLINKLMKNPKLLJMLLKPLNKLPLNJJNLKLMNMPMOMNNNMILNNNPMPNNONLOKNIMLPJLNLELIPLMONOJMKLPP"},{"points":	"etnOoepfTnluEpa{@cia@zrlC`dPfppAcscA|nr@?ra{@lbwBra{@nnr@?f}gArmT|{wF}re@nen@ixv@rflAgtcAjia@}j_AltaB~vXl`{@umTbjyCg|i@?s}gA~~\\_{KmzK{~eBkqe@quaB`upCidP{yi@}byAdqGi|i@ilr@qytAbzi@edwBtga@ixv@klTg|i@fzKquaBvztCumTid{Bke|F_ruG}zrB_xtAhtcAax{Dm}uGi}nD~re@mm{Bs}gAsj_AsmTtnr@oabDqmTsia@mrjDv~lEgj}A}nr@_iwDzjfDcuv@uqGkga@gppAcjpAfxv@wkTcldEui_Cren@azz@yb`EmxiBznyCsgCfppAgwz@uqGfaPrytAogcA?c_pAp}gAaxKra{@kgC|nr@|lvFneuCx{\\fppAx_}AtqGjwi@jaiGrtjHdpwDjqaB~{~I","levels": "POLMLNPKLNJKNMIPLMKONLLNKMLOPONNONKOLPNNPMNNNNPLMMNLMIPMMONOP"}]
+   "num_pas":580		
+ },{
+   "id": 2,
+   "name": "Antartic",
+   "area": "35,688,000",
+   "per_protected": 0.19,
+   "num_pas":40
+ },{
+   "id": 3,
+   "name": "Artic",
+   "area": "20,111,000",
+   "per_protected": 1.93,
+   "num_pas":128
+	},{
+   "id": 4,
+   "name": "Artic",
+   "area": "20,111,000",
+   "per_protected": 1.93,
+   "num_pas":128
+	},{
+   "id": 5,
+   "name": "West Africa",
+   "area": "32,328,000",
+   "per_protected": 0.09,
+   "num_pas":78
+	},{
+   "id": 6,
+   "name": "Arabian seas",
+   "area": "3,034,000",
+   "per_protected": 0.60,
+   "num_pas":51
+	},{
+   "id": 7,
+   "name": "Australia/New Zeland",
+   "area": "34,313,000",
+   "per_protected": 1.74,
+   "num_pas":394
+	},{
+   "id": 8,
+   "name": "North and South Pacific",
+   "area": "87,180,000",
+   "per_protected": 0.91,
+   "num_pas":255
+	},{
+   "id": 9,
+   "name": "South Atlantic",
+   "area": "15,543,000",
+   "per_protected": 0.18,
+   "num_pas":113
+	},{
+   "id": 10,
+   "name": "Wider Caribbean",
+   "area": "11,690,000",
+   "per_protected": 1.43,
+   "num_pas":580
+	},{
+   "id": 11,
+   "name": "North West Atlantic",
+   "area": "6,804,000",
+   "per_protected": 0.17,
+   "num_pas":590
+	},{
+   "id": 12,
+   "name": "South East Pacific",
+   "area": "19,161,000",
+   "per_protected": 0.82,
+   "num_pas":62
+	},{
+   "id": 13,
+   "name": "North West Pacific",
+   "area": "17,885,000",
+   "per_protected": 0.46,
+   "num_pas":212
+	},{
+   "id": 14,
+   "name": "East Africa",
+   "area": "22,221,000",
+   "per_protected": 0.09,
+   "num_pas":94
+	},{
+   "id": 15,
+   "name": "North East Atlantic",
+   "area": "11,060,000",
+   "per_protected": 0.22,
+   "num_pas":313
+	},{
+   "id": 16,
+   "name": "Mediterranean and Black Seas",
+   "area": "2,989,000",
+   "per_protected": 0.79,
+   "num_pas":236
+	},{
+   "id": 17,
+   "name": "Central Indian Ocean",
+   "area": "7,717,000",
+   "per_protected": 0.09,
+   "num_pas":79
+	},{
+   "id": 18,
+   "name": "East Asian Seas",
+   "area": "12,043,000",
+   "per_protected": 0.73,
+   "num_pas":529
 	}]
 }
