@@ -86,66 +86,120 @@ $(document).ready(function() {
 
 
 
-	//Get the region data
+	//Get the regions near data
 	$.ajax({
 	  type: "GET",
-	  url: 'region.json.txt',
-	  dataType: "json",
+	  url: 'http://stage-www.tinypla.net/api2/named_area_references/wcpa_areas/named_areas/'+ getURLParam('id') +'.json',
+	  dataType: "jsonp",
 	  success: function(data) {
-		
-			console.log(data);
+
+			$('div#data1 p').html(data.area + 'km<sup>2</sup>');
+			$('div#data2 p').text(((data.area_protected*100)/data.area).toFixed(2) + '%');
+			$('div#data2 sup').text('(xth)');
+			$('div#data3 p').text(data.num_pas);
+
+
 			$("div.relatedBox a div.image").each(function(index,element){
-				console.log('slakfja');
-				try {									$(element).css('background-image','url(http://maps.google.com/maps/api/staticmap?size=197x124&maptype=terrain&path=fillcolor:0xED671E66|color:0xED671EFF|weight:2|enc:' + escape(data.popular_pas[index].encoding) + '&sensor=false)');			
+				try {									
+					$(element).css('background-image','url(http://maps.google.com/maps/api/staticmap'+ data.popular_pas[index].encoding +'&sensor=false)');			
 					$(element).parent().parent().find('img').attr('src',data.popular_pas[index].image);
 					$(element).parent().attr('href','region.html?id=' + data.popular_pas[index].id);
-					$(element).parent().parent().children('a').attr('href', 'region.html?id=' + data.popular_pas[index].id);
-					$(element).parent().parent().find('p.description a').text(data.popular_pas[index].name);
-					$(element).parent().parent().find('p.description a').attr('href', 'region.html?id=' + data.popular_pas[index].id);
+					$(element).parent().parent().children('a').attr('href', 'http://stage-www.tinypla.net/sites/' + data.popular_pas[index].id);
+					if (data.popular_pas[index].name.length>21) {
+						$(element).parent().parent().find('p.description a').text(data.popular_pas[index].name.substring(0,18) + '...');
+					} else {
+						$(element).parent().parent().find('p.description a').text(data.popular_pas[index].name);
+					}
+					$(element).parent().parent().find('p.description a').attr('href', 'http://stage-www.tinypla.net/sites/' + data.popular_pas[index].id);
 				} catch (e) {
 					$(element).parent().parent().hide();
 				}
 			});
 			
-			$('div#data1 p').text(data.area + 'km');
-			$('div#data2 p').text(data.per_protected + '%');
-			$('div#data2 sup').text('(' + data.position + ')');
-			$('div#data3 p').text(data.num_pas);
-		
+			$('div#loader_map').fadeOut();
+		}
+	});
+	
+	
+	//Get the region data
+	$.ajax({
+	  type: "GET",
+	  url: '/regions/'+ getURLParam('id') +'.json.txt',
+	  dataType: "json",
+	  success: function(data) {
 			var geomCoords = new Array();
+			
 			for(var i=0; i<data.geometry.length; i++) {
-				geomCoords.push(new google.maps.LatLng(data.geometry[i][0],data.geometry[i][1]));
+				geomCoords.push(new Array());
+				for(var j=0; j<data.geometry[i].length; j++) {
+					geomCoords[i].push(new google.maps.LatLng(data.geometry[i][j][0],data.geometry[i][j][1]));
+				}
 			}
+			
 			var world = [
 		    new google.maps.LatLng(-89.99,-179.99),
 		    new google.maps.LatLng(89.99, -179.99),
 		    new google.maps.LatLng(89.99,179.99),
 		    new google.maps.LatLng(-89.99,179.99),
 		    new google.maps.LatLng(-89.99,0)
-		  ];			
+			];
+			
+			geomCoords.unshift(world);
+			
 		  var region = new google.maps.Polygon({
-		    paths: [world, geomCoords],
+		    paths: geomCoords,
 		    strokeColor: "#000000",
 		    strokeOpacity: 0.5,
 		    strokeWeight: 0.1,
 		    fillColor: "#000000",
 		    fillOpacity: 0.5
 		  });
-		  var region_border = new google.maps.Polyline({
-	      path: geomCoords,
-	      strokeColor: "#FF9900",
-	      strokeOpacity: 1.0,
-	      strokeWeight: 4
-		  });		
-		  region.setMap(map);
-		  region_border.setMap(map);
 		
-			$('div#loader_map').fadeOut();
-		}
-	  });
-	
+			geomCoords.shift();
+			
+			for (var i=0; i<geomCoords.length; i++) {
+			  var region_border = new google.maps.Polyline({
+		      path: geomCoords[i],
+		      strokeColor: "#FF9900",
+		      strokeOpacity: 1.0,
+		      strokeWeight: 4
+			  });
+			  region_border.setMap(map);			
+			}
 
+		
+		  region.setMap(map);
+			map.setCenter(new google.maps.LatLng(data.center[0].lat, data.center[0].lon));
+			map.setZoom(data.zoom);
+			$('div#loader_map').fadeOut();
+			
+		}
+	});
 
 });
+
+
+
+
+
+function getURLParam(strParamName){
+  var strReturn = "";
+  var strHref = window.location.href;
+  if ( strHref.indexOf("?") > -1 ){
+    var strQueryString = strHref.substr(strHref.indexOf("?")).toLowerCase();
+    var aQueryString = strQueryString.split("&");
+    for ( var iParam = 0; iParam < aQueryString.length; iParam++ ){
+      if ( 
+aQueryString[iParam].indexOf(strParamName.toLowerCase() + "=") > -1 ){
+        var aParam = aQueryString[iParam].split("=");
+        strReturn = aParam[1];
+        break;
+      }
+    }
+  }
+  return unescape(strReturn);
+}
+
+
 
 

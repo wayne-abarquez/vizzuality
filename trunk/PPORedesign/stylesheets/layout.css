@@ -609,10 +609,10 @@ a#previous:hover {background-position: 0 -56px;}
 a#next {position:absolute; width:66px; height:56px; top:118px; right:0; background:url(../images/region/next_region.png) no-repeat 0 0; z-index:1000; display:none;}
 a#next:hover {background-position: 0 -56px;}
 div#data1 {position:absolute; width:77px; height:33px; left:0; background:url(../images/region/data1.png) no-repeat 0 0; z-index:1000; padding:15px 10px;}
-div#data1 p {float:left; font:bold 15px Arial; color:#326696;}
+div#data1 p {float:left; font:bold 15px Arial; color:#326696; width:100%; text-align:center;}
 div#data1 label {float:left; font:bold 13px Arial; color:#326696; padding:2px 0 0 0;}
 div#data2 {position:absolute; width:81px; height:47px; left:110px; background:url(../images/region/data2.png) no-repeat 0 0; z-index:1000; padding:8px 8px;}
-div#data2 p {float:left; font:bold 31px Arial; color:#FFFFFF; letter-spacing:-2px; padding:0; line-height:32px;}
+div#data2 p {float:left; font:bold 22px Arial; color:#FFFFFF; letter-spacing:-2px; padding:0; line-height:32px; text-align:center;}
 div#data2 sup {float:left; font:bold 11px Arial; color:#FFFFFF;  letter-spacing:0; padding:1px 0 0 0;}
 div#data2 label {float:left; font:bold 13px Arial; color:#FFFFFF; width:81px; text-align:center; }
 div#data3 {position:absolute; width:77px; height:43px; left:220px; background:url(../images/region/data1.png) no-repeat 0 0; z-index:1000; padding:10px;}
