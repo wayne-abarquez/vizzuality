@@ -19,7 +19,7 @@ var malasia;
 var artic1;
 var polygonOver;
 var regions = [];
-
+var eeuu;
 
 
 	function addRegions() {
@@ -38,66 +38,16 @@ var regions = [];
 
 		$.ajax({
 		  type: "GET",
-		  url: 'regions.json.txt',
-		  dataType: "json",
+		  url: 'http://stage-www.tinypla.net/api2/named_area_references/wcpa_areas/named_areas.json',
+		  dataType: "jsonp",
 		  success: function(data) {
 
-					// for (var i=0; i<data.regions.length; i++) {
-					// 	var polylines_ = new Array();
-					// 	for (var j=0; j<data.regions[i].geometry.length; j++) {
-					// 		var obj = data.regions[i].geometry[j];
-					// 		obj.color = "#000000";
-					// 		obj.opacity = 0.2;
-					// 		obj.weight = 1;
-					// 		obj.numLevels = 18;
-					// 		obj.zoomFactor = 2;
-					// 		polylines_.push(obj);
-					// 	}
-					// 	
-					// 	var sea = new GPolygon.fromEncoded({
-					// 	  polylines: polylines_,
-					// 		fill: true,
-					// 	  color: "#000000",
-					// 	  opacity: 0.2,
-					// 	  outline: true,
-					// 		name: {name: data.regions[i].name,area:data.regions[i].area,pnumber:data.regions[i].num_pas,ppercent:data.regions[i].per_protected,id:data.regions[i].id}
-					// 	});
-					// 	map.addOverlay(sea);
-					// 	regions.push(sea);
-					// 	
-					// 	
-					// 	GEvent.addListener(sea, "mouseover", function(param) {
-					//     this.setFillStyle({color:"#FF6423",opacity:0.7});
-					// 		$('div#tooltip h4 a').text(this.name.name);
-					// 		$('div#tooltip div.areas_number p').text(this.name.pnumber);
-					// 		$('div#tooltip div.protected p').text(this.name.ppercent+'%');
-					// 		$('div#tooltip div.area p').html(this.name.area+'km<sup>2</sup>');
-					// 		var bounds = this.getBounds();
-					// 		var polygon_center = bounds.getCenter();
-					// 		var pixel = map.getCurrentMapType().getProjection().fromLatLngToPixel(map.fromDivPixelToLatLng(new GPoint(0,0),true),map.getZoom());
-					//         var offset=map.getCurrentMapType().getProjection().fromLatLngToPixel(polygon_center,map.getZoom());
-					//         var width =tooltip.clientWidth;
-					//         var height=tooltip.clientHeight;
-					//         var pos = new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(offset.x - pixel.x-20 - width/2, offset.y - pixel.y - 40 - height/2));
-					//         pos.apply(tooltip);
-					// 		$('div#tooltip').show();
-					// 	});
-					// 	
-					// 	
-					// 	
-					// 	GEvent.addListener(sea, "mouseout", function(latlng, index) {
-					// 		this.setFillStyle({color:"#000000",opacity:0.2});
-					// 		$('div#tooltip').hide();
-					// 	});
-					// 	
-					// 	GEvent.addListener(sea, "click", function(latlng, index) {
-					// 		window.location = 'region.html?id='+this.name.id;
-					// 	});
-					// 
-					// }
+						var marine_areas = new Array();
 						
-						
-						
+						for (var i=0; i<data.regions.length; i++) {
+							marine_areas[data.regions[i].id] = data.regions[i];
+						}
+
 						//Baltic sea
 						
 						
@@ -114,7 +64,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[0].name,area:data.regions[0].area,pnumber:data.regions[0].num_pas,ppercent:data.regions[0].per_protected,id:'1'}
+							name: {name: marine_areas[6].name,area:marine_areas[6].area,pnumber:marine_areas[6].num_pas,ppercent:((marine_areas[6].area_protected*100)/marine_areas[6].area).toFixed(4),id:'6'}
 						});
 						map.addOverlay(baltic);
 						regions.push(baltic);
@@ -164,7 +114,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[1].name,area:data.regions[1].area,pnumber:data.regions[1].num_pas,ppercent:data.regions[1].per_protected,id:'2'}
+							name: {name: marine_areas[1].name,area:marine_areas[1].area,pnumber:marine_areas[1].num_pas,ppercent:((marine_areas[1].area_protected*100)/marine_areas[1].area).toFixed(4),id:'1'}
 						});
 						map.addOverlay(antartic);
 						regions.push(antartic);
@@ -212,7 +162,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[2].name,area:data.regions[2].area,pnumber:data.regions[2].num_pas,ppercent:data.regions[2].per_protected,id:'3'}
+							name: {name: marine_areas[2].name,area:marine_areas[2].area,pnumber:marine_areas[2].num_pas,ppercent:((marine_areas[2].area_protected*100)/marine_areas[2].area).toFixed(4),id:'2'}
 						});
 						map.addOverlay(artic1);
 						regions.push(artic1);
@@ -262,7 +212,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[3].name,area:data.regions[3].area,pnumber:data.regions[3].num_pas,ppercent:data.regions[3].per_protected,id:'4'}
+							name: {name: marine_areas[2].name,area:marine_areas[2].area,pnumber:marine_areas[2].num_pas,ppercent:((marine_areas[2].area_protected*100)/marine_areas[2].area).toFixed(4),id:'2'}
 						});
 						
 						map.addOverlay(north_pole);
@@ -312,7 +262,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[4].name,area:data.regions[4].area,pnumber:data.regions[4].num_pas,ppercent:data.regions[4].per_protected,id:'5'}							
+							name: {name: marine_areas[8].name,area:marine_areas[8].area,pnumber:marine_areas[8].num_pas,ppercent:((marine_areas[8].area_protected*100)/marine_areas[8].area).toFixed(4),id:'8'}							
 						});
 						
 						map.addOverlay(africa_1);
@@ -362,7 +312,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[5].name,area:data.regions[5].area,pnumber:data.regions[5].num_pas,ppercent:data.regions[5].per_protected,id:'6'}							
+							name: {name: marine_areas[11].name,area:marine_areas[11].area,pnumber:marine_areas[11].num_pas,ppercent:((marine_areas[11].area_protected*100)/marine_areas[11].area).toFixed(4),id:'11'}							
 						});
 						
 						map.addOverlay(oman);
@@ -419,7 +369,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[6].name,area:data.regions[6].area,pnumber:data.regions[6].num_pas,ppercent:data.regions[6].per_protected,id:'7'}							
+							name: {name: marine_areas[18].name,area:marine_areas[18].area,pnumber:marine_areas[18].num_pas,ppercent:((marine_areas[18].area_protected*100)/marine_areas[18].area).toFixed(4),id:'18'}							
 						});
 						
 						map.addOverlay(australia);
@@ -471,7 +421,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[7].name,area:data.regions[7].area,pnumber:data.regions[7].num_pas,ppercent:data.regions[7].per_protected,id:'8'}							
+							name: {name: marine_areas[14].name,area:marine_areas[14].area,pnumber:marine_areas[14].num_pas,ppercent:((marine_areas[14].area_protected*100)/marine_areas[14].area).toFixed(4),id:'14'}							
 						});
 						
 						map.addOverlay(oceanic);
@@ -523,7 +473,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[8].name,area:data.regions[8].area,pnumber:data.regions[8].num_pas,ppercent:data.regions[8].per_protected,id:'9'}														
+							name: {name: marine_areas[9].name,area:marine_areas[9].area,pnumber:marine_areas[9].num_pas,ppercent:((marine_areas[9].area_protected*100)/marine_areas[9].area).toFixed(4),id:'9'}														
 						});
 						
 						map.addOverlay(brasil);
@@ -575,7 +525,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[9].name,area:data.regions[9].area,pnumber:data.regions[9].num_pas,ppercent:data.regions[9].per_protected,id:'10'}														
+							name: {name: marine_areas[7].name,area:marine_areas[7].area,pnumber:marine_areas[7].num_pas,ppercent:((marine_areas[7].area_protected*100)/marine_areas[7].area).toFixed(4),id:'7'}														
 						});
 						
 						map.addOverlay(cuba);
@@ -628,7 +578,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[10].name,area:data.regions[10].area,pnumber:data.regions[10].num_pas,ppercent:data.regions[10].per_protected,id:'11'}														
+							name: {name: marine_areas[4].name,area:marine_areas[4].area,pnumber:marine_areas[4].num_pas,ppercent:((marine_areas[4].area_protected*100)/marine_areas[4].area).toFixed(4),id:'4'}														
 						});
 						
 						map.addOverlay(newyork);
@@ -680,7 +630,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[11].name,area:data.regions[11].area,pnumber:data.regions[11].num_pas,ppercent:data.regions[11].per_protected,id:'12'}														
+							name: {name: marine_areas[17].name,area:marine_areas[17].area,pnumber:marine_areas[17].num_pas,ppercent:((marine_areas[17].area_protected*100)/marine_areas[17].area).toFixed(4),id:'17'}														
 						});
 						map.addOverlay(chile);
 						regions.push(chile);
@@ -716,12 +666,13 @@ var regions = [];
 						
 						
 						
-						//JAPAN-EEUU
+						//JAPAN
+						
 						
 						japan = new GPolygon.fromEncoded({
 						  polylines: [
-						    {points: "ujyiJddvpYbokUuh`]tpbEs~zKf{iLwsfQhgsIiivIsyIlioFhkzLuczR`xaIkybH`kuUpytAxgsRidPd}f`@kn|SxitEmnuPl{lT{clLhrjHiivItggC`d~EvwoIo~aO`ufGqytAruhIq~zKw|{Dsia@_e_YvsfQw`iI~ceIuw`JddwBxdtBq~zKj}~KgdwBjeai@u}yh@`~nI?nu`EgtcAhbtHaywQ~jiK}mx`@coqAkybH|xhHycsObukmAdfomBglqgBrxwiEqjpdA~lw}@wxMu~kt~@tn}m@t||pFxfoR`}c|@vdOl{soBnstIt~sHctpAhyiKarbFftcAsjqK}nr@cynAenjZctlGostWudua@uxs^aukMqytAay`Q|sxJ}i~Bny{Dw~vJ}clLy|gC{nyCsyg@v~sHnclB~ceIa}oDria@ek}AlioFqlwB?s_hIkn|SzhzAmy{DhgjDly{DxrqCsia@spuGaywQlwjDoy{Dv{gEznyCn|xBs~zKxneQ|~eBqraBmnuPieyO}nr@u`{IrngJye_NmnuPwbiEiivIlscBwn`Gg_{D_txJyweU}x~T?wsfQ{sJuwvfFqcgiAxfyz{@",
-								     levels: "PMMOOOMPMPPONPONPPNMNPOOPMPMONPPPPPOPPPPMPNPPONPGPNONPNPONPOPOOPPOPMOOOPGPP",
+						    {points: "e_zxDsabia@tn}m@t||pFxfoR`}c|@vdOl{soBnstIt~sHctpAhyiKarbFftcAsjqK}nr@cynAenjZctlGostWudua@uxs^aukMqytAay`Q|sxJ}i~Bny{Dw~vJ}clLy|gC{nyCsyg@v~sHnclB~ceIa}oDria@ek}AlioFqlwB?s_hIkn|SzhzAmy{DhgjDly{DxrqCsia@spuGaywQlwjDoy{Dv{gEznyCn|xBs~zKxneQ|~eBqraBmnuPieyO}nr@u`{IrngJye_NmnuPwbiEiivIlscBwn`Gg_{D_txJyweU}x~T?wsfQ{sJuwvfF|eveB?",
+							  levels: "POPPPOPPNPPONPGPNPNNPOONPPOOPPPOPMOOOPGPP",
 								     color: "#000000",
 								     opacity: 0.2,
 								     weight: 1,
@@ -737,7 +688,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[12].name,area:data.regions[12].area,pnumber:data.regions[12].num_pas,ppercent:data.regions[12].per_protected,id:'13'}														
+							name: {name: marine_areas[16].name,area:marine_areas[16].area,pnumber:marine_areas[16].num_pas,ppercent:((marine_areas[16].area_protected*100)/marine_areas[16].area).toFixed(4),id:'16'}														
 						});
 						map.addOverlay(japan);
 						regions.push(japan);
@@ -770,8 +721,66 @@ var regions = [];
 						GEvent.addListener(japan, "click", function(latlng, index) {
 							window.location = 'region.html?id='+this.name.id;
 							  });
+							
+							
+							
+							
+							
+							
+							
+							//WEST EEUU
+							
+								eeuu = new GPolygon.fromEncoded({
+								  polylines: [
+								    {points: "ujyiJddvpYbokUuh`]tpbEs~zKf{iLwsfQhgsIiivIsyIlioFhkzLuczR`xaIkybH`kuUpytAxgsRidPd}f`@kn|SxitEmnuPl{lT{clLhrjHiivItggC`d~EvwoIo~aO`ufGqytAruhIq~zKw|{Dsia@_e_YvsfQw`iI~ceIuw`JddwBxdtBq~zKj}~KgdwBjeai@u}yh@`~nI?nu`EgtcAhbtHaywQ~jiK}mx`@coqAkybH|xhHycsObukmAdfomBglqgBrxwiEqjpdA~lw}@wxMu~kt~@}eveB?qcgiAxfyz{@",
+									  levels: "PMMOOOMPMPPONPONPPNMNPOOPMPMONPPPPPPP",
+										     color: "#000000",
+										     opacity: 0.2,
+										     weight: 1,
+										     numLevels: 18,
+										     zoomFactor: 2}],
+								  fill: true,
+								  color: "#000000",
+								  opacity: 0.2,
+								  outline: true,
+									name: {name: marine_areas[15].name,area:marine_areas[15].area,pnumber:marine_areas[15].num_pas,ppercent:((marine_areas[15].area_protected*100)/marine_areas[15].area).toFixed(4),id:'15'}														
+								});
+								map.addOverlay(eeuu);
+								regions.push(eeuu);
+
+								GEvent.addListener(eeuu, "mouseover", function(param) {
+									    this.setFillStyle({color:"#FF6423",opacity:0.7});
+											$('div#tooltip h4 a').text(this.name.name);
+											$('div#tooltip div.areas_number p').text(this.name.pnumber);
+											$('div#tooltip div.protected p').text(this.name.ppercent+'%');
+											$('div#tooltip div.area p').html(this.name.area+'km<sup>2</sup>');
+											var bounds = this.getBounds();
+											var polygon_center = bounds.getCenter();
+											var pixel = map.getCurrentMapType().getProjection().fromLatLngToPixel(map.fromDivPixelToLatLng(new GPoint(0,0),true),map.getZoom());
+									        var offset=map.getCurrentMapType().getProjection().fromLatLngToPixel(polygon_center,map.getZoom());
+									        var width =tooltip.clientWidth;
+									        var height=tooltip.clientHeight;
+									        var pos = new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(offset.x - pixel.x - width/2, offset.y - pixel.y - 90 - height/2)); 
+									        pos.apply(tooltip);
+											$('div#tooltip').show();
+								});
+
+
+
+								GEvent.addListener(eeuu, "mouseout", function(latlng, index) {
+									this.setFillStyle({color:"#000000",opacity:0.2});
+									$('div#tooltip').hide();
+
+									  });
+
+								GEvent.addListener(eeuu, "click", function(latlng, index) {
+									window.location = 'region.html?id='+this.name.id;
+									  });
+							
+							
+		
 						
-						
+						//////////////////////////////////////////////////////////////
 						
 						
 						//AFRICA 2
@@ -795,7 +804,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[13].name,area:data.regions[13].area,pnumber:data.regions[13].num_pas,ppercent:data.regions[13].per_protected,id:'14'}														
+							name: {name: marine_areas[12].name,area:marine_areas[12].area,pnumber:marine_areas[12].num_pas,ppercent:((marine_areas[12].area_protected*100)/marine_areas[12].area).toFixed(4),id:'12'}														
 						});
 						map.addOverlay(africa_2);
 						regions.push(africa_2);
@@ -852,7 +861,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[14].name,area:data.regions[14].area,pnumber:data.regions[14].num_pas,ppercent:data.regions[14].per_protected,id:'15'}														
+							name: {name: marine_areas[5].name,area:marine_areas[5].area,pnumber:marine_areas[5].num_pas,ppercent:((marine_areas[5].area_protected*100)/marine_areas[5].area).toFixed(4),id:'5'}														
 						});
 						map.addOverlay(europe);
 						regions.push(europe);
@@ -910,7 +919,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[15].name,area:data.regions[15].area,pnumber:data.regions[15].num_pas,ppercent:data.regions[15].per_protected,id:'16'}														
+							name: {name: marine_areas[3].name,area:marine_areas[3].area,pnumber:marine_areas[3].num_pas,ppercent:((marine_areas[3].area_protected*100)/marine_areas[3].area).toFixed(4),id:'3'}														
 						});
 						map.addOverlay(mediterraneo);
 						regions.push(mediterraneo);
@@ -960,7 +969,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[16].name,area:data.regions[16].area,pnumber:data.regions[16].num_pas,ppercent:data.regions[16].per_protected,id:'17'}														
+							name: {name: marine_areas[10].name,area:marine_areas[10].area,pnumber:marine_areas[10].num_pas,ppercent:((marine_areas[10].area_protected*100)/marine_areas[10].area).toFixed(4),id:'10'}														
 						});
 						map.addOverlay(india);
 						regions.push(india);
@@ -1018,7 +1027,7 @@ var regions = [];
 						  color: "#000000",
 						  opacity: 0.2,
 						  outline: true,
-							name: {name: data.regions[17].name,area:data.regions[17].area,pnumber:data.regions[17].num_pas,ppercent:data.regions[17].per_protected,id:'18'}														
+							name: {name: marine_areas[13].name,area:marine_areas[13].area,pnumber:marine_areas[13].num_pas,ppercent:((marine_areas[13].area_protected*100)/marine_areas[13].area).toFixed(4),id:'13'}														
 						});
 						map.addOverlay(malasia);
 						regions.push(malasia);
