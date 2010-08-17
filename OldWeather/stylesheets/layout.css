@@ -276,7 +276,7 @@ div.data div.information.vessel_map div p a:hover {color:#A53611;}
 div.data div.information.vessel_map div.left_map {float:left; width:540px; padding:25px 30px; height:250px; background:white;}
 div.data div.information.vessel_map div.left_map div.block {float:left; width:173px; margin:25px 10px 0 0;}
 div.data div.information.vessel_map div.left_map div.block.last {margin:25px 0 0 0;}
-div.data div.information.vessel_map div.left_map div.block div.gray_cont {float:left; width:173px; height:96px; background:url(../images/home/gray_cont.png) no-repeat 0 0;}
+div.data div.information.vessel_map div.left_map div.block div.gray_cont {float:left; width:173px; height:96px;}
 div.data div.information.vessel_map div.left_map div.block h5 {float:left; margin:15px 0 0 0; width:100%; font:bold 15px Arial; color:#333333;}
 div.data div.information.vessel_map div.left_map div.block p {float:left; width:100%; padding:10px 0 0 0; font:normal 15px Arial; color:#333333;}
 div.data div.information.vessel_map div.left_map div.block a {color:#EB593A; text-decoration:none;}
