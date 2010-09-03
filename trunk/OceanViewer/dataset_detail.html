@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+	<head lang="en" xml:lang="en"> 
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+		<title></title> 
+		<meta name="description" content=""> 
+		<meta name="keywords" content=""> 
+		
+		<!-- STYLESHEETS --> 
+		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
+		<link rel="stylesheet" type="text/css" media="all" href="styles/jScrollPane.css" />
+		
+		<!-- JAVASCRIPT --> 
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		
+		<!-- IS IE 	-->
+		<script src="javascripts/ie.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript" src="javascripts/jquery.mousewheel.min.js"></script>
+		<script type="text/javascript" src="javascripts/jquery.em.js"></script>
+		<script type="text/javascript" src="javascripts/jScrollPane.js"></script>
+		
+		<script src="javascripts/jquery.textshadow.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="javascripts/application.js"></script>
+			
+	</head>
+	
+	<body>	
+	
+	<div id ="content_header">
+
+		<div class="map">			
+			<div id="js_map">				
+			</div>
+		</div>
+
+		<div id="layout_header">				
+			<div id="header">
+				<h1>Ocean data for decission makers</h1>
+				<ul class="menu">
+					<li class="actual"><a href="#">EXPLORE THE DATA</a></li>
+					<li><a href="#">DATA LICENCES</a></li>
+					<li<a href="#">REGISTRATION</a></li>
+					<li><a href="#">LINKS</a></li>
+					<li><a href="#">ABOUT</a></li>
+					<li><a href="#">CONTACT</a></li>					
+				</ul>
+			</div>
+			<div id="zoom_buttons">
+				<a id="zoomIn"></a>
+				<a id="zoomOut"></a>
+			</div>
+		</div>
+	</div>
+
+ 	<div id="outer_layout">	
+		<div id="layout">	
+			
+			<div id="data_set_title">
+				<ul>
+					<li class="gray detail">Dataset detail</li>
+					<li class="information">Global distribution of coral reefs </li>
+					<li class="gray access">Access</li>
+				</ul>
+			</div>
+			
+			<a id="resize_map"></a>	
+			<div id="data_set_content">
+				<div class="content_left">
+					<ul>
+						<li class="detail first">
+							<p>Description</p>
+						</li>
+						<li class="information">
+							<p>The seagrass dataset has been compiled by UNEP-WCMC in collaboration with Dr Frederick T. Short, University of New Hampshire, USA to show the global distribution of seagrass species. This dataset shows the range of individual seagrass species and was published in "The World Atlas of Seagrasses" (2003). This dataset was used to create a global map of seagrass biodiversity.</p>
+							<p>The seagrass dataset has been compiled by UNEP-WCMC in collaboration with Dr Frederick T. Short, University of New Hampshire, USA to show the global distribution of seagrass species. This dataset shows the range of individual seagrass species and was published in "The World Atlas of Seagrasses" (2003). This dataset was used to create a global map of seagrass biodiversity.</p>
+						</li>
+					</ul>
+					<ul>
+						<li class="detail">
+							<p>Metadata description</p>
+						</li>
+						<li class="information">
+							<p>Global range of individual seagrass species (polygon) in Shapefile format V1.0 2003</p>
+							<p>Geospatial Data Presentation Form: vector digital data</p>
+						</li>
+					</ul>
+					<ul>
+						<li class="detail">
+							<p>Licence</p>
+						</li>
+						<li class="information">
+							<p>The Seagrass ranges - Global dataset is licenced under the WCMC Data Licence Agreement licence.</p>
+							<p>The standard data licence agreement that is used for many of the WCMC datasets.</p>
+							<p><a href="#">Read more</a> about this licence.</p>
+						</li>
+					</ul>
+					<ul class="last">
+						<li class="detail">
+							<p>Decissions</p>
+						</li>
+						<li class="information">
+							<ul>
+								<li><a href="#">CBD EBSAs</a> (ET6)</li>
+								<li><a href="#">Islands POW</a></li>
+								<li class="last"><a href="#">WDDD</a></li>								
+								<li><a href="#">CBD POW +</a></li>
+								<li><a href="#">Pas POW</a></li>
+								<li class="last"><a href="#">Ramsar 09-12</a></li>								
+								<li><a href="#">Test decision</a></li>
+								<li><a href="#">FAO-VME</a></li>
+								<li class="last"><a href="#">GEOBON</a></li>								
+								<li><a href="#">M+C POW</a></li>
+							</ul>
+						</li>
+					</ul>
+					<span class="end_information"></span>
+					
+				</div> <!-- content_left -->
+				<div class="content_right">
+					<div class="data_set_box">
+						<div class="buttons">
+							<a href="#" class="download"></a>
+							<a href="#" class="arcgis"></a>
+						</div>
+						<div class="last_date">
+							<h4>LAST UPDATE</h4>
+							<p class="date">29/10 /2010</p>						
+						</div>
+					</div>
+				
+					<div class="related_datasets">
+						<h4>Related datasets</h4>
+						<ul class="links">
+							<li><a href="#">Global distribution of mangroves</a></li>
+							<li><a href="#">Global distribution of seagrass</a></li>
+						</ul>
+					</div>
+				</div>  <!-- right -->
+			</div> <!-- data_set_content -->
+
+			<div id="footer">
+				<a href="http://www.unep-wcmc.org/" target="_blank" class="wcmc_unep"></a>
+				<div class="reserved">
+					<p>All rights reserved.</p>
+					<p>UNEP-WCMC</p> 
+				</div>	
+			</div>
+		</div>  <!-- layout -->
+	</div>
+	
+	</body> 
+</html> 
+ 
+ 
