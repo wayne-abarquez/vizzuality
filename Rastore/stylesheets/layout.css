@@ -7,9 +7,52 @@ div.right{float:right; width:auto;}
 a:focus{outline:none}
 ul{list-style:none;}
 
-/*div#layout{margin:0 auto; width:945px; height:auto; position:relative;}*/
+/* MODEL */
+div#outer_layout_model_header{margin:relative; float:left; width:100%; height:auto; background:url(../images/model/bkg_header.png) repeat-x; border-bottom:17px solid #8CC53D;}
+div#model_header {margin:0 auto; width:970px; height:117px; position:relative; }
+div#model_header div.menu {float:right; width:185px; height:45px;}
+div#model_header div.menu a {float:left; font:bold 11px Arial; margin:0 0 0 8px; text-decoration:none; text-transform:uppercase; color:#666666; background:url(../images/common/menu_option_other.png) no-repeat left 0; width:74px; height:25px; text-align:center; padding:15px 5px 5px 5px; line-height:11px;}  
+div#model_header div.menu a:hover {background-position:-85px 0;}
+div#model_header div.menu a.selected {color:white; background:url(../images/common/menu_option_selected.png) no-repeat left 0; }
+div#model_header div.menu a.selected:hover {background-position:-85px 0;}
+div#model_header div.text {float:left; width:715px; margin:25px 0 0 25px;}
+div#model_header div.text h1 {float:left; font:bold 18px Arial; color:#333333; width:auto; margin:0 5px 0 0;}
+div#model_header div.text h3 {font:18px Georgia; color:#666666;}
 
 
+div#outer_layout_content_model {float:left; margin:relative; width:100%; height:auto; }
+div#content_layout_model {margin:0 auto; width:949px; height:auto; padding:0 0 0 25px; position:relative;}
+div#content_model {position:absolute; top:-65px; left:25px;}
+div#content_model div.head {float:left; margin:0; background:url('../images/model/bkg_head_model.png') no-repeat 0 0; width:944px; height:65px; }
+div#content_model div.head div.title {float:left; width:650px; height:65px;}
+div#content_model div.head div.title h2 {float:left; margin:20px 0 0 20px; font:bold 22px Arial; color:#666666;}
+div#content_model div.head div.title h2 span.date {font-weight:normal;}
+div#content_model div.head div.author {float:right; width:293px; height:65px;}
+div#content_model div.head div.author p.title {float:left; font:bold 11px Arial; color:#719F32; text-transform:uppercase; width:293px; margin:17px 0 0 20px;}
+div#content_model div.head div.author p.name {float:left; font:normal 14px Arial; color:#666666; width:293px; margin:0 0 0 20px;}
+
+div#content_layout_model div.map {float:left; margin:0; background:url('../images/model/fake_map.jpg') no-repeat 0 0; width:944px; height:425px;}
+div#content_layout_model div.info_model {float:right; background:url('../images/model/bkg_repeat_y_infomodel.png') repeat-y; width:949px; height:auto; margin:0 2px 0 0; color:#333333; padding:0 0 40px 0;}
+div#content_layout_model div.info_model div.content_left {float:left; width:628px; height:auto; padding:15px 0 0 21px;}
+div#content_layout_model div.info_model div.content_left h3.title {float:left; font:normal 18px Georgia; color:#333333;}
+div#content_layout_model div.info_model div.content_left p {float:left; font:normal 14px Arial; color:#333333; margin:13px 0 0 0;}
+div#content_layout_model div.info_model div.content_right {float:right; width:275px; height:auto; padding:8px 0 0 10px;}
+div#content_layout_model div.info_model div.content_right p.title {float:left; font:bold 11px Arial; color:#719F32; width:285px; text-transform:uppercase; margin:10px 0 0 0;}
+div#content_layout_model div.info_model div.content_right p {float:left; font:normal 14px Arial; color:#666666; margin:2px 0 0 0;}
+div#content_layout_model div.info_model div.content_right div.line {float:left; width:252px; height:1px; background-color:#C2C2C2; margin:10px 0 0 0;}	
+div#content_layout_model div.info_model div.content_right ul.tags {float:left; width:252px; height:auto; margin:2px 0 0 0;}
+div#content_layout_model div.info_model div.content_right ul.tags li {float:left; margin:0 5px 0 0; width:auto;}
+div#content_layout_model div.info_model div.content_right ul.tags li a {font:normal 11px Arial; color:#666666; text-decoration:none; width:auto;}
+div#content_layout_model div.info_model div.content_right ul.tags li a:hover {color:#333333;}
+div#content_layout_model div.info_model div.content_right ul.links {float:left; margin:25px 0 0 0; width:252px;}
+div#content_layout_model div.info_model div.content_right ul.links li {float:left; width:252px; margin:3px 0 0 0;}
+div#content_layout_model div.info_model div.content_right ul.links li a {float:none; font:normal 14px Arial; color:#999999; text-decoration:underline; width:auto; height:auto; margin:3px 0 0 0;}
+div#content_layout_model div.info_model div.content_right ul.links li a:hover {color:#333333;}
+div#content_layout_model div.bottom_info {float:right; background:url('../images/model/bottom_info_model.png') no-repeat 0 0; width:948px; height:18px; margin:0 3px 0 0;}
+div#content_layout_model a.all_models {float:right; font:normal 14px Arial; color:#8BC43D; text-decoration:underline; margin:0 5px 0 0; padding:0 0 50px 0;}
+div#content_layout_model a.all_models:hover {color:#557824;}
+
+/* ------------- MODEL  */
 
 /* HOME */
 
@@ -46,6 +89,7 @@ div#content div.left div.browse_box ul li p.description {float:left; margin:15px
 div#content div.left div.browse_box div.line {float:left; background-color:#CCCCCC; width:587px; height:1px; margin:5px 0 0 0;}
 div#content div.left div.browse_box div.browse_controls {float:left; margin:0; width:608; height:11px; margin:15px 0 0 245px;}
 div#content div.left div.browse_box div.browse_controls a {float:left; width:11px; height:11px; background:url(../images/home/bttn_nav.png) no-repeat 0 0; cursor:pointer; margin:0 5px 0 0;}
+div#content div.left div.browse_box div.browse_controls a:hover {background-position:0 -11px;}
 div#content div.left div.browse_box div.browse_controls a.selected {background-position:0 -11px;}
 
 div#content div.right {float:right; width:341px; height:auto;}
@@ -59,10 +103,6 @@ div#content div.right div.steps p.first {top:19px; left:55px; }
 div#content div.right div.steps p.second {top:90px; left:55px;}
 div#content div.right div.steps p.third {top:158px; left:55px;}
 
-
-
-
-
 div#outer_layout_footer {margin:relative; float:left; width:100%; height:141px; background-color:#222222;}
 div#footer {margin:0 auto; width:960px; height:133px; position:relative; color:#7A7A7A;}
 div#footer div.content {float:left; width:945px; padding:20px 0 20px 25px;}
@@ -74,7 +114,7 @@ div#footer div.right {float:right; width:auto; height:auto;}
 div#footer div.right a.menu {float:right; text-transform:uppercase; font:bold 11px Arial; text-decoration:underline; margin:0 15px 0 0; color:#7A7A7A;}
 div#footer div.right a.menu:hover {color:white;}
 
-
+/* ------------- MODEL  */
 
 
 
