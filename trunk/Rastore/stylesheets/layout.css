@@ -1,0 +1,80 @@
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
+img,fieldset{border:none; padding:0; margin:0;}
+body{font:12px  Arial, Helvetica, sans-serif; color:#FFFFFF; background:#313131; }
+span.clear{clear:both;}
+div.left{float:left; width:auto;}
+div.right{float:right; width:auto;}
+a:focus{outline:none}
+ul{list-style:none;}
+
+/*div#layout{margin:0 auto; width:945px; height:auto; position:relative;}*/
+
+
+
+/* HOME */
+
+div#outer_layout_header{margin:relative; float:left; width:100%; height:auto; background:url(../images/home/bkg_header_repeatx.jpg) repeat-x; border-bottom:17px solid #8CC53D;}
+div#header {margin:0 auto; width:970px; height:223px; position:relative; }
+div#header div.menu {float:right; width:185px; height:45px;}
+div#header div.menu a {float:left; font:bold 11px Arial; margin:0 0 0 8px; text-decoration:none; text-transform:uppercase; color:#666666; background:url(../images/common/menu_option_other.png) no-repeat left 0; width:74px; height:25px; text-align:center; padding:15px 5px 5px 5px; line-height:11px;}  
+div#header div.menu a:hover {background-position:-85px 0;}
+div#header div.menu a.selected {color:white; background:url(../images/common/menu_option_selected.png) no-repeat left 0; }
+div#header div.menu a.selected:hover {background-position:-85px 0;}
+div#header div.text {float:left; width:715px; margin:25px 0 0 25px;}
+div#header div.text h1 {float:left; font:bold 54px Arial; color:#333333;}
+div#header div.text h3 {float:left; font:24px Georgia; color:#666666;}
+div#header div.text h3 a {font:normal 14px Arial; color:#67912D; text-decoration:underline;}
+div#header div.text h3 a:hover {color:#364E17;}
+
+div#outer_layout_content {float:left; margin:relative; width:100%; height:500px; }
+div#content_layout {margin:0 auto; width:960px; height:auto; padding:0 0 0 25px; position:relative;}
+
+div#content {margin:0 auto; position:absolute; top:-86px; left:5px;}
+div#content div.left {float:left; width:608px; height:auto; margin:0 0 0 25px;}
+div#content div.left div.browse_box {float:left; padding:18px 15px 15px 25px; width:608px; height:523px; background:url(../images/home/browse_box.png) no-repeat 0 0;}
+div#content div.left div.browse_box h3{float:left; font:bold 22px Arial; color:#666666; }
+div#content div.left div.browse_box ul {float:left; width:608px; height:auto; margin:13px 0 0 0;}
+div#content div.left div.browse_box ul li {float:left; width:183px; height:208px; margin:0 19px 0 0;}
+div#content div.left div.browse_box ul li.second {margin:20px 19px 0 0;}
+div#content div.left div.browse_box ul li.last.second {margin:20px 0 0 0;}
+div#content div.left div.browse_box ul li.last {margin:0;}
+div#content div.left div.browse_box ul li img {border:1px solid #999999; width:181px; height:100px;}
+div#content div.left div.browse_box ul li a.title {float:left; margin:5px 0 0 0; font:normal 14px Arial; color:#719F32; width:183px; text-decoration:none;}
+div#content div.left div.browse_box ul li a.title:hover {color:#364E17;}
+div#content div.left div.browse_box ul li p.author {float:left; margin:2px 0 0 0; font:normal 11px Arial; color:#666666; width:183px;} 
+div#content div.left div.browse_box ul li p.description {float:left; margin:15px 0 0 0; font:normal 11px Arial; color:#666666;} 
+div#content div.left div.browse_box div.line {float:left; background-color:#CCCCCC; width:587px; height:1px; margin:5px 0 0 0;}
+div#content div.left div.browse_box div.browse_controls {float:left; margin:0; width:608; height:11px; margin:15px 0 0 245px;}
+div#content div.left div.browse_box div.browse_controls a {float:left; width:11px; height:11px; background:url(../images/home/bttn_nav.png) no-repeat 0 0; cursor:pointer; margin:0 5px 0 0;}
+div#content div.left div.browse_box div.browse_controls a.selected {background-position:0 -11px;}
+
+div#content div.right {float:right; width:341px; height:auto;}
+div#content div.right div.download_box {float:right; width:282px; height:147px; background:url(../images/home/download_box.png) no-repeat 0 0;}
+div#content div.right div.download_box p.title {float:left; font:bold 22px Arial; color:#666666; margin:20px 0 0 30px;}
+div#content div.right div.download_box a.download_bttn {float:left; width:114px; height:26px; padding:36px 0 0 125px; color:#FCDAB4; font:normal 14px Arial; background:url('../images/home/dowload_bttn.png') no-repeat 0 0; margin:14px 0 0 21px; text-decoration:none; }
+div#content div.right div.download_box a.download_bttn:hover {background-position:0 -62px;}
+div#content div.right div.steps {float:right; width:274px; height:227px; background:url(../images/home/bkg_steps.png) no-repeat 0 0; margin:25px 4px 0 0; position:relative;}
+div#content div.right div.steps p {width:190px; height:39px; font:normal 14px Arial; color:#BEBEBE; position:absolute;} 
+div#content div.right div.steps p.first {top:19px; left:55px; }
+div#content div.right div.steps p.second {top:90px; left:55px;}
+div#content div.right div.steps p.third {top:158px; left:55px;}
+
+
+
+
+
+div#outer_layout_footer {margin:relative; float:left; width:100%; height:141px; background-color:#222222;}
+div#footer {margin:0 auto; width:960px; height:133px; position:relative; color:#7A7A7A;}
+div#footer div.content {float:left; width:945px; padding:20px 0 20px 25px;}
+div#footer div.left {float:left; width:605px;}
+div#footer div.left p.developed {float:left; font:normal 14px Arial; width:100%;}
+div#footer div.left a.map_of_life_logo {float:left; background:url('../images/logos/map_of_life_logo.png') no-repeat 0 0; width:53px; height:56px; margin:15px 25px 0 0;}
+div#footer div.left a.vizzuality_logo {float:left; background:url('../images/logos/vizzuality_logo.png') no-repeat 0 0; width:87px; height:46px; margin:15px 0 0 0;}
+div#footer div.right {float:right; width:auto; height:auto;}
+div#footer div.right a.menu {float:right; text-transform:uppercase; font:bold 11px Arial; text-decoration:underline; margin:0 15px 0 0; color:#7A7A7A;}
+div#footer div.right a.menu:hover {color:white;}
+
+
+
+
+
