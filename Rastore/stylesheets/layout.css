@@ -16,7 +16,8 @@ div#model_header div.menu a:hover {background-position:-85px 0;}
 div#model_header div.menu a.selected {color:white; background:url(../images/common/menu_option_selected.png) no-repeat left 0; }
 div#model_header div.menu a.selected:hover {background-position:-85px 0;}
 div#model_header div.text {float:left; width:715px; margin:25px 0 0 25px;}
-div#model_header div.text h1 {float:left; font:bold 18px Arial; color:#333333; width:auto; margin:0 5px 0 0;}
+div#model_header div.text h1 a{float:left; font:bold 18px Arial; color:#333333; width:auto; margin:0 5px 0 0; text-decoration:none;}
+div#model_header div.text h1 a:hover {color:#000000;}
 div#model_header div.text h3 {font:18px Georgia; color:#666666;}
 
 
@@ -64,7 +65,8 @@ div#header div.menu a:hover {background-position:-85px 0;}
 div#header div.menu a.selected {color:white; background:url(../images/common/menu_option_selected.png) no-repeat left 0; }
 div#header div.menu a.selected:hover {background-position:-85px 0;}
 div#header div.text {float:left; width:715px; margin:25px 0 0 25px;}
-div#header div.text h1 {float:left; font:bold 54px Arial; color:#333333;}
+div#header div.text h1 a {float:left; font:bold 54px Arial; color:#333333; text-decoration:none;}
+div#header div.text h1 a:hover {color:#000000;}
 div#header div.text h3 {float:left; font:24px Georgia; color:#666666;}
 div#header div.text h3 a {font:normal 14px Arial; color:#67912D; text-decoration:underline;}
 div#header div.text h3 a:hover {color:#364E17;}
