@@ -10,14 +10,51 @@
 		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
 		
 		<!-- JAVASCRIPT --> 
-		<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
-			
-		<!-- <script type="text/javascript" src="javascripts/application.js"></script> -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="javascripts/jquery.simplemodal-1.3.5.js" type="text/javascript" charset="utf-8"></script>		
+		<script type="text/javascript" src="javascripts/application.js"></script>
 		
 	</head>
 	
 	<body>	
 		
+		<!-- MODAL WINDOW -->
+		<div id="upload_modal_window">
+			<div class="header_progress">
+				<h1>We are uploading your model...</h1>
+			</div>
+			<div class="content">
+				<div class="message">
+					<h2>Meanwhile, you can start adding details about your model and how did you process it</h2>
+				</div>
+				<form>
+					<p class="title">SPECIES TAXONOMIC NAME</p>
+					<input type="text" class="taxon_name" />
+					
+					<p class="title">YEAR</p>
+					<input type="text" class="year" />
+					
+					<p class="title">AUTHOR(s)</p>
+					<input type="text" style="width:493px; height:28px;"/>
+					
+					<p class="title">PROGRAM</p>
+					<input type="text" style="width:493px; height:28px;"/>
+
+					<p class="title">SHORT DESCRIPTION</p>
+					<input type="text" style="width:493px; height:28px;"/>
+
+					<p class="title">DETAILS</p>
+					<input type="text" style="width:493px; height:78px;"/>
+					
+					<p class="title">TAGS</p>
+					<input type="text" style="width:258px; height:28px;"/>
+					
+					<input type="submit" value="See model"/>
+					
+				</form>
+			</div>
+		</div>
+		<!-- END MODAL WINDOW -->
 		<div id="outer_layout_header">
 			<div id="header">
 				<div class="menu">
@@ -88,7 +125,7 @@
 					<div class="right">
 						<div class="download_box">
 							<p class="title">... or start your own!</p>
-							<a href="#" class="download_bttn">RML file</a>
+							<a id="upload_bttn" class="upload_bttn">RML file</a>
 						</div>
 						<div class="steps">
 							<p class="first">Upload your species distribution model.</p>
