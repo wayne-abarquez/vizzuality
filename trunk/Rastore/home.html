@@ -22,37 +22,89 @@
 		<div id="upload_modal_window">
 			<div class="header_progress">
 				<h1>We are uploading your model...</h1>
+
 			</div>
 			<div class="content">
 				<div class="message">
 					<h2>Meanwhile, you can start adding details about your model and how did you process it</h2>
 				</div>
 				<form>
-					<p class="title">SPECIES TAXONOMIC NAME</p>
-					<input type="text" class="taxon_name" />
+					<!-- TOOLTIPS ERROR -->
+					<div id="taxon_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide a species taxononmic name</span>
+						<span class="bottom"></span>
+					</div>
 					
+					<div id="year_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide a correct year</span>
+						<span class="bottom"></span>
+					</div>
+
+					<div id="author_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide a correct author</span>
+						<span class="bottom"></span>
+					</div>
+					
+					<div id="program_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide a correct program</span>
+						<span class="bottom"></span>
+					</div>
+
+					<div id="short_description_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide some description</span>
+						<span class="bottom"></span>
+					</div>
+
+					<div id="details_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide some details</span>
+						<span class="bottom"></span>
+					</div>
+
+					<div id="tags_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">Wrong tag</span>
+						<span class="bottom"></span>
+					</div>
+					<!-- END - TOOLTIPS ERROR -->
+					
+					<p class="title">SPECIES TAXONOMIC NAME</p>
+					<input type="text" class="taxon_name"/>
+										
 					<p class="title">YEAR</p>
 					<input type="text" class="year" />
 					
 					<p class="title">AUTHOR(s)</p>
-					<input type="text" style="width:493px; height:28px;"/>
+					<input type="text" class="author"/>
 					
 					<p class="title">PROGRAM</p>
-					<input type="text" style="width:493px; height:28px;"/>
+					<input type="text" class="program"/>
 
 					<p class="title">SHORT DESCRIPTION</p>
-					<input type="text" style="width:493px; height:28px;"/>
+					<input type="text" class="short_description" />
+				
 
 					<p class="title">DETAILS</p>
-					<input type="text" style="width:493px; height:78px;"/>
+					<textarea rows="4" class="details" ></textarea>
 					
-					<p class="title">TAGS</p>
-					<input type="text" style="width:258px; height:28px;"/>
-					
-					<input type="submit" value="See model"/>
+					<p class="title">TAGS <span>Not mandatory. Separate them with ","</span></p>
+					<input type="text" class="tags" />
+
+					<div class="submit">	
+						<div class="tooltip">
+							Wait for the file to be uploaded, please.
+						</div>
+						<input type="submit" value="See model" class="disabled"/>
+					</div>
 					
 				</form>
-			</div>
+			</div> <!-- content -->
+			<div class="bottom"></div>
 		</div>
 		<!-- END MODAL WINDOW -->
 		<div id="outer_layout_header">
