@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+	<head lang="en" xml:lang="en"> 
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+		<title></title> 
+		<meta name="description" content=""> 
+		<meta name="keywords" content=""> 
+		
+		<!-- STYLESHEETS --> 
+		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
+		
+		<!-- JAVASCRIPT --> 
+		<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
+		
+		<!-- <script type="text/javascript" src="javascripts/application.js"></script> -->
+		
+	</head>
+	
+	<body>	
+		
+		<div id="outer_layout_model_header">
+			<div id="model_header">
+				<div class="menu">
+					<a href="#" class="selected">MODELS</a>
+					<a href="#">ABOUT</a>				
+				</div>
+				<div class="text">
+					<h1><a href="home.html">Rastore.</a></h1>
+					<h3>Storing and sharing species distribution models.</h3>
+				</div>
+			</div>  <!-- header -->
+		</div> <!-- outer_layout_header -->
+
+		<div id="outer_layout_content_model">
+			<div id="content_layout_model">
+				<div id="content_model">
+					<div class="head">
+						<div class="title">
+							<h2>{{taxon}} /<span class="date"> {{year}} </span></h2>
+						</div>
+						<div class="author">
+							<p class="title">AUTHORS</p>
+							<p class="name">{{authors}}</p>
+						</div>
+					</div>
+				</div> <!-- content_model -->
+			 
+				<div class="map">			
+				</div>
+				<div class="info_model">
+					<div class="content_left">
+						<h3 class="title">{{description}}</h3>
+						<p>{{details}}</p>
+                    </div> <!-- content_left -->
+					<div class="content_right">
+						<p class="title">PROGRAM</p>
+						<p>{{program}}</p
+						<div class="line"></div>
+						<p class="title">TAGS</p>
+						<ul class="tags">
+                        {% for t in tags %}
+                            <li><a href="#">{{t}}</a></li>
+                            {{ t }}; 
+                        {% endfor %}					
+						</ul>
+						<div class="line"></div>
+						<ul class="links">
+							<li><a href="#">More species information at XXX</a></li>
+							<li><a href="#">Print</a></li>
+						</ul>
+					</div> <!-- content_right -->
+				</div>
+				<div class="bottom_info"></div>
+				<a href="#" class="all_models">All models ></a>
+			</div> <!-- content_layout_model -->
+			
+		</div>
+		<div id="outer_layout_footer">
+			<div id="footer">
+				<div class="content">
+					<div class="left">
+						<p class="developed">Developed by</p>
+						<a href="#" class="map_of_life_logo"></a>
+						<a href="http://www.vizzuality.com/" target="_blank" class="vizzuality_logo"></a>
+					</div>
+					<div class="right">
+						<a href="#" class="menu">MODELS</a>
+						<a href="#" class="menu">ABOUT</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body> 
+</html> 
+ 
+ 

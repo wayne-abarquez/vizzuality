@@ -1,0 +1,23 @@
+application: smoothraster
+version: 1-0
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon.ico
+  static_files: static/images/icons/favicon.ico
+  upload: static/images/icons/favicon.ico
+
+- url: /images
+  static_dir: images
+  
+- url: /javascripts
+  static_dir: javascripts
+  
+- url: /stylesheets
+  static_dir: stylesheets
+  
+- url: /.*
+  script: AppController.py
+  
+  
