@@ -21,27 +21,29 @@
 				<div class="message">
 					<h2>Meanwhile, you can start adding details about your model and how did you process it</h2>
 				</div>
-				<form>
+				<form action="/raster/create" method="post">
+					<input type="hidden" name="k" value="{{k}}"/>
+                    
 					<p class="title">SPECIES TAXONOMIC NAME</p>
-					<input type="text" class="taxon_name" />
+					<input type="text" class="taxon_name" name="taxon"/>
 					
 					<p class="title">YEAR</p>
-					<input type="text" class="year" />
+					<input type="text" class="year" name="year"/>
 					
 					<p class="title">AUTHOR(s)</p>
-					<input type="text" style="width:493px; height:28px;"/>
+					<input type="text" style="width:493px; height:28px;" name="authors"/>
 					
 					<p class="title">PROGRAM</p>
-					<input type="text" style="width:493px; height:28px;"/>
+					<input type="text" style="width:493px; height:28px;" name="program"/>
 
 					<p class="title">SHORT DESCRIPTION</p>
-					<input type="text" style="width:493px; height:28px;"/>
+					<input type="text" style="width:493px; height:28px;" name="description"/>
 
 					<p class="title">DETAILS</p>
-					<input type="text" style="width:493px; height:78px;"/>
+					<input type="text" style="width:493px; height:78px;" name="details"/>
 					
 					<p class="title">TAGS</p>
-					<input type="text" style="width:258px; height:28px;"/>
+					<input type="text" style="width:258px; height:28px;" name="tags"/>
 					
 					<input type="submit" value="See model"/>
 					
