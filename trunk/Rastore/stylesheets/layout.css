@@ -4,6 +4,7 @@ body{font:12px  Arial, Helvetica, sans-serif; color:#FFFFFF; background:#313131;
 span.clear{clear:both;}
 div.left{float:left; width:auto;}
 div.right{float:right; width:auto;}
+input:focus {outline:none;}
 a:focus{outline:none}
 ul{list-style:none;}
 
@@ -40,15 +41,38 @@ div#upload_modal_window div.content div.tooltip_error span.bottom {float:left; w
 
 
 div#upload_modal_window div.content form input[type="text"] {float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:0 10px; position:relative;}
+div#upload_modal_window div.content form div.taxon_search {float:left; position:relative; width:262px; height:32px;}
 
-div#upload_modal_window div.content form input[type="text"].taxon_name {float:left; width:242px; height:32px; background:url('../images/modal_window/input_taxon_name.png') no-repeat 0 0;}
+/*aaaaaaaa*/
+div#upload_modal_window div.content form div.taxon_search p {float:right; padding:6px 0 0 0; margin:0; font:normal 13px Arial; color:#000000;}
+div#upload_modal_window div.content form div.taxon_search p a {color:#000000;}
+div#upload_modal_window div.content form div.taxon_search p a:hover {text-decoration:none;}
+/*aaaaaaaa*/
+
+/*AUTOCOMPLETE*/
+/*autocomplete css*/
+.ac_results {padding:0 10px 5px 10px; border: 1px solid #CCCCCC; border-top:none; background-color:white; overflow: hidden; z-index: 99999;}
+.ac_results_small{ border: 1px solid #CCCCCC; border-top:none;} 
+.ac_results ul {width: 238px; list-style-position: outside; list-style: none; padding: 0; border:none; margin: 0;}
+.ac_results li {margin:0px; padding: 3px 4px; display: block; overflow: hidden; font:normal 14px Arial; color:#666666; margin:5px 0 0 0; width:230px;}
+
+.ac_results li.last {border-bottom:none;}
+.ac_results li p {margin:0; padding:0;}
+.ac_results li p strong {text-decoration:underline;}
+.ac_results li.ac_over {cursor: pointer; color:white;/* background-color:#88B233; */ background:url('../images/common/bkg_op_selected.png') no-repeat 0 0; width:230px;}
+.ac_results li.empty.ac_over {cursor: default; color: black;}
+
+/* END AUTOCOMPLETE*/
+div#upload_modal_window div.content form div.taxon_search img.loader {position:absolute; top:13px; right:10px; display:none;}
+
+div#upload_modal_window div.content form input[type="text"].taxon_name {float:left; width:242px; height:32px; background:url('../images/modal_window/input_taxon_name.png') no-repeat 0 0; font:italic 13px Arial;}
 div#upload_modal_window div.content form input[type="text"].taxon_name.error {background-position:0 -32px;}
 div#upload_modal_window div.content form input[type="text"].year {float:left; width:78px; height:33px; background:url('../images/modal_window/input_year.png') no-repeat 0 0; }
 div#upload_modal_window div.content form input[type="text"].year.error {background-position:0 -33px;}
 div#upload_modal_window div.content form input[type="text"].author {float:left; width:479px; height:32px; background:url('../images/modal_window/input_author.png') no-repeat 0 0;}
 div#upload_modal_window div.content form input[type="text"].author.error {background-position:0 -32px;}
 div#upload_modal_window div.content form input[type="text"].program {float:left; width:161px; height:31px; background:url('../images/modal_window/program_combo.png') no-repeat 0 0; position:relative;}
-div#upload_modal_window div.content form input[type="text"].short_description {float:left; width:479px; height:33px; background:url('../images/modal_window/input_short_description.png') no-repeat 0 0; position:relative;}
+div#upload_modal_window div.content form input[type="text"].short_description {float:left; width:479px; height:33px; background:url('../images/modal_window/input_short_description.png') no-repeat 0 0; }
 div#upload_modal_window div.content form input[type="text"].short_description.error {background-position:0 -33px;}
 div#upload_modal_window div.content form textarea.details {float:left; width:476px; height:63px; background:url('../images/modal_window/input_details.png') no-repeat 0 0; float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:10px 10px; overflow:hidden;}
 div#upload_modal_window div.content form textarea.details.error {background-position:0 -83px;}

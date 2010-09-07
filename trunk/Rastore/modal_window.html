@@ -6,6 +6,13 @@
 		<meta name="description" content=""> 
 		<meta name="keywords" content=""> 
 		
+		<!-- JAVASCRIPT --> 
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="javascripts/jquery.autocomplete.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="javascripts/jquery.simplemodal-1.3.5.js" type="text/javascript" charset="utf-8"></script>		
+		<script type="text/javascript" src="javascripts/application.js"></script>
+		
+		
 		<!-- STYLESHEETS --> 
 		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
 	</head>
@@ -67,8 +74,12 @@
 					</div>
 					<!-- END - TOOLTIPS ERROR -->
 					
+
 					<p class="title">SPECIES TAXONOMIC NAME</p>
-					<input type="text" class="taxon_name"/>
+					<div class="taxon_search">
+						<input id="search_taxon_species" type="text" class="taxon_name"/>
+						<img src="images/common/ajax-loader.gif" class="loader">
+					</div>	
 										
 					<p class="title">YEAR</p>
 					<input type="text" class="year" />
