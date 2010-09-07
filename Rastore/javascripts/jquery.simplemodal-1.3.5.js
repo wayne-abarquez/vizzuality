@@ -297,7 +297,7 @@
 			s.d.wrap = $('<div></div>')
 				.attr('tabIndex', -1)
 				.addClass('simplemodal-wrap')
-				.css({height: '100%', outline: 0, width: '100%'})
+				.css({height: '100%', outline: 0, width: '103%'})
 				.appendTo(s.d.container);
 				
 			// add styling and attributes to the data
