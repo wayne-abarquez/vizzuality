@@ -1,6 +1,6 @@
 body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
 img,fieldset{border:none; padding:0; margin:0;}
-body{font:12px  Arial, Helvetica, sans-serif; color:#FFFFFF; background:#313131; }
+body{font:12px  Arial, Helvetica, sans-serif; color:#FFFFFF; background:#000000;  /*background:#313131; */}
 span.clear{clear:both;}
 div.left{float:left; width:auto;}
 div.right{float:right; width:auto;}
@@ -9,17 +9,29 @@ ul{list-style:none;}
 
 
 /* MODAL-WINDOW */
-#simplemodal-overlay {background-color:#000; cursor:wait;}
-div#upload_modal_window {float:left; width:576px; height:auto; background:white; display:none;}
-div#upload_modal_window div.header_progress {float:left; background-color:#323232; border:1px solid #5A5A5A; width:574px; height:103px; padding:30px 0 0 0;}
+/*#simplemodal-overlay {background-color:#000; cursor:wait;}*/
+div#upload_modal_window {float:left; width:586px; height:auto; display:inline;}
+div#upload_modal_window div.header_progress {float:left; width:586px; height:109px; padding:30px 0 0 0; background:url('../images/modal_window/bkg_header.png') no-repeat 0 0; }
 div#upload_modal_window div.header_progress h1 {text-align:center; font:bold 22px Arial; color:white; width:100%;}
-div#upload_modal_window div.content {float:left; width:536px; height:auto; background-color:white; padding:0 20px 20px 20px;}
-div#upload_modal_window div.content div.message {float:left; background:url('../images/modal_window/bkg_text_info.png') no-repeat 0 0; width:511px; height:66px; padding:14px 0 0 25px; margin:25px 0 0 0;}
+div#upload_modal_window div.content {float:left; width:546px; height:auto; padding:0 20px 20px 22px; background:url('../images/modal_window/bkg_content_repeaty.png') repeat-y;}
+div#upload_modal_window div.content div.message {float:left; background:url('../images/modal_window/bkg_text_info.png') no-repeat 0 0; width:511px; height:66px; padding:14px 0 0 25px; margin:20px 0 0 0;}
 div#upload_modal_window div.content div.message h2 {font:bold 22px Arial; color:white; text-align:center; width:487px; height:auto;}
 div#upload_modal_window div.content form {float:left; width:536px; height:auto; margin:0;}
 div#upload_modal_window div.content form p.title {float:left; font:bold 11px Arial; color:#719F32; text-transform:uppercase; width:536px; margin:20px 0 0 0;}
-div#upload_modal_window div.content form input[type="text"].taxon_name {float:left; width:242px; height:30px; background:url('../images/modal_window/input_taxon_name.png') no-repeat 0 0; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:0 10px;}
-div#upload_modal_window div.content form input[type="text"].year {float:left; width:78px; height:33px; background:url('../images/modal_window/input_year.png') no-repeat 0 0; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:0 10px;}
+div#upload_modal_window div.content form p.title span {color:#666666; text-transform:none; font-weight:normal;}
+
+div#upload_modal_window div.content form p.title.error {color:#F37E04;}
+div#upload_modal_window div.content form input[type="text"] {float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:0 10px;}
+div#upload_modal_window div.content form input[type="textarea"] {float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:0 10px;}
+
+div#upload_modal_window div.content form input[type="text"].taxon_name {width:242px; height:30px; background:url('../images/modal_window/input_taxon_name.png') no-repeat 0 0;}
+div#upload_modal_window div.content form input[type="text"].year {float:left; width:78px; height:33px; background:url('../images/modal_window/input_year.png') no-repeat 0 0; }
+div#upload_modal_window div.content form input[type="text"].author {float:left; width:479px; height:32px; background:url('../images/modal_window/input_author.png') no-repeat 0 0;}
+div#upload_modal_window div.content form input[type="text"].program {float:left; width:161px; height:31px; background:url('../images/modal_window/program_combo.png') no-repeat 0 0; position:relative;}
+div#upload_modal_window div.content form input[type="text"].short_description {float:left; width:481px; height:32px; background:url('../images/modal_window/input_short_description.png') no-repeat 0 0;}
+div#upload_modal_window div.content form input[type="textarea"].details {float:left; width:478px; height:85px; background:url('../images/modal_window/input_details.png') no-repeat 0 0;}
+div#upload_modal_window div.content form input[type="text"].tags {float:left; width:242px; height:30px; background:url('../images/modal_window/input_tags.png') no-repeat 0 0;}
+div#upload_modal_window div.content form input[type="submit"] {width:137px; height:47px; background:url('../images/modal_window/submit_bttn.png') no-repeat 0 0; font:bold 18px Arial; color:#FFFFFF; border:none; cursor:pointer; text-shadow:0px -1px 1px #404040;}
 
 
 /*	------------ MODAL-WINDOW */
