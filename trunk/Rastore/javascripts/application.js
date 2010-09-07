@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	// Showing the modal window
 	$('#upload_bttn').click(function (e) {
-		 
+//		  $('div.ac_results').css('display','inline');
 		  $('#upload_modal_window').modal();
 	
 		  return false;
@@ -33,7 +33,7 @@ $(document).ready(function() {
 				multiple: false,
 				scroll: false
 			}).result(function(event,row){
-				location.href = '/model/' + row.id + '/' + escape(row.scientificName);
+				//location.href = '/model/' + row.id + '/' + escape(row.scientificName);
 			});
 	
 });
