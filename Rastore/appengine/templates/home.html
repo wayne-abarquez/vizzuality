@@ -8,12 +8,23 @@
 		
 		<!-- STYLESHEETS --> 
 		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
+		<link href="stylesheets/overlay.css" media="screen" rel="stylesheet" type="text/css" /> 
 		
 		<!-- JAVASCRIPT --> 
-		<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> -->
-			
-		<!-- <script type="text/javascript" src="javascripts/application.js"></script> -->
-		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="http://cdn.jquerytools.org/1.2.4/jquery.tools.min.js"></script>
+        <script type="text/javascript">
+            $("a[rel]").overlay({
+
+                // one configuration property
+                color: '#ccc',
+
+                // another property
+                top: 50
+
+                // ... the rest of the configuration properties
+            });
+        </script>
 	</head>
 	
 	<body>	
@@ -88,7 +99,7 @@
 					<div class="right">
 						<div class="download_box">
 							<p class="title">... or start your own!</p>
-							<a href="#" class="download_bttn">RML file</a>
+							<a rel="#datainput" class="download_bttn">RML file</a>
 						</div>
 						<div class="steps">
 							<p class="first">Upload your species distribution model.</p>
@@ -114,7 +125,9 @@
 				</div>
 			</div>
 		</div>
-
+        <div class="simple_overlay" id="datainput">
+            ...
+        </div>
 	</body> 
 </html> 
  

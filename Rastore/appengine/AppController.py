@@ -169,7 +169,7 @@ class RasterViewer(webapp.RequestHandler):
     
 class Upload(webapp.RequestHandler):
   def get(self): 
-    k = request.params.get('k', str(uuid.uuid4()))
+    k = self.request.params.get('k', str(uuid.uuid4()))
     template_values = {
         'k': k
     }
