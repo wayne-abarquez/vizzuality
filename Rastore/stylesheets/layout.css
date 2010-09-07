@@ -43,12 +43,6 @@ div#upload_modal_window div.content div.tooltip_error span.bottom {float:left; w
 div#upload_modal_window div.content form input[type="text"] {float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:0 10px; position:relative;}
 div#upload_modal_window div.content form div.taxon_search {float:left; position:relative; width:262px; height:32px;}
 
-/*aaaaaaaa*/
-div#upload_modal_window div.content form div.taxon_search p {float:right; padding:6px 0 0 0; margin:0; font:normal 13px Arial; color:#000000;}
-div#upload_modal_window div.content form div.taxon_search p a {color:#000000;}
-div#upload_modal_window div.content form div.taxon_search p a:hover {text-decoration:none;}
-/*aaaaaaaa*/
-
 /*AUTOCOMPLETE*/
 /*autocomplete css*/
 .ac_results {padding:0 10px 5px 10px; border: 1px solid #CCCCCC; border-top:none; background-color:white; overflow: hidden; z-index: 99999;}

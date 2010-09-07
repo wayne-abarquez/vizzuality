@@ -345,6 +345,7 @@
 					s.watchTab(e);
 				}
 				else if ((s.o.close && s.o.escClose) && e.keyCode == 27) { // ESC
+//					$('div.ac_results').css('display','none');
 					e.preventDefault();
 					s.close();
 				}
