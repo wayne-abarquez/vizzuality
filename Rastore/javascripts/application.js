@@ -1,8 +1,11 @@
 $(document).ready(function() {
+
 	// Showing the modal window
 	$('#upload_bttn').click(function (e) {
-//		  $('div.ac_results').css('display','inline');
-		  $('#upload_modal_window').modal();
+		e.stopPropagation();
+		e.preventDefault();
+	
+  		$('#upload_modal_window').modal();
 	
 		  return false;
 	});
@@ -35,5 +38,39 @@ $(document).ready(function() {
 			}).result(function(event,row){
 				//location.href = '/model/' + row.id + '/' + escape(row.scientificName);
 			});
+			
+	// MODEL COMBO
+	
+		$('div#program_combo a.program').click(function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$(this).parent().children('div#activated_list').css('display','inline');
+
+		});
+		
+		$('div#program_combo div#activated_list a.program_others').click(function (e) {
+			e.stopPropagation();
+			e.preventDefault();
+			
+			$(this).parent().fadeOut('fast');
+
+		});
+		
+	// <div id="program_combo">
+	// 		<a class="program">Program</a>
+	// 
+	// 		<div id="activated_list">
+	// 			<a class="program_others"></a>
+	// 			<ul>						
+	// 				<li><a class="other_program" href="#">Program 1</a></li>
+	// 				<div class="line_split"></div>
+	// 				<li><a class="other_program" href="#">Program 2</a></li>
+	// 				<div class="line_split"></div>
+	// 				<li class="last"><a class="other_program" href="#">Program 3</a></li>
+	// 			</ul>
+	// 		</div>
+	// 	</div>
+	// 	
 	
 });
