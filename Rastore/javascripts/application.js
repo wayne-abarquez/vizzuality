@@ -1,5 +1,12 @@
 $(document).ready(function() {
-
+	
+	$("#slider").easySlider({
+		auto: false, 
+		continuous: true,
+		numeric: true,
+		numericId: 'controls'
+	});
+	
 	// Showing the modal window
 	$('#upload_bttn').click(function (e) {
 		e.stopPropagation();
