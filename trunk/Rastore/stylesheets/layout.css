@@ -65,7 +65,21 @@ div#upload_modal_window div.content form input[type="text"].year {float:left; wi
 div#upload_modal_window div.content form input[type="text"].year.error {background-position:0 -33px;}
 div#upload_modal_window div.content form input[type="text"].author {float:left; width:479px; height:32px; background:url('../images/modal_window/input_author.png') no-repeat 0 0;}
 div#upload_modal_window div.content form input[type="text"].author.error {background-position:0 -32px;}
-div#upload_modal_window div.content form input[type="text"].program {float:left; width:161px; height:31px; background:url('../images/modal_window/program_combo.png') no-repeat 0 0; position:relative;}
+
+div#upload_modal_window div.content form div#program_combo {float:left; position:relative;}
+div#upload_modal_window div.content form div#program_combo a.program {float:left; margin:6px 0 0 0; width:182px; height:26px; padding:5px 0 0 12px; background:url('../images/modal_window/program_combo.png') no-repeat 0 0; cursor:pointer; font:normal 16px Arial; color:#666666; text-decoration:none;}
+div#upload_modal_window div.content form div#program_combo a.program:hover {color:#333333;}
+
+div#upload_modal_window div.content form div#activated_list {display:none; position:absolute; top:6px; left:0; z-index:5;}
+div#upload_modal_window div.content form a.program_others {float:left; width:194px; height:31px; background:url('../images/modal_window/head_models_opts.png') no-repeat 0 0; cursor:pointer;}
+div#upload_modal_window div.content form ul {position:absolute; width:194px; height:auto; background-color:white; top:31px; left:0; z-index:10;}
+div#upload_modal_window div.content form ul li {float:left; width:180px; height:19px; border:1px solid #CCCCCC; border-top:none; border-bottom:none; font:normal 14px Arial; color:#666666; margin:0; padding:8px 0 6px 12px;}
+div#upload_modal_window div.content form ul li.last {border-bottom:1px solid #CCCCCC;}
+div#upload_modal_window div.content form ul li a {font:normal 14px Arial; color:#666666; text-decoration:none;}
+div#upload_modal_window div.content form ul li a:hover {color:#333333;}
+div#upload_modal_window div.content form div.line_split {float:left; width:194px; height:1px; background:url('../images/modal_window/program_line_combo.png') no-repeat 0 0;}
+
+
 div#upload_modal_window div.content form input[type="text"].short_description {float:left; width:479px; height:33px; background:url('../images/modal_window/input_short_description.png') no-repeat 0 0; }
 div#upload_modal_window div.content form input[type="text"].short_description.error {background-position:0 -33px;}
 div#upload_modal_window div.content form textarea.details {float:left; width:476px; height:63px; background:url('../images/modal_window/input_details.png') no-repeat 0 0; float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:10px 10px; overflow:hidden;}
