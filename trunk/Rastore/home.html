@@ -13,6 +13,7 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 		<script src="javascripts/jquery.autocomplete.js" type="text/javascript" charset="utf-8"></script>		
 		<script src="javascripts/jquery.simplemodal-1.3.5.js" type="text/javascript" charset="utf-8"></script>		
+		<script src="javascripts/easySlider1.7.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="javascripts/application.js"></script>
 		
 	</head>
@@ -88,8 +89,22 @@
 					<input type="text" class="author"/>
 					
 					<p class="title">PROGRAM</p>
-					<input type="text" class="program"/>
 
+					<div id="program_combo">
+						<a class="program">Program</a>
+
+						<div id="activated_list">
+							<a class="program_others"></a>
+							<ul>						
+								<li><a href="#">Program 1</a></li>
+								<div class="line_split"></div>
+								<li><a href="#">Program 2</a></li>
+								<div class="line_split"></div>
+								<li class="last"><a href="#">Program 3</a></li>
+							</ul>
+						</div>
+					</div>
+						
 					<p class="title">SHORT DESCRIPTION</p>
 					<input type="text" class="short_description" />
 				
@@ -131,51 +146,129 @@
 					<div class="left">
 						<div class="browse_box">
 							<h3>Browse 43 models...</h3>
-							<ul>
-								<li>
-									<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
-									<a class="title" href="model.html">Heleophryne orientalis</a>
-									<p class="author">by James</p>
-									<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
-								</li>
-								<li>
-									<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
-									<a class="title" href="model.html">Heleophryne orientalis</a>
-									<p class="author">by James</p>
-									<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
-								</li>
-								<li class="last">
-									<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
-									<a class="title" href="model.html">Heleophryne orientalis</a>
-									<p class="author">by James</p>
-									<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
-								</li>
-								<div class="line"></div>
-								<li class="second">
-									<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
-									<a class="title" href="model.html">Heleophryne orientalis</a>
-									<p class="author">by James</p>
-									<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
-								</li>
-								<li class="second">
-									<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
-									<a class="title" href="model.html">Heleophryne orientalis</a>
-									<p class="author">by James</p>
-									<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
-								</li>
-								<li class="second last">
-									<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
-									<a class="title" href="model.html">Heleophryne orientalis</a>
-									<p class="author">by James</p>
-									<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
-								</li>
-							</ul>
-							<div class="browse_controls">
-								<a id="page1" class="selected"></a>
-								<a id="page2"></a>
-								<a id="page3"></a>
-								<a id="page4"></a>
-								<a id="page5"></a>
+							<div id="slider">
+								<ul>
+									<!-- PAGE 1 -->
+									<li>
+										<div>
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div>
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="last">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="line"></div>
+										<div class="second">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="second">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="second last">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+									</li>
+									<!-- PAGE 2 -->
+									<li>
+										<div>
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div>
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="last">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="line"></div>
+										<div class="second">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="second">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="second last">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+									</li>
+									<!-- PAGE 3 -->
+									<li>
+										<div>
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div>
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="last">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="line"></div>
+										<div class="second">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="second">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+										<div class="second last">
+											<img src="images/home/fake_little_map.jpg" alt="Fake Little Map">
+											<a class="title" href="model.html">Heleophryne orientalis</a>
+											<p class="author">by James</p>
+											<p class="description">Maybe we shpould show a short description in a couple of text lines right here.</p>	
+										</div>
+									</li>									
+								</ul>
 							</div>
 						</div> <!-- browse_box -->
 					</div> <!-- left -->

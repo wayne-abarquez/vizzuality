@@ -145,6 +145,7 @@ $.Autocompleter = function(input, options) {
 				break;
 				
 			case KEY.ESC:
+				alert('entra');
 				select.hide();
 				break;
 				

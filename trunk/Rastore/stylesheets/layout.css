@@ -41,6 +41,7 @@ div#upload_modal_window div.content div.tooltip_error span.bottom {float:left; w
 
 
 div#upload_modal_window div.content form input[type="text"] {float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:0 10px; position:relative;}
+
 div#upload_modal_window div.content form div.taxon_search {float:left; position:relative; width:262px; height:32px;}
 
 /*AUTOCOMPLETE*/
@@ -148,7 +149,7 @@ div#outer_layout_header{margin:relative; float:left; width:100%; height:auto; ba
 div#header {margin:0 auto; width:970px; height:223px; position:relative; }
 div#header div.menu {float:right; width:185px; height:45px;}
 div#header div.menu a {float:left; font:bold 11px Arial; margin:0 0 0 8px; text-decoration:none; text-transform:uppercase; color:#666666; background:url(../images/common/menu_option_other.png) no-repeat left 0; width:74px; height:25px; text-align:center; padding:15px 5px 5px 5px; line-height:11px;}  
-div#header div.menu a:hover {background-position:-85px 0;}
+div#header div.menu a:hover {background-position:-85px 0; color:white;}
 div#header div.menu a.selected {color:white; background:url(../images/common/menu_option_selected.png) no-repeat left 0; }
 div#header div.menu a.selected:hover {background-position:-85px 0;}
 div#header div.text {float:left; width:715px; margin:25px 0 0 25px;}
@@ -166,20 +167,28 @@ div#content div.left {float:left; width:608px; height:auto; margin:0 0 0 25px;}
 div#content div.left div.browse_box {float:left; padding:18px 15px 15px 25px; width:608px; height:523px; background:url(../images/home/browse_box.png) no-repeat 0 0;}
 div#content div.left div.browse_box h3{float:left; font:bold 22px Arial; color:#666666; }
 div#content div.left div.browse_box ul {float:left; width:608px; height:auto; margin:13px 0 0 0;}
-div#content div.left div.browse_box ul li {float:left; width:183px; height:208px; margin:0 19px 0 0;}
-div#content div.left div.browse_box ul li.second {margin:20px 19px 0 0;}
-div#content div.left div.browse_box ul li.last.second {margin:20px 0 0 0;}
-div#content div.left div.browse_box ul li.last {margin:0;}
-div#content div.left div.browse_box ul li img {border:1px solid #999999; width:181px; height:100px;}
-div#content div.left div.browse_box ul li a.title {float:left; margin:5px 0 0 0; font:normal 14px Arial; color:#719F32; width:183px; text-decoration:none;}
-div#content div.left div.browse_box ul li a.title:hover {color:#364E17;}
-div#content div.left div.browse_box ul li p.author {float:left; margin:2px 0 0 0; font:normal 11px Arial; color:#666666; width:183px;} 
-div#content div.left div.browse_box ul li p.description {float:left; margin:15px 0 0 0; font:normal 11px Arial; color:#666666;} 
+
+div#content div.left div.browse_box ul li {float:left; width:608px; height:470px;}
+div#content div.left div.browse_box ul div {float:left; width:183px; height:208px; margin:0 19px 0 0;}
+div#content div.left div.browse_box ul div.second {margin:20px 19px 0 0;}
+div#content div.left div.browse_box ul div.last.second {margin:20px 0 0 0;}
+div#content div.left div.browse_box ul div.last {margin:0;}
+div#content div.left div.browse_box ul div img {border:1px solid #999999; width:181px; height:100px;}
+div#content div.left div.browse_box ul div a.title {float:left; margin:5px 0 0 0; font:normal 14px Arial; color:#719F32; width:183px; text-decoration:none;}
+div#content div.left div.browse_box ul div a.title:hover {color:#364E17;}
+div#content div.left div.browse_box ul div p.author {float:left; margin:2px 0 0 0; font:normal 11px Arial; color:#666666; width:183px;} 
+div#content div.left div.browse_box ul div p.description {float:left; margin:15px 0 0 0; font:normal 11px Arial; color:#666666;} 
 div#content div.left div.browse_box div.line {float:left; background-color:#CCCCCC; width:587px; height:1px; margin:5px 0 0 0;}
-div#content div.left div.browse_box div.browse_controls {float:left; margin:0; width:608; height:11px; margin:15px 0 0 245px;}
-div#content div.left div.browse_box div.browse_controls a {float:left; width:11px; height:11px; background:url(../images/home/bttn_nav.png) no-repeat 0 0; cursor:pointer; margin:0 5px 0 0;}
-div#content div.left div.browse_box div.browse_controls a:hover {background-position:0 -11px;}
-div#content div.left div.browse_box div.browse_controls a.selected {background-position:0 -11px;}
+
+/* browse */	
+
+ol#controls{float:left; margin:0; width:608; height:11px; margin:0px 0 0 245px;}
+
+ol#controls li{ margin:0 0 0 0; padding:0; float:left; list-style:none; height:11px; line-height:28px; }
+ol#controls li a {float:left; width:11px; height:11px; background:url(../images/home/bttn_nav.png) no-repeat 0 0; cursor:pointer; margin:0 5px 0 0;}
+ol#controls li a:hover {background-position:0 -11px;}
+ol#controls li.current a {float:left; width:11px; height:11px; background:url(../images/home/bttn_nav.png) no-repeat 0 -11px; cursor:pointer; margin:0 5px 0 0;}
+ol#controls li a:focus, #prevBtn a:focus, #nextBtn a:focus{outline:none;}
 
 div#content div.right {float:right; width:341px; height:auto;}
 div#content div.right div.download_box {float:right; width:282px; height:147px; background:url(../images/home/download_box.png) no-repeat 0 0;}
