@@ -34,17 +34,28 @@
                 
                 //the uploader parameters
                 $("#uploadify").uploadify({
-                    'uploader'  : '/swf/uploadify.swf',
-                    'script'    : 'http://mol.colorado.edu/birdrep/tiling/upload',
-                    'cancelImg' : '/images/common/cancel.png',
-                    'auto'      : true,
-                    'folder'    : '',
-                    'scriptAccess': 'always',
-                    'scriptData': {'k':'{{k}}'},
-                    'queueID'   : 'progressbar',
-                    'multi'     : false,
-                    'fileExt'   : '*.asc;*.gz',
-                    'onComplete': function(event, queueID, fileObj, reposnse, data) { 
+                    uploader  : '/swf/uploadify.swf',
+                    script    : 'http://mol.colorado.edu/birdrep/tiling/upload',
+                    cancelImg : '/images/common/cancel.png',
+                    fileDataName : 'dist',
+                    auto      : true,
+                    scriptAccess: 'always',
+                    scriptData: {'k':'{{k}}','redirect':0},
+                    queueID   : 'progressbar',
+                    multi     : false,
+                    fileExt   : '*.asc;*.gz',
+                    simUploadLimit : 1,
+                    onComplete: function(a, b, c, d, e){
+                            if (d !== '1')
+                                {
+                                console.log(d);
+                                }
+                            else
+                                {
+                                console.log('Filename: ' + c.name + ' was uploaded');
+                                }
+                          },
+                    onComplete: function(event, queueID, fileObj, reposnse, data) { 
                         fileSubmit = true
                         if (formSubmit) {
                            $('#dataForm').submit();
