@@ -62,5 +62,5 @@ div.outer_footer div.footer div.right {float:right; width:100px;}
 div.outer_footer div.footer div.right p {float:right; font:normal 13px Arial; color:white;}
 div.outer_footer div.footer div.right a {float:right; background:url(../images/tdwg.jpg) no-repeat 0 0; width:89px; height:49px; margin:10px 0 0 0;}
 div.outer_footer div.footer div.last {float:left; padding:70px 0 0 0; width:100%;}
-div.outer_footer div.footer div.last p.vizzuality {float:left; width:auto; padding:26px 0 0 0; margin:0 10px 0 0; font:normal 13px Arial; color:white;}
+div.outer_footer div.footer div.last p.vizzuality {float:left; width:auto; padding:26px 0 0 0; margin:0 5px 0 0; font:normal 13px Arial; color:white;}
 div.outer_footer div.footer div.last a {float:left; background:url(../images/vizzuality.png) no-repeat 0 0; width:82px; height:43px;}
