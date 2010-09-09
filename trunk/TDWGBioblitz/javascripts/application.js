@@ -10,7 +10,6 @@ $(document).ready(function() {
 		Cufon.replace('div.block3 p', {textShadow: '0px 1px white'});
 		Cufon.replace('a#schedule', {textShadow: '0px -1px #2B5866'});
 		Cufon.replace('h4'); // Works without a selector engine
-		Cufon.replace('div.block2 a'); // Works without a selector engine
 		Cufon.replace('a.download', {textShadow: '0px -1px #2B5866'});
 		
 });
