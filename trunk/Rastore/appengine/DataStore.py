@@ -13,7 +13,7 @@ class Raster(db.Model):
   details = db.StringProperty() 
   authors = db.StringListProperty() 
   tags = db.StringListProperty() 
-  year = db.StringProperty() 
+  year = db.IntegerProperty(default=None) 
   last_access_date = db.DateTimeProperty(auto_now_add=True)
   creation_date = db.DateTimeProperty(auto_now_add=True)
   downloadCt = db.IntegerProperty(default=1) #Track how popular the raster is

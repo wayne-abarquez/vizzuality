@@ -37,6 +37,20 @@ class MainPage(webapp.RequestHandler): #landing page
     path = os.path.join(os.path.dirname(__file__), 'templates/home.html')
     self.response.out.write(template.render(path, template_values))
       
+      
+class Upload(webapp.RequestHandler):
+  def get(self): 
+    k = self.request.params.get('k', str(uuid.uuid4()))
+    template_values = {
+        'k': k
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/upload.html')
+    self.response.out.write(template.render(path, template_values))
+
+class Bounce(webapp.RequestHandler):
+  def get(self): 
+    self.redirect("http://mol.colorado.edu/birdrep/tiling/upload")
+
 
 class RasterStatus(webapp.RequestHandler): #lookup the status of the raster processing
   def get(self): 
@@ -124,10 +138,12 @@ class RasterCreate(webapp.RequestHandler): #create a new raster object in the da
             layer.description = self.request.params.get('description', None)
             layer.program = self.request.params.get('program', None)
             layer.details = self.request.params.get('details', None)
-            layer.year = self.request.params.get('year', None),
             layer.taxon = self.request.params.get('taxon', None)
+            yr = self.request.params.get('year', None)
+            if yr is not None:
+                layer.year = int(yr)
         layer.put()
-    return 200
+    self.redirect("/viewer?k=%s" % k)
      
 class RasterViewer(webapp.RequestHandler):
   def get(self): 
@@ -167,15 +183,6 @@ class RasterViewer(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/model.html')
         self.response.out.write(template.render(path, template_values))
     
-class Upload(webapp.RequestHandler):
-  def get(self): 
-    k = self.request.params.get('k', str(uuid.uuid4()))
-    template_values = {
-        'k': k
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/upload.html')
-    self.response.out.write(template.render(path, template_values))
-
 class DailyCron(webapp.RequestHandler):
   def get(self):   
     #seven_days_ago = datetime.datetime.now() - datetime.timedelta(days=7)
@@ -183,9 +190,10 @@ class DailyCron(webapp.RequestHandler):
 
 application = webapp.WSGIApplication(
                  [('/', MainPage),
+                  ('/upload', Upload),
+                  ('/bounce', Bounce),
                   ('/viewer', RasterViewer),
                   ('/status', RasterStatus),
-                  ('/upload', Upload),
                   ('/raster/update', RasterUpdate),
                   ('/raster/create', RasterCreate),
                   ('/dailycron', DailyCron)],      
