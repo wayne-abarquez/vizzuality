@@ -1,12 +1,100 @@
 body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal}
 img,fieldset{border:none; padding:0; margin:0;}
-body{font:12px  Arial, Helvetica, sans-serif; color:#FFFFFF; background:#313131; }
+body{font:12px  Arial, Helvetica, sans-serif; color:#FFFFFF; background:#313131;}
 span.clear{clear:both;}
 div.left{float:left; width:auto;}
 div.right{float:right; width:auto;}
+input:focus {outline:none;}
 a:focus{outline:none}
 ul{list-style:none;}
 
+/* MODAL-WINDOW */
+#simplemodal-overlay {background-color:#000; cursor:wait;}
+div#upload_modal_window {float:left; width:586px; height:auto;}
+div#upload_modal_window div.header_progress {float:left; width:586px; height:109px; padding:30px 0 0 0; background:url('../images/modal_window/bkg_header.png') no-repeat 0 0;}
+div#upload_modal_window div.header_progress h1 {text-align:center; font:bold 22px Arial; color:white; width:100%;}
+div#upload_modal_window div.content {float:left; width:548px; height:auto; padding:0 20px 20px 20px; background:url('../images/modal_window/bkg_content_repeaty.png') repeat-y;}
+div#upload_modal_window div.content div.message {float:left; background:url('../images/modal_window/bkg_text_info.png') no-repeat 0 0; width:511px; height:66px; padding:14px 0 0 25px; margin:20px 0 0 2px;}
+div#upload_modal_window div.content div.message h2 {font:bold 22px Arial; color:white; text-align:center; width:487px; height:auto;}
+div#upload_modal_window div.content form {float:left; width:536px; height:auto; margin:0;}
+div#upload_modal_window div.content form p.title {float:left; font:bold 11px Arial; color:#719F32; text-transform:uppercase; width:536px; margin:20px 0 0 2px; position:relative;}
+div#upload_modal_window div.content form p.title span {color:#666666; text-transform:none; font-weight:normal;}
+
+div#upload_modal_window div.content form p.title.error {color:#F37E04;}
+div#upload_modal_window div.content div.tooltip_error {position:absolute; bottom:0; right:0; width:140px; height:auto; z-index:10;}
+
+
+/* TOOLTIPS ERROR */
+	/* POSITIONS */
+div#upload_modal_window div.content div#taxon_error {position:absolute; top:196px; left:200px; display:none;}
+div#upload_modal_window div.content div#year_error {position:absolute; top:280px; left:40px; display:none;}
+div#upload_modal_window div.content div#author_error {position:absolute; top:352px; left:435px; display:none;}
+div#upload_modal_window div.content div#program_error {position:absolute; top:423px; left:100px; display:none;}
+div#upload_modal_window div.content div#short_description_error {position:absolute; top:494px; left:435px; display:none;}
+div#upload_modal_window div.content div#details_error {position:absolute; top:568px; left:435px; display:none;}
+div#upload_modal_window div.content div#tags_error {position:absolute; top:704px; left:200px; display:none;}
+
+	/* CONTENT */
+div#upload_modal_window div.content div.tooltip_error span.head {float:left; width:140px; height:8px; background:url('../images/modal_window/head_tooltip_error.png') no-repeat 0 0;}
+div#upload_modal_window div.content div.tooltip_error span.content {float:left; width:130px; height:auto; padding:5px 5px; font:normal 12px Arial; color:white; background:url('../images/modal_window/content_repeaty_tooltip_error.png') repeat-y; text-align:center;}
+div#upload_modal_window div.content div.tooltip_error span.bottom {float:left; width:140px; height:23px; background:url('../images/modal_window/bottom_tooltip_error.png') no-repeat 0 0;}
+
+
+div#upload_modal_window div.content form input[type="text"] {float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:0 10px; position:relative;}
+
+div#upload_modal_window div.content form div.taxon_search {float:left; position:relative; width:262px; height:32px;}
+
+/*AUTOCOMPLETE*/
+/*autocomplete css*/
+.ac_results {padding:0 10px 5px 10px; border: 1px solid #CCCCCC; border-top:none; background-color:white; overflow: hidden; z-index: 99999;}
+.ac_results_small{ border: 1px solid #CCCCCC; border-top:none;} 
+.ac_results ul {width: 238px; list-style-position: outside; list-style: none; padding: 0; border:none; margin: 0;}
+.ac_results li {margin:0px; padding: 3px 4px; display: block; overflow: hidden; font:normal 14px Arial; color:#666666; margin:5px 0 0 0; width:230px;}
+
+.ac_results li.last {border-bottom:none;}
+.ac_results li p {margin:0; padding:0;}
+.ac_results li p strong {text-decoration:underline;}
+.ac_results li.ac_over {cursor: pointer; color:white;/* background-color:#88B233; */ background:url('../images/common/bkg_op_selected.png') no-repeat 0 0; width:230px;}
+.ac_results li.empty.ac_over {cursor: default; color: black;}
+
+/* END AUTOCOMPLETE*/
+div#upload_modal_window div.content form div.taxon_search img.loader {position:absolute; top:13px; right:10px; display:none;}
+
+div#upload_modal_window div.content form input[type="text"].taxon_name {float:left; width:242px; height:32px; background:url('../images/modal_window/input_taxon_name.png') no-repeat 0 0; font:italic 13px Arial;}
+div#upload_modal_window div.content form input[type="text"].taxon_name.error {background-position:0 -32px;}
+div#upload_modal_window div.content form input[type="text"].year {float:left; width:78px; height:33px; background:url('../images/modal_window/input_year.png') no-repeat 0 0; }
+div#upload_modal_window div.content form input[type="text"].year.error {background-position:0 -33px;}
+div#upload_modal_window div.content form input[type="text"].author {float:left; width:479px; height:32px; background:url('../images/modal_window/input_author.png') no-repeat 0 0;}
+div#upload_modal_window div.content form input[type="text"].author.error {background-position:0 -32px;}
+
+div#upload_modal_window div.content form div#program_combo {float:left; position:relative;}
+div#upload_modal_window div.content form div#program_combo a.program {float:left; margin:6px 0 0 0; width:182px; height:26px; padding:5px 0 0 12px; background:url('../images/modal_window/program_combo.png') no-repeat 0 0; cursor:pointer; font:normal 16px Arial; color:#666666; text-decoration:none;}
+div#upload_modal_window div.content form div#program_combo a.program:hover {color:#333333;}
+
+div#upload_modal_window div.content form div#activated_list {display:none; position:absolute; top:6px; left:0; z-index:5;}
+div#upload_modal_window div.content form a.program_others {float:left; width:194px; height:31px; background:url('../images/modal_window/head_models_opts.png') no-repeat 0 0; cursor:pointer;}
+div#upload_modal_window div.content form ul {position:absolute; width:194px; height:auto; background-color:white; top:31px; left:0; z-index:10;}
+div#upload_modal_window div.content form ul li {float:left; width:180px; height:19px; border:1px solid #CCCCCC; border-top:none; border-bottom:none; font:normal 14px Arial; color:#666666; margin:0; padding:8px 0 6px 12px;}
+div#upload_modal_window div.content form ul li.last {border-bottom:1px solid #CCCCCC;}
+div#upload_modal_window div.content form ul li a {font:normal 14px Arial; color:#666666; text-decoration:none;}
+div#upload_modal_window div.content form ul li a:hover {color:#333333;}
+div#upload_modal_window div.content form div.line_split {float:left; width:194px; height:1px; background:url('../images/modal_window/program_line_combo.png') no-repeat 0 0;}
+
+
+div#upload_modal_window div.content form input[type="text"].short_description {float:left; width:479px; height:33px; background:url('../images/modal_window/input_short_description.png') no-repeat 0 0; }
+div#upload_modal_window div.content form input[type="text"].short_description.error {background-position:0 -33px;}
+div#upload_modal_window div.content form textarea.details {float:left; width:476px; height:63px; background:url('../images/modal_window/input_details.png') no-repeat 0 0; float:left; font:italic 13px Arial; border:none; margin:6px 0 0 0; color:#666666; padding:10px 10px; overflow:hidden;}
+div#upload_modal_window div.content form textarea.details.error {background-position:0 -83px;}
+div#upload_modal_window div.content form input[type="text"].tags {float:left; width:242px; height:32px; background:url('../images/modal_window/input_tags.png') no-repeat 0 0;}
+div#upload_modal_window div.content form input[type="text"].tags.error {background-position:0 -32px;}
+div#upload_modal_window div.content form div.submit {float:left; width:536px; margin:20px 0 0 0; position:relative;}
+div#upload_modal_window div.content form div.tooltip {position:absolute; top:-2px; left:145px; background:url('../images/modal_window/tooltip_submit.png') no-repeat 0 0; width:140px; height:40px; font:normal 12px Arial; color:white; text-align:center; padding:10px 0 0 14px;}
+div#upload_modal_window div.content form input[type="submit"] {float:left; width:137px; height:47px; background:url('../images/modal_window/submit_bttn.png') no-repeat 0 0; font:bold 18px Arial; color:#FFFFFF; border:none; cursor:pointer; text-shadow:0px -1px 1px #404040;}
+div#upload_modal_window div.content form input[type="submit"].disabled {background-position:0 -47px;} 
+div#upload_modal_window div.bottom {float:left; width:586px; height:22px; background:url('../images/modal_window/bkg_bottom_content.png') no-repeat 0 0;}
+
+/*	------------ MODAL-WINDOW */
+	
 /* MODEL */
 div#outer_layout_model_header{margin:relative; float:left; width:100%; height:auto; background:url(../images/model/bkg_header.png) repeat-x; border-bottom:17px solid #8CC53D;}
 div#model_header {margin:0 auto; width:970px; height:117px; position:relative; }
@@ -61,7 +149,7 @@ div#outer_layout_header{margin:relative; float:left; width:100%; height:auto; ba
 div#header {margin:0 auto; width:970px; height:223px; position:relative; }
 div#header div.menu {float:right; width:185px; height:45px;}
 div#header div.menu a {float:left; font:bold 11px Arial; margin:0 0 0 8px; text-decoration:none; text-transform:uppercase; color:#666666; background:url(../images/common/menu_option_other.png) no-repeat left 0; width:74px; height:25px; text-align:center; padding:15px 5px 5px 5px; line-height:11px;}  
-div#header div.menu a:hover {background-position:-85px 0;}
+div#header div.menu a:hover {background-position:-85px 0; color:white;}
 div#header div.menu a.selected {color:white; background:url(../images/common/menu_option_selected.png) no-repeat left 0; }
 div#header div.menu a.selected:hover {background-position:-85px 0;}
 div#header div.text {float:left; width:715px; margin:25px 0 0 25px;}
@@ -79,26 +167,34 @@ div#content div.left {float:left; width:608px; height:auto; margin:0 0 0 25px;}
 div#content div.left div.browse_box {float:left; padding:18px 15px 15px 25px; width:608px; height:523px; background:url(../images/home/browse_box.png) no-repeat 0 0;}
 div#content div.left div.browse_box h3{float:left; font:bold 22px Arial; color:#666666; }
 div#content div.left div.browse_box ul {float:left; width:608px; height:auto; margin:13px 0 0 0;}
-div#content div.left div.browse_box ul li {float:left; width:183px; height:208px; margin:0 19px 0 0;}
-div#content div.left div.browse_box ul li.second {margin:20px 19px 0 0;}
-div#content div.left div.browse_box ul li.last.second {margin:20px 0 0 0;}
-div#content div.left div.browse_box ul li.last {margin:0;}
-div#content div.left div.browse_box ul li img {border:1px solid #999999; width:181px; height:100px;}
-div#content div.left div.browse_box ul li a.title {float:left; margin:5px 0 0 0; font:normal 14px Arial; color:#719F32; width:183px; text-decoration:none;}
-div#content div.left div.browse_box ul li a.title:hover {color:#364E17;}
-div#content div.left div.browse_box ul li p.author {float:left; margin:2px 0 0 0; font:normal 11px Arial; color:#666666; width:183px;} 
-div#content div.left div.browse_box ul li p.description {float:left; margin:15px 0 0 0; font:normal 11px Arial; color:#666666;} 
+
+div#content div.left div.browse_box ul li {float:left; width:608px; height:470px;}
+div#content div.left div.browse_box ul div {float:left; width:183px; height:208px; margin:0 19px 0 0;}
+div#content div.left div.browse_box ul div.second {margin:20px 19px 0 0;}
+div#content div.left div.browse_box ul div.last.second {margin:20px 0 0 0;}
+div#content div.left div.browse_box ul div.last {margin:0;}
+div#content div.left div.browse_box ul div img {border:1px solid #999999; width:181px; height:100px;}
+div#content div.left div.browse_box ul div a.title {float:left; margin:5px 0 0 0; font:normal 14px Arial; color:#719F32; width:183px; text-decoration:none;}
+div#content div.left div.browse_box ul div a.title:hover {color:#364E17;}
+div#content div.left div.browse_box ul div p.author {float:left; margin:2px 0 0 0; font:normal 11px Arial; color:#666666; width:183px;} 
+div#content div.left div.browse_box ul div p.description {float:left; margin:15px 0 0 0; font:normal 11px Arial; color:#666666;} 
 div#content div.left div.browse_box div.line {float:left; background-color:#CCCCCC; width:587px; height:1px; margin:5px 0 0 0;}
-div#content div.left div.browse_box div.browse_controls {float:left; margin:0; width:608; height:11px; margin:15px 0 0 245px;}
-div#content div.left div.browse_box div.browse_controls a {float:left; width:11px; height:11px; background:url(../images/home/bttn_nav.png) no-repeat 0 0; cursor:pointer; margin:0 5px 0 0;}
-div#content div.left div.browse_box div.browse_controls a:hover {background-position:0 -11px;}
-div#content div.left div.browse_box div.browse_controls a.selected {background-position:0 -11px;}
+
+/* browse */	
+
+ol#controls{float:left; margin:0; width:608; height:11px; margin:0px 0 0 245px;}
+
+ol#controls li{ margin:0 0 0 0; padding:0; float:left; list-style:none; height:11px; line-height:28px; }
+ol#controls li a {float:left; width:11px; height:11px; background:url(../images/home/bttn_nav.png) no-repeat 0 0; cursor:pointer; margin:0 5px 0 0;}
+ol#controls li a:hover {background-position:0 -11px;}
+ol#controls li.current a {float:left; width:11px; height:11px; background:url(../images/home/bttn_nav.png) no-repeat 0 -11px; cursor:pointer; margin:0 5px 0 0;}
+ol#controls li a:focus, #prevBtn a:focus, #nextBtn a:focus{outline:none;}
 
 div#content div.right {float:right; width:341px; height:auto;}
 div#content div.right div.download_box {float:right; width:282px; height:147px; background:url(../images/home/download_box.png) no-repeat 0 0;}
 div#content div.right div.download_box p.title {float:left; font:bold 22px Arial; color:#666666; margin:20px 0 0 30px;}
-div#content div.right div.download_box a.download_bttn {float:left; width:114px; height:26px; padding:36px 0 0 125px; color:#FCDAB4; font:normal 14px Arial; background:url('../images/home/dowload_bttn.png') no-repeat 0 0; margin:14px 0 0 21px; text-decoration:none; }
-div#content div.right div.download_box a.download_bttn:hover {background-position:0 -62px;}
+div#content div.right div.download_box a.upload_bttn {float:left; width:114px; height:26px; padding:36px 0 0 125px; color:#FCDAB4; font:normal 14px Arial; background:url('../images/home/dowload_bttn.png') no-repeat 0 0; margin:14px 0 0 21px; text-decoration:none; cursor:pointer;}
+div#content div.right div.download_box a.upload_bttn:hover {background-position:0 -62px;}
 div#content div.right div.steps {float:right; width:274px; height:227px; background:url(../images/home/bkg_steps.png) no-repeat 0 0; margin:25px 4px 0 0; position:relative;}
 div#content div.right div.steps p {width:190px; height:39px; font:normal 14px Arial; color:#BEBEBE; position:absolute;} 
 div#content div.right div.steps p.first {top:19px; left:55px; }
@@ -108,15 +204,4 @@ div#content div.right div.steps p.third {top:158px; left:55px;}
 div#outer_layout_footer {margin:relative; float:left; width:100%; height:141px; background-color:#222222;}
 div#footer {margin:0 auto; width:960px; height:133px; position:relative; color:#7A7A7A;}
 div#footer div.content {float:left; width:945px; padding:20px 0 20px 25px;}
-div#footer div.left {float:left; width:605px;}
-div#footer div.left p.developed {float:left; font:normal 14px Arial; width:100%;}
-div#footer div.left a.map_of_life_logo {float:left; background:url('../images/logos/map_of_life_logo.png') no-repeat 0 0; width:53px; height:56px; margin:15px 25px 0 0;}
-div#footer div.left a.vizzuality_logo {float:left; background:url('../images/logos/vizzuality_logo.png') no-repeat 0 0; width:87px; height:46px; margin:15px 0 0 0;}
-div#footer div.right {float:right; width:auto; height:auto;}
-div#footer div.right a.menu {float:right; text-transform:uppercase; font:bold 11px Arial; text-decoration:underline; margin:0 15px 0 0; color:#7A7A7A;}
-div#footer div.right a.menu:hover {color:white;}
-
-/* ------------- MODEL  */
-
-
-
+div#footer div.left {float:left

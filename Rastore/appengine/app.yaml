@@ -11,11 +11,18 @@ handlers:
 - url: /images
   static_dir: images
   
+- url: /swf
+  static_dir: swf
+  
 - url: /javascripts
   static_dir: javascripts
   
 - url: /stylesheets
   static_dir: stylesheets
+  
+- url: /(modal_window.*)
+  static_files: templates/modal_window.html
+  upload: templates/modal_window.html
   
 - url: /.*
   script: AppController.py

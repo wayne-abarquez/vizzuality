@@ -6,49 +6,209 @@
 		<meta name="description" content=""> 
 		<meta name="keywords" content=""> 
 		
+		<!-- JAVASCRIPT --> 
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		<script src="javascripts/jquery.autocomplete.js" type="text/javascript" charset="utf-8"></script>		
+		<script type="text/javascript" src="/javascripts/jquery.uploadify.v2.1.0.js"></script>
+		<script src="javascripts/easySlider1.7.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="javascripts/swfobject.js"></script>
+        <script type="text/javascript" src="javascripts/application.js"></script>
+		<script type="text/javascript">
+            $(document).ready(function() {
+                
+                var fileSubmit = false;
+                var formSubmit = false;
+                
+                $('#dataForm').submit(function() {
+                    //action="/raster/create" method="POST"
+                  formSubmit = true;
+                  if (fileSubmit) {
+                      $('#dataForm').submit();
+                  } else {
+                      $('.content').hide();
+                  }
+                      
+                  return false;
+                });
+                
+                
+                //the uploader parameters
+                $("#uploadify").uploadify({
+                    'uploader'  : '/swf/uploadify.swf',
+                    'script'    : 'http://mol.colorado.edu/birdrep/tiling/upload',
+                    'cancelImg' : '/images/common/cancel.png',
+                    'auto'      : true,
+                    'folder'    : '',
+                    'scriptAccess': 'always',
+                    'scriptData': {'k':'{{k}}'},
+                    'queueID'   : 'progressbar',
+                    'multi'     : false,
+                    'fileExt'   : '*.asc;*.gz',
+                    'onComplete': function(event, queueID, fileObj, reposnse, data) { 
+                        fileSubmit = true
+                        if (formSubmit) {
+                           $('#dataForm').submit();
+                        } else {
+                            $('.header_progress').hide();
+                        }
+                     },
+                
+                });
+                //'fileExt'       : '*.jpg;*.png;*.gif;*.bmp;*.txt;*.rtf;*.sql;*.doc;*.xls;*.ppt;*.pdf;*.psd;*.ai',
+                
+                $('div#program_combo a.program').click(function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    
+                    $(this).parent().children('div#activated_list').css('display','inline');
+
+                });
+                
+                $('div#program_combo div#activated_list a.program_others').click(function (e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    
+                    $(this).parent().fadeOut('fast');
+
+                });
+                
+                    
+                // Autocomplete
+                $('#search_taxon_species').focus().autocomplete('http://data.gbif.org/species/nameSearch?maxResults=5&returnType=nameId&view=json',{
+                    dataType: 'jsonp',
+                    parse: function(data){
+                      var animals = new Array();
+                      gbif_data = data;
+
+                      for(var i=0; i<gbif_data.length; i++) {
+                        animals[i] = { data: gbif_data[i], value: gbif_data[i].scientificName, result: gbif_data[i].scientificName };
+                      }
+
+                      return animals;
+                    }, 
+                    formatItem: function(row, i, n, value, term) {							
+                        var menu_string = '<p style="float:left;width:285px;font:normal 14px Arial;">' + value.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1") + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>") + '</p>';
+                        return menu_string;
+              },		
+                    width: 238,
+                    height: 'auto',
+                    minChars: 4,
+                    max: 5,
+                    selectFirst: false,
+                    loadingClass: 'loader',
+                    multiple: false,
+                    scroll: false
+                }).result(function(event,row){
+                    //location.href = '/model/' + row.id + '/' + escape(row.scientificName);
+                });
+                
+                
+            });
+        </script>
+		
 		<!-- STYLESHEETS --> 
 		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
-	</head>
+        <link href="stylesheets/uploadify.css" media="screen" rel="stylesheet" type="text/css" /> 
+    </head>
 	
-	<body>	
+	<body >	
 		
 		<!-- THIS HTML IS TO PREPARE THE MODAL WINDOW. IT'LL BE MOVED TO HOME.HTML -->
 		<div id="upload_modal_window">
 			<div class="header_progress">
 				<h1>We are uploading your model...</h1>
+                <input name="model" id="uploadify" type="file" />
+                <div id="progressbar"></div>
 			</div>
 			<div class="content">
 				<div class="message">
 					<h2>Meanwhile, you can start adding details about your model and how did you process it</h2>
 				</div>
-				<form action="/raster/create" method="post">
-					<input type="hidden" name="k" value="{{k}}"/>
-                    
-					<p class="title">SPECIES TAXONOMIC NAME</p>
-					<input type="text" class="taxon_name" name="taxon"/>
+				<form id="dataForm" action="/raster/create" method="POST">
+					<!-- TOOLTIPS ERROR -->
+					<div id="taxon_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide a species taxononmic name</span>
+						<span class="bottom"></span>
+					</div>
 					
+					<div id="year_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide a correct year</span>
+						<span class="bottom"></span>
+					</div>
+
+					<div id="author_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide a correct author</span>
+						<span class="bottom"></span>
+					</div>
+					
+					<div id="program_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide a correct program</span>
+						<span class="bottom"></span>
+					</div>
+
+					<div id="short_description_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide some description</span>
+						<span class="bottom"></span>
+					</div>
+
+					<div id="details_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">You have to provide some details</span>
+						<span class="bottom"></span>
+					</div>
+
+					<div id="tags_error" class="tooltip_error">
+						<span class="head"></span>
+						<span class="content">Wrong tag</span>
+						<span class="bottom"></span>
+					</div>
+					<!-- END - TOOLTIPS ERROR -->
+					
+
+					<p class="title">SPECIES TAXONOMIC NAME</p>
+					<div class="taxon_search">
+						<input name="taxon" id="search_taxon_species" type="text" class="taxon_name"/>
+						<img src="images/common/ajax-loader.gif" class="loader">
+					</div>	
+										
 					<p class="title">YEAR</p>
 					<input type="text" class="year" name="year"/>
 					
 					<p class="title">AUTHOR(s)</p>
-					<input type="text" style="width:493px; height:28px;" name="authors"/>
+					<input type="text" class="author" name="authors"/>
 					
 					<p class="title">PROGRAM</p>
-					<input type="text" style="width:493px; height:28px;" name="program"/>
+					<input type="text" class="author" name="program"/>
 
+						
 					<p class="title">SHORT DESCRIPTION</p>
-					<input type="text" style="width:493px; height:28px;" name="description"/>
+					<input type="text" class="short_description" name="description"/>
+				
 
 					<p class="title">DETAILS</p>
-					<input type="text" style="width:493px; height:78px;" name="details"/>
+					<textarea rows="4" class="details" name="details"></textarea>
 					
-					<p class="title">TAGS</p>
-					<input type="text" style="width:258px; height:28px;" name="tags"/>
+					<p class="title">TAGS <span>Not mandatory. Separate them with ","</span></p>
+					<input type="text" class="tags" name="tags"/>
 					
-					<input type="submit" value="See model"/>
+                    
+                    <input type="hidden" name="k" value="{{k}}"/>
+
+					<div class="submit">	
+						<div class="tooltip">
+							Wait for the file to be uploaded, please.
+						</div>
+						<input type="submit" value="See model" class="disabled" />
+					</div>
 					
 				</form>
-			</div>
+			</div> <!-- content -->
+			<div class="bottom"></div>
 		</div>
 	
 	</body> 
