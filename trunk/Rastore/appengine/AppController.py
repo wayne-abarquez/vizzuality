@@ -124,9 +124,12 @@ class RasterCreate(webapp.RequestHandler): #create a new raster object in the da
                     description = self.request.params.get('description', None),
                     program = self.request.params.get('program', None),
                     details = self.request.params.get('details', None),
-                    year = self.request.params.get('year', None),
                     taxon = self.request.params.get('taxon', None)
                  )
+        yr = self.request.params.get('year', None)
+        if yr is not None:
+            raster.year = int(yr)
+
         raster.put()
     else: #else update info about an existing raster object
         layer = layer[0]
@@ -144,8 +147,8 @@ class RasterCreate(webapp.RequestHandler): #create a new raster object in the da
             if yr is not None:
                 layer.year = int(yr)
         layer.put()
-    self.redirect("/viewer?k=%s" % k)
-     
+    #self.redirect("/viewer?k=%s" % k)
+    pass
 class RasterViewer(webapp.RequestHandler):
   def get(self): 
   

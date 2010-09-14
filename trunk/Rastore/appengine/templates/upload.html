@@ -21,13 +21,14 @@
                 
                 $('#dataForm').submit(function() {
                     //action="/raster/create" method="POST"
+                  $.post("/raster/create", $("#dataForm").serialize());
+                  //$('#dataForm').submit();
                   formSubmit = true;
-                  if (fileSubmit) {
-                      $('#dataForm').submit();
+                  if (fileSubmit != false) {
+                      window.location = "viewer?k={{k}}";
                   } else {
                       $('.content').hide();
                   }
-                      
                   return false;
                 });
                 
@@ -45,20 +46,12 @@
                     multi     : false,
                     fileExt   : '*.asc;*.gz',
                     simUploadLimit : 1,
-                    onComplete: function(a, b, c, d, e){
-                            if (d !== '1')
-                                {
-                                console.log(d);
-                                }
-                            else
-                                {
-                                console.log('Filename: ' + c.name + ' was uploaded');
-                                }
-                          },
                     onComplete: function(event, queueID, fileObj, reposnse, data) { 
                         fileSubmit = true
                         if (formSubmit) {
-                           $('#dataForm').submit();
+                           //$('#dataForm').submit();
+                           window.location = "viewer?k={{k}}";
+                           //console.log('for some reason complete');
                         } else {
                             $('.header_progress').hide();
                         }
