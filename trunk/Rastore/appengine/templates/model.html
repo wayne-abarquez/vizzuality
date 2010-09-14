@@ -59,12 +59,13 @@
 						<p class="title">TAGS</p>
 						<ul class="tags">
                         {% for t in tags %}
-                            <li><a href="#">{{t}}</a></li>
+                            <li><a href="/api?tag={{t}}">{{t}}</a></li>
                         {% endfor %}					
 						</ul>
 						<div class="line"></div>
 						<ul class="links">
-							<li><a href="#">More species information at XXX</a></li>
+							<li><a href="http://www.eol.org/search?q={{taxon}}">More species information at EOL</a></li>
+							<li><a href="http://data.gbif.org/search/{{taxon}}">More species information at GBIF</a></li>
 							<li><a href="#">Print</a></li>
 						</ul>
 					</div> <!-- content_right -->

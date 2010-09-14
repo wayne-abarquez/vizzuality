@@ -47,7 +47,8 @@ class Upload(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/upload.html')
     self.response.out.write(template.render(path, template_values))
 
-class Bounce(webapp.RequestHandler):
+
+class BounceR(webapp.RequestHandler):
   def get(self): 
     self.redirect("http://mol.colorado.edu/birdrep/tiling/upload")
 
@@ -183,6 +184,62 @@ class RasterViewer(webapp.RequestHandler):
         path = os.path.join(os.path.dirname(__file__), 'templates/model.html')
         self.response.out.write(template.render(path, template_values))
     
+class API(webapp.RequestHandler):
+  def get(self): 
+    output = ['nada']
+    limit = int(self.request.params.get('limit', 10))
+    offset = int(self.request.params.get('offset', 0))
+    
+    
+    
+    if self.request.params.get('tag', None) is not None: #Tag Search
+        output = []
+        tag = self.request.params.get('tag', 'sloth')
+        models = Raster.gql("WHERE tags = :tag AND isPublic = True",
+                            tag=tag).fetch(limit, offset = offset)
+        for m in models:
+            r = {}
+            r['k'] = m.objId
+            r['taxon'] = m.taxon
+            r['description'] = m.description
+            r['authors'] = m.authors
+            r['year'] = m.year
+            output.append(r)
+    
+    
+    if self.request.params.get('taxon', None) is not None: #Taxon Search
+        output = []
+        taxon = self.request.params.get('taxon', 'Bradypus variegatus')
+        models = Raster.gql("WHERE taxon = :taxon AND isPublic = True",
+                            taxon=taxon).fetch(limit, offset = offset)
+        for m in models:
+            r = {}
+            r['k'] = m.objId
+            r['taxon'] = m.taxon
+            r['description'] = m.description
+            r['authors'] = m.authors
+            r['year'] = m.year
+            output.append(r)
+    
+    else: #Recent Model Search
+        output = []
+        models = Raster.gql("WHERE isPublic = True ORDER BY creation_date DESC").fetch(limit, offset = offset)
+        for m in models:
+            r = {}
+            r['k'] = m.objId
+            r['taxon'] = m.taxon
+            r['description'] = m.description
+            r['authors'] = m.authors
+            r['year'] = m.year
+            output.append(r)
+    self.response.out.write(simplejson.dumps(output))
+    
+class RecentModels(webapp.RequestHandler):
+  def key(): 
+    pass
+  
+  
+  
 class DailyCron(webapp.RequestHandler):
   def get(self):   
     #seven_days_ago = datetime.datetime.now() - datetime.timedelta(days=7)
@@ -191,7 +248,10 @@ class DailyCron(webapp.RequestHandler):
 application = webapp.WSGIApplication(
                  [('/', MainPage),
                   ('/upload', Upload),
-                  ('/bounce', Bounce),
+                  ('/api', API),
+                  ('/recent', RecentModels),
+                  #('/search', Search),
+                  ('/r', BounceR),
                   ('/viewer', RasterViewer),
                   ('/status', RasterStatus),
                   ('/raster/update', RasterUpdate),
