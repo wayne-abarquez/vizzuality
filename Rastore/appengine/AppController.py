@@ -103,14 +103,14 @@ class RasterCreate(webapp.RequestHandler): #create a new raster object in the da
     #if authors param is set, we need to split by comma into a list
     authors = self.request.params.get('authors', None)
     if authors is not None:
-        authors = str(authors).split(',')
+        authors = [x.strip() for x in str(authors).split(',')]
     else:
         authors = []
         
     #if tags param is set, we need to split by comma into a list
     tags = self.request.params.get('tags', None)
     if tags is not None:
-        tags = str(tags).split(',')
+        tags = [x.strip() for x in str(tags).lower().split(',')]
     else:
         tags = []
         
@@ -195,7 +195,7 @@ class API(webapp.RequestHandler):
     if self.request.params.get('tag', None) is not None: #Tag Search
         output = []
         tag = self.request.params.get('tag', 'sloth')
-        models = Raster.gql("WHERE tags = :tag AND isPublic = True",
+        models = Raster.gql("WHERE tags = :tag",
                             tag=tag).fetch(limit, offset = offset)
         for m in models:
             r = {}
@@ -210,7 +210,7 @@ class API(webapp.RequestHandler):
     if self.request.params.get('taxon', None) is not None: #Taxon Search
         output = []
         taxon = self.request.params.get('taxon', 'Bradypus variegatus')
-        models = Raster.gql("WHERE taxon = :taxon AND isPublic = True",
+        models = Raster.gql("WHERE taxon = :taxon",
                             taxon=taxon).fetch(limit, offset = offset)
         for m in models:
             r = {}
@@ -223,7 +223,7 @@ class API(webapp.RequestHandler):
     
     else: #Recent Model Search
         output = []
-        models = Raster.gql("WHERE isPublic = True ORDER BY creation_date DESC").fetch(limit, offset = offset)
+        models = Raster.gql("ORDER BY creation_date DESC").fetch(limit, offset = offset)
         for m in models:
             r = {}
             r['k'] = m.objId
@@ -237,7 +237,6 @@ class API(webapp.RequestHandler):
 class RecentModels(webapp.RequestHandler):
   def key(): 
     pass
-  
   
   
 class DailyCron(webapp.RequestHandler):
