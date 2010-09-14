@@ -17,7 +17,7 @@ class Raster(db.Model):
   last_access_date = db.DateTimeProperty(auto_now_add=True)
   creation_date = db.DateTimeProperty(auto_now_add=True)
   downloadCt = db.IntegerProperty(default=1) #Track how popular the raster is
-  isPublic = db.BooleanProperty(default=False) #Show raster in public listings
+  isPublic = db.BooleanProperty(default=True) #Show raster in public listings
   inTrash = db.BooleanProperty(default=False) #Remove raster from all listings if in trash
   version = db.StringProperty(default="1-0") #The version of our app that made this tree
 
