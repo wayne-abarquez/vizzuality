@@ -168,12 +168,12 @@ div#content div.left div.browse_box {float:left; padding:18px 15px 15px 25px; wi
 div#content div.left div.browse_box h3{float:left; font:bold 22px Arial; color:#666666; }
 div#content div.left div.browse_box ul {float:left; width:608px; height:auto; margin:13px 0 0 0;}
 
-div#content div.left div.browse_box ul li {float:left; width:608px; height:470px;}
+div#content div.left div.browse_box ul li {float:left; width:608px; min-width:608px; height:470px;}
 div#content div.left div.browse_box ul div {float:left; width:183px; height:208px; margin:0 19px 0 0;}
 div#content div.left div.browse_box ul div.second {margin:20px 19px 0 0;}
 div#content div.left div.browse_box ul div.last.second {margin:20px 0 0 0;}
 div#content div.left div.browse_box ul div.last {margin:0;}
-div#content div.left div.browse_box ul div img {border:1px solid #999999; width:181px; height:100px;}
+div#content div.left div.browse_box ul div img {border:1px solid #999999; width:181px; height:100px; background:url(../images/home/static_map.png) no-repeat 0 0;}
 div#content div.left div.browse_box ul div a.title {float:left; margin:5px 0 0 0; font:normal 14px Arial; color:#719F32; width:183px; text-decoration:none;}
 div#content div.left div.browse_box ul div a.title:hover {color:#364E17;}
 div#content div.left div.browse_box ul div p.author {float:left; margin:2px 0 0 0; font:normal 11px Arial; color:#666666; width:183px;} 
