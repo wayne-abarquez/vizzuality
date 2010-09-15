@@ -38,7 +38,12 @@
                     uploader  : '/swf/uploadify.swf',
                     script    : 'http://mol.colorado.edu/rastore',
                     cancelImg : '/images/common/cancel.png',
+                    //buttonImg : '/images/home/dowload_bttn.png',
+                    hideButton: true,
                     fileDataName : 'dist',
+                    width: 240,
+                    height: 80,
+                    wmode: 'transparent',
                     auto      : true,
                     scriptAccess: 'always',
                     scriptData: {'k':'{{k}}','redirect':0},
@@ -46,6 +51,10 @@
                     multi     : false,
                     fileExt   : '*.asc;*.gz',
                     simUploadLimit : 1,
+                    onProgress: function(){ 
+                        $('div.uploadify').css('background','none');
+                        $('.header_progress h1').html('');
+                        },
                     onComplete: function(event, queueID, fileObj, reposnse, data) { 
                         fileSubmit = true
                         if (formSubmit) {
@@ -111,8 +120,8 @@
         </script>
 		
 		<!-- STYLESHEETS --> 
-		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
         <link href="stylesheets/uploadify.css" media="screen" rel="stylesheet" type="text/css" /> 
+		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
     </head>
 	
 	<body >	
@@ -120,9 +129,11 @@
 		<!-- THIS HTML IS TO PREPARE THE MODAL WINDOW. IT'LL BE MOVED TO HOME.HTML -->
 		<div id="upload_modal_window">
 			<div class="header_progress">
-				<h1>We are uploading your model...</h1>
-                <input name="model" id="uploadify" type="file" />
+				<h1>Choose your file...</h1>
                 <div id="progressbar"></div>
+                <div class="uploadify">
+                    <input name="model" id="uploadify" type="file" />
+                </div>
 			</div>
 			<div class="content">
 				<div class="message">
