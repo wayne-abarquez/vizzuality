@@ -234,8 +234,14 @@ class API(webapp.RequestHandler):
             r['description'] = m.description
             r['authors'] = m.authors
             r['year'] = m.year
+            r['status'] = m.status
             output.append(r)
-    self.response.out.write(simplejson.dumps(output))
+            
+            
+    if self.request.params.get('callback', None) is not None:
+        self.response.out.write('%s({  "items": %s   })' % (self.request.params.get('callback', None), simplejson.dumps(output)))
+    else:
+        self.response.out.write(simplejson.dumps(output))
     
 class RecentModels(webapp.RequestHandler):
   def key(): 
