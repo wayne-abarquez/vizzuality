@@ -193,7 +193,7 @@ ol#controls li a:focus, #prevBtn a:focus, #nextBtn a:focus{outline:none;}
 div#content div.right {float:right; width:341px; height:auto;}
 div#content div.right div.download_box {float:right; width:282px; height:147px; background:url(../images/home/download_box.png) no-repeat 0 0;}
 div#content div.right div.download_box p.title {float:left; font:bold 22px Arial; color:#666666; margin:20px 0 0 30px;}
-div#content div.right div.download_box a.upload_bttn {float:left; width:114px; height:26px; padding:36px 0 0 125px; color:#FCDAB4; font:normal 14px Arial; background:url('../images/home/dowload_bttn.png') no-repeat 0 0; margin:14px 0 0 21px; text-decoration:none; cursor:pointer;}
+div#content div.right div.download_box a.upload_bttn {float:left; width:114px; height:26px; padding:36px 0 0 125px; color:#FCDAB4; font:normal 14px Arial; background:url('/images/home/dowload_bttn.png') no-repeat 0 0; margin:14px 0 0 21px; text-decoration:none; cursor:pointer;}
 div#content div.right div.download_box a.upload_bttn:hover {background-position:0 -62px;}
 div#content div.right div.steps {float:right; width:274px; height:227px; background:url(../images/home/bkg_steps.png) no-repeat 0 0; margin:25px 4px 0 0; position:relative;}
 div#content div.right div.steps p {width:190px; height:39px; font:normal 14px Arial; color:#BEBEBE; position:absolute;} 
