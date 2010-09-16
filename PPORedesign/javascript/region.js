@@ -97,6 +97,10 @@ $(document).ready(function() {
 			$('div#data2 p').text(((data.area_protected*100)/data.area).toFixed(2) + '%');
 			$('div#data2 sup').text('(xth)');
 			$('div#data3 p').text(data.num_pas);
+			
+			$('div#data1').fadeIn();
+			$('div#data2').fadeIn();
+			$('div#data3').fadeIn();
 
 
 			$("div.relatedBox a div.image").each(function(index,element){
