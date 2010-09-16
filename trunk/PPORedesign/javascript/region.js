@@ -128,7 +128,7 @@ $(document).ready(function() {
 	//Get the region data
 	$.ajax({
 	  type: "GET",
-	  url: '/regions/'+ getURLParam('id') +'.json.txt',
+	  url: 'regions/'+ getURLParam('id') +'.json.txt',
 	  dataType: "json",
 	  success: function(data) {
 			var geomCoords = new Array();
