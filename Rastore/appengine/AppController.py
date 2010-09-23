@@ -64,8 +64,7 @@ class RasterStatus(webapp.RequestHandler): #lookup the status of the raster proc
                         objId=k).fetch(1)
     out = {}
     for layer in layers:
-        out['status'] = str(layer.objStatus)
-        out['estimate'] = int(layer.objTimeEstimate)
+        out['status'] = str(layer.status)
         
     self.response.out.write(out)
     
