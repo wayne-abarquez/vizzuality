@@ -29,7 +29,10 @@ $(document).ready(function() {
                           } else {
                             nimg.attr("src", "http://mol.colorado.edu/tiles/" + item.k +"/z0/0/0.png");
                           } 
-                          ndiv.append(nimg);
+                          var nbra = $('<a></a>');
+                          nbra.attr({"class": "title","href": "/viewer?k="+item.k})
+                          nbra.append(nimg);
+                          ndiv.append(nbra);
                           
                           var ntit = $('<a></a>');
                           ntit.attr({"class": "title","href": "/viewer?k="+item.k})
