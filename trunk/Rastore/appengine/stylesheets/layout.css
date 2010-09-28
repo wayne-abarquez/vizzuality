@@ -125,6 +125,8 @@ div#content_layout_model div.info_model {float:right; background:url('../images/
 div#content_layout_model div.info_model div.content_left {float:left; width:628px; height:auto; padding:15px 0 0 21px;}
 div#content_layout_model div.info_model div.content_left h3.title {float:left; font:normal 18px Georgia; color:#333333; margin:5px 0 0 0;}
 div#content_layout_model div.info_model div.content_left p {float:left; font:normal 14px Arial; color:#333333; margin:13px 0 0 0;}
+div#content_layout_model div.info_model div.content_left #disqus_thread {float:left; font:normal 14px Arial; color:#333333; margin:13px 0 0 0;}
+div#content_layout_model div.info_model div.content_left div.line {float:left; width:615px; height:1px; background-color:#C2C2C2; margin:10px 0 10px 0;}	
 div#content_layout_model div.info_model div.content_right {float:right; width:275px; height:auto; padding:8px 0 0 10px;}
 div#content_layout_model div.info_model div.content_right p.title {float:left; font:bold 11px Arial; color:#719F32; width:285px; text-transform:uppercase; margin:10px 0 0 0;}
 div#content_layout_model div.info_model div.content_right p {float:left; font:normal 14px Arial; color:#666666; margin:2px 0 0 0;}
