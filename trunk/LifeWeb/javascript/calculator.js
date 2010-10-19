@@ -130,7 +130,7 @@ function initialize() {
 		ppeOverlay = new GTileLayerOverlay(tilelayer);
 		map.addOverlay(ppeOverlay);
 
-		var copy_gbif = new GCopyrightCollection("©");
+		var copy_gbif = new GCopyrightCollection("Â©");
 		copy_gbif.addCopyright(new GCopyright(' ',new GLatLngBounds(new GLatLng(-90,-180), new GLatLng(90,180)),0,' '));
 		tilelayer_ppe = new GTileLayer(copy_gbif);
 		tilelayer_ppe.getTileUrl = function(xy,z) { return 'http://184.73.201.235/blue/'+z+'/'+xy.x+'/'+xy.y; };
@@ -280,7 +280,7 @@ function getCarbonHeight(polygon){
 	 
 	$.ajax({
       type: 'POST',
-  		url: "/proxy.php?mode=native&url="+escape("http://ec2-174-129-149-237.compute-1.amazonaws.com/carbon"),	
+  		url: "http://ec2-174-129-149-237.compute-1.amazonaws.com/carbon",	
   		//url: "/carbon",							
   		data: dataObj,
   		cache: false,
@@ -456,7 +456,7 @@ function getCountry(latlng) {
 function checkPointArea(latlng) {
 	$.ajax({
     	type: "GET",
-    	url: "http://www.protectedplanet.net/api/sites_by_point/"+latlng.lng()+"/"+latlng.lat(),
+    	url: "http://www.protectedplanet.net/api/sites_by_point_with_geom/"+latlng.lng()+"/"+latlng.lat(),
     	data: null,
     	cache: false,
 			dataType:'jsonp',
