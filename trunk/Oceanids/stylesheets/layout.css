@@ -1,0 +1,79 @@
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal;}
+img,fieldset{border:none; padding:0; margin:0;}
+body{font:12px Arial, Helvetica, sans-serif; color:#FFFFFF; background-color:#3A6C8F; }
+span.clear{clear:both;}
+div.left{float:left; width:auto;}
+div.right{float:right; width:auto;}
+a{text-decoration:none;}
+
+a:focus{outline:none}
+img.left_curve{float:left;}
+img.right_curve{float:right;}
+ul {list-style:none;}
+
+div#outer_layout{margin:0 auto; width:954px;}
+div#layout {width:954px; margin:0; background:url('../images/common/bkg_body.png') no-repeat 0 0; height:700px;}
+
+/* header */
+div#header {float:left; width:954px; height:90px; margin:40px 0 0 0;}
+div#header img.grid_logo {width:84px; height:30px;}
+div#header div.menu {width:630px; height:90px;}
+div#header div.menu ul {float:left; width:100%; height:30px;}
+div#header div.menu ul li {float:left; margin:6px 25px 0 0;}
+div#header div.menu ul li a {font:normal 13px "Myriad Pro"; color:white; text-transform:uppercase;}
+div#header div.menu ul li a:hover {border-bottom:1px dotted white;}
+div#header div.menu ul li.selected a {color:#A7C9E0;}
+div#header div.menu ul li.selected a:hover {border-bottom:1px dotted #A7C9E0;}
+div#header div.menu ul li.user {margin:0; background:url('../images/common/right_clicked_down.png') no-repeat right 0; width:auto;}
+div#header div.menu ul li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
+div#header div.menu ul li.user a {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
+div#header div.menu ul li.user a span {float:left; margin:0 0 0 8px; background:url('../images/common/right_user_bkg.png') no-repeat right 0; width:auto; height:21px; padding:5px 13px 0 7px; line-height:18px}
+div#header div.menu ul li.user a:hover {border-bottom:none}
+div#title {float:left; width:954px; margin:40px 0 0 0;}
+div#title h1 {float:left; font:bold 54px "Myriad Pro"; color:white; width:829px; line-height:54px; text-shadow: 0px 0px 50px rgba(00,00,00,0.30); letter-spacing:-1.0px;}
+div#title h3 {float:left; font:normal 21px "Myriad Pro"; color:white; text-shadow: 0px 0px 50px rgba(00,00,00,0.30);}
+
+
+/* home */
+div#content {float:left; width:954px; height:auto; margin:40px 0 0 0;}
+div#content div.data_sets  {float:right; background:url('../images/home/top_content_box.png') no-repeat 0 0; width:852px;  margin:0 108px 0 0; height:auto;}
+div#content div.data_sets span.top {float:left; background:url('../images/home/top_content_box.png') no-repeat 0 0; height:12px; width:100%; margin:0;}
+div#content div.data_sets div.content {float:left; background:url('../images/home/top_content_body.png') repeat-y 0 0; width:852px; height:auto; margin:0;}
+div#content div.data_sets div.content div.left {float:left; margin:10px 0 0 25px; width:520px;}
+div#content div.data_sets div.content h4 {float:left; font:normal 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
+div#content div.data_sets div.content p.subtitle {float:left; font:normal 15px "Myriad Pro"; color:#666666; margin:0; width:100%; line-height:13px;}
+div#content div.data_sets div.content p.subtitle a {color:#FF6600; }
+div#content div.data_sets div.content p.subtitle a:hover {border-bottom:1px dotted #FF6600;}
+
+div#content div.data_sets div.content div.right {float:right; width:265px; height:20px; margin:10px 0 0 25px;}
+div#content div.data_sets div.content div.right a.create_map {float:left; margin:25px 0 0 0; background:url('../images/home/create_map_bttn.png') no-repeat 0 0; width:222px; height:36px;}
+div#content div.data_sets div.content div.right a.create_map:hover {background-position:0 -36px;}
+
+
+
+
+
+
+
+
+
+
+/* footer */
+div#outer_footer{float:left; width:100%; background-color:#2A4E66;}
+div#outer_footer_content {margin:0 auto; width:954px;}
+div#footer{margin:0; width:954px; height:193px;}
+div#footer ul.menu {float:left; width:370px; margin:30px 0 0 0;}
+div#footer ul.menu li {float:left; margin:0 10px 0 0; font:normal 13px Arial; color:#8095A4;}
+div#footer ul.menu li a {font:normal 13px Arial; color:#8095A4;}
+div#footer ul.menu li a:hover {border:1px dotted #8095A4;}
+div#footer ul.menu li.last {margin:0;}
+div#footer div.right_information {float:right; width:253px; height:183px; margin:30px 0 0 0;}
+div#footer div.right_information p {float:left; font:normal 13px Arial; color:#8095A4; width:100%; margin:0;}
+div#footer div.right_information img.logo {float:left; width:84px; height:30px; margin:10px 0 0 0;}
+div#footer div.right_information p.rights {margin:30px 0 0 0;}
+div#footer div.right_information ul.links {float:left; width:100%;}
+div#footer div.right_information ul.links li {float:left; margin:0 8px 0 0; font:normal 13px Arial; color:#8095A4; }
+div#footer div.right_information ul.links li a {font:normal 13px Arial; color:#8095A4; border-bottom:1px solid #8095A4;}
+div#footer div.right_information ul.links li a:hover {border-bottom:1px dotted #8095A4;}
+div#footer div.right_information ul.links li.last {margin:0;}
+
