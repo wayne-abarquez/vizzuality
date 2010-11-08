@@ -8,6 +8,8 @@
 		
 		<!-- STYLESHEETS --> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+		<script src="javascripts/application.js" type="text/javascript" charset="utf-8"></script>
+		
 		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
 			
 	</head>
@@ -26,7 +28,7 @@
 								<li><a href="#">BROWSE DATASETS</a></li>
 								<li><a href="#">MAKE A MAP</a></li>
 								<li><a href="#">UPLOAD DATA</a></li>
-								<li class="user"><a href="#"><span>YANNICK</span></a></li>
+								<li class="user"><a hre	="#"><span>YANNICK</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -42,46 +44,164 @@
 							<div class="left">
 								<h4>Browse datasets</h4>
 								<p class="subtitle"><b>152 datasets</b> available in our database</p>
-							</div>
+								<!-- FORM -->
+								
+								<form action="javascript:void searchDatasets()">
+									<input type="text" value="Search datasets by name, type, tag..." id="searchDataSet"/>
+									<input type="submit" value="" />
+								</form>
+								<ul class="datasets">
+									<li>
+										<div class="suboptions">
+											<span class="top">
+												<a href="#">Agriculture</a>
+											</span>
+											<ul class="content">
+												<li><a href="#">Agriculture</a><p class="calibri">17</p></li>
+												<li><a href="#">Agriculture</a><p class="calibri">17</p></li>
+												<li><a href="#">Agriculture</a><p class="calibri">17</p></li>
+												<li><a href="#">Agriculture</a><p class="calibri">17</p></li>
+											</ul>
+											<span class="bottom"></span>
+										</div>
+										<a id="category" href="#">Agriculture</a><p class="calibri">17</p>
+									</li>
+									<li class="last"><a href="#">Agriculture</a><p class="calibri">17</p></li>
+									<li><a href="#">Business and labor</a><p class="calibri">5</p></li>
+									<li class="last"><a href="#">Business and labor</a><p class="calibri">5</p></li>									
+									<li><a href="#">Demographics</a><p class="calibri">3</p></li>
+									<li class="last"><a href="#">Demographics</a><p class="calibri">3</p></li>
+									<li><a href="#">Economics and financial</a><p class="calibri">31</p></li>
+									<li class="last"><a href="#">Economics and financial</a><p class="calibri">31</p></li>
+									<li><a href="#">Education</a><p class="calibri">1</p></li>
+									<li class="last"><a href="#">Education</a><p class="calibri">1</p></li>
+									<li><a href="#">Agriculture</a><p class="calibri">17</p></li>
+									<li class="last"><a href="#">Agriculture</a><p class="calibri">17</p></li>
+									<li><a href="#">Business and labor</a><p class="calibri">2</p></li>
+									<li class="last"><a href="#">Business and labor</a><p class="calibri">2</p></li>
+									<li><a href="#">Demographics</a><p class="calibri">3</p></li>
+									<li class="last"><a href="#">Demographics</a><p class="calibri">3</p></li>
+								</ul>
+							</div> <!-- div class="left" -->
 							<div class="right">
 								<h4>Your maps</h4>
 								<p class="subtitle"><a href="#">create new</a> or browse your maps</p>
 								<a class="create_map" href="#"></a>
+								<p class="title">LATEST MAPS</p>
+								<ul class="maps">
+									<li>
+										<div class="bkg_map">
+											<p>2</p>
+										</div>
+										<p class="map_name">Untitled map</p>
+										<p class="by_ago">by you 2 months ago</p>
+										<a href="#">edit</a><a href="#">view map</a>
+									</li>									
+									<li>
+										<div class="bkg_map">
+											<p>1</p>
+										</div>
+										<p class="map_name">Whales on the beach</p>
+										<p class="by_ago">by you 2 months ago</p>
+										<a href="#">edit</a><a href="#">view map</a>
+									</li>
+								</ul>
+							</div> <!-- div class="right" -->
+						</div> 	<!-- <div class="content"> -->
+					</div> <!-- <div class="data_sets"> -->
+						<div class="data_sets_footer">
+							<div class="content">
+								<div class="left">
+									<h4>Store, organize and share your GeoData</h4>
+									<p class="subtitle"><b>152 datasets</b>  available in our database</p>
+
+									<div class="upload_content">
+										<div id="upload_file" class="upload_file upload active">
+											<a id="upload_file_option"class="combo"></a>
+											<p class="title_upload">Upload files from your computer</p>
+											<div id="info_upload">
+												<form class="files_selected" action="javascript:void uploadFiles()">
+													<input type="submit" value=""/>
+													<p class="name_files">No files selected</p>
+												</form>
+												<p class="title_supported_formats">SUPPORTED FORMATS</p>
+												<p class="supported_formats">Spreadsheets (as CSVs), Shapefiles, KML, RSS, ATOM and GeoRSS.</p>
+											</div>
+										</div>
+										<div id="import_url" class="upload_file import">
+											<a id="import_url_option" class="combo"></a>
+											<p class="title_upload">Import files from URL</p>
+											<div id="info_upload">
+												<form class="import_url" action="javascript:void importUrl()">
+													<span class="processing"></span>
+													<span class="input_content">
+														<input id="url_name" type="text" value="Insert URL"/>
+													</span>
+													<a class="data_type">Auto-select format</a>
+													<input id="importButton" type="submit" value="Import files">
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="left"> -->
+								<div class="right">
+									<h4>Your maps</h4>
+									<p class="subtitle">You have 3<a href="#">pending layers</a></p>
+									<p class="title">LATEST USED DATA</p>
+									<ul class="library">
+										<li>
+											<div class="bkg_library"></div>
+											<p class="library_name">Whales world occurenc...</p>
+											<p class="by_ago">by you 2 months ago</p>
+											<a href="#">edit</a><a href="#">make a map</a><a href="#">details</a>
+										</li>
+
+										<li>
+											<div class="bkg_library"></div>
+											<p class="library_name">Whales world occurenc...</p>
+											<p class="by_ago">by you 2 months ago</p>
+											<a href="#">edit</a><a href="#">make a map</a><a href="#">details</a>
+										</li>
+									</ul>
+									<a class="view_all" href="#">view all</a>
+								</div>
+								<!-- <div class="right"> -->							
+							</div>
+						</div> <!-- <div class="data_sets_footer"> -->
+				</div> 	<!-- <div id="content"> -->
+				
+			</div> <!-- layout -->
+		</div>	<!-- <div id="outer_layout"> -->
+			<div id="outer_footer">
+							<div id="outer_footer_content">									
+								<div id="footer">
+									<div class="left">
+										<ul class="menu">
+											<li><a href="#">dashboard</a></li>
+											<li>/</li>
+											<li><a href="#">browse datasets</a></li>
+											<li>/</li>							
+											<li><a href="#">make a map</a></li>
+											<li>/</li>							
+											<li class="last"><a href="#">upload data</a></li>
+										</ul>
+									</div>
+									<div class="right_information">
+										<p>A project by</p>
+										<a href="http://www.grida.no/"><img class="logo" src="images/common/footer_grid_logo.png" alt="Grid Logo"></a>
+										<p class="rights">All rights reserved. 2010</p>
+										<ul class="links">
+											<li><a href="#">Legal terms</a></li>
+											<li>/</li>
+											<li class="last"><a href="#">Contact</a></li>
+										</ul>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
+			 <!-- outer_footer -->			
 		
-		
-		</div>
-		<div id="outer_footer">
-			<div id="outer_footer_content">
-				<div id="footer">
-					<div class="left">
-						<ul class="menu">
-							<li><a href="#">dashboard</a></li>
-							<li>/</li>
-							<li><a href="#">browse datasets</a></li>
-							<li>/</li>							
-							<li><a href="#">make a map</a></li>
-							<li>/</li>							
-							<li class="last"><a href="#">upload data</a></li>
-						</ul>
-					</div>
-					<div class="right_information">
-						<p>A project by</p>
-						<a href="http://www.grida.no/"><img class="logo" src="images/common/footer_grid_logo.png" alt="Grid Logo"></a>
-						<p class="rights">All rights reserved. 2010</p>
-						<ul class="links">
-							<li><a href="#">Legal terms</a></li>
-							<li>/</li>
-							<li class="last"><a href="#">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
 	</body> 
 </html> 
  

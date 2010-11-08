@@ -5,14 +5,15 @@ span.clear{clear:both;}
 div.left{float:left; width:auto;}
 div.right{float:right; width:auto;}
 a{text-decoration:none;}
+input:focus{outline:none}
 
 a:focus{outline:none}
 img.left_curve{float:left;}
 img.right_curve{float:right;}
 ul {list-style:none;}
 
-div#outer_layout{margin:0 auto; width:954px;}
-div#layout {width:954px; margin:0; background:url('../images/common/bkg_body.png') no-repeat 0 0; height:700px;}
+div#outer_layout{margin:0 auto; width:980px;}
+div#layout {width:954px; margin:0; background:url('../images/common/bkg_body.png') no-repeat 0 0; height:auto;}
 
 /* header */
 div#header {float:left; width:954px; height:90px; margin:40px 0 0 0;}
@@ -35,33 +36,123 @@ div#title h3 {float:left; font:normal 21px "Myriad Pro"; color:white; text-shado
 
 
 /* home */
+
+/*LEFT*/
 div#content {float:left; width:954px; height:auto; margin:40px 0 0 0;}
 div#content div.data_sets  {float:right; background:url('../images/home/top_content_box.png') no-repeat 0 0; width:852px;  margin:0 108px 0 0; height:auto;}
 div#content div.data_sets span.top {float:left; background:url('../images/home/top_content_box.png') no-repeat 0 0; height:12px; width:100%; margin:0;}
-div#content div.data_sets div.content {float:left; background:url('../images/home/top_content_body.png') repeat-y 0 0; width:852px; height:auto; margin:0;}
+div#content div.data_sets div.content {float:left; background:url('../images/home/content_body_repeaty.png') repeat-y 0 0; width:852px; height:auto; margin:0;}
 div#content div.data_sets div.content div.left {float:left; margin:10px 0 0 25px; width:520px;}
 div#content div.data_sets div.content h4 {float:left; font:normal 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
 div#content div.data_sets div.content p.subtitle {float:left; font:normal 15px "Myriad Pro"; color:#666666; margin:0; width:100%; line-height:13px;}
 div#content div.data_sets div.content p.subtitle a {color:#FF6600; }
-div#content div.data_sets div.content p.subtitle a:hover {border-bottom:1px dotted #FF6600;}
+div#content div.data_sets div.content p.subtitle a:hover {text-decoration:underline;}
+div#content div.data_sets div.content form {float:left; width:502px; height:36px; position:relative; background:url('../images/home/bkg_input_search.png') no-repeat 0 0; margin:25px 0 0 0;}
+div#content div.data_sets div.content form input[type="text"] {font:italic 13px Arial; color:#cccccc; width:375px; height:20px; border:none; background:transparent; position:absolute; top:5px; left:5px; line-height:17px;}
+div#content div.data_sets div.content form input[type="submit"] {background:url(../images/home/search_bttn.png) no-repeat 0 0; height:36px; width:116px; border:none; position:absolute; top:0px; right:0px; cursor:pointer;}
+div#content div.data_sets div.content form input[type="submit"]:hover {background-position:0 -36px; cursor:pointer;}
+div#content div.data_sets div.content ul.datasets {float:left; width:502px; height:167px; margin:15px 0 0 2px; padding:0 0 20px 0;}
+div#content div.data_sets div.content ul.datasets li {float:left; width:243px; height:18px; margin:0 15px 0 0; position:relative;}
+div#content div.data_sets div.content ul.datasets li.last {margin:0;}
+div#content div.data_sets div.content ul.datasets li p.calibri {float:left; font:normal 15px "Calibri"; color:#999999; margin:0 0 0 5px; }
+div#content div.data_sets div.content ul.datasets li a{float:left; text-decoration:none; color:#FF6600; margin:0; line-height:23px;}
+div#content div.data_sets div.content ul.datasets li a:hover {text-decoration:underline;}
 
-div#content div.data_sets div.content div.right {float:right; width:265px; height:20px; margin:10px 0 0 25px;}
-div#content div.data_sets div.content div.right a.create_map {float:left; margin:25px 0 0 0; background:url('../images/home/create_map_bttn.png') no-repeat 0 0; width:222px; height:36px;}
+div#content div.data_sets div.content ul.datasets li div.suboptions {position:absolute; top:-12px; left:-12px; width:212px; height:auto; z-index:5; display:none;}
+div#content div.data_sets div.content ul.datasets li div.suboptions span.top {float:left; height:38px; width:212px; background:url('../images/home/subdatasets/top_category.png') no-repeat 0 0;}
+div#content div.data_sets div.content ul.datasets li div.suboptions span.top a {float:left; font:bold 15px Arial; color:#666666; margin:13px 0 0 15px; text-decoration:none;}
+div#content div.data_sets div.content ul.datasets li div.suboptions span.top a:hover {text-decoration:underline;}
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content {float:left; width:212px; background:url('../images/home/subdatasets/content_category.png') repeat-y 0; height:auto;}
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content li {float:left; margin:0 0 0 16px; width:184px;}
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content p.calibri {float:left; font:normal 15px "Calibri"; color:#999999; margin:0 0 0 5px; }
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content a{float:left; text-decoration:none; color:#FF6600; margin:0; line-height:23px;}
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content a:hover {text-decoration:underline;}
+
+div#content div.data_sets div.content ul.datasets li div.suboptions span.bottom {float:left; height:10px; width:212px; background:url('../images/home/subdatasets/bottom_category.png') no-repeat 0 0;}
+
+
+
+/*RIGHT*/
+div#content div.data_sets div.content div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}
+div#content div.data_sets div.content div.right a.create_map {float:left; margin:25px 0 0 0; background:url('../images/home/create_map_bttn.png') no-repeat 0 0; width:222px; height:36px; padding:0;}
 div#content div.data_sets div.content div.right a.create_map:hover {background-position:0 -36px;}
+div#content div.data_sets div.content div.right p.title {float:left; font:normal 13px "Myriad Pro"; color:#999999; text-transform:uppercase; margin:15px 0 0 0; width:222px; height:14px;}
+div#content div.data_sets div.content div.right ul.maps {float:left; width:222px; height:auto; margin:5px 0 0 0;}  
+div#content div.data_sets div.content div.right ul.maps li {float:left; width:222px; height:57px; margin:10px 0 0 0;}
+div#content div.data_sets div.content div.right ul.maps li div.bkg_map {float:left; margin:0 10px 0 0; background:url('../images/home/bkg_acount_map.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
+div#content div.data_sets div.content div.right ul.maps li div.bkg_map p {float:left; width:47px; height:auto; font:normal 15px "Myriad Pro"; color:#666666; text-shadow:0 1px white; margin:16px 0 0 0; line-height:16px;}
+div#content div.data_sets div.content div.right ul.maps li p.map_name {float:left; width:150px; height:18px; font:normal 15px "Myriad Pro"; color:#666666;}
+div#content div.data_sets div.content div.right ul.maps li p.by_ago {float:left; width:150px; height:19px; font:normal 13px Arial; color:#999999;}
+div#content div.data_sets div.content div.right ul.maps li a {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
+div#content div.data_sets div.content div.right ul.maps li a:hover {color:#333333;}
+
+
+/* FOOTER_INFO */
+div.data_sets_footer  {float:right; width:980px; margin:0 23px 0 0 ; height:309px; background:url('../images/home/bkg_foot_info.png') no-repeat 0 0; position:relative; z-index:10px;}
+div.data_sets_footer div.content {float:left; width:798px; height:100%; margin:28px 0 0 69px;}
+
+/*LEFT*/
+div.data_sets_footer div.content div.left {width:500px;}
+div.data_sets_footer div.content h4 {float:left; font:normal 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
+div.data_sets_footer div.content p.subtitle {float:left; font:normal 15px "Myriad Pro"; color:#666666; margin:0; width:100%; line-height:13px;}
+div.data_sets_footer div.content p.subtitle a {color:#FF6600; }
+div.data_sets_footer div.content p.subtitle a:hover {text-decoration:underline;}
+div.data_sets_footer div.content div.right {float:right; margin:0 0 0 0; width:235px;}
+
+div.data_sets_footer div.upload_content {float:left; width:500px; height:auto;}
+div.data_sets_footer div.upload_content div.upload_file {float:left; width:478px; height:auto; padding:7px 15px;}
+div.data_sets_footer div.upload_content div.upload_file.upload {margin:18px 0 0 0;}
+ div.data_sets_footer div.upload_content div.upload_file.upload.active {margin:27px 0 0 0; }
+div.data_sets_footer div.upload_content div#info_upload {display:none;}
+div.data_sets_footer div.upload_content div.upload_file a.combo {float:left; width:12px; height:12px; background:url('../images/common/combo_desactivated.png') no-repeat 0 0; margin:3px 5px 0 0;}
+div.data_sets_footer div.upload_content div.upload_file a.combo:hover {cursor:pointer;}
+div.data_sets_footer div.upload_content div.upload_file p.title_upload {float:left; font:bold 15px Arial; color:#666666;}
+
+
+div.data_sets_footer div.upload_content div.upload_file.active {background:url('../images/home/bkg_upload_files.png') no-repeat 0 0; height:112px; padding:14px 15px;}
+div.data_sets_footer div.upload_content div.active div#info_upload {display:inline;}
+div.data_sets_footer div.upload_content div.upload_file.active a.combo {background:url('../images/common/combo_activated.png') no-repeat 0 0;}
+div.data_sets_footer div.upload_content div.upload_file.active p.title_upload {font-weight:normal;}
+div.data_sets_footer div.upload_content div.upload_file.active form.files_selected {float:left; background:url('../images/home/bkg_files_selected.png'); width:440px; height:33px; margin:11px 0 0 15px; position:relative;}
+div.data_sets_footer div.upload_content div.upload_file.active form.files_selected input[type="submit"] {background:url('../images/home/browse_bttn.png') no-repeat 0 0; height:26px; width:93px; border:none; position:absolute; top:3px; left:3px;}
+div.data_sets_footer div.upload_content div.upload_file.active form.files_selected input[type="submit"]:hover {background-position:0 -26px; cursor:pointer;}
+div.data_sets_footer div.upload_content div.upload_file.active form.files_selected p.name_files {position:absolute; top:9px; left:106px; font:normal 13px Arial; color:#999999; width:322px;}
+div.data_sets_footer div.upload_content div.upload_file.active p.title_supported_formats {float:left; font:bold 11px Arial; width:447px; height:10px; color:#CCCCCC; text-transform:uppercase; margin:11px 0 0 15px;}
+div.data_sets_footer div.upload_content div.upload_file.active p.supported_formats {float:left; font:normal 13px Arial; width:447px; height:10px; color:#999999; margin:5px 0 0 15px;}
+div.data_sets_footer div.upload_content div.upload_file.import.active {margin:9px 0 0 0;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url {float:left; margin:13px 0 0 15px; width:448px; height:72px; position:relative;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.input_content {float:left; background:url('../images/home/bkg_import_url.png') no-repeat 0 0; width:263px; height:33px; position:relative;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.input_content input[type="text"] {border:none; width:248px; height:20px; font:normal 13px Arial; color:#999999; position:absolute; top:6px; left:7px;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url a.data_type {float:right; background:url('../images/home/data_type_combo.png') no-repeat 0 0; position:relative; width:123px; height:15px; font:normal 13px Arial; color:#999999; padding:10px 35px 10px 7px; overflow:hidden;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url a.data_type span.arrow {position:absolute; top:5px; right:5px; background:url('../images/common/down_gray_arrow.png') no-repeat 0 0; width:6px; height:4px;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url a.data_type:hover {cursor:pointer;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url input[type="submit"]{background:url('../images/home/bttn_import_url.png') no-repeat 0 0; font:normal 13px Arial; text-shadow:0px 1px #7D9631; color:#FFFFFF; text-align:center; width:93px; height:26px; text-align:center; border:none; line-height:13px; position:absolute; bottom:0; right:0;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url input[type="submit"]:hover {background-position:0 -26px; cursor:pointer;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url input[type="submit"].disabled {background:url('../images/home/bttn_import_url_disabled.png') no-repeat 0 0}
+
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.processing {position:absolute; top:0px; right:0; z-index:5; /*background:url('../images/home/ajax-loader.gif') no-repeat 0 0;*/ background:url('../images/home/bkg_import_url_processing.png') no-repeat 0 0; width:440px; height:33px; display:none;}
 
 
 
-
-
-
-
-
+/*RIGHT*/
+div.data_sets_footer div.content div.right p.subtitle a {margin:0 0 0 5px;}
+div.data_sets_footer div.content div.right p.title {float:left; font:normal 13px "Myriad Pro"; color:#396C8D; text-transform:uppercase; margin:25px 0 0 0; width:222px;}
+div.data_sets_footer div.content div.right ul.library {float:left; width:222px; height:auto; margin:5px 0 0 0;}  
+div.data_sets_footer div.content div.right ul.library li {float:left; width:222px; height:57px; margin:10px 0 0 0;}
+div.data_sets_footer div.content div.right ul.library li div.bkg_library {float:left; margin:0 10px 0 0; background:url('../images/home/bkg_library_info.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
+div.data_sets_footer div.content div.right ul.library li p.library_name {float:left; width:160px; height:18px; font:normal 15px "Myriad Pro"; color:#333333;}
+div.data_sets_footer div.content div.right ul.library li p.by_ago {float:left; width:160px; height:19px; font:normal 13px Arial; color:#666666;}
+div.data_sets_footer div.content div.right ul.library li a {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
+div.data_sets_footer div.content div.right ul.library li a:hover {color:#333333;}
+div.data_sets_footer div.content div.right a.view_all {float:right; font:normal 13px Arial; color:#FF6600; width:auto; margin:15px 10px 0 0;}
+div.data_sets_footer div.content div.right a.view_all:hover {text-decoration:underline;}
 
 
 /* footer */
-div#outer_footer{float:left; width:100%; background-color:#2A4E66;}
+div#outer_footer{float:left; width:100%; background-color:#2A4E66; margin:0;}
 div#outer_footer_content {margin:0 auto; width:954px;}
-div#footer{margin:0; width:954px; height:193px;}
+
+div#footer{margin:0; width:954px; height:193px; background-color:#2A4E66;}
 div#footer ul.menu {float:left; width:370px; margin:30px 0 0 0;}
 div#footer ul.menu li {float:left; margin:0 10px 0 0; font:normal 13px Arial; color:#8095A4;}
 div#footer ul.menu li a {font:normal 13px Arial; color:#8095A4;}
@@ -76,4 +167,6 @@ div#footer div.right_information ul.links li {float:left; margin:0 8px 0 0; font
 div#footer div.right_information ul.links li a {font:normal 13px Arial; color:#8095A4; border-bottom:1px solid #8095A4;}
 div#footer div.right_information ul.links li a:hover {border-bottom:1px dotted #8095A4;}
 div#footer div.right_information ul.links li.last {margin:0;}
+
+/* COMMON */
 
