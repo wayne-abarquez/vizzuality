@@ -1,6 +1,6 @@
 body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p{margin:0; padding:0; font-weight:normal;}
 img,fieldset{border:none; padding:0; margin:0;}
-body{font:12px Arial, Helvetica, sans-serif; color:#FFFFFF; background-color:#3A6C8F; }
+body{font:12px Arial, Helvetica, sans-serif; color:#FFFFFF; background:url('../images/common/bkgrepeatedxy.jpg');}
 span.clear{clear:both;}
 div.left{float:left; width:auto;}
 div.right{float:right; width:auto;}
@@ -12,13 +12,15 @@ img.left_curve{float:left;}
 img.right_curve{float:right;}
 ul {list-style:none;}
 
+span.semibold {font-weight:600;}
+
 div#outer_layout{margin:0 auto; width:980px;}
-div#layout {width:954px; margin:0; background:url('../images/common/bkg_body.png') no-repeat 0 0; height:auto;}
+div#layout {width:980px; margin:0; background:url('../images/common/bkg_body.png') no-repeat 0 0; height:490px;}
 
 /* header */
-div#header {float:left; width:954px; height:90px; margin:40px 0 0 0;}
+div#header {float:left; width:949px; height:90px; margin:40px 0 0 57px;}
 div#header img.grid_logo {width:84px; height:30px;}
-div#header div.menu {width:630px; height:90px;}
+div#header div.menu {width:632px; height:90px;}
 div#header div.menu ul {float:left; width:100%; height:30px;}
 div#header div.menu ul li {float:left; margin:6px 25px 0 0;}
 div#header div.menu ul li a {font:normal 13px "Myriad Pro"; color:white; text-transform:uppercase;}
@@ -30,32 +32,33 @@ div#header div.menu ul li.user.clicked {background:url('../images/common/right_c
 div#header div.menu ul li.user a {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
 div#header div.menu ul li.user a span {float:left; margin:0 0 0 8px; background:url('../images/common/right_user_bkg.png') no-repeat right 0; width:auto; height:21px; padding:5px 13px 0 7px; line-height:18px}
 div#header div.menu ul li.user a:hover {border-bottom:none}
-div#title {float:left; width:954px; margin:40px 0 0 0;}
-div#title h1 {float:left; font:bold 54px "Myriad Pro"; color:white; width:829px; line-height:54px; text-shadow: 0px 0px 50px rgba(00,00,00,0.30); letter-spacing:-1.0px;}
-div#title h3 {float:left; font:normal 21px "Myriad Pro"; color:white; text-shadow: 0px 0px 50px rgba(00,00,00,0.30);}
+div#title {float:left; width:973px; margin:40px 0 0 55px;}
+div#title h1 {float:left; font:600 54px "Myriad Pro"; color:white; width:860px; line-height:54px; text-shadow: 0px 0px 30px rgba(0,0,0,0.6); letter-spacing:-2.0px;}
+div#title h3 {float:left; font:normal 21px "Myriad Pro"; color:white; text-shadow: 	0px 0px 30px rgba(00,00,00,0.6);}
 
 
 /* home */
 
 /*LEFT*/
 div#content {float:left; width:954px; height:auto; margin:40px 0 0 0;}
-div#content div.data_sets  {float:right; background:url('../images/home/top_content_box.png') no-repeat 0 0; width:852px;  margin:0 108px 0 0; height:auto;}
-div#content div.data_sets span.top {float:left; background:url('../images/home/top_content_box.png') no-repeat 0 0; height:12px; width:100%; margin:0;}
-div#content div.data_sets div.content {float:left; background:url('../images/home/content_body_repeaty.png') repeat-y 0 0; width:852px; height:auto; margin:0;}
-div#content div.data_sets div.content div.left {float:left; margin:10px 0 0 25px; width:520px;}
-div#content div.data_sets div.content h4 {float:left; font:normal 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
+div#content div.data_sets  {float:left; width:861px;  margin:0; height:auto;}
+div#content div.data_sets span.top_content {float:left; background:url('../images/home/top_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
+div#content div.data_sets div.content {float:left; background:url('../images/home/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0;}
+div#content div.data_sets div.content div.left {float:left; margin:10px 0 0 39px; width:520px;}
+div#content div.data_sets div.content h4 {float:left; font:600 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
 div#content div.data_sets div.content p.subtitle {float:left; font:normal 15px "Myriad Pro"; color:#666666; margin:0; width:100%; line-height:13px;}
+div#content div.data_sets div.content p.subtitle b {font-weight:600;}
 div#content div.data_sets div.content p.subtitle a {color:#FF6600; }
 div#content div.data_sets div.content p.subtitle a:hover {text-decoration:underline;}
 div#content div.data_sets div.content form {float:left; width:502px; height:36px; position:relative; background:url('../images/home/bkg_input_search.png') no-repeat 0 0; margin:25px 0 0 0;}
 div#content div.data_sets div.content form input[type="text"] {font:italic 13px Arial; color:#cccccc; width:375px; height:20px; border:none; background:transparent; position:absolute; top:5px; left:5px; line-height:17px;}
 div#content div.data_sets div.content form input[type="submit"] {background:url(../images/home/search_bttn.png) no-repeat 0 0; height:36px; width:116px; border:none; position:absolute; top:0px; right:0px; cursor:pointer;}
 div#content div.data_sets div.content form input[type="submit"]:hover {background-position:0 -36px; cursor:pointer;}
-div#content div.data_sets div.content ul.datasets {float:left; width:502px; height:167px; margin:15px 0 0 2px; padding:0 0 20px 0;}
+div#content div.data_sets div.content ul.datasets {float:left; width:502px; height:167px; margin:15px 0 0 2px; padding:0 0 10px 0;}
 div#content div.data_sets div.content ul.datasets li {float:left; width:243px; height:18px; margin:0 15px 0 0; position:relative;}
 div#content div.data_sets div.content ul.datasets li.last {margin:0;}
 div#content div.data_sets div.content ul.datasets li p.calibri {float:left; font:normal 15px "Calibri"; color:#999999; margin:0 0 0 5px; }
-div#content div.data_sets div.content ul.datasets li a{float:left; text-decoration:none; color:#FF6600; margin:0; line-height:23px;}
+div#content div.data_sets div.content ul.datasets li a{float:left; text-decoration:none; color:#FF6600; margin:0; line-height:23px; font:normal 15px "Arial";}
 div#content div.data_sets div.content ul.datasets li a:hover {text-decoration:underline;}
 
 div#content div.data_sets div.content ul.datasets li div.suboptions {position:absolute; top:-12px; left:-12px; width:212px; height:auto; z-index:5; display:none;}
@@ -76,24 +79,24 @@ div#content div.data_sets div.content ul.datasets li div.suboptions span.bottom 
 div#content div.data_sets div.content div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}
 div#content div.data_sets div.content div.right a.create_map {float:left; margin:25px 0 0 0; background:url('../images/home/create_map_bttn.png') no-repeat 0 0; width:222px; height:36px; padding:0;}
 div#content div.data_sets div.content div.right a.create_map:hover {background-position:0 -36px;}
-div#content div.data_sets div.content div.right p.title {float:left; font:normal 13px "Myriad Pro"; color:#999999; text-transform:uppercase; margin:15px 0 0 0; width:222px; height:14px;}
+div#content div.data_sets div.content div.right p.title {float:left; font:600 13px "Myriad Pro"; color:#999999; text-transform:uppercase; margin:15px 0 0 0; width:222px; height:14px;}
 div#content div.data_sets div.content div.right ul.maps {float:left; width:222px; height:auto; margin:5px 0 0 0;}  
 div#content div.data_sets div.content div.right ul.maps li {float:left; width:222px; height:57px; margin:10px 0 0 0;}
 div#content div.data_sets div.content div.right ul.maps li div.bkg_map {float:left; margin:0 10px 0 0; background:url('../images/home/bkg_acount_map.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
 div#content div.data_sets div.content div.right ul.maps li div.bkg_map p {float:left; width:47px; height:auto; font:normal 15px "Myriad Pro"; color:#666666; text-shadow:0 1px white; margin:16px 0 0 0; line-height:16px;}
-div#content div.data_sets div.content div.right ul.maps li p.map_name {float:left; width:150px; height:18px; font:normal 15px "Myriad Pro"; color:#666666;}
+div#content div.data_sets div.content div.right ul.maps li p.map_name {float:left; width:150px; height:18px; font:600 15px "Myriad Pro"; color:#666666;} /*600 is font-weight:semibold*/
 div#content div.data_sets div.content div.right ul.maps li p.by_ago {float:left; width:150px; height:19px; font:normal 13px Arial; color:#999999;}
 div#content div.data_sets div.content div.right ul.maps li a {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
 div#content div.data_sets div.content div.right ul.maps li a:hover {color:#333333;}
 
 
 /* FOOTER_INFO */
-div.data_sets_footer  {float:right; width:980px; margin:0 23px 0 0 ; height:309px; background:url('../images/home/bkg_foot_info.png') no-repeat 0 0; position:relative; z-index:10px;}
-div.data_sets_footer div.content {float:left; width:798px; height:100%; margin:28px 0 0 69px;}
+div.data_sets_footer  {float:left; width:980px; margin:0; height:309px; background:url('../images/home/bkg_foot_info.png') no-repeat 0 0; position:relative; z-index:10px;}
+div.data_sets_footer div.content {float:left; width:798px; height:100%; margin:28px 0 0 84px;}
 
 /*LEFT*/
 div.data_sets_footer div.content div.left {width:500px;}
-div.data_sets_footer div.content h4 {float:left; font:normal 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
+div.data_sets_footer div.content h4 {float:left; font:600 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
 div.data_sets_footer div.content p.subtitle {float:left; font:normal 15px "Myriad Pro"; color:#666666; margin:0; width:100%; line-height:13px;}
 div.data_sets_footer div.content p.subtitle a {color:#FF6600; }
 div.data_sets_footer div.content p.subtitle a:hover {text-decoration:underline;}
@@ -136,11 +139,11 @@ div.data_sets_footer div.upload_content div.upload_file.import.active form.impor
 
 /*RIGHT*/
 div.data_sets_footer div.content div.right p.subtitle a {margin:0 0 0 5px;}
-div.data_sets_footer div.content div.right p.title {float:left; font:normal 13px "Myriad Pro"; color:#396C8D; text-transform:uppercase; margin:25px 0 0 0; width:222px;}
+div.data_sets_footer div.content div.right p.title {float:left; font:600 13px "Myriad Pro"; color:#396C8D; text-transform:uppercase; margin:25px 0 0 0; width:222px;}
 div.data_sets_footer div.content div.right ul.library {float:left; width:222px; height:auto; margin:5px 0 0 0;}  
 div.data_sets_footer div.content div.right ul.library li {float:left; width:222px; height:57px; margin:10px 0 0 0;}
 div.data_sets_footer div.content div.right ul.library li div.bkg_library {float:left; margin:0 10px 0 0; background:url('../images/home/bkg_library_info.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
-div.data_sets_footer div.content div.right ul.library li p.library_name {float:left; width:160px; height:18px; font:normal 15px "Myriad Pro"; color:#333333;}
+div.data_sets_footer div.content div.right ul.library li p.library_name {float:left; width:160px; height:18px; font:600 15px "Myriad Pro"; color:#333333;}
 div.data_sets_footer div.content div.right ul.library li p.by_ago {float:left; width:160px; height:19px; font:normal 13px Arial; color:#666666;}
 div.data_sets_footer div.content div.right ul.library li a {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
 div.data_sets_footer div.content div.right ul.library li a:hover {color:#333333;}
@@ -149,10 +152,10 @@ div.data_sets_footer div.content div.right a.view_all:hover {text-decoration:und
 
 
 /* footer */
-div#outer_footer{float:left; width:100%; background-color:#2A4E66; margin:0;}
+div#outer_footer{float:left; width:100%; margin:0; background:url('../images/common/bkg_footer_repeated.png');}
 div#outer_footer_content {margin:0 auto; width:954px;}
 
-div#footer{margin:0; width:954px; height:193px; background-color:#2A4E66;}
+div#footer{margin:0; width:954px; height:193px;}
 div#footer ul.menu {float:left; width:370px; margin:30px 0 0 0;}
 div#footer ul.menu li {float:left; margin:0 10px 0 0; font:normal 13px Arial; color:#8095A4;}
 div#footer ul.menu li a {font:normal 13px Arial; color:#8095A4;}
