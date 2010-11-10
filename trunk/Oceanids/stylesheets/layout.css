@@ -20,10 +20,10 @@ div#layout {width:980px; margin:0; background:url('../images/common/bkg_body.png
 /* header */
 div#header {float:left; width:949px; height:90px; margin:40px 0 0 57px;}
 div#header img.grid_logo {width:84px; height:30px;}
-div#header div.menu {width:632px; height:90px;}
+div#header div.menu {width:650px; height:90px;}
 div#header div.menu ul {float:left; width:100%; height:30px;}
 div#header div.menu ul li {float:left; margin:6px 25px 0 0;}
-div#header div.menu ul li a {font:normal 13px "Myriad Pro"; color:white; text-transform:uppercase;}
+div#header div.menu ul li a {font:600 13px "Myriad Pro"; color:white; text-transform:uppercase;}
 div#header div.menu ul li a:hover {border-bottom:1px dotted white;}
 div#header div.menu ul li.selected a {color:#A7C9E0;}
 div#header div.menu ul li.selected a:hover {border-bottom:1px dotted #A7C9E0;}
@@ -37,7 +37,7 @@ div#title h1 {float:left; font:600 54px "Myriad Pro"; color:white; width:860px; 
 div#title h3 {float:left; font:normal 21px "Myriad Pro"; color:white; text-shadow: 	0px 0px 30px rgba(00,00,00,0.6);}
 
 
-/* home */
+/* ----- HOME */
 
 /*LEFT*/
 div#content {float:left; width:954px; height:auto; margin:40px 0 0 0;}
@@ -72,8 +72,6 @@ div#content div.data_sets div.content ul.datasets li div.suboptions ul.content a
 div#content div.data_sets div.content ul.datasets li div.suboptions ul.content a:hover {text-decoration:underline;}
 
 div#content div.data_sets div.content ul.datasets li div.suboptions span.bottom {float:left; height:10px; width:212px; background:url('../images/home/subdatasets/bottom_category.png') no-repeat 0 0;}
-
-
 
 /*RIGHT*/
 div#content div.data_sets div.content div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}
@@ -136,7 +134,6 @@ div.data_sets_footer div.upload_content div.upload_file.import.active form.impor
 div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.processing {position:absolute; top:0px; right:0; z-index:5; /*background:url('../images/home/ajax-loader.gif') no-repeat 0 0;*/ background:url('../images/home/bkg_import_url_processing.png') no-repeat 0 0; width:440px; height:33px; display:none;}
 
 
-
 /*RIGHT*/
 div.data_sets_footer div.content div.right p.subtitle a {margin:0 0 0 5px;}
 div.data_sets_footer div.content div.right p.title {float:left; font:600 13px "Myriad Pro"; color:#396C8D; text-transform:uppercase; margin:25px 0 0 0; width:222px;}
@@ -149,6 +146,39 @@ div.data_sets_footer div.content div.right ul.library li a {float:left; width:au
 div.data_sets_footer div.content div.right ul.library li a:hover {color:#333333;}
 div.data_sets_footer div.content div.right a.view_all {float:right; font:normal 13px Arial; color:#FF6600; width:auto; margin:15px 10px 0 0;}
 div.data_sets_footer div.content div.right a.view_all:hover {text-decoration:underline;}
+
+
+
+/* ----- LIBRARY */
+
+div#library_data {float:left; width:954px; height:auto; margin:0; position:relative;}
+
+
+div#library_data span.top_content {float:left; background:url('../images/home/top_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
+div#library_data div.content {float:left; background:url('../images/home/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0;}
+
+div#library_data div.content div#upload_import_left {float:left; margin:10px 0 0 39px; width:520px; min-height:140px;}
+div#library_data div.content div.header {height:146px; width:560px; background:url('../images/library/bkg_header_library.png') no-repeat 0 0; position:absolute; top:6px; left:57px;}
+div#library_data div.content div.header h4 {font:600 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; position:absolute; top:20px; left:20px;}
+
+div#library_data div.content div.header ul.tabs {position:absolute; width:560px; height:46px; left:57; bottom:46px;}
+
+div#library_data div.content div.header ul.tabs li {float:left; width:200px; height:38px;}
+div#library_data div.content div.header ul.tabs li a {float:left; font:600 17px "Myriad Pro"; color:white;}
+div#library_data div.content div.header ul.tabs li a span {float:left; margin:0 0 0 6px;}
+div#library_data div.content div.header ul.tabs li a.library {float:left; background:url('../images/library/left_library_tab.png') no-repeat left 0; height:58px; width:auto;}
+div#library_data div.content div.header ul.tabs li a.library p {color:normal 17px "Colibri"; color:#999999; width:auto; height:auto;}
+div#library_data div.content div.header ul.tabs li a.library span {float:left; background:url('../images/library/right_library_tab.png') no-repeat right 0; height:58px; width:auto; }
+div#library_data div.content div.header ul.tabs li.active a {background-position:0 -58px; color:#FF6600;}
+div#library_data div.content div.header ul.tabs li a.pending_layer {float:left; background:url('../images/library/left_pending.png') no-repeat left 0; height:58px; width:auto;}
+div#library_data div.content div.header ul.tabs li a.pending_layer span {float:left; background:url('../images/library/right_pending.png') no-repeat right 0; height:58px; width:auto;}
+
+div#library_data div.content div.header ul.criteria_data {position:absolute; width:560px; height:46px; background-color:#333333; left:57; bottom:0;}
+
+
+
+
+div#library_data div.content div#upload_import_right {float:right; width:240px; height:auto; margin:10px 28px 0 0; height:auto;}
 
 
 /* footer */
@@ -171,5 +201,5 @@ div#footer div.right_information ul.links li a {font:normal 13px Arial; color:#8
 div#footer div.right_information ul.links li a:hover {border-bottom:1px dotted #8095A4;}
 div#footer div.right_information ul.links li.last {margin:0;}
 
-/* COMMON */
+
 
