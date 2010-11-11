@@ -54,6 +54,7 @@ div#content div.data_sets div.content form {float:left; width:502px; height:36px
 div#content div.data_sets div.content form input[type="text"] {font:italic 13px Arial; color:#cccccc; width:375px; height:20px; border:none; background:transparent; position:absolute; top:5px; left:5px; line-height:17px;}
 div#content div.data_sets div.content form input[type="submit"] {background:url(../images/home/search_bttn.png) no-repeat 0 0; height:36px; width:116px; border:none; position:absolute; top:0px; right:0px; cursor:pointer;}
 div#content div.data_sets div.content form input[type="submit"]:hover {background-position:0 -36px; cursor:pointer;}
+
 div#content div.data_sets div.content ul.datasets {float:left; width:502px; height:167px; margin:15px 0 0 2px; padding:0 0 10px 0;}
 div#content div.data_sets div.content ul.datasets li {float:left; width:243px; height:18px; margin:0 15px 0 0; position:relative;}
 div#content div.data_sets div.content ul.datasets li.last {margin:0;}
@@ -169,24 +170,77 @@ div#library_data {float:left; width:954px; height:auto; margin:0; position:relat
 div#library_data span.top_content {float:left; background:url('../images/home/top_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
 div#library_data div.content {float:left; background:url('../images/home/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0;}
 
-div#library_data div.content div#upload_import_left {float:left; margin:10px 0 0 39px; width:520px; min-height:140px;}
+div#library_data div.content div#upload_import_left {float:left; margin:10px 0 0 0; width:520px; min-height:140px;}
 div#library_data div.content div.header {height:146px; width:560px; background:url('../images/library/bkg_header_library.png') no-repeat 0 0; position:absolute; top:6px; left:57px;}
-div#library_data div.content div.header h4 {font:600 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; position:absolute; top:20px; left:20px;}
+div#library_data div.content div.header h4 {font:600 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; position:absolute; top:25px; left:25px;}
 
-div#library_data div.content div.header ul.tabs {position:absolute; width:560px; height:46px; left:57; bottom:46px;}
+div#library_data div.content div.header ul.tabs {position:absolute; width:511px; height:46px; left:26px; bottom:35px;}
 
-div#library_data div.content div.header ul.tabs li {float:left; width:200px; height:38px;}
-div#library_data div.content div.header ul.tabs li a {float:left; font:600 17px "Myriad Pro"; color:white;}
-div#library_data div.content div.header ul.tabs li a span {float:left; margin:0 0 0 6px;}
-div#library_data div.content div.header ul.tabs li a.library {float:left; background:url('../images/library/left_library_tab.png') no-repeat left 0; height:58px; width:auto;}
-div#library_data div.content div.header ul.tabs li a.library p {color:normal 17px "Colibri"; color:#999999; width:auto; height:auto;}
-div#library_data div.content div.header ul.tabs li a.library span {float:left; background:url('../images/library/right_library_tab.png') no-repeat right 0; height:58px; width:auto; }
-div#library_data div.content div.header ul.tabs li.active a {background-position:0 -58px; color:#FF6600;}
-div#library_data div.content div.header ul.tabs li a.pending_layer {float:left; background:url('../images/library/left_pending.png') no-repeat left 0; height:58px; width:auto;}
-div#library_data div.content div.header ul.tabs li a.pending_layer span {float:left; background:url('../images/library/right_pending.png') no-repeat right 0; height:58px; width:auto;}
+div#library_data div.content div.header ul.tabs li {float:left; width:auto; height:38px; margin:0 2px 0 0;}
+div#library_data div.content div.header ul.tabs li a { float:left; background:url("../images/library/left_library_tab.png") no-repeat left top; margin:0; padding:0 2px 0 3px; text-decoration:none; height:58px; overflow:hidden; color: white; width:auto;}
+div#library_data div.content div.header ul.tabs li a span {float:left; display:block; background:url("../images/library/right_library_tab.png") no-repeat right top; padding:9px 11px 0 4px; margin:0 0 0 4px; line-height:23px; font:600 17px "Myriad Pro"; color:#FF6600; height:44px;}
+div#library_data div.content div.header ul.tabs li a p {float:right; color:#999999; width:auto; margin:0 0 0 5px; font:normal 17px "Calibri"; line-height:15px;}
+div#library_data div.content div.header ul.tabs li.active a {background-position:left -58px;}
+div#library_data div.content div.header ul.tabs li.active a span {background-position:right -58px; color:white;}
+div#library_data div.content div.header ul.tabs li.active a:hover {cursor:auto;}
+div#library_data div.content div.header ul.tabs li a:hover {cursor:pointer;}
+
+div#library_data div.content div.header ul.tabs li.pending {position:absolute; top:0; right:0;}
+div#library_data div.content div.header ul.tabs li.pending a { float:left; background:url("../images/library/left_pending.png") no-repeat left top;}
+div#library_data div.content div.header ul.tabs li.pending a span {float:left; background:url("../images/library/right_pending.png") no-repeat right top; color:white; height:44px;}
+div#library_data div.content div.header ul.tabs li.pending a p {color:white;}
+
+div#library_data div.content div.header ul.tabs li.pending.active a { background-position:left -58px; color:white; }
+div#library_data div.content div.header ul.tabs li.pending.active a span {background-position:right -58px; color:white;}
+div#library_data div.content div.header ul.tabs li.pending.active a p {color:#999999;}
 
 div#library_data div.content div.header ul.criteria_data {position:absolute; width:560px; height:46px; background-color:#333333; left:57; bottom:0;}
+
+/*EACH TAB*/
+div#library_data div.content div.content_tab {float:left; width:571px; height:auto; margin:121px 0 0 0;}
+
+div#library_data div.content div.content_tab.your_layers {background:url('../images/library/bkg_your_library.png') no-repeat right 0;}
+div#library_data div.content div.content_tab.your_maps {background:url('../images/library/bkg_your_map.png') no-repeat right 0;}
+div#library_data div.content div.content_tab.pending_layers {background:url('../images/library/bkg_pending_layers.png') no-repeat right 0;}
+div#library_data div.content div.content_tab ul.content {float:left; width:505px; height:auto; margin: 0 0 0 39px;}
+div#library_data div.content div.content_tab ul.content li.info {float:left; width:100%; height:auto; padding:26px 0; border-bottom:1px solid #E0E0E0;}
+div#library_data div.content div.content_tab ul.content li.info.last {border-bottom:none;}
+div#library_data div.content div.content_tab ul.content li.info p.title {float:left; width:100%; font:600 17px "Myriad Pro"; color:#FF6600;}
+div#library_data div.content div.content_tab ul.content li.info p.ago {float:left; width:100%; font:normal 11px Arial; color:#999999;}
+div#library_data div.content div.content_tab ul.content li.info p.description {float:left; width:100%; font:normal 13px Arial; color:#999999; margin:9px 0 0 0;}
+div#library_data div.content div.content_tab ul.content li.info ul.tags {float:left; width:250px; height:21px; margin:21px 0 0 0;}
+div#library_data div.content div.content_tab ul.content li.info ul.tags li {float:left; margin:0 5px 0 0; width:auto; height:21px; padding:0;}
+div#library_data div.content div.content_tab ul.content li.info ul.tags li a { float:left; background:url('../images/library/left_tag.png') no-repeat left top; margin:0; padding:0; text-decoration:none; height:21px; overflow:hidden; color: white; width:auto;}
+div#library_data div.content div.content_tab ul.content li.info ul.tags li a span {float:left; display:block; background:url('../images/library/right_tag.png') no-repeat right top; padding:4px 13px 0 4px; margin:0 0 0 4px; line-height:23px; font:normal 11px Arial; color:#666666; height:17px;}
+
+div#library_data div.content div.content_tab ul.content li.info div.bottom {float:left; margin:0; width:100%;}
+div#library_data div.content div.content_tab ul.content li.info div.bottom div.left {float:left; width:250px; padding:0; margin:0;}
+div#library_data div.content div.content_tab ul.content li.info div.bottom div.right {float:right; margin:15px 0 0 0;}
+div#library_data div.content div.content_tab ul.content li.info ul.buttons {float:left; width:94px; height:27px; margin:0 10px 0 0; background:url('../images/library/threebuttons.png') no-repeat 0 0; padding:0;}
+div#library_data div.content div.content_tab ul.content li.info ul.buttons li {float:left; margin:0 5px 0 0; width:25px; height:25px; padding:0; position:relative;}
+div#library_data div.content div.content_tab ul.content li.info ul.buttons li a {position:absolute; width:25px; height:25px; top:2px; left:4px;}
+
+div#library_data div.content div.content_tab ul.content li.info ul.buttons li a.trash {background:url('../images/library/trash_bttn.png') no-repeat 0 0; top:2px; left:4px;}
+div#library_data div.content div.content_tab ul.content li.info ul.buttons li a.pencil {background:url('../images/library/pencil_bttn.png') no-repeat 0 0; }
+div#library_data div.content div.content_tab ul.content li.info ul.buttons li a.download {background:url('../images/library/download_bttn.png') no-repeat 0 0;}
+div#library_data div.content div.content_tab ul.content li.info a.make_map {float:left; background:url('../images/library/make_map_bttn.png') no-repeat 0 0; margin:0; width:75px; height:27px;}
 div#library_data div.content div#upload_import_right {float:right; width:240px; height:auto; margin:10px 28px 0 0; height:auto;}
+
+div#library_data div.content div.content_tab div.paginate_bottom {float:left; width:560px; height:59px; margin:0 0 0 11px; border-top:1px solid #E0E0E0;}
+div#library_data div.content div.content_tab div.paginate_bottom a.rss_image {float:left; background:url('../images/common/rss_bttn.png') no-repeat 0 0; width:70px; height:14px; margin:23px 25px 25px 28px; padding:1px 0 0 20px; font:bold 11px Arial; color:#999999; text-decoration:none; margin:25px;}
+div#library_data div.content div.content_tab div.paginate_bottom a.rss_image:hover {color:#666666;}
+div#library_data div.content div.content_tab div.paginate_bottom ul.nav_buttons {float:right; width:auto; height:59px; margin:23px 28px 0 0;}
+div#library_data div.content div.content_tab div.paginate_bottom ul.nav_buttons li {float:left; width:10px; height:10px; background:url('../images/library/bttns_gallery.png') no-repeat 0 0; margin:0 0 0 8px;}
+div#library_data div.content div.content_tab div.paginate_bottom ul.nav_buttons li:hover {background-position:0 -10px; cursor:pointer;}
+div#library_data div.content div.content_tab div.paginate_bottom ul.nav_buttons li.active {background-position:0 -10px;}
+div#library_data div.content div.content_tab div.paginate_bottom ul.nav_buttons li.text {background:none; height:8px; width:auto; margin:0 0 0 15px;}
+div#library_data div.content div.content_tab div.paginate_bottom ul.nav_buttons li.text a {float:left; font:bold 12px Arial; color:#FF6600; width:auto; background:url('../images/common/right_arrow_next.png') no-repeat right 1px; width:auto; height:8px; padding:0 8px 0 0; line-height:10px;}
+div#library_data div.content div.content_tab div.paginate_bottom ul.nav_buttons li.text a:hover {background-position:right -8px; color:#A83407;}
+ 
+
+
+
+
 
 
 /* footer */
@@ -202,7 +256,7 @@ div#footer div.left {margin:0 0 0 86px;}
 div#footer ul.menu {float:left; width:370px; margin:30px 0 0 0;}
 div#footer ul.menu li {float:left; margin:0 10px 0 0; font:normal 13px Arial; color:#8095A4;}
 div#footer ul.menu li a {font:normal 13px Arial; color:#8095A4;}
-div#footer ul.menu li a:hover {border:1px dotted #8095A4;}
+div#footer ul.menu li a:hover {border-bottom:1px dotted #8095A4;}
 div#footer ul.menu li.last {margin:0;}
 div#footer div.right_information {float:right; width:317px; height:183px; margin:30px 0 0 0;}
 div#footer div.right_information p {float:left; font:normal 13px Arial; color:#8095A4; width:100%; margin:0;}
