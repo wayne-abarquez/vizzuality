@@ -194,7 +194,9 @@ div#library_data div.content div.header ul.tabs li.pending.active a { background
 div#library_data div.content div.header ul.tabs li.pending.active a span {background-position:right -58px; color:white;}
 div#library_data div.content div.header ul.tabs li.pending.active a p {color:#999999;}
 
-div#library_data div.content div.header ul.criteria_data {position:absolute; width:560px; height:46px; background-color:#333333; left:57; bottom:0;}
+div#library_data div.content div.header div.criteria_data {position:absolute; width:560px; height:46px; background-color:#333333; left:57; bottom:0;}
+div#library_data div.content div.header div.criteria_data ul.filter_date {float:left; width:317px; height:23px; margin:13px 0 0 25px; background:url('../images/library/filter_ul_bkg.png') no-repeat 0 0;}
+
 
 /*EACH TAB*/
 div#library_data div.content div.content_tab {float:left; width:571px; height:auto; margin:121px 0 0 0;}
