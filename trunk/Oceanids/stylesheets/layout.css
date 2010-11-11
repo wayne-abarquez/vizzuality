@@ -89,8 +89,8 @@ div#content div.data_sets div.content div.right ul.maps li a:hover {color:#33333
 
 
 /* FOOTER_INFO */
-div.data_sets_footer  {float:left; width:980px; margin:0; height:309px; background:url('../images/home/bkg_foot_info.png') no-repeat 0 0; position:relative; z-index:10px;}
-div.data_sets_footer div.content {float:left; width:798px; height:100%; margin:28px 0 0 84px;}
+div.data_sets_footer  {float:left; width:980px; margin:0; height:309px; background:url('../images/home/bkg_foot_info.png') no-repeat 0 0; z-index:10; position:relative;}
+div.data_sets_footer div.content {float:left; width:798px; height:100%; margin:28px 0 0 84px; }
 
 /*LEFT*/
 div.data_sets_footer div.content div.left {width:500px;}
@@ -124,9 +124,21 @@ div.data_sets_footer div.upload_content div.upload_file.import.active {margin:9p
 div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url {float:left; margin:13px 0 0 15px; width:448px; height:72px; position:relative;}
 div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.input_content {float:left; background:url('../images/home/bkg_import_url.png') no-repeat 0 0; width:263px; height:33px; position:relative;}
 div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.input_content input[type="text"] {border:none; width:248px; height:20px; font:normal 13px Arial; color:#999999; position:absolute; top:6px; left:7px;}
-div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url a.data_type {float:right; background:url('../images/home/data_type_combo.png') no-repeat 0 0; position:relative; width:123px; height:15px; font:normal 13px Arial; color:#999999; padding:10px 35px 10px 7px; overflow:hidden;}
-div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url a.data_type span.arrow {position:absolute; top:5px; right:5px; background:url('../images/common/down_gray_arrow.png') no-repeat 0 0; width:6px; height:4px;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.combo_data_type {position:relative; width:165px; height:30px; float:right; }
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url a.data_type {background:url('../images/home/data_type_combo.png') no-repeat 0 0; width:123px; height:15px; font:normal 13px Arial; color:#999999; padding:10px 35px 10px 7px; overflow:hidden; position:absolute; bottom:-4px; left:0;}
+
+
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.combo_data_type a.data_type.displayed {position:absolute; font:normal 13px Arial; color:#999999; padding:10px 35px 10px 9px; width:125px; height:auto; background:url('../images/home/data_type_combo_displayed.png') no-repeat 0 0; bottom:-4px; left:-1px;}
 div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url a.data_type:hover {cursor:pointer;}
+
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.combo_data_type ul {position:absolute; top:32px; left:-1px; width:168px; height:auto; z-index:20; display:none;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.combo_data_type ul li {float:left;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.combo_data_type ul li a {font:normal 13px Arial; color:#999999;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.combo_data_type ul li a:hover {font:normal 13px Arial; color:#666666;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.combo_data_type ul li.option {background:url('../images/home/data_type_li_option.png') no-repeat 0 0; width:148px; height:17px; padding:7px 10px 0 10px;}
+div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url span.combo_data_type ul li.last {background:url('../images/home/data_type_li_option_last.png') no-repeat 0 0 ; width:168px; height:7px;}
+
+
 div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url input[type="submit"]{background:url('../images/home/bttn_import_url.png') no-repeat 0 0; font:normal 13px Arial; text-shadow:0px 1px #7D9631; color:#FFFFFF; text-align:center; width:93px; height:26px; text-align:center; border:none; line-height:13px; position:absolute; bottom:0; right:0;}
 div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url input[type="submit"]:hover {background-position:0 -26px; cursor:pointer;}
 div.data_sets_footer div.upload_content div.upload_file.import.active form.import_url input[type="submit"].disabled {background:url('../images/home/bttn_import_url_disabled.png') no-repeat 0 0}
@@ -174,24 +186,25 @@ div#library_data div.content div.header ul.tabs li a.pending_layer {float:left; 
 div#library_data div.content div.header ul.tabs li a.pending_layer span {float:left; background:url('../images/library/right_pending.png') no-repeat right 0; height:58px; width:auto;}
 
 div#library_data div.content div.header ul.criteria_data {position:absolute; width:560px; height:46px; background-color:#333333; left:57; bottom:0;}
-
-
-
-
 div#library_data div.content div#upload_import_right {float:right; width:240px; height:auto; margin:10px 28px 0 0; height:auto;}
 
 
 /* footer */
-div#outer_footer{float:left; width:100%; margin:0; background:url('../images/common/bkg_footer_repeated.png');}
-div#outer_footer_content {margin:0 auto; width:954px;}
+div#outer_footer{float:left; width:100%; margin:0 auto; background:url('../images/common/bkg_footer_repeated.png'); position:relative;}
+div#outer_footer div#upper_band {position:absolute; width:100%; height:80px; background:url('../images/common/bkg_footer_repeated.png'); top:-80px; left:0; z-index:1; margin:0;}
+div#outer_footer div#upper_content {position:absolute; width:100%; height:80px; top:-312px; left:0; z-index:1; margin:0;}
+div#outer_footer div#upper_band_content {float:left; width:100%; margin:0 auto;}
+div#outer_footer div#upper_band_content span.plants {margin:0 auto; width:1024px; height:255px; background-color:red; display:block; background:url('../images/common/footer_plants.png') no-repeat 0 0;}
 
+div#outer_footer_content {margin:0 auto; width:954px;}
 div#footer{margin:0; width:954px; height:193px;}
+div#footer div.left {margin:0 0 0 86px;}
 div#footer ul.menu {float:left; width:370px; margin:30px 0 0 0;}
 div#footer ul.menu li {float:left; margin:0 10px 0 0; font:normal 13px Arial; color:#8095A4;}
 div#footer ul.menu li a {font:normal 13px Arial; color:#8095A4;}
 div#footer ul.menu li a:hover {border:1px dotted #8095A4;}
 div#footer ul.menu li.last {margin:0;}
-div#footer div.right_information {float:right; width:253px; height:183px; margin:30px 0 0 0;}
+div#footer div.right_information {float:right; width:317px; height:183px; margin:30px 0 0 0;}
 div#footer div.right_information p {float:left; font:normal 13px Arial; color:#8095A4; width:100%; margin:0;}
 div#footer div.right_information img.logo {float:left; width:84px; height:30px; margin:10px 0 0 0;}
 div#footer div.right_information p.rights {margin:30px 0 0 0;}
