@@ -15,7 +15,7 @@ ul {list-style:none;}
 span.semibold {font-weight:600;}
 
 div#outer_layout{margin:0 auto; width:980px;}
-div#layout {width:980px; margin:0; background:url('../images/common/bkg_body.png') no-repeat 0 0; height:490px;}
+div#layout {width:980px; margin:0; background:url('../images/common/bkg_body.png') no-repeat 0 0; height:490px; position:relative; z-index:10;}
 
 /* header */
 div#header {float:left; width:949px; height:90px; margin:40px 0 0 57px;}
@@ -40,7 +40,7 @@ div#title h3 {float:left; font:normal 21px "Myriad Pro"; color:white; text-shado
 /* ----- HOME */
 
 /*LEFT*/
-div#content {float:left; width:954px; height:auto; margin:40px 0 0 0;}
+div#content {float:left; width:954px; height:auto; margin:40px 0 0 0; position:relative; z-index:10;}
 div#content div.data_sets  {float:left; width:861px;  margin:0; height:auto;}
 div#content div.data_sets span.top_content {float:left; background:url('../images/home/top_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
 div#content div.data_sets div.content {float:left; background:url('../images/home/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0;}
