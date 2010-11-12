@@ -83,7 +83,7 @@
 				var html = options.controlsBefore;				
 				if(options.numeric){
 					html += '<ol id="'+ options.numericId +'"></ol>';
-				} else {
+					
 					if(options.firstShow) html += '<span id="'+ options.firstId +'"><a href=\"javascript:void(0);\">'+ options.firstText +'</a></span>';
 					html += ' <span id="'+ options.prevId +'"><a href=\"javascript:void(0);\">'+ options.prevText +'</a></span>';
 					html += ' <span id="'+ options.nextId +'"><a href=\"javascript:void(0);\">'+ options.nextText +'</a></span>';
@@ -98,12 +98,16 @@
 				for(var i=0;i<s;i++){						
 					$(document.createElement("li"))
 						.attr('id',options.numericId + (i+1))
-						.html('<a rel='+ i +' href=\"javascript:void(0);\">'+ (i+1) +'</a>')
+						.html('<a rel='+ i +' href=\"javascript:void(0);\"></a>')
 						.appendTo($("#"+ options.numericId))
 						.click(function(){							
 							animate($("a",$(this)).attr('rel'),true);
 						}); 												
-				};							
+				};
+				$("a","#"+options.nextId).click(function(){		
+					animate("next",true);
+				});
+				
 			} else {
 				$("a","#"+options.nextId).click(function(){		
 					animate("next",true);
