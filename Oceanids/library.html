@@ -8,6 +8,8 @@
 		
 		<!-- STYLESHEETS --> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+		<script src="javascripts/easySlider1.7.js" type="text/javascript" charset="utf-8"></script>
+
 		<script src="javascripts/application.js" type="text/javascript" charset="utf-8"></script>
 		
 		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
@@ -48,12 +50,17 @@
 								</ul>	
 								<div class="criteria_data">
 									<ul class="filter_date">
-										
+										<li class="first"><a href="#"><span>NEWEST FIRST</span></a></li>
+										<li><a href="#"><span>OLDEST FIRST</span></a></li>										
+										<li><a href="#" class="active"><span>NAME A-Z</span></a></li>
+										<li class="last"><a href="#"><span>NAME Z-A</span></a></li>
 									</ul>
+									<a class="select_tags_combo" href="#">SELECT A TAG</a>
 								</div>
 							</div>
 							<div id="your_layers_content" class="content_tab your_layers">
-								<ul class="content">
+								<div id="list_column">
+								<ul class="content">									
 									<li class="info">
 										<p class="title">World Population 2</p>
 										<p class="ago">updated by you 1 day ago</p>
@@ -137,6 +144,7 @@
 									<!-- <li class="info"> -->
 								</ul>
 								<!-- <ul class="content">-->
+								</div>
 								<div class="paginate_bottom">
 									<a href="#" class="rss_image">RSS</a>
 									<ul class="nav_buttons">

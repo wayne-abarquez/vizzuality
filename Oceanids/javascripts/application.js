@@ -57,8 +57,15 @@ $(document).ready(function() {
 				$(this).parent().children('ul').fadeIn('fast');
 			}
 			
-		});
+		});		
+	}
+	
+	if 	(($('div#your_layers_content')!=null)&&($('div#your_layers_content')[0])) {
 		
+		// $("div#list_column").easySlider({
+		// 			auto: true, 
+		// 			continuous: true
+		// 		});
 	}
 });
 
