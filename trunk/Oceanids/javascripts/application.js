@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+	// FONTS	
+	
+	// Cufon.replace('.myriad', {fontFamily: 'Myriad Pro',fontWeight:'600'}); -- SHADOW
+	// Cufon.replace('.calibri', {fontFamily: 'Calibri'});
+	
 	// -- HOME
 	
 	// show upload options - URL
@@ -59,13 +64,69 @@ $(document).ready(function() {
 		});		
 	}
 	
-	if 	(($('div#your_layers_content')!=null)&&($('div#your_layers_content')[0])) {
-		
-		$("div#list_column").easySlider({
-					auto: false, 
-					continuous: false,
-					numeric:true
-				});
+	// if 	(($('div#your_layers_content')!=null)&&($('div#your_layers_content')[0])) {
+	// 	
+	// 	$("div#list_column_layers").easySlider({
+	// 				auto: false, 
+	// 				continuous: false,
+	// 				numeric:true
+	// 			});
+	// 			
+	// }
+	
+	// if 	(($('div#your_maps_content')!=null)&&($('div#your_maps_content')[0])) {
+	// 			$("div#list_column_maps").easySlider({
+	// 						auto: false, 
+	// 						continuous: false,
+	// 						numeric:true
+	// 					});				
+				
+	// }
+	
+	// TABS CONTROL
+	if (($('#your_layers_tab') != null)&&($('#your_layers_tab')[0])){
+		$('#your_layers_tab').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			
+			if (!$(this).hasClass('active')){
+				$('ul.tabs').children('li.active').removeClass('active');
+				$(this).addClass('active');
+			}
+			$('div#your_layers_content').css('display','inline');
+			$('div#your_maps_content').css('display','none');
+			$('div#pending_layers_content').css('display','none');
+		});
+	}
+	
+	if (($('#your_maps_tab') != null)&&($('#your_maps_tab')[0])){
+		$('#your_maps_tab').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			
+			if (!$(this).hasClass('active')){
+				$('ul.tabs').children('li.active').removeClass('active');
+				$(this).addClass('active');
+			}
+			$('div#your_layers_content').css('display','none');
+			$('div#your_maps_content').css('display','inline');
+			$('div#pending_layers_content').css('display','none');
+		});
+	}
+
+	if (($('#pending_layers_tab') != null)&&($('#pending_layers_tab')[0])){
+		$('#pending_layers_tab').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			
+			if (!$(this).hasClass('active')){
+				$('ul.tabs').children('li.active').removeClass('active');
+				$(this).addClass('active');
+			}
+			$('div#your_layers_content').css('display','none');
+			$('div#your_maps_content').css('display','none');
+			$('div#pending_layers_content').css('display','inline');			
+		});
 	}
 });
 

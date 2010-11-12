@@ -8,8 +8,14 @@
 		
 		<!-- STYLESHEETS --> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+		
+		<!-- FONTS -->
+		<script src="javascripts/fonts/cufon-yui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascripts/fonts/Myriad_Pro_400-Myriad_Pro_700-Myriad_Pro_italic_400-Myriad_Pro_italic_700.font.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascripts/fonts/Calibri_400.font.js" type="text/javascript" charset="utf-8"></script>
+		
+				
 		<script src="javascripts/easySlider1.7.js" type="text/javascript" charset="utf-8"></script>
-
 		<script src="javascripts/application.js" type="text/javascript" charset="utf-8"></script>
 		
 		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
@@ -26,11 +32,11 @@
 					<div class="right">
 						<div class="menu">
 							<ul>
-								<li class="selected"><a href="#">DASHBOARD</a></li>
-								<li><a href="#">BROWSE DATASETS</a></li>
-								<li><a href="#">MAKE A MAP</a></li>
-								<li><a href="#">UPLOAD DATA</a></li>
-								<li class="user"><a href="#"><span>YANNICK</span></a></li>
+								<li class="selected"><a class="myriad" href="#">DASHBOARD</a></li>
+								<li><a class="myriad" href="#">BROWSE DATASETS</a></li>
+								<li><a class="myriad" href="#">MAKE A MAP</a></li>
+								<li><a class="myriad" href="#">UPLOAD DATA</a></li>
+								<li class="user"><a class="myriad" href="#"><span>YANNICK</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -40,30 +46,31 @@
 					
 					<div class="content">
 						<div id="upload_import_left">
-							
 							<div class="header">
-								<h4>Your library</h4>
+								<h4 class="myriad">Your library</h4>
 								<ul class="tabs">
-									<li class="active"><a><span>Your layers<p>(7)</p></span></a></li>
-									<li><a><span>Your maps<p>(6)</p></span></a></li>
-									<li class="pending"><a><span>Pending layers<p>(7)</p></span></a></li>
+									<li id="your_layers_tab" class="active"><a><span class="myriad">Your layers<p class="calibri">(7)</p></span></a></li>
+									<li id="your_maps_tab"><a><span class="myriad">Your maps<p class="calibri">(6)</p></span></a></li>
+									<li id="pending_layers_tab" class="pending"><a><span class="myriad">Pending layers<p class="calibri">(7)</p></span></a></li>
 								</ul>	
 								<div class="criteria_data">
 									<ul class="filter_date">
-										<li class="first"><a href="#"><span>NEWEST FIRST</span></a></li>
-										<li><a href="#"><span>OLDEST FIRST</span></a></li>										
-										<li><a href="#" class="active"><span>NAME A-Z</span></a></li>
-										<li class="last"><a href="#"><span>NAME Z-A</span></a></li>
+										<li class="first"><a href="#"><span class="calibri">NEWEST FIRST</span></a></li>
+										<li><a class="calibri" href="#"><span class="calibri">OLDEST FIRST</span></a></li>										
+										<li><a class="calibri" href="#"><span class="calibri">NAME A-Z</span></a></li>
+										<li class="last"><a href="#"><span class="calibri">NAME Z-A</span></a></li>
 									</ul>
-									<a class="select_tags_combo" href="#">SELECT A TAG</a>
+									<a class="select_tags_combo calibri" href="#">SELECT A TAG</a>
 								</div>
 							</div>
+							
+							<!-- LAYERS -->
 							<div id="your_layers_content" class="content_tab your_layers">
-								<div id="list_column">
+								<div id="list_column_layers">
 								<ul class="content">
 									<li> <!-- PAGE1 -->
-											<div class="info">
-											<p class="title">World Population 2</p>
+										<div class="info">
+											<a href="#" class="title myriad">World Population 2</a>
 											<p class="ago">updated by you 1 day ago</p>
 											<p class="description">World population by country. Obtained from the World Bank Data</p>
 											<div class="bottom">
@@ -73,244 +80,80 @@
 													</div>
 												</div>
 												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info">
-											<p class="title">Whale occurences from 1980</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">Extracted from GBIF. All the whale genius occurences around the whole world. There is not so much good precission.</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info">
-											<p class="title">World Population 2</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">World population by country. Obtained from the World Bank Data</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info last">
-											<p class="title">Whale occurences from 1980</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">Extracted from GBIF. All the whale genius occurences around the whole world. There is not so much good precission.</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>										<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
+													<div class="buttons three">
+														<a class="download" href="#"></a>
+														<a class="pencil" href="#"></a>
+														<a class="trash" href="#"></a>
 													</div>
 													<a class="make_map" href="#"></a>
 												</div>
 											</div>
-										</div> 
+										</div>
+										<div class="info">
+											<a href="#" class="title">World Population 2</a>
+											<p class="ago">updated by you 1 day ago</p>
+											<p class="description">World population by country. Obtained from the World Bank Data</p>
+											<div class="bottom">
+												<div class="left">
+													<div class="tags">
+														<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
+													</div>
+												</div>
+												<div class="right">
+													<div class="buttons three">
+														<a class="download" href="#"></a>
+														<a class="pencil" href="#"></a>
+														<a class="trash" href="#"></a>
+													</div>
+													<a class="make_map" href="#"></a>
+												</div>
+											</div>
+										</div>
+										<div class="info">
+											<a href="#" class="title">World Population 2</a>
+											<p class="ago">updated by you 1 day ago</p>
+											<p class="description">World population by country. Obtained from the World Bank Data</p>
+											<div class="bottom">
+												<div class="left">
+													<div class="tags">
+														<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
+													</div>
+												</div>
+												<div class="right">
+													<div class="buttons three">
+														<a class="download" href="#"></a>
+														<a class="pencil" href="#"></a>
+														<a class="trash" href="#"></a>
+													</div>
+													<a class="make_map" href="#"></a>
+												</div>
+											</div>
+										</div>
+										
+										<div class="info last">
+											<a href="#" class="title">World Population 2</a>
+											<p class="ago">updated by you 1 day ago</p>
+											<p class="description">World population by country. Obtained from the World Bank Data</p>
+											<div class="bottom">
+												<div class="left">
+													<div class="tags">
+														<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
+													</div>
+												</div>
+												<div class="right">
+													<div class="buttons three">
+														<a class="download" href="#"></a>
+														<a class="pencil" href="#"></a>
+														<a class="trash" href="#"></a>
+													</div>
+													<a class="make_map" href="#"></a>
+												</div>
+											</div>
+										</div>
+										
 										<!-- <div class="info"> -->
 									</li> 
-									<li> <!-- PAGE2 -->
-											<div class="info">
-											<p class="title">World Population 2</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">World population by country. Obtained from the World Bank Data</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info">
-											<p class="title">Whale occurences from 1980</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">Extracted from GBIF. All the whale genius occurences around the whole world. There is not so much good precission.</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info">
-											<p class="title">World Population 2</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">World population by country. Obtained from the World Bank Data</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info last">
-											<p class="title">Whale occurences from 1980</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">Extracted from GBIF. All the whale genius occurences around the whole world. There is not so much good precission.</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>										<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>
-												</div>
-											</div>
-										</div> 
-										<!-- <div class="info"> -->
-									</li>
 									
-									<li> <!-- PAGE3 -->
-											<div class="info">
-											<p class="title">World Population 2</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">World population by country. Obtained from the World Bank Data</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info">
-											<p class="title">Whale occurences from 1980</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">Extracted from GBIF. All the whale genius occurences around the whole world. There is not so much good precission.</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info">
-											<p class="title">World Population 2</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">World population by country. Obtained from the World Bank Data</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>												
-												</div>
-											</div>
-										</div>
-										<div class="info last">
-											<p class="title">Whale occurences from 1980</p>
-											<p class="ago">updated by you 1 day ago</p>
-											<p class="description">Extracted from GBIF. All the whale genius occurences around the whole world. There is not so much good precission.</p>
-											<div class="bottom">
-												<div class="left">
-													<div class="tags">
-														<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>										<div><a href="#"><span>animals</span></a></div><div><a href="#"><span>whales</span></a></div>
-													</div>
-												</div>
-												<div class="right">
-													<div class="buttons">
-														<span><a class="download" href="#"></a></span>
-														<span><a class="pencil" href="#"></a></span>
-														<span><a class="trash" href="#"></a></span>
-													</div>
-													<a class="make_map" href="#"></a>
-												</div>
-											</div>
-										</div> 
-										<!-- <div class="info"> -->
-									</li>
 								</ul>
 								<!-- <ul class="content">-->
 								</div>
@@ -319,9 +162,156 @@
 								</div>
 									
 							</div> <!-- content_tab your_layers -->
+								
+								
+							<!-- MAPS -->
+							<div id="your_maps_content" class="content_tab your_maps">
+								<div id="list_column_maps">
+								<ul class="content">
+									<li> <!-- PAGE1 -->
+											<div class="info">
+												<a class="title" href="#">World Population 2</a>
+												<p class="ago">updated by you 1 day ago</p>
+												<p class="description">World population by country. Obtained from the World Bank Data</p>
+												<div class="info_amount">
+													<a><span>2 layers</span></a>
+													<a><span>1 Chart</span></a>
+													
+												</div>
+												<div class="bottom">
+													<div class="left">
+														<div class="tags">
+															<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
+														</div>
+													</div>
+													<div class="right">
+														<div class="buttons two">
+															<a class="pencil" href="#"></a>
+															<a class="trash" href="#"></a>
+														</div>
+														<a class="make_map" href="#"></a>												
+													</div>
+												</div>
+										</div>
+											<div class="info">
+												<a class="title" href="#">World Population 2</a>
+												<p class="ago">updated by you 1 day ago</p>
+												<p class="description">World population by country. Obtained from the World Bank Data</p>
+												<div class="info_amount">
+													<a><span>2 layers</span></a>
+													<a><span>1 Chart</span></a>
+													
+												</div>
+												<div class="bottom">
+													<div class="left">
+														<div class="tags">
+															<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
+														</div>
+													</div>
+													<div class="right">
+														<div class="buttons two">
+															<a class="pencil" href="#"></a>
+															<a class="trash" href="#"></a>
+														</div>
+														<a class="make_map" href="#"></a>												
+													</div>
+												</div>
+										</div>
+											<div class="info last">
+												<a class="title" href="#">World Population 2</a>
+												<p class="ago">updated by you 1 day ago</p>
+												<p class="description">World population by country. Obtained from the World Bank Data</p>
+												<div class="info_amount">
+													<a><span>2 layers</span></a>													
+												</div>
+												<div class="bottom">
+													<div class="left">
+														<div class="tags">
+															<div><a href="#"><span>demographics</span></a></div><div><a href="#"><span>population</span></a></div>
+														</div>
+													</div>
+													<div class="right">
+														<div class="buttons two">
+															<a class="pencil" href="#"></a>
+															<a class="trash" href="#"></a>
+														</div>
+														<a class="make_map" href="#"></a>												
+													</div>
+												</div>
+										</div>
+										
+										<!-- <div class="info"> -->
+									</li> 
+									
+								</ul>
+								<!-- <ul class="content">-->
+								</div>
+								<div class="paginate_bottom">
+									<a href="#" class="rss_image">RSS</a>
+								</div>
+									
+							</div> <!-- content_tab your_maps -->
 							
 								
+							<!-- PENDING LAYERS -->
+							<div id="pending_layers_content" class="content_tab pending_layers">
+								<div id="list_column_pending_layers">
+								<ul class="content">
+									<li> <!-- PAGE1 -->
+										<div class="info">
+											<a href="#" class="title">Active mines and mineral plants in the US</a>
+											<p class="ago">updated by you 1 day ago</p>
+											<p class="description">World population by country. Obtained from the World Bank Data</p>
+											<div class="bottom">
+												<div class="right">
+													<div class="buttons one">
+														<a class="trash" href="#"></a>
+													</div>
+													<a class="complete_bttn" href="#"></a>
+												</div>
+											</div>
+										</div>
+										<!-- <div class="info"> -->
+										<div class="info">
+											<a href="#" class="title">Active mines and mineral plants in the US</a>
+											<p class="ago">updated by you 1 day ago</p>
+											<p class="description">World population by country. Obtained from the World Bank Data</p>
+											<div class="bottom">
+												<div class="right">
+													<div class="buttons one">
+														<a class="trash" href="#"></a>
+													</div>
+													<a class="complete_bttn" href="#"></a>
+												</div>
+											</div>
+										</div>
+										<!-- <div class="info"> -->
 
+										<div class="info last">
+											<a href="#" class="title">Active mines and mineral plants in the US</a>
+											<p class="ago">updated by you 1 day ago</p>
+											<p class="description">Mine plants and operations for commodities monitored by the Minerals Information and surveyed by the USGS.</p>
+											<div class="bottom">
+												<div class="right">
+													<div class="buttons one">
+														<a class="trash" href="#"></a>
+													</div>
+													<a class="complete_bttn" href="#"></a>
+												</div>
+											</div>
+										</div>
+										<!-- <div class="info"> -->
+											
+									</li> 
+
+								</ul>
+								<!-- <ul class="content">-->
+								</div>
+								<div class="paginate_bottom">
+									<a href="#" class="rss_image">RSS</a>
+								</div>
+
+							</div> <!-- content_tab your_layers -->
 							
 						</div>
 						<!-- <div id="upload_import_left"> -->
