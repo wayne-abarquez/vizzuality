@@ -196,6 +196,33 @@ div#library_data div.content div.header ul.tabs li.pending.active a p {color:#99
 
 div#library_data div.content div.header div.criteria_data {position:absolute; width:560px; height:46px; background-color:#333333; left:57; bottom:0;}
 div#library_data div.content div.header div.criteria_data ul.filter_date {float:left; width:317px; height:23px; margin:13px 0 0 25px; background:url('../images/library/filter_ul_bkg.png') no-repeat 0 0;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li {float:left; width:auto; height:23px; border-right:1px solid #666666;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li:hover {cursor:pointer;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li a{float:left; text-decoration:none; font:normal 13px "Calibri"; text-transform:uppercase; width:auto; margin:0; height:23px;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li a span {float:left; margin:0 0 0 3px; color:#999999; height:20px; padding:3px 7px 0 4px;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li a:hover {background-color:#666666;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li a span:hover {background-color:#666666; color:white;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li a.active {background-color:#666666;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li a.active span {float:left; background-color:#666666; color:white;}
+
+div#library_data div.content div.header div.criteria_data ul.filter_date li.first a.active {color:white; background-color:#666666; background:url('../images/library/left_filteraz_bkg.png') no-repeat left top;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li.first a span {margin:0 0 0 4px;}
+
+div#library_data div.content div.header div.criteria_data ul.filter_date li.first a:hover {background:url('../images/library/left_filteraz_bkg.png') no-repeat left top;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li.first a span:hover {background-color:#666666;}
+
+div#library_data div.content div.header div.criteria_data ul.filter_date li.last a:hover {background:url('../images/library/left_last_filteraz_bkg.png') no-repeat left top;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li.last a span:hover {background:url('../images/library/right_filteraz_bkg.png') no-repeat right top;}
+
+div#library_data div.content div.header div.criteria_data ul.filter_date li.last a span {margin:0 0 0 4px; padding:3px 8px 0 4px;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li.last a.active {background:url('../images/library/left_last_filteraz_bkg.png') no-repeat left top;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li.last a.active span {background:url('../images/library/right_filteraz_bkg.png') no-repeat right top;}
+div#library_data div.content div.header div.criteria_data ul.filter_date li.last {border:none;}
+div#library_data div.content div.header div.criteria_data a.select_tags_combo {float:left; margin:13px 0 0 12px; width:90px; height:20px; background:url('../images/library/select_tag_combo.png') no-repeat 0 0; font:normal 13px "Calibri"; color:#666666; padding:3px 0 0 8px; text-transform:uppercase;}
+div#library_data div.content div.header div.criteria_data a.select_tags_combo:hover {color:white; cursor:pointer;}
+
+
+
 
 
 /*EACH TAB*/
@@ -204,8 +231,9 @@ div#library_data div.content div.content_tab {float:left; width:571px; height:au
 div#library_data div.content div.content_tab.your_layers {background:url('../images/library/bkg_your_library.png') no-repeat right 0;}
 div#library_data div.content div.content_tab.your_maps {background:url('../images/library/bkg_your_map.png') no-repeat right 0;}
 div#library_data div.content div.content_tab.pending_layers {background:url('../images/library/bkg_pending_layers.png') no-repeat right 0;}
-div#library_data div.content div.content_tab ul.content {float:left; width:505px; height:auto; margin: 0 0 0 39px;}
-div#library_data div.content div.content_tab ul.content li.info {float:left; width:100%; height:auto; padding:26px 0; border-bottom:1px solid #E0E0E0;}
+div#library_data div.content div.content_tab div#list_column {margin: 0 0 0 39px;}
+div#library_data div.content div.content_tab ul.content {float:left; width:505px; height:auto; margin: 0;}
+div#library_data div.content div.content_tab ul.content li.info {float:left; width:505px; height:auto; padding:26px 0; border-bottom:1px solid #E0E0E0; overflow:hidden; } 
 div#library_data div.content div.content_tab ul.content li.info.last {border-bottom:none;}
 div#library_data div.content div.content_tab ul.content li.info p.title {float:left; width:100%; font:600 17px "Myriad Pro"; color:#FF6600;}
 div#library_data div.content div.content_tab ul.content li.info p.ago {float:left; width:100%; font:normal 11px Arial; color:#999999;}
@@ -272,3 +300,14 @@ div#footer div.right_information ul.links li.last {margin:0;}
 
 
 
+/*#list_column ul, #list_column li{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+*/
+#list_column li{
+	width:505px;
+	height:auto;
+	overflow:hidden; 
+	}
