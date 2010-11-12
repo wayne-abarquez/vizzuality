@@ -83,7 +83,9 @@
 				var html = options.controlsBefore;				
 				if(options.numeric){
 					html += '<ol id="'+ options.numericId +'"></ol>';
-					
+					html += ' <span id="'+ options.nextId +'"><a href=\"javascript:void(0);\">'+ options.nextText +'</a></span>';
+				}
+				else {	
 					if(options.firstShow) html += '<span id="'+ options.firstId +'"><a href=\"javascript:void(0);\">'+ options.firstText +'</a></span>';
 					html += ' <span id="'+ options.prevId +'"><a href=\"javascript:void(0);\">'+ options.prevText +'</a></span>';
 					html += ' <span id="'+ options.nextId +'"><a href=\"javascript:void(0);\">'+ options.nextText +'</a></span>';
@@ -91,21 +93,27 @@
 				};
 				
 				html += options.controlsAfter;						
-				$(obj).after(html);										
+				$(obj).after(html);
 			};
 			
-			if(options.numeric){									
+			if(options.numeric){
 				for(var i=0;i<s;i++){						
 					$(document.createElement("li"))
 						.attr('id',options.numericId + (i+1))
 						.html('<a rel='+ i +' href=\"javascript:void(0);\"></a>')
 						.appendTo($("#"+ options.numericId))
-						.click(function(){							
+						.click(function(){
 							animate($("a",$(this)).attr('rel'),true);
 						}); 												
 				};
-				$("a","#"+options.nextId).click(function(){		
-					animate("next",true);
+				$("a","#"+options.nextId).click(function(){	
+						
+						var index = $("li.current").index();
+						var next = 0;
+						if (index+1 <= ts){
+							next = index+1;
+						}
+						animate(next,true);
 				});
 				
 			} else {
@@ -123,7 +131,15 @@
 				});				
 			};
 			
+			
+			function getCurrent(){
+				var index 
+				// get Class current....
+				
+				return i;
+			}
 			function setCurrent(i){
+
 				i = parseInt(i)+1;
 				$("li", "#" + options.numericId).removeClass("current");
 				$("li#" + options.numericId + i).addClass("current");
@@ -146,6 +162,9 @@
 					clickable = false;
 					var ot = t;				
 					switch(dir){
+						case "nextCustom":
+							t = (ot>=ts) ? (options.continuous ? t+1 : ts) : t+1;						
+							break; 						
 						case "next":
 							t = (ot>=ts) ? (options.continuous ? t+1 : ts) : t+1;						
 							break; 
@@ -215,7 +234,7 @@
 			
 			if(options.numeric) setCurrent(0);
 		
-			if(!options.continuous && options.controlsFade){					
+			if(!options.continuous && options.controlsFade){
 				$("a","#"+options.prevId).hide();
 				$("a","#"+options.firstId).hide();				
 			};				

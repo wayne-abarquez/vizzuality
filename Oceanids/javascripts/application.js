@@ -55,8 +55,7 @@ $(document).ready(function() {
 			}else {
 				$(this).addClass('displayed');
 				$(this).parent().children('ul').fadeIn('fast');
-			}
-			
+			}			
 		});		
 	}
 	
@@ -64,7 +63,7 @@ $(document).ready(function() {
 		
 		$("div#list_column").easySlider({
 					auto: false, 
-					continuous: true,
+					continuous: false,
 					numeric:true
 				});
 	}
