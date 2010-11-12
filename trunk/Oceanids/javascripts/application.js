@@ -62,10 +62,11 @@ $(document).ready(function() {
 	
 	if 	(($('div#your_layers_content')!=null)&&($('div#your_layers_content')[0])) {
 		
-		// $("div#list_column").easySlider({
-		// 			auto: true, 
-		// 			continuous: true
-		// 		});
+		$("div#list_column").easySlider({
+					auto: false, 
+					continuous: true,
+					numeric:true
+				});
 	}
 });
 
