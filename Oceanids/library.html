@@ -8,18 +8,14 @@
 		
 		<!-- STYLESHEETS --> 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-		
+
 		<!-- FONTS -->
 		<script src="javascripts/fonts/cufon-yui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="javascripts/fonts/Myriad_Pro_400-Myriad_Pro_700-Myriad_Pro_italic_400-Myriad_Pro_italic_700.font.js" type="text/javascript" charset="utf-8"></script>
 		<script src="javascripts/fonts/Calibri_400.font.js" type="text/javascript" charset="utf-8"></script>
-		
 				
-		<script src="javascripts/easySlider1.7.js" type="text/javascript" charset="utf-8"></script>
 		<script src="javascripts/application.js" type="text/javascript" charset="utf-8"></script>
-		
-		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 
-			
+		<link href="stylesheets/layout.css" media="screen" rel="stylesheet" type="text/css" /> 			
 	</head>
 	
 	<body>	
@@ -40,7 +36,8 @@
 							</ul>
 						</div>
 					</div>
-				</div>
+				</div> <!-- header -->
+				
 				<div id="library_data">
 					<span class="top_content"></span>
 					
@@ -316,23 +313,57 @@
 						</div>
 						<!-- <div id="upload_import_left"> -->
 						<div id="upload_import_right">
+							<h4>Upload / import data</h4>
+							<p class="subtitle">Share and organize your datasets</p>
+							<div id="library_upload_file_option" class="download_box first active">
+								<a id="library_upload_file_combo" class="combo"></a><p>Upload files</p>
+								<div id="info_upload_file">
+									<div class="info_files">
+										<a class="browse"></a><p>No files sel...</p>
+									</div>
+									<p class="info_files">SUPPORTED FORMATS</p>
+									<p class="kind_files">Spreadsheets (as CSVs), Shapefiles, KML, RSS, ATOM and GeoRSS.</p>									
+								</div>
+							</div>
+							<div id="library_import_url_option" class="download_box second">
+								<a id="library_import_url_combo" class="combo"></a><p>Import files from URL</p>
+								<div id="info_import_url">
+									<form action="javascript:void importUrl()">
+										<input type="text" class="import_url" vale="Insert URL"/>	
+										<p class="title">FORMAT</p>
+										
+										<span class="combo_data_type">
+											<a class="data_type">Auto-select format</a>
+											<ul>
+												<li class="option"><a href="#">option</a></li>
+												<li class="option"><a href="#">option</a></li>
+												<li class="option"><a href="#">option</a></li>
+												<li class="last"></li>
+											</ul>
+										</span>
+										
+										<input type="submit" value=""/>
+									</form>								
+							</div>
 							
 						</div>
 						<!-- <div id="upload_import_right"> -->
 					</div>	
 					<!-- <div id="your_layers_content" class="content_tab your_layers"> -->
-						
+				</div> 	<!-- <div id="library_data"> -->
+				</div>
+				
 				</div> 	<!-- <div id="content"> -->
 				
 			</div> <!-- layout -->
 		</div>	<!-- <div id="outer_layout"> -->
+
 			<div id="outer_footer">
 							<div id="upper_band"></div>
 							<div id="upper_content">
 								<div id="upper_band_content">
 									<span class="plants"></span>
-								</div>
-								
+								</div>								
 							</div>
 							
 							<div id="outer_footer_content">
@@ -362,7 +393,6 @@
 							</div>
 						</div>
 			 <!-- outer_footer -->
-		
 	</body> 
 </html> 
  
