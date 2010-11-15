@@ -127,27 +127,31 @@ $(document).ready(function() {
 			$('div#pending_layers_content').css('display','inline');			
 		});
 	}
+	
+	if ((('a#library_upload_file_combo')!=null) && (('a#library_upload_file_combo')[0])){
+		$('a#library_upload_file_combo').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			console.log('entra');
+			if (!$(this).parent().hasClass('active')){
+				$('div#library_import_url_option').removeClass('active');
+				$(this).parent().addClass('active');
+			}		
+		});		
+	}
 
-	$('a#library_upload_file_combo').click(function(ev){
-		ev.stopPropagation();
-		ev.preventDefault();
-		console.log('entra');
-		if (!$(this).parent().hasClass('active')){
-			$('div#library_import_url_option').removeClass('active');
-			$(this).parent().addClass('active');
-		}		
-	});
+	if ((('a#library_import_url_combo')!=null) && (('a#library_import_url_combo')[0])){
+		$('a#library_import_url_combo').click(function(ev){
+			console.log('entra');
+			ev.stopPropagation();
+			ev.preventDefault();
 	
-	$('a#library_import_url_combo').click(function(ev){
-		console.log('entra');
-		ev.stopPropagation();
-		ev.preventDefault();
-	
-		if (!$(this).parent().hasClass('active')){
-			$('div#library_upload_file_option').removeClass('active');
-			$(this).parent().addClass('active');
-		}		
-	});
+			if (!$(this).parent().hasClass('active')){
+				$('div#library_upload_file_option').removeClass('active');
+				$(this).parent().addClass('active');
+			}		
+		});
+	}
 });
 
 function importUrl() {
