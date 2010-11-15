@@ -4,9 +4,8 @@ $(document).ready(function() {
 	
 	// Cufon.replace('.myriad', {fontFamily: 'Myriad Pro',fontWeight:'600'}); -- SHADOW
 	// Cufon.replace('.calibri', {fontFamily: 'Calibri'});
-	
+
 	// -- HOME
-	
 	// show upload options - URL
 	if(($('a#import_url_option') != null) && ($('a#import_url_option')[0])){
 		$('a#import_url_option').click(function(ev){
@@ -128,6 +127,27 @@ $(document).ready(function() {
 			$('div#pending_layers_content').css('display','inline');			
 		});
 	}
+
+	$('a#library_upload_file_combo').click(function(ev){
+		ev.stopPropagation();
+		ev.preventDefault();
+		console.log('entra');
+		if (!$(this).parent().hasClass('active')){
+			$('div#library_import_url_option').removeClass('active');
+			$(this).parent().addClass('active');
+		}		
+	});
+	
+	$('a#library_import_url_combo').click(function(ev){
+		console.log('entra');
+		ev.stopPropagation();
+		ev.preventDefault();
+	
+		if (!$(this).parent().hasClass('active')){
+			$('div#library_upload_file_option').removeClass('active');
+			$(this).parent().addClass('active');
+		}		
+	});
 });
 
 function importUrl() {
