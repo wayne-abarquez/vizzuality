@@ -403,6 +403,94 @@ div#content_profile div.right ul.your_library li a {float:left; width:auto; marg
 div#content_profile div.right ul.your_library li a:hover {text-decoration:underline;}
 
 
+/* ------------------------- LAYER_DETAIL */
+
+
+div#content_layer_detail {float:left; width:954px; height:auto; margin:0; position:relative; z-index:10;}
+div#content_layer_detail span.top_content {float:left; background:url('../images/layer/top_layer_detail_content.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
+div#content_layer_detail span.bottom_content {float:left; background:url('../images/layer/bottom_layer_detail_content.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
+div#content_layer_detail div.content {float:left; background:url('../images/layer/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0; min-height:577px;}
+div#content_layer_detail div.content div.left {float:left; width:492px; height:auto; margin:17px 0 0 41px;}
+div#content_layer_detail div.content div.left p.library_name {float:left; width:auto; margin:0; font:600 17px "Myriad Pro"; color:#999999; }
+div#content_layer_detail div.content div.left span.arrow {float:left; width:15px; height:10px; background:url('../images/layer/right_arrow.png') no-repeat 0 0; margin:4px 6px 0 5px;}
+div#content_layer_detail div.content div.left p.layers_name {float:left; width:auto; margin:0; font:600 17px "Myriad Pro"; color:#333333; }
+div#content_layer_detail div.content div.left h4 {float:left; font:600 25px "Myriad Pro"; color:#FF6600; width:100%; margin:1px 0 0 0;}
+div#content_layer_detail div.content div.left p.ago {float:left; margin:0 0 0 1px; font:normal 11px Arial; color:#999999; width:100%; line-height:8px;}
+div#content_layer_detail div.content div.left p.ago a {text-decoration:underline; color:#999999; font:normal 11px Arial;}
+div#content_layer_detail div.content div.left p.ago a:hover {color:#333333;}
+div#content_layer_detail div.content div.left p.description {float:left; margin:15px 0 0 1px; font:normal 13px Arial; color:#666666; width:100%;}
+
+div#content_layer_detail div.content div.left ul.tags {float:left; width:100%; height:21px; margin:17px 0 0 0; padding:0 0 20px 0;}
+div#content_layer_detail div.content div.left ul.tags li {float:left; margin:0 5px 0 0; width:auto; height:21px; padding:0;}
+div#content_layer_detail div.content div.left ul.tags li a { float:left; background:url('../images/common/left_tag.png') no-repeat left top; margin:0; padding:0; text-decoration:none; height:21px; overflow:hidden; color: white; width:auto;}
+div#content_layer_detail div.content div.left ul.tags li a:hover {cursor:pointer;}
+div#content_layer_detail div.content div.left ul.tags li a span {float:left; display:block; background:url('../images/common/right_tag.png') no-repeat right top; padding:4px 13px 0 4px; margin:0 0 0 4px; line-height:23px; font:normal 11px Arial; color:#666666; height:17px;}
+
+
+
+div#content_layer_detail div.content div.left ul.attributes {float:left; height:auto; width:500px;}
+div#content_layer_detail div.content div.left ul.attributes li {float:left; width:100%; min-height:38px; height:auto;}
+div#content_layer_detail div.content div.left ul.attributes li ul {float:left; width:100%;}
+div#content_layer_detail div.content div.left ul.attributes li ul li {width:83px; padding:6px 8px 0;}
+div#content_layer_detail div.content div.left ul.attributes li ul li p.attribute_value {font:normal 13px Arial; color:#666666;}
+div#content_layer_detail div.content div.left ul.attributes li ul li p.title_attribute {font:bold 11px Arial; color:#999999;}
+div#content_layer_detail div.content div.left ul.attributes li ul li.column1 p.title {font:bold 11px Arial; color:#CCCCCC; text-transform:uppercase; }
+div#content_layer_detail div.content div.left ul.attributes li ul li.column1 a.attribute_name {float:left; font:bold 13px Arial; color:#457EA5;}
+div#content_layer_detail div.content div.left ul.attributes li ul li.column1 a.edit {font:normal 11px Arial; color:#FF6600; text-decoration:underline;}
+div#content_layer_detail div.content div.left ul.attributes li ul li.column1 a.edit:hover {color:#BE3A08;}
+div#content_layer_detail div.content div.left ul.attributes li ul li.column1 {width:89px;}
+div#content_layer_detail div.content div.left ul.attributes li ul li.column2 {width:89px;}
+div#content_layer_detail div.content div.left ul.attributes li ul li.short {width:79px;}
+div#content_layer_detail div.content div.left ul.attributes li ul li.last {width:77px;}
+div#content_layer_detail div.content div.left ul.attributes li.empty ul li.column2 {width:379px;}
+div#content_layer_detail div.content div.left ul.attributes li.empty a.attribute_name {margin:8px 0 0 0;} 
+div#content_layer_detail div.content div.left ul.attributes li.empty p.attribute_value {font:normal 13px Arial; color:#CCCCCC; margin:8px 0 0 0;}
+div#content_layer_detail div.content div.left ul.attributes li.white {background:url('../images/layer/layer_detail_white.png') repeat-y 0;}
+div#content_layer_detail div.content div.left ul.attributes li.gray {background:url('../images/layer/layer_detail_gray.png') repeat-y 0;}
+div#content_layer_detail div.content div.left ul.attributes li.white.empty {background-image:none; background-color:white;}
+div#content_layer_detail div.content div.left ul.attributes li.gray.empty {background-image:none; background-color:#F0F0F0;}
+
+
+div#content_layer_detail div.content div.right {float:right; position:relative; width:235px; height:auto;  margin:13px 25px 0 0;}
+div#content_layer_detail div.content div.right img.vertex {position:absolute; top:11px; left:-53px; width:25px; height:50px; z-index:50;}
+
+div#content_layer_detail div.content div.right h4 {float:left; font:600 24px "Myriad Pro"; color:#333333; width:100%; height:26px;}
+div#content_layer_detail div.content div.right p.amount {float:left; margin:2px 0 0 0; width:100%; font:normal 15px "Myriad Pro"; color:#666666;}
+div#content_layer_detail div.content div.right a.use_in_map_bttn {float:left; width:222px; height:36px; background:url('../images/layer/use_in_map_bttn.png') no-repeat 0 0; margin:20px 0 0 0;}
+div#content_layer_detail div.content div.right a.use_in_map_bttn:hover {background-position:0 -36px; cursor:pointer;}
+div#content_layer_detail div.content div.right p.title {float:left; font:600 13px "Myriad Pro"; color:#999999; text-transform:uppercase; margin:25px 0 0 0; padding:0 0 8px 0;}
+div#content_layer_detail div.content div.right a.download_bttn {float:left; background:url('../images/layer/download_bttn.png') no-repeat 0 0; width:222px; height:57px; margin:7px 0 0 0;}
+div#content_layer_detail div.content div.right a.download_bttn:hover {background-position:0 -57px; cursor:pointer;}
+div#content_layer_detail div.content div.right a.download_bttn div.text {float:left; margin:13px 0 0 52px; width:170px;}
+div#content_layer_detail div.content div.right a.download_bttn p.kind_data {float:left; font:600 15px "Myriad Pro"; color:#FF6600; width:100%;}
+div#content_layer_detail div.content div.right a.download_bttn p.examples {float:left; font:normal 11px Arial; width:100%; color:#999999; margin:0; line-height:10px;}
+div#content_layer_detail div.content div.right ul.other_formats {float:left; width:220px; height:auto; margin:7px 0 0 0;}
+div#content_layer_detail div.content div.right ul.other_formats li {float:left; background:url('../images/layer/content_other_bkg.png') repeat-y 0; width:186px; height:auto; padding:0 17px;}
+div#content_layer_detail div.content div.right ul.other_formats li p.title {font:600 13px "Myriad Pro"; color:#666666; width:100%; margin:9px 0 0 0;}
+div#content_layer_detail div.content div.right ul.other_formats li a {float:left; font:normal 13px Arial; color:#FF6600; text-decoration:none;}
+div#content_layer_detail div.content div.right ul.other_formats li a:hover {text-decoration:underline;}
+div#content_layer_detail div.content div.right ul.other_formats li.top {background:url('../images/layer/top_other_bkg.png') no-repeat 0 0; height:5px;}
+div#content_layer_detail div.content div.right ul.other_formats li.bottom {background:url('../images/layer/bottom_other_bkg.png') no-repeat 0 0; height:13px;}
+
+/* ------------------------------ UPLOAD PROCESS */
+div#content_upload {float:left; width:954px; height:auto; margin:0; position:relative; z-index:10;}
+div#content_upload div.left {float:left; margin:12px 0 0 41px; width:520px;}
+div#content_upload span.top_content {float:left; background:url('../images/upload/top_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
+div#content_upload span.bottom_content {float:left; background:url('../upload/home/bottom_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
+div#content_upload div.content {float:left; background:url('../images/upload/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0; min-height:577px;}
+
+div#content_upload ul.upload_process {float:left; width:500px; height:22px;}
+
+div#content_upload h4 {float:left; font:600 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
+div#content_upload p.subtitle {float:left; font:normal 15px "Myriad Pro"; color:#666666; margin:0 0 0 2px; width:250px; line-height:13px;}
+div#content_upload p.subtitle b {font-weight:600;}
+div#content_upload p.subtitle a {color:#FF6600; }
+div#content_upload p.subtitle a:hover {text-decoration:underline;}
+
+/*RIGHT*/
+div#content_upload div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}
+
+
 /* footer */
 div#outer_footer{float:left; width:100%; margin:0 auto; background:url('../images/common/bkg_footer_repeated.png'); position:relative;}
 div#outer_footer div#upper_band {position:absolute; width:100%; height:80px; background:url('../images/common/bkg_footer_repeated.png'); top:-80px; left:0; z-index:1; margin:0;}
