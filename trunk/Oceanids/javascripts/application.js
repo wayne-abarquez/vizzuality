@@ -4,7 +4,11 @@ $(document).ready(function() {
 	
 	// Cufon.replace('.myriad', {fontFamily: 'Myriad Pro',fontWeight:'600'}); -- SHADOW
 	// Cufon.replace('.calibri', {fontFamily: 'Calibri'});
-
+	
+	if (($('div.data_results')!= null)&&($('div.data_results')[0])){
+		$('ul.data').jScrollPane();
+	}
+	
 	// -- HOME
 	// show upload options - URL
 	if(($('a#import_url_option') != null) && ($('a#import_url_option')[0])){
@@ -132,7 +136,6 @@ $(document).ready(function() {
 		$('a#library_upload_file_combo').click(function(ev){
 			ev.stopPropagation();
 			ev.preventDefault();
-			console.log('entra');
 			if (!$(this).parent().hasClass('active')){
 				$('div#library_import_url_option').removeClass('active');
 				$(this).parent().addClass('active');
@@ -142,7 +145,6 @@ $(document).ready(function() {
 
 	if ((('a#library_import_url_combo')!=null) && (('a#library_import_url_combo')[0])){
 		$('a#library_import_url_combo').click(function(ev){
-			console.log('entra');
 			ev.stopPropagation();
 			ev.preventDefault();
 	
