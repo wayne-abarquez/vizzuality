@@ -474,18 +474,45 @@ div#content_layer_detail div.content div.right ul.other_formats li.bottom {backg
 
 /* ------------------------------ UPLOAD PROCESS */
 div#content_upload {float:left; width:954px; height:auto; margin:0; position:relative; z-index:10;}
-div#content_upload div.left {float:left; margin:12px 0 0 41px; width:520px;}
+div#content_upload div.left {float:left; margin:12px 0 0 41px; width:499px;}
 div#content_upload span.top_content {float:left; background:url('../images/upload/top_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
 div#content_upload span.bottom_content {float:left; background:url('../upload/home/bottom_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
-div#content_upload div.content {float:left; background:url('../images/upload/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0; min-height:577px;}
+div#content_upload div.content {float:left; background:url('../images/upload/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0; min-height:577px;} 
 
-div#content_upload ul.upload_process {float:left; width:500px; height:22px;}
+div#content_upload ul.upload_process {float:left; width:500px; height:3px; background:url('../images/upload/bkg_ul_process.png') no-repeat 0 0; margin:53px 0 0 0;}
+div#content_upload ul.upload_process li {float:left; width:125px; height:3px; position:relative;}
+div#content_upload ul.upload_process li.map {float:left; width:124px; height:3px; position:relative; margin:0 0 0 1px;}
+div#content_upload ul.upload_process li p {font:600 13px "Myriad Pro"; color:#DADADA; position:absolute; left:0; bottom:10px; text-transform:uppercase;}
+div#content_upload ul.upload_process li.active p {color:#666666;}
+div#content_upload ul.upload_process li.active {background-color:#666666;} 
+div#content_upload p.info {float:left; margin:27px 0 0 0; font:normal 15px Arial; color:#666666;}
+div#content_upload div.choice {float:left; margin:27px 0 0 0;}
+div#content_upload div.choice div.use_existing.active {float:left; background:url('../images/upload/bkg_use_existing.png') no-repeat 0 0; width:480px; height:38px; padding:16px 0 0 19px;}
+div#content_upload div.choice div.use_existing.active a.combo {float:left; background:url('../images/common/combo_activated_dark.png'); width:12px; height:12px; margin:5px 5px 0 0;}
+div#content_upload div.choice div.use_existing.active p.title {float:left; font:600 17px "Myriad Pro"; color:#333333; width:auto; height:auto; margin:2px 0 0 0;}
+
+div#content_upload div.choice div.join_boundary {float:left; margin:10px 0 0 0; height:auto; width:499px;}  
+div#content_upload div.choice div.join_boundary span.top {float:left; width:499px; height:9px; background:url('../images/upload/bkg_join_top.png') no-repeat 0 0; margin:0;}
+div#content_upload div.choice div.join_boundary div.content_join {float:left; width:480px; height:auto; background:url('../images/upload/bkg_join_content.png') repeat-y 0; margin:0;  padding:9px 0 10px 19px;}
+div#content_upload div.choice div.join_boundary div.content_join a.combo {float:left; margin:3px 5px 0 0; background:url('../images/common/combo_desactivated_dark.png') no-repeat 0 0; width:12px; height:12px; }
+div#content_upload div.choice div.join_boundary div.content_join a.combo:hover {cursor:pointer;}
+div#content_upload div.choice div.join_boundary div.content_join p.title {float:left; font:600 17px "Myriad Pro"; color:#333333; width:auto; height:auto; margin:0; padding:0;}
+div#content_upload div.choice div.join_boundary div.content_join p.info {float:left; font:normal 15px Arial; color:#666666; width:428px; height:auto; margin:5px 0 0 16px; padding:0 0 3px 0;} 
+div#content_upload div.choice div.join_boundary span.bottom {float:left; width:499px; height:9px; background:url('../images/upload/bkg_join_bottom.png') no-repeat 0 0; margin:0;}
+
+div#content_upload a.save_continue {float:right; margin:30px 0 0 0; background:url('../images/upload/save_continue_bttn.png') no-repeat 0 0; width:172px; height:34px;}
+div#content_upload a.save_continue:hover {cursor:pointer; background-position:0 -34px;}
+
+
 
 div#content_upload h4 {float:left; font:600 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
+
+
 div#content_upload p.subtitle {float:left; font:normal 15px "Myriad Pro"; color:#666666; margin:0 0 0 2px; width:250px; line-height:13px;}
 div#content_upload p.subtitle b {font-weight:600;}
 div#content_upload p.subtitle a {color:#FF6600; }
 div#content_upload p.subtitle a:hover {text-decoration:underline;}
+
 
 /*RIGHT*/
 div#content_upload div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}
