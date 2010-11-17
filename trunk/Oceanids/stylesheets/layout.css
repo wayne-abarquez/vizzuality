@@ -479,6 +479,7 @@ div#content_upload span.top_content {float:left; background:url('../images/uploa
 div#content_upload span.bottom_content {float:left; background:url('../images/upload/bottom_content_box.png') no-repeat 0 0; height:12px; width:861px; margin:0 0 0 46px;}
 div#content_upload div.content {float:left; background:url('../images/upload/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0; min-height:577px;}
 div#content_upload div.content.review {min-height:539px;}
+div#content_upload div.content.join {min-height:900px;}
 
 div#content_upload ul.upload_process {float:left; width:500px; height:3px; background:url('../images/upload/bkg_ul_process.png') no-repeat 0 0; margin:41px 0 0 0;}
 div#content_upload ul.upload_process li {float:left; width:125px; height:3px; position:relative;}
@@ -524,7 +525,9 @@ div#content_upload div.data_results div.results ul.header {float:left; height:27
 div#content_upload div.data_results div.results ul.header li {float:left; height:27px;}
 div#content_upload div.data_results div.results ul.header li a {font:bold 11px Arial; color:#6D6D6D; text-transform:uppercase;}
 
-div#content_upload div.data_results div.results div.wrapper {float:left; margin:0; padding:0;}
+/*The next is neccesary to fix properly the content scrollable*/
+div#content_upload div.wrapper {float:left; margin:0; padding:0;}
+
 div#content_upload div.data_results div.results ul.data {height:216px; overflow-y:auto; width:482px;}
 div#content_upload div.data_results div.results ul li {float:left; height:26px; }
 div#content_upload div.data_results div.results ul li ul li {float:left; border-bottom:1px solid #E5E5E5;}
@@ -534,11 +537,10 @@ div#content_upload div.data_results div.results ul li.column1 ul li a {float:lef
 div#content_upload div.data_results div.results ul li.column2 ul li {float:left; width:377px;}
 div#content_upload div.data_results div.results ul li.column2 ul li a {float:left; font:normal 13px Arial; color:#666666;}
 
-
 div#content_upload a.continue {float:right; margin:24px 0 0 0; background:url('../images/upload/continue_bttn.png') no-repeat 0 0; width:106px; height:34px;}
 div#content_upload a.continue:hover {cursor:pointer; background-position:0 -34px;}
 
-div#content_upload h4 {float:left; font:600 25px "Myriad Pro"; color:#333333; letter-spacing:-1.0px; width:100%; }
+div#content_upload h4 {float:left; font:600 25px "Myriad Pro"; color:#333333; width:100%; }
 
 
 div#content_upload p.subtitle {float:left; font:normal 15px "Myriad Pro"; color:#666666; margin:0 0 0 2px; width:250px; line-height:13px;}
@@ -546,10 +548,65 @@ div#content_upload p.subtitle b {font-weight:600;}
 div#content_upload p.subtitle a {color:#FF6600; }
 div#content_upload p.subtitle a:hover {text-decoration:underline;}
 
+div#content_upload h5.section {float:left; font:600 21px "Myriad Pro"; color:#333333; width:100%; margin:25px 0 0 0;}
+
+div#content_upload ul.options_join {float:left; width:474px; height:auto; margin:4px 0 0 0;}
+div#content_upload ul.options_join li.option {float:left; width:474px; margin:8px 0 0 14px;}
+div#content_upload ul.options_join li.option.active {float:left; width:474px; margin:8px 0 0 1px;}
+div#content_upload ul.options_join li.option a.combo {float:left; background:url('../images/upload/combo_desactivated.png') no-repeat 0 0; width:12px; height:12px; margin:2px 5px 0 0;}
+div#content_upload ul.options_join li.option a.combo:hover {cursor:pointer;}
+
+div#content_upload ul.options_join li.option p.name_option {float:left; font:600 17px "Myriad Pro"; color:#FF6600; width:420px;}
+div#content_upload ul.options_join li.option.active {float:left; width:499px; height:auto;}
+div#content_upload ul.options_join li.option.active span.top {float:left; width:499px; height:11px; background:url('../images/upload/top_join_data.png') no-repeat 0 0;}
+div#content_upload ul.options_join li.option.active div.content_join_data {float:left; width:472px; height:auto; background:url('../images/upload/content_join_data.png') repeat-y 0; padding:0 30px 15px 0; margin:0;}
+div#content_upload ul.options_join li.option.active div.content_join_data a.combo {float:left; margin:5px 5px 0 13px; width:12px; height:12px; background:url('../images/upload/combo_activated.png') no-repeat 0 0;}
+div#content_upload ul.options_join li.option.active div.content_join_data p.name_option {float:left; width:410px; height:auto; font:600 17px "Myriad Pro"; color:#333333; margin:2px 0 0 0;}
+div#content_upload ul.options_join li.option.active div.content_join_data p.information {float:left; font:normal 13px Arial; color:#666666; width:439px; height:auto; margin:5px 0 0 29px;}
+
+div#content_upload ul.options_join li.option.active div.content_join_data div.data {float:left; width:215px; margin:18px 0 0 28px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data.last {margin:18px 0 0 14px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data span.top {float:left; width:215px; height:7px; background:url('../images/upload/top_scrollable_data.png') no-repeat 0 0;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data {float:left; width:205px; height:auto; background:url('../images/upload/content_scrollable_data.png') repeat-y 0; padding:0 0 5px 10px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data p.title {float:left; font:600 13px "Myriad Pro"; color:white; text-transform:uppercase; margin:5px 0 0 0;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data {float:left; margin:13px 0 0 0; background:url('../images/upload/list_of_data.png') no-repeat 0 0; width:174px; height:148px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data span.header_title {float:left; width:174px; height:27px; margin:0; border-bottom:1px solid #CCCCCC;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data span.header_title p {float:left; font:bold 11px Arial; color:#333333; height:21px; margin:9px 0 0 10px; width:196px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable {float:left; width:196px; height:116px; overflow-y:auto; overflow-x:hidden;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li {float:left; border-bottom:1px solid #CCCCCC; width:174px; height:28px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li:hover {background-color:#EFEFEF; cursor:pointer;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li.active {background-color:#666666;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li a.combo {background:url('../images/upload/combo_desactivated_join.png') no-repeat 0 0; width:12px; height:12px; margin:8px 0 0 7px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li a.combo:hover {cursor:pointer;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li.active a.combo {background:url('../images/upload/combo_dark_activated.png') no-repeat 0 0;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li p {float:left; font:normal 13px Arial; color:#333333; width:117px; margin:6px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li.active p {color:white; font-weight:bold;}
+
+
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data p.title_preview {float:left; margin:15px 0 0 0; font:600 13px "Myriad Pro"; color:white; text-transform:uppercase;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data ul.names {float:left; width:174px; height:auto;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data ul.names li {float:left; width:174px; margin:0; border:none;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data ul.names li a {font:normal 13px Arial; color:white; text-decoration:none;}
+
+div#content_upload ul.options_join li.option.active div.content_join_data div.data span.bottom {float:left; width:215px; height:7px; background:url('../images/upload/bottom_scrollable_data.png') no-repeat 0 0;}
+
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data {float:left; background:url('../images/upload/summarize_data.png') no-repeat 0 0; width:453px; height:105px; margin:18px 0 0 24px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.left {float:left; width:107px; height:98px; margin:1px 0 0 10px;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.left p.percent {float:left; text-align:center; margin:22px 0 0 0; font:600 41px "Myriad Pro"; color:#FF6600; width:100%;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.left p.step {text-align:center; font:600 15px "Myriad Pro"; color:#959595; margin:2px 0 0 0; width:99px; line-height:1px;}
+
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.right {float:right; width:315px; height:auto; margin:17px 16px 0 0;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.right p.title_message {float:left; font:600 13px "Myriad Pro"; color:#FF6600;}                                                                                                                                                                             
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.right p.message {float:left; font:normal 13px Arial; color:#929292; width:298px;}                                                                                                                                                                             
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.right a.open_window {float:left; font:normal 11px Arial; color:#666666; text-decoration:underline; width:282px; margin:5px 0 0 0;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.right a.open_window:hover {cursor:pointer; color:#333333;}
+
+div#content_upload ul.options_join li.option.active span.bottom {float:left; width:499px; height:11px; background:url('../images/upload/bottom_join_data.png') no-repeat 0 0;}
+
+
 
 /*RIGHT*/
 div#content_upload div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}
-
 
 /* footer */
 div#outer_footer{float:left; width:100%; margin:0 auto; background:url('../images/common/bkg_footer_repeated.png'); position:relative;}

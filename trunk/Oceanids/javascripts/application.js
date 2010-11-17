@@ -8,6 +8,10 @@ $(document).ready(function() {
 	if (($('div.data_results')!= null)&&($('div.data_results')[0])){
 		$('ul.data').jScrollPane();
 	}
+
+	if (($('ul.data_scrollable')!= null)&&($('ul.data_scrollable')[0])){
+		$('ul.data_scrollable').jScrollPane();
+	}
 	
 	// -- HOME
 	// show upload options - URL
