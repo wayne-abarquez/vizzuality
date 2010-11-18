@@ -470,7 +470,7 @@ div#content_layer_detail div.content div.right a.download_bttn div.text {float:l
 div#content_layer_detail div.content div.right a.download_bttn p.kind_data {float:left; font-weight:600; font-size:15px; color:#FF6600; width:100%;}
 div#content_layer_detail div.content div.right a.download_bttn p.examples {float:left; font:normal 11px Arial; width:100%; color:#999999; margin:0; line-height:10px;}
 div#content_layer_detail div.content div.right ul.other_formats {float:left; width:220px; height:auto; margin:6px 0 0 0;}
-div#content_layer_detail div.content div.right ul.other_formats li {float:left; background:url('../images/layer/content_other_bkg.png') repeat-y 0; width:186px; height:auto; padding:0 17px;}
+div#content_layer_detail div.content div.right ul.other_formats li {float:left; background:url('../images/layer/content_other_bkg.png') repeat-y 0; width:192px; height:auto; padding:0 14px;}
 div#content_layer_detail div.content div.right ul.other_formats li p.title {font-weight:600; font-size:13px; color:#666666; width:100%; margin:7px 0 0 0;}
 div#content_layer_detail div.content div.right ul.other_formats li a {float:left; font:normal 13px Arial; color:#FF6600; text-decoration:none;}
 div#content_layer_detail div.content div.right ul.other_formats li a:hover {text-decoration:underline;}
