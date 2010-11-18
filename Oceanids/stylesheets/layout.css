@@ -23,7 +23,7 @@ div#header {float:left; width:949px; height:70px; margin:40px 0 0 57px;}
 div#header img.grid_logo {width:84px; height:30px;}
 div#header div.menu {width:650px; height:90px;}
 div#header div.menu ul {float:left; width:100%; height:30px;}
-div#header div.menu ul li {float:left; margin:6px 25px 0 0;}
+div#header div.menu ul li {float:left; margin:7px 25px 0 0;}
 div#header div.menu ul li a {font-weight:600; font-size:13px; color:white; text-transform:uppercase;}
 div#header div.menu ul li a:hover {border-bottom:1px dotted white;}
 div#header div.menu ul li.selected a {color:#A7C9E0;}
@@ -67,11 +67,11 @@ div#content div.data_sets div.content ul.datasets li div.suboptions {position:ab
 div#content div.data_sets div.content ul.datasets li div.suboptions span.top {float:left; height:38px; width:212px; background:url('../images/home/subdatasets/top_category.png') no-repeat 0 0;}
 div#content div.data_sets div.content ul.datasets li div.suboptions span.top a {float:left; font:bold 15px Arial; color:#666666; margin:13px 0 0 15px; text-decoration:none;}
 div#content div.data_sets div.content ul.datasets li div.suboptions span.top a:hover {text-decoration:underline;}
-div#content div.data_sets div.content ul.datasets li div.suboptions ul.content {float:left; width:212px; background:url('../images/home/subdatasets/content_category.png') repeat-y 0; height:auto;}
-div#content div.data_sets div.content ul.datasets li div.suboptions ul.content li {float:left; margin:0 0 0 16px; width:184px;}
-div#content div.data_sets div.content ul.datasets li div.suboptions ul.content p.calibri {float:left; font:normal 15px "Calibri"; color:#999999; margin:0 0 0 5px; }
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content {float:left; width:212px; background:url('../images/home/subdatasets/content_category.png') repeat-y 0; height:auto; padding:3px 0;}
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content li {float:left; margin:1px 0 0 16px; width:184px;}
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content p  {float:left; font:normal 15px "Calibri"; color:#999999; margin:2px 0 0 5px; }
 div#content div.data_sets div.content ul.datasets li div.suboptions ul.content a{float:left; text-decoration:none; color:#FF6600; margin:0; line-height:23px;}
-div#content div.data_sets div.content ul.datasets li div.suboptions ul.content a:hover {text-decoration:underline;}
+div#content div.data_sets div.content ul.datasets li div.suboptions ul.content a:hover {text-decoration:underline; cursor:pointer;}
 
 div#content div.data_sets div.content ul.datasets li div.suboptions span.bottom {float:left; height:10px; width:212px; background:url('../images/home/subdatasets/bottom_category.png') no-repeat 0 0;}
 
@@ -83,11 +83,12 @@ div#content div.data_sets div.content div.right p.title {float:left; font-weight
 div#content div.data_sets div.content div.right ul.maps {float:left; width:222px; height:auto; margin:5px 0 0 0;}  
 div#content div.data_sets div.content div.right ul.maps li {float:left; width:222px; height:57px; margin:10px 0 0 0;}
 div#content div.data_sets div.content div.right ul.maps li div.bkg_map {float:left; margin:0 10px 0 0; background:url('../images/home/bkg_acount_map.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
-div#content div.data_sets div.content div.right ul.maps li div.bkg_map p {float:left; width:47px; height:auto; font-weight:normal; font-size:15px; color:#666666; text-shadow:0 1px white; margin:16px 0 0 0; line-height:16px;}
-div#content div.data_sets div.content div.right ul.maps li p.map_name {float:left; width:150px; height:18px; font-weight:600; font-size:15px; color:#666666;} /*600 is font-weight:semibold*/
+div#content div.data_sets div.content div.right ul.maps li div.bkg_map p {float:left; width:47px; height:auto; font-weight:normal; font-size:15px; color:#666666; text-shadow:0 1px white; margin:17px 0 0 0; line-height:17px; }
+div#content div.data_sets div.content div.right ul.maps li a.map_name {float:left; width:150px; height:18px; font-weight:600; font-size:15px; color:#666666; text-decoration:none;} 
+div#content div.data_sets div.content div.right ul.maps li a.map_name:hover {text-decoration:underline; cursor:pointer;} 
 div#content div.data_sets div.content div.right ul.maps li p.by_ago {float:left; width:150px; height:19px; font:normal 13px Arial; color:#999999;}
-div#content div.data_sets div.content div.right ul.maps li a {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
-div#content div.data_sets div.content div.right ul.maps li a:hover {color:#333333;}
+div#content div.data_sets div.content div.right ul.maps li a.links {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
+div#content div.data_sets div.content div.right ul.maps li a.links:hover {color:#333333;}
 
 
 /* FOOTER_INFO */
@@ -155,7 +156,7 @@ div.data_sets_footer div.content div.right ul.library {float:left; width:222px; 
 div.data_sets_footer div.content div.right ul.library li {float:left; width:222px; height:57px; margin:10px 0 0 0;}
 div.data_sets_footer div.content div.right ul.library li div.bkg_library {float:left; margin:0 7px 0 0; background:url('../images/home/bkg_library_info.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
 div.data_sets_footer div.content div.right ul.library li a.library_name {float:left; width:163px; height:18px; font-weight:600; font-size:15px; color:#333333; text-decoration:none;}
-div.data_sets_footer div.content div.right ul.library li a.library_name:hover {/*cursor:pointer; text-decoration:underline;*/}
+div.data_sets_footer div.content div.right ul.library li a.library_name:hover {cursor:pointer; text-decoration:underline;}
 div.data_sets_footer div.content div.right ul.library li p.by_ago {float:left; width:160px; height:19px; font:normal 13px Arial; color:#666666;}
 div.data_sets_footer div.content div.right ul.library li a.link {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
 div.data_sets_footer div.content div.right ul.library li a.link:hover {color:#333333;}
@@ -493,21 +494,21 @@ div#content_upload ul.upload_process li.active p {color:#666666;}
 div#content_upload ul.upload_process li.active {background-color:#666666;} 
 div#content_upload p.info {float:left; margin:27px 0 0 0; font:normal 15px Arial; color:#666666;}
 div#content_upload p.info.review {margin:17px 0 0 0;}
-div#content_upload div.choice {float:left; margin:27px 0 0 0;}
+div#content_upload div.choice {float:left; margin:18px 0 0 0;}
 
 
 div#content_upload div.choice div.use_existing.active {float:left; background:url('../images/upload/bkg_use_existing.png') no-repeat 0 0; width:480px; height:38px; padding:16px 0 0 19px;}
 div#content_upload div.choice div.use_existing.active a.combo {float:left; background:url('../images/common/combo_activated_dark.png'); width:12px; height:12px; margin:5px 5px 0 0;}
 div#content_upload div.choice div.use_existing.active p.title {float:left; font-weight:600; font-size:17px; color:#333333; width:auto; height:auto; margin:0;}
 
-div#content_upload div.choice div.join_boundary {float:left; margin:10px 0 0 0; height:auto; width:499px;}  
-div#content_upload div.choice div.join_boundary span.top {float:left; width:499px; height:9px; background:url('../images/upload/bkg_join_top.png') no-repeat 0 0; margin:0;}
-div#content_upload div.choice div.join_boundary div.content_join {float:left; width:480px; height:auto; background:url('../images/upload/bkg_join_content.png') repeat-y 0; margin:0;  padding:9px 0 10px 19px;}
-div#content_upload div.choice div.join_boundary div.content_join a.combo {float:left; margin:5px 5px 0 0; background:url('../images/common/combo_desactivated_dark.png') no-repeat 0 0; width:12px; height:12px; }
-div#content_upload div.choice div.join_boundary div.content_join a.combo:hover {cursor:pointer;}
-div#content_upload div.choice div.join_boundary div.content_join p.title {float:left; font-weight:600; font-size:17px; color:#333333; width:auto; height:auto; margin:0; padding:0;}
-div#content_upload div.choice div.join_boundary div.content_join p.info {float:left; font:normal 15px Arial; color:#666666; width:428px; height:auto; margin:5px 0 0 16px; padding:0 0 3px 0;} 
-div#content_upload div.choice div.join_boundary span.bottom {float:left; width:499px; height:9px; background:url('../images/upload/bkg_join_bottom.png') no-repeat 0 0; margin:0;}
+div#content_upload div.choice div.use_existing {float:left; margin:10px 0 0 0; height:auto; width:499px;}  
+div#content_upload div.choice div.use_existing span.top {float:left; width:499px; height:9px; background:url('../images/upload/bkg_join_top.png') no-repeat 0 0; margin:0;}
+div#content_upload div.choice div.use_existing div.content_join {float:left; width:480px; height:auto; background:url('../images/upload/bkg_join_content.png') repeat-y 0; margin:0;  padding:9px 0 10px 19px;}
+div#content_upload div.choice div.use_existing div.content_join a.combo {float:left; margin:5px 5px 0 0; background:url('../images/common/combo_desactivated_dark.png') no-repeat 0 0; width:12px; height:12px; }
+div#content_upload div.choice div.use_existing div.content_join a.combo:hover {cursor:pointer;}
+div#content_upload div.choice div.use_existing div.content_join p.title {float:left; font-weight:600; font-size:17px; color:#333333; width:auto; height:auto; margin:0; padding:0;}
+div#content_upload div.choice div.use_existing div.content_join p.info {float:left; font:normal 15px Arial; color:#666666; width:428px; height:auto; margin:5px 0 0 16px; padding:0 0 3px 0;} 
+div#content_upload div.choice div.use_existing span.bottom {float:left; width:499px; height:9px; background:url('../images/upload/bkg_join_bottom.png') no-repeat 0 0; margin:0;}
 
 
 
