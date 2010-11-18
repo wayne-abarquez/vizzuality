@@ -1,23 +1,8 @@
 $(document).ready(function() {
 
 	// FONTS	
-	
-	// Cufon.replace('.myriad', {fontFamily: 'Myriad Pro', fontWeight:'normal'});
-	// Cufon.replace('.myriad', {fontFamily: 'Myriad Pro', fontWeight:'bold'});
-	// 
-	// Cufon.replace('.myriad b', {fontFamily: 'Myriad Pro', fontWeight:'bold'});
-	// 
-	// if ($('h1.myriad_home_shadow')[0]){
-	// 	Cufon.replace('h1.myriad_home_shadow', {fontFamily: 'Myriad Pro', fontWeight:'bold',textShadow:'0px 0px 30px rgba(0,0,0,0.6)'}); 
-	// }
-	// if ($('h3.myriad_home_shadow')[0]){
-	// 	Cufon.replace('h3.myriad_home_shadow', {fontFamily: 'Myriad Pro', fontWeight:'normal',textShadow:'0px 0px 30px rgba(0,0,0,0.6)'}); 
-	// }
-	
 	Cufon.replace('.calibri', {fontFamily: 'Calibri'});
-
 	Cufon.replace('.calibri_criteria', {fontFamily: 'Calibri',hover: {color: 'white'}});
-
 
 	
 	if (($('div.data_results')!= null)&&($('div.data_results')[0])){
@@ -173,6 +158,32 @@ $(document).ready(function() {
 			}		
 		});
 	}
+	
+	// UPLOAD JOIN
+	if (($('.data_scrollable')!=null)&&($('.data_scrollable')[0])){
+
+		$('ul#your_boundaries_data').find('li').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			
+			if (!$(this).hasClass('active')){
+				$('ul#your_boundaries_data').find('li.active').removeClass('active');
+				$(this).addClass('active');
+			}			
+		});
+		
+		$('ul#boundaries_data').find('li').click(function(ev){
+			ev.stopPropagation();
+			ev.preventDefault();
+			
+			if (!$(this).hasClass('active')){
+				$('ul#boundaries_data').find('li.active').removeClass('active');
+				$(this).addClass('active');
+			}			
+		});
+		
+	}
+	
 });
 
 function importUrl() {
