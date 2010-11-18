@@ -154,10 +154,11 @@ div.data_sets_footer div.content div.right p.title {float:left; font-weight:600;
 div.data_sets_footer div.content div.right ul.library {float:left; width:222px; height:auto; margin:5px 0 0 0;}  
 div.data_sets_footer div.content div.right ul.library li {float:left; width:222px; height:57px; margin:10px 0 0 0;}
 div.data_sets_footer div.content div.right ul.library li div.bkg_library {float:left; margin:0 7px 0 0; background:url('../images/home/bkg_library_info.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
-div.data_sets_footer div.content div.right ul.library li p.library_name {float:left; width:163px; height:18px; font-weight:600; font-size:15px; color:#333333;}
+div.data_sets_footer div.content div.right ul.library li a.library_name {float:left; width:163px; height:18px; font-weight:600; font-size:15px; color:#333333; text-decoration:none;}
+div.data_sets_footer div.content div.right ul.library li a.library_name:hover {/*cursor:pointer; text-decoration:underline;*/}
 div.data_sets_footer div.content div.right ul.library li p.by_ago {float:left; width:160px; height:19px; font:normal 13px Arial; color:#666666;}
-div.data_sets_footer div.content div.right ul.library li a {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
-div.data_sets_footer div.content div.right ul.library li a:hover {color:#333333;}
+div.data_sets_footer div.content div.right ul.library li a.link {float:left; width:auto; margin:0 10px 0 0; font:normal 11px Arial; color:#666666; text-decoration:underline;}
+div.data_sets_footer div.content div.right ul.library li a.link:hover {color:#333333;}
 div.data_sets_footer div.content div.right a.view_all {float:right; font:normal 13px Arial; color:#FF6600; width:auto; margin:15px 10px 0 0;}
 div.data_sets_footer div.content div.right a.view_all:hover {text-decoration:underline;}
 
@@ -493,6 +494,8 @@ div#content_upload ul.upload_process li.active {background-color:#666666;}
 div#content_upload p.info {float:left; margin:27px 0 0 0; font:normal 15px Arial; color:#666666;}
 div#content_upload p.info.review {margin:17px 0 0 0;}
 div#content_upload div.choice {float:left; margin:27px 0 0 0;}
+
+
 div#content_upload div.choice div.use_existing.active {float:left; background:url('../images/upload/bkg_use_existing.png') no-repeat 0 0; width:480px; height:38px; padding:16px 0 0 19px;}
 div#content_upload div.choice div.use_existing.active a.combo {float:left; background:url('../images/common/combo_activated_dark.png'); width:12px; height:12px; margin:5px 5px 0 0;}
 div#content_upload div.choice div.use_existing.active p.title {float:left; font-weight:600; font-size:17px; color:#333333; width:auto; height:auto; margin:0;}
@@ -505,6 +508,8 @@ div#content_upload div.choice div.join_boundary div.content_join a.combo:hover {
 div#content_upload div.choice div.join_boundary div.content_join p.title {float:left; font-weight:600; font-size:17px; color:#333333; width:auto; height:auto; margin:0; padding:0;}
 div#content_upload div.choice div.join_boundary div.content_join p.info {float:left; font:normal 15px Arial; color:#666666; width:428px; height:auto; margin:5px 0 0 16px; padding:0 0 3px 0;} 
 div#content_upload div.choice div.join_boundary span.bottom {float:left; width:499px; height:9px; background:url('../images/upload/bkg_join_bottom.png') no-repeat 0 0; margin:0;}
+
+
 
 div#content_upload a.save_continue {float:right; margin:30px 0 0 0; background:url('../images/upload/save_continue_bttn.png') no-repeat 0 0; width:172px; height:34px;}
 div#content_upload a.save_continue:hover {cursor:pointer; background-position:0 -34px;}

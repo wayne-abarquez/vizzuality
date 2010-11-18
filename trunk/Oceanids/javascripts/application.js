@@ -180,8 +180,13 @@ $(document).ready(function() {
 				$('ul#boundaries_data').find('li.active').removeClass('active');
 				$(this).addClass('active');
 			}			
+		});		
+	}
+	
+	if (($('div#content_upload div.choice div.use_existing.active')!=null)&&($('div#content_upload div.choice div.use_existing.active')[0])){
+		$('div#content_upload div.choice div.use_existing.active').find('a.combo').click(function(ev){
+			
 		});
-		
 	}
 	
 });
