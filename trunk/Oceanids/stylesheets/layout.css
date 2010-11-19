@@ -401,7 +401,7 @@ div#content_profile div.right ul.your_library li {float:left; width:222px; heigh
 div#content_profile div.right ul.your_library li div.maps_amount {float:left; margin:0 10px 0 0; background:url('../images/profile/bkg_your_maps.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
 div#content_profile div.right ul.your_library li div.layers_amount {float:left; margin:0 10px 0 0; background:url('../images/profile/bkg_your_layers.png') no-repeat 0 0; width:52px; height:52px; text-align:center;}
 
-div#content_profile div.right ul.your_library li div p {float:left; width:51px; height:auto; font-weight:600; font-size:25px; color:#666666; text-shadow:0 1px white; margin:16px 0 0 0; line-height:16px;}
+div#content_profile div.right ul.your_library li div p {float:left; width:51px; height:auto; font-weight:600; font-size:25px; color:#666666; text-shadow:0 1px white; margin:17px 0 0 0; line-height:17px;}
 div#content_profile div.right ul.your_library li p.concept {float:left; width:150px; height:18px; font:normal 19px "Arial"; color:#666666; margin:4px 0 0 0;}
 div#content_profile div.right ul.your_library li a {float:left; width:auto; margin:5px 10px 0 0; font:normal 13px Arial; color:#FF6600; text-decoration:none;}
 div#content_profile div.right ul.your_library li a:hover {text-decoration:underline;}
