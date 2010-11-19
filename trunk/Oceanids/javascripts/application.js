@@ -220,6 +220,15 @@ $(document).ready(function() {
 			$(this).parent().css('display','none');
 		})
 	}
+	
+	if (($('div.choice div.use_existing')!=null)&&($('div.choice div.use_existing')[0])){
+		$('div.choice div.use_existing').find('a.combo').click(function(ev){
+			if (!$(this).parent().parent().hasClass('active')){
+				$('div.choice div.use_existing.active').removeClass('active');
+				$(this).parent().parent().addClass('active');
+			}
+		});
+	}
 });
 
 function importUrl() {
