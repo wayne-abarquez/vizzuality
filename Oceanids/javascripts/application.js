@@ -188,7 +188,13 @@ $(document).ready(function() {
 			
 		});
 	}
-	
+
+
+	if (($('div.description_attributes')!=null)&&($('div.description_attributes')[0])){
+		$('a.remove').click(function(ev){
+			$(this).parent().css('display','none');
+		});
+	} 
 });
 
 function importUrl() {
