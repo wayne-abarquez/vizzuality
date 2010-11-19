@@ -66,7 +66,7 @@ div#content div.data_sets div.content ul.datasets li a:hover {text-decoration:un
 div#content div.data_sets div.content ul.datasets li div.suboptions {position:absolute; top:-12px; left:-12px; width:212px; height:auto; z-index:5; display:none;}
 div#content div.data_sets div.content ul.datasets li div.suboptions span.top {float:left; height:38px; width:212px; background:url('../images/home/subdatasets/top_category.png') no-repeat 0 0;}
 div#content div.data_sets div.content ul.datasets li div.suboptions span.top a {float:left; font:bold 15px Arial; color:#666666; margin:13px 0 0 15px; text-decoration:none;}
-div#content div.data_sets div.content ul.datasets li div.suboptions span.top a:hover {text-decoration:underline;}
+div#content div.data_sets div.content ul.datasets li div.suboptions span.top a:hover {text-decoration:underline; cursor:pointer;}
 div#content div.data_sets div.content ul.datasets li div.suboptions ul.content {float:left; width:212px; background:url('../images/home/subdatasets/content_category.png') repeat-y 0; height:auto; padding:3px 0;}
 div#content div.data_sets div.content ul.datasets li div.suboptions ul.content li {float:left; margin:1px 0 0 16px; width:184px;}
 div#content div.data_sets div.content ul.datasets li div.suboptions ul.content p  {float:left; font:normal 15px "Calibri"; color:#999999; margin:2px 0 0 5px; }
@@ -485,11 +485,28 @@ div#content_upload span.bottom_content {float:left; background:url('../images/up
 div#content_upload div.content {float:left; background:url('../images/upload/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0; min-height:577px;}
 div#content_upload div.content.review {min-height:539px;}
 div#content_upload div.content.join {min-height:900px;}
+div#content_upload div.content.describe {min-height:539px; padding:0;}
+div#content_upload div.content.describe div.section {float:left; margin:0 11px; width:841px; height:auto; padding:0 0 25px 0;}
+div#content_upload div.content.describe div.section span.line_section {float:left; height:1px; width:841px; background:url('../images/review/line_section.png') no-repeat 0 0;}
+div#content_upload div.content.describe div.section div.left {float:left; margin:15px 0 0 30px; width:499px; height:auto;}
+div#content_upload div.content.describe div.section div.right {float:right; width:255px;}
+
+div#content_upload div.content.describe div.section div.left.section {margin:0 0 0 25px;}
+div#content_upload div.content.describe div.section div.left.section div.option {float:left; width:499px; margin:15px 0 0 15px;}
+div#content_upload div.content.describe div.section div.left.section div.option a.combo {float:left; width:12px; height:12px; background:url('../images/review/combo_desactivated.png') no-repeat 0 0; margin:1px 5px 0 0;}
+div#content_upload div.content.describe div.section div.left.section div.option p.info_option {float:left; margin:0; width:350px; font:normal 13px Arial; color:#666666;}
+div#content_upload div.content.describe div.section div.right.section {float:right; margin:30px 11px 0 45px; width:240px;}
+
+
+
+div#content_upload div.content.describe div.right p.message {float:left; font:normal 13px Arial; color:#999999; width:216px; height:auto;}
+div#content_upload div.content.describe div.right p.message {float:left; font:normal 13px Arial; color:#999999; width:216px; height:auto;}
+
 
 div#content_upload ul.upload_process {float:left; width:500px; height:3px; background:url('../images/upload/bkg_ul_process.png') no-repeat 0 0; margin:41px 0 0 0;}
 div#content_upload ul.upload_process li {float:left; width:125px; height:3px; position:relative;}
 div#content_upload ul.upload_process li.map {float:left; width:124px; height:3px; position:relative; margin:0 0 0 1px;}
-div#content_upload ul.upload_process li p {font-weight:600; font-size:13px; color:#DADADA; position:absolute; left:0; bottom:10px; text-transform:uppercase;}
+div#content_upload ul.upload_process li p {font-weight:600; font-size:13px; color:#DADADA; position:absolute; left:0; bottom:8px; text-transform:uppercase;}
 div#content_upload ul.upload_process li.active p {color:#666666;}
 div#content_upload ul.upload_process li.active {background-color:#666666;} 
 div#content_upload p.info {float:left; margin:27px 0 0 0; font:normal 15px Arial; color:#666666;}
@@ -509,8 +526,6 @@ div#content_upload div.choice div.use_existing div.content_join a.combo:hover {c
 div#content_upload div.choice div.use_existing div.content_join p.title {float:left; font-weight:600; font-size:17px; color:#333333; width:auto; height:auto; margin:0; padding:0;}
 div#content_upload div.choice div.use_existing div.content_join p.info {float:left; font:normal 15px Arial; color:#666666; width:428px; height:auto; margin:5px 0 0 16px; padding:0 0 3px 0;} 
 div#content_upload div.choice div.use_existing span.bottom {float:left; width:499px; height:9px; background:url('../images/upload/bkg_join_bottom.png') no-repeat 0 0; margin:0;}
-
-
 
 div#content_upload a.save_continue {float:right; margin:30px 0 0 0; background:url('../images/upload/save_continue_bttn.png') no-repeat 0 0; width:172px; height:34px;}
 div#content_upload a.save_continue:hover {cursor:pointer; background-position:0 -34px;}
@@ -611,8 +626,39 @@ div#content_upload ul.options_join li.option.active div.content_join_data div.su
 div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.right a.open_window:hover {cursor:pointer; color:#333333;}
 
 div#content_upload ul.options_join li.option.active span.bottom {float:left; width:499px; height:11px; background:url('../images/upload/bottom_join_data.png') no-repeat 0 0;}
+/* DESCRIBE */
 
+div#content_upload form.content_review {float:left; width:100%; margin:0;}
+div#content_upload p.tittle_kind_data {float:left; font-weight:600; font-size:13px; text-transform:uppercase; color:#333333; width:100%; margin:30px 0 0 0;}
+div#content_upload p.concept_describe {float:left; width:100%; font:normal 13px Arial; color:#666666; width:100%; margin:15px 0 0 0;}
+div#content_upload form.content_review span {float:left; margin:5px 0 0 0; position:relative;}
+div#content_upload form.content_review span input{border:none;}
+div#content_upload form.content_review span.input_single {float:left; width:501px; height:33px; background:url('../images/review/input_single_line.png') no-repeat 0 0;}
+div#content_upload form.content_review span.input_single input[type="text"]{position:absolute; top:6px; left:7px; width:487px; height:20px; font:normal 13px Arial; color:#666666; }
+div#content_upload form.content_review span.input_multiple {float:left; width:501px; height:73px; background:url('../images/review/input_multiple_line.png') no-repeat 0 0; margin:5px 0 0 0;}
+div#content_upload form.content_review span.input_multiple textarea{position:absolute; top:6px; left:7px; width:487px; height:59px; font:normal 13px Arial; color:#666666; border:none;}
 
+div#content_upload form.content_review span.input_short {float:left; width:158px; height:33px; background:url('../images/review/input_short.png') no-repeat 0 0; margin:5px 0 0 0;}
+div#content_upload form.content_review span.input_short input[type="text"]{position:absolute; top:6px; left:7px; width:143px; height:19px; font:normal 13px Arial; color:#666666;}
+div#content_upload form.content_review p.info_message {float:left; width:330px; height:auto; color:#999999; font:normal 13px Arial; margin:6px 0 0 11px;}
+div#content_upload form.content_review div.description_attributes {float:left; width:499px; margin:10px 0 0 0; height:auto;}
+div#content_upload form.content_review div.description_attributes span.top {float:left; width:499px; height:38px; background:url('../images/review/head_description.png') no-repeat 0 0;}
+div#content_upload form.content_review div.description_attributes div.content_description {float:left; width:499px; height:auto; background:url('../images/review/content_description.png') repeat-y 0; padding:0;}
+
+div#content_upload form.content_review div.description_attributes div.content_description ul {float:left; width:499px;}
+div#content_upload form.content_review div.description_attributes div.content_description ul li {float:left; width:490px; height:auto; padding:10px 0 0 10px; border-bottom:1px solid #DADFE3; margin:0; border-top:1px solid white; height:120px;}
+div#content_upload form.content_review div.description_attributes div.content_description ul li.first {border-top:none;}
+div#content_upload form.content_review div.description_attributes div.content_description ul li.last {border-bottom:none;}
+
+div#content_upload form.content_review div.description_attributes div.content_description span.single {float:left; width:148px; height:33px; background:url('../images/review/single_input_descript.png') no-repeat 0 0; position:relative; margin:0;}
+div#content_upload form.content_review div.description_attributes div.content_description span.single input[type="text"]{position:absolute; width:140px; height:21px; font:normal 15px Arial; color:#666666; border:none; top:6px; left:5px;}
+
+div#content_upload form.content_review div.description_attributes div.content_description span.multiple {float:left; width:325px; height:73px; background:url('../images/review/multiple_input_descript.png') no-repeat 0 0; position:relative; margin:0 0 0 8px;}
+div#content_upload form.content_review div.description_attributes div.content_description span.multiple textarea {position:absolute; width:310px; height:56px; font:normal 15px Arial; color:#666666; border:none; top:7px; left:7px;}
+div#content_upload form.content_review div.description_attributes div.content_description span.multiple a.remove {float:right; margin:78px 0 0 0; text-decoration:underline; color:#666666; font:normal 13px Arial;}
+div#content_upload form.content_review div.description_attributes div.content_description span.multiple a.remove:hover {cursor:pointer; color:#333333;}
+
+div#content_upload form.content_review div.description_attributes span.bottom {float:left; width:499px; height:3px; background:url('../images/review/bottom_description.png') no-repeat 0 0; margin:0;}
 
 /*RIGHT*/
 div#content_upload div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}
