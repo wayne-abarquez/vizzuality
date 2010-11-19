@@ -41,20 +41,31 @@ $(document).ready(function() {
 	}
 	
 	if (($('ul.datasets li')!=null) && ($('ul.datasets li')[0])){
-		$('ul.datasets li').find('a#category').click(function(ev){
+		$('ul.datasets li').find('a.element').click(function(ev){		
 			ev.stopPropagation();
 			ev.preventDefault();
-
 			$(this).parent().find('div.suboptions').fadeIn();
+			
+			$(document).click(function(event) {
+				
+					if (!$(event.target).closest('div.suboptions').length) {
+						$('div.suboptions').fadeOut();
+						$(document).unbind('click');
+					};
+			});
+			
 		});
 
-		$('ul.datasets li').find('div.suboptions').find('span.top a').click(function(ev){
+		$('ul.datasets li').find('div.suboptions').find('span.top a').click(function(ev){	
 			ev.stopPropagation();
 			ev.preventDefault();
-
 			$(this).parent().parent().fadeOut();
+			$('body').unbind('click');
 		});		
 	}
+	
+	
+	
 	
 	 if (($('a.data_type')!=null)&&($('a.data_type')[0])) {
 		$('a.data_type').click(function(e){
@@ -68,7 +79,7 @@ $(document).ready(function() {
 				$(this).addClass('displayed');
 				$(this).parent().children('ul').fadeIn('fast');
 			}			
-		});		
+		});
 	}
 	
 	// if 	(($('div#your_layers_content')!=null)&&($('div#your_layers_content')[0])) {
@@ -191,13 +202,19 @@ $(document).ready(function() {
 			if (!$(this).hasClass('active')){
 				$('ul#boundaries_data').find('li.active').removeClass('active');
 				$(this).addClass('active');
-			}			
-		});		
+			}
+		});
 	}
 	
 	if (($('div#content_upload div.choice div.use_existing.active')!=null)&&($('div#content_upload div.choice div.use_existing.active')[0])){
 		$('div#content_upload div.choice div.use_existing.active').find('a.combo').click(function(ev){
-			
+
+			$(document).click(function(event) {
+				if (!$(event.target).closest('div.suboptions').length) {
+					$('div.suboptions').fadeOut();
+					$(document).unbind('click');
+				};
+			});
 		});
 	}
 
@@ -241,6 +258,18 @@ $(document).ready(function() {
 			}
 		});
 	}
+
+	if (($('div#content_upload')!=null)&&($('div#content_upload')[0])){
+
+		$('input[type="text"]').click(function() {
+			var originalValue = this.value;
+			this.value='';
+			
+			$(this).css('color','#666666');
+			$(this).css('font','normal 15px Arial');
+		});
+	}
+	
 });
 
 function importUrl() {
@@ -250,5 +279,4 @@ function importUrl() {
 	$('div#import_url').find('.input_content').css('display','none');
 	$('div#import_url').find('a.data_type').css('display','none');
 }
-
 
