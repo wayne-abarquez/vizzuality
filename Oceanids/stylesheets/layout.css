@@ -633,7 +633,8 @@ div#content_upload ul.options_join li.option.active div.content_join_data div.da
 div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable {float:left; width:196px; height:116px; overflow-y:auto; overflow-x:hidden;}
 div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li {float:left; border-bottom:1px solid #CCCCCC; width:174px; height:28px;}
 div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li:hover {background-color:#EFEFEF; cursor:pointer;}
-div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li.active {background-color:#666666;}
+div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li.active {background-color:#666666; border-bottom:1px solid #666666;}
+
 div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li a.combo {background:url('../images/upload/combo_desactivated_join.png') no-repeat 0 0; width:12px; height:12px; margin:8px 0 0 7px;}
 div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li a.combo:hover {cursor:pointer;}
 div#content_upload ul.options_join li.option.active div.content_join_data div.data div.content_data div.list_of_data ul.data_scrollable li.active a.combo {background:url('../images/upload/combo_dark_activated.png') no-repeat 0 0;}

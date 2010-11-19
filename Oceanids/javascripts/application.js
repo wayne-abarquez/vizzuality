@@ -167,6 +167,18 @@ $(document).ready(function() {
 			ev.preventDefault();
 			
 			if (!$(this).hasClass('active')){
+				
+				// To reset line colour
+				$('li').each(function(index) {
+					$(this).css('border-bottom','1px solid #CCCCCC');;
+				});
+				
+				var index = parseInt($(this).index()) - 1;
+				
+				if (index != -1) {
+					$('ul#your_boundaries_data').find('li:eq('+index+')').css('border-bottom','1px solid #666666');
+				}
+				
 				$('ul#your_boundaries_data').find('li.active').removeClass('active');
 				$(this).addClass('active');
 			}			
