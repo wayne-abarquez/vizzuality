@@ -48,9 +48,14 @@
 						</div>
 					</div>
 				</div>
+				
 				<div id="content_upload">
+
 					<span class="top_content"></span>
 					<div class="content describe">
+
+						<form class="content_review">
+
 						<div class="section">
 							<div class="left">
 								<h4>Upload new data layer</h4>
@@ -69,8 +74,6 @@
 									</li>
 								</ul>
 								<p class="info review">To make this data easy to find, organize and share, provide as much information as you can to help others make the most of this data.</p>				
-							
-								<form class="content_review">
 									<p class="tittle_kind_data myriad">BASIC DATA</p>
 									<p class="concept_describe">What should we name this data?</p>
 									<span class="input_single">
@@ -94,7 +97,10 @@
 									<p class="info_message">Type a date such as "today", "two weeks ago" or "3/24/08" and we’ll interpret it as you type.</p>
 									<p class="tittle_kind_data myriad">ATTRIBUTES AND DESCRIPTIONS</p>
 									<div class="description_attributes">
-										<span class="top"></span>
+										<span class="top">
+											<p class="attributes myriad">ATTRIBUTES</p>
+											<p class="description myriad">DESCRIPTION</p>
+										</span>
 										<div class="content_description">
 											<ul>
 												<li class="first">
@@ -119,40 +125,160 @@
 										</div>
 										<span class="bottom"></span>
 									</div>
-								</form>					
 							</div> <!-- div.left -->
 							<div class="right">
 								<h4>About this step</h4>
 								<p class="subtitle">Browse <a href="#">your datasets and maps</a></p>
 							</div>
 						</div>
-
+						<!-- ****************** END_OF_SECTION ******************* -->
+						<!-- ****************** SECTION ******************* -->
 						<div class="section">
 							<span class="line_section"></span>
 							<div class="left section">
-								<p class="tittle_kind_data myriad">WHO MAY ACCESS  THIS DATA?</p>
+								<p class="tittle_kind_data myriad">WHERE DID YOU FIND THIS DATA?</p>
 								<div class="option">
-									<a class="combo"></a><p class="info_option">Everyone can...</p>
+									<span class="top"></span>
+									<div class="content_option">
+										<a class="combo">Everyone can...</a>
+										<div class="user_access">
+											<p class="name">GRID/Arendal</p>
+											<a class="delete"></a>
+										</div>
+										<span class="input_users">
+											<input type="text" value="Enter a group to provide access" onclick="this.value=''"/>
+										</span>
+										<ul class="checks_options">
+											<li><a class="check">View</a></li><li><a class="check clicked">Download</a></li><li><a class="check">Edit</a></li>
+										</ul>
+									</div>
+									<span class="bottom"></span>									
 								</div>
-								<div class="option">
-									<a class="combo"></a><p class="info_option">Everyone can...</p>
+								
+								<div class="option active">
+									<span class="top"></span>
+									<div class="content_option">
+										<a class="combo">Only some groups can...</a>
+										<div class="user_access">
+											<p class="name">GRID/Arendal</p>
+											<a class="delete"></a>
+										</div>
+										<span class="input_users">
+											<input type="text" value="Enter a group to provide access" onclick="this.value=''"/>
+										</span>
+										<ul class="checks_options">
+											<li><a class="check">View</a></li><li><a class="check clicked">Download</a></li><li><a class="check">Edit</a></li>
+										</ul>
+									</div>
+									<span class="bottom"></span>
 								</div>
 
 								
 							</div> <!-- div.left -->
 							<div class="right section">
 								<p class="message">Here you can specify the visibility of your data layer.</p>
-								
-
 							</div>
 						</div>
+						<!-- ****************** END_OF_SECTION ******************* -->
+						<!-- ****************** SECTION ******************* -->
+						<div class="section">
+							<span class="line_section"></span>
+							<div class="left section">
+								<p class="tittle_kind_data myriad">WHERE DID YOU FIND THIS DATA?</p>
+								
+								<p class="concept_describe">Source</p>
+								<span class="input_single">
+									<input class="where" type="text" value="The full name of the organization from which this data originated." onclick="this.value=''"/>
+								</span>
 
+								<p class="concept_describe">Citation URL <span class="optional">(optional)</span></p>
+								<span class="input_single">
+									<input class="where" type="text" value="" onclick="this.value=''"/>
+								</span>
 
+								<p class="concept_describe">Citation URL <span class="optional">(optional)</span></b>
+								<span class="input_single">
+									<input class="where" type="text" value="Improve our data integrity. Provide a link to the formal metadata source" onclick="this.value=''"/>
+								</span>
 
+								
+							</div> <!-- div.left -->
+							<div class="right section">
+								<p class="message">Providing this information we improve our data and you give more credit to the data source.</p>
+							</div>
+						</div>
+						<!-- ****************** END_OF_SECTION ******************* -->
+						<!-- ****************** SECTION ******************* -->
+						<div class="section">
+							<span class="line_section"></span>
+							<div class="left section">
+								<p class="tittle_kind_data myriad">HOW WAS THIS DATA PROCESSED? <span class="optional">(OPTIONAL)</span></p>
+								
+								<p class="concept_describe">Geocoder name <span class="optional">(optional)</span></p>
+								<span class="input_single_short_diff">
+									<input class="where" type="text" value="" onclick="this.value=''"/>
+								</span>
+
+								<p class="concept_describe">Geocoder URL <span class="optional">(optional)</span></p>
+								<span class="input_single">
+									<input class="where" type="text" value="" onclick="this.value=''"/>
+								</span>
+
+								<p class="concept_describe">Processing notes <span class="optional">(optional)</span></b>
+								<span class="input_single">
+									<input class="where" type="text" value="Provide any details on how this data was processed." onclick="this.value=''"/>
+								</span>
+							</div> <!-- div.left -->
+							<div class="right section">
+								<p class="message">If you didn’t use a Geocoder, forget that fields!.</p>
+							</div>
+						</div>
+						<!-- ****************** END_OF_SECTION ******************* -->
+						<!-- ****************** SECTION ******************* -->
+						<div class="section">
+							<span class="line_section"></span>
+							<div class="left section">
+								<p class="tittle_kind_data myriad">CONTACT INFORMATION</p>
+								
+								<p class="concept_describe">Contact name</p>
+								<span class="input_single_short_diff">
+									<input class="where" type="text" value="" onclick="this.value=''"/>
+								</span>
+
+								<p class="concept_describe">Address <span class="optional">(optional)</span></p>
+								<span class="input_single">
+									<input class="where" type="text" value="" onclick="this.value=''"/>
+								</span>
+
+								<p class="concept_describe">Phone number <span class="optional">(optional)</span></p>
+								<span class="input_single_short_diff">
+									<input class="where" type="text" value="" onclick="this.value=''"/>
+								</span>
+
+							</div> <!-- div.left -->
+							<div class="right section">
+								<p class="message">If you didn’t use a Geocoder, forget that fields!.</p>
+							</div>
+						</div>						
+						<!-- ****************** END_OF_SECTION ******************* -->
+						<!-- ****************** SECTION ******************* -->
+						<div class="section">
+							<span class="line_section"></span>
+							<div class="left section">
+								<a class="save_continue"></a>
+							</div> <!-- div.left -->
+							<div class="right section">
+							</div>
+						</div>						
+						<!-- ****************** END_OF_SECTION ******************* -->
+						</form>
 					</div>
+				
+					<!-- END -->
 					<span class="bottom_content"></span>
-				</div> 	<!-- <div class="content_profile"> -->
 
+				</div> 	<!-- <div class="content_profile"> -->
+				
 			</div> <!-- layout -->
 		</div>	<!-- <div id="outer_layout"> -->
 			<div id="outer_footer">

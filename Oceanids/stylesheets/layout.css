@@ -486,22 +486,51 @@ div#content_upload div.content {float:left; background:url('../images/upload/con
 div#content_upload div.content.review {min-height:539px;}
 div#content_upload div.content.join {min-height:900px;}
 div#content_upload div.content.describe {min-height:539px; padding:0;}
-div#content_upload div.content.describe div.section {float:left; margin:0 11px; width:841px; height:auto; padding:0 0 25px 0;}
+div#content_upload div.content.describe div.section {float:left; margin:0 11px; width:841px; height:auto; padding:0 0 8px 0;}
 div#content_upload div.content.describe div.section span.line_section {float:left; height:1px; width:841px; background:url('../images/review/line_section.png') no-repeat 0 0;}
-div#content_upload div.content.describe div.section div.left {float:left; margin:15px 0 0 30px; width:499px; height:auto;}
+div#content_upload div.content.describe div.section div.left {float:left; margin:15px 0 0 30px; width:499px; height:auto; padding:0 0 15px 0;}
 div#content_upload div.content.describe div.section div.right {float:right; width:255px;}
 
-div#content_upload div.content.describe div.section div.left.section {margin:0 0 0 25px;}
-div#content_upload div.content.describe div.section div.left.section div.option {float:left; width:499px; margin:15px 0 0 15px;}
-div#content_upload div.content.describe div.section div.left.section div.option a.combo {float:left; width:12px; height:12px; background:url('../images/review/combo_desactivated.png') no-repeat 0 0; margin:1px 5px 0 0;}
-div#content_upload div.content.describe div.section div.left.section div.option p.info_option {float:left; margin:0; width:350px; font:normal 13px Arial; color:#666666;}
+div#content_upload div.content.describe div.section div.left.section {margin:0 0 0 30px;}
+div#content_upload div.content.describe div.section div.left.section div.option {float:left; width:499px; margin:15px 0 0 0;}
+div#content_upload div.content.describe div.section div.left.section div.option a.combo {float:left; height:15px; background:url('../images/review/combo_desactivated.png') no-repeat 0 2px; margin:1px 5px 0 15px; width:350px; font:normal 13px Arial; color:#666666; padding:0 0 0 16px;}
+div#content_upload div.content.describe div.section div.left.section div.option a.combo:hover {cursor:pointer;}
 div#content_upload div.content.describe div.section div.right.section {float:right; margin:30px 11px 0 45px; width:240px;}
+div#content_upload div.content.describe div.section div.left.section div.option.active {float:left; margin:15px 0 0 0;}
+div#content_upload div.content.describe div.section div.left.section div.option.active span.top {float:left; width:499px; height:6px; background:url('../images/review/top_green_box.png') no-repeat 0 0;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option {float:left; margin:0; padding:10px 0 13px 0; width:499px; height:auto; background:url('../images/review/content_green_box.png') repeat-y 0;}
 
 
+/* DIFFERENTS OPTIONS */
+div#content_upload div.content.describe div.section div.left.section div.option span.top {display:none;}
+div#content_upload div.content.describe div.section div.left.section div.option.active span.top {display:inline;}
+div#content_upload div.content.describe div.section div.left.section div.option span.bottom {display:none;}
+div#content_upload div.content.describe div.section div.left.section div.option.active span.bottom {display:inline;}
+div#content_upload div.content.describe div.section div.left.section div.option div.user_access {display:none;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.user_access {display:inline;}
+div#content_upload div.content.describe div.section div.left.section div.option span.input_users {display:none;}
+div#content_upload div.content.describe div.section div.left.section div.option.active span.input_users {display:inline;}
+div#content_upload div.content.describe div.section div.left.section div.option ul.checks_options {display:none;}
+div#content_upload div.content.describe div.section div.left.section div.option.active ul.checks_options {display:inline;}
+
+/* -- END DIFFERENTS OPTIONS */
+
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option div.user_access {float:left; margin:3px 30px; width:421px; height:28px; position:relative; background:url('../images/review/bar_deleted_option.png') no-repeat 0 0;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option div.user_access p.name {float:left; margin:7px 8px; font:normal 13px Arial; color:white; width:380px;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option div.user_access a.delete {position:absolute; top:0; right:-28px; background:url('../images/review/bar_deleted_option_right.png') no-repeat 0 0; width:28px; height:28px;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option div.user_access a.delete:hover {cursor:pointer;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option span.input_users {float:left; margin:3px 0 0 30px; background:url('../images/review/input_users_line.png') no-repeat 0 0; width:451px; height:33px; position:relative;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option span.input_users input[type="text"]{position:absolute; top:8px; left:8px; width:434px; height:18px; font:italic 13px Arial; color:#CCCCCC; border:none;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option ul.checks_options {float:left; width:449px; height:14px; margin:14px 0 0 30px;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option ul.checks_options li {float:left; width:auto; margin:0 15px 0 0;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option ul.checks_options li a.check {float:left; width:auto; height:15px; background:url('../images/review/check_box.png') no-repeat 0 0; font:normal 13px Arial; color:#666666; padding:1px 0 0 21px;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option ul.checks_options li a.check.clicked {background-position:0 -16px;}
+div#content_upload div.content.describe div.section div.left.section div.option.active div.content_option ul.checks_options li a.check:hover {cursor:pointer; color:#333333;}
+div#content_upload div.content.describe div.section div.left.section div.option.active span.bottom {float:left; width:499px; height:6px; background:url('../images/review/bottom_green_box.png') no-repeat 0 0; margin:0;}
+
+div#content_upload div.content.describe div.section div.left.section div.option.active a.combo {float:left; height:14px; background:url('../images/review/combo_activated.png') no-repeat 0 2px; margin:1px 5px 0 15px; width:350px; font:normal 13px Arial; color:#666666; padding:0 0 7px 16px;}
 
 div#content_upload div.content.describe div.right p.message {float:left; font:normal 13px Arial; color:#999999; width:216px; height:auto;}
-div#content_upload div.content.describe div.right p.message {float:left; font:normal 13px Arial; color:#999999; width:216px; height:auto;}
-
 
 div#content_upload ul.upload_process {float:left; width:500px; height:3px; background:url('../images/upload/bkg_ul_process.png') no-repeat 0 0; margin:41px 0 0 0;}
 div#content_upload ul.upload_process li {float:left; width:125px; height:3px; position:relative;}
@@ -630,11 +659,18 @@ div#content_upload ul.options_join li.option.active span.bottom {float:left; wid
 
 div#content_upload form.content_review {float:left; width:100%; margin:0;}
 div#content_upload p.tittle_kind_data {float:left; font-weight:600; font-size:13px; text-transform:uppercase; color:#333333; width:100%; margin:30px 0 0 0;}
-div#content_upload p.concept_describe {float:left; width:100%; font:normal 13px Arial; color:#666666; width:100%; margin:15px 0 0 0;}
+div#content_upload p.tittle_kind_data span.optional {color:#999999; float:none; text-transform:uppercase; font-size:11px;}
+div#content_upload p.concept_describe {float:left; font:normal 13px Arial; color:#666666; width:100%; margin:15px 0 0 0;}
+div#content_upload p.concept_describe span.optional {color:#999999; float:none;}
 div#content_upload form.content_review span {float:left; margin:5px 0 0 0; position:relative;}
 div#content_upload form.content_review span input{border:none;}
 div#content_upload form.content_review span.input_single {float:left; width:501px; height:33px; background:url('../images/review/input_single_line.png') no-repeat 0 0;}
 div#content_upload form.content_review span.input_single input[type="text"]{position:absolute; top:6px; left:7px; width:487px; height:20px; font:normal 13px Arial; color:#666666; }
+div#content_upload form.content_review span.input_single input[type="text"].where {font-style:italic; color:#CCCCCC;}
+
+div#content_upload form.content_review span.input_single_short_diff {float:left; width:244px; height:33px; background:url('../images/review/input_short_two.png') no-repeat 0 0;}
+div#content_upload form.content_review span.input_single_short_diff input[type="text"]{position:absolute; top:6px; left:7px; width:229px; height:20px; font:italic 13px Arial; color:#CCCCCC;}
+
 div#content_upload form.content_review span.input_multiple {float:left; width:501px; height:73px; background:url('../images/review/input_multiple_line.png') no-repeat 0 0; margin:5px 0 0 0;}
 div#content_upload form.content_review span.input_multiple textarea{position:absolute; top:6px; left:7px; width:487px; height:59px; font:normal 13px Arial; color:#666666; border:none;}
 
@@ -643,6 +679,9 @@ div#content_upload form.content_review span.input_short input[type="text"]{posit
 div#content_upload form.content_review p.info_message {float:left; width:330px; height:auto; color:#999999; font:normal 13px Arial; margin:6px 0 0 11px;}
 div#content_upload form.content_review div.description_attributes {float:left; width:499px; margin:10px 0 0 0; height:auto;}
 div#content_upload form.content_review div.description_attributes span.top {float:left; width:499px; height:38px; background:url('../images/review/head_description.png') no-repeat 0 0;}
+div#content_upload form.content_review div.description_attributes span.top p.attributes {float:left; margin:10px 0 0 12px; font-size:13px; font-weight:600; color:#666666; text-transform:uppercase;}
+div#content_upload form.content_review div.description_attributes span.top p.description {float:left; margin:10px 0 0 86px; font-size:13px; font-weight:600; color:#666666; text-transform:uppercase;}
+
 div#content_upload form.content_review div.description_attributes div.content_description {float:left; width:499px; height:auto; background:url('../images/review/content_description.png') repeat-y 0; padding:0;}
 
 div#content_upload form.content_review div.description_attributes div.content_description ul {float:left; width:499px;}
@@ -659,6 +698,8 @@ div#content_upload form.content_review div.description_attributes div.content_de
 div#content_upload form.content_review div.description_attributes div.content_description span.multiple a.remove:hover {cursor:pointer; color:#333333;}
 
 div#content_upload form.content_review div.description_attributes span.bottom {float:left; width:499px; height:3px; background:url('../images/review/bottom_description.png') no-repeat 0 0; margin:0;}
+
+
 
 /*RIGHT*/
 div#content_upload div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}

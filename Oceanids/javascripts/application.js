@@ -195,6 +195,31 @@ $(document).ready(function() {
 			$(this).parent().css('display','none');
 		});
 	} 
+	
+	if (($('ul.checks_options li')!=null)&&($('ul.checks_options li')!=null)){
+		$('ul.checks_options li').find('a.check').click(function(ev){
+			if (!$(this).hasClass('clicked')){
+				$(this).addClass('clicked');
+			}else{
+				$(this).removeClass('clicked');
+			}
+		});
+	}
+
+	if (($('div.option')!=null)&&($('div.option')!=null)){
+		$('div.option').find('a.combo').click(function(ev){
+			if (!$(this).parent().parent().hasClass('active')){
+				$('div.left.section').find('div.option.active').removeClass('active');
+				$(this).parent().parent().addClass('active');
+			}
+		});
+	}
+	
+	if (($('div.user_access')!=null)&&($('div.user_access')[0])){
+		$('div.user_access').find('a.delete').click(function(ev){
+			$(this).parent().css('display','none');
+		})
+	}
 });
 
 function importUrl() {
