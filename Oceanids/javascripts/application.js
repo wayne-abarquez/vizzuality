@@ -169,7 +169,7 @@ $(document).ready(function() {
 			if (!$(this).hasClass('active')){
 				
 				// To reset line colour
-				$('li').each(function(index) {
+				$('li.data_list').each(function(index) {
 					$(this).css('border-bottom','1px solid #CCCCCC');;
 				});
 				
