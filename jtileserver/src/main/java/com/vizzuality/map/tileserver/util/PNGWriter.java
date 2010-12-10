@@ -150,8 +150,11 @@ public class PNGWriter<T> implements MessageBodyWriter<T> {
 	}
 
 	private void draw(int[] rasterData, int col, int index) {
-		if (index<rasterData.length)
-			rasterData[index] = col;
+		try {
+			if (index>=0 && index<rasterData.length)
+				rasterData[index] = col;
+		} catch (RuntimeException e) {
+		}
 	}
 	
 	public long getSize(T t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
