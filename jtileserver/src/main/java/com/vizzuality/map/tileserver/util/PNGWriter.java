@@ -50,10 +50,12 @@ public class PNGWriter<T> implements MessageBodyWriter<T> {
 			
 			for (TileCluster tdc : clusters) {
 				// get the pixel offset for the X,Y in this tile
-				int offsetX = getTileOffset(tdc.getClusterX(), zoomLookAhead, pixelsPerCell);
-				int offsetY = getTileOffset(tdc.getClusterY(), zoomLookAhead, pixelsPerCell);
+				//int offsetX = getTileOffset(tdc.getClusterX(), zoomLookAhead, pixelsPerCell);
+				//int offsetY = getTileOffset(tdc.getClusterY(), zoomLookAhead, pixelsPerCell);
+				int offsetX = tdc.getClusterX();
+				int offsetY = tdc.getClusterY();
 				
-				//System.out.println("Offset x[" + offsetX + "] y[" +offsetY + "]");
+				// System.out.println("Offset x[" + offsetX + "] y[" +offsetY + "]");
 				
 				// determine the starting draw position
 				int cellStart = (offsetY*tileSize)+(offsetX);
