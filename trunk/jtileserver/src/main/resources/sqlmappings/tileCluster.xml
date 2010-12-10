@@ -8,8 +8,11 @@
 		<result column="longitude" property="longitude" />
     </resultMap>
     
-	<select id="list" parameterType="java.util.Map" resultType="LatLng" resultMap="latLngResult">
+	<!--select id="list" parameterType="java.util.Map" resultType="LatLng" resultMap="latLngResult">
         select y(ST_Transform(the_geom,4326)) as latitude,x(ST_Transform(the_geom,4326)) as longitude from points9 where the_geom &amp;&amp; v_get_tile(#{tileX},#{tileY},#{zoom}) 
+	</select-->
+	<select id="list" parameterType="java.util.Map" resultType="LatLng" resultMap="latLngResult">
+        select y(the_geom) as latitude,x(the_geom) as longitude from points9 where the_geom &amp;&amp; v_get_tile(#{tileX},#{tileY},#{zoom}) group by latitude, longitude 
 	</select>
 </mapper>
 
