@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
+  "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+	<!-- Used to reduce the verbose-ness of the configuration on each mapping -->
+    <typeAliases>
+        <typeAlias type="com.vizzuality.map.tileserver.model.TileCluster" alias="TileCluster" />
+		<typeAlias type="com.vizzuality.map.tileserver.model.LatLng" alias="LatLng"/>
+    </typeAliases>
+	<!-- This did not work in mybatis 3.0 and suspect mybatis bug
+		 Refactored to use String only and not URL -->
+	<!--typeHandlers>
+		<typeHandler handler="org.gbif.hit.web.service.impl.handler.UrlTypeHandlerCallback" javaType="java.net.URL"/>
+	</typeHandlers-->
+	<!-- TODO - remove the DB config to a properties file -->
+    <environments default="production">
+        <environment id="production">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="org.postgresql.Driver" />
+                <property name="url" value="jdbc:postgresql://localhost/tiledb?compatible=7.2" />
+				<property name="username" value="postgres"/>
+				<property name="password" value=""/>
+            </dataSource>
+        </environment>
+    </environments>
+	<!-- Add each mapping to read -->
+    <mappers>
+        <mapper resource="sqlmappings/tileCluster.xml" />
+    </mappers>
+</configuration>
