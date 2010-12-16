@@ -113,7 +113,6 @@ public class PNGWriter {
 //	        	}							
 			}
 			ts = ts("Raster drawn in", ts);
-			
 			BufferedImage bufferedImage = new BufferedImage(tileSize, tileSize, Transparency.TRANSLUCENT);
 			ts = ts("BufferedImage created in", ts);
 			WritableRaster raster = bufferedImage.getWritableTile(0,0);
@@ -136,14 +135,6 @@ public class PNGWriter {
 		} catch (RuntimeException e) {
 		}
 	}
-	
-	// works out the pixel offset for the top left corner of the cell
-	// within the tile being rendered
-	protected static int getTileOffset(int x, int zoomLookAhead, int pixelsPerCell) {
-		int cellIdInTile = x % (2 << zoomLookAhead - 1);
-		return cellIdInTile * pixelsPerCell;
-	}
-	
 	
 	// because Colors are cached internally in Java, we save MUCH time creating them first
 	// and stopping their garbage collection (300msec to create a color on macbook pro)
