@@ -34,7 +34,10 @@ div#header div.menu ul li.selected a:hover {border-bottom:1px dotted #A7C9E0;}
 div#header div.menu ul li.log_out {float:right; margin-right:100px;}
 div#header div.menu ul li.log_out a {color:#A7C9E0;}
 div#header div.menu ul li.user {margin:0; background:url('../images/common/right_clicked_down.png') no-repeat right 0; width:auto;}
+div#header div.menu ul li.user div#user_menu {display:none;}
 div#header div.menu ul li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
+div#header div.menu ul li.user.clicked div#user_menu {display:inline;}
+
 div#header div.menu ul li.user a {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
 div#header div.menu ul li.user a span {float:left; margin:0 0 0 8px; background:url('../images/common/right_user_bkg.png') no-repeat right 0; width:auto; height:22px; padding:4px 13px 0 5px; line-height:18px}
 div#header div.menu ul li.user a:hover {border-bottom:none}
