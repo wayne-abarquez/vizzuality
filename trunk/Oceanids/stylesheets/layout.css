@@ -38,6 +38,7 @@ div#header div.menu ul.main_options li.user div#user_menu {display:none;}
 div#header div.menu ul.main_options li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu {display:inline; position:absolute; top:26px; left:0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions {float:left; width:100%;}
+div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.first {height:20px;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li {background-color:#678EAA; width:100%; margin:0; padding:3px 0 0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li a {margin:0 0 0 14px; color:#A7C9E0;} 
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li a:hover {color:white; border-bottom:none;} 
@@ -52,7 +53,6 @@ div#header div.menu ul.main_options li.user a.main_option:hover {border-bottom:n
 div#title {float:left; width:973px; margin:40px 0 0 55px;}
 div#title h1 {float:left; font-weight:600; font-size:54px; color:white; width:860px; line-height:54px; text-shadow: 0px 0px 30px rgba(0,0,0,0.6); letter-spacing:-2.0px;}
 div#title h3 {float:left; font-weight:normal; font-size:21px; color:white; text-shadow:0px 0px 30px rgba(0,0,0,0.6);}
-
 
 /* ----- HOME */
 
