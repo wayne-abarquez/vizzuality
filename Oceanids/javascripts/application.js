@@ -12,17 +12,10 @@ $(document).ready(function() {
          }
       });
       
-      // console.log($(this).find('ul.suboptions').width());
-      // var padding_difference = 0;
-      // console.log(padding_difference);
-      // var width_list = $('ul.suboptions').width();
-      // console.log(width_list);
-      // var width_bottom_element = $('ul.suboptions').find('li.bottom').width();
-      // console.log(width_bottom_element);
-      // padding_difference = width_list - width_bottom_element;
-      // console.log(padding_difference);
+      var padding_difference = $('li.bottom').children('a').width() - $('li.bottom').width();
+      padding_difference += 'px' 
       
-      $('li.bottom').children('a').children('span').css('padding','0 20px 13px 9px');
+      $('li.bottom').children('a').children('span').css('padding-right',padding_difference);
 
    }
 
