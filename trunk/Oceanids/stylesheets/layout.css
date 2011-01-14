@@ -39,7 +39,7 @@ div#header div.menu ul.main_options li.user.clicked {background:url('../images/c
 div#header div.menu ul.main_options li.user.clicked div#user_menu {display:inline; position:absolute; top:26px; left:0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions {float:left; width:100%;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li {background-color:#6B95B2; width:100%; margin:0;}
-div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.bottom {height:6px; width:100%; background-color:none;}
+div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.bottom {height:6px; width:100%; background:none!important; margin:13px 0 0 0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.bottom a {background:url('../images/common/user_subopts_last_left.png') no-repeat 0 0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.bottom a span {background:url('../images/common/user_subopts_last_right.png') no-repeat right 0; width:auto; height:6px;}
 div#header div.menu ul.main_options li.user a.main_option {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
