@@ -1,4 +1,20 @@
 $(document).ready(function() {
+   
+   // SHOW SUB_MENU OPTIONS
+   if ($('li.user').length > 0){
+      $('li.user').click(function(ev){
+         ev.preventDefault();
+         ev.stopPropagation();
+         
+         if (!$(this).hasClass('clicked')){
+            $(this).addClass('clicked');   
+         }else {
+            $(this).removeClass('clicked');
+         }
+         
+      });
+      
+   }
 
 	// FONTS	
 	Cufon.replace('.calibri', {fontFamily: 'Calibri'});
