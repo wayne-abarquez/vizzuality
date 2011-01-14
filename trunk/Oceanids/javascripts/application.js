@@ -21,7 +21,8 @@ $(document).ready(function() {
       // console.log(width_bottom_element);
       // padding_difference = width_list - width_bottom_element;
       // console.log(padding_difference);
-      console.log($('ul.suboptions li.bottom').find('a').width());
+      
+      $('li.bottom').css('display','none');
 
    }
 
