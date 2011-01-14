@@ -38,9 +38,9 @@ div#header div.menu ul.main_options li.user div#user_menu {display:none;}
 div#header div.menu ul.main_options li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu {display:inline;}
 
-div#header div.menu ul.main_options li.user a {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
-div#header div.menu ul.main_options li.user a span {float:left; margin:0 0 0 8px; background:url('../images/common/right_user_bkg.png') no-repeat right 0; width:auto; height:22px; padding:4px 13px 0 5px; line-height:18px}
-div#header div.menu ul.main_options li.user a:hover {border-bottom:none}
+div#header div.menu ul.main_options li.user a.main_option {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
+div#header div.menu ul.main_options li.user a.main_option span {float:left; margin:0 0 0 8px; background:url('../images/common/right_user_bkg.png') no-repeat right 0; width:auto; height:22px; padding:4px 13px 0 5px; line-height:18px}
+div#header div.menu ul.main_options li.user a.main_option:hover {border-bottom:none}
 div#title {float:left; width:973px; margin:40px 0 0 55px;}
 div#title h1 {float:left; font-weight:600; font-size:54px; color:white; width:860px; line-height:54px; text-shadow: 0px 0px 30px rgba(0,0,0,0.6); letter-spacing:-2.0px;}
 div#title h3 {float:left; font-weight:normal; font-size:21px; color:white; text-shadow:0px 0px 30px rgba(0,0,0,0.6);}
