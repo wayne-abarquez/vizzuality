@@ -63,6 +63,7 @@ div#content div.data_sets span.top_content {float:left; background:url('../image
 div#content div.data_sets div.content {float:left; background:url('../images/home/content_body_repeaty.png') repeat-y 0 0; width:861px; height:auto; margin:0 0 0 46px; padding:9px 0 0 0;}
 div#content div.data_sets div.content div.left {float:left; margin:10px 0 0 39px; width:520px;}
 div#content div.data_sets div.content h4 {float:left; font-weight:600; font-size:25px; color:#333333; /*letter-spacing:-1.0px;*/ width:100%; }
+div#content div.data_sets div.content p.message {float:left; font-weight:normal; font-size:15px; color:#666666; margin:10px 0 0 0; width:150px; line-height:13px;}
 div#content div.data_sets div.content p.subtitle {float:left; font-weight:normal; font-size:15px; color:#666666; margin:0; width:100%; line-height:13px;}
 div#content div.data_sets div.content p.subtitle b {font-weight:600;}
 div#content div.data_sets div.content p.subtitle a {color:#FF6600; }
