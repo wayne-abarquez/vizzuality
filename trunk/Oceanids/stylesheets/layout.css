@@ -37,12 +37,12 @@ div#header div.menu ul.main_options li.user {margin:0; background:url('../images
 div#header div.menu ul.main_options li.user div#user_menu {display:none;}
 div#header div.menu ul.main_options li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu {display:inline; position:absolute; top:26px; left:0;}
-div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions {float:left; width:400px;}
+div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions {float:left; width:100%;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.first {height:2px;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li {background-color:#678EAA; width:100%; margin:0; padding:3px 0 0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li a {margin:0 0 0 14px; color:#A7C9E0;} 
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li a:hover {color:white; border-bottom:none;} 
-div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.bottom {height:6px; width:200px; background:none!important; margin:0; padding:0;}
+div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.bottom {height:6px; width:100%; background:none!important; margin:0; padding:0;}
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.bottom a {background:url('../images/common/user_subopts_last_left.png') no-repeat 0 0; padding:0 0 13px 0; margin:0; }
 div#header div.menu ul.main_options li.user.clicked div#user_menu ul.suboptions li.bottom a span {background:url('../images/common/user_subopts_last_right.png') no-repeat right 0; width:auto; height:6px; padding:0 0 13px 9px; margin:0 0 0 6px;}
 div#header div.menu ul.main_options li.user a.main_option {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
