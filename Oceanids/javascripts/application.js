@@ -14,9 +14,13 @@ $(document).ready(function() {
       });
 
       var padding_difference = 0;
+      console.log(padding_difference);
       var width_list = $('ul.suboptions').width();
+      console.log(width_list);
       var width_bottom_element = $('ul.suboptions').find('li.bottom').width();
+      console.log(width_bottom_element);
       padding_difference = width_list - width_bottom_element;
+      console.log(padding_difference);
       $('ul.suboptions li.bottom').css('padding-right',padding_difference);
 
    }
