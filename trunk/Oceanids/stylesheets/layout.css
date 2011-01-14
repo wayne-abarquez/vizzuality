@@ -25,22 +25,22 @@ div#layout {width:980px; margin:0; background:url('../images/common/bkg_body.png
 div#header {float:left; width:949px; height:70px; margin:40px 0 0 57px;}
 div#header img.grid_logo {width:84px; height:30px;}
 div#header div.menu {width:650px; height:90px;}
-div#header div.menu ul {float:left; width:100%; height:30px;}
-div#header div.menu ul li {float:left; margin:7px 25px 0 0; font-weight:600; font-size:13px; color:white;}
-div#header div.menu ul li a {font-weight:600; font-size:13px; color:white; text-transform:uppercase;}
-div#header div.menu ul li a:hover {border-bottom:1px dotted white;}
-div#header div.menu ul li.selected a {color:#A7C9E0;}
-div#header div.menu ul li.selected a:hover {border-bottom:1px dotted #A7C9E0;}
-div#header div.menu ul li.log_out {float:right; margin-right:100px;}
-div#header div.menu ul li.log_out a {color:#A7C9E0;}
-div#header div.menu ul li.user {margin:0; background:url('../images/common/right_clicked_down.png') no-repeat right 0; width:auto;}
-div#header div.menu ul li.user div#user_menu {display:none;}
-div#header div.menu ul li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
-div#header div.menu ul li.user.clicked div#user_menu {display:inline;}
+div#header div.menu ul.main_options {float:left; width:100%; height:30px;}
+div#header div.menu ul.main_options li {float:left; margin:7px 25px 0 0; font-weight:600; font-size:13px; color:white;}
+div#header div.menu ul.main_options li a {font-weight:600; font-size:13px; color:white; text-transform:uppercase;}
+div#header div.menu ul.main_options li a:hover {border-bottom:1px dotted white;}
+div#header div.menu ul.main_options li.selected a {color:#A7C9E0;}
+div#header div.menu ul.main_options li.selected a:hover {border-bottom:1px dotted #A7C9E0;}
+div#header div.menu ul.main_options li.log_out {float:right; margin-right:100px;}
+div#header div.menu ul.main_options li.log_out a {color:#A7C9E0;}
+div#header div.menu ul.main_options li.user {margin:0; background:url('../images/common/right_clicked_down.png') no-repeat right 0; width:auto;}
+div#header div.menu ul.main_options li.user div#user_menu {display:none;}
+div#header div.menu ul.main_options li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
+div#header div.menu ul.main_options li.user.clicked div#user_menu {display:inline;}
 
-div#header div.menu ul li.user a {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
-div#header div.menu ul li.user a span {float:left; margin:0 0 0 8px; background:url('../images/common/right_user_bkg.png') no-repeat right 0; width:auto; height:22px; padding:4px 13px 0 5px; line-height:18px}
-div#header div.menu ul li.user a:hover {border-bottom:none}
+div#header div.menu ul.main_options li.user a {float:left; background:url('../images/common/left_user_bkg.png') no-repeat 0 0; width:auto; height:26px; padding-right:28px;}
+div#header div.menu ul.main_options li.user a span {float:left; margin:0 0 0 8px; background:url('../images/common/right_user_bkg.png') no-repeat right 0; width:auto; height:22px; padding:4px 13px 0 5px; line-height:18px}
+div#header div.menu ul.main_options li.user a:hover {border-bottom:none}
 div#title {float:left; width:973px; margin:40px 0 0 55px;}
 div#title h1 {float:left; font-weight:600; font-size:54px; color:white; width:860px; line-height:54px; text-shadow: 0px 0px 30px rgba(0,0,0,0.6); letter-spacing:-2.0px;}
 div#title h3 {float:left; font-weight:normal; font-size:21px; color:white; text-shadow:0px 0px 30px rgba(0,0,0,0.6);}
