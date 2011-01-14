@@ -1,6 +1,5 @@
 $(document).ready(function() {
-   
-   // SHOW SUB_MENU OPTIONS
+      // SHOW SUB_MENU OPTIONS
    if ($('li.user').length > 0){
       $('li.user').click(function(ev){
          ev.preventDefault();
@@ -12,7 +11,8 @@ $(document).ready(function() {
             $(this).removeClass('clicked');
          }
       });
-
+      
+      console.log($('ul.suboptions'));
       var padding_difference = 0;
       console.log(padding_difference);
       var width_list = $('ul.suboptions').width();
