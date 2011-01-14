@@ -11,9 +11,14 @@ $(document).ready(function() {
          }else {
             $(this).removeClass('clicked');
          }
-         
       });
-      
+
+      var padding_difference = 0;
+      var width_list = $('ul.suboptions').width();
+      var width_bottom_element = $('ul.suboptions').find('li.bottom').width();
+      padding_difference = width_list - width_bottom_element;
+      $('ul.suboptions li.bottom').css('padding-right',padding_difference);
+
    }
 
 	// FONTS	
