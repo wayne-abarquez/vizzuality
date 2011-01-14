@@ -8,8 +8,15 @@ $(document).ready(function() {
          if (!$(this).parent().hasClass('clicked')){
             $(this).parent().addClass('clicked');   
          }else {
-            $(this).parent().removeClass('clicked');
+            $(this).parent().removeClass('clicked');         
          }
+
+          $(document).click(function(event) {
+            if (!$(event.target).closest('li.user').length) {
+              $('li.user.clicked').removeClass('clicked');
+            };
+          });
+         
       });
       
       var padding_difference = $('li.user').width() - $('li.bottom').width() - 70;
@@ -17,9 +24,6 @@ $(document).ready(function() {
       
       $('li.bottom').children('a').children('span').css('padding-right',padding_difference);
    }
-	// FONTS	
-   // Cufon.replace('.calibri', {fontFamily: 'Calibri'});
-   // Cufon.replace('.calibri_criteria', {fontFamily: 'Calibri',hover: {color: 'white'}});
 
 	
 	if (($('div.data_results')!= null)&&($('div.data_results')[0])){
