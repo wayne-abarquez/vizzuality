@@ -31,7 +31,7 @@ div#header div.menu ul li a {font-weight:600; font-size:13px; color:white; text-
 div#header div.menu ul li a:hover {border-bottom:1px dotted white;}
 div#header div.menu ul li.selected a {color:#A7C9E0;}
 div#header div.menu ul li.selected a:hover {border-bottom:1px dotted #A7C9E0;}
-div#header div.menu ul li.log_out {float:right;}
+div#header div.menu ul li.log_out {float:right; margin-right:100px;}
 div#header div.menu ul li.log_out a {color:#A7C9E0;}
 div#header div.menu ul li.user {margin:0; background:url('../images/common/right_clicked_down.png') no-repeat right 0; width:auto;}
 div#header div.menu ul li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
