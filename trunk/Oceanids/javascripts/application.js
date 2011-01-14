@@ -12,7 +12,7 @@ $(document).ready(function() {
          }
       });
       
-      var padding_difference = $('ul.suboptions').width() - $('li.bottom').width();
+      var padding_difference = $('li.user').width() - $('li.bottom').width();
       padding_difference += 'px' 
       
       $('li.bottom').children('a').children('span').css('padding-right',padding_difference);
