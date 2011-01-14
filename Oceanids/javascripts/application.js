@@ -21,7 +21,7 @@ $(document).ready(function() {
       // console.log(width_bottom_element);
       // padding_difference = width_list - width_bottom_element;
       // console.log(padding_difference);
-      $('ul.suboptions li.bottom').css('padding-right',20);
+      console.log($('ul.suboptions li.bottom').find('span').html());
 
    }
 
