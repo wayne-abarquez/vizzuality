@@ -12,13 +12,11 @@ $(document).ready(function() {
          }
       });
       
-      var padding_difference = $('li.user').width() - $('li.bottom').width();
+      var padding_difference = $('li.user').width() - $('li.bottom').width() - 70;
       padding_difference += 'px' 
       
       $('li.bottom').children('a').children('span').css('padding-right',padding_difference);
-
    }
-
 	// FONTS	
 	Cufon.replace('.calibri', {fontFamily: 'Calibri'});
 	Cufon.replace('.calibri_criteria', {fontFamily: 'Calibri',hover: {color: 'white'}});
