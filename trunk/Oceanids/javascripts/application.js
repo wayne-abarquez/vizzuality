@@ -1,14 +1,14 @@
 $(document).ready(function() {
       // SHOW SUB_MENU OPTIONS
    if ($('li.user').length > 0){
-      $('li.user').click(function(ev){
+      $('li.user').children('a').click(function(ev){
          ev.preventDefault();
          ev.stopPropagation();
          
-         if (!$(this).hasClass('clicked')){
-            $(this).addClass('clicked');   
+         if (!$(this).parent().hasClass('clicked')){
+            $(this).parent().addClass('clicked');   
          }else {
-            $(this).removeClass('clicked');
+            $(this).parent().removeClass('clicked');
          }
       });
       
@@ -18,8 +18,8 @@ $(document).ready(function() {
       $('li.bottom').children('a').children('span').css('padding-right',padding_difference);
    }
 	// FONTS	
-	Cufon.replace('.calibri', {fontFamily: 'Calibri'});
-	Cufon.replace('.calibri_criteria', {fontFamily: 'Calibri',hover: {color: 'white'}});
+   // Cufon.replace('.calibri', {fontFamily: 'Calibri'});
+   // Cufon.replace('.calibri_criteria', {fontFamily: 'Calibri',hover: {color: 'white'}});
 
 	
 	if (($('div.data_results')!= null)&&($('div.data_results')[0])){
