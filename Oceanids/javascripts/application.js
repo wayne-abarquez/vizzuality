@@ -22,7 +22,7 @@ $(document).ready(function() {
       // padding_difference = width_list - width_bottom_element;
       // console.log(padding_difference);
       
-      $('li.bottom').children('a').children('span').css('display','none');
+      $('li.bottom').children('a').children('span').css('padding','0 20px 13px 9px');
 
    }
 
