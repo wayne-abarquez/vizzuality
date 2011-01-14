@@ -32,7 +32,7 @@ div#header div.menu ul.main_options li a:hover {border-bottom:1px dotted white;}
 div#header div.menu ul.main_options li.selected a {color:#A7C9E0;}
 div#header div.menu ul.main_options li.selected a:hover {border-bottom:1px dotted #A7C9E0;}
 div#header div.menu ul.main_options li.log_out {float:right; margin-right:100px;}
-div#header div.menu ul.main_options li.log_out a {color:#A7C9E0;}
+div#header div.menu ul.main_options li.log_out a {color:#A7C9E0; margin:0 3px;}
 div#header div.menu ul.main_options li.user {margin:0; background:url('../images/common/right_clicked_down.png') no-repeat right 0; width:auto; position:relative;}
 div#header div.menu ul.main_options li.user div#user_menu {display:none;}
 div#header div.menu ul.main_options li.user.clicked {background:url('../images/common/right_clicked_up.png') no-repeat right 0;}
