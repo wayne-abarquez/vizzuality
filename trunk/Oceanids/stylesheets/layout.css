@@ -64,6 +64,8 @@ div#content div.data_sets div.content {float:left; background:url('../images/hom
 div#content div.data_sets div.content div.left {float:left; margin:10px 0 0 39px; width:520px;}
 div#content div.data_sets div.content h4 {float:left; font-weight:600; font-size:25px; color:#333333; /*letter-spacing:-1.0px;*/ width:100%; }
 div#content div.data_sets div.content p.message {float:left; font-weight:normal; font-size:15px; color:#666666; margin:10px 0 0 0; width:220px; line-height:16px;}
+div#content div.data_sets div.content p.message a {color:#FF6600;}
+div#content div.data_sets div.content p.message a:hover {text-decoration:underline;}
 div#content div.data_sets div.content p.subtitle {float:left; font-weight:normal; font-size:15px; color:#666666; margin:0; width:100%; line-height:13px;}
 div#content div.data_sets div.content p.subtitle b {font-weight:600;}
 div#content div.data_sets div.content p.subtitle a {color:#FF6600; }
@@ -96,6 +98,9 @@ div#content div.data_sets div.content ul.datasets li div.suboptions span.bottom 
 div#content div.data_sets div.content div.right {float:right; width:265px; height:auto; margin:10px 0 0 25px;}
 div#content div.data_sets div.content div.right a.create_map {float:left; margin:24px 0 0 0; background:url('../images/home/create_map_bttn.png') no-repeat 0 0; width:222px; height:36px; padding:0;}
 div#content div.data_sets div.content div.right a.create_map:hover {background-position:0 -36px;}
+div#content div.data_sets div.content div.right p a {font:normal 15px "Myriad Pro"; color:#FF6600;}
+div#content div.data_sets div.content div.right p a:hover {text-decoration:underline; cursor:pointer;}
+
 div#content div.data_sets div.content div.right p.title {float:left; font-weight:600; font-size:13px; color:#999999; text-transform:uppercase; margin:15px 0 0 0; width:222px; height:14px;}
 div#content div.data_sets div.content div.right ul.maps {float:left; width:222px; height:auto; margin:5px 0 0 0;}  
 div#content div.data_sets div.content div.right ul.maps li {float:left; width:222px; height:57px; margin:10px 0 0 0;}
@@ -678,7 +683,7 @@ div#content_upload ul.options_join li.option.active div.content_join_data div.su
 div#content_upload ul.options_join li.option.active div.content_join_data div.summarize_data div.right a.open_window:hover {cursor:pointer; color:#333333;}
 
 div#content_upload ul.options_join li.option.active span.bottom {float:left; width:499px; height:11px; background:url('../images/upload/bottom_join_data.png') no-repeat 0 0;}
-/* DESCRIBE */
+/* DESCRIBE----- */
 
 div#content_upload form.content_review {float:left; width:100%; margin:0;}
 div#content_upload p.tittle_kind_data {float:left; font-weight:600; font-size:13px; text-transform:uppercase; color:#333333; width:100%; margin:30px 0 0 0;}
