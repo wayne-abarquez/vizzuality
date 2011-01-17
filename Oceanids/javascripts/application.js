@@ -1,4 +1,9 @@
 $(document).ready(function() {
+   
+   // FONTS		
+   Cufon.replace('.calibri', {fontFamily: 'Calibri'});		
+   Cufon.replace('.calibri_criteria', {fontFamily: 'Calibri',hover: {color: 'white'}});
+   
       // SHOW SUB_MENU OPTIONS
    if ($('li.user').length > 0){
       $('li.user').children('a').click(function(ev){
