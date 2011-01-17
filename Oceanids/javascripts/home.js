@@ -30,6 +30,9 @@ $(document).ready(function() {
 		$('ul.datasets li').find('a.element').click(function(ev){		
 			ev.stopPropagation();
 			ev.preventDefault();
+         
+         $('div.suboptions').fadeOut();			
+         
 			$(this).parent().find('div.suboptions').fadeIn();
 			
 			$(document).click(function(event) {
