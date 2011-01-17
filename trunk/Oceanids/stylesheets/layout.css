@@ -82,7 +82,7 @@ div#content div.data_sets div.content ul.datasets li p.calibri {float:left; font
 div#content div.data_sets div.content ul.datasets li a{float:left; text-decoration:none; color:#FF6600; margin:0; line-height:23px; font:normal 15px "Arial";}
 div#content div.data_sets div.content ul.datasets li a:hover {text-decoration:underline;}
 
-div#content div.data_sets div.content ul.datasets li div.suboptions {position:absolute; top:-12px; left:-12px; width:212px; height:auto; z-index:5; display:none;}
+div#content div.data_sets div.content ul.datasets li div.suboptions {position:absolute; top:-12px; left:-12px; width:212px; height:auto; z-index:50; display:none;}
 div#content div.data_sets div.content ul.datasets li div.suboptions span.top {float:left; height:38px; width:212px; background:url('../images/home/subdatasets/top_category.png') no-repeat 0 0;}
 div#content div.data_sets div.content ul.datasets li div.suboptions span.top a {float:left; font:bold 15px Arial; color:#666666; margin:13px 0 0 15px; text-decoration:none;}
 div#content div.data_sets div.content ul.datasets li div.suboptions span.top a:hover {cursor:pointer;}
