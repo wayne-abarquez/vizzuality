@@ -51,14 +51,14 @@ $(document).ready(function() {
 	}
 	   
    //remove text from input
-   $('input.main_search').focusin(function(ev){
+   $('input#searchDataSet').focusin(function(ev){
      var value = $(this).attr('value');
-     if (value == "Search donors by name, place,..." || value == "Search Organizations by name, place,..." || value == "Search projects by name, place,..." || value == "Search sites by name, place,...") {
+     if (value == "Search datasets by name, type, tag...") {
        old_value = value;
        $(this).attr('value','');
      }
    });
-   $('input.main_search').focusout(function(ev){
+   $('input#searchDataSet').focusout(function(ev){
      var value = $(this).attr('value');
      if (value == "") {
        $(this).attr('value',old_value);
