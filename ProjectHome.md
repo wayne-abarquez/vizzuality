@@ -1,0 +1,1 @@
+Vizzuality is a company developing RIAs for biodiversity informatics. All software we do is open source.
